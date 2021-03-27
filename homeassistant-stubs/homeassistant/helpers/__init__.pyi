@@ -1,0 +1,6 @@
+from .typing import ConfigType as ConfigType
+from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM
+from typing import Any, Iterable, Sequence, Tuple
+
+def config_per_platform(config: ConfigType, domain: str) -> Iterable[Tuple[Any, Any]]: ...
+def extract_domain_configs(config: ConfigType, domain: str) -> Sequence[str]: ...

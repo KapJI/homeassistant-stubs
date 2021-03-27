@@ -1,0 +1,6 @@
+from homeassistant.core import split_entity_id as split_entity_id
+from typing import Dict, Optional
+
+class EntityValues:
+    def __init__(self, exact: Optional[Dict[str, Dict[str, str]]]=..., domain: Optional[Dict[str, Dict[str, str]]]=..., glob: Optional[Dict[str, Dict[str, str]]]=...) -> None: ...
+    def get(self, entity_id: str) -> Dict[str, str]: ...

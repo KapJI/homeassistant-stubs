@@ -1,0 +1,19 @@
+from homeassistant import bootstrap as bootstrap, core as core
+from homeassistant.config import get_default_config_dir as get_default_config_dir
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.check_config import async_check_ha_config_file as async_check_ha_config_file
+from typing import Any, Callable, Dict, List, Optional, Tuple
+
+REQUIREMENTS: Any
+MOCKS: Dict[str, Tuple[str, Callable]]
+SILENCE: Any
+PATCHES: Dict[str, Any]
+C_HEAD: str
+ERROR_STR: str
+
+def color(the_color: Any, *args: Any, reset: Optional[Any] = ...): ...
+def run(script_args: List) -> int: ...
+def check(config_dir: Any, secrets: bool = ...): ...
+async def async_check_config(config_dir: Any): ...
+def line_info(obj: Any, **kwargs: Any): ...
+def dump_dict(layer: Any, indent_count: int = ..., listi: bool = ..., **kwargs: Any): ...

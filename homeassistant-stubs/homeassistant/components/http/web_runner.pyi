@@ -1,0 +1,9 @@
+from aiohttp import web
+from ssl import SSLContext
+from typing import List, Optional, Union
+
+class HomeAssistantTCPSite(web.BaseSite):
+    def __init__(self, runner: web.BaseRunner, host: Union[None, str, List[str]], port: int, *, shutdown_timeout: float=..., ssl_context: Optional[SSLContext]=..., backlog: int=..., reuse_address: Optional[bool]=..., reuse_port: Optional[bool]=...) -> None: ...
+    @property
+    def name(self) -> str: ...
+    async def start(self) -> None: ...

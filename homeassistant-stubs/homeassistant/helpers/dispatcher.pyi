@@ -1,0 +1,13 @@
+from .typing import HomeAssistantType as HomeAssistantType
+from homeassistant.core import HassJob as HassJob, callback as callback
+from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
+from homeassistant.util.logging import catch_log_exception as catch_log_exception
+from typing import Any, Callable
+
+DATA_DISPATCHER: str
+
+def dispatcher_connect(hass: HomeAssistantType, signal: str, target: Callable[..., None]) -> Callable[[], None]: ...
+def async_dispatcher_connect(hass: HomeAssistantType, signal: str, target: Callable[..., Any]) -> Callable[[], None]: ...
+def dispatcher_send(hass: HomeAssistantType, signal: str, *args: Any) -> None: ...
+def async_dispatcher_send(hass: HomeAssistantType, signal: str, *args: Any) -> None: ...

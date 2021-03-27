@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "homeassistant_stubs"
+name = "homeassistant-stubs"
 version = "0.0.1"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = ["Ruslan Sayfutdinov <ruslan@sayfutdinov.com>"]
@@ -18,6 +18,9 @@ keywords = ["homeassistant", "typing", "pep484"]
 readme = "README.md"
 homepage = "https://github.com/KapJI/homeassistant-stubs"
 repository = "https://github.com/KapJI/homeassistant-stubs"
+packages = [
+    { include = "homeassistant-stubs" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"

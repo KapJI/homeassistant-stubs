@@ -4,7 +4,6 @@ version = "0.0.1"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = ["Ruslan Sayfutdinov <ruslan@sayfutdinov.com>"]
 license = "MIT"
-keywords = ["homeassistant", "typing", "pep484"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -15,6 +14,10 @@ classifiers = [
     "Topic :: Software Development",
     "Typing :: Typed",
 ]
+keywords = ["homeassistant", "typing", "pep484"]
+readme = "README.md"
+homepage = "https://github.com/KapJI/homeassistant-stubs"
+repository = "https://github.com/KapJI/homeassistant-stubs"
 
 [tool.poetry.dependencies]
 python = "^3.8"

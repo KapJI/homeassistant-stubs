@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "homeassistant-stubs"
+name = "homeassistant_stubs"
 version = "0.0.1"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = ["Ruslan Sayfutdinov <ruslan@sayfutdinov.com>"]

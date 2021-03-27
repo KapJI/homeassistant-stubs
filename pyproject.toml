@@ -4,6 +4,17 @@ version = "0.0.1"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = ["Ruslan Sayfutdinov <ruslan@sayfutdinov.com>"]
 license = "MIT"
+keywords = ["homeassistant", "typing", "pep484"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -15,7 +26,20 @@ isort = "^5.8.0"
 pre-commit = "^2.11.1"
 flake8 = "^3.9.0"
 pylint = "^2.7.2"
+flake8-bugbear = "^21.3.2"
+flake8-comprehensions = "^3.4.0"
+flake8-use-fstring = "^1.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pylint.format]
+max-line-length = "88"
+
+[tool.pylint.basic]
+good-names = ["fp"]

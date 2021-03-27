@@ -13,7 +13,7 @@ def main() -> int:
     repo_root = Path(os.path.dirname(os.path.realpath(__file__)))
     homeassistant_root = repo_root / "homeassistant_core"
     typed_paths = get_typed_paths(homeassistant_root)
-    generate_stubs(typed_paths, repo_root / "homeassistant_stubs")
+    generate_stubs(typed_paths, repo_root)
     return 0
 
 
@@ -30,6 +30,8 @@ def get_typed_paths(homeassistant_root: Path) -> List[Path]:
     mypy_config = matched_lines[0][len("[mypy-") : -len("]\n")]
     typed_paths: List[Path] = []
     for item in mypy_config.split(","):
+        if not item.startswith("homeassistant."):
+            continue
         if item.endswith(".*"):
             typed_path = homeassistant_root / Path(
                 item[: -len(".*")].replace(".", os.path.sep)
@@ -55,6 +57,9 @@ def generate_stubs(typed_paths: List[Path], output_folder: Path) -> None:
         str(output_folder),
     ] + [str(folder) for folder in typed_paths]
     subprocess.run(command_args, check=True)
+    stubs_folder = output_folder / "homeassistant"
+    assert stubs_folder.is_dir()
+    stubs_folder.rename(output_folder / "homeassistant-stubs")
 
 
 if __name__ == "__main__":

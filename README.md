@@ -15,6 +15,7 @@ poetry add --dev homeassistant-stubs
 Please note that only stubs from strictly typed modules are added in this package.
 This includes all core modules and some components.
 Generic components like `sensor`, `light` or `media_player` are already typed.
+
 If your project imports not yet typed components, `mypy` will be unable to find that module.
 The best thing you can do to fix this is to submit PR to HA Core which adds type hints for these components.
 After that stubs for these components will become available in this package.
@@ -26,7 +27,7 @@ Home Assistant maintainers don't want to distribute typing information with `hom
 [[2]](https://github.com/home-assistant/core/pull/47796)).
 This is because [PEP 561](https://www.python.org/dev/peps/pep-0561/#packaging-type-information)
 says that `py.typed` marker is applied recursively and the whole package must support type checking.
-But most of the Home Assistant components are currently not type checked.
+But many of the Home Assistant components are currently not type checked.
 
 ## How it works
 

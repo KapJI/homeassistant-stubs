@@ -27,7 +27,7 @@ After that stubs for these components will become available in this package.
 Home Assistant maintainers don't want to distribute typing information with `homeassistant` package
 ([[1]](https://github.com/home-assistant/core/pull/28866),
 [[2]](https://github.com/home-assistant/core/pull/47796)).
-This is because [PEP 561](https://www.python.org/dev/peps/pep-0561/#packaging-type-information)
+The reason is that [PEP 561](https://www.python.org/dev/peps/pep-0561/#packaging-type-information)
 says that `py.typed` marker is applied recursively and the whole package must support type checking.
 But many of the Home Assistant components are currently not type checked.
 

@@ -2,6 +2,7 @@
 """Fetch the latest homeassistant tag and generate typing stubs for it."""
 
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -58,8 +59,10 @@ def generate_stubs(typed_paths: List[Path], output_folder: Path) -> None:
     ] + [str(folder) for folder in typed_paths]
     subprocess.run(command_args, check=True)
     stubs_folder = output_folder / "homeassistant"
-    assert stubs_folder.is_dir()
-    stubs_folder.rename(output_folder / "homeassistant-stubs")
+    new_stubs_folder = output_folder / "homeassistant-stubs"
+    if new_stubs_folder.is_dir():
+        shutil.rmtree(new_stubs_folder)
+    stubs_folder.rename(new_stubs_folder)
 
 
 if __name__ == "__main__":

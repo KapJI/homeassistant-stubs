@@ -1,12 +1,12 @@
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.yaml import secret_yaml as secret_yaml
 from ruamel.yaml.constructor import SafeConstructor
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Union
 
 JSON_TYPE = Union[List, Dict, str]
 
 class ExtSafeConstructor(SafeConstructor):
-    name: Optional[str] = ...
+    name: Union[str, None] = ...
 
 class UnsupportedYamlError(HomeAssistantError): ...
 class WriteError(HomeAssistantError): ...

@@ -5,7 +5,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any, Callable, List, Optional, TypedDict
+from typing import Any, Callable, TypedDict
 from zwave_js_server.client import Client as ZwaveClient
 
 LOGGER: Any
@@ -30,29 +30,29 @@ NOTIFICATION_GAS: int
 
 class NotificationSensorMapping(TypedDict):
     type: int
-    states: List[str]
+    states: list[str]
     device_class: str
     enabled: bool
 
-NOTIFICATION_SENSOR_MAPPINGS: List[NotificationSensorMapping]
+NOTIFICATION_SENSOR_MAPPINGS: list[NotificationSensorMapping]
 PROPERTY_DOOR_STATUS: str
 
 class PropertySensorMapping(TypedDict):
     property_name: str
-    on_states: List[str]
+    on_states: list[str]
     device_class: str
     enabled: bool
 
-PROPERTY_SENSOR_MAPPINGS: List[PropertySensorMapping]
+PROPERTY_SENSOR_MAPPINGS: list[PropertySensorMapping]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable) -> None: ...
 
 class ZWaveBooleanBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     @property
-    def is_on(self) -> Optional[bool]: ...
+    def is_on(self) -> Union[bool, None]: ...
     @property
-    def device_class(self) -> Optional[str]: ...
+    def device_class(self) -> Union[str, None]: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
 
@@ -60,9 +60,9 @@ class ZWaveNotificationBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     state_key: Any = ...
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo, state_key: str) -> None: ...
     @property
-    def is_on(self) -> Optional[bool]: ...
+    def is_on(self) -> Union[bool, None]: ...
     @property
-    def device_class(self) -> Optional[str]: ...
+    def device_class(self) -> Union[str, None]: ...
     @property
     def unique_id(self) -> str: ...
     @property
@@ -71,8 +71,8 @@ class ZWaveNotificationBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
 class ZWavePropertyBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     @property
-    def is_on(self) -> Optional[bool]: ...
+    def is_on(self) -> Union[bool, None]: ...
     @property
-    def device_class(self) -> Optional[str]: ...
+    def device_class(self) -> Union[str, None]: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...

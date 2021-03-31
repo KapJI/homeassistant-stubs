@@ -2,6 +2,6 @@ from .const import ATTR_INPUT_SOURCE as ATTR_INPUT_SOURCE, ATTR_MEDIA_CONTENT_ID
 from homeassistant.const import SERVICE_MEDIA_PAUSE as SERVICE_MEDIA_PAUSE, SERVICE_MEDIA_PLAY as SERVICE_MEDIA_PLAY, SERVICE_MEDIA_STOP as SERVICE_MEDIA_STOP, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_MUTE as SERVICE_VOLUME_MUTE, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import Context as Context, State as State
 from homeassistant.helpers.typing import HomeAssistantType as HomeAssistantType
-from typing import Any, Dict, Iterable, Optional
+from typing import Any, Iterable
 
-async def async_reproduce_states(hass: HomeAssistantType, states: Iterable[State], *, context: Optional[Context]=..., reproduce_options: Optional[Dict[str, Any]]=...) -> None: ...
+async def async_reproduce_states(hass: HomeAssistantType, states: Iterable[State], *, context: Union[Context, None]=..., reproduce_options: Union[dict[str, Any], None]=...) -> None: ...

@@ -1,0 +1,3 @@
+from . import Recorder as Recorder
+
+def repack_database(instance: Recorder) -> None: ...

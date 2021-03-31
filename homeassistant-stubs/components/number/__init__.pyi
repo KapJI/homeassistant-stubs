@@ -6,7 +6,7 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, HomeAssistantType as HomeAssistantType
-from typing import Any, Dict
+from typing import Any
 
 SCAN_INTERVAL: Any
 ENTITY_ID_FORMAT: Any
@@ -18,7 +18,7 @@ async def async_unload_entry(hass: HomeAssistantType, entry: ConfigEntry) -> boo
 
 class NumberEntity(Entity, metaclass=abc.ABCMeta):
     @property
-    def capability_attributes(self) -> Dict[str, Any]: ...
+    def capability_attributes(self) -> dict[str, Any]: ...
     @property
     def min_value(self) -> float: ...
     @property

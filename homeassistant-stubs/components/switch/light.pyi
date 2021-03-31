@@ -1,15 +1,15 @@
 from homeassistant.components import switch as switch
 from homeassistant.components.light import LightEntity as LightEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
-from homeassistant.core import State as State, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, HomeAssistantType as HomeAssistantType
-from typing import Any, Callable, Optional, Sequence
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import Any, Callable, Sequence
 
 DEFAULT_NAME: str
 
-async def async_setup_platform(hass: HomeAssistantType, config: ConfigType, async_add_entities: Callable[[Sequence[Entity]], None], discovery_info: Optional[DiscoveryInfoType]=...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable[[Sequence[Entity]], None], discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
 
 class LightSwitch(LightEntity):
     def __init__(self, name: str, switch_entity_id: str, unique_id: str) -> None: ...

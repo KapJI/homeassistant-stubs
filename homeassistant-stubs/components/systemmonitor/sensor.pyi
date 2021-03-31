@@ -1,6 +1,5 @@
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
 from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_TYPE as CONF_TYPE, DATA_GIBIBYTES as DATA_GIBIBYTES, DATA_MEBIBYTES as DATA_MEBIBYTES, DATA_RATE_MEGABYTES_PER_SECOND as DATA_RATE_MEGABYTES_PER_SECOND, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS
-from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.util import slugify as slugify
 from typing import Any, Optional
 
@@ -16,7 +15,7 @@ CPU_SENSOR_PREFIXES: Any
 
 def setup_platform(hass: Any, config: Any, add_entities: Any, discovery_info: Optional[Any] = ...) -> None: ...
 
-class SystemMonitorSensor(Entity):
+class SystemMonitorSensor(SensorEntity):
     argument: Any = ...
     type: Any = ...
     def __init__(self, sensor_type: Any, argument: str = ...) -> None: ...

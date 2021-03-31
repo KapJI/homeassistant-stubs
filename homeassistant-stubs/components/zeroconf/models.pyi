@@ -1,0 +1,9 @@
+from typing import Any
+from zeroconf import DNSRecord as DNSRecord, ServiceBrowser, Zeroconf
+
+class HaZeroconf(Zeroconf):
+    def close(self) -> None: ...
+    ha_close: Any = ...
+
+class HaServiceBrowser(ServiceBrowser):
+    def update_record(self, zc: Zeroconf, now: float, record: DNSRecord) -> None: ...

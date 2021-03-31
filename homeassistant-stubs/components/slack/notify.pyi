@@ -1,16 +1,15 @@
 from aiohttp import BasicAuth
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, BaseNotificationService as BaseNotificationService, PLATFORM_SCHEMA as PLATFORM_SCHEMA
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ICON as CONF_ICON, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import ATTR_ICON as ATTR_ICON, CONF_API_KEY as CONF_API_KEY, CONF_ICON as CONF_ICON, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, HomeAssistantType as HomeAssistantType
 from slack import WebClient
-from typing import Any, List, Optional, TypedDict
+from typing import Any, TypedDict
 
 ATTR_BLOCKS: str
 ATTR_BLOCKS_TEMPLATE: str
 ATTR_FILE: str
-ATTR_ICON: str
 ATTR_PASSWORD: str
 ATTR_PATH: str
 ATTR_URL: str
@@ -39,10 +38,10 @@ class MessageT(TypedDict):
     username: str
     icon_url: str
     icon_emoji: str
-    blocks: List[Any]
+    blocks: list[Any]
 
-async def async_get_service(hass: HomeAssistantType, config: ConfigType, discovery_info: Optional[DiscoveryInfoType]=...) -> Optional[SlackNotificationService]: ...
+async def async_get_service(hass: HomeAssistantType, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None]=...) -> Union[SlackNotificationService, None]: ...
 
 class SlackNotificationService(BaseNotificationService):
-    def __init__(self, hass: HomeAssistantType, client: WebClient, default_channel: str, username: Optional[str], icon: Optional[str]) -> None: ...
+    def __init__(self, hass: HomeAssistantType, client: WebClient, default_channel: str, username: Union[str, None], icon: Union[str, None]) -> None: ...
     async def async_send_message(self, message: str, **kwargs: Any) -> None: ...

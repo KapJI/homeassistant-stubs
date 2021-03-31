@@ -5,7 +5,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_registry as entity_registry
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
-from typing import Any, List
+from typing import Any
 
 TYPE_BRIGHTNESS_INCREASE: str
 TYPE_BRIGHTNESS_DECREASE: str
@@ -13,5 +13,5 @@ TYPE_FLASH: str
 ACTION_SCHEMA: Any
 
 async def async_call_action_from_config(hass: HomeAssistant, config: ConfigType, variables: TemplateVarsType, context: Context) -> None: ...
-async def async_get_actions(hass: HomeAssistant, device_id: str) -> List[dict]: ...
+async def async_get_actions(hass: HomeAssistant, device_id: str) -> list[dict]: ...
 async def async_get_action_capabilities(hass: HomeAssistant, config: dict) -> dict: ...

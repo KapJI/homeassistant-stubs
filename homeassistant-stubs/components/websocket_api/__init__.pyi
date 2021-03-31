@@ -6,10 +6,10 @@ from .decorators import async_response as async_response, require_admin as requi
 from .messages import BASE_COMMAND_MESSAGE_SCHEMA as BASE_COMMAND_MESSAGE_SCHEMA, error_message as error_message, event_message as event_message, result_message as result_message
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Optional, Union
+from typing import Any
 
 DOMAIN: Any
 DEPENDENCIES: Any
 
-def async_register_command(hass: HomeAssistant, command_or_handler: Union[str, const.WebSocketCommandHandler], handler: Optional[const.WebSocketCommandHandler]=..., schema: Optional[vol.Schema]=...) -> None: ...
+def async_register_command(hass: HomeAssistant, command_or_handler: Union[str, const.WebSocketCommandHandler], handler: Union[const.WebSocketCommandHandler, None]=..., schema: Union[vol.Schema, None]=...) -> None: ...
 async def async_setup(hass: Any, config: Any): ...

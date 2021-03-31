@@ -5,9 +5,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import HomeAssistantType as HomeAssistantType
-from typing import Any, Callable, List
+from typing import Any, Callable
 
-async def async_setup_entry(hass: HomeAssistantType, config_entry: ConfigEntry, async_add_entities: Callable[[List[Entity], bool], None]) -> None: ...
+async def async_setup_entry(hass: HomeAssistantType, config_entry: ConfigEntry, async_add_entities: Callable[[list[Entity], bool], None]) -> None: ...
 
 class HuaweiLteBaseSwitch(HuaweiLteBaseEntity, SwitchEntity):
     key: str

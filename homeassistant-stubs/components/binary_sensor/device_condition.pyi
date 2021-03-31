@@ -5,7 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers import condition as condition
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device, async_get_registry as async_get_registry
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Dict, List
+from typing import Any
 
 DEVICE_CLASS_NONE: str
 CONF_IS_BAT_LOW: str
@@ -55,6 +55,6 @@ IS_OFF: Any
 ENTITY_CONDITIONS: Any
 CONDITION_SCHEMA: Any
 
-async def async_get_conditions(hass: HomeAssistant, device_id: str) -> List[Dict[str, str]]: ...
+async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 def async_condition_from_config(config: ConfigType, config_validation: bool) -> condition.ConditionCheckerType: ...
 async def async_get_condition_capabilities(hass: HomeAssistant, config: dict) -> dict: ...

@@ -1,0 +1,6 @@
+BRIDGE_MAKE: str
+DOMAIN: str
+CONF_BOND_ID: str
+HUB: str
+BPUP_SUBS: str
+BPUP_STOP: str

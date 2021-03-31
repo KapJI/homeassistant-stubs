@@ -4,9 +4,8 @@ from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.recorder.models import States as States, process_timestamp as process_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat
 from homeassistant.components.recorder.util import execute as execute, session_scope as session_scope
 from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE, HTTP_BAD_REQUEST as HTTP_BAD_REQUEST
-from homeassistant.core import Context as Context, State as State, split_entity_id as split_entity_id
+from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, split_entity_id as split_entity_id
 from homeassistant.helpers.entityfilter import CONF_ENTITY_GLOBS as CONF_ENTITY_GLOBS, INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA
-from homeassistant.helpers.typing import HomeAssistantType as HomeAssistantType
 from typing import Any, Optional
 
 DOMAIN: str
@@ -35,7 +34,7 @@ class HistoryPeriodView(HomeAssistantView):
     filters: Any = ...
     use_include_order: Any = ...
     def __init__(self, filters: Any, use_include_order: Any) -> None: ...
-    async def get(self, request: web.Request, datetime: Optional[str]=...) -> web.Response: ...
+    async def get(self, request: web.Request, datetime: Union[str, None]=...) -> web.Response: ...
 
 def sqlalchemy_filter_from_include_exclude_conf(conf: Any): ...
 

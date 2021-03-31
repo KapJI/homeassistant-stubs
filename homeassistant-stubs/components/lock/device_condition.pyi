@@ -4,10 +4,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers import condition as condition, entity_registry as entity_registry
 from homeassistant.helpers.config_validation import DEVICE_CONDITION_BASE_SCHEMA as DEVICE_CONDITION_BASE_SCHEMA
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
-from typing import Any, List
+from typing import Any
 
 CONDITION_TYPES: Any
 CONDITION_SCHEMA: Any
 
-async def async_get_conditions(hass: HomeAssistant, device_id: str) -> List[dict]: ...
+async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict]: ...
 def async_condition_from_config(config: ConfigType, config_validation: bool) -> condition.ConditionCheckerType: ...

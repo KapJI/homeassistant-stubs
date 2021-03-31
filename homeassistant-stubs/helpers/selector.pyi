@@ -1,10 +1,10 @@
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.util import decorator as decorator
-from typing import Any, Callable, Dict
+from typing import Any, Callable
 
 SELECTORS: Any
 
-def validate_selector(config: Any) -> Dict: ...
+def validate_selector(config: Any) -> dict: ...
 
 class Selector:
     CONFIG_SCHEMA: Callable

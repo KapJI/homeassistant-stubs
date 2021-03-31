@@ -2,7 +2,7 @@ from homeassistant.components.light import ATTR_TRANSITION as ATTR_TRANSITION
 from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from typing import Any, Optional
+from typing import Any
 
 DOMAIN: str
 STATE: str
@@ -17,6 +17,6 @@ class Scene(Entity):
     @property
     def should_poll(self) -> bool: ...
     @property
-    def state(self) -> Optional[str]: ...
+    def state(self) -> Union[str, None]: ...
     def activate(self, **kwargs: Any) -> None: ...
     async def async_activate(self, **kwargs: Any) -> None: ...

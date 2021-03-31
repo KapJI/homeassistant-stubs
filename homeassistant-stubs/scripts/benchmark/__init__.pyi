@@ -3,10 +3,10 @@ from homeassistant.components.websocket_api.const import JSON_DUMP as JSON_DUMP
 from homeassistant.const import ATTR_NOW as ATTR_NOW, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED
 from homeassistant.helpers.entityfilter import convert_include_exclude_filter as convert_include_exclude_filter
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
-from typing import Any, Callable, Dict, TypeVar
+from typing import Any, Callable, TypeVar
 
 CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable)
-BENCHMARKS: Dict[str, Callable]
+BENCHMARKS: dict[str, Callable]
 
 def run(args: Any) -> None: ...
 async def run_benchmark(bench: Any) -> None: ...

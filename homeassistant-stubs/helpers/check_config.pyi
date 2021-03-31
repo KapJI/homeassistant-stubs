@@ -5,17 +5,17 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
-from typing import Any, NamedTuple, Optional
+from typing import Any, NamedTuple
 
 class CheckConfigError(NamedTuple):
     message: str
-    domain: Optional[str]
-    config: Optional[ConfigType]
+    domain: Union[str, None]
+    config: Union[ConfigType, None]
 
 class HomeAssistantConfig(OrderedDict):
     errors: Any = ...
     def __init__(self) -> None: ...
-    def add_error(self, message: str, domain: Optional[str]=..., config: Optional[ConfigType]=...) -> HomeAssistantConfig: ...
+    def add_error(self, message: str, domain: Union[str, None]=..., config: Union[ConfigType, None]=...) -> HomeAssistantConfig: ...
     @property
     def error_str(self) -> str: ...
 

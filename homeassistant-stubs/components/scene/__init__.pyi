@@ -7,6 +7,10 @@ from typing import Any
 DOMAIN: str
 STATE: str
 STATES: str
+
+def _hass_domain_validator(config: Any): ...
+def _platform_validator(config: Any): ...
+
 PLATFORM_SCHEMA: Any
 
 async def async_setup(hass: Any, config: Any): ...

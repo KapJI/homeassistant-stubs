@@ -4,6 +4,7 @@ from homeassistant.util.async_ import run_callback_threadsafe as run_callback_th
 from homeassistant.util.logging import catch_log_exception as catch_log_exception
 from typing import Any, Callable
 
+_LOGGER: Any
 DATA_DISPATCHER: str
 
 def dispatcher_connect(hass: HomeAssistant, signal: str, target: Callable[..., None]) -> Callable[[], None]: ...

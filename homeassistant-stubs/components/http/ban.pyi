@@ -6,6 +6,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import yaml as yaml
 from typing import Any
 
+_LOGGER: Any
 KEY_BANNED_IPS: str
 KEY_FAILED_LOGIN_ATTEMPTS: str
 KEY_LOGIN_THRESHOLD: str

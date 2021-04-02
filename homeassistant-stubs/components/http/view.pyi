@@ -7,6 +7,8 @@ from homeassistant.core import Context as Context, is_callback as is_callback
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from typing import Any, Callable
 
+_LOGGER: Any
+
 class HomeAssistantView:
     url: Union[str, None] = ...
     extra_urls: list[str] = ...

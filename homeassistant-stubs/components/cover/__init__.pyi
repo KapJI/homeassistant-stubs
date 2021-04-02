@@ -5,6 +5,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
 
+_LOGGER: Any
 DOMAIN: str
 SCAN_INTERVAL: Any
 ENTITY_ID_FORMAT: Any

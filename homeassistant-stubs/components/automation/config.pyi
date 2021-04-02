@@ -11,6 +11,7 @@ from homeassistant.helpers.trigger import async_validate_trigger_config as async
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from typing import Any, Optional
 
+_CONDITION_SCHEMA: Any
 PLATFORM_SCHEMA: Any
 
 async def async_validate_config_item(hass: Any, config: Any, full_config: Optional[Any] = ...): ...
@@ -18,4 +19,5 @@ async def async_validate_config_item(hass: Any, config: Any, full_config: Option
 class AutomationConfig(dict):
     raw_config: Any = ...
 
+async def _try_async_validate_config_item(hass: Any, config: Any, full_config: Optional[Any] = ...): ...
 async def async_validate_config(hass: Any, config: Any): ...

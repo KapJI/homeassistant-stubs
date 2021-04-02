@@ -14,6 +14,7 @@ StateType = Union[None, str, int, float]
 TemplateVarsType = Optional[Mapping[str, Any]]
 QueryType = Any
 
-class UndefinedType(Enum): ...
+class UndefinedType(Enum):
+    _singleton: int = ...
 
 UNDEFINED: Any

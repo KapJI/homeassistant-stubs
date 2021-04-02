@@ -13,6 +13,7 @@ from typing import Any, Callable, Container, Generator
 
 FROM_CONFIG_FORMAT: str
 ASYNC_FROM_CONFIG_FORMAT: str
+_LOGGER: Any
 INPUT_ENTITY_ID: Any
 ConditionCheckerType = Callable[[HomeAssistant, TemplateVarsType], bool]
 

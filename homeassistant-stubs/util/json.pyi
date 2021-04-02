@@ -3,6 +3,8 @@ from homeassistant.core import Event as Event, State as State
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any, Callable
 
+_LOGGER: Any
+
 class SerializationError(HomeAssistantError): ...
 class WriteError(HomeAssistantError): ...
 

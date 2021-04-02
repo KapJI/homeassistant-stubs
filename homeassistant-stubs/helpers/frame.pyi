@@ -1,7 +1,8 @@
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from traceback import FrameSummary
-from typing import Callable, TypeVar
+from typing import Any, Callable, TypeVar
 
+_LOGGER: Any
 CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable)
 
 def get_integration_frame(exclude_integrations: Union[set, None]=...) -> tuple[FrameSummary, str, str]: ...

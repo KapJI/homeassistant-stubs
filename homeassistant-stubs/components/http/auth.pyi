@@ -2,6 +2,7 @@ from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS_REFRESH_TOKE
 from homeassistant.core import callback as callback
 from typing import Any
 
+_LOGGER: Any
 DATA_API_PASSWORD: str
 DATA_SIGN_SECRET: str
 SIGN_QUERY_PARAM: str

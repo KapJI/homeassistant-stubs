@@ -1,9 +1,11 @@
 from . import KNXModule as KNXModule
 from .const import DOMAIN as DOMAIN
 from homeassistant.helpers.entity import Entity as Entity
+from typing import Any
 from xknx.devices import Device as XknxDevice
 
 class KnxEntity(Entity):
+    _device: Any = ...
     def __init__(self, device: XknxDevice) -> None: ...
     @property
     def name(self) -> str: ...

@@ -16,6 +16,7 @@ DEVICE_CLASS_OUTLET: str
 DEVICE_CLASS_SWITCH: str
 DEVICE_CLASSES: Any
 DEVICE_CLASSES_SCHEMA: Any
+_LOGGER: Any
 
 def is_on(hass: Any, entity_id: Any): ...
 async def async_setup(hass: Any, config: Any): ...

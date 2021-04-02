@@ -2,6 +2,8 @@ import concurrent.futures
 from asyncio.events import AbstractEventLoop
 from typing import Any, Callable, Coroutine, TypeVar
 
+_LOGGER: Any
+_SHUTDOWN_RUN_CALLBACK_THREADSAFE: str
 T = TypeVar('T')
 
 def fire_coroutine_threadsafe(coro: Coroutine, loop: AbstractEventLoop) -> None: ...

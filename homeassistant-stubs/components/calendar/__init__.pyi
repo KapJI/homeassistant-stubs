@@ -8,6 +8,7 @@ from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
 from homeassistant.util import dt as dt
 from typing import Any
 
+_LOGGER: Any
 DOMAIN: str
 ENTITY_ID_FORMAT: Any
 SCAN_INTERVAL: Any

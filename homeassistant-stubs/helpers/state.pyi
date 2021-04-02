@@ -7,6 +7,8 @@ from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, asy
 from types import TracebackType
 from typing import Any, Iterable
 
+_LOGGER: Any
+
 class AsyncTrackStates:
     hass: Any = ...
     states: Any = ...

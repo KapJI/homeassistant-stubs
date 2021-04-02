@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from typing import Any
 
+_LOGGER: Any
 DOMAIN: str
 EVENT: str
 CONTENT_TYPE_MPEG: str

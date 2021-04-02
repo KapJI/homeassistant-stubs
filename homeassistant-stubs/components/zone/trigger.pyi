@@ -7,6 +7,7 @@ from typing import Any
 EVENT_ENTER: str
 EVENT_LEAVE: str
 DEFAULT_EVENT = EVENT_ENTER
+_EVENT_DESCRIPTION: Any
 TRIGGER_SCHEMA: Any
 
 async def async_attach_trigger(hass: Any, config: Any, action: Any, automation_info: Any, *, platform_type: str=...) -> CALLBACK_TYPE: ...

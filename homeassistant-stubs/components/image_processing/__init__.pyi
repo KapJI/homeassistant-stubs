@@ -7,6 +7,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from typing import Any
 
+_LOGGER: Any
 DOMAIN: str
 SCAN_INTERVAL: Any
 DEVICE_CLASSES: Any

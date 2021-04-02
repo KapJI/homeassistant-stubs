@@ -6,6 +6,7 @@ from homeassistant.helpers.icon import icon_for_battery_level as icon_for_batter
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Optional
 
+_LOGGER: Any
 DOMAIN: str
 SCAN_INTERVAL: Any
 ATTR_BATTERY_ICON: str

@@ -5,6 +5,8 @@ from homeassistant.const import CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CO
 from homeassistant.helpers.typing import HomeAssistantType as HomeAssistantType
 from typing import Any
 
+_LOGGER: Any
+
 async def async_get_service(hass: HomeAssistantType, config: dict[str, Any], discovery_info: Union[dict[str, Any], None]=...) -> Union[HuaweiLteSmsNotificationService, None]: ...
 
 class HuaweiLteSmsNotificationService(BaseNotificationService):

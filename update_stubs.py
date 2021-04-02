@@ -62,6 +62,7 @@ def generate_stubs(typed_paths: List[Path], output_folder: Path) -> None:
         "poetry",
         "run",
         "stubgen",
+        "--include-private",
         "-o",
         str(output_folder),
     ] + [str(folder) for folder in typed_paths]

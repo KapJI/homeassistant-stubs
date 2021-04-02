@@ -7,6 +7,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, HomeAssistant
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Iterable
 
+_LOGGER: Any
 ATTR_ACTIVITY: str
 ATTR_ACTIVITY_LIST: str
 ATTR_CURRENT_ACTIVITY: str

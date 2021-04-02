@@ -11,6 +11,7 @@ from typing import Any
 SCAN_INTERVAL: Any
 ENTITY_ID_FORMAT: Any
 MIN_TIME_BETWEEN_SCANS: Any
+_LOGGER: Any
 
 async def async_setup(hass: HomeAssistantType, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistantType, entry: ConfigEntry) -> bool: ...

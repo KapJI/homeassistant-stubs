@@ -25,6 +25,9 @@ def path(value: Any) -> str: ...
 def has_at_least_one_key(*keys: str) -> Callable: ...
 def has_at_most_one_key(*keys: str) -> Callable[[dict], dict]: ...
 def boolean(value: Any) -> bool: ...
+
+_WS: Any
+
 def whitespace(value: Any) -> str: ...
 def isdevice(value: Any) -> str: ...
 def matches_regex(regex: str) -> Callable[[Any], str]: ...
@@ -129,8 +132,15 @@ DEVICE_CONDITION_BASE_SCHEMA: Any
 DEVICE_CONDITION_SCHEMA: Any
 CONDITION_SCHEMA: vol.Schema
 TRIGGER_SCHEMA: Any
+_SCRIPT_DELAY_SCHEMA: Any
+_SCRIPT_WAIT_TEMPLATE_SCHEMA: Any
 DEVICE_ACTION_BASE_SCHEMA: Any
 DEVICE_ACTION_SCHEMA: Any
+_SCRIPT_SCENE_SCHEMA: Any
+_SCRIPT_REPEAT_SCHEMA: Any
+_SCRIPT_CHOOSE_SCHEMA: Any
+_SCRIPT_WAIT_FOR_TRIGGER_SCHEMA: Any
+_SCRIPT_SET_SCHEMA: Any
 SCRIPT_ACTION_DELAY: str
 SCRIPT_ACTION_WAIT_TEMPLATE: str
 SCRIPT_ACTION_CHECK_CONDITION: str

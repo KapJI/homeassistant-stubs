@@ -4,6 +4,7 @@ from homeassistant.core import Context as Context, HomeAssistant as HomeAssistan
 from types import MappingProxyType
 from typing import Any, Iterable
 
+_LOGGER: Any
 VALID_STATES: Any
 ATTR_GROUP: Any
 COLOR_GROUP: Any
@@ -11,5 +12,6 @@ COLOR_MODE_TO_ATTRIBUTE: Any
 DEPRECATED_GROUP: Any
 DEPRECATION_WARNING: str
 
+async def _async_reproduce_state(hass: HomeAssistant, state: State, *, context: Union[Context, None]=..., reproduce_options: Union[dict[str, Any], None]=...) -> None: ...
 async def async_reproduce_states(hass: HomeAssistant, states: Iterable[State], *, context: Union[Context, None]=..., reproduce_options: Union[dict[str, Any], None]=...) -> None: ...
 def check_attr_equal(attr1: MappingProxyType, attr2: MappingProxyType, attr_str: str) -> bool: ...

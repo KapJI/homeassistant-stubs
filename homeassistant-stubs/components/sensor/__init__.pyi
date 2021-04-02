@@ -4,6 +4,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from typing import Any
 
+_LOGGER: Any
 DOMAIN: str
 ENTITY_ID_FORMAT: Any
 SCAN_INTERVAL: Any

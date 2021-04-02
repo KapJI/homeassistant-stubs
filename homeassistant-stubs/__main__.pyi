@@ -1,5 +1,5 @@
 import argparse
-from homeassistant.const import REQUIRED_PYTHON_VER as REQUIRED_PYTHON_VER, RESTART_EXIT_CODE as RESTART_EXIT_CODE
+from homeassistant.const import REQUIRED_PYTHON_VER as REQUIRED_PYTHON_VER, RESTART_EXIT_CODE as RESTART_EXIT_CODE, __version__ as __version__
 
 def validate_python() -> None: ...
 def ensure_config_path(config_dir: str) -> None: ...

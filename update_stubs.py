@@ -30,7 +30,8 @@ def get_typed_paths(homeassistant_root: Path) -> List[Path]:
         raise Exception("too many mypy entries in setup.cfg, update the script")
     mypy_config = matched_lines[0][len("[mypy-") : -len("]\n")]
     typed_paths: List[Path] = []
-    for item in mypy_config.split(","):
+    mypy_entries = mypy_config.split(",")
+    for item in mypy_entries:
         if not item.startswith("homeassistant."):
             continue
         if item.endswith(".*"):
@@ -39,6 +40,9 @@ def get_typed_paths(homeassistant_root: Path) -> List[Path]:
             )
             assert typed_path.is_dir(), typed_path
         else:
+            # Skip if module is already added as module.*
+            if item + ".*" in mypy_entries:
+                continue
             item = item.replace(".", os.path.sep)
             typed_path = homeassistant_root / (item + ".py")
             if not typed_path.is_file():

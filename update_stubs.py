@@ -40,9 +40,13 @@ def get_typed_paths(homeassistant_root: Path) -> List[Path]:
             assert typed_path.is_dir(), typed_path
         else:
             item = item.replace(".", os.path.sep)
-            typed_path = homeassistant_root / Path(item + ".py")
+            typed_path = homeassistant_root / (item + ".py")
             if not typed_path.is_file():
-                continue
+                typed_path = homeassistant_root / item
+                if typed_path.is_dir():
+                    typed_path = typed_path / "__init__.py"
+                else:
+                    continue
         typed_paths.append(typed_path)
     return typed_paths
 

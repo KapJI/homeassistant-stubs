@@ -1,5 +1,6 @@
 # PEP 484 stubs for Home Assistant Core
 
+[![CI](https://github.com/KapJI/homeassistant-stubs/actions/workflows/ci.yaml/badge.svg)](https://github.com/KapJI/homeassistant-stubs/actions/workflows/ci.yaml)
 [![PyPI version](https://badge.fury.io/py/homeassistant-stubs.svg)](https://pypi.org/project/homeassistant-stubs/)
 
 This is unofficial stub-only package generated from [Home Assistant Core](https://github.com/home-assistant/core) sources.

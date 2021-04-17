@@ -8,25 +8,108 @@ import subprocess
 import sys
 from pathlib import Path
 
+from awesomeversion import AwesomeVersion
+from awesomeversion.strategy import AwesomeVersionStrategy
+
+FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b0")
+
 
 def main() -> int:
-    """Main function"""
+    """Main function."""
     repo_root = Path(os.path.dirname(os.path.realpath(__file__)))
     homeassistant_root = repo_root / "homeassistant_core"
-    typed_paths = get_typed_paths(homeassistant_root)
-    generate_stubs(typed_paths, repo_root)
+
+    # Find which versions are missing
+    current_versions = set(get_available_versions(repo_root))
+    homeassistant_versions = get_available_versions(homeassistant_root)
+    missing_versions = [
+        version for version in homeassistant_versions if version not in current_versions
+    ]
+    for version in missing_versions:
+        print(f"Missing version: {version}")
+
+    # Create new packages
+    create_package(missing_versions[0], repo_root, homeassistant_root)
+    # for version in missing_versions:
+    #     create_package(version, repo_root, homeassistant_root)
     return 0
 
 
+def get_available_versions(git_root: Path) -> list[str]:
+    """Get list of available versions from git tags."""
+    print(f"Getting list of available versions in {git_root}...")
+    subprocess.run(["git", "fetch", "origin"], cwd=git_root, check=True)
+    result = subprocess.run(
+        ["git", "tag"],
+        cwd=git_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    versions = [AwesomeVersion(tag) for tag in result.stdout.split()]
+    versions = sorted(
+        [
+            version
+            for version in versions
+            if version.strategy == AwesomeVersionStrategy.CALVER
+            and version >= FIRST_SUPPORTED_VERSION
+        ]
+    )
+    return [version.string for version in versions]
+
+
+def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> None:
+    """Create package for given version and upload it to PyPI."""
+    print(f"Creating package for {version}...")
+    subprocess.run(["git", "checkout", version], cwd=homeassistant_root, check=True)
+    typed_paths = get_typed_paths(homeassistant_root)
+    generate_stubs(typed_paths, repo_root)
+
+    print(f"Creating commit for {version}...")
+    subprocess.run(
+        [
+            "git",
+            "add",
+            "homeassistant_core",
+            "homeassistant-stubs",
+            "pyproject.toml",
+            "poetry.lock",
+        ],
+        cwd=repo_root,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-m", f"Generate v{version}"], cwd=repo_root, check=True
+    )
+
+    print(f"Publishing package for {version}...")
+    subprocess.run(["poetry", "version", version], cwd=repo_root, check=True)
+    subprocess.run(
+        ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
+    )
+    subprocess.run(["poetry", "build"], cwd=repo_root, check=True)
+    pypi_token = os.environ.get("PYPI_TOKEN")
+    if pypi_token is None:
+        raise RuntimeError("PYPI_TOKEN is not set")
+    subprocess.run(
+        ["poetry", "config", "pypi-token.pypi", pypi_token],
+        cwd=repo_root,
+        check=True,
+    )
+    subprocess.run(["poetry", "publish"], cwd=repo_root, check=True)
+
+
 def get_typed_paths(homeassistant_root: Path) -> list[Path]:
-    """Get list of strictly typed paths from Home Assistant config"""
-    setup_cfg = homeassistant_root / "setup.cfg"
+    """Get list of strictly typed paths from Home Assistant config."""
+    cfg_path = homeassistant_root / "mypy.ini"
+    if not cfg_path.is_file():
+        cfg_path = homeassistant_root / "setup.cfg"
     matched_lines: list[str] = []
-    with setup_cfg.open() as fp:
+    with cfg_path.open() as fp:
         matched_lines = [line for line in fp.readlines() if line.startswith("[mypy-")]
     if not matched_lines:
         raise Exception("can't find mypy config in setup.cfg")
-    if len(matched_lines) > 1:
+    if len(matched_lines) > 2:
         raise Exception("too many mypy entries in setup.cfg, update the script")
     mypy_config = matched_lines[0][len("[mypy-") : -len("]\n")]
     typed_paths: list[Path] = []
@@ -55,8 +138,8 @@ def get_typed_paths(homeassistant_root: Path) -> list[Path]:
     return typed_paths
 
 
-def generate_stubs(typed_paths: list[Path], output_folder: Path) -> None:
-    """Use stubgen to generate typing stubs for all typed paths"""
+def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
+    """Use stubgen to generate typing stubs for all typed paths."""
     print("Generating stubs...")
     command_args: list[str] = [
         "poetry",
@@ -64,11 +147,11 @@ def generate_stubs(typed_paths: list[Path], output_folder: Path) -> None:
         "stubgen",
         "--include-private",
         "-o",
-        str(output_folder),
+        str(repo_root),
     ] + [str(folder) for folder in typed_paths]
-    subprocess.run(command_args, check=True)
-    stubs_folder = output_folder / "homeassistant"
-    new_stubs_folder = output_folder / "homeassistant-stubs"
+    subprocess.run(command_args, cwd=repo_root, check=True)
+    stubs_folder = repo_root / "homeassistant"
+    new_stubs_folder = repo_root / "homeassistant-stubs"
     if new_stubs_folder.is_dir():
         shutil.rmtree(new_stubs_folder)
     stubs_folder.rename(new_stubs_folder)

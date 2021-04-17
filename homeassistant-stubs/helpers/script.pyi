@@ -10,7 +10,6 @@ from homeassistant.helpers.condition import trace_condition_function as trace_co
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_template as async_track_template
 from homeassistant.helpers.script_variables import ScriptVariables as ScriptVariables
-from homeassistant.helpers.trace import script_execution_set as script_execution_set
 from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util import slugify as slugify

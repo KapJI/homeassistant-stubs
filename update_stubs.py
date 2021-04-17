@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Fetch the latest homeassistant tag and generate typing stubs for it."""
+from __future__ import annotations
 
 import os
 import shutil
 import subprocess
 import sys
 from pathlib import Path
-from typing import List
 
 
 def main() -> int:
@@ -18,10 +18,10 @@ def main() -> int:
     return 0
 
 
-def get_typed_paths(homeassistant_root: Path) -> List[Path]:
+def get_typed_paths(homeassistant_root: Path) -> list[Path]:
     """Get list of strictly typed paths from Home Assistant config"""
     setup_cfg = homeassistant_root / "setup.cfg"
-    matched_lines: List[str] = []
+    matched_lines: list[str] = []
     with setup_cfg.open() as fp:
         matched_lines = [line for line in fp.readlines() if line.startswith("[mypy-")]
     if not matched_lines:
@@ -29,7 +29,7 @@ def get_typed_paths(homeassistant_root: Path) -> List[Path]:
     if len(matched_lines) > 1:
         raise Exception("too many mypy entries in setup.cfg, update the script")
     mypy_config = matched_lines[0][len("[mypy-") : -len("]\n")]
-    typed_paths: List[Path] = []
+    typed_paths: list[Path] = []
     mypy_entries = mypy_config.split(",")
     for item in mypy_entries:
         if not item.startswith("homeassistant."):
@@ -55,10 +55,10 @@ def get_typed_paths(homeassistant_root: Path) -> List[Path]:
     return typed_paths
 
 
-def generate_stubs(typed_paths: List[Path], output_folder: Path) -> None:
+def generate_stubs(typed_paths: list[Path], output_folder: Path) -> None:
     """Use stubgen to generate typing stubs for all typed paths"""
     print("Generating stubs...")
-    command_args: List[str] = [
+    command_args: list[str] = [
         "poetry",
         "run",
         "stubgen",

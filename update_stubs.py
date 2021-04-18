@@ -8,10 +8,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+import requests
 from awesomeversion import AwesomeVersion
 from awesomeversion.strategy import AwesomeVersionStrategy
 
-FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b0")
+FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
 
 
 def main() -> int:
@@ -65,6 +66,13 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
 
+    print("Building package...")
+    subprocess.run(["poetry", "version", version], cwd=repo_root, check=True)
+    subprocess.run(
+        ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
+    )
+    subprocess.run(["poetry", "build"], cwd=repo_root, check=True)
+
     print(f"Creating commit for {version}...")
     subprocess.run(
         [
@@ -81,13 +89,10 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
     subprocess.run(
         ["git", "commit", "-m", f"Generate v{version}"], cwd=repo_root, check=True
     )
+    subprocess.run(["git", "push"], cwd=repo_root, check=True)
+    create_github_release(version)
 
-    print(f"Publishing package for {version}...")
-    subprocess.run(["poetry", "version", version], cwd=repo_root, check=True)
-    subprocess.run(
-        ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
-    )
-    subprocess.run(["poetry", "build"], cwd=repo_root, check=True)
+    print("Publishing package...")
     pypi_token = os.environ.get("PYPI_TOKEN")
     if pypi_token is None:
         raise RuntimeError("PYPI_TOKEN is not set")
@@ -97,6 +102,29 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
         check=True,
     )
     subprocess.run(["poetry", "publish"], cwd=repo_root, check=True)
+
+
+def create_github_release(version: str) -> None:
+    """Create new release on Github."""
+    github_token = os.environ.get("GITHUB_TOKEN")
+    if github_token is None:
+        raise RuntimeError("GITHUB_TOKEN is not set")
+    url = "https://api.github.com/repos/KapJI/homeassistant-stubs/releases"
+    headers: dict[str, str] = {
+        "Accept": "application/vnd.github.v3+json",
+        "Authorization": f"token {github_token}",
+    }
+    data = {
+        "tag_name": version,
+        "target_commitish": "main",
+        "name": version,
+        "body": f"Generated for `homeassitant {version}`.",
+        "draft": False,
+        "prerelease": AwesomeVersion(version).modifier is not None,
+    }
+    result = requests.post(url, headers=headers, json=data)
+    if result.status_code != 201:
+        raise RuntimeError(f"Request failed {result.status_code}: {result.text}")
 
 
 def get_typed_paths(homeassistant_root: Path) -> list[Path]:

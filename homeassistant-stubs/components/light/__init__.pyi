@@ -31,6 +31,9 @@ COLOR_MODE_RGBWW: str
 VALID_COLOR_MODES: Any
 COLOR_MODES_BRIGHTNESS: Any
 COLOR_MODES_COLOR: Any
+
+def valid_supported_color_modes(color_modes: Any): ...
+
 ATTR_TRANSITION: str
 ATTR_RGB_COLOR: str
 ATTR_RGBW_COLOR: str

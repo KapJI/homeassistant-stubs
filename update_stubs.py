@@ -30,9 +30,8 @@ def main() -> int:
         print(f"Missing version: {version}")
 
     # Create new packages
-    create_package(missing_versions[0], repo_root, homeassistant_root)
-    # for version in missing_versions:
-    #     create_package(version, repo_root, homeassistant_root)
+    for version in missing_versions[:3]:
+        create_package(version, repo_root, homeassistant_root)
     return 0
 
 

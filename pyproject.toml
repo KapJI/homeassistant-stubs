@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "homeassistant-stubs"
-version = "2021.4.1"
+version = "2021.4.2"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = ["Ruslan Sayfutdinov <ruslan@sayfutdinov.com>"]
 license = "MIT"
@@ -24,7 +24,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-homeassistant = "2021.4.1"
+homeassistant = "2021.4.2"
 
 [tool.poetry.dev-dependencies]
 awesomeversion = "21.2.3"

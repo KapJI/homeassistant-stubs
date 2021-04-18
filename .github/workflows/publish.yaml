@@ -1,0 +1,37 @@
+name: Publish new packages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Generate and publish
+    strategy:
+      matrix:
+        python-version: [3.8]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2.1.0
+        with:
+          poetry-version: 1.1.5
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Generate and publish new packages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "97356964+github-actions[bot]@users.noreply.github.com"
+          poetry run python update_stubs.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}

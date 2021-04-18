@@ -1,7 +1,7 @@
 # PEP 484 stubs for Home Assistant Core
 
 [![CI](https://github.com/KapJI/homeassistant-stubs/actions/workflows/ci.yaml/badge.svg)](https://github.com/KapJI/homeassistant-stubs/actions/workflows/ci.yaml)
-[![PyPI version](https://badge.fury.io/py/homeassistant-stubs.svg)](https://pypi.org/project/homeassistant-stubs/)
+[![PyPI version](https://img.shields.io/pypi/v/homeassistant-stubs)](https://pypi.org/project/homeassistant-stubs/)
 
 This is unofficial stub-only package generated from [Home Assistant Core](https://github.com/home-assistant/core) sources.
 You can use it to enable type checks against Home Assistant code in your custom component or AppDaemon app.

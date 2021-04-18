@@ -56,6 +56,8 @@ def get_available_versions(git_root: Path) -> list[str]:
             and version >= FIRST_SUPPORTED_VERSION
         ]
     )
+    for version in versions:
+        print(f"Available version: {version.string}")
     return [version.string for version in versions]
 
 

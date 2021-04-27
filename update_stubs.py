@@ -16,7 +16,7 @@ FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
 
 
 def main() -> int:
-    """Main function."""
+    """Run main function."""
     repo_root = Path(os.path.dirname(os.path.realpath(__file__)))
     homeassistant_root = repo_root / "homeassistant_core"
 
@@ -130,9 +130,50 @@ def create_github_release(version: str) -> None:
 
 def get_typed_paths(homeassistant_root: Path) -> list[Path]:
     """Get list of strictly typed paths from Home Assistant config."""
-    cfg_path = homeassistant_root / "mypy.ini"
-    if not cfg_path.is_file():
-        cfg_path = homeassistant_root / "setup.cfg"
+    strict_path = homeassistant_root / ".strict-typing"
+    if strict_path.is_file():
+        print("Use modern typed paths")
+        return get_modern_typed_paths(homeassistant_root, strict_path)
+    print("Use old style typed paths")
+    return get_old_typed_paths(homeassistant_root)
+
+
+def module_to_path(homeassistant_root: Path, module: str) -> Path:
+    """Convert module name to Path."""
+    if module.endswith(".*"):
+        typed_path = homeassistant_root / Path(module[:-2].replace(".", os.path.sep))
+        assert typed_path.is_dir(), typed_path
+    else:
+        module = module.replace(".", os.path.sep)
+        typed_path = homeassistant_root / (module + ".py")
+        if not typed_path.is_file():
+            typed_path = homeassistant_root / module
+            assert typed_path.is_dir()
+            typed_path = typed_path / "__init__.py"
+    return typed_path
+
+
+def get_modern_typed_paths(homeassistant_root: Path, strict_path: Path) -> list[Path]:
+    """Get list of strictly typed paths after configuration was moved to mypy.ini."""
+    package_root = homeassistant_root / "homeassistant"
+    core_paths = [
+        path
+        for path in package_root.iterdir()
+        if path.name != "components" and (path.is_dir() or path.name.endswith(".py"))
+    ]
+
+    with strict_path.open() as fp:
+        lines = [line.strip() for line in fp.readlines()]
+    strict_modules = [line for line in lines if line != "" and not line.startswith("#")]
+    components_paths = [
+        module_to_path(homeassistant_root, module) for module in strict_modules
+    ]
+    return core_paths + components_paths
+
+
+def get_old_typed_paths(homeassistant_root: Path) -> list[Path]:
+    """Get list of strictly typed paths before configuration was moved to mypy.ini."""
+    cfg_path = homeassistant_root / "setup.cfg"
     matched_lines: list[str] = []
     with cfg_path.open() as fp:
         matched_lines = [line for line in fp.readlines() if line.startswith("[mypy-")]
@@ -146,24 +187,10 @@ def get_typed_paths(homeassistant_root: Path) -> list[Path]:
     for item in mypy_entries:
         if not item.startswith("homeassistant."):
             continue
-        if item.endswith(".*"):
-            typed_path = homeassistant_root / Path(
-                item[: -len(".*")].replace(".", os.path.sep)
-            )
-            assert typed_path.is_dir(), typed_path
-        else:
-            # Skip if module is already added as module.*
-            if item + ".*" in mypy_entries:
-                continue
-            item = item.replace(".", os.path.sep)
-            typed_path = homeassistant_root / (item + ".py")
-            if not typed_path.is_file():
-                typed_path = homeassistant_root / item
-                if typed_path.is_dir():
-                    typed_path = typed_path / "__init__.py"
-                else:
-                    continue
-        typed_paths.append(typed_path)
+        # Skip if module is already added as module.*
+        if item + ".*" in mypy_entries:
+            continue
+        typed_paths.append(module_to_path(homeassistant_root, item))
     return typed_paths
 
 

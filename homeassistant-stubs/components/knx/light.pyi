@@ -1,11 +1,12 @@
 from .const import DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import LightSchema as LightSchema
+from collections.abc import Iterable
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_WHITE_VALUE as ATTR_WHITE_VALUE, LightEntity as LightEntity, SUPPORT_BRIGHTNESS as SUPPORT_BRIGHTNESS, SUPPORT_COLOR as SUPPORT_COLOR, SUPPORT_COLOR_TEMP as SUPPORT_COLOR_TEMP, SUPPORT_WHITE_VALUE as SUPPORT_WHITE_VALUE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 from xknx.devices import Light as XknxLight
 
 DEFAULT_COLOR: Any
@@ -16,11 +17,13 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class KNXLight(KnxEntity, LightEntity):
     _device: Any
+    _unique_id: Any = ...
     _min_kelvin: Any = ...
     _max_kelvin: Any = ...
     _min_mireds: Any = ...
     _max_mireds: Any = ...
     def __init__(self, device: XknxLight) -> None: ...
+    def _device_unique_id(self) -> str: ...
     @property
     def brightness(self) -> Union[int, None]: ...
     @property

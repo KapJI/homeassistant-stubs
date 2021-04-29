@@ -10,11 +10,11 @@ from .view import HomeAssistantView as HomeAssistantView
 from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite
 from aiohttp import web
 from contextvars import ContextVar
-from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import storage as storage
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.setup import ATTR_COMPONENT as ATTR_COMPONENT, EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED
+from homeassistant.setup import async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
 from typing import Any
 
 DOMAIN: str

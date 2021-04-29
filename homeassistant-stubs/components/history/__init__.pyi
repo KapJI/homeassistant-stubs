@@ -1,4 +1,5 @@
 from aiohttp import web
+from collections.abc import Iterable
 from datetime import datetime as dt
 from homeassistant.components import recorder as recorder
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
@@ -7,7 +8,7 @@ from homeassistant.components.recorder.util import execute as execute, session_s
 from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE, HTTP_BAD_REQUEST as HTTP_BAD_REQUEST
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, split_entity_id as split_entity_id
 from homeassistant.helpers.entityfilter import CONF_ENTITY_GLOBS as CONF_ENTITY_GLOBS, INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA
-from typing import Any, Iterable, Optional
+from typing import Any, Optional
 
 _LOGGER: Any
 DOMAIN: str

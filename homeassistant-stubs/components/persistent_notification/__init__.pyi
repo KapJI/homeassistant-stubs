@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -6,7 +7,7 @@ from homeassistant.helpers.entity import async_generate_entity_id as async_gener
 from homeassistant.helpers.template import Template as Template
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify
-from typing import Any, Mapping, Optional
+from typing import Any, Optional
 
 ATTR_CREATED_AT: str
 ATTR_MESSAGE: str

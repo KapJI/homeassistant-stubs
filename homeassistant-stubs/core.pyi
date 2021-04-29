@@ -2,18 +2,22 @@ import asyncio
 import datetime
 import enum
 import voluptuous as vol
+from collections.abc import Awaitable, Coroutine, Iterable, Mapping
 from homeassistant import block_async_io as block_async_io, loader as loader, util as util
 from homeassistant.auth import AuthManager as AuthManager
 from homeassistant.components.http import HomeAssistantHTTP as HomeAssistantHTTP
 from homeassistant.config_entries import ConfigEntries as ConfigEntries
-from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_NOW as ATTR_NOW, ATTR_SECONDS as ATTR_SECONDS, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, CONF_UNIT_SYSTEM_IMPERIAL as CONF_UNIT_SYSTEM_IMPERIAL, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIMER_OUT_OF_SYNC as EVENT_TIMER_OUT_OF_SYNC, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED, LENGTH_METERS as LENGTH_METERS, MATCH_ALL as MATCH_ALL, __version__ as __version__
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, InvalidEntityFormatError as InvalidEntityFormatError, InvalidStateError as InvalidStateError, ServiceNotFound as ServiceNotFound, Unauthorized as Unauthorized
+from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_NOW as ATTR_NOW, ATTR_SECONDS as ATTR_SECONDS, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, CONF_UNIT_SYSTEM_IMPERIAL as CONF_UNIT_SYSTEM_IMPERIAL, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIMER_OUT_OF_SYNC as EVENT_TIMER_OUT_OF_SYNC, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED, LENGTH_METERS as LENGTH_METERS, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_TYPE as MAX_LENGTH_EVENT_TYPE, __version__ as __version__
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, InvalidEntityFormatError as InvalidEntityFormatError, InvalidStateError as InvalidStateError, MaxLengthExceeded as MaxLengthExceeded, ServiceNotFound as ServiceNotFound, Unauthorized as Unauthorized
 from homeassistant.util import location as location
 from homeassistant.util.async_ import fire_coroutine_threadsafe as fire_coroutine_threadsafe, run_callback_threadsafe as run_callback_threadsafe, shutdown_run_callback_threadsafe as shutdown_run_callback_threadsafe
 from homeassistant.util.timeout import TimeoutManager as TimeoutManager
 from homeassistant.util.unit_system import IMPERIAL_SYSTEM as IMPERIAL_SYSTEM, METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem
-from typing import Any, Awaitable, Callable, Coroutine, Iterable, Mapping, TypeVar
+from typing import Any, Callable, TypeVar
 
+STAGE_1_SHUTDOWN_TIMEOUT: int
+STAGE_2_SHUTDOWN_TIMEOUT: int
+STAGE_3_SHUTDOWN_TIMEOUT: int
 T = TypeVar('T')
 _UNDEF: dict
 CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable)
@@ -143,7 +147,7 @@ class EventBus:
     def listen(self, event_type: str, listener: Callable) -> CALLBACK_TYPE: ...
     def async_listen(self, event_type: str, listener: Callable, event_filter: Union[Callable, None]=...) -> CALLBACK_TYPE: ...
     def _async_listen_filterable_job(self, event_type: str, filterable_job: tuple[HassJob, Union[Callable, None]]) -> CALLBACK_TYPE: ...
-    def listen_once(self, event_type: str, listener: Callable) -> CALLBACK_TYPE: ...
+    def listen_once(self, event_type: str, listener: Callable[[Event], None]) -> CALLBACK_TYPE: ...
     def async_listen_once(self, event_type: str, listener: Callable) -> CALLBACK_TYPE: ...
     def _async_remove_listener(self, event_type: str, filterable_job: tuple[HassJob, Union[Callable, None]]) -> None: ...
 

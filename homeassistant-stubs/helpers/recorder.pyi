@@ -1,0 +1,3 @@
+from homeassistant.core import HomeAssistant as HomeAssistant
+
+async def async_migration_in_progress(hass: HomeAssistant) -> bool: ...

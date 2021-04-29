@@ -1,11 +1,13 @@
+from collections.abc import Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.typing import ConfigType as ConfigType, HomeAssistantType as HomeAssistantType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Iterable
+from typing import Any
 
 _LOGGER: Any
 ATTR_ACTIVITY: str
@@ -34,10 +36,10 @@ SUPPORT_DELETE_COMMAND: int
 SUPPORT_ACTIVITY: int
 REMOTE_SERVICE_ACTIVITY_SCHEMA: Any
 
-def is_on(hass: HomeAssistantType, entity_id: str) -> bool: ...
-async def async_setup(hass: HomeAssistantType, config: ConfigType) -> bool: ...
-async def async_setup_entry(hass: HomeAssistantType, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistantType, entry: ConfigEntry) -> bool: ...
+def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class RemoteEntity(ToggleEntity):
     @property

@@ -1,3 +1,4 @@
+from collections.abc import Iterable
 from homeassistant.const import SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -6,7 +7,7 @@ from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatfo
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import async_setup_component as async_setup_component
-from typing import Any, Iterable
+from typing import Any
 
 _LOGGER: Any
 

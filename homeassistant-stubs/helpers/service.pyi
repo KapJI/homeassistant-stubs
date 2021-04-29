@@ -1,4 +1,5 @@
 import voluptuous as vol
+from collections.abc import Awaitable, Iterable
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SERVICE as CONF_SERVICE, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -11,7 +12,7 @@ from homeassistant.loader import Integration as Integration, MAX_LOAD_CONCURRENT
 from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
 from homeassistant.util.yaml import load_yaml as load_yaml
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
-from typing import Any, Awaitable, Callable, Iterable, TypedDict
+from typing import Any, Callable, TypedDict
 
 CONF_SERVICE_ENTITY_ID: str
 CONF_SERVICE_DATA_TEMPLATE: str

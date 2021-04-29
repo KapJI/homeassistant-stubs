@@ -1,6 +1,7 @@
+from collections.abc import Hashable
 from datetime import datetime, timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any, Callable, Hashable
+from typing import Any, Callable
 
 _LOGGER: Any
 

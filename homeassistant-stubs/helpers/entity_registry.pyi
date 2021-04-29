@@ -1,4 +1,5 @@
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from collections.abc import Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_RESTORED as ATTR_RESTORED, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
@@ -6,7 +7,7 @@ from homeassistant.helpers.device_registry import EVENT_DEVICE_REGISTRY_UPDATED 
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify
 from homeassistant.util.yaml import load_yaml as load_yaml
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 
 PATH_REGISTRY: str
 DATA_REGISTRY: str

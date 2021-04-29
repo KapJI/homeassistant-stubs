@@ -2,7 +2,8 @@ from .const import CONF_INVERT as CONF_INVERT, CONF_RESET_AFTER as CONF_RESET_AF
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from typing import Any
 
-ga_validator: Any
+def ga_validator(value: Any) -> Union[str, int]: ...
+
 ga_list_validator: Any
 ia_validator: Any
 sync_state_validator: Any

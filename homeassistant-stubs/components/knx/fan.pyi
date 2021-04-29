@@ -1,11 +1,12 @@
 from .const import DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
+from collections.abc import Iterable
 from homeassistant.components.fan import FanEntity as FanEntity, SUPPORT_OSCILLATE as SUPPORT_OSCILLATE, SUPPORT_SET_SPEED as SUPPORT_SET_SPEED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 from xknx.devices import Fan as XknxFan
 
 DEFAULT_PERCENTAGE: int
@@ -14,6 +15,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class KNXFan(KnxEntity, FanEntity):
     _device: Any
+    _unique_id: Any = ...
     _step_range: Any = ...
     def __init__(self, device: XknxFan) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...

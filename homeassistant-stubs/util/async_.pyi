@@ -1,6 +1,7 @@
 import concurrent.futures
 from asyncio.events import AbstractEventLoop
-from typing import Any, Callable, Coroutine, TypeVar
+from collections.abc import Coroutine
+from typing import Any, Callable, TypeVar
 
 _LOGGER: Any
 _SHUTDOWN_RUN_CALLBACK_THREADSAFE: str

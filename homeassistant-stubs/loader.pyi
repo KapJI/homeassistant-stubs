@@ -5,6 +5,7 @@ from homeassistant.generated.dhcp import DHCP as DHCP
 from homeassistant.generated.mqtt import MQTT as MQTT
 from homeassistant.generated.ssdp import SSDP as SSDP
 from homeassistant.generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
+from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
 from types import ModuleType
 from typing import Any, Callable, TypeVar, TypedDict
 
@@ -32,6 +33,7 @@ class Manifest(TypedDict):
     documentation: str
     issue_tracker: str
     quality_scale: str
+    iot_class: str
     mqtt: list[str]
     ssdp: list[dict[str, str]]
     zeroconf: list[Union[str, dict[str, str]]]
@@ -83,6 +85,8 @@ class Integration:
     def issue_tracker(self) -> Union[str, None]: ...
     @property
     def quality_scale(self) -> Union[str, None]: ...
+    @property
+    def iot_class(self) -> Union[str, None]: ...
     @property
     def mqtt(self) -> Union[list[str], None]: ...
     @property

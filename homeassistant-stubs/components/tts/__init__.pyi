@@ -2,12 +2,11 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, HTTP_BAD_REQUEST as HTTP_BAD_REQUEST, HTTP_NOT_FOUND as HTTP_NOT_FOUND, PLATFORM_FORMAT as PLATFORM_FORMAT
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
-from homeassistant.helpers.typing import HomeAssistantType as HomeAssistantType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from homeassistant.util.yaml import load_yaml as load_yaml
@@ -71,7 +70,7 @@ class SpeechManager:
     def write_tags(filename: Any, data: Any, provider: Any, message: Any, language: Any, options: Any): ...
 
 class Provider:
-    hass: Union[HomeAssistantType, None] = ...
+    hass: Union[HomeAssistant, None] = ...
     name: Union[str, None] = ...
     @property
     def default_language(self) -> None: ...

@@ -1,18 +1,22 @@
 from .const import DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
+from .schema import CoverSchema as CoverSchema
+from collections.abc import Iterable
 from datetime import datetime
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, DEVICE_CLASSES as DEVICE_CLASSES, DEVICE_CLASS_BLIND as DEVICE_CLASS_BLIND, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_CLOSE_TILT as SUPPORT_CLOSE_TILT, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_OPEN_TILT as SUPPORT_OPEN_TILT, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION, SUPPORT_SET_TILT_POSITION as SUPPORT_SET_TILT_POSITION, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_STOP_TILT as SUPPORT_STOP_TILT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import async_track_utc_time_change as async_track_utc_time_change
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 from xknx.devices import Cover as XknxCover, Device as XknxDevice
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable[[Iterable[Entity]], None], discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+def _async_migrate_unique_id(hass: HomeAssistant, discovery_info: Union[DiscoveryInfoType, None]) -> None: ...
 
 class KNXCover(KnxEntity, CoverEntity):
     _device: Any
+    _unique_id: Any = ...
     _unsubscribe_auto_updater: Any = ...
     def __init__(self, device: XknxCover) -> None: ...
     async def after_update_callback(self, device: XknxDevice) -> None: ...

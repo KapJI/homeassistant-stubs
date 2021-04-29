@@ -1,7 +1,8 @@
 import logging.handlers
+from collections.abc import Coroutine
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
-from typing import Any, Awaitable, Callable, Coroutine
+from typing import Any, Awaitable, Callable
 
 class HideSensitiveDataFilter(logging.Filter):
     text: Any = ...

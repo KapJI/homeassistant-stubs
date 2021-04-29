@@ -1,17 +1,18 @@
 import logging
 import voluptuous as vol
 from .entity_platform import EntityPlatform as EntityPlatform
+from collections.abc import Iterable
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.const import CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery, entity as entity, service as service
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from types import ModuleType
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 
 DEFAULT_SCAN_INTERVAL: Any
 DATA_INSTANCES: str
@@ -42,3 +43,4 @@ class EntityComponent:
     async def async_remove_entity(self, entity_id: str) -> None: ...
     async def async_prepare_reload(self, *, skip_reset: bool=...) -> Union[ConfigType, None]: ...
     def _async_init_entity_platform(self, platform_type: str, platform: Union[ModuleType, None], scan_interval: Union[timedelta, None]=..., entity_namespace: Union[str, None]=...) -> EntityPlatform: ...
+    async def _async_shutdown(self, event: Event) -> None: ...

@@ -1,5 +1,6 @@
 import abc
 from abc import abstractmethod
+from collections.abc import Iterable
 from contextvars import ContextVar
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
@@ -9,7 +10,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.reload import async_reload_integration_platforms as async_reload_integration_platforms
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Iterable, Optional
+from typing import Any, Optional
 
 DOMAIN: str
 GROUP_ORDER: str

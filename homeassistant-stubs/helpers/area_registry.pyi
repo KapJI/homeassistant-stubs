@@ -1,7 +1,8 @@
+from collections.abc import Container, Iterable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify
-from typing import Any, Container, Iterable
+from typing import Any
 
 DATA_REGISTRY: str
 EVENT_AREA_REGISTRY_UPDATED: str

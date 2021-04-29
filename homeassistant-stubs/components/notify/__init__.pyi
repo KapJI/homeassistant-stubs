@@ -4,7 +4,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
-from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
+from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util import slugify as slugify
 from homeassistant.util.yaml import load_yaml as load_yaml
 from typing import Any

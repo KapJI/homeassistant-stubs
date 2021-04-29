@@ -2,12 +2,13 @@ import yaml
 from .const import SECRET_YAML as SECRET_YAML
 from .objects import Input as Input, NodeListClass as NodeListClass, NodeStrClass as NodeStrClass
 from collections import OrderedDict
+from collections.abc import Iterator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from pathlib import Path
-from typing import Any, Dict, Iterator, List, TextIO, TypeVar, Union
+from typing import Any, TextIO, TypeVar, Union
 
-JSON_TYPE = Union[List, Dict, str]
-DICT_T = TypeVar('DICT_T', bound=Dict)
+JSON_TYPE = Union[list, dict, str]
+DICT_T = TypeVar('DICT_T', bound=dict)
 _LOGGER: Any
 
 class Secrets:

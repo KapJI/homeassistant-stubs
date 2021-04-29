@@ -3,13 +3,13 @@ from .const import DOMAIN as DOMAIN, KEY_DIALUP_MOBILE_DATASWITCH as KEY_DIALUP_
 from homeassistant.components.switch import DEVICE_CLASS_SWITCH as DEVICE_CLASS_SWITCH, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.typing import HomeAssistantType as HomeAssistantType
 from typing import Any, Callable
 
 _LOGGER: Any
 
-async def async_setup_entry(hass: HomeAssistantType, config_entry: ConfigEntry, async_add_entities: Callable[[list[Entity], bool], None]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable[[list[Entity], bool], None]) -> None: ...
 
 class HuaweiLteBaseSwitch(HuaweiLteBaseEntity, SwitchEntity):
     key: str

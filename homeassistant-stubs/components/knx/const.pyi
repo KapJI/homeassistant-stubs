@@ -9,6 +9,8 @@ CONF_STATE_ADDRESS: str
 CONF_SYNC_STATE: str
 CONF_RESET_AFTER: str
 ATTR_COUNTER: str
+ATTR_SOURCE: str
+ATTR_LAST_KNX_UPDATE: str
 
 class ColorTempModes(Enum):
     ABSOLUTE: str = ...

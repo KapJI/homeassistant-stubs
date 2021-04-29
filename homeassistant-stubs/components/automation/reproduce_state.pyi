@@ -1,7 +1,8 @@
 from . import DOMAIN as DOMAIN
+from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State
-from typing import Any, Iterable
+from typing import Any
 
 _LOGGER: Any
 VALID_STATES: Any

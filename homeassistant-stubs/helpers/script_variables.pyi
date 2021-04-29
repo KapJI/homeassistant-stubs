@@ -1,6 +1,7 @@
 from . import template as template
+from collections.abc import Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any, Mapping
+from typing import Any
 
 class ScriptVariables:
     variables: Any = ...

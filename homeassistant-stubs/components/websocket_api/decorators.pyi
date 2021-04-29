@@ -1,8 +1,9 @@
 from . import const as const, messages as messages
 from .connection import ActiveConnection as ActiveConnection
+from collections.abc import Awaitable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import Unauthorized as Unauthorized
-from typing import Any, Awaitable, Callable
+from typing import Any, Callable
 
 async def _handle_async_response(func: Any, hass: Any, connection: Any, msg: Any) -> None: ...
 def async_response(func: Callable[[HomeAssistant, ActiveConnection, dict], Awaitable[None]]) -> const.WebSocketCommandHandler: ...

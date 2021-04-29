@@ -1,21 +1,25 @@
 from .const import CONTROLLER_MODES as CONTROLLER_MODES, DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
 from .knx_entity import KnxEntity as KnxEntity
+from .schema import ClimateSchema as ClimateSchema
+from collections.abc import Iterable
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 from xknx.devices import Climate as XknxClimate
 
 CONTROLLER_MODES_INV: Any
 PRESET_MODES_INV: Any
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable[[Iterable[Entity]], None], discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+def _async_migrate_unique_id(hass: HomeAssistant, discovery_info: Union[DiscoveryInfoType, None]) -> None: ...
 
 class KNXClimate(KnxEntity, ClimateEntity):
     _device: Any
+    _unique_id: Any = ...
     _unit_of_measurement: Any = ...
     def __init__(self, device: XknxClimate) -> None: ...
     @property

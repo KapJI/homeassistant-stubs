@@ -8,6 +8,7 @@ from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
 _LOGGER: Any
+RETRYABLE_MYSQL_ERRORS: Any
 
 def purge_old_data(instance: Recorder, purge_days: int, repack: bool, apply_filter: bool=...) -> bool: ...
 def _select_event_ids_to_purge(session: Session, purge_before: datetime) -> list[int]: ...

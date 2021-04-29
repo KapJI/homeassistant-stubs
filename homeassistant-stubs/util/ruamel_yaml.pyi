@@ -2,10 +2,10 @@ import ruamel.yaml
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.yaml import secret_yaml as secret_yaml
 from ruamel.yaml.constructor import SafeConstructor
-from typing import Any, Dict, List, Union
+from typing import Any, Union
 
 _LOGGER: Any
-JSON_TYPE = Union[List, Dict, str]
+JSON_TYPE = Union[list, dict, str]
 
 class ExtSafeConstructor(SafeConstructor):
     name: Union[str, None] = ...

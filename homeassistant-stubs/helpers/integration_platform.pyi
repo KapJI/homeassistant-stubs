@@ -1,7 +1,8 @@
+from collections.abc import Awaitable
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import ATTR_COMPONENT as ATTR_COMPONENT, EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED
-from typing import Any, Awaitable, Callable
+from typing import Any, Callable
 
 _LOGGER: Any
 

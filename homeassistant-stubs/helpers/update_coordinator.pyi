@@ -1,12 +1,13 @@
 import logging
 from .debounce import Debouncer as Debouncer
+from collections.abc import Awaitable
 from datetime import datetime, timedelta
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant import config_entries as config_entries
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import entity as entity, event as event
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any, Awaitable, Callable, TypeVar
+from typing import Any, Callable, TypeVar
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
@@ -37,7 +38,7 @@ class DataUpdateCoordinator:
     async def _async_update_data(self) -> Union[T, None]: ...
     async def async_config_entry_first_refresh(self) -> None: ...
     async def async_refresh(self) -> None: ...
-    async def _async_refresh(self, log_failures: bool=...) -> None: ...
+    async def _async_refresh(self, log_failures: bool=..., raise_on_auth_failed: bool=..., scheduled: bool=...) -> None: ...
     def async_set_updated_data(self, data: T) -> None: ...
     def _async_stop_refresh(self, _: Event) -> None: ...
 

@@ -28,7 +28,7 @@ homeassistant = "2021.5.0b1"
 
 [tool.poetry.dev-dependencies]
 awesomeversion = "21.2.3"
-black = "^21.4b1"
+black = "^21.4b2"
 codespell = "^2.0.0"
 flake8 = "^3.9.1"
 flake8-bugbear = "^21.4.3"

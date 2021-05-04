@@ -1,9 +1,9 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import LightSchema as LightSchema
 from collections.abc import Iterable
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_WHITE_VALUE as ATTR_WHITE_VALUE, LightEntity as LightEntity, SUPPORT_BRIGHTNESS as SUPPORT_BRIGHTNESS, SUPPORT_COLOR as SUPPORT_COLOR, SUPPORT_COLOR_TEMP as SUPPORT_COLOR_TEMP, SUPPORT_WHITE_VALUE as SUPPORT_WHITE_VALUE
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, Callable
@@ -14,6 +14,7 @@ DEFAULT_BRIGHTNESS: int
 DEFAULT_WHITE_VALUE: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable[[Iterable[Entity]], None], discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+def _async_migrate_unique_id(hass: HomeAssistant, discovery_info: Union[DiscoveryInfoType, None]) -> None: ...
 
 class KNXLight(KnxEntity, LightEntity):
     _device: Any

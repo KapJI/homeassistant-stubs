@@ -305,7 +305,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "homeassistant"
-version = "2021.5.0"
+version = "2021.5.1"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -610,7 +610,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
 name = "rfc3986"
-version = "1.4.0"
+version = "1.5.0"
 description = "Validating URI References per RFC 3986"
 category = "main"
 optional = false
@@ -755,7 +755,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "abaa1d5794c1369bddf3eac617a4c9bcd65261b15863be6685afb171a3f8f6a5"
+content-hash = "a52738944164360bea7ef4d84fac9aabe9f8bda4b5180062e361b124552c1fc2"
 
 [metadata.files]
 aiohttp = [
@@ -964,8 +964,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 homeassistant = [
-    {file = "homeassistant-2021.5.0-py3-none-any.whl", hash = "sha256:6e58b31dc933bd029e4c9638fe9978e5475dcc12e924bf785e11aa677dab2053"},
-    {file = "homeassistant-2021.5.0.tar.gz", hash = "sha256:9cb91cd18f844475c87552b54cbd050d9da8987862be8079440e315c3796ac62"},
+    {file = "homeassistant-2021.5.1-py3-none-any.whl", hash = "sha256:bbbc8b341694ab1fd11cef184e50df2830fea78ec1b93d6006cd618ad6d6ce9d"},
+    {file = "homeassistant-2021.5.1.tar.gz", hash = "sha256:6b21e778685ff317ab5df9919bb25ba10a1263713127c9a680eb673bd7ee70b3"},
 ]
 httpcore = [
     {file = "httpcore-0.13.1-py3-none-any.whl", hash = "sha256:91640a15870a8d0d2358e41021c698ff1a690cd095560aed4652c7d9da38d701"},
@@ -1258,8 +1258,8 @@ requests = [
     {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
 ]
 rfc3986 = [
-    {file = "rfc3986-1.4.0-py2.py3-none-any.whl", hash = "sha256:af9147e9aceda37c91a05f4deb128d4b4b49d6b199775fd2d2927768abdc8f50"},
-    {file = "rfc3986-1.4.0.tar.gz", hash = "sha256:112398da31a3344dc25dbf477d8df6cb34f9278a94fee2625d89e4514be8bb9d"},
+    {file = "rfc3986-1.5.0-py2.py3-none-any.whl", hash = "sha256:a86d6e1f5b1dc238b218b012df0aa79409667bb209e58da56d0b94704e712a97"},
+    {file = "rfc3986-1.5.0.tar.gz", hash = "sha256:270aaf10d87d0d4e095063c65bf3ddbc6ee3d0b226328ce21e036f946e421835"},
 ]
 "ruamel.yaml" = [
     {file = "ruamel.yaml-0.15.100-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:fc6471ef15b69e454cca82433ac5f84929d9f3e2d72b9e54b06850b6b7133cc0"},

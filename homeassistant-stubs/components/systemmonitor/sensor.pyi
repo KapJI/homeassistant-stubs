@@ -4,10 +4,11 @@ from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util import slugify as slugify
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 CONF_ARG: str
@@ -34,7 +35,7 @@ class SensorData:
     last_exception: Union[BaseException, None]
     def __init__(self, argument: Any, state: Any, value: Any, update_time: Any, last_exception: Any) -> None: ...
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable, discovery_info: Union[Any, None]=...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[Any, None]=...) -> None: ...
 async def async_setup_sensor_registry_updates(hass: HomeAssistant, sensor_registry: dict[tuple[str, str], SensorData], scan_interval: datetime.timedelta) -> None: ...
 
 class SystemMonitorSensor(SensorEntity):

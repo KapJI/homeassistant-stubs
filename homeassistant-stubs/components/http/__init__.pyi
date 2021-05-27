@@ -9,38 +9,56 @@ from .static import CACHE_HEADERS as CACHE_HEADERS, CachingStaticResource as Cac
 from .view import HomeAssistantView as HomeAssistantView
 from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite
 from aiohttp import web
+from aiohttp.typedefs import StrOrURL as StrOrURL
+from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
 from contextvars import ContextVar
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import storage as storage
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.setup import async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
-from typing import Any
+from typing import Any, Final, TypedDict
 
-DOMAIN: str
-CONF_SERVER_HOST: str
-CONF_SERVER_PORT: str
-CONF_BASE_URL: str
-CONF_SSL_CERTIFICATE: str
-CONF_SSL_PEER_CERTIFICATE: str
-CONF_SSL_KEY: str
-CONF_CORS_ORIGINS: str
-CONF_USE_X_FORWARDED_FOR: str
-CONF_TRUSTED_PROXIES: str
-CONF_LOGIN_ATTEMPTS_THRESHOLD: str
-CONF_IP_BAN_ENABLED: str
-CONF_SSL_PROFILE: str
-SSL_MODERN: str
-SSL_INTERMEDIATE: str
-_LOGGER: Any
-DEFAULT_DEVELOPMENT: str
-DEFAULT_CORS: Any
-NO_LOGIN_ATTEMPT_THRESHOLD: int
-MAX_CLIENT_SIZE: int
-STORAGE_KEY = DOMAIN
-STORAGE_VERSION: int
-HTTP_SCHEMA: Any
-CONFIG_SCHEMA: Any
+DOMAIN: Final[str]
+CONF_SERVER_HOST: Final[str]
+CONF_SERVER_PORT: Final[str]
+CONF_BASE_URL: Final[str]
+CONF_SSL_CERTIFICATE: Final[str]
+CONF_SSL_PEER_CERTIFICATE: Final[str]
+CONF_SSL_KEY: Final[str]
+CONF_CORS_ORIGINS: Final[str]
+CONF_USE_X_FORWARDED_FOR: Final[str]
+CONF_TRUSTED_PROXIES: Final[str]
+CONF_LOGIN_ATTEMPTS_THRESHOLD: Final[str]
+CONF_IP_BAN_ENABLED: Final[str]
+CONF_SSL_PROFILE: Final[str]
+SSL_MODERN: Final[str]
+SSL_INTERMEDIATE: Final[str]
+_LOGGER: Final[Any]
+DEFAULT_DEVELOPMENT: Final[str]
+DEFAULT_CORS: Final[list[str]]
+NO_LOGIN_ATTEMPT_THRESHOLD: Final[int]
+MAX_CLIENT_SIZE: Final[Any]
+STORAGE_KEY: Final[Any]
+STORAGE_VERSION: Final[int]
+SAVE_DELAY: Final[int]
+HTTP_SCHEMA: Final[Any]
+CONFIG_SCHEMA: Final[Any]
+
+class ConfData(TypedDict):
+    server_host: list[str]
+    server_port: int
+    base_url: str
+    ssl_certificate: str
+    ssl_peer_certificate: str
+    ssl_key: str
+    cors_allowed_origins: list[str]
+    use_x_forwarded_for: bool
+    trusted_proxies: list[str]
+    login_attempts_threshold: int
+    ip_ban_enabled: bool
+    ssl_profile: str
 
 async def async_get_last_config(hass: HomeAssistant) -> Union[dict, None]: ...
 
@@ -49,9 +67,9 @@ class ApiConfig:
     host: Any = ...
     port: Any = ...
     use_ssl: Any = ...
-    def __init__(self, local_ip: str, host: str, port: Union[int, None]=..., use_ssl: bool=...) -> None: ...
+    def __init__(self, local_ip: str, host: str, port: int, use_ssl: bool) -> None: ...
 
-async def async_setup(hass: Any, config: Any): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class HomeAssistantHTTP:
     hass: Any = ...
@@ -66,10 +84,10 @@ class HomeAssistantHTTP:
     _handler: Any = ...
     runner: Any = ...
     site: Any = ...
-    def __init__(self, hass: Any, ssl_certificate: Any, ssl_peer_certificate: Any, ssl_key: Any, server_host: Any, server_port: Any, cors_origins: Any, use_x_forwarded_for: Any, trusted_proxies: Any, login_threshold: Any, is_ban_enabled: Any, ssl_profile: Any) -> None: ...
-    def register_view(self, view: Any) -> None: ...
-    def register_redirect(self, url: Any, redirect_to: Any, *, redirect_exc: Any = ...) -> None: ...
-    def register_static_path(self, url_path: Any, path: Any, cache_headers: bool = ...): ...
+    def __init__(self, hass: HomeAssistant, ssl_certificate: Union[str, None], ssl_peer_certificate: Union[str, None], ssl_key: Union[str, None], server_host: Union[list[str], None], server_port: int, cors_origins: list[str], use_x_forwarded_for: bool, trusted_proxies: list[str], login_threshold: int, is_ban_enabled: bool, ssl_profile: str) -> None: ...
+    def register_view(self, view: HomeAssistantView) -> None: ...
+    def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection]=...) -> None: ...
+    def register_static_path(self, url_path: str, path: str, cache_headers: bool=...) -> Union[web.FileResponse, None]: ...
     async def start(self) -> None: ...
     async def stop(self) -> None: ...
 

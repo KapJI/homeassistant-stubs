@@ -5,11 +5,12 @@ from .const import ERR_HOME_ASSISTANT_ERROR as ERR_HOME_ASSISTANT_ERROR, ERR_INV
 from .decorators import async_response as async_response, require_admin as require_admin, websocket_command as websocket_command, ws_require_user as ws_require_user
 from .messages import BASE_COMMAND_MESSAGE_SCHEMA as BASE_COMMAND_MESSAGE_SCHEMA, error_message as error_message, event_message as event_message, result_message as result_message
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any
+from typing import Any, Final
 
-DOMAIN: Any
-DEPENDENCIES: Any
+DOMAIN: Final[Any]
+DEPENDENCIES: Final[tuple[str]]
 
 def async_register_command(hass: HomeAssistant, command_or_handler: Union[str, const.WebSocketCommandHandler], handler: Union[const.WebSocketCommandHandler, None]=..., schema: Union[vol.Schema, None]=...) -> None: ...
-async def async_setup(hass: Any, config: Any): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

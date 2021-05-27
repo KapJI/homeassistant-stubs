@@ -1,0 +1,46 @@
+from . import AirlyDataUpdateCoordinator as AirlyDataUpdateCoordinator
+from .const import ATTRIBUTION as ATTRIBUTION, ATTR_API_ADVICE as ATTR_API_ADVICE, ATTR_API_CAQI as ATTR_API_CAQI, ATTR_API_CAQI_DESCRIPTION as ATTR_API_CAQI_DESCRIPTION, ATTR_API_CAQI_LEVEL as ATTR_API_CAQI_LEVEL, ATTR_API_PM10 as ATTR_API_PM10, ATTR_API_PM10_LIMIT as ATTR_API_PM10_LIMIT, ATTR_API_PM10_PERCENT as ATTR_API_PM10_PERCENT, ATTR_API_PM25 as ATTR_API_PM25, ATTR_API_PM25_LIMIT as ATTR_API_PM25_LIMIT, ATTR_API_PM25_PERCENT as ATTR_API_PM25_PERCENT, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LABEL_ADVICE as LABEL_ADVICE, MANUFACTURER as MANUFACTURER
+from homeassistant.components.air_quality import ATTR_AQI as ATTR_AQI, ATTR_PM_10 as ATTR_PM_10, ATTR_PM_2_5 as ATTR_PM_2_5, AirQualityEntity as AirQualityEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_NAME as CONF_NAME
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import Any
+
+LABEL_AQI_DESCRIPTION: Any
+LABEL_AQI_LEVEL: Any
+LABEL_PM_2_5_LIMIT: Any
+LABEL_PM_2_5_PERCENT: Any
+LABEL_PM_10_LIMIT: Any
+LABEL_PM_10_PERCENT: Any
+PARALLEL_UPDATES: int
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class AirlyAirQuality(CoordinatorEntity, AirQualityEntity):
+    coordinator: AirlyDataUpdateCoordinator
+    _name: Any = ...
+    _icon: str = ...
+    def __init__(self, coordinator: AirlyDataUpdateCoordinator, name: str) -> None: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def icon(self) -> str: ...
+    @property
+    def air_quality_index(self) -> Union[float, None]: ...
+    @property
+    def particulate_matter_2_5(self) -> Union[float, None]: ...
+    @property
+    def particulate_matter_10(self) -> Union[float, None]: ...
+    @property
+    def attribution(self) -> str: ...
+    @property
+    def unique_id(self) -> str: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]: ...
+
+def round_state(state: Union[float, None]) -> Union[float, None]: ...

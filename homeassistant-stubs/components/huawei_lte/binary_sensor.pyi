@@ -5,11 +5,12 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
-from typing import Any, Callable
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from typing import Any
 
 _LOGGER: Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable[[list[Entity], bool], None]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HuaweiLteBaseBinarySensor(HuaweiLteBaseEntity, BinarySensorEntity):
     key: str

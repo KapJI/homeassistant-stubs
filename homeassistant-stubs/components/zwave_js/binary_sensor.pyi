@@ -5,7 +5,8 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any, Callable, TypedDict
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from typing import Any, TypedDict
 from zwave_js_server.client import Client as ZwaveClient
 
 LOGGER: Any
@@ -45,7 +46,7 @@ class PropertySensorMapping(TypedDict):
 
 PROPERTY_SENSOR_MAPPINGS: list[PropertySensorMapping]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZWaveBooleanBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _name: Any = ...

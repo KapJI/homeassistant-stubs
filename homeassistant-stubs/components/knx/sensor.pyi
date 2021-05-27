@@ -1,20 +1,23 @@
 from .const import ATTR_LAST_KNX_UPDATE as ATTR_LAST_KNX_UPDATE, ATTR_SOURCE as ATTR_SOURCE, DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
-from collections.abc import Iterable
+from .schema import SensorSchema as SensorSchema
 from homeassistant.components.sensor import DEVICE_CLASSES as DEVICE_CLASSES, SensorEntity as SensorEntity
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.util import dt as dt
-from typing import Any, Callable
+from typing import Any
+from xknx import XKNX as XKNX
 from xknx.devices import Sensor as XknxSensor
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable[[Iterable[Entity]], None], discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+def _create_sensor(xknx: XKNX, config: ConfigType) -> XknxSensor: ...
 
 class KNXSensor(KnxEntity, SensorEntity):
     _device: Any
     _unique_id: Any = ...
-    def __init__(self, device: XknxSensor) -> None: ...
+    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     @property
     def state(self) -> StateType: ...
     @property

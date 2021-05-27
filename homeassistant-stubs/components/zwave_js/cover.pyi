@@ -1,11 +1,12 @@
 from .const import DATA_CLIENT as DATA_CLIENT, DATA_UNSUBSCRIBE as DATA_UNSUBSCRIBE, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, DEVICE_CLASS_GARAGE as DEVICE_CLASS_GARAGE, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, DEVICE_CLASS_BLIND as DEVICE_CLASS_BLIND, DEVICE_CLASS_GARAGE as DEVICE_CLASS_GARAGE, DEVICE_CLASS_SHUTTER as DEVICE_CLASS_SHUTTER, DEVICE_CLASS_WINDOW as DEVICE_CLASS_WINDOW, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any, Callable
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 
 LOGGER: Any
@@ -17,10 +18,12 @@ BARRIER_STATE_STOPPED: int
 BARRIER_STATE_OPENING: int
 BARRIER_STATE_OPEN: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def percent_to_zwave_position(value: int) -> int: ...
 
 class ZWaveCover(ZWaveBaseEntity, CoverEntity):
+    @property
+    def device_class(self) -> Union[str, None]: ...
     @property
     def is_closed(self) -> Union[bool, None]: ...
     @property

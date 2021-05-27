@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from .trace import TraceElement as TraceElement, async_trace_path as async_trace_path, trace_append_element as trace_append_element, trace_id_get as trace_id_get, trace_path as trace_path, trace_path_get as trace_path_get, trace_set_result as trace_set_result, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push
+from .trace import TraceElement as TraceElement, async_trace_path as async_trace_path, trace_append_element as trace_append_element, trace_id_get as trace_id_get, trace_path as trace_path, trace_path_get as trace_path_get, trace_set_result as trace_set_result, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top, trace_update_result as trace_update_result
 from collections.abc import Sequence
 from homeassistant import exceptions as exceptions
 from homeassistant.components import device_automation as device_automation, scene as scene

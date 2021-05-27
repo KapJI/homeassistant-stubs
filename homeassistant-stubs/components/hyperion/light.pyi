@@ -5,9 +5,11 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from hyperion import client as client
 from types import MappingProxyType
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 COLOR_BLACK: Any
@@ -27,7 +29,7 @@ ICON_LIGHTBULB: str
 ICON_EFFECT: str
 ICON_EXTERNAL_SOURCE: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> bool: ...
 
 class HyperionBaseLight(LightEntity):
     _unique_id: Any = ...
@@ -68,7 +70,7 @@ class HyperionBaseLight(LightEntity):
     @property
     def unique_id(self) -> str: ...
     @property
-    def device_info(self) -> Union[dict[str, Any], None]: ...
+    def device_info(self) -> DeviceInfo: ...
     def _get_option(self, key: str) -> Any: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     def _set_internal_state(self, brightness: Union[int, None]=..., rgb_color: Union[Sequence[int], None]=..., effect: Union[str, None]=...) -> None: ...

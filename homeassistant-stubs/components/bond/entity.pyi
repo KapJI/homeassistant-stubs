@@ -3,9 +3,8 @@ from .const import DOMAIN as DOMAIN
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from abc import abstractmethod
 from bond_api import BPUPSubscriptions as BPUPSubscriptions
-from homeassistant.const import ATTR_NAME as ATTR_NAME
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from typing import Any
 
@@ -29,7 +28,7 @@ class BondEntity(Entity, metaclass=abc.ABCMeta):
     @property
     def should_poll(self) -> bool: ...
     @property
-    def device_info(self) -> Union[dict[str, Any], None]: ...
+    def device_info(self) -> DeviceInfo: ...
     @property
     def assumed_state(self) -> bool: ...
     @property

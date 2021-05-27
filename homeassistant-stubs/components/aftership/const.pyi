@@ -1,0 +1,17 @@
+from typing import Any, Final
+
+DOMAIN: Final[str]
+ATTRIBUTION: Final[str]
+ATTR_TRACKINGS: Final[str]
+BASE: Final[str]
+CONF_SLUG: Final[str]
+CONF_TITLE: Final[str]
+CONF_TRACKING_NUMBER: Final[str]
+DEFAULT_NAME: Final[str]
+UPDATE_TOPIC: Final[Any]
+ICON: Final[str]
+MIN_TIME_BETWEEN_UPDATES: Final[Any]
+SERVICE_ADD_TRACKING: Final[str]
+SERVICE_REMOVE_TRACKING: Final[str]
+ADD_TRACKING_SERVICE_SCHEMA: Final[Any]
+REMOVE_TRACKING_SERVICE_SCHEMA: Final[Any]

@@ -1,20 +1,22 @@
 from .const import DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
-from collections.abc import Iterable
+from .schema import WeatherSchema as WeatherSchema
 from homeassistant.components.weather import WeatherEntity as WeatherEntity
-from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import CONF_NAME as CONF_NAME, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Callable
+from typing import Any
+from xknx import XKNX as XKNX
 from xknx.devices import Weather as XknxWeather
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable[[Iterable[Entity]], None], discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+def _create_weather(xknx: XKNX, config: ConfigType) -> XknxWeather: ...
 
 class KNXWeather(KnxEntity, WeatherEntity):
     _device: Any
     _unique_id: Any = ...
-    def __init__(self, device: XknxWeather) -> None: ...
+    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     @property
     def temperature(self) -> Union[float, None]: ...
     @property

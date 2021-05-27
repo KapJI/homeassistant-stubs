@@ -1,8 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from homeassistant.components.notify import BaseNotificationService as BaseNotificationService
+from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
+from xknx import XKNX as XKNX
 from xknx.devices import Notification as XknxNotification
 
 async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None]=...) -> Union[KNXNotificationService, None]: ...

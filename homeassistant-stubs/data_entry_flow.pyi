@@ -45,6 +45,7 @@ class FlowResult(TypedDict):
     context: dict[str, Any]
     result: Any
     last_step: Union[bool, None]
+    options: Mapping[str, Any]
 
 class FlowManager(abc.ABC, metaclass=abc.ABCMeta):
     hass: Any = ...

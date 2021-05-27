@@ -1,4 +1,6 @@
-KEY_AUTHENTICATED: str
-KEY_HASS: str
-KEY_HASS_USER: str
-KEY_HASS_REFRESH_TOKEN_ID: str
+from typing import Final
+
+KEY_AUTHENTICATED: Final[str]
+KEY_HASS: Final[str]
+KEY_HASS_USER: Final[str]
+KEY_HASS_REFRESH_TOKEN_ID: Final[str]

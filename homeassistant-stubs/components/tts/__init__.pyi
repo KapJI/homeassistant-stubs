@@ -10,9 +10,10 @@ from homeassistant.helpers.service import async_set_service_schema as async_set_
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from homeassistant.util.yaml import load_yaml as load_yaml
-from typing import Any, Optional
+from typing import Any, Optional, Tuple
 
 _LOGGER: Any
+TtsAudioType = Tuple[Optional[str], Optional[bytes]]
 ATTR_CACHE: str
 ATTR_LANGUAGE: str
 ATTR_MESSAGE: str

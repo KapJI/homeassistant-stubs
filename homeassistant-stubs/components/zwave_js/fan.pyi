@@ -5,13 +5,14 @@ from homeassistant.components.fan import FanEntity as FanEntity, SUPPORT_SET_SPE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from typing import Any, Callable
+from typing import Any
 
 SUPPORTED_FEATURES = SUPPORT_SET_SPEED
 SPEED_RANGE: Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveFan(ZWaveBaseEntity, FanEntity):
     async def async_set_percentage(self, percentage: Union[int, None]) -> None: ...

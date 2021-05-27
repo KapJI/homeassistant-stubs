@@ -104,7 +104,7 @@ PLATFORM_SCHEMA: Any
 PLATFORM_SCHEMA_BASE: Any
 ENTITY_SERVICE_FIELDS: Any
 
-def make_entity_service_schema(schema: dict, *, extra: int=...) -> vol.All: ...
+def make_entity_service_schema(schema: dict, *, extra: int=...) -> vol.Schema: ...
 
 SCRIPT_VARIABLES_SCHEMA: Any
 

@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL, DATA_BYTES as DATA_BYTES, DATA_RATE_BYTES_PER_SECOND as DATA_RATE_BYTES_PER_SECOND, PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any, Callable, NamedTuple
 
@@ -23,7 +24,7 @@ class SensorMeta(NamedTuple):
 
 SENSOR_META: dict[Union[str, tuple[str, str]], SensorMeta]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable[[list[Entity], bool], None]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def format_default(value: StateType) -> tuple[StateType, Union[str, None]]: ...
 
 class HuaweiLteSensor(HuaweiLteBaseEntity, SensorEntity):

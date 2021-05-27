@@ -6,12 +6,13 @@ from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD,
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: Callable[[list[Entity], bool], None]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BondFan(BondEntity, FanEntity):
     _power: Any = ...

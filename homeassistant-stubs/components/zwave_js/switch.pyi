@@ -5,14 +5,15 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any, Callable
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 
 LOGGER: Any
 BARRIER_EVENT_SIGNALING_OFF: int
 BARRIER_EVENT_SIGNALING_ON: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: Callable) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZWaveSwitch(ZWaveBaseEntity, SwitchEntity):
     @property

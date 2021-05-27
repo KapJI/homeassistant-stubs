@@ -1,10 +1,9 @@
 from . import auth_store as auth_store, models as models
-from .const import GROUP_ID_ADMIN as GROUP_ID_ADMIN
+from .const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION, GROUP_ID_ADMIN as GROUP_ID_ADMIN
 from .mfa_modules import MultiFactorAuthModule as MultiFactorAuthModule, auth_mfa_module_from_config as auth_mfa_module_from_config
 from .providers import AuthProvider as AuthProvider, LoginFlow as LoginFlow, auth_provider_from_config as auth_provider_from_config
 from datetime import timedelta
 from homeassistant import data_entry_flow as data_entry_flow
-from homeassistant.auth.const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any, Dict, Optional, Tuple

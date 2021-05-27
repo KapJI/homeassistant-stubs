@@ -1,16 +1,15 @@
 from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import SwitchSchema as SwitchSchema
-from collections.abc import Iterable
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Callable
+from typing import Any
 from xknx import XKNX as XKNX
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: Callable[[Iterable[Entity]], None], discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None]=...) -> None: ...
 
 class KNXSwitch(KnxEntity, SwitchEntity):
     _device: Any

@@ -1,6 +1,5 @@
 from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, SupportedPlatforms as SupportedPlatforms
 from .expose import KNXExposeSensor as KNXExposeSensor, KNXExposeTime as KNXExposeTime, create_knx_exposure as create_knx_exposure
-from .factory import create_knx_device as create_knx_device
 from .schema import BinarySensorSchema as BinarySensorSchema, ClimateSchema as ClimateSchema, ConnectionSchema as ConnectionSchema, CoverSchema as CoverSchema, ExposeSchema as ExposeSchema, FanSchema as FanSchema, LightSchema as LightSchema, NotifySchema as NotifySchema, SceneSchema as SceneSchema, SensorSchema as SensorSchema, SwitchSchema as SwitchSchema, WeatherSchema as WeatherSchema, ga_validator as ga_validator, ia_validator as ia_validator, sensor_type_validator as sensor_type_validator
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall

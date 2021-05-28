@@ -3,13 +3,12 @@ from collections.abc import Iterable
 from datetime import datetime as dt
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
-from homeassistant.components.recorder import history as history
-from homeassistant.components.recorder.models import States as States
+from homeassistant.components.recorder import history as history, models as history_models
 from homeassistant.components.recorder.statistics import statistics_during_period as statistics_during_period
 from homeassistant.components.recorder.util import session_scope as session_scope
 from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE, HTTP_BAD_REQUEST as HTTP_BAD_REQUEST
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.deprecation import deprecated_function as deprecated_function
+from homeassistant.helpers.deprecation import deprecated_class as deprecated_class, deprecated_function as deprecated_function
 from homeassistant.helpers.entityfilter import CONF_ENTITY_GLOBS as CONF_ENTITY_GLOBS, INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA
 from typing import Any, Optional
 
@@ -25,6 +24,9 @@ def get_last_state_changes(hass: Any, number_of_states: Any, entity_id: Any): ..
 def get_states(hass: Any, utc_point_in_time: Any, entity_ids: Optional[Any] = ..., run: Optional[Any] = ..., filters: Optional[Any] = ...): ...
 def get_state(hass: Any, utc_point_in_time: Any, entity_id: Any, run: Optional[Any] = ...): ...
 async def async_setup(hass: Any, config: Any): ...
+
+class LazyState(history_models.LazyState): ...
+
 async def ws_get_statistics_during_period(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 
 class HistoryPeriodView(HomeAssistantView):

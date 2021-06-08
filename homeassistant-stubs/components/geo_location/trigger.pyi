@@ -6,6 +6,7 @@ from homeassistant.helpers.config_validation import entity_domain as entity_doma
 from homeassistant.helpers.event import TrackStates as TrackStates, async_track_state_change_filtered as async_track_state_change_filtered
 from typing import Any
 
+_LOGGER: Any
 EVENT_ENTER: str
 EVENT_LEAVE: str
 DEFAULT_EVENT = EVENT_ENTER

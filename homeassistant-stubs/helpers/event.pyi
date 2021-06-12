@@ -30,19 +30,16 @@ class TrackStates:
     all_states: bool
     entities: set
     domains: set
-    def __init__(self, all_states: Any, entities: Any, domains: Any) -> None: ...
 
 class TrackTemplate:
     template: Template
     variables: TemplateVarsType
     rate_limit: Union[timedelta, None] = ...
-    def __init__(self, template: Any, variables: Any, rate_limit: Any) -> None: ...
 
 class TrackTemplateResult:
     template: Template
     last_result: Any
     result: Any
-    def __init__(self, template: Any, last_result: Any, result: Any) -> None: ...
 
 def threaded_listener_factory(async_factory: Callable[..., Any]) -> Callable[..., CALLBACK_TYPE]: ...
 def async_track_state_change(hass: HomeAssistant, entity_ids: Union[str, Iterable[str]], action: Callable[[str, State, State], Union[Awaitable[None], None]], from_state: Union[None, str, Iterable[str]]=..., to_state: Union[None, str, Iterable[str]]=...) -> CALLBACK_TYPE: ...

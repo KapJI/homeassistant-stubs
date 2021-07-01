@@ -1,13 +1,13 @@
-from .const import ATTR_CONFIGURED_ADAPTERS as ATTR_CONFIGURED_ADAPTERS, DEFAULT_CONFIGURED_ADAPTERS as DEFAULT_CONFIGURED_ADAPTERS, NETWORK_CONFIG_SCHEMA as NETWORK_CONFIG_SCHEMA, STORAGE_KEY as STORAGE_KEY, STORAGE_VERSION as STORAGE_VERSION
+from .const import ATTR_CONFIGURED_ADAPTERS as ATTR_CONFIGURED_ADAPTERS, DEFAULT_CONFIGURED_ADAPTERS as DEFAULT_CONFIGURED_ADAPTERS, STORAGE_KEY as STORAGE_KEY, STORAGE_VERSION as STORAGE_VERSION
 from .models import Adapter as Adapter
 from .util import adapters_with_exernal_addresses as adapters_with_exernal_addresses, async_load_adapters as async_load_adapters, enable_adapters as enable_adapters, enable_auto_detected_adapters as enable_auto_detected_adapters
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
 class Network:
-    _store: Any = ...
-    _data: Any = ...
-    adapters: Any = ...
+    _store: Any
+    _data: Any
+    adapters: Any
     def __init__(self, hass: HomeAssistant) -> None: ...
     @property
     def configured_adapters(self) -> list[str]: ...

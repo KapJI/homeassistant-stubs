@@ -5,3 +5,5 @@ class SensorDescription(TypedDict):
     label: str
     unit: Union[str, None]
     enabled: bool
+    state_class: Union[str, None]
+    device_class: Union[str, None]

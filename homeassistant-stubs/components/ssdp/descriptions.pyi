@@ -1,0 +1,13 @@
+from .util import etree_to_dict as etree_to_dict
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from typing import Any
+
+_LOGGER: Any
+
+class DescriptionManager:
+    hass: Any
+    _description_cache: Any
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    async def fetch_description(self, xml_location: Union[str, None]) -> Union[None, dict[str, str]]: ...
+    def async_cached_description(self, xml_location: str) -> Union[None, dict[str, str]]: ...
+    async def _fetch_description(self, xml_location: str) -> Union[None, dict[str, str]]: ...

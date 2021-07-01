@@ -1,7 +1,8 @@
 from . import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_BATTERY_CHARGING as DEVICE_CLASS_BATTERY_CHARGING, DEVICE_CLASS_COLD as DEVICE_CLASS_COLD, DEVICE_CLASS_CONNECTIVITY as DEVICE_CLASS_CONNECTIVITY, DEVICE_CLASS_DOOR as DEVICE_CLASS_DOOR, DEVICE_CLASS_GARAGE_DOOR as DEVICE_CLASS_GARAGE_DOOR, DEVICE_CLASS_GAS as DEVICE_CLASS_GAS, DEVICE_CLASS_HEAT as DEVICE_CLASS_HEAT, DEVICE_CLASS_LIGHT as DEVICE_CLASS_LIGHT, DEVICE_CLASS_LOCK as DEVICE_CLASS_LOCK, DEVICE_CLASS_MOISTURE as DEVICE_CLASS_MOISTURE, DEVICE_CLASS_MOTION as DEVICE_CLASS_MOTION, DEVICE_CLASS_MOVING as DEVICE_CLASS_MOVING, DEVICE_CLASS_OCCUPANCY as DEVICE_CLASS_OCCUPANCY, DEVICE_CLASS_OPENING as DEVICE_CLASS_OPENING, DEVICE_CLASS_PLUG as DEVICE_CLASS_PLUG, DEVICE_CLASS_POWER as DEVICE_CLASS_POWER, DEVICE_CLASS_PRESENCE as DEVICE_CLASS_PRESENCE, DEVICE_CLASS_PROBLEM as DEVICE_CLASS_PROBLEM, DEVICE_CLASS_SAFETY as DEVICE_CLASS_SAFETY, DEVICE_CLASS_SMOKE as DEVICE_CLASS_SMOKE, DEVICE_CLASS_SOUND as DEVICE_CLASS_SOUND, DEVICE_CLASS_VIBRATION as DEVICE_CLASS_VIBRATION, DEVICE_CLASS_WINDOW as DEVICE_CLASS_WINDOW, DOMAIN as DOMAIN
-from homeassistant.components.device_automation import TRIGGER_BASE_SCHEMA as TRIGGER_BASE_SCHEMA
+from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.components.device_automation.const import CONF_TURNED_OFF as CONF_TURNED_OFF, CONF_TURNED_ON as CONF_TURNED_ON
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_TYPE as CONF_TYPE
+from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_TYPE as CONF_TYPE
+from homeassistant.helpers.entity import get_device_class as get_device_class
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device
 from typing import Any
 
@@ -53,6 +54,6 @@ TURNED_OFF: Any
 ENTITY_TRIGGERS: Any
 TRIGGER_SCHEMA: Any
 
-async def async_attach_trigger(hass: Any, config: Any, action: Any, automation_info: Any): ...
-async def async_get_triggers(hass: Any, device_id: Any): ...
-async def async_get_trigger_capabilities(hass: Any, config: Any): ...
+async def async_attach_trigger(hass, config, action, automation_info): ...
+async def async_get_triggers(hass, device_id): ...
+async def async_get_trigger_capabilities(hass, config): ...

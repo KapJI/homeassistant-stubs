@@ -6,8 +6,8 @@ from zwave_js_server.model.value import Value as ZwaveValue
 class ZwaveValueID:
     property_: Union[str, int]
     command_class: int
-    endpoint: Union[int, None] = ...
-    property_key: Union[str, int, None] = ...
+    endpoint: Union[int, None]
+    property_key: Union[str, int, None]
 
 class BaseDiscoverySchemaDataTemplate:
     def resolve_data(self, value: ZwaveValue) -> dict[str, Any]: ...

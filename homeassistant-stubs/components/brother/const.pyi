@@ -1,5 +1,6 @@
 from .model import SensorDescription as SensorDescription
-from homeassistant.const import ATTR_ICON as ATTR_ICON, PERCENTAGE as PERCENTAGE
+from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ICON as ATTR_ICON, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, PERCENTAGE as PERCENTAGE
 from typing import Any, Final
 
 ATTR_BELT_UNIT_REMAINING_LIFE: Final[str]

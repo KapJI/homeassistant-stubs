@@ -13,7 +13,7 @@ TemplateVarsType = Optional[Mapping[str, Any]]
 QueryType = Any
 
 class UndefinedType(Enum):
-    _singleton: int = ...
+    _singleton: int
 
 UNDEFINED: Any
 HomeAssistantType = homeassistant.core.HomeAssistant

@@ -8,7 +8,7 @@ from typing import Any, Final
 
 PLATFORM_SCHEMA: Final[Any]
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[dict[str, Any], None]=...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[dict[str, Any], None] = ...) -> None: ...
 
 class TcpBinarySensor(TcpEntity, BinarySensorEntity):
     @property

@@ -1,7 +1,6 @@
 from .const import ATTR_ENDPOINTS as ATTR_ENDPOINTS, ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN, HLS_PROVIDER as HLS_PROVIDER, MAX_SEGMENTS as MAX_SEGMENTS, OUTPUT_IDLE_TIMEOUT as OUTPUT_IDLE_TIMEOUT, RECORDER_PROVIDER as RECORDER_PROVIDER, STREAM_RESTART_INCREMENT as STREAM_RESTART_INCREMENT, STREAM_RESTART_RESET_TIME as STREAM_RESTART_RESET_TIME
 from .core import IdleTimer as IdleTimer, PROVIDERS as PROVIDERS, StreamOutput as StreamOutput
 from .hls import async_setup_hls as async_setup_hls
-from .recorder import RecorderOutput as RecorderOutput
 from collections.abc import Mapping
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback

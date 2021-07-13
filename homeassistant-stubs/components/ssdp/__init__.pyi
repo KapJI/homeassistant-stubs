@@ -14,6 +14,7 @@ from typing import Any, Callable
 
 DOMAIN: str
 SCAN_INTERVAL: Any
+IPV4_BROADCAST: Any
 ATTR_SSDP_LOCATION: str
 ATTR_SSDP_ST: str
 ATTR_SSDP_USN: str

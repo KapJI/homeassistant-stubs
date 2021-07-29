@@ -1,4 +1,4 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import ATTR_METER_TYPE as ATTR_METER_TYPE, ATTR_VALUE as ATTR_VALUE, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, SERVICE_RESET_METER as SERVICE_RESET_METER
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_device_id as get_device_id
@@ -6,6 +6,7 @@ from homeassistant.components.sensor import DEVICE_CLASS_BATTERY as DEVICE_CLASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -40,6 +41,7 @@ class ZWaveNumericSensor(ZwaveSensorBase):
     def state(self) -> float: ...
     @property
     def unit_of_measurement(self) -> Union[str, None]: ...
+    async def async_reset_meter(self, meter_type: Union[int, None] = ..., value: Union[int, None] = ...) -> None: ...
 
 class ZWaveListSensor(ZwaveSensorBase):
     _attr_name: Any

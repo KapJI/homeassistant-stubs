@@ -1,6 +1,7 @@
 from .const import SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS
 from .entity import BlockAttributeDescription as BlockAttributeDescription, RestAttributeDescription as RestAttributeDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest
 from .utils import get_device_uptime as get_device_uptime, temperature_unit as temperature_unit
+from datetime import datetime
 from homeassistant.components import sensor as sensor
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,6 +9,7 @@ from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.util import dt as dt
 from typing import Any, Final
 
 SENSORS: Final[Any]
@@ -20,6 +22,8 @@ class ShellySensor(ShellyBlockAttributeEntity, SensorEntity):
     def state(self) -> StateType: ...
     @property
     def state_class(self) -> Union[str, None]: ...
+    @property
+    def last_reset(self) -> Union[datetime, None]: ...
     @property
     def unit_of_measurement(self) -> Union[str, None]: ...
 

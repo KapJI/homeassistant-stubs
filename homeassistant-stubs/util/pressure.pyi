@@ -1,7 +1,6 @@
 from homeassistant.const import PRESSURE as PRESSURE, PRESSURE_HPA as PRESSURE_HPA, PRESSURE_INHG as PRESSURE_INHG, PRESSURE_MBAR as PRESSURE_MBAR, PRESSURE_PA as PRESSURE_PA, PRESSURE_PSI as PRESSURE_PSI, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE
-from typing import Any
 
-VALID_UNITS: Any
-UNIT_CONVERSION: Any
+VALID_UNITS: tuple[str, ...]
+UNIT_CONVERSION: dict[str, float]
 
 def convert(value: float, unit_1: str, unit_2: str) -> float: ...

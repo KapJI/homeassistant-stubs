@@ -1,0 +1,36 @@
+import voluptuous as vol
+from . import async_get_client_id as async_get_client_id
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from homeassistant import config_entries as config_entries
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_CODE as CONF_CODE, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.core import callback as callback
+from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers import aiohttp_client as aiohttp_client
+from homeassistant.helpers.typing import ConfigType as ConfigType
+from simplipy.api import API as API
+from typing import Any
+
+FULL_DATA_SCHEMA: Any
+PASSWORD_DATA_SCHEMA: Any
+
+class SimpliSafeFlowHandler(config_entries.ConfigFlow):
+    VERSION: int
+    _code: Any
+    _password: Any
+    _username: Any
+    def __init__(self) -> None: ...
+    @staticmethod
+    def async_get_options_flow(config_entry: ConfigEntry) -> SimpliSafeOptionsFlowHandler: ...
+    async def _async_get_simplisafe_api(self) -> API: ...
+    async def _async_login_during_step(self, step_id: str, form_schema: vol.Schema) -> FlowResult: ...
+    async def async_step_finish(self, user_input: dict[str, Any]) -> FlowResult: ...
+    async def async_step_mfa(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_reauth(self, config: ConfigType) -> FlowResult: ...
+    async def async_step_reauth_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+
+class SimpliSafeOptionsFlowHandler(config_entries.OptionsFlow):
+    config_entry: Any
+    def __init__(self, config_entry: ConfigEntry) -> None: ...
+    async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

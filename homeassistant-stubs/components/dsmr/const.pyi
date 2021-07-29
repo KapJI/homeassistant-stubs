@@ -1,4 +1,4 @@
-from .models import DSMRSensor as DSMRSensor
+from .models import DSMRSensorEntityDescription as DSMRSensorEntityDescription
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT
 from homeassistant.const import DEVICE_CLASS_CURRENT as DEVICE_CLASS_CURRENT, DEVICE_CLASS_ENERGY as DEVICE_CLASS_ENERGY, DEVICE_CLASS_POWER as DEVICE_CLASS_POWER, DEVICE_CLASS_VOLTAGE as DEVICE_CLASS_VOLTAGE
 from homeassistant.util import dt as dt
@@ -21,4 +21,4 @@ DEFAULT_TIME_BETWEEN_UPDATE: int
 DATA_TASK: str
 DEVICE_NAME_ENERGY: str
 DEVICE_NAME_GAS: str
-SENSORS: list[DSMRSensor]
+SENSORS: tuple[DSMRSensorEntityDescription, ...]

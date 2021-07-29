@@ -1,9 +1,5 @@
-from typing import Callable, TypedDict
+from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
+from typing import Callable
 
-class SensorDescription(TypedDict):
-    device_class: Union[str, None]
-    icon: Union[str, None]
-    label: str
-    unit: str
-    state_class: Union[str, None]
+class AirlySensorEntityDescription(SensorEntityDescription):
     value: Callable

@@ -43,8 +43,8 @@ def areas_in_automation(hass: HomeAssistant, entity_id: str) -> list[str]: ...
 async def async_setup(hass, config): ...
 
 class AutomationEntity(ToggleEntity, RestoreEntity):
-    _id: Any
-    _name: Any
+    _attr_should_poll: bool
+    _attr_name: Any
     _trigger_config: Any
     _async_detach_triggers: Any
     _cond_func: Any
@@ -59,13 +59,8 @@ class AutomationEntity(ToggleEntity, RestoreEntity):
     _raw_config: Any
     _blueprint_inputs: Any
     _trace_config: Any
+    _attr_unique_id: Any
     def __init__(self, automation_id, name, trigger_config, cond_func, action_script, initial_state, variables, trigger_variables, raw_config, blueprint_inputs, trace_config) -> None: ...
-    @property
-    def name(self): ...
-    @property
-    def unique_id(self): ...
-    @property
-    def should_poll(self): ...
     @property
     def extra_state_attributes(self): ...
     @property

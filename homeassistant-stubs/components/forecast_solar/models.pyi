@@ -1,7 +1,6 @@
-class ForecastSolarSensor:
-    key: str
-    name: str
-    device_class: Union[str, None]
-    entity_registry_enabled_default: bool
-    state_class: Union[str, None]
-    unit_of_measurement: Union[str, None]
+from forecast_solar.models import Estimate as Estimate
+from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
+from typing import Any, Callable
+
+class ForecastSolarSensorEntityDescription(SensorEntityDescription):
+    state: Union[Callable[[Estimate], Any], None]

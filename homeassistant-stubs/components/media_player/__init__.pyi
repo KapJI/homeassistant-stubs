@@ -11,7 +11,7 @@ from homeassistant.const import HTTP_INTERNAL_SERVER_ERROR as HTTP_INTERNAL_SERV
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, datetime as datetime
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.loader import bind_hass as bind_hass
@@ -40,7 +40,10 @@ async def async_setup(hass, config): ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
+class MediaPlayerEntityDescription(EntityDescription): ...
+
 class MediaPlayerEntity(Entity):
+    entity_description: MediaPlayerEntityDescription
     _access_token: Union[str, None]
     _attr_app_id: Union[str, None]
     _attr_app_name: Union[str, None]

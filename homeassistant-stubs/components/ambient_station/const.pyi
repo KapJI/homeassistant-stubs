@@ -1,0 +1,8 @@
+from typing import Any
+
+DOMAIN: str
+LOGGER: Any
+ATTR_LAST_DATA: str
+ATTR_MONITORED_CONDITIONS: str
+CONF_APP_KEY: str
+DATA_CLIENT: str

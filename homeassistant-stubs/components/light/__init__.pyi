@@ -3,7 +3,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, HomeAssistantError as HomeAssistantError, callback as callback
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
-from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
+from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
@@ -109,7 +109,10 @@ class Profiles:
     def apply_default(self, entity_id: str, state_on: bool, params: dict) -> None: ...
     def apply_profile(self, name: str, params: dict) -> None: ...
 
+class LightEntityDescription(ToggleEntityDescription): ...
+
 class LightEntity(ToggleEntity):
+    entity_description: LightEntityDescription
     _attr_brightness: Union[int, None]
     _attr_color_mode: Union[str, None]
     _attr_color_temp: Union[int, None]

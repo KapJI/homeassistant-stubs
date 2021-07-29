@@ -2,7 +2,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
-from homeassistant.helpers.entity import Entity as Entity, ToggleEntity as ToggleEntity
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription, ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.loader import bind_hass as bind_hass
@@ -80,7 +80,10 @@ class _BaseVacuum(Entity):
     def send_command(self, command, params: Any | None = ..., **kwargs) -> None: ...
     async def async_send_command(self, command, params: Any | None = ..., **kwargs) -> None: ...
 
+class VacuumEntityDescription(ToggleEntityDescription): ...
+
 class VacuumEntity(_BaseVacuum, ToggleEntity):
+    entity_description: VacuumEntityDescription
     @property
     def status(self) -> None: ...
     @property
@@ -99,7 +102,10 @@ class VacuumEntity(_BaseVacuum, ToggleEntity):
 class VacuumDevice(VacuumEntity):
     def __init_subclass__(cls, **kwargs) -> None: ...
 
+class StateVacuumEntityDescription(EntityDescription): ...
+
 class StateVacuumEntity(_BaseVacuum):
+    entity_description: StateVacuumEntityDescription
     @property
     def state(self) -> None: ...
     @property

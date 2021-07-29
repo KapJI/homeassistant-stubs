@@ -13,7 +13,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME 
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.entity import Entity as Entity, entity_sources as entity_sources
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription, entity_sources as entity_sources
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -45,6 +45,8 @@ CAMERA_SERVICE_PLAY_STREAM: Final[Any]
 CAMERA_SERVICE_RECORD: Final[Any]
 WS_TYPE_CAMERA_THUMBNAIL: Final[str]
 SCHEMA_WS_CAMERA_THUMBNAIL: Final[Any]
+
+class CameraEntityDescription(EntityDescription): ...
 
 class Image:
     content_type: str

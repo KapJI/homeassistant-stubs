@@ -160,3 +160,4 @@ SCRIPT_ACTION_VARIABLES: str
 def determine_script_action(action: dict[str, Any]) -> str: ...
 
 ACTION_TYPE_SCHEMAS: dict[str, Callable[[Any], dict]]
+currency: Any

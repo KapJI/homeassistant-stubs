@@ -1,0 +1,4 @@
+DOMAIN: str
+ACCOUNT_HASH: str
+COORDINATORS: str
+DEVICES: str

@@ -1,0 +1,4 @@
+DEVICE_ID: str
+DOMAIN: str
+EVENT_TAG_SCANNED: str
+TAG_ID: str

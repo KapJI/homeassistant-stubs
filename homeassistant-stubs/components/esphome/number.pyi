@@ -1,0 +1,23 @@
+from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from aioesphomeapi import NumberInfo, NumberState
+from homeassistant.components.number import NumberEntity as NumberEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from typing import Any
+
+ICON_SCHEMA: Any
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class EsphomeNumber(EsphomeEntity[NumberInfo, NumberState], NumberEntity):
+    @property
+    def icon(self) -> Union[str, None]: ...
+    @property
+    def min_value(self) -> float: ...
+    @property
+    def max_value(self) -> float: ...
+    @property
+    def step(self) -> float: ...
+    def value(self) -> Union[float, None]: ...
+    async def async_set_value(self, value: float) -> None: ...

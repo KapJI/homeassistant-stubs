@@ -2,7 +2,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from typing import Any, Final, TypedDict
 
@@ -60,7 +60,10 @@ async def async_setup(hass, config): ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
+class WeatherEntityDescription(EntityDescription): ...
+
 class WeatherEntity(Entity):
+    entity_description: WeatherEntityDescription
     _attr_attribution: Union[str, None]
     _attr_condition: Union[str, None]
     _attr_forecast: Union[list[Forecast], None]

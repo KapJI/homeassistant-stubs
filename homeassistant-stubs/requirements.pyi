@@ -5,6 +5,7 @@ from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType a
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from typing import Any
 
+PIP_TIMEOUT: int
 DATA_PIP_LOCK: str
 DATA_PKG_CACHE: str
 DATA_INTEGRATIONS_WITH_REQS: str

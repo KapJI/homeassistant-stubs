@@ -1,7 +1,7 @@
 from .const import ColorTempModes as ColorTempModes, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import LightSchema as LightSchema
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, COLOR_MODE_RGB as COLOR_MODE_RGB, COLOR_MODE_RGBW as COLOR_MODE_RGBW, COLOR_MODE_XY as COLOR_MODE_XY, LightEntity as LightEntity
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_HS as COLOR_MODE_HS, COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, COLOR_MODE_RGB as COLOR_MODE_RGB, COLOR_MODE_RGBW as COLOR_MODE_RGBW, COLOR_MODE_XY as COLOR_MODE_XY, LightEntity as LightEntity
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -31,6 +31,8 @@ class KNXLight(KnxEntity, LightEntity):
     def rgb_color(self) -> Union[tuple[int, int, int], None]: ...
     @property
     def rgbw_color(self) -> Union[tuple[int, int, int, int], None]: ...
+    @property
+    def hs_color(self) -> Union[tuple[float, float], None]: ...
     @property
     def xy_color(self) -> Union[tuple[float, float], None]: ...
     @property

@@ -1,7 +1,6 @@
 from homeassistant.const import UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, VOLUME as VOLUME, VOLUME_FLUID_OUNCE as VOLUME_FLUID_OUNCE, VOLUME_GALLONS as VOLUME_GALLONS, VOLUME_LITERS as VOLUME_LITERS, VOLUME_MILLILITERS as VOLUME_MILLILITERS
-from typing import Any
 
-VALID_UNITS: Any
+VALID_UNITS: tuple[str, ...]
 
 def __liter_to_gallon(liter: float) -> float: ...
 def __gallon_to_liter(gallon: float) -> float: ...

@@ -1,0 +1,7 @@
+from typing import Any
+
+DOMAIN: str
+LOGGER: Any
+DATA_COORDINATOR: str
+CATEGORY_CDC_REPORT: str
+CATEGORY_USER_REPORT: str

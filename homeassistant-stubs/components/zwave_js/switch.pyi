@@ -1,4 +1,4 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DATA_UNSUBSCRIBE as DATA_UNSUBSCRIBE, DOMAIN as DOMAIN
+from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
@@ -10,8 +10,6 @@ from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 
 LOGGER: Any
-BARRIER_EVENT_SIGNALING_OFF: int
-BARRIER_EVENT_SIGNALING_ON: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

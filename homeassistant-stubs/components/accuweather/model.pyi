@@ -1,10 +1,5 @@
-from typing import TypedDict
+from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
 
-class SensorDescription(TypedDict):
-    device_class: Union[str, None]
-    icon: Union[str, None]
-    label: str
+class AccuWeatherSensorDescription(SensorEntityDescription):
     unit_metric: Union[str, None]
     unit_imperial: Union[str, None]
-    enabled: bool
-    state_class: Union[str, None]

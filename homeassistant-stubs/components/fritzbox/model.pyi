@@ -5,6 +5,7 @@ class EntityInfo(TypedDict):
     entity_id: str
     unit_of_measurement: Union[str, None]
     device_class: Union[str, None]
+    state_class: Union[str, None]
 
 class ClimateExtraAttributes(TypedDict):
     battery_low: bool

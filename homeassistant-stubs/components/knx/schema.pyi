@@ -132,8 +132,12 @@ class LightSchema(KNXPlatformSchema):
     CONF_COLOR_TEMP_ADDRESS: str
     CONF_COLOR_TEMP_STATE_ADDRESS: str
     CONF_COLOR_TEMP_MODE: str
+    CONF_HUE_ADDRESS: str
+    CONF_HUE_STATE_ADDRESS: str
     CONF_RGBW_ADDRESS: str
     CONF_RGBW_STATE_ADDRESS: str
+    CONF_SATURATION_ADDRESS: str
+    CONF_SATURATION_STATE_ADDRESS: str
     CONF_XYY_ADDRESS: str
     CONF_XYY_STATE_ADDRESS: str
     CONF_MIN_KELVIN: str
@@ -147,7 +151,9 @@ class LightSchema(KNXPlatformSchema):
     CONF_GREEN: str
     CONF_BLUE: str
     CONF_WHITE: str
-    COLOR_SCHEMA: Any
+    _hs_color_inclusion_msg: str
+    HS_COLOR_SCHEMA: Any
+    INDIVIDUAL_COLOR_SCHEMA: Any
     ENTITY_SCHEMA: Any
 
 class NotifySchema(KNXPlatformSchema):

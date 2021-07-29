@@ -1,4 +1,4 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DATA_UNSUBSCRIBE as DATA_UNSUBSCRIBE, DOMAIN as DOMAIN
+from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, DEVICE_CLASS_BLIND as DEVICE_CLASS_BLIND, DEVICE_CLASS_GARAGE as DEVICE_CLASS_GARAGE, DEVICE_CLASS_SHUTTER as DEVICE_CLASS_SHUTTER, DEVICE_CLASS_WINDOW as DEVICE_CLASS_WINDOW, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN
@@ -10,13 +10,6 @@ from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 
 LOGGER: Any
-BARRIER_TARGET_CLOSE: int
-BARRIER_TARGET_OPEN: int
-BARRIER_STATE_CLOSED: int
-BARRIER_STATE_CLOSING: int
-BARRIER_STATE_STOPPED: int
-BARRIER_STATE_OPENING: int
-BARRIER_STATE_OPEN: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def percent_to_zwave_position(value: int) -> int: ...

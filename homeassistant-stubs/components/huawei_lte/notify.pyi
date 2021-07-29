@@ -1,7 +1,7 @@
 from . import Router as Router
-from .const import DOMAIN as DOMAIN
+from .const import ATTR_UNIQUE_ID as ATTR_UNIQUE_ID, DOMAIN as DOMAIN
 from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
-from homeassistant.const import CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL
+from homeassistant.const import CONF_RECIPIENT as CONF_RECIPIENT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

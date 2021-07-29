@@ -1,6 +1,6 @@
 import asyncio
 from abc import ABC
-from collections.abc import Awaitable, Iterable, Mapping
+from collections.abc import Awaitable, Iterable, Mapping, MutableMapping
 from datetime import datetime, timedelta
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
@@ -43,10 +43,20 @@ class DeviceInfo(TypedDict):
     default_manufacturer: str
     default_model: str
 
+class EntityDescription:
+    key: str
+    device_class: Union[str, None]
+    entity_registry_enabled_default: bool
+    force_update: bool
+    icon: Union[str, None]
+    name: Union[str, None]
+    unit_of_measurement: Union[str, None]
+
 class Entity(ABC):
     entity_id: str
     hass: HomeAssistant
     platform: Union[EntityPlatform, None]
+    entity_description: EntityDescription
     _slow_reported: bool
     _disabled_reported: bool
     _update_staged: bool
@@ -63,7 +73,7 @@ class Entity(ABC):
     _attr_device_info: Union[DeviceInfo, None]
     _attr_entity_picture: Union[str, None]
     _attr_entity_registry_enabled_default: bool
-    _attr_extra_state_attributes: Union[Mapping[str, Any], None]
+    _attr_extra_state_attributes: MutableMapping[str, Any]
     _attr_force_update: bool
     _attr_icon: Union[str, None]
     _attr_name: Union[str, None]
@@ -135,7 +145,10 @@ class Entity(ABC):
     def __repr__(self) -> str: ...
     async def async_request_call(self, coro: Awaitable) -> None: ...
 
+class ToggleEntityDescription(EntityDescription): ...
+
 class ToggleEntity(Entity):
+    entity_description: ToggleEntityDescription
     _attr_is_on: bool
     _attr_state: None
     @property

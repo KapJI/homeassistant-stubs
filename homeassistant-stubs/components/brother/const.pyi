@@ -1,6 +1,5 @@
-from .model import SensorDescription as SensorDescription
-from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ICON as ATTR_ICON, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, PERCENTAGE as PERCENTAGE
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntityDescription as SensorEntityDescription
+from homeassistant.const import DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, PERCENTAGE as PERCENTAGE
 from typing import Any, Final
 
 ATTR_BELT_UNIT_REMAINING_LIFE: Final[str]
@@ -21,9 +20,7 @@ ATTR_DRUM_COUNTER: Final[str]
 ATTR_DRUM_REMAINING_LIFE: Final[str]
 ATTR_DRUM_REMAINING_PAGES: Final[str]
 ATTR_DUPLEX_COUNTER: Final[str]
-ATTR_ENABLED: Final[str]
 ATTR_FUSER_REMAINING_LIFE: Final[str]
-ATTR_LABEL: Final[str]
 ATTR_LASER_REMAINING_LIFE: Final[str]
 ATTR_MAGENTA_DRUM_COUNTER: Final[str]
 ATTR_MAGENTA_DRUM_REMAINING_LIFE: Final[str]
@@ -36,7 +33,6 @@ ATTR_PF_KIT_1_REMAINING_LIFE: Final[str]
 ATTR_PF_KIT_MP_REMAINING_LIFE: Final[str]
 ATTR_REMAINING_PAGES: Final[str]
 ATTR_STATUS: Final[str]
-ATTR_UNIT: Final[str]
 ATTR_UPTIME: Final[str]
 ATTR_YELLOW_DRUM_COUNTER: Final[str]
 ATTR_YELLOW_DRUM_REMAINING_LIFE: Final[str]
@@ -49,4 +45,4 @@ UNIT_PAGES: Final[str]
 PRINTER_TYPES: Final[Any]
 SNMP: Final[str]
 ATTRS_MAP: Final[dict[str, tuple[str, str]]]
-SENSOR_TYPES: Final[dict[str, SensorDescription]]
+SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]

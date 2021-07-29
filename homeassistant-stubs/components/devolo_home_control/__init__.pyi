@@ -1,0 +1,13 @@
+from .const import CONF_MYDEVOLO as CONF_MYDEVOLO, DEFAULT_MYDEVOLO as DEFAULT_MYDEVOLO, DOMAIN as DOMAIN, GATEWAY_SERIAL_PATTERN as GATEWAY_SERIAL_PATTERN, PLATFORMS as PLATFORMS
+from devolo_home_control_api.mydevolo import Mydevolo
+from homeassistant.components import zeroconf as zeroconf
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
+from types import MappingProxyType
+from typing import Any
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+def configure_mydevolo(conf: Union[dict[str, Any], MappingProxyType[str, Any]]) -> Mydevolo: ...

@@ -1,13 +1,5 @@
-from datetime import datetime
+from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
 
-class DSMRSensor:
-    name: str
-    obis_reference: str
-    device_class: Union[str, None]
+class DSMRSensorEntityDescription(SensorEntityDescription):
     dsmr_versions: Union[set[str], None]
-    entity_registry_enabled_default: bool
-    force_update: bool
-    icon: Union[str, None]
     is_gas: bool
-    last_reset: Union[datetime, None]
-    state_class: Union[str, None]

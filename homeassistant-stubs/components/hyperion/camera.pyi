@@ -4,18 +4,17 @@ from aiohttp import web as web
 from collections.abc import AsyncGenerator
 from homeassistant.components.camera import Camera as Camera, DEFAULT_CONTENT_TYPE as DEFAULT_CONTENT_TYPE, async_get_still_stream as async_get_still_stream
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import HomeAssistantType as HomeAssistantType
 from hyperion import client as client
 from typing import Any
 
 _LOGGER: Any
 IMAGE_STREAM_JPG_SENTINEL: str
 
-async def async_setup_entry(hass: HomeAssistantType, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HyperionCamera(Camera):
     _unique_id: Any

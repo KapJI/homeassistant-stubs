@@ -1,7 +1,9 @@
 from . import SynoApi as SynoApi, SynologyDSMBaseEntity as SynologyDSMBaseEntity
-from .const import COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, DOMAIN as DOMAIN, ENTITY_CLASS as ENTITY_CLASS, ENTITY_ENABLE as ENTITY_ENABLE, ENTITY_ICON as ENTITY_ICON, ENTITY_NAME as ENTITY_NAME, ENTITY_UNIT as ENTITY_UNIT, SYNO_API as SYNO_API
+from .const import COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, DOMAIN as DOMAIN, ENTITY_ENABLE as ENTITY_ENABLE, SYNO_API as SYNO_API
 from homeassistant.components.camera import Camera as Camera, SUPPORT_STREAM as SUPPORT_STREAM
+from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

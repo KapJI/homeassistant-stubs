@@ -58,6 +58,7 @@ def get_config_parameter_discovery_schema(property_: Union[set[Union[str, int]],
 
 SWITCH_MULTILEVEL_CURRENT_VALUE_SCHEMA: Any
 SWITCH_BINARY_CURRENT_VALUE_SCHEMA: Any
+SIREN_TONE_SCHEMA: Any
 DISCOVERY_SCHEMAS: Any
 
 def async_discover_values(node: ZwaveNode) -> Generator[ZwaveDiscoveryInfo, None, None]: ...

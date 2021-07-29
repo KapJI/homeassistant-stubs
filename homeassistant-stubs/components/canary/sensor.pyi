@@ -6,7 +6,6 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, Final
@@ -26,26 +25,16 @@ class CanarySensor(CoordinatorEntity, SensorEntity):
     coordinator: CanaryDataUpdateCoordinator
     _sensor_type: Any
     _device_id: Any
-    _device_name: Any
-    _device_type_name: Any
-    _name: Any
+    _attr_name: Any
     _canary_type: Any
+    _attr_state: Any
+    _attr_unique_id: Any
+    _attr_device_info: Any
+    _attr_unit_of_measurement: Any
+    _attr_device_class: Any
+    _attr_icon: Any
     def __init__(self, coordinator: CanaryDataUpdateCoordinator, sensor_type: SensorTypeItem, location: Location, device: Device) -> None: ...
     @property
     def reading(self) -> Union[float, None]: ...
-    @property
-    def name(self) -> str: ...
-    @property
-    def state(self) -> Union[float, None]: ...
-    @property
-    def unique_id(self) -> str: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
-    @property
-    def unit_of_measurement(self) -> Union[str, None]: ...
-    @property
-    def device_class(self) -> Union[str, None]: ...
-    @property
-    def icon(self) -> Union[str, None]: ...
     @property
     def extra_state_attributes(self) -> Union[dict[str, str], None]: ...

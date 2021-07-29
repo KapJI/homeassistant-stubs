@@ -2,10 +2,10 @@ from homeassistant.const import CONF_UNIT_SYSTEM_IMPERIAL as CONF_UNIT_SYSTEM_IM
 from typing import Any
 
 LENGTH_UNITS: Any
-MASS_UNITS: Any
+MASS_UNITS: tuple[str, ...]
 PRESSURE_UNITS: Any
 VOLUME_UNITS: Any
-TEMPERATURE_UNITS: Any
+TEMPERATURE_UNITS: tuple[str, ...]
 
 def is_valid_unit(unit: str, unit_type: str) -> bool: ...
 

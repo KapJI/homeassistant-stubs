@@ -18,7 +18,6 @@ from homeassistant.util.async_ import run_callback_threadsafe as run_callback_th
 from logging import Logger
 from types import ModuleType
 from typing import Any, Callable
-from typing_extensions import Protocol as Protocol
 
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int

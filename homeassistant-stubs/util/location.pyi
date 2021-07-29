@@ -2,6 +2,7 @@ import aiohttp
 from typing import Any, NamedTuple
 
 WHOAMI_URL: str
+WHOAMI_URL_DEV: str
 AXIS_A: int
 FLATTENING: Any
 AXIS_B: float
@@ -12,6 +13,7 @@ CONVERGENCE_THRESHOLD: float
 class LocationInfo(NamedTuple):
     ip: Any
     country_code: Any
+    currency: Any
     region_code: Any
     region_name: Any
     city: Any

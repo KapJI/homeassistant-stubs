@@ -29,6 +29,7 @@ class EnergyCostSensor(SensorEntity):
     _attr_state_class: Any
     _flow: Any
     _last_energy_sensor_state: Any
+    _cur_value: float
     def __init__(self, adapter: FlowAdapter, flow: dict) -> None: ...
     _attr_state: float
     _attr_last_reset: Any

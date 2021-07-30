@@ -21,6 +21,7 @@ class ZWaveBaseEntity(Entity):
     watched_value_ids: Any
     _attr_name: Any
     _attr_unique_id: Any
+    _attr_entity_registry_enabled_default: Any
     _attr_assumed_state: Any
     _attr_device_info: Any
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...

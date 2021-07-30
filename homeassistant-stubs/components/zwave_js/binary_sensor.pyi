@@ -51,7 +51,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class ZWaveBooleanBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _attr_name: Any
     _attr_device_class: Any
-    _attr_entity_registry_enabled_default: Any
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...

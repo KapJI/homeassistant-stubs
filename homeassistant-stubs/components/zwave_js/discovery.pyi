@@ -26,6 +26,7 @@ class ZwaveDiscoveryInfo:
     platform_data_template: Union[BaseDiscoverySchemaDataTemplate, None]
     platform_data: Union[dict[str, Any], None]
     additional_value_ids_to_watch: Union[set[str], None]
+    entity_registry_enabled_default: bool
 
 class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):
     command_class: Union[set[int], None]
@@ -53,6 +54,7 @@ class ZWaveDiscoverySchema:
     absent_values: Union[list[ZWaveValueDiscoverySchema], None]
     allow_multi: bool
     assumed_state: bool
+    entity_registry_enabled_default: bool
 
 def get_config_parameter_discovery_schema(property_: Union[set[Union[str, int]], None] = ..., property_name: Union[set[str], None] = ..., property_key: Union[set[Union[str, int]], None] = ..., property_key_name: Union[set[str], None] = ..., **kwargs: Any) -> ZWaveDiscoverySchema: ...
 

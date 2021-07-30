@@ -1,5 +1,5 @@
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
-from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_DAYS as TIME_DAYS, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
+from homeassistant.components.sensor import ATTR_LAST_RESET as ATTR_LAST_RESET, DEVICE_CLASS_ENERGY as DEVICE_CLASS_ENERGY, DEVICE_CLASS_POWER as DEVICE_CLASS_POWER, PLATFORM_SCHEMA as PLATFORM_SCHEMA, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_DAYS as TIME_DAYS, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import callback as callback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -33,7 +33,10 @@ class IntegrationSensor(RestoreEntity, SensorEntity):
     _unit_of_measurement: Any
     _unit_prefix: Any
     _unit_time: Any
+    _attr_state_class: Any
     def __init__(self, source_entity, name, round_digits, unit_prefix, unit_time, unit_of_measurement, integration_method) -> None: ...
+    _attr_last_reset: Any
+    _attr_device_class: Any
     async def async_added_to_hass(self) -> None: ...
     @property
     def name(self): ...

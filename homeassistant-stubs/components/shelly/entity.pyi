@@ -2,7 +2,6 @@ import aioshelly
 from . import ShellyDeviceRestWrapper as ShellyDeviceRestWrapper, ShellyDeviceWrapper as ShellyDeviceWrapper
 from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, COAP as COAP, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, REST as REST
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_entity_name as get_entity_name
-from datetime import datetime
 from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -31,7 +30,7 @@ class BlockAttributeDescription:
     available: Union[Callable[[aioshelly.Block], bool], None]
     removal_condition: Union[Callable[[dict, aioshelly.Block], bool], None]
     extra_state_attributes: Union[Callable[[aioshelly.Block], Union[dict, None]], None]
-    last_reset: Union[datetime, None]
+    last_reset: Union[str, None]
 
 class RestAttributeDescription:
     name: str
@@ -69,6 +68,7 @@ class ShellyBlockAttributeEntity(ShellyBlockEntity, entity.Entity):
     _unit: Any
     _unique_id: Any
     _name: Any
+    _last_value: Any
     def __init__(self, wrapper: ShellyDeviceWrapper, block: aioshelly.Block, attribute: str, description: BlockAttributeDescription) -> None: ...
     @property
     def unique_id(self) -> str: ...

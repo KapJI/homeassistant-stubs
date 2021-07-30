@@ -1,4 +1,4 @@
-from .const import SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS
+from .const import LAST_RESET_NEVER as LAST_RESET_NEVER, LAST_RESET_UPTIME as LAST_RESET_UPTIME, SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS
 from .entity import BlockAttributeDescription as BlockAttributeDescription, RestAttributeDescription as RestAttributeDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest
 from .utils import get_device_uptime as get_device_uptime, temperature_unit as temperature_unit
 from datetime import datetime
@@ -22,6 +22,7 @@ class ShellySensor(ShellyBlockAttributeEntity, SensorEntity):
     def state(self) -> StateType: ...
     @property
     def state_class(self) -> Union[str, None]: ...
+    _last_value: Any
     @property
     def last_reset(self) -> Union[datetime, None]: ...
     @property

@@ -68,7 +68,6 @@ class ShellyBlockAttributeEntity(ShellyBlockEntity, entity.Entity):
     _unit: Any
     _unique_id: Any
     _name: Any
-    _last_value: Any
     def __init__(self, wrapper: ShellyDeviceWrapper, block: aioshelly.Block, attribute: str, description: BlockAttributeDescription) -> None: ...
     @property
     def unique_id(self) -> str: ...

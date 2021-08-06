@@ -1,7 +1,8 @@
+import aioshelly
+from . import ShellyDeviceWrapper as ShellyDeviceWrapper
 from .const import LAST_RESET_NEVER as LAST_RESET_NEVER, LAST_RESET_UPTIME as LAST_RESET_UPTIME, SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS
 from .entity import BlockAttributeDescription as BlockAttributeDescription, RestAttributeDescription as RestAttributeDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest
 from .utils import get_device_uptime as get_device_uptime, temperature_unit as temperature_unit
-from datetime import datetime
 from homeassistant.components import sensor as sensor
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,19 +13,20 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util import dt as dt
 from typing import Any, Final
 
+_LOGGER: Final[Any]
 SENSORS: Final[Any]
 REST_SENSORS: Final[Any]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ShellySensor(ShellyBlockAttributeEntity, SensorEntity):
+    _last_value: Any
+    _attr_last_reset: Any
+    def __init__(self, wrapper: ShellyDeviceWrapper, block: aioshelly.Block, attribute: str, description: BlockAttributeDescription) -> None: ...
     @property
     def state(self) -> StateType: ...
     @property
     def state_class(self) -> Union[str, None]: ...
-    _last_value: Any
-    @property
-    def last_reset(self) -> Union[datetime, None]: ...
     @property
     def unit_of_measurement(self) -> Union[str, None]: ...
 

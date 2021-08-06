@@ -12,6 +12,7 @@ from homeassistant.helpers.trigger import async_validate_trigger_config as async
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from typing import Any
 
+PACKAGE_MERGE_HINT: str
 _CONDITION_SCHEMA: Any
 PLATFORM_SCHEMA: Any
 

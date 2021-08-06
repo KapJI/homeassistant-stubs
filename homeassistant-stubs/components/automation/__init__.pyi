@@ -1,4 +1,4 @@
-from .config import AutomationConfig as AutomationConfig, PLATFORM_SCHEMA as PLATFORM_SCHEMA, async_validate_config_item as async_validate_config_item
+from .config import AutomationConfig as AutomationConfig, async_validate_config_item as async_validate_config_item
 from .const import CONF_ACTION as CONF_ACTION, CONF_INITIAL_STATE as CONF_INITIAL_STATE, CONF_TRACE as CONF_TRACE, CONF_TRIGGER as CONF_TRIGGER, CONF_TRIGGER_VARIABLES as CONF_TRIGGER_VARIABLES, DEFAULT_INITIAL_STATE as DEFAULT_INITIAL_STATE, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import async_get_blueprints as async_get_blueprints
 from .trace import trace_automation as trace_automation

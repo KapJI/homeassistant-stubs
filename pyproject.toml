@@ -39,7 +39,7 @@ isort = "^5.9.2"
 mypy = "^0.910"
 pre-commit = "^2.13.0"
 pylint = "^2.9.5"
-types-requests = "^2.25.0"
+types-requests = "^2.25.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

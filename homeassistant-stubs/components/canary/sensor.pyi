@@ -27,7 +27,6 @@ class CanarySensor(CoordinatorEntity, SensorEntity):
     _device_id: Any
     _attr_name: Any
     _canary_type: Any
-    _attr_state: Any
     _attr_unique_id: Any
     _attr_device_info: Any
     _attr_unit_of_measurement: Any
@@ -36,5 +35,7 @@ class CanarySensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator: CanaryDataUpdateCoordinator, sensor_type: SensorTypeItem, location: Location, device: Device) -> None: ...
     @property
     def reading(self) -> Union[float, None]: ...
+    @property
+    def state(self) -> Union[float, None]: ...
     @property
     def extra_state_attributes(self) -> Union[dict[str, str], None]: ...

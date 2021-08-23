@@ -38,7 +38,7 @@ flake8-use-fstring = "^1.1"
 isort = "^5.9.3"
 mypy = "^0.910"
 pre-commit = "^2.14.0"
-pylint = "^2.9.6"
+pylint = "^2.10.2"
 types-requests = "^2.25.6"
 
 [build-system]

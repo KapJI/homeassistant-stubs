@@ -1,3 +1,4 @@
+from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from typing import Any
 
@@ -16,5 +17,8 @@ ATTR_BLOCKED_DOMAINS: str
 MIN_TIME_BETWEEN_UPDATES: Any
 DATA_KEY_API: str
 DATA_KEY_COORDINATOR: str
-SENSOR_DICT: Any
-SENSOR_LIST: Any
+
+class PiHoleSensorEntityDescription(SensorEntityDescription):
+    icon: str
+
+SENSOR_TYPES: tuple[PiHoleSensorEntityDescription, ...]

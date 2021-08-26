@@ -6,13 +6,14 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, EVENT_HOMEASSI
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import device_registry as device_registry, update_coordinator as update_coordinator
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 PLATFORMS: Any
 _LOGGER: Any
 CCONFIG_SCHEMA: Any
 
-async def async_setup(hass: HomeAssistant, config: dict) -> bool: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class SwitcherDeviceWrapper(update_coordinator.DataUpdateCoordinator):

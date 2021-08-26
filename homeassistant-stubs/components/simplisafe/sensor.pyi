@@ -11,6 +11,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SimplisafeFreezeSensor(SimpliSafeBaseSensor, SensorEntity):
     _attr_device_class: Any
-    _attr_unit_of_measurement: Any
-    _attr_state: Any
+    _attr_native_unit_of_measurement: Any
+    _attr_native_value: Any
     def async_update_from_rest_api(self) -> None: ...

@@ -3,6 +3,7 @@ from typing import Any
 DOMAIN: str
 PLATFORMS: Any
 DATA_FRITZ: str
+DSL_CONNECTION: str
 DEFAULT_DEVICE_NAME: str
 DEFAULT_HOST: str
 DEFAULT_PORT: int

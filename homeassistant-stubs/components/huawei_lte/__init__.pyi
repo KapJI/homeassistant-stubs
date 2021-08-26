@@ -49,7 +49,7 @@ class Router:
     def __ge__(self, other): ...
 
 class HuaweiLteData:
-    hass_config: dict
+    hass_config: ConfigType
     config: dict[str, dict[str, Any]]
     routers: dict[str, Router]
     def __init__(self, hass_config, config, routers) -> None: ...

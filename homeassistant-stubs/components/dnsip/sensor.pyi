@@ -25,5 +25,5 @@ class WanIpSensor(SensorEntity):
     resolver: Any
     querytype: Any
     def __init__(self, name: str, hostname: str, resolver: str, ipv6: bool) -> None: ...
-    _attr_state: Any
+    _attr_native_value: Any
     async def async_update(self) -> None: ...

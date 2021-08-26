@@ -1,12 +1,11 @@
 import upcloud_api
-from .const import CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE as CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
+from .const import CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE as CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from datetime import timedelta
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_USERNAME as CONF_USERNAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PROBLEM as STATE_PROBLEM
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any, Dict
 
@@ -24,7 +23,6 @@ DEFAULT_COMPONENT_DEVICE_CLASS: str
 CONFIG_ENTRY_DOMAINS: Any
 SIGNAL_UPDATE_UPCLOUD: str
 STATE_MAP: Any
-CONFIG_SCHEMA: Any
 
 class UpCloudDataUpdateCoordinator(DataUpdateCoordinator[Dict[str, upcloud_api.Server]]):
     cloud_manager: Any
@@ -35,9 +33,7 @@ class UpCloudDataUpdateCoordinator(DataUpdateCoordinator[Dict[str, upcloud_api.S
 
 class UpCloudHassData:
     coordinators: dict[str, UpCloudDataUpdateCoordinator]
-    scan_interval_migrations: dict[str, int]
 
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _config_entry_update_signal_name(config_entry: ConfigEntry) -> str: ...
 async def _async_signal_options_update(hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

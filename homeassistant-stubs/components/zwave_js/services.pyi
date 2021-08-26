@@ -1,10 +1,10 @@
 from . import const as const
-from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, async_get_node_from_entity_id as async_get_node_from_entity_id
-from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID
+from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, async_get_node_from_entity_id as async_get_node_from_entity_id, async_get_nodes_from_area_id as async_get_nodes_from_area_id
+from homeassistant.components.group import expand_entity_ids as expand_entity_ids
+from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.helpers.device_registry import DeviceRegistry as DeviceRegistry
+from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity_registry import EntityRegistry as EntityRegistry
 from typing import Any
 
 _LOGGER: Any
@@ -19,7 +19,7 @@ class ZWaveServices:
     _hass: Any
     _ent_reg: Any
     _dev_reg: Any
-    def __init__(self, hass: HomeAssistant, ent_reg: EntityRegistry, dev_reg: DeviceRegistry) -> None: ...
+    def __init__(self, hass: HomeAssistant, ent_reg: er.EntityRegistry, dev_reg: dr.DeviceRegistry) -> None: ...
     def async_register(self) -> None: ...
     async def async_set_config_parameter(self, service: ServiceCall) -> None: ...
     async def async_bulk_set_partial_config_parameters(self, service: ServiceCall) -> None: ...

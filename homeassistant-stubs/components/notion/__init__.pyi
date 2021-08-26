@@ -4,6 +4,7 @@ from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_PASSW
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
@@ -19,7 +20,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 async def async_register_new_bridge(hass: HomeAssistant, bridge: dict, entry: ConfigEntry) -> None: ...
 
 class NotionEntity(CoordinatorEntity):
-    _attr_device_class: Any
     _attr_device_info: Any
     _attr_extra_state_attributes: Any
     _attr_name: Any
@@ -28,7 +28,8 @@ class NotionEntity(CoordinatorEntity):
     _sensor_id: Any
     _system_id: Any
     _task_id: Any
-    def __init__(self, coordinator: DataUpdateCoordinator, task_id: str, sensor_id: str, bridge_id: str, system_id: str, name: str, device_class: str) -> None: ...
+    entity_description: Any
+    def __init__(self, coordinator: DataUpdateCoordinator, task_id: str, sensor_id: str, bridge_id: str, system_id: str, description: EntityDescription) -> None: ...
     @property
     def available(self) -> bool: ...
     async def _async_update_bridge_id(self) -> None: ...

@@ -33,7 +33,20 @@ class SolarSourceType(TypedDict):
     type: Literal[solar]
     stat_energy_from: str
     config_entry_solar_forecast: Union[list[str], None]
-SourceType = Union[GridSourceType, SolarSourceType]
+
+class BatterySourceType(TypedDict):
+    type: Literal[battery]
+    stat_energy_from: str
+    stat_energy_to: str
+
+class GasSourceType(TypedDict):
+    type: Literal[gas]
+    stat_energy_from: str
+    stat_cost: Union[str, None]
+    entity_energy_from: Union[str, None]
+    entity_energy_price: Union[str, None]
+    number_energy_price: Union[float, None]
+SourceType = Union[GridSourceType, SolarSourceType, BatterySourceType, GasSourceType]
 
 class DeviceConsumption(TypedDict):
     stat_consumption: str
@@ -53,6 +66,8 @@ def _generate_unique_value_validator(key: str) -> Callable[[list[dict]], list[di
 
 GRID_SOURCE_SCHEMA: Any
 SOLAR_SOURCE_SCHEMA: Any
+BATTERY_SOURCE_SCHEMA: Any
+GAS_SOURCE_SCHEMA: Any
 
 def check_type_limits(value: list[SourceType]) -> list[SourceType]: ...
 

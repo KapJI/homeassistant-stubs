@@ -2,7 +2,7 @@ from .const import ATTR_ENTRY_TYPE as ATTR_ENTRY_TYPE, DOMAIN as DOMAIN, ENTRY_T
 from .models import ForecastSolarSensorEntityDescription as ForecastSolarSensorEntityDescription
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_NAME as ATTR_NAME
+from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -18,4 +18,4 @@ class ForecastSolarSensorEntity(CoordinatorEntity, SensorEntity):
     _attr_device_info: Any
     def __init__(self, entry_id: str, coordinator: DataUpdateCoordinator, entity_description: ForecastSolarSensorEntityDescription) -> None: ...
     @property
-    def state(self) -> StateType: ...
+    def native_value(self) -> StateType: ...

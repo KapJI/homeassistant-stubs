@@ -13,5 +13,5 @@ class UptimeSensor(SensorEntity):
     _attr_name: Any
     _attr_device_class: Any
     _attr_should_poll: bool
-    _attr_state: Any
+    _attr_native_value: Any
     def __init__(self, name: str) -> None: ...

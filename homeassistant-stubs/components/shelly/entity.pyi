@@ -30,7 +30,6 @@ class BlockAttributeDescription:
     available: Union[Callable[[aioshelly.Block], bool], None]
     removal_condition: Union[Callable[[dict, aioshelly.Block], bool], None]
     extra_state_attributes: Union[Callable[[aioshelly.Block], Union[dict, None]], None]
-    last_reset: Union[str, None]
 
 class RestAttributeDescription:
     name: str

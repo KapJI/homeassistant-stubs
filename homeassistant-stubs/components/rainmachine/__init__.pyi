@@ -5,6 +5,7 @@ from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_IP_AD
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.network import is_ip_address as is_ip_address
 from regenmaschine.controller import Controller as Controller
@@ -27,8 +28,8 @@ class RainMachineEntity(CoordinatorEntity):
     _attr_extra_state_attributes: Any
     _attr_unique_id: Any
     _controller: Any
-    _entity_type: Any
-    def __init__(self, coordinator: DataUpdateCoordinator, controller: Controller, entity_type: str) -> None: ...
+    entity_description: Any
+    def __init__(self, coordinator: DataUpdateCoordinator, controller: Controller, description: EntityDescription) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def update_from_latest_data(self) -> None: ...

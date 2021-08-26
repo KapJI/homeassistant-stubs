@@ -6,6 +6,7 @@ from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_API_K
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers import aiohttp_client as aiohttp_client, entity_registry as entity_registry
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
@@ -28,6 +29,7 @@ async def async_reload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
 
 class AirVisualEntity(CoordinatorEntity):
     _attr_extra_state_attributes: Any
-    def __init__(self, coordinator: DataUpdateCoordinator) -> None: ...
+    entity_description: Any
+    def __init__(self, coordinator: DataUpdateCoordinator, description: EntityDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def update_from_latest_data(self) -> None: ...

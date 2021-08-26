@@ -28,6 +28,8 @@ class StoredState:
 class RestoreStateData:
     @classmethod
     async def async_get_instance(cls, hass: HomeAssistant) -> RestoreStateData: ...
+    @classmethod
+    async def async_save_persistent_states(cls, hass: HomeAssistant) -> None: ...
     hass: Any
     store: Any
     last_states: Any

@@ -8,6 +8,7 @@ from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry_oauth2_flow as config_entry_oauth2_flow
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 _LOGGER: Any
@@ -20,7 +21,7 @@ SENSOR_SCHEMA: Any
 CONFIG_SCHEMA: Any
 PLATFORMS: Any
 
-async def async_setup(hass: HomeAssistant, config: dict) -> bool: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class SignalUpdateCallback:
     _hass: Any

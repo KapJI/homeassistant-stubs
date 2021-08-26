@@ -10,7 +10,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DiffuserSwitch(SwitchEntity, DiffuserEntity):
+class DiffuserSwitch(DiffuserEntity, SwitchEntity):
     _attr_icon: str
     _attr_is_on: Any
     def __init__(self, diffuser: Diffuser, coordinator: RitualsDataUpdateCoordinator) -> None: ...

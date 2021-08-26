@@ -19,7 +19,6 @@ class GiosSensor(CoordinatorEntity, SensorEntity):
     coordinator: GiosDataUpdateCoordinator
     entity_description: GiosSensorEntityDescription
     _attr_device_info: Any
-    _attr_icon: str
     _attr_name: Any
     _attr_unique_id: Any
     _attrs: Any
@@ -27,10 +26,10 @@ class GiosSensor(CoordinatorEntity, SensorEntity):
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
-    def state(self) -> StateType: ...
+    def native_value(self) -> StateType: ...
 
 class GiosAqiSensor(GiosSensor):
     @property
-    def state(self) -> StateType: ...
+    def native_value(self) -> StateType: ...
     @property
     def available(self) -> bool: ...

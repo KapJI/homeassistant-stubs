@@ -15,5 +15,5 @@ class IPSensor(SensorEntity):
     _attr_icon: str
     _attr_name: Any
     def __init__(self, name: str) -> None: ...
-    _attr_state: Any
+    _attr_native_value: Any
     async def async_update(self) -> None: ...

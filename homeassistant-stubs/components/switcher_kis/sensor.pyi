@@ -31,11 +31,11 @@ class SwitcherSensorEntity(CoordinatorEntity, SensorEntity):
     attribute: Any
     _attr_name: Any
     _attr_icon: Any
-    _attr_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Any
     _attr_device_class: Any
     _attr_entity_registry_enabled_default: Any
     _attr_unique_id: Any
     _attr_device_info: Any
     def __init__(self, wrapper: SwitcherDeviceWrapper, attribute: str, description: AttributeDescription) -> None: ...
     @property
-    def state(self) -> StateType: ...
+    def native_value(self) -> StateType: ...

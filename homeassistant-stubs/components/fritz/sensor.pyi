@@ -1,9 +1,9 @@
 from .common import FritzBoxBaseEntity as FritzBoxBaseEntity, FritzBoxTools as FritzBoxTools
-from .const import DOMAIN as DOMAIN, UPTIME_DEVIATION as UPTIME_DEVIATION
+from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
 from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DATA_GIGABYTES as DATA_GIGABYTES, DATA_RATE_KILOBITS_PER_SECOND as DATA_RATE_KILOBITS_PER_SECOND, DATA_RATE_KILOBYTES_PER_SECOND as DATA_RATE_KILOBYTES_PER_SECOND, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP
+from homeassistant.const import DATA_GIGABYTES as DATA_GIGABYTES, DATA_RATE_KILOBITS_PER_SECOND as DATA_RATE_KILOBITS_PER_SECOND, DATA_RATE_KILOBYTES_PER_SECOND as DATA_RATE_KILOBYTES_PER_SECOND, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
@@ -21,15 +21,21 @@ def _retrieve_max_kb_s_sent_state(status: FritzStatus, last_value: str) -> float
 def _retrieve_max_kb_s_received_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_gb_sent_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_gb_received_state(status: FritzStatus, last_value: str) -> float: ...
+def _retrieve_link_kb_s_sent_state(status: FritzStatus, last_value: str) -> float: ...
+def _retrieve_link_kb_s_received_state(status: FritzStatus, last_value: str) -> float: ...
+def _retrieve_link_noise_margin_sent_state(status: FritzStatus, last_value: str) -> float: ...
+def _retrieve_link_noise_margin_received_state(status: FritzStatus, last_value: str) -> float: ...
+def _retrieve_link_attenuation_sent_state(status: FritzStatus, last_value: str) -> float: ...
+def _retrieve_link_attenuation_received_state(status: FritzStatus, last_value: str) -> float: ...
 
 class SensorData(TypedDict):
     name: str
     device_class: Union[str, None]
     state_class: Union[str, None]
-    last_reset: bool
     unit_of_measurement: Union[str, None]
     icon: Union[str, None]
     state_provider: Callable
+    connection_type: Union[str, None]
 
 SENSOR_DATA: Any
 
@@ -38,17 +44,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class FritzBoxSensor(FritzBoxBaseEntity, SensorEntity):
     _sensor_data: Any
     _last_device_value: Any
-    _last_wan_value: Any
     _attr_available: bool
     _attr_device_class: Any
     _attr_icon: Any
     _attr_name: Any
     _attr_state_class: Any
-    _attr_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Any
     _attr_unique_id: Any
     def __init__(self, fritzbox_tools: FritzBoxTools, device_friendly_name: str, sensor_type: str) -> None: ...
     @property
     def _state_provider(self) -> Callable: ...
-    _attr_state: Any
-    _attr_last_reset: Any
+    _attr_native_value: Any
     def update(self) -> None: ...

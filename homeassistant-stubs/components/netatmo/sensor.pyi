@@ -3,7 +3,7 @@ from .const import CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DAT
 from .data_handler import HOMECOACH_DATA_CLASS_NAME as HOMECOACH_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler, PUBLICDATA_DATA_CLASS_NAME as PUBLICDATA_DATA_CLASS_NAME, WEATHERSTATION_DATA_CLASS_NAME as WEATHERSTATION_DATA_CLASS_NAME
 from .helper import NetatmoArea as NetatmoArea
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
-from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_CO2 as DEVICE_CLASS_CO2, DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_PRESSURE as DEVICE_CLASS_PRESSURE, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, LENGTH_MILLIMETERS as LENGTH_MILLIMETERS, PERCENTAGE as PERCENTAGE, PRESSURE_MBAR as PRESSURE_MBAR, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, SOUND_PRESSURE_DB as SOUND_PRESSURE_DB, SPEED_KILOMETERS_PER_HOUR as SPEED_KILOMETERS_PER_HOUR, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -52,7 +52,7 @@ class NetatmoSensor(NetatmoBase, SensorEntity):
     def _data(self) -> pyatmo.AsyncWeatherStationData: ...
     @property
     def available(self) -> bool: ...
-    _attr_state: Any
+    _attr_native_value: Any
     def async_update_callback(self) -> None: ...
 
 def fix_angle(angle: int) -> int: ...
@@ -80,6 +80,6 @@ class NetatmoPublicSensor(NetatmoBase, SensorEntity):
     async def async_added_to_hass(self) -> None: ...
     _data_classes: Any
     async def async_config_update_callback(self, area: NetatmoArea) -> None: ...
-    _attr_state: Any
+    _attr_native_value: Any
     _attr_available: Any
     def async_update_callback(self) -> None: ...

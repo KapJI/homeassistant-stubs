@@ -1,4 +1,5 @@
-from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, ZwaveValueID as ZwaveValueID
+from .const import LOGGER as LOGGER
+from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, NumericSensorDataTemplate as NumericSensorDataTemplate, ZwaveValueID as ZwaveValueID
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
 from homeassistant.core import callback as callback
@@ -22,10 +23,10 @@ class ZwaveDiscoveryInfo:
     primary_value: ZwaveValue
     assumed_state: bool
     platform: str
+    platform_data: Any
+    additional_value_ids_to_watch: set[str]
     platform_hint: Union[str, None]
     platform_data_template: Union[BaseDiscoverySchemaDataTemplate, None]
-    platform_data: Union[dict[str, Any], None]
-    additional_value_ids_to_watch: Union[set[str], None]
     entity_registry_enabled_default: bool
 
 class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):

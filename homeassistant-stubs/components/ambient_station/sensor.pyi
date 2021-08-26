@@ -10,7 +10,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AmbientWeatherSensor(AmbientWeatherEntity, SensorEntity):
-    _attr_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Any
     def __init__(self, ambient: AmbientStation, mac_address: str, station_name: str, sensor_type: str, sensor_name: str, device_class: Union[str, None], unit: Union[str, None]) -> None: ...
-    _attr_state: Any
+    _attr_native_value: Any
     def update_from_latest_data(self) -> None: ...

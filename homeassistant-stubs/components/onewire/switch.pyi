@@ -1,22 +1,24 @@
-from .const import CONF_TYPE_OWSERVER as CONF_TYPE_OWSERVER, DOMAIN as DOMAIN, SWITCH_TYPE_LATCH as SWITCH_TYPE_LATCH, SWITCH_TYPE_PIO as SWITCH_TYPE_PIO
-from .model import DeviceComponentDescription as DeviceComponentDescription
-from .onewire_entities import OneWireBaseEntity as OneWireBaseEntity, OneWireProxyEntity as OneWireProxyEntity
+from .const import CONF_TYPE_OWSERVER as CONF_TYPE_OWSERVER, DOMAIN as DOMAIN, READ_MODE_BOOL as READ_MODE_BOOL
+from .onewire_entities import OneWireEntityDescription as OneWireEntityDescription, OneWireProxyEntity as OneWireProxyEntity
 from .onewirehub import OneWireHub as OneWireHub
-from homeassistant.components.switch import SwitchEntity as SwitchEntity
+from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_TYPE as CONF_TYPE
+from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-DEVICE_SWITCHES: dict[str, list[DeviceComponentDescription]]
+class OneWireSwitchEntityDescription(OneWireEntityDescription, SwitchEntityDescription): ...
+
+DEVICE_SWITCHES: dict[str, tuple[OneWireEntityDescription, ...]]
 LOGGER: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def get_entities(onewirehub: OneWireHub) -> list[OneWireBaseEntity]: ...
+def get_entities(onewirehub: OneWireHub) -> list[SwitchEntity]: ...
 
 class OneWireProxySwitch(OneWireProxyEntity, SwitchEntity):
+    entity_description: OneWireSwitchEntityDescription
     @property
     def is_on(self) -> bool: ...
     def turn_on(self, **kwargs: Any) -> None: ...

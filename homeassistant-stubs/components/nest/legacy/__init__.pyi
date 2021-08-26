@@ -1,8 +1,9 @@
 from . import local_auth as local_auth
 from .const import DATA_NEST as DATA_NEST, DATA_NEST_CONFIG as DATA_NEST_CONFIG, DOMAIN as DOMAIN, SIGNAL_NEST_UPDATE as SIGNAL_NEST_UPDATE
 from homeassistant import config_entries as config_entries
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_FILENAME as CONF_FILENAME, CONF_STRUCTURE as CONF_STRUCTURE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, dispatcher_send as dispatcher_send
 from homeassistant.helpers.entity import Entity as Entity
 from typing import Any
@@ -26,8 +27,8 @@ SET_ETA_SCHEMA: Any
 CANCEL_ETA_SCHEMA: Any
 
 def nest_update_event_broker(hass, nest) -> None: ...
-async def async_setup_legacy(hass, config) -> bool: ...
-async def async_setup_legacy_entry(hass, entry) -> bool: ...
+async def async_setup_legacy(hass: HomeAssistant, config: dict) -> bool: ...
+async def async_setup_legacy_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class NestLegacyDevice:
     hass: Any

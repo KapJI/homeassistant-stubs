@@ -13,6 +13,7 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.notification import NotificationNotification as NotificationNotification
@@ -24,7 +25,7 @@ DATA_START_PLATFORM_TASK: str
 DATA_CONNECT_FAILED_LOGGED: str
 DATA_INVALID_SERVER_VERSION_LOGGED: str
 
-async def async_setup(hass: HomeAssistant, config: dict) -> bool: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def register_node_in_dev_reg(hass: HomeAssistant, entry: ConfigEntry, dev_reg: device_registry.DeviceRegistry, client: ZwaveClient, node: ZwaveNode) -> device_registry.DeviceEntry: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def client_listen(hass: HomeAssistant, entry: ConfigEntry, client: ZwaveClient, driver_ready: asyncio.Event) -> None: ...

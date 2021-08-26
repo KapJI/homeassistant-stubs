@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PiHoleBinarySensor(PiHoleEntity, BinarySensorEntity):
+    _attr_icon: str
     @property
     def name(self) -> str: ...
     @property

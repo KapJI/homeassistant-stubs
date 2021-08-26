@@ -14,10 +14,10 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class SpeedtestSensor(RestoreEntity, SensorEntity):
     _attr_name: str
-    _attr_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Any
     _attr_icon: Any
     _attr_should_poll: bool
-    _attr_state: Any
+    _attr_native_value: Any
     _speedtest_data: Any
     def __init__(self, speedtest_data: dict[str, Any]) -> None: ...
     async def async_added_to_hass(self) -> None: ...

@@ -1,8 +1,8 @@
 from . import AirVisualEntity as AirVisualEntity
 from .const import CONF_CITY as CONF_CITY, CONF_COUNTRY as CONF_COUNTRY, CONF_INTEGRATION_TYPE as CONF_INTEGRATION_TYPE, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, INTEGRATION_TYPE_GEOGRAPHY_COORDS as INTEGRATION_TYPE_GEOGRAPHY_COORDS, INTEGRATION_TYPE_GEOGRAPHY_NAME as INTEGRATION_TYPE_GEOGRAPHY_NAME
-from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_STATE as ATTR_STATE, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, CONF_STATE as CONF_STATE, DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_CO2 as DEVICE_CLASS_CO2, DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, PERCENTAGE as PERCENTAGE, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_STATE as ATTR_STATE, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, CONF_STATE as CONF_STATE, DEVICE_CLASS_AQI as DEVICE_CLASS_AQI, DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_CO2 as DEVICE_CLASS_CO2, DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_PM1 as DEVICE_CLASS_PM1, DEVICE_CLASS_PM10 as DEVICE_CLASS_PM10, DEVICE_CLASS_PM25 as DEVICE_CLASS_PM25, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS as DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS, PERCENTAGE as PERCENTAGE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -28,9 +28,9 @@ SENSOR_KIND_POLLUTANT: str
 SENSOR_KIND_SENSOR_LIFE: str
 SENSOR_KIND_TEMPERATURE: str
 SENSOR_KIND_VOC: str
-GEOGRAPHY_SENSORS: Any
+GEOGRAPHY_SENSOR_DESCRIPTIONS: Any
 GEOGRAPHY_SENSOR_LOCALES: Any
-NODE_PRO_SENSORS: Any
+NODE_PRO_SENSOR_DESCRIPTIONS: Any
 STATE_POLLUTANT_LABEL_CO: str
 STATE_POLLUTANT_LABEL_N2: str
 STATE_POLLUTANT_LABEL_O3: str
@@ -49,29 +49,21 @@ POLLUTANT_UNITS: Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirVisualGeographySensor(AirVisualEntity, SensorEntity):
-    _attr_device_class: Any
-    _attr_icon: Any
     _attr_name: Any
     _attr_unique_id: Any
-    _attr_unit_of_measurement: Any
     _config_entry: Any
-    _kind: Any
     _locale: Any
-    def __init__(self, coordinator: DataUpdateCoordinator, config_entry: ConfigEntry, kind: str, name: str, icon: str, unit: Union[str, None], locale: str) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator, config_entry: ConfigEntry, description: SensorEntityDescription, locale: str) -> None: ...
     @property
     def available(self) -> bool: ...
-    _attr_state: Any
+    _attr_native_value: Any
     def update_from_latest_data(self) -> None: ...
 
 class AirVisualNodeProSensor(AirVisualEntity, SensorEntity):
-    _attr_device_class: Any
-    _attr_icon: Any
     _attr_name: Any
     _attr_unique_id: Any
-    _attr_unit_of_measurement: Any
-    _kind: Any
-    def __init__(self, coordinator: DataUpdateCoordinator, kind: str, name: str, device_class: Union[str, None], icon: Union[str, None], unit: str) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator, description: SensorEntityDescription) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
-    _attr_state: Any
+    _attr_native_value: Any
     def update_from_latest_data(self) -> None: ...

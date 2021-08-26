@@ -30,13 +30,13 @@ def get_supported_features(hass: HomeAssistant, entity_id: str) -> int: ...
 def get_unit_of_measurement(hass: HomeAssistant, entity_id: str) -> Union[str, None]: ...
 
 class DeviceInfo(TypedDict):
-    name: str
+    name: Union[str, None]
     connections: set[tuple[str, str]]
     identifiers: set[tuple[str, str]]
-    manufacturer: str
-    model: str
-    suggested_area: str
-    sw_version: str
+    manufacturer: Union[str, None]
+    model: Union[str, None]
+    suggested_area: Union[str, None]
+    sw_version: Union[str, None]
     via_device: tuple[str, str]
     entry_type: Union[str, None]
     default_name: str
@@ -144,6 +144,7 @@ class Entity(ABC):
     def __eq__(self, other: Any) -> bool: ...
     def __repr__(self) -> str: ...
     async def async_request_call(self, coro: Awaitable) -> None: ...
+    def _suggest_report_issue(self) -> str: ...
 
 class ToggleEntityDescription(EntityDescription): ...
 

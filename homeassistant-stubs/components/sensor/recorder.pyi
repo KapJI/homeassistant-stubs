@@ -12,6 +12,7 @@ DEVICE_CLASS_STATISTICS: dict[str, dict[str, set[str]]]
 DEFAULT_STATISTICS: Any
 DEVICE_CLASS_UNITS: Any
 UNIT_CONVERSIONS: dict[str, dict[str, Callable]]
+SEEN_DIP: str
 WARN_DIP: str
 WARN_UNSUPPORTED_UNIT: str
 WARN_UNSTABLE_UNIT: str

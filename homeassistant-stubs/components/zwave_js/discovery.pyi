@@ -3,6 +3,7 @@ from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDisc
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
 from homeassistant.core import callback as callback
+from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from typing import Any
 from zwave_js_server.model.device_class import DeviceClassItem as DeviceClassItem
 from zwave_js_server.model.node import Node as ZwaveNode
@@ -64,6 +65,6 @@ SWITCH_BINARY_CURRENT_VALUE_SCHEMA: Any
 SIREN_TONE_SCHEMA: Any
 DISCOVERY_SCHEMAS: Any
 
-def async_discover_values(node: ZwaveNode) -> Generator[ZwaveDiscoveryInfo, None, None]: ...
+def async_discover_values(node: ZwaveNode, device: DeviceEntry) -> Generator[ZwaveDiscoveryInfo, None, None]: ...
 def check_value(value: ZwaveValue, schema: ZWaveValueDiscoverySchema) -> bool: ...
 def check_device_class(device_class: DeviceClassItem, required_value: Union[set[Union[str, int]], None]) -> bool: ...

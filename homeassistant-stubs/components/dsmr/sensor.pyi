@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
+from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType, StateType as StateType
 from homeassistant.util import Throttle as Throttle
 from typing import Any
 

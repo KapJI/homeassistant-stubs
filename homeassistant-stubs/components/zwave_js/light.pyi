@@ -8,7 +8,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
-from zwave_js_server.const import ColorComponent
+from zwave_js_server.const.command_class.color_switch import ColorComponent
 
 LOGGER: Any
 MULTI_COLOR_MAP: Any

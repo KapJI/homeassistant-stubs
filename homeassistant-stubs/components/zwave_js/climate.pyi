@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.temperature import convert_temperature as convert_temperature
 from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
-from zwave_js_server.const import ThermostatSetpointType
+from zwave_js_server.const.command_class.thermostat import ThermostatSetpointType
 from zwave_js_server.model.value import Value as ZwaveValue
 
 ZW_HVAC_MODE_MAP: dict[int, str]

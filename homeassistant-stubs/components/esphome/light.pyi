@@ -1,5 +1,5 @@
-from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
-from aioesphomeapi import LightColorMode, LightInfo, LightState
+from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from aioesphomeapi import LightColorCapability, LightInfo, LightState
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, COLOR_MODE_RGB as COLOR_MODE_RGB, COLOR_MODE_RGBW as COLOR_MODE_RGBW, COLOR_MODE_RGBWW as COLOR_MODE_RGBWW, COLOR_MODE_UNKNOWN as COLOR_MODE_UNKNOWN, COLOR_MODE_WHITE as COLOR_MODE_WHITE, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, SUPPORT_EFFECT as SUPPORT_EFFECT, SUPPORT_FLASH as SUPPORT_FLASH, SUPPORT_TRANSITION as SUPPORT_TRANSITION
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -10,7 +10,10 @@ FLASH_LENGTHS: Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-_COLOR_MODES: EsphomeEnumMapper[LightColorMode, str]
+_COLOR_MODE_MAPPING: Any
+
+def _color_mode_to_ha(mode: int) -> str: ...
+def _filter_color_modes(supported: list[int], features: LightColorCapability) -> list[int]: ...
 
 class EsphomeLight(EsphomeEntity[LightInfo, LightState], LightEntity):
     @property
@@ -26,7 +29,7 @@ class EsphomeLight(EsphomeEntity[LightInfo, LightState], LightEntity):
     def color_temp(self) -> Union[float, None]: ...
     def effect(self) -> Union[str, None]: ...
     @property
-    def _native_supported_color_modes(self) -> list[LightColorMode]: ...
+    def _native_supported_color_modes(self) -> list[int]: ...
     @property
     def supported_features(self) -> int: ...
     @property

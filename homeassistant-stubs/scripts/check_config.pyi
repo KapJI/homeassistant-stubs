@@ -1,6 +1,7 @@
 from homeassistant import core as core
 from homeassistant.config import get_default_config_dir as get_default_config_dir
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.check_config import async_check_ha_config_file as async_check_ha_config_file
 from homeassistant.util.yaml import Secrets as Secrets
 from typing import Any, Callable

@@ -8,9 +8,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-import requests
 from awesomeversion import AwesomeVersion
 from awesomeversion.strategy import AwesomeVersionStrategy
+from github import Github
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
 
@@ -108,24 +108,15 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
 def create_github_release(version: str) -> None:
     """Create new release on Github."""
     github_token = os.environ.get("GITHUB_TOKEN")
-    if github_token is None:
-        raise RuntimeError("GITHUB_TOKEN is not set")
-    url = "https://api.github.com/repos/KapJI/homeassistant-stubs/releases"
-    headers: dict[str, str] = {
-        "Accept": "application/vnd.github.v3+json",
-        "Authorization": f"token {github_token}",
-    }
-    data = {
-        "tag_name": version,
-        "target_commitish": "main",
-        "name": version,
-        "body": f"Generated for `homeassitant {version}`.",
-        "draft": False,
-        "prerelease": AwesomeVersion(version).modifier is not None,
-    }
-    result = requests.post(url, headers=headers, json=data)
-    if result.status_code != 201:
-        raise RuntimeError(f"Request failed {result.status_code}: {result.text}")
+    github = Github(github_token)
+    repo = github.get_repo("KapJI/homeassistant-stubs")
+    repo.create_git_release(
+        tag=version,
+        name=version,
+        target_commitish="main",
+        message=f"Generated for `homeassitant {version}`.",
+        prerelease=AwesomeVersion(version).modifier is not None,
+    )
 
 
 def get_typed_paths(homeassistant_root: Path) -> list[Path]:

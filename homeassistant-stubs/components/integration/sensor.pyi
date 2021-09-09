@@ -26,7 +26,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info:
 class IntegrationSensor(RestoreEntity, SensorEntity):
     _sensor_source_id: Any
     _round_digits: Any
-    _state: int
+    _state: Any
     _method: Any
     _name: Any
     _unit_template: Any

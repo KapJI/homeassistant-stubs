@@ -1,8 +1,8 @@
 from datetime import datetime
-from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity_registry as entity_registry
+from homeassistant.helpers import entity_registry as entity_registry, start as start
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
@@ -26,8 +26,8 @@ class StoredState:
     def from_dict(cls, json_dict: dict) -> StoredState: ...
 
 class RestoreStateData:
-    @classmethod
-    async def async_get_instance(cls, hass: HomeAssistant) -> RestoreStateData: ...
+    @staticmethod
+    async def async_get_instance(hass: HomeAssistant) -> RestoreStateData: ...
     @classmethod
     async def async_save_persistent_states(cls, hass: HomeAssistant) -> None: ...
     hass: Any

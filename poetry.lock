@@ -770,7 +770,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "types-requests"
-version = "2.25.7"
+version = "2.25.8"
 description = "Typing stubs for requests"
 category = "dev"
 optional = false
@@ -857,7 +857,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c541a5f89378633845e20e7da404346c6b288a37cfd9d404441cb7ee8e744831"
+content-hash = "a5092d976e7f9393538a12bf06fac4065e8a758f9ffa01f6e0003e2deadcc39d"
 
 [metadata.files]
 aiohttp = [
@@ -1457,8 +1457,8 @@ tomli = [
     {file = "tomli-1.0.4.tar.gz", hash = "sha256:be670d0d8d7570fd0ea0113bd7bb1ba3ac6706b4de062cc4c952769355c9c268"},
 ]
 types-requests = [
-    {file = "types-requests-2.25.7.tar.gz", hash = "sha256:4b279513a34b789bef75ce05bee5eb4ce934a892318388400f7511fbcdf56f87"},
-    {file = "types_requests-2.25.7-py3-none-any.whl", hash = "sha256:24bbe4682373ce0b1927f432b30ba1dcf46b66512fb6e848e72998c79797d040"},
+    {file = "types-requests-2.25.8.tar.gz", hash = "sha256:225ac2e86549b6ef3a8a44bf955f80b4955855704a15d2883d8445c8df637242"},
+    {file = "types_requests-2.25.8-py3-none-any.whl", hash = "sha256:26e90866bcd773d76b316de7e6bd6e24641f9e1653cf27241c533886600f6824"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},

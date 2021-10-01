@@ -1,12 +1,12 @@
 import aiohttp
 from aiohttp import web
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.frame import warn_use as warn_use
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Callable
+from typing import Any
 
 DATA_CONNECTOR: str
 DATA_CONNECTOR_NOTVERIFY: str

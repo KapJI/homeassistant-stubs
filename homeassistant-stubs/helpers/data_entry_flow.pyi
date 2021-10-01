@@ -2,7 +2,6 @@ from aiohttp import web as web
 from homeassistant import config_entries as config_entries, data_entry_flow as data_entry_flow
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
-from homeassistant.const import HTTP_BAD_REQUEST as HTTP_BAD_REQUEST, HTTP_NOT_FOUND as HTTP_NOT_FOUND
 from typing import Any
 
 class _BaseFlowManagerView(HomeAssistantView):

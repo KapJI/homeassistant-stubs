@@ -1,6 +1,6 @@
 import voluptuous as vol
 from .const import ATTR_ATTRIBUTES as ATTR_ATTRIBUTES, ATTR_BATTERY as ATTR_BATTERY, ATTR_CONSIDER_HOME as ATTR_CONSIDER_HOME, ATTR_DEV_ID as ATTR_DEV_ID, ATTR_GPS as ATTR_GPS, ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_LOCATION_NAME as ATTR_LOCATION_NAME, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, CONF_NEW_DEVICE_DEFAULTS as CONF_NEW_DEVICE_DEFAULTS, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TRACK_NEW as CONF_TRACK_NEW, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME, DEFAULT_TRACK_NEW as DEFAULT_TRACK_NEW, DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORM_TYPE_LEGACY as PLATFORM_TYPE_LEGACY, SCAN_INTERVAL as SCAN_INTERVAL, SOURCE_TYPE_BLUETOOTH as SOURCE_TYPE_BLUETOOTH, SOURCE_TYPE_BLUETOOTH_LE as SOURCE_TYPE_BLUETOOTH_LE, SOURCE_TYPE_GPS as SOURCE_TYPE_GPS, SOURCE_TYPE_ROUTER as SOURCE_TYPE_ROUTER
-from collections.abc import Coroutine, Sequence
+from collections.abc import Callable as Callable, Coroutine, Sequence
 from datetime import timedelta
 from homeassistant import util as util
 from homeassistant.components import zone as zone
@@ -17,7 +17,7 @@ from homeassistant.setup import async_prepare_setup_platform as async_prepare_se
 from homeassistant.util import dt as dt_util
 from homeassistant.util.yaml import dump as dump
 from types import ModuleType
-from typing import Any, Callable, Final
+from typing import Any, Final
 
 SERVICE_SEE: Final[str]
 SOURCE_TYPES: Final[tuple[str, ...]]

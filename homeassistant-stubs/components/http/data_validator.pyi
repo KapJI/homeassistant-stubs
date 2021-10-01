@@ -1,9 +1,8 @@
 import voluptuous as vol
 from .view import HomeAssistantView as HomeAssistantView
 from aiohttp import web as web
-from collections.abc import Awaitable
-from homeassistant.const import HTTP_BAD_REQUEST as HTTP_BAD_REQUEST
-from typing import Any, Callable
+from collections.abc import Awaitable, Callable as Callable
+from typing import Any
 
 _LOGGER: Any
 

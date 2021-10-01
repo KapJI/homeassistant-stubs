@@ -4,7 +4,8 @@ from .merge import merge_policies as merge_policies
 from .models import PermissionLookup as PermissionLookup
 from .types import PolicyType as PolicyType
 from .util import test_all as test_all
-from typing import Any, Callable
+from collections.abc import Callable as Callable
+from typing import Any
 
 POLICY_SCHEMA: Any
 _LOGGER: Any

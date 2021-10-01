@@ -2,7 +2,8 @@ from .const import POLICY_CONTROL as POLICY_CONTROL, POLICY_EDIT as POLICY_EDIT,
 from .models import PermissionLookup as PermissionLookup
 from .types import CategoryType as CategoryType, SubCategoryDict as SubCategoryDict, ValueType as ValueType
 from .util import SubCatLookupType as SubCatLookupType, compile_policy as compile_policy, lookup_all as lookup_all
-from typing import Any, Callable
+from collections.abc import Callable as Callable
+from typing import Any
 
 SINGLE_ENTITY_SCHEMA: Any
 ENTITY_DOMAINS: str

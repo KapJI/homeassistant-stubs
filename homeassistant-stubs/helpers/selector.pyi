@@ -1,6 +1,7 @@
+from collections.abc import Callable as Callable
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.util import decorator as decorator
-from typing import Any, Callable
+from typing import Any
 
 SELECTORS: Any
 

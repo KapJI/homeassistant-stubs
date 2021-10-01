@@ -6,7 +6,7 @@ from .entity import Entity as Entity
 from .entity_registry import DISABLED_INTEGRATION as DISABLED_INTEGRATION, EntityRegistry as EntityRegistry
 from .event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from collections.abc import Coroutine, Iterable
+from collections.abc import Callable as Callable, Coroutine, Iterable
 from contextvars import ContextVar
 from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
@@ -17,7 +17,7 @@ from homeassistant.setup import async_start_setup as async_start_setup
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from logging import Logger
 from types import ModuleType
-from typing import Any, Callable
+from typing import Any
 
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int

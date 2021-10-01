@@ -6,6 +6,7 @@ from .const import CAMERAS as CAMERAS, COMM_RETRIES as COMM_RETRIES, COMM_TIMEOU
 from .helpers import service_signal as service_signal
 from .sensor import SENSOR_KEYS as SENSOR_KEYS
 from amcrest import ApiWrapper
+from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.auth.models import User as User
 from homeassistant.auth.permissions.const import POLICY_CONTROL as POLICY_CONTROL
@@ -69,3 +70,4 @@ class AmcrestDevice:
     stream_source: str
     resolution: int
     control_light: bool
+    channel: int

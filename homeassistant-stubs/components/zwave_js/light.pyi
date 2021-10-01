@@ -12,7 +12,6 @@ from zwave_js_server.const.command_class.color_switch import ColorComponent
 
 LOGGER: Any
 MULTI_COLOR_MAP: Any
-TRANSITION_DURATION: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def byte_to_zwave_brightness(value: int) -> int: ...

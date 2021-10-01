@@ -3,13 +3,13 @@ import logging
 from .aiohttp_client import async_get_clientsession as async_get_clientsession
 from abc import ABC, ABCMeta, abstractmethod
 from aiohttp import client as client, web
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import http as http
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 DATA_JWT_SECRET: str

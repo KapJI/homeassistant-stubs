@@ -1,6 +1,7 @@
+from collections.abc import Callable
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from traceback import FrameSummary
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 _LOGGER: Any
 CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable)

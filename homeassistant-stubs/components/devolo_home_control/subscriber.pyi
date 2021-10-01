@@ -1,4 +1,5 @@
-from typing import Any, Callable
+from collections.abc import Callable as Callable
+from typing import Any
 
 _LOGGER: Any
 

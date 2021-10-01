@@ -1,0 +1,30 @@
+import asyncio
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from async_upnp_client import UpnpEventHandler as UpnpEventHandler, UpnpFactory, UpnpRequester as UpnpRequester
+from async_upnp_client.aiohttp import AiohttpNotifyServer
+from collections import defaultdict
+from collections.abc import Mapping
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant
+from homeassistant.helpers import aiohttp_client as aiohttp_client
+from typing import Any, NamedTuple
+
+class EventListenAddr(NamedTuple):
+    host: Union[str, None]
+    port: int
+    callback_url: Union[str, None]
+
+class DlnaDmrData:
+    lock: asyncio.Lock
+    requester: UpnpRequester
+    upnp_factory: UpnpFactory
+    event_notifiers: dict[EventListenAddr, AiohttpNotifyServer]
+    event_notifier_refs: defaultdict[EventListenAddr, int]
+    stop_listener_remove: Union[CALLBACK_TYPE, None]
+    unmigrated_config: dict[str, Mapping[str, Any]]
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    async def async_cleanup_event_notifiers(self, event: Event) -> None: ...
+    async def async_get_event_notifier(self, listen_addr: EventListenAddr, hass: HomeAssistant) -> UpnpEventHandler: ...
+    async def async_release_event_notifier(self, listen_addr: EventListenAddr) -> None: ...
+
+def get_domain_data(hass: HomeAssistant) -> DlnaDmrData: ...

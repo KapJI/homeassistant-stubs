@@ -1,12 +1,13 @@
 from .const import CONF_BAUD_RATE as CONF_BAUD_RATE, CONF_DEVICE as CONF_DEVICE, CONF_GATEWAY_TYPE as CONF_GATEWAY_TYPE, CONF_GATEWAY_TYPE_MQTT as CONF_GATEWAY_TYPE_MQTT, CONF_GATEWAY_TYPE_SERIAL as CONF_GATEWAY_TYPE_SERIAL, CONF_PERSISTENCE_FILE as CONF_PERSISTENCE_FILE, CONF_RETAIN as CONF_RETAIN, CONF_TCP_PORT as CONF_TCP_PORT, CONF_TOPIC_IN_PREFIX as CONF_TOPIC_IN_PREFIX, CONF_TOPIC_OUT_PREFIX as CONF_TOPIC_OUT_PREFIX, CONF_VERSION as CONF_VERSION, ConfGatewayType as ConfGatewayType, DOMAIN as DOMAIN, GatewayId as GatewayId, MYSENSORS_GATEWAYS as MYSENSORS_GATEWAYS, MYSENSORS_GATEWAY_START_TASK as MYSENSORS_GATEWAY_START_TASK
 from .handler import HANDLERS as HANDLERS
 from .helpers import discover_mysensors_platform as discover_mysensors_platform, on_unload as on_unload, validate_child as validate_child, validate_node as validate_node
+from collections.abc import Callable as Callable
 from homeassistant.components.mqtt.models import ReceivePayloadType as ReceivePayloadType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from mysensors import BaseAsyncGateway as BaseAsyncGateway, Message as Message, Sensor as Sensor
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 GATEWAY_READY_TIMEOUT: float

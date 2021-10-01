@@ -1,9 +1,10 @@
+from collections.abc import Callable
 from homeassistant import core as core
 from homeassistant.components.websocket_api.const import JSON_DUMP as JSON_DUMP
 from homeassistant.const import ATTR_NOW as ATTR_NOW, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED
 from homeassistant.helpers.entityfilter import convert_include_exclude_filter as convert_include_exclude_filter
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
-from typing import Callable, TypeVar
+from typing import TypeVar
 
 CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable)
 BENCHMARKS: dict[str, Callable]

@@ -1,39 +1,27 @@
+from .renault_coordinator import T as T
 from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
-from homeassistant.helpers.entity import Entity as Entity
+from collections.abc import Mapping
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from homeassistant.util import slugify as slugify
-from renault_api.kamereon.models import KamereonVehicleBatteryStatusData, KamereonVehicleChargeModeData, KamereonVehicleCockpitData, KamereonVehicleHvacStatusData
-from typing import Any, Optional, TypeVar
+from homeassistant.util.dt import as_utc as as_utc, parse_datetime as parse_datetime
+from typing import Any, Optional
+
+class RenaultRequiredKeysMixin:
+    coordinator: str
+
+class RenaultEntityDescription(EntityDescription, RenaultRequiredKeysMixin): ...
 
 ATTR_LAST_UPDATE: str
-T = TypeVar('T')
 
 class RenaultDataEntity(CoordinatorEntity[Optional[T]], Entity):
+    entity_description: RenaultEntityDescription
     vehicle: Any
-    _entity_type: Any
     _attr_device_info: Any
-    _attr_name: Any
     _attr_unique_id: Any
-    def __init__(self, vehicle: RenaultVehicleProxy, entity_type: str, coordinator_key: str) -> None: ...
+    def __init__(self, vehicle: RenaultVehicleProxy, description: RenaultEntityDescription) -> None: ...
+    def _get_data_attr(self, key: str) -> StateType: ...
     @property
-    def available(self) -> bool: ...
-    @property
-    def data(self) -> Union[T, None]: ...
+    def extra_state_attributes(self) -> Union[Mapping[str, Any], None]: ...
 
-class RenaultBatteryDataEntity(RenaultDataEntity[KamereonVehicleBatteryStatusData]):
-    def __init__(self, vehicle: RenaultVehicleProxy, entity_type: str) -> None: ...
-    @property
-    def extra_state_attributes(self) -> dict[str, Any]: ...
-    @property
-    def is_charging(self) -> bool: ...
-    @property
-    def is_plugged_in(self) -> bool: ...
-
-class RenaultChargeModeDataEntity(RenaultDataEntity[KamereonVehicleChargeModeData]):
-    def __init__(self, vehicle: RenaultVehicleProxy, entity_type: str) -> None: ...
-
-class RenaultCockpitDataEntity(RenaultDataEntity[KamereonVehicleCockpitData]):
-    def __init__(self, vehicle: RenaultVehicleProxy, entity_type: str) -> None: ...
-
-class RenaultHVACDataEntity(RenaultDataEntity[KamereonVehicleHvacStatusData]):
-    def __init__(self, vehicle: RenaultVehicleProxy, entity_type: str) -> None: ...
+def _convert_to_utc_string(value: str) -> str: ...

@@ -1,11 +1,13 @@
 from . import AmcrestDevice as AmcrestDevice
-from .const import CAMERAS as CAMERAS, CAMERA_WEB_SESSION_TIMEOUT as CAMERA_WEB_SESSION_TIMEOUT, COMM_TIMEOUT as COMM_TIMEOUT, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, SERVICE_UPDATE as SERVICE_UPDATE, SNAPSHOT_TIMEOUT as SNAPSHOT_TIMEOUT
+from .const import CAMERAS as CAMERAS, CAMERA_WEB_SESSION_TIMEOUT as CAMERA_WEB_SESSION_TIMEOUT, COMM_TIMEOUT as COMM_TIMEOUT, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, DOMAIN as DOMAIN, SERVICE_UPDATE as SERVICE_UPDATE, SNAPSHOT_TIMEOUT as SNAPSHOT_TIMEOUT
 from .helpers import log_update_error as log_update_error, service_signal as service_signal
 from aiohttp import web as web
+from collections.abc import Callable as Callable
 from homeassistant.components.camera import Camera as Camera, SUPPORT_ON_OFF as SUPPORT_ON_OFF, SUPPORT_STREAM as SUPPORT_STREAM
 from homeassistant.components.ffmpeg import DATA_FFMPEG as DATA_FFMPEG, FFmpegManager as FFmpegManager
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_NAME as CONF_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers import entity_registry as entity_registry
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream, async_aiohttp_proxy_web as async_aiohttp_proxy_web, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -59,6 +61,7 @@ class AmcrestCam(Camera):
     _ffmpeg_arguments: Any
     _stream_source: Any
     _resolution: Any
+    _channel: Any
     _token: Any
     _control_light: Any
     _is_recording: bool

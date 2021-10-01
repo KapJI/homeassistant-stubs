@@ -12,9 +12,11 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
+from zwave_js_server.const import NodeStatus
 from zwave_js_server.model.node import Node as ZwaveNode
 
 LOGGER: Any
+STATUS_ICON: dict[NodeStatus, str]
 
 class ZwaveSensorEntityDescription(SensorEntityDescription):
     info: Union[ZwaveDiscoveryInfo, None]
@@ -76,4 +78,6 @@ class ZWaveNodeStatusSensor(SensorEntity):
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, node: ZwaveNode) -> None: ...
     async def async_poll_value(self, _: bool) -> None: ...
     def _status_changed(self, _: dict) -> None: ...
+    @property
+    def icon(self) -> Union[str, None]: ...
     async def async_added_to_hass(self) -> None: ...

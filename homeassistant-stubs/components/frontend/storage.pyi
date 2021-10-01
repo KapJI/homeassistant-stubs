@@ -1,8 +1,9 @@
+from collections.abc import Callable as Callable
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.storage import Store as Store
-from typing import Any, Callable
+from typing import Any
 
 DATA_STORAGE: str
 STORAGE_VERSION_USER_DATA: int

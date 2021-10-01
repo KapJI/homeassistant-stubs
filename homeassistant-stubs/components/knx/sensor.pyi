@@ -1,7 +1,7 @@
 from .const import ATTR_LAST_KNX_UPDATE as ATTR_LAST_KNX_UPDATE, ATTR_SOURCE as ATTR_SOURCE, DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import SensorSchema as SensorSchema
-from homeassistant.components.sensor import DEVICE_CLASSES as DEVICE_CLASSES, SensorEntity as SensorEntity
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES as DEVICE_CLASSES, SensorEntity as SensorEntity
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

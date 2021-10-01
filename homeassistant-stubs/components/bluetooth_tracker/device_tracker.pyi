@@ -1,12 +1,12 @@
 from .const import BT_PREFIX as BT_PREFIX, CONF_REQUEST_RSSI as CONF_REQUEST_RSSI, DEFAULT_DEVICE_ID as DEFAULT_DEVICE_ID, DOMAIN as DOMAIN, SERVICE_UPDATE as SERVICE_UPDATE
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.device_tracker.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TRACK_NEW as CONF_TRACK_NEW, DEFAULT_TRACK_NEW as DEFAULT_TRACK_NEW, SCAN_INTERVAL as SCAN_INTERVAL, SOURCE_TYPE_BLUETOOTH as SOURCE_TYPE_BLUETOOTH
 from homeassistant.components.device_tracker.legacy import Device as Device, YAML_DEVICES as YAML_DEVICES, async_load_config as async_load_config
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Callable, Final
+from typing import Any, Final
 
 _LOGGER: Final[Any]
 PLATFORM_SCHEMA: Final[Any]

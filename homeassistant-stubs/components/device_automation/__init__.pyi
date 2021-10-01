@@ -6,10 +6,16 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, bind_hass as bind_hass
 from homeassistant.requirements import async_get_integration_with_requirements as async_get_integration_with_requirements
 from types import ModuleType
-from typing import Any
+from typing import Any, NamedTuple
 
 DOMAIN: str
 DEVICE_TRIGGER_BASE_SCHEMA: Any
+
+class DeviceAutomationDetails(NamedTuple):
+    section: str
+    get_automations_func: str
+    get_capabilities_func: str
+
 TYPES: Any
 
 async def async_get_device_automations(hass: HomeAssistant, automation_type: str, device_ids: Union[Iterable[str], None] = ...) -> Mapping[str, Any]: ...

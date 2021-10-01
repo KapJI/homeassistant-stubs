@@ -1,7 +1,7 @@
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from logging import Logger
-from typing import Any, Callable
+from typing import Any
 
 class Debouncer:
     hass: Any

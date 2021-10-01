@@ -1,14 +1,15 @@
 import re
 from . import HuaweiLteBaseEntity as HuaweiLteBaseEntity
 from .const import DOMAIN as DOMAIN, KEY_DEVICE_INFORMATION as KEY_DEVICE_INFORMATION, KEY_DEVICE_SIGNAL as KEY_DEVICE_SIGNAL, KEY_MONITORING_CHECK_NOTIFICATIONS as KEY_MONITORING_CHECK_NOTIFICATIONS, KEY_MONITORING_MONTH_STATISTICS as KEY_MONITORING_MONTH_STATISTICS, KEY_MONITORING_STATUS as KEY_MONITORING_STATUS, KEY_MONITORING_TRAFFIC_STATISTICS as KEY_MONITORING_TRAFFIC_STATISTICS, KEY_NET_CURRENT_PLMN as KEY_NET_CURRENT_PLMN, KEY_NET_NET_MODE as KEY_NET_NET_MODE, KEY_SMS_SMS_COUNT as KEY_SMS_SMS_COUNT, SENSOR_KEYS as SENSOR_KEYS
-from homeassistant.components.sensor import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, SensorEntity as SensorEntity
+from collections.abc import Callable as Callable
+from homeassistant.components.sensor import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DATA_BYTES as DATA_BYTES, DATA_RATE_BYTES_PER_SECOND as DATA_RATE_BYTES_PER_SECOND, FREQUENCY_MEGAHERTZ as FREQUENCY_MEGAHERTZ, PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any, Callable, NamedTuple
+from typing import Any, NamedTuple
 
 _LOGGER: Any
 
@@ -17,6 +18,7 @@ class SensorMeta(NamedTuple):
     device_class: Union[str, None]
     icon: Union[str, Callable[[StateType], str], None]
     unit: Union[str, None]
+    state_class: Union[str, None]
     enabled_default: bool
     include: Union[re.Pattern[str], None]
     exclude: Union[re.Pattern[str], None]
@@ -47,6 +49,8 @@ class HuaweiLteSensor(HuaweiLteBaseEntity, SensorEntity):
     def native_unit_of_measurement(self) -> Union[str, None]: ...
     @property
     def icon(self) -> Union[str, None]: ...
+    @property
+    def state_class(self) -> Union[str, None]: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     _available: Any

@@ -3,9 +3,10 @@ from .const import MAX_ROWS_TO_PURGE as MAX_ROWS_TO_PURGE
 from .models import Events as Events, RecorderRuns as RecorderRuns, States as States
 from .repack import repack_database as repack_database
 from .util import retryable_database_job as retryable_database_job, session_scope as session_scope
+from collections.abc import Callable as Callable
 from datetime import datetime
 from sqlalchemy.orm.session import Session as Session
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 

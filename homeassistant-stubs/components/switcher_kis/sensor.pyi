@@ -1,4 +1,4 @@
-from . import SwitcherDeviceWrapper as SwitcherDeviceWrapper
+from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from homeassistant.components.sensor import DEVICE_CLASS_CURRENT as DEVICE_CLASS_CURRENT, DEVICE_CLASS_POWER as DEVICE_CLASS_POWER, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -27,7 +27,6 @@ WATER_HEATER_SENSORS: Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SwitcherSensorEntity(CoordinatorEntity, SensorEntity):
-    wrapper: Any
     attribute: Any
     _attr_name: Any
     _attr_icon: Any
@@ -36,6 +35,6 @@ class SwitcherSensorEntity(CoordinatorEntity, SensorEntity):
     _attr_entity_registry_enabled_default: Any
     _attr_unique_id: Any
     _attr_device_info: Any
-    def __init__(self, wrapper: SwitcherDeviceWrapper, attribute: str, description: AttributeDescription) -> None: ...
+    def __init__(self, coordinator: SwitcherDataUpdateCoordinator, attribute: str, description: AttributeDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...

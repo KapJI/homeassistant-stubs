@@ -1,9 +1,10 @@
 from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from collections.abc import Callable as Callable
 from homeassistant import core as core, setup as setup
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Callable, TypedDict
+from typing import Any, TypedDict
 
 SIGNAL_PLATFORM_DISCOVERED: str
 EVENT_LOAD_PLATFORM: str

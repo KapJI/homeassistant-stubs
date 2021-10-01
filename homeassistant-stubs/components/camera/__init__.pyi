@@ -2,7 +2,7 @@ from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_S
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences
 from aiohttp import web
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
@@ -19,7 +19,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Callable, Final
+from typing import Any, Final
 
 _LOGGER: Any
 SERVICE_ENABLE_MOTION: Final[str]

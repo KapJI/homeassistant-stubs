@@ -1,7 +1,7 @@
 import logging
 import voluptuous as vol
 from .entity_platform import EntityPlatform as EntityPlatform
-from collections.abc import Iterable
+from collections.abc import Callable as Callable, Iterable
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -12,7 +12,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from types import ModuleType
-from typing import Any, Callable
+from typing import Any
 
 DEFAULT_SCAN_INTERVAL: Any
 DATA_INSTANCES: str

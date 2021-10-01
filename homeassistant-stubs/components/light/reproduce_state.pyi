@@ -3,12 +3,17 @@ from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State
 from types import MappingProxyType
-from typing import Any
+from typing import Any, NamedTuple
 
 _LOGGER: Any
 VALID_STATES: Any
 ATTR_GROUP: Any
 COLOR_GROUP: Any
+
+class ColorModeAttr(NamedTuple):
+    parameter: str
+    state_attr: str
+
 COLOR_MODE_TO_ATTRIBUTE: Any
 DEPRECATED_GROUP: Any
 DEPRECATION_WARNING: str

@@ -1,6 +1,6 @@
-from collections.abc import Iterator
+from collections.abc import Callable as Callable, Iterator
 from homeassistant.core import State as State
-from typing import Any, Callable
+from typing import Any
 
 def find_state_attributes(states: list[State], key: str) -> Iterator[Any]: ...
 def mean_int(*args: Any) -> int: ...

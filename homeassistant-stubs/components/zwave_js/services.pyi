@@ -12,9 +12,6 @@ _LOGGER: Any
 def parameter_name_does_not_need_bitmask(val: dict[str, Union[int, str, list[str]]]) -> dict[str, Union[int, str, list[str]]]: ...
 def broadcast_command(val: dict[str, Any]) -> dict[str, Any]: ...
 
-BITMASK_SCHEMA: Any
-VALUE_SCHEMA: Any
-
 class ZWaveServices:
     _hass: Any
     _ent_reg: Any

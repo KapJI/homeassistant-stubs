@@ -18,7 +18,7 @@ from homeassistant.helpers.trigger import async_initialize_triggers as async_ini
 from homeassistant.helpers.typing import TemplateVarsType as TemplateVarsType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
-from typing import Any, Awaitable, Callable
+from typing import Any, Awaitable, Callable, TypedDict
 
 ENTITY_ID_FORMAT: Any
 CONF_SKIP_CONDITION: str
@@ -32,6 +32,17 @@ ATTR_VARIABLES: str
 SERVICE_TRIGGER: str
 _LOGGER: Any
 AutomationActionType = Callable[[HomeAssistant, TemplateVarsType], Awaitable[None]]
+
+class AutomationTriggerData(TypedDict):
+    id: str
+    idx: str
+
+class AutomationTriggerInfo(TypedDict):
+    domain: str
+    name: str
+    home_assistant_start: bool
+    variables: TemplateVarsType
+    trigger_data: AutomationTriggerData
 
 def is_on(hass, entity_id): ...
 def automations_with_entity(hass: HomeAssistant, entity_id: str) -> list[str]: ...

@@ -2,6 +2,7 @@ from .const import ATTR_DEVICES as ATTR_DEVICES, CONF_BAUD_RATE as CONF_BAUD_RAT
 from .device import MySensorsDevice as MySensorsDevice, get_mysensors_devices as get_mysensors_devices
 from .gateway import finish_setup as finish_setup, get_mysensors_gateway as get_mysensors_gateway, gw_stop as gw_stop, setup_gateway as setup_gateway
 from .helpers import on_unload as on_unload
+from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components.mqtt import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +12,7 @@ from homeassistant.helpers.discovery import async_load_platform as async_load_pl
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from mysensors import BaseAsyncGateway as BaseAsyncGateway
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 CONF_DEBUG: str

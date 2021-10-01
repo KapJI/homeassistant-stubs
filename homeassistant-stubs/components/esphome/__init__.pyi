@@ -16,10 +16,11 @@ from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import Template as Template
-from typing import Any, Callable, TypeVar, overload
+from typing import Any, Callable, NamedTuple, TypeVar, overload
 from zeroconf import DNSRecord as DNSRecord, RecordUpdateListener, Zeroconf as Zeroconf
 
 DOMAIN: str
+CONF_NOISE_PSK: str
 _LOGGER: Any
 _T = TypeVar('_T')
 STORAGE_VERSION: int
@@ -71,6 +72,12 @@ class ReconnectLogic(RecordUpdateListener):
     def update_record(self, zc: Zeroconf, now: float, record: DNSRecord) -> None: ...
 
 async def _async_setup_device_registry(hass: HomeAssistant, entry: ConfigEntry, device_info: EsphomeDeviceInfo) -> str: ...
+
+class ServiceMetadata(NamedTuple):
+    validator: Any
+    example: str
+    selector: dict[str, Any]
+    description: Union[str, None]
 
 ARG_TYPE_METADATA: Any
 

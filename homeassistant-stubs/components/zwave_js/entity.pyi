@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id
+from .migrate import async_add_migration_entity_value as async_add_migration_entity_value
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect

@@ -1,7 +1,7 @@
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery
+from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery, template as template
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
@@ -24,6 +24,7 @@ PLATFORM_SCHEMA: Any
 NOTIFY_SERVICE_SCHEMA: Any
 PERSISTENT_NOTIFICATION_SERVICE_SCHEMA: Any
 
+def _check_templates_warn(hass: HomeAssistant, tpl: template.Template) -> None: ...
 async def async_reload(hass: HomeAssistant, integration_name: str) -> None: ...
 async def async_reset_platform(hass: HomeAssistant, integration_name: str) -> None: ...
 def _async_integration_has_notify_services(hass: HomeAssistant, integration_name: str) -> bool: ...

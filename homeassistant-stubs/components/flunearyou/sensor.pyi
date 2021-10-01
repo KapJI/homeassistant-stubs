@@ -1,9 +1,11 @@
 from .const import CATEGORY_CDC_REPORT as CATEGORY_CDC_REPORT, CATEGORY_USER_REPORT as CATEGORY_USER_REPORT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN
-from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from collections.abc import Mapping
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_STATE as ATTR_STATE, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
@@ -31,19 +33,20 @@ EXTENDED_SENSOR_TYPE_MAPPING: Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FluNearYouSensor(CoordinatorEntity, SensorEntity):
-    _attr_extra_state_attributes: Any
+    DEFAULT_EXTRA_STATE_ATTRIBUTES: Any
     _attr_unique_id: Any
     _entry: Any
     entity_description: Any
     def __init__(self, coordinator: DataUpdateCoordinator, entry: ConfigEntry, description: SensorEntityDescription) -> None: ...
-    def _handle_coordinator_update(self) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
-    def update_from_latest_data(self) -> None: ...
 
 class CdcSensor(FluNearYouSensor):
-    _attr_native_value: Any
-    def update_from_latest_data(self) -> None: ...
+    @property
+    def extra_state_attributes(self) -> Union[Mapping[str, Any], None]: ...
+    @property
+    def native_value(self) -> StateType: ...
 
 class UserSensor(FluNearYouSensor):
-    _attr_native_value: Any
-    def update_from_latest_data(self) -> None: ...
+    @property
+    def extra_state_attributes(self) -> Union[Mapping[str, Any], None]: ...
+    @property
+    def native_value(self) -> StateType: ...

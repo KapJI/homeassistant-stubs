@@ -1,6 +1,7 @@
 import datetime
 from .const import DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
+from collections.abc import Callable as Callable
 from google_nest_sdm.camera_traits import EventImageGenerator, RtspStream as RtspStream
 from google_nest_sdm.device import Device as Device
 from google_nest_sdm.event import ImageEventBase as ImageEventBase

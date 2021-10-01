@@ -1,10 +1,10 @@
 import asyncio
 from .const import LOGGER as LOGGER
 from aioguardian import Client as Client
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, Callable
+from typing import Any
 
 DEFAULT_UPDATE_INTERVAL: Any
 

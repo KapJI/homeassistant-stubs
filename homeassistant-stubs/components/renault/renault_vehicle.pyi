@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .renault_coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator
+from collections.abc import Awaitable, Callable as Callable
 from datetime import timedelta
 from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SW_VERSION as ATTR_SW_VERSION
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -9,6 +10,12 @@ from renault_api.renault_vehicle import RenaultVehicle as RenaultVehicle
 from typing import Any
 
 LOGGER: Any
+
+class RenaultCoordinatorDescription:
+    endpoint: str
+    key: str
+    update_method: Callable[[RenaultVehicle], Callable[[], Awaitable[models.KamereonVehicleDataAttributes]]]
+    requires_electricity: bool
 
 class RenaultVehicleProxy:
     hass: Any
@@ -23,9 +30,8 @@ class RenaultVehicleProxy:
     def details(self) -> models.KamereonVehicleDetails: ...
     @property
     def device_info(self) -> DeviceInfo: ...
+    @property
+    def vehicle(self) -> RenaultVehicle: ...
     async def async_initialise(self) -> None: ...
-    async def endpoint_available(self, endpoint: str) -> bool: ...
-    async def get_battery_status(self) -> models.KamereonVehicleBatteryStatusData: ...
-    async def get_charge_mode(self) -> models.KamereonVehicleChargeModeData: ...
-    async def get_cockpit(self) -> models.KamereonVehicleCockpitData: ...
-    async def get_hvac_status(self) -> models.KamereonVehicleHvacStatusData: ...
+
+COORDINATORS: tuple[RenaultCoordinatorDescription, ...]

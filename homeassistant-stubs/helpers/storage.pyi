@@ -1,12 +1,14 @@
+from collections.abc import Callable as Callable
 from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
-from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.loader import MAX_LOAD_CONCURRENTLY as MAX_LOAD_CONCURRENTLY, bind_hass as bind_hass
 from json import JSONEncoder
-from typing import Any, Callable
+from typing import Any
 
 STORAGE_DIR: str
 _LOGGER: Any
+STORAGE_SEMAPHORE: str
 
 async def async_migrator(hass, old_path, store, *, old_conf_load_func: Any | None = ..., old_conf_migrate_func: Any | None = ...): ...
 

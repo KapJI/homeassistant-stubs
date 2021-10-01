@@ -1,7 +1,8 @@
 import re
+from collections.abc import Callable as Callable
 from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE
 from homeassistant.core import split_entity_id as split_entity_id
-from typing import Any, Callable
+from typing import Any
 
 CONF_INCLUDE_DOMAINS: str
 CONF_INCLUDE_ENTITY_GLOBS: str

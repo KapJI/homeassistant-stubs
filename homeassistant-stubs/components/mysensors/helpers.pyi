@@ -1,13 +1,14 @@
 import voluptuous as vol
 from .const import ATTR_DEVICES as ATTR_DEVICES, ATTR_GATEWAY_ID as ATTR_GATEWAY_ID, DOMAIN as DOMAIN, DevId as DevId, FLAT_PLATFORM_TYPES as FLAT_PLATFORM_TYPES, GatewayId as GatewayId, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, MYSENSORS_ON_UNLOAD as MYSENSORS_ON_UNLOAD, SensorType as SensorType, TYPE_TO_PLATFORMS as TYPE_TO_PLATFORMS, ValueType as ValueType
 from collections import defaultdict
+from collections.abc import Callable as Callable
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.util.decorator import Registry as Registry
 from mysensors import BaseAsyncGateway as BaseAsyncGateway, Message as Message
 from mysensors.sensor import ChildSensor as ChildSensor
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 SCHEMAS: Any

@@ -1,10 +1,11 @@
 import asyncio
 from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, UserService
+from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.storage import Store as Store
-from typing import Any, Callable
+from typing import Any
 
 SAVE_DELAY: int
 INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], str]

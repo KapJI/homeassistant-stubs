@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import singleton as singleton, storage as storage
-from typing import Any, Callable, Literal, TypedDict, Union
+from typing import Any, Literal, TypedDict, Union
 
 STORAGE_VERSION: int
 STORAGE_KEY = DOMAIN

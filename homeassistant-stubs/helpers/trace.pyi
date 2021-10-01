@@ -1,8 +1,8 @@
 from collections import deque
-from collections.abc import Generator
+from collections.abc import Callable as Callable, Generator
 from contextvars import ContextVar
 from homeassistant.helpers.typing import TemplateVarsType as TemplateVarsType
-from typing import Any, Callable
+from typing import Any
 
 class TraceElement:
     _child_key: Any

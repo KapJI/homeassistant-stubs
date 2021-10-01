@@ -1,6 +1,6 @@
-from .const import ATTR_ENDPOINTS as ATTR_ENDPOINTS, ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN, HLS_PROVIDER as HLS_PROVIDER, MAX_SEGMENTS as MAX_SEGMENTS, OUTPUT_IDLE_TIMEOUT as OUTPUT_IDLE_TIMEOUT, RECORDER_PROVIDER as RECORDER_PROVIDER, STREAM_RESTART_INCREMENT as STREAM_RESTART_INCREMENT, STREAM_RESTART_RESET_TIME as STREAM_RESTART_RESET_TIME
-from .core import IdleTimer as IdleTimer, PROVIDERS as PROVIDERS, StreamOutput as StreamOutput
-from .hls import async_setup_hls as async_setup_hls
+from .const import ATTR_ENDPOINTS as ATTR_ENDPOINTS, ATTR_SETTINGS as ATTR_SETTINGS, ATTR_STREAMS as ATTR_STREAMS, CONF_LL_HLS as CONF_LL_HLS, CONF_PART_DURATION as CONF_PART_DURATION, CONF_SEGMENT_DURATION as CONF_SEGMENT_DURATION, DOMAIN as DOMAIN, HLS_PROVIDER as HLS_PROVIDER, MAX_SEGMENTS as MAX_SEGMENTS, OUTPUT_IDLE_TIMEOUT as OUTPUT_IDLE_TIMEOUT, RECORDER_PROVIDER as RECORDER_PROVIDER, SEGMENT_DURATION_ADJUSTER as SEGMENT_DURATION_ADJUSTER, STREAM_RESTART_INCREMENT as STREAM_RESTART_INCREMENT, STREAM_RESTART_RESET_TIME as STREAM_RESTART_RESET_TIME, TARGET_SEGMENT_DURATION_NON_LL_HLS as TARGET_SEGMENT_DURATION_NON_LL_HLS
+from .core import IdleTimer as IdleTimer, PROVIDERS as PROVIDERS, StreamOutput as StreamOutput, StreamSettings as StreamSettings
+from .hls import HlsStreamOutput as HlsStreamOutput, async_setup_hls as async_setup_hls
 from collections.abc import Mapping
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -13,6 +13,9 @@ STREAM_SOURCE_RE: Any
 
 def redact_credentials(data: str) -> str: ...
 def create_stream(hass: HomeAssistant, stream_source: str, options: dict[str, str]) -> Stream: ...
+
+CONFIG_SCHEMA: Any
+
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class Stream:

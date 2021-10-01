@@ -1,5 +1,6 @@
 from ..helpers.frame import MissingIntegrationFrame as MissingIntegrationFrame, get_integration_frame as get_integration_frame
-from typing import Any, Callable
+from collections.abc import Callable as Callable
+from typing import Any
 
 def deprecated_substitute(substitute_name: str) -> Callable[..., Callable]: ...
 def get_deprecated(config: dict[str, Any], new_name: str, old_name: str, default: Union[Any, None] = ...) -> Union[Any, None]: ...

@@ -1,4 +1,4 @@
-from . import SwitcherDeviceWrapper as SwitcherDeviceWrapper
+from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import CONF_AUTO_OFF as CONF_AUTO_OFF, CONF_TIMER_MINUTES as CONF_TIMER_MINUTES, SERVICE_SET_AUTO_OFF_NAME as SERVICE_SET_AUTO_OFF_NAME, SERVICE_TURN_ON_WITH_TIMER_NAME as SERVICE_TURN_ON_WITH_TIMER_NAME, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from datetime import timedelta
@@ -18,12 +18,11 @@ SERVICE_TURN_ON_WITH_TIMER_SCHEMA: Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SwitcherBaseSwitchEntity(CoordinatorEntity, SwitchEntity):
-    wrapper: Any
     control_result: Any
     _attr_name: Any
     _attr_unique_id: Any
     _attr_device_info: Any
-    def __init__(self, wrapper: SwitcherDeviceWrapper) -> None: ...
+    def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     async def _async_call_api(self, api: str, *args: Any) -> None: ...
     @property

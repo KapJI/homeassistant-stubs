@@ -1,5 +1,5 @@
 from . import SynoApi as SynoApi, SynologyDSMBaseEntity as SynologyDSMBaseEntity
-from .const import COORDINATOR_SWITCHES as COORDINATOR_SWITCHES, DOMAIN as DOMAIN, EntityInfo as EntityInfo, SURVEILLANCE_SWITCH as SURVEILLANCE_SWITCH, SYNO_API as SYNO_API
+from .const import COORDINATOR_SWITCHES as COORDINATOR_SWITCHES, DOMAIN as DOMAIN, SURVEILLANCE_SWITCH as SURVEILLANCE_SWITCH, SYNO_API as SYNO_API, SynologyDSMSwitchEntityDescription as SynologyDSMSwitchEntityDescription
 from homeassistant.components.switch import ToggleEntity as ToggleEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -14,8 +14,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SynoDSMSurveillanceHomeModeToggle(SynologyDSMBaseEntity, ToggleEntity):
     coordinator: DataUpdateCoordinator[dict[str, dict[str, bool]]]
+    entity_description: SynologyDSMSwitchEntityDescription
     _version: Any
-    def __init__(self, api: SynoApi, entity_type: str, entity_info: EntityInfo, version: str, coordinator: DataUpdateCoordinator[dict[str, dict[str, bool]]]) -> None: ...
+    def __init__(self, api: SynoApi, version: str, coordinator: DataUpdateCoordinator[dict[str, dict[str, bool]]], description: SynologyDSMSwitchEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

@@ -1,9 +1,10 @@
 import httpx
+from collections.abc import Callable as Callable
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.frame import warn_use as warn_use
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Callable
+from typing import Any
 
 DATA_ASYNC_CLIENT: str
 DATA_ASYNC_CLIENT_NOVERIFY: str

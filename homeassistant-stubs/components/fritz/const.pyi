@@ -1,9 +1,9 @@
-from typing import Any
+from typing import Any, Literal
 
 DOMAIN: str
 PLATFORMS: Any
 DATA_FRITZ: str
-DSL_CONNECTION: str
+DSL_CONNECTION: Literal[dsl]
 DEFAULT_DEVICE_NAME: str
 DEFAULT_HOST: str
 DEFAULT_PORT: int

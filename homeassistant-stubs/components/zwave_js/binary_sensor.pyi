@@ -36,7 +36,6 @@ class NotificationSensorMapping(TypedDict):
     enabled: bool
 
 NOTIFICATION_SENSOR_MAPPINGS: list[NotificationSensorMapping]
-PROPERTY_DOOR_STATUS: str
 
 class PropertySensorMapping(TypedDict):
     property_name: str

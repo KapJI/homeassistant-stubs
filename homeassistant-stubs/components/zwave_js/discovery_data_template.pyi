@@ -16,6 +16,7 @@ class ZwaveValueID:
     property_key: Union[str, int, None]
 
 class BaseDiscoverySchemaDataTemplate:
+    static_data: Union[Any, None]
     def resolve_data(self, value: ZwaveValue) -> Any: ...
     def values_to_watch(self, resolved_data: Any) -> Iterable[ZwaveValue]: ...
     def value_ids_to_watch(self, resolved_data: Any) -> set[str]: ...
@@ -24,7 +25,7 @@ class BaseDiscoverySchemaDataTemplate:
 
 class DynamicCurrentTempClimateDataTemplate(BaseDiscoverySchemaDataTemplate):
     lookup_table: dict[Union[str, int], ZwaveValueID]
-    dependent_value: ZwaveValueID
+    dependent_value: Union[ZwaveValueID, None]
     def resolve_data(self, value: ZwaveValue) -> dict[str, Any]: ...
     def values_to_watch(self, resolved_data: dict[str, Any]) -> Iterable[ZwaveValue]: ...
     @staticmethod

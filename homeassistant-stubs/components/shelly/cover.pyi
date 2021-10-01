@@ -1,7 +1,7 @@
-from . import ShellyDeviceWrapper as ShellyDeviceWrapper
-from .const import COAP as COAP, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN
+from . import BlockDeviceWrapper as BlockDeviceWrapper
+from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN
 from .entity import ShellyBlockEntity as ShellyBlockEntity
-from aioshelly import Block as Block
+from aioshelly.block_device import Block as Block
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, DEVICE_CLASS_SHUTTER as DEVICE_CLASS_SHUTTER, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION, SUPPORT_STOP as SUPPORT_STOP
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -14,7 +14,7 @@ class ShellyCover(ShellyBlockEntity, CoverEntity):
     _attr_device_class: Any
     control_result: Any
     _supported_features: Any
-    def __init__(self, wrapper: ShellyDeviceWrapper, block: Block) -> None: ...
+    def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
     @property
     def is_closed(self) -> bool: ...
     @property

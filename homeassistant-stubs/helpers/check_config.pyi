@@ -4,7 +4,7 @@ from homeassistant.config import CONF_CORE as CONF_CORE, CONF_PACKAGES as CONF_P
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
+from homeassistant.requirements import RequirementsNotFound as RequirementsNotFound, async_clear_install_history as async_clear_install_history, async_get_integration_with_requirements as async_get_integration_with_requirements
 from typing import Any, NamedTuple
 
 class CheckConfigError(NamedTuple):

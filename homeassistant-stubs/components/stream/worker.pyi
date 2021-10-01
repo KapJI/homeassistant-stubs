@@ -1,16 +1,18 @@
 import av
 from . import redact_credentials as redact_credentials
-from .const import AUDIO_CODECS as AUDIO_CODECS, MAX_MISSING_DTS as MAX_MISSING_DTS, MAX_TIMESTAMP_GAP as MAX_TIMESTAMP_GAP, MIN_SEGMENT_DURATION as MIN_SEGMENT_DURATION, PACKETS_TO_WAIT_FOR_AUDIO as PACKETS_TO_WAIT_FOR_AUDIO, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT, SOURCE_TIMEOUT as SOURCE_TIMEOUT, TARGET_PART_DURATION as TARGET_PART_DURATION
-from .core import Part as Part, Segment as Segment, StreamOutput as StreamOutput
-from collections.abc import Generator, Iterator, Mapping
+from .const import ATTR_SETTINGS as ATTR_SETTINGS, AUDIO_CODECS as AUDIO_CODECS, DOMAIN as DOMAIN, MAX_MISSING_DTS as MAX_MISSING_DTS, MAX_TIMESTAMP_GAP as MAX_TIMESTAMP_GAP, PACKETS_TO_WAIT_FOR_AUDIO as PACKETS_TO_WAIT_FOR_AUDIO, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT, SOURCE_TIMEOUT as SOURCE_TIMEOUT
+from .core import Part as Part, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
+from collections.abc import Callable as Callable, Generator, Iterator, Mapping
+from homeassistant.core import HomeAssistant as HomeAssistant
 from io import BytesIO
 from threading import Event
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 
 class SegmentBuffer:
     _stream_id: int
+    _hass: Any
     _outputs_callback: Any
     _sequence: int
     _segment_start_dts: Any
@@ -24,9 +26,10 @@ class SegmentBuffer:
     _memory_file_pos: Any
     _part_start_dts: Any
     _part_has_keyframe: bool
-    def __init__(self, outputs_callback: Callable[[], Mapping[str, StreamOutput]]) -> None: ...
-    @staticmethod
-    def make_new_av(memory_file: BytesIO, sequence: int, input_vstream: av.video.VideoStream) -> av.container.OutputContainer: ...
+    _stream_settings: Any
+    _start_time: Any
+    def __init__(self, hass: HomeAssistant, outputs_callback: Callable[[], Mapping[str, StreamOutput]]) -> None: ...
+    def make_new_av(self, memory_file: BytesIO, sequence: int, input_vstream: av.video.VideoStream) -> av.container.OutputContainer: ...
     def set_streams(self, video_stream: av.video.VideoStream, audio_stream: Any) -> None: ...
     def reset(self, video_dts: int) -> None: ...
     def mux_packet(self, packet: av.Packet) -> None: ...

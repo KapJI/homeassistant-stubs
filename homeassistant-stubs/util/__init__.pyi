@@ -1,8 +1,8 @@
 import enum
 from .dt import as_local as as_local, utcnow as utcnow
-from collections.abc import Iterable, KeysView
+from collections.abc import Callable as Callable, Iterable, KeysView
 from datetime import timedelta
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 T = TypeVar('T')
 U = TypeVar('U')

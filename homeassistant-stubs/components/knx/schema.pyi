@@ -3,7 +3,7 @@ from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOS
 from abc import ABC
 from collections import OrderedDict
 from homeassistant.components.climate.const import HVAC_MODES as HVAC_MODES, HVAC_MODE_HEAT as HVAC_MODE_HEAT
-from homeassistant.components.sensor import STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from typing import Any, ClassVar
 
@@ -191,7 +191,6 @@ class SensorSchema(KNXPlatformSchema):
     PLATFORM_NAME: Any
     CONF_ALWAYS_CALLBACK: str
     CONF_STATE_ADDRESS: Any
-    CONF_STATE_CLASS: str
     CONF_SYNC_STATE: Any
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Any

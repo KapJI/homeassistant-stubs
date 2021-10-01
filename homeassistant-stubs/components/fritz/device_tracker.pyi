@@ -1,4 +1,4 @@
-from .common import FritzBoxTools as FritzBoxTools, FritzData as FritzData, FritzDevice as FritzDevice, FritzDeviceBase as FritzDeviceBase
+from .common import FritzBoxTools as FritzBoxTools, FritzData as FritzData, FritzDevice as FritzDevice, FritzDeviceBase as FritzDeviceBase, device_filter_out_from_trackers as device_filter_out_from_trackers
 from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN
 from homeassistant.components.device_tracker import SOURCE_TYPE_ROUTER as SOURCE_TYPE_ROUTER
 from homeassistant.components.device_tracker.config_entry import ScannerEntity as ScannerEntity
@@ -17,7 +17,7 @@ PLATFORM_SCHEMA: Any
 
 async def async_get_scanner(hass: HomeAssistant, config: ConfigType) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def _async_add_entities(router: FritzBoxTools, async_add_entities: AddEntitiesCallback, data_fritz: FritzData) -> None: ...
+def _async_add_entities(router: FritzBoxTools, async_add_entities: AddEntitiesCallback, data_fritz: FritzData, pref_disable_new_entities: bool) -> None: ...
 
 class FritzBoxTracker(FritzDeviceBase, ScannerEntity):
     _last_activity: Any

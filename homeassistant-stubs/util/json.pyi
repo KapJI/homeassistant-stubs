@@ -1,7 +1,8 @@
 import json
+from collections.abc import Callable as Callable
 from homeassistant.core import Event as Event, State as State
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, Callable
+from typing import Any
 
 _LOGGER: Any
 

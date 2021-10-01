@@ -1,4 +1,4 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, SERVICE_CLEAR_LOCK_USERCODE as SERVICE_CLEAR_LOCK_USERCODE, SERVICE_SET_LOCK_USERCODE as SERVICE_SET_LOCK_USERCODE
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from homeassistant.components.lock import LockEntity as LockEntity
@@ -12,8 +12,6 @@ from typing import Any
 
 LOGGER: Any
 STATE_TO_ZWAVE_MAP: dict[int, dict[str, Union[int, bool]]]
-SERVICE_SET_LOCK_USERCODE: str
-SERVICE_CLEAR_LOCK_USERCODE: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

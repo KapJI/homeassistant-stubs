@@ -113,6 +113,7 @@ class ConfigEntries:
     options: Any
     _hass_config: Any
     _entries: Any
+    _domain_index: Any
     _store: Any
     def __init__(self, hass: HomeAssistant, hass_config: ConfigType) -> None: ...
     def async_domains(self, include_ignore: bool = ..., include_disabled: bool = ...) -> list[str]: ...

@@ -1,9 +1,7 @@
 from . import SynoApi as SynoApi, SynologyDSMBaseEntity as SynologyDSMBaseEntity
-from .const import COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, DOMAIN as DOMAIN, ENTITY_ENABLE as ENTITY_ENABLE, SYNO_API as SYNO_API
-from homeassistant.components.camera import Camera as Camera, SUPPORT_STREAM as SUPPORT_STREAM
-from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS
+from .const import COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, DOMAIN as DOMAIN, SYNO_API as SYNO_API, SynologyDSMEntityDescription as SynologyDSMEntityDescription
+from homeassistant.components.camera import Camera as Camera, CameraEntityDescription as CameraEntityDescription, SUPPORT_STREAM as SUPPORT_STREAM
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -13,11 +11,13 @@ from typing import Any
 
 _LOGGER: Any
 
+class SynologyDSMCameraEntityDescription(CameraEntityDescription, SynologyDSMEntityDescription): ...
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SynoDSMCamera(SynologyDSMBaseEntity, Camera):
     coordinator: DataUpdateCoordinator[dict[str, dict[str, SynoCamera]]]
-    _camera_id: Any
+    entity_description: SynologyDSMCameraEntityDescription
     def __init__(self, api: SynoApi, coordinator: DataUpdateCoordinator[dict[str, dict[str, SynoCamera]]], camera_id: str) -> None: ...
     @property
     def camera_data(self) -> SynoCamera: ...

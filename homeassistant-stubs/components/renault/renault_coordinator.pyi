@@ -1,11 +1,12 @@
 import logging
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable as Callable
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, Callable, TypeVar
+from renault_api.kamereon.models import KamereonVehicleDataAttributes
+from typing import Any, TypeVar
 
-T = TypeVar('T')
+T = TypeVar('T', bound=KamereonVehicleDataAttributes)
 
 class RenaultDataUpdateCoordinator(DataUpdateCoordinator[T]):
     access_denied: bool

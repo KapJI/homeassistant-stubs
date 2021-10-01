@@ -1,4 +1,4 @@
-from .const import ATTRIBUTION as ATTRIBUTION, ATTR_ACCESS_TOKEN as ATTR_ACCESS_TOKEN, ATTR_LAST_SAVED_AT as ATTR_LAST_SAVED_AT, ATTR_REFRESH_TOKEN as ATTR_REFRESH_TOKEN, BATTERY_LEVELS as BATTERY_LEVELS, CONF_CLOCK_FORMAT as CONF_CLOCK_FORMAT, CONF_MONITORED_RESOURCES as CONF_MONITORED_RESOURCES, DEFAULT_CLOCK_FORMAT as DEFAULT_CLOCK_FORMAT, DEFAULT_CONFIG as DEFAULT_CONFIG, FITBIT_AUTH_CALLBACK_PATH as FITBIT_AUTH_CALLBACK_PATH, FITBIT_AUTH_START as FITBIT_AUTH_START, FITBIT_CONFIG_FILE as FITBIT_CONFIG_FILE, FITBIT_DEFAULT_RESOURCES as FITBIT_DEFAULT_RESOURCES, FITBIT_MEASUREMENTS as FITBIT_MEASUREMENTS, FITBIT_RESOURCES_LIST as FITBIT_RESOURCES_LIST
+from .const import ATTRIBUTION as ATTRIBUTION, ATTR_ACCESS_TOKEN as ATTR_ACCESS_TOKEN, ATTR_LAST_SAVED_AT as ATTR_LAST_SAVED_AT, ATTR_REFRESH_TOKEN as ATTR_REFRESH_TOKEN, BATTERY_LEVELS as BATTERY_LEVELS, CONF_CLOCK_FORMAT as CONF_CLOCK_FORMAT, CONF_MONITORED_RESOURCES as CONF_MONITORED_RESOURCES, DEFAULT_CLOCK_FORMAT as DEFAULT_CLOCK_FORMAT, DEFAULT_CONFIG as DEFAULT_CONFIG, FITBIT_AUTH_CALLBACK_PATH as FITBIT_AUTH_CALLBACK_PATH, FITBIT_AUTH_START as FITBIT_AUTH_START, FITBIT_CONFIG_FILE as FITBIT_CONFIG_FILE, FITBIT_DEFAULT_RESOURCES as FITBIT_DEFAULT_RESOURCES, FITBIT_MEASUREMENTS as FITBIT_MEASUREMENTS, FITBIT_RESOURCES_KEYS as FITBIT_RESOURCES_KEYS, FITBIT_RESOURCES_LIST as FITBIT_RESOURCES_LIST, FITBIT_RESOURCE_BATTERY as FITBIT_RESOURCE_BATTERY, FitbitSensorEntityDescription as FitbitSensorEntityDescription
 from aiohttp.web import Request as Request
 from fitbit import Fitbit
 from fitbit.api import FitbitOauth2Client
@@ -33,24 +33,18 @@ class FitbitAuthCallbackView(HomeAssistantView):
     async def get(self, request: Request) -> str: ...
 
 class FitbitSensor(SensorEntity):
+    entity_description: FitbitSensorEntityDescription
     client: Any
     config_path: Any
-    resource_type: Any
     is_metric: Any
     clock_format: Any
     extra: Any
-    _name: Any
-    _unit_of_measurement: Any
-    _state: Any
-    def __init__(self, client: Fitbit, config_path: str, resource_type: str, is_metric: bool, clock_format: str, extra: Union[dict[str, str], None] = ...) -> None: ...
+    _attr_name: Any
+    _attr_native_unit_of_measurement: Any
+    def __init__(self, client: Fitbit, config_path: str, description: FitbitSensorEntityDescription, is_metric: bool, clock_format: str, extra: Union[dict[str, str], None] = ...) -> None: ...
     @property
-    def name(self) -> str: ...
-    @property
-    def native_value(self) -> Union[str, None]: ...
-    @property
-    def native_unit_of_measurement(self) -> Union[str, None]: ...
-    @property
-    def icon(self) -> str: ...
+    def icon(self) -> Union[str, None]: ...
     @property
     def extra_state_attributes(self) -> dict[str, Union[str, None]]: ...
+    _attr_native_value: Any
     def update(self) -> None: ...

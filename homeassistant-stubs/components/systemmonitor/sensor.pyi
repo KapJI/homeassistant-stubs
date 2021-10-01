@@ -1,5 +1,5 @@
 import datetime
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
+from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, STATE_CLASS_TOTAL as STATE_CLASS_TOTAL, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TYPE as CONF_TYPE, DATA_GIBIBYTES as DATA_GIBIBYTES, DATA_MEBIBYTES as DATA_MEBIBYTES, DATA_RATE_MEGABYTES_PER_SECOND as DATA_RATE_MEGABYTES_PER_SECOND, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
@@ -19,7 +19,11 @@ SENSOR_TYPE_ICON: int
 SENSOR_TYPE_DEVICE_CLASS: int
 SENSOR_TYPE_MANDATORY_ARG: int
 SIGNAL_SYSTEMMONITOR_UPDATE: str
-SENSOR_TYPES: dict[str, tuple[str, Union[str, None], Union[str, None], Union[str, None], bool]]
+
+class SysMonitorSensorEntityDescription(SensorEntityDescription):
+    mandatory_arg: bool
+
+SENSOR_TYPES: dict[str, SysMonitorSensorEntityDescription]
 
 def check_required_arg(value: Any) -> Any: ...
 
@@ -38,30 +42,17 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_sensor_registry_updates(hass: HomeAssistant, sensor_registry: dict[tuple[str, str], SensorData], scan_interval: datetime.timedelta) -> None: ...
 
 class SystemMonitorSensor(SensorEntity):
-    _type: Any
-    _name: Any
-    _unique_id: Any
+    should_poll: bool
+    entity_description: Any
+    _attr_name: Any
+    _attr_unique_id: Any
     _sensor_registry: Any
     _argument: Any
-    def __init__(self, sensor_registry: dict[tuple[str, str], SensorData], sensor_type: str, argument: str = ...) -> None: ...
-    @property
-    def name(self) -> str: ...
-    @property
-    def unique_id(self) -> str: ...
-    @property
-    def device_class(self) -> Union[str, None]: ...
-    @property
-    def icon(self) -> Union[str, None]: ...
+    def __init__(self, sensor_registry: dict[tuple[str, str], SensorData], sensor_description: SysMonitorSensorEntityDescription, argument: str = ...) -> None: ...
     @property
     def native_value(self) -> Union[str, None]: ...
     @property
-    def native_unit_of_measurement(self) -> Union[str, None]: ...
-    @property
     def available(self) -> bool: ...
-    @property
-    def should_poll(self) -> bool: ...
-    @property
-    def sensor_type(self) -> list: ...
     @property
     def data(self) -> SensorData: ...
     async def async_added_to_hass(self) -> None: ...

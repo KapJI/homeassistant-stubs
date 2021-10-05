@@ -35,10 +35,11 @@ class BlockAttributeDescription:
 
 class RpcAttributeDescription:
     key: str
+    sub_key: str
     name: str
     icon: Union[str, None]
     unit: Union[str, None]
-    value: Union[Callable[[dict, Any], Any], None]
+    value: Union[Callable[[Any, Any], Any], None]
     device_class: Union[str, None]
     state_class: Union[str, None]
     default_enabled: bool
@@ -142,6 +143,7 @@ class ShellyRestAttributeEntity(update_coordinator.CoordinatorEntity):
     def extra_state_attributes(self) -> Union[dict[str, Any], None]: ...
 
 class ShellyRpcAttributeEntity(ShellyRpcEntity, entity.Entity):
+    sub_key: Any
     attribute: Any
     description: Any
     _attr_unique_id: Any

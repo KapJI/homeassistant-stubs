@@ -8,10 +8,14 @@ from typing import Any
 
 ENERGY_USAGE_DEVICE_CLASSES: Any
 ENERGY_USAGE_UNITS: Any
+ENERGY_PRICE_UNITS: Any
 ENERGY_UNIT_ERROR: str
+ENERGY_PRICE_UNIT_ERROR: str
 GAS_USAGE_DEVICE_CLASSES: Any
 GAS_USAGE_UNITS: Any
+GAS_PRICE_UNITS: Any
 GAS_UNIT_ERROR: str
+GAS_PRICE_UNIT_ERROR: str
 
 class ValidationIssue:
     type: str
@@ -24,7 +28,7 @@ class EnergyPreferencesValidation:
     def as_dict(self) -> dict: ...
 
 def _async_validate_usage_stat(hass: HomeAssistant, stat_value: str, allowed_device_classes: Sequence[str], allowed_units: Mapping[str, Sequence[str]], unit_error: str, result: list[ValidationIssue]) -> None: ...
-def _async_validate_price_entity(hass: HomeAssistant, entity_id: str, result: list[ValidationIssue]) -> None: ...
+def _async_validate_price_entity(hass: HomeAssistant, entity_id: str, result: list[ValidationIssue], allowed_units: tuple[str, ...], unit_error: str) -> None: ...
 def _async_validate_cost_stat(hass: HomeAssistant, stat_id: str, result: list[ValidationIssue]) -> None: ...
 def _async_validate_auto_generated_cost_entity(hass: HomeAssistant, entity_id: str, result: list[ValidationIssue]) -> None: ...
 async def async_validate(hass: HomeAssistant) -> EnergyPreferencesValidation: ...

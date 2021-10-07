@@ -8,7 +8,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from awesomeversion import AwesomeVersion
+from awesomeversion.awesomeversion import AwesomeVersion
 from awesomeversion.strategy import AwesomeVersionStrategy
 from github import Github
 
@@ -63,15 +63,19 @@ def get_available_versions(git_root: Path) -> list[str]:
 def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> None:
     """Create package for given version and upload it to PyPI."""
     print(f"Creating package for {version}...")
+    try:
+        subprocess.run(
+            ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
+        )
+    except subprocess.CalledProcessError as ex:
+        print(f"Failed to add dependency: {ex}")
+        return
     subprocess.run(["git", "checkout", version], cwd=homeassistant_root, check=True)
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
 
     print("Building package...")
     subprocess.run(["poetry", "version", version], cwd=repo_root, check=True)
-    subprocess.run(
-        ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
-    )
     subprocess.run(["poetry", "build"], cwd=repo_root, check=True)
 
     print(f"Creating commit for {version}...")

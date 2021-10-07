@@ -27,7 +27,7 @@ python = "^3.8"
 homeassistant = "2021.10.0b7"
 
 [tool.poetry.dev-dependencies]
-awesomeversion = "^21.2.3"
+awesomeversion = "^21.8.1"
 black = "^21.9b0"
 codespell = "^2.1.0"
 flake8 = "^3.9.2"

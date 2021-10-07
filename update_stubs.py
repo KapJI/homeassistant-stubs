@@ -13,6 +13,9 @@ from awesomeversion.strategy import AwesomeVersionStrategy
 from github import Github
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
+BLACKLISTED_VERSIONS = [
+    "2021.10.0b8",  # doesn't exist on PyPI
+]
 
 
 def main() -> int:
@@ -24,7 +27,9 @@ def main() -> int:
     current_versions = set(get_available_versions(repo_root))
     homeassistant_versions = get_available_versions(homeassistant_root)
     missing_versions = [
-        version for version in homeassistant_versions if version not in current_versions
+        version
+        for version in homeassistant_versions
+        if version not in current_versions and version not in BLACKLISTED_VERSIONS
     ]
     for version in missing_versions:
         print(f"Missing version: {version}")

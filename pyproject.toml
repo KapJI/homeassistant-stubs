@@ -55,3 +55,13 @@ max-line-length = "88"
 
 [tool.pylint.basic]
 good-names = ["ex", "fp"]
+
+[tool.mypy]
+python_version = 3.8
+show_error_codes = true
+strict = true
+disallow_any_explicit = true
+disallow_any_unimported = true
+show_none_errors = true
+warn_no_return = true
+warn_unreachable = true

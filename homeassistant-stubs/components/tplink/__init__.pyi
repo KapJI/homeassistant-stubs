@@ -4,12 +4,14 @@ from .migration import async_migrate_entities_devices as async_migrate_entities_
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from kasa import SmartDevice as SmartDevice
 from typing import Any
 
+DISCOVERY_INTERVAL: Any
 TPLINK_HOST_SCHEMA: Any
 CONFIG_SCHEMA: Any
 

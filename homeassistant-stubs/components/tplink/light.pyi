@@ -1,3 +1,4 @@
+from . import legacy_device_id as legacy_device_id
 from .const import DOMAIN as DOMAIN
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, async_refresh_after as async_refresh_after

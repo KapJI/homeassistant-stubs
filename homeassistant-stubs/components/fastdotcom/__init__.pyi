@@ -1,3 +1,4 @@
+from datetime import datetime
 from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.discovery import async_load_platform as async_load_platform
@@ -19,4 +20,4 @@ class SpeedtestData:
     data: Any
     _hass: Any
     def __init__(self, hass: HomeAssistant) -> None: ...
-    def update(self) -> None: ...
+    def update(self, now: Union[datetime, None] = ...) -> None: ...

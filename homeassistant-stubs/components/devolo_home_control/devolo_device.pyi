@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .subscriber import Subscriber as Subscriber
 from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from typing import Any
 
 _LOGGER: Any

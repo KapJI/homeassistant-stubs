@@ -1,3 +1,4 @@
+from enum import Enum
 from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_COVERS as CONF_COVERS, CONF_LIGHTS as CONF_LIGHTS, CONF_SENSORS as CONF_SENSORS, CONF_SWITCHES as CONF_SWITCHES
 from typing import Any
 
@@ -57,20 +58,23 @@ ATTR_UNIT: str
 ATTR_VALUE: str
 ATTR_STATE: str
 ATTR_TEMPERATURE: str
-DATA_TYPE_CUSTOM: str
-DATA_TYPE_FLOAT: str
-DATA_TYPE_INT: str
-DATA_TYPE_UINT: str
-DATA_TYPE_STRING: str
-DATA_TYPE_INT16: str
-DATA_TYPE_INT32: str
-DATA_TYPE_INT64: str
-DATA_TYPE_UINT16: str
-DATA_TYPE_UINT32: str
-DATA_TYPE_UINT64: str
-DATA_TYPE_FLOAT16: str
-DATA_TYPE_FLOAT32: str
-DATA_TYPE_FLOAT64: str
+
+class DataType(str, Enum):
+    CUSTOM: str
+    FLOAT: str
+    INT: str
+    UINT: str
+    STRING: str
+    INT16: str
+    INT32: str
+    INT64: str
+    UINT16: str
+    UINT32: str
+    UINT64: str
+    FLOAT16: str
+    FLOAT32: str
+    FLOAT64: str
+
 CALL_TYPE_COIL: str
 CALL_TYPE_DISCRETE: str
 CALL_TYPE_REGISTER_HOLDING: str

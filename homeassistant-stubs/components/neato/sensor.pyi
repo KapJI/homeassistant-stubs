@@ -2,7 +2,7 @@ from .const import NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEA
 from homeassistant.components.neato import NeatoHub as NeatoHub
 from homeassistant.components.sensor import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE
+from homeassistant.const import ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -29,6 +29,8 @@ class NeatoSensor(SensorEntity):
     def unique_id(self) -> str: ...
     @property
     def device_class(self) -> str: ...
+    @property
+    def entity_category(self) -> str: ...
     @property
     def available(self) -> bool: ...
     @property

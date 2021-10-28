@@ -16,6 +16,7 @@ def create_stream(hass: HomeAssistant, stream_source: str, options: dict[str, st
 
 CONFIG_SCHEMA: Any
 
+def filter_libav_logging() -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class Stream:

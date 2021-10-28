@@ -1,17 +1,17 @@
 from .const import DATA_DEVICE_IDS as DATA_DEVICE_IDS, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODELS as MODELS, SIGNAL_NAME as SIGNAL_NAME
 from .data_handler import NetatmoDataHandler as NetatmoDataHandler, PUBLICDATA_DATA_CLASS_NAME as PUBLICDATA_DATA_CLASS_NAME
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
+from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from typing import Any
 
 class NetatmoBase(Entity):
     data_handler: Any
     _data_classes: Any
-    _listeners: Any
     _device_name: str
     _id: str
     _model: str
+    _netatmo_type: str
     _attr_name: Any
     _attr_unique_id: Any
     _attr_extra_state_attributes: Any

@@ -6,8 +6,6 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-_LOGGER: Any
-
 class KrakenConfigFlow(config_entries.ConfigFlow):
     VERSION: int
     @staticmethod

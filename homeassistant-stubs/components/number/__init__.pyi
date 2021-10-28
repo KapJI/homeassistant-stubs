@@ -1,11 +1,12 @@
-from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE
+from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, MODE_AUTO as MODE_AUTO, SERVICE_SET_VALUE as SERVICE_SET_VALUE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import ATTR_MODE as ATTR_MODE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, Literal
 
 SCAN_INTERVAL: Any
 ENTITY_ID_FORMAT: Any
@@ -25,6 +26,7 @@ class NumberEntity(Entity):
     _attr_min_value: float
     _attr_state: None
     _attr_step: float
+    _attr_mode: Literal[auto, slider, box]
     _attr_value: float
     @property
     def capability_attributes(self) -> dict[str, Any]: ...
@@ -34,6 +36,8 @@ class NumberEntity(Entity):
     def max_value(self) -> float: ...
     @property
     def step(self) -> float: ...
+    @property
+    def mode(self) -> Literal[auto, slider, box]: ...
     @property
     def state(self) -> Union[float, None]: ...
     @property

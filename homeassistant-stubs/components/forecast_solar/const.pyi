@@ -8,6 +8,5 @@ CONF_DECLINATION: str
 CONF_AZIMUTH: str
 CONF_MODULES_POWER: str
 CONF_DAMPING: str
-ATTR_ENTRY_TYPE: Final[str]
 ENTRY_TYPE_SERVICE: Final[str]
 SENSORS: tuple[ForecastSolarSensorEntityDescription, ...]

@@ -2,7 +2,7 @@ from .const import ColorTempModes as ColorTempModes, DOMAIN as DOMAIN, KNX_ADDRE
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import LightSchema as LightSchema
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_HS as COLOR_MODE_HS, COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, COLOR_MODE_RGB as COLOR_MODE_RGB, COLOR_MODE_RGBW as COLOR_MODE_RGBW, COLOR_MODE_XY as COLOR_MODE_XY, LightEntity as LightEntity
-from homeassistant.const import CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -20,6 +20,7 @@ class KNXLight(KnxEntity, LightEntity):
     _min_kelvin: Any
     _attr_max_mireds: Any
     _attr_min_mireds: Any
+    _attr_entity_category: Any
     _attr_unique_id: Any
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     def _device_unique_id(self) -> str: ...

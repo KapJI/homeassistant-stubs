@@ -1,12 +1,14 @@
-from .const import DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, SERVICE_REBOOT as SERVICE_REBOOT, SERVICE_RECONNECT as SERVICE_RECONNECT, TRACKER_SCAN_INTERVAL as TRACKER_SCAN_INTERVAL
+from .const import DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, SERVICE_CLEANUP as SERVICE_CLEANUP, SERVICE_REBOOT as SERVICE_REBOOT, SERVICE_RECONNECT as SERVICE_RECONNECT, TRACKER_SCAN_INTERVAL as TRACKER_SCAN_INTERVAL
 from collections.abc import Callable as Callable, ValuesView
 from datetime import datetime
 from homeassistant.components.device_tracker.const import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, async_entries_for_config_entry as async_entries_for_config_entry, async_get as async_get
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, dispatcher_send as dispatcher_send
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.entity_registry import EntityRegistry as EntityRegistry, RegistryEntry as RegistryEntry, async_entries_for_device as async_entries_for_device
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from types import MappingProxyType
 from typing import Any, TypedDict
@@ -15,6 +17,7 @@ _LOGGER: Any
 
 def _is_tracked(mac: str, current_devices: ValuesView) -> bool: ...
 def device_filter_out_from_trackers(mac: str, device: FritzDevice, current_devices: ValuesView) -> bool: ...
+def _cleanup_entity_filter(device: RegistryEntry) -> bool: ...
 
 class ClassSetupMissing(Exception):
     def __init__(self) -> None: ...
@@ -74,7 +77,8 @@ class FritzBoxTools:
     def _update_hosts_info(self) -> list[HostInfo]: ...
     def _update_device_info(self) -> tuple[bool, Union[str, None]]: ...
     def scan_devices(self, now: Union[datetime, None] = ...) -> None: ...
-    async def service_fritzbox(self, service: str) -> None: ...
+    async def service_fritzbox(self, service_call: ServiceCall, config_entry: ConfigEntry) -> None: ...
+    def _async_remove_empty_devices(self, entity_reg: EntityRegistry, config_entry: ConfigEntry) -> None: ...
 
 class FritzData:
     tracked: dict

@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import WeatherSchema as WeatherSchema
 from homeassistant.components.weather import WeatherEntity as WeatherEntity
-from homeassistant.const import CONF_NAME as CONF_NAME, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -17,6 +17,7 @@ class KNXWeather(KnxEntity, WeatherEntity):
     _device: XknxWeather
     _attr_temperature_unit: Any
     _attr_unique_id: Any
+    _attr_entity_category: Any
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     @property
     def temperature(self) -> Union[float, None]: ...

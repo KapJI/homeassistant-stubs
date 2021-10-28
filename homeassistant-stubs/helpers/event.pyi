@@ -1,4 +1,4 @@
-from collections.abc import Awaitable, Iterable
+from collections.abc import Awaitable, Iterable, Sequence
 from datetime import datetime, timedelta
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NOW as ATTR_NOW, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
@@ -80,12 +80,13 @@ class _TrackTemplateResultInfo:
     hass: Any
     _job: Any
     _track_templates: Any
+    _has_super_template: Any
     _last_result: Any
     _rate_limit: Any
     _info: Any
     _track_state_changes: Any
     _time_listeners: Any
-    def __init__(self, hass: HomeAssistant, track_templates: Iterable[TrackTemplate], action: Callable) -> None: ...
+    def __init__(self, hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: Callable, has_super_template: bool = ...) -> None: ...
     def async_setup(self, raise_on_template_error: bool, strict: bool = ...) -> None: ...
     @property
     def listeners(self) -> dict: ...
@@ -97,7 +98,7 @@ class _TrackTemplateResultInfo:
     def _refresh(self, event: Union[Event, None], track_templates: Union[Iterable[TrackTemplate], None] = ..., replayed: Union[bool, None] = ...) -> None: ...
 TrackTemplateResultListener = Callable[[Event, List[TrackTemplateResult]], None]
 
-def async_track_template_result(hass: HomeAssistant, track_templates: Iterable[TrackTemplate], action: TrackTemplateResultListener, raise_on_template_error: bool = ..., strict: bool = ...) -> _TrackTemplateResultInfo: ...
+def async_track_template_result(hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, raise_on_template_error: bool = ..., strict: bool = ..., has_super_template: bool = ...) -> _TrackTemplateResultInfo: ...
 def async_track_same_state(hass: HomeAssistant, period: timedelta, action: Callable[..., Union[Awaitable[None], None]], async_check_same_func: Callable[[str, Union[State, None], Union[State, None]], bool], entity_ids: Union[str, Iterable[str]] = ...) -> CALLBACK_TYPE: ...
 
 track_same_state: Any

@@ -2,7 +2,6 @@ from .const import DOMAIN as DOMAIN
 from .renault_coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator
 from collections.abc import Awaitable, Callable as Callable
 from datetime import timedelta
-from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SW_VERSION as ATTR_SW_VERSION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from renault_api.kamereon import models as models

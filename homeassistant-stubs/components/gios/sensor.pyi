@@ -1,5 +1,5 @@
 from . import GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
-from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_INDEX as ATTR_INDEX, ATTR_PM25 as ATTR_PM25, ATTR_STATION as ATTR_STATION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SENSOR_TYPES as SENSOR_TYPES
+from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_INDEX as ATTR_INDEX, ATTR_PM25 as ATTR_PM25, ATTR_STATION as ATTR_STATION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SENSOR_TYPES as SENSOR_TYPES, URL as URL
 from .model import GiosSensorEntityDescription as GiosSensorEntityDescription
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

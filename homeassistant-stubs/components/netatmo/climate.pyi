@@ -65,6 +65,7 @@ class NetatmoThermostat(NetatmoBase, ClimateEntity):
     _boilerstatus: Any
     _setpoint_duration: Any
     _selected_schedule: Any
+    _attr_max_temp: Any
     _attr_unique_id: Any
     def __init__(self, data_handler: NetatmoDataHandler, home_id: str, room_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...

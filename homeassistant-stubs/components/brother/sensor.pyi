@@ -2,6 +2,7 @@ from . import BrotherDataUpdateCoordinator as BrotherDataUpdateCoordinator
 from .const import ATTRS_MAP as ATTRS_MAP, ATTR_COUNTER as ATTR_COUNTER, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_REMAINING_PAGES as ATTR_REMAINING_PAGES, ATTR_UPTIME as ATTR_UPTIME, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, SENSOR_TYPES as SENSOR_TYPES
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

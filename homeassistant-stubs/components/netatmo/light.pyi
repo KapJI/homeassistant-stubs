@@ -1,5 +1,5 @@
 import pyatmo
-from .const import DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, MANUFACTURER as MANUFACTURER, SIGNAL_NAME as SIGNAL_NAME, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
+from .const import DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, MANUFACTURER as MANUFACTURER, SIGNAL_NAME as SIGNAL_NAME, TYPE_SECURITY as TYPE_SECURITY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from .data_handler import CAMERA_DATA_CLASS_NAME as CAMERA_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from homeassistant.components.light import LightEntity as LightEntity
@@ -18,6 +18,7 @@ class NetatmoLight(NetatmoBase, LightEntity):
     _id: Any
     _home_id: Any
     _model: Any
+    _netatmo_type: Any
     _device_name: Any
     _attr_name: Any
     _is_on: bool

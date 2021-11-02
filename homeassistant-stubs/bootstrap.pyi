@@ -1,7 +1,7 @@
 from .runner import RuntimeConfig as RuntimeConfig
 from homeassistant import config_entries as config_entries, core as core, loader as loader
 from homeassistant.components import http as http
-from homeassistant.const import REQUIRED_NEXT_PYTHON_DATE as REQUIRED_NEXT_PYTHON_DATE, REQUIRED_NEXT_PYTHON_VER as REQUIRED_NEXT_PYTHON_VER
+from homeassistant.const import REQUIRED_NEXT_PYTHON_HA_RELEASE as REQUIRED_NEXT_PYTHON_HA_RELEASE, REQUIRED_NEXT_PYTHON_VER as REQUIRED_NEXT_PYTHON_VER
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

@@ -1,5 +1,5 @@
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity
@@ -43,8 +43,6 @@ class AirQualityEntity(Entity):
     def carbon_monoxide(self) -> StateType: ...
     @property
     def carbon_dioxide(self) -> StateType: ...
-    @property
-    def attribution(self) -> StateType: ...
     @property
     def sulphur_dioxide(self) -> StateType: ...
     @property

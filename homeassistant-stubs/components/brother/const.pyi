@@ -1,5 +1,5 @@
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntityDescription as SensorEntityDescription
-from homeassistant.const import DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, PERCENTAGE as PERCENTAGE
+from homeassistant.const import DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, PERCENTAGE as PERCENTAGE
 from typing import Any, Final
 
 ATTR_BELT_UNIT_REMAINING_LIFE: Final[str]

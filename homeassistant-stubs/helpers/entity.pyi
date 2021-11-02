@@ -3,16 +3,16 @@ from abc import ABC
 from collections.abc import Awaitable, Iterable, Mapping, MutableMapping
 from datetime import datetime, timedelta
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
-from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.event import Event as Event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
-from typing import Any, TypedDict
+from typing import Any, Final, Literal, TypedDict
 
 _LOGGER: Any
 SLOW_UPDATE_WARNING: int
@@ -20,6 +20,8 @@ DATA_ENTITY_SOURCE: str
 SOURCE_CONFIG_ENTRY: str
 SOURCE_PLATFORM_CONFIG: str
 FLOAT_PRECISION: Any
+ENTITY_CATEGORIES: Final[list[str]]
+ENTITY_CATEGORIES_SCHEMA: Final[Any]
 
 def entity_sources(hass: HomeAssistant) -> dict[str, dict[str, str]]: ...
 def generate_entity_id(entity_id_format: str, name: Union[str, None], current_ids: Union[list[str], None] = ..., hass: Union[HomeAssistant, None] = ...) -> str: ...
@@ -30,22 +32,24 @@ def get_supported_features(hass: HomeAssistant, entity_id: str) -> int: ...
 def get_unit_of_measurement(hass: HomeAssistant, entity_id: str) -> Union[str, None]: ...
 
 class DeviceInfo(TypedDict):
-    name: Union[str, None]
+    configuration_url: Union[str, None]
     connections: set[tuple[str, str]]
+    default_manufacturer: str
+    default_model: str
+    default_name: str
+    entry_type: Union[str, None]
     identifiers: set[tuple[str, str]]
     manufacturer: Union[str, None]
     model: Union[str, None]
+    name: Union[str, None]
     suggested_area: Union[str, None]
     sw_version: Union[str, None]
     via_device: tuple[str, str]
-    entry_type: Union[str, None]
-    default_name: str
-    default_manufacturer: str
-    default_model: str
 
 class EntityDescription:
     key: str
     device_class: Union[str, None]
+    entity_category: Union[Literal[config, diagnostic], None]
     entity_registry_enabled_default: bool
     force_update: bool
     icon: Union[str, None]
@@ -61,16 +65,18 @@ class Entity(ABC):
     _disabled_reported: bool
     _update_staged: bool
     parallel_updates: Union[asyncio.Semaphore, None]
-    registry_entry: Union[RegistryEntry, None]
+    registry_entry: Union[er.RegistryEntry, None]
     _on_remove: Union[list[CALLBACK_TYPE], None]
     _context: Union[Context, None]
     _context_set: Union[datetime, None]
     _added: bool
     _attr_assumed_state: bool
+    _attr_attribution: Union[str, None]
     _attr_available: bool
     _attr_context_recent_time: timedelta
     _attr_device_class: Union[str, None]
     _attr_device_info: Union[DeviceInfo, None]
+    _attr_entity_category: Union[str, None]
     _attr_entity_picture: Union[str, None]
     _attr_entity_registry_enabled_default: bool
     _attr_extra_state_attributes: MutableMapping[str, Any]
@@ -120,6 +126,10 @@ class Entity(ABC):
     def context_recent_time(self) -> timedelta: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
+    @property
+    def attribution(self) -> Union[str, None]: ...
+    @property
+    def entity_category(self) -> Union[str, None]: ...
     @property
     def enabled(self) -> bool: ...
     def async_set_context(self, context: Context) -> None: ...

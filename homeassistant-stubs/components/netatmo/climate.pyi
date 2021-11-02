@@ -1,12 +1,12 @@
 import pyatmo
-from .const import ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATTR_SCHEDULE_NAME as ATTR_SCHEDULE_NAME, ATTR_SELECTED_SCHEDULE as ATTR_SELECTED_SCHEDULE, DATA_DEVICE_IDS as DATA_DEVICE_IDS, DATA_HANDLER as DATA_HANDLER, DATA_HOMES as DATA_HOMES, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_CANCEL_SET_POINT as EVENT_TYPE_CANCEL_SET_POINT, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, EVENT_TYPE_SET_POINT as EVENT_TYPE_SET_POINT, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, MANUFACTURER as MANUFACTURER, SERVICE_SET_SCHEDULE as SERVICE_SET_SCHEDULE, SIGNAL_NAME as SIGNAL_NAME
+from .const import ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATTR_SCHEDULE_NAME as ATTR_SCHEDULE_NAME, ATTR_SELECTED_SCHEDULE as ATTR_SELECTED_SCHEDULE, DATA_DEVICE_IDS as DATA_DEVICE_IDS, DATA_HANDLER as DATA_HANDLER, DATA_HOMES as DATA_HOMES, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_CANCEL_SET_POINT as EVENT_TYPE_CANCEL_SET_POINT, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, EVENT_TYPE_SET_POINT as EVENT_TYPE_SET_POINT, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, MANUFACTURER as MANUFACTURER, SERVICE_SET_SCHEDULE as SERVICE_SET_SCHEDULE, SIGNAL_NAME as SIGNAL_NAME, TYPE_ENERGY as TYPE_ENERGY
 from .data_handler import HOMEDATA_DATA_CLASS_NAME as HOMEDATA_DATA_CLASS_NAME, HOMESTATUS_DATA_CLASS_NAME as HOMESTATUS_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
 from .helper import get_all_home_ids as get_all_home_ids, update_climate_schedules as update_climate_schedules
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import CURRENT_HVAC_HEAT as CURRENT_HVAC_HEAT, CURRENT_HVAC_IDLE as CURRENT_HVAC_IDLE, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, STATE_OFF as STATE_OFF, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, STATE_OFF as STATE_OFF, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers import entity_platform as entity_platform
@@ -37,7 +37,6 @@ CURRENT_HVAC_MAP_NETATMO: Any
 DEFAULT_MAX_TEMP: int
 NA_THERM: str
 NA_VALVE: str
-SUGGESTED_AREA: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -49,6 +48,7 @@ class NetatmoThermostat(NetatmoBase, ClimateEntity):
     _room_status: Any
     _room_data: Any
     _model: Any
+    _netatmo_type: Any
     _device_name: Any
     _attr_name: Any
     _current_temperature: Any
@@ -65,6 +65,7 @@ class NetatmoThermostat(NetatmoBase, ClimateEntity):
     _boilerstatus: Any
     _setpoint_duration: Any
     _selected_schedule: Any
+    _attr_max_temp: Any
     _attr_unique_id: Any
     def __init__(self, data_handler: NetatmoDataHandler, home_id: str, room_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...

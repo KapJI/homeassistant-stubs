@@ -1,6 +1,5 @@
 from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
-from homeassistant.const import HTTP_INTERNAL_SERVER_ERROR as HTTP_INTERNAL_SERVER_ERROR
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery

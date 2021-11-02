@@ -1,8 +1,8 @@
 from . import AmbientWeatherEntity as AmbientWeatherEntity
-from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DOMAIN as DOMAIN
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_CONNECTIVITY as DEVICE_CLASS_CONNECTIVITY
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_NAME as ATTR_NAME
+from homeassistant.const import ATTR_NAME as ATTR_NAME, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Literal

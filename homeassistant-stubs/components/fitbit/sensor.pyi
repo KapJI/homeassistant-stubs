@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_CLIEN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
-from homeassistant.helpers.network import get_url as get_url
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.json import load_json as load_json, save_json as save_json
 from typing import Any, Final

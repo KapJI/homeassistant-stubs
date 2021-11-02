@@ -1,0 +1,62 @@
+from homeassistant.components.select import SelectEntity as SelectEntity
+from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_OPTION as ATTR_OPTION, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.helpers import collection as collection
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.storage import Store as Store
+from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import Any
+
+_LOGGER: Any
+DOMAIN: str
+CONF_INITIAL: str
+CONF_OPTIONS: str
+ATTR_OPTIONS: str
+ATTR_CYCLE: str
+SERVICE_SELECT_OPTION: str
+SERVICE_SELECT_NEXT: str
+SERVICE_SELECT_PREVIOUS: str
+SERVICE_SELECT_FIRST: str
+SERVICE_SELECT_LAST: str
+SERVICE_SET_OPTIONS: str
+STORAGE_KEY = DOMAIN
+STORAGE_VERSION: int
+CREATE_FIELDS: Any
+UPDATE_FIELDS: Any
+
+def _cv_input_select(cfg: dict[str, Any]) -> dict[str, Any]: ...
+
+CONFIG_SCHEMA: Any
+RELOAD_SERVICE_SCHEMA: Any
+
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+
+class InputSelectStorageCollection(collection.StorageCollection):
+    CREATE_SCHEMA: Any
+    UPDATE_SCHEMA: Any
+    async def _process_create_data(self, data: dict[str, Any]) -> dict[str, Any]: ...
+    def _get_suggested_id(self, info: dict[str, Any]) -> str: ...
+    async def _update_data(self, data: dict[str, Any], update_data: dict[str, Any]) -> dict[str, Any]: ...
+
+class InputSelect(SelectEntity, RestoreEntity):
+    _attr_should_poll: bool
+    editable: bool
+    _attr_current_option: Any
+    _attr_icon: Any
+    _attr_name: Any
+    _attr_options: Any
+    _attr_unique_id: Any
+    def __init__(self, config: ConfigType) -> None: ...
+    @classmethod
+    def from_yaml(cls, config: ConfigType) -> InputSelect: ...
+    async def async_added_to_hass(self) -> None: ...
+    @property
+    def extra_state_attributes(self) -> dict[str, bool]: ...
+    async def async_select_option(self, option: str) -> None: ...
+    def async_select_index(self, idx: int) -> None: ...
+    def async_offset_index(self, offset: int, cycle: bool) -> None: ...
+    def async_next(self, cycle: bool) -> None: ...
+    def async_previous(self, cycle: bool) -> None: ...
+    async def async_set_options(self, options: list[str]) -> None: ...
+    async def async_update_config(self, config: ConfigType) -> None: ...

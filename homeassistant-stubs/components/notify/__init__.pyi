@@ -1,45 +1,11 @@
-from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery, template as template
-from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
-from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
-from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
-from homeassistant.util import slugify as slugify
-from homeassistant.util.yaml import load_yaml as load_yaml
+from .const import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, DOMAIN as DOMAIN, NOTIFY_SERVICE_SCHEMA as NOTIFY_SERVICE_SCHEMA, PERSISTENT_NOTIFICATION_SERVICE_SCHEMA as PERSISTENT_NOTIFICATION_SERVICE_SCHEMA, SERVICE_NOTIFY as SERVICE_NOTIFY, SERVICE_PERSISTENT_NOTIFICATION as SERVICE_PERSISTENT_NOTIFICATION
+from .legacy import BaseNotificationService as BaseNotificationService, async_reload as async_reload, async_reset_platform as async_reset_platform, async_setup_legacy as async_setup_legacy, check_templates_warn as check_templates_warn
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-_LOGGER: Any
-ATTR_DATA: str
-ATTR_MESSAGE: str
-ATTR_TARGET: str
-ATTR_TITLE: str
 ATTR_TITLE_DEFAULT: str
-DOMAIN: str
-SERVICE_NOTIFY: str
-SERVICE_PERSISTENT_NOTIFICATION: str
-NOTIFY_SERVICES: str
-CONF_FIELDS: str
 PLATFORM_SCHEMA: Any
-NOTIFY_SERVICE_SCHEMA: Any
-PERSISTENT_NOTIFICATION_SERVICE_SCHEMA: Any
 
-def _check_templates_warn(hass: HomeAssistant, tpl: template.Template) -> None: ...
-async def async_reload(hass: HomeAssistant, integration_name: str) -> None: ...
-async def async_reset_platform(hass: HomeAssistant, integration_name: str) -> None: ...
-def _async_integration_has_notify_services(hass: HomeAssistant, integration_name: str) -> bool: ...
-
-class BaseNotificationService:
-    hass: HomeAssistant
-    registered_targets: dict[str, str]
-    def send_message(self, message, **kwargs) -> None: ...
-    async def async_send_message(self, message: Any, **kwargs: Any) -> None: ...
-    async def _async_notify_message_service(self, service: ServiceCall) -> None: ...
-    _service_name: Any
-    _target_service_name_prefix: Any
-    services_dict: Any
-    async def async_setup(self, hass: HomeAssistant, service_name: str, target_service_name_prefix: str) -> None: ...
-    async def async_register_services(self) -> None: ...
-    async def async_unregister_services(self) -> None: ...
-
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

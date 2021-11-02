@@ -3,8 +3,9 @@ from .const import API_IMPERIAL as API_IMPERIAL, API_METRIC as API_METRIC, ATTRI
 from .model import AccuWeatherSensorDescription as AccuWeatherSensorDescription
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_NAME as CONF_NAME, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE
+from homeassistant.const import CONF_NAME as CONF_NAME, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -15,6 +16,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AccuWeatherSensor(CoordinatorEntity, SensorEntity):
+    _attr_attribution: Any
     coordinator: AccuWeatherDataUpdateCoordinator
     entity_description: AccuWeatherSensorDescription
     _sensor_data: Any

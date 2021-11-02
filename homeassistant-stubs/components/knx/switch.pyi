@@ -2,7 +2,7 @@ from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, DOMAIN as DOMAI
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import SwitchSchema as SwitchSchema
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.const import CONF_NAME as CONF_NAME, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -15,6 +15,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class KNXSwitch(KnxEntity, SwitchEntity, RestoreEntity):
     _device: XknxSwitch
+    _attr_entity_category: Any
     _attr_unique_id: Any
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     async def async_added_to_hass(self) -> None: ...

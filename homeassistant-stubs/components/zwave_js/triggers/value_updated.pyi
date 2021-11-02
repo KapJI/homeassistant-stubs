@@ -9,7 +9,6 @@ from zwave_js_server.event import Event as Event
 from zwave_js_server.model.node import Node as Node
 from zwave_js_server.model.value import Value as Value
 
-_LOGGER: Any
 PLATFORM_TYPE: Any
 ATTR_FROM: str
 ATTR_TO: str

@@ -11,7 +11,6 @@ from typing import Any
 
 DEFAULT_NAME: str
 SUPPORT_GROUP_LIGHT: Any
-_LOGGER: Any
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[dict[str, Any], None] = ...) -> None: ...
 

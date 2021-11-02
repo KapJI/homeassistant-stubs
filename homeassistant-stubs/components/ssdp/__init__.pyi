@@ -1,12 +1,12 @@
+from .flow import FlowDispatcher as FlowDispatcher, SSDPFlow as SSDPFlow
 from async_upnp_client.const import DeviceOrServiceType as DeviceOrServiceType, SsdpHeaders as SsdpHeaders, SsdpSource
 from async_upnp_client.ssdp_listener import SsdpDevice as SsdpDevice
 from async_upnp_client.utils import CaseInsensitiveDict
 from collections.abc import Awaitable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, MATCH_ALL as MATCH_ALL
+from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, MATCH_ALL as MATCH_ALL
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -35,11 +35,9 @@ ATTR_UPNP_MODEL_NAME: str
 ATTR_UPNP_MODEL_NUMBER: str
 ATTR_UPNP_MODEL_URL: str
 ATTR_UPNP_SERIAL: str
-ATTR_UPNP_SERVICE_LIST: str
 ATTR_UPNP_UDN: str
 ATTR_UPNP_UPC: str
 ATTR_UPNP_PRESENTATION_URL: str
-ATTR_HA_MATCHING_DOMAINS: str
 PRIMARY_MATCH_KEYS: Any
 DISCOVERY_MAPPING: Any
 SsdpChange: Any
@@ -66,6 +64,7 @@ class Scanner:
     _cancel_scan: Any
     _ssdp_listeners: Any
     _callbacks: Any
+    _flow_dispatcher: Any
     _description_cache: Any
     integration_matchers: Any
     def __init__(self, hass: HomeAssistant, integration_matchers: IntegrationMatchers) -> None: ...

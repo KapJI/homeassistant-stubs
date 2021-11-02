@@ -1,7 +1,7 @@
 from .const import NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
 from homeassistant.components.neato import NeatoHub as NeatoHub
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -34,8 +34,6 @@ class NeatoConnectedSwitch(ToggleEntity):
     def unique_id(self) -> str: ...
     @property
     def is_on(self) -> bool: ...
-    @property
-    def entity_category(self) -> str: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     def turn_on(self, **kwargs: Any) -> None: ...

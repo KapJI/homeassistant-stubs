@@ -9,7 +9,6 @@ DEFAULT_NAME: Final[str]
 SCAN_INTERVAL: Final[Any]
 DOMAIN: Final[str]
 MANUFACTURER: Final[str]
-URL: str
 API_TIMEOUT: Final[int]
 ATTR_INDEX: Final[str]
 ATTR_STATION: Final[str]

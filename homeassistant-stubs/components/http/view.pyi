@@ -4,7 +4,7 @@ from aiohttp.typedefs import LooseHeaders as LooseHeaders
 from aiohttp.web_urldispatcher import AbstractRoute as AbstractRoute
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import exceptions as exceptions
-from homeassistant.const import CONTENT_TYPE_JSON as CONTENT_TYPE_JSON
+from homeassistant.const import CONTENT_TYPE_JSON as CONTENT_TYPE_JSON, HTTP_OK as HTTP_OK, HTTP_SERVICE_UNAVAILABLE as HTTP_SERVICE_UNAVAILABLE
 from homeassistant.core import Context as Context, is_callback as is_callback
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from http import HTTPStatus

@@ -32,7 +32,6 @@ class BlockAttributeDescription:
     available: Union[Callable[[Block], bool], None]
     removal_condition: Union[Callable[[dict, Block], bool], None]
     extra_state_attributes: Union[Callable[[Block], Union[dict, None]], None]
-    entity_category: Union[str, None]
 
 class RpcAttributeDescription:
     key: str
@@ -46,8 +45,7 @@ class RpcAttributeDescription:
     default_enabled: bool
     available: Union[Callable[[dict], bool], None]
     removal_condition: Union[Callable[[dict, str], bool], None]
-    extra_state_attributes: Union[Callable[[dict, dict], Union[dict, None]], None]
-    entity_category: Union[str, None]
+    extra_state_attributes: Union[Callable[[dict], Union[dict, None]], None]
 
 class RestAttributeDescription:
     name: str
@@ -58,18 +56,18 @@ class RestAttributeDescription:
     state_class: Union[str, None]
     default_enabled: bool
     extra_state_attributes: Union[Callable[[dict], Union[dict, None]], None]
-    entity_category: Union[str, None]
 
 class ShellyBlockEntity(entity.Entity):
     wrapper: Any
     block: Any
     _name: Any
-    _attr_device_info: Any
     def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
     @property
     def name(self) -> str: ...
     @property
     def should_poll(self) -> bool: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
     @property
     def available(self) -> bool: ...
     @property
@@ -117,8 +115,6 @@ class ShellyBlockAttributeEntity(ShellyBlockEntity, entity.Entity):
     def available(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> Union[dict[str, Any], None]: ...
-    @property
-    def entity_category(self) -> Union[str, None]: ...
 
 class ShellyRestAttributeEntity(update_coordinator.CoordinatorEntity):
     wrapper: Any
@@ -126,10 +122,11 @@ class ShellyRestAttributeEntity(update_coordinator.CoordinatorEntity):
     description: Any
     _name: Any
     _last_value: Any
-    _attr_device_info: Any
     def __init__(self, wrapper: BlockDeviceWrapper, attribute: str, description: RestAttributeDescription) -> None: ...
     @property
     def name(self) -> str: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     @property
@@ -144,8 +141,6 @@ class ShellyRestAttributeEntity(update_coordinator.CoordinatorEntity):
     def unique_id(self) -> str: ...
     @property
     def extra_state_attributes(self) -> Union[dict[str, Any], None]: ...
-    @property
-    def entity_category(self) -> Union[str, None]: ...
 
 class ShellyRpcAttributeEntity(ShellyRpcEntity, entity.Entity):
     sub_key: Any
@@ -164,8 +159,6 @@ class ShellyRpcAttributeEntity(ShellyRpcEntity, entity.Entity):
     def available(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> Union[dict[str, Any], None]: ...
-    @property
-    def entity_category(self) -> Union[str, None]: ...
 
 class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity, RestoreEntity):
     sensors: Any

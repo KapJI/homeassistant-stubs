@@ -3,11 +3,9 @@ from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOS
 from abc import ABC
 from collections import OrderedDict
 from homeassistant.components.climate.const import HVAC_MODES as HVAC_MODES, HVAC_MODE_HEAT as HVAC_MODE_HEAT
-from homeassistant.components.number.const import MODE_AUTO as MODE_AUTO, MODE_BOX as MODE_BOX, MODE_SLIDER as MODE_SLIDER
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
-from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
-from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
-from typing import Any, ClassVar, Final
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
+from typing import Any, ClassVar
 
 def ga_validator(value: Any) -> Union[str, int]: ...
 
@@ -113,7 +111,7 @@ class ExposeSchema(KNXPlatformSchema):
     CONF_KNX_EXPOSE_ATTRIBUTE: str
     CONF_KNX_EXPOSE_BINARY: str
     CONF_KNX_EXPOSE_DEFAULT: str
-    EXPOSE_TIME_TYPES: Final[Any]
+    EXPOSE_TIME_TYPES: Any
     EXPOSE_TIME_SCHEMA: Any
     EXPOSE_SENSOR_SCHEMA: Any
     ENTITY_SCHEMA: Any
@@ -172,7 +170,6 @@ class NumberSchema(KNXPlatformSchema):
     CONF_MIN: str
     CONF_STEP: str
     DEFAULT_NAME: str
-    NUMBER_MODES: Final[Any]
     ENTITY_SCHEMA: Any
 
 class SceneSchema(KNXPlatformSchema):

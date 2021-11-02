@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_FILENAME as CONF_FILENAME, CONF_STRUCTURE as CONF_STRUCTURE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, dispatcher_send as dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity
 from typing import Any
 
 _CONFIGURING: Any
@@ -57,6 +57,6 @@ class NestSensorDevice(Entity):
     @property
     def unique_id(self): ...
     @property
-    def device_info(self) -> DeviceInfo: ...
+    def device_info(self): ...
     def update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...

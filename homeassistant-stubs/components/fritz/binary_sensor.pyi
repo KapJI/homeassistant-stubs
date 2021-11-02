@@ -2,7 +2,6 @@ from .common import FritzBoxBaseEntity as FritzBoxBaseEntity, FritzBoxTools as F
 from .const import DOMAIN as DOMAIN
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DEVICE_CLASS_CONNECTIVITY as DEVICE_CLASS_CONNECTIVITY, DEVICE_CLASS_PLUG as DEVICE_CLASS_PLUG, DEVICE_CLASS_UPDATE as DEVICE_CLASS_UPDATE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any

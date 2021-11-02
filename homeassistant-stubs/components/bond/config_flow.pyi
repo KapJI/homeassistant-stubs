@@ -1,10 +1,9 @@
 from .const import DOMAIN as DOMAIN
 from .utils import BondHub as BondHub
 from homeassistant import config_entries as config_entries, exceptions as exceptions
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
-from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, HTTP_UNAUTHORIZED as HTTP_UNAUTHORIZED
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
+from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
@@ -14,7 +13,6 @@ USER_SCHEMA: Any
 DISCOVERY_SCHEMA: Any
 TOKEN_SCHEMA: Any
 
-async def async_get_token(hass: HomeAssistant, host: str) -> Union[str, None]: ...
 async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> tuple[str, str]: ...
 
 class ConfigFlow(config_entries.ConfigFlow):

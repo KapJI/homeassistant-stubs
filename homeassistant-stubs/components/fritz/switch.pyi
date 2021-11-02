@@ -4,7 +4,6 @@ from collections import OrderedDict
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
@@ -58,7 +57,6 @@ class FritzBoxPortSwitch(FritzBoxBaseSwitch, SwitchEntity):
     connection_type: Any
     port_mapping: Any
     _idx: Any
-    _attr_entity_category: Any
     def __init__(self, fritzbox_tools: FritzBoxTools, device_friendly_name: str, port_mapping: Union[dict[str, Any], None], port_name: str, idx: int, connection_type: str) -> None: ...
     _is_available: bool
     _attr_is_on: Any
@@ -70,7 +68,6 @@ class FritzBoxDeflectionSwitch(FritzBoxBaseSwitch, SwitchEntity):
     dict_of_deflection: Any
     _attributes: Any
     id: Any
-    _attr_entity_category: Any
     def __init__(self, fritzbox_tools: FritzBoxTools, device_friendly_name: str, dict_of_deflection: Any) -> None: ...
     _is_available: bool
     _attr_is_on: Any
@@ -82,7 +79,6 @@ class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
     _attr_is_on: bool
     _name: Any
     _attr_unique_id: Any
-    _attr_entity_category: Any
     def __init__(self, fritzbox_tools: FritzBoxTools, device: FritzDevice) -> None: ...
     async def async_process_update(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
@@ -93,7 +89,6 @@ class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
 class FritzBoxWifiSwitch(FritzBoxBaseSwitch, SwitchEntity):
     _fritzbox_tools: Any
     _attributes: Any
-    _attr_entity_category: Any
     _network_num: Any
     def __init__(self, fritzbox_tools: FritzBoxTools, device_friendly_name: str, network_num: int, network_name: str) -> None: ...
     _is_available: bool

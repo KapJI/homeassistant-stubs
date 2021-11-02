@@ -25,7 +25,6 @@ async def _async_setup_services(hass: HomeAssistant) -> None: ...
 class SynoApi:
     _hass: Any
     _entry: Any
-    config_url: Any
     dsm: Any
     information: Any
     network: Any

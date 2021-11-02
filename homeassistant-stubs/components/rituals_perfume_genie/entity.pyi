@@ -1,6 +1,5 @@
 from . import RitualsDataUpdateCoordinator as RitualsDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyrituals import Diffuser as Diffuser
 from typing import Any

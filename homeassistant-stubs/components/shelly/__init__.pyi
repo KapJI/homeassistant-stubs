@@ -1,4 +1,4 @@
-from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLOCK as BLOCK, CONF_COAP_PORT as CONF_COAP_PORT, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DEFAULT_COAP_PORT as DEFAULT_COAP_PORT, DEVICE as DEVICE, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, POLLING_TIMEOUT_SEC as POLLING_TIMEOUT_SEC, REST as REST, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC as RPC, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, SLEEP_PERIOD_MULTIPLIER as SLEEP_PERIOD_MULTIPLIER, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
+from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLOCK as BLOCK, CONF_COAP_PORT as CONF_COAP_PORT, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DEFAULT_COAP_PORT as DEFAULT_COAP_PORT, DEVICE as DEVICE, DOMAIN as DOMAIN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, POLLING_TIMEOUT_SEC as POLLING_TIMEOUT_SEC, REST as REST, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC as RPC, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, SLEEP_PERIOD_MULTIPLIER as SLEEP_PERIOD_MULTIPLIER, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
 from .utils import get_block_device_name as get_block_device_name, get_block_device_sleep_period as get_block_device_sleep_period, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_rpc_device_name as get_rpc_device_name
 from aioshelly.block_device import BlockDevice
 from aioshelly.rpc_device import RpcDevice
@@ -7,7 +7,6 @@ from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as C
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client, device_registry as device_registry, update_coordinator as update_coordinator
-from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final
 
@@ -29,13 +28,8 @@ class BlockDeviceWrapper(update_coordinator.DataUpdateCoordinator):
     hass: Any
     entry: Any
     device: Any
-    _debounced_reload: Any
-    _last_cfg_changed: Any
-    _last_mode: Any
-    _last_effect: Any
     _last_input_events_count: Any
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: BlockDevice) -> None: ...
-    async def _async_reload_entry(self) -> None: ...
     def _async_device_updates_handler(self) -> None: ...
     async def _async_update_data(self) -> None: ...
     @property
@@ -61,10 +55,8 @@ class RpcDeviceWrapper(update_coordinator.DataUpdateCoordinator):
     device_id: Any
     entry: Any
     device: Any
-    _debounced_reload: Any
     _last_event: Any
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: RpcDevice) -> None: ...
-    async def _async_reload_entry(self) -> None: ...
     def _async_device_updates_handler(self) -> None: ...
     async def _async_update_data(self) -> None: ...
     @property

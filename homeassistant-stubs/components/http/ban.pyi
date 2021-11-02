@@ -3,6 +3,7 @@ from aiohttp.web import Application as Application, Request as Request, StreamRe
 from collections.abc import Awaitable, Callable as Callable
 from datetime import datetime
 from homeassistant.config import load_yaml_config_file as load_yaml_config_file
+from homeassistant.const import HTTP_BAD_REQUEST as HTTP_BAD_REQUEST
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import yaml as yaml

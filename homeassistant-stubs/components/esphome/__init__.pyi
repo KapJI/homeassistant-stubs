@@ -1,9 +1,10 @@
 from .entry_data import RuntimeEntryData as RuntimeEntryData
-from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
+from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
+from collections.abc import Awaitable
 from homeassistant import const as const
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
@@ -16,6 +17,7 @@ from homeassistant.helpers.service import async_set_service_schema as async_set_
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import Template as Template
 from typing import Any, Callable, NamedTuple, TypeVar, overload
+from zeroconf import RecordUpdate as RecordUpdate, RecordUpdateListener, Zeroconf as Zeroconf
 
 DOMAIN: str
 CONF_NOISE_PSK: str
@@ -35,6 +37,39 @@ class DomainData:
     def get(cls, hass: HomeAssistant) -> _T: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+
+class ReconnectLogic(RecordUpdateListener):
+    _hass: Any
+    _cli: Any
+    _entry: Any
+    _host: Any
+    _on_login: Any
+    _zc: Any
+    _connected: bool
+    _connected_lock: Any
+    _zc_lock: Any
+    _zc_listening: bool
+    _reconnect_event: Any
+    _loop_task: Any
+    _tries: int
+    _tries_lock: Any
+    _wait_task: Any
+    _wait_task_lock: Any
+    def __init__(self, hass: HomeAssistant, cli: APIClient, entry: ConfigEntry, host: str, on_login: Callable[[], Awaitable[None]], zc: Zeroconf) -> None: ...
+    @property
+    def _entry_data(self) -> Union[RuntimeEntryData, None]: ...
+    async def _on_disconnect(self) -> None: ...
+    async def _wait_and_start_reconnect(self) -> None: ...
+    async def _try_connect(self) -> None: ...
+    async def _reconnect_once(self) -> None: ...
+    async def _reconnect_loop(self) -> None: ...
+    async def start(self) -> None: ...
+    async def stop(self) -> None: ...
+    async def _start_zc_listen(self) -> None: ...
+    async def _stop_zc_listen(self) -> None: ...
+    def stop_callback(self) -> None: ...
+    def async_update_records(self, zc: Zeroconf, now: float, records: list[RecordUpdate]) -> None: ...
+
 async def _async_setup_device_registry(hass: HomeAssistant, entry: ConfigEntry, device_info: EsphomeDeviceInfo) -> str: ...
 
 class ServiceMetadata(NamedTuple):
@@ -71,9 +106,6 @@ class EsphomeEnumMapper:
     def from_esphome(self, value: Union[_EnumT, None]) -> Union[_ValT, None]: ...
     def from_hass(self, value: _ValT) -> _EnumT: ...
 
-ICON_SCHEMA: Any
-ENTITY_CATEGORIES: EsphomeEnumMapper[EntityCategory, Union[str, None]]
-
 class EsphomeEntity(Entity):
     _entry_data: Any
     _component_key: Any
@@ -105,10 +137,6 @@ class EsphomeEntity(Entity):
     @property
     def name(self) -> str: ...
     @property
-    def icon(self) -> Union[str, None]: ...
-    @property
     def should_poll(self) -> bool: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
-    @property
-    def entity_category(self) -> Union[str, None]: ...

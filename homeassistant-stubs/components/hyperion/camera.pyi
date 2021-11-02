@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from hyperion import client as client
 from typing import Any
 
+_LOGGER: Any
 IMAGE_STREAM_JPG_SENTINEL: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

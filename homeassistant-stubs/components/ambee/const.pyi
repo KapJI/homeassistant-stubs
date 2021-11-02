@@ -5,6 +5,7 @@ from typing import Any, Final
 DOMAIN: Final[str]
 LOGGER: Any
 SCAN_INTERVAL: Any
+ATTR_ENTRY_TYPE: Final[str]
 ENTRY_TYPE_SERVICE: Final[str]
 DEVICE_CLASS_AMBEE_RISK: Final[str]
 SERVICE_AIR_QUALITY: Final[str]

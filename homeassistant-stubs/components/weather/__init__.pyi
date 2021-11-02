@@ -33,6 +33,7 @@ ATTR_FORECAST_TEMP_LOW: Final[str]
 ATTR_FORECAST_TIME: Final[str]
 ATTR_FORECAST_WIND_BEARING: Final[str]
 ATTR_FORECAST_WIND_SPEED: Final[str]
+ATTR_WEATHER_ATTRIBUTION: str
 ATTR_WEATHER_HUMIDITY: str
 ATTR_WEATHER_OZONE: str
 ATTR_WEATHER_PRESSURE: str
@@ -63,6 +64,7 @@ class WeatherEntityDescription(EntityDescription): ...
 
 class WeatherEntity(Entity):
     entity_description: WeatherEntityDescription
+    _attr_attribution: Union[str, None]
     _attr_condition: Union[str, None]
     _attr_forecast: Union[list[Forecast], None]
     _attr_humidity: Union[float, None]
@@ -89,6 +91,8 @@ class WeatherEntity(Entity):
     def wind_bearing(self) -> Union[float, str, None]: ...
     @property
     def ozone(self) -> Union[float, None]: ...
+    @property
+    def attribution(self) -> Union[str, None]: ...
     @property
     def visibility(self) -> Union[float, None]: ...
     @property

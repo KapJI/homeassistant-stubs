@@ -1,6 +1,5 @@
 from .const import DATA_NEST as DATA_NEST, DOMAIN as DOMAIN
 from homeassistant.components.camera import Camera as Camera, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SUPPORT_ON_OFF as SUPPORT_ON_OFF
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
 
@@ -27,7 +26,7 @@ class NestCamera(Camera):
     @property
     def unique_id(self): ...
     @property
-    def device_info(self) -> DeviceInfo: ...
+    def device_info(self): ...
     @property
     def should_poll(self): ...
     @property

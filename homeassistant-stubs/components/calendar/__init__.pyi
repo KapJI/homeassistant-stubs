@@ -1,7 +1,7 @@
 from aiohttp import web
 from homeassistant.components import http as http
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import HTTP_BAD_REQUEST as HTTP_BAD_REQUEST, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, time_period_str as time_period_str
 from homeassistant.helpers.entity import Entity as Entity

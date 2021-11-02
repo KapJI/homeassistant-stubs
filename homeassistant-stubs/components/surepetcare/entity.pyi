@@ -3,7 +3,6 @@ from . import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .const import DOMAIN as DOMAIN
 from abc import abstractmethod
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from surepy.entities import SurepyEntity as SurepyEntity
 from typing import Any

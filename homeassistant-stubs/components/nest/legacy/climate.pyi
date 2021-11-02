@@ -3,7 +3,6 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, PLA
 from homeassistant.components.climate.const import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, CURRENT_HVAC_COOL as CURRENT_HVAC_COOL, CURRENT_HVAC_HEAT as CURRENT_HVAC_HEAT, CURRENT_HVAC_IDLE as CURRENT_HVAC_IDLE, FAN_AUTO as FAN_AUTO, FAN_ON as FAN_ON, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_COOL as HVAC_MODE_COOL, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE, SUPPORT_FAN_MODE as SUPPORT_FAN_MODE, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE, SUPPORT_TARGET_TEMPERATURE_RANGE as SUPPORT_TARGET_TEMPERATURE_RANGE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from typing import Any
 
 _LOGGER: Any
@@ -53,7 +52,7 @@ class NestThermostat(ClimateEntity):
     @property
     def unique_id(self): ...
     @property
-    def device_info(self) -> DeviceInfo: ...
+    def device_info(self): ...
     @property
     def name(self): ...
     @property

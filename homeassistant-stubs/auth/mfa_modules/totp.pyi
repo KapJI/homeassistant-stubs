@@ -40,7 +40,7 @@ class TotpAuthModule(MultiFactorAuthModule):
 class TotpSetupFlow(SetupFlow):
     _auth_module: Any
     _user: Any
-    _ota_secret: str
+    _ota_secret: Any
     _url: Any
     _image: Any
     def __init__(self, auth_module: TotpAuthModule, setup_schema: vol.Schema, user: User) -> None: ...

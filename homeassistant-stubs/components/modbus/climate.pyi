@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
 from .base_platform import BaseStructPlatform as BaseStructPlatform
-from .const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_WRITE_REGISTERS as CALL_TYPE_WRITE_REGISTERS, CONF_CLIMATES as CONF_CLIMATES, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_STEP as CONF_STEP, CONF_TARGET_TEMP as CONF_TARGET_TEMP, DataType as DataType
+from .const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_WRITE_REGISTERS as CALL_TYPE_WRITE_REGISTERS, CONF_CLIMATES as CONF_CLIMATES, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_STEP as CONF_STEP, CONF_TARGET_TEMP as CONF_TARGET_TEMP, DATA_TYPE_INT16 as DATA_TYPE_INT16, DATA_TYPE_INT32 as DATA_TYPE_INT32, DATA_TYPE_INT64 as DATA_TYPE_INT64, DATA_TYPE_UINT16 as DATA_TYPE_UINT16, DATA_TYPE_UINT32 as DATA_TYPE_UINT32, DATA_TYPE_UINT64 as DATA_TYPE_UINT64
 from .modbus import ModbusHub as ModbusHub
 from datetime import datetime
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
@@ -13,6 +13,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from typing import Any
 
 PARALLEL_UPDATES: int
+_LOGGER: Any
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 

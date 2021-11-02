@@ -1,7 +1,7 @@
 from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, DOMAIN as DOMAIN
 from .utils import get_block_device_name as get_block_device_name, get_block_device_sleep_period as get_block_device_sleep_period, get_coap_context as get_coap_context, get_info_auth as get_info_auth, get_info_gen as get_info_gen, get_model_name as get_model_name, get_rpc_device_name as get_rpc_device_name
 from homeassistant import config_entries as config_entries
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, HTTP_UNAUTHORIZED as HTTP_UNAUTHORIZED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client

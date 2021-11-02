@@ -3,7 +3,7 @@ from .knx_entity import KnxEntity as KnxEntity
 from .schema import ClimateSchema as ClimateSchema
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import CURRENT_HVAC_IDLE as CURRENT_HVAC_IDLE, CURRENT_HVAC_OFF as CURRENT_HVAC_OFF, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -22,7 +22,6 @@ def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
 class KNXClimate(KnxEntity, ClimateEntity):
     _device: XknxClimate
     _attr_temperature_unit: Any
-    _attr_entity_category: Any
     _attr_supported_features: Any
     _attr_target_temperature_step: Any
     _attr_unique_id: Any

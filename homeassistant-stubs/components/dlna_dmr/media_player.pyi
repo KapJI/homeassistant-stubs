@@ -1,5 +1,5 @@
 import asyncio
-from .const import CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DOMAIN as DOMAIN, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP
+from .const import CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP
 from .data import EventListenAddr as EventListenAddr, get_domain_data as get_domain_data
 from async_upnp_client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from async_upnp_client.profiles.dlna import DmrDevice
@@ -13,7 +13,6 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_NAME as C
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, Callable, TypeVar
 
 PARALLEL_UPDATES: int
@@ -21,7 +20,6 @@ CONF_LISTEN_IP: str
 Func = TypeVar('Func', bound=Callable[..., Any])
 
 def catch_request_errors(func: Func) -> Func: ...
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DlnaDmrEntity(MediaPlayerEntity):
@@ -32,6 +30,7 @@ class DlnaDmrEntity(MediaPlayerEntity):
     location: str
     _device_lock: asyncio.Lock
     _device: Union[DmrDevice, None]
+    _remove_ssdp_callbacks: list[Callable]
     check_available: bool
     _bootid: Union[int, None]
     _attr_should_poll: bool

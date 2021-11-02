@@ -8,6 +8,7 @@ from collections.abc import Callable as Callable
 from typing import Any
 
 POLICY_SCHEMA: Any
+_LOGGER: Any
 
 class AbstractPermissions:
     _cached_entity_func: Union[Callable[[str, str], bool], None]

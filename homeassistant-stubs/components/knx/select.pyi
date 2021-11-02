@@ -2,7 +2,7 @@ from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDR
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import SelectSchema as SelectSchema
 from homeassistant.components.select import SelectEntity as SelectEntity
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import CONF_NAME as CONF_NAME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -19,7 +19,6 @@ class KNXSelect(KnxEntity, SelectEntity, RestoreEntity):
     _option_payloads: Any
     _attr_options: Any
     _attr_current_option: Any
-    _attr_entity_category: Any
     _attr_unique_id: Any
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     async def async_added_to_hass(self) -> None: ...

@@ -4,7 +4,7 @@ from .schema import CoverSchema as CoverSchema
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, DEVICE_CLASS_BLIND as DEVICE_CLASS_BLIND, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_CLOSE_TILT as SUPPORT_CLOSE_TILT, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_OPEN_TILT as SUPPORT_OPEN_TILT, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION, SUPPORT_SET_TILT_POSITION as SUPPORT_SET_TILT_POSITION, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_STOP_TILT as SUPPORT_STOP_TILT
-from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_utc_time_change as async_track_utc_time_change
@@ -19,7 +19,6 @@ def _async_migrate_unique_id(hass: HomeAssistant, platform_config: list[ConfigTy
 class KNXCover(KnxEntity, CoverEntity):
     _device: XknxCover
     _unsubscribe_auto_updater: Any
-    _attr_entity_category: Any
     _attr_device_class: Any
     _attr_supported_features: Any
     _attr_unique_id: Any

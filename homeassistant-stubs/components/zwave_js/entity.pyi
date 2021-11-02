@@ -16,7 +16,6 @@ EVENT_DEAD: str
 EVENT_ALIVE: str
 
 class ZWaveBaseEntity(Entity):
-    _attr_should_poll: bool
     config_entry: Any
     client: Any
     info: Any
@@ -36,3 +35,5 @@ class ZWaveBaseEntity(Entity):
     def _node_status_alive_or_dead(self, event_data: dict) -> None: ...
     def _value_changed(self, event_data: dict) -> None: ...
     def get_zwave_value(self, value_property: Union[str, int], command_class: Union[int, None] = ..., endpoint: Union[int, None] = ..., value_property_key: Union[int, None] = ..., add_to_watched_value_ids: bool = ..., check_all_endpoints: bool = ...) -> Union[ZwaveValue, None]: ...
+    @property
+    def should_poll(self) -> bool: ...

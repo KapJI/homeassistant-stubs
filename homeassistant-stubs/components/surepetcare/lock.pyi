@@ -9,6 +9,8 @@ from surepy.entities import SurepyEntity as SurepyEntity
 from surepy.enums import LockState
 from typing import Any
 
+_LOGGER: Any
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SurePetcareLock(SurePetcareEntity, LockEntity):

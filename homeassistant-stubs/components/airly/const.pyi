@@ -26,3 +26,4 @@ MANUFACTURER: Final[str]
 MAX_UPDATE_INTERVAL: Final[int]
 MIN_UPDATE_INTERVAL: Final[int]
 NO_AIRLY_SENSORS: Final[str]
+URL: str

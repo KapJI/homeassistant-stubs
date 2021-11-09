@@ -17,7 +17,6 @@ ATTR_PIN_NAME: str
 ATTR_RF_JAMMING: str
 ATTR_WALL_POWER_LEVEL: str
 ATTR_WIFI_STRENGTH: str
-DEFAULT_ERRORS_TO_ACCOMMODATE: int
 VOLUME_STRING_MAP: Any
 STATE_MAP_FROM_REST_API: Any
 STATE_MAP_FROM_WEBSOCKET_EVENT: Any
@@ -26,7 +25,6 @@ WEBSOCKET_EVENTS_TO_LISTEN_FOR: Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SimpliSafeAlarm(SimpliSafeEntity, AlarmControlPanelEntity):
-    _errors: int
     _attr_code_format: Any
     _attr_supported_features: Any
     _last_event: Any

@@ -1,13 +1,11 @@
 from .const import CONF_PLACE_ID as CONF_PLACE_ID, CONF_SERVICE_ID as CONF_SERVICE_ID, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN
 from aiorecollect.client import PickupType as PickupType
-from datetime import date, datetime
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_FRIENDLY_NAME as CONF_FRIENDLY_NAME, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP
+from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_FRIENDLY_NAME as CONF_FRIENDLY_NAME, DEVICE_CLASS_DATE as DEVICE_CLASS_DATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from homeassistant.util.dt import as_utc as as_utc
 from typing import Any
 
 ATTR_PICKUP_TYPES: str
@@ -19,7 +17,6 @@ DEFAULT_NAME: str
 PLATFORM_SCHEMA: Any
 
 def async_get_pickup_type_names(entry: ConfigEntry, pickup_types: list[PickupType]) -> list[str]: ...
-def async_get_utc_midnight(target_date: date) -> datetime: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ReCollectWasteSensor(CoordinatorEntity, SensorEntity):

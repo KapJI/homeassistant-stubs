@@ -33,6 +33,7 @@ ATTR_SYSTEM_ID: str
 ATTR_TIMESTAMP: str
 DEFAULT_ENTITY_MODEL: str
 DEFAULT_ENTITY_NAME: str
+DEFAULT_REST_API_ERROR_COUNT: int
 DEFAULT_SCAN_INTERVAL: Any
 DEFAULT_SOCKET_MIN_RETRY: int
 DISPATCHER_TOPIC_WEBSOCKET_EVENT: str
@@ -70,6 +71,7 @@ class SimpliSafe:
     async def async_update(self) -> None: ...
 
 class SimpliSafeEntity(CoordinatorEntity):
+    _rest_api_errors: int
     _attr_extra_state_attributes: Any
     _attr_device_info: Any
     _attr_name: Any

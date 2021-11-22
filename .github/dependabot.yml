@@ -6,13 +6,7 @@ updates:
       interval: daily
     ignore:
       - dependency-name: "homeassistant"
-    labels:
-      - "dependencies"
-      - "automerge"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: daily
-    labels:
-      - "dependencies"
-      - "automerge"

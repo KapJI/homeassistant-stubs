@@ -38,5 +38,6 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           poetry run python update_stubs.py
         env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}

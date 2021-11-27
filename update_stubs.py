@@ -16,6 +16,7 @@ FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
 BLACKLISTED_VERSIONS = [
     "2021.10.0b8",  # doesn't exist on PyPI
 ]
+REPO_NAME = "KapJI/homeassistant-stubs"
 
 
 def main() -> int:
@@ -99,7 +100,20 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
     subprocess.run(
         ["git", "commit", "-m", f"Generate v{version}"], cwd=repo_root, check=True
     )
+
+    print("Disabling branch protection...")
+    github = Github(os.environ.get("ADMIN_TOKEN"))
+    repo = github.get_repo(REPO_NAME)
+    branch = repo.get_branch("main")
+    required_checks = branch.get_required_status_checks()
+    branch.edit_required_status_checks(required_checks.strict, [])
+
+    print("Pushing new commit...")
     subprocess.run(["git", "push"], cwd=repo_root, check=True)
+
+    print("Re-enabling branch protection...")
+    branch.edit_required_status_checks(required_checks.strict, required_checks.contexts)
+
     create_github_release(version)
 
     print("Publishing package...")
@@ -116,9 +130,10 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
 
 def create_github_release(version: str) -> None:
     """Create new release on Github."""
+    print("Creating release...")
     github_token = os.environ.get("GITHUB_TOKEN")
     github = Github(github_token)
-    repo = github.get_repo("KapJI/homeassistant-stubs")
+    repo = github.get_repo(REPO_NAME)
     repo.create_git_release(
         tag=version,
         name=version,

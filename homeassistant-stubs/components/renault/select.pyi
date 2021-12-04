@@ -1,5 +1,5 @@
 from .const import DEVICE_CLASS_CHARGE_MODE as DEVICE_CLASS_CHARGE_MODE, DOMAIN as DOMAIN
-from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultEntityDescription as RenaultEntityDescription
+from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
 from .renault_hub import RenaultHub as RenaultHub
 from collections.abc import Callable as Callable
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
@@ -14,7 +14,7 @@ class RenaultSelectRequiredKeysMixin:
     icon_lambda: Callable[[RenaultSelectEntity], str]
     options: list[str]
 
-class RenaultSelectEntityDescription(SelectEntityDescription, RenaultEntityDescription, RenaultSelectRequiredKeysMixin): ...
+class RenaultSelectEntityDescription(SelectEntityDescription, RenaultDataEntityDescription, RenaultSelectRequiredKeysMixin): ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

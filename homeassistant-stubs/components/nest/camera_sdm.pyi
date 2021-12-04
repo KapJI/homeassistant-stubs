@@ -1,7 +1,6 @@
 import datetime
 from .const import DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
-from PIL import Image
 from collections.abc import Callable as Callable
 from google_nest_sdm.camera_traits import EventImageGenerator, RtspStream as RtspStream
 from google_nest_sdm.device import Device as Device
@@ -19,14 +18,10 @@ from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
 
 _LOGGER: Any
+PLACEHOLDER: Any
 STREAM_EXPIRATION_BUFFER: Any
-PLACEHOLDER_ELLIPSE_BLUR: float
-PLACEHOLDER_ELLIPSE_XY: Any
-PLACEHOLDER_OVERLAY_COLOR: str
-PLACEHOLDER_ELLIPSE_OPACITY: int
 
 async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def placeholder_image(width: Union[int, None] = ..., height: Union[int, None] = ...) -> Image: ...
 
 class NestCamera(Camera):
     _device: Any
@@ -36,7 +31,8 @@ class NestCamera(Camera):
     _event_id: Any
     _event_image_bytes: Any
     _event_image_cleanup_unsub: Any
-    is_streaming: Any
+    _attr_is_streaming: Any
+    _placeholder_image: Any
     def __init__(self, device: Device) -> None: ...
     @property
     def should_poll(self) -> bool: ...

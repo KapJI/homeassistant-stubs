@@ -1,0 +1,9 @@
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from typing import Any
+
+_LOGGER: Any
+
+class WriteError(HomeAssistantError): ...
+
+def write_utf8_file_atomic(filename: str, utf8_data: str, private: bool = ...) -> None: ...
+def write_utf8_file(filename: str, utf8_data: str, private: bool = ...) -> None: ...

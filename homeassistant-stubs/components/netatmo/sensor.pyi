@@ -1,11 +1,11 @@
 import pyatmo
-from .const import CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SIGNAL_NAME as SIGNAL_NAME, TYPE_WEATHER as TYPE_WEATHER
-from .data_handler import HOMECOACH_DATA_CLASS_NAME as HOMECOACH_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler, PUBLICDATA_DATA_CLASS_NAME as PUBLICDATA_DATA_CLASS_NAME, WEATHERSTATION_DATA_CLASS_NAME as WEATHERSTATION_DATA_CLASS_NAME
+from .const import CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_BATTERY as NETATMO_CREATE_BATTERY, SIGNAL_NAME as SIGNAL_NAME, TYPE_WEATHER as TYPE_WEATHER
+from .data_handler import HOMECOACH_DATA_CLASS_NAME as HOMECOACH_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, PUBLICDATA_DATA_CLASS_NAME as PUBLICDATA_DATA_CLASS_NAME, WEATHERSTATION_DATA_CLASS_NAME as WEATHERSTATION_DATA_CLASS_NAME
 from .helper import NetatmoArea as NetatmoArea
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_CO2 as DEVICE_CLASS_CO2, DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_PRESSURE as DEVICE_CLASS_PRESSURE, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, LENGTH_MILLIMETERS as LENGTH_MILLIMETERS, PERCENTAGE as PERCENTAGE, PRESSURE_MBAR as PRESSURE_MBAR, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, SOUND_PRESSURE_DB as SOUND_PRESSURE_DB, SPEED_KILOMETERS_PER_HOUR as SPEED_KILOMETERS_PER_HOUR, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, LENGTH_MILLIMETERS as LENGTH_MILLIMETERS, PERCENTAGE as PERCENTAGE, PRESSURE_MBAR as PRESSURE_MBAR, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, SOUND_PRESSURE_DB as SOUND_PRESSURE_DB, SPEED_KILOMETERS_PER_HOUR as SPEED_KILOMETERS_PER_HOUR, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.device_registry import async_entries_for_config_entry as async_entries_for_config_entry
@@ -56,6 +56,22 @@ class NetatmoSensor(NetatmoBase, SensorEntity):
     _attr_native_value: Any
     def async_update_callback(self) -> None: ...
 
+class NetatmoClimateBatterySensor(NetatmoBase, SensorEntity):
+    entity_description: NetatmoSensorEntityDescription
+    _module: Any
+    _id: Any
+    _attr_name: Any
+    _state_class_name: Any
+    _room_id: Any
+    _model: Any
+    _attr_unique_id: Any
+    def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
+    _attr_available: bool
+    _attr_native_value: Any
+    def async_update_callback(self) -> None: ...
+    def _process_battery_state(self) -> Union[int, None]: ...
+
+def process_battery_percentage(data: str) -> int: ...
 def fix_angle(angle: int) -> int: ...
 def process_angle(angle: int) -> str: ...
 def process_battery(data: int, model: str) -> str: ...

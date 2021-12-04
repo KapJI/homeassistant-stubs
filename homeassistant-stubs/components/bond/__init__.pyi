@@ -1,7 +1,7 @@
 from .const import BPUP_SUBS as BPUP_SUBS, BRIDGE_MAKE as BRIDGE_MAKE, DOMAIN as DOMAIN, HUB as HUB
 from .utils import BondHub as BondHub
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_HOST as CONF_HOST, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_HOST as CONF_HOST, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr

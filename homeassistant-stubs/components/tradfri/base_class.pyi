@@ -1,6 +1,7 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SIGNAL_GW as SIGNAL_GW
 from collections.abc import Callable as Callable
 from homeassistant.core import callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
@@ -37,7 +38,10 @@ class TradfriBaseClass(Entity):
 
 class TradfriBaseDevice(TradfriBaseClass):
     _attr_available: Any
+    _hub_available: bool
     def __init__(self, device: Device, api: Callable[[Union[Command, list[Command]]], Any], gateway_id: str) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    def set_hub_available(self, available: bool) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     def _refresh(self, device: Device, write_ha: bool = ...) -> None: ...

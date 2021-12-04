@@ -1,4 +1,4 @@
-from .const import DATA_ELGATO_CLIENT as DATA_ELGATO_CLIENT, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -1,6 +1,5 @@
 from .const import DOMAIN as DOMAIN, SENSOR as SENSOR
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
-from homeassistant.components.network.const import PUBLIC_TARGET_IP as PUBLIC_TARGET_IP
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME

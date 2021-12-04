@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .entity import LookinCoordinatorEntity as LookinCoordinatorEntity
 from .models import LookinData as LookinData
 from aiolookin import Climate, MeteoSensor as MeteoSensor
+from collections.abc import Callable as Callable
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MIDDLE as FAN_MIDDLE, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_COOL as HVAC_MODE_COOL, HVAC_MODE_DRY as HVAC_MODE_DRY, HVAC_MODE_FAN_ONLY as HVAC_MODE_FAN_ONLY, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, SUPPORT_FAN_MODE as SUPPORT_FAN_MODE, SUPPORT_SWING_MODE as SUPPORT_SWING_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE, SWING_BOTH as SWING_BOTH, SWING_OFF as SWING_OFF
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

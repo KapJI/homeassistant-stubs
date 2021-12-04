@@ -1,10 +1,13 @@
 from . import entity_registry as entity_registry
 from .debounce import Debouncer as Debouncer
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import RequiredParameterMissing as RequiredParameterMissing
+from homeassistant.helpers import storage as storage
+from homeassistant.helpers.frame import report as report
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, NamedTuple
 
@@ -12,28 +15,38 @@ _LOGGER: Any
 DATA_REGISTRY: str
 EVENT_DEVICE_REGISTRY_UPDATED: str
 STORAGE_KEY: str
-STORAGE_VERSION: int
+STORAGE_VERSION_MAJOR: int
+STORAGE_VERSION_MINOR: int
 SAVE_DELAY: int
 CLEANUP_DELAY: int
 CONNECTION_NETWORK_MAC: str
 CONNECTION_UPNP: str
 CONNECTION_ZIGBEE: str
-DISABLED_CONFIG_ENTRY: str
-DISABLED_INTEGRATION: str
-DISABLED_USER: str
 ORPHANED_DEVICE_KEEP_SECONDS: Any
 
 class _DeviceIndex(NamedTuple):
     identifiers: dict[tuple[str, str], str]
     connections: dict[tuple[str, str], str]
 
+class DeviceEntryDisabler(StrEnum):
+    CONFIG_ENTRY: str
+    INTEGRATION: str
+    USER: str
+
+DISABLED_CONFIG_ENTRY: Any
+DISABLED_INTEGRATION: Any
+DISABLED_USER: Any
+
+class DeviceEntryType(StrEnum):
+    SERVICE: str
+
 class DeviceEntry:
     area_id: Union[str, None]
     config_entries: set[str]
     configuration_url: Union[str, None]
     connections: set[tuple[str, str]]
-    disabled_by: Union[str, None]
-    entry_type: Union[str, None]
+    disabled_by: Union[DeviceEntryDisabler, None]
+    entry_type: Union[DeviceEntryType, None]
     id: str
     identifiers: set[tuple[str, str]]
     manufacturer: Union[str, None]
@@ -68,6 +81,9 @@ class DeletedDeviceEntry:
 def format_mac(mac: str) -> str: ...
 def _async_get_device_id_from_index(devices_index: _DeviceIndex, identifiers: set[tuple[str, str]], connections: Union[set[tuple[str, str]], None]) -> Union[str, None]: ...
 
+class DeviceRegistryStore(storage.Store):
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
+
 class DeviceRegistry:
     devices: dict[str, DeviceEntry]
     deleted_devices: dict[str, DeletedDeviceEntry]
@@ -84,9 +100,9 @@ class DeviceRegistry:
     def _update_device(self, old_device: DeviceEntry, new_device: DeviceEntry) -> None: ...
     def _clear_index(self) -> None: ...
     def _rebuild_index(self) -> None: ...
-    def async_get_or_create(self, config_entry_id: str, *, configuration_url: Union[str, None, UndefinedType] = ..., connections: Union[set[tuple[str, str]], None] = ..., default_manufacturer: Union[str, None, UndefinedType] = ..., default_model: Union[str, None, UndefinedType] = ..., default_name: Union[str, None, UndefinedType] = ..., disabled_by: Union[str, None, UndefinedType] = ..., entry_type: Union[str, None, UndefinedType] = ..., identifiers: Union[set[tuple[str, str]], None] = ..., manufacturer: Union[str, None, UndefinedType] = ..., model: Union[str, None, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., suggested_area: Union[str, None, UndefinedType] = ..., sw_version: Union[str, None, UndefinedType] = ..., via_device: Union[tuple[str, str], None] = ...) -> DeviceEntry: ...
-    def async_update_device(self, device_id: str, *, add_config_entry_id: Union[str, UndefinedType] = ..., area_id: Union[str, None, UndefinedType] = ..., configuration_url: Union[str, None, UndefinedType] = ..., disabled_by: Union[str, None, UndefinedType] = ..., manufacturer: Union[str, None, UndefinedType] = ..., model: Union[str, None, UndefinedType] = ..., name_by_user: Union[str, None, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., new_identifiers: Union[set[tuple[str, str]], UndefinedType] = ..., remove_config_entry_id: Union[str, UndefinedType] = ..., suggested_area: Union[str, None, UndefinedType] = ..., sw_version: Union[str, None, UndefinedType] = ..., via_device_id: Union[str, None, UndefinedType] = ...) -> Union[DeviceEntry, None]: ...
-    def _async_update_device(self, device_id: str, *, add_config_entry_id: Union[str, UndefinedType] = ..., area_id: Union[str, None, UndefinedType] = ..., configuration_url: Union[str, None, UndefinedType] = ..., disabled_by: Union[str, None, UndefinedType] = ..., entry_type: Union[str, None, UndefinedType] = ..., manufacturer: Union[str, None, UndefinedType] = ..., merge_connections: Union[set[tuple[str, str]], UndefinedType] = ..., merge_identifiers: Union[set[tuple[str, str]], UndefinedType] = ..., model: Union[str, None, UndefinedType] = ..., name_by_user: Union[str, None, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., new_identifiers: Union[set[tuple[str, str]], UndefinedType] = ..., remove_config_entry_id: Union[str, UndefinedType] = ..., suggested_area: Union[str, None, UndefinedType] = ..., sw_version: Union[str, None, UndefinedType] = ..., via_device_id: Union[str, None, UndefinedType] = ...) -> Union[DeviceEntry, None]: ...
+    def async_get_or_create(self, config_entry_id: str, *, configuration_url: Union[str, None, UndefinedType] = ..., connections: Union[set[tuple[str, str]], None] = ..., default_manufacturer: Union[str, None, UndefinedType] = ..., default_model: Union[str, None, UndefinedType] = ..., default_name: Union[str, None, UndefinedType] = ..., disabled_by: Union[DeviceEntryDisabler, None, UndefinedType] = ..., entry_type: Union[DeviceEntryType, None, UndefinedType] = ..., identifiers: Union[set[tuple[str, str]], None] = ..., manufacturer: Union[str, None, UndefinedType] = ..., model: Union[str, None, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., suggested_area: Union[str, None, UndefinedType] = ..., sw_version: Union[str, None, UndefinedType] = ..., via_device: Union[tuple[str, str], None] = ...) -> DeviceEntry: ...
+    def async_update_device(self, device_id: str, *, add_config_entry_id: Union[str, UndefinedType] = ..., area_id: Union[str, None, UndefinedType] = ..., configuration_url: Union[str, None, UndefinedType] = ..., disabled_by: Union[DeviceEntryDisabler, None, UndefinedType] = ..., manufacturer: Union[str, None, UndefinedType] = ..., model: Union[str, None, UndefinedType] = ..., name_by_user: Union[str, None, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., new_identifiers: Union[set[tuple[str, str]], UndefinedType] = ..., remove_config_entry_id: Union[str, UndefinedType] = ..., suggested_area: Union[str, None, UndefinedType] = ..., sw_version: Union[str, None, UndefinedType] = ..., via_device_id: Union[str, None, UndefinedType] = ...) -> Union[DeviceEntry, None]: ...
+    def _async_update_device(self, device_id: str, *, add_config_entry_id: Union[str, UndefinedType] = ..., area_id: Union[str, None, UndefinedType] = ..., configuration_url: Union[str, None, UndefinedType] = ..., disabled_by: Union[DeviceEntryDisabler, None, UndefinedType] = ..., entry_type: Union[DeviceEntryType, None, UndefinedType] = ..., manufacturer: Union[str, None, UndefinedType] = ..., merge_connections: Union[set[tuple[str, str]], UndefinedType] = ..., merge_identifiers: Union[set[tuple[str, str]], UndefinedType] = ..., model: Union[str, None, UndefinedType] = ..., name_by_user: Union[str, None, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., new_identifiers: Union[set[tuple[str, str]], UndefinedType] = ..., remove_config_entry_id: Union[str, UndefinedType] = ..., suggested_area: Union[str, None, UndefinedType] = ..., sw_version: Union[str, None, UndefinedType] = ..., via_device_id: Union[str, None, UndefinedType] = ...) -> Union[DeviceEntry, None]: ...
     def async_remove_device(self, device_id: str) -> None: ...
     async def async_load(self) -> None: ...
     def async_schedule_save(self) -> None: ...

@@ -1,8 +1,8 @@
-from .const import CONF_BALANCING_AUTHORITY as CONF_BALANCING_AUTHORITY, CONF_BALANCING_AUTHORITY_ABBREV as CONF_BALANCING_AUTHORITY_ABBREV, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN
+from .const import CONF_BALANCING_AUTHORITY as CONF_BALANCING_AUTHORITY, CONF_BALANCING_AUTHORITY_ABBREV as CONF_BALANCING_AUTHORITY_ABBREV, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, DOMAIN as DOMAIN
 from collections.abc import Mapping
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, MASS_POUNDS as MASS_POUNDS, PERCENTAGE as PERCENTAGE
+from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, MASS_POUNDS as MASS_POUNDS, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -10,7 +10,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Any
 
 ATTR_BALANCING_AUTHORITY: str
-DEFAULT_ATTRIBUTION: str
 SENSOR_TYPE_REALTIME_EMISSIONS_MOER: str
 SENSOR_TYPE_REALTIME_EMISSIONS_PERCENT: str
 REALTIME_EMISSIONS_SENSOR_DESCRIPTIONS: Any

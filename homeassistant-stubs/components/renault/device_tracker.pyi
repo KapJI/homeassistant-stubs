@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultEntityDescription as RenaultEntityDescription
+from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
 from .renault_hub import RenaultHub as RenaultHub
 from homeassistant.components.device_tracker import SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
@@ -18,4 +18,4 @@ class RenaultDeviceTracker(RenaultDataEntity[KamereonVehicleLocationData], Track
     @property
     def source_type(self) -> str: ...
 
-DEVICE_TRACKER_TYPES: tuple[RenaultEntityDescription, ...]
+DEVICE_TRACKER_TYPES: tuple[RenaultDataEntityDescription, ...]

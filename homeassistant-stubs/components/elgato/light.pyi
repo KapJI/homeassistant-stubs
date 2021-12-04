@@ -1,4 +1,4 @@
-from .const import DATA_ELGATO_CLIENT as DATA_ELGATO_CLIENT, DOMAIN as DOMAIN, SERVICE_IDENTIFY as SERVICE_IDENTIFY
+from .const import DOMAIN as DOMAIN, SERVICE_IDENTIFY as SERVICE_IDENTIFY
 from elgato import Elgato as Elgato, Info as Info, Settings as Settings, State as State
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_HS as COLOR_MODE_HS, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

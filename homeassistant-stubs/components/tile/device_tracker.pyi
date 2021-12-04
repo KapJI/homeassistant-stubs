@@ -3,7 +3,7 @@ from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
 from homeassistant.components.device_tracker.const import SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -20,7 +20,6 @@ ATTR_LAST_LOST_TIMESTAMP: str
 ATTR_RING_STATE: str
 ATTR_TILE_NAME: str
 ATTR_VOIP_STATE: str
-DEFAULT_ATTRIBUTION: str
 DEFAULT_ICON: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

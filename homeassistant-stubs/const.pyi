@@ -1,3 +1,4 @@
+from homeassistant.backports.enum import StrEnum as StrEnum
 from typing import Any, Final
 
 MAJOR_VERSION: Final[int]
@@ -9,6 +10,39 @@ REQUIRED_PYTHON_VER: Final[tuple[int, int, int]]
 REQUIRED_NEXT_PYTHON_VER: Final[tuple[int, int, int]]
 REQUIRED_NEXT_PYTHON_HA_RELEASE: Final[str]
 PLATFORM_FORMAT: Final[str]
+
+class Platform(StrEnum):
+    AIR_QUALITY: str
+    ALARM_CONTROL_PANEL: str
+    BINARY_SENSOR: str
+    BUTTON: str
+    CALENDAR: str
+    CAMERA: str
+    CLIMATE: str
+    COVER: str
+    DEVICE_TRACKER: str
+    FAN: str
+    GEO_LOCATION: str
+    HUMIDIFIER: str
+    IMAGE_PROCESSING: str
+    LIGHT: str
+    LOCK: str
+    MAILBOX: str
+    MEDIA_PLAYER: str
+    NOTIFY: str
+    NUMBER: str
+    REMOTE: str
+    SCENE: str
+    SELECT: str
+    SENSOR: str
+    SIREN: str
+    STT: str
+    SWITCH: str
+    TTS: str
+    VACUUM: str
+    WATER_HEATER: str
+    WEATHER: str
+
 MATCH_ALL: Final[str]
 ENTITY_MATCH_NONE: Final[str]
 ENTITY_MATCH_ALL: Final[str]
@@ -216,6 +250,8 @@ DEVICE_CLASS_CO2: Final[str]
 DEVICE_CLASS_CURRENT: Final[str]
 DEVICE_CLASS_DATE: Final[str]
 DEVICE_CLASS_ENERGY: Final[str]
+DEVICE_CLASS_FREQUENCY: Final[str]
+DEVICE_CLASS_GAS: Final[str]
 DEVICE_CLASS_HUMIDITY: Final[str]
 DEVICE_CLASS_ILLUMINANCE: Final[str]
 DEVICE_CLASS_MONETARY: Final[str]
@@ -223,19 +259,18 @@ DEVICE_CLASS_NITROGEN_DIOXIDE: str
 DEVICE_CLASS_NITROGEN_MONOXIDE: str
 DEVICE_CLASS_NITROUS_OXIDE: str
 DEVICE_CLASS_OZONE: Final[str]
-DEVICE_CLASS_POWER_FACTOR: Final[str]
-DEVICE_CLASS_POWER: Final[str]
-DEVICE_CLASS_PM25: Final[str]
 DEVICE_CLASS_PM1: Final[str]
 DEVICE_CLASS_PM10: Final[str]
+DEVICE_CLASS_PM25: Final[str]
+DEVICE_CLASS_POWER_FACTOR: Final[str]
+DEVICE_CLASS_POWER: Final[str]
 DEVICE_CLASS_PRESSURE: Final[str]
 DEVICE_CLASS_SIGNAL_STRENGTH: Final[str]
 DEVICE_CLASS_SULPHUR_DIOXIDE: str
 DEVICE_CLASS_TEMPERATURE: Final[str]
 DEVICE_CLASS_TIMESTAMP: Final[str]
-DEVICE_CLASS_VOLTAGE: Final[str]
 DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS: str
-DEVICE_CLASS_GAS: Final[str]
+DEVICE_CLASS_VOLTAGE: Final[str]
 STATE_ON: Final[str]
 STATE_OFF: Final[str]
 STATE_HOME: Final[str]
@@ -324,6 +359,7 @@ ATTR_TEMPERATURE: Final[str]
 POWER_WATT: Final[str]
 POWER_KILO_WATT: Final[str]
 POWER_VOLT_AMPERE: Final[str]
+POWER_BTU_PER_HOUR: Final[str]
 ENERGY_WATT_HOUR: Final[str]
 ENERGY_KILO_WATT_HOUR: Final[str]
 ENERGY_MEGA_WATT_HOUR: Final[str]
@@ -356,13 +392,16 @@ LENGTH_FEET: Final[str]
 LENGTH_YARD: Final[str]
 LENGTH_MILES: Final[str]
 FREQUENCY_HERTZ: Final[str]
+FREQUENCY_KILOHERTZ: Final[str]
 FREQUENCY_MEGAHERTZ: Final[str]
 FREQUENCY_GIGAHERTZ: Final[str]
 PRESSURE_PA: Final[str]
 PRESSURE_HPA: Final[str]
 PRESSURE_KPA: Final[str]
 PRESSURE_BAR: Final[str]
+PRESSURE_CBAR: Final[str]
 PRESSURE_MBAR: Final[str]
+PRESSURE_MMHG: Final[str]
 PRESSURE_INHG: Final[str]
 PRESSURE_PSI: Final[str]
 SOUND_PRESSURE_DB: Final[str]
@@ -494,20 +533,6 @@ URL_API_COMPONENTS: Final[str]
 URL_API_ERROR_LOG: Final[str]
 URL_API_LOG_OUT: Final[str]
 URL_API_TEMPLATE: Final[str]
-HTTP_OK: Final[int]
-HTTP_CREATED: Final[int]
-HTTP_ACCEPTED: Final[int]
-HTTP_MOVED_PERMANENTLY: Final[int]
-HTTP_BAD_REQUEST: Final[int]
-HTTP_UNAUTHORIZED: Final[int]
-HTTP_FORBIDDEN: Final[int]
-HTTP_NOT_FOUND: Final[int]
-HTTP_METHOD_NOT_ALLOWED: Final[int]
-HTTP_UNPROCESSABLE_ENTITY: Final[int]
-HTTP_TOO_MANY_REQUESTS: Final[int]
-HTTP_INTERNAL_SERVER_ERROR: Final[int]
-HTTP_BAD_GATEWAY: Final[int]
-HTTP_SERVICE_UNAVAILABLE: Final[int]
 HTTP_BASIC_AUTHENTICATION: Final[str]
 HTTP_BEARER_AUTHENTICATION: Final[str]
 HTTP_DIGEST_AUTHENTICATION: Final[str]
@@ -522,13 +547,18 @@ MASS: Final[str]
 PRESSURE: Final[str]
 VOLUME: Final[str]
 TEMPERATURE: Final[str]
-SPEED_MS: Final[str]
+SPEED: Final[str]
+WIND_SPEED: Final[str]
 ILLUMINANCE: Final[str]
+ACCUMULATED_PRECIPITATION: Final[str]
 WEEKDAYS: Final[list[str]]
 PRECISION_WHOLE: Final[int]
 PRECISION_HALVES: Final[float]
 PRECISION_TENTHS: Final[float]
 CLOUD_NEVER_EXPOSED_ENTITIES: Final[list[str]]
-CAST_APP_ID_HOMEASSISTANT: Final[str]
 ENTITY_CATEGORY_CONFIG: Final[str]
 ENTITY_CATEGORY_DIAGNOSTIC: Final[str]
+ENTITY_CATEGORY_SYSTEM: Final[str]
+ENTITY_CATEGORIES: Final[list[str]]
+CAST_APP_ID_HOMEASSISTANT_MEDIA: Final[str]
+CAST_APP_ID_HOMEASSISTANT_LOVELACE: Final[str]

@@ -1,7 +1,8 @@
-from .const import DOMAIN as DOMAIN, ENTRY_TYPE_SERVICE as ENTRY_TYPE_SERVICE, SENSORS as SENSORS, SERVICES as SERVICES
+from .const import DOMAIN as DOMAIN, SENSORS as SENSORS, SERVICES as SERVICES
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType

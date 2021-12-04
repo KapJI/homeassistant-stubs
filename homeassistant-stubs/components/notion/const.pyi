@@ -2,7 +2,6 @@ from typing import Any
 
 DOMAIN: str
 LOGGER: Any
-DATA_COORDINATOR: str
 SENSOR_BATTERY: str
 SENSOR_DOOR: str
 SENSOR_GARAGE_DOOR: str

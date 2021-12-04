@@ -1,12 +1,13 @@
-from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
+from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import ClimateSchema as ClimateSchema
+from homeassistant import config_entries as config_entries
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import CURRENT_HVAC_IDLE as CURRENT_HVAC_IDLE, CURRENT_HVAC_OFF as CURRENT_HVAC_OFF, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, TEMP_CELSIUS as TEMP_CELSIUS
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 from xknx import XKNX as XKNX
 from xknx.devices import Climate as XknxClimate
@@ -15,8 +16,7 @@ ATTR_COMMAND_VALUE: str
 CONTROLLER_MODES_INV: Any
 PRESET_MODES_INV: Any
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
-def _async_migrate_unique_id(hass: HomeAssistant, platform_config: list[ConfigType]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
 
 class KNXClimate(KnxEntity, ClimateEntity):

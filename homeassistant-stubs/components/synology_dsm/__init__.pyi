@@ -1,11 +1,11 @@
-from .const import CONF_DEVICE_TOKEN as CONF_DEVICE_TOKEN, CONF_SERIAL as CONF_SERIAL, COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, COORDINATOR_CENTRAL as COORDINATOR_CENTRAL, COORDINATOR_SWITCHES as COORDINATOR_SWITCHES, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, EXCEPTION_DETAILS as EXCEPTION_DETAILS, EXCEPTION_UNKNOWN as EXCEPTION_UNKNOWN, PLATFORMS as PLATFORMS, SERVICES as SERVICES, SERVICE_REBOOT as SERVICE_REBOOT, SERVICE_SHUTDOWN as SERVICE_SHUTDOWN, STORAGE_DISK_BINARY_SENSORS as STORAGE_DISK_BINARY_SENSORS, STORAGE_DISK_SENSORS as STORAGE_DISK_SENSORS, STORAGE_VOL_SENSORS as STORAGE_VOL_SENSORS, SYNO_API as SYNO_API, SYSTEM_LOADED as SYSTEM_LOADED, SynologyDSMEntityDescription as SynologyDSMEntityDescription, UNDO_UPDATE_LISTENER as UNDO_UPDATE_LISTENER, UTILISATION_SENSORS as UTILISATION_SENSORS
+from .const import CONF_DEVICE_TOKEN as CONF_DEVICE_TOKEN, CONF_SERIAL as CONF_SERIAL, COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, COORDINATOR_CENTRAL as COORDINATOR_CENTRAL, COORDINATOR_SWITCHES as COORDINATOR_SWITCHES, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, EXCEPTION_DETAILS as EXCEPTION_DETAILS, EXCEPTION_UNKNOWN as EXCEPTION_UNKNOWN, PLATFORMS as PLATFORMS, SERVICES as SERVICES, SERVICE_REBOOT as SERVICE_REBOOT, SERVICE_SHUTDOWN as SERVICE_SHUTDOWN, SYNO_API as SYNO_API, SYSTEM_LOADED as SYSTEM_LOADED, SynologyDSMEntityDescription as SynologyDSMEntityDescription, UNDO_UPDATE_LISTENER as UNDO_UPDATE_LISTENER
 from collections.abc import Callable as Callable
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_SSL as CONF_SSL, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
+from homeassistant.helpers import device_registry as device_registry
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -26,6 +26,7 @@ class SynoApi:
     _hass: Any
     _entry: Any
     config_url: Any
+    initialized: bool
     dsm: Any
     information: Any
     network: Any

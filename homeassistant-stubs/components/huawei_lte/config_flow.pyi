@@ -5,7 +5,6 @@ from homeassistant.components import ssdp as ssdp
 from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from huawei_lte_api.Connection import GetResponseType as GetResponseType
 from typing import Any
 
@@ -18,7 +17,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow):
     async def _async_show_user_form(self, user_input: Union[dict[str, Any], None] = ..., errors: Union[dict[str, str], None] = ...) -> FlowResult: ...
     async def async_step_import(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_ssdp(self, discovery_info: DiscoveryInfoType) -> FlowResult: ...
+    async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> FlowResult: ...
 
 class OptionsFlowHandler(config_entries.OptionsFlow):
     config_entry: Any

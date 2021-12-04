@@ -1,11 +1,12 @@
-from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
+from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import FanSchema as FanSchema
+from homeassistant import config_entries as config_entries
 from homeassistant.components.fan import FanEntity as FanEntity, SUPPORT_OSCILLATE as SUPPORT_OSCILLATE, SUPPORT_SET_SPEED as SUPPORT_SET_SPEED
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any, Final
 from xknx import XKNX as XKNX
@@ -13,7 +14,7 @@ from xknx.devices import Fan as XknxFan
 
 DEFAULT_PERCENTAGE: Final[int]
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class KNXFan(KnxEntity, FanEntity):
     _device: XknxFan

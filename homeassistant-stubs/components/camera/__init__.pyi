@@ -70,7 +70,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class Camera(Entity):
-    is_streaming: bool
+    _attr_brand: Union[str, None]
+    _attr_frame_interval: float
+    _attr_frontend_stream_type: Union[str, None]
+    _attr_is_on: bool
+    _attr_is_recording: bool
+    _attr_is_streaming: bool
+    _attr_model: Union[str, None]
+    _attr_motion_detection_enabled: bool
+    _attr_should_poll: bool
+    _attr_state: None
+    _attr_supported_features: int
     stream: Any
     stream_options: Any
     content_type: Any
@@ -78,13 +88,13 @@ class Camera(Entity):
     _warned_old_signature: bool
     def __init__(self) -> None: ...
     @property
-    def should_poll(self) -> bool: ...
-    @property
     def entity_picture(self) -> str: ...
     @property
     def supported_features(self) -> int: ...
     @property
     def is_recording(self) -> bool: ...
+    @property
+    def is_streaming(self) -> bool: ...
     @property
     def brand(self) -> Union[str, None]: ...
     @property

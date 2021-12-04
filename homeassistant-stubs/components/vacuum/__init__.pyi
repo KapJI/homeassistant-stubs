@@ -10,6 +10,7 @@ from typing import Any
 
 _LOGGER: Any
 DOMAIN: str
+ENTITY_ID_FORMAT: Any
 SCAN_INTERVAL: Any
 ATTR_BATTERY_ICON: str
 ATTR_CLEANED_AREA: str

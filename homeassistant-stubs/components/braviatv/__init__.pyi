@@ -1,14 +1,14 @@
 from .const import CLIENTID_PREFIX as CLIENTID_PREFIX, CONF_IGNORED_SOURCES as CONF_IGNORED_SOURCES, DOMAIN as DOMAIN, NICKNAME as NICKNAME
 from collections.abc import Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PIN as CONF_PIN
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PIN as CONF_PIN, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any, Final
 
 _LOGGER: Any
-PLATFORMS: Final[list[str]]
+PLATFORMS: Final[list[Platform]]
 SCAN_INTERVAL: Final[Any]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...

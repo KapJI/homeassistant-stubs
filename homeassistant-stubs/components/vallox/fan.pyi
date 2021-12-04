@@ -24,6 +24,7 @@ class ValloxFan(CoordinatorEntity, FanEntity):
     coordinator: ValloxDataUpdateCoordinator
     _client: Any
     _attr_name: Any
+    _attr_unique_id: Any
     def __init__(self, name: str, client: Vallox, coordinator: ValloxDataUpdateCoordinator) -> None: ...
     @property
     def supported_features(self) -> int: ...

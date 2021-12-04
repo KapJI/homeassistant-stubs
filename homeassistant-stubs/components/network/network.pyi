@@ -1,8 +1,13 @@
-from .const import ATTR_CONFIGURED_ADAPTERS as ATTR_CONFIGURED_ADAPTERS, DEFAULT_CONFIGURED_ADAPTERS as DEFAULT_CONFIGURED_ADAPTERS, STORAGE_KEY as STORAGE_KEY, STORAGE_VERSION as STORAGE_VERSION
+from .const import ATTR_CONFIGURED_ADAPTERS as ATTR_CONFIGURED_ADAPTERS, DATA_NETWORK as DATA_NETWORK, DEFAULT_CONFIGURED_ADAPTERS as DEFAULT_CONFIGURED_ADAPTERS, STORAGE_KEY as STORAGE_KEY, STORAGE_VERSION as STORAGE_VERSION
 from .models import Adapter as Adapter
-from .util import adapters_with_exernal_addresses as adapters_with_exernal_addresses, async_load_adapters as async_load_adapters, enable_adapters as enable_adapters, enable_auto_detected_adapters as enable_auto_detected_adapters
+from .util import async_load_adapters as async_load_adapters, enable_adapters as enable_adapters, enable_auto_detected_adapters as enable_auto_detected_adapters
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.singleton import singleton as singleton
 from typing import Any
+
+_LOGGER: Any
+
+async def async_get_network(hass: HomeAssistant) -> Network: ...
 
 class Network:
     _store: Any
@@ -12,7 +17,6 @@ class Network:
     @property
     def configured_adapters(self) -> list[str]: ...
     async def async_setup(self) -> None: ...
-    async def async_migrate_from_zeroconf(self, zc_config: dict[str, Any]) -> None: ...
     def async_configure(self) -> None: ...
     async def async_reconfig(self, config: dict[str, Any]) -> None: ...
     async def async_load(self) -> None: ...

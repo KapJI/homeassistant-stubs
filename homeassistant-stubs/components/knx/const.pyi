@@ -1,5 +1,6 @@
 from enum import Enum
 from homeassistant.components.climate.const import CURRENT_HVAC_COOL as CURRENT_HVAC_COOL, CURRENT_HVAC_DRY as CURRENT_HVAC_DRY, CURRENT_HVAC_FAN as CURRENT_HVAC_FAN, CURRENT_HVAC_HEAT as CURRENT_HVAC_HEAT, CURRENT_HVAC_OFF as CURRENT_HVAC_OFF, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_COOL as HVAC_MODE_COOL, HVAC_MODE_DRY as HVAC_MODE_DRY, HVAC_MODE_FAN_ONLY as HVAC_MODE_FAN_ONLY, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
+from homeassistant.const import Platform as Platform
 from typing import Any, Final
 
 DOMAIN: Final[str]
@@ -7,34 +8,26 @@ KNX_ADDRESS: Final[str]
 CONF_INVERT: Final[str]
 CONF_KNX_EXPOSE: Final[str]
 CONF_KNX_INDIVIDUAL_ADDRESS: Final[str]
+CONF_KNX_CONNECTION_TYPE: Final[str]
+CONF_KNX_AUTOMATIC: Final[str]
 CONF_KNX_ROUTING: Final[str]
 CONF_KNX_TUNNELING: Final[str]
+CONF_PAYLOAD: Final[str]
+CONF_PAYLOAD_LENGTH: Final[str]
 CONF_RESET_AFTER: Final[str]
 CONF_RESPOND_TO_READ: Final[str]
 CONF_STATE_ADDRESS: Final[str]
 CONF_SYNC_STATE: Final[str]
+CONF_KNX_INITIAL_CONNECTION_TYPES: Final[Any]
+DATA_KNX_CONFIG: Final[str]
 ATTR_COUNTER: Final[str]
-ATTR_LAST_KNX_UPDATE: Final[str]
 ATTR_SOURCE: Final[str]
 
 class ColorTempModes(Enum):
     ABSOLUTE: str
     RELATIVE: str
 
-class SupportedPlatforms(Enum):
-    BINARY_SENSOR: str
-    CLIMATE: str
-    COVER: str
-    FAN: str
-    LIGHT: str
-    NOTIFY: str
-    NUMBER: str
-    SCENE: str
-    SELECT: str
-    SENSOR: str
-    SWITCH: str
-    WEATHER: str
-
+SUPPORTED_PLATFORMS: Final[Any]
 CONTROLLER_MODES: Final[Any]
 CURRENT_HVAC_ACTIONS: Final[Any]
 PRESET_MODES: Final[Any]

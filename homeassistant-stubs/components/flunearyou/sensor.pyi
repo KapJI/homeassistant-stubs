@@ -2,7 +2,7 @@ from .const import CATEGORY_CDC_REPORT as CATEGORY_CDC_REPORT, CATEGORY_USER_REP
 from collections.abc import Mapping
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_STATE as ATTR_STATE, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
+from homeassistant.const import ATTR_STATE as ATTR_STATE, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -16,7 +16,6 @@ ATTR_REPORTED_LONGITUDE: str
 ATTR_STATE_REPORTS_LAST_WEEK: str
 ATTR_STATE_REPORTS_THIS_WEEK: str
 ATTR_ZIP_CODE: str
-DEFAULT_ATTRIBUTION: str
 SENSOR_TYPE_CDC_LEVEL: str
 SENSOR_TYPE_CDC_LEVEL2: str
 SENSOR_TYPE_USER_CHICK: str
@@ -33,7 +32,6 @@ EXTENDED_SENSOR_TYPE_MAPPING: Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FluNearYouSensor(CoordinatorEntity, SensorEntity):
-    DEFAULT_EXTRA_STATE_ATTRIBUTES: Any
     _attr_unique_id: Any
     _entry: Any
     entity_description: Any

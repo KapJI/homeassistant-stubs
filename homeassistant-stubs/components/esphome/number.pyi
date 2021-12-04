@@ -1,11 +1,13 @@
-from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
-from aioesphomeapi import NumberInfo, NumberState
-from homeassistant.components.number import NumberEntity as NumberEntity
+from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from aioesphomeapi import NumberInfo, NumberMode as EsphomeNumberMode, NumberState
+from homeassistant.components.number import NumberEntity as NumberEntity, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+NUMBER_MODES: EsphomeEnumMapper[EsphomeNumberMode, NumberMode]
 
 class EsphomeNumber(EsphomeEntity[NumberInfo, NumberState], NumberEntity):
     @property
@@ -14,5 +16,9 @@ class EsphomeNumber(EsphomeEntity[NumberInfo, NumberState], NumberEntity):
     def max_value(self) -> float: ...
     @property
     def step(self) -> float: ...
+    @property
+    def unit_of_measurement(self) -> Union[str, None]: ...
+    @property
+    def mode(self) -> NumberMode: ...
     def value(self) -> Union[float, None]: ...
     async def async_set_value(self, value: float) -> None: ...

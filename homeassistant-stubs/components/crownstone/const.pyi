@@ -1,7 +1,8 @@
+from homeassistant.const import Platform as Platform
 from typing import Final
 
 DOMAIN: Final[str]
-PLATFORMS: Final[list[str]]
+PLATFORMS: Final[list[Platform]]
 SSE_LISTENERS: Final[str]
 UART_LISTENERS: Final[str]
 CROWNSTONE_SUFFIX: Final[str]

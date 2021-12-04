@@ -1,6 +1,6 @@
 from . import HuaweiLteBaseEntity as HuaweiLteBaseEntity
 from .const import DOMAIN as DOMAIN, KEY_DIALUP_MOBILE_DATASWITCH as KEY_DIALUP_MOBILE_DATASWITCH
-from homeassistant.components.switch import DEVICE_CLASS_SWITCH as DEVICE_CLASS_SWITCH, SwitchEntity as SwitchEntity
+from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
@@ -14,12 +14,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class HuaweiLteBaseSwitch(HuaweiLteBaseEntity, SwitchEntity):
     key: str
     item: str
+    _attr_device_class: Any
     _raw_state: Union[str, None]
     def _turn(self, state: bool) -> None: ...
     def turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...
-    @property
-    def device_class(self) -> str: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     _available: bool

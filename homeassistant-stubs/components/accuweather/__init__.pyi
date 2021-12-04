@@ -1,7 +1,7 @@
 from .const import ATTR_FORECAST as ATTR_FORECAST, CONF_FORECAST as CONF_FORECAST, DOMAIN as DOMAIN
 from aiohttp import ClientSession as ClientSession
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed

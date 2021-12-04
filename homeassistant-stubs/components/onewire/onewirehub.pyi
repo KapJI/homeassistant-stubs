@@ -1,16 +1,17 @@
-from .const import CONF_MOUNT_DIR as CONF_MOUNT_DIR, CONF_TYPE_OWSERVER as CONF_TYPE_OWSERVER, CONF_TYPE_SYSBUS as CONF_TYPE_SYSBUS, DOMAIN as DOMAIN, MANUFACTURER_EDS as MANUFACTURER_EDS, MANUFACTURER_HOBBYBOARDS as MANUFACTURER_HOBBYBOARDS, MANUFACTURER_MAXIM as MANUFACTURER_MAXIM
+from .const import CONF_MOUNT_DIR as CONF_MOUNT_DIR, CONF_TYPE_OWSERVER as CONF_TYPE_OWSERVER, CONF_TYPE_SYSBUS as CONF_TYPE_SYSBUS, DEVICE_SUPPORT_OWSERVER as DEVICE_SUPPORT_OWSERVER, DEVICE_SUPPORT_SYSBUS as DEVICE_SUPPORT_SYSBUS, DOMAIN as DOMAIN, MANUFACTURER_EDS as MANUFACTURER_EDS, MANUFACTURER_HOBBYBOARDS as MANUFACTURER_HOBBYBOARDS, MANUFACTURER_MAXIM as MANUFACTURER_MAXIM
 from .model import OWDeviceDescription as OWDeviceDescription, OWDirectDeviceDescription as OWDirectDeviceDescription, OWServerDeviceDescription as OWServerDeviceDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from typing import Any
 
 DEVICE_COUPLERS: Any
 DEVICE_MANUFACTURER: Any
 _LOGGER: Any
+
+def _is_known_owserver_device(device_family: str, device_type: str) -> bool: ...
 
 class OneWireHub:
     hass: Any
@@ -26,7 +27,6 @@ class OneWireHub:
     def _discover_devices_sysbus(self) -> list[OWDeviceDescription]: ...
     def _discover_devices_owserver(self, path: str = ..., parent_id: Union[str, None] = ...) -> list[OWDeviceDescription]: ...
     def _get_device_type_owserver(self, device_path: str) -> str: ...
-    def has_device_in_cache(self, device: DeviceEntry) -> bool: ...
 
 class CannotConnect(HomeAssistantError): ...
 class InvalidPath(HomeAssistantError): ...

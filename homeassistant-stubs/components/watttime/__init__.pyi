@@ -1,4 +1,4 @@
-from .const import DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from aiowatttime.emissions import RealTimeEmissionsResponseType as RealTimeEmissionsResponseType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME

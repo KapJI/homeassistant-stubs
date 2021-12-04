@@ -1,4 +1,5 @@
 from .const import ATTRIBUTION as ATTRIBUTION, ATTR_TARGET as ATTR_TARGET, DOMAIN as DOMAIN
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor

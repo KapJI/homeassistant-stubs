@@ -2,6 +2,7 @@ from typing import Any, Final
 
 LOGGER: Final[Any]
 DOMAIN: Final[str]
+ENTITY_ID_FORMAT: Final[Any]
 PLATFORM_TYPE_LEGACY: Final[str]
 PLATFORM_TYPE_ENTITY: Final[str]
 SOURCE_TYPE_GPS: Final[str]

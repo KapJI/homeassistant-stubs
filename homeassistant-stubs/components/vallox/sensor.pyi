@@ -12,6 +12,7 @@ class ValloxSensor(CoordinatorEntity, SensorEntity):
     entity_description: ValloxSensorEntityDescription
     coordinator: ValloxDataUpdateCoordinator
     _attr_name: Any
+    _attr_unique_id: Any
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...

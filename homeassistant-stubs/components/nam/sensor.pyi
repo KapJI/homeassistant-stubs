@@ -1,5 +1,6 @@
 from . import NAMDataUpdateCoordinator as NAMDataUpdateCoordinator
 from .const import ATTR_UPTIME as ATTR_UPTIME, DOMAIN as DOMAIN, MIGRATION_SENSORS as MIGRATION_SENSORS, SENSORS as SENSORS
+from datetime import datetime
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -22,10 +23,10 @@ class NAMSensor(CoordinatorEntity, SensorEntity):
     entity_description: Any
     def __init__(self, coordinator: NAMDataUpdateCoordinator, description: SensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> Union[StateType, datetime]: ...
     @property
     def available(self) -> bool: ...
 
 class NAMSensorUptime(NAMSensor):
     @property
-    def native_value(self) -> str: ...
+    def native_value(self) -> datetime: ...

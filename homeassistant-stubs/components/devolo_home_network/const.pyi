@@ -1,0 +1,13 @@
+from homeassistant.const import Platform as Platform
+from typing import Any
+
+DOMAIN: str
+PLATFORMS: Any
+PRODUCT: str
+SERIAL_NUMBER: str
+TITLE: str
+LONG_UPDATE_INTERVAL: Any
+SHORT_UPDATE_INTERVAL: Any
+CONNECTED_PLC_DEVICES: str
+CONNECTED_WIFI_CLIENTS: str
+NEIGHBORING_WIFI_NETWORKS: str

@@ -1,7 +1,5 @@
-import pyatmo
 from .const import DATA_HANDLER as DATA_HANDLER, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, MANUFACTURER as MANUFACTURER, SIGNAL_NAME as SIGNAL_NAME, TYPE_ENERGY as TYPE_ENERGY
-from .data_handler import HOMEDATA_DATA_CLASS_NAME as HOMEDATA_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
-from .helper import get_all_home_ids as get_all_home_ids, update_climate_schedules as update_climate_schedules
+from .data_handler import CLIMATE_STATE_CLASS_NAME as CLIMATE_STATE_CLASS_NAME, CLIMATE_TOPOLOGY_CLASS_NAME as CLIMATE_TOPOLOGY_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -17,6 +15,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class NetatmoScheduleSelect(NetatmoBase, SelectEntity):
     _home_id: Any
+    _climate_state_class: Any
+    _climate_state: Any
+    _home: Any
     _device_name: Any
     _attr_name: Any
     _model: str
@@ -27,7 +28,5 @@ class NetatmoScheduleSelect(NetatmoBase, SelectEntity):
     def __init__(self, data_handler: NetatmoDataHandler, home_id: str, options: list) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def handle_event(self, event: dict) -> None: ...
-    @property
-    def _data(self) -> pyatmo.AsyncHomeData: ...
     async def async_select_option(self, option: str) -> None: ...
     def async_update_callback(self) -> None: ...

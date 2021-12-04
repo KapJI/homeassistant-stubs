@@ -3,7 +3,7 @@ import datetime
 import enum
 import voluptuous as vol
 from collections.abc import Awaitable, Coroutine, Iterable, Mapping
-from homeassistant import block_async_io as block_async_io, loader as loader, util as util
+from homeassistant import async_timeout_backcompat as async_timeout_backcompat, block_async_io as block_async_io, loader as loader, util as util
 from homeassistant.auth import AuthManager as AuthManager
 from homeassistant.components.http import HomeAssistantHTTP as HomeAssistantHTTP
 from homeassistant.config_entries import ConfigEntries as ConfigEntries

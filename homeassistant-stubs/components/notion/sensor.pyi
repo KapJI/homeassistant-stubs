@@ -1,5 +1,5 @@
 from . import NotionEntity as NotionEntity
-from .const import DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, LOGGER as LOGGER, SENSOR_TEMPERATURE as SENSOR_TEMPERATURE
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SENSOR_TEMPERATURE as SENSOR_TEMPERATURE
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS

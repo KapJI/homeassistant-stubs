@@ -1,8 +1,10 @@
-from .const import DOMAIN as DOMAIN, ENTRY_TYPE_SERVICE as ENTRY_TYPE_SERVICE, SENSORS as SENSORS
+from .const import DOMAIN as DOMAIN, SENSORS as SENSORS
 from .models import ForecastSolarSensorEntityDescription as ForecastSolarSensorEntityDescription
+from datetime import datetime
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -18,4 +20,4 @@ class ForecastSolarSensorEntity(CoordinatorEntity, SensorEntity):
     _attr_device_info: Any
     def __init__(self, entry_id: str, coordinator: DataUpdateCoordinator, entity_description: ForecastSolarSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> Union[datetime, StateType]: ...

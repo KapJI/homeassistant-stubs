@@ -1,5 +1,5 @@
 from .const import LOGGER as LOGGER
-from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, NumericSensorDataTemplate as NumericSensorDataTemplate, ZwaveValueID as ZwaveValueID
+from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, ConfigurableFanSpeedDataTemplate as ConfigurableFanSpeedDataTemplate, CoverTiltDataTemplate as CoverTiltDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, FixedFanSpeedDataTemplate as FixedFanSpeedDataTemplate, NumericSensorDataTemplate as NumericSensorDataTemplate, ZwaveValueID as ZwaveValueID
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
 from homeassistant.core import callback as callback

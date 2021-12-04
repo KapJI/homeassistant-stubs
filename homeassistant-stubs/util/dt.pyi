@@ -1,5 +1,4 @@
 import datetime as dt
-from homeassistant.const import MATCH_ALL as MATCH_ALL
 from typing import Any
 
 DATE_STR_FORMAT: str

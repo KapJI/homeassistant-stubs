@@ -3,15 +3,14 @@ from .ban import setup_bans as setup_bans
 from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, KEY_HASS_USER as KEY_HASS_USER
 from .cors import setup_cors as setup_cors
 from .forwarded import async_setup_forwarded as async_setup_forwarded
-from .request_context import setup_request_context as setup_request_context
+from .request_context import current_request as current_request, setup_request_context as setup_request_context
 from .security_filter import setup_security_filter as setup_security_filter
 from .static import CACHE_HEADERS as CACHE_HEADERS, CachingStaticResource as CachingStaticResource
 from .view import HomeAssistantView as HomeAssistantView
 from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite
-from aiohttp import web
 from aiohttp.typedefs import StrOrURL as StrOrURL
 from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
-from contextvars import ContextVar
+from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import storage as storage
@@ -87,10 +86,8 @@ class HomeAssistantHTTP:
     def __init__(self, hass: HomeAssistant, ssl_certificate: Union[str, None], ssl_peer_certificate: Union[str, None], ssl_key: Union[str, None], server_host: Union[list[str], None], server_port: int, cors_origins: list[str], use_x_forwarded_for: bool, trusted_proxies: list[str], login_threshold: int, is_ban_enabled: bool, ssl_profile: str) -> None: ...
     def register_view(self, view: HomeAssistantView) -> None: ...
     def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection] = ...) -> None: ...
-    def register_static_path(self, url_path: str, path: str, cache_headers: bool = ...) -> Union[web.FileResponse, None]: ...
+    def register_static_path(self, url_path: str, path: str, cache_headers: bool = ...) -> None: ...
     async def start(self) -> None: ...
     async def stop(self) -> None: ...
 
 async def start_http_server_and_save_config(hass: HomeAssistant, conf: dict, server: HomeAssistantHTTP) -> None: ...
-
-current_request: ContextVar[Union[web.Request, None]]

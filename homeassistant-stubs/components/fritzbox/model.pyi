@@ -7,8 +7,8 @@ class FritzExtraAttributes(TypedDict):
     locked: bool
 
 class ClimateExtraAttributes(FritzExtraAttributes):
-    battery_low: bool
     battery_level: int
+    battery_low: bool
     holiday_mode: bool
     summer_mode: bool
     window_open: bool

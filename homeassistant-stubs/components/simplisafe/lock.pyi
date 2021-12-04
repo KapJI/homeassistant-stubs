@@ -1,5 +1,5 @@
 from . import SimpliSafe as SimpliSafe, SimpliSafeEntity as SimpliSafeEntity
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

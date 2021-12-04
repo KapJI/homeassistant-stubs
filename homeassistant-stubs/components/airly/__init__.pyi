@@ -2,7 +2,7 @@ from .const import ATTR_API_ADVICE as ATTR_API_ADVICE, ATTR_API_CAQI as ATTR_API
 from aiohttp import ClientSession as ClientSession
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_registry as entity_registry
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

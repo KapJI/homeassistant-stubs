@@ -6,7 +6,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
-from homeassistant.components.websocket_api.const import ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED, ERR_UNKNOWN_ERROR as ERR_UNKNOWN_ERROR
+from homeassistant.components.websocket_api.const import ERR_INVALID_FORMAT as ERR_INVALID_FORMAT, ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED, ERR_UNKNOWN_ERROR as ERR_UNKNOWN_ERROR
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -14,8 +14,9 @@ from homeassistant.exceptions import Unauthorized as Unauthorized
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from typing import Any
 from zwave_js_server.client import Client as Client
-from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics
+from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics, ProvisioningEntry, QRProvisioningInformation
 from zwave_js_server.model.firmware import FirmwareUpdateFinished as FirmwareUpdateFinished, FirmwareUpdateProgress as FirmwareUpdateProgress
 from zwave_js_server.model.log_message import LogMessage as LogMessage
 from zwave_js_server.model.node import Node as Node, NodeStatistics as NodeStatistics
@@ -30,8 +31,6 @@ TYPE: str
 PROPERTY: str
 PROPERTY_KEY: str
 VALUE: str
-INCLUSION_STRATEGY: str
-PIN: str
 CONFIG: str
 LEVEL: str
 LOG_TO_FILE: str
@@ -44,6 +43,34 @@ OPTED_IN: str
 SECURITY_CLASSES: str
 CLIENT_SIDE_AUTH: str
 DRY_RUN: str
+INCLUSION_STRATEGY: str
+PIN: str
+FORCE_SECURITY: str
+PLANNED_PROVISIONING_ENTRY: str
+QR_PROVISIONING_INFORMATION: str
+QR_CODE_STRING: str
+DSK: str
+VERSION: str
+GENERIC_DEVICE_CLASS: str
+SPECIFIC_DEVICE_CLASS: str
+INSTALLER_ICON_TYPE: str
+MANUFACTURER_ID: str
+PRODUCT_TYPE: str
+PRODUCT_ID: str
+APPLICATION_VERSION: str
+MAX_INCLUSION_REQUEST_INTERVAL: str
+UUID: str
+SUPPORTED_PROTOCOLS: str
+FEATURE: str
+UNPROVISION: str
+MINIMUM_QR_STRING_LENGTH: int
+
+def convert_planned_provisioning_entry(info: dict) -> ProvisioningEntry: ...
+def convert_qr_provisioning_information(info: dict) -> QRProvisioningInformation: ...
+
+PLANNED_PROVISIONING_ENTRY_SCHEMA: Any
+QR_PROVISIONING_INFORMATION_SCHEMA: Any
+QR_CODE_STRING_SCHEMA: Any
 
 def async_get_entry(orig_func: Callable) -> Callable: ...
 def async_get_node(orig_func: Callable) -> Callable: ...
@@ -58,6 +85,11 @@ async def websocket_ping_node(hass: HomeAssistant, connection: ActiveConnection,
 async def websocket_add_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
 async def websocket_grant_security_classes(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
 async def websocket_validate_dsk_and_enter_pin(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
+async def websocket_provision_smart_start_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
+async def websocket_unprovision_smart_start_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
+async def websocket_get_provisioning_entries(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
+async def websocket_parse_qr_code_string(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
+async def websocket_supports_feature(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
 async def websocket_stop_inclusion(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
 async def websocket_stop_exclusion(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...
 async def websocket_remove_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry: ConfigEntry, client: Client) -> None: ...

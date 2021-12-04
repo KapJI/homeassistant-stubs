@@ -1,14 +1,12 @@
-from .const import CID as CID, DATA_KEY_API as DATA_KEY_API, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, ICON as ICON, SERVICE_REJECT_CALL as SERVICE_REJECT_CALL
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_IDLE as STATE_IDLE
+from .const import CID as CID, DATA_KEY_API as DATA_KEY_API, DOMAIN as DOMAIN, ICON as ICON, SERVICE_REJECT_CALL as SERVICE_REJECT_CALL
+from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_IDLE as STATE_IDLE
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from phone_modem import PhoneModem as PhoneModem
 from typing import Any
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigEntry, async_add_entities: entity_platform.AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: entity_platform.AddEntitiesCallback) -> None: ...
 
 class ModemCalleridSensor(SensorEntity):

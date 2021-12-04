@@ -3,6 +3,7 @@ from .const import ATTR_APP_ID as ATTR_APP_ID, ATTR_APP_NAME as ATTR_APP_NAME, A
 from .errors import BrowseError as BrowseError
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
+from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.websocket_api.const import ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED, ERR_UNKNOWN_ERROR as ERR_UNKNOWN_ERROR
@@ -26,11 +27,17 @@ CACHE_URL: str
 CACHE_CONTENT: str
 ENTITY_IMAGE_CACHE: Any
 SCAN_INTERVAL: Any
-DEVICE_CLASS_TV: str
-DEVICE_CLASS_SPEAKER: str
-DEVICE_CLASS_RECEIVER: str
-DEVICE_CLASSES: Any
+
+class MediaPlayerDeviceClass(StrEnum):
+    TV: str
+    SPEAKER: str
+    RECEIVER: str
+
 DEVICE_CLASSES_SCHEMA: Any
+DEVICE_CLASSES: Any
+DEVICE_CLASS_TV: Any
+DEVICE_CLASS_SPEAKER: Any
+DEVICE_CLASS_RECEIVER: Any
 MEDIA_PLAYER_PLAY_MEDIA_SCHEMA: Any
 ATTR_TO_PROPERTY: Any
 
@@ -40,13 +47,15 @@ async def async_setup(hass, config): ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class MediaPlayerEntityDescription(EntityDescription): ...
+class MediaPlayerEntityDescription(EntityDescription):
+    device_class: Union[MediaPlayerDeviceClass, str, None]
 
 class MediaPlayerEntity(Entity):
     entity_description: MediaPlayerEntityDescription
     _access_token: Union[str, None]
     _attr_app_id: Union[str, None]
     _attr_app_name: Union[str, None]
+    _attr_device_class: Union[MediaPlayerDeviceClass, str, None]
     _attr_group_members: Union[list[str], None]
     _attr_is_volume_muted: Union[bool, None]
     _attr_media_album_artist: Union[str, None]
@@ -76,6 +85,8 @@ class MediaPlayerEntity(Entity):
     _attr_state: Union[str, None]
     _attr_supported_features: int
     _attr_volume_level: Union[float, None]
+    @property
+    def device_class(self) -> Union[MediaPlayerDeviceClass, str, None]: ...
     @property
     def state(self) -> Union[str, None]: ...
     @property

@@ -23,14 +23,16 @@ class SamsungTVDevice(MediaPlayerEntity):
     _config_entry: Any
     _host: Any
     _mac: Any
-    _manufacturer: Any
-    _model: Any
-    _name: Any
     _on_script: Any
-    _uuid: Any
-    _muted: bool
     _playing: bool
-    _state: Any
+    _attr_name: Any
+    _attr_state: Any
+    _attr_unique_id: Any
+    _attr_is_volume_muted: bool
+    _attr_device_class: Any
+    _attr_source_list: Any
+    _attr_supported_features: Any
+    _attr_device_info: Any
     _end_of_power_off: Any
     _bridge: Any
     _auth_failed: bool
@@ -40,23 +42,7 @@ class SamsungTVDevice(MediaPlayerEntity):
     def send_key(self, key: str) -> None: ...
     def _power_off_in_progress(self) -> bool: ...
     @property
-    def unique_id(self) -> Union[str, None]: ...
-    @property
-    def name(self) -> Union[str, None]: ...
-    @property
-    def state(self) -> Union[str, None]: ...
-    @property
     def available(self) -> bool: ...
-    @property
-    def device_info(self) -> Union[DeviceInfo, None]: ...
-    @property
-    def is_volume_muted(self) -> bool: ...
-    @property
-    def source_list(self) -> list: ...
-    @property
-    def supported_features(self) -> int: ...
-    @property
-    def device_class(self) -> str: ...
     def turn_off(self) -> None: ...
     def volume_up(self) -> None: ...
     def volume_down(self) -> None: ...

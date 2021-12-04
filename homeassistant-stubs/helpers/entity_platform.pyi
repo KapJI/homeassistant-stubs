@@ -3,7 +3,7 @@ import voluptuous as vol
 from . import service as service
 from .device_registry import DeviceRegistry as DeviceRegistry
 from .entity import Entity as Entity
-from .entity_registry import DISABLED_INTEGRATION as DISABLED_INTEGRATION, EntityRegistry as EntityRegistry
+from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler
 from .event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from collections.abc import Callable as Callable, Coroutine, Iterable

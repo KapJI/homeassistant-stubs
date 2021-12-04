@@ -4,7 +4,7 @@ from .const import DOMAIN as DOMAIN, KEY_DEVICE_INFORMATION as KEY_DEVICE_INFORM
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DATA_BYTES as DATA_BYTES, DATA_RATE_BYTES_PER_SECOND as DATA_RATE_BYTES_PER_SECOND, FREQUENCY_MEGAHERTZ as FREQUENCY_MEGAHERTZ, PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_SECONDS as TIME_SECONDS
+from homeassistant.const import DATA_BYTES as DATA_BYTES, DATA_RATE_BYTES_PER_SECOND as DATA_RATE_BYTES_PER_SECOND, ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, FREQUENCY_MEGAHERTZ as FREQUENCY_MEGAHERTZ, PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -20,6 +20,7 @@ class SensorMeta(NamedTuple):
     unit: Union[str, None]
     state_class: Union[str, None]
     enabled_default: bool
+    entity_category: Union[str, None]
     include: Union[re.Pattern[str], None]
     exclude: Union[re.Pattern[str], None]
     formatter: Union[Callable[[str], tuple[StateType, Union[str, None]]], None]
@@ -55,6 +56,8 @@ class HuaweiLteSensor(HuaweiLteBaseEntity, SensorEntity):
     def entity_registry_enabled_default(self) -> bool: ...
     _available: Any
     async def async_update(self) -> None: ...
+    @property
+    def entity_category(self) -> Union[str, None]: ...
     def __init__(self, router, available, unsub_handlers, key, item, meta, state, unit) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...

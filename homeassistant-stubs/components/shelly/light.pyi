@@ -1,5 +1,5 @@
 from . import BlockDeviceWrapper as BlockDeviceWrapper, RpcDeviceWrapper as RpcDeviceWrapper
-from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, FIRMWARE_PATTERN as FIRMWARE_PATTERN, KELVIN_MAX_VALUE as KELVIN_MAX_VALUE, KELVIN_MIN_VALUE_COLOR as KELVIN_MIN_VALUE_COLOR, KELVIN_MIN_VALUE_WHITE as KELVIN_MIN_VALUE_WHITE, LIGHT_TRANSITION_MIN_FIRMWARE_DATE as LIGHT_TRANSITION_MIN_FIRMWARE_DATE, MAX_TRANSITION_TIME as MAX_TRANSITION_TIME, MODELS_SUPPORTING_LIGHT_TRANSITION as MODELS_SUPPORTING_LIGHT_TRANSITION, RGBW_MODELS as RGBW_MODELS, RPC as RPC, SHBLB_1_RGB_EFFECTS as SHBLB_1_RGB_EFFECTS, STANDARD_RGB_EFFECTS as STANDARD_RGB_EFFECTS
+from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, FIRMWARE_PATTERN as FIRMWARE_PATTERN, KELVIN_MAX_VALUE as KELVIN_MAX_VALUE, KELVIN_MIN_VALUE_COLOR as KELVIN_MIN_VALUE_COLOR, KELVIN_MIN_VALUE_WHITE as KELVIN_MIN_VALUE_WHITE, LIGHT_TRANSITION_MIN_FIRMWARE_DATE as LIGHT_TRANSITION_MIN_FIRMWARE_DATE, MAX_TRANSITION_TIME as MAX_TRANSITION_TIME, MODELS_SUPPORTING_LIGHT_TRANSITION as MODELS_SUPPORTING_LIGHT_TRANSITION, RGBW_MODELS as RGBW_MODELS, RPC as RPC, SHBLB_1_RGB_EFFECTS as SHBLB_1_RGB_EFFECTS, STANDARD_RGB_EFFECTS as STANDARD_RGB_EFFECTS
 from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light
 from aioshelly.block_device import Block as Block
@@ -18,7 +18,6 @@ async def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ConfigEntry, 
 
 class BlockShellyLight(ShellyBlockEntity, LightEntity):
     control_result: Any
-    mode_result: Any
     _supported_color_modes: Any
     _supported_features: int
     _min_kelvin: Any
@@ -52,7 +51,6 @@ class BlockShellyLight(ShellyBlockEntity, LightEntity):
     def effect(self) -> Union[str, None]: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    async def set_light_mode(self, set_mode: Union[str, None]) -> bool: ...
     def _update_callback(self) -> None: ...
 
 class RpcShellyLight(ShellyRpcEntity, LightEntity):

@@ -4,6 +4,7 @@ from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordina
 from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, async_refresh_after as async_refresh_after
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from kasa import SmartDevice as SmartDevice
@@ -12,6 +13,19 @@ from typing import Any
 _LOGGER: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class SmartPlugLedSwitch(CoordinatedTPLinkEntity, SwitchEntity):
+    coordinator: TPLinkDataUpdateCoordinator
+    _attr_entity_category: Any
+    _attr_name: Any
+    _attr_unique_id: Any
+    def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
+    @property
+    def icon(self) -> str: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @property
+    def is_on(self) -> bool: ...
 
 class SmartPlugSwitch(CoordinatedTPLinkEntity, SwitchEntity):
     coordinator: TPLinkDataUpdateCoordinator

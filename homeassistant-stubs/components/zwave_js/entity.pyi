@@ -5,7 +5,7 @@ from .migrate import async_add_migration_entity_value as async_add_migration_ent
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.model.value import Value as ZwaveValue

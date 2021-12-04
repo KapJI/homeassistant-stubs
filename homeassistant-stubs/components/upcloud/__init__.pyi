@@ -19,7 +19,6 @@ ATTR_ZONE: str
 CONF_SERVERS: str
 DATA_UPCLOUD: str
 DEFAULT_COMPONENT_NAME: str
-DEFAULT_COMPONENT_DEVICE_CLASS: str
 CONFIG_ENTRY_DOMAINS: Any
 SIGNAL_UPDATE_UPCLOUD: str
 STATE_MAP: Any
@@ -40,7 +39,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...
 
 class UpCloudServerEntity(CoordinatorEntity):
-    _attr_device_class: Any
     uuid: Any
     def __init__(self, coordinator: DataUpdateCoordinator[dict[str, upcloud_api.Server]], uuid: str) -> None: ...
     @property

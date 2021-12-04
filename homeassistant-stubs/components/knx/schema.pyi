@@ -1,11 +1,11 @@
 import voluptuous as vol
-from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_KNX_INDIVIDUAL_ADDRESS as CONF_KNX_INDIVIDUAL_ADDRESS, CONF_KNX_ROUTING as CONF_KNX_ROUTING, CONF_KNX_TUNNELING as CONF_KNX_TUNNELING, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, ColorTempModes as ColorTempModes, KNX_ADDRESS as KNX_ADDRESS, PRESET_MODES as PRESET_MODES, SupportedPlatforms as SupportedPlatforms
+from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_KNX_INDIVIDUAL_ADDRESS as CONF_KNX_INDIVIDUAL_ADDRESS, CONF_KNX_ROUTING as CONF_KNX_ROUTING, CONF_KNX_TUNNELING as CONF_KNX_TUNNELING, CONF_PAYLOAD as CONF_PAYLOAD, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, ColorTempModes as ColorTempModes, KNX_ADDRESS as KNX_ADDRESS, PRESET_MODES as PRESET_MODES
 from abc import ABC
 from collections import OrderedDict
 from homeassistant.components.climate.const import HVAC_MODES as HVAC_MODES, HVAC_MODE_HEAT as HVAC_MODE_HEAT
-from homeassistant.components.number.const import MODE_AUTO as MODE_AUTO, MODE_BOX as MODE_BOX, MODE_SLIDER as MODE_SLIDER
+from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
-from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
 from typing import Any, ClassVar, Final
 
@@ -16,6 +16,8 @@ ia_validator: Any
 
 def number_limit_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
 def numeric_type_validator(value: Any) -> Union[str, int]: ...
+def _max_payload_value(payload_length: int) -> int: ...
+def button_payload_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
 def select_options_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
 def sensor_type_validator(value: Any) -> Union[str, int]: ...
 
@@ -28,18 +30,24 @@ class ConnectionSchema:
     CONF_KNX_RATE_LIMIT: str
     CONF_KNX_ROUTE_BACK: str
     CONF_KNX_STATE_UPDATER: str
+    CONF_KNX_DEFAULT_STATE_UPDATER: bool
+    CONF_KNX_DEFAULT_RATE_LIMIT: int
     TUNNELING_SCHEMA: Any
     ROUTING_SCHEMA: Any
     SCHEMA: Any
 
+class EventSchema:
+    KNX_EVENT_FILTER_SCHEMA: Any
+    SCHEMA: Any
+
 class KNXPlatformSchema(ABC):
-    PLATFORM_NAME: ClassVar[str]
+    PLATFORM: ClassVar[Union[Platform, str]]
     ENTITY_SCHEMA: ClassVar[vol.Schema]
     @classmethod
     def platform_node(cls) -> dict[vol.Optional, vol.All]: ...
 
 class BinarySensorSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_STATE_ADDRESS: Any
     CONF_SYNC_STATE: Any
     CONF_INVERT: Any
@@ -49,8 +57,16 @@ class BinarySensorSchema(KNXPlatformSchema):
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Any
 
+class ButtonSchema(KNXPlatformSchema):
+    PLATFORM: Any
+    CONF_VALUE: str
+    DEFAULT_NAME: str
+    payload_or_value_msg: Any
+    length_or_type_msg: Any
+    ENTITY_SCHEMA: Any
+
 class ClimateSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_ACTIVE_STATE_ADDRESS: str
     CONF_SETPOINT_SHIFT_ADDRESS: str
     CONF_SETPOINT_SHIFT_STATE_ADDRESS: str
@@ -91,7 +107,7 @@ class ClimateSchema(KNXPlatformSchema):
     ENTITY_SCHEMA: Any
 
 class CoverSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_MOVE_LONG_ADDRESS: str
     CONF_MOVE_SHORT_ADDRESS: str
     CONF_STOP_ADDRESS: str
@@ -108,7 +124,7 @@ class CoverSchema(KNXPlatformSchema):
     ENTITY_SCHEMA: Any
 
 class ExposeSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_KNX_EXPOSE_TYPE: Any
     CONF_KNX_EXPOSE_ATTRIBUTE: str
     CONF_KNX_EXPOSE_BINARY: str
@@ -119,7 +135,7 @@ class ExposeSchema(KNXPlatformSchema):
     ENTITY_SCHEMA: Any
 
 class FanSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_STATE_ADDRESS: Any
     CONF_OSCILLATION_ADDRESS: str
     CONF_OSCILLATION_STATE_ADDRESS: str
@@ -128,7 +144,7 @@ class FanSchema(KNXPlatformSchema):
     ENTITY_SCHEMA: Any
 
 class LightSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_STATE_ADDRESS: Any
     CONF_BRIGHTNESS_ADDRESS: str
     CONF_BRIGHTNESS_STATE_ADDRESS: str
@@ -162,36 +178,33 @@ class LightSchema(KNXPlatformSchema):
     ENTITY_SCHEMA: Any
 
 class NotifySchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Any
 
 class NumberSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_MAX: str
     CONF_MIN: str
     CONF_STEP: str
     DEFAULT_NAME: str
-    NUMBER_MODES: Final[Any]
     ENTITY_SCHEMA: Any
 
 class SceneSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_SCENE_NUMBER: str
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Any
 
 class SelectSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_OPTION: str
     CONF_OPTIONS: str
-    CONF_PAYLOAD: str
-    CONF_PAYLOAD_LENGTH: str
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Any
 
 class SensorSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_ALWAYS_CALLBACK: str
     CONF_STATE_ADDRESS: Any
     CONF_SYNC_STATE: Any
@@ -199,14 +212,14 @@ class SensorSchema(KNXPlatformSchema):
     ENTITY_SCHEMA: Any
 
 class SwitchSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_INVERT: Any
     CONF_STATE_ADDRESS: Any
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Any
 
 class WeatherSchema(KNXPlatformSchema):
-    PLATFORM_NAME: Any
+    PLATFORM: Any
     CONF_SYNC_STATE: Any
     CONF_KNX_TEMPERATURE_ADDRESS: str
     CONF_KNX_BRIGHTNESS_SOUTH_ADDRESS: str

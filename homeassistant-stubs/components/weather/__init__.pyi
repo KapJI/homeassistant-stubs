@@ -43,6 +43,7 @@ ATTR_WEATHER_WIND_SPEED: str
 DOMAIN: str
 ENTITY_ID_FORMAT: Any
 SCAN_INTERVAL: Any
+ROUNDING_PRECISION: int
 
 class Forecast(TypedDict):
     condition: Union[str, None]
@@ -69,12 +70,16 @@ class WeatherEntity(Entity):
     _attr_ozone: Union[float, None]
     _attr_precision: float
     _attr_pressure: Union[float, None]
+    _attr_pressure_unit: Union[str, None]
     _attr_state: None
     _attr_temperature_unit: str
     _attr_temperature: Union[float, None]
     _attr_visibility: Union[float, None]
+    _attr_visibility_unit: Union[str, None]
+    _attr_precipitation_unit: Union[str, None]
     _attr_wind_bearing: Union[float, str, None]
     _attr_wind_speed: Union[float, None]
+    _attr_wind_speed_unit: Union[str, None]
     @property
     def temperature(self) -> Union[float, None]: ...
     @property
@@ -82,9 +87,13 @@ class WeatherEntity(Entity):
     @property
     def pressure(self) -> Union[float, None]: ...
     @property
+    def pressure_unit(self) -> Union[str, None]: ...
+    @property
     def humidity(self) -> Union[float, None]: ...
     @property
     def wind_speed(self) -> Union[float, None]: ...
+    @property
+    def wind_speed_unit(self) -> Union[str, None]: ...
     @property
     def wind_bearing(self) -> Union[float, str, None]: ...
     @property
@@ -92,7 +101,11 @@ class WeatherEntity(Entity):
     @property
     def visibility(self) -> Union[float, None]: ...
     @property
+    def visibility_unit(self) -> Union[str, None]: ...
+    @property
     def forecast(self) -> Union[list[Forecast], None]: ...
+    @property
+    def precipitation_unit(self) -> Union[str, None]: ...
     @property
     def precision(self) -> float: ...
     @property

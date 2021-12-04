@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .data import EnergyManager as EnergyManager, async_get_manager as async_get_manager
 from homeassistant.components.sensor import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DEVICE_CLASS_MONETARY as DEVICE_CLASS_MONETARY, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL as STATE_CLASS_TOTAL, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity
 from homeassistant.components.sensor.recorder import reset_detected as reset_detected
-from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, ENERGY_MEGA_WATT_HOUR as ENERGY_MEGA_WATT_HOUR, ENERGY_WATT_HOUR as ENERGY_WATT_HOUR, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
+from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, ENERGY_MEGA_WATT_HOUR as ENERGY_MEGA_WATT_HOUR, ENERGY_WATT_HOUR as ENERGY_WATT_HOUR, ENTITY_CATEGORY_SYSTEM as ENTITY_CATEGORY_SYSTEM, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
@@ -38,6 +38,7 @@ class SensorManager:
     def _process_sensor_data(self, adapter: SourceAdapter, config: dict, to_add: list[EnergyCostSensor], to_remove: dict[tuple[str, Union[str, None], str], EnergyCostSensor]) -> None: ...
 
 class EnergyCostSensor(SensorEntity):
+    _attr_entity_category: Any
     _wrong_state_class_reported: bool
     _wrong_unit_reported: bool
     _adapter: Any

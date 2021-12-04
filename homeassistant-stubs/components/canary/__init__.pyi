@@ -2,7 +2,7 @@ from .const import CONF_FFMPEG_ARGUMENTS as CONF_FFMPEG_ARGUMENTS, DATA_COORDINA
 from .coordinator import CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
 from canary.api import Api
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -11,7 +11,7 @@ from typing import Any, Final
 _LOGGER: Final[Any]
 MIN_TIME_BETWEEN_UPDATES: Final[Any]
 CONFIG_SCHEMA: Final[Any]
-PLATFORMS: Final[list[str]]
+PLATFORMS: Final[list[Platform]]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

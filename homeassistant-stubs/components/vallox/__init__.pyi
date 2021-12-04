@@ -6,6 +6,7 @@ from homeassistant.helpers.discovery import async_load_platform as async_load_pl
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any, NamedTuple
+from uuid import UUID
 from vallox_websocket_api import PROFILE as VALLOX_PROFILE, Vallox
 
 _LOGGER: Any
@@ -29,6 +30,7 @@ class ValloxState:
     metric_cache: dict[str, Any]
     profile: VALLOX_PROFILE
     def get_metric(self, metric_key: str) -> StateType: ...
+    def get_uuid(self) -> Union[UUID, None]: ...
 
 class ValloxDataUpdateCoordinator(DataUpdateCoordinator):
     data: ValloxState

@@ -1,3 +1,4 @@
+import pyatmo
 from .const import AUTH as AUTH, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, WEBHOOK_ACTIVATION as WEBHOOK_ACTIVATION, WEBHOOK_DEACTIVATION as WEBHOOK_DEACTIVATION, WEBHOOK_NACAMERA_CONNECTION as WEBHOOK_NACAMERA_CONNECTION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,13 +11,19 @@ _LOGGER: Any
 CAMERA_DATA_CLASS_NAME: str
 WEATHERSTATION_DATA_CLASS_NAME: str
 HOMECOACH_DATA_CLASS_NAME: str
-HOMEDATA_DATA_CLASS_NAME: str
-HOMESTATUS_DATA_CLASS_NAME: str
+CLIMATE_TOPOLOGY_CLASS_NAME: str
+CLIMATE_STATE_CLASS_NAME: str
 PUBLICDATA_DATA_CLASS_NAME: str
 DATA_CLASSES: Any
 BATCH_SIZE: int
 DEFAULT_INTERVALS: Any
 SCAN_INTERVAL: int
+
+class NetatmoDevice:
+    data_handler: NetatmoDataHandler
+    device: pyatmo.climate.NetatmoModule
+    parent_id: str
+    state_class_name: str
 
 class NetatmoDataClass:
     name: str

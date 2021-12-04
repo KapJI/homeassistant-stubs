@@ -11,12 +11,12 @@ from pathlib import Path
 from awesomeversion.awesomeversion import AwesomeVersion
 from awesomeversion.strategy import AwesomeVersionStrategy
 from github import Github
+from github.Repository import Repository
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
 BLACKLISTED_VERSIONS = [
     "2021.10.0b8",  # doesn't exist on PyPI
 ]
-REPO_NAME = "KapJI/homeassistant-stubs"
 
 
 def main() -> int:
@@ -36,8 +36,9 @@ def main() -> int:
         print(f"Missing version: {version}")
 
     # Create new packages
+    gh_repo = get_github_repo()
     for version in missing_versions:
-        create_package(version, repo_root, homeassistant_root)
+        create_package(version, repo_root, homeassistant_root, gh_repo)
     return 0
 
 
@@ -66,9 +67,31 @@ def get_available_versions(git_root: Path) -> list[str]:
     return [version.string for version in versions]
 
 
-def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> None:
+def get_github_repo() -> Repository:
+    """Return Github repository to use its APIs."""
+    github_token = os.environ.get("GITHUB_TOKEN")
+    github = Github(github_token)
+    return github.get_repo("KapJI/homeassistant-stubs")
+
+
+def create_package(
+    version: str, repo_root: Path, homeassistant_root: Path, gh_repo: Repository
+) -> None:
     """Create package for given version and upload it to PyPI."""
     print(f"Creating package for {version}...")
+    update_dependency(repo_root, version)
+    checkout_version(homeassistant_root, version)
+    typed_paths = get_typed_paths(homeassistant_root)
+    generate_stubs(typed_paths, repo_root)
+    build_package(repo_root, version)
+    create_commit(repo_root, version)
+    push_commit(repo_root, gh_repo)
+    create_github_release(version, gh_repo)
+    publish_package(repo_root)
+
+
+def update_dependency(repo_root: Path, version: str) -> None:
+    """Update version of homeassistant dependency."""
     try:
         subprocess.run(
             ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
@@ -76,14 +99,22 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
     except subprocess.CalledProcessError as ex:
         print(f"Failed to add dependency: {ex}")
         return
-    subprocess.run(["git", "checkout", version], cwd=homeassistant_root, check=True)
-    typed_paths = get_typed_paths(homeassistant_root)
-    generate_stubs(typed_paths, repo_root)
 
+
+def checkout_version(homeassistant_root: Path, version: str) -> None:
+    """Checkout required version of Home Assistant repo."""
+    subprocess.run(["git", "checkout", version], cwd=homeassistant_root, check=True)
+
+
+def build_package(repo_root: Path, version: str) -> None:
+    """Build new package with Poetry."""
     print("Building package...")
     subprocess.run(["poetry", "version", version], cwd=repo_root, check=True)
     subprocess.run(["poetry", "build"], cwd=repo_root, check=True)
 
+
+def create_commit(repo_root: Path, version: str) -> None:
+    """Create local commit."""
     print(f"Creating commit for {version}...")
     subprocess.run(
         [
@@ -101,10 +132,11 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
         ["git", "commit", "-m", f"Generate v{version}"], cwd=repo_root, check=True
     )
 
+
+def push_commit(repo_root: Path, gh_repo: Repository) -> None:
+    """Push commit to Github."""
     print("Disabling branch protection...")
-    github = Github(os.environ.get("ADMIN_TOKEN"))
-    repo = github.get_repo(REPO_NAME)
-    branch = repo.get_branch("main")
+    branch = gh_repo.get_branch("main")
     required_checks = branch.get_required_status_checks()
     branch.edit_required_status_checks(required_checks.strict, [])
 
@@ -114,8 +146,21 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
     print("Re-enabling branch protection...")
     branch.edit_required_status_checks(required_checks.strict, required_checks.contexts)
 
-    create_github_release(version)
 
+def create_github_release(version: str, gh_repo: Repository) -> None:
+    """Create new release on Github."""
+    print("Creating release...")
+    gh_repo.create_git_release(
+        tag=version,
+        name=version,
+        target_commitish="main",
+        message=f"Generated for `homeassitant {version}`.",
+        prerelease=AwesomeVersion(version).modifier is not None,
+    )
+
+
+def publish_package(repo_root: Path) -> None:
+    """Publish new package on PyPI."""
     print("Publishing package...")
     pypi_token = os.environ.get("PYPI_TOKEN")
     if pypi_token is None:
@@ -126,21 +171,6 @@ def create_package(version: str, repo_root: Path, homeassistant_root: Path) -> N
         check=True,
     )
     subprocess.run(["poetry", "publish"], cwd=repo_root, check=True)
-
-
-def create_github_release(version: str) -> None:
-    """Create new release on Github."""
-    print("Creating release...")
-    github_token = os.environ.get("GITHUB_TOKEN")
-    github = Github(github_token)
-    repo = github.get_repo(REPO_NAME)
-    repo.create_git_release(
-        tag=version,
-        name=version,
-        target_commitish="main",
-        message=f"Generated for `homeassitant {version}`.",
-        prerelease=AwesomeVersion(version).modifier is not None,
-    )
 
 
 def get_typed_paths(homeassistant_root: Path) -> list[Path]:

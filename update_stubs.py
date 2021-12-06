@@ -36,9 +36,10 @@ def main() -> int:
         print(f"Missing version: {version}")
 
     # Create new packages
-    gh_repo = get_github_repo()
+    gh_repo = get_github_repo("GITHUB_TOKEN")
+    gh_admin_repo = get_github_repo("ADMIN_TOKEN")
     for version in missing_versions:
-        create_package(version, repo_root, homeassistant_root, gh_repo)
+        create_package(version, repo_root, homeassistant_root, gh_repo, gh_admin_repo)
     return 0
 
 
@@ -67,15 +68,19 @@ def get_available_versions(git_root: Path) -> list[str]:
     return [version.string for version in versions]
 
 
-def get_github_repo() -> Repository:
+def get_github_repo(token_name: str) -> Repository:
     """Return Github repository to use its APIs."""
-    github_token = os.environ.get("GITHUB_TOKEN")
+    github_token = os.environ.get(token_name)
     github = Github(github_token)
     return github.get_repo("KapJI/homeassistant-stubs")
 
 
 def create_package(
-    version: str, repo_root: Path, homeassistant_root: Path, gh_repo: Repository
+    version: str,
+    repo_root: Path,
+    homeassistant_root: Path,
+    gh_repo: Repository,
+    gh_admin_repo: Repository,
 ) -> None:
     """Create package for given version and upload it to PyPI."""
     print(f"Creating package for {version}...")
@@ -85,7 +90,7 @@ def create_package(
     generate_stubs(typed_paths, repo_root)
     build_package(repo_root, version)
     create_commit(repo_root, version)
-    push_commit(repo_root, gh_repo)
+    push_commit(repo_root, gh_admin_repo)
     create_github_release(version, gh_repo)
     publish_package(repo_root)
 
@@ -133,10 +138,10 @@ def create_commit(repo_root: Path, version: str) -> None:
     )
 
 
-def push_commit(repo_root: Path, gh_repo: Repository) -> None:
+def push_commit(repo_root: Path, gh_admin_repo: Repository) -> None:
     """Push commit to Github."""
     print("Disabling branch protection...")
-    branch = gh_repo.get_branch("main")
+    branch = gh_admin_repo.get_branch("main")
     required_checks = branch.get_required_status_checks()
     branch.edit_required_status_checks(required_checks.strict, [])
 

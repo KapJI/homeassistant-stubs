@@ -1,5 +1,5 @@
 from . import DOMAIN as DOMAIN
-from .const import CONF_ALLOWED_REGIONS as CONF_ALLOWED_REGIONS, CONF_READ_ONLY as CONF_READ_ONLY, CONF_USE_LOCATION as CONF_USE_LOCATION
+from .const import CONF_ALLOWED_REGIONS as CONF_ALLOWED_REGIONS, CONF_READ_ONLY as CONF_READ_ONLY
 from homeassistant import config_entries as config_entries, core as core, exceptions as exceptions
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_REGION as CONF_REGION, CONF_SOURCE as CONF_SOURCE, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback

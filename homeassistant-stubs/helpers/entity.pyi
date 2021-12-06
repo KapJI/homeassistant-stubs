@@ -69,6 +69,7 @@ class Entity(ABC):
     entity_description: EntityDescription
     _slow_reported: bool
     _disabled_reported: bool
+    _deprecated_device_state_attributes_reported: bool
     _update_staged: bool
     parallel_updates: Union[asyncio.Semaphore, None]
     registry_entry: Union[er.RegistryEntry, None]

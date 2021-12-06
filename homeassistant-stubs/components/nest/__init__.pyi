@@ -26,6 +26,7 @@ CONFIG_SCHEMA: Any
 PLATFORMS: Any
 WEB_AUTH_DOMAIN = DOMAIN
 INSTALLED_AUTH_DOMAIN: Any
+EVENT_MEDIA_CACHE_SIZE: int
 
 class WebAuth(config_entry_oauth2_flow.LocalOAuth2Implementation):
     name: str

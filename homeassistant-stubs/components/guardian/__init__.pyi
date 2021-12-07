@@ -4,7 +4,7 @@ from .util import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
 from aioguardian import Client
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
-from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_FILENAME as CONF_FILENAME, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PORT as CONF_PORT, CONF_URL as CONF_URL
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_FILENAME as CONF_FILENAME, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PORT as CONF_PORT, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
@@ -20,6 +20,7 @@ SERVICE_NAME_RESET_VALVE_DIAGNOSTICS: str
 SERVICE_NAME_UNPAIR_SENSOR: str
 SERVICE_NAME_UPGRADE_FIRMWARE: str
 SERVICES: Any
+SERVICE_BASE_SCHEMA: Any
 SERVICE_PAIR_UNPAIR_SENSOR_SCHEMA: Any
 SERVICE_UPGRADE_FIRMWARE_SCHEMA: Any
 PLATFORMS: Any

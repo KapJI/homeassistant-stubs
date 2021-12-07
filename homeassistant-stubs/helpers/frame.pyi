@@ -4,6 +4,7 @@ from traceback import FrameSummary
 from typing import Any, TypeVar
 
 _LOGGER: Any
+_REPORTED_INTEGRATIONS: set[str]
 CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable)
 
 def get_integration_frame(exclude_integrations: Union[set, None] = ...) -> tuple[FrameSummary, str, str]: ...

@@ -1,5 +1,6 @@
 from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN, METRIC_KEY_MODE as METRIC_KEY_MODE, MODE_ON as MODE_ON, VALLOX_CELL_STATE_TO_STR as VALLOX_CELL_STATE_TO_STR, VALLOX_PROFILE_TO_STR_REPORTABLE as VALLOX_PROFILE_TO_STR_REPORTABLE
+from datetime import datetime
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEVICE_CLASS_CO2 as DEVICE_CLASS_CO2, DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, PERCENTAGE as PERCENTAGE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -15,7 +16,7 @@ class ValloxSensor(CoordinatorEntity, SensorEntity):
     _attr_unique_id: Any
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> Union[StateType, datetime]: ...
 
 class ValloxProfileSensor(ValloxSensor):
     @property
@@ -23,11 +24,11 @@ class ValloxProfileSensor(ValloxSensor):
 
 class ValloxFanSpeedSensor(ValloxSensor):
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> Union[StateType, datetime]: ...
 
 class ValloxFilterRemainingSensor(ValloxSensor):
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> Union[StateType, datetime]: ...
 
 class ValloxCellStateSensor(ValloxSensor):
     @property

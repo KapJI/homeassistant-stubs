@@ -9,7 +9,9 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, NamedTuple
 
 CONF_AUTH_CODE: str
-STEP_INPUT_AUTH_CODE_SCHEMA: Any
+CONF_DOCS_URL: str
+AUTH_DOCS_URL: str
+STEP_USER_SCHEMA: Any
 
 class SimpliSafeOAuthValues(NamedTuple):
     code_verifier: str
@@ -19,14 +21,13 @@ def async_get_simplisafe_oauth_values() -> SimpliSafeOAuthValues: ...
 
 class SimpliSafeFlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _errors: Any
     _oauth_values: Any
     _reauth: bool
     _username: Any
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SimpliSafeOptionsFlowHandler: ...
-    async def async_step_input_auth_code(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    def _async_show_form(self, *, errors: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_reauth(self, config: ConfigType) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 

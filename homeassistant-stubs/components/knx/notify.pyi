@@ -1,4 +1,5 @@
-from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
+from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
+from .schema import NotifySchema as NotifySchema
 from homeassistant.components.notify import BaseNotificationService as BaseNotificationService
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant

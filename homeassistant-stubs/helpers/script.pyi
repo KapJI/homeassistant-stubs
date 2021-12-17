@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from .trace import TraceElement as TraceElement, async_trace_path as async_trace_path, trace_append_element as trace_append_element, trace_id_get as trace_id_get, trace_path as trace_path, trace_path_get as trace_path_get, trace_set_result as trace_set_result, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top, trace_update_result as trace_update_result
-from collections.abc import Callable as Callable, Sequence
+from collections.abc import Callable as Callable, Generator, Sequence
 from homeassistant import exceptions as exceptions
 from homeassistant.components import device_automation as device_automation, scene as scene
 from homeassistant.components.logger import LOGSEVERITY as LOGSEVERITY
@@ -47,7 +47,7 @@ SCRIPT_DEBUG_CONTINUE_STOP: str
 SCRIPT_DEBUG_CONTINUE_ALL: str
 
 def action_trace_append(variables, path): ...
-async def trace_action(hass, script_run, stop, variables) -> None: ...
+async def trace_action(hass, script_run, stop, variables) -> Generator[Any, None, None]: ...
 def make_script_schema(schema, default_script_mode, extra=...): ...
 
 STATIC_VALIDATION_ACTION_TYPES: Any

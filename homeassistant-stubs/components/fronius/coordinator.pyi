@@ -16,6 +16,7 @@ class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[Dict[SolarNetId, Dict[st
     default_interval: timedelta
     error_interval: timedelta
     valid_descriptions: list[SensorEntityDescription]
+    MAX_FAILED_UPDATES: int
     _failed_update_count: int
     solar_net: Any
     unregistered_keys: Any
@@ -30,6 +31,7 @@ class FroniusInverterUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Any
     error_interval: Any
     valid_descriptions: Any
+    SILENT_RETRIES: int
     inverter_info: Any
     def __init__(self, *args: Any, inverter_info: FroniusDeviceInfo, **kwargs: Any) -> None: ...
     async def _update_method(self) -> dict[SolarNetId, Any]: ...

@@ -12,7 +12,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class VelbusLight(VelbusEntity, LightEntity):
     _channel: VelbusDimmer
-    _attr_supported_feature: Any
+    _attr_supported_features: Any
     @property
     def is_on(self) -> bool: ...
     @property
@@ -23,7 +23,7 @@ class VelbusLight(VelbusEntity, LightEntity):
 class VelbusButtonLight(VelbusEntity, LightEntity):
     _channel: VelbusButton
     _attr_entity_registry_enabled_default: bool
-    _attr_supported_feature: Any
+    _attr_supported_features: Any
     _attr_name: Any
     def __init__(self, channel: VelbusChannel) -> None: ...
     @property

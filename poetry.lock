@@ -387,7 +387,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "homeassistant"
-version = "2021.12.2"
+version = "2021.12.4"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -413,7 +413,7 @@ python-slugify = "4.0.1"
 pyyaml = "6.0"
 requests = "2.26.0"
 voluptuous = "0.12.2"
-voluptuous-serialize = "2.4.0"
+voluptuous-serialize = "2.5.0"
 yarl = "1.6.3"
 
 [[package]]
@@ -856,7 +856,7 @@ python-versions = "*"
 
 [[package]]
 name = "voluptuous-serialize"
-version = "2.4.0"
+version = "2.5.0"
 description = "Convert voluptuous schemas to dictionaries"
 category = "main"
 optional = false
@@ -888,7 +888,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "15e225c988e8c6202fc27e4032f18759c361cb366ed559fbadb18e82f4bd4e57"
+content-hash = "1003b54d0d35f38b89af3e215a8b0272731ddf79a1fa3124038b86a0590b5abb"
 
 [metadata.files]
 aiohttp = [
@@ -1258,8 +1258,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 homeassistant = [
-    {file = "homeassistant-2021.12.2-py3-none-any.whl", hash = "sha256:e3c911d163372c35f199452998395efe422ab2636872ea5802ab61d4982e0e25"},
-    {file = "homeassistant-2021.12.2.tar.gz", hash = "sha256:060f93065c8a9080cae625e2ddd5cd0a34f8ce11269f019ff215fa599be9b9d2"},
+    {file = "homeassistant-2021.12.4-py3-none-any.whl", hash = "sha256:71168dd7cb077c9197a9a36ef81f1ff517746bde568ca40e51b57e5ace4652ec"},
+    {file = "homeassistant-2021.12.4.tar.gz", hash = "sha256:ce6f1b8c5b28d73d430ceb8aa3c67f4d06cc2d0d9df4328b5d36688d27a8d1f1"},
 ]
 httpcore = [
     {file = "httpcore-0.14.3-py3-none-any.whl", hash = "sha256:9a98d2416b78976fc5396ff1f6b26ae9885efbb3105d24eed490f20ab4c95ec1"},
@@ -1604,8 +1604,8 @@ voluptuous = [
     {file = "voluptuous-0.12.2.tar.gz", hash = "sha256:4db1ac5079db9249820d49c891cb4660a6f8cae350491210abce741fabf56513"},
 ]
 voluptuous-serialize = [
-    {file = "voluptuous-serialize-2.4.0.tar.gz", hash = "sha256:c6ba17cb0301c18e8b955d89b85fa4aa05c05c80ab1e4873810900f757dceae4"},
-    {file = "voluptuous_serialize-2.4.0-py3-none-any.whl", hash = "sha256:44799b2b7fdba19279258f102ccd0e92ee2c10ff5eda5f393d4a71247b6dfa92"},
+    {file = "voluptuous-serialize-2.5.0.tar.gz", hash = "sha256:5359f2e0a4f972ae03066e0777b4f0755c9226b2af099ca4fc55432efd1a447b"},
+    {file = "voluptuous_serialize-2.5.0-py3-none-any.whl", hash = "sha256:bec8bc2d48c636692f9ab9caf7efda3951183a30bfe96d1ffe87369c96d9beca"},
 ]
 wrapt = [
     {file = "wrapt-1.12.1.tar.gz", hash = "sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7"},

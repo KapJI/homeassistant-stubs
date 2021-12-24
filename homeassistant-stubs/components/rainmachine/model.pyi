@@ -1,2 +1,3 @@
 class RainMachineSensorDescriptionMixin:
     api_category: str
+    def __init__(self, api_category) -> None: ...

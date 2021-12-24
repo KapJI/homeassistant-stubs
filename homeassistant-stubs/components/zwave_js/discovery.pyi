@@ -18,6 +18,7 @@ class FirmwareVersionRange(DataclassMustHaveAtLeastOne):
     min_ver: Union[AwesomeVersion, None]
     max_ver: Union[AwesomeVersion, None]
     def __post_init__(self) -> None: ...
+    def __init__(self, min, max) -> None: ...
 
 class ZwaveDiscoveryInfo:
     node: ZwaveNode
@@ -29,6 +30,7 @@ class ZwaveDiscoveryInfo:
     platform_hint: Union[str, None]
     platform_data_template: Union[BaseDiscoverySchemaDataTemplate, None]
     entity_registry_enabled_default: bool
+    def __init__(self, node, primary_value, assumed_state, platform, platform_data, additional_value_ids_to_watch, platform_hint, platform_data_template, entity_registry_enabled_default) -> None: ...
 
 class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):
     command_class: Union[set[int], None]
@@ -38,6 +40,7 @@ class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):
     property_key: Union[set[Union[str, int]], None]
     property_key_name: Union[set[str], None]
     type: Union[set[str], None]
+    def __init__(self, command_class, endpoint, property, property_name, property_key, property_key_name, type) -> None: ...
 
 class ZWaveDiscoverySchema:
     platform: str
@@ -57,6 +60,7 @@ class ZWaveDiscoverySchema:
     allow_multi: bool
     assumed_state: bool
     entity_registry_enabled_default: bool
+    def __init__(self, platform, primary_value, hint, data_template, manufacturer_id, product_id, product_type, firmware_version_range, firmware_version, device_class_basic, device_class_generic, device_class_specific, required_values, absent_values, allow_multi, assumed_state, entity_registry_enabled_default) -> None: ...
 
 def get_config_parameter_discovery_schema(property_: Union[set[Union[str, int]], None] = ..., property_name: Union[set[str], None] = ..., property_key: Union[set[Union[str, int]], None] = ..., property_key_name: Union[set[str], None] = ..., **kwargs: Any) -> ZWaveDiscoverySchema: ...
 

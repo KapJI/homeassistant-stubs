@@ -8,9 +8,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any, Literal
 
 class NotionBinarySensorDescriptionMixin:
-    on_state: Literal[alarm, critical, leak, not_missing, open]
+    on_state: Literal['alarm', 'critical', 'leak', 'not_missing', 'open']
+    def __init__(self, on_state) -> None: ...
 
-class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionBinarySensorDescriptionMixin): ...
+class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionBinarySensorDescriptionMixin):
+    def __init__(self, on_state, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Any
 

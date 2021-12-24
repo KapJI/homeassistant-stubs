@@ -13,8 +13,10 @@ from typing import Any
 
 class TwenteMilieuSensorDescriptionMixin:
     waste_type: WasteType
+    def __init__(self, waste_type) -> None: ...
 
-class TwenteMilieuSensorDescription(SensorEntityDescription, TwenteMilieuSensorDescriptionMixin): ...
+class TwenteMilieuSensorDescription(SensorEntityDescription, TwenteMilieuSensorDescriptionMixin):
+    def __init__(self, waste_type, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSORS: tuple[TwenteMilieuSensorDescription, ...]
 

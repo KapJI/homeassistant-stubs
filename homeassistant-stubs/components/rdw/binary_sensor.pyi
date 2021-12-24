@@ -12,8 +12,10 @@ from vehicle import Vehicle as Vehicle
 
 class RDWBinarySensorEntityDescriptionMixin:
     is_on_fn: Callable[[Vehicle], Union[bool, None]]
+    def __init__(self, is_on_fn) -> None: ...
 
-class RDWBinarySensorEntityDescription(BinarySensorEntityDescription, RDWBinarySensorEntityDescriptionMixin): ...
+class RDWBinarySensorEntityDescription(BinarySensorEntityDescription, RDWBinarySensorEntityDescriptionMixin):
+    def __init__(self, is_on_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 BINARY_SENSORS: tuple[RDWBinarySensorEntityDescription, ...]
 

@@ -12,9 +12,11 @@ from typing import Any, Literal
 _LOGGER: Any
 
 class TractiveRequiredKeysMixin:
-    method: Literal[async_set_buzzer, async_set_led, async_set_live_tracking]
+    method: Literal['async_set_buzzer', 'async_set_led', 'async_set_live_tracking']
+    def __init__(self, method) -> None: ...
 
-class TractiveSwitchEntityDescription(SwitchEntityDescription, TractiveRequiredKeysMixin): ...
+class TractiveSwitchEntityDescription(SwitchEntityDescription, TractiveRequiredKeysMixin):
+    def __init__(self, method, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 SWITCH_TYPES: tuple[TractiveSwitchEntityDescription, ...]
 

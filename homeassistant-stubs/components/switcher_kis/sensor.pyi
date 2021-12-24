@@ -18,6 +18,7 @@ class AttributeDescription:
     device_class: Union[str, None]
     state_class: Union[str, None]
     default_enabled: bool
+    def __init__(self, name, icon, unit, device_class, state_class, default_enabled) -> None: ...
 
 POWER_SENSORS: Any
 TIME_SENSORS: Any

@@ -22,6 +22,7 @@ class CollectionChangeSet:
     change_type: str
     item_id: str
     item: Any
+    def __init__(self, change_type, item_id, item) -> None: ...
 ChangeListener = Callable[[str, str, dict], Awaitable[None]]
 ChangeSetListener = Callable[[Iterable[CollectionChangeSet]], Awaitable[None]]
 

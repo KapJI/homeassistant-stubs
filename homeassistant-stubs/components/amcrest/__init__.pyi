@@ -72,3 +72,4 @@ class AmcrestDevice:
     resolution: int
     control_light: bool
     channel: int
+    def __init__(self, api, authentication, ffmpeg_arguments, stream_source, resolution, control_light, channel) -> None: ...

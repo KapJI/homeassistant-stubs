@@ -47,7 +47,8 @@ CAMERA_SERVICE_RECORD: Final[Any]
 WS_TYPE_CAMERA_THUMBNAIL: Final[str]
 SCHEMA_WS_CAMERA_THUMBNAIL: Final[Any]
 
-class CameraEntityDescription(EntityDescription): ...
+class CameraEntityDescription(EntityDescription):
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class Image:
     content_type: str

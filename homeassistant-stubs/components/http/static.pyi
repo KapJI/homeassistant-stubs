@@ -1,6 +1,6 @@
 from aiohttp.web import Request as Request, StreamResponse as StreamResponse
 from aiohttp.web_urldispatcher import StaticResource
-from collections.abc import Mapping as Mapping
+from collections.abc import Mapping
 from typing import Any, Final
 
 CACHE_TIME: Final[Any]

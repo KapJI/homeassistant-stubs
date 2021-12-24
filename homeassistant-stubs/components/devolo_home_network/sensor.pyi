@@ -12,8 +12,10 @@ from typing import Any
 
 class DevoloSensorRequiredKeysMixin:
     value_func: Callable[[dict[str, Any]], int]
+    def __init__(self, value_func) -> None: ...
 
-class DevoloSensorEntityDescription(SensorEntityDescription, DevoloSensorRequiredKeysMixin): ...
+class DevoloSensorEntityDescription(SensorEntityDescription, DevoloSensorRequiredKeysMixin):
+    def __init__(self, value_func, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSOR_TYPES: dict[str, DevoloSensorEntityDescription]
 

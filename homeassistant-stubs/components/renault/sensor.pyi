@@ -16,12 +16,14 @@ from homeassistant.util.dt import as_utc as as_utc, parse_datetime as parse_date
 class RenaultSensorRequiredKeysMixin:
     data_key: str
     entity_class: type[RenaultSensor]
+    def __init__(self, data_key, entity_class) -> None: ...
 
 class RenaultSensorEntityDescription(SensorEntityDescription, RenaultDataEntityDescription, RenaultSensorRequiredKeysMixin):
     icon_lambda: Union[Callable[[RenaultSensor[T]], str], None]
     condition_lambda: Union[Callable[[RenaultVehicleProxy], bool], None]
     requires_fuel: bool
     value_lambda: Union[Callable[[RenaultSensor[T]], Union[StateType, datetime]], None]
+    def __init__(self, data_key, entity_class, coordinator, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, icon_lambda, condition_lambda, requires_fuel, value_lambda) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

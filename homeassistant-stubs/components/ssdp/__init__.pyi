@@ -47,6 +47,7 @@ _LOGGER: Any
 
 class _HaServiceDescription:
     x_homeassistant_matching_domains: set[str]
+    def __init__(self, x_homeassistant_matching_domains) -> None: ...
 
 class _SsdpServiceDescription:
     ssdp_usn: str
@@ -57,15 +58,18 @@ class _SsdpServiceDescription:
     ssdp_ext: Union[str, None]
     ssdp_server: Union[str, None]
     ssdp_headers: Mapping[str, Any]
+    def __init__(self, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers) -> None: ...
 
 class _UpnpServiceDescription:
     upnp: Mapping[str, Any]
+    def __init__(self, upnp) -> None: ...
 
 class SsdpServiceInfo(_HaServiceDescription, _SsdpServiceDescription, _UpnpServiceDescription, BaseServiceInfo):
     _warning_logged: bool
     def __getitem__(self, name: str) -> Any: ...
     def get(self, name: str, default: Any = ...) -> Any: ...
     def __contains__(self, name: str) -> bool: ...
+    def __init__(self, upnp, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains, _warning_logged) -> None: ...
 
 SsdpChange: Any
 SsdpCallback = Callable[[SsdpServiceInfo, SsdpChange], Awaitable]

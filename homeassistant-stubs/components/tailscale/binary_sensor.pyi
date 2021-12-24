@@ -10,8 +10,10 @@ from tailscale import Device as TailscaleDevice
 
 class TailscaleBinarySensorEntityDescriptionMixin:
     is_on_fn: Callable[[TailscaleDevice], Union[bool, None]]
+    def __init__(self, is_on_fn) -> None: ...
 
-class TailscaleBinarySensorEntityDescription(BinarySensorEntityDescription, TailscaleBinarySensorEntityDescriptionMixin): ...
+class TailscaleBinarySensorEntityDescription(BinarySensorEntityDescription, TailscaleBinarySensorEntityDescriptionMixin):
+    def __init__(self, is_on_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 BINARY_SENSORS: tuple[TailscaleBinarySensorEntityDescription, ...]
 

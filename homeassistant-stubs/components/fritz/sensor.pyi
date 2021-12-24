@@ -32,9 +32,11 @@ def _retrieve_link_attenuation_received_state(status: FritzStatus, last_value: s
 
 class FritzRequireKeysMixin:
     value_fn: Callable[[FritzStatus, Any], Any]
+    def __init__(self, value_fn) -> None: ...
 
 class FritzSensorEntityDescription(SensorEntityDescription, FritzRequireKeysMixin):
-    connection_type: Union[Literal[dsl], None]
+    connection_type: Union[Literal['dsl'], None]
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, connection_type) -> None: ...
 
 SENSOR_TYPES: tuple[FritzSensorEntityDescription, ...]
 

@@ -73,6 +73,7 @@ class SensorEntityDescription(EntityDescription):
     state_class: Union[SensorStateClass, str, None]
     unit_of_measurement: None
     def __post_init__(self) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 class SensorEntity(Entity):
     entity_description: SensorEntityDescription

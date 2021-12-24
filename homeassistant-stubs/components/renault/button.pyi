@@ -9,9 +9,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 class RenaultButtonRequiredKeysMixin:
     async_press: Callable[[RenaultButtonEntity], Awaitable]
+    def __init__(self, async_press) -> None: ...
 
 class RenaultButtonEntityDescription(ButtonEntityDescription, RenaultButtonRequiredKeysMixin):
     requires_electricity: bool
+    def __init__(self, async_press, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, requires_electricity) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

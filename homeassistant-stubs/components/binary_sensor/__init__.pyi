@@ -78,6 +78,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class BinarySensorEntityDescription(EntityDescription):
     device_class: Union[BinarySensorDeviceClass, str, None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class BinarySensorEntity(Entity):
     entity_description: BinarySensorEntityDescription

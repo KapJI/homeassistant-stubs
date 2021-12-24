@@ -24,12 +24,14 @@ class NetatmoDevice:
     device: pyatmo.climate.NetatmoModule
     parent_id: str
     state_class_name: str
+    def __init__(self, data_handler, device, parent_id, state_class_name) -> None: ...
 
 class NetatmoDataClass:
     name: str
     interval: int
     next_scan: float
     subscriptions: list[CALLBACK_TYPE]
+    def __init__(self, name, interval, next_scan, subscriptions) -> None: ...
 
 class NetatmoDataHandler:
     hass: Any

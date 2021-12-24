@@ -24,8 +24,10 @@ def _format_cbs_report(report: ConditionBasedServiceReport, unit_system: UnitSys
 
 class BMWRequiredKeysMixin:
     value_fn: Callable[[VehicleStatus, dict[str, Any], UnitSystem], bool]
+    def __init__(self, value_fn) -> None: ...
 
-class BMWBinarySensorEntityDescription(BinarySensorEntityDescription, BMWRequiredKeysMixin): ...
+class BMWBinarySensorEntityDescription(BinarySensorEntityDescription, BMWRequiredKeysMixin):
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 SENSOR_TYPES: tuple[BMWBinarySensorEntityDescription, ...]
 

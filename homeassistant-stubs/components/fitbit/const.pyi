@@ -26,8 +26,10 @@ DEFAULT_CLOCK_FORMAT: Final[str]
 
 class FitbitRequiredKeysMixin:
     unit_type: Union[str, None]
+    def __init__(self, unit_type) -> None: ...
 
-class FitbitSensorEntityDescription(SensorEntityDescription, FitbitRequiredKeysMixin): ...
+class FitbitSensorEntityDescription(SensorEntityDescription, FitbitRequiredKeysMixin):
+    def __init__(self, unit_type, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 FITBIT_RESOURCES_LIST: Final[tuple[FitbitSensorEntityDescription, ...]]
 FITBIT_RESOURCE_BATTERY: Any

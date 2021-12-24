@@ -19,6 +19,7 @@ class AddonInfo:
     state: AddonState
     update_available: bool
     version: Union[str, None]
+    def __init__(self, options, state, update_available, version) -> None: ...
 
 class AddonState(Enum):
     NOT_INSTALLED: str

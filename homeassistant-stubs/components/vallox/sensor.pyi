@@ -37,6 +37,7 @@ class ValloxCellStateSensor(ValloxSensor):
 class ValloxSensorEntityDescription(SensorEntityDescription):
     metric_key: Union[str, None]
     sensor_type: type[ValloxSensor]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, metric_key, sensor_type) -> None: ...
 
 SENSORS: tuple[ValloxSensorEntityDescription, ...]
 

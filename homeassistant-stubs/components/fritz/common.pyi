@@ -1,5 +1,5 @@
 from .const import DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, SERVICE_CLEANUP as SERVICE_CLEANUP, SERVICE_REBOOT as SERVICE_REBOOT, SERVICE_RECONNECT as SERVICE_RECONNECT, TRACKER_SCAN_INTERVAL as TRACKER_SCAN_INTERVAL
-from collections.abc import Callable as Callable, ValuesView
+from collections.abc import Callable, ValuesView
 from datetime import datetime
 from homeassistant.components.device_tracker.const import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -26,6 +26,7 @@ class Device:
     mac: str
     ip_address: str
     name: str
+    def __init__(self, mac, ip_address, name) -> None: ...
 
 class HostInfo(TypedDict):
     mac: str
@@ -83,6 +84,7 @@ class FritzBoxTools:
 class FritzData:
     tracked: dict
     profile_switches: dict
+    def __init__(self, tracked, profile_switches) -> None: ...
 
 class FritzDeviceBase(Entity):
     _router: Any

@@ -10,6 +10,7 @@ from typing import Any
 
 class WallboxNumberEntityDescription(NumberEntityDescription):
     min_value: float
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, min_value) -> None: ...
 
 NUMBER_TYPES: dict[str, WallboxNumberEntityDescription]
 

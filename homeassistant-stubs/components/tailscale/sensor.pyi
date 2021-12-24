@@ -11,8 +11,10 @@ from tailscale import Device as TailscaleDevice
 
 class TailscaleSensorEntityDescriptionMixin:
     value_fn: Callable[[TailscaleDevice], Union[datetime, str, None]]
+    def __init__(self, value_fn) -> None: ...
 
-class TailscaleSensorEntityDescription(SensorEntityDescription, TailscaleSensorEntityDescriptionMixin): ...
+class TailscaleSensorEntityDescription(SensorEntityDescription, TailscaleSensorEntityDescriptionMixin):
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSORS: tuple[TailscaleSensorEntityDescription, ...]
 

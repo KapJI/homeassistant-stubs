@@ -13,8 +13,10 @@ from vehicle import Vehicle as Vehicle
 
 class RDWSensorEntityDescriptionMixin:
     value_fn: Callable[[Vehicle], Union[date, str, float, None]]
+    def __init__(self, value_fn) -> None: ...
 
-class RDWSensorEntityDescription(SensorEntityDescription, RDWSensorEntityDescriptionMixin): ...
+class RDWSensorEntityDescription(SensorEntityDescription, RDWSensorEntityDescriptionMixin):
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSORS: tuple[RDWSensorEntityDescription, ...]
 

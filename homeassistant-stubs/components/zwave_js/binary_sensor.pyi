@@ -33,11 +33,14 @@ NOTIFICATION_GAS: str
 class NotificationZWaveJSEntityDescription(BinarySensorEntityDescription):
     off_state: str
     states: Union[tuple[str, ...], None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, off_state, states) -> None: ...
 
 class PropertyZWaveJSMixin:
     on_states: tuple[str, ...]
+    def __init__(self, on_states) -> None: ...
 
-class PropertyZWaveJSEntityDescription(BinarySensorEntityDescription, PropertyZWaveJSMixin): ...
+class PropertyZWaveJSEntityDescription(BinarySensorEntityDescription, PropertyZWaveJSMixin):
+    def __init__(self, on_states, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 NOTIFICATION_SENSOR_MAPPINGS: tuple[NotificationZWaveJSEntityDescription, ...]
 PROPERTY_SENSOR_MAPPINGS: dict[str, PropertyZWaveJSEntityDescription]

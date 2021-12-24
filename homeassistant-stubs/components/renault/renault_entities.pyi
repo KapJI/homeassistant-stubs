@@ -8,8 +8,10 @@ from typing import Any, Optional
 
 class RenaultDataRequiredKeysMixin:
     coordinator: str
+    def __init__(self, coordinator) -> None: ...
 
-class RenaultDataEntityDescription(EntityDescription, RenaultDataRequiredKeysMixin): ...
+class RenaultDataEntityDescription(EntityDescription, RenaultDataRequiredKeysMixin):
+    def __init__(self, coordinator, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class RenaultEntity(Entity):
     entity_description: EntityDescription

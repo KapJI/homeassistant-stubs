@@ -18,7 +18,8 @@ TYPE_RAINDELAY: str
 TYPE_RAINSENSOR: str
 TYPE_WEEKDAY: str
 
-class RainMachineBinarySensorDescription(BinarySensorEntityDescription, RainMachineSensorDescriptionMixin): ...
+class RainMachineBinarySensorDescription(BinarySensorEntityDescription, RainMachineSensorDescriptionMixin):
+    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Any
 

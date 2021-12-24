@@ -8,3 +8,4 @@ class LookinData:
     meteo_coordinator: DataUpdateCoordinator
     devices: list[dict[str, Any]]
     lookin_protocol: LookInHttpProtocol
+    def __init__(self, lookin_udp_subs, lookin_device, meteo_coordinator, devices, lookin_protocol) -> None: ...

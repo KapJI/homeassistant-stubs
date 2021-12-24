@@ -24,23 +24,23 @@ class FlowToGridSourceType(TypedDict):
     number_energy_price: Union[float, None]
 
 class GridSourceType(TypedDict):
-    type: Literal[grid]
+    type: Literal['grid']
     flow_from: list[FlowFromGridSourceType]
     flow_to: list[FlowToGridSourceType]
     cost_adjustment_day: float
 
 class SolarSourceType(TypedDict):
-    type: Literal[solar]
+    type: Literal['solar']
     stat_energy_from: str
     config_entry_solar_forecast: Union[list[str], None]
 
 class BatterySourceType(TypedDict):
-    type: Literal[battery]
+    type: Literal['battery']
     stat_energy_from: str
     stat_energy_to: str
 
 class GasSourceType(TypedDict):
-    type: Literal[gas]
+    type: Literal['gas']
     stat_energy_from: str
     stat_cost: Union[str, None]
     entity_energy_from: Union[str, None]

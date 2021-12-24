@@ -10,7 +10,8 @@ from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-class OneWireSwitchEntityDescription(OneWireEntityDescription, SwitchEntityDescription): ...
+class OneWireSwitchEntityDescription(OneWireEntityDescription, SwitchEntityDescription):
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, read_mode) -> None: ...
 
 DEVICE_SWITCHES: dict[str, tuple[OneWireEntityDescription, ...]]
 LOGGER: Any

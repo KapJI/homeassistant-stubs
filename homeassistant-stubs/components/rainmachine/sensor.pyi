@@ -14,7 +14,8 @@ TYPE_FLOW_SENSOR_START_INDEX: str
 TYPE_FLOW_SENSOR_WATERING_CLICKS: str
 TYPE_FREEZE_TEMP: str
 
-class RainMachineSensorEntityDescription(SensorEntityDescription, RainMachineSensorDescriptionMixin): ...
+class RainMachineSensorEntityDescription(SensorEntityDescription, RainMachineSensorDescriptionMixin):
+    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSOR_DESCRIPTIONS: Any
 

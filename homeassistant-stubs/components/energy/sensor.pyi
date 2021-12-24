@@ -18,13 +18,14 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 T = TypeVar('T')
 
 class SourceAdapter:
-    source_type: Literal[grid, gas]
-    flow_type: Literal[flow_from, flow_to, None]
-    stat_energy_key: Literal[stat_energy_from, stat_energy_to]
-    entity_energy_key: Literal[entity_energy_from, entity_energy_to]
-    total_money_key: Literal[stat_cost, stat_compensation]
+    source_type: Literal['grid', 'gas']
+    flow_type: Literal['flow_from', 'flow_to', None]
+    stat_energy_key: Literal['stat_energy_from', 'stat_energy_to']
+    entity_energy_key: Literal['entity_energy_from', 'entity_energy_to']
+    total_money_key: Literal['stat_cost', 'stat_compensation']
     name_suffix: str
     entity_id_suffix: str
+    def __init__(self, source_type, flow_type, stat_energy_key, entity_energy_key, total_money_key, name_suffix, entity_id_suffix) -> None: ...
 
 SOURCE_ADAPTERS: Final[Any]
 

@@ -14,8 +14,10 @@ from typing import Any, Final
 
 class ShellyButtonDescriptionMixin:
     press_action: Callable
+    def __init__(self, press_action) -> None: ...
 
-class ShellyButtonDescription(ButtonEntityDescription, ShellyButtonDescriptionMixin): ...
+class ShellyButtonDescription(ButtonEntityDescription, ShellyButtonDescriptionMixin):
+    def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 BUTTONS: Final[Any]
 

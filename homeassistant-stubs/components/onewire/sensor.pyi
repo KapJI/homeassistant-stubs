@@ -13,7 +13,8 @@ from pi1wire import OneWireInterface as OneWireInterface
 from types import MappingProxyType
 from typing import Any
 
-class OneWireSensorEntityDescription(OneWireEntityDescription, SensorEntityDescription): ...
+class OneWireSensorEntityDescription(OneWireEntityDescription, SensorEntityDescription):
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, read_mode) -> None: ...
 
 SIMPLE_TEMPERATURE_SENSOR_DESCRIPTION: Any
 _LOGGER: Any

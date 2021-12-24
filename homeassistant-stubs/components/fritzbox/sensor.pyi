@@ -16,8 +16,10 @@ from typing import Final
 
 class FritzEntityDescriptionMixinSensor(FritzEntityDescriptionMixinBase):
     native_value: Callable[[FritzhomeDevice], Union[StateType, datetime]]
+    def __init__(self, suitable, native_value) -> None: ...
 
-class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescriptionMixinSensor): ...
+class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescriptionMixinSensor):
+    def __init__(self, suitable, native_value, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSOR_TYPES: Final[tuple[FritzSensorEntityDescription, ...]]
 

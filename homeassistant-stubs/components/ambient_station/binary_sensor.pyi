@@ -34,8 +34,10 @@ TYPE_RELAY9: str
 
 class AmbientBinarySensorDescriptionMixin:
     on_state: Literal[0, 1]
+    def __init__(self, on_state) -> None: ...
 
-class AmbientBinarySensorDescription(BinarySensorEntityDescription, AmbientBinarySensorDescriptionMixin): ...
+class AmbientBinarySensorDescription(BinarySensorEntityDescription, AmbientBinarySensorDescriptionMixin):
+    def __init__(self, on_state, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Any
 

@@ -22,6 +22,7 @@ SIGNAL_SYSTEMMONITOR_UPDATE: str
 
 class SysMonitorSensorEntityDescription(SensorEntityDescription):
     mandatory_arg: bool
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, mandatory_arg) -> None: ...
 
 SENSOR_TYPES: dict[str, SysMonitorSensorEntityDescription]
 
@@ -37,6 +38,7 @@ class SensorData:
     value: Union[Any, None]
     update_time: Union[datetime, None]
     last_exception: Union[BaseException, None]
+    def __init__(self, argument, state, value, update_time, last_exception) -> None: ...
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[Any, None] = ...) -> None: ...
 async def async_setup_sensor_registry_updates(hass: HomeAssistant, sensor_registry: dict[tuple[str, str], SensorData], scan_interval: timedelta) -> None: ...

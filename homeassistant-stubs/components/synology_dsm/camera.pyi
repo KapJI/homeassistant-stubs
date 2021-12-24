@@ -11,7 +11,8 @@ from typing import Any
 
 _LOGGER: Any
 
-class SynologyDSMCameraEntityDescription(CameraEntityDescription, SynologyDSMEntityDescription): ...
+class SynologyDSMCameraEntityDescription(CameraEntityDescription, SynologyDSMEntityDescription):
+    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

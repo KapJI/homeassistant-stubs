@@ -33,6 +33,7 @@ class BlockAttributeDescription:
     removal_condition: Union[Callable[[dict, Block], bool], None]
     extra_state_attributes: Union[Callable[[Block], Union[dict, None]], None]
     entity_category: Union[str, None]
+    def __init__(self, name, icon, unit, value, device_class, state_class, default_enabled, available, removal_condition, extra_state_attributes, entity_category) -> None: ...
 
 class RpcAttributeDescription:
     key: str
@@ -48,6 +49,7 @@ class RpcAttributeDescription:
     removal_condition: Union[Callable[[dict, str], bool], None]
     extra_state_attributes: Union[Callable[[dict, dict], Union[dict, None]], None]
     entity_category: Union[str, None]
+    def __init__(self, key, sub_key, name, icon, unit, value, device_class, state_class, default_enabled, available, removal_condition, extra_state_attributes, entity_category) -> None: ...
 
 class RestAttributeDescription:
     name: str
@@ -59,6 +61,7 @@ class RestAttributeDescription:
     default_enabled: bool
     extra_state_attributes: Union[Callable[[dict], Union[dict, None]], None]
     entity_category: Union[str, None]
+    def __init__(self, name, icon, unit, value, device_class, state_class, default_enabled, extra_state_attributes, entity_category) -> None: ...
 
 class ShellyBlockEntity(entity.Entity):
     wrapper: Any

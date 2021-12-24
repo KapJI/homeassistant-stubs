@@ -13,6 +13,7 @@ from typing import Any
 class TPLinkSensorEntityDescription(SensorEntityDescription):
     emeter_attr: Union[str, None]
     precision: Union[int, None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, emeter_attr, precision) -> None: ...
 
 ENERGY_SENSORS: tuple[TPLinkSensorEntityDescription, ...]
 

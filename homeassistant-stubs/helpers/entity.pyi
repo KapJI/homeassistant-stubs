@@ -55,12 +55,13 @@ class EntityCategory(StrEnum):
 class EntityDescription:
     key: str
     device_class: Union[str, None]
-    entity_category: Union[EntityCategory, Literal[config, diagnostic, system], None]
+    entity_category: Union[EntityCategory, Literal['config', 'diagnostic', 'system'], None]
     entity_registry_enabled_default: bool
     force_update: bool
     icon: Union[str, None]
     name: Union[str, None]
     unit_of_measurement: Union[str, None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class Entity(ABC):
     entity_id: str
@@ -163,7 +164,8 @@ class Entity(ABC):
     async def async_request_call(self, coro: Awaitable) -> None: ...
     def _suggest_report_issue(self) -> str: ...
 
-class ToggleEntityDescription(EntityDescription): ...
+class ToggleEntityDescription(EntityDescription):
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class ToggleEntity(Entity):
     entity_description: ToggleEntityDescription

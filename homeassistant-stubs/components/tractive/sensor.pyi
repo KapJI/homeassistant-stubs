@@ -11,8 +11,10 @@ from typing import Any
 
 class TractiveRequiredKeysMixin:
     entity_class: type[TractiveSensor]
+    def __init__(self, entity_class) -> None: ...
 
-class TractiveSensorEntityDescription(SensorEntityDescription, TractiveRequiredKeysMixin): ...
+class TractiveSensorEntityDescription(SensorEntityDescription, TractiveRequiredKeysMixin):
+    def __init__(self, entity_class, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 class TractiveSensor(TractiveEntity, SensorEntity):
     _attr_name: Any

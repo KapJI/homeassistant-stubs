@@ -10,6 +10,7 @@ from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
 
 CONF_KNX_GATEWAY: Final[str]
 CONF_MAX_RATE_LIMIT: Final[int]
+CONF_DEFAULT_LOCAL_IP: Final[str]
 DEFAULT_ENTRY_DATA: Final[Any]
 
 class FlowHandler(config_entries.ConfigFlow):

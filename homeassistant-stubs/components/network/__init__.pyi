@@ -3,9 +3,13 @@ from .const import IPV4_BROADCAST_ADDR as IPV4_BROADCAST_ADDR, PUBLIC_TARGET_IP 
 from .models import Adapter as Adapter
 from .network import Network as Network, async_get_network as async_get_network
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from ipaddress import IPv4Address, IPv6Address
+from typing import Any
+
+_LOGGER: Any
 
 async def async_get_adapters(hass: HomeAssistant) -> list[Adapter]: ...
 async def async_get_source_ip(hass: HomeAssistant, target_ip: str = ...) -> str: ...

@@ -4,7 +4,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.util import Throttle as Throttle
 from pybotvac import Account as Account
 from typing import Any
-from urllib3.response import HTTPResponse as HTTPResponse
+from urllib3.response import HTTPResponse
 
 _LOGGER: Any
 

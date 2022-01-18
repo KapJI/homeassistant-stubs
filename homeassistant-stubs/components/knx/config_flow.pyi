@@ -15,7 +15,7 @@ DEFAULT_ENTRY_DATA: Final[Any]
 
 class FlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _tunnels: list
+    _tunnels: list[GatewayDescriptor]
     _gateway_ip: str
     _gateway_port: int
     @staticmethod
@@ -35,4 +35,4 @@ class KNXOptionsFlowHandler(OptionsFlow):
     async def async_step_tunnel(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
-async def scan_for_gateways(stop_on_found: int = ...) -> list: ...
+async def scan_for_gateways(stop_on_found: int = ...) -> list[GatewayDescriptor]: ...

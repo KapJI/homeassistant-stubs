@@ -1,9 +1,9 @@
 from .base_class import TradfriBaseDevice as TradfriBaseDevice
 from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, DEVICES as DEVICES, DOMAIN as DOMAIN, KEY_API as KEY_API
 from collections.abc import Callable as Callable
-from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, PERCENTAGE as PERCENTAGE
+from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pytradfri.command import Command as Command

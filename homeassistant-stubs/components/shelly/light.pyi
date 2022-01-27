@@ -11,20 +11,22 @@ from homeassistant.util.color import color_temperature_kelvin_to_mired as color_
 from typing import Any, Final
 
 _LOGGER: Final[Any]
+MIRED_MAX_VALUE_WHITE: Any
+MIRED_MIN_VALUE: Any
+MIRED_MAX_VALUE_COLOR: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_block_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockShellyLight(ShellyBlockEntity, LightEntity):
+    _attr_supported_color_modes: set[str]
     control_result: Any
-    _supported_color_modes: Any
-    _supported_features: int
+    _attr_min_mireds: Any
     _min_kelvin: Any
+    _attr_max_mireds: Any
     _max_kelvin: Any
     def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
-    @property
-    def supported_features(self) -> int: ...
     @property
     def is_on(self) -> bool: ...
     @property
@@ -39,12 +41,6 @@ class BlockShellyLight(ShellyBlockEntity, LightEntity):
     def rgbw_color(self) -> tuple[int, int, int, int]: ...
     @property
     def color_temp(self) -> int: ...
-    @property
-    def min_mireds(self) -> int: ...
-    @property
-    def max_mireds(self) -> int: ...
-    @property
-    def supported_color_modes(self) -> Union[set, None]: ...
     @property
     def effect_list(self) -> Union[list[str], None]: ...
     @property

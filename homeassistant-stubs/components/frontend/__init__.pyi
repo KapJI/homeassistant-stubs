@@ -3,7 +3,7 @@ import pathlib
 from .storage import async_setup_frontend_storage as async_setup_frontend_storage
 from aiohttp import web, web_urldispatcher
 from collections.abc import Iterator
-from homeassistant.components import websocket_api as websocket_api
+from homeassistant.components import onboarding as onboarding, websocket_api as websocket_api
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml

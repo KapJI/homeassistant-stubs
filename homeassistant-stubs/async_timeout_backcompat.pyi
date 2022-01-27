@@ -1,6 +1,6 @@
 import async_timeout
 import asyncio
-from homeassistant.helpers.frame import report as report
+from .helpers.frame import report as report
 from typing import Any
 
 def timeout(delay: Union[float, None], loop: Union[asyncio.AbstractEventLoop, None] = ...) -> async_timeout.Timeout: ...

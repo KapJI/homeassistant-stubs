@@ -1,7 +1,7 @@
 import voluptuous as vol
 from .const import ATTR_ATTRIBUTES as ATTR_ATTRIBUTES, ATTR_BATTERY as ATTR_BATTERY, ATTR_CONSIDER_HOME as ATTR_CONSIDER_HOME, ATTR_DEV_ID as ATTR_DEV_ID, ATTR_GPS as ATTR_GPS, ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_LOCATION_NAME as ATTR_LOCATION_NAME, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, CONF_NEW_DEVICE_DEFAULTS as CONF_NEW_DEVICE_DEFAULTS, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TRACK_NEW as CONF_TRACK_NEW, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME, DEFAULT_TRACK_NEW as DEFAULT_TRACK_NEW, DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORM_TYPE_LEGACY as PLATFORM_TYPE_LEGACY, SCAN_INTERVAL as SCAN_INTERVAL, SOURCE_TYPE_BLUETOOTH as SOURCE_TYPE_BLUETOOTH, SOURCE_TYPE_BLUETOOTH_LE as SOURCE_TYPE_BLUETOOTH_LE, SOURCE_TYPE_GPS as SOURCE_TYPE_GPS, SOURCE_TYPE_ROUTER as SOURCE_TYPE_ROUTER
 from collections.abc import Callable as Callable, Coroutine, Sequence
-from datetime import timedelta
+from datetime import datetime, timedelta
 from homeassistant import util as util
 from homeassistant.components import zone as zone
 from homeassistant.config import async_log_exception as async_log_exception, load_yaml_config_file as load_yaml_config_file
@@ -14,7 +14,6 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, GPSType as GPSType, StateType as StateType
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
-from homeassistant.util import dt as dt_util
 from homeassistant.util.yaml import dump as dump
 from types import ModuleType
 from typing import Any, Final
@@ -62,7 +61,7 @@ class DeviceTracker:
     def see(self, mac: Union[str, None] = ..., dev_id: Union[str, None] = ..., host_name: Union[str, None] = ..., location_name: Union[str, None] = ..., gps: Union[GPSType, None] = ..., gps_accuracy: Union[int, None] = ..., battery: Union[int, None] = ..., attributes: Union[dict, None] = ..., source_type: str = ..., picture: Union[str, None] = ..., icon: Union[str, None] = ..., consider_home: Union[timedelta, None] = ...) -> None: ...
     async def async_see(self, mac: Union[str, None] = ..., dev_id: Union[str, None] = ..., host_name: Union[str, None] = ..., location_name: Union[str, None] = ..., gps: Union[GPSType, None] = ..., gps_accuracy: Union[int, None] = ..., battery: Union[int, None] = ..., attributes: Union[dict, None] = ..., source_type: str = ..., picture: Union[str, None] = ..., icon: Union[str, None] = ..., consider_home: Union[timedelta, None] = ...) -> None: ...
     async def async_update_config(self, path: str, dev_id: str, device: Device) -> None: ...
-    def async_update_stale(self, now: dt_util.dt.datetime) -> None: ...
+    def async_update_stale(self, now: datetime) -> None: ...
     async def async_setup_tracked_device(self) -> None: ...
 
 class Device(RestoreEntity):
@@ -70,7 +69,7 @@ class Device(RestoreEntity):
     location_name: Union[str, None]
     gps: Union[GPSType, None]
     gps_accuracy: int
-    last_seen: Union[dt_util.dt.datetime, None]
+    last_seen: Union[datetime, None]
     battery: Union[int, None]
     attributes: Union[dict, None]
     last_update_home: bool
@@ -100,7 +99,7 @@ class Device(RestoreEntity):
     @property
     def icon(self) -> Union[str, None]: ...
     async def async_seen(self, host_name: Union[str, None] = ..., location_name: Union[str, None] = ..., gps: Union[GPSType, None] = ..., gps_accuracy: Union[int, None] = ..., battery: Union[int, None] = ..., attributes: Union[dict[str, Any], None] = ..., source_type: str = ..., consider_home: Union[timedelta, None] = ...) -> None: ...
-    def stale(self, now: Union[dt_util.dt.datetime, None] = ...) -> bool: ...
+    def stale(self, now: Union[datetime, None] = ...) -> bool: ...
     def mark_stale(self) -> None: ...
     async def async_update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...

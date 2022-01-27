@@ -29,7 +29,7 @@ ICON_LIGHTBULB: str
 ICON_EFFECT: str
 ICON_EXTERNAL_SOURCE: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HyperionBaseLight(LightEntity):
     _unique_id: Any

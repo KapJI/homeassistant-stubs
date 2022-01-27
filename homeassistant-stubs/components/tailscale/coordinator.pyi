@@ -5,10 +5,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from tailscale import Device as Device
+from tailscale import Device
 from typing import Any
 
-class TailscaleDataUpdateCoordinator(DataUpdateCoordinator):
+class TailscaleDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     config_entry: ConfigEntry
     tailscale: Any
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...

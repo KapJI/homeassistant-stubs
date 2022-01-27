@@ -4,6 +4,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final, TypedDict
 
 _LOGGER: Any
@@ -56,7 +57,7 @@ class Forecast(TypedDict):
     wind_bearing: Union[float, str, None]
     wind_speed: Union[float, None]
 
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 

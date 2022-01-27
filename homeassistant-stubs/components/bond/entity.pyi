@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from abc import abstractmethod
 from bond_api import BPUPSubscriptions as BPUPSubscriptions
-from homeassistant.const import ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
+from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
@@ -24,7 +24,7 @@ class BondEntity(Entity, metaclass=abc.ABCMeta):
     _initialized: bool
     _attr_unique_id: Any
     _attr_name: Any
-    def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions, sub_device: Union[str, None] = ...) -> None: ...
+    def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions, sub_device: Union[str, None] = ..., sub_device_id: Union[str, None] = ...) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     async def async_update(self) -> None: ...

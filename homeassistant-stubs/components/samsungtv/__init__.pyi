@@ -1,9 +1,10 @@
 from .bridge import SamsungTVBridge as SamsungTVBridge, SamsungTVLegacyBridge as SamsungTVLegacyBridge, SamsungTVWSBridge as SamsungTVWSBridge, async_get_device_info as async_get_device_info, mac_from_device_info as mac_from_device_info
 from .const import CONF_ON_ACTION as CONF_ON_ACTION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LEGACY_PORT as LEGACY_PORT, LOGGER as LOGGER, METHOD_LEGACY as METHOD_LEGACY, METHOD_WEBSOCKET as METHOD_WEBSOCKET
 from homeassistant import config_entries as config_entries
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TOKEN as CONF_TOKEN, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TOKEN as CONF_TOKEN, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 

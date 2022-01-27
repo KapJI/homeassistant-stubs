@@ -1,4 +1,4 @@
-from homeassistant.components.geo_location import DOMAIN as DOMAIN
+from . import DOMAIN as DOMAIN
 from homeassistant.const import CONF_EVENT as CONF_EVENT, CONF_PLATFORM as CONF_PLATFORM, CONF_SOURCE as CONF_SOURCE, CONF_ZONE as CONF_ZONE
 from homeassistant.core import HassJob as HassJob, callback as callback
 from homeassistant.helpers import condition as condition

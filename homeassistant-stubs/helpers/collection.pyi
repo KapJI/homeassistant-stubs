@@ -1,16 +1,17 @@
 import abc
 import logging
+from . import entity_registry as entity_registry
+from .entity import Entity as Entity
+from .entity_component import EntityComponent as EntityComponent
+from .storage import Store as Store
 from abc import ABC, abstractmethod
+from collections.abc import Awaitable, Callable, Iterable
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity_registry as entity_registry
-from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.storage import Store as Store
 from homeassistant.util import slugify as slugify
-from typing import Any, Awaitable, Callable, Iterable
+from typing import Any
 
 STORAGE_VERSION: int
 SAVE_DELAY: int

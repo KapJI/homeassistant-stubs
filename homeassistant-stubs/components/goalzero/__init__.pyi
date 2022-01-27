@@ -1,7 +1,7 @@
 from .const import ATTRIBUTION as ATTRIBUTION, DATA_KEY_API as DATA_KEY_API, DATA_KEY_COORDINATOR as DATA_KEY_COORDINATOR, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MIN_TIME_BETWEEN_UPDATES as MIN_TIME_BETWEEN_UPDATES
 from goalzero import Yeti
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_MODEL as ATTR_MODEL, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
+from homeassistant.const import ATTR_MODEL as ATTR_MODEL, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -16,7 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class YetiEntity(CoordinatorEntity):
-    _attr_extra_state_attributes: Any
+    _attr_attribution: Any
     api: Any
     _name: Any
     _server_unique_id: Any

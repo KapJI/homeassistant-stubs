@@ -1,4 +1,4 @@
-from .auth import setup_auth as setup_auth
+from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
 from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, KEY_HASS_USER as KEY_HASS_USER
 from .cors import setup_cors as setup_cors
@@ -71,6 +71,7 @@ class ApiConfig:
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class HomeAssistantHTTP:
+    app: Any
     hass: Any
     ssl_certificate: Any
     ssl_peer_certificate: Any
@@ -78,13 +79,12 @@ class HomeAssistantHTTP:
     server_host: Any
     server_port: Any
     trusted_proxies: Any
-    is_ban_enabled: Any
     ssl_profile: Any
-    _handler: Any
     runner: Any
     site: Any
-    def __init__(self, hass: HomeAssistant, ssl_certificate: Union[str, None], ssl_peer_certificate: Union[str, None], ssl_key: Union[str, None], server_host: Union[list[str], None], server_port: int, cors_origins: list[str], use_x_forwarded_for: bool, trusted_proxies: list[str], login_threshold: int, is_ban_enabled: bool, ssl_profile: str) -> None: ...
-    def register_view(self, view: HomeAssistantView) -> None: ...
+    def __init__(self, hass: HomeAssistant, ssl_certificate: Union[str, None], ssl_peer_certificate: Union[str, None], ssl_key: Union[str, None], server_host: Union[list[str], None], server_port: int, trusted_proxies: list[str], ssl_profile: str) -> None: ...
+    async def async_initialize(self, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool) -> None: ...
+    def register_view(self, view: Union[HomeAssistantView, type[HomeAssistantView]]) -> None: ...
     def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection] = ...) -> None: ...
     def register_static_path(self, url_path: str, path: str, cache_headers: bool = ...) -> None: ...
     async def start(self) -> None: ...

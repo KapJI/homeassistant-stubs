@@ -1,5 +1,5 @@
 import voluptuous as vol
-from . import DOMAIN as DOMAIN, const as const
+from .const import ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_TYPE as CONF_TYPE
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_registry as entity_registry

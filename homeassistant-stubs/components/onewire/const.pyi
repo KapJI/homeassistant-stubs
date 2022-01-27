@@ -2,13 +2,13 @@ from homeassistant.const import Platform as Platform
 from typing import Any
 
 CONF_MOUNT_DIR: str
-CONF_NAMES: str
 CONF_TYPE_OWSERVER: str
 CONF_TYPE_SYSBUS: str
 DEFAULT_OWSERVER_HOST: str
 DEFAULT_OWSERVER_PORT: int
 DEFAULT_SYSBUS_MOUNT_DIR: str
 DOMAIN: str
+DEVICE_KEYS_0_3: Any
 DEVICE_KEYS_0_7: Any
 DEVICE_KEYS_A_B: Any
 DEVICE_SUPPORT_OWSERVER: Any

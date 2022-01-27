@@ -1,10 +1,10 @@
+from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
 from .helpers import on_unload as on_unload
 from homeassistant.components import mysensors as mysensors
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
-from homeassistant.components.climate.const import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, DOMAIN as DOMAIN, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_COOL as HVAC_MODE_COOL, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, SUPPORT_FAN_MODE as SUPPORT_FAN_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE, SUPPORT_TARGET_TEMPERATURE_RANGE as SUPPORT_TARGET_TEMPERATURE_RANGE
-from homeassistant.components.mysensors.const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
+from homeassistant.components.climate.const import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_COOL as HVAC_MODE_COOL, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, SUPPORT_FAN_MODE as SUPPORT_FAN_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE, SUPPORT_TARGET_TEMPERATURE_RANGE as SUPPORT_TARGET_TEMPERATURE_RANGE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, Platform as Platform, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

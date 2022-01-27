@@ -1,6 +1,6 @@
-from . import ATTR_OPTION as ATTR_OPTION, ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION, SERVICE_SET_OPTIONS as SERVICE_SET_OPTIONS
+from . import ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION, SERVICE_SET_OPTIONS as SERVICE_SET_OPTIONS
 from collections.abc import Iterable
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_OPTION as ATTR_OPTION
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State
 from types import MappingProxyType
 from typing import Any

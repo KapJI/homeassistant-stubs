@@ -2,9 +2,9 @@ from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENS
 from .device import MySensorsDevice as MySensorsDevice
 from .helpers import on_unload as on_unload
 from homeassistant.components import mysensors as mysensors
-from homeassistant.components.switch import DOMAIN as DOMAIN, SwitchEntity as SwitchEntity
+from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

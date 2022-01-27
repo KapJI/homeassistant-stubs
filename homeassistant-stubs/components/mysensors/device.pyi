@@ -1,6 +1,6 @@
 import logging
 from .const import CHILD_CALLBACK as CHILD_CALLBACK, CONF_DEVICE as CONF_DEVICE, DOMAIN as DOMAIN, DevId as DevId, GatewayId as GatewayId, NODE_CALLBACK as NODE_CALLBACK, PLATFORM_TYPES as PLATFORM_TYPES, UPDATE_DELAY as UPDATE_DELAY
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
@@ -54,7 +54,7 @@ class MySensorsDevice:
     async def _async_update_callback(self) -> None: ...
     def async_update_callback(self) -> None: ...
 
-def get_mysensors_devices(hass: HomeAssistant, domain: str) -> dict[DevId, MySensorsDevice]: ...
+def get_mysensors_devices(hass: HomeAssistant, domain: Platform) -> dict[DevId, MySensorsDevice]: ...
 
 class MySensorsEntity(MySensorsDevice, Entity):
     @property

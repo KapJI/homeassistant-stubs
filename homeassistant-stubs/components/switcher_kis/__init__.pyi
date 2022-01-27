@@ -2,7 +2,7 @@ from .const import CONF_DEVICE_PASSWORD as CONF_DEVICE_PASSWORD, CONF_PHONE_ID a
 from .utils import async_start_bridge as async_start_bridge, async_stop_bridge as async_stop_bridge
 from aioswitcher.device import SwitcherBase as SwitcherBase
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import device_registry as device_registry, update_coordinator as update_coordinator
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

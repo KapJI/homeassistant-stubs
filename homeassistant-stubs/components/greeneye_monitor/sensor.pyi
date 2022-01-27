@@ -1,10 +1,10 @@
 import greeneye
-from . import CONF_COUNTED_QUANTITY as CONF_COUNTED_QUANTITY, CONF_COUNTED_QUANTITY_PER_PULSE as CONF_COUNTED_QUANTITY_PER_PULSE, CONF_MONITOR_SERIAL_NUMBER as CONF_MONITOR_SERIAL_NUMBER, CONF_NET_METERING as CONF_NET_METERING, CONF_NUMBER as CONF_NUMBER, CONF_TIME_UNIT as CONF_TIME_UNIT, DATA_GREENEYE_MONITOR as DATA_GREENEYE_MONITOR, SENSOR_TYPE_CURRENT as SENSOR_TYPE_CURRENT, SENSOR_TYPE_PULSE_COUNTER as SENSOR_TYPE_PULSE_COUNTER, SENSOR_TYPE_TEMPERATURE as SENSOR_TYPE_TEMPERATURE, SENSOR_TYPE_VOLTAGE as SENSOR_TYPE_VOLTAGE
-from homeassistant.components.sensor import SensorEntity as SensorEntity
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_SENSOR_TYPE as CONF_SENSOR_TYPE, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, DEVICE_CLASS_POWER as DEVICE_CLASS_POWER, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, DEVICE_CLASS_VOLTAGE as DEVICE_CLASS_VOLTAGE, ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, POWER_WATT as POWER_WATT, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
-from homeassistant.core import Config as Config, HomeAssistant as HomeAssistant
+from .const import CONF_CHANNELS as CONF_CHANNELS, CONF_COUNTED_QUANTITY as CONF_COUNTED_QUANTITY, CONF_COUNTED_QUANTITY_PER_PULSE as CONF_COUNTED_QUANTITY_PER_PULSE, CONF_MONITORS as CONF_MONITORS, CONF_NET_METERING as CONF_NET_METERING, CONF_NUMBER as CONF_NUMBER, CONF_PULSE_COUNTERS as CONF_PULSE_COUNTERS, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, CONF_TEMPERATURE_SENSORS as CONF_TEMPERATURE_SENSORS, CONF_TIME_UNIT as CONF_TIME_UNIT, CONF_VOLTAGE_SENSORS as CONF_VOLTAGE_SENSORS, DATA_GREENEYE_MONITOR as DATA_GREENEYE_MONITOR
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, POWER_WATT as POWER_WATT, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
 DATA_PULSES: str
@@ -12,7 +12,7 @@ DATA_WATT_SECONDS: str
 UNIT_WATTS = POWER_WATT
 COUNTER_ICON: str
 
-async def async_setup_platform(hass: HomeAssistant, config: Config, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 UnderlyingSensorType: Any
 
@@ -73,6 +73,6 @@ class VoltageSensor(GEMSensor):
     _attr_device_class: Any
     def __init__(self, monitor_serial_number: int, number: int, name: str) -> None: ...
     @property
-    def _sensor(self) -> Union[greeneye.monitor.Monitor, None]: ...
+    def _sensor(self) -> Union[greeneye.monitor.VoltageSensor, None]: ...
     @property
     def native_value(self) -> Union[float, None]: ...

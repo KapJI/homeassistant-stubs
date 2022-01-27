@@ -1,4 +1,4 @@
-from . import ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE
+from .const import ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE
 from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State

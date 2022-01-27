@@ -1,9 +1,10 @@
 from .const import NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
-from homeassistant.components.neato import NeatoHub as NeatoHub
+from .hub import NeatoHub as NeatoHub
+from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, ToggleEntity as ToggleEntity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pybotvac.robot import Robot as Robot
 from typing import Any
@@ -15,7 +16,7 @@ SWITCH_TYPES: Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NeatoConnectedSwitch(ToggleEntity):
+class NeatoConnectedSwitch(SwitchEntity):
     type: Any
     robot: Any
     _available: bool

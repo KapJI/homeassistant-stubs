@@ -1,5 +1,6 @@
-from . import Yeti as Yeti, YetiEntity as YetiEntity
+from . import YetiEntity as YetiEntity
 from .const import DATA_KEY_API as DATA_KEY_API, DATA_KEY_COORDINATOR as DATA_KEY_COORDINATOR, DOMAIN as DOMAIN
+from goalzero import Yeti as Yeti
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME

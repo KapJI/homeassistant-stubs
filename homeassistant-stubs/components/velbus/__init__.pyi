@@ -1,6 +1,6 @@
 from .const import CONF_INTERFACE as CONF_INTERFACE, CONF_MEMO_TEXT as CONF_MEMO_TEXT, DOMAIN as DOMAIN, SERVICE_SCAN as SERVICE_SCAN, SERVICE_SET_MEMO_TEXT as SERVICE_SET_MEMO_TEXT, SERVICE_SYNC as SERVICE_SYNC
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_PORT as CONF_PORT
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_PORT as CONF_PORT, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers import device_registry as device_registry
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry

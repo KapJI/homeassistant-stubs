@@ -1,6 +1,7 @@
 from .const import DevId as DevId, DiscoveryInfo as DiscoveryInfo
 from homeassistant.components import mysensors as mysensors
-from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService, DOMAIN as DOMAIN
+from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

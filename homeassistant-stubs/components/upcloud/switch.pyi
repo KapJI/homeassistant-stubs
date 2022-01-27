@@ -1,5 +1,5 @@
-from . import CONF_SERVERS as CONF_SERVERS, DATA_UPCLOUD as DATA_UPCLOUD, SIGNAL_UPDATE_UPCLOUD as SIGNAL_UPDATE_UPCLOUD, UpCloudServerEntity as UpCloudServerEntity
-from homeassistant.components.switch import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SwitchEntity as SwitchEntity
+from . import DATA_UPCLOUD as DATA_UPCLOUD, SIGNAL_UPDATE_UPCLOUD as SIGNAL_UPDATE_UPCLOUD, UpCloudServerEntity as UpCloudServerEntity
+from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant

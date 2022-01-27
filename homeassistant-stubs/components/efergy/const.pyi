@@ -1,7 +1,6 @@
 from typing import Any
 
 ATTRIBUTION: str
-CONF_APPTOKEN: str
 CONF_CURRENT_VALUES: str
 DATA_KEY_API: str
 DEFAULT_NAME: str

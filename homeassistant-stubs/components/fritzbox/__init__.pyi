@@ -1,6 +1,5 @@
-from .const import ATTR_STATE_DEVICE_LOCKED as ATTR_STATE_DEVICE_LOCKED, ATTR_STATE_LOCKED as ATTR_STATE_LOCKED, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_COORDINATOR as CONF_COORDINATOR, DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORMS as PLATFORMS
+from .const import CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_COORDINATOR as CONF_COORDINATOR, DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORMS as PLATFORMS
 from .coordinator import FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
-from .model import FritzExtraAttributes as FritzExtraAttributes
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
@@ -27,5 +26,3 @@ class FritzBoxEntity(CoordinatorEntity):
     def device(self) -> FritzhomeDevice: ...
     @property
     def device_info(self) -> DeviceInfo: ...
-    @property
-    def extra_state_attributes(self) -> FritzExtraAttributes: ...

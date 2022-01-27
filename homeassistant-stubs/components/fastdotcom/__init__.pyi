@@ -1,5 +1,5 @@
 from datetime import datetime
-from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
+from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.discovery import async_load_platform as async_load_platform
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send

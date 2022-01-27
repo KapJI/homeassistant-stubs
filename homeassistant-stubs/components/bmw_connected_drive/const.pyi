@@ -2,6 +2,7 @@ from homeassistant.const import LENGTH_KILOMETERS as LENGTH_KILOMETERS, LENGTH_M
 from typing import Any
 
 ATTRIBUTION: str
+ATTR_DIRECTION: str
 CONF_ALLOWED_REGIONS: Any
 CONF_READ_ONLY: str
 CONF_USE_LOCATION: str

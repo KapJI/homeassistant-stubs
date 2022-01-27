@@ -1,6 +1,6 @@
 from .const import ATTRIBUTION as ATTRIBUTION, DATA_KEY_API as DATA_KEY_API, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_API_KEY as CONF_API_KEY
+from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_API_KEY as CONF_API_KEY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

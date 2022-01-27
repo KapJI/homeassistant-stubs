@@ -1,9 +1,9 @@
 import asyncio
-from homeassistant import bootstrap as bootstrap
-from homeassistant.core import callback as callback
-from homeassistant.helpers.frame import warn_use as warn_use
-from homeassistant.util.executor import InterruptibleThreadPoolExecutor as InterruptibleThreadPoolExecutor
-from homeassistant.util.thread import deadlock_safe_shutdown as deadlock_safe_shutdown
+from . import bootstrap as bootstrap
+from .core import callback as callback
+from .helpers.frame import warn_use as warn_use
+from .util.executor import InterruptibleThreadPoolExecutor as InterruptibleThreadPoolExecutor
+from .util.thread import deadlock_safe_shutdown as deadlock_safe_shutdown
 from typing import Any
 
 MAX_EXECUTOR_WORKERS: int

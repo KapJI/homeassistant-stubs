@@ -1,10 +1,10 @@
+from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
 from .helpers import on_unload as on_unload
 from enum import Enum
 from homeassistant.components import mysensors as mysensors
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, DOMAIN as DOMAIN
-from homeassistant.components.mysensors.const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

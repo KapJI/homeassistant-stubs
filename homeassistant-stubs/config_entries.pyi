@@ -1,22 +1,25 @@
+from . import data_entry_flow as data_entry_flow, loader as loader
+from .backports.enum import StrEnum as StrEnum
+from .components import persistent_notification as persistent_notification
+from .components.dhcp import DhcpServiceInfo as DhcpServiceInfo
+from .components.hassio import HassioServiceInfo as HassioServiceInfo
+from .components.mqtt import MqttServiceInfo as MqttServiceInfo
+from .components.ssdp import SsdpServiceInfo as SsdpServiceInfo
+from .components.usb import UsbServiceInfo as UsbServiceInfo
+from .components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
+from .const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
+from .core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from .exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
+from .helpers import device_registry as device_registry, entity_registry as entity_registry
+from .helpers.event import async_call_later as async_call_later
+from .helpers.frame import report as report
+from .helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from .setup import async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component
+from .util.decorator import Registry as Registry
 from collections.abc import Iterable, Mapping
 from contextvars import ContextVar
 from enum import Enum
-from homeassistant import data_entry_flow as data_entry_flow, loader as loader
-from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
-from homeassistant.components.mqtt import MqttServiceInfo as MqttServiceInfo
-from homeassistant.components.ssdp import SsdpServiceInfo as SsdpServiceInfo
-from homeassistant.components.usb import UsbServiceInfo as UsbServiceInfo
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
-from homeassistant.helpers.event import Event as Event
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
-from homeassistant.setup import async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component
-from homeassistant.util.decorator import Registry as Registry
-from typing import Any
+from typing import Any, TypeVar
 
 _LOGGER: Any
 SOURCE_DISCOVERY: str
@@ -38,6 +41,7 @@ STORAGE_KEY: str
 STORAGE_VERSION: int
 PATH_CONFIG: str
 SAVE_DELAY: int
+_T = TypeVar('_T', bound='ConfigEntryState')
 
 class ConfigEntryState(Enum):
     LOADED: Any
@@ -47,7 +51,7 @@ class ConfigEntryState(Enum):
     NOT_LOADED: Any
     FAILED_UNLOAD: Any
     _recoverable: bool
-    def __new__(cls, value: str, recoverable: bool) -> ConfigEntryState: ...
+    def __new__(cls, value: str, recoverable: bool) -> _T: ...
     @property
     def recoverable(self) -> bool: ...
 
@@ -56,7 +60,11 @@ DISCOVERY_NOTIFICATION_ID: str
 DISCOVERY_SOURCES: Any
 RECONFIGURE_NOTIFICATION_ID: str
 EVENT_FLOW_DISCOVERED: str
-DISABLED_USER: str
+
+class ConfigEntryDisabler(StrEnum):
+    USER: str
+
+DISABLED_USER: Any
 RELOAD_AFTER_UPDATE_DELAY: int
 CONN_CLASS_CLOUD_PUSH: str
 CONN_CLASS_CLOUD_POLL: str
@@ -90,7 +98,7 @@ class ConfigEntry:
     reason: Any
     _async_cancel_retry_setup: Any
     _on_unload: Any
-    def __init__(self, version: int, domain: str, title: str, data: Mapping[str, Any], source: str, pref_disable_new_entities: Union[bool, None] = ..., pref_disable_polling: Union[bool, None] = ..., options: Union[Mapping[str, Any], None] = ..., unique_id: Union[str, None] = ..., entry_id: Union[str, None] = ..., state: ConfigEntryState = ..., disabled_by: Union[str, None] = ...) -> None: ...
+    def __init__(self, version: int, domain: str, title: str, data: Mapping[str, Any], source: str, pref_disable_new_entities: Union[bool, None] = ..., pref_disable_polling: Union[bool, None] = ..., options: Union[Mapping[str, Any], None] = ..., unique_id: Union[str, None] = ..., entry_id: Union[str, None] = ..., state: ConfigEntryState = ..., disabled_by: Union[ConfigEntryDisabler, None] = ...) -> None: ...
     async def async_setup(self, hass: HomeAssistant, *, integration: Union[loader.Integration, None] = ..., tries: int = ...) -> None: ...
     async def async_shutdown(self) -> None: ...
     def async_cancel_retry_setup(self) -> None: ...
@@ -133,12 +141,12 @@ class ConfigEntries:
     async def async_setup(self, entry_id: str) -> bool: ...
     async def async_unload(self, entry_id: str) -> bool: ...
     async def async_reload(self, entry_id: str) -> bool: ...
-    async def async_set_disabled_by(self, entry_id: str, disabled_by: Union[str, None]) -> bool: ...
-    def async_update_entry(self, entry: ConfigEntry, *, unique_id: Union[str, None, UndefinedType] = ..., title: Union[str, UndefinedType] = ..., data: Union[dict, UndefinedType] = ..., options: Union[Mapping[str, Any], UndefinedType] = ..., pref_disable_new_entities: Union[bool, UndefinedType] = ..., pref_disable_polling: Union[bool, UndefinedType] = ...) -> bool: ...
-    def async_setup_platforms(self, entry: ConfigEntry, platforms: Iterable[str]) -> None: ...
-    async def async_forward_entry_setup(self, entry: ConfigEntry, domain: str) -> bool: ...
-    async def async_unload_platforms(self, entry: ConfigEntry, platforms: Iterable[str]) -> bool: ...
-    async def async_forward_entry_unload(self, entry: ConfigEntry, domain: str) -> bool: ...
+    async def async_set_disabled_by(self, entry_id: str, disabled_by: Union[ConfigEntryDisabler, None]) -> bool: ...
+    def async_update_entry(self, entry: ConfigEntry, *, unique_id: Union[str, None, UndefinedType] = ..., title: Union[str, UndefinedType] = ..., data: Union[Mapping[str, Any], UndefinedType] = ..., options: Union[Mapping[str, Any], UndefinedType] = ..., pref_disable_new_entities: Union[bool, UndefinedType] = ..., pref_disable_polling: Union[bool, UndefinedType] = ...) -> bool: ...
+    def async_setup_platforms(self, entry: ConfigEntry, platforms: Iterable[Union[Platform, str]]) -> None: ...
+    async def async_forward_entry_setup(self, entry: ConfigEntry, domain: Union[Platform, str]) -> bool: ...
+    async def async_unload_platforms(self, entry: ConfigEntry, platforms: Iterable[Union[Platform, str]]) -> bool: ...
+    async def async_forward_entry_unload(self, entry: ConfigEntry, domain: Union[Platform, str]) -> bool: ...
     def _async_schedule_save(self) -> None: ...
     def _data_to_save(self) -> dict[str, list[dict[str, Any]]]: ...
 

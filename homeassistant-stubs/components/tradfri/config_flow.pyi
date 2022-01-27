@@ -1,6 +1,7 @@
-from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, CONF_HOST as CONF_HOST, CONF_IDENTITY as CONF_IDENTITY, CONF_IMPORT_GROUPS as CONF_IMPORT_GROUPS, CONF_KEY as CONF_KEY, DOMAIN as DOMAIN, KEY_SECURITY_CODE as KEY_SECURITY_CODE
+from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, CONF_IDENTITY as CONF_IDENTITY, CONF_IMPORT_GROUPS as CONF_IMPORT_GROUPS, CONF_KEY as CONF_KEY, DOMAIN as DOMAIN, KEY_SECURITY_CODE as KEY_SECURITY_CODE
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
+from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any

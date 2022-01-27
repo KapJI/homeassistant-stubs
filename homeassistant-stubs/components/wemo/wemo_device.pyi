@@ -1,0 +1,33 @@
+from .const import DOMAIN as DOMAIN, WEMO_SUBSCRIPTION_EVENT as WEMO_SUBSCRIPTION_EVENT
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_NAME as CONF_NAME, CONF_PARAMS as CONF_PARAMS, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import CONNECTION_UPNP as CONNECTION_UPNP
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from pywemo import WeMoDevice as WeMoDevice
+from typing import Any
+
+_LOGGER: Any
+
+class DeviceCoordinator(DataUpdateCoordinator):
+    hass: Any
+    wemo: Any
+    device_id: Any
+    device_info: Any
+    supports_long_press: Any
+    update_lock: Any
+    def __init__(self, hass: HomeAssistant, wemo: WeMoDevice, device_id: str) -> None: ...
+    def subscription_callback(self, _device: WeMoDevice, event_type: str, params: str) -> None: ...
+    last_exception: Any
+    last_update_success: bool
+    async def _async_subscription_callback(self, updated: bool) -> None: ...
+    @property
+    def should_poll(self) -> bool: ...
+    async def _async_update_data(self) -> None: ...
+    async def _async_locked_update(self, force_update: bool) -> None: ...
+    def async_update_listeners(self) -> None: ...
+
+def _device_info(wemo: WeMoDevice) -> DeviceInfo: ...
+async def async_register_device(hass: HomeAssistant, config_entry: ConfigEntry, wemo: WeMoDevice) -> DeviceCoordinator: ...
+def async_get_coordinator(hass: HomeAssistant, device_id: str) -> DeviceCoordinator: ...

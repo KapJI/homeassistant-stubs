@@ -8,7 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any, Final
 
-_LOGGER: Any
+_LOGGER: Final[Any]
 DHCP_REQUEST_DELAY: Final[int]
 STEP_USER_DATA_SCHEMA: Any
 

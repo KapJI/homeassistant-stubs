@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TYPE as CONF_TYPE, DATA_GIBIBYTES as DATA_GIBIBYTES, DATA_MEBIBYTES as DATA_MEBIBYTES, DATA_RATE_MEGABYTES_PER_SECOND as DATA_RATE_MEGABYTES_PER_SECOND, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TYPE as CONF_TYPE, DATA_GIBIBYTES as DATA_GIBIBYTES, DATA_MEBIBYTES as DATA_MEBIBYTES, DATA_RATE_MEGABYTES_PER_SECOND as DATA_RATE_MEGABYTES_PER_SECOND, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import slugify as slugify
 from typing import Any
 
@@ -40,7 +40,7 @@ class SensorData:
     last_exception: Union[BaseException, None]
     def __init__(self, argument, state, value, update_time, last_exception) -> None: ...
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[Any, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_sensor_registry_updates(hass: HomeAssistant, sensor_registry: dict[tuple[str, str], SensorData], scan_interval: timedelta) -> None: ...
 
 class SystemMonitorSensor(SensorEntity):

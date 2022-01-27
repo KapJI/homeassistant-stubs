@@ -3,7 +3,7 @@ from .const import CONF_ACCOUNT as CONF_ACCOUNT, DATA_ENTRIES as DATA_ENTRIES, U
 from bimmer_connected.vehicle import ConnectedDriveVehicle as ConnectedDriveVehicle
 from bimmer_connected.vehicle_status import ConditionBasedServiceReport as ConditionBasedServiceReport, VehicleStatus as VehicleStatus
 from collections.abc import Callable as Callable
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DEVICE_CLASS_BATTERY_CHARGING as DEVICE_CLASS_BATTERY_CHARGING, DEVICE_CLASS_LIGHT as DEVICE_CLASS_LIGHT, DEVICE_CLASS_LOCK as DEVICE_CLASS_LOCK, DEVICE_CLASS_OPENING as DEVICE_CLASS_OPENING, DEVICE_CLASS_PLUG as DEVICE_CLASS_PLUG, DEVICE_CLASS_PROBLEM as DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

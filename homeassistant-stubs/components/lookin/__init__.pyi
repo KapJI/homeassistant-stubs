@@ -1,15 +1,29 @@
-from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
+from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordinator, LookinPushCoordinator as LookinPushCoordinator
 from .models import LookinData as LookinData
-from aiolookin import MeteoSensor as MeteoSensor
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST
+from aiolookin import Climate as Climate, LookInHttpProtocol, LookinUDPSubscriptions, MeteoSensor as MeteoSensor, Remote as Remote
+from aiolookin.models import UDPEvent as UDPEvent
+from collections.abc import Callable as Callable, Coroutine
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
+from homeassistant.const import CONF_HOST as CONF_HOST, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
 LOGGER: Any
+UDP_MANAGER: str
+
+def _async_climate_updater(lookin_protocol: LookInHttpProtocol, uuid: str) -> Callable[[], Coroutine[None, Any, Remote]]: ...
+def _async_remote_updater(lookin_protocol: LookInHttpProtocol, uuid: str) -> Callable[[], Coroutine[None, Any, Remote]]: ...
+
+class LookinUDPManager:
+    _lock: Any
+    _listener: Any
+    _subscriptions: Any
+    def __init__(self) -> None: ...
+    async def async_get_subscriptions(self) -> LookinUDPSubscriptions: ...
+    async def async_stop(self) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

@@ -1,7 +1,10 @@
 from . import EvilGeniusEntity as EvilGeniusEntity
-from collections.abc import Callable
-from typing import TypeVar
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from typing import Any, TypeVar
+from typing_extensions import Concatenate as Concatenate
 
-CallableT = TypeVar('CallableT', bound=Callable)
+_T = TypeVar('_T', bound=EvilGeniusEntity)
+_R = TypeVar('_R')
+_P: Any
 
-def update_when_done(func: CallableT) -> CallableT: ...
+def update_when_done(func: Callable[Concatenate[_T, _P], Awaitable[_R]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, _R]]: ...

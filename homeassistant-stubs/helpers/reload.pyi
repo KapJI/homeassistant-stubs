@@ -1,10 +1,10 @@
+from . import config_per_platform as config_per_platform
+from .entity_platform import EntityPlatform as EntityPlatform, async_get_platforms as async_get_platforms
+from .typing import ConfigType as ConfigType
 from collections.abc import Iterable
 from homeassistant.const import SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import config_per_platform as config_per_platform
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform, async_get_platforms as async_get_platforms
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import async_setup_component as async_setup_component
 from typing import Any

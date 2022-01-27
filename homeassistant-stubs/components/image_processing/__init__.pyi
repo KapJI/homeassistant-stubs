@@ -1,9 +1,10 @@
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from typing import Any
 
@@ -27,7 +28,7 @@ SOURCE_SCHEMA: Any
 PLATFORM_SCHEMA: Any
 PLATFORM_SCHEMA_BASE: Any
 
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class ImageProcessingEntity(Entity):
     timeout: Any

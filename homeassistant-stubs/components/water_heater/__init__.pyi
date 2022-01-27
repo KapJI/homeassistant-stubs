@@ -4,6 +4,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 DEFAULT_MIN_TEMP: int
@@ -38,7 +39,7 @@ SET_AWAY_MODE_SCHEMA: Any
 SET_TEMPERATURE_SCHEMA: Any
 SET_OPERATION_MODE_SCHEMA: Any
 
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
@@ -99,6 +100,3 @@ class WaterHeaterEntity(Entity):
 
 async def async_service_away_mode(entity, service) -> None: ...
 async def async_service_temperature_set(entity, service) -> None: ...
-
-class WaterHeaterDevice(WaterHeaterEntity):
-    def __init_subclass__(cls, **kwargs) -> None: ...

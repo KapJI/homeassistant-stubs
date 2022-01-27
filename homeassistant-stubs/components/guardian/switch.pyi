@@ -1,9 +1,10 @@
 from . import ValveControllerEntity as ValveControllerEntity
-from .const import API_VALVE_STATUS as API_VALVE_STATUS, DATA_CLIENT as DATA_CLIENT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import API_VALVE_STATUS as API_VALVE_STATUS, DATA_CLIENT as DATA_CLIENT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN
 from aioguardian import Client as Client
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any

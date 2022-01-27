@@ -7,7 +7,7 @@ from homeassistant.config import async_log_exception as async_log_exception, con
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_CONDITION as CONF_CONDITION, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_ID as CONF_ID, CONF_VARIABLES as CONF_VARIABLES
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import config_per_platform as config_per_platform, script as script
-from homeassistant.helpers.condition import async_validate_condition_config as async_validate_condition_config
+from homeassistant.helpers.condition import async_validate_conditions_config as async_validate_conditions_config
 from homeassistant.helpers.trigger import async_validate_trigger_config as async_validate_trigger_config
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from typing import Any

@@ -6,13 +6,13 @@ from datetime import timedelta
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Optional
 
 EVENT_USER_ADDED: str
 EVENT_USER_REMOVED: str
-_MfaModuleDict = Dict[str, MultiFactorAuthModule]
-_ProviderKey = Tuple[str, Optional[str]]
-_ProviderDict = Dict[_ProviderKey, AuthProvider]
+_MfaModuleDict = dict[str, MultiFactorAuthModule]
+_ProviderKey = tuple[str, Optional[str]]
+_ProviderDict = dict[_ProviderKey, AuthProvider]
 
 class InvalidAuthError(Exception): ...
 class InvalidProvider(Exception): ...

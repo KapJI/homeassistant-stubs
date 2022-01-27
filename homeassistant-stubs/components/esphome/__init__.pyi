@@ -1,21 +1,22 @@
 from .entry_data import RuntimeEntryData as RuntimeEntryData
-from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
+from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
+from collections.abc import Callable
 from homeassistant import const as const
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import Template as Template
-from typing import Any, Callable, NamedTuple, TypeVar, overload
+from typing import Any, NamedTuple, TypeVar, overload
 
 DOMAIN: str
 CONF_NOISE_PSK: str
@@ -73,7 +74,7 @@ class EsphomeEnumMapper:
     def from_hass(self, value: _ValT) -> _EnumT: ...
 
 ICON_SCHEMA: Any
-ENTITY_CATEGORIES: EsphomeEnumMapper[EntityCategory, Union[str, None]]
+ENTITY_CATEGORIES: EsphomeEnumMapper[EsphomeEntityCategory, Union[EntityCategory, None]]
 
 class EsphomeEntity(Entity):
     _entry_data: Any
@@ -112,4 +113,4 @@ class EsphomeEntity(Entity):
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     @property
-    def entity_category(self) -> Union[str, None]: ...
+    def entity_category(self) -> Union[EntityCategory, None]: ...

@@ -1,6 +1,6 @@
 from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
-from homeassistant.components.sensor import DEVICE_CLASS_CURRENT as DEVICE_CLASS_CURRENT, DEVICE_CLASS_POWER as DEVICE_CLASS_POWER, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ELECTRIC_CURRENT_AMPERE as ELECTRIC_CURRENT_AMPERE, POWER_WATT as POWER_WATT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

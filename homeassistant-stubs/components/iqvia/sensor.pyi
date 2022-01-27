@@ -1,6 +1,6 @@
 from . import IQVIAEntity as IQVIAEntity
 from .const import DOMAIN as DOMAIN, TYPE_ALLERGY_FORECAST as TYPE_ALLERGY_FORECAST, TYPE_ALLERGY_INDEX as TYPE_ALLERGY_INDEX, TYPE_ALLERGY_OUTLOOK as TYPE_ALLERGY_OUTLOOK, TYPE_ALLERGY_TODAY as TYPE_ALLERGY_TODAY, TYPE_ALLERGY_TOMORROW as TYPE_ALLERGY_TOMORROW, TYPE_ASTHMA_FORECAST as TYPE_ASTHMA_FORECAST, TYPE_ASTHMA_INDEX as TYPE_ASTHMA_INDEX, TYPE_ASTHMA_TODAY as TYPE_ASTHMA_TODAY, TYPE_ASTHMA_TOMORROW as TYPE_ASTHMA_TOMORROW, TYPE_DISEASE_FORECAST as TYPE_DISEASE_FORECAST, TYPE_DISEASE_INDEX as TYPE_DISEASE_INDEX, TYPE_DISEASE_TODAY as TYPE_DISEASE_TODAY
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_STATE as ATTR_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

@@ -1,3 +1,3 @@
-from homeassistant.util.async_ import protect_loop as protect_loop
+from .util.async_ import protect_loop as protect_loop
 
 def enable() -> None: ...

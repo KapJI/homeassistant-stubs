@@ -2,6 +2,7 @@ from typing import Final
 
 DOMAIN: Final[str]
 DATA_CAMERA_PREFS: Final[str]
+DATA_RTSP_TO_WEB_RTC: Final[str]
 PREF_PRELOAD_STREAM: Final[str]
 SERVICE_RECORD: Final[str]
 CONF_LOOKBACK: Final[str]

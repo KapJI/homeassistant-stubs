@@ -1,9 +1,10 @@
+from .typing import DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from collections.abc import Awaitable, Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp, mqtt as mqtt, ssdp as ssdp, zeroconf as zeroconf
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
-from typing import Any, Awaitable, Callable, Union
+from typing import Any, Union
 
 DiscoveryFunctionType = Callable[[HomeAssistant], Union[Awaitable[bool], bool]]
 _LOGGER: Any

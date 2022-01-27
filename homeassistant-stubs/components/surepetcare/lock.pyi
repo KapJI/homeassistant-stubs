@@ -1,8 +1,9 @@
 from . import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .const import DOMAIN as DOMAIN
 from .entity import SurePetcareEntity as SurePetcareEntity
-from homeassistant.components.lock import LockEntity as LockEntity, STATE_LOCKED as STATE_LOCKED, STATE_UNLOCKED as STATE_UNLOCKED
+from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import STATE_LOCKED as STATE_LOCKED, STATE_UNLOCKED as STATE_UNLOCKED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from surepy.entities import SurepyEntity as SurepyEntity

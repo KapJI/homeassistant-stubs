@@ -2,9 +2,9 @@ from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENS
 from .device import MySensorsDevice as MySensorsDevice
 from .helpers import on_unload as on_unload
 from homeassistant.components import mysensors as mysensors
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_RGB as COLOR_MODE_RGB, COLOR_MODE_RGBW as COLOR_MODE_RGBW, DOMAIN as DOMAIN, LightEntity as LightEntity
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_RGB as COLOR_MODE_RGB, COLOR_MODE_RGBW as COLOR_MODE_RGBW, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

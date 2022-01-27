@@ -1,9 +1,9 @@
 from . import AccuWeatherDataUpdateCoordinator as AccuWeatherDataUpdateCoordinator
 from .const import API_IMPERIAL as API_IMPERIAL, API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_FORECAST as ATTR_FORECAST, DOMAIN as DOMAIN, FORECAST_SENSOR_TYPES as FORECAST_SENSOR_TYPES, MANUFACTURER as MANUFACTURER, MAX_FORECAST_DAYS as MAX_FORECAST_DAYS, NAME as NAME, SENSOR_TYPES as SENSOR_TYPES
 from .model import AccuWeatherSensorDescription as AccuWeatherSensorDescription
-from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_NAME as CONF_NAME, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE
+from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo

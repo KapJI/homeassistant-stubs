@@ -8,7 +8,7 @@ from typing import Any
 
 _LOGGER: Any
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class AcerSwitch(SwitchEntity):
     _attr_icon: Any

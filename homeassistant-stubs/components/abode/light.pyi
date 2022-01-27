@@ -1,0 +1,26 @@
+from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
+from .const import DOMAIN as DOMAIN
+from abodepy.devices.light import AbodeLight as AbodeLT
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, LightEntity as LightEntity, SUPPORT_BRIGHTNESS as SUPPORT_BRIGHTNESS, SUPPORT_COLOR as SUPPORT_COLOR, SUPPORT_COLOR_TEMP as SUPPORT_COLOR_TEMP
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.util.color import color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin
+from typing import Any
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class AbodeLight(AbodeDevice, LightEntity):
+    _device: AbodeLT
+    def turn_on(self, **kwargs: Any) -> None: ...
+    def turn_off(self, **kwargs: Any) -> None: ...
+    @property
+    def is_on(self) -> bool: ...
+    @property
+    def brightness(self) -> Union[int, None]: ...
+    @property
+    def color_temp(self) -> Union[int, None]: ...
+    @property
+    def hs_color(self) -> Union[tuple[float, float], None]: ...
+    @property
+    def supported_features(self) -> int: ...

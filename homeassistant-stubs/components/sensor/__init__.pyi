@@ -19,6 +19,7 @@ ENTITY_ID_FORMAT: Final[Any]
 SCAN_INTERVAL: Final[Any]
 
 class SensorDeviceClass(StrEnum):
+    APPARENT_POWER: str
     AQI: str
     BATTERY: str
     CO: str
@@ -41,6 +42,7 @@ class SensorDeviceClass(StrEnum):
     POWER_FACTOR: str
     POWER: str
     PRESSURE: str
+    REACTIVE_POWER: str
     SIGNAL_STRENGTH: str
     SULPHUR_DIOXIDE: str
     TEMPERATURE: str

@@ -5,7 +5,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 CONF_MANUAL_PATH: str
@@ -34,7 +33,6 @@ class DSMRFlowHandler(config_entries.ConfigFlow):
     async def async_step_setup_serial(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_setup_serial_manual_path(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_validate_dsmr(self, input_data: dict[str, Any], errors: dict[str, str]) -> dict[str, Any]: ...
-    async def async_step_import(self, import_config: ConfigType) -> FlowResult: ...
 
 class DSMROptionFlowHandler(config_entries.OptionsFlow):
     entry: Any

@@ -1,7 +1,6 @@
 from . import AmcrestDevice as AmcrestDevice
 from .const import DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, SENSOR_SCAN_INTERVAL_SECS as SENSOR_SCAN_INTERVAL_SECS, SERVICE_UPDATE as SERVICE_UPDATE
 from .helpers import log_update_error as log_update_error, service_signal as service_signal
-from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -24,7 +23,6 @@ class AmcrestSensor(SensorEntity):
     _signal_name: Any
     _api: Any
     _channel: Any
-    _unsub_dispatcher: Any
     _attr_name: Any
     _attr_extra_state_attributes: Any
     def __init__(self, name: str, device: AmcrestDevice, description: SensorEntityDescription) -> None: ...
@@ -32,7 +30,5 @@ class AmcrestSensor(SensorEntity):
     def available(self) -> bool: ...
     _attr_unique_id: Any
     _attr_native_value: Any
-    def update(self) -> None: ...
-    async def async_on_demand_update(self) -> None: ...
+    async def async_update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    async def async_will_remove_from_hass(self) -> None: ...

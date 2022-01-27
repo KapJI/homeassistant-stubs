@@ -3,25 +3,26 @@ from .const import CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CON
 from .data import EventListenAddr as EventListenAddr, get_domain_data as get_domain_data
 from async_upnp_client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from async_upnp_client.profiles.dlna import DmrDevice
-from collections.abc import Sequence
+from collections.abc import Awaitable as Awaitable, Callable, Coroutine, Sequence
 from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp
-from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity
 from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, REPEAT_MODE_ALL as REPEAT_MODE_ALL, REPEAT_MODE_OFF as REPEAT_MODE_OFF, REPEAT_MODE_ONE as REPEAT_MODE_ONE, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_REPEAT_SET as SUPPORT_REPEAT_SET, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SELECT_SOUND_MODE as SUPPORT_SELECT_SOUND_MODE, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
-from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
+from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
+from typing_extensions import Concatenate as Concatenate
 
 PARALLEL_UPDATES: int
-CONF_LISTEN_IP: str
+_T = TypeVar('_T', bound='DlnaDmrEntity')
+_R = TypeVar('_R')
+_P: Any
 Func = TypeVar('Func', bound=Callable[..., Any])
 
-def catch_request_errors(func: Func) -> Func: ...
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+def catch_request_errors(func: Callable[Concatenate[_T, _P], Awaitable[_R]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Union[_R, None]]]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DlnaDmrEntity(MediaPlayerEntity):
@@ -33,6 +34,7 @@ class DlnaDmrEntity(MediaPlayerEntity):
     _device_lock: asyncio.Lock
     _device: Union[DmrDevice, None]
     check_available: bool
+    _ssdp_connect_failed: bool
     _bootid: Union[int, None]
     _attr_should_poll: bool
     _attr_name: Any

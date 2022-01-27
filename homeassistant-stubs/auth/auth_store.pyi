@@ -1,9 +1,9 @@
 from . import models as models
-from .const import GROUP_ID_ADMIN as GROUP_ID_ADMIN, GROUP_ID_READ_ONLY as GROUP_ID_READ_ONLY, GROUP_ID_USER as GROUP_ID_USER
-from .permissions import PermissionLookup as PermissionLookup, system_policies as system_policies
+from .const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION, GROUP_ID_ADMIN as GROUP_ID_ADMIN, GROUP_ID_READ_ONLY as GROUP_ID_READ_ONLY, GROUP_ID_USER as GROUP_ID_USER
+from .permissions import system_policies as system_policies
+from .permissions.models import PermissionLookup as PermissionLookup
 from .permissions.types import PolicyType as PolicyType
 from datetime import timedelta
-from homeassistant.auth.const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 

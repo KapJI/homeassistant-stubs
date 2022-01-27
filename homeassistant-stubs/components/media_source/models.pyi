@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, URI_SCHEME as URI_SCHEME, URI_SCHEME_REGEX as URI_SCHEME_REGEX
 from abc import ABC
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia
-from homeassistant.components.media_player.const import MEDIA_CLASS_CHANNEL as MEDIA_CLASS_CHANNEL, MEDIA_CLASS_DIRECTORY as MEDIA_CLASS_DIRECTORY, MEDIA_TYPE_CHANNEL as MEDIA_TYPE_CHANNEL, MEDIA_TYPE_CHANNELS as MEDIA_TYPE_CHANNELS
+from homeassistant.components.media_player.const import MEDIA_CLASS_APP as MEDIA_CLASS_APP, MEDIA_TYPE_APP as MEDIA_TYPE_APP, MEDIA_TYPE_APPS as MEDIA_TYPE_APPS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 

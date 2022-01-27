@@ -8,11 +8,11 @@ from homeassistant.components.sensor import SensorEntityDescription as SensorEnt
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, Dict, TypeVar
+from typing import Any, TypeVar
 
 FroniusEntityType = TypeVar('FroniusEntityType', bound=_FroniusSensorEntity)
 
-class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[Dict[SolarNetId, Dict[str, Any]]], metaclass=abc.ABCMeta):
+class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[str, Any]]], metaclass=abc.ABCMeta):
     default_interval: timedelta
     error_interval: timedelta
     valid_descriptions: list[SensorEntityDescription]

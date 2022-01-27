@@ -2,11 +2,12 @@ from .config import AutomationConfig as AutomationConfig, async_validate_config_
 from .const import CONF_ACTION as CONF_ACTION, CONF_INITIAL_STATE as CONF_INITIAL_STATE, CONF_TRACE as CONF_TRACE, CONF_TRIGGER as CONF_TRIGGER, CONF_TRIGGER_VARIABLES as CONF_TRIGGER_VARIABLES, DEFAULT_INITIAL_STATE as DEFAULT_INITIAL_STATE, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import async_get_blueprints as async_get_blueprints
 from .trace import trace_automation as trace_automation
+from collections.abc import Awaitable, Callable
 from homeassistant.components import blueprint as blueprint
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ALIAS as CONF_ALIAS, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_PLATFORM as CONF_PLATFORM, CONF_VARIABLES as CONF_VARIABLES, CONF_ZONE as CONF_ZONE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import Context as Context, CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
-from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import condition as condition, extract_domain_configs as extract_domain_configs, template as template
+from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
+from homeassistant.helpers import condition as condition, extract_domain_configs as extract_domain_configs
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -15,10 +16,10 @@ from homeassistant.helpers.script_variables import ScriptVariables as ScriptVari
 from homeassistant.helpers.service import ReloadServiceHelper as ReloadServiceHelper, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.trace import TraceElement as TraceElement, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_get as trace_get, trace_path as trace_path
 from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers
-from homeassistant.helpers.typing import TemplateVarsType as TemplateVarsType
+from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
-from typing import Any, Awaitable, Callable, TypedDict
+from typing import Any, TypedDict
 
 ENTITY_ID_FORMAT: Any
 CONF_SKIP_CONDITION: str
@@ -51,7 +52,7 @@ def automations_with_device(hass: HomeAssistant, device_id: str) -> list[str]: .
 def devices_in_automation(hass: HomeAssistant, entity_id: str) -> list[str]: ...
 def automations_with_area(hass: HomeAssistant, area_id: str) -> list[str]: ...
 def areas_in_automation(hass: HomeAssistant, entity_id: str) -> list[str]: ...
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class AutomationEntity(ToggleEntity, RestoreEntity):
     _attr_should_poll: bool

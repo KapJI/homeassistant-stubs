@@ -1,3 +1,4 @@
+from homeassistant.const import Platform as Platform
 from typing import Any
 
 API: str

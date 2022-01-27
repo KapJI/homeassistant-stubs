@@ -1,0 +1,16 @@
+from .const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
+from aiowebostv import WebOsClient as WebOsClient
+from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, BaseNotificationService as BaseNotificationService
+from homeassistant.const import CONF_ICON as CONF_ICON
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import Any
+
+_LOGGER: Any
+
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[BaseNotificationService, None]: ...
+
+class LgWebOSNotificationService(BaseNotificationService):
+    _client: Any
+    def __init__(self, client: WebOsClient) -> None: ...
+    async def async_send_message(self, message: str = ..., **kwargs: Any) -> None: ...

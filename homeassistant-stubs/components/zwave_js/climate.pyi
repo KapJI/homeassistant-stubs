@@ -1,16 +1,15 @@
 from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
+from .discovery_data_template import DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_value_of_zwave_value as get_value_of_zwave_value
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, DEFAULT_MAX_TEMP as DEFAULT_MAX_TEMP, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP
 from homeassistant.components.climate.const import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, CURRENT_HVAC_COOL as CURRENT_HVAC_COOL, CURRENT_HVAC_FAN as CURRENT_HVAC_FAN, CURRENT_HVAC_HEAT as CURRENT_HVAC_HEAT, CURRENT_HVAC_IDLE as CURRENT_HVAC_IDLE, HVAC_MODE_COOL as HVAC_MODE_COOL, HVAC_MODE_DRY as HVAC_MODE_DRY, HVAC_MODE_FAN_ONLY as HVAC_MODE_FAN_ONLY, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_HEAT_COOL as HVAC_MODE_HEAT_COOL, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_NONE as PRESET_NONE, SUPPORT_FAN_MODE as SUPPORT_FAN_MODE, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE, SUPPORT_TARGET_TEMPERATURE_RANGE as SUPPORT_TARGET_TEMPERATURE_RANGE
-from homeassistant.components.zwave_js.discovery_data_template import DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.temperature import convert_temperature as convert_temperature
 from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const.command_class.thermostat import ThermostatSetpointType

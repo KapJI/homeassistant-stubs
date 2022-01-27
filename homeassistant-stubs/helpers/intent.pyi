@@ -4,10 +4,10 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, T as T, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Dict
+from typing import Any
 
 _LOGGER: Any
-_SlotsType = Dict[str, Any]
+_SlotsType = dict[str, Any]
 INTENT_TURN_OFF: str
 INTENT_TURN_ON: str
 INTENT_TOGGLE: str

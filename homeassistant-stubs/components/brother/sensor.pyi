@@ -1,11 +1,11 @@
 from . import BrotherDataUpdateCoordinator as BrotherDataUpdateCoordinator
 from .const import DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN
 from datetime import datetime
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, PERCENTAGE as PERCENTAGE
+from homeassistant.const import CONF_HOST as CONF_HOST, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity

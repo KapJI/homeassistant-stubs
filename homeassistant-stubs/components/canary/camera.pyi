@@ -5,7 +5,7 @@ from canary.api import Device as Device, Location as Location
 from canary.live_stream_api import LiveStreamSession as LiveStreamSession
 from homeassistant.components import ffmpeg as ffmpeg
 from homeassistant.components.camera import Camera as Camera
-from homeassistant.components.ffmpeg import DATA_FFMPEG as DATA_FFMPEG, FFmpegManager as FFmpegManager
+from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager, get_ffmpeg_manager as get_ffmpeg_manager
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream

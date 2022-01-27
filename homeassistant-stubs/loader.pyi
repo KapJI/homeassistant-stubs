@@ -1,14 +1,15 @@
 import pathlib
+from .core import HomeAssistant as HomeAssistant
+from .generated.dhcp import DHCP as DHCP
+from .generated.mqtt import MQTT as MQTT
+from .generated.ssdp import SSDP as SSDP
+from .generated.usb import USB as USB
+from .generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
+from .util.async_ import gather_with_concurrency as gather_with_concurrency
 from awesomeversion import AwesomeVersion
-from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.generated.dhcp import DHCP as DHCP
-from homeassistant.generated.mqtt import MQTT as MQTT
-from homeassistant.generated.ssdp import SSDP as SSDP
-from homeassistant.generated.usb import USB as USB
-from homeassistant.generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
-from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
+from collections.abc import Callable
 from types import ModuleType
-from typing import Any, Callable, TypeVar, TypedDict
+from typing import Any, TypeVar, TypedDict
 
 CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable[..., Any])
 _LOGGER: Any
@@ -20,6 +21,7 @@ PACKAGE_BUILTIN: str
 CUSTOM_WARNING: str
 _UNDEF: Any
 MAX_LOAD_CONCURRENTLY: int
+MOVED_ZEROCONF_PROPS: Any
 
 class Manifest(TypedDict):
     name: str
@@ -47,7 +49,8 @@ def manifest_from_legacy_module(domain: str, module: ModuleType) -> Manifest: ..
 async def _async_get_custom_components(hass: HomeAssistant) -> dict[str, Integration]: ...
 async def async_get_custom_components(hass: HomeAssistant) -> dict[str, Integration]: ...
 async def async_get_config_flows(hass: HomeAssistant) -> set[str]: ...
-async def async_get_zeroconf(hass: HomeAssistant) -> dict[str, list[dict[str, str]]]: ...
+def async_process_zeroconf_match_dict(entry: dict[str, Any]) -> dict[str, Any]: ...
+async def async_get_zeroconf(hass: HomeAssistant) -> dict[str, list[dict[str, Union[str, dict[str, str]]]]]: ...
 async def async_get_dhcp(hass: HomeAssistant) -> list[dict[str, str]]: ...
 async def async_get_usb(hass: HomeAssistant) -> list[dict[str, str]]: ...
 async def async_get_homekit(hass: HomeAssistant) -> dict[str, str]: ...

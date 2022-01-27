@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .devolo_multi_level_switch import DevoloMultiLevelSwitchDeviceEntity as DevoloMultiLevelSwitchDeviceEntity
 from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
-from homeassistant.components.cover import CoverEntity as CoverEntity, DEVICE_CLASS_BLIND as DEVICE_CLASS_BLIND, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION
+from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

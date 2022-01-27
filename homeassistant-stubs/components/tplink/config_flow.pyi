@@ -1,15 +1,13 @@
-from . import async_discover_devices as async_discover_devices, async_entry_is_legacy as async_entry_is_legacy
+from . import async_discover_devices as async_discover_devices
 from .const import DOMAIN as DOMAIN
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp
-from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from kasa import SmartDevice as SmartDevice
 from typing import Any
-
-_LOGGER: Any
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
@@ -22,7 +20,5 @@ class ConfigFlow(config_entries.ConfigFlow):
     async def async_step_discovery_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_pick_device(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_migration(self, migration_input: dict[str, Any]) -> FlowResult: ...
     def _async_create_entry_from_device(self, device: SmartDevice) -> FlowResult: ...
-    async def async_step_import(self, user_input: dict[str, Any]) -> FlowResult: ...
     async def _async_try_connect(self, host: str, raise_on_progress: bool = ...) -> SmartDevice: ...

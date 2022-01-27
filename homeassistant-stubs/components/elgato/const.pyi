@@ -1,4 +1,7 @@
-DOMAIN: str
+from typing import Any, Final
+
+DOMAIN: Final[str]
+LOGGER: Any
+SCAN_INTERVAL: Any
 ATTR_ON: str
-CONF_SERIAL_NUMBER: str
 SERVICE_IDENTIFY: str

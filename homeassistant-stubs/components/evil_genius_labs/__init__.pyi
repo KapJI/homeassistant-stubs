@@ -1,6 +1,7 @@
 import pyevilgenius
 from .const import DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client, update_coordinator as update_coordinator
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo

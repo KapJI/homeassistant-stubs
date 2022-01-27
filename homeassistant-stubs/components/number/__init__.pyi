@@ -25,7 +25,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class NumberEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    max_value: Union[float, None]
+    min_value: Union[float, None]
+    step: Union[float, None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step) -> None: ...
 
 class NumberEntity(Entity):
     entity_description: NumberEntityDescription

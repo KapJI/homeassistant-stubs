@@ -1,4 +1,11 @@
+from homeassistant.backports.enum import StrEnum as StrEnum
+from homeassistant.const import Platform as Platform
 from typing import Any, Literal
+
+class MeshRoles(StrEnum):
+    NONE: str
+    MASTER: str
+    SLAVE: str
 
 DOMAIN: str
 PLATFORMS: Any
@@ -18,5 +25,4 @@ SERVICE_CLEANUP: str
 SWITCH_TYPE_DEFLECTION: str
 SWITCH_TYPE_PORTFORWARD: str
 SWITCH_TYPE_WIFINETWORK: str
-TRACKER_SCAN_INTERVAL: int
 UPTIME_DEVIATION: int

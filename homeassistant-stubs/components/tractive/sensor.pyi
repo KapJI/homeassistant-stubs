@@ -3,9 +3,10 @@ from .const import ATTR_DAILY_GOAL as ATTR_DAILY_GOAL, ATTR_MINUTES_ACTIVE as AT
 from .entity import TractiveEntity as TractiveEntity
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, PERCENTAGE as PERCENTAGE, TIME_MINUTES as TIME_MINUTES
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, PERCENTAGE as PERCENTAGE, TIME_MINUTES as TIME_MINUTES
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 

@@ -1,5 +1,5 @@
 from . import SynoApi as SynoApi, SynologyDSMBaseEntity as SynologyDSMBaseEntity
-from .const import COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, DOMAIN as DOMAIN, SYNO_API as SYNO_API, SynologyDSMEntityDescription as SynologyDSMEntityDescription
+from .const import CONF_SNAPSHOT_QUALITY as CONF_SNAPSHOT_QUALITY, COORDINATOR_CAMERAS as COORDINATOR_CAMERAS, DEFAULT_SNAPSHOT_QUALITY as DEFAULT_SNAPSHOT_QUALITY, DOMAIN as DOMAIN, SYNO_API as SYNO_API, SynologyDSMEntityDescription as SynologyDSMEntityDescription
 from homeassistant.components.camera import Camera as Camera, CameraEntityDescription as CameraEntityDescription, SUPPORT_STREAM as SUPPORT_STREAM
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -19,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SynoDSMCamera(SynologyDSMBaseEntity, Camera):
     coordinator: DataUpdateCoordinator[dict[str, dict[str, SynoCamera]]]
     entity_description: SynologyDSMCameraEntityDescription
+    snapshot_quality: Any
     def __init__(self, api: SynoApi, coordinator: DataUpdateCoordinator[dict[str, dict[str, SynoCamera]]], camera_id: str) -> None: ...
     @property
     def camera_data(self) -> SynoCamera: ...

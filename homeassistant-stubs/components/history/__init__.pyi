@@ -1,7 +1,7 @@
 from aiohttp import web
 from collections.abc import Iterable
 from datetime import datetime as dt
-from homeassistant.components import websocket_api as websocket_api
+from homeassistant.components import frontend as frontend, websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.recorder import history as history, models as history_models
 from homeassistant.components.recorder.statistics import list_statistic_ids as list_statistic_ids, statistics_during_period as statistics_during_period
@@ -10,6 +10,7 @@ from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as C
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.deprecation import deprecated_class as deprecated_class, deprecated_function as deprecated_function
 from homeassistant.helpers.entityfilter import CONF_ENTITY_GLOBS as CONF_ENTITY_GLOBS, INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 _LOGGER: Any
@@ -23,7 +24,7 @@ def state_changes_during_period(hass, start_time, end_time: Any | None = ..., en
 def get_last_state_changes(hass, number_of_states, entity_id): ...
 def get_states(hass, utc_point_in_time, entity_ids: Any | None = ..., run: Any | None = ..., filters: Any | None = ...): ...
 def get_state(hass, utc_point_in_time, entity_id, run: Any | None = ...): ...
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class LazyState(history_models.LazyState): ...
 
@@ -36,11 +37,11 @@ class HistoryPeriodView(HomeAssistantView):
     extra_urls: Any
     filters: Any
     use_include_order: Any
-    def __init__(self, filters, use_include_order) -> None: ...
+    def __init__(self, filters: Union[Filters, None], use_include_order: bool) -> None: ...
     async def get(self, request: web.Request, datetime: Union[str, None] = ...) -> web.Response: ...
     def _sorted_significant_states_json(self, hass, start_time, end_time, entity_ids, include_start_time_state, significant_changes_only, minimal_response): ...
 
-def sqlalchemy_filter_from_include_exclude_conf(conf): ...
+def sqlalchemy_filter_from_include_exclude_conf(conf: ConfigType) -> Union[Filters, None]: ...
 
 class Filters:
     excluded_entities: Any

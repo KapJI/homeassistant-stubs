@@ -1,11 +1,11 @@
+from . import core as core, loader as loader, requirements as requirements
+from .config import async_notify_setup_error as async_notify_setup_error
+from .const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PLATFORM_FORMAT as PLATFORM_FORMAT, Platform as Platform
+from .core import CALLBACK_TYPE as CALLBACK_TYPE
+from .exceptions import HomeAssistantError as HomeAssistantError
+from .helpers.typing import ConfigType as ConfigType
+from .util import ensure_unique_string as ensure_unique_string
 from collections.abc import Awaitable, Callable as Callable, Generator, Iterable
-from homeassistant import core as core, loader as loader, requirements as requirements
-from homeassistant.config import async_notify_setup_error as async_notify_setup_error
-from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PLATFORM_FORMAT as PLATFORM_FORMAT, Platform as Platform
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util import ensure_unique_string as ensure_unique_string
 from types import ModuleType
 from typing import Any
 

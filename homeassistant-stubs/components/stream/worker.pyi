@@ -1,7 +1,7 @@
 import av
 from . import redact_credentials as redact_credentials
 from .const import ATTR_SETTINGS as ATTR_SETTINGS, AUDIO_CODECS as AUDIO_CODECS, DOMAIN as DOMAIN, HLS_PROVIDER as HLS_PROVIDER, MAX_MISSING_DTS as MAX_MISSING_DTS, MAX_TIMESTAMP_GAP as MAX_TIMESTAMP_GAP, PACKETS_TO_WAIT_FOR_AUDIO as PACKETS_TO_WAIT_FOR_AUDIO, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT, SOURCE_TIMEOUT as SOURCE_TIMEOUT
-from .core import Part as Part, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
+from .core import KeyFrameConverter as KeyFrameConverter, Part as Part, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
 from .hls import HlsStreamOutput as HlsStreamOutput
 from collections.abc import Callable as Callable, Generator, Iterator, Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -72,4 +72,4 @@ class TimestampValidator:
 
 def is_keyframe(packet: av.Packet) -> Any: ...
 def unsupported_audio(packets: Iterator[av.Packet], audio_stream: Any) -> bool: ...
-def stream_worker(source: str, options: dict[str, str], stream_state: StreamState, quit_event: Event) -> None: ...
+def stream_worker(source: str, options: dict[str, str], stream_state: StreamState, keyframe_converter: KeyFrameConverter, quit_event: Event) -> None: ...

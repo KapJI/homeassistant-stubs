@@ -2,6 +2,7 @@ from .const import ATTRIBUTION as ATTRIBUTION, ATTR_ACCESS_TOKEN as ATTR_ACCESS_
 from aiohttp.web import Request as Request
 from fitbit import Fitbit
 from fitbit.api import FitbitOauth2Client
+from homeassistant.components import configurator as configurator
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM

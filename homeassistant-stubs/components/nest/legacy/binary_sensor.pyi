@@ -1,6 +1,6 @@
 from . import NestSensorDevice as NestSensorDevice
 from .const import DATA_NEST as DATA_NEST, DATA_NEST_CONFIG as DATA_NEST_CONFIG
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, DEVICE_CLASS_CONNECTIVITY as DEVICE_CLASS_CONNECTIVITY, DEVICE_CLASS_MOTION as DEVICE_CLASS_MOTION, DEVICE_CLASS_OCCUPANCY as DEVICE_CLASS_OCCUPANCY, DEVICE_CLASS_SOUND as DEVICE_CLASS_SOUND
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS
 from typing import Any
 

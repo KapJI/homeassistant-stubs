@@ -1,7 +1,7 @@
 from .const import CONF_LICENSE_PLATE as CONF_LICENSE_PLATE, DOMAIN as DOMAIN
 from collections.abc import Callable as Callable
 from datetime import date
-from homeassistant.components.sensor import DEVICE_CLASS_DATE as DEVICE_CLASS_DATE, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType

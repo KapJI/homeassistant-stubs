@@ -13,8 +13,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class UptimeRobotDataUpdateCoordinator(DataUpdateCoordinator):
+    data: list[UptimeRobotMonitor]
     _config_entry_id: Any
     _device_registry: Any
-    _api: Any
+    api: Any
     def __init__(self, hass: HomeAssistant, config_entry_id: str, dev_reg: DeviceRegistry, api: UptimeRobot) -> None: ...
     async def _async_update_data(self) -> Union[list[UptimeRobotMonitor], None]: ...

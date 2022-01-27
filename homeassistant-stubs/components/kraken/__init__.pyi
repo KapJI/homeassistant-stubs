@@ -1,7 +1,7 @@
 from .const import CONF_TRACKED_ASSET_PAIRS as CONF_TRACKED_ASSET_PAIRS, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DEFAULT_TRACKED_ASSET_PAIR as DEFAULT_TRACKED_ASSET_PAIR, DISPATCH_CONFIG_UPDATED as DISPATCH_CONFIG_UPDATED, DOMAIN as DOMAIN, KrakenResponse as KrakenResponse
 from .utils import get_tradable_asset_pairs as get_tradable_asset_pairs
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
+from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed

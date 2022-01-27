@@ -1,10 +1,9 @@
 from . import const as const, decorators as decorators, messages as messages
 from .connection import ActiveConnection as ActiveConnection
+from .const import ERR_NOT_FOUND as ERR_NOT_FOUND
 from collections.abc import Callable as Callable
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_READ as POLICY_READ
-from homeassistant.bootstrap import SIGNAL_BOOTSTRAP_INTEGRATONS as SIGNAL_BOOTSTRAP_INTEGRATONS
-from homeassistant.components.websocket_api.const import ERR_NOT_FOUND as ERR_NOT_FOUND
-from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED, MATCH_ALL as MATCH_ALL
+from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATONS as SIGNAL_BOOTSTRAP_INTEGRATONS
 from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError, Unauthorized as Unauthorized
 from homeassistant.helpers import entity as entity, template as template
@@ -34,3 +33,4 @@ def handle_entity_source(hass: HomeAssistant, connection: ActiveConnection, msg:
 async def handle_subscribe_trigger(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def handle_test_condition(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def handle_execute_script(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+async def handle_fire_event(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...

@@ -6,6 +6,8 @@ from homeassistant.core import Context as Context, HomeAssistant as HomeAssistan
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from typing import Any
 
+current_connection: Any
+
 class ActiveConnection:
     logger: Any
     hass: Any

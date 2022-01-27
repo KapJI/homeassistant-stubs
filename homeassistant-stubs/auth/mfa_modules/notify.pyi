@@ -4,7 +4,7 @@ from homeassistant.const import CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CO
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import ServiceNotFound as ServiceNotFound
-from typing import Any, Dict
+from typing import Any
 
 REQUIREMENTS: Any
 CONF_MESSAGE: str
@@ -31,7 +31,7 @@ class NotifySetting:
     def __le__(self, other): ...
     def __gt__(self, other): ...
     def __ge__(self, other): ...
-_UsersDict = Dict[str, NotifySetting]
+_UsersDict = dict[str, NotifySetting]
 
 class NotifyAuthModule(MultiFactorAuthModule):
     DEFAULT_TITLE: str

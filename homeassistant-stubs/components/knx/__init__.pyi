@@ -1,4 +1,4 @@
-from .const import CONF_KNX_CONNECTION_TYPE as CONF_KNX_CONNECTION_TYPE, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_KNX_INDIVIDUAL_ADDRESS as CONF_KNX_INDIVIDUAL_ADDRESS, CONF_KNX_ROUTING as CONF_KNX_ROUTING, CONF_KNX_TUNNELING as CONF_KNX_TUNNELING, DATA_HASS_CONFIG as DATA_HASS_CONFIG, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, SUPPORTED_PLATFORMS as SUPPORTED_PLATFORMS
+from .const import CONF_KNX_CONNECTION_TYPE as CONF_KNX_CONNECTION_TYPE, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_KNX_INDIVIDUAL_ADDRESS as CONF_KNX_INDIVIDUAL_ADDRESS, CONF_KNX_ROUTING as CONF_KNX_ROUTING, CONF_KNX_TUNNELING as CONF_KNX_TUNNELING, CONF_KNX_TUNNELING_TCP as CONF_KNX_TUNNELING_TCP, DATA_HASS_CONFIG as DATA_HASS_CONFIG, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, SUPPORTED_PLATFORMS as SUPPORTED_PLATFORMS
 from .expose import KNXExposeSensor as KNXExposeSensor, KNXExposeTime as KNXExposeTime, create_knx_exposure as create_knx_exposure
 from .schema import BinarySensorSchema as BinarySensorSchema, ButtonSchema as ButtonSchema, ClimateSchema as ClimateSchema, ConnectionSchema as ConnectionSchema, CoverSchema as CoverSchema, EventSchema as EventSchema, ExposeSchema as ExposeSchema, FanSchema as FanSchema, LightSchema as LightSchema, NotifySchema as NotifySchema, NumberSchema as NumberSchema, SceneSchema as SceneSchema, SelectSchema as SelectSchema, SensorSchema as SensorSchema, SwitchSchema as SwitchSchema, WeatherSchema as WeatherSchema, ga_validator as ga_validator, sensor_type_validator as sensor_type_validator
 from homeassistant import config_entries as config_entries
@@ -23,6 +23,7 @@ CONF_KNX_EVENT_FILTER: Final[str]
 SERVICE_KNX_SEND: Final[str]
 SERVICE_KNX_ATTR_PAYLOAD: Final[str]
 SERVICE_KNX_ATTR_TYPE: Final[str]
+SERVICE_KNX_ATTR_RESPONSE: Final[str]
 SERVICE_KNX_ATTR_REMOVE: Final[str]
 SERVICE_KNX_EVENT_REGISTER: Final[str]
 SERVICE_KNX_EXPOSURE_REGISTER: Final[str]

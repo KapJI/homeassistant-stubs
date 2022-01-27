@@ -2,7 +2,7 @@ from . import BlockDeviceWrapper as BlockDeviceWrapper
 from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN
 from .entity import ShellyBlockEntity as ShellyBlockEntity
 from aioshelly.block_device import Block as Block
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, DEVICE_CLASS_SHUTTER as DEVICE_CLASS_SHUTTER, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION, SUPPORT_STOP as SUPPORT_STOP
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION, SUPPORT_STOP as SUPPORT_STOP
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -13,7 +13,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class ShellyCover(ShellyBlockEntity, CoverEntity):
     _attr_device_class: Any
     control_result: Any
-    _supported_features: Any
+    _attr_supported_features: Any
     def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
     @property
     def is_closed(self) -> bool: ...
@@ -23,8 +23,6 @@ class ShellyCover(ShellyBlockEntity, CoverEntity):
     def is_closing(self) -> bool: ...
     @property
     def is_opening(self) -> bool: ...
-    @property
-    def supported_features(self) -> int: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...

@@ -1,21 +1,24 @@
 import datetime
+from . import media_browser as media_browser
 from .const import DATA_SONOS as DATA_SONOS, MEDIA_TYPES_TO_SONOS as MEDIA_TYPES_TO_SONOS, PLAYABLE_MEDIA_TYPES as PLAYABLE_MEDIA_TYPES, SONOS_CREATE_MEDIA_PLAYER as SONOS_CREATE_MEDIA_PLAYER, SONOS_STATE_PLAYING as SONOS_STATE_PLAYING, SONOS_STATE_TRANSITIONING as SONOS_STATE_TRANSITIONING, SOURCE_LINEIN as SOURCE_LINEIN, SOURCE_TV as SOURCE_TV
 from .entity import SonosEntity as SonosEntity
 from .helpers import soco_error as soco_error
-from .media_browser import build_item_response as build_item_response, get_media as get_media, library_payload as library_payload
 from .speaker import SonosMedia as SonosMedia, SonosSpeaker as SonosSpeaker
+from homeassistant.components import media_source as media_source, spotify as spotify
+from homeassistant.components.http.auth import async_sign_path as async_sign_path
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity
-from homeassistant.components.media_player.const import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, MEDIA_TYPE_ALBUM as MEDIA_TYPE_ALBUM, MEDIA_TYPE_ARTIST as MEDIA_TYPE_ARTIST, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, MEDIA_TYPE_PLAYLIST as MEDIA_TYPE_PLAYLIST, MEDIA_TYPE_TRACK as MEDIA_TYPE_TRACK, REPEAT_MODE_ALL as REPEAT_MODE_ALL, REPEAT_MODE_OFF as REPEAT_MODE_OFF, REPEAT_MODE_ONE as REPEAT_MODE_ONE, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_CLEAR_PLAYLIST as SUPPORT_CLEAR_PLAYLIST, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_REPEAT_SET as SUPPORT_REPEAT_SET, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SELECT_SOURCE as SUPPORT_SELECT_SOURCE, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
-from homeassistant.components.media_player.errors import BrowseError as BrowseError
+from homeassistant.components.media_player.const import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, MEDIA_TYPE_ALBUM as MEDIA_TYPE_ALBUM, MEDIA_TYPE_ARTIST as MEDIA_TYPE_ARTIST, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, MEDIA_TYPE_PLAYLIST as MEDIA_TYPE_PLAYLIST, MEDIA_TYPE_TRACK as MEDIA_TYPE_TRACK, REPEAT_MODE_ALL as REPEAT_MODE_ALL, REPEAT_MODE_OFF as REPEAT_MODE_OFF, REPEAT_MODE_ONE as REPEAT_MODE_ONE, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_CLEAR_PLAYLIST as SUPPORT_CLEAR_PLAYLIST, SUPPORT_GROUPING as SUPPORT_GROUPING, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_REPEAT_SET as SUPPORT_REPEAT_SET, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SELECT_SOURCE as SUPPORT_SELECT_SOURCE, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
 from homeassistant.components.plex.const import PLEX_URI_SCHEME as PLEX_URI_SCHEME
-from homeassistant.components.plex.services import play_on_sonos as play_on_sonos
+from homeassistant.components.plex.services import lookup_plex_media as lookup_plex_media
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TIME as ATTR_TIME, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform, service as service
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.network import is_internal_request as is_internal_request
+from homeassistant.helpers.network import get_url as get_url
+from soco.data_structures import DidlFavorite as DidlFavorite
 from typing import Any
 
 _LOGGER: Any
@@ -97,6 +100,8 @@ class SonosMediaPlayerEntity(SonosEntity, MediaPlayerEntity):
     def set_repeat(self, repeat: str) -> None: ...
     def mute_volume(self, mute: bool) -> None: ...
     def select_source(self, source: str) -> None: ...
+    def _play_favorite_by_name(self, name: str) -> None: ...
+    def _play_favorite(self, favorite: DidlFavorite) -> None: ...
     @property
     def source_list(self) -> list[str]: ...
     def media_play(self) -> None: ...
@@ -114,5 +119,7 @@ class SonosMediaPlayerEntity(SonosEntity, MediaPlayerEntity):
     def remove_from_queue(self, queue_position: int = ...) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
-    async def async_get_browse_image(self, media_content_type: Union[str, None], media_content_id: Union[str, None], media_image_id: Union[str, None] = ...) -> tuple[Union[None, str], Union[None, str]]: ...
+    async def async_get_browse_image(self, media_content_type: str, media_content_id: str, media_image_id: Union[str, None] = ...) -> tuple[Union[bytes, None], Union[str, None]]: ...
     async def async_browse_media(self, media_content_type: Union[str, None] = ..., media_content_id: Union[str, None] = ...) -> Any: ...
+    def join_players(self, group_members) -> None: ...
+    def unjoin_player(self) -> None: ...

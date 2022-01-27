@@ -2,9 +2,10 @@ from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN, METRIC_KEY_MODE as METRIC_KEY_MODE, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, MODE_OFF as MODE_OFF, MODE_ON as MODE_ON, STR_TO_VALLOX_PROFILE_SETTABLE as STR_TO_VALLOX_PROFILE_SETTABLE, VALLOX_PROFILE_TO_STR_SETTABLE as VALLOX_PROFILE_TO_STR_SETTABLE
 from collections.abc import Mapping
 from homeassistant.components.fan import FanEntity as FanEntity, NotValidPresetModeError as NotValidPresetModeError, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, NamedTuple
 from vallox_websocket_api import Vallox as Vallox
@@ -18,7 +19,7 @@ class ExtraStateAttributeDetails(NamedTuple):
 EXTRA_STATE_ATTRIBUTES: Any
 
 def _convert_fan_speed_value(value: StateType) -> Union[int, None]: ...
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ValloxFan(CoordinatorEntity, FanEntity):
     coordinator: ValloxDataUpdateCoordinator

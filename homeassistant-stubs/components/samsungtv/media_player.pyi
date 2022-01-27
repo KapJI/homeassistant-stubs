@@ -1,7 +1,7 @@
+from .bridge import SamsungTVLegacyBridge as SamsungTVLegacyBridge, SamsungTVWSBridge as SamsungTVWSBridge
 from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_MODEL as CONF_MODEL, CONF_ON_ACTION as CONF_ON_ACTION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
-from homeassistant.components.media_player import DEVICE_CLASS_TV as DEVICE_CLASS_TV, MediaPlayerEntity as MediaPlayerEntity
+from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity
 from homeassistant.components.media_player.const import MEDIA_TYPE_CHANNEL as MEDIA_TYPE_CHANNEL, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_SELECT_SOURCE as SUPPORT_SELECT_SOURCE, SUPPORT_TURN_OFF as SUPPORT_TURN_OFF, SUPPORT_TURN_ON as SUPPORT_TURN_ON, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_STEP as SUPPORT_VOLUME_STEP
-from homeassistant.components.samsungtv.bridge import SamsungTVLegacyBridge as SamsungTVLegacyBridge, SamsungTVWSBridge as SamsungTVWSBridge
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant

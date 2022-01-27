@@ -1,11 +1,11 @@
 import logging
+from . import entity as entity, event as event
 from .debounce import Debouncer as Debouncer
 from collections.abc import Awaitable, Callable as Callable
 from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers import entity as entity, event as event
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any, TypeVar
 

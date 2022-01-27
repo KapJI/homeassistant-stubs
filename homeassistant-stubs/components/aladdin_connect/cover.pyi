@@ -1,7 +1,8 @@
 from .const import NOTIFICATION_ID as NOTIFICATION_ID, NOTIFICATION_TITLE as NOTIFICATION_TITLE, STATES_MAP as STATES_MAP, SUPPORTED_FEATURES as SUPPORTED_FEATURES
 from .model import DoorDevice as DoorDevice
 from aladdin_connect import AladdinConnectClient
-from homeassistant.components.cover import CoverEntity as CoverEntity, DEVICE_CLASS_GARAGE as DEVICE_CLASS_GARAGE
+from homeassistant.components import persistent_notification as persistent_notification
+from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

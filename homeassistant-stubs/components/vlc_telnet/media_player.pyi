@@ -1,24 +1,29 @@
-from .const import DATA_AVAILABLE as DATA_AVAILABLE, DATA_VLC as DATA_VLC, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DATA_AVAILABLE as DATA_AVAILABLE, DATA_VLC as DATA_VLC, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
 from aiovlc.client import Client as Client
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from datetime import datetime
-from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
-from homeassistant.components.media_player.const import MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SUPPORT_CLEAR_PLAYLIST as SUPPORT_CLEAR_PLAYLIST, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
+from homeassistant.components import media_source as media_source
+from homeassistant.components.http.auth import async_sign_path as async_sign_path
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity
+from homeassistant.components.media_player.const import MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_CLEAR_PLAYLIST as SUPPORT_CLEAR_PLAYLIST, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_NAME as CONF_NAME, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Callable, TypeVar
+from homeassistant.helpers.network import get_url as get_url
+from typing import Any, TypeVar
+from typing_extensions import Concatenate as Concatenate
 
 MAX_VOLUME: int
 SUPPORT_VLC: Any
-Func = TypeVar('Func', bound=Callable[..., Any])
+_T = TypeVar('_T', bound='VlcDevice')
+_R = TypeVar('_R')
+_P: Any
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def catch_vlc_errors(func: Func) -> Func: ...
+def catch_vlc_errors(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class VlcDevice(MediaPlayerEntity):
     _config_entry: Any
@@ -73,3 +78,4 @@ class VlcDevice(MediaPlayerEntity):
     async def async_media_next_track(self) -> None: ...
     async def async_clear_playlist(self) -> None: ...
     async def async_set_shuffle(self, shuffle: bool) -> None: ...
+    async def async_browse_media(self, media_content_type: Union[str, None] = ..., media_content_id: Union[str, None] = ...) -> BrowseMedia: ...

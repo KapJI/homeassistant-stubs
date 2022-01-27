@@ -2,6 +2,7 @@ import datetime
 from . import Stream as Stream
 from .const import ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN
 from aiohttp import web
+from av import CodecContext, Packet as Packet
 from collections import deque
 from collections.abc import Iterable
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
@@ -106,3 +107,15 @@ class StreamView(HomeAssistantView):
     platform: Any
     async def get(self, request: web.Request, token: str, sequence: str = ..., part_num: str = ...) -> web.StreamResponse: ...
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.StreamResponse: ...
+
+class KeyFrameConverter:
+    packet: Any
+    _hass: Any
+    _image: Any
+    _turbojpeg: Any
+    _lock: Any
+    _codec_context: Any
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    def create_codec_context(self, codec_context: CodecContext) -> None: ...
+    def _generate_image(self, width: Union[int, None], height: Union[int, None]) -> None: ...
+    async def async_get_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...

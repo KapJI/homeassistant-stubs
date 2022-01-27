@@ -1,9 +1,9 @@
 from . import SimpliSafe as SimpliSafe, SimpliSafeEntity as SimpliSafeEntity
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_DOOR as DEVICE_CLASS_DOOR, DEVICE_CLASS_GAS as DEVICE_CLASS_GAS, DEVICE_CLASS_MOISTURE as DEVICE_CLASS_MOISTURE, DEVICE_CLASS_MOTION as DEVICE_CLASS_MOTION, DEVICE_CLASS_SAFETY as DEVICE_CLASS_SAFETY, DEVICE_CLASS_SMOKE as DEVICE_CLASS_SMOKE
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from simplipy.device.sensor.v3 import SensorV3 as SensorV3
 from simplipy.system.v3 import SystemV3 as SystemV3

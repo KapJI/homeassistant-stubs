@@ -1,17 +1,18 @@
 import asyncio
+from . import entity_registry as er
+from .device_registry import DeviceEntryType as DeviceEntryType
+from .entity_platform import EntityPlatform as EntityPlatform
+from .event import async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
+from .frame import report as report
+from .typing import StateType as StateType
 from abc import ABC
 from collections.abc import Awaitable, Iterable, Mapping, MutableMapping
 from datetime import datetime, timedelta
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, ENTITY_CATEGORIES as ENTITY_CATEGORIES, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
-from homeassistant.helpers import entity_registry as er
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
-from homeassistant.helpers.event import Event as Event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
-from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from typing import Any, Final, Literal, TypedDict
@@ -45,12 +46,15 @@ class DeviceInfo(TypedDict):
     name: Union[str, None]
     suggested_area: Union[str, None]
     sw_version: Union[str, None]
+    hw_version: Union[str, None]
     via_device: tuple[str, str]
 
 class EntityCategory(StrEnum):
     CONFIG: str
     DIAGNOSTIC: str
     SYSTEM: str
+
+def convert_to_entity_category(value: Union[EntityCategory, str, None], raise_report: bool = ...) -> Union[EntityCategory, None]: ...
 
 class EntityDescription:
     key: str
@@ -84,7 +88,7 @@ class Entity(ABC):
     _attr_context_recent_time: timedelta
     _attr_device_class: Union[str, None]
     _attr_device_info: Union[DeviceInfo, None]
-    _attr_entity_category: Union[EntityCategory, str, None]
+    _attr_entity_category: Union[EntityCategory, None]
     _attr_entity_picture: Union[str, None]
     _attr_entity_registry_enabled_default: bool
     _attr_extra_state_attributes: MutableMapping[str, Any]
@@ -169,12 +173,12 @@ class ToggleEntityDescription(EntityDescription):
 
 class ToggleEntity(Entity):
     entity_description: ToggleEntityDescription
-    _attr_is_on: bool
+    _attr_is_on: Union[bool, None]
     _attr_state: None
     @property
-    def state(self) -> Union[str, None]: ...
+    def state(self) -> Union[Literal['on', 'off'], None]: ...
     @property
-    def is_on(self) -> bool: ...
+    def is_on(self) -> Union[bool, None]: ...
     def turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...

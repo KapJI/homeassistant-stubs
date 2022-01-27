@@ -1,6 +1,7 @@
 from .const import API_TIMEOUT as API_TIMEOUT, CONF_STATION_ID as CONF_STATION_ID, DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL
 from aiohttp import ClientSession as ClientSession
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_registry as entity_registry
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

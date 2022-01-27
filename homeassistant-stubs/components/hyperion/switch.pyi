@@ -4,7 +4,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util import slugify as slugify
 from hyperion import client as client
@@ -14,9 +14,10 @@ COMPONENT_SWITCHES: Any
 
 def _component_to_unique_id(server_id: str, component: str, instance_num: int) -> str: ...
 def _component_to_switch_name(component: str, instance_name: str) -> str: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HyperionComponentSwitch(SwitchEntity):
+    _attr_entity_category: Any
     _unique_id: Any
     _device_id: Any
     _name: Any

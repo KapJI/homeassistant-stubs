@@ -2,10 +2,9 @@ from .const import DATA_CONNECTIONS as DATA_CONNECTIONS, SIGNAL_WEBSOCKET_CONNEC
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[dict[str, Any], None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class APICount(SensorEntity):
     count: int

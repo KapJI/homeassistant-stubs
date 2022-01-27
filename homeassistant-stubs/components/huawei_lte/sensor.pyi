@@ -1,12 +1,12 @@
 import re
-from . import HuaweiLteBaseEntity as HuaweiLteBaseEntity
+from . import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from .const import DOMAIN as DOMAIN, KEY_DEVICE_INFORMATION as KEY_DEVICE_INFORMATION, KEY_DEVICE_SIGNAL as KEY_DEVICE_SIGNAL, KEY_MONITORING_CHECK_NOTIFICATIONS as KEY_MONITORING_CHECK_NOTIFICATIONS, KEY_MONITORING_MONTH_STATISTICS as KEY_MONITORING_MONTH_STATISTICS, KEY_MONITORING_STATUS as KEY_MONITORING_STATUS, KEY_MONITORING_TRAFFIC_STATISTICS as KEY_MONITORING_TRAFFIC_STATISTICS, KEY_NET_CURRENT_PLMN as KEY_NET_CURRENT_PLMN, KEY_NET_NET_MODE as KEY_NET_NET_MODE, KEY_SMS_SMS_COUNT as KEY_SMS_SMS_COUNT, SENSOR_KEYS as SENSOR_KEYS
 from collections.abc import Callable as Callable
-from homeassistant.components.sensor import DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DATA_BYTES as DATA_BYTES, DATA_RATE_BYTES_PER_SECOND as DATA_RATE_BYTES_PER_SECOND, ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, FREQUENCY_MEGAHERTZ as FREQUENCY_MEGAHERTZ, PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_SECONDS as TIME_SECONDS
+from homeassistant.const import DATA_BYTES as DATA_BYTES, DATA_RATE_BYTES_PER_SECOND as DATA_RATE_BYTES_PER_SECOND, FREQUENCY_MEGAHERTZ as FREQUENCY_MEGAHERTZ, PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any, NamedTuple
@@ -15,12 +15,12 @@ _LOGGER: Any
 
 class SensorMeta(NamedTuple):
     name: Union[str, None]
-    device_class: Union[str, None]
+    device_class: Union[SensorDeviceClass, None]
     icon: Union[str, Callable[[StateType], str], None]
-    unit: Union[str, None]
-    state_class: Union[str, None]
-    enabled_default: bool
-    entity_category: Union[str, None]
+    native_unit_of_measurement: Union[str, None]
+    state_class: Union[SensorStateClass, None]
+    entity_registry_enabled_default: bool
+    entity_category: Union[EntityCategory, None]
     include: Union[re.Pattern[str], None]
     exclude: Union[re.Pattern[str], None]
     formatter: Union[Callable[[str], tuple[StateType, Union[str, None]]], None]
@@ -30,7 +30,7 @@ SENSOR_META: dict[Union[str, tuple[str, str]], SensorMeta]
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def format_default(value: StateType) -> tuple[StateType, Union[str, None]]: ...
 
-class HuaweiLteSensor(HuaweiLteBaseEntity, SensorEntity):
+class HuaweiLteSensor(HuaweiLteBaseEntityWithDevice, SensorEntity):
     key: str
     item: str
     meta: SensorMeta
@@ -45,21 +45,17 @@ class HuaweiLteSensor(HuaweiLteBaseEntity, SensorEntity):
     @property
     def native_value(self) -> StateType: ...
     @property
-    def device_class(self) -> Union[str, None]: ...
+    def device_class(self) -> Union[SensorDeviceClass, None]: ...
     @property
     def native_unit_of_measurement(self) -> Union[str, None]: ...
     @property
     def icon(self) -> Union[str, None]: ...
     @property
-    def state_class(self) -> Union[str, None]: ...
+    def state_class(self) -> Union[SensorStateClass, None]: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     _available: Any
     async def async_update(self) -> None: ...
     @property
-    def entity_category(self) -> Union[str, None]: ...
-    def __init__(self, router, available, unsub_handlers, key, item, meta, state, unit) -> None: ...
-    def __lt__(self, other): ...
-    def __le__(self, other): ...
-    def __gt__(self, other): ...
-    def __ge__(self, other): ...
+    def entity_category(self) -> Union[EntityCategory, None]: ...
+    def __init__(self, router, key, item, meta) -> None: ...

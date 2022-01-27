@@ -1,6 +1,6 @@
 from collections.abc import Callable as Callable
 from hole import Hole as Hole
-from homeassistant.components.binary_sensor import BinarySensorEntityDescription as BinarySensorEntityDescription, DEVICE_CLASS_UPDATE as DEVICE_CLASS_UPDATE
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from typing import Any

@@ -1,5 +1,5 @@
 from aiohttp import web
-from homeassistant.components import http as http
+from homeassistant.components import frontend as frontend, http as http
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -7,6 +7,7 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util import dt as dt
 from typing import Any
 
@@ -15,7 +16,7 @@ DOMAIN: str
 ENTITY_ID_FORMAT: Any
 SCAN_INTERVAL: Any
 
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 def get_date(date): ...

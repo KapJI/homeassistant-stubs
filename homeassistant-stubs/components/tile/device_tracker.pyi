@@ -1,4 +1,4 @@
-from . import DATA_COORDINATOR as DATA_COORDINATOR, DATA_TILE as DATA_TILE, DOMAIN as DOMAIN
+from .const import DATA_COORDINATOR as DATA_COORDINATOR, DATA_TILE as DATA_TILE, DOMAIN as DOMAIN
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
 from homeassistant.components.device_tracker.const import SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pytile.tile import Tile as Tile
 from typing import Any
@@ -23,7 +23,7 @@ ATTR_VOIP_STATE: str
 DEFAULT_ICON: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: Callable[..., Awaitable[None]], discovery_info: Union[dict[str, Any], None] = ...) -> bool: ...
+async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: Callable[..., Awaitable[None]], discovery_info: Union[DiscoveryInfoType, None] = ...) -> bool: ...
 
 class TileDeviceTracker(CoordinatorEntity, TrackerEntity):
     _attr_icon: Any

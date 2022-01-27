@@ -1,8 +1,8 @@
+from .core import HomeAssistant as HomeAssistant, callback as callback
+from .exceptions import HomeAssistantError as HomeAssistantError
+from .helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from .loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from collections.abc import Iterable
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
-from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from typing import Any
 
 PIP_TIMEOUT: int

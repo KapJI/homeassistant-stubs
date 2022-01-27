@@ -1,8 +1,9 @@
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
+from collections.abc import Callable
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from types import MappingProxyType
-from typing import Any, Callable, Optional, Union
+from typing import Any, Optional, Union
 
 PLATFORM: str
 DATA_FUNCTIONS: str

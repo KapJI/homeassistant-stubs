@@ -5,7 +5,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platfo
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, Dict
+from typing import Any
 
 _LOGGER: Any
 PLATFORMS: Any
@@ -14,7 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 
-class AccuWeatherDataUpdateCoordinator(DataUpdateCoordinator[Dict[str, Any]]):
+class AccuWeatherDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     location_key: Any
     forecast: Any
     is_metric: Any

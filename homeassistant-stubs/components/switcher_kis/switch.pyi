@@ -2,7 +2,7 @@ from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import CONF_AUTO_OFF as CONF_AUTO_OFF, CONF_TIMER_MINUTES as CONF_TIMER_MINUTES, SERVICE_SET_AUTO_OFF_NAME as SERVICE_SET_AUTO_OFF_NAME, SERVICE_TURN_ON_WITH_TIMER_NAME as SERVICE_TURN_ON_WITH_TIMER_NAME, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from datetime import timedelta
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET as DEVICE_CLASS_OUTLET, DEVICE_CLASS_SWITCH as DEVICE_CLASS_SWITCH, SwitchEntity as SwitchEntity
+from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import device_registry as device_registry, entity_platform as entity_platform

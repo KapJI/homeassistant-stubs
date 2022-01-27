@@ -1,7 +1,7 @@
+from .typing import TemplateVarsType as TemplateVarsType
 from collections import deque
 from collections.abc import Callable as Callable, Generator
 from contextvars import ContextVar
-from homeassistant.helpers.typing import TemplateVarsType as TemplateVarsType
 from typing import Any
 
 class TraceElement:

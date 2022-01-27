@@ -1,4 +1,3 @@
-import enum
 from .dt import as_local as as_local, utcnow as utcnow
 from collections.abc import Callable as Callable, Iterable, KeysView
 from datetime import timedelta
@@ -6,7 +5,6 @@ from typing import Any, TypeVar
 
 T = TypeVar('T')
 U = TypeVar('U')
-ENUM_T = TypeVar('ENUM_T', bound=enum.Enum)
 RE_SANITIZE_FILENAME: Any
 RE_SANITIZE_PATH: Any
 

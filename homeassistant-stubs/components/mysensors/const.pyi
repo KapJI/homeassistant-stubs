@@ -1,4 +1,5 @@
-from typing import Any, Final, Tuple, TypedDict
+from homeassistant.const import Platform as Platform
+from typing import Any, Final, TypedDict
 
 ATTR_DEVICES: Final[str]
 ATTR_GATEWAY_ID: Final[str]
@@ -40,7 +41,7 @@ SERVICE_SEND_IR_CODE: Final[str]
 SensorType = str
 ValueType = str
 GatewayId = str
-DevId = Tuple[GatewayId, int, int, int]
+DevId = tuple[GatewayId, int, int, int]
 BINARY_SENSOR_TYPES: dict[SensorType, set[ValueType]]
 CLIMATE_TYPES: dict[SensorType, set[ValueType]]
 COVER_TYPES: dict[SensorType, set[ValueType]]
@@ -49,7 +50,7 @@ LIGHT_TYPES: dict[SensorType, set[ValueType]]
 NOTIFY_TYPES: dict[SensorType, set[ValueType]]
 SENSOR_TYPES: dict[SensorType, set[ValueType]]
 SWITCH_TYPES: dict[SensorType, set[ValueType]]
-PLATFORM_TYPES: dict[str, dict[SensorType, set[ValueType]]]
+PLATFORM_TYPES: dict[Platform, dict[SensorType, set[ValueType]]]
 FLAT_PLATFORM_TYPES: dict[tuple[str, SensorType], set[ValueType]]
-TYPE_TO_PLATFORMS: dict[SensorType, list[str]]
+TYPE_TO_PLATFORMS: dict[SensorType, list[Platform]]
 PLATFORMS_WITH_ENTRY_SUPPORT: Any

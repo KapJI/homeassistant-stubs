@@ -1,7 +1,7 @@
 import aiohttp
 from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_PASSWORD as CONF_PASSWORD, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.aiohttp_client import SERVER_SOFTWARE as SERVER_SOFTWARE
+from homeassistant.helpers.aiohttp_client import SERVER_SOFTWARE as SERVER_SOFTWARE, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 

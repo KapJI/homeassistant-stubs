@@ -1,5 +1,5 @@
+from .thread import async_raise as async_raise
 from concurrent.futures import ThreadPoolExecutor
-from homeassistant.util.thread import async_raise as async_raise
 from threading import Thread
 from typing import Any
 

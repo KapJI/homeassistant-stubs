@@ -1,5 +1,5 @@
-from . import CONF_SERVERS as CONF_SERVERS, DATA_UPCLOUD as DATA_UPCLOUD, UpCloudServerEntity as UpCloudServerEntity
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from . import DATA_UPCLOUD as DATA_UPCLOUD, UpCloudServerEntity as UpCloudServerEntity
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant

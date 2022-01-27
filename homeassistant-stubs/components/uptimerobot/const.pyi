@@ -1,4 +1,5 @@
 from datetime import timedelta
+from homeassistant.const import Platform as Platform
 from logging import Logger
 from typing import Any, Final
 

@@ -1,6 +1,6 @@
 from .const import DEFAULT_RETRY_COUNT as DEFAULT_RETRY_COUNT, DEFAULT_RETRY_TIMEOUT as DEFAULT_RETRY_TIMEOUT, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST
+from homeassistant.const import CONF_HOST as CONF_HOST, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed

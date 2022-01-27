@@ -4,8 +4,8 @@ from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordina
 from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, async_refresh_after as async_refresh_after
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ENTITY_CATEGORY_CONFIG as ENTITY_CATEGORY_CONFIG
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from kasa import SmartDevice as SmartDevice
 from typing import Any

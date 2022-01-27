@@ -1,13 +1,14 @@
 import homeassistant.core
+from collections.abc import Mapping
 from enum import Enum
-from typing import Any, Dict, Mapping, Optional, Tuple, Union
+from typing import Any, Optional, Union
 
-GPSType = Tuple[float, float]
-ConfigType = Dict[str, Any]
+GPSType = tuple[float, float]
+ConfigType = dict[str, Any]
 ContextType = homeassistant.core.Context
-DiscoveryInfoType = Dict[str, Any]
+DiscoveryInfoType = dict[str, Any]
 EventType = homeassistant.core.Event
-ServiceDataType = Dict[str, Any]
+ServiceDataType = dict[str, Any]
 StateType = Union[None, str, int, float]
 TemplateVarsType = Optional[Mapping[str, Any]]
 QueryType = Any

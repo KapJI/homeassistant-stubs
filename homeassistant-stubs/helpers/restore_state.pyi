@@ -1,14 +1,14 @@
+from . import start as start
+from .entity import Entity as Entity
+from .event import async_track_time_interval as async_track_time_interval
+from .json import JSONEncoder as JSONEncoder
+from .singleton import singleton as singleton
+from .storage import Store as Store
 from datetime import datetime
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity_registry as entity_registry, start as start
-from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.json import JSONEncoder as JSONEncoder
-from homeassistant.helpers.singleton import singleton as singleton
-from homeassistant.helpers.storage import Store as Store
-from typing import Any
+from typing import Any, TypeVar
 
 DATA_RESTORE_STATE_TASK: str
 _LOGGER: Any
@@ -16,6 +16,7 @@ STORAGE_KEY: str
 STORAGE_VERSION: int
 STATE_DUMP_INTERVAL: Any
 STATE_EXPIRATION: Any
+_StoredStateT = TypeVar('_StoredStateT', bound='StoredState')
 
 class StoredState:
     state: Any
@@ -23,7 +24,7 @@ class StoredState:
     def __init__(self, state: State, last_seen: datetime) -> None: ...
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
-    def from_dict(cls, json_dict: dict) -> StoredState: ...
+    def from_dict(cls, json_dict: dict) -> _StoredStateT: ...
 
 class RestoreStateData:
     @staticmethod

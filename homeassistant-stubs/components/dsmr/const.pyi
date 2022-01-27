@@ -1,6 +1,7 @@
 from .models import DSMRSensorEntityDescription as DSMRSensorEntityDescription
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from homeassistant.const import Platform as Platform
+from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from typing import Any
 
 DOMAIN: str

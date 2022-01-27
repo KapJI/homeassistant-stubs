@@ -1,12 +1,13 @@
-from .common import FritzBoxBaseEntity as FritzBoxBaseEntity, FritzBoxTools as FritzBoxTools
-from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
+from .common import AvmWrapper as AvmWrapper, FritzBoxBaseEntity as FritzBoxBaseEntity
+from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, MeshRoles as MeshRoles, UPTIME_DEVIATION as UPTIME_DEVIATION
 from collections.abc import Callable as Callable
 from datetime import datetime
 from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DATA_GIGABYTES as DATA_GIGABYTES, DATA_RATE_KILOBITS_PER_SECOND as DATA_RATE_KILOBITS_PER_SECOND, DATA_RATE_KILOBYTES_PER_SECOND as DATA_RATE_KILOBYTES_PER_SECOND, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, ENTITY_CATEGORY_DIAGNOSTIC as ENTITY_CATEGORY_DIAGNOSTIC, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS
+from homeassistant.const import DATA_GIGABYTES as DATA_GIGABYTES, DATA_RATE_KILOBITS_PER_SECOND as DATA_RATE_KILOBITS_PER_SECOND, DATA_RATE_KILOBYTES_PER_SECOND as DATA_RATE_KILOBYTES_PER_SECOND, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any, Literal
@@ -36,7 +37,8 @@ class FritzRequireKeysMixin:
 
 class FritzSensorEntityDescription(SensorEntityDescription, FritzRequireKeysMixin):
     connection_type: Union[Literal['dsl'], None]
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, connection_type) -> None: ...
+    exclude_mesh_role: MeshRoles
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, connection_type, exclude_mesh_role) -> None: ...
 
 SENSOR_TYPES: tuple[FritzSensorEntityDescription, ...]
 
@@ -48,6 +50,6 @@ class FritzBoxSensor(FritzBoxBaseEntity, SensorEntity):
     _attr_available: bool
     _attr_name: Any
     _attr_unique_id: Any
-    def __init__(self, fritzbox_tools: FritzBoxTools, device_friendly_name: str, description: FritzSensorEntityDescription) -> None: ...
+    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, description: FritzSensorEntityDescription) -> None: ...
     _attr_native_value: Any
     def update(self) -> None: ...

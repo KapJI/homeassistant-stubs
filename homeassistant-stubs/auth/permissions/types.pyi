@@ -1,4 +1,5 @@
-from typing import Mapping, Union
+from collections.abc import Mapping
+from typing import Union
 
 ValueType = Union[Mapping[str, bool], bool, None]
 SubCategoryDict = Mapping[str, ValueType]

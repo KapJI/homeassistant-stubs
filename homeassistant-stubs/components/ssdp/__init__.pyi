@@ -1,7 +1,7 @@
 from async_upnp_client.const import DeviceOrServiceType as DeviceOrServiceType, SsdpHeaders as SsdpHeaders, SsdpSource
 from async_upnp_client.ssdp_listener import SsdpDevice as SsdpDevice
 from async_upnp_client.utils import CaseInsensitiveDict
-from collections.abc import Awaitable, Mapping
+from collections.abc import Awaitable, Callable, Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, MATCH_ALL as MATCH_ALL
@@ -14,7 +14,7 @@ from homeassistant.helpers.frame import report as report
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_ssdp as async_get_ssdp, bind_hass as bind_hass
 from ipaddress import IPv4Address, IPv6Address
-from typing import Any, Callable
+from typing import Any
 
 DOMAIN: str
 SCAN_INTERVAL: Any
@@ -65,11 +65,10 @@ class _UpnpServiceDescription:
     def __init__(self, upnp) -> None: ...
 
 class SsdpServiceInfo(_HaServiceDescription, _SsdpServiceDescription, _UpnpServiceDescription, BaseServiceInfo):
-    _warning_logged: bool
     def __getitem__(self, name: str) -> Any: ...
     def get(self, name: str, default: Any = ...) -> Any: ...
     def __contains__(self, name: str) -> bool: ...
-    def __init__(self, upnp, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains, _warning_logged) -> None: ...
+    def __init__(self, upnp, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
 
 SsdpChange: Any
 SsdpCallback = Callable[[SsdpServiceInfo, SsdpChange], Awaitable]

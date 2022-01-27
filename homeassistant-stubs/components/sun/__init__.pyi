@@ -1,8 +1,9 @@
 from homeassistant.const import CONF_ELEVATION as CONF_ELEVATION, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.sun import get_astral_location as get_astral_location, get_location_astral_event_next as get_location_astral_event_next
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 _LOGGER: Any
@@ -27,7 +28,7 @@ PHASE_SMALL_DAY: str
 PHASE_DAY: str
 _PHASE_UPDATES: Any
 
-async def async_setup(hass, config): ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class Sun(Entity):
     entity_id: Any

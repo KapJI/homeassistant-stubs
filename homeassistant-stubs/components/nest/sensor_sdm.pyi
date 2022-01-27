@@ -1,9 +1,9 @@
 from .const import DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
 from google_nest_sdm.device import Device as Device
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, PERCENTAGE as PERCENTAGE, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import PERCENTAGE as PERCENTAGE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,7 +15,7 @@ DEVICE_TYPE_MAP: Any
 async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensorBase(SensorEntity):
-    _attr_shoud_poll: bool
+    _attr_should_poll: bool
     _attr_state_class: Any
     _device: Any
     _device_info: Any

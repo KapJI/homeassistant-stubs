@@ -5,8 +5,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
-from typing import Any
+from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import Any, Literal
 
 _LOGGER: Any
 DOMAIN: str
@@ -16,6 +16,7 @@ ENTITY_ID_FORMAT: Any
 class BinarySensorDeviceClass(StrEnum):
     BATTERY: str
     BATTERY_CHARGING: str
+    CO: str
     COLD: str
     CONNECTIVITY: str
     DOOR: str
@@ -46,6 +47,7 @@ DEVICE_CLASSES_SCHEMA: Any
 DEVICE_CLASSES: Any
 DEVICE_CLASS_BATTERY: Any
 DEVICE_CLASS_BATTERY_CHARGING: Any
+DEVICE_CLASS_CO: Any
 DEVICE_CLASS_COLD: Any
 DEVICE_CLASS_CONNECTIVITY: Any
 DEVICE_CLASS_DOOR: Any
@@ -90,7 +92,4 @@ class BinarySensorEntity(Entity):
     @property
     def is_on(self) -> Union[bool, None]: ...
     @property
-    def state(self) -> StateType: ...
-
-class BinarySensorDevice(BinarySensorEntity):
-    def __init_subclass__(cls, **kwargs: Any): ...
+    def state(self) -> Union[Literal['on', 'off'], None]: ...

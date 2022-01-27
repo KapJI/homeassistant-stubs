@@ -7,16 +7,16 @@ from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_COND
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, Final
 
-_LOGGER: Any
-ELECTRIC_CHARGE_AMPERE_HOURS: str
-ENERGY_VOLT_AMPERE_REACTIVE_HOUR: str
-POWER_VOLT_AMPERE_REACTIVE: str
+_LOGGER: Final[Any]
+ELECTRIC_CHARGE_AMPERE_HOURS: Final[str]
+ENERGY_VOLT_AMPERE_REACTIVE_HOUR: Final[str]
+POWER_VOLT_AMPERE_REACTIVE: Final[str]
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 INVERTER_ENTITY_DESCRIPTIONS: list[SensorEntityDescription]

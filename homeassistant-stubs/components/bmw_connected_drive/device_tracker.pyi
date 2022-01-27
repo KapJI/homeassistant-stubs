@@ -1,5 +1,5 @@
 from . import BMWConnectedDriveAccount as BMWConnectedDriveAccount, BMWConnectedDriveBaseEntity as BMWConnectedDriveBaseEntity
-from .const import CONF_ACCOUNT as CONF_ACCOUNT, DATA_ENTRIES as DATA_ENTRIES
+from .const import ATTR_DIRECTION as ATTR_DIRECTION, CONF_ACCOUNT as CONF_ACCOUNT, DATA_ENTRIES as DATA_ENTRIES
 from bimmer_connected.vehicle import ConnectedDriveVehicle as ConnectedDriveVehicle
 from homeassistant.components.device_tracker import SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity

@@ -1,0 +1,14 @@
+from .const import DOMAIN as DOMAIN
+from homeassistant import config_entries as config_entries
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from typing import Any
+from unifi_discovery import UnifiDevice as UnifiDevice
+
+_LOGGER: Any
+DISCOVERY: str
+DISCOVERY_INTERVAL: Any
+
+def async_start_discovery(hass: HomeAssistant) -> None: ...
+async def async_discover_devices() -> list[UnifiDevice]: ...
+def async_trigger_discovery(hass: HomeAssistant, discovered_devices: list[UnifiDevice]) -> None: ...

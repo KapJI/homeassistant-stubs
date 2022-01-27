@@ -1,10 +1,10 @@
 from .const import DOMAIN as DOMAIN, MEDIA_CLASS_MAP as MEDIA_CLASS_MAP, MEDIA_MIME_TYPES as MEDIA_MIME_TYPES
+from .error import Unresolvable as Unresolvable
 from .models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.media_player.const import MEDIA_CLASS_DIRECTORY as MEDIA_CLASS_DIRECTORY
 from homeassistant.components.media_player.errors import BrowseError as BrowseError
-from homeassistant.components.media_source.error import Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import raise_if_invalid_path as raise_if_invalid_path
 from pathlib import Path

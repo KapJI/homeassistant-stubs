@@ -1,8 +1,8 @@
 from . import SimpliSafe as SimpliSafe, SimpliSafeEntity as SimpliSafeEntity
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from simplipy.device.sensor.v3 import SensorV3 as SensorV3

@@ -1,8 +1,8 @@
 import voluptuous as vol
-from .const import DEFAULT_FAN_SPEED_AWAY as DEFAULT_FAN_SPEED_AWAY, DEFAULT_FAN_SPEED_BOOST as DEFAULT_FAN_SPEED_BOOST, DEFAULT_FAN_SPEED_HOME as DEFAULT_FAN_SPEED_HOME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, INITIAL_COORDINATOR_UPDATE_RETRY_INTERVAL_SECONDS as INITIAL_COORDINATOR_UPDATE_RETRY_INTERVAL_SECONDS, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, STATE_SCAN_INTERVAL as STATE_SCAN_INTERVAL, STR_TO_VALLOX_PROFILE_SETTABLE as STR_TO_VALLOX_PROFILE_SETTABLE
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
-from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
-from homeassistant.helpers.discovery import async_load_platform as async_load_platform
+from .const import DEFAULT_FAN_SPEED_AWAY as DEFAULT_FAN_SPEED_AWAY, DEFAULT_FAN_SPEED_BOOST as DEFAULT_FAN_SPEED_BOOST, DEFAULT_FAN_SPEED_HOME as DEFAULT_FAN_SPEED_HOME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, STATE_SCAN_INTERVAL as STATE_SCAN_INTERVAL, STR_TO_VALLOX_PROFILE_SETTABLE as STR_TO_VALLOX_PROFILE_SETTABLE
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, Platform as Platform
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any, NamedTuple
@@ -11,6 +11,7 @@ from vallox_websocket_api import PROFILE as VALLOX_PROFILE, Vallox
 
 _LOGGER: Any
 CONFIG_SCHEMA: Any
+PLATFORMS: list[str]
 ATTR_PROFILE: str
 ATTR_PROFILE_FAN_SPEED: str
 SERVICE_SCHEMA_SET_PROFILE: Any
@@ -37,6 +38,8 @@ class ValloxDataUpdateCoordinator(DataUpdateCoordinator):
     data: ValloxState
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class ValloxServiceHandler:
     _client: Any

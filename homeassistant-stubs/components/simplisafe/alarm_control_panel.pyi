@@ -6,6 +6,7 @@ from homeassistant.components.alarm_control_panel.const import SUPPORT_ALARM_ARM
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CODE as CONF_CODE, STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_ARMING as STATE_ALARM_ARMING, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED, STATE_ALARM_PENDING as STATE_ALARM_PENDING, STATE_ALARM_TRIGGERED as STATE_ALARM_TRIGGERED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
 from typing import Any

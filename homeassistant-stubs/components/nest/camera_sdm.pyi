@@ -2,11 +2,11 @@ import datetime
 from .const import DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
 from collections.abc import Callable as Callable
-from google_nest_sdm.camera_traits import EventImageGenerator, RtspStream as RtspStream
+from google_nest_sdm.camera_traits import RtspStream as RtspStream
 from google_nest_sdm.device import Device as Device
-from google_nest_sdm.event import ImageEventBase as ImageEventBase
+from google_nest_sdm.event_media import EventMedia as EventMedia
 from homeassistant.components.camera import Camera as Camera, SUPPORT_STREAM as SUPPORT_STREAM
-from homeassistant.components.camera.const import STREAM_TYPE_HLS as STREAM_TYPE_HLS, STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC
+from homeassistant.components.camera.const import STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC
 from homeassistant.components.ffmpeg import async_get_image as async_get_image
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -27,10 +27,8 @@ class NestCamera(Camera):
     _device: Any
     _device_info: Any
     _stream: Any
+    _create_stream_url_lock: Any
     _stream_refresh_unsub: Any
-    _event_id: Any
-    _event_image_bytes: Any
-    _event_image_cleanup_unsub: Any
     _attr_is_streaming: Any
     _placeholder_image: Any
     def __init__(self, device: Device) -> None: ...
@@ -57,8 +55,4 @@ class NestCamera(Camera):
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_camera_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...
-    async def _async_active_event_image(self) -> Union[bytes, None]: ...
-    async def _async_fetch_active_event_image(self, trait: EventImageGenerator) -> Union[bytes, None]: ...
-    def _schedule_event_image_cleanup(self, point_in_time: datetime.datetime) -> None: ...
-    def _handle_event_image_cleanup(self, now: Any) -> None: ...
-    async def async_handle_web_rtc_offer(self, offer_sdp: str) -> str: ...
+    async def async_handle_web_rtc_offer(self, offer_sdp: str) -> Union[str, None]: ...

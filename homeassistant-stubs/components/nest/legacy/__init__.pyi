@@ -3,7 +3,7 @@ from .const import DATA_NEST as DATA_NEST, DATA_NEST_CONFIG as DATA_NEST_CONFIG,
 from collections.abc import Generator
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_FILENAME as CONF_FILENAME, CONF_STRUCTURE as CONF_STRUCTURE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_FILENAME as CONF_FILENAME, CONF_STRUCTURE as CONF_STRUCTURE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, dispatcher_send as dispatcher_send
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity

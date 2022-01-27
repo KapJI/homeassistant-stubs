@@ -214,7 +214,13 @@ def get_modern_typed_paths(homeassistant_root: Path, strict_path: Path) -> list[
 
     with strict_path.open() as fp:
         lines = [line.strip() for line in fp.readlines()]
-    strict_modules = [line for line in lines if line != "" and not line.startswith("#")]
+    strict_modules = [
+        line
+        for line in lines
+        if line != ""
+        and not line.startswith("#")
+        and line.startswith("homeassistant.components")
+    ]
     components_paths = [
         module_to_path(homeassistant_root, module) for module in strict_modules
     ]

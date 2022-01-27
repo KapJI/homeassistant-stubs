@@ -126,6 +126,8 @@ class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity, RestoreEnti
     attribute: Any
     block: Any
     entity_description: Any
+    _attr_should_poll: bool
+    _attr_device_info: Any
     _attr_unique_id: Any
     _attr_name: Any
     def __init__(self, wrapper: BlockDeviceWrapper, block: Union[Block, None], attribute: str, description: BlockEntityDescription, entry: Union[entity_registry.RegistryEntry, None] = ..., sensors: Union[Mapping[tuple[str, str], BlockEntityDescription], None] = ...) -> None: ...

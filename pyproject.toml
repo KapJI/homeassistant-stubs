@@ -23,7 +23,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 homeassistant = "2021.12.10"
 
 [tool.poetry.dev-dependencies]

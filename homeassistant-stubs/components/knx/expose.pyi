@@ -9,6 +9,8 @@ from typing import Any
 from xknx import XKNX as XKNX
 from xknx.devices import DateTime, ExposeSensor
 
+_LOGGER: Any
+
 def create_knx_exposure(hass: HomeAssistant, xknx: XKNX, config: ConfigType) -> Union[KNXExposeSensor, KNXExposeTime]: ...
 
 class KNXExposeSensor:

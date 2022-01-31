@@ -1,5 +1,6 @@
 from . import async_control_connect as async_control_connect
 from .const import CONF_SOURCES as CONF_SOURCES, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
+from .helpers import async_get_sources as async_get_sources
 from homeassistant import config_entries as config_entries, data_entry_flow as data_entry_flow
 from homeassistant.components import ssdp as ssdp
 from homeassistant.const import CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_CUSTOMIZE as CONF_CUSTOMIZE, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID
@@ -32,5 +33,3 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
     key: Any
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[ConfigType, None] = ...) -> FlowResult: ...
-
-async def async_get_sources(host: str, key: str) -> list[str]: ...

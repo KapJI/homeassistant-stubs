@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from kasa import SmartDevice as SmartDevice
+from kasa import SmartDevice as SmartDevice, SmartPlug
 from typing import Any
 
 _LOGGER: Any
@@ -16,10 +16,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class SmartPlugLedSwitch(CoordinatedTPLinkEntity, SwitchEntity):
     coordinator: TPLinkDataUpdateCoordinator
+    device: SmartPlug
     _attr_entity_category: Any
     _attr_name: Any
     _attr_unique_id: Any
-    def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
+    def __init__(self, device: SmartPlug, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
     @property
     def icon(self) -> str: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

@@ -1,6 +1,6 @@
 from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, OUTDATED_LOG_MESSAGE as OUTDATED_LOG_MESSAGE
 from .discovery import async_start_discovery as async_start_discovery
-from .utils import _async_short_mac as _async_short_mac, _async_unifi_mac_from_hass as _async_unifi_mac_from_hass
+from .utils import _async_resolve as _async_resolve, _async_short_mac as _async_short_mac, _async_unifi_mac_from_hass as _async_unifi_mac_from_hass
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp, ssdp as ssdp
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL

@@ -84,3 +84,7 @@ class MaxLengthExceeded(HomeAssistantError):
 class RequiredParameterMissing(HomeAssistantError):
     parameter_names: Any
     def __init__(self, parameter_names: list[str]) -> None: ...
+
+class DependencyError(HomeAssistantError):
+    failed_dependencies: Any
+    def __init__(self, failed_dependencies: list[str]) -> None: ...

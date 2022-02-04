@@ -18,6 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class AccuWeatherEntity(CoordinatorEntity, WeatherEntity):
     coordinator: AccuWeatherDataUpdateCoordinator
     _unit_system: Any
+    _attr_wind_speed_unit: Any
     _attr_name: Any
     _attr_unique_id: Any
     _attr_temperature_unit: Any

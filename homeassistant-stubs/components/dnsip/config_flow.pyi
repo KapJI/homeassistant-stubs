@@ -6,6 +6,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
 DATA_SCHEMA: Any
+DATA_SCHEMA_ADV: Any
 
 async def async_validate_hostname(hostname: str, resolver_ipv4: str, resolver_ipv6: str) -> dict[str, bool]: ...
 

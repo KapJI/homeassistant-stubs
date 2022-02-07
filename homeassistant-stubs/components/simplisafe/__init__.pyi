@@ -67,6 +67,7 @@ class SimpliSafe:
     _websocket_reconnect_task: Any
     entry: Any
     initial_event_to_use: Any
+    subscription_data: Any
     systems: Any
     coordinator: Any
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: API) -> None: ...

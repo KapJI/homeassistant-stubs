@@ -15,7 +15,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Contex
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
-from typing import Any, Final, Literal, TypedDict
+from typing import Any, Literal, TypedDict
 
 _LOGGER: Any
 SLOW_UPDATE_WARNING: int
@@ -23,7 +23,9 @@ DATA_ENTITY_SOURCE: str
 SOURCE_CONFIG_ENTRY: str
 SOURCE_PLATFORM_CONFIG: str
 FLOAT_PRECISION: Any
-ENTITY_CATEGORIES_SCHEMA: Final[Any]
+
+def validate_entity_category(value: Union[Any, None]) -> EntityCategory: ...
+ENTITY_CATEGORIES_SCHEMA = validate_entity_category
 
 def entity_sources(hass: HomeAssistant) -> dict[str, dict[str, str]]: ...
 def generate_entity_id(entity_id_format: str, name: Union[str, None], current_ids: Union[list[str], None] = ..., hass: Union[HomeAssistant, None] = ...) -> str: ...

@@ -6,7 +6,7 @@ from homeassistant.components.climate.const import HVAC_MODES as HVAC_MODES, HVA
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, Platform as Platform
-from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
+from homeassistant.helpers.entity import validate_entity_category as validate_entity_category
 from typing import Any, ClassVar, Final
 
 def ga_validator(value: Any) -> Union[str, int]: ...

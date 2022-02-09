@@ -53,6 +53,7 @@ class FritzBoxTools(update_coordinator.DataUpdateCoordinator):
     hass: Any
     host: Any
     mesh_role: Any
+    device_conn_type: Any
     device_is_router: bool
     password: Any
     port: Any

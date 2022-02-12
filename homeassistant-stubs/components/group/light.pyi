@@ -10,6 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from typing import Any
 
 DEFAULT_NAME: str
+PARALLEL_UPDATES: int
 SUPPORT_GROUP_LIGHT: Any
 _LOGGER: Any
 

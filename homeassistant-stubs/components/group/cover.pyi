@@ -12,6 +12,7 @@ KEY_OPEN_CLOSE: str
 KEY_STOP: str
 KEY_POSITION: str
 DEFAULT_NAME: str
+PARALLEL_UPDATES: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 

@@ -6,6 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CO
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from typing import Any
 
 def ensure_unique_hosts(value: dict[Any, Any]) -> dict[Any, Any]: ...

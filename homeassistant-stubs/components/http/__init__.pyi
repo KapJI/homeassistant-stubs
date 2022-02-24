@@ -1,3 +1,4 @@
+import ssl
 from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
 from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, KEY_HASS_USER as KEY_HASS_USER
@@ -13,10 +14,13 @@ from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import storage as storage
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.setup import async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
+from ipaddress import IPv4Network, IPv6Network
 from typing import Any, Final, TypedDict
 
 DOMAIN: Final[str]
@@ -54,7 +58,7 @@ class ConfData(TypedDict):
     ssl_key: str
     cors_allowed_origins: list[str]
     use_x_forwarded_for: bool
-    trusted_proxies: list[str]
+    trusted_proxies: list[Union[IPv4Network, IPv6Network]]
     login_attempts_threshold: int
     ip_ban_enabled: bool
     ssl_profile: str
@@ -82,11 +86,14 @@ class HomeAssistantHTTP:
     ssl_profile: Any
     runner: Any
     site: Any
-    def __init__(self, hass: HomeAssistant, ssl_certificate: Union[str, None], ssl_peer_certificate: Union[str, None], ssl_key: Union[str, None], server_host: Union[list[str], None], server_port: int, trusted_proxies: list[str], ssl_profile: str) -> None: ...
+    context: Any
+    def __init__(self, hass: HomeAssistant, ssl_certificate: Union[str, None], ssl_peer_certificate: Union[str, None], ssl_key: Union[str, None], server_host: Union[list[str], None], server_port: int, trusted_proxies: list[Union[IPv4Network, IPv6Network]], ssl_profile: str) -> None: ...
     async def async_initialize(self, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool) -> None: ...
     def register_view(self, view: Union[HomeAssistantView, type[HomeAssistantView]]) -> None: ...
     def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection] = ...) -> None: ...
     def register_static_path(self, url_path: str, path: str, cache_headers: bool = ...) -> None: ...
+    def _create_ssl_context(self) -> Union[ssl.SSLContext, None]: ...
+    def _create_emergency_ssl_context(self) -> ssl.SSLContext: ...
     async def start(self) -> None: ...
     async def stop(self) -> None: ...
 

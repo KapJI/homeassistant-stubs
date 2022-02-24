@@ -1,11 +1,9 @@
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-_LOGGER: Any
-DOMAIN: str
-LAMETRIC_DEVICES: str
 CONFIG_SCHEMA: Any
 
 def setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

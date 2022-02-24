@@ -5,7 +5,7 @@ from aiohttp import web
 from collections.abc import Awaitable, Callable, Iterable
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
-from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
+from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
 from homeassistant.components.stream import Stream as Stream, create_stream as create_stream
 from homeassistant.components.stream.const import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
@@ -14,7 +14,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME 
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription, entity_sources as entity_sources
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType

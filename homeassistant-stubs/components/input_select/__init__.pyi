@@ -1,6 +1,7 @@
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_OPTION as ATTR_OPTION, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -22,13 +23,21 @@ SERVICE_SELECT_LAST: str
 SERVICE_SET_OPTIONS: str
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
+STORAGE_VERSION_MINOR: int
+
+def _unique(options: Any) -> Any: ...
+
 CREATE_FIELDS: Any
 UPDATE_FIELDS: Any
 
+def _remove_duplicates(options: list[str], name: Union[str, None]) -> list[str]: ...
 def _cv_input_select(cfg: dict[str, Any]) -> dict[str, Any]: ...
 
 CONFIG_SCHEMA: Any
 RELOAD_SERVICE_SCHEMA: Any
+
+class InputSelectStore(Store):
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 

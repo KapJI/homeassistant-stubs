@@ -11,7 +11,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.decorator import Registry as Registry
 from typing import Any
 
-PROVIDERS: Any
+PROVIDERS: Registry[str, type[StreamOutput]]
 
 class StreamSettings:
     ll_hls: bool

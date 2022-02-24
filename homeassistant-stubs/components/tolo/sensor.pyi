@@ -1,33 +1,33 @@
 from . import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity, ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
 from .const import DOMAIN as DOMAIN
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from collections.abc import Callable as Callable
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import PERCENTAGE as PERCENTAGE, TEMP_CELSIUS as TEMP_CELSIUS, TIME_MINUTES as TIME_MINUTES
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from tololib.message_info import SettingsInfo as SettingsInfo, StatusInfo as StatusInfo
 from typing import Any
+
+class ToloSensorEntityDescriptionBase:
+    getter: Callable[[StatusInfo], Union[int, None]]
+    availability_checker: Union[Callable[[SettingsInfo, StatusInfo], bool], None]
+    def __init__(self, getter, availability_checker) -> None: ...
+
+class ToloSensorEntityDescription(SensorEntityDescription, ToloSensorEntityDescriptionBase):
+    state_class: Any
+    def __init__(self, getter, availability_checker, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+
+SENSORS: Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class ToloWaterLevelSensor(ToloSaunaCoordinatorEntity, SensorEntity):
-    _attr_entity_category: Any
-    _attr_name: str
-    _attr_icon: str
-    _attr_state_class: Any
-    _attr_native_unit_of_measurement: Any
+class ToloSensorEntity(ToloSaunaCoordinatorEntity, SensorEntity):
+    entity_description: ToloSensorEntityDescription
     _attr_unique_id: Any
-    def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry, entity_description: ToloSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> int: ...
-
-class ToloTankTemperatureSensor(ToloSaunaCoordinatorEntity, SensorEntity):
-    _attr_entity_category: Any
-    _attr_name: str
-    _attr_device_class: Any
-    _attr_state_class: Any
-    _attr_native_unit_of_measurement: Any
-    _attr_unique_id: Any
-    def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry) -> None: ...
+    def available(self) -> bool: ...
     @property
-    def native_value(self) -> int: ...
+    def native_value(self) -> Union[int, None]: ...

@@ -8,7 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.decorator import Registry as Registry
 from typing import Any
 
-MULTI_FACTOR_AUTH_MODULES: Any
+MULTI_FACTOR_AUTH_MODULES: Registry[str, type[MultiFactorAuthModule]]
 MULTI_FACTOR_AUTH_MODULE_SCHEMA: Any
 DATA_REQS: str
 _LOGGER: Any

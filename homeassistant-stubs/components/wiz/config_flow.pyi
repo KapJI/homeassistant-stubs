@@ -1,0 +1,26 @@
+from .const import DEFAULT_NAME as DEFAULT_NAME, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, WIZ_CONNECT_EXCEPTIONS as WIZ_CONNECT_EXCEPTIONS
+from .discovery import async_discover_devices as async_discover_devices
+from .utils import _short_mac as _short_mac, name_from_bulb_type_and_mac as name_from_bulb_type_and_mac
+from homeassistant import config_entries as config_entries
+from homeassistant.components import dhcp as dhcp
+from homeassistant.const import CONF_HOST as CONF_HOST
+from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
+from homeassistant.util.network import is_ip_address as is_ip_address
+from typing import Any
+
+_LOGGER: Any
+CONF_DEVICE: str
+
+class ConfigFlow(config_entries.ConfigFlow):
+    VERSION: int
+    _discovered_device: Any
+    _discovered_devices: Any
+    _name: Any
+    def __init__(self) -> None: ...
+    async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> FlowResult: ...
+    async def async_step_integration_discovery(self, discovery_info: dict[str, str]) -> FlowResult: ...
+    async def _async_handle_discovery(self) -> FlowResult: ...
+    async def _async_connect_discovered_or_abort(self) -> None: ...
+    async def async_step_discovery_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_pick_device(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

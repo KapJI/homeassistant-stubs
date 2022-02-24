@@ -4,7 +4,7 @@ from .util import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
 from aioguardian import Client
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
-from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_FILENAME as CONF_FILENAME, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PORT as CONF_PORT, CONF_URL as CONF_URL, Platform as Platform
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_FILENAME as CONF_FILENAME, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PORT as CONF_PORT, CONF_URL as CONF_URL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

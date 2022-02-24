@@ -3,7 +3,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final
 
 _LOGGER: Final[Any]
@@ -14,7 +13,7 @@ class CanaryConfigFlow(ConfigFlow):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
-    async def async_step_import(self, user_input: Union[ConfigType, None] = ...) -> FlowResult: ...
+    async def async_step_import(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
 class CanaryOptionsFlowHandler(OptionsFlow):

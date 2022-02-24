@@ -1,5 +1,6 @@
-from .base_class import TradfriBaseDevice as TradfriBaseDevice
-from .const import ATTR_MODEL as ATTR_MODEL, CONF_GATEWAY_ID as CONF_GATEWAY_ID, DEVICES as DEVICES, DOMAIN as DOMAIN, KEY_API as KEY_API
+from .base_class import TradfriBaseEntity as TradfriBaseEntity
+from .const import ATTR_MODEL as ATTR_MODEL, CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, KEY_API as KEY_API
+from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
 from collections.abc import Callable as Callable
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,9 +11,11 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class TradfriCover(TradfriBaseDevice, CoverEntity):
-    _attr_unique_id: Any
-    def __init__(self, device: Command, api: Callable[[Union[Command, list[Command]]], Any], gateway_id: str) -> None: ...
+class TradfriCover(TradfriBaseEntity, CoverEntity):
+    _device_control: Any
+    _device_data: Any
+    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Union[Command, list[Command]]], Any], gateway_id: str) -> None: ...
+    def _refresh(self) -> None: ...
     @property
     def extra_state_attributes(self) -> Union[dict[str, str], None]: ...
     @property
@@ -23,7 +26,3 @@ class TradfriCover(TradfriBaseDevice, CoverEntity):
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
     @property
     def is_closed(self) -> bool: ...
-    _device: Any
-    _device_control: Any
-    _device_data: Any
-    def _refresh(self, device: Command, write_ha: bool = ...) -> None: ...

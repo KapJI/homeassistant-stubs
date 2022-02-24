@@ -1,11 +1,13 @@
 import upcloud_api
-from .const import CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE as CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
+from .const import CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE as CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_USERNAME as CONF_USERNAME, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PROBLEM as STATE_PROBLEM
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
@@ -41,7 +43,7 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
 
 class UpCloudServerEntity(CoordinatorEntity):
     uuid: Any
-    def __init__(self, coordinator: DataUpdateCoordinator[dict[str, upcloud_api.Server]], uuid: str) -> None: ...
+    def __init__(self, coordinator: UpCloudDataUpdateCoordinator, uuid: str) -> None: ...
     @property
     def _server(self) -> upcloud_api.Server: ...
     @property
@@ -56,3 +58,5 @@ class UpCloudServerEntity(CoordinatorEntity):
     def available(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...

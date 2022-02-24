@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.util import dt as dt
 from typing import Any
 
 class ValloxSensor(CoordinatorEntity, SensorEntity):

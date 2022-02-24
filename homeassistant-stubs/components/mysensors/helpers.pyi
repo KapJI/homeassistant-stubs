@@ -11,7 +11,7 @@ from mysensors.sensor import ChildSensor as ChildSensor
 from typing import Any
 
 _LOGGER: Any
-SCHEMAS: Any
+SCHEMAS: Registry[tuple[str, str], Callable[[BaseAsyncGateway, ChildSensor, ValueType], vol.Schema]]
 
 def on_unload(hass: HomeAssistant, gateway_id: GatewayId, fnct: Callable) -> None: ...
 def discover_mysensors_platform(hass: HomeAssistant, gateway_id: GatewayId, platform: str, new_devices: list[DevId]) -> None: ...

@@ -25,6 +25,7 @@ MAX_LOAD_CONCURRENTLY: int
 DEBUGGER_INTEGRATIONS: Any
 CORE_INTEGRATIONS: Any
 LOGGING_INTEGRATIONS: Any
+DISCOVERY_INTEGRATIONS: Any
 STAGE_1_INTEGRATIONS: Any
 
 async def async_setup_hass(runtime_config: RuntimeConfig) -> Union[core.HomeAssistant, None]: ...

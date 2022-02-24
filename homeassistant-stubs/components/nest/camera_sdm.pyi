@@ -4,10 +4,8 @@ from .device_info import NestDeviceInfo as NestDeviceInfo
 from collections.abc import Callable as Callable
 from google_nest_sdm.camera_traits import RtspStream as RtspStream
 from google_nest_sdm.device import Device as Device
-from google_nest_sdm.event_media import EventMedia as EventMedia
 from homeassistant.components.camera import Camera as Camera, SUPPORT_STREAM as SUPPORT_STREAM
 from homeassistant.components.camera.const import STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC
-from homeassistant.components.ffmpeg import async_get_image as async_get_image
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
@@ -30,7 +28,6 @@ class NestCamera(Camera):
     _create_stream_url_lock: Any
     _stream_refresh_unsub: Any
     _attr_is_streaming: Any
-    _placeholder_image: Any
     def __init__(self, device: Device) -> None: ...
     @property
     def should_poll(self) -> bool: ...
@@ -57,4 +54,6 @@ class NestCamera(Camera):
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_camera_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...
+    @classmethod
+    def placeholder_image(cls) -> bytes: ...
     async def async_handle_web_rtc_offer(self, offer_sdp: str) -> Union[str, None]: ...

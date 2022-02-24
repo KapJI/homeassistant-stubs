@@ -28,6 +28,7 @@ CONF_RETRY_ON_EMPTY: str
 CONF_REVERSE_ORDER: str
 CONF_PRECISION: str
 CONF_SCALE: str
+CONF_SLAVE_COUNT: str
 CONF_STATE_CLOSED: str
 CONF_STATE_CLOSING: str
 CONF_STATE_OFF: str
@@ -65,9 +66,11 @@ class DataType(str, Enum):
     INT: str
     UINT: str
     STRING: str
+    INT8: str
     INT16: str
     INT32: str
     INT64: str
+    UINT8: str
     UINT16: str
     UINT32: str
     UINT64: str

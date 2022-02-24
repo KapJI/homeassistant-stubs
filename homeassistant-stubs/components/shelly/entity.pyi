@@ -39,7 +39,8 @@ class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     removal_condition: Union[Callable[[dict, str], bool], None]
     extra_state_attributes: Union[Callable[[dict, dict], Union[dict, None]], None]
     use_polling_wrapper: bool
-    def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_wrapper) -> None: ...
+    supported: Callable
+    def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_wrapper, supported) -> None: ...
 
 class RestEntityDescription(EntityDescription):
     value: Union[Callable[[dict, Any], Any], None]

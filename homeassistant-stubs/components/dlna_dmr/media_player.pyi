@@ -1,14 +1,14 @@
 import asyncio
-from .const import CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DOMAIN as DOMAIN, MEDIA_METADATA_DIDL as MEDIA_METADATA_DIDL, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP, MEDIA_UPNP_CLASS_MAP as MEDIA_UPNP_CLASS_MAP, REPEAT_PLAY_MODES as REPEAT_PLAY_MODES, SHUFFLE_PLAY_MODES as SHUFFLE_PLAY_MODES
+from .const import CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DOMAIN as DOMAIN, MEDIA_METADATA_DIDL as MEDIA_METADATA_DIDL, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP, MEDIA_UPNP_CLASS_MAP as MEDIA_UPNP_CLASS_MAP, REPEAT_PLAY_MODES as REPEAT_PLAY_MODES, SHUFFLE_PLAY_MODES as SHUFFLE_PLAY_MODES, STREAMABLE_PROTOCOLS as STREAMABLE_PROTOCOLS
 from .data import EventListenAddr as EventListenAddr, get_domain_data as get_domain_data
 from async_upnp_client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from async_upnp_client.profiles.dlna import DmrDevice
 from collections.abc import Awaitable as Awaitable, Callable, Coroutine, Sequence
 from datetime import datetime
 from homeassistant import config_entries as config_entries
-from homeassistant.components import ssdp as ssdp
-from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity
-from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, REPEAT_MODE_ALL as REPEAT_MODE_ALL, REPEAT_MODE_OFF as REPEAT_MODE_OFF, REPEAT_MODE_ONE as REPEAT_MODE_ONE, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_REPEAT_SET as SUPPORT_REPEAT_SET, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SELECT_SOUND_MODE as SUPPORT_SELECT_SOUND_MODE, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
+from homeassistant.components import media_source as media_source, ssdp as ssdp
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, REPEAT_MODE_ALL as REPEAT_MODE_ALL, REPEAT_MODE_OFF as REPEAT_MODE_OFF, REPEAT_MODE_ONE as REPEAT_MODE_ONE, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_REPEAT_SET as SUPPORT_REPEAT_SET, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SELECT_SOUND_MODE as SUPPORT_SELECT_SOUND_MODE, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
@@ -81,6 +81,8 @@ class DlnaDmrEntity(MediaPlayerEntity):
     @property
     def sound_mode_list(self) -> Union[list[str], None]: ...
     async def async_select_sound_mode(self, sound_mode: str) -> None: ...
+    async def async_browse_media(self, media_content_type: Union[str, None] = ..., media_content_id: Union[str, None] = ...) -> BrowseMedia: ...
+    def _get_content_filter(self) -> Callable[[BrowseMedia], bool]: ...
     @property
     def media_title(self) -> Union[str, None]: ...
     @property

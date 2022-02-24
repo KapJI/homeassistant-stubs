@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from typing import Any, Final
 
@@ -108,3 +109,16 @@ class SensorEntity(Entity):
     @property
     def state(self) -> Any: ...
     def __repr__(self) -> str: ...
+
+class SensorExtraStoredData(ExtraStoredData):
+    native_value: Union[StateType, date, datetime]
+    native_unit_of_measurement: Union[str, None]
+    def as_dict(self) -> dict[str, Any]: ...
+    @classmethod
+    def from_dict(cls, restored: dict[str, Any]) -> Union[SensorExtraStoredData, None]: ...
+    def __init__(self, native_value, native_unit_of_measurement) -> None: ...
+
+class RestoreSensor(SensorEntity, RestoreEntity):
+    @property
+    def extra_restore_state_data(self) -> SensorExtraStoredData: ...
+    async def async_get_last_sensor_data(self) -> Union[SensorExtraStoredData, None]: ...

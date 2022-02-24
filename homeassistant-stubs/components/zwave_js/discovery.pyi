@@ -37,8 +37,8 @@ class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):
     endpoint: Union[set[int], None]
     property: Union[set[Union[str, int]], None]
     property_name: Union[set[str], None]
-    property_key: Union[set[Union[str, int]], None]
-    property_key_name: Union[set[str], None]
+    property_key: Union[set[Union[str, int, None]], None]
+    property_key_name: Union[set[Union[str, None]], None]
     type: Union[set[str], None]
     def __init__(self, command_class, endpoint, property, property_name, property_key, property_key_name, type) -> None: ...
 
@@ -62,7 +62,7 @@ class ZWaveDiscoverySchema:
     entity_registry_enabled_default: bool
     def __init__(self, platform, primary_value, hint, data_template, manufacturer_id, product_id, product_type, firmware_version_range, firmware_version, device_class_basic, device_class_generic, device_class_specific, required_values, absent_values, allow_multi, assumed_state, entity_registry_enabled_default) -> None: ...
 
-def get_config_parameter_discovery_schema(property_: Union[set[Union[str, int]], None] = ..., property_name: Union[set[str], None] = ..., property_key: Union[set[Union[str, int]], None] = ..., property_key_name: Union[set[str], None] = ..., **kwargs: Any) -> ZWaveDiscoverySchema: ...
+def get_config_parameter_discovery_schema(property_: Union[set[Union[str, int]], None] = ..., property_name: Union[set[str], None] = ..., property_key: Union[set[Union[str, int, None]], None] = ..., property_key_name: Union[set[Union[str, None]], None] = ..., **kwargs: Any) -> ZWaveDiscoverySchema: ...
 
 SWITCH_MULTILEVEL_CURRENT_VALUE_SCHEMA: Any
 SWITCH_BINARY_CURRENT_VALUE_SCHEMA: Any

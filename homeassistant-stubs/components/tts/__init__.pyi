@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
@@ -8,7 +9,6 @@ from homeassistant.helpers import config_per_platform as config_per_platform, di
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from homeassistant.util.yaml import load_yaml as load_yaml
 from typing import Any, Optional
@@ -31,7 +31,6 @@ CONF_FIELDS: str
 DEFAULT_CACHE: bool
 DEFAULT_CACHE_DIR: str
 DEFAULT_TIME_MEMORY: int
-DOMAIN: str
 MEM_CACHE_FILENAME: str
 MEM_CACHE_VOICE: str
 SERVICE_CLEAR_CACHE: str

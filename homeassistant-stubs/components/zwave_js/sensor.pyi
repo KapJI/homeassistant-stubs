@@ -2,7 +2,7 @@ from .const import ATTR_METER_TYPE as ATTR_METER_TYPE, ATTR_METER_TYPE_NAME as A
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import NumericSensorDataTemplate as NumericSensorDataTemplate, NumericSensorDataTemplateData as NumericSensorDataTemplateData
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
-from .helpers import get_device_id as get_device_id
+from .helpers import get_device_id as get_device_id, get_valueless_base_unique_id as get_valueless_base_unique_id
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -72,6 +72,7 @@ class ZWaveNodeStatusSensor(SensorEntity):
     client: Any
     node: Any
     _attr_name: Any
+    _base_unique_id: Any
     _attr_unique_id: Any
     _attr_device_info: Any
     _attr_native_value: Any

@@ -1,9 +1,10 @@
-from .const import LOGGER as LOGGER
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
-from pyoverkiz.enums.command import OverkizCommand as OverkizCommand
+from pyoverkiz.enums import OverkizCommand
 from pyoverkiz.models import Device as Device
 from pyoverkiz.types import StateType as OverkizStateType
 from typing import Any
+
+COMMANDS_WITHOUT_DELAY: Any
 
 class OverkizExecutor:
     device_url: Any

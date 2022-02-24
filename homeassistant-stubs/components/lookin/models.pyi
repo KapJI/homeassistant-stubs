@@ -3,10 +3,11 @@ from aiolookin import Device as Device, LookInHttpProtocol as LookInHttpProtocol
 from typing import Any
 
 class LookinData:
+    host: str
     lookin_udp_subs: LookinUDPSubscriptions
     lookin_device: Device
     meteo_coordinator: LookinDataUpdateCoordinator
     devices: list[dict[str, Any]]
     lookin_protocol: LookInHttpProtocol
     device_coordinators: dict[str, LookinDataUpdateCoordinator]
-    def __init__(self, lookin_udp_subs, lookin_device, meteo_coordinator, devices, lookin_protocol, device_coordinators) -> None: ...
+    def __init__(self, host, lookin_udp_subs, lookin_device, meteo_coordinator, devices, lookin_protocol, device_coordinators) -> None: ...

@@ -6,7 +6,7 @@ from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import RequiredParameterMissing as RequiredParameterMissing
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, RequiredParameterMissing as RequiredParameterMissing
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, NamedTuple
 

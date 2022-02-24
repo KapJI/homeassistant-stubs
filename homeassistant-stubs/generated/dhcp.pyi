@@ -1,3 +1,1 @@
-from typing import Any
-
-DHCP: Any
+DHCP: list[dict[str, Union[str, bool]]]

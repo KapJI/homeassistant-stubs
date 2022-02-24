@@ -13,7 +13,7 @@ from typing import Any
 
 _LOGGER: Any
 DATA_REQS: str
-AUTH_PROVIDERS: Any
+AUTH_PROVIDERS: Registry[str, type[AuthProvider]]
 AUTH_PROVIDER_SCHEMA: Any
 
 class AuthProvider:

@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, POWER_WATT as POWER_WATT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
+from homeassistant.helpers.typing import StateType as StateType
 from pyefergy import Efergy as Efergy
 from typing import Any
 
@@ -20,7 +21,7 @@ class EfergySensor(EfergyEntity, SensorEntity):
     _attr_native_unit_of_measurement: Any
     sid: Any
     period: Any
-    def __init__(self, api: Efergy, description: SensorEntityDescription, server_unique_id: str, period: Union[str, None] = ..., currency: Union[str, None] = ..., sid: str = ...) -> None: ...
+    def __init__(self, api: Efergy, description: SensorEntityDescription, server_unique_id: str, period: Union[str, None] = ..., currency: Union[str, None] = ..., sid: Union[int, None] = ...) -> None: ...
     _attr_native_value: Any
     _attr_available: bool
     async def async_update(self) -> None: ...

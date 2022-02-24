@@ -1,5 +1,6 @@
 from typing import Any
 
+CONTENT_AUTH_EXPIRY_TIME: Any
 ATTR_APP_ID: str
 ATTR_APP_NAME: str
 ATTR_GROUP_MEMBERS: str

@@ -1,7 +1,8 @@
 from collections.abc import Callable, Hashable
-from typing import TypeVar
+from typing import Any, TypeVar
 
-CALLABLE_T = TypeVar('CALLABLE_T', bound=Callable)
+_KT = TypeVar('_KT', bound=Hashable)
+_VT = TypeVar('_VT', bound=Callable[..., Any])
 
-class Registry(dict):
-    def register(self, name: Hashable) -> Callable[[CALLABLE_T], CALLABLE_T]: ...
+class Registry(dict[_KT, _VT]):
+    def register(self, name: _KT) -> Callable[[_VT], _VT]: ...

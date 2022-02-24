@@ -1,4 +1,4 @@
-from .triggers import value_updated as value_updated
+from .triggers import event as event, value_updated as value_updated
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant

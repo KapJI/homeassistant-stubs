@@ -5,7 +5,6 @@ from homeassistant.const import CONF_CODE as CONF_CODE, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, NamedTuple
 
 CONF_AUTH_CODE: str
@@ -28,7 +27,7 @@ class SimpliSafeFlowHandler(config_entries.ConfigFlow):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SimpliSafeOptionsFlowHandler: ...
     def _async_show_form(self, *, errors: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_reauth(self, config: ConfigType) -> FlowResult: ...
+    async def async_step_reauth(self, config: dict[str, Any]) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
 class SimpliSafeOptionsFlowHandler(config_entries.OptionsFlow):

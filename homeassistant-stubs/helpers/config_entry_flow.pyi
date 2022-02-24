@@ -4,9 +4,10 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp, mqtt as mqtt, ssdp as ssdp, zeroconf as zeroconf
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from typing import Any, Union
+from typing import Any, TypeVar
 
-DiscoveryFunctionType = Callable[[HomeAssistant], Union[Awaitable[bool], bool]]
+_R = TypeVar('_R', bound='Awaitable[bool] | bool')
+DiscoveryFunctionType = Callable[[HomeAssistant], _R]
 _LOGGER: Any
 
 class DiscoveryFlowHandler(config_entries.ConfigFlow):
@@ -14,7 +15,7 @@ class DiscoveryFlowHandler(config_entries.ConfigFlow):
     _domain: Any
     _title: Any
     _discovery_function: Any
-    def __init__(self, domain: str, title: str, discovery_function: DiscoveryFunctionType) -> None: ...
+    def __init__(self, domain: str, title: str, discovery_function: DiscoveryFunctionType[_R]) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_discovery(self, discovery_info: DiscoveryInfoType) -> FlowResult: ...
@@ -25,7 +26,7 @@ class DiscoveryFlowHandler(config_entries.ConfigFlow):
     async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> FlowResult: ...
     async def async_step_import(self, _: Union[dict[str, Any], None]) -> FlowResult: ...
 
-def register_discovery_flow(domain: str, title: str, discovery_function: DiscoveryFunctionType, connection_class: Union[str, UndefinedType] = ...) -> None: ...
+def register_discovery_flow(domain: str, title: str, discovery_function: DiscoveryFunctionType[Union[Awaitable[bool], bool]], connection_class: Union[str, UndefinedType] = ...) -> None: ...
 
 class WebhookFlowHandler(config_entries.ConfigFlow):
     VERSION: int

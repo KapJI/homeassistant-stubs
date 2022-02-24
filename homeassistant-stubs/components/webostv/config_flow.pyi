@@ -6,7 +6,6 @@ from homeassistant.components import ssdp as ssdp
 from homeassistant.const import CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_CUSTOMIZE as CONF_CUSTOMIZE, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 DATA_SCHEMA: Any
@@ -32,4 +31,4 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
     host: Any
     key: Any
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None: ...
-    async def async_step_init(self, user_input: Union[ConfigType, None] = ...) -> FlowResult: ...
+    async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

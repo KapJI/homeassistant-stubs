@@ -1,5 +1,6 @@
 import logging
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, UPDATE_INTERVAL as UPDATE_INTERVAL
+from collections.abc import Callable as Callable, Coroutine
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -9,7 +10,7 @@ from pyoverkiz.client import OverkizClient as OverkizClient
 from pyoverkiz.models import Device, Event as Event, Place
 from typing import Any
 
-EVENT_HANDLERS: Any
+EVENT_HANDLERS: Registry[str, Callable[[OverkizDataUpdateCoordinator, Event], Coroutine[Any, Any, None]]]
 
 class OverkizDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     data: Any

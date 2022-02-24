@@ -7,6 +7,8 @@ from homeassistant.helpers import entity_platform as entity_platform
 from phone_modem import PhoneModem as PhoneModem
 from typing import Any
 
+_LOGGER: Any
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: entity_platform.AddEntitiesCallback) -> None: ...
 
 class ModemCalleridSensor(SensorEntity):

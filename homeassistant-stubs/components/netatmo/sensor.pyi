@@ -101,5 +101,5 @@ class NetatmoPublicSensor(NetatmoBase, SensorEntity):
     _data_classes: Any
     async def async_config_update_callback(self, area: NetatmoArea) -> None: ...
     _attr_native_value: Any
-    _attr_available: Any
+    _attr_available: bool
     def async_update_callback(self) -> None: ...

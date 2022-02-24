@@ -10,7 +10,7 @@ from .trigger import async_initialize_triggers as async_initialize_triggers, asy
 from .typing import ConfigType as ConfigType
 from collections.abc import Callable as Callable, Generator, Sequence
 from homeassistant import exceptions as exceptions
-from homeassistant.components import device_automation as device_automation, scene as scene
+from homeassistant.components import scene as scene
 from homeassistant.components.logger import LOGSEVERITY as LOGSEVERITY
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ALIAS as CONF_ALIAS, CONF_CHOOSE as CONF_CHOOSE, CONF_CONDITION as CONF_CONDITION, CONF_CONDITIONS as CONF_CONDITIONS, CONF_CONTINUE_ON_TIMEOUT as CONF_CONTINUE_ON_TIMEOUT, CONF_COUNT as CONF_COUNT, CONF_DEFAULT as CONF_DEFAULT, CONF_DELAY as CONF_DELAY, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_EVENT as CONF_EVENT, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_EVENT_DATA_TEMPLATE as CONF_EVENT_DATA_TEMPLATE, CONF_MODE as CONF_MODE, CONF_REPEAT as CONF_REPEAT, CONF_SCENE as CONF_SCENE, CONF_SEQUENCE as CONF_SEQUENCE, CONF_SERVICE as CONF_SERVICE, CONF_TARGET as CONF_TARGET, CONF_TIMEOUT as CONF_TIMEOUT, CONF_UNTIL as CONF_UNTIL, CONF_VARIABLES as CONF_VARIABLES, CONF_WAIT_FOR_TRIGGER as CONF_WAIT_FOR_TRIGGER, CONF_WAIT_TEMPLATE as CONF_WAIT_TEMPLATE, CONF_WHILE as CONF_WHILE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, SERVICE_CALL_LIMIT as SERVICE_CALL_LIMIT, callback as callback

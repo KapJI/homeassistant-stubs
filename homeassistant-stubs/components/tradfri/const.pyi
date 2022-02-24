@@ -1,6 +1,6 @@
 from homeassistant.components.light import SUPPORT_BRIGHTNESS as SUPPORT_BRIGHTNESS, SUPPORT_TRANSITION as SUPPORT_TRANSITION
 from homeassistant.const import CONF_HOST as CONF_HOST, Platform as Platform
-from typing import Any
+from typing import Any, Final
 
 ATTR_AUTO: str
 ATTR_DIMMER: str
@@ -28,3 +28,8 @@ SUPPORTED_LIGHT_FEATURES = SUPPORT_TRANSITION
 PLATFORMS: Any
 TIMEOUT_API: int
 ATTR_MAX_FAN_STEPS: int
+SCAN_INTERVAL: int
+COORDINATOR: str
+COORDINATOR_LIST: str
+GROUPS_LIST: str
+ATTR_FILTER_LIFE_REMAINING: Final[str]

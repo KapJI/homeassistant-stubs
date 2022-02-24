@@ -5,11 +5,13 @@ from typing import Any, TypedDict
 
 DOMAIN: str
 PLATFORMS: Any
-CONF_SERIAL: str
+CONF_API_ENABLED: str
+CONF_DATA: str
+CONF_DEVICE: str
+CONF_PATH: str
 CONF_PRODUCT_NAME: str
 CONF_PRODUCT_TYPE: str
-CONF_DEVICE: str
-CONF_DATA: str
+CONF_SERIAL: str
 UPDATE_INTERVAL: Any
 
 class DeviceResponseEntry(TypedDict):

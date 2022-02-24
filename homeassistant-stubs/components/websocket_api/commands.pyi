@@ -13,6 +13,7 @@ from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncode
 from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from homeassistant.setup import DATA_SETUP_TIME as DATA_SETUP_TIME, async_get_loaded_integrations as async_get_loaded_integrations
+from homeassistant.util.json import find_paths_unserializable_data as find_paths_unserializable_data, format_unserializable_data as format_unserializable_data
 from typing import Any
 
 def async_register_commands(hass: HomeAssistant, async_reg: Callable[[HomeAssistant, const.WebSocketCommandHandler], None]) -> None: ...

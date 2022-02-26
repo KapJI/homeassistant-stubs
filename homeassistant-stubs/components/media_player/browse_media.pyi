@@ -4,7 +4,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.network import get_url as get_url, is_hass_url as is_hass_url
 from typing import Any
 
-def async_process_play_media_url(hass: HomeAssistant, media_content_id: str) -> str: ...
+def async_process_play_media_url(hass: HomeAssistant, media_content_id: str, *, allow_relative_url: bool = ...) -> str: ...
 
 class BrowseMedia:
     media_class: Any

@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE
+from homeassistant.const import LIGHT_LUX as LIGHT_LUX, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.entity_registry import EntityRegistry as EntityRegistry, RegistryEntry as RegistryEntry, async_entries_for_device as async_entries_for_device
@@ -21,6 +21,7 @@ STORAGE_VERSION: int
 NOTIFICATION_CC_LABEL_TO_PROPERTY_NAME: Any
 SENSOR_MULTILEVEL_CC_LABEL_TO_PROPERTY_NAME: Any
 CC_ID_LABEL_TO_PROPERTY: Any
+UNIT_LEGACY_MIGRATION_MAP: Any
 
 class ZWaveMigrationData(TypedDict):
     node_id: int

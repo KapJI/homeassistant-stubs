@@ -6,12 +6,11 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, PERCENTAGE as PERCENTAGE, POWER_KILO_WATT as POWER_KILO_WATT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from tesla_powerwall import MeterType as MeterType
+from tesla_powerwall import Meter as Meter, MeterType as MeterType
 from typing import Any
 
 _METER_DIRECTION_EXPORT: str
 _METER_DIRECTION_IMPORT: str
-_METER_DIRECTIONS: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -43,9 +42,20 @@ class PowerWallEnergyDirectionSensor(PowerWallEntity, SensorEntity):
     _attr_native_unit_of_measurement: Any
     _attr_device_class: Any
     _meter: Any
-    _meter_direction: Any
     _attr_name: Any
     _attr_unique_id: Any
     def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType, meter_direction: str) -> None: ...
+    @property
+    def available(self) -> bool: ...
+    @property
+    def meter(self) -> Meter: ...
+
+class PowerWallExportSensor(PowerWallEnergyDirectionSensor):
+    def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType) -> None: ...
+    @property
+    def native_value(self) -> float: ...
+
+class PowerWallImportSensor(PowerWallEnergyDirectionSensor):
+    def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType) -> None: ...
     @property
     def native_value(self) -> float: ...

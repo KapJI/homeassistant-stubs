@@ -1,5 +1,6 @@
-from .common import AvmWrapper as AvmWrapper, FritzBoxBaseEntity as FritzBoxBaseEntity
-from .const import DOMAIN as DOMAIN, MeshRoles as MeshRoles
+from .common import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo, FritzBoxBaseEntity as FritzBoxBaseEntity
+from .const import DOMAIN as DOMAIN
+from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -10,8 +11,8 @@ from typing import Any
 _LOGGER: Any
 
 class FritzBinarySensorEntityDescription(BinarySensorEntityDescription):
-    exclude_mesh_role: MeshRoles
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, exclude_mesh_role) -> None: ...
+    is_suitable: Callable[[ConnectionInfo], bool]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, is_suitable) -> None: ...
 
 SENSOR_TYPES: tuple[FritzBinarySensorEntityDescription, ...]
 

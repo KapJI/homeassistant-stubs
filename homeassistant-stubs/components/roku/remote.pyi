@@ -1,7 +1,7 @@
-from . import roku_exception_handler as roku_exception_handler
 from .const import DOMAIN as DOMAIN
 from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .entity import RokuEntity as RokuEntity
+from .helpers import roku_exception_handler as roku_exception_handler
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, RemoteEntity as RemoteEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

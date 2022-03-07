@@ -1,8 +1,7 @@
-from . import roku_exception_handler as roku_exception_handler
 from .const import DOMAIN as DOMAIN
 from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .entity import RokuEntity as RokuEntity
-from .helpers import format_channel_name as format_channel_name
+from .helpers import format_channel_name as format_channel_name, roku_exception_handler as roku_exception_handler
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -1,5 +1,5 @@
-from .common import AvmWrapper as AvmWrapper, FritzBoxBaseEntity as FritzBoxBaseEntity
-from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, MeshRoles as MeshRoles, UPTIME_DEVIATION as UPTIME_DEVIATION
+from .common import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo, FritzBoxBaseEntity as FritzBoxBaseEntity
+from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
 from collections.abc import Callable as Callable
 from datetime import datetime
 from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
@@ -30,12 +30,6 @@ def _retrieve_link_noise_margin_sent_state(status: FritzStatus, last_value: str)
 def _retrieve_link_noise_margin_received_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_link_attenuation_sent_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_link_attenuation_received_state(status: FritzStatus, last_value: str) -> float: ...
-
-class ConnectionInfo:
-    connection: str
-    mesh_role: MeshRoles
-    wan_enabled: bool
-    def __init__(self, connection, mesh_role, wan_enabled) -> None: ...
 
 class FritzRequireKeysMixin:
     value_fn: Callable[[FritzStatus, Any], Any]

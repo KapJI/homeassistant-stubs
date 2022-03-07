@@ -1,5 +1,5 @@
 from .common import AvmWrapper as AvmWrapper, FritzBoxBaseEntity as FritzBoxBaseEntity, FritzData as FritzData, FritzDevice as FritzDevice, FritzDeviceBase as FritzDeviceBase, SwitchInfo as SwitchInfo, device_filter_out_from_trackers as device_filter_out_from_trackers
-from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK, WIFI_STANDARD as WIFI_STANDARD
+from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK, WIFI_STANDARD as WIFI_STANDARD
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

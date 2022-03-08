@@ -8,6 +8,7 @@ from .typing import StateType as StateType
 from abc import ABC
 from collections.abc import Awaitable, Iterable, Mapping, MutableMapping
 from datetime import datetime, timedelta
+from enum import Enum
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, ENTITY_CATEGORIES as ENTITY_CATEGORIES, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
@@ -56,6 +57,11 @@ class EntityCategory(StrEnum):
     DIAGNOSTIC: str
     SYSTEM: str
 
+class EntityPlatformState(Enum):
+    NOT_ADDED: Any
+    ADDED: Any
+    REMOVED: Any
+
 def convert_to_entity_category(value: Union[EntityCategory, str, None], raise_report: bool = ...) -> Union[EntityCategory, None]: ...
 
 class EntityDescription:
@@ -83,7 +89,7 @@ class Entity(ABC):
     _on_remove: Union[list[CALLBACK_TYPE], None]
     _context: Union[Context, None]
     _context_set: Union[datetime, None]
-    _added: bool
+    _platform_state: Any
     _attr_assumed_state: bool
     _attr_attribution: Union[str, None]
     _attr_available: bool

@@ -6,7 +6,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-async def validate_input(hass: HomeAssistant, tailnet: str, api_key: str) -> None: ...
+async def validate_input(hass: HomeAssistant, *, tailnet: str, api_key: str) -> None: ...
 
 class TailscaleFlowHandler(ConfigFlow):
     VERSION: int

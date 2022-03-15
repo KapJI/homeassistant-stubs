@@ -14,7 +14,7 @@ class BrowseMediaSource(BrowseMedia):
     children: Union[list[Union[BrowseMediaSource, BrowseMedia]], None]
     domain: Any
     identifier: Any
-    def __init__(self, domain: Union[str, None], identifier: Union[str, None], **kwargs: Any) -> None: ...
+    def __init__(self, *, domain: Union[str, None], identifier: Union[str, None], **kwargs: Any) -> None: ...
 
 class MediaSourceItem:
     hass: HomeAssistant

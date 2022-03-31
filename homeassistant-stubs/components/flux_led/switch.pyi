@@ -14,7 +14,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FluxSwitch(FluxOnOffEntity, CoordinatorEntity, SwitchEntity):
+class FluxSwitch(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], SwitchEntity):
     async def _async_turn_on(self, **kwargs: Any) -> None: ...
 
 class FluxRemoteAccessSwitch(FluxBaseEntity, SwitchEntity):

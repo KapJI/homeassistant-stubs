@@ -1,5 +1,5 @@
 from . import BlockDeviceWrapper as BlockDeviceWrapper
-from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
+from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, LOGGER as LOGGER, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
 from .utils import get_device_entry_gen as get_device_entry_gen
 from aioshelly.block_device import Block as Block
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
@@ -11,9 +11,7 @@ from homeassistant.helpers import device_registry as device_registry, entity_reg
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any, Final
-
-_LOGGER: Final[Any]
+from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_climate_entities(async_add_entities: AddEntitiesCallback, wrapper: BlockDeviceWrapper) -> None: ...

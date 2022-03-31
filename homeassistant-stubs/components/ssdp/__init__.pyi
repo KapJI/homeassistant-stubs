@@ -1,4 +1,4 @@
-from async_upnp_client.const import DeviceOrServiceType as DeviceOrServiceType, SsdpHeaders as SsdpHeaders, SsdpSource
+from async_upnp_client.const import AddressTupleVXType as AddressTupleVXType, DeviceOrServiceType as DeviceOrServiceType, SsdpHeaders as SsdpHeaders, SsdpSource
 from async_upnp_client.ssdp_listener import SsdpDevice as SsdpDevice
 from async_upnp_client.utils import CaseInsensitiveDict
 from collections.abc import Awaitable, Callable, Mapping

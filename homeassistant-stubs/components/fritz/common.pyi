@@ -130,7 +130,7 @@ class FritzData:
     profile_switches: dict
     def __init__(self, tracked, profile_switches) -> None: ...
 
-class FritzDeviceBase(update_coordinator.CoordinatorEntity):
+class FritzDeviceBase(update_coordinator.CoordinatorEntity[AvmWrapper]):
     _avm_wrapper: Any
     _mac: Any
     _name: Any

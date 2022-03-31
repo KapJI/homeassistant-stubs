@@ -1,9 +1,11 @@
+from logging import Logger
 from typing import Any, Final
 
+DOMAIN: Final[str]
+LOGGER: Logger
 BLOCK: Final[str]
 DATA_CONFIG_ENTRY: Final[str]
 DEVICE: Final[str]
-DOMAIN: Final[str]
 REST: Final[str]
 RPC: Final[str]
 RPC_POLL: Final[str]

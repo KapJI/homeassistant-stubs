@@ -20,8 +20,7 @@ class LookinDeviceMixIn:
     _lookin_udp_subs: Any
     def _set_lookin_device_attrs(self, lookin_data: LookinData) -> None: ...
 
-class LookinDeviceCoordinatorEntity(LookinDeviceMixIn, CoordinatorEntity):
-    coordinator: LookinDataUpdateCoordinator
+class LookinDeviceCoordinatorEntity(LookinDeviceMixIn, CoordinatorEntity[LookinDataUpdateCoordinator]):
     _attr_should_poll: bool
     _attr_device_info: Any
     def __init__(self, lookin_data: LookinData) -> None: ...
@@ -33,8 +32,7 @@ class LookinEntityMixIn:
     _function_names: Any
     def _set_lookin_entity_attrs(self, uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
 
-class LookinCoordinatorEntity(LookinDeviceMixIn, LookinEntityMixIn, CoordinatorEntity):
-    coordinator: LookinDataUpdateCoordinator
+class LookinCoordinatorEntity(LookinDeviceMixIn, LookinEntityMixIn, CoordinatorEntity[LookinDataUpdateCoordinator]):
     _attr_should_poll: bool
     _attr_assumed_state: bool
     _attr_device_info: Any

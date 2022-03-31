@@ -13,7 +13,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class TradfriGroup(CoordinatorEntity, LightEntity):
+class TradfriGroup(CoordinatorEntity[TradfriGroupDataUpdateCoordinator], LightEntity):
     _attr_supported_features: Any
     _group: Any
     _api: Any

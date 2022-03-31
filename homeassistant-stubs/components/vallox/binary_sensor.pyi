@@ -7,9 +7,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-class ValloxBinarySensor(CoordinatorEntity, BinarySensorEntity):
+class ValloxBinarySensor(CoordinatorEntity[ValloxDataUpdateCoordinator], BinarySensorEntity):
     entity_description: ValloxBinarySensorEntityDescription
-    coordinator: ValloxDataUpdateCoordinator
     _attr_name: Any
     _attr_unique_id: Any
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxBinarySensorEntityDescription) -> None: ...

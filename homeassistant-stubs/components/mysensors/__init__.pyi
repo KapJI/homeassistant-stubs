@@ -1,6 +1,6 @@
 from .const import ATTR_DEVICES as ATTR_DEVICES, CONF_BAUD_RATE as CONF_BAUD_RATE, CONF_DEVICE as CONF_DEVICE, CONF_GATEWAYS as CONF_GATEWAYS, CONF_NODES as CONF_NODES, CONF_PERSISTENCE as CONF_PERSISTENCE, CONF_PERSISTENCE_FILE as CONF_PERSISTENCE_FILE, CONF_RETAIN as CONF_RETAIN, CONF_TCP_PORT as CONF_TCP_PORT, CONF_TOPIC_IN_PREFIX as CONF_TOPIC_IN_PREFIX, CONF_TOPIC_OUT_PREFIX as CONF_TOPIC_OUT_PREFIX, CONF_VERSION as CONF_VERSION, DOMAIN as DOMAIN, DevId as DevId, DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, MYSENSORS_GATEWAYS as MYSENSORS_GATEWAYS, MYSENSORS_ON_UNLOAD as MYSENSORS_ON_UNLOAD, PLATFORMS_WITH_ENTRY_SUPPORT as PLATFORMS_WITH_ENTRY_SUPPORT, SensorType as SensorType
 from .device import MySensorsDevice as MySensorsDevice, get_mysensors_devices as get_mysensors_devices
-from .gateway import finish_setup as finish_setup, get_mysensors_gateway as get_mysensors_gateway, gw_stop as gw_stop, setup_gateway as setup_gateway
+from .gateway import finish_setup as finish_setup, gw_stop as gw_stop, setup_gateway as setup_gateway
 from .helpers import on_unload as on_unload
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries

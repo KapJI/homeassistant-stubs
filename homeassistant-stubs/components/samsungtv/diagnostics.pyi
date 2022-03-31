@@ -1,5 +1,5 @@
-from .bridge import SamsungTVLegacyBridge as SamsungTVLegacyBridge, SamsungTVWSBridge as SamsungTVWSBridge
-from .const import DOMAIN as DOMAIN
+from .bridge import SamsungTVBridge as SamsungTVBridge
+from .const import CONF_SESSION_ID as CONF_SESSION_ID, DOMAIN as DOMAIN
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_TOKEN as CONF_TOKEN

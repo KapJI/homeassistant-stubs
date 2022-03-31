@@ -13,6 +13,7 @@ from typing import Any
 
 CONF_FIELDS: str
 NOTIFY_SERVICES: str
+NOTIFY_DISCOVERY_DISPATCHER: str
 
 async def async_setup_legacy(hass: HomeAssistant, config: ConfigType) -> None: ...
 def check_templates_warn(hass: HomeAssistant, tpl: template.Template) -> None: ...

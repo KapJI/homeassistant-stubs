@@ -20,7 +20,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 
-class SynologyDSMBaseEntity(CoordinatorEntity):
+class SynologyDSMBaseEntity(CoordinatorEntity[DataUpdateCoordinator[dict[str, dict[str, Any]]]]):
     entity_description: SynologyDSMEntityDescription
     unique_id: str
     _attr_attribution: Any

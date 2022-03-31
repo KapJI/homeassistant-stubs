@@ -1,7 +1,7 @@
-from .const import ATTRIBUTION as ATTRIBUTION, CONF_ACCOUNT as CONF_ACCOUNT, CONF_ALLOWED_REGIONS as CONF_ALLOWED_REGIONS, CONF_READ_ONLY as CONF_READ_ONLY, DATA_ENTRIES as DATA_ENTRIES, DATA_HASS_CONFIG as DATA_HASS_CONFIG
+from .const import ATTRIBUTION as ATTRIBUTION, CONF_ACCOUNT as CONF_ACCOUNT, CONF_READ_ONLY as CONF_READ_ONLY, DATA_ENTRIES as DATA_ENTRIES, DATA_HASS_CONFIG as DATA_HASS_CONFIG
 from bimmer_connected.vehicle import ConnectedDriveVehicle as ConnectedDriveVehicle
 from collections.abc import Callable as Callable
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_REGION as CONF_REGION, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
@@ -15,7 +15,6 @@ from typing import Any
 _LOGGER: Any
 DOMAIN: str
 ATTR_VIN: str
-ACCOUNT_SCHEMA: Any
 CONFIG_SCHEMA: Any
 SERVICE_SCHEMA: Any
 DEFAULT_OPTIONS: Any

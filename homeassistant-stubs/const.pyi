@@ -40,6 +40,7 @@ class Platform(StrEnum):
     SWITCH: str
     TTS: str
     VACUUM: str
+    UPDATE: str
     WATER_HEATER: str
     WEATHER: str
 
@@ -145,6 +146,7 @@ CONF_IP_ADDRESS: Final[str]
 CONF_LATITUDE: Final[str]
 CONF_LEGACY_TEMPLATES: Final[str]
 CONF_LIGHTS: Final[str]
+CONF_LOCATION: Final[str]
 CONF_LONGITUDE: Final[str]
 CONF_MAC: Final[str]
 CONF_MAXIMUM: Final[str]
@@ -152,6 +154,7 @@ CONF_MEDIA_DIRS: Final[str]
 CONF_METHOD: Final[str]
 CONF_MINIMUM: Final[str]
 CONF_MODE: Final[str]
+CONF_MODEL: Final[str]
 CONF_MONITORED_CONDITIONS: Final[str]
 CONF_MONITORED_VARIABLES: Final[str]
 CONF_NAME: Final[str]

@@ -1,0 +1,33 @@
+from .util import get_aid_storage_filename_for_entry_id as get_aid_storage_filename_for_entry_id
+from collections.abc import Generator
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.entity_registry import EntityRegistry as EntityRegistry, RegistryEntry as RegistryEntry
+from homeassistant.helpers.storage import Store as Store
+from typing import Any
+
+AID_MANAGER_STORAGE_VERSION: int
+AID_MANAGER_SAVE_DELAY: int
+ALLOCATIONS_KEY: str
+UNIQUE_IDS_KEY: str
+INVALID_AIDS: Any
+AID_MIN: int
+AID_MAX: int
+
+def get_system_unique_id(entity: RegistryEntry) -> str: ...
+def _generate_aids(unique_id: Union[str, None], entity_id: str) -> Generator[int, None, None]: ...
+
+class AccessoryAidStorage:
+    hass: Any
+    allocations: Any
+    allocated_aids: Any
+    _entry_id: Any
+    store: Any
+    _entity_registry: Any
+    def __init__(self, hass: HomeAssistant, entry_id: str) -> None: ...
+    async def async_initialize(self) -> None: ...
+    def get_or_allocate_aid_for_entity_id(self, entity_id: str) -> int: ...
+    def get_or_allocate_aid(self, unique_id: Union[str, None], entity_id: str) -> int: ...
+    def delete_aid(self, storage_key: str) -> None: ...
+    def async_schedule_save(self) -> None: ...
+    async def async_save(self) -> None: ...
+    def _data_to_save(self) -> dict: ...

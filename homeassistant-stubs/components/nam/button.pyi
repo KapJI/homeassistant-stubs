@@ -14,8 +14,7 @@ RESTART_BUTTON: ButtonEntityDescription
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NAMButton(CoordinatorEntity, ButtonEntity):
-    coordinator: NAMDataUpdateCoordinator
+class NAMButton(CoordinatorEntity[NAMDataUpdateCoordinator], ButtonEntity):
     _attr_device_info: Any
     _attr_unique_id: Any
     entity_description: Any

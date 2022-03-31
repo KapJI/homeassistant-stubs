@@ -11,8 +11,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class BraviaTVRemote(CoordinatorEntity, RemoteEntity):
-    coordinator: BraviaTVCoordinator
+class BraviaTVRemote(CoordinatorEntity[BraviaTVCoordinator], RemoteEntity):
     _attr_device_info: Any
     _attr_name: Any
     _attr_unique_id: Any

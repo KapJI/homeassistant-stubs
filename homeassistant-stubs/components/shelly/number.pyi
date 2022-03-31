@@ -1,4 +1,4 @@
-from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD
+from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, LOGGER as LOGGER
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities
 from .utils import get_device_entry_gen as get_device_entry_gen
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
@@ -9,8 +9,6 @@ from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any, Final
-
-_LOGGER: Final[Any]
 
 class BlockNumberDescription(BlockEntityDescription, NumberEntityDescription):
     mode: NumberMode

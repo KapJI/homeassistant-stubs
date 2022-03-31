@@ -3,8 +3,9 @@ from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TITLE a
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_TIMEOUT as CONF_TIMEOUT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from io import BufferedReader
 from notifications_android_tv import Notifications
-from typing import Any, BinaryIO
+from typing import Any
 
 _LOGGER: Any
 
@@ -15,4 +16,4 @@ class NFAndroidTVNotificationService(BaseNotificationService):
     is_allowed_path: Any
     def __init__(self, notify: Notifications, is_allowed_path: Any) -> None: ...
     def send_message(self, message: str, **kwargs: Any) -> None: ...
-    def load_file(self, url: Union[str, None] = ..., local_path: Union[str, None] = ..., username: Union[str, None] = ..., password: Union[str, None] = ..., auth: Union[str, None] = ...) -> Union[bytes, BinaryIO, None]: ...
+    def load_file(self, url: Union[str, None] = ..., local_path: Union[str, None] = ..., username: Union[str, None] = ..., password: Union[str, None] = ..., auth: Union[str, None] = ...) -> Union[BufferedReader, bytes, None]: ...

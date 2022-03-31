@@ -14,8 +14,7 @@ _LOGGER: Any
 
 def handle_error(func: Callable[[Union[Command, list[Command]]], Any]) -> Callable[[str], Any]: ...
 
-class TradfriBaseEntity(CoordinatorEntity, metaclass=abc.ABCMeta):
-    coordinator: TradfriDeviceDataUpdateCoordinator
+class TradfriBaseEntity(CoordinatorEntity[TradfriDeviceDataUpdateCoordinator], metaclass=abc.ABCMeta):
     _gateway_id: Any
     _device: Any
     _device_id: Any

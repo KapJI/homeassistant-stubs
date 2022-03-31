@@ -12,13 +12,12 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class OpenMeteoWeatherEntity(CoordinatorEntity, WeatherEntity):
+class OpenMeteoWeatherEntity(CoordinatorEntity[DataUpdateCoordinator[OpenMeteoForecast]], WeatherEntity):
     _attr_temperature_unit: Any
-    coordinator: DataUpdateCoordinator[OpenMeteoForecast]
     _attr_unique_id: Any
     _attr_name: Any
     _attr_device_info: Any
-    def __init__(self, *, entry: ConfigEntry, coordinator: DataUpdateCoordinator) -> None: ...
+    def __init__(self, *, entry: ConfigEntry, coordinator: DataUpdateCoordinator[OpenMeteoForecast]) -> None: ...
     @property
     def condition(self) -> Union[str, None]: ...
     @property

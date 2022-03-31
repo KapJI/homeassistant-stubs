@@ -15,7 +15,6 @@ _LOGGER: Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SmartPlugLedSwitch(CoordinatedTPLinkEntity, SwitchEntity):
-    coordinator: TPLinkDataUpdateCoordinator
     device: SmartPlug
     _attr_entity_category: Any
     _attr_name: Any
@@ -29,7 +28,6 @@ class SmartPlugLedSwitch(CoordinatedTPLinkEntity, SwitchEntity):
     def is_on(self) -> bool: ...
 
 class SmartPlugSwitch(CoordinatedTPLinkEntity, SwitchEntity):
-    coordinator: TPLinkDataUpdateCoordinator
     _attr_unique_id: Any
     def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

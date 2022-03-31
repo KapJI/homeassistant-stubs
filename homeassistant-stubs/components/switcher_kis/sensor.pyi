@@ -27,7 +27,7 @@ WATER_HEATER_SENSORS: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SwitcherSensorEntity(CoordinatorEntity, SensorEntity):
+class SwitcherSensorEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], SensorEntity):
     attribute: Any
     _attr_name: Any
     _attr_icon: Any

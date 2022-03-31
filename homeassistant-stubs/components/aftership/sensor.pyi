@@ -3,7 +3,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import Throttle as Throttle

@@ -21,7 +21,6 @@ def async_emeter_from_device(device: SmartDevice, description: TPLinkSensorEntit
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SmartPlugSensor(CoordinatedTPLinkEntity, SensorEntity):
-    coordinator: TPLinkDataUpdateCoordinator
     entity_description: TPLinkSensorEntityDescription
     _attr_unique_id: Any
     def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkSensorEntityDescription) -> None: ...

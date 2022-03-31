@@ -7,8 +7,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from pyoverkiz.models import Device as Device
 from typing import Any
 
-class OverkizEntity(CoordinatorEntity):
-    coordinator: OverkizDataUpdateCoordinator
+class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
     device_url: Any
     executor: Any
     _attr_assumed_state: Any

@@ -13,7 +13,6 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SurePetcareLock(SurePetcareEntity, LockEntity):
-    coordinator: SurePetcareDataCoordinator
     _lock_state: Any
     _available: bool
     _attr_name: Any

@@ -17,8 +17,7 @@ _LOGGER: Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class GiosSensor(CoordinatorEntity, SensorEntity):
-    coordinator: GiosDataUpdateCoordinator
+class GiosSensor(CoordinatorEntity[GiosDataUpdateCoordinator], SensorEntity):
     entity_description: GiosSensorEntityDescription
     _attr_device_info: Any
     _attr_name: Any

@@ -1,5 +1,5 @@
 from . import BlockDeviceWrapper as BlockDeviceWrapper, RpcDeviceWrapper as RpcDeviceWrapper, RpcPollingWrapper as RpcPollingWrapper, ShellyDeviceRestWrapper as ShellyDeviceRestWrapper
-from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, REST as REST, RPC as RPC, RPC_POLL as RPC_POLL
+from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, LOGGER as LOGGER, REST as REST, RPC as RPC, RPC_POLL as RPC_POLL
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_entity_name as get_block_entity_name, get_rpc_entity_name as get_rpc_entity_name, get_rpc_key_instances as get_rpc_key_instances
 from aioshelly.block_device import Block as Block
 from collections.abc import Callable as Callable, Mapping
@@ -10,9 +10,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescrip
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any, Final
-
-_LOGGER: Final[Any]
+from typing import Any
 
 async def async_setup_entry_attribute_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[tuple[str, str], BlockEntityDescription], sensor_class: Callable, description_class: Callable[[entity_registry.RegistryEntry], BlockEntityDescription]) -> None: ...
 async def async_setup_block_attribute_entities(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, wrapper: BlockDeviceWrapper, sensors: Mapping[tuple[str, str], BlockEntityDescription], sensor_class: Callable) -> None: ...
@@ -72,6 +70,8 @@ class ShellyRpcEntity(entity.Entity):
     def __init__(self, wrapper: Union[RpcDeviceWrapper, RpcPollingWrapper], key: str) -> None: ...
     @property
     def available(self) -> bool: ...
+    @property
+    def status(self) -> dict: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_update(self) -> None: ...
     def _update_callback(self) -> None: ...

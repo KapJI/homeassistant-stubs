@@ -1,4 +1,4 @@
-from .const import BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, CONF_COAP_PORT as CONF_COAP_PORT, DEFAULT_COAP_PORT as DEFAULT_COAP_PORT, DOMAIN as DOMAIN, MAX_RPC_KEY_INSTANCES as MAX_RPC_KEY_INSTANCES, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION
+from .const import BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, CONF_COAP_PORT as CONF_COAP_PORT, DEFAULT_COAP_PORT as DEFAULT_COAP_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER, MAX_RPC_KEY_INSTANCES as MAX_RPC_KEY_INSTANCES, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION
 from aioshelly.block_device import Block as Block, BlockDevice as BlockDevice, COAP
 from aioshelly.rpc_device import RpcDevice as RpcDevice
 from datetime import datetime
@@ -8,9 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers import device_registry as device_registry, singleton as singleton
 from homeassistant.helpers.typing import EventType as EventType
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any, Final
-
-_LOGGER: Final[Any]
+from typing import Any
 
 async def async_remove_shelly_entity(hass: HomeAssistant, domain: str, unique_id: str) -> None: ...
 def temperature_unit(block_info: dict[str, Any]) -> str: ...

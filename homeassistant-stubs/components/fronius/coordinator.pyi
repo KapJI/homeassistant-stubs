@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any, TypeVar
 
-FroniusEntityType = TypeVar('FroniusEntityType', bound=_FroniusSensorEntity)
+_FroniusEntityT = TypeVar('_FroniusEntityT', bound=_FroniusSensorEntity)
 
 class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[str, Any]]], metaclass=abc.ABCMeta):
     default_interval: timedelta
@@ -25,7 +25,7 @@ class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[st
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
     update_interval: Any
     async def _async_update_data(self) -> dict[SolarNetId, Any]: ...
-    def add_entities_for_seen_keys(self, async_add_entities: AddEntitiesCallback, entity_constructor: type[FroniusEntityType]) -> None: ...
+    def add_entities_for_seen_keys(self, async_add_entities: AddEntitiesCallback, entity_constructor: type[_FroniusEntityT]) -> None: ...
 
 class FroniusInverterUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Any

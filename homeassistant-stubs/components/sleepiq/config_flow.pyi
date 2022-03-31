@@ -1,14 +1,20 @@
 from .const import DOMAIN as DOMAIN
-from homeassistant import config_entries as config_entries
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-class SleepIQFlowHandler(config_entries.ConfigFlow):
+_LOGGER: Any
+
+class SleepIQFlowHandler(ConfigFlow):
     VERSION: int
+    _reauth_entry: Any
+    def __init__(self) -> None: ...
     async def async_step_import(self, import_config: dict[str, Any]) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_reauth(self, user_input: dict[str, Any]) -> FlowResult: ...
+    async def async_step_reauth_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
-async def try_connection(hass: HomeAssistant, user_input: dict[str, Any]) -> None: ...
+async def try_connection(hass: HomeAssistant, user_input: dict[str, Any]) -> Union[str, None]: ...

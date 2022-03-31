@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, ICON_EMPTY as ICON_EMPTY, ICON_OCCUPIED as ICON_OCCUPIED, IS_IN_BED as IS_IN_BED
 from .coordinator import SleepIQData as SleepIQData
-from .entity import SleepIQSensor as SleepIQSensor
+from .entity import SleepIQSleeperEntity as SleepIQSleeperEntity
 from asyncsleepiq import SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSleeper
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class IsInBedBinarySensor(SleepIQSensor, BinarySensorEntity):
+class IsInBedBinarySensor(SleepIQSleeperEntity, BinarySensorEntity):
     _attr_device_class: Any
     def __init__(self, coordinator: DataUpdateCoordinator, bed: SleepIQBed, sleeper: SleepIQSleeper) -> None: ...
     _attr_is_on: Any

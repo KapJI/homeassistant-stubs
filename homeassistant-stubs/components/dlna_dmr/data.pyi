@@ -1,7 +1,9 @@
 import asyncio
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
-from async_upnp_client import UpnpEventHandler as UpnpEventHandler, UpnpFactory, UpnpRequester as UpnpRequester
 from async_upnp_client.aiohttp import AiohttpNotifyServer
+from async_upnp_client.client import UpnpRequester as UpnpRequester
+from async_upnp_client.client_factory import UpnpFactory
+from async_upnp_client.event_handler import UpnpEventHandler as UpnpEventHandler
 from collections import defaultdict
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant

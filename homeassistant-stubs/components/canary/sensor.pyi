@@ -22,8 +22,7 @@ STATE_AIR_QUALITY_VERY_ABNORMAL: Final[str]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class CanarySensor(CoordinatorEntity, SensorEntity):
-    coordinator: CanaryDataUpdateCoordinator
+class CanarySensor(CoordinatorEntity[CanaryDataUpdateCoordinator], SensorEntity):
     _sensor_type: Any
     _device_id: Any
     _attr_name: Any

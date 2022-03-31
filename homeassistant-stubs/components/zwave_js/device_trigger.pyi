@@ -1,5 +1,6 @@
 import voluptuous as vol
 from . import trigger as trigger
+from .config_validation import VALUE_SCHEMA as VALUE_SCHEMA
 from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_DATA_TYPE as ATTR_DATA_TYPE, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_EVENT as ATTR_EVENT, ATTR_EVENT_LABEL as ATTR_EVENT_LABEL, ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_LABEL as ATTR_LABEL, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, ATTR_TYPE as ATTR_TYPE, ATTR_VALUE as ATTR_VALUE, ATTR_VALUE_RAW as ATTR_VALUE_RAW, DOMAIN as DOMAIN, ZWAVE_JS_NOTIFICATION_EVENT as ZWAVE_JS_NOTIFICATION_EVENT, ZWAVE_JS_VALUE_NOTIFICATION_EVENT as ZWAVE_JS_VALUE_NOTIFICATION_EVENT
 from .device_automation_helpers import CONF_SUBTYPE as CONF_SUBTYPE, NODE_STATUSES as NODE_STATUSES, generate_config_parameter_subtype as generate_config_parameter_subtype
 from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, async_get_node_status_sensor_entity_id as async_get_node_status_sensor_entity_id, async_is_device_config_entry_not_loaded as async_is_device_config_entry_not_loaded, check_type_schema_map as check_type_schema_map, copy_available_params as copy_available_params, get_value_state_schema as get_value_state_schema, get_zwave_value_from_config as get_zwave_value_from_config, remove_keys_with_empty_values as remove_keys_with_empty_values
@@ -23,7 +24,6 @@ SCENE_ACTIVATION_VALUE_NOTIFICATION: str
 CONFIG_PARAMETER_VALUE_UPDATED: Any
 VALUE_VALUE_UPDATED: Any
 NODE_STATUS: str
-VALUE_SCHEMA: Any
 NOTIFICATION_EVENT_CC_MAPPINGS: Any
 BASE_EVENT_SCHEMA: Any
 NOTIFICATION_NOTIFICATION_SCHEMA: Any

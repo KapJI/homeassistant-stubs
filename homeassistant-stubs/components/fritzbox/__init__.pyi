@@ -13,8 +13,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class FritzBoxEntity(CoordinatorEntity):
-    coordinator: FritzboxDataUpdateCoordinator
+class FritzBoxEntity(CoordinatorEntity[FritzboxDataUpdateCoordinator]):
     ain: Any
     entity_description: Any
     _attr_name: Any

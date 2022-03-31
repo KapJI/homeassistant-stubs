@@ -1,11 +1,9 @@
-from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
 from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
-
-_LOGGER: Any
 
 class EfergyFlowHandler(config_entries.ConfigFlow):
     VERSION: int

@@ -16,8 +16,7 @@ _LOGGER: Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NAMSensor(CoordinatorEntity, SensorEntity):
-    coordinator: NAMDataUpdateCoordinator
+class NAMSensor(CoordinatorEntity[NAMDataUpdateCoordinator], SensorEntity):
     _attr_device_info: Any
     _attr_unique_id: Any
     entity_description: Any

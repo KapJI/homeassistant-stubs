@@ -12,7 +12,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Any, Final
 
 _LOGGER: Final[Any]
-ELECTRIC_CHARGE_AMPERE_HOURS: Final[str]
 ENERGY_VOLT_AMPERE_REACTIVE_HOUR: Final[str]
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
@@ -25,8 +24,7 @@ OHMPILOT_ENTITY_DESCRIPTIONS: list[SensorEntityDescription]
 POWER_FLOW_ENTITY_DESCRIPTIONS: list[SensorEntityDescription]
 STORAGE_ENTITY_DESCRIPTIONS: list[SensorEntityDescription]
 
-class _FroniusSensorEntity(CoordinatorEntity, SensorEntity):
-    coordinator: FroniusCoordinatorBase
+class _FroniusSensorEntity(CoordinatorEntity['FroniusCoordinatorBase'], SensorEntity):
     entity_descriptions: list[SensorEntityDescription]
     _entity_id_prefix: str
     entity_description: Any

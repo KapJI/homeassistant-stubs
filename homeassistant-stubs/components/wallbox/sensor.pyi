@@ -22,7 +22,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WallboxSensor(WallboxEntity, SensorEntity):
     entity_description: WallboxSensorEntityDescription
-    coordinator: WallboxCoordinator
     _attr_name: Any
     _attr_unique_id: Any
     def __init__(self, coordinator: WallboxCoordinator, entry: ConfigEntry, description: WallboxSensorEntityDescription) -> None: ...

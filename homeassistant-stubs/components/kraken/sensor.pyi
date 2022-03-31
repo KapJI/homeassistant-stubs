@@ -7,14 +7,14 @@ from homeassistant.helpers import device_registry as device_registry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any, Optional
 
 _LOGGER: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class KrakenSensor(CoordinatorEntity[Optional[KrakenResponse]], SensorEntity):
+class KrakenSensor(CoordinatorEntity[DataUpdateCoordinator[Optional[KrakenResponse]]], SensorEntity):
     entity_description: KrakenSensorEntityDescription
     tracked_asset_pair_wsname: Any
     _target_asset: Any

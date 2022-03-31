@@ -5,8 +5,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-class AsekoEntity(CoordinatorEntity):
-    coordinator: AsekoDataUpdateCoordinator
+class AsekoEntity(CoordinatorEntity[AsekoDataUpdateCoordinator]):
     _unit: Any
     _device_model: Any
     _device_name: Any

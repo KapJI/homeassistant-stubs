@@ -22,8 +22,7 @@ SENSOR_TYPES: tuple[AirlySensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class AirlySensor(CoordinatorEntity, SensorEntity):
-    coordinator: AirlyDataUpdateCoordinator
+class AirlySensor(CoordinatorEntity[AirlyDataUpdateCoordinator], SensorEntity):
     entity_description: AirlySensorEntityDescription
     _attr_device_info: Any
     _attr_name: Any

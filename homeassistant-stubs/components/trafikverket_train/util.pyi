@@ -1,0 +1,3 @@
+from datetime import time
+
+def create_unique_id(from_station: str, to_station: str, depart_time: Union[time, str, None], weekdays: list) -> str: ...

@@ -6,7 +6,6 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE
 from typing import Any
 
 DOMAIN: str
-CONF_LOCATION: str
 CONF_STATISTICS_ONLY: str
 DEFAULT_LOCATION: str
 DEFAULT_METHOD: str

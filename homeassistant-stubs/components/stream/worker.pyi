@@ -2,6 +2,7 @@ import av
 from . import redact_credentials as redact_credentials
 from .const import ATTR_SETTINGS as ATTR_SETTINGS, AUDIO_CODECS as AUDIO_CODECS, DOMAIN as DOMAIN, HLS_PROVIDER as HLS_PROVIDER, MAX_MISSING_DTS as MAX_MISSING_DTS, MAX_TIMESTAMP_GAP as MAX_TIMESTAMP_GAP, PACKETS_TO_WAIT_FOR_AUDIO as PACKETS_TO_WAIT_FOR_AUDIO, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT, SOURCE_TIMEOUT as SOURCE_TIMEOUT
 from .core import KeyFrameConverter as KeyFrameConverter, Part as Part, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
+from .diagnostics import Diagnostics as Diagnostics
 from .hls import HlsStreamOutput as HlsStreamOutput
 from collections.abc import Callable as Callable, Generator, Iterator, Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -19,7 +20,8 @@ class StreamState:
     hass: Any
     _outputs_callback: Any
     _sequence: int
-    def __init__(self, hass: HomeAssistant, outputs_callback: Callable[[], Mapping[str, StreamOutput]]) -> None: ...
+    _diagnostics: Any
+    def __init__(self, hass: HomeAssistant, outputs_callback: Callable[[], Mapping[str, StreamOutput]], diagnostics: Diagnostics) -> None: ...
     @property
     def sequence(self) -> int: ...
     def next_sequence(self) -> int: ...
@@ -28,6 +30,8 @@ class StreamState:
     def discontinuity(self) -> None: ...
     @property
     def outputs(self) -> list[StreamOutput]: ...
+    @property
+    def diagnostics(self) -> Diagnostics: ...
 
 class StreamMuxer:
     _hass: Any

@@ -1,5 +1,6 @@
 import voluptuous as vol
-from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, VALUE_SCHEMA as VALUE_SCHEMA
+from .config_validation import VALUE_SCHEMA as VALUE_SCHEMA
+from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN
 from .device_automation_helpers import CONF_SUBTYPE as CONF_SUBTYPE, CONF_VALUE_ID as CONF_VALUE_ID, NODE_STATUSES as NODE_STATUSES, generate_config_parameter_subtype as generate_config_parameter_subtype, get_config_parameter_value_schema as get_config_parameter_value_schema
 from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, async_is_device_config_entry_not_loaded as async_is_device_config_entry_not_loaded, check_type_schema_map as check_type_schema_map, get_zwave_value_from_config as get_zwave_value_from_config, remove_keys_with_empty_values as remove_keys_with_empty_values
 from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig

@@ -2,22 +2,38 @@ from . import legacy_device_id as legacy_device_id
 from .const import DOMAIN as DOMAIN
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, async_refresh_after as async_refresh_after
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_HS as COLOR_MODE_HS, COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, LightEntity as LightEntity, SUPPORT_TRANSITION as SUPPORT_TRANSITION
+from collections.abc import Sequence
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_HS as COLOR_MODE_HS, COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, LightEntity as LightEntity, SUPPORT_EFFECT as SUPPORT_EFFECT, SUPPORT_TRANSITION as SUPPORT_TRANSITION
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from kasa import SmartBulb
-from typing import Any
+from kasa import SmartBulb, SmartLightStrip
+from typing import Any, Final
 
 _LOGGER: Any
+SERVICE_RANDOM_EFFECT: str
+SERVICE_SEQUENCE_EFFECT: str
+HUE: Any
+SAT: Any
+VAL: Any
+TRANSITION: Any
+HSV_SEQUENCE: Any
+BASE_EFFECT_DICT: Final[Any]
+SEQUENCE_EFFECT_DICT: Final[Any]
+RANDOM_EFFECT_DICT: Final[Any]
 
+def _async_build_base_effect(brightness: int, duration: int, transition: int, segments: list[int]) -> dict[str, Any]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
-    coordinator: TPLinkDataUpdateCoordinator
     device: SmartBulb
     _attr_unique_id: Any
     def __init__(self, device: SmartBulb, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
+    def _async_extract_brightness_transition(self, **kwargs: Any) -> tuple[Union[int, None], Union[int, None]]: ...
+    async def _async_set_color_temp(self, color_temp_mireds: int, brightness: Union[int, None], transition: Union[int, None]) -> None: ...
+    async def _async_set_hsv(self, hs_color: tuple[int, int], brightness: Union[int, None], transition: Union[int, None]) -> None: ...
+    async def _async_turn_on_with_brightness(self, brightness: Union[int, None], transition: Union[int, None]) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
@@ -36,3 +52,17 @@ class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
     def supported_color_modes(self) -> Union[set[str], None]: ...
     @property
     def color_mode(self) -> Union[str, None]: ...
+
+class TPLinkSmartLightStrip(TPLinkSmartBulb):
+    device: SmartLightStrip
+    _last_custom_effect: Any
+    def __init__(self, device: SmartLightStrip, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
+    @property
+    def supported_features(self) -> int: ...
+    @property
+    def effect_list(self) -> Union[list[str], None]: ...
+    @property
+    def effect(self) -> Union[str, None]: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_set_random_effect(self, brightness: int, duration: int, transition: int, segments: list[int], fadeoff: int, init_states: tuple[int, int, int], random_seed: int, backgrounds: Sequence[tuple[int, int, int]], hue_range: Union[tuple[int, int], None] = ..., saturation_range: Union[tuple[int, int], None] = ..., brightness_range: Union[tuple[int, int], None] = ..., transition_range: Union[tuple[int, int], None] = ...) -> None: ...
+    async def async_set_sequence_effect(self, brightness: int, duration: int, transition: int, segments: list[int], sequence: Sequence[tuple[int, int, int]], spread: int, direction: int) -> None: ...

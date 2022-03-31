@@ -1,8 +1,8 @@
-from .const import CONF_MODEL as CONF_MODEL, DISCOVERY as DISCOVERY, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN
+from .const import DISCOVERY as DISCOVERY, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN
 from discovery30303 import Device30303 as Device30303
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
-from homeassistant.const import CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any

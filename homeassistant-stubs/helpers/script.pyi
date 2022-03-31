@@ -9,6 +9,7 @@ from .trace import TraceElement as TraceElement, async_trace_path as async_trace
 from .trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from .typing import ConfigType as ConfigType
 from collections.abc import Callable as Callable, Generator, Sequence
+from contextvars import ContextVar
 from homeassistant import exceptions as exceptions
 from homeassistant.components import scene as scene
 from homeassistant.components.logger import LOGSEVERITY as LOGSEVERITY
@@ -34,6 +35,7 @@ ATTR_CUR: str
 ATTR_MAX: str
 DATA_SCRIPTS: str
 DATA_SCRIPT_BREAKPOINTS: str
+DATA_NEW_SCRIPT_RUNS_NOT_ALLOWED: str
 RUN_ID_ANY: str
 NODE_ANY: str
 _LOGGER: Any
@@ -44,6 +46,7 @@ ACTION_TRACE_NODE_MAX_LEN: int
 SCRIPT_BREAKPOINT_HIT: str
 SCRIPT_DEBUG_CONTINUE_STOP: str
 SCRIPT_DEBUG_CONTINUE_ALL: str
+script_stack_cv: ContextVar[Union[list[int], None]]
 
 def action_trace_append(variables, path): ...
 async def trace_action(hass, script_run, stop, variables) -> Generator[Any, None, None]: ...

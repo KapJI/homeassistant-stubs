@@ -1,9 +1,9 @@
 import asyncio
 from .const import CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DOMAIN as DOMAIN, MEDIA_METADATA_DIDL as MEDIA_METADATA_DIDL, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP, MEDIA_UPNP_CLASS_MAP as MEDIA_UPNP_CLASS_MAP, REPEAT_PLAY_MODES as REPEAT_PLAY_MODES, SHUFFLE_PLAY_MODES as SHUFFLE_PLAY_MODES, STREAMABLE_PROTOCOLS as STREAMABLE_PROTOCOLS
 from .data import EventListenAddr as EventListenAddr, get_domain_data as get_domain_data
-from async_upnp_client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
+from async_upnp_client.client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from async_upnp_client.profiles.dlna import DmrDevice
-from collections.abc import Awaitable as Awaitable, Callable, Coroutine, Sequence
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine, Sequence
 from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.components import media_source as media_source, ssdp as ssdp
@@ -20,7 +20,6 @@ PARALLEL_UPDATES: int
 _T = TypeVar('_T', bound='DlnaDmrEntity')
 _R = TypeVar('_R')
 _P: Any
-Func = TypeVar('Func', bound=Callable[..., Any])
 
 def catch_request_errors(func: Callable[Concatenate[_T, _P], Awaitable[_R]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Union[_R, None]]]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

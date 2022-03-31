@@ -1,0 +1,1 @@
+CONF_HIDE_MEMBERS: str

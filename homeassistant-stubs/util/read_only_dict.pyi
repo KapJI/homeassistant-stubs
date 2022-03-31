@@ -1,10 +1,10 @@
 from typing import Any, TypeVar
 
 def _readonly(*args: Any, **kwargs: Any) -> Any: ...
-Key = TypeVar('Key')
-Value = TypeVar('Value')
+_KT = TypeVar('_KT')
+_VT = TypeVar('_VT')
 
-class ReadOnlyDict(dict[Key, Value]):
+class ReadOnlyDict(dict[_KT, _VT]):
     __setitem__: Any
     __delitem__: Any
     pop: Any

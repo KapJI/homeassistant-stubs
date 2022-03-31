@@ -20,8 +20,7 @@ PLATFORM_SCHEMA: Final[Any]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class CanaryCamera(CoordinatorEntity, Camera):
-    coordinator: CanaryDataUpdateCoordinator
+class CanaryCamera(CoordinatorEntity[CanaryDataUpdateCoordinator], Camera):
     _ffmpeg: Any
     _ffmpeg_arguments: Any
     _location_id: Any

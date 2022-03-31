@@ -6,8 +6,7 @@ from typing import Any
 
 _LOGGER: Any
 
-class WemoEntity(CoordinatorEntity):
-    coordinator: DeviceCoordinator
+class WemoEntity(CoordinatorEntity[DeviceCoordinator]):
     _name_suffix: Union[str, None]
     _unique_id_suffix: Union[str, None]
     wemo: Any

@@ -12,8 +12,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class CanaryAlarm(CoordinatorEntity, AlarmControlPanelEntity):
-    coordinator: CanaryDataUpdateCoordinator
+class CanaryAlarm(CoordinatorEntity[CanaryDataUpdateCoordinator], AlarmControlPanelEntity):
     _attr_supported_features: Any
     _location_id: Any
     _attr_name: Any

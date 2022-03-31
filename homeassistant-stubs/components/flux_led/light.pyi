@@ -29,7 +29,7 @@ SET_ZONES_DICT: Final[Any]
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FluxLight(FluxOnOffEntity, CoordinatorEntity, LightEntity):
+class FluxLight(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], LightEntity):
     _attr_supported_features: Any
     _attr_min_mireds: Any
     _attr_max_mireds: Any

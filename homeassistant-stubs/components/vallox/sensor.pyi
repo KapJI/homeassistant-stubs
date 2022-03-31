@@ -11,9 +11,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util import dt as dt
 from typing import Any
 
-class ValloxSensor(CoordinatorEntity, SensorEntity):
+class ValloxSensor(CoordinatorEntity[ValloxDataUpdateCoordinator], SensorEntity):
     entity_description: ValloxSensorEntityDescription
-    coordinator: ValloxDataUpdateCoordinator
     _attr_name: Any
     _attr_unique_id: Any
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxSensorEntityDescription) -> None: ...

@@ -10,8 +10,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class HWEnergySwitchEntity(CoordinatorEntity, SwitchEntity):
-    coordinator: HWEnergyDeviceUpdateCoordinator
+class HWEnergySwitchEntity(CoordinatorEntity[HWEnergyDeviceUpdateCoordinator], SwitchEntity):
     _attr_unique_id: Any
     _attr_device_info: Any
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator, entry: ConfigEntry, key: str) -> None: ...

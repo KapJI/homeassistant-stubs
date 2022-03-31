@@ -1,9 +1,9 @@
-from .const import CONF_MODEL as CONF_MODEL, CONNECTION_EXCEPTIONS as CONNECTION_EXCEPTIONS, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN
+from .const import CONNECTION_EXCEPTIONS as CONNECTION_EXCEPTIONS, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_is_steamist_device as async_is_steamist_device, async_update_entry_from_discovery as async_update_entry_from_discovery
 from discovery30303 import Device30303
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp
-from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

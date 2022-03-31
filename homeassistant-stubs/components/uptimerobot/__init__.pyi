@@ -14,6 +14,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class UptimeRobotDataUpdateCoordinator(DataUpdateCoordinator):
     data: list[UptimeRobotMonitor]
+    config_entry: ConfigEntry
     _config_entry_id: Any
     _device_registry: Any
     api: Any

@@ -15,7 +15,7 @@ SENSORS: Final[tuple[SensorEntityDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class HWEnergySensor(CoordinatorEntity[DeviceResponseEntry], SensorEntity):
+class HWEnergySensor(CoordinatorEntity[HWEnergyDeviceUpdateCoordinator], SensorEntity):
     entity_description: Any
     entry: Any
     _attr_name: Any

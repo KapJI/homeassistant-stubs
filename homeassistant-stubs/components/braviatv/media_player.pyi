@@ -14,8 +14,7 @@ SUPPORT_BRAVIA: Final[Any]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class BraviaTVMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
-    coordinator: BraviaTVCoordinator
+class BraviaTVMediaPlayer(CoordinatorEntity[BraviaTVCoordinator], MediaPlayerEntity):
     _attr_device_class: Any
     _attr_supported_features: Any
     _attr_device_info: Any

@@ -17,8 +17,7 @@ DEFAULT_VERIFY_SSL: bool
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
-class TautulliSensor(CoordinatorEntity, SensorEntity):
-    coordinator: TautulliDataUpdateCoordinator
+class TautulliSensor(CoordinatorEntity[TautulliDataUpdateCoordinator], SensorEntity):
     monitored_conditions: Any
     usernames: Any
     _name: Any

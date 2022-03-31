@@ -1,4 +1,5 @@
-from .const import BITMASK_SCHEMA as BITMASK_SCHEMA, CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, LOGGER as LOGGER
+from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
+from .const import CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, LOGGER as LOGGER
 from .helpers import async_enable_statistics as async_enable_statistics, update_data_collection_preference as update_data_collection_preference
 from .migrate import ZWaveMigrationData as ZWaveMigrationData, async_get_migration_data as async_get_migration_data, async_map_legacy_zwave_values as async_map_legacy_zwave_values, async_migrate_legacy_zwave as async_migrate_legacy_zwave
 from aiohttp import web as web

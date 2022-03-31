@@ -1,4 +1,3 @@
-from .common import AvmWrapper as AvmWrapper
 from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, ERROR_AUTH_INVALID as ERROR_AUTH_INVALID, ERROR_CANNOT_CONNECT as ERROR_CANNOT_CONNECT, ERROR_UNKNOWN as ERROR_UNKNOWN, ERROR_UPNP_NOT_CONFIGURED as ERROR_UPNP_NOT_CONFIGURED
 from homeassistant.components import ssdp as ssdp
 from homeassistant.components.device_tracker.const import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
@@ -17,13 +16,13 @@ class FritzBoxToolsFlowHandler(ConfigFlow):
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
     _host: Any
     _entry: Any
-    _name: Any
-    _password: Any
+    _name: str
+    _password: str
     _port: Any
-    _username: Any
-    avm_wrapper: Any
+    _username: str
+    _model: str
     def __init__(self) -> None: ...
-    async def fritz_tools_init(self) -> Union[str, None]: ...
+    def fritz_tools_init(self) -> Union[str, None]: ...
     async def async_check_configured_entry(self) -> Union[ConfigEntry, None]: ...
     def _async_create_entry(self) -> FlowResult: ...
     async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> FlowResult: ...

@@ -1,10 +1,10 @@
 import abc
-from .const import CONF_MINOR_VERSION as CONF_MINOR_VERSION, CONF_MODEL as CONF_MODEL, DOMAIN as DOMAIN, SIGNAL_STATE_UPDATED as SIGNAL_STATE_UPDATED
+from .const import CONF_MINOR_VERSION as CONF_MINOR_VERSION, DOMAIN as DOMAIN, SIGNAL_STATE_UPDATED as SIGNAL_STATE_UPDATED
 from .coordinator import FluxLedUpdateCoordinator as FluxLedUpdateCoordinator
 from abc import abstractmethod
 from flux_led.aiodevice import AIOWifiLedBulb as AIOWifiLedBulb
 from homeassistant import config_entries as config_entries
-from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_NAME as CONF_NAME
+from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
@@ -20,8 +20,7 @@ class FluxBaseEntity(Entity):
     _attr_device_info: Any
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
 
-class FluxEntity(CoordinatorEntity):
-    coordinator: FluxLedUpdateCoordinator
+class FluxEntity(CoordinatorEntity[FluxLedUpdateCoordinator]):
     _device: Any
     _responding: bool
     _attr_name: Any

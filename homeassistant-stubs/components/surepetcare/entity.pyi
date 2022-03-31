@@ -8,7 +8,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from surepy.entities import SurepyEntity as SurepyEntity
 from typing import Any
 
-class SurePetcareEntity(CoordinatorEntity, metaclass=abc.ABCMeta):
+class SurePetcareEntity(CoordinatorEntity[SurePetcareDataCoordinator], metaclass=abc.ABCMeta):
     _id: Any
     _device_name: Any
     _device_id: Any

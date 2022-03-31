@@ -9,8 +9,7 @@ MANUFACTURER: str
 MODEL: str
 MODEL2: str
 
-class DiffuserEntity(CoordinatorEntity):
-    coordinator: RitualsDataUpdateCoordinator
+class DiffuserEntity(CoordinatorEntity[RitualsDataUpdateCoordinator]):
     _diffuser: Any
     _attr_name: Any
     _attr_unique_id: Any

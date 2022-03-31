@@ -18,7 +18,7 @@ SERVICE_TURN_ON_WITH_TIMER_SCHEMA: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SwitcherBaseSwitchEntity(CoordinatorEntity, SwitchEntity):
+class SwitcherBaseSwitchEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], SwitchEntity):
     control_result: Any
     _attr_name: Any
     _attr_unique_id: Any

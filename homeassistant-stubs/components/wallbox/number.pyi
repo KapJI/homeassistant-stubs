@@ -15,7 +15,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WallboxNumber(WallboxEntity, NumberEntity):
     entity_description: WallboxNumberEntityDescription
-    coordinator: WallboxCoordinator
     _coordinator: Any
     _attr_name: Any
     _attr_unique_id: Any

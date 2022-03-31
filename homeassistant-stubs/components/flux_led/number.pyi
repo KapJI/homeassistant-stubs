@@ -21,7 +21,7 @@ DEBOUNCE_TIME: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FluxSpeedNumber(FluxEntity, CoordinatorEntity, NumberEntity):
+class FluxSpeedNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], NumberEntity):
     _attr_min_value: int
     _attr_max_value: int
     _attr_step: int
@@ -31,7 +31,7 @@ class FluxSpeedNumber(FluxEntity, CoordinatorEntity, NumberEntity):
     def value(self) -> float: ...
     async def async_set_value(self, value: float) -> None: ...
 
-class FluxConfigNumber(FluxEntity, CoordinatorEntity, NumberEntity, metaclass=abc.ABCMeta):
+class FluxConfigNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], NumberEntity, metaclass=abc.ABCMeta):
     _attr_entity_category: Any
     _attr_min_value: int
     _attr_step: int

@@ -10,6 +10,7 @@ from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
+from homeassistant.util.network import normalize_url as normalize_url
 from homeassistant.util.yaml import load_yaml as load_yaml
 from typing import Any, Optional
 
@@ -39,6 +40,7 @@ _RE_VOICE_FILE: Any
 KEY_PATTERN: str
 
 def _deprecated_platform(value): ...
+def valid_base_url(value: str) -> str: ...
 
 PLATFORM_SCHEMA: Any
 PLATFORM_SCHEMA_BASE: Any

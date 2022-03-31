@@ -1,13 +1,14 @@
 import voluptuous as vol
 from collections.abc import Callable as Callable, Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
-from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, T as T, callback as callback
+from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any
+from typing import Any, TypeVar
 
 _LOGGER: Any
 _SlotsType = dict[str, Any]
+_T = TypeVar('_T')
 INTENT_TURN_OFF: str
 INTENT_TURN_ON: str
 INTENT_TOGGLE: str
@@ -38,7 +39,7 @@ class IntentHandler:
     async def async_handle(self, intent_obj: Intent) -> IntentResponse: ...
     def __repr__(self) -> str: ...
 
-def _fuzzymatch(name: str, items: Iterable[T], key: Callable[[T], str]) -> Union[T, None]: ...
+def _fuzzymatch(name: str, items: Iterable[_T], key: Callable[[_T], str]) -> Union[_T, None]: ...
 
 class ServiceIntentHandler(IntentHandler):
     slot_schema: Any

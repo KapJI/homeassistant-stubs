@@ -1,8 +1,9 @@
 from .const import ATTR_PASSIVE as ATTR_PASSIVE, ATTR_RADIUS as ATTR_RADIUS, CONF_PASSIVE as CONF_PASSIVE, DOMAIN as DOMAIN, HOME_ZONE as HOME_ZONE
+from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
-from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME, CONF_RADIUS as CONF_RADIUS, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, SERVICE_RELOAD as SERVICE_RELOAD, STATE_UNAVAILABLE as STATE_UNAVAILABLE
+from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME, CONF_RADIUS as CONF_RADIUS, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, SERVICE_RELOAD as SERVICE_RELOAD, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
-from homeassistant.helpers import collection as collection, entity as entity, entity_component as entity_component, service as service, storage as storage
+from homeassistant.helpers import collection as collection, entity as entity, entity_component as entity_component, event as event, service as service, storage as storage
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.location import distance as distance
@@ -43,11 +44,14 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: config_entries.C
 class Zone(entity.Entity):
     _config: Any
     editable: bool
+    _attrs: Any
+    _remove_listener: Any
+    _persons_in_zone: Any
     def __init__(self, config: dict) -> None: ...
     @classmethod
     def from_yaml(cls, config: dict) -> Zone: ...
     @property
-    def state(self) -> str: ...
+    def state(self) -> int: ...
     @property
     def name(self) -> str: ...
     @property
@@ -57,5 +61,8 @@ class Zone(entity.Entity):
     @property
     def should_poll(self) -> bool: ...
     async def async_update_config(self, config: dict) -> None: ...
+    def _person_state_change_listener(self, evt: Event) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
     _attr_extra_state_attributes: Any
     def _generate_attrs(self) -> None: ...
+    def _state_is_in_zone(self, state: Union[State, None]) -> bool: ...

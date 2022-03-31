@@ -1,8 +1,7 @@
-from typing import Any
+from typing import Any, Final
 
-ATTRIBUTION: str
 CONF_CURRENT_VALUES: str
-DATA_KEY_API: str
 DEFAULT_NAME: str
-DOMAIN: str
+DOMAIN: Final[str]
+LOGGER: Any
 MIN_TIME_BETWEEN_UPDATES: Any

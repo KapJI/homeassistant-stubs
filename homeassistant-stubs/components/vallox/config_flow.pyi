@@ -4,7 +4,6 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any
 

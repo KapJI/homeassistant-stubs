@@ -5,7 +5,7 @@ from datetime import datetime
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, async_process_play_media_url as async_process_play_media_url
 from homeassistant.components.media_player.const import MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_CLEAR_PLAYLIST as SUPPORT_CLEAR_PLAYLIST, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.const import CONF_NAME as CONF_NAME, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -18,7 +18,6 @@ from typing_extensions import Concatenate as Concatenate
 MAX_VOLUME: int
 SUPPORT_VLC: Any
 _T = TypeVar('_T', bound='VlcDevice')
-_R = TypeVar('_R')
 _P: Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -40,6 +39,7 @@ class VlcDevice(MediaPlayerEntity):
     _media_title: Any
     _attr_unique_id: Any
     _attr_device_info: Any
+    _using_addon: Any
     def __init__(self, config_entry: ConfigEntry, vlc: Client, name: str, available: bool) -> None: ...
     async def async_update(self) -> None: ...
     @property

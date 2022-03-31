@@ -11,6 +11,7 @@ REQUEST_REFRESH_DELAY: Final[float]
 
 class FluxLedUpdateCoordinator(DataUpdateCoordinator):
     device: Any
+    title: Any
     entry: Any
     def __init__(self, hass: HomeAssistant, device: AIOWifiLedBulb, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> None: ...

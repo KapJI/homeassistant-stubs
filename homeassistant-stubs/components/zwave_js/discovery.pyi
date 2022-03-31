@@ -1,5 +1,6 @@
 from .const import LOGGER as LOGGER
-from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, ConfigurableFanSpeedDataTemplate as ConfigurableFanSpeedDataTemplate, CoverTiltDataTemplate as CoverTiltDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, FixedFanSpeedDataTemplate as FixedFanSpeedDataTemplate, NumericSensorDataTemplate as NumericSensorDataTemplate, ZwaveValueID as ZwaveValueID
+from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, ConfigurableFanValueMappingDataTemplate as ConfigurableFanValueMappingDataTemplate, CoverTiltDataTemplate as CoverTiltDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, FanValueMapping as FanValueMapping, FixedFanValueMappingDataTemplate as FixedFanValueMappingDataTemplate, NumericSensorDataTemplate as NumericSensorDataTemplate
+from .helpers import ZwaveValueID as ZwaveValueID
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
 from homeassistant.core import callback as callback
@@ -64,6 +65,7 @@ class ZWaveDiscoverySchema:
 
 def get_config_parameter_discovery_schema(property_: Union[set[Union[str, int]], None] = ..., property_name: Union[set[str], None] = ..., property_key: Union[set[Union[str, int, None]], None] = ..., property_key_name: Union[set[Union[str, None]], None] = ..., **kwargs: Any) -> ZWaveDiscoverySchema: ...
 
+DOOR_LOCK_CURRENT_MODE_SCHEMA: Any
 SWITCH_MULTILEVEL_CURRENT_VALUE_SCHEMA: Any
 SWITCH_BINARY_CURRENT_VALUE_SCHEMA: Any
 SIREN_TONE_SCHEMA: Any

@@ -3,7 +3,7 @@ from collections.abc import Iterable
 from datetime import datetime as dt
 from homeassistant.components import frontend as frontend, websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
-from homeassistant.components.recorder import history as history, models as history_models
+from homeassistant.components.recorder import get_instance as get_instance, history as history, models as history_models
 from homeassistant.components.recorder.statistics import list_statistic_ids as list_statistic_ids, statistics_during_period as statistics_during_period
 from homeassistant.components.recorder.util import session_scope as session_scope
 from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE
@@ -39,7 +39,7 @@ class HistoryPeriodView(HomeAssistantView):
     use_include_order: Any
     def __init__(self, filters: Union[Filters, None], use_include_order: bool) -> None: ...
     async def get(self, request: web.Request, datetime: Union[str, None] = ...) -> web.Response: ...
-    def _sorted_significant_states_json(self, hass, start_time, end_time, entity_ids, include_start_time_state, significant_changes_only, minimal_response): ...
+    def _sorted_significant_states_json(self, hass, start_time, end_time, entity_ids, include_start_time_state, significant_changes_only, minimal_response, no_attributes): ...
 
 def sqlalchemy_filter_from_include_exclude_conf(conf: ConfigType) -> Union[Filters, None]: ...
 

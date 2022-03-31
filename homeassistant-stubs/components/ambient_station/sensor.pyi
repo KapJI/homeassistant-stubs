@@ -9,6 +9,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 TYPE_24HOURRAININ: str
+TYPE_AQI_PM25: str
+TYPE_AQI_PM25_24H: str
+TYPE_AQI_PM25_IN: str
+TYPE_AQI_PM25_IN_24H: str
 TYPE_BAROMABSIN: str
 TYPE_BAROMRELIN: str
 TYPE_CO2: str
@@ -30,6 +34,8 @@ TYPE_HUMIDITY8: str
 TYPE_HUMIDITY9: str
 TYPE_HUMIDITYIN: str
 TYPE_LASTRAIN: str
+TYPE_LIGHTNING_PER_DAY: str
+TYPE_LIGHTNING_PER_HOUR: str
 TYPE_MAXDAILYGUST: str
 TYPE_MONTHLYRAININ: str
 TYPE_PM25: str

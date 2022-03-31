@@ -15,8 +15,7 @@ PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class AccuWeatherEntity(CoordinatorEntity, WeatherEntity):
-    coordinator: AccuWeatherDataUpdateCoordinator
+class AccuWeatherEntity(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], WeatherEntity):
     _unit_system: Any
     _attr_wind_speed_unit: Any
     _attr_name: Any

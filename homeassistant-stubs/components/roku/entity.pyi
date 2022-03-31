@@ -5,8 +5,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescrip
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-class RokuEntity(CoordinatorEntity):
-    coordinator: RokuDataUpdateCoordinator
+class RokuEntity(CoordinatorEntity[RokuDataUpdateCoordinator]):
     _device_id: Any
     entity_description: Any
     _attr_name: Any

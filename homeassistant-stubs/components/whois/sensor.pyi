@@ -1,14 +1,13 @@
-from .const import ATTR_EXPIRES as ATTR_EXPIRES, ATTR_NAME_SERVERS as ATTR_NAME_SERVERS, ATTR_REGISTRAR as ATTR_REGISTRAR, ATTR_UPDATED as ATTR_UPDATED, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import ATTR_EXPIRES as ATTR_EXPIRES, ATTR_NAME_SERVERS as ATTR_NAME_SERVERS, ATTR_REGISTRAR as ATTR_REGISTRAR, ATTR_UPDATED as ATTR_UPDATED, DOMAIN as DOMAIN
 from collections.abc import Callable as Callable
 from datetime import datetime
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_NAME as CONF_NAME, TIME_DAYS as TIME_DAYS
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, TIME_DAYS as TIME_DAYS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 from whois import Domain as Domain
@@ -25,7 +24,6 @@ def _ensure_timezone(timestamp: Union[datetime, None]) -> Union[datetime, None]:
 
 SENSORS: tuple[WhoisSensorEntityDescription, ...]
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WhoisSensorEntity(CoordinatorEntity, SensorEntity):

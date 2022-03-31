@@ -1,10 +1,11 @@
 from .const import CONTENT_AUTH_EXPIRY_TIME as CONTENT_AUTH_EXPIRY_TIME, MEDIA_CLASS_DIRECTORY as MEDIA_CLASS_DIRECTORY
 from homeassistant.components.http.auth import async_sign_path as async_sign_path
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.network import get_url as get_url, is_hass_url as is_hass_url
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_supervisor_network_url as get_supervisor_network_url, get_url as get_url, is_hass_url as is_hass_url
 from typing import Any
 
-def async_process_play_media_url(hass: HomeAssistant, media_content_id: str, *, allow_relative_url: bool = ...) -> str: ...
+def async_process_play_media_url(hass: HomeAssistant, media_content_id: str, *, allow_relative_url: bool = ..., for_supervisor_network: bool = ...) -> str: ...
 
 class BrowseMedia:
     media_class: Any

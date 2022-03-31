@@ -12,8 +12,7 @@ _P: Any
 
 def async_refresh_after(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
-class CoordinatedTPLinkEntity(CoordinatorEntity):
-    coordinator: TPLinkDataUpdateCoordinator
+class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator]):
     device: Any
     _attr_name: Any
     _attr_unique_id: Any

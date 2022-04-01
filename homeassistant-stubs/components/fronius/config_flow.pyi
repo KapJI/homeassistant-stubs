@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, FroniusConfigEntryData as FroniusConfigEntryData
 from homeassistant import config_entries as config_entries
 from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_RESOURCE as CONF_RESOURCE
+from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -20,7 +20,6 @@ class ConfigFlow(config_entries.ConfigFlow):
     info: Any
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_import(self, conf: dict) -> FlowResult: ...
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> FlowResult: ...
     async def async_step_confirm_discovery(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 

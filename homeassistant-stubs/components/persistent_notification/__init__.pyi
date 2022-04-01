@@ -2,9 +2,7 @@ from collections.abc import Mapping
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.entity import async_generate_entity_id as async_generate_entity_id
-from homeassistant.helpers.template import Template as Template, is_template_string as is_template_string
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify

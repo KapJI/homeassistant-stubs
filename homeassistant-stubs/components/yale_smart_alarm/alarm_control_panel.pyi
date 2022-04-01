@@ -1,19 +1,16 @@
-from .const import CONF_AREA_ID as CONF_AREA_ID, COORDINATOR as COORDINATOR, DEFAULT_AREA_ID as DEFAULT_AREA_ID, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER, STATE_MAP as STATE_MAP, YALE_ALL_ERRORS as YALE_ALL_ERRORS
+from .const import COORDINATOR as COORDINATOR, DOMAIN as DOMAIN, STATE_MAP as STATE_MAP, YALE_ALL_ERRORS as YALE_ALL_ERRORS
 from .coordinator import YaleDataUpdateCoordinator as YaleDataUpdateCoordinator
 from .entity import YaleAlarmEntity as YaleAlarmEntity
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity
 from homeassistant.components.alarm_control_panel.const import SUPPORT_ALARM_ARM_AWAY as SUPPORT_ALARM_ARM_AWAY, SUPPORT_ALARM_ARM_HOME as SUPPORT_ALARM_ARM_HOME
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
+from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
 
-PLATFORM_SCHEMA: Any
-
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class YaleAlarmDevice(YaleAlarmEntity, AlarmControlPanelEntity):

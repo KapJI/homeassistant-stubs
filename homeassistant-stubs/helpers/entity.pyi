@@ -3,7 +3,6 @@ from . import entity_registry as er
 from .device_registry import DeviceEntryType as DeviceEntryType
 from .entity_platform import EntityPlatform as EntityPlatform
 from .event import async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
-from .frame import report as report
 from .typing import StateType as StateType
 from abc import ABC
 from collections.abc import Awaitable, Iterable, Mapping, MutableMapping
@@ -62,12 +61,10 @@ class EntityPlatformState(Enum):
     ADDED: Any
     REMOVED: Any
 
-def convert_to_entity_category(value: Union[EntityCategory, str, None], raise_report: bool = ...) -> Union[EntityCategory, None]: ...
-
 class EntityDescription:
     key: str
     device_class: Union[str, None]
-    entity_category: Union[EntityCategory, Literal['config', 'diagnostic', 'system'], None]
+    entity_category: Union[EntityCategory, None]
     entity_registry_enabled_default: bool
     force_update: bool
     icon: Union[str, None]
@@ -82,6 +79,7 @@ class Entity(ABC):
     entity_description: EntityDescription
     _slow_reported: bool
     _disabled_reported: bool
+    _temperature_reported: bool
     _update_staged: bool
     parallel_updates: Union[asyncio.Semaphore, None]
     registry_entry: Union[er.RegistryEntry, None]
@@ -148,7 +146,7 @@ class Entity(ABC):
     @property
     def attribution(self) -> Union[str, None]: ...
     @property
-    def entity_category(self) -> Union[EntityCategory, str, None]: ...
+    def entity_category(self) -> Union[EntityCategory, None]: ...
     @property
     def enabled(self) -> bool: ...
     def async_set_context(self, context: Context) -> None: ...

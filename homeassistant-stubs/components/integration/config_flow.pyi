@@ -2,7 +2,7 @@ from .const import CONF_ROUND_DIGITS as CONF_ROUND_DIGITS, CONF_SOURCE_SENSOR as
 from collections.abc import Mapping
 from homeassistant.const import CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, TIME_DAYS as TIME_DAYS, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
 from homeassistant.helpers import selector as selector
-from homeassistant.helpers.helper_config_entry_flow import HelperConfigFlowHandler as HelperConfigFlowHandler, HelperFlowFormStep as HelperFlowFormStep, HelperFlowMenuStep as HelperFlowMenuStep
+from homeassistant.helpers.schema_config_entry_flow import SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep
 from typing import Any
 
 UNIT_PREFIXES: Any
@@ -10,10 +10,10 @@ TIME_UNITS: Any
 INTEGRATION_METHODS: Any
 OPTIONS_SCHEMA: Any
 CONFIG_SCHEMA: Any
-CONFIG_FLOW: dict[str, Union[HelperFlowFormStep, HelperFlowMenuStep]]
-OPTIONS_FLOW: dict[str, Union[HelperFlowFormStep, HelperFlowMenuStep]]
+CONFIG_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
+OPTIONS_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
 
-class ConfigFlowHandler(HelperConfigFlowHandler):
+class ConfigFlowHandler(SchemaConfigFlowHandler):
     config_flow: Any
     options_flow: Any
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

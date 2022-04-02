@@ -1,9 +1,7 @@
 from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
-from homeassistant.components.recorder import get_instance as get_instance
-from homeassistant.components.recorder.models import StateAttributes as StateAttributes, States as States
-from homeassistant.components.recorder.util import execute as execute, session_scope as session_scope
+from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id

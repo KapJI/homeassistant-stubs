@@ -12,6 +12,7 @@ class UpdateEntityFeature(IntEnum):
 
 SERVICE_INSTALL: Final[str]
 SERVICE_SKIP: Final[str]
+ATTR_AUTO_UPDATE: Final[str]
 ATTR_BACKUP: Final[str]
 ATTR_CURRENT_VERSION: Final[str]
 ATTR_IN_PROGRESS: Final[str]

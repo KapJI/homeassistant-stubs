@@ -17,6 +17,7 @@ class UpdateEntityDescription(EntityDescription):
 
 class UpdateEntity(RestoreEntity):
     entity_description: UpdateEntityDescription
+    _attr_auto_update: bool
     _attr_current_version: Union[str, None]
     _attr_device_class: Union[UpdateDeviceClass, str, None]
     _attr_in_progress: Union[bool, int]
@@ -28,6 +29,8 @@ class UpdateEntity(RestoreEntity):
     _attr_title: Union[str, None]
     __skipped_version: Union[str, None]
     __in_progress: bool
+    @property
+    def auto_update(self) -> bool: ...
     @property
     def current_version(self) -> Union[str, None]: ...
     @property

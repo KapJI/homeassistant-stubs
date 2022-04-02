@@ -4,6 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers import selector as selector
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from typing import Any, Final
 from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
@@ -17,6 +18,9 @@ CONF_KNX_LABEL_TUNNELING_TCP: Final[str]
 CONF_KNX_LABEL_TUNNELING_TCP_SECURE: Final[str]
 CONF_KNX_LABEL_TUNNELING_UDP: Final[str]
 CONF_KNX_LABEL_TUNNELING_UDP_ROUTE_BACK: Final[str]
+_IA_SELECTOR: Any
+_IP_SELECTOR: Any
+_PORT_SELECTOR: Any
 
 class FlowHandler(config_entries.ConfigFlow):
     VERSION: int

@@ -1,4 +1,4 @@
-from .const import ATTR_CURRENT_VERSION as ATTR_CURRENT_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION
+from .const import ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 

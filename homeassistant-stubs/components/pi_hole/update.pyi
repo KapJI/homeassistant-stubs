@@ -12,11 +12,11 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 class PiHoleUpdateEntityDescription(UpdateEntityDescription):
-    current_version: Callable[[dict], Union[str, None]]
+    installed_version: Callable[[dict], Union[str, None]]
     latest_version: Callable[[dict], Union[str, None]]
     release_base_url: Union[str, None]
     title: Union[str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, current_version, latest_version, release_base_url, title) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, installed_version, latest_version, release_base_url, title) -> None: ...
 
 UPDATE_ENTITY_TYPES: tuple[PiHoleUpdateEntityDescription, ...]
 
@@ -29,7 +29,7 @@ class PiHoleUpdateEntity(PiHoleEntity, UpdateEntity):
     _attr_title: Any
     def __init__(self, api: Hole, coordinator: DataUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleUpdateEntityDescription) -> None: ...
     @property
-    def current_version(self) -> Union[str, None]: ...
+    def installed_version(self) -> Union[str, None]: ...
     @property
     def latest_version(self) -> Union[str, None]: ...
     @property

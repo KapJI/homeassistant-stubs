@@ -22,6 +22,7 @@ CONNECTION_NETWORK_MAC: str
 CONNECTION_UPNP: str
 CONNECTION_ZIGBEE: str
 ORPHANED_DEVICE_KEEP_SECONDS: Any
+RUNTIME_ONLY_ATTRS: Any
 
 class _DeviceIndex(NamedTuple):
     identifiers: dict[tuple[str, str], str]

@@ -1,10 +1,10 @@
 from . import util as util
-from .const import IPV4_BROADCAST_ADDR as IPV4_BROADCAST_ADDR, PUBLIC_TARGET_IP as PUBLIC_TARGET_IP
+from .const import IPV4_BROADCAST_ADDR as IPV4_BROADCAST_ADDR, LOOPBACK_TARGET_IP as LOOPBACK_TARGET_IP, MDNS_TARGET_IP as MDNS_TARGET_IP, PUBLIC_TARGET_IP as PUBLIC_TARGET_IP
 from .models import Adapter as Adapter
 from .network import Network as Network, async_get_network as async_get_network
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.loader import bind_hass as bind_hass
 from ipaddress import IPv4Address, IPv6Address
 from typing import Any
@@ -12,7 +12,7 @@ from typing import Any
 _LOGGER: Any
 
 async def async_get_adapters(hass: HomeAssistant) -> list[Adapter]: ...
-async def async_get_source_ip(hass: HomeAssistant, target_ip: str = ...) -> str: ...
+async def async_get_source_ip(hass: HomeAssistant, target_ip: Union[str, UndefinedType] = ...) -> str: ...
 async def async_get_enabled_source_ips(hass: HomeAssistant) -> list[Union[IPv4Address, IPv6Address]]: ...
 def async_only_default_interface_enabled(adapters: list[Adapter]) -> bool: ...
 async def async_get_ipv4_broadcast_addresses(hass: HomeAssistant) -> set[IPv4Address]: ...

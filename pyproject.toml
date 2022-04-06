@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "homeassistant-stubs"
-version = "2022.4.0b5"
+version = "2022.4.0b6"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = ["Ruslan Sayfutdinov <ruslan@sayfutdinov.com>"]
 license = "MIT"

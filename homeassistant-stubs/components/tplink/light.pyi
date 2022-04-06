@@ -55,8 +55,6 @@ class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
 
 class TPLinkSmartLightStrip(TPLinkSmartBulb):
     device: SmartLightStrip
-    _last_custom_effect: Any
-    def __init__(self, device: SmartLightStrip, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
     @property
     def supported_features(self) -> int: ...
     @property

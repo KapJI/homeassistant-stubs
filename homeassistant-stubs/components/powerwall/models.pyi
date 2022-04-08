@@ -18,7 +18,7 @@ class PowerwallData:
     meters: MetersAggregates
     grid_services_active: bool
     grid_status: GridStatus
-    backup_reserve: float
+    backup_reserve: Union[float, None]
     def __init__(self, charge, site_master, meters, grid_services_active, grid_status, backup_reserve) -> None: ...
 
 class PowerwallRuntimeData(TypedDict):

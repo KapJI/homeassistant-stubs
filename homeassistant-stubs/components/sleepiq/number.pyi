@@ -32,8 +32,8 @@ NUMBER_DESCRIPTIONS: dict[str, SleepIQNumberEntityDescription]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SleepIQNumberEntity(SleepIQBedEntity, NumberEntity):
+    entity_description: SleepIQNumberEntityDescription
     _attr_icon: str
-    description: Any
     device: Any
     _attr_name: Any
     _attr_unique_id: Any

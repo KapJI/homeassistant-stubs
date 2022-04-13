@@ -13,7 +13,7 @@ from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.util.unit_system import UnitSystem as UnitSystem
 from sqlalchemy.orm.scoping import scoped_session as scoped_session
 from statistics import mean
-from typing import Any, Literal
+from typing import Any, Literal, overload
 
 QUERY_STATISTICS: Any
 QUERY_STATISTICS_SHORT_TERM: Any
@@ -25,7 +25,8 @@ QUERY_STATISTIC_META_ID: Any
 STATISTICS_BAKERY: str
 STATISTICS_META_BAKERY: str
 STATISTICS_SHORT_TERM_BAKERY: str
-UNIT_CONVERSIONS: Any
+STATISTIC_UNIT_TO_DISPLAY_UNIT_CONVERSIONS: Any
+DISPLAY_UNIT_TO_STATISTIC_UNIT_CONVERSIONS: dict[str, Callable[[float, UnitSystem], float]]
 _LOGGER: Any
 
 def split_statistic_id(entity_id: str) -> list[str]: ...
@@ -54,6 +55,9 @@ def _insert_statistics(session: scoped_session, table: type[Union[Statistics, St
 def _update_statistics(session: scoped_session, table: type[Union[Statistics, StatisticsShortTerm]], stat_id: int, statistic: StatisticData) -> None: ...
 def get_metadata_with_session(hass: HomeAssistant, session: scoped_session, *, statistic_ids: Union[list[str], tuple[str], None] = ..., statistic_type: Union[Literal['mean'], Literal['sum'], None] = ..., statistic_source: Union[str, None] = ...) -> dict[str, tuple[int, StatisticMetaData]]: ...
 def get_metadata(hass: HomeAssistant, *, statistic_ids: Union[list[str], tuple[str], None] = ..., statistic_type: Union[Literal['mean'], Literal['sum'], None] = ..., statistic_source: Union[str, None] = ...) -> dict[str, tuple[int, StatisticMetaData]]: ...
+@overload
+def _configured_unit(unit: None, units: UnitSystem) -> None: ...
+@overload
 def _configured_unit(unit: str, units: UnitSystem) -> str: ...
 def clear_statistics(instance: Recorder, statistic_ids: list[str]) -> None: ...
 def update_statistics_metadata(instance: Recorder, statistic_id: str, unit_of_measurement: Union[str, None]) -> None: ...

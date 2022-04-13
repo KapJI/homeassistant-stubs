@@ -17,7 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class DevoloMultiLevelDeviceEntity(DevoloDeviceEntity, SensorEntity):
     @property
-    def native_value(self) -> int: ...
+    def native_value(self) -> float: ...
 
 class DevoloGenericMultiLevelDeviceEntity(DevoloMultiLevelDeviceEntity):
     _multi_level_sensor_property: Any

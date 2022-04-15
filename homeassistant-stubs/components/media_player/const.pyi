@@ -1,3 +1,4 @@
+from enum import IntEnum
 from typing import Any
 
 CONTENT_AUTH_EXPIRY_TIME: Any
@@ -83,6 +84,28 @@ REPEAT_MODE_ALL: str
 REPEAT_MODE_OFF: str
 REPEAT_MODE_ONE: str
 REPEAT_MODES: Any
+
+class MediaPlayerEntityFeature(IntEnum):
+    PAUSE: int
+    SEEK: int
+    VOLUME_SET: int
+    VOLUME_MUTE: int
+    PREVIOUS_TRACK: int
+    NEXT_TRACK: int
+    TURN_ON: int
+    TURN_OFF: int
+    PLAY_MEDIA: int
+    VOLUME_STEP: int
+    SELECT_SOURCE: int
+    STOP: int
+    CLEAR_PLAYLIST: int
+    PLAY: int
+    SHUFFLE_SET: int
+    SELECT_SOUND_MODE: int
+    BROWSE_MEDIA: int
+    REPEAT_SET: int
+    GROUPING: int
+
 SUPPORT_PAUSE: int
 SUPPORT_SEEK: int
 SUPPORT_VOLUME_SET: int

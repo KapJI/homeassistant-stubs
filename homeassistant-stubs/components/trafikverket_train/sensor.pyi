@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.dt import as_utc as as_utc, get_time_zone as get_time_zone, parse_time as parse_time
 from pytrafikverket import TrafikverketTrain
-from pytrafikverket.trafikverket_train import TrainStop as TrainStop
+from pytrafikverket.trafikverket_train import StationInfo as StationInfo, TrainStop as TrainStop
 from typing import Any
 
 _LOGGER: Any
@@ -46,7 +46,7 @@ class TrainSensor(SensorEntity):
     _time: Any
     _attr_device_info: Any
     _attr_unique_id: Any
-    def __init__(self, train_api: TrafikverketTrain, name: str, from_station: str, to_station: str, weekday: list, departuretime: Union[time, None], entry_id: str) -> None: ...
+    def __init__(self, train_api: TrafikverketTrain, name: str, from_station: StationInfo, to_station: StationInfo, weekday: list, departuretime: Union[time, None], entry_id: str) -> None: ...
     _attr_available: bool
     _attr_native_value: Any
     _attr_extra_state_attributes: Any

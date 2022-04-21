@@ -1,6 +1,6 @@
-from .generic_cover import COMMANDS_STOP as COMMANDS_STOP, OverkizGenericCover as OverkizGenericCover
+from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
+from .generic_cover import COMMANDS_CLOSE_TILT as COMMANDS_CLOSE_TILT, COMMANDS_OPEN_TILT as COMMANDS_OPEN_TILT, COMMANDS_STOP as COMMANDS_STOP, OverkizGenericCover as OverkizGenericCover
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, SUPPORT_CLOSE as SUPPORT_CLOSE, SUPPORT_OPEN as SUPPORT_OPEN, SUPPORT_SET_POSITION as SUPPORT_SET_POSITION, SUPPORT_STOP as SUPPORT_STOP
-from homeassistant.components.overkiz.coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from typing import Any
 
 COMMANDS_OPEN: Any
@@ -17,6 +17,10 @@ class VerticalCover(OverkizGenericCover):
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @property
+    def is_opening(self) -> Union[bool, None]: ...
+    @property
+    def is_closing(self) -> Union[bool, None]: ...
 
 class LowSpeedCover(VerticalCover):
     _attr_name: Any

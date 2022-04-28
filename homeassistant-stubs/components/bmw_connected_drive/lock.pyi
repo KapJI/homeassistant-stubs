@@ -1,9 +1,10 @@
-from . import BMWConnectedDriveAccount as BMWConnectedDriveAccount, BMWConnectedDriveBaseEntity as BMWConnectedDriveBaseEntity
-from .const import CONF_ACCOUNT as CONF_ACCOUNT, DATA_ENTRIES as DATA_ENTRIES
+from . import BMWConnectedDriveBaseEntity as BMWConnectedDriveBaseEntity
+from .const import DOMAIN as DOMAIN
+from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from bimmer_connected.vehicle import ConnectedDriveVehicle as ConnectedDriveVehicle
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
@@ -18,9 +19,9 @@ class BMWLock(BMWConnectedDriveBaseEntity, LockEntity):
     _attr_unique_id: Any
     _sensor_name: Any
     door_lock_state_available: Any
-    def __init__(self, account: BMWConnectedDriveAccount, vehicle: ConnectedDriveVehicle, attribute: str, sensor_name: str) -> None: ...
+    def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: ConnectedDriveVehicle, attribute: str, sensor_name: str) -> None: ...
     _attr_is_locked: bool
     def lock(self, **kwargs: Any) -> None: ...
     def unlock(self, **kwargs: Any) -> None: ...
     _attr_extra_state_attributes: Any
-    def update(self) -> None: ...
+    def _handle_coordinator_update(self) -> None: ...

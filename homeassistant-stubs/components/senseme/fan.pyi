@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN, PRESET_MODE_WHOOSH as PRESET_MODE_WHOOSH, S
 from .entity import SensemeEntity as SensemeEntity
 from aiosenseme import SensemeFan as SensemeFan
 from homeassistant import config_entries as config_entries
-from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, SUPPORT_DIRECTION as SUPPORT_DIRECTION, SUPPORT_SET_SPEED as SUPPORT_SET_SPEED
+from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage

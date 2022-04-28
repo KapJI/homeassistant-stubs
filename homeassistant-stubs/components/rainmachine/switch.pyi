@@ -1,5 +1,6 @@
 from . import RainMachineEntity as RainMachineEntity, async_update_programs_and_zones as async_update_programs_and_zones
-from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_CONTROLLER as DATA_CONTROLLER, DATA_COORDINATOR as DATA_COORDINATOR, DATA_PROGRAMS as DATA_PROGRAMS, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
+from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_CONTROLLER as DATA_CONTROLLER, DATA_COORDINATOR as DATA_COORDINATOR, DATA_PROGRAMS as DATA_PROGRAMS, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN, RUN_STATE_MAP as RUN_STATE_MAP
+from .model import RainMachineDescriptionMixinUid as RainMachineDescriptionMixinUid
 from collections.abc import Coroutine
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -30,23 +31,17 @@ ATTR_SOIL_TYPE: str
 ATTR_SPRINKLER_TYPE: str
 ATTR_STATUS: str
 ATTR_SUN_EXPOSURE: str
-ATTR_TIME_REMAINING: str
 ATTR_VEGETATION_TYPE: str
 ATTR_ZONES: str
 DAYS: Any
-RUN_STATUS_MAP: Any
 SOIL_TYPE_MAP: Any
 SLOPE_TYPE_MAP: Any
 SPRINKLER_TYPE_MAP: Any
 SUN_EXPOSURE_MAP: Any
 VEGETATION_MAP: Any
 
-class RainMachineSwitchDescriptionMixin:
-    uid: int
-    def __init__(self, uid) -> None: ...
-
-class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineSwitchDescriptionMixin):
-    def __init__(self, uid, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineDescriptionMixinUid):
+    def __init__(self, uid, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

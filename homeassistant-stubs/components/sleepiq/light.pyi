@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import SleepIQData as SleepIQData
 from .entity import SleepIQBedEntity as SleepIQBedEntity
 from asyncsleepiq import SleepIQBed as SleepIQBed, SleepIQLight as SleepIQLight
-from homeassistant.components.light import LightEntity as LightEntity
+from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -14,6 +14,8 @@ _LOGGER: Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SleepIQLightEntity(SleepIQBedEntity, LightEntity):
+    _attr_color_mode: Any
+    _attr_supported_color_modes: Any
     light: Any
     _attr_name: Any
     _attr_unique_id: Any

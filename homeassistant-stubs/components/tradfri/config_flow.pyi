@@ -1,10 +1,12 @@
-from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, CONF_IDENTITY as CONF_IDENTITY, CONF_IMPORT_GROUPS as CONF_IMPORT_GROUPS, CONF_KEY as CONF_KEY, DOMAIN as DOMAIN, KEY_SECURITY_CODE as KEY_SECURITY_CODE
+from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, CONF_IDENTITY as CONF_IDENTITY, CONF_KEY as CONF_KEY, DOMAIN as DOMAIN
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
+
+KEY_SECURITY_CODE: str
 
 class AuthError(Exception):
     code: Any
@@ -13,7 +15,6 @@ class AuthError(Exception):
 class FlowHandler(config_entries.ConfigFlow):
     VERSION: int
     _host: Any
-    _import_groups: bool
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_auth(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

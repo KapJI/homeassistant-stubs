@@ -13,7 +13,6 @@ _LOGGER: Any
 ATTR_SOURCE_ID: str
 UNIT_PREFIXES: Any
 UNIT_TIME: Any
-ICON: str
 DEFAULT_ROUND: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -25,24 +24,19 @@ class IntegrationSensor(RestoreEntity, SensorEntity):
     _round_digits: Any
     _state: Any
     _method: Any
-    _name: Any
+    _attr_name: Any
     _unit_template: Any
     _unit_of_measurement: Any
     _unit_prefix: Any
     _unit_time: Any
     _attr_state_class: Any
-    def __init__(self, *, integration_method: str, name: Union[str, None], round_digits: int, source_entity: str, unique_id: Union[str, None], unit_of_measurement: Union[str, None], unit_prefix: Union[str, None], unit_time: str) -> None: ...
+    _attr_icon: str
+    _attr_should_poll: bool
+    _attr_extra_state_attributes: Any
+    def __init__(self, *, integration_method: str, name: Union[str, None], round_digits: int, source_entity: str, unique_id: Union[str, None], unit_prefix: Union[str, None], unit_time: str) -> None: ...
     _attr_device_class: Any
     async def async_added_to_hass(self) -> None: ...
-    @property
-    def name(self): ...
     @property
     def native_value(self): ...
     @property
     def native_unit_of_measurement(self): ...
-    @property
-    def should_poll(self): ...
-    @property
-    def extra_state_attributes(self): ...
-    @property
-    def icon(self): ...

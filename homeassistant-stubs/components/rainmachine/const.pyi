@@ -1,3 +1,4 @@
+from homeassistant.backports.enum import StrEnum as StrEnum
 from typing import Any
 
 LOGGER: Any
@@ -12,3 +13,10 @@ DATA_RESTRICTIONS_UNIVERSAL: str
 DATA_ZONES: str
 DEFAULT_PORT: int
 DEFAULT_ZONE_RUN: Any
+
+class RunStates(StrEnum):
+    NOT_RUNNING: str
+    QUEUED: str
+    RUNNING: str
+
+RUN_STATE_MAP: Any

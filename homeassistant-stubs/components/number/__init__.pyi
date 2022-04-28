@@ -28,7 +28,7 @@ class NumberEntityDescription(EntityDescription):
     max_value: Union[float, None]
     min_value: Union[float, None]
     step: Union[float, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step) -> None: ...
 
 class NumberEntity(Entity):
     entity_description: NumberEntityDescription

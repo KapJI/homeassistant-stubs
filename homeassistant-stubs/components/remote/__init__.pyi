@@ -1,4 +1,5 @@
 from collections.abc import Iterable
+from enum import IntEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -31,6 +32,12 @@ SERVICE_SYNC: str
 DEFAULT_NUM_REPEATS: int
 DEFAULT_DELAY_SECS: float
 DEFAULT_HOLD_SECS: int
+
+class RemoteEntityFeature(IntEnum):
+    LEARN_COMMAND: int
+    DELETE_COMMAND: int
+    ACTIVITY: int
+
 SUPPORT_LEARN_COMMAND: int
 SUPPORT_DELETE_COMMAND: int
 SUPPORT_ACTIVITY: int
@@ -42,7 +49,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class RemoteEntityDescription(ToggleEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class RemoteEntity(ToggleEntity):
     entity_description: RemoteEntityDescription

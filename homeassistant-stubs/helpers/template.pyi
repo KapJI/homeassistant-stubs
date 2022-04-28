@@ -4,7 +4,7 @@ from .typing import TemplateVarsType as TemplateVarsType
 from collections.abc import Callable as Callable, Generator, Iterable
 from contextvars import ContextVar
 from datetime import datetime
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, LENGTH_METERS as LENGTH_METERS, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_PERSONS as ATTR_PERSONS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, LENGTH_METERS as LENGTH_METERS, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
@@ -25,6 +25,7 @@ _RE_JINJA_DELIMITERS: Any
 _IS_NUMERIC: Any
 _RESERVED_NAMES: Any
 _GROUP_DOMAIN_PREFIX: str
+_ZONE_DOMAIN_PREFIX: str
 _COLLECTABLE_STATE_ATTRIBUTES: Any
 ALL_STATES_RATE_LIMIT: Any
 DOMAIN_STATES_RATE_LIMIT: Any
@@ -125,12 +126,13 @@ class DomainStates:
     def __len__(self) -> int: ...
     def __repr__(self) -> str: ...
 
-class TemplateState(State):
+class TemplateStateBase(State):
     __slots__: Any
+    _state: State
     _hass: Any
-    _state: Any
     _collect: Any
-    def __init__(self, hass: HomeAssistant, state: State, collect: bool = ...) -> None: ...
+    _entity_id: Any
+    def __init__(self, hass: HomeAssistant, collect: bool, entity_id: str) -> None: ...
     def _collect_state(self) -> None: ...
     def __getitem__(self, item): ...
     @property
@@ -154,6 +156,17 @@ class TemplateState(State):
     @property
     def state_with_unit(self) -> str: ...
     def __eq__(self, other: Any) -> bool: ...
+
+class TemplateState(TemplateStateBase):
+    __slots__: Any
+    _state: Any
+    def __init__(self, hass: HomeAssistant, state: State, collect: bool = ...) -> None: ...
+    def __repr__(self) -> str: ...
+
+class TemplateStateFromEntityId(TemplateStateBase):
+    def __init__(self, hass: HomeAssistant, entity_id: str, collect: bool = ...) -> None: ...
+    @property
+    def _state(self) -> State: ...
     def __repr__(self) -> str: ...
 
 def _collect_state(hass: HomeAssistant, entity_id: str) -> None: ...

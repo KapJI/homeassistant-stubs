@@ -1,8 +1,9 @@
-from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_RTSP_TO_WEB_RTC as DATA_RTSP_TO_WEB_RTC, DOMAIN as DOMAIN, SERVICE_RECORD as SERVICE_RECORD, STREAM_TYPE_HLS as STREAM_TYPE_HLS, STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC
+from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_RTSP_TO_WEB_RTC as DATA_RTSP_TO_WEB_RTC, DOMAIN as DOMAIN, SERVICE_RECORD as SERVICE_RECORD, STREAM_TYPE_HLS as STREAM_TYPE_HLS, STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC, StreamType as StreamType
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences
 from aiohttp import web
 from collections.abc import Awaitable, Callable, Iterable
+from enum import IntEnum
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
@@ -34,6 +35,11 @@ ATTR_FORMAT: Final[str]
 STATE_RECORDING: Final[str]
 STATE_STREAMING: Final[str]
 STATE_IDLE: Final[str]
+
+class CameraEntityFeature(IntEnum):
+    ON_OFF: int
+    STREAM: int
+
 SUPPORT_ON_OFF: Final[int]
 SUPPORT_STREAM: Final[int]
 RTSP_PREFIXES: Any
@@ -49,7 +55,7 @@ WS_TYPE_CAMERA_THUMBNAIL: Final[str]
 SCHEMA_WS_CAMERA_THUMBNAIL: Final[Any]
 
 class CameraEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class Image:
     content_type: str
@@ -79,7 +85,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class Camera(Entity):
     _attr_brand: Union[str, None]
     _attr_frame_interval: float
-    _attr_frontend_stream_type: Union[str, None]
+    _attr_frontend_stream_type: Union[StreamType, None]
     _attr_is_on: bool
     _attr_is_recording: bool
     _attr_is_streaming: bool
@@ -113,7 +119,7 @@ class Camera(Entity):
     @property
     def frame_interval(self) -> float: ...
     @property
-    def frontend_stream_type(self) -> Union[str, None]: ...
+    def frontend_stream_type(self) -> Union[StreamType, None]: ...
     @property
     def available(self) -> bool: ...
     async def async_create_stream(self) -> Union[Stream, None]: ...

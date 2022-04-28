@@ -33,11 +33,11 @@ DEVICE_CLASS_LCD_MESSAGE: Final[str]
 SERVICE_SET_DOORBELL_MESSAGE: str
 SET_DOORBELL_LCD_MESSAGE_SCHEMA: Any
 
-class ProtectSelectEntityDescription(ProtectSetableKeysMixin, SelectEntityDescription):
+class ProtectSelectEntityDescription(ProtectSetableKeysMixin[T], SelectEntityDescription):
     ufp_options: Union[list[dict[str, Any]], None]
     ufp_options_fn: Union[Callable[[ProtectApiClient], list[dict[str, Any]]], None]
     ufp_enum_type: Union[type[Enum], None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_set_method, ufp_set_method_fn, ufp_options, ufp_options_fn, ufp_enum_type) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_set_method, ufp_set_method_fn, ufp_options, ufp_options_fn, ufp_enum_type) -> None: ...
 
 def _get_viewer_options(api: ProtectApiClient) -> list[dict[str, Any]]: ...
 def _get_doorbell_options(api: ProtectApiClient) -> list[dict[str, Any]]: ...

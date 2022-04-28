@@ -10,12 +10,12 @@ from datetime import datetime, timedelta
 from enum import Enum
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, ENTITY_CATEGORIES as ENTITY_CATEGORIES, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
-from typing import Any, Literal, TypedDict
+from typing import Any, Final, Literal, TypedDict
 
 _LOGGER: Any
 SLOW_UPDATE_WARNING: int
@@ -23,9 +23,6 @@ DATA_ENTITY_SOURCE: str
 SOURCE_CONFIG_ENTRY: str
 SOURCE_PLATFORM_CONFIG: str
 FLOAT_PRECISION: Any
-
-def validate_entity_category(value: Union[Any, None]) -> EntityCategory: ...
-ENTITY_CATEGORIES_SCHEMA = validate_entity_category
 
 def entity_sources(hass: HomeAssistant) -> dict[str, dict[str, str]]: ...
 def generate_entity_id(entity_id_format: str, name: Union[str, None], current_ids: Union[list[str], None] = ..., hass: Union[HomeAssistant, None] = ...) -> str: ...
@@ -56,6 +53,8 @@ class EntityCategory(StrEnum):
     DIAGNOSTIC: str
     SYSTEM: str
 
+ENTITY_CATEGORIES_SCHEMA: Final[Any]
+
 class EntityPlatformState(Enum):
     NOT_ADDED: Any
     ADDED: Any
@@ -66,11 +65,12 @@ class EntityDescription:
     device_class: Union[str, None]
     entity_category: Union[EntityCategory, None]
     entity_registry_enabled_default: bool
+    entity_registry_visible_default: bool
     force_update: bool
     icon: Union[str, None]
     name: Union[str, None]
     unit_of_measurement: Union[str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class Entity(ABC):
     entity_id: str
@@ -96,6 +96,7 @@ class Entity(ABC):
     _attr_entity_category: Union[EntityCategory, None]
     _attr_entity_picture: Union[str, None]
     _attr_entity_registry_enabled_default: bool
+    _attr_entity_registry_visible_default: bool
     _attr_extra_state_attributes: MutableMapping[str, Any]
     _attr_force_update: bool
     _attr_icon: Union[str, None]
@@ -144,6 +145,8 @@ class Entity(ABC):
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     @property
+    def entity_registry_visible_default(self) -> bool: ...
+    @property
     def attribution(self) -> Union[str, None]: ...
     @property
     def entity_category(self) -> Union[EntityCategory, None]: ...
@@ -175,7 +178,7 @@ class Entity(ABC):
     def _suggest_report_issue(self) -> str: ...
 
 class ToggleEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class ToggleEntity(Entity):
     entity_description: ToggleEntityDescription

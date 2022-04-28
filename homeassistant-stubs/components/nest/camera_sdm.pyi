@@ -4,8 +4,8 @@ from .device_info import NestDeviceInfo as NestDeviceInfo
 from collections.abc import Callable as Callable
 from google_nest_sdm.camera_traits import RtspStream as RtspStream
 from google_nest_sdm.device import Device as Device
-from homeassistant.components.camera import Camera as Camera, SUPPORT_STREAM as SUPPORT_STREAM
-from homeassistant.components.camera.const import STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC
+from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
+from homeassistant.components.camera.const import StreamType as StreamType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
@@ -44,7 +44,7 @@ class NestCamera(Camera):
     @property
     def supported_features(self) -> int: ...
     @property
-    def frontend_stream_type(self) -> Union[str, None]: ...
+    def frontend_stream_type(self) -> Union[StreamType, None]: ...
     @property
     def available(self) -> bool: ...
     async def stream_source(self) -> Union[str, None]: ...

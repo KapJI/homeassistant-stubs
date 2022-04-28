@@ -1,12 +1,14 @@
 from . import const as const
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA, VALUE_SCHEMA as VALUE_SCHEMA
-from .helpers import async_get_nodes_from_targets as async_get_nodes_from_targets
+from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, async_get_node_from_entity_id as async_get_node_from_entity_id, async_get_nodes_from_area_id as async_get_nodes_from_area_id, async_get_nodes_from_targets as async_get_nodes_from_targets, get_value_id_from_unique_id as get_value_id_from_unique_id
 from homeassistant.components.group import expand_entity_ids as expand_entity_ids
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from typing import Any
+from zwave_js_server.model.endpoint import Endpoint as Endpoint
 
 _LOGGER: Any
 
@@ -25,3 +27,4 @@ class ZWaveServices:
     async def async_set_value(self, service: ServiceCall) -> None: ...
     async def async_multicast_set_value(self, service: ServiceCall) -> None: ...
     async def async_ping(self, service: ServiceCall) -> None: ...
+    async def async_invoke_cc_api(self, service: ServiceCall) -> None: ...

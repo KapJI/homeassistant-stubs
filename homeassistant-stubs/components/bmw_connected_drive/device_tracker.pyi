@@ -1,5 +1,6 @@
-from . import BMWConnectedDriveAccount as BMWConnectedDriveAccount, BMWConnectedDriveBaseEntity as BMWConnectedDriveBaseEntity
-from .const import ATTR_DIRECTION as ATTR_DIRECTION, CONF_ACCOUNT as CONF_ACCOUNT, DATA_ENTRIES as DATA_ENTRIES
+from . import BMWConnectedDriveBaseEntity as BMWConnectedDriveBaseEntity
+from .const import ATTR_DIRECTION as ATTR_DIRECTION, DOMAIN as DOMAIN
+from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from bimmer_connected.vehicle import ConnectedDriveVehicle as ConnectedDriveVehicle
 from homeassistant.components.device_tracker import SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
@@ -16,14 +17,13 @@ class BMWDeviceTracker(BMWConnectedDriveBaseEntity, TrackerEntity):
     _attr_force_update: bool
     _attr_icon: str
     _attr_unique_id: Any
-    _location: Any
     _attr_name: Any
-    def __init__(self, account: BMWConnectedDriveAccount, vehicle: ConnectedDriveVehicle) -> None: ...
+    def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: ConnectedDriveVehicle) -> None: ...
+    @property
+    def extra_state_attributes(self) -> dict: ...
     @property
     def latitude(self) -> Union[float, None]: ...
     @property
     def longitude(self) -> Union[float, None]: ...
     @property
     def source_type(self) -> Literal['gps']: ...
-    _attr_extra_state_attributes: Any
-    def update(self) -> None: ...

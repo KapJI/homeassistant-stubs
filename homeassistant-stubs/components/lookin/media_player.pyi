@@ -3,8 +3,7 @@ from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordina
 from .entity import LookinPowerPushRemoteEntity as LookinPowerPushRemoteEntity
 from .models import LookinData as LookinData
 from aiolookin import Remote as Remote
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity
-from homeassistant.components.media_player.const import SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_TURN_OFF as SUPPORT_TURN_OFF, SUPPORT_TURN_ON as SUPPORT_TURN_ON, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_STEP as SUPPORT_VOLUME_STEP
+from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform, STATE_ON as STATE_ON, STATE_STANDBY as STATE_STANDBY
 from homeassistant.core import HomeAssistant as HomeAssistant

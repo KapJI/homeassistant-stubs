@@ -20,7 +20,7 @@ class ToloNumberEntityDescription(NumberEntityDescription, ToloNumberEntityDescr
     entity_category: Any
     min_value: int
     step: int
-    def __init__(self, getter, setter, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step) -> None: ...
+    def __init__(self, getter, setter, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step) -> None: ...
 
 NUMBERS: Any
 

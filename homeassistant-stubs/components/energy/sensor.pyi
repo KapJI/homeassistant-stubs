@@ -4,7 +4,6 @@ from homeassistant.components.sensor import ATTR_LAST_RESET as ATTR_LAST_RESET, 
 from homeassistant.components.sensor.recorder import reset_detected as reset_detected
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, ENERGY_MEGA_WATT_HOUR as ENERGY_MEGA_WATT_HOUR, ENERGY_WATT_HOUR as ENERGY_WATT_HOUR, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -39,7 +38,7 @@ class SensorManager:
     def _process_sensor_data(self, adapter: SourceAdapter, config: dict, to_add: list[EnergyCostSensor], to_remove: dict[tuple[str, Union[str, None], str], EnergyCostSensor]) -> None: ...
 
 class EnergyCostSensor(SensorEntity):
-    _attr_entity_category: Any
+    _attr_entity_registry_visible_default: bool
     _wrong_state_class_reported: bool
     _wrong_unit_reported: bool
     _adapter: Any
@@ -61,3 +60,5 @@ class EnergyCostSensor(SensorEntity):
     def update_config(self, config: dict) -> None: ...
     @property
     def native_unit_of_measurement(self) -> Union[str, None]: ...
+    @property
+    def unique_id(self) -> Union[str, None]: ...

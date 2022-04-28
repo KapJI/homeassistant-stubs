@@ -1,4 +1,4 @@
-from .const import CONF_ALLOW_CLIP_SENSOR as CONF_ALLOW_CLIP_SENSOR, CONF_ALLOW_DECONZ_GROUPS as CONF_ALLOW_DECONZ_GROUPS, CONF_ALLOW_NEW_DEVICES as CONF_ALLOW_NEW_DEVICES, CONF_BRIDGE_ID as CONF_BRIDGE_ID, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HASSIO_CONFIGURATION_URL as HASSIO_CONFIGURATION_URL, LOGGER as LOGGER
+from .const import CONF_ALLOW_CLIP_SENSOR as CONF_ALLOW_CLIP_SENSOR, CONF_ALLOW_DECONZ_GROUPS as CONF_ALLOW_DECONZ_GROUPS, CONF_ALLOW_NEW_DEVICES as CONF_ALLOW_NEW_DEVICES, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HASSIO_CONFIGURATION_URL as HASSIO_CONFIGURATION_URL, LOGGER as LOGGER
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp
@@ -8,6 +8,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client
+from pydeconz.utils import DiscoveredBridge as DiscoveredBridge
 from typing import Any
 
 DECONZ_MANUFACTURERURL: str
@@ -19,11 +20,13 @@ def get_master_gateway(hass: HomeAssistant) -> DeconzGateway: ...
 class DeconzFlowHandler(ConfigFlow):
     VERSION: int
     _hassio_discovery: dict[str, Any]
+    bridges: list[DiscoveredBridge]
+    host: str
+    port: int
+    api_key: str
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
     bridge_id: str
-    bridges: Any
-    deconz_config: Any
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_manual_input(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

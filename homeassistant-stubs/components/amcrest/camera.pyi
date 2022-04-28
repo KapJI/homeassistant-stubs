@@ -3,7 +3,7 @@ from .const import CAMERAS as CAMERAS, CAMERA_WEB_SESSION_TIMEOUT as CAMERA_WEB_
 from .helpers import log_update_error as log_update_error, service_signal as service_signal
 from aiohttp import web as web
 from collections.abc import Callable as Callable
-from homeassistant.components.camera import Camera as Camera, SUPPORT_ON_OFF as SUPPORT_ON_OFF, SUPPORT_STREAM as SUPPORT_STREAM
+from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager, get_ffmpeg_manager as get_ffmpeg_manager
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_NAME as CONF_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -55,6 +55,7 @@ class CannotSnapshot(Exception): ...
 class AmcrestCommandFailed(Exception): ...
 
 class AmcrestCam(Camera):
+    _attr_supported_features: Any
     _name: Any
     _api: Any
     _ffmpeg: Any
@@ -87,8 +88,6 @@ class AmcrestCam(Camera):
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
     def available(self) -> bool: ...
-    @property
-    def supported_features(self) -> int: ...
     @property
     def is_recording(self) -> bool: ...
     @property

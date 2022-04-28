@@ -1,4 +1,4 @@
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
+from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_RESTORED as ATTR_RESTORED, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from typing import Any, Final
 

@@ -6,7 +6,7 @@ from typing import Any
 
 class OneWireEntityDescription(EntityDescription):
     read_mode: Union[str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, read_mode) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, read_mode) -> None: ...
 
 _LOGGER: Any
 

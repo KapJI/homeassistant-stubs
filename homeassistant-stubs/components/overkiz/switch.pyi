@@ -20,7 +20,7 @@ class OverkizSwitchDescription(SwitchEntityDescription, OverkizSwitchDescription
     is_on: Union[Callable[[Callable[[str], OverkizStateType]], bool], None]
     turn_on_args: Union[OverkizStateType, list[OverkizStateType], None]
     turn_off_args: Union[OverkizStateType, list[OverkizStateType], None]
-    def __init__(self, turn_on, turn_off, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, is_on, turn_on_args, turn_off_args) -> None: ...
+    def __init__(self, turn_on, turn_off, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, is_on, turn_on_args, turn_off_args) -> None: ...
 
 SWITCH_DESCRIPTIONS: list[OverkizSwitchDescription]
 SUPPORTED_DEVICES: Any

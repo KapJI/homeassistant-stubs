@@ -13,7 +13,8 @@ class OverkizNumberDescriptionMixin:
     def __init__(self, command) -> None: ...
 
 class OverkizNumberDescription(NumberEntityDescription, OverkizNumberDescriptionMixin):
-    def __init__(self, command, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step) -> None: ...
+    inverted: bool
+    def __init__(self, command, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step, inverted) -> None: ...
 
 NUMBER_DESCRIPTIONS: list[OverkizNumberDescription]
 SUPPORTED_STATES: Any

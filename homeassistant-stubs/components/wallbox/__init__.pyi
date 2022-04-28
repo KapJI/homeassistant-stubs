@@ -1,5 +1,5 @@
 from ...helpers.entity import DeviceInfo
-from .const import CONF_CURRENT_VERSION_KEY as CONF_CURRENT_VERSION_KEY, CONF_DATA_KEY as CONF_DATA_KEY, CONF_LOCKED_UNLOCKED_KEY as CONF_LOCKED_UNLOCKED_KEY, CONF_MAX_CHARGING_CURRENT_KEY as CONF_MAX_CHARGING_CURRENT_KEY, CONF_NAME_KEY as CONF_NAME_KEY, CONF_PART_NUMBER_KEY as CONF_PART_NUMBER_KEY, CONF_SERIAL_NUMBER_KEY as CONF_SERIAL_NUMBER_KEY, CONF_SOFTWARE_KEY as CONF_SOFTWARE_KEY, CONF_STATION as CONF_STATION, CONF_STATUS_DESCRIPTION_KEY as CONF_STATUS_DESCRIPTION_KEY, CONF_STATUS_ID_KEY as CONF_STATUS_ID_KEY, DOMAIN as DOMAIN
+from .const import CHARGER_CURRENT_VERSION_KEY as CHARGER_CURRENT_VERSION_KEY, CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_LOCKED_UNLOCKED_KEY as CHARGER_LOCKED_UNLOCKED_KEY, CHARGER_MAX_CHARGING_CURRENT_KEY as CHARGER_MAX_CHARGING_CURRENT_KEY, CHARGER_NAME_KEY as CHARGER_NAME_KEY, CHARGER_PART_NUMBER_KEY as CHARGER_PART_NUMBER_KEY, CHARGER_SERIAL_NUMBER_KEY as CHARGER_SERIAL_NUMBER_KEY, CHARGER_SOFTWARE_KEY as CHARGER_SOFTWARE_KEY, CHARGER_STATUS_DESCRIPTION_KEY as CHARGER_STATUS_DESCRIPTION_KEY, CHARGER_STATUS_ID_KEY as CHARGER_STATUS_ID_KEY, CONF_STATION as CONF_STATION, ChargerStatus as ChargerStatus, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,7 +11,7 @@ from wallbox import Wallbox
 _LOGGER: Any
 PLATFORMS: Any
 UPDATE_INTERVAL: int
-CHARGER_STATUS: dict[int, str]
+CHARGER_STATUS: dict[int, ChargerStatus]
 
 class WallboxCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     _station: Any
@@ -26,6 +26,8 @@ class WallboxCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def async_set_charging_current(self, charging_current: float) -> None: ...
     def _set_lock_unlock(self, lock: bool) -> None: ...
     async def async_set_lock_unlock(self, lock: bool) -> None: ...
+    def _pause_charger(self, pause: bool) -> None: ...
+    async def async_pause_charger(self, pause: bool) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

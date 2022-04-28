@@ -3,7 +3,7 @@ from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import FanValueMapping as FanValueMapping, FanValueMappingDataTemplate as FanValueMappingDataTemplate
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_value_of_zwave_value as get_value_of_zwave_value
-from homeassistant.components.fan import FanEntity as FanEntity, NotValidPresetModeError as NotValidPresetModeError, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_SET_SPEED as SUPPORT_SET_SPEED
+from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, NotValidPresetModeError as NotValidPresetModeError
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -20,6 +20,7 @@ ATTR_FAN_STATE: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveFan(ZWaveBaseEntity, FanEntity):
+    _attr_supported_features: Any
     _target_value: Any
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
@@ -33,8 +34,6 @@ class ZwaveFan(ZWaveBaseEntity, FanEntity):
     def percentage_step(self) -> float: ...
     @property
     def speed_count(self) -> int: ...
-    @property
-    def supported_features(self) -> int: ...
 
 class ValueMappingZwaveFan(ZwaveFan):
     data_template: Any

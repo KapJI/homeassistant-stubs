@@ -2,7 +2,7 @@ from .const import BPUP_SUBS as BPUP_SUBS, DOMAIN as DOMAIN, HUB as HUB, SERVICE
 from .entity import BondEntity as BondEntity
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from bond_api import BPUPSubscriptions as BPUPSubscriptions
-from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, SUPPORT_DIRECTION as SUPPORT_DIRECTION, SUPPORT_SET_SPEED as SUPPORT_SET_SPEED
+from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

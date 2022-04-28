@@ -10,6 +10,7 @@ from homeassistant.exceptions import ConditionError as ConditionError, Condition
 from homeassistant.helpers import condition as condition, extract_domain_configs as extract_domain_configs
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_MAX, CONF_MAX as CONF_MAX, CONF_MAX_EXCEEDED as CONF_MAX_EXCEEDED, Script as Script, script_stack_cv as script_stack_cv
 from homeassistant.helpers.script_variables import ScriptVariables as ScriptVariables

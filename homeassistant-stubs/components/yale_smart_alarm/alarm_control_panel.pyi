@@ -1,8 +1,7 @@
 from .const import COORDINATOR as COORDINATOR, DOMAIN as DOMAIN, STATE_MAP as STATE_MAP, YALE_ALL_ERRORS as YALE_ALL_ERRORS
 from .coordinator import YaleDataUpdateCoordinator as YaleDataUpdateCoordinator
 from .entity import YaleAlarmEntity as YaleAlarmEntity
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity
-from homeassistant.components.alarm_control_panel.const import SUPPORT_ALARM_ARM_AWAY as SUPPORT_ALARM_ARM_AWAY, SUPPORT_ALARM_ARM_HOME as SUPPORT_ALARM_ARM_HOME
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant

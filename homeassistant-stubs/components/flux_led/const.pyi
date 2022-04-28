@@ -1,4 +1,4 @@
-from homeassistant.components.light import COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_RGB as COLOR_MODE_RGB, COLOR_MODE_RGBW as COLOR_MODE_RGBW, COLOR_MODE_RGBWW as COLOR_MODE_RGBWW
+from homeassistant.components.light import ColorMode as ColorMode
 from typing import Any, Final
 
 DOMAIN: Final[str]

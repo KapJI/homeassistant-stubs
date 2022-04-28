@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, async_refresh_after as async_refresh_after
 from collections.abc import Sequence
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, COLOR_MODE_BRIGHTNESS as COLOR_MODE_BRIGHTNESS, COLOR_MODE_COLOR_TEMP as COLOR_MODE_COLOR_TEMP, COLOR_MODE_HS as COLOR_MODE_HS, COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, LightEntity as LightEntity, SUPPORT_EFFECT as SUPPORT_EFFECT, SUPPORT_TRANSITION as SUPPORT_TRANSITION
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
@@ -27,6 +27,7 @@ def _async_build_base_effect(brightness: int, duration: int, transition: int, se
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
+    _attr_supported_features: Any
     device: SmartBulb
     _attr_unique_id: Any
     def __init__(self, device: SmartBulb, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
@@ -47,11 +48,9 @@ class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
     @property
     def hs_color(self) -> Union[tuple[int, int], None]: ...
     @property
-    def supported_features(self) -> int: ...
+    def supported_color_modes(self) -> Union[set[Union[ColorMode, str]], None]: ...
     @property
-    def supported_color_modes(self) -> Union[set[str], None]: ...
-    @property
-    def color_mode(self) -> Union[str, None]: ...
+    def color_mode(self) -> ColorMode: ...
 
 class TPLinkSmartLightStrip(TPLinkSmartBulb):
     device: SmartLightStrip

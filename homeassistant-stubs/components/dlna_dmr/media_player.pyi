@@ -7,8 +7,8 @@ from collections.abc import Awaitable as Awaitable, Callable as Callable, Corout
 from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.components import media_source as media_source, ssdp as ssdp
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, async_process_play_media_url as async_process_play_media_url
-from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, REPEAT_MODE_ALL as REPEAT_MODE_ALL, REPEAT_MODE_OFF as REPEAT_MODE_OFF, REPEAT_MODE_ONE as REPEAT_MODE_ONE, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_REPEAT_SET as SUPPORT_REPEAT_SET, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SELECT_SOUND_MODE as SUPPORT_SELECT_SOUND_MODE, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, REPEAT_MODE_ALL as REPEAT_MODE_ALL, REPEAT_MODE_OFF as REPEAT_MODE_OFF, REPEAT_MODE_ONE as REPEAT_MODE_ONE
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry

@@ -71,6 +71,6 @@ class BrotherPrinterUptimeSensor(BrotherPrinterSensor):
 
 class BrotherSensorEntityDescription(SensorEntityDescription):
     entity_class: type[BrotherPrinterSensor]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, entity_class) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, entity_class) -> None: ...
 
 SENSOR_TYPES: tuple[BrotherSensorEntityDescription, ...]

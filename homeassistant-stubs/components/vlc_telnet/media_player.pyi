@@ -3,8 +3,8 @@ from aiovlc.client import Client as Client
 from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from datetime import datetime
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, async_process_play_media_url as async_process_play_media_url
-from homeassistant.components.media_player.const import MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_CLEAR_PLAYLIST as SUPPORT_CLEAR_PLAYLIST, SUPPORT_NEXT_TRACK as SUPPORT_NEXT_TRACK, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_PLAY as SUPPORT_PLAY, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK as SUPPORT_PREVIOUS_TRACK, SUPPORT_SEEK as SUPPORT_SEEK, SUPPORT_SHUFFLE_SET as SUPPORT_SHUFFLE_SET, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_MUTE as SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player.const import MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.const import CONF_NAME as CONF_NAME, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -16,7 +16,6 @@ from typing import Any, TypeVar
 from typing_extensions import Concatenate as Concatenate
 
 MAX_VOLUME: int
-SUPPORT_VLC: Any
 _T = TypeVar('_T', bound='VlcDevice')
 _P: Any
 
@@ -24,6 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 def catch_vlc_errors(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class VlcDevice(MediaPlayerEntity):
+    _attr_supported_features: Any
     _config_entry: Any
     _name: Any
     _volume: Any
@@ -52,8 +52,6 @@ class VlcDevice(MediaPlayerEntity):
     def volume_level(self) -> Union[float, None]: ...
     @property
     def is_volume_muted(self) -> Union[bool, None]: ...
-    @property
-    def supported_features(self) -> int: ...
     @property
     def media_content_type(self) -> str: ...
     @property

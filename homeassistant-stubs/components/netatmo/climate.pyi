@@ -3,7 +3,7 @@ from .const import ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATT
 from .data_handler import CLIMATE_STATE_CLASS_NAME as CLIMATE_STATE_CLASS_NAME, CLIMATE_TOPOLOGY_CLASS_NAME as CLIMATE_TOPOLOGY_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
-from homeassistant.components.climate.const import CURRENT_HVAC_HEAT as CURRENT_HVAC_HEAT, CURRENT_HVAC_IDLE as CURRENT_HVAC_IDLE, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, SUPPORT_PRESET_MODE as SUPPORT_PRESET_MODE, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE
+from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, STATE_OFF as STATE_OFF, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -18,8 +18,6 @@ _LOGGER: Any
 PRESET_FROST_GUARD: str
 PRESET_SCHEDULE: str
 PRESET_MANUAL: str
-SUPPORT_FLAGS: Any
-SUPPORT_HVAC: Any
 SUPPORT_PRESET: Any
 STATE_NETATMO_SCHEDULE: str
 STATE_NETATMO_HG: str
@@ -66,8 +64,8 @@ class NetatmoThermostat(NetatmoBase, ClimateEntity):
     _attr_target_temperature: Any
     def handle_event(self, event: dict) -> None: ...
     @property
-    def hvac_action(self) -> Union[str, None]: ...
-    async def async_set_hvac_mode(self, hvac_mode: str) -> None: ...
+    def hvac_action(self) -> HVACAction: ...
+    async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self) -> None: ...

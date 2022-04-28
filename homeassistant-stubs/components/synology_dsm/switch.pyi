@@ -1,6 +1,7 @@
-from . import SynoApi as SynoApi, SynologyDSMBaseEntity as SynologyDSMBaseEntity
-from .const import COORDINATOR_SWITCHES as COORDINATOR_SWITCHES, DOMAIN as DOMAIN, SURVEILLANCE_SWITCH as SURVEILLANCE_SWITCH, SYNO_API as SYNO_API, SynologyDSMSwitchEntityDescription as SynologyDSMSwitchEntityDescription
-from homeassistant.components.switch import SwitchEntity as SwitchEntity
+from . import SynoApi as SynoApi
+from .const import COORDINATOR_SWITCHES as COORDINATOR_SWITCHES, DOMAIN as DOMAIN, SYNO_API as SYNO_API
+from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
+from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
@@ -10,12 +11,18 @@ from typing import Any
 
 _LOGGER: Any
 
+class SynologyDSMSwitchEntityDescription(SwitchEntityDescription, SynologyDSMEntityDescription):
+    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+
+SURVEILLANCE_SWITCH: tuple[SynologyDSMSwitchEntityDescription, ...]
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SynoDSMSurveillanceHomeModeToggle(SynologyDSMBaseEntity, SwitchEntity):
     coordinator: DataUpdateCoordinator[dict[str, dict[str, bool]]]
     entity_description: SynologyDSMSwitchEntityDescription
     _version: Any
+    _attr_name: Any
     def __init__(self, api: SynoApi, version: str, coordinator: DataUpdateCoordinator[dict[str, dict[str, bool]]], description: SynologyDSMSwitchEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

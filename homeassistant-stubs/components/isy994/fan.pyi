@@ -1,7 +1,7 @@
 from .const import ISY994_NODES as ISY994_NODES, ISY994_PROGRAMS as ISY994_PROGRAMS, _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
 from .helpers import migrate_old_unique_ids as migrate_old_unique_ids
-from homeassistant.components.fan import FanEntity as FanEntity, SUPPORT_SET_SPEED as SUPPORT_SET_SPEED
+from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -13,6 +13,7 @@ SPEED_RANGE: Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ISYFanEntity(ISYNodeEntity, FanEntity):
+    _attr_supported_features: Any
     @property
     def percentage(self) -> Union[int, None]: ...
     @property
@@ -22,8 +23,6 @@ class ISYFanEntity(ISYNodeEntity, FanEntity):
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_turn_on(self, percentage: Union[int, None] = ..., preset_mode: Union[str, None] = ..., **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    @property
-    def supported_features(self) -> int: ...
 
 class ISYFanProgramEntity(ISYProgramEntity, FanEntity):
     @property

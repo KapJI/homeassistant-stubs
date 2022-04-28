@@ -6,6 +6,7 @@ from homeassistant.components.media_source.error import Unresolvable as Unresolv
 from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.network import get_url as get_url
 from typing import Any
 
 async def async_get_media_source(hass: HomeAssistant) -> TTSMediaSource: ...

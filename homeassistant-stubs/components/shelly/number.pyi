@@ -14,7 +14,7 @@ class BlockNumberDescription(BlockEntityDescription, NumberEntityDescription):
     mode: NumberMode
     rest_path: str
     rest_arg: str
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes, mode, rest_path, rest_arg) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes, mode, rest_path, rest_arg) -> None: ...
 
 NUMBERS: Final[Any]
 

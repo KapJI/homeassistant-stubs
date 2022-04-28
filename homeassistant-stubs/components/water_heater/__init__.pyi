@@ -1,3 +1,4 @@
+from enum import IntEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -21,6 +22,12 @@ STATE_PERFORMANCE: str
 STATE_HIGH_DEMAND: str
 STATE_HEAT_PUMP: str
 STATE_GAS: str
+
+class WaterHeaterEntityFeature(IntEnum):
+    TARGET_TEMPERATURE: int
+    OPERATION_MODE: int
+    AWAY_MODE: int
+
 SUPPORT_TARGET_TEMPERATURE: int
 SUPPORT_OPERATION_MODE: int
 SUPPORT_AWAY_MODE: int
@@ -44,7 +51,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class WaterHeaterEntityEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class WaterHeaterEntity(Entity):
     entity_description: WaterHeaterEntityEntityDescription

@@ -10,7 +10,7 @@ from .components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from .const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from .core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
-from .helpers import device_registry as device_registry, entity_registry as entity_registry
+from .helpers import device_registry as device_registry, entity_registry as entity_registry, storage as storage
 from .helpers.event import async_call_later as async_call_later
 from .helpers.frame import report as report
 from .helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType

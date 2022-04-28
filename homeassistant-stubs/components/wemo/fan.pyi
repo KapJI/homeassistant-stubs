@@ -1,7 +1,7 @@
 from .const import SERVICE_RESET_FILTER_LIFE as SERVICE_RESET_FILTER_LIFE, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity
 from .wemo_device import DeviceCoordinator as DeviceCoordinator
-from homeassistant.components.fan import FanEntity as FanEntity, SUPPORT_SET_SPEED as SUPPORT_SET_SPEED
+from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
@@ -20,12 +20,12 @@ ATTR_FILTER_LIFE: str
 ATTR_FILTER_EXPIRED: str
 ATTR_WATER_LEVEL: str
 SPEED_RANGE: Any
-SUPPORTED_FEATURES = SUPPORT_SET_SPEED
 SET_HUMIDITY_SCHEMA: Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WemoHumidifier(WemoBinaryStateEntity, FanEntity):
+    _attr_supported_features: Any
     wemo: Humidifier
     _last_fan_on_mode: Any
     def __init__(self, coordinator: DeviceCoordinator) -> None: ...
@@ -37,8 +37,6 @@ class WemoHumidifier(WemoBinaryStateEntity, FanEntity):
     def percentage(self) -> int: ...
     @property
     def speed_count(self) -> int: ...
-    @property
-    def supported_features(self) -> int: ...
     def _handle_coordinator_update(self) -> None: ...
     def turn_on(self, percentage: Union[int, None] = ..., preset_mode: Union[str, None] = ..., **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...

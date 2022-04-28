@@ -15,7 +15,7 @@ _LOGGER: Any
 _KEY_DOOR: str
 
 class ProtectBinaryEntityDescription(ProtectRequiredKeysMixin, BinarySensorEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled) -> None: ...
 
 MOUNT_DEVICE_CLASS_MAP: Any
 CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...]

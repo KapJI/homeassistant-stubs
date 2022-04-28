@@ -1,6 +1,6 @@
 from .const import ACTION as ACTION, ALERTS as ALERTS, ERRORS as ERRORS, MODE as MODE, NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEATO_MAP_DATA as NEATO_MAP_DATA, NEATO_PERSISTENT_MAPS as NEATO_PERSISTENT_MAPS, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
 from .hub import NeatoHub as NeatoHub
-from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING, SUPPORT_BATTERY as SUPPORT_BATTERY, SUPPORT_CLEAN_SPOT as SUPPORT_CLEAN_SPOT, SUPPORT_LOCATE as SUPPORT_LOCATE, SUPPORT_MAP as SUPPORT_MAP, SUPPORT_PAUSE as SUPPORT_PAUSE, SUPPORT_RETURN_HOME as SUPPORT_RETURN_HOME, SUPPORT_START as SUPPORT_START, SUPPORT_STATE as SUPPORT_STATE, SUPPORT_STOP as SUPPORT_STOP, StateVacuumEntity as StateVacuumEntity
+from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -12,7 +12,6 @@ from typing import Any
 
 _LOGGER: Any
 SCAN_INTERVAL: Any
-SUPPORT_NEATO: Any
 ATTR_CLEAN_START: str
 ATTR_CLEAN_STOP: str
 ATTR_CLEAN_AREA: str
@@ -30,6 +29,7 @@ ATTR_ZONE: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NeatoConnectedVacuum(StateVacuumEntity):
+    _attr_supported_features: Any
     robot: Any
     _available: Any
     _mapdata: Any

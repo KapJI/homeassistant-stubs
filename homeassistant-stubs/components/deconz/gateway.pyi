@@ -8,10 +8,10 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from pydeconz import DeconzSession
-from pydeconz.alarm_system import AlarmSystem as DeconzAlarmSystem
-from pydeconz.group import Group as DeconzGroup
-from pydeconz.light import DeconzLight as DeconzLight
-from pydeconz.sensor import DeconzSensor as DeconzSensor
+from pydeconz.models.alarm_system import AlarmSystem as DeconzAlarmSystem
+from pydeconz.models.group import Group as DeconzGroup
+from pydeconz.models.light import LightBase as DeconzLight
+from pydeconz.models.sensor import SensorBase as DeconzSensor
 from types import MappingProxyType
 from typing import Any
 
@@ -22,14 +22,14 @@ class DeconzGateway:
     available: bool
     ignore_state_updates: bool
     signal_reachable: Any
-    signal_new_group: Any
+    signal_reload_groups: Any
     signal_new_light: Any
-    signal_new_scene: Any
     signal_new_sensor: Any
     deconz_resource_type_to_signal_new_device: Any
     deconz_ids: Any
     entities: Any
     events: Any
+    _option_allow_deconz_groups: Any
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: DeconzSession) -> None: ...
     @property
     def bridgeid(self) -> str: ...

@@ -1,4 +1,6 @@
 from collections.abc import Iterable
+from enum import IntEnum
+from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -14,6 +16,12 @@ DOMAIN: str
 SCAN_INTERVAL: Any
 DATA_PROFILES: str
 ENTITY_ID_FORMAT: Any
+
+class LightEntityFeature(IntEnum):
+    EFFECT: int
+    FLASH: int
+    TRANSITION: int
+
 SUPPORT_BRIGHTNESS: int
 SUPPORT_COLOR_TEMP: int
 SUPPORT_EFFECT: int
@@ -23,6 +31,19 @@ SUPPORT_TRANSITION: int
 SUPPORT_WHITE_VALUE: int
 ATTR_COLOR_MODE: str
 ATTR_SUPPORTED_COLOR_MODES: str
+
+class ColorMode(StrEnum):
+    UNKNOWN: str
+    ONOFF: str
+    BRIGHTNESS: str
+    COLOR_TEMP: str
+    HS: str
+    XY: str
+    RGB: str
+    RGBW: str
+    RGBWW: str
+    WHITE: str
+
 COLOR_MODE_UNKNOWN: str
 COLOR_MODE_ONOFF: str
 COLOR_MODE_BRIGHTNESS: str
@@ -37,10 +58,10 @@ VALID_COLOR_MODES: Any
 COLOR_MODES_BRIGHTNESS: Any
 COLOR_MODES_COLOR: Any
 
-def valid_supported_color_modes(color_modes: Iterable[str]) -> set[str]: ...
-def brightness_supported(color_modes: Union[Iterable[str], None]) -> bool: ...
-def color_supported(color_modes: Union[Iterable[str], None]) -> bool: ...
-def color_temp_supported(color_modes: Union[Iterable[str], None]) -> bool: ...
+def valid_supported_color_modes(color_modes: Iterable[Union[ColorMode, str]]) -> set[Union[ColorMode, str]]: ...
+def brightness_supported(color_modes: Union[Iterable[Union[ColorMode, str]], None]) -> bool: ...
+def color_supported(color_modes: Union[Iterable[Union[ColorMode, str]], None]) -> bool: ...
+def color_temp_supported(color_modes: Union[Iterable[Union[ColorMode, str]], None]) -> bool: ...
 def get_supported_color_modes(hass: HomeAssistant, entity_id: str) -> Union[set, None]: ...
 
 ATTR_TRANSITION: str
@@ -113,12 +134,12 @@ class Profiles:
     def apply_profile(self, name: str, params: dict) -> None: ...
 
 class LightEntityDescription(ToggleEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class LightEntity(ToggleEntity):
     entity_description: LightEntityDescription
     _attr_brightness: Union[int, None]
-    _attr_color_mode: Union[str, None]
+    _attr_color_mode: Union[ColorMode, str, None]
     _attr_color_temp: Union[int, None]
     _attr_effect_list: Union[list[str], None]
     _attr_effect: Union[str, None]
@@ -128,13 +149,13 @@ class LightEntity(ToggleEntity):
     _attr_rgb_color: Union[tuple[int, int, int], None]
     _attr_rgbw_color: Union[tuple[int, int, int, int], None]
     _attr_rgbww_color: Union[tuple[int, int, int, int, int], None]
-    _attr_supported_color_modes: Union[set[str], None]
+    _attr_supported_color_modes: Union[set[ColorMode], set[str], None]
     _attr_supported_features: int
     _attr_xy_color: Union[tuple[float, float], None]
     @property
     def brightness(self) -> Union[int, None]: ...
     @property
-    def color_mode(self) -> Union[str, None]: ...
+    def color_mode(self) -> Union[ColorMode, str, None]: ...
     @property
     def _light_internal_color_mode(self) -> str: ...
     @property
@@ -163,13 +184,13 @@ class LightEntity(ToggleEntity):
     def effect(self) -> Union[str, None]: ...
     @property
     def capability_attributes(self): ...
-    def _light_internal_convert_color(self, color_mode: str) -> dict: ...
+    def _light_internal_convert_color(self, color_mode: Union[ColorMode, str]) -> dict: ...
     @property
     def state_attributes(self): ...
     @property
-    def _light_internal_supported_color_modes(self) -> set: ...
+    def _light_internal_supported_color_modes(self) -> Union[set[ColorMode], set[str]]: ...
     @property
-    def supported_color_modes(self) -> Union[set[str], None]: ...
+    def supported_color_modes(self) -> Union[set[ColorMode], set[str], None]: ...
     @property
     def supported_features(self) -> int: ...
 

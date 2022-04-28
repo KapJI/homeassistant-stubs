@@ -3,7 +3,7 @@ from .const import ATTR_POWER_STATE as ATTR_POWER_STATE, BPUP_SUBS as BPUP_SUBS,
 from .entity import BondEntity as BondEntity
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from bond_api import BPUPSubscriptions as BPUPSubscriptions
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, LightEntity as LightEntity, SUPPORT_BRIGHTNESS as SUPPORT_BRIGHTNESS
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -21,12 +21,14 @@ ENTITY_SERVICES: Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BondBaseLight(BondEntity, LightEntity, metaclass=abc.ABCMeta):
-    _attr_supported_features: int
+    _attr_color_mode: Any
+    _attr_supported_color_modes: Any
     async def async_set_brightness_belief(self, brightness: int) -> None: ...
     async def async_set_power_belief(self, power_state: bool) -> None: ...
 
 class BondLight(BondBaseLight, BondEntity, LightEntity):
-    _attr_supported_features: Any
+    _attr_color_mode: Any
+    _attr_supported_color_modes: Any
     def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions, sub_device: Union[str, None] = ...) -> None: ...
     _attr_is_on: Any
     _attr_brightness: Any
@@ -51,7 +53,8 @@ class BondUpLight(BondBaseLight, BondEntity, LightEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class BondFireplace(BondEntity, LightEntity):
-    _attr_supported_features: Any
+    _attr_color_mode: Any
+    _attr_supported_color_modes: Any
     _attr_is_on: Any
     _attr_brightness: Any
     _attr_icon: Any

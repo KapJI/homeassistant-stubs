@@ -1,4 +1,4 @@
-from homeassistant.components.light import COLOR_MODE_ONOFF as COLOR_MODE_ONOFF, LightEntity as LightEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

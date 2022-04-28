@@ -1,5 +1,5 @@
 from enum import Enum
-from homeassistant.components.climate.const import CURRENT_HVAC_COOL as CURRENT_HVAC_COOL, CURRENT_HVAC_DRY as CURRENT_HVAC_DRY, CURRENT_HVAC_FAN as CURRENT_HVAC_FAN, CURRENT_HVAC_HEAT as CURRENT_HVAC_HEAT, CURRENT_HVAC_OFF as CURRENT_HVAC_OFF, HVAC_MODE_AUTO as HVAC_MODE_AUTO, HVAC_MODE_COOL as HVAC_MODE_COOL, HVAC_MODE_DRY as HVAC_MODE_DRY, HVAC_MODE_FAN_ONLY as HVAC_MODE_FAN_ONLY, HVAC_MODE_HEAT as HVAC_MODE_HEAT, HVAC_MODE_OFF as HVAC_MODE_OFF, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
+from homeassistant.components.climate.const import HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
 from homeassistant.const import Platform as Platform
 from typing import Any, Final, TypedDict
 
@@ -34,7 +34,6 @@ CONF_RESET_AFTER: Final[str]
 CONF_RESPOND_TO_READ: Final[str]
 CONF_STATE_ADDRESS: Final[str]
 CONF_SYNC_STATE: Final[str]
-CONF_KNX_INITIAL_CONNECTION_TYPES: Final[Any]
 DATA_KNX_CONFIG: Final[str]
 DATA_HASS_CONFIG: Final[str]
 ATTR_COUNTER: Final[str]
@@ -43,7 +42,7 @@ ATTR_SOURCE: Final[str]
 class KNXConfigEntryData(TypedDict):
     connection_type: str
     individual_address: str
-    local_ip: str
+    local_ip: Union[str, None]
     multicast_group: str
     multicast_port: int
     route_back: bool

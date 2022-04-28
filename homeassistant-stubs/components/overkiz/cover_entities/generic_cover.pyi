@@ -1,6 +1,6 @@
 from ..entity import OverkizEntity as OverkizEntity
 from collections.abc import Mapping
-from homeassistant.components.cover import ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, SUPPORT_CLOSE_TILT as SUPPORT_CLOSE_TILT, SUPPORT_OPEN_TILT as SUPPORT_OPEN_TILT, SUPPORT_SET_TILT_POSITION as SUPPORT_SET_TILT_POSITION, SUPPORT_STOP_TILT as SUPPORT_STOP_TILT
+from homeassistant.components.cover import ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from pyoverkiz.enums import OverkizCommand
 from typing import Any
 

@@ -1,5 +1,5 @@
 from .base_class import TradfriBaseEntity as TradfriBaseEntity
-from .const import ATTR_FILTER_LIFE_REMAINING as ATTR_FILTER_LIFE_REMAINING, CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, KEY_API as KEY_API
+from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, KEY_API as KEY_API, LOGGER as LOGGER
 from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -12,14 +12,12 @@ from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
 from typing import Any
 
-_LOGGER: Any
-
 class TradfriSensorEntityDescriptionMixin:
     value: Callable[[Device], Union[Any, None]]
     def __init__(self, value) -> None: ...
 
 class TradfriSensorEntityDescription(SensorEntityDescription, TradfriSensorEntityDescriptionMixin):
-    def __init__(self, value, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, value, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 def _get_air_quality(device: Device) -> Union[int, None]: ...
 def _get_filter_time_left(device: Device) -> int: ...

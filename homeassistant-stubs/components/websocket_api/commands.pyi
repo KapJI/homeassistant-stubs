@@ -3,7 +3,7 @@ from .connection import ActiveConnection as ActiveConnection
 from .const import ERR_NOT_FOUND as ERR_NOT_FOUND
 from collections.abc import Callable as Callable
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_READ as POLICY_READ
-from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATONS as SIGNAL_BOOTSTRAP_INTEGRATONS
+from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATONS as SIGNAL_BOOTSTRAP_INTEGRATONS
 from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError, Unauthorized as Unauthorized
 from homeassistant.helpers import entity as entity, template as template

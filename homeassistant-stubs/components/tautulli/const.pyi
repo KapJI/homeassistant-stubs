@@ -1,4 +1,10 @@
 from logging import Logger
 
+CONF_MONITORED_USERS: str
+DEFAULT_NAME: str
+DEFAULT_PATH: str
+DEFAULT_PORT: str
+DEFAULT_SSL: bool
+DEFAULT_VERIFY_SSL: bool
 DOMAIN: str
 LOGGER: Logger

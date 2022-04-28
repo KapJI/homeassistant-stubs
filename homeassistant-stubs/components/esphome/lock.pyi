@@ -1,6 +1,6 @@
 from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from aioesphomeapi import LockEntityState, LockInfo
-from homeassistant.components.lock import LockEntity as LockEntity, SUPPORT_OPEN as SUPPORT_OPEN
+from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE
 from homeassistant.core import HomeAssistant as HomeAssistant

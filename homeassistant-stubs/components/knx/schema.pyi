@@ -2,24 +2,31 @@ import voluptuous as vol
 from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD as CONF_PAYLOAD, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, ColorTempModes as ColorTempModes, KNX_ADDRESS as KNX_ADDRESS, PRESET_MODES as PRESET_MODES
 from abc import ABC
 from collections import OrderedDict
-from homeassistant.components.climate.const import HVAC_MODES as HVAC_MODES, HVAC_MODE_HEAT as HVAC_MODE_HEAT
+from collections.abc import Callable as Callable
+from homeassistant.components.climate.const import HVACMode as HVACMode
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, Platform as Platform
-from homeassistant.helpers.entity import validate_entity_category as validate_entity_category
+from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
 from typing import Any, ClassVar, Final
+from xknx.dpt import DPTBase
+
+def dpt_subclass_validator(dpt_base_class: type[DPTBase]) -> Callable[[Any], Union[str, int]]: ...
+
+numeric_type_validator: Any
+sensor_type_validator: Any
+string_type_validator: Any
 
 def ga_validator(value: Any) -> Union[str, int]: ...
 
 ga_list_validator: Any
 ia_validator: Any
 
+def ip_v4_validator(value: Any, multicast: Union[bool, None] = ...) -> str: ...
 def number_limit_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
-def numeric_type_validator(value: Any) -> Union[str, int]: ...
 def _max_payload_value(payload_length: int) -> int: ...
 def button_payload_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
 def select_options_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
-def sensor_type_validator(value: Any) -> Union[str, int]: ...
 
 sync_state_validator: Any
 

@@ -5,7 +5,7 @@ from .template import RenderInfo as RenderInfo, Template as Template, result_as_
 from .typing import TemplateVarsType as TemplateVarsType
 from collections.abc import Awaitable, Callable, Iterable, Sequence
 from datetime import datetime, timedelta
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NOW as ATTR_NOW, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_TIME_CHANGED as EVENT_TIME_CHANGED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
@@ -163,7 +163,7 @@ def async_track_time_change(hass: HomeAssistant, action: Callable[[datetime], Un
 
 track_time_change: Any
 
-def process_state_match(parameter: Union[None, str, Iterable[str]]) -> Callable[[Union[str, None]], bool]: ...
+def process_state_match(parameter: Union[None, str, Iterable[str]], invert: bool = ...) -> Callable[[Union[str, None]], bool]: ...
 def _entities_domains_from_render_infos(render_infos: Iterable[RenderInfo]) -> tuple[set[str], set[str]]: ...
 def _render_infos_needs_all_listener(render_infos: Iterable[RenderInfo]) -> bool: ...
 def _render_infos_to_track_states(render_infos: Iterable[RenderInfo]) -> TrackStates: ...

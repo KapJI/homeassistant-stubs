@@ -1,3 +1,4 @@
+from enum import IntEnum
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION, SERVICE_STOP_COVER as SERVICE_STOP_COVER, SERVICE_STOP_COVER_TILT as SERVICE_STOP_COVER_TILT, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TOGGLE_COVER_TILT as SERVICE_TOGGLE_COVER_TILT, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
@@ -38,6 +39,17 @@ DEVICE_CLASS_GATE: Any
 DEVICE_CLASS_SHADE: Any
 DEVICE_CLASS_SHUTTER: Any
 DEVICE_CLASS_WINDOW: Any
+
+class CoverEntityFeature(IntEnum):
+    OPEN: int
+    CLOSE: int
+    SET_POSITION: int
+    STOP: int
+    OPEN_TILT: int
+    CLOSE_TILT: int
+    STOP_TILT: int
+    SET_TILT_POSITION: int
+
 SUPPORT_OPEN: int
 SUPPORT_CLOSE: int
 SUPPORT_SET_POSITION: int
@@ -58,7 +70,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class CoverEntityDescription(EntityDescription):
     device_class: Union[CoverDeviceClass, str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class CoverEntity(Entity):
     entity_description: CoverEntityDescription

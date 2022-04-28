@@ -1,7 +1,8 @@
-from . import BMWConnectedDriveAccount as BMWConnectedDriveAccount
-from .const import CONF_ACCOUNT as CONF_ACCOUNT, DATA_ENTRIES as DATA_ENTRIES
+from .const import DOMAIN as DOMAIN
+from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
+from bimmer_connected.vehicle import ConnectedDriveVehicle
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LOCATION as ATTR_LOCATION, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME
+from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LOCATION as ATTR_LOCATION, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
@@ -17,6 +18,5 @@ def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[D
 
 class BMWNotificationService(BaseNotificationService):
     targets: Any
-    def __init__(self) -> None: ...
-    def setup(self, accounts: list[BMWConnectedDriveAccount]) -> None: ...
+    def __init__(self, targets: dict[str, ConnectedDriveVehicle]) -> None: ...
     def send_message(self, message: str = ..., **kwargs: Any) -> None: ...

@@ -13,8 +13,8 @@ from typing import Any
 
 _LOGGER: Any
 
-class ProtectSwitchEntityDescription(ProtectSetableKeysMixin, SwitchEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_set_method, ufp_set_method_fn) -> None: ...
+class ProtectSwitchEntityDescription(ProtectSetableKeysMixin[T], SwitchEntityDescription):
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_set_method, ufp_set_method_fn) -> None: ...
 
 _KEY_PRIVACY_MODE: str
 

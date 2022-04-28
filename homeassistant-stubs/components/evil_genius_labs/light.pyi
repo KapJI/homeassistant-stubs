@@ -2,6 +2,7 @@ from . import EvilGeniusEntity as EvilGeniusEntity, EvilGeniusUpdateCoordinator 
 from .const import DOMAIN as DOMAIN
 from .util import update_when_done as update_when_done
 from homeassistant.components import light as light
+from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +13,7 @@ FIB_NO_EFFECT: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class EvilGeniusLight(EvilGeniusEntity, light.LightEntity):
+class EvilGeniusLight(EvilGeniusEntity, LightEntity):
     _attr_supported_features: Any
     _attr_supported_color_modes: Any
     _attr_color_mode: Any

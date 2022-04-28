@@ -1,4 +1,4 @@
-from .const import SUPPORT_ALARM_ARM_AWAY as SUPPORT_ALARM_ARM_AWAY, SUPPORT_ALARM_ARM_CUSTOM_BYPASS as SUPPORT_ALARM_ARM_CUSTOM_BYPASS, SUPPORT_ALARM_ARM_HOME as SUPPORT_ALARM_ARM_HOME, SUPPORT_ALARM_ARM_NIGHT as SUPPORT_ALARM_ARM_NIGHT, SUPPORT_ALARM_ARM_VACATION as SUPPORT_ALARM_ARM_VACATION, SUPPORT_ALARM_TRIGGER as SUPPORT_ALARM_TRIGGER
+from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, CodeFormat as CodeFormat, DOMAIN as DOMAIN, FORMAT_NUMBER as FORMAT_NUMBER, FORMAT_TEXT as FORMAT_TEXT, SUPPORT_ALARM_ARM_AWAY as SUPPORT_ALARM_ARM_AWAY, SUPPORT_ALARM_ARM_CUSTOM_BYPASS as SUPPORT_ALARM_ARM_CUSTOM_BYPASS, SUPPORT_ALARM_ARM_HOME as SUPPORT_ALARM_ARM_HOME, SUPPORT_ALARM_ARM_NIGHT as SUPPORT_ALARM_ARM_NIGHT, SUPPORT_ALARM_ARM_VACATION as SUPPORT_ALARM_ARM_VACATION, SUPPORT_ALARM_TRIGGER as SUPPORT_ALARM_TRIGGER
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_ALARM_ARM_AWAY as SERVICE_ALARM_ARM_AWAY, SERVICE_ALARM_ARM_CUSTOM_BYPASS as SERVICE_ALARM_ARM_CUSTOM_BYPASS, SERVICE_ALARM_ARM_HOME as SERVICE_ALARM_ARM_HOME, SERVICE_ALARM_ARM_NIGHT as SERVICE_ALARM_ARM_NIGHT, SERVICE_ALARM_ARM_VACATION as SERVICE_ALARM_ARM_VACATION, SERVICE_ALARM_DISARM as SERVICE_ALARM_DISARM, SERVICE_ALARM_TRIGGER as SERVICE_ALARM_TRIGGER
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -9,12 +9,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final
 
 _LOGGER: Final[Any]
-DOMAIN: Final[str]
 SCAN_INTERVAL: Final[Any]
-ATTR_CHANGED_BY: Final[str]
-FORMAT_TEXT: Final[str]
-FORMAT_NUMBER: Final[str]
-ATTR_CODE_ARM_REQUIRED: Final[str]
 ENTITY_ID_FORMAT: Final[Any]
 ALARM_SERVICE_SCHEMA: Final[Any]
 PLATFORM_SCHEMA: Final[Any]
@@ -25,16 +20,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class AlarmControlPanelEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 class AlarmControlPanelEntity(Entity):
     entity_description: AlarmControlPanelEntityDescription
     _attr_changed_by: Union[str, None]
     _attr_code_arm_required: bool
-    _attr_code_format: Union[str, None]
+    _attr_code_format: Union[CodeFormat, None]
     _attr_supported_features: int
     @property
-    def code_format(self) -> Union[str, None]: ...
+    def code_format(self) -> Union[CodeFormat, None]: ...
     @property
     def changed_by(self) -> Union[str, None]: ...
     @property

@@ -2,9 +2,9 @@ from .const import DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityDescription as MediaPlayerEntityDescription
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityDescription as MediaPlayerEntityDescription, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.components.media_player.browse_media import async_process_play_media_url as async_process_play_media_url
-from homeassistant.components.media_player.const import MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SUPPORT_BROWSE_MEDIA as SUPPORT_BROWSE_MEDIA, SUPPORT_PLAY_MEDIA as SUPPORT_PLAY_MEDIA, SUPPORT_STOP as SUPPORT_STOP, SUPPORT_VOLUME_SET as SUPPORT_VOLUME_SET, SUPPORT_VOLUME_STEP as SUPPORT_VOLUME_STEP
+from homeassistant.components.media_player.const import MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_IDLE as STATE_IDLE, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -20,8 +20,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ProtectMediaPlayer(ProtectDeviceEntity, MediaPlayerEntity):
     device: Camera
     entity_description: MediaPlayerEntityDescription
-    _attr_name: Any
     _attr_supported_features: Any
+    _attr_name: Any
     _attr_media_content_type: Any
     def __init__(self, data: ProtectData, camera: Camera) -> None: ...
     _attr_volume_level: Any

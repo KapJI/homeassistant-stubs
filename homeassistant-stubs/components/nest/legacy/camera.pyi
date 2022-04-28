@@ -1,5 +1,5 @@
 from .const import DATA_NEST as DATA_NEST, DOMAIN as DOMAIN
-from homeassistant.components.camera import Camera as Camera, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SUPPORT_ON_OFF as SUPPORT_ON_OFF
+from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
@@ -11,6 +11,7 @@ def setup_platform(hass, config, add_entities, discovery_info: Any | None = ...)
 async def async_setup_legacy_entry(hass, entry, async_add_entities) -> None: ...
 
 class NestCamera(Camera):
+    _attr_supported_features: Any
     structure: Any
     device: Any
     _location: Any
@@ -34,8 +35,6 @@ class NestCamera(Camera):
     def is_recording(self): ...
     @property
     def brand(self): ...
-    @property
-    def supported_features(self): ...
     @property
     def is_on(self): ...
     def turn_off(self) -> None: ...

@@ -2,7 +2,7 @@ from .const import CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, ISY994_
 from .entity import ISYNodeEntity as ISYNodeEntity
 from .helpers import migrate_old_unique_ids as migrate_old_unique_ids
 from .services import async_setup_light_services as async_setup_light_services
-from homeassistant.components.light import LightEntity as LightEntity, SUPPORT_BRIGHTNESS as SUPPORT_BRIGHTNESS
+from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -16,6 +16,8 @@ ATTR_LAST_BRIGHTNESS: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ISYLightEntity(ISYNodeEntity, LightEntity, RestoreEntity):
+    _attr_color_mode: Any
+    _attr_supported_color_modes: Any
     _last_brightness: Any
     _restore_light_state: Any
     def __init__(self, node: Node, restore_light_state: bool) -> None: ...
@@ -28,8 +30,6 @@ class ISYLightEntity(ISYNodeEntity, LightEntity, RestoreEntity):
     async def async_turn_on(self, brightness: Union[int, None] = ..., **kwargs: Any) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
-    @property
-    def supported_features(self) -> int: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_set_on_level(self, value: int) -> None: ...
     async def async_set_ramp_rate(self, value: int) -> None: ...

@@ -13,7 +13,7 @@ from typing import Any
 class AmcrestSensorEntityDescription(BinarySensorEntityDescription):
     event_code: Union[str, None]
     should_poll: bool
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, force_update, icon, name, unit_of_measurement, event_code, should_poll) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, event_code, should_poll) -> None: ...
 
 _LOGGER: Any
 SCAN_INTERVAL: Any

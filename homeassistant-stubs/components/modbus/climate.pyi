@@ -4,7 +4,7 @@ from .const import CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CAL
 from .modbus import ModbusHub as ModbusHub
 from datetime import datetime
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
-from homeassistant.components.climate.const import HVAC_MODE_AUTO as HVAC_MODE_AUTO, SUPPORT_TARGET_TEMPERATURE as SUPPORT_TARGET_TEMPERATURE
+from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -17,11 +17,11 @@ PARALLEL_UPDATES: int
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class ModbusThermostat(BaseStructPlatform, RestoreEntity, ClimateEntity):
-    _target_temperature_register: Any
-    _unit: Any
-    _attr_supported_features: Any
     _attr_hvac_mode: Any
     _attr_hvac_modes: Any
+    _attr_supported_features: Any
+    _target_temperature_register: Any
+    _unit: Any
     _attr_current_temperature: Any
     _attr_target_temperature: Any
     _attr_temperature_unit: Any
@@ -31,7 +31,7 @@ class ModbusThermostat(BaseStructPlatform, RestoreEntity, ClimateEntity):
     _attr_target_temperature_step: Any
     def __init__(self, hub: ModbusHub, config: dict[str, Any]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    async def async_set_hvac_mode(self, hvac_mode: str) -> None: ...
+    async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_available: Any
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     _call_active: bool

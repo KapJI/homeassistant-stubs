@@ -22,10 +22,14 @@ PRESET_INV_MODE_MAP: Any
 FAN_MODE_MAP: Any
 FAN_INV_MODE_MAP: Any
 MAX_FAN_DURATION: int
+MIN_TEMP: int
+MAX_TEMP: int
 
 async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ThermostatEntity(ClimateEntity):
+    _attr_min_temp: Any
+    _attr_max_temp: Any
     _device: Any
     _device_info: Any
     _supported_features: int

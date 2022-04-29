@@ -1,17 +1,17 @@
 from .const import RECORDER_CONTAINER_FORMAT as RECORDER_CONTAINER_FORMAT, RECORDER_PROVIDER as RECORDER_PROVIDER, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT
 from .core import IdleTimer as IdleTimer, PROVIDERS as PROVIDERS, Segment as Segment, StreamOutput as StreamOutput
+from _typeshed import Incomplete
 from av.container import OutputContainer as OutputContainer
 from collections import deque
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def async_setup_recorder(hass: HomeAssistant) -> None: ...
 def recorder_save_worker(file_out: str, segments: deque[Segment]) -> None: ...
 
 class RecorderOutput(StreamOutput):
-    video_path: Any
+    video_path: Incomplete
     def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer) -> None: ...
     @property
     def name(self) -> str: ...

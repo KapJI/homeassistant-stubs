@@ -1,18 +1,18 @@
 from . import CharacteristicEntity as CharacteristicEntity, KNOWN_DEVICES as KNOWN_DEVICES
 from .const import DEVICE_CLASS_ECOBEE_MODE as DEVICE_CLASS_ECOBEE_MODE
+from _typeshed import Incomplete
 from aiohomekit.model.characteristics import Characteristic as Characteristic
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 
-_ECOBEE_MODE_TO_TEXT: Any
-_ECOBEE_MODE_TO_NUMBERS: Any
+_ECOBEE_MODE_TO_TEXT: Incomplete
+_ECOBEE_MODE_TO_NUMBERS: Incomplete
 
 class EcobeeModeSelect(CharacteristicEntity, SelectEntity):
-    _attr_options: Any
-    _attr_device_class: Any
+    _attr_options: Incomplete
+    _attr_device_class: Incomplete
     @property
     def name(self) -> str: ...
     def get_characteristic_types(self) -> list[str]: ...

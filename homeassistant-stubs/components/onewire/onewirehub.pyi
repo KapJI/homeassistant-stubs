@@ -1,24 +1,24 @@
 from .const import CONF_MOUNT_DIR as CONF_MOUNT_DIR, CONF_TYPE_OWSERVER as CONF_TYPE_OWSERVER, CONF_TYPE_SYSBUS as CONF_TYPE_SYSBUS, DEVICE_SUPPORT_OWSERVER as DEVICE_SUPPORT_OWSERVER, DEVICE_SUPPORT_SYSBUS as DEVICE_SUPPORT_SYSBUS, DOMAIN as DOMAIN, MANUFACTURER_EDS as MANUFACTURER_EDS, MANUFACTURER_HOBBYBOARDS as MANUFACTURER_HOBBYBOARDS, MANUFACTURER_MAXIM as MANUFACTURER_MAXIM
 from .model import OWDeviceDescription as OWDeviceDescription, OWDirectDeviceDescription as OWDirectDeviceDescription, OWServerDeviceDescription as OWServerDeviceDescription
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
-from typing import Any
 
-DEVICE_COUPLERS: Any
-DEVICE_MANUFACTURER: Any
-_LOGGER: Any
+DEVICE_COUPLERS: Incomplete
+DEVICE_MANUFACTURER: Incomplete
+_LOGGER: Incomplete
 
 def _is_known_owserver_device(device_family: str, device_type: str) -> bool: ...
 
 class OneWireHub:
-    hass: Any
-    type: Any
-    pi1proxy: Any
-    owproxy: Any
-    devices: Any
+    hass: Incomplete
+    type: Incomplete
+    pi1proxy: Incomplete
+    owproxy: Incomplete
+    devices: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def connect(self, host: str, port: int) -> None: ...
     async def check_mount_dir(self, mount_dir: str) -> None: ...

@@ -1,8 +1,8 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Any
 
 DOMAIN: str
-PLATFORMS: Any
+PLATFORMS: Incomplete
 CONF_HOSTNAME: str
 CONF_RESOLVER: str
 CONF_RESOLVER_IPV6: str

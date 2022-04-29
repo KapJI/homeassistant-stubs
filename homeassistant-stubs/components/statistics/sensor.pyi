@@ -1,4 +1,5 @@
 from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
@@ -12,7 +13,7 @@ from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from typing import Any, Literal
 
-_LOGGER: Any
+_LOGGER: Incomplete
 STAT_AGE_COVERAGE_RATIO: str
 STAT_BUFFER_USAGE_RATIO: str
 STAT_SOURCE_VALUE_VALID: str
@@ -38,12 +39,12 @@ STAT_VALUE_MAX: str
 STAT_VALUE_MIN: str
 STAT_VARIANCE: str
 DEPRECATION_WARNING_CHARACTERISTIC: str
-STATS_NUMERIC_SUPPORT: Any
-STATS_BINARY_SUPPORT: Any
-STATS_NOT_A_NUMBER: Any
-STATS_DATETIME: Any
-STAT_NUMERIC_RETAIN_UNIT: Any
-STAT_BINARY_PERCENTAGE: Any
+STATS_NUMERIC_SUPPORT: Incomplete
+STATS_BINARY_SUPPORT: Incomplete
+STATS_NOT_A_NUMBER: Incomplete
+STATS_DATETIME: Incomplete
+STAT_NUMERIC_RETAIN_UNIT: Incomplete
+STAT_BINARY_PERCENTAGE: Incomplete
 CONF_STATE_CHARACTERISTIC: str
 CONF_SAMPLES_MAX_BUFFER_SIZE: str
 CONF_MAX_AGE: str
@@ -59,31 +60,31 @@ ICON: str
 
 def valid_state_characteristic_configuration(config: dict[str, Any]) -> dict[str, Any]: ...
 
-_PLATFORM_SCHEMA_BASE: Any
+_PLATFORM_SCHEMA_BASE: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class StatisticsSensor(SensorEntity):
-    _attr_icon: Any
-    _attr_name: Any
+    _attr_icon: Incomplete
+    _attr_name: Incomplete
     _attr_should_poll: bool
-    _attr_unique_id: Any
-    _source_entity_id: Any
-    is_binary: Any
-    _state_characteristic: Any
-    _samples_max_buffer_size: Any
-    _samples_max_age: Any
-    _precision: Any
-    _quantile_intervals: Any
-    _quantile_method: Any
-    _value: Any
-    _unit_of_measurement: Any
+    _attr_unique_id: Incomplete
+    _source_entity_id: Incomplete
+    is_binary: Incomplete
+    _state_characteristic: Incomplete
+    _samples_max_buffer_size: Incomplete
+    _samples_max_age: Incomplete
+    _precision: Incomplete
+    _quantile_intervals: Incomplete
+    _quantile_method: Incomplete
+    _value: Incomplete
+    _unit_of_measurement: Incomplete
     _available: bool
-    states: Any
-    ages: Any
-    attributes: Any
-    _state_characteristic_fn: Any
-    _update_listener: Any
+    states: Incomplete
+    ages: Incomplete
+    attributes: Incomplete
+    _state_characteristic_fn: Incomplete
+    _update_listener: Incomplete
     def __init__(self, source_entity_id: str, name: str, unique_id: Union[str, None], state_characteristic: str, samples_max_buffer_size: int, samples_max_age: Union[timedelta, None], precision: int, quantile_intervals: int, quantile_method: Literal['exclusive', 'inclusive']) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _add_state_to_queue(self, new_state: State) -> None: ...

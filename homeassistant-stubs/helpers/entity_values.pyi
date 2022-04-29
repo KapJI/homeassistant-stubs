@@ -1,10 +1,10 @@
+from _typeshed import Incomplete
 from homeassistant.core import split_entity_id as split_entity_id
-from typing import Any
 
 class EntityValues:
-    _cache: Any
-    _exact: Any
-    _domain: Any
-    _glob: Any
+    _cache: Incomplete
+    _exact: Incomplete
+    _domain: Incomplete
+    _glob: Incomplete
     def __init__(self, exact: Union[dict[str, dict[str, str]], None] = ..., domain: Union[dict[str, dict[str, str]], None] = ..., glob: Union[dict[str, dict[str, str]], None] = ...) -> None: ...
     def get(self, entity_id: str) -> dict[str, str]: ...

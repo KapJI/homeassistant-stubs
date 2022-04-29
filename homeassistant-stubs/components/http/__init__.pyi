@@ -9,6 +9,7 @@ from .security_filter import setup_security_filter as setup_security_filter
 from .static import CACHE_HEADERS as CACHE_HEADERS, CachingStaticResource as CachingStaticResource
 from .view import HomeAssistantView as HomeAssistantView
 from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite
+from _typeshed import Incomplete
 from aiohttp.typedefs import StrOrURL as StrOrURL
 from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
@@ -21,7 +22,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.setup import async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
 from ipaddress import IPv4Network, IPv6Network
-from typing import Any, Final, TypedDict
+from typing import Final, TypedDict
 
 DOMAIN: Final[str]
 CONF_SERVER_HOST: Final[str]
@@ -38,16 +39,16 @@ CONF_IP_BAN_ENABLED: Final[str]
 CONF_SSL_PROFILE: Final[str]
 SSL_MODERN: Final[str]
 SSL_INTERMEDIATE: Final[str]
-_LOGGER: Final[Any]
+_LOGGER: Final[Incomplete]
 DEFAULT_DEVELOPMENT: Final[str]
 DEFAULT_CORS: Final[list[str]]
 NO_LOGIN_ATTEMPT_THRESHOLD: Final[int]
-MAX_CLIENT_SIZE: Final[Any]
-STORAGE_KEY: Final[Any]
+MAX_CLIENT_SIZE: Final[Incomplete]
+STORAGE_KEY: Final[Incomplete]
 STORAGE_VERSION: Final[int]
 SAVE_DELAY: Final[int]
-HTTP_SCHEMA: Final[Any]
-CONFIG_SCHEMA: Final[Any]
+HTTP_SCHEMA: Final[Incomplete]
+CONFIG_SCHEMA: Final[Incomplete]
 
 class ConfData(TypedDict):
     server_host: list[str]
@@ -66,27 +67,27 @@ class ConfData(TypedDict):
 async def async_get_last_config(hass: HomeAssistant) -> Union[dict, None]: ...
 
 class ApiConfig:
-    local_ip: Any
-    host: Any
-    port: Any
-    use_ssl: Any
+    local_ip: Incomplete
+    host: Incomplete
+    port: Incomplete
+    use_ssl: Incomplete
     def __init__(self, local_ip: str, host: str, port: int, use_ssl: bool) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class HomeAssistantHTTP:
-    app: Any
-    hass: Any
-    ssl_certificate: Any
-    ssl_peer_certificate: Any
-    ssl_key: Any
-    server_host: Any
-    server_port: Any
-    trusted_proxies: Any
-    ssl_profile: Any
-    runner: Any
-    site: Any
-    context: Any
+    app: Incomplete
+    hass: Incomplete
+    ssl_certificate: Incomplete
+    ssl_peer_certificate: Incomplete
+    ssl_key: Incomplete
+    server_host: Incomplete
+    server_port: Incomplete
+    trusted_proxies: Incomplete
+    ssl_profile: Incomplete
+    runner: Incomplete
+    site: Incomplete
+    context: Incomplete
     def __init__(self, hass: HomeAssistant, ssl_certificate: Union[str, None], ssl_peer_certificate: Union[str, None], ssl_key: Union[str, None], server_host: Union[list[str], None], server_port: int, trusted_proxies: list[Union[IPv4Network, IPv6Network]], ssl_profile: str) -> None: ...
     async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool) -> None: ...
     def register_view(self, view: Union[HomeAssistantView, type[HomeAssistantView]]) -> None: ...

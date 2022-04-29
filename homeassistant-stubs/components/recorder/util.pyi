@@ -1,6 +1,7 @@
 from . import Recorder as Recorder
 from .const import DATA_INSTANCE as DATA_INSTANCE, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX
 from .models import ALL_TABLES as ALL_TABLES, RecorderRuns as RecorderRuns, TABLE_RECORDER_RUNS as TABLE_RECORDER_RUNS, TABLE_SCHEMA_CHANGES as TABLE_SCHEMA_CHANGES, TABLE_STATISTICS as TABLE_STATISTICS, TABLE_STATISTICS_META as TABLE_STATISTICS_META, TABLE_STATISTICS_RUNS as TABLE_STATISTICS_RUNS, TABLE_STATISTICS_SHORT_TERM as TABLE_STATISTICS_SHORT_TERM, process_timestamp as process_timestamp
+from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Callable as Callable, Generator
 from datetime import date, datetime
@@ -10,19 +11,19 @@ from sqlalchemy.orm.query import Query as Query
 from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 RETRIES: int
 QUERY_RETRY_WAIT: float
-SQLITE3_POSTFIXES: Any
-MIN_VERSION_MARIA_DB: Any
-MIN_VERSION_MARIA_DB_ROWNUM: Any
-MIN_VERSION_MYSQL: Any
-MIN_VERSION_MYSQL_ROWNUM: Any
-MIN_VERSION_PGSQL: Any
-MIN_VERSION_SQLITE: Any
-MIN_VERSION_SQLITE_ROWNUM: Any
-MAX_RESTART_TIME: Any
-RETRYABLE_MYSQL_ERRORS: Any
+SQLITE3_POSTFIXES: Incomplete
+MIN_VERSION_MARIA_DB: Incomplete
+MIN_VERSION_MARIA_DB_ROWNUM: Incomplete
+MIN_VERSION_MYSQL: Incomplete
+MIN_VERSION_MYSQL_ROWNUM: Incomplete
+MIN_VERSION_PGSQL: Incomplete
+MIN_VERSION_SQLITE: Incomplete
+MIN_VERSION_SQLITE_ROWNUM: Incomplete
+MAX_RESTART_TIME: Incomplete
+RETRYABLE_MYSQL_ERRORS: Incomplete
 FIRST_POSSIBLE_SUNDAY: int
 SUNDAY_WEEKDAY: int
 DAYS_IN_WEEK: int

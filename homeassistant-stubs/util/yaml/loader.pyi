@@ -1,6 +1,7 @@
 import yaml
 from .const import SECRET_YAML as SECRET_YAML
 from .objects import Input as Input, NodeListClass as NodeListClass, NodeStrClass as NodeStrClass
+from _typeshed import Incomplete
 from collections import OrderedDict
 from collections.abc import Iterator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -9,17 +10,17 @@ from typing import Any, TextIO, TypeVar, Union, overload
 
 JSON_TYPE = Union[list, dict, str]
 _DictT = TypeVar('_DictT', bound=dict)
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class Secrets:
-    config_dir: Any
-    _cache: Any
+    config_dir: Incomplete
+    _cache: Incomplete
     def __init__(self, config_dir: Path) -> None: ...
     def get(self, requester_path: str, secret: str) -> str: ...
     def _load_secret_yaml(self, secret_dir: Path) -> dict[str, str]: ...
 
 class SafeLineLoader(yaml.SafeLoader):
-    secrets: Any
+    secrets: Incomplete
     def __init__(self, stream: Any, secrets: Union[Secrets, None] = ...) -> None: ...
     def compose_node(self, parent: yaml.nodes.Node, index: int) -> yaml.nodes.Node: ...
 

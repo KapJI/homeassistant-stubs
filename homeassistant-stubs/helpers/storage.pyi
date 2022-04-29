@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -6,24 +7,24 @@ from json import JSONEncoder
 from typing import Any
 
 STORAGE_DIR: str
-_LOGGER: Any
+_LOGGER: Incomplete
 STORAGE_SEMAPHORE: str
 
 async def async_migrator(hass: HomeAssistant, old_path: str, store: Store, *, old_conf_load_func: Union[Callable, None] = ..., old_conf_migrate_func: Union[Callable, None] = ...) -> Any: ...
 
 class Store:
-    version: Any
-    minor_version: Any
-    key: Any
-    hass: Any
-    _private: Any
-    _data: Any
-    _unsub_delay_listener: Any
-    _unsub_final_write_listener: Any
-    _write_lock: Any
-    _load_task: Any
-    _encoder: Any
-    _atomic_writes: Any
+    version: Incomplete
+    minor_version: Incomplete
+    key: Incomplete
+    hass: Incomplete
+    _private: Incomplete
+    _data: Incomplete
+    _unsub_delay_listener: Incomplete
+    _unsub_final_write_listener: Incomplete
+    _write_lock: Incomplete
+    _load_task: Incomplete
+    _encoder: Incomplete
+    _atomic_writes: Incomplete
     def __init__(self, hass: HomeAssistant, version: int, key: str, private: bool = ..., *, atomic_writes: bool = ..., encoder: Union[type[JSONEncoder], None] = ..., minor_version: int = ...) -> None: ...
     @property
     def path(self): ...

@@ -1,17 +1,17 @@
 from . import OpenUvEntity as OpenUvEntity
 from .const import DATA_PROTECTION_WINDOW as DATA_PROTECTION_WINDOW, DOMAIN as DOMAIN, LOGGER as LOGGER, TYPE_PROTECTION_WINDOW as TYPE_PROTECTION_WINDOW
+from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import as_local as as_local, parse_datetime as parse_datetime, utcnow as utcnow
-from typing import Any
 
 ATTR_PROTECTION_WINDOW_ENDING_TIME: str
 ATTR_PROTECTION_WINDOW_ENDING_UV: str
 ATTR_PROTECTION_WINDOW_STARTING_TIME: str
 ATTR_PROTECTION_WINDOW_STARTING_UV: str
-BINARY_SENSOR_DESCRIPTION_PROTECTION_WINDOW: Any
+BINARY_SENSOR_DESCRIPTION_PROTECTION_WINDOW: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

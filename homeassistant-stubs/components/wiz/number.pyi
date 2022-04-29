@@ -1,13 +1,13 @@
 from .const import DOMAIN as DOMAIN
 from .entity import WizEntity as WizEntity
 from .models import WizData as WizData
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pywizlight import wizlight as wizlight
-from typing import Any
 
 class WizNumberEntityDescriptionMixin:
     value_fn: Callable[[wizlight], Union[int, None]]
@@ -27,12 +27,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WizSpeedNumber(WizEntity, NumberEntity):
     entity_description: WizNumberEntityDescription
-    _attr_mode: Any
-    _attr_unique_id: Any
-    _attr_name: Any
+    _attr_mode: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_name: Incomplete
     def __init__(self, wiz_data: WizData, name: str, description: WizNumberEntityDescription) -> None: ...
     @property
     def available(self) -> bool: ...
-    _attr_value: Any
+    _attr_value: Incomplete
     def _async_update_attrs(self) -> None: ...
     async def async_set_value(self, value: float) -> None: ...

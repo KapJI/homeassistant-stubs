@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-LOGGER: Any
+LOGGER: Incomplete
 CONF_FROM_WINDOW: str
 CONF_TO_WINDOW: str
 DATA_PROTECTION_WINDOW: str

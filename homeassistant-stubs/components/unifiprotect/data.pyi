@@ -1,4 +1,5 @@
 from .const import CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DEVICES_WITH_ENTITIES as DEVICES_WITH_ENTITIES
+from _typeshed import Incomplete
 from collections.abc import Generator, Iterable
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,17 +10,17 @@ from pyunifiprotect.data import Bootstrap as Bootstrap, ModelType as ModelType, 
 from pyunifiprotect.data.base import ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel as ProtectDeviceModel
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class ProtectData:
-    _hass: Any
-    _entry: Any
-    _update_interval: Any
-    _subscriptions: Any
-    _unsub_interval: Any
-    _unsub_websocket: Any
+    _hass: Incomplete
+    _entry: Incomplete
+    _update_interval: Incomplete
+    _subscriptions: Incomplete
+    _unsub_interval: Incomplete
+    _unsub_websocket: Incomplete
     last_update_success: bool
-    api: Any
+    api: Incomplete
     def __init__(self, hass: HomeAssistant, protect: ProtectApiClient, update_interval: timedelta, entry: ConfigEntry) -> None: ...
     @property
     def disable_stream(self) -> bool: ...

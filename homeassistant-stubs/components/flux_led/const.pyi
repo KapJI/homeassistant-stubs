@@ -1,18 +1,19 @@
+from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode
-from typing import Any, Final
+from typing import Final
 
 DOMAIN: Final[str]
 MIN_RGB_BRIGHTNESS: Final[int]
 MIN_CCT_BRIGHTNESS: Final[int]
-FLUX_COLOR_MODE_TO_HASS: Final[Any]
-MULTI_BRIGHTNESS_COLOR_MODES: Final[Any]
+FLUX_COLOR_MODE_TO_HASS: Final[Incomplete]
+MULTI_BRIGHTNESS_COLOR_MODES: Final[Incomplete]
 API: Final[str]
 SIGNAL_STATE_UPDATED: str
 DEFAULT_NETWORK_SCAN_INTERVAL: Final[int]
 DEFAULT_SCAN_INTERVAL: Final[int]
 DEFAULT_EFFECT_SPEED: Final[int]
 FLUX_LED_DISCOVERY: Final[str]
-FLUX_LED_EXCEPTIONS: Final[Any]
+FLUX_LED_EXCEPTIONS: Final[Incomplete]
 STARTUP_SCAN_TIMEOUT: Final[int]
 DISCOVER_SCAN_TIMEOUT: Final[int]
 DIRECTED_DISCOVERY_TIMEOUT: Final[int]
@@ -31,7 +32,7 @@ CONF_COLORS: Final[str]
 CONF_SPEED_PCT: Final[str]
 CONF_TRANSITION: Final[str]
 CONF_EFFECT: Final[str]
-EFFECT_SPEED_SUPPORT_MODES: Final[Any]
+EFFECT_SPEED_SUPPORT_MODES: Final[Incomplete]
 CONF_CUSTOM_EFFECT_COLORS: Final[str]
 CONF_CUSTOM_EFFECT_SPEED_PCT: Final[str]
 CONF_CUSTOM_EFFECT_TRANSITION: Final[str]

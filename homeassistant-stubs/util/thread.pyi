@@ -1,8 +1,9 @@
 import threading
+from _typeshed import Incomplete
 from typing import Any
 
 THREADING_SHUTDOWN_TIMEOUT: int
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def deadlock_safe_shutdown() -> None: ...
 def async_raise(tid: int, exctype: Any) -> None: ...

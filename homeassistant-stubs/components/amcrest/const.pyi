@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
 DATA_AMCREST = DOMAIN
@@ -12,5 +12,5 @@ SENSOR_SCAN_INTERVAL_SECS: int
 SNAPSHOT_TIMEOUT: int
 SERVICE_EVENT: str
 SERVICE_UPDATE: str
-RESOLUTION_LIST: Any
-RESOLUTION_TO_STREAM: Any
+RESOLUTION_LIST: Incomplete
+RESOLUTION_TO_STREAM: Incomplete

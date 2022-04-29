@@ -1,19 +1,20 @@
 from . import data as data
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Mapping, Sequence
 from homeassistant.components import recorder as recorder, sensor as sensor
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, ENERGY_WATT_HOUR as ENERGY_WATT_HOUR, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, VOLUME_CUBIC_FEET as VOLUME_CUBIC_FEET, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 from typing import Any
 
-ENERGY_USAGE_DEVICE_CLASSES: Any
-ENERGY_USAGE_UNITS: Any
-ENERGY_PRICE_UNITS: Any
+ENERGY_USAGE_DEVICE_CLASSES: Incomplete
+ENERGY_USAGE_UNITS: Incomplete
+ENERGY_PRICE_UNITS: Incomplete
 ENERGY_UNIT_ERROR: str
 ENERGY_PRICE_UNIT_ERROR: str
-GAS_USAGE_DEVICE_CLASSES: Any
-GAS_USAGE_UNITS: Any
-GAS_PRICE_UNITS: Any
+GAS_USAGE_DEVICE_CLASSES: Incomplete
+GAS_USAGE_UNITS: Incomplete
+GAS_PRICE_UNITS: Incomplete
 GAS_UNIT_ERROR: str
 GAS_PRICE_UNIT_ERROR: str
 

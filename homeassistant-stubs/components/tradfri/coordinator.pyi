@@ -1,4 +1,5 @@
 from .const import LOGGER as LOGGER
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -9,14 +10,14 @@ from typing import Any
 SCAN_INTERVAL: int
 
 class TradfriDeviceDataUpdateCoordinator(DataUpdateCoordinator[Device]):
-    api: Any
-    device: Any
-    _exception: Any
+    api: Incomplete
+    device: Incomplete
+    _exception: Incomplete
     def __init__(self, hass: HomeAssistant, *, api: Callable[[Union[Command, list[Command]]], Any], device: Device) -> None: ...
     last_update_success: bool
     async def set_hub_available(self, available: bool) -> None: ...
     def _observe_update(self, device: Device) -> None: ...
     def _exception_callback(self, exc: Exception) -> None: ...
-    update_interval: Any
+    update_interval: Incomplete
     async def _handle_exception(self, exc: Exception) -> None: ...
     async def _async_update_data(self) -> Device: ...

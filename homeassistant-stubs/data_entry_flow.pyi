@@ -3,6 +3,7 @@ import asyncio
 import voluptuous as vol
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
+from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
 from typing import Any, TypedDict
 
@@ -23,8 +24,8 @@ class UnknownFlow(FlowError): ...
 class UnknownStep(FlowError): ...
 
 class AbortFlow(FlowError):
-    reason: Any
-    description_placeholders: Any
+    reason: Incomplete
+    description_placeholders: Incomplete
     def __init__(self, reason: str, description_placeholders: Union[dict, None] = ...) -> None: ...
 
 class FlowResult(TypedDict):
@@ -53,11 +54,11 @@ class FlowResult(TypedDict):
 def _async_flow_handler_to_flow_result(flows: Iterable[FlowHandler], include_uninitialized: bool) -> list[FlowResult]: ...
 
 class FlowManager(abc.ABC, metaclass=abc.ABCMeta):
-    hass: Any
-    _initializing: Any
-    _initialize_tasks: Any
-    _progress: Any
-    _handler_progress_index: Any
+    hass: Incomplete
+    _initializing: Incomplete
+    _initialize_tasks: Incomplete
+    _progress: Incomplete
+    _handler_progress_index: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_wait_init_flow_finish(self, handler: str) -> None: ...
     @abc.abstractmethod

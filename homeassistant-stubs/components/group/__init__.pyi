@@ -1,5 +1,6 @@
 import abc
 from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS
+from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Iterable
 from contextvars import ContextVar
@@ -18,7 +19,7 @@ from typing import Any
 
 DOMAIN: str
 GROUP_ORDER: str
-ENTITY_ID_FORMAT: Any
+ENTITY_ID_FORMAT: Incomplete
 CONF_ALL: str
 ATTR_ADD_ENTITIES: str
 ATTR_AUTO: str
@@ -28,15 +29,15 @@ ATTR_ORDER: str
 ATTR_ALL: str
 SERVICE_SET: str
 SERVICE_REMOVE: str
-PLATFORMS: Any
-REG_KEY: Any
-_LOGGER: Any
+PLATFORMS: Incomplete
+REG_KEY: Incomplete
+_LOGGER: Incomplete
 current_domain: ContextVar[str]
 
 def _conf_preprocess(value): ...
 
-GROUP_SCHEMA: Any
-CONFIG_SCHEMA: Any
+GROUP_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 class GroupIntegrationRegistry:
     on_off_mapping: dict[str, str]
@@ -67,23 +68,23 @@ class GroupEntity(Entity, metaclass=abc.ABCMeta):
     def async_update_group_state(self) -> None: ...
 
 class Group(Entity):
-    hass: Any
-    _name: Any
-    _state: Any
-    _icon: Any
-    _on_off: Any
-    _assumed: Any
-    _on_states: Any
-    user_defined: Any
-    mode: Any
-    _order: Any
+    hass: Incomplete
+    _name: Incomplete
+    _state: Incomplete
+    _icon: Incomplete
+    _on_off: Incomplete
+    _assumed: Incomplete
+    _on_states: Incomplete
+    user_defined: Incomplete
+    mode: Incomplete
+    _order: Incomplete
     _assumed_state: bool
-    _async_unsub_state_changed: Any
-    def __init__(self, hass, name, order: Any | None = ..., icon: Any | None = ..., user_defined: bool = ..., entity_ids: Any | None = ..., mode: Any | None = ...) -> None: ...
+    _async_unsub_state_changed: Incomplete
+    def __init__(self, hass, name, order: Incomplete | None = ..., icon: Incomplete | None = ..., user_defined: bool = ..., entity_ids: Incomplete | None = ..., mode: Incomplete | None = ...) -> None: ...
     @staticmethod
-    def create_group(hass, name, entity_ids: Any | None = ..., user_defined: bool = ..., icon: Any | None = ..., object_id: Any | None = ..., mode: Any | None = ..., order: Any | None = ...): ...
+    def create_group(hass, name, entity_ids: Incomplete | None = ..., user_defined: bool = ..., icon: Incomplete | None = ..., object_id: Incomplete | None = ..., mode: Incomplete | None = ..., order: Incomplete | None = ...): ...
     @staticmethod
-    async def async_create_group(hass, name, entity_ids: Any | None = ..., user_defined: bool = ..., icon: Any | None = ..., object_id: Any | None = ..., mode: Any | None = ..., order: Any | None = ...): ...
+    async def async_create_group(hass, name, entity_ids: Incomplete | None = ..., user_defined: bool = ..., icon: Incomplete | None = ..., object_id: Incomplete | None = ..., mode: Incomplete | None = ..., order: Incomplete | None = ...): ...
     @property
     def should_poll(self): ...
     @property
@@ -102,8 +103,8 @@ class Group(Entity):
     def assumed_state(self): ...
     def update_tracked_entity_ids(self, entity_ids) -> None: ...
     async def async_update_tracked_entity_ids(self, entity_ids) -> None: ...
-    tracking: Any
-    trackable: Any
+    tracking: Incomplete
+    trackable: Incomplete
     def _set_tracked(self, entity_ids) -> None: ...
     def _async_start(self, *_) -> None: ...
     def _async_start_tracking(self) -> None: ...
@@ -114,4 +115,4 @@ class Group(Entity):
     async def _async_state_changed_listener(self, event) -> None: ...
     def _reset_tracked_state(self) -> None: ...
     def _see_state(self, new_state) -> None: ...
-    def _async_update_group_state(self, tr_state: Any | None = ...) -> None: ...
+    def _async_update_group_state(self, tr_state: Incomplete | None = ...) -> None: ...

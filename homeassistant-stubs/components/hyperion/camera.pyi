@@ -1,5 +1,6 @@
 from . import get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
 from .const import CONF_INSTANCE_CLIENTS as CONF_INSTANCE_CLIENTS, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, NAME_SUFFIX_HYPERION_CAMERA as NAME_SUFFIX_HYPERION_CAMERA, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_CAMERA as TYPE_HYPERION_CAMERA
+from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import AsyncGenerator
 from homeassistant.components.camera import Camera as Camera, DEFAULT_CONTENT_TYPE as DEFAULT_CONTENT_TYPE, async_get_still_stream as async_get_still_stream
@@ -16,15 +17,15 @@ IMAGE_STREAM_JPG_SENTINEL: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HyperionCamera(Camera):
-    _unique_id: Any
-    _name: Any
-    _device_id: Any
-    _instance_name: Any
-    _client: Any
-    _image_cond: Any
-    _image: Any
+    _unique_id: Incomplete
+    _name: Incomplete
+    _device_id: Incomplete
+    _instance_name: Incomplete
+    _client: Incomplete
+    _image_cond: Incomplete
+    _image: Incomplete
     _image_stream_clients: int
-    _client_callbacks: Any
+    _client_callbacks: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, hyperion_client: client.HyperionClient) -> None: ...
     @property
     def unique_id(self) -> str: ...
@@ -47,4 +48,4 @@ class HyperionCamera(Camera):
     @property
     def device_info(self) -> DeviceInfo: ...
 
-CAMERA_TYPES: Any
+CAMERA_TYPES: Incomplete

@@ -1,6 +1,7 @@
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import Platform as Platform
-from typing import Any, Literal
+from typing import Literal
 
 class MeshRoles(StrEnum):
     NONE: str
@@ -8,7 +9,7 @@ class MeshRoles(StrEnum):
     SLAVE: str
 
 DOMAIN: str
-PLATFORMS: Any
+PLATFORMS: Incomplete
 CONF_OLD_DISCOVERY: str
 DEFAULT_CONF_OLD_DISCOVERY: bool
 DATA_FRITZ: str
@@ -31,5 +32,5 @@ SWITCH_TYPE_PORTFORWARD: str
 SWITCH_TYPE_PROFILE: str
 SWITCH_TYPE_WIFINETWORK: str
 UPTIME_DEVIATION: int
-FRITZ_EXCEPTIONS: Any
-WIFI_STANDARD: Any
+FRITZ_EXCEPTIONS: Incomplete
+WIFI_STANDARD: Incomplete

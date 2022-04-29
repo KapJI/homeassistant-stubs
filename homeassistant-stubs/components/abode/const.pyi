@@ -1,6 +1,6 @@
-from typing import Any
+from _typeshed import Incomplete
 
-LOGGER: Any
+LOGGER: Incomplete
 DOMAIN: str
 ATTRIBUTION: str
 DEFAULT_CACHEDB: str

@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .entity import SensemeEntity as SensemeEntity
+from _typeshed import Incomplete
 from aiosenseme import SensemeFan as SensemeFan
 from aiosenseme.device import SensemeDevice as SensemeDevice
 from collections.abc import Callable as Callable
@@ -7,10 +8,9 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 
-SMART_MODE_TO_HASS: Any
-HASS_TO_SMART_MODE: Any
+SMART_MODE_TO_HASS: Incomplete
+HASS_TO_SMART_MODE: Incomplete
 
 class SenseMESelectEntityDescriptionMixin:
     value_fn: Callable[[SensemeFan], str]
@@ -22,14 +22,14 @@ class SenseMESelectEntityDescription(SelectEntityDescription, SenseMESelectEntit
 
 def _set_smart_mode(device: SensemeDevice, value: str) -> None: ...
 
-FAN_SELECTS: Any
+FAN_SELECTS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HASensemeSelect(SensemeEntity, SelectEntity):
     entity_description: SenseMESelectEntityDescription
-    _attr_options: Any
-    _attr_unique_id: Any
+    _attr_options: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, device: SensemeFan, description: SenseMESelectEntityDescription) -> None: ...
     @property
     def current_option(self) -> str: ...

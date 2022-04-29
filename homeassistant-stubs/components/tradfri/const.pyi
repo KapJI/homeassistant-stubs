@@ -1,6 +1,6 @@
-from typing import Any
+from _typeshed import Incomplete
 
-LOGGER: Any
+LOGGER: Incomplete
 CONF_GATEWAY_ID: str
 CONF_IDENTITY: str
 CONF_KEY: str

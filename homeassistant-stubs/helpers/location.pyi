@@ -1,9 +1,9 @@
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def has_location(state: State) -> bool: ...
 def closest(latitude: float, longitude: float, states: Iterable[State]) -> Union[State, None]: ...

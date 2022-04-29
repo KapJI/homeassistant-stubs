@@ -1,10 +1,11 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, exceptions as exceptions
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any, Final
 
-_LOGGER: Final[Any]
+_LOGGER: Final[Incomplete]
 
 def host_valid(host: str) -> bool: ...
 

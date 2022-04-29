@@ -2,6 +2,7 @@ from .sun import get_astral_event_date as get_astral_event_date
 from .template import Template as Template
 from .trace import TraceElement as TraceElement, trace_append_element as trace_append_element, trace_path as trace_path, trace_path_get as trace_path_get, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from _typeshed import Incomplete
 from collections.abc import Callable, Container, Generator
 from datetime import time as dt_time, timedelta
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
@@ -14,8 +15,8 @@ from typing import Any
 ASYNC_FROM_CONFIG_FORMAT: str
 FROM_CONFIG_FORMAT: str
 VALIDATE_CONFIG_FORMAT: str
-_LOGGER: Any
-INPUT_ENTITY_ID: Any
+_LOGGER: Incomplete
+INPUT_ENTITY_ID: Incomplete
 ConditionCheckerType = Callable[[HomeAssistant, TemplateVarsType], bool]
 
 def condition_trace_append(variables: TemplateVarsType, path: str) -> TraceElement: ...

@@ -2,6 +2,7 @@ from .const import ATTR_DURATION as ATTR_DURATION, ATTR_MESSAGE as ATTR_MESSAGE,
 from .data import ProtectData as ProtectData
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity, async_all_device_entities as async_all_device_entities
 from .models import ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from enum import Enum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
@@ -16,22 +17,22 @@ from pyunifiprotect.api import ProtectApiClient as ProtectApiClient
 from pyunifiprotect.data import Camera, Doorlock, Light, Sensor, Viewer
 from typing import Any, Final
 
-_LOGGER: Any
+_LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
-INFRARED_MODES: Any
-CHIME_TYPES: Any
-MOUNT_TYPES: Any
+INFRARED_MODES: Incomplete
+CHIME_TYPES: Incomplete
+MOUNT_TYPES: Incomplete
 LIGHT_MODE_MOTION: str
 LIGHT_MODE_MOTION_DARK: str
 LIGHT_MODE_DARK: str
 LIGHT_MODE_OFF: str
-LIGHT_MODES: Any
-LIGHT_MODE_TO_SETTINGS: Any
-MOTION_MODE_TO_LIGHT_MODE: Any
-DEVICE_RECORDING_MODES: Any
+LIGHT_MODES: Incomplete
+LIGHT_MODE_TO_SETTINGS: Incomplete
+MOTION_MODE_TO_LIGHT_MODE: Incomplete
+DEVICE_RECORDING_MODES: Incomplete
 DEVICE_CLASS_LCD_MESSAGE: Final[str]
 SERVICE_SET_DOORBELL_MESSAGE: str
-SET_DOORBELL_LCD_MESSAGE_SCHEMA: Any
+SET_DOORBELL_LCD_MESSAGE_SCHEMA: Incomplete
 
 class ProtectSelectEntityDescription(ProtectSetableKeysMixin[T], SelectEntityDescription):
     ufp_options: Union[list[dict[str, Any]], None]
@@ -61,12 +62,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     device: Union[Camera, Light, Viewer]
     entity_description: ProtectSelectEntityDescription
-    _attr_name: Any
+    _attr_name: Incomplete
     def __init__(self, data: ProtectData, device: Union[Camera, Light, Viewer], description: ProtectSelectEntityDescription) -> None: ...
     def _async_update_device_from_protect(self) -> None: ...
-    _attr_options: Any
-    _hass_to_unifi_options: Any
-    _unifi_to_hass_options: Any
+    _attr_options: Incomplete
+    _hass_to_unifi_options: Incomplete
+    _unifi_to_hass_options: Incomplete
     def _async_set_options(self) -> None: ...
     @property
     def current_option(self) -> str: ...

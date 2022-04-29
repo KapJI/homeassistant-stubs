@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
@@ -6,12 +7,12 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Literal
+from typing import Literal
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
-SCAN_INTERVAL: Any
-ENTITY_ID_FORMAT: Any
+SCAN_INTERVAL: Incomplete
+ENTITY_ID_FORMAT: Incomplete
 
 class BinarySensorDeviceClass(StrEnum):
     BATTERY: str
@@ -43,36 +44,36 @@ class BinarySensorDeviceClass(StrEnum):
     VIBRATION: str
     WINDOW: str
 
-DEVICE_CLASSES_SCHEMA: Any
-DEVICE_CLASSES: Any
-DEVICE_CLASS_BATTERY: Any
-DEVICE_CLASS_BATTERY_CHARGING: Any
-DEVICE_CLASS_CO: Any
-DEVICE_CLASS_COLD: Any
-DEVICE_CLASS_CONNECTIVITY: Any
-DEVICE_CLASS_DOOR: Any
-DEVICE_CLASS_GARAGE_DOOR: Any
-DEVICE_CLASS_GAS: Any
-DEVICE_CLASS_HEAT: Any
-DEVICE_CLASS_LIGHT: Any
-DEVICE_CLASS_LOCK: Any
-DEVICE_CLASS_MOISTURE: Any
-DEVICE_CLASS_MOTION: Any
-DEVICE_CLASS_MOVING: Any
-DEVICE_CLASS_OCCUPANCY: Any
-DEVICE_CLASS_OPENING: Any
-DEVICE_CLASS_PLUG: Any
-DEVICE_CLASS_POWER: Any
-DEVICE_CLASS_PRESENCE: Any
-DEVICE_CLASS_PROBLEM: Any
-DEVICE_CLASS_RUNNING: Any
-DEVICE_CLASS_SAFETY: Any
-DEVICE_CLASS_SMOKE: Any
-DEVICE_CLASS_SOUND: Any
-DEVICE_CLASS_TAMPER: Any
-DEVICE_CLASS_UPDATE: Any
-DEVICE_CLASS_VIBRATION: Any
-DEVICE_CLASS_WINDOW: Any
+DEVICE_CLASSES_SCHEMA: Incomplete
+DEVICE_CLASSES: Incomplete
+DEVICE_CLASS_BATTERY: Incomplete
+DEVICE_CLASS_BATTERY_CHARGING: Incomplete
+DEVICE_CLASS_CO: Incomplete
+DEVICE_CLASS_COLD: Incomplete
+DEVICE_CLASS_CONNECTIVITY: Incomplete
+DEVICE_CLASS_DOOR: Incomplete
+DEVICE_CLASS_GARAGE_DOOR: Incomplete
+DEVICE_CLASS_GAS: Incomplete
+DEVICE_CLASS_HEAT: Incomplete
+DEVICE_CLASS_LIGHT: Incomplete
+DEVICE_CLASS_LOCK: Incomplete
+DEVICE_CLASS_MOISTURE: Incomplete
+DEVICE_CLASS_MOTION: Incomplete
+DEVICE_CLASS_MOVING: Incomplete
+DEVICE_CLASS_OCCUPANCY: Incomplete
+DEVICE_CLASS_OPENING: Incomplete
+DEVICE_CLASS_PLUG: Incomplete
+DEVICE_CLASS_POWER: Incomplete
+DEVICE_CLASS_PRESENCE: Incomplete
+DEVICE_CLASS_PROBLEM: Incomplete
+DEVICE_CLASS_RUNNING: Incomplete
+DEVICE_CLASS_SAFETY: Incomplete
+DEVICE_CLASS_SMOKE: Incomplete
+DEVICE_CLASS_SOUND: Incomplete
+DEVICE_CLASS_TAMPER: Incomplete
+DEVICE_CLASS_UPDATE: Incomplete
+DEVICE_CLASS_VIBRATION: Incomplete
+DEVICE_CLASS_WINDOW: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

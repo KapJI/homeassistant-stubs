@@ -1,11 +1,11 @@
 from .const import DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from elkm1_lib.discovery import ElkSystem
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def _short_mac(mac_address: str) -> str: ...
 def async_update_entry_from_discovery(hass: HomeAssistant, entry: config_entries.ConfigEntry, device: ElkSystem) -> bool: ...

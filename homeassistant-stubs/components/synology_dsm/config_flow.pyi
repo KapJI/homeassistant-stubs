@@ -1,5 +1,6 @@
 import voluptuous as vol
 from .const import CONF_DEVICE_TOKEN as CONF_DEVICE_TOKEN, CONF_SNAPSHOT_QUALITY as CONF_SNAPSHOT_QUALITY, CONF_VOLUMES as CONF_VOLUMES, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PORT_SSL as DEFAULT_PORT_SSL, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DEFAULT_SNAPSHOT_QUALITY as DEFAULT_SNAPSHOT_QUALITY, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DEFAULT_USE_SSL as DEFAULT_USE_SSL, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import exceptions as exceptions
 from homeassistant.components import ssdp as ssdp
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, OptionsFlow as OptionsFlow
@@ -10,7 +11,7 @@ from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from synology_dsm import SynologyDSM
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 CONF_OTP_CODE: str
 
 def _discovery_schema_with_defaults(discovery_info: DiscoveryInfoType) -> vol.Schema: ...
@@ -23,10 +24,10 @@ class SynologyDSMFlowHandler(ConfigFlow):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SynologyDSMOptionsFlowHandler: ...
-    saved_user_input: Any
-    discovered_conf: Any
-    reauth_conf: Any
-    reauth_reason: Any
+    saved_user_input: Incomplete
+    discovered_conf: Incomplete
+    reauth_conf: Incomplete
+    reauth_reason: Incomplete
     def __init__(self) -> None: ...
     def _show_form(self, step_id: str, user_input: Union[dict[str, Any], None] = ..., errors: Union[dict[str, str], None] = ...) -> FlowResult: ...
     async def async_validate_input_create_entry(self, user_input: dict[str, Any], step_id: str) -> FlowResult: ...
@@ -39,7 +40,7 @@ class SynologyDSMFlowHandler(ConfigFlow):
     def _async_get_existing_entry(self, discovered_mac: str) -> Union[ConfigEntry, None]: ...
 
 class SynologyDSMOptionsFlowHandler(OptionsFlow):
-    config_entry: Any
+    config_entry: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 

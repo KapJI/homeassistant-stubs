@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from enum import IntEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
@@ -6,13 +7,12 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
 DEFAULT_MIN_TEMP: int
 DEFAULT_MAX_TEMP: int
 DOMAIN: str
-ENTITY_ID_FORMAT: Any
-SCAN_INTERVAL: Any
+ENTITY_ID_FORMAT: Incomplete
+SCAN_INTERVAL: Incomplete
 SERVICE_SET_AWAY_MODE: str
 SERVICE_SET_TEMPERATURE: str
 SERVICE_SET_OPERATION_MODE: str
@@ -39,12 +39,12 @@ ATTR_OPERATION_LIST: str
 ATTR_TARGET_TEMP_HIGH: str
 ATTR_TARGET_TEMP_LOW: str
 ATTR_CURRENT_TEMPERATURE: str
-CONVERTIBLE_ATTRIBUTE: Any
-_LOGGER: Any
-ON_OFF_SERVICE_SCHEMA: Any
-SET_AWAY_MODE_SCHEMA: Any
-SET_TEMPERATURE_SCHEMA: Any
-SET_OPERATION_MODE_SCHEMA: Any
+CONVERTIBLE_ATTRIBUTE: Incomplete
+_LOGGER: Incomplete
+ON_OFF_SERVICE_SCHEMA: Incomplete
+SET_AWAY_MODE_SCHEMA: Incomplete
+SET_TEMPERATURE_SCHEMA: Incomplete
+SET_OPERATION_MODE_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

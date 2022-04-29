@@ -2,6 +2,7 @@ from . import HomeAssistantOverkizData as HomeAssistantOverkizData
 from .const import DOMAIN as DOMAIN
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityDescription as AlarmControlPanelEntityDescription, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -47,13 +48,13 @@ MAP_ARM_TYPE: dict[str, str]
 def _state_alarm_panel_controller(select_state: Callable[[str], OverkizStateType]) -> str: ...
 
 ALARM_DESCRIPTIONS: list[OverkizAlarmDescription]
-SUPPORTED_DEVICES: Any
+SUPPORTED_DEVICES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OverkizAlarmControlPanel(OverkizDescriptiveEntity, AlarmControlPanelEntity):
     entity_description: OverkizAlarmDescription
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator, description: EntityDescription) -> None: ...
     @property
     def state(self) -> str: ...

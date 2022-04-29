@@ -1,5 +1,6 @@
 import voluptuous as vol
 from . import BinarySensorDeviceClass as BinarySensorDeviceClass, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.device_automation.const import CONF_IS_OFF as CONF_IS_OFF, CONF_IS_ON as CONF_IS_ON
 from homeassistant.const import CONF_CONDITION as CONF_CONDITION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -7,7 +8,6 @@ from homeassistant.helpers import condition as condition
 from homeassistant.helpers.entity import get_device_class as get_device_class
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device, async_get_registry as async_get_registry
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
 DEVICE_CLASS_NONE: str
 CONF_IS_BAT_LOW: str
@@ -60,10 +60,10 @@ CONF_IS_VIBRATION: str
 CONF_IS_NO_VIBRATION: str
 CONF_IS_OPEN: str
 CONF_IS_NOT_OPEN: str
-IS_ON: Any
-IS_OFF: Any
-ENTITY_CONDITIONS: Any
-CONDITION_SCHEMA: Any
+IS_ON: Incomplete
+IS_OFF: Incomplete
+ENTITY_CONDITIONS: Incomplete
+CONDITION_SCHEMA: Incomplete
 
 async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 def async_condition_from_config(hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...

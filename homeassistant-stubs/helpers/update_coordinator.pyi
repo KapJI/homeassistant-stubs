@@ -1,13 +1,14 @@
 import logging
 from . import entity as entity, event as event
 from .debounce import Debouncer as Debouncer
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any, TypeVar
+from typing import TypeVar
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
@@ -17,20 +18,20 @@ _DataUpdateCoordinatorT = TypeVar('_DataUpdateCoordinatorT', bound='DataUpdateCo
 class UpdateFailed(Exception): ...
 
 class DataUpdateCoordinator:
-    hass: Any
-    logger: Any
-    name: Any
-    update_method: Any
-    update_interval: Any
-    config_entry: Any
-    data: Any
-    _listeners: Any
-    _job: Any
-    _unsub_refresh: Any
-    _request_refresh_task: Any
+    hass: Incomplete
+    logger: Incomplete
+    name: Incomplete
+    update_method: Incomplete
+    update_interval: Incomplete
+    config_entry: Incomplete
+    data: Incomplete
+    _listeners: Incomplete
+    _job: Incomplete
+    _unsub_refresh: Incomplete
+    _request_refresh_task: Incomplete
     last_update_success: bool
-    last_exception: Any
-    _debounced_refresh: Any
+    last_exception: Incomplete
+    _debounced_refresh: Incomplete
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, update_interval: Union[timedelta, None] = ..., update_method: Union[Callable[[], Awaitable[_T]], None] = ..., request_refresh_debouncer: Union[Debouncer, None] = ...) -> None: ...
     def async_add_listener(self, update_callback: CALLBACK_TYPE) -> Callable[[], None]: ...
     def async_remove_listener(self, update_callback: CALLBACK_TYPE) -> None: ...
@@ -45,7 +46,7 @@ class DataUpdateCoordinator:
     def _async_stop_refresh(self, _: Event) -> None: ...
 
 class CoordinatorEntity(entity.Entity):
-    coordinator: Any
+    coordinator: Incomplete
     def __init__(self, coordinator: _DataUpdateCoordinatorT) -> None: ...
     @property
     def should_poll(self) -> bool: ...

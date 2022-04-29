@@ -2,6 +2,7 @@ from . import BlockDeviceWrapper as BlockDeviceWrapper, RpcDeviceWrapper as RpcD
 from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, FIRMWARE_PATTERN as FIRMWARE_PATTERN, KELVIN_MAX_VALUE as KELVIN_MAX_VALUE, KELVIN_MIN_VALUE_COLOR as KELVIN_MIN_VALUE_COLOR, KELVIN_MIN_VALUE_WHITE as KELVIN_MIN_VALUE_WHITE, LIGHT_TRANSITION_MIN_FIRMWARE_DATE as LIGHT_TRANSITION_MIN_FIRMWARE_DATE, LOGGER as LOGGER, MAX_TRANSITION_TIME as MAX_TRANSITION_TIME, MODELS_SUPPORTING_LIGHT_TRANSITION as MODELS_SUPPORTING_LIGHT_TRANSITION, RGBW_MODELS as RGBW_MODELS, RPC as RPC, SHBLB_1_RGB_EFFECTS as SHBLB_1_RGB_EFFECTS, STANDARD_RGB_EFFECTS as STANDARD_RGB_EFFECTS
 from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light
+from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, brightness_supported as brightness_supported
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,9 +11,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util.color import color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin
 from typing import Any
 
-MIRED_MAX_VALUE_WHITE: Any
-MIRED_MIN_VALUE: Any
-MIRED_MAX_VALUE_COLOR: Any
+MIRED_MAX_VALUE_WHITE: Incomplete
+MIRED_MIN_VALUE: Incomplete
+MIRED_MAX_VALUE_COLOR: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_block_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -20,11 +21,11 @@ async def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ConfigEntry, 
 
 class BlockShellyLight(ShellyBlockEntity, LightEntity):
     _attr_supported_color_modes: set[str]
-    control_result: Any
-    _attr_min_mireds: Any
-    _min_kelvin: Any
-    _attr_max_mireds: Any
-    _max_kelvin: Any
+    control_result: Incomplete
+    _attr_min_mireds: Incomplete
+    _min_kelvin: Incomplete
+    _attr_max_mireds: Incomplete
+    _max_kelvin: Incomplete
     def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
     @property
     def is_on(self) -> bool: ...
@@ -49,7 +50,7 @@ class BlockShellyLight(ShellyBlockEntity, LightEntity):
     def _update_callback(self) -> None: ...
 
 class RpcShellyLight(ShellyRpcEntity, LightEntity):
-    _id: Any
+    _id: Incomplete
     def __init__(self, wrapper: RpcDeviceWrapper, id_: int) -> None: ...
     @property
     def is_on(self) -> bool: ...

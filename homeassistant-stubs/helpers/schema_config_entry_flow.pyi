@@ -1,6 +1,7 @@
 import abc
 import voluptuous as vol
 from . import selector as selector
+from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Mapping
 from homeassistant import config_entries as config_entries
@@ -22,9 +23,9 @@ class SchemaFlowMenuStep:
     def __init__(self, options) -> None: ...
 
 class SchemaCommonFlowHandler:
-    _flow: Any
-    _handler: Any
-    _options: Any
+    _flow: Incomplete
+    _handler: Incomplete
+    _options: Incomplete
     def __init__(self, handler: Union[SchemaConfigFlowHandler, SchemaOptionsFlowHandler], flow: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]], config_entry: Union[config_entries.ConfigEntry, None]) -> None: ...
     async def async_step(self, step_id: str, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     def _get_schema(self, form_step: SchemaFlowFormStep, options: dict[str, Any]) -> Union[vol.Schema, None]: ...
@@ -37,7 +38,7 @@ class SchemaConfigFlowHandler(config_entries.ConfigFlow, metaclass=abc.ABCMeta):
     options_flow: Union[dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]], None]
     VERSION: int
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
-    _common_handler: Any
+    _common_handler: Incomplete
     def __init__(self) -> None: ...
     @classmethod
     def async_supports_options_flow(cls, config_entry: config_entries.ConfigEntry) -> bool: ...
@@ -51,9 +52,9 @@ class SchemaConfigFlowHandler(config_entries.ConfigFlow, metaclass=abc.ABCMeta):
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> FlowResult: ...
 
 class SchemaOptionsFlowHandler(config_entries.OptionsFlow):
-    _common_handler: Any
-    config_entry: Any
-    _async_options_flow_finished: Any
+    _common_handler: Incomplete
+    config_entry: Incomplete
+    _async_options_flow_finished: Incomplete
     def __init__(self, config_entry: config_entries.ConfigEntry, options_flow: dict[str, vol.Schema], async_options_flow_finished: Callable[[HomeAssistant, Mapping[str, Any]], None]) -> None: ...
     @staticmethod
     def _async_step(step_id: str) -> Callable: ...

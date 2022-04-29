@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 CONF_ACTION: str
 CONF_TRIGGER: str
@@ -11,4 +11,4 @@ CONF_BLUEPRINT: str
 CONF_INPUT: str
 CONF_TRACE: str
 DEFAULT_INITIAL_STATE: bool
-LOGGER: Any
+LOGGER: Incomplete

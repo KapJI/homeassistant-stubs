@@ -4,23 +4,24 @@ from .const import ATTR_SETTINGS as ATTR_SETTINGS, AUDIO_CODECS as AUDIO_CODECS,
 from .core import KeyFrameConverter as KeyFrameConverter, Part as Part, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
 from .diagnostics import Diagnostics as Diagnostics
 from .hls import HlsStreamOutput as HlsStreamOutput
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator, Iterator, Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant
 from io import BytesIO
 from threading import Event
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class StreamWorkerError(Exception): ...
 class StreamEndedError(StreamWorkerError): ...
 
 class StreamState:
     _stream_id: int
-    hass: Any
-    _outputs_callback: Any
+    hass: Incomplete
+    _outputs_callback: Incomplete
     _sequence: int
-    _diagnostics: Any
+    _diagnostics: Incomplete
     def __init__(self, hass: HomeAssistant, outputs_callback: Callable[[], Mapping[str, StreamOutput]], diagnostics: Diagnostics) -> None: ...
     @property
     def sequence(self) -> int: ...
@@ -34,21 +35,21 @@ class StreamState:
     def diagnostics(self) -> Diagnostics: ...
 
 class StreamMuxer:
-    _hass: Any
-    _segment_start_dts: Any
-    _memory_file: Any
-    _av_output: Any
-    _input_video_stream: Any
-    _input_audio_stream: Any
-    _output_video_stream: Any
-    _output_audio_stream: Any
-    _segment: Any
-    _memory_file_pos: Any
-    _part_start_dts: Any
+    _hass: Incomplete
+    _segment_start_dts: Incomplete
+    _memory_file: Incomplete
+    _av_output: Incomplete
+    _input_video_stream: Incomplete
+    _input_audio_stream: Incomplete
+    _output_video_stream: Incomplete
+    _output_audio_stream: Incomplete
+    _segment: Incomplete
+    _memory_file_pos: Incomplete
+    _part_start_dts: Incomplete
     _part_has_keyframe: bool
-    _stream_settings: Any
-    _stream_state: Any
-    _start_time: Any
+    _stream_settings: Incomplete
+    _stream_state: Incomplete
+    _start_time: Incomplete
     def __init__(self, hass: HomeAssistant, video_stream: av.video.VideoStream, audio_stream: Union[av.audio.stream.AudioStream, None], stream_state: StreamState) -> None: ...
     def make_new_av(self, memory_file: BytesIO, sequence: int, input_vstream: av.video.VideoStream, input_astream: Union[av.audio.stream.AudioStream, None]) -> tuple[av.container.OutputContainer, av.video.VideoStream, Union[av.audio.stream.AudioStream, None]]: ...
     def reset(self, video_dts: int) -> None: ...
@@ -58,9 +59,9 @@ class StreamMuxer:
     def close(self) -> None: ...
 
 class PeekIterator(Iterator):
-    _iterator: Any
-    _buffer: Any
-    _next: Any
+    _iterator: Incomplete
+    _buffer: Incomplete
+    _next: Incomplete
     def __init__(self, iterator: Iterator[av.Packet]) -> None: ...
     def __iter__(self) -> Iterator: ...
     def __next__(self) -> av.Packet: ...
@@ -69,7 +70,7 @@ class PeekIterator(Iterator):
     def peek(self) -> Generator[av.Packet, None, None]: ...
 
 class TimestampValidator:
-    _last_dts: Any
+    _last_dts: Incomplete
     _missing_dts: int
     def __init__(self): ...
     def is_valid(self, packet: av.Packet) -> bool: ...

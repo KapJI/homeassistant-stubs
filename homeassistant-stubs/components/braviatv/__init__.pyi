@@ -1,41 +1,42 @@
 from .const import CLIENTID_PREFIX as CLIENTID_PREFIX, CONF_IGNORED_SOURCES as CONF_IGNORED_SOURCES, DOMAIN as DOMAIN, NICKNAME as NICKNAME
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PIN as CONF_PIN, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any, Final
+from typing import Final
 
-_LOGGER: Any
+_LOGGER: Incomplete
 PLATFORMS: Final[list[Platform]]
-SCAN_INTERVAL: Final[Any]
+SCAN_INTERVAL: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...
 async def update_listener(hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
 
 class BraviaTVCoordinator(DataUpdateCoordinator[None]):
-    braviarc: Any
-    pin: Any
-    ignored_sources: Any
+    braviarc: Incomplete
+    pin: Incomplete
+    ignored_sources: Incomplete
     muted: bool
-    channel_name: Any
-    media_title: Any
-    source: Any
-    source_list: Any
-    original_content_list: Any
-    content_mapping: Any
-    duration: Any
-    content_uri: Any
-    program_media_type: Any
-    audio_output: Any
-    min_volume: Any
-    max_volume: Any
-    volume_level: Any
+    channel_name: Incomplete
+    media_title: Incomplete
+    source: Incomplete
+    source_list: Incomplete
+    original_content_list: Incomplete
+    content_mapping: Incomplete
+    duration: Incomplete
+    content_uri: Incomplete
+    program_media_type: Incomplete
+    audio_output: Incomplete
+    min_volume: Incomplete
+    max_volume: Incomplete
+    volume_level: Incomplete
     is_on: bool
     playing: bool
-    state_lock: Any
+    state_lock: Incomplete
     def __init__(self, hass: HomeAssistant, host: str, mac: str, pin: str, ignored_sources: list[str]) -> None: ...
     def _send_command(self, command: Iterable[str], repeats: int = ...) -> None: ...
     def _get_source(self) -> Union[str, None]: ...

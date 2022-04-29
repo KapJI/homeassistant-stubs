@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import IntEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,10 +12,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
-ENTITY_ID_FORMAT: Any
-SCAN_INTERVAL: Any
+ENTITY_ID_FORMAT: Incomplete
+SCAN_INTERVAL: Incomplete
 ATTR_BATTERY_ICON: str
 ATTR_CLEANED_AREA: str
 ATTR_FAN_SPEED: str
@@ -34,7 +35,7 @@ STATE_CLEANING: str
 STATE_DOCKED: str
 STATE_RETURNING: str
 STATE_ERROR: str
-STATES: Any
+STATES: Incomplete
 DEFAULT_NAME: str
 
 class VacuumEntityFeature(IntEnum):

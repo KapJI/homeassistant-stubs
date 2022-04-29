@@ -1,6 +1,7 @@
 import re
 from . import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from .const import DOMAIN as DOMAIN, KEY_DEVICE_INFORMATION as KEY_DEVICE_INFORMATION, KEY_DEVICE_SIGNAL as KEY_DEVICE_SIGNAL, KEY_MONITORING_CHECK_NOTIFICATIONS as KEY_MONITORING_CHECK_NOTIFICATIONS, KEY_MONITORING_MONTH_STATISTICS as KEY_MONITORING_MONTH_STATISTICS, KEY_MONITORING_STATUS as KEY_MONITORING_STATUS, KEY_MONITORING_TRAFFIC_STATISTICS as KEY_MONITORING_TRAFFIC_STATISTICS, KEY_NET_CURRENT_PLMN as KEY_NET_CURRENT_PLMN, KEY_NET_NET_MODE as KEY_NET_NET_MODE, KEY_SMS_SMS_COUNT as KEY_SMS_SMS_COUNT, SENSOR_KEYS as SENSOR_KEYS
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,9 +10,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any, NamedTuple
+from typing import NamedTuple
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class SensorMeta(NamedTuple):
     name: Union[str, None]
@@ -54,7 +55,7 @@ class HuaweiLteSensor(HuaweiLteBaseEntityWithDevice, SensorEntity):
     def state_class(self) -> Union[SensorStateClass, None]: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
-    _available: Any
+    _available: Incomplete
     async def async_update(self) -> None: ...
     @property
     def entity_category(self) -> Union[EntityCategory, None]: ...

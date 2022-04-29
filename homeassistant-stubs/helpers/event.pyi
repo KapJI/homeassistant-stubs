@@ -3,6 +3,7 @@ from .ratelimit import KeyedRateLimit as KeyedRateLimit
 from .sun import get_astral_event_next as get_astral_event_next
 from .template import RenderInfo as RenderInfo, Template as Template, result_as_boolean as result_as_boolean
 from .typing import TemplateVarsType as TemplateVarsType
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Iterable, Sequence
 from datetime import datetime, timedelta
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
@@ -25,8 +26,8 @@ TRACK_ENTITY_REGISTRY_UPDATED_LISTENER: str
 _ALL_LISTENER: str
 _DOMAINS_LISTENER: str
 _ENTITIES_LISTENER: str
-_LOGGER: Any
-_P: Any
+_LOGGER: Incomplete
+_P: Incomplete
 
 class TrackStates:
     all_states: bool
@@ -49,7 +50,7 @@ class TrackTemplateResult:
 def threaded_listener_factory(async_factory: Callable[Concatenate[HomeAssistant, _P], Any]) -> Callable[Concatenate[HomeAssistant, _P], CALLBACK_TYPE]: ...
 def async_track_state_change(hass: HomeAssistant, entity_ids: Union[str, Iterable[str]], action: Callable[[str, State, State], Union[Awaitable[None], None]], from_state: Union[None, str, Iterable[str]] = ..., to_state: Union[None, str, Iterable[str]] = ...) -> CALLBACK_TYPE: ...
 
-track_state_change: Any
+track_state_change: Incomplete
 
 def async_track_state_change_event(hass: HomeAssistant, entity_ids: Union[str, Iterable[str]], action: Callable[[Event], Any]) -> CALLBACK_TYPE: ...
 def _remove_empty_listener() -> None: ...
@@ -61,11 +62,11 @@ def async_track_state_removed_domain(hass: HomeAssistant, domains: Union[str, It
 def _async_string_to_lower_list(instr: Union[str, Iterable[str]]) -> list[str]: ...
 
 class _TrackStateChangeFiltered:
-    hass: Any
-    _action: Any
-    _action_as_hassjob: Any
-    _listeners: Any
-    _last_track_states: Any
+    hass: Incomplete
+    _action: Incomplete
+    _action_as_hassjob: Incomplete
+    _listeners: Incomplete
+    _last_track_states: Incomplete
     def __init__(self, hass: HomeAssistant, track_states: TrackStates, action: Callable[[Event], Any]) -> None: ...
     def async_setup(self) -> None: ...
     @property
@@ -81,18 +82,18 @@ class _TrackStateChangeFiltered:
 def async_track_state_change_filtered(hass: HomeAssistant, track_states: TrackStates, action: Callable[[Event], Any]) -> _TrackStateChangeFiltered: ...
 def async_track_template(hass: HomeAssistant, template: Template, action: Callable[[str, Union[State, None], Union[State, None]], Union[Awaitable[None], None]], variables: Union[TemplateVarsType, None] = ...) -> CALLBACK_TYPE: ...
 
-track_template: Any
+track_template: Incomplete
 
 class _TrackTemplateResultInfo:
-    hass: Any
-    _job: Any
-    _track_templates: Any
-    _has_super_template: Any
-    _last_result: Any
-    _rate_limit: Any
-    _info: Any
-    _track_state_changes: Any
-    _time_listeners: Any
+    hass: Incomplete
+    _job: Incomplete
+    _track_templates: Incomplete
+    _has_super_template: Incomplete
+    _last_result: Incomplete
+    _rate_limit: Incomplete
+    _info: Incomplete
+    _track_state_changes: Incomplete
+    _time_listeners: Incomplete
     def __init__(self, hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: Callable[[Union[Event, None], list[TrackTemplateResult]], None], has_super_template: bool = ...) -> None: ...
     def async_setup(self, raise_on_template_error: bool, strict: bool = ...) -> None: ...
     @property
@@ -110,23 +111,23 @@ TrackTemplateResultListener = Callable[[Union[Event, None], list[TrackTemplateRe
 def async_track_template_result(hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, raise_on_template_error: bool = ..., strict: bool = ..., has_super_template: bool = ...) -> _TrackTemplateResultInfo: ...
 def async_track_same_state(hass: HomeAssistant, period: timedelta, action: Callable[[], Union[Awaitable[None], None]], async_check_same_func: Callable[[str, Union[State, None], Union[State, None]], bool], entity_ids: Union[str, Iterable[str]] = ...) -> CALLBACK_TYPE: ...
 
-track_same_state: Any
+track_same_state: Incomplete
 
 def async_track_point_in_time(hass: HomeAssistant, action: Union[HassJob[Union[Awaitable[None], None]], Callable[[datetime], Union[Awaitable[None], None]]], point_in_time: datetime) -> CALLBACK_TYPE: ...
 
-track_point_in_time: Any
+track_point_in_time: Incomplete
 
 def async_track_point_in_utc_time(hass: HomeAssistant, action: Union[HassJob[Union[Awaitable[None], None]], Callable[[datetime], Union[Awaitable[None], None]]], point_in_time: datetime) -> CALLBACK_TYPE: ...
 
-track_point_in_utc_time: Any
+track_point_in_utc_time: Incomplete
 
 def async_call_later(hass: HomeAssistant, delay: Union[float, timedelta], action: Union[HassJob[Union[Awaitable[None], None]], Callable[[datetime], Union[Awaitable[None], None]]]) -> CALLBACK_TYPE: ...
 
-call_later: Any
+call_later: Incomplete
 
 def async_track_time_interval(hass: HomeAssistant, action: Callable[[datetime], Union[Awaitable[None], None]], interval: timedelta) -> CALLBACK_TYPE: ...
 
-track_time_interval: Any
+track_time_interval: Incomplete
 
 class SunListener:
     hass: HomeAssistant
@@ -148,20 +149,20 @@ class SunListener:
 
 def async_track_sunrise(hass: HomeAssistant, action: Callable[[], None], offset: Union[timedelta, None] = ...) -> CALLBACK_TYPE: ...
 
-track_sunrise: Any
+track_sunrise: Incomplete
 
 def async_track_sunset(hass: HomeAssistant, action: Callable[[], None], offset: Union[timedelta, None] = ...) -> CALLBACK_TYPE: ...
 
-track_sunset: Any
+track_sunset: Incomplete
 time_tracker_utcnow = dt_util.utcnow
 
 def async_track_utc_time_change(hass: HomeAssistant, action: Callable[[datetime], Union[Awaitable[None], None]], hour: Union[Any, None] = ..., minute: Union[Any, None] = ..., second: Union[Any, None] = ..., local: bool = ...) -> CALLBACK_TYPE: ...
 
-track_utc_time_change: Any
+track_utc_time_change: Incomplete
 
 def async_track_time_change(hass: HomeAssistant, action: Callable[[datetime], Union[Awaitable[None], None]], hour: Union[Any, None] = ..., minute: Union[Any, None] = ..., second: Union[Any, None] = ...) -> CALLBACK_TYPE: ...
 
-track_time_change: Any
+track_time_change: Incomplete
 
 def process_state_match(parameter: Union[None, str, Iterable[str]], invert: bool = ...) -> Callable[[Union[str, None]], bool]: ...
 def _entities_domains_from_render_infos(render_infos: Iterable[RenderInfo]) -> tuple[set[str], set[str]]: ...

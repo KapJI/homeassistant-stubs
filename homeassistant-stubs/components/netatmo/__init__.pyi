@@ -2,6 +2,7 @@ from . import api as api, config_flow as config_flow
 from .const import AUTH as AUTH, CONF_CLOUDHOOK_URL as CONF_CLOUDHOOK_URL, DATA_CAMERAS as DATA_CAMERAS, DATA_DEVICE_IDS as DATA_DEVICE_IDS, DATA_EVENTS as DATA_EVENTS, DATA_HANDLER as DATA_HANDLER, DATA_HOMES as DATA_HOMES, DATA_PERSONS as DATA_PERSONS, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, NETATMO_SCOPES as NETATMO_SCOPES, OAUTH2_AUTHORIZE as OAUTH2_AUTHORIZE, OAUTH2_TOKEN as OAUTH2_TOKEN, PLATFORMS as PLATFORMS, WEBHOOK_DEACTIVATION as WEBHOOK_DEACTIVATION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from .data_handler import NetatmoDataHandler as NetatmoDataHandler
 from .webhook import async_handle_webhook as async_handle_webhook
+from _typeshed import Incomplete
 from homeassistant.components import cloud as cloud
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_WEBHOOK_ID as CONF_WEBHOOK_ID, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -11,10 +12,9 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
-_LOGGER: Any
-CONFIG_SCHEMA: Any
+_LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
 MAX_WEBHOOK_RETRIES: int
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

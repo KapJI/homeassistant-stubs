@@ -1,7 +1,7 @@
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
-from typing import Any
 
-LOGGER: Any
+LOGGER: Incomplete
 DOMAIN: str
 CONF_ZONE_RUN_TIME: str
 DATA_CONTROLLER: str
@@ -12,11 +12,11 @@ DATA_RESTRICTIONS_CURRENT: str
 DATA_RESTRICTIONS_UNIVERSAL: str
 DATA_ZONES: str
 DEFAULT_PORT: int
-DEFAULT_ZONE_RUN: Any
+DEFAULT_ZONE_RUN: Incomplete
 
 class RunStates(StrEnum):
     NOT_RUNNING: str
     QUEUED: str
     RUNNING: str
 
-RUN_STATE_MAP: Any
+RUN_STATE_MAP: Incomplete

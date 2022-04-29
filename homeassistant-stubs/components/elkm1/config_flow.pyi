@@ -1,6 +1,7 @@
 from . import async_wait_for_elk_to_sync as async_wait_for_elk_to_sync
 from .const import CONF_AUTO_CONFIGURE as CONF_AUTO_CONFIGURE, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, LOGIN_TIMEOUT as LOGIN_TIMEOUT
 from .discovery import _short_mac as _short_mac, async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_update_entry_from_discovery as async_update_entry_from_discovery
+from _typeshed import Incomplete
 from elkm1_lib.discovery import ElkSystem
 from homeassistant import config_entries as config_entries, exceptions as exceptions
 from homeassistant.components import dhcp as dhcp
@@ -14,16 +15,16 @@ from typing import Any
 CONF_DEVICE: str
 NON_SECURE_PORT: int
 SECURE_PORT: int
-STANDARD_PORTS: Any
-_LOGGER: Any
-PROTOCOL_MAP: Any
+STANDARD_PORTS: Incomplete
+_LOGGER: Incomplete
+PROTOCOL_MAP: Incomplete
 VALIDATE_TIMEOUT: int
-BASE_SCHEMA: Any
-SECURE_PROTOCOLS: Any
-ALL_PROTOCOLS: Any
+BASE_SCHEMA: Incomplete
+SECURE_PROTOCOLS: Incomplete
+ALL_PROTOCOLS: Incomplete
 DEFAULT_SECURE_PROTOCOL: str
 DEFAULT_NON_SECURE_PROTOCOL: str
-PORT_PROTOCOL_MAP: Any
+PORT_PROTOCOL_MAP: Incomplete
 
 async def validate_input(data: dict[str, str], mac: Union[str, None]) -> dict[str, str]: ...
 def _address_from_discovery(device: ElkSystem) -> str: ...
@@ -32,8 +33,8 @@ def _placeholders_from_device(device: ElkSystem) -> dict[str, str]: ...
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    _discovered_device: Any
-    _discovered_devices: Any
+    _discovered_device: Incomplete
+    _discovered_devices: Incomplete
     def __init__(self) -> None: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> FlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> FlowResult: ...

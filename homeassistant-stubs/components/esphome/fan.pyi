@@ -1,4 +1,5 @@
 from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from _typeshed import Incomplete
 from aioesphomeapi import FanDirection, FanInfo, FanState
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,7 +8,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
 
-ORDERED_NAMED_FAN_SPEEDS: Any
+ORDERED_NAMED_FAN_SPEEDS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

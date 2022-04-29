@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import EventThumbnailMixin as EventThumbnailMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
 from .models import ProtectRequiredKeysMixin as ProtectRequiredKeysMixin, T as T
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyunifiprotect.data import Camera as Camera, Event as Event, NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel, Sensor
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 OBJECT_TYPE_NONE: str
 DEVICE_CLASS_DETECTION: str
 
@@ -44,17 +45,17 @@ def _async_nvr_entities(data: ProtectData) -> list[ProtectDeviceEntity]: ...
 class ProtectDeviceSensor(ProtectDeviceEntity, SensorEntity):
     entity_description: ProtectSensorEntityDescription
     def __init__(self, data: ProtectData, device: ProtectAdoptableDeviceModel, description: ProtectSensorEntityDescription) -> None: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def _async_update_device_from_protect(self) -> None: ...
 
 class ProtectNVRSensor(ProtectNVREntity, SensorEntity):
     entity_description: ProtectSensorEntityDescription
     def __init__(self, data: ProtectData, device: NVR, description: ProtectSensorEntityDescription) -> None: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def _async_update_device_from_protect(self) -> None: ...
 
 class ProtectEventSensor(ProtectDeviceSensor, EventThumbnailMixin):
     device: Camera
     def _async_get_event(self) -> Union[Event, None]: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def _async_update_device_from_protect(self) -> None: ...

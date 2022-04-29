@@ -1,5 +1,6 @@
 from .const import ATTR_KEY as ATTR_KEY, ATTR_KEYPAD_ID as ATTR_KEYPAD_ID, ATTR_KEY_NAME as ATTR_KEY_NAME, CONF_AREA as CONF_AREA, CONF_AUTO_CONFIGURE as CONF_AUTO_CONFIGURE, CONF_COUNTER as CONF_COUNTER, CONF_ENABLED as CONF_ENABLED, CONF_KEYPAD as CONF_KEYPAD, CONF_OUTPUT as CONF_OUTPUT, CONF_PLC as CONF_PLC, CONF_SETTING as CONF_SETTING, CONF_TASK as CONF_TASK, CONF_THERMOSTAT as CONF_THERMOSTAT, DISCOVERY_INTERVAL as DISCOVERY_INTERVAL, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, ELK_ELEMENTS as ELK_ELEMENTS, EVENT_ELKM1_KEYPAD_KEY_PRESSED as EVENT_ELKM1_KEYPAD_KEY_PRESSED, LOGIN_TIMEOUT as LOGIN_TIMEOUT
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_trigger_discovery as async_trigger_discovery, async_update_entry_from_discovery as async_update_entry_from_discovery
+from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
@@ -14,18 +15,18 @@ from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any
 
 SYNC_TIMEOUT: int
-_LOGGER: Any
-PLATFORMS: Any
-SPEAK_SERVICE_SCHEMA: Any
-SET_TIME_SERVICE_SCHEMA: Any
+_LOGGER: Incomplete
+PLATFORMS: Incomplete
+SPEAK_SERVICE_SCHEMA: Incomplete
+SET_TIME_SERVICE_SCHEMA: Incomplete
 
 def _host_validator(config: dict[str, str]) -> dict[str, str]: ...
 def _elk_range_validator(rng: str) -> tuple[int, int]: ...
 def _has_all_unique_prefixes(value: list[dict[str, str]]) -> list[dict[str, str]]: ...
 
-DEVICE_SCHEMA_SUBDOMAIN: Any
-DEVICE_SCHEMA: Any
-CONFIG_SCHEMA: Any
+DEVICE_SCHEMA_SUBDOMAIN: Incomplete
+DEVICE_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, hass_config: ConfigType) -> bool: ...
 def _async_find_matching_config_entry(hass: HomeAssistant, prefix: str) -> Union[ConfigEntry, None]: ...
@@ -38,13 +39,13 @@ def _create_elk_services(hass: HomeAssistant) -> None: ...
 def create_elk_entities(elk_data: dict[str, Any], elk_elements: list[Element], element_type: str, class_: Any, entities: list[ElkEntity]) -> Union[list[ElkEntity], None]: ...
 
 class ElkEntity(Entity):
-    _elk: Any
-    _element: Any
-    _mac: Any
-    _prefix: Any
-    _name_prefix: Any
-    _temperature_unit: Any
-    _unique_id: Any
+    _elk: Incomplete
+    _element: Incomplete
+    _mac: Incomplete
+    _prefix: Incomplete
+    _name_prefix: Incomplete
+    _temperature_unit: Incomplete
+    _unique_id: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: dict[str, Any]) -> None: ...
     @property
     def name(self) -> str: ...

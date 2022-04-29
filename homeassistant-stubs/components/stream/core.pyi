@@ -1,6 +1,7 @@
 import datetime
 from . import Stream as Stream
 from .const import ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from aiohttp import web
 from av import CodecContext, Packet as Packet
 from collections import deque
@@ -9,7 +10,6 @@ from homeassistant.components.http.view import HomeAssistantView as HomeAssistan
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.decorator import Registry as Registry
-from typing import Any
 
 PROVIDERS: Registry[str, type[StreamOutput]]
 
@@ -65,10 +65,10 @@ class Segment:
     def __ge__(self, other): ...
 
 class IdleTimer:
-    _hass: Any
-    _timeout: Any
-    _callback: Any
-    _unsub: Any
+    _hass: Incomplete
+    _timeout: Incomplete
+    _callback: Incomplete
+    _unsub: Incomplete
     idle: bool
     def __init__(self, hass: HomeAssistant, timeout: int, idle_callback: CALLBACK_TYPE) -> None: ...
     def start(self) -> None: ...
@@ -77,11 +77,11 @@ class IdleTimer:
     def fire(self, _now: datetime.datetime) -> None: ...
 
 class StreamOutput:
-    _hass: Any
-    idle_timer: Any
-    _event: Any
-    _part_event: Any
-    _segments: Any
+    _hass: Incomplete
+    idle_timer: Incomplete
+    _event: Incomplete
+    _part_event: Incomplete
+    _segments: Incomplete
     def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, deque_maxlen: Union[int, None] = ...) -> None: ...
     @property
     def name(self) -> Union[str, None]: ...
@@ -104,17 +104,17 @@ class StreamOutput:
 
 class StreamView(HomeAssistantView):
     requires_auth: bool
-    platform: Any
+    platform: Incomplete
     async def get(self, request: web.Request, token: str, sequence: str = ..., part_num: str = ...) -> web.StreamResponse: ...
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.StreamResponse: ...
 
 class KeyFrameConverter:
-    packet: Any
-    _hass: Any
-    _image: Any
-    _turbojpeg: Any
-    _lock: Any
-    _codec_context: Any
+    packet: Incomplete
+    _hass: Incomplete
+    _image: Incomplete
+    _turbojpeg: Incomplete
+    _lock: Incomplete
+    _codec_context: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def create_codec_context(self, codec_context: CodecContext) -> None: ...
     def _generate_image(self, width: Union[int, None], height: Union[int, None]) -> None: ...

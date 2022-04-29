@@ -1,20 +1,21 @@
 import voluptuous as vol
 from . import MULTI_FACTOR_AUTH_MODULES as MULTI_FACTOR_AUTH_MODULES, MULTI_FACTOR_AUTH_MODULE_SCHEMA as MULTI_FACTOR_AUTH_MODULE_SCHEMA, MultiFactorAuthModule as MultiFactorAuthModule, SetupFlow as SetupFlow
+from _typeshed import Incomplete
 from homeassistant.const import CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import ServiceNotFound as ServiceNotFound
 from typing import Any
 
-REQUIREMENTS: Any
+REQUIREMENTS: Incomplete
 CONF_MESSAGE: str
-CONFIG_SCHEMA: Any
+CONFIG_SCHEMA: Incomplete
 STORAGE_VERSION: int
 STORAGE_KEY: str
 STORAGE_USERS: str
 STORAGE_USER_ID: str
 INPUT_FIELD_CODE: str
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def _generate_secret() -> str: ...
 def _generate_random() -> int: ...
@@ -35,12 +36,12 @@ _UsersDict = dict[str, NotifySetting]
 
 class NotifyAuthModule(MultiFactorAuthModule):
     DEFAULT_TITLE: str
-    _user_settings: Any
-    _user_store: Any
-    _include: Any
-    _exclude: Any
-    _message_template: Any
-    _init_lock: Any
+    _user_settings: Incomplete
+    _user_store: Incomplete
+    _include: Incomplete
+    _exclude: Incomplete
+    _message_template: Incomplete
+    _init_lock: Incomplete
     def __init__(self, hass: HomeAssistant, config: dict[str, Any]) -> None: ...
     @property
     def input_schema(self) -> vol.Schema: ...
@@ -57,12 +58,12 @@ class NotifyAuthModule(MultiFactorAuthModule):
     async def async_notify(self, code: str, notify_service: str, target: Union[str, None] = ...) -> None: ...
 
 class NotifySetupFlow(SetupFlow):
-    _auth_module: Any
-    _available_notify_services: Any
-    _secret: Any
-    _count: Any
-    _notify_service: Any
-    _target: Any
+    _auth_module: Incomplete
+    _available_notify_services: Incomplete
+    _secret: Incomplete
+    _count: Incomplete
+    _notify_service: Incomplete
+    _target: Incomplete
     def __init__(self, auth_module: NotifyAuthModule, setup_schema: vol.Schema, user_id: str, available_notify_services: list[str]) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, str], None] = ...) -> FlowResult: ...
     async def async_step_setup(self, user_input: Union[dict[str, str], None] = ...) -> FlowResult: ...

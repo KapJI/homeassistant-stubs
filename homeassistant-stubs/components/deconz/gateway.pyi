@@ -1,6 +1,7 @@
 from .const import CONF_ALLOW_CLIP_SENSOR as CONF_ALLOW_CLIP_SENSOR, CONF_ALLOW_DECONZ_GROUPS as CONF_ALLOW_DECONZ_GROUPS, CONF_ALLOW_NEW_DEVICES as CONF_ALLOW_NEW_DEVICES, CONF_MASTER_GATEWAY as CONF_MASTER_GATEWAY, DEFAULT_ALLOW_CLIP_SENSOR as DEFAULT_ALLOW_CLIP_SENSOR, DEFAULT_ALLOW_DECONZ_GROUPS as DEFAULT_ALLOW_DECONZ_GROUPS, DEFAULT_ALLOW_NEW_DEVICES as DEFAULT_ALLOW_NEW_DEVICES, HASSIO_CONFIGURATION_URL as HASSIO_CONFIGURATION_URL, LOGGER as LOGGER, PLATFORMS as PLATFORMS
 from .deconz_event import DeconzAlarmEvent as DeconzAlarmEvent, DeconzEvent as DeconzEvent
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -16,20 +17,20 @@ from types import MappingProxyType
 from typing import Any
 
 class DeconzGateway:
-    hass: Any
-    config_entry: Any
-    api: Any
+    hass: Incomplete
+    config_entry: Incomplete
+    api: Incomplete
     available: bool
     ignore_state_updates: bool
-    signal_reachable: Any
-    signal_reload_groups: Any
-    signal_new_light: Any
-    signal_new_sensor: Any
-    deconz_resource_type_to_signal_new_device: Any
-    deconz_ids: Any
-    entities: Any
-    events: Any
-    _option_allow_deconz_groups: Any
+    signal_reachable: Incomplete
+    signal_reload_groups: Incomplete
+    signal_new_light: Incomplete
+    signal_new_sensor: Incomplete
+    deconz_resource_type_to_signal_new_device: Incomplete
+    deconz_ids: Incomplete
+    entities: Incomplete
+    events: Incomplete
+    _option_allow_deconz_groups: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: DeconzSession) -> None: ...
     @property
     def bridgeid(self) -> str: ...

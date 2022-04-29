@@ -1,6 +1,7 @@
 from . import FritzBoxEntity as FritzBoxEntity
 from .const import ATTR_STATE_BATTERY_LOW as ATTR_STATE_BATTERY_LOW, ATTR_STATE_HOLIDAY_MODE as ATTR_STATE_HOLIDAY_MODE, ATTR_STATE_SUMMER_MODE as ATTR_STATE_SUMMER_MODE, ATTR_STATE_WINDOW_OPEN as ATTR_STATE_WINDOW_OPEN, CONF_COORDINATOR as CONF_COORDINATOR
 from .model import ClimateExtraAttributes as ClimateExtraAttributes
+from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-OPERATION_LIST: Any
+OPERATION_LIST: Incomplete
 MIN_TEMPERATURE: int
 MAX_TEMPERATURE: int
 PRESET_MANUAL: str
@@ -21,7 +22,7 @@ OFF_REPORT_SET_TEMPERATURE: float
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzboxThermostat(FritzBoxEntity, ClimateEntity):
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     @property
     def temperature_unit(self) -> str: ...
     @property

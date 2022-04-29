@@ -2,6 +2,7 @@ from . import BlockDeviceWrapper as BlockDeviceWrapper, RpcDeviceWrapper as RpcD
 from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, RPC as RPC
 from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light
+from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -14,7 +15,7 @@ async def async_setup_block_entry(hass: HomeAssistant, config_entry: ConfigEntry
 async def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockRelaySwitch(ShellyBlockEntity, SwitchEntity):
-    control_result: Any
+    control_result: Incomplete
     def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
     @property
     def is_on(self) -> bool: ...
@@ -23,7 +24,7 @@ class BlockRelaySwitch(ShellyBlockEntity, SwitchEntity):
     def _update_callback(self) -> None: ...
 
 class RpcRelaySwitch(ShellyRpcEntity, SwitchEntity):
-    _id: Any
+    _id: Incomplete
     def __init__(self, wrapper: RpcDeviceWrapper, id_: int) -> None: ...
     @property
     def is_on(self) -> bool: ...

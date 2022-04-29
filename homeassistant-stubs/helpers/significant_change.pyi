@@ -1,4 +1,5 @@
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
+from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
@@ -18,8 +19,8 @@ def check_absolute_change(val1: Union[int, float, None], val2: Union[int, float,
 def check_percentage_change(old_state: Union[int, float, None], new_state: Union[int, float, None], change: Union[int, float]) -> bool: ...
 
 class SignificantlyChangedChecker:
-    hass: Any
-    last_approved_entities: Any
-    extra_significant_check: Any
+    hass: Incomplete
+    last_approved_entities: Incomplete
+    extra_significant_check: Incomplete
     def __init__(self, hass: HomeAssistant, extra_significant_check: Union[ExtraCheckTypeFunc, None] = ...) -> None: ...
     def async_is_significant_change(self, new_state: State, *, extra_arg: Union[Any, None] = ...) -> bool: ...

@@ -1,6 +1,7 @@
 import re
 import voluptuous as vol
 from . import template as template_helper
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable
 from datetime import date as date_sys, datetime as datetime_sys, time as time_sys, timedelta
 from enum import Enum
@@ -11,15 +12,15 @@ from homeassistant.util import raise_if_invalid_path as raise_if_invalid_path
 from typing import Any, TypeVar, overload
 
 TIME_PERIOD_ERROR: str
-byte: Any
-small_float: Any
-positive_int: Any
-positive_float: Any
-latitude: Any
-longitude: Any
-gps: Any
-sun_event: Any
-port: Any
+byte: Incomplete
+small_float: Incomplete
+positive_int: Incomplete
+positive_float: Incomplete
+latitude: Incomplete
+longitude: Incomplete
+gps: Incomplete
+sun_event: Incomplete
+port: Incomplete
 _T = TypeVar('_T')
 
 def path(value: Any) -> str: ...
@@ -27,7 +28,7 @@ def has_at_least_one_key(*keys: Any) -> Callable[[dict], dict]: ...
 def has_at_most_one_key(*keys: Any) -> Callable[[dict], dict]: ...
 def boolean(value: Any) -> bool: ...
 
-_WS: Any
+_WS: Incomplete
 
 def whitespace(value: Any) -> str: ...
 def isdevice(value: Any) -> str: ...
@@ -47,28 +48,28 @@ def _entity_ids(value: Union[str, list], allow_uuid: bool) -> list[str]: ...
 def entity_ids(value: Union[str, list]) -> list[str]: ...
 def entity_ids_or_uuids(value: Union[str, list]) -> list[str]: ...
 
-comp_entity_ids: Any
-comp_entity_ids_or_uuids: Any
+comp_entity_ids: Incomplete
+comp_entity_ids_or_uuids: Incomplete
 
 def entity_domain(domain: Union[str, list[str]]) -> Callable[[Any], str]: ...
 def entities_domain(domain: Union[str, list[str]]) -> Callable[[Union[str, list]], list[str]]: ...
 def enum(enumClass: type[Enum]) -> vol.All: ...
 def icon(value: Any) -> str: ...
 
-time_period_dict: Any
+time_period_dict: Incomplete
 
 def time(value: Any) -> time_sys: ...
 def date(value: Any) -> date_sys: ...
 def time_period_str(value: str) -> timedelta: ...
 def time_period_seconds(value: Union[float, str]) -> timedelta: ...
 
-time_period: Any
+time_period: Incomplete
 
 def match_all(value: _T) -> _T: ...
 def positive_timedelta(value: timedelta) -> timedelta: ...
 
-positive_time_period_dict: Any
-positive_time_period: Any
+positive_time_period_dict: Incomplete
+positive_time_period: Incomplete
 
 def remove_falsy(value: list[_T]) -> list[_T]: ...
 def service(value: Any) -> str: ...
@@ -79,18 +80,18 @@ def string(value: Any) -> str: ...
 def string_with_no_html(value: Any) -> str: ...
 def temperature_unit(value: Any) -> str: ...
 
-unit_system: Any
+unit_system: Incomplete
 
 def template(value: Union[Any, None]) -> template_helper.Template: ...
 def dynamic_template(value: Union[Any, None]) -> template_helper.Template: ...
 def template_complex(value: Any) -> Any: ...
 
-positive_time_period_template: Any
+positive_time_period_template: Incomplete
 
 def datetime(value: Any) -> datetime_sys: ...
 def time_zone(value: str) -> str: ...
 
-weekdays: Any
+weekdays: Incomplete
 
 def socket_timeout(value: Union[Any, None]) -> object: ...
 def url(value: Any) -> str: ...
@@ -98,13 +99,13 @@ def url_no_path(value: Any) -> str: ...
 def x10_address(value: str) -> str: ...
 def uuid4_hex(value: Any) -> str: ...
 
-_FAKE_UUID_4_HEX: Any
+_FAKE_UUID_4_HEX: Incomplete
 
 def fake_uuid4_hex(value: Any) -> str: ...
 def ensure_list_csv(value: Any) -> list: ...
 
 class multi_select:
-    options: Any
+    options: Incomplete
     def __init__(self, options: dict) -> None: ...
     def __call__(self, selected: list) -> list: ...
 
@@ -116,67 +117,67 @@ def key_dependency(key: Hashable, dependency: Hashable) -> Callable[[dict[Hashab
 def custom_serializer(schema: Any) -> Any: ...
 def expand_condition_shorthand(value: Union[Any, None]) -> Any: ...
 
-PLATFORM_SCHEMA: Any
-PLATFORM_SCHEMA_BASE: Any
-ENTITY_SERVICE_FIELDS: Any
-TARGET_SERVICE_FIELDS: Any
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+ENTITY_SERVICE_FIELDS: Incomplete
+TARGET_SERVICE_FIELDS: Incomplete
 
 def make_entity_service_schema(schema: dict, *, extra: int = ...) -> vol.Schema: ...
 
-SCRIPT_VARIABLES_SCHEMA: Any
+SCRIPT_VARIABLES_SCHEMA: Incomplete
 
 def script_action(value: Any) -> dict: ...
 
-SCRIPT_SCHEMA: Any
-SCRIPT_ACTION_BASE_SCHEMA: Any
-EVENT_SCHEMA: Any
-SERVICE_SCHEMA: Any
-NUMERIC_STATE_THRESHOLD_SCHEMA: Any
-CONDITION_BASE_SCHEMA: Any
-NUMERIC_STATE_CONDITION_SCHEMA: Any
-STATE_CONDITION_BASE_SCHEMA: Any
-STATE_CONDITION_STATE_SCHEMA: Any
-STATE_CONDITION_ATTRIBUTE_SCHEMA: Any
+SCRIPT_SCHEMA: Incomplete
+SCRIPT_ACTION_BASE_SCHEMA: Incomplete
+EVENT_SCHEMA: Incomplete
+SERVICE_SCHEMA: Incomplete
+NUMERIC_STATE_THRESHOLD_SCHEMA: Incomplete
+CONDITION_BASE_SCHEMA: Incomplete
+NUMERIC_STATE_CONDITION_SCHEMA: Incomplete
+STATE_CONDITION_BASE_SCHEMA: Incomplete
+STATE_CONDITION_STATE_SCHEMA: Incomplete
+STATE_CONDITION_ATTRIBUTE_SCHEMA: Incomplete
 
 def STATE_CONDITION_SCHEMA(value: Any) -> dict: ...
 
-SUN_CONDITION_SCHEMA: Any
-TEMPLATE_CONDITION_SCHEMA: Any
-TIME_CONDITION_SCHEMA: Any
-TRIGGER_CONDITION_SCHEMA: Any
-ZONE_CONDITION_SCHEMA: Any
-AND_CONDITION_SCHEMA: Any
-AND_CONDITION_SHORTHAND_SCHEMA: Any
-OR_CONDITION_SCHEMA: Any
-OR_CONDITION_SHORTHAND_SCHEMA: Any
-NOT_CONDITION_SCHEMA: Any
-NOT_CONDITION_SHORTHAND_SCHEMA: Any
-DEVICE_CONDITION_BASE_SCHEMA: Any
-DEVICE_CONDITION_SCHEMA: Any
-dynamic_template_condition_action: Any
-CONDITION_SHORTHAND_SCHEMA: Any
+SUN_CONDITION_SCHEMA: Incomplete
+TEMPLATE_CONDITION_SCHEMA: Incomplete
+TIME_CONDITION_SCHEMA: Incomplete
+TRIGGER_CONDITION_SCHEMA: Incomplete
+ZONE_CONDITION_SCHEMA: Incomplete
+AND_CONDITION_SCHEMA: Incomplete
+AND_CONDITION_SHORTHAND_SCHEMA: Incomplete
+OR_CONDITION_SCHEMA: Incomplete
+OR_CONDITION_SHORTHAND_SCHEMA: Incomplete
+NOT_CONDITION_SCHEMA: Incomplete
+NOT_CONDITION_SHORTHAND_SCHEMA: Incomplete
+DEVICE_CONDITION_BASE_SCHEMA: Incomplete
+DEVICE_CONDITION_SCHEMA: Incomplete
+dynamic_template_condition_action: Incomplete
+CONDITION_SHORTHAND_SCHEMA: Incomplete
 CONDITION_SCHEMA: vol.Schema
 CONDITION_ACTION_SCHEMA: vol.Schema
-TRIGGER_BASE_SCHEMA: Any
-_base_trigger_validator_schema: Any
+TRIGGER_BASE_SCHEMA: Incomplete
+_base_trigger_validator_schema: Incomplete
 
 def _base_trigger_validator(value: Any) -> Any: ...
 
-TRIGGER_SCHEMA: Any
-_SCRIPT_DELAY_SCHEMA: Any
-_SCRIPT_WAIT_TEMPLATE_SCHEMA: Any
-DEVICE_ACTION_BASE_SCHEMA: Any
-DEVICE_ACTION_SCHEMA: Any
-_SCRIPT_SCENE_SCHEMA: Any
-_SCRIPT_REPEAT_SCHEMA: Any
-_SCRIPT_CHOOSE_SCHEMA: Any
-_SCRIPT_WAIT_FOR_TRIGGER_SCHEMA: Any
-_SCRIPT_IF_SCHEMA: Any
-_SCRIPT_SET_SCHEMA: Any
-_SCRIPT_STOP_SCHEMA: Any
-_SCRIPT_PARALLEL_SEQUENCE: Any
-_parallel_sequence_action: Any
-_SCRIPT_PARALLEL_SCHEMA: Any
+TRIGGER_SCHEMA: Incomplete
+_SCRIPT_DELAY_SCHEMA: Incomplete
+_SCRIPT_WAIT_TEMPLATE_SCHEMA: Incomplete
+DEVICE_ACTION_BASE_SCHEMA: Incomplete
+DEVICE_ACTION_SCHEMA: Incomplete
+_SCRIPT_SCENE_SCHEMA: Incomplete
+_SCRIPT_REPEAT_SCHEMA: Incomplete
+_SCRIPT_CHOOSE_SCHEMA: Incomplete
+_SCRIPT_WAIT_FOR_TRIGGER_SCHEMA: Incomplete
+_SCRIPT_IF_SCHEMA: Incomplete
+_SCRIPT_SET_SCHEMA: Incomplete
+_SCRIPT_STOP_SCHEMA: Incomplete
+_SCRIPT_PARALLEL_SEQUENCE: Incomplete
+_parallel_sequence_action: Incomplete
+_SCRIPT_PARALLEL_SCHEMA: Incomplete
 SCRIPT_ACTION_DELAY: str
 SCRIPT_ACTION_WAIT_TEMPLATE: str
 SCRIPT_ACTION_CHECK_CONDITION: str
@@ -195,4 +196,4 @@ SCRIPT_ACTION_PARALLEL: str
 def determine_script_action(action: dict[str, Any]) -> str: ...
 
 ACTION_TYPE_SCHEMAS: dict[str, Callable[[Any], dict]]
-currency: Any
+currency: Incomplete

@@ -1,4 +1,5 @@
 from .const import ATTRIBUTION as ATTRIBUTION, CONF_POLLING as CONF_POLLING, DEFAULT_CACHEDB as DEFAULT_CACHEDB, DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from abodepy import Abode, AbodeAutomation as AbodeAuto
 from abodepy.devices import AbodeDevice as AbodeDev
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,7 +8,6 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, S
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import entity as entity
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send
-from typing import Any
 
 SERVICE_SETTINGS: str
 SERVICE_CAPTURE_IMAGE: str
@@ -23,17 +23,17 @@ ATTR_USER_NAME: str
 ATTR_APP_TYPE: str
 ATTR_EVENT_BY: str
 ATTR_VALUE: str
-CONFIG_SCHEMA: Any
-CHANGE_SETTING_SCHEMA: Any
-CAPTURE_IMAGE_SCHEMA: Any
-AUTOMATION_SCHEMA: Any
-PLATFORMS: Any
+CONFIG_SCHEMA: Incomplete
+CHANGE_SETTING_SCHEMA: Incomplete
+CAPTURE_IMAGE_SCHEMA: Incomplete
+AUTOMATION_SCHEMA: Incomplete
+PLATFORMS: Incomplete
 
 class AbodeSystem:
-    abode: Any
-    polling: Any
-    entity_ids: Any
-    logout_listener: Any
+    abode: Incomplete
+    polling: Incomplete
+    entity_ids: Incomplete
+    logout_listener: Incomplete
     def __init__(self, abode: Abode, polling: bool) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -43,19 +43,19 @@ async def setup_hass_events(hass: HomeAssistant) -> None: ...
 def setup_abode_events(hass: HomeAssistant) -> None: ...
 
 class AbodeEntity(entity.Entity):
-    _attr_attribution: Any
-    _data: Any
-    _attr_should_poll: Any
+    _attr_attribution: Incomplete
+    _data: Incomplete
+    _attr_should_poll: Incomplete
     def __init__(self, data: AbodeSystem) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
-    _attr_available: Any
+    _attr_available: Incomplete
     def _update_connection_status(self) -> None: ...
 
 class AbodeDevice(AbodeEntity):
-    _device: Any
-    _attr_name: Any
-    _attr_unique_id: Any
+    _device: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, data: AbodeSystem, device: AbodeDev) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
@@ -67,9 +67,9 @@ class AbodeDevice(AbodeEntity):
     def _update_callback(self, device: AbodeDev) -> None: ...
 
 class AbodeAutomation(AbodeEntity):
-    _automation: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attr_extra_state_attributes: Any
+    _automation: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_extra_state_attributes: Incomplete
     def __init__(self, data: AbodeSystem, automation: AbodeAuto) -> None: ...
     def update(self) -> None: ...

@@ -1,14 +1,14 @@
 from .const import DOMAIN as DOMAIN
 from .renault_coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from renault_api.kamereon import models as models
 from renault_api.renault_vehicle import RenaultVehicle as RenaultVehicle
-from typing import Any
 
-LOGGER: Any
+LOGGER: Incomplete
 
 class RenaultCoordinatorDescription:
     endpoint: str
@@ -18,13 +18,13 @@ class RenaultCoordinatorDescription:
     def __init__(self, endpoint, key, update_method, requires_electricity) -> None: ...
 
 class RenaultVehicleProxy:
-    hass: Any
-    _vehicle: Any
-    _details: Any
-    _device_info: Any
-    coordinators: Any
+    hass: Incomplete
+    _vehicle: Incomplete
+    _details: Incomplete
+    _device_info: Incomplete
+    coordinators: Incomplete
     hvac_target_temperature: int
-    _scan_interval: Any
+    _scan_interval: Incomplete
     def __init__(self, hass: HomeAssistant, vehicle: RenaultVehicle, details: models.KamereonVehicleDetails, scan_interval: timedelta) -> None: ...
     @property
     def details(self) -> models.KamereonVehicleDetails: ...

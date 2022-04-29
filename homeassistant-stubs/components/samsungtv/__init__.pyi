@@ -1,5 +1,6 @@
 from .bridge import SamsungTVBridge as SamsungTVBridge, async_get_device_info as async_get_device_info, mac_from_device_info as mac_from_device_info
 from .const import CONF_ON_ACTION as CONF_ON_ACTION, CONF_SESSION_ID as CONF_SESSION_ID, CONF_SSDP_MAIN_TV_AGENT_LOCATION as CONF_SSDP_MAIN_TV_AGENT_LOCATION, CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, LEGACY_PORT as LEGACY_PORT, LOGGER as LOGGER, METHOD_ENCRYPTED_WEBSOCKET as METHOD_ENCRYPTED_WEBSOCKET, METHOD_LEGACY as METHOD_LEGACY, UPNP_SVC_MAIN_TV_AGENT as UPNP_SVC_MAIN_TV_AGENT, UPNP_SVC_RENDERING_CONTROL as UPNP_SVC_RENDERING_CONTROL
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,17 +13,17 @@ from typing import Any
 
 def ensure_unique_hosts(value: dict[Any, Any]) -> dict[Any, Any]: ...
 
-PLATFORMS: Any
-CONFIG_SCHEMA: Any
+PLATFORMS: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _async_get_device_bridge(hass: HomeAssistant, data: dict[str, Any]) -> SamsungTVBridge: ...
 
 class DebouncedEntryReloader:
-    hass: Any
-    entry: Any
-    token: Any
-    _debounced_reload: Any
+    hass: Incomplete
+    entry: Incomplete
+    token: Incomplete
+    _debounced_reload: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def async_call(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     def async_cancel(self) -> None: ...

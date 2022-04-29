@@ -1,6 +1,7 @@
 from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_RTSP_TO_WEB_RTC as DATA_RTSP_TO_WEB_RTC, DOMAIN as DOMAIN, SERVICE_RECORD as SERVICE_RECORD, STREAM_TYPE_HLS as STREAM_TYPE_HLS, STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC, StreamType as StreamType
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences
+from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable, Iterable
 from enum import IntEnum
@@ -20,15 +21,15 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Final, Optional
+from typing import Final, Optional
 
-_LOGGER: Any
+_LOGGER: Incomplete
 SERVICE_ENABLE_MOTION: Final[str]
 SERVICE_DISABLE_MOTION: Final[str]
 SERVICE_SNAPSHOT: Final[str]
 SERVICE_PLAY_STREAM: Final[str]
-SCAN_INTERVAL: Final[Any]
-ENTITY_ID_FORMAT: Final[Any]
+SCAN_INTERVAL: Final[Incomplete]
+ENTITY_ID_FORMAT: Final[Incomplete]
 ATTR_FILENAME: Final[str]
 ATTR_MEDIA_PLAYER: Final[str]
 ATTR_FORMAT: Final[str]
@@ -42,17 +43,17 @@ class CameraEntityFeature(IntEnum):
 
 SUPPORT_ON_OFF: Final[int]
 SUPPORT_STREAM: Final[int]
-RTSP_PREFIXES: Any
+RTSP_PREFIXES: Incomplete
 DEFAULT_CONTENT_TYPE: Final[str]
 ENTITY_IMAGE_URL: Final[str]
-TOKEN_CHANGE_INTERVAL: Final[Any]
-_RND: Final[Any]
+TOKEN_CHANGE_INTERVAL: Final[Incomplete]
+_RND: Final[Incomplete]
 MIN_STREAM_INTERVAL: Final[float]
-CAMERA_SERVICE_SNAPSHOT: Final[Any]
-CAMERA_SERVICE_PLAY_STREAM: Final[Any]
-CAMERA_SERVICE_RECORD: Final[Any]
+CAMERA_SERVICE_SNAPSHOT: Final[Incomplete]
+CAMERA_SERVICE_PLAY_STREAM: Final[Incomplete]
+CAMERA_SERVICE_RECORD: Final[Incomplete]
 WS_TYPE_CAMERA_THUMBNAIL: Final[str]
-SCHEMA_WS_CAMERA_THUMBNAIL: Final[Any]
+SCHEMA_WS_CAMERA_THUMBNAIL: Final[Incomplete]
 
 class CameraEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
@@ -94,12 +95,12 @@ class Camera(Entity):
     _attr_should_poll: bool
     _attr_state: None
     _attr_supported_features: int
-    stream: Any
-    stream_options: Any
-    content_type: Any
-    access_tokens: Any
+    stream: Incomplete
+    stream_options: Incomplete
+    content_type: Incomplete
+    access_tokens: Incomplete
     _warned_old_signature: bool
-    _create_stream_lock: Any
+    _create_stream_lock: Incomplete
     _rtsp_to_webrtc: bool
     def __init__(self) -> None: ...
     @property
@@ -150,7 +151,7 @@ class Camera(Entity):
 
 class CameraView(HomeAssistantView):
     requires_auth: bool
-    component: Any
+    component: Incomplete
     def __init__(self, component: EntityComponent) -> None: ...
     async def get(self, request: web.Request, entity_id: str) -> web.StreamResponse: ...
     async def handle(self, request: web.Request, camera: Camera) -> web.StreamResponse: ...

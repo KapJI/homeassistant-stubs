@@ -4,6 +4,7 @@ from .auth import AuthPhase as AuthPhase, auth_required_message as auth_required
 from .const import CANCELLATION_ERRORS as CANCELLATION_ERRORS, DATA_CONNECTIONS as DATA_CONNECTIONS, MAX_PENDING_MSG as MAX_PENDING_MSG, PENDING_MSG_PEAK as PENDING_MSG_PEAK, PENDING_MSG_PEAK_TIME as PENDING_MSG_PEAK_TIME, SIGNAL_WEBSOCKET_CONNECTED as SIGNAL_WEBSOCKET_CONNECTED, SIGNAL_WEBSOCKET_DISCONNECTED as SIGNAL_WEBSOCKET_DISCONNECTED, URL as URL
 from .error import Disconnect as Disconnect
 from .messages import message_to_json as message_to_json
+from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
@@ -12,7 +13,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.helpers.event import async_call_later as async_call_later
 from typing import Any, Final
 
-_WS_LOGGER: Final[Any]
+_WS_LOGGER: Final[Incomplete]
 
 class WebsocketAPIView(HomeAssistantView):
     name: str
@@ -24,14 +25,14 @@ class WebSocketAdapter(logging.LoggerAdapter):
     def process(self, msg: str, kwargs: Any) -> tuple[str, Any]: ...
 
 class WebSocketHandler:
-    hass: Any
-    request: Any
-    wsock: Any
-    _to_write: Any
-    _handle_task: Any
-    _writer_task: Any
-    _logger: Any
-    _peak_checker_unsub: Any
+    hass: Incomplete
+    request: Incomplete
+    wsock: Incomplete
+    _to_write: Incomplete
+    _handle_task: Incomplete
+    _writer_task: Incomplete
+    _logger: Incomplete
+    _peak_checker_unsub: Incomplete
     def __init__(self, hass: HomeAssistant, request: web.Request) -> None: ...
     async def _writer(self) -> None: ...
     def _send_message(self, message: Union[str, dict[str, Any]]) -> None: ...

@@ -1,4 +1,5 @@
 import voluptuous as vol
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback
@@ -6,13 +7,13 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, TypeVar
 
-_LOGGER: Any
+_LOGGER: Incomplete
 _SlotsType = dict[str, Any]
 _T = TypeVar('_T')
 INTENT_TURN_OFF: str
 INTENT_TURN_ON: str
 INTENT_TOGGLE: str
-SLOT_SCHEMA: Any
+SLOT_SCHEMA: Incomplete
 DATA_KEY: str
 SPEECH_TYPE_PLAIN: str
 SPEECH_TYPE_SSML: str
@@ -42,30 +43,30 @@ class IntentHandler:
 def _fuzzymatch(name: str, items: Iterable[_T], key: Callable[[_T], str]) -> Union[_T, None]: ...
 
 class ServiceIntentHandler(IntentHandler):
-    slot_schema: Any
-    intent_type: Any
-    domain: Any
-    service: Any
-    speech: Any
+    slot_schema: Incomplete
+    intent_type: Incomplete
+    domain: Incomplete
+    service: Incomplete
+    speech: Incomplete
     def __init__(self, intent_type: str, domain: str, service: str, speech: str) -> None: ...
     async def async_handle(self, intent_obj: Intent) -> IntentResponse: ...
 
 class Intent:
-    __slots__: Any
-    hass: Any
-    platform: Any
-    intent_type: Any
-    slots: Any
-    text_input: Any
-    context: Any
+    __slots__: Incomplete
+    hass: Incomplete
+    platform: Incomplete
+    intent_type: Incomplete
+    slots: Incomplete
+    text_input: Incomplete
+    context: Incomplete
     def __init__(self, hass: HomeAssistant, platform: str, intent_type: str, slots: _SlotsType, text_input: Union[str, None], context: Context) -> None: ...
     def create_response(self) -> IntentResponse: ...
 
 class IntentResponse:
-    intent: Any
-    speech: Any
-    reprompt: Any
-    card: Any
+    intent: Incomplete
+    speech: Incomplete
+    reprompt: Incomplete
+    card: Incomplete
     def __init__(self, intent: Union[Intent, None] = ...) -> None: ...
     def async_set_speech(self, speech: str, speech_type: str = ..., extra_data: Union[Any, None] = ...) -> None: ...
     def async_set_reprompt(self, speech: str, speech_type: str = ..., extra_data: Union[Any, None] = ...) -> None: ...

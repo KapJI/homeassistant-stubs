@@ -1,4 +1,5 @@
 from .const import CHILD_CALLBACK as CHILD_CALLBACK, CONF_DEVICE as CONF_DEVICE, DOMAIN as DOMAIN, DevId as DevId, GatewayId as GatewayId, NODE_CALLBACK as NODE_CALLBACK, PLATFORM_TYPES as PLATFORM_TYPES, UPDATE_DELAY as UPDATE_DELAY
+from _typeshed import Incomplete
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -7,7 +8,7 @@ from mysensors import BaseAsyncGateway as BaseAsyncGateway, Sensor as Sensor
 from mysensors.sensor import ChildSensor as ChildSensor
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ATTR_CHILD_ID: str
 ATTR_DESCRIPTION: str
 ATTR_DEVICE: str
@@ -17,13 +18,13 @@ MYSENSORS_PLATFORM_DEVICES: str
 
 class MySensorsDevice:
     hass: HomeAssistant
-    gateway_id: Any
-    gateway: Any
-    node_id: Any
-    child_id: Any
-    value_type: Any
-    child_type: Any
-    _values: Any
+    gateway_id: Incomplete
+    gateway: Incomplete
+    node_id: Incomplete
+    child_id: Incomplete
+    value_type: Incomplete
+    child_type: Incomplete
+    _values: Incomplete
     _update_scheduled: bool
     def __init__(self, gateway_id: GatewayId, gateway: BaseAsyncGateway, node_id: int, child_id: int, value_type: int) -> None: ...
     @property

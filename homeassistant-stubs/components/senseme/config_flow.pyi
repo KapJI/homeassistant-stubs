@@ -1,5 +1,6 @@
 from .const import CONF_HOST_MANUAL as CONF_HOST_MANUAL, CONF_INFO as CONF_INFO, DOMAIN as DOMAIN
 from .discovery import async_discover as async_discover, async_get_discovered_device as async_get_discovered_device
+from _typeshed import Incomplete
 from aiosenseme import SensemeDevice as SensemeDevice
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp
@@ -12,8 +13,8 @@ DISCOVER_TIMEOUT: int
 
 class SensemeFlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _discovered_devices: Any
-    _discovered_device: Any
+    _discovered_devices: Incomplete
+    _discovered_device: Incomplete
     def __init__(self) -> None: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> FlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> FlowResult: ...

@@ -1,5 +1,6 @@
 from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, CONF_IDENTITY as CONF_IDENTITY, CONF_KEY as CONF_KEY, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, FACTORY as FACTORY, KEY_API as KEY_API, LOGGER as LOGGER
 from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -8,10 +9,9 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
-from typing import Any
 
-CONFIG_SCHEMA: Any
-PLATFORMS: Any
+CONFIG_SCHEMA: Incomplete
+PLATFORMS: Incomplete
 SIGNAL_GW: str
 TIMEOUT_API: int
 

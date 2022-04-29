@@ -2,6 +2,7 @@ from . import Recorder as Recorder
 from .const import DATA_INSTANCE as DATA_INSTANCE, DOMAIN as DOMAIN, MAX_ROWS_TO_PURGE as MAX_ROWS_TO_PURGE
 from .models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult, Statistics as Statistics, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm, process_timestamp as process_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat
 from .util import execute as execute, retryable_database_job as retryable_database_job, session_scope as session_scope
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime, timedelta
 from homeassistant.const import PRESSURE_PA as PRESSURE_PA, TEMP_CELSIUS as TEMP_CELSIUS, VOLUME_CUBIC_FEET as VOLUME_CUBIC_FEET, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
@@ -16,17 +17,17 @@ from sqlalchemy.orm.session import Session as Session
 from statistics import mean
 from typing import Any, Literal, overload
 
-QUERY_STATISTICS: Any
-QUERY_STATISTICS_SHORT_TERM: Any
-QUERY_STATISTICS_SUMMARY_MEAN: Any
-QUERY_STATISTICS_SUMMARY_SUM: Any
-QUERY_STATISTICS_SUMMARY_SUM_LEGACY: Any
-QUERY_STATISTIC_META: Any
-QUERY_STATISTIC_META_ID: Any
+QUERY_STATISTICS: Incomplete
+QUERY_STATISTICS_SHORT_TERM: Incomplete
+QUERY_STATISTICS_SUMMARY_MEAN: Incomplete
+QUERY_STATISTICS_SUMMARY_SUM: Incomplete
+QUERY_STATISTICS_SUMMARY_SUM_LEGACY: Incomplete
+QUERY_STATISTIC_META: Incomplete
+QUERY_STATISTIC_META_ID: Incomplete
 STATISTICS_BAKERY: str
-STATISTIC_UNIT_TO_DISPLAY_UNIT_CONVERSIONS: Any
+STATISTIC_UNIT_TO_DISPLAY_UNIT_CONVERSIONS: Incomplete
 DISPLAY_UNIT_TO_STATISTIC_UNIT_CONVERSIONS: dict[str, Callable[[float, UnitSystem], float]]
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class PlatformCompiledStatistics:
     platform_stats: list[StatisticResult]
@@ -35,7 +36,7 @@ class PlatformCompiledStatistics:
 
 def split_statistic_id(entity_id: str) -> list[str]: ...
 
-VALID_STATISTIC_ID: Any
+VALID_STATISTIC_ID: Incomplete
 
 def valid_statistic_id(statistic_id: str) -> bool: ...
 def validate_statistic_id(value: str) -> str: ...

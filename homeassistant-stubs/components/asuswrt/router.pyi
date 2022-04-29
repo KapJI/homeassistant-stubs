@@ -1,4 +1,5 @@
 from .const import CONF_DNSMASQ as CONF_DNSMASQ, CONF_INTERFACE as CONF_INTERFACE, CONF_REQUIRE_IP as CONF_REQUIRE_IP, CONF_SSH_KEY as CONF_SSH_KEY, CONF_TRACK_UNKNOWN as CONF_TRACK_UNKNOWN, DEFAULT_DNSMASQ as DEFAULT_DNSMASQ, DEFAULT_INTERFACE as DEFAULT_INTERFACE, DEFAULT_TRACK_UNKNOWN as DEFAULT_TRACK_UNKNOWN, DOMAIN as DOMAIN, PROTOCOL_TELNET as PROTOCOL_TELNET, SENSORS_BYTES as SENSORS_BYTES, SENSORS_CONNECTED_DEVICE as SENSORS_CONNECTED_DEVICE, SENSORS_LOAD_AVG as SENSORS_LOAD_AVG, SENSORS_RATES as SENSORS_RATES, SENSORS_TEMPERATURES as SENSORS_TEMPERATURES
+from _typeshed import Incomplete
 from aioasuswrt.asuswrt import AsusWrt, Device as WrtDevice
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -14,22 +15,22 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
-CONF_REQ_RELOAD: Any
+CONF_REQ_RELOAD: Incomplete
 KEY_COORDINATOR: str
 KEY_SENSORS: str
-SCAN_INTERVAL: Any
+SCAN_INTERVAL: Incomplete
 SENSORS_TYPE_BYTES: str
 SENSORS_TYPE_COUNT: str
 SENSORS_TYPE_LOAD_AVG: str
 SENSORS_TYPE_RATES: str
 SENSORS_TYPE_TEMPERATURES: str
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def _get_dict(keys: list, values: list) -> dict[str, Any]: ...
 
 class AsusWrtSensorDataHandler:
-    _hass: Any
-    _api: Any
+    _hass: Incomplete
+    _api: Incomplete
     _connected_devices: int
     def __init__(self, hass: HomeAssistant, api: AsusWrt) -> None: ...
     async def _get_connected_devices(self) -> dict[str, int]: ...
@@ -41,10 +42,10 @@ class AsusWrtSensorDataHandler:
     async def get_coordinator(self, sensor_type: str, should_poll: bool = ...) -> DataUpdateCoordinator: ...
 
 class AsusWrtDevInfo:
-    _mac: Any
-    _name: Any
-    _ip_address: Any
-    _last_activity: Any
+    _mac: Incomplete
+    _name: Incomplete
+    _ip_address: Incomplete
+    _last_activity: Incomplete
     _connected: bool
     def __init__(self, mac: str, name: Union[str, None] = ...) -> None: ...
     def update(self, dev_info: Union[WrtDevice, None] = ..., consider_home: int = ...) -> None: ...
@@ -60,20 +61,20 @@ class AsusWrtDevInfo:
     def last_activity(self) -> Union[datetime, None]: ...
 
 class AsusWrtRouter:
-    hass: Any
-    _entry: Any
-    _api: Any
-    _protocol: Any
-    _host: Any
+    hass: Incomplete
+    _entry: Incomplete
+    _api: Incomplete
+    _protocol: Incomplete
+    _host: Incomplete
     _model: str
-    _sw_v: Any
-    _devices: Any
+    _sw_v: Incomplete
+    _devices: Incomplete
     _connected_devices: int
     _connect_error: bool
-    _sensors_data_handler: Any
-    _sensors_coordinator: Any
-    _on_close: Any
-    _options: Any
+    _sensors_data_handler: Incomplete
+    _sensors_coordinator: Incomplete
+    _on_close: Incomplete
+    _options: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def setup(self) -> None: ...
     async def update_all(self, now: Union[datetime, None] = ...) -> None: ...

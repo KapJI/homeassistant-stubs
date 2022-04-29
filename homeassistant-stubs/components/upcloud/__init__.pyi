@@ -1,5 +1,6 @@
 import upcloud_api
 from .const import CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE as CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_USERNAME as CONF_USERNAME, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PROBLEM as STATE_PROBLEM
@@ -11,7 +12,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ATTR_CORE_NUMBER: str
 ATTR_HOSTNAME: str
 ATTR_MEMORY_AMOUNT: str
@@ -21,14 +22,14 @@ ATTR_ZONE: str
 CONF_SERVERS: str
 DATA_UPCLOUD: str
 DEFAULT_COMPONENT_NAME: str
-PLATFORMS: Any
+PLATFORMS: Incomplete
 SIGNAL_UPDATE_UPCLOUD: str
-STATE_MAP: Any
+STATE_MAP: Incomplete
 
 class UpCloudDataUpdateCoordinator(DataUpdateCoordinator[dict[str, upcloud_api.Server]]):
-    cloud_manager: Any
+    cloud_manager: Incomplete
     def __init__(self, hass: HomeAssistant, *, cloud_manager: upcloud_api.CloudManager, update_interval: timedelta, username: str) -> None: ...
-    update_interval: Any
+    update_interval: Incomplete
     async def async_update_config(self, config_entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> dict[str, upcloud_api.Server]: ...
 
@@ -42,7 +43,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...
 
 class UpCloudServerEntity(CoordinatorEntity[UpCloudDataUpdateCoordinator]):
-    uuid: Any
+    uuid: Incomplete
     def __init__(self, coordinator: UpCloudDataUpdateCoordinator, uuid: str) -> None: ...
     @property
     def _server(self) -> upcloud_api.Server: ...

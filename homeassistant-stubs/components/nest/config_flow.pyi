@@ -1,6 +1,7 @@
 import logging
 from . import api as api, auth as auth
 from .const import CONF_CLOUD_PROJECT_ID as CONF_CLOUD_PROJECT_ID, CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, DATA_NEST_CONFIG as DATA_NEST_CONFIG, DATA_SDM as DATA_SDM, DOMAIN as DOMAIN, OOB_REDIRECT_URI as OOB_REDIRECT_URI, SDM_SCOPES as SDM_SCOPES
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from enum import Enum
 from google_nest_sdm.structure import Structure as Structure
@@ -19,7 +20,7 @@ DATA_FLOW_IMPL: str
 SUBSCRIPTION_FORMAT: str
 SUBSCRIPTION_RAND_LENGTH: int
 CLOUD_CONSOLE_URL: str
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class ConfigMode(Enum):
     SDM: int
@@ -37,11 +38,11 @@ class UnexpectedStateError(HomeAssistantError): ...
 def generate_config_title(structures: Iterable[Structure]) -> Union[str, None]: ...
 
 class NestFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler):
-    DOMAIN: Any
+    DOMAIN: Incomplete
     VERSION: int
     _reauth: bool
-    _data: Any
-    _structure_config_title: Any
+    _data: Incomplete
+    _structure_config_title: Incomplete
     def __init__(self) -> None: ...
     @property
     def config_mode(self) -> ConfigMode: ...
@@ -53,12 +54,12 @@ class NestFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler):
     async def async_step_reauth(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_reauth_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    external_data: Any
+    external_data: Incomplete
     async def async_step_auth(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     def _configure_pubsub(self) -> bool: ...
     async def async_step_pubsub(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_finish(self, data: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    flow_impl: Any
+    flow_impl: Incomplete
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_link(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_import(self, info: dict[str, Any]) -> FlowResult: ...

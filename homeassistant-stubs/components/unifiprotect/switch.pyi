@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity, async_all_device_entities as async_all_device_entities
 from .models import ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
+from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,7 +12,7 @@ from pyunifiprotect.data import Camera
 from pyunifiprotect.data.base import ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class ProtectSwitchEntityDescription(ProtectSetableKeysMixin[T], SwitchEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_set_method, ufp_set_method_fn) -> None: ...
@@ -31,10 +32,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ProtectSwitch(ProtectDeviceEntity, SwitchEntity):
     entity_description: ProtectSwitchEntityDescription
-    _attr_name: Any
-    _switch_type: Any
+    _attr_name: Incomplete
+    _switch_type: Incomplete
     _previous_mic_level: int
-    _previous_record_mode: Any
+    _previous_record_mode: Incomplete
     def __init__(self, data: ProtectData, device: ProtectAdoptableDeviceModel, description: ProtectSwitchEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

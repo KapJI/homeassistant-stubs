@@ -1,13 +1,14 @@
 from . import AUTH_PROVIDERS as AUTH_PROVIDERS, AUTH_PROVIDER_SCHEMA as AUTH_PROVIDER_SCHEMA, AuthProvider as AuthProvider, LoginFlow as LoginFlow
 from ..models import Credentials as Credentials, UserMeta as UserMeta
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any
 
-USER_SCHEMA: Any
-CONFIG_SCHEMA: Any
+USER_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 class InvalidAuthError(HomeAssistantError): ...
 

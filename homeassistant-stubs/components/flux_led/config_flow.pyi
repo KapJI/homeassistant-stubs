@@ -2,6 +2,7 @@ from . import async_wifi_bulb_for_host as async_wifi_bulb_for_host
 from .const import CONF_CUSTOM_EFFECT_COLORS as CONF_CUSTOM_EFFECT_COLORS, CONF_CUSTOM_EFFECT_SPEED_PCT as CONF_CUSTOM_EFFECT_SPEED_PCT, CONF_CUSTOM_EFFECT_TRANSITION as CONF_CUSTOM_EFFECT_TRANSITION, DEFAULT_EFFECT_SPEED as DEFAULT_EFFECT_SPEED, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, FLUX_LED_EXCEPTIONS as FLUX_LED_EXCEPTIONS, TRANSITION_GRADUAL as TRANSITION_GRADUAL, TRANSITION_JUMP as TRANSITION_JUMP, TRANSITION_STROBE as TRANSITION_STROBE
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_name_from_discovery as async_name_from_discovery, async_populate_data_from_discovery as async_populate_data_from_discovery, async_update_entry_from_discovery as async_update_entry_from_discovery
 from .util import format_as_flux_mac as format_as_flux_mac, mac_matches_by_one as mac_matches_by_one
+from _typeshed import Incomplete
 from flux_led.scanner import FluxLEDDiscovery
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp
@@ -15,8 +16,8 @@ CONF_DEVICE: Final[str]
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    _discovered_devices: Any
-    _discovered_device: Any
+    _discovered_devices: Incomplete
+    _discovered_device: Incomplete
     _allow_update_mac: bool
     def __init__(self) -> None: ...
     @staticmethod
@@ -32,6 +33,6 @@ class ConfigFlow(config_entries.ConfigFlow):
     async def _async_try_connect(self, host: str, discovery: Union[FluxLEDDiscovery, None]) -> FluxLEDDiscovery: ...
 
 class OptionsFlow(config_entries.OptionsFlow):
-    _config_entry: Any
+    _config_entry: Incomplete
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

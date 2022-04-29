@@ -1,4 +1,5 @@
 import homeassistant.core
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import Enum
 from typing import Any, Optional, Union
@@ -16,6 +17,6 @@ QueryType = Any
 class UndefinedType(Enum):
     _singleton: int
 
-UNDEFINED: Any
+UNDEFINED: Incomplete
 HomeAssistantType = homeassistant.core.HomeAssistant
 ServiceCallType = homeassistant.core.ServiceCall

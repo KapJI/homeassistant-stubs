@@ -1,5 +1,6 @@
 from . import PureEnergieData as PureEnergieData, PureEnergieDataUpdateCoordinator as PureEnergieDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,7 +9,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
 
 class PureEnergieSensorEntityDescriptionMixin:
     value_fn: Callable[[PureEnergieData], Union[int, float]]
@@ -23,9 +23,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class PureEnergieSensorEntity(CoordinatorEntity[PureEnergieDataUpdateCoordinator], SensorEntity):
     entity_description: PureEnergieSensorEntityDescription
-    entity_id: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
+    entity_id: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, *, coordinator: PureEnergieDataUpdateCoordinator, description: PureEnergieSensorEntityDescription, entry: ConfigEntry) -> None: ...
     @property
     def native_value(self) -> Union[int, float]: ...

@@ -2,6 +2,7 @@ from . import HomeAssistantOverkizData as HomeAssistantOverkizData
 from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES, OVERKIZ_STATE_TO_TRANSLATION as OVERKIZ_STATE_TO_TRANSLATION
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity, OverkizDeviceClass as OverkizDeviceClass, OverkizEntity as OverkizEntity
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,14 +12,13 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategor
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pyoverkiz.types import StateType as OverkizStateType
-from typing import Any
 
 class OverkizSensorDescription(SensorEntityDescription):
     native_value: Union[Callable[[OverkizStateType], StateType], None]
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, native_value) -> None: ...
 
 SENSOR_DESCRIPTIONS: list[OverkizSensorDescription]
-SUPPORTED_STATES: Any
+SUPPORTED_STATES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -29,7 +29,7 @@ class OverkizStateSensor(OverkizDescriptiveEntity, SensorEntity):
 
 class OverkizHomeKitSetupCodeSensor(OverkizEntity, SensorEntity):
     _attr_icon: str
-    _attr_entity_category: Any
+    _attr_entity_category: Incomplete
     _attr_name: str
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property

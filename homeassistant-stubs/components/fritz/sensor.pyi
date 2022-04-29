@@ -1,5 +1,6 @@
 from .common import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo, FritzBoxBaseEntity as FritzBoxBaseEntity
 from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
 from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
@@ -12,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def _uptime_calculation(seconds_uptime: float, last_value: Union[datetime, None]) -> datetime: ...
 def _retrieve_device_uptime_state(status: FritzStatus, last_value: datetime) -> datetime: ...
@@ -45,10 +46,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class FritzBoxSensor(FritzBoxBaseEntity, SensorEntity):
     entity_description: FritzSensorEntityDescription
-    _last_device_value: Any
+    _last_device_value: Incomplete
     _attr_available: bool
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, description: FritzSensorEntityDescription) -> None: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def update(self) -> None: ...

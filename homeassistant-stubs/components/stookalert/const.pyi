@@ -1,6 +1,7 @@
-from typing import Any, Final
+from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: Final[str]
-LOGGER: Any
+LOGGER: Incomplete
 CONF_PROVINCE: Final[str]
-PROVINCES: Final[Any]
+PROVINCES: Final[Incomplete]

@@ -1,5 +1,6 @@
 from .const import CONF_MINOR_VERSION as CONF_MINOR_VERSION, CONF_MODEL_DESCRIPTION as CONF_MODEL_DESCRIPTION, CONF_MODEL_INFO as CONF_MODEL_INFO, CONF_MODEL_NUM as CONF_MODEL_NUM, CONF_REMOTE_ACCESS_ENABLED as CONF_REMOTE_ACCESS_ENABLED, CONF_REMOTE_ACCESS_HOST as CONF_REMOTE_ACCESS_HOST, CONF_REMOTE_ACCESS_PORT as CONF_REMOTE_ACCESS_PORT, DIRECTED_DISCOVERY_TIMEOUT as DIRECTED_DISCOVERY_TIMEOUT, DOMAIN as DOMAIN, FLUX_LED_DISCOVERY as FLUX_LED_DISCOVERY
 from .util import format_as_flux_mac as format_as_flux_mac, mac_matches_by_one as mac_matches_by_one
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from flux_led.scanner import FluxLEDDiscovery
 from homeassistant import config_entries as config_entries
@@ -10,8 +11,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any, Final
 
-_LOGGER: Any
-CONF_TO_DISCOVERY: Final[Any]
+_LOGGER: Incomplete
+CONF_TO_DISCOVERY: Final[Incomplete]
 
 def async_build_cached_discovery(entry: ConfigEntry) -> FluxLEDDiscovery: ...
 def async_name_from_discovery(device: FluxLEDDiscovery, model_num: Union[int, None] = ...) -> str: ...

@@ -1,6 +1,7 @@
 import jinja2
 import pathlib
 from .storage import async_setup_frontend_storage as async_setup_frontend_storage
+from _typeshed import Incomplete
 from aiohttp import web, web_urldispatcher
 from collections.abc import Iterator
 from homeassistant.components import onboarding as onboarding, websocket_api as websocket_api
@@ -33,7 +34,7 @@ DATA_PANELS: str
 DATA_JS_VERSION: str
 DATA_EXTRA_MODULE_URL: str
 DATA_EXTRA_JS_URL_ES5: str
-THEMES_STORAGE_KEY: Any
+THEMES_STORAGE_KEY: Incomplete
 THEMES_STORAGE_VERSION: int
 THEMES_SAVE_DELAY: int
 DATA_THEMES_STORE: str
@@ -43,27 +44,27 @@ DATA_DEFAULT_DARK_THEME: str
 DEFAULT_THEME: str
 VALUE_NO_THEME: str
 PRIMARY_COLOR: str
-_LOGGER: Any
-EXTENDED_THEME_SCHEMA: Any
-THEME_SCHEMA: Any
-CONFIG_SCHEMA: Any
+_LOGGER: Incomplete
+EXTENDED_THEME_SCHEMA: Incomplete
+THEME_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 SERVICE_SET_THEME: str
 SERVICE_RELOAD_THEMES: str
 
 class Manifest:
-    manifest: Any
+    manifest: Incomplete
     def __init__(self, data: dict) -> None: ...
     def __getitem__(self, key: str) -> Any: ...
     @property
     def json(self) -> str: ...
-    _serialized: Any
+    _serialized: Incomplete
     def _serialize(self) -> None: ...
     def update_key(self, key: str, val: str) -> None: ...
 
-MANIFEST_JSON: Any
+MANIFEST_JSON: Incomplete
 
 class UrlManager:
-    urls: Any
+    urls: Incomplete
     def __init__(self, urls: list[str]) -> None: ...
     def add(self, url: str) -> None: ...
     def remove(self, url: str) -> None: ...
@@ -88,9 +89,9 @@ async def _async_setup_themes(hass: HomeAssistant, themes: Union[dict[str, Any],
 def _async_render_index_cached(template: jinja2.Template, **kwargs: Any) -> str: ...
 
 class IndexView(web_urldispatcher.AbstractResource):
-    repo_path: Any
-    hass: Any
-    _template_cache: Any
+    repo_path: Incomplete
+    hass: Incomplete
+    _template_cache: Incomplete
     def __init__(self, repo_path: Union[str, None], hass: HomeAssistant) -> None: ...
     @property
     def canonical(self) -> str: ...

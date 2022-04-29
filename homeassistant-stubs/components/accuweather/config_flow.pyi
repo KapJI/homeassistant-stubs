@@ -1,4 +1,5 @@
 from .const import CONF_FORECAST as CONF_FORECAST, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME
@@ -14,7 +15,7 @@ class AccuWeatherFlowHandler(config_entries.ConfigFlow):
     def async_get_options_flow(config_entry: ConfigEntry) -> AccuWeatherOptionsFlowHandler: ...
 
 class AccuWeatherOptionsFlowHandler(config_entries.OptionsFlow):
-    config_entry: Any
+    config_entry: Incomplete
     def __init__(self, entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

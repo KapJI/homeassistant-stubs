@@ -1,4 +1,5 @@
 from .const import DATA_COORDINATOR as DATA_COORDINATOR, DATA_TILE as DATA_TILE, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
 from homeassistant.components.device_tracker.const import SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
@@ -9,9 +10,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pytile.tile import Tile as Tile
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ATTR_ALTITUDE: str
 ATTR_CONNECTION_STATE: str
 ATTR_IS_DEAD: str
@@ -26,12 +26,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: Callable[..., Awaitable[None]], discovery_info: Union[DiscoveryInfoType, None] = ...) -> bool: ...
 
 class TileDeviceTracker(CoordinatorEntity, TrackerEntity):
-    _attr_icon: Any
-    _attr_extra_state_attributes: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _entry: Any
-    _tile: Any
+    _attr_icon: Incomplete
+    _attr_extra_state_attributes: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _entry: Incomplete
+    _tile: Incomplete
     def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator, tile: Tile) -> None: ...
     @property
     def available(self) -> bool: ...

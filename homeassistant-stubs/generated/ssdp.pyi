@@ -1,3 +1,3 @@
-from typing import Any
+from _typeshed import Incomplete
 
-SSDP: Any
+SSDP: Incomplete

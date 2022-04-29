@@ -1,10 +1,11 @@
 from .const import DOMAIN as DOMAIN, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER
+from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import integration_platform as integration_platform
 from homeassistant.util import dt as dt
 from pathlib import Path
-from typing import Any
+from typing import Any, Protocol
 
 class Backup:
     slug: str
@@ -15,16 +16,16 @@ class Backup:
     def as_dict(self) -> dict: ...
     def __init__(self, slug, name, date, path, size) -> None: ...
 
-class BackupPlatformProtocol:
+class BackupPlatformProtocol(Protocol):
     async def async_pre_backup(self, hass: HomeAssistant) -> None: ...
     async def async_post_backup(self, hass: HomeAssistant) -> None: ...
 
 class BackupManager:
-    hass: Any
-    backup_dir: Any
+    hass: Incomplete
+    backup_dir: Incomplete
     backing_up: bool
-    backups: Any
-    platforms: Any
+    backups: Incomplete
+    platforms: Incomplete
     loaded_backups: bool
     loaded_platforms: bool
     def __init__(self, hass: HomeAssistant) -> None: ...

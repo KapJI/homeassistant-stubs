@@ -2,6 +2,7 @@ import voluptuous as vol
 from . import DOMAIN as DOMAIN
 from .binary_sensor import CONF_ALL as CONF_ALL
 from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.const import CONF_ENTITIES as CONF_ENTITIES
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -13,11 +14,11 @@ def basic_group_options_schema(domain: str, handler: Union[SchemaConfigFlowHandl
 def basic_group_config_schema(domain: str) -> vol.Schema: ...
 def binary_sensor_options_schema(handler: Union[SchemaConfigFlowHandler, SchemaOptionsFlowHandler], options: dict[str, Any]) -> vol.Schema: ...
 
-BINARY_SENSOR_CONFIG_SCHEMA: Any
+BINARY_SENSOR_CONFIG_SCHEMA: Incomplete
 
 def light_switch_options_schema(domain: str, handler: Union[SchemaConfigFlowHandler, SchemaOptionsFlowHandler], options: dict[str, Any]) -> vol.Schema: ...
 
-GROUP_TYPES: Any
+GROUP_TYPES: Incomplete
 
 def choose_options_step(options: dict[str, Any]) -> str: ...
 def set_group_type(group_type: str) -> Callable[[dict[str, Any]], dict[str, Any]]: ...
@@ -26,8 +27,8 @@ CONFIG_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
 OPTIONS_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
 
 class GroupConfigFlowHandler(SchemaConfigFlowHandler):
-    config_flow: Any
-    options_flow: Any
+    config_flow: Incomplete
+    options_flow: Incomplete
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
     def async_config_flow_finished(self, options: Mapping[str, Any]) -> None: ...
     @staticmethod

@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-CONNECTION_EXCEPTIONS: Any
+CONNECTION_EXCEPTIONS: Incomplete

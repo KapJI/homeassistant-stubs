@@ -1,5 +1,6 @@
 from . import GroupEntity as GroupEntity
 from .util import find_state_attributes as find_state_attributes, mean_tuple as mean_tuple, reduce_attribute as reduce_attribute
+from _typeshed import Incomplete
 from homeassistant.components import light as light
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_MODE as ATTR_COLOR_MODE, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_EFFECT_LIST as ATTR_EFFECT_LIST, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_MAX_MIREDS as ATTR_MAX_MIREDS, ATTR_MIN_MIREDS as ATTR_MIN_MIREDS, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_SUPPORTED_COLOR_MODES as ATTR_SUPPORTED_COLOR_MODES, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, ATTR_WHITE_VALUE as ATTR_WHITE_VALUE, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SUPPORT_WHITE_VALUE as SUPPORT_WHITE_VALUE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,13 +14,13 @@ from typing import Any
 DEFAULT_NAME: str
 CONF_ALL: str
 PARALLEL_UPDATES: int
-SUPPORT_GROUP_LIGHT: Any
-_LOGGER: Any
+SUPPORT_GROUP_LIGHT: Incomplete
+_LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-FORWARDED_ATTRIBUTES: Any
+FORWARDED_ATTRIBUTES: Incomplete
 
 class LightGroup(GroupEntity, LightEntity):
     _attr_available: bool
@@ -27,29 +28,29 @@ class LightGroup(GroupEntity, LightEntity):
     _attr_max_mireds: int
     _attr_min_mireds: int
     _attr_should_poll: bool
-    _entity_ids: Any
-    _white_value: Any
-    _attr_name: Any
-    _attr_extra_state_attributes: Any
-    _attr_unique_id: Any
-    mode: Any
+    _entity_ids: Incomplete
+    _white_value: Incomplete
+    _attr_name: Incomplete
+    _attr_extra_state_attributes: Incomplete
+    _attr_unique_id: Incomplete
+    mode: Incomplete
     def __init__(self, unique_id: Union[str, None], name: str, entity_ids: list[str], mode: Union[str, None]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def white_value(self) -> Union[int, None]: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    _attr_is_on: Any
-    _attr_brightness: Any
-    _attr_hs_color: Any
-    _attr_rgb_color: Any
-    _attr_rgbw_color: Any
-    _attr_rgbww_color: Any
-    _attr_xy_color: Any
-    _attr_color_temp: Any
-    _attr_effect_list: Any
-    _attr_effect: Any
-    _attr_color_mode: Any
-    _attr_supported_color_modes: Any
+    _attr_is_on: Incomplete
+    _attr_brightness: Incomplete
+    _attr_hs_color: Incomplete
+    _attr_rgb_color: Incomplete
+    _attr_rgbw_color: Incomplete
+    _attr_rgbww_color: Incomplete
+    _attr_xy_color: Incomplete
+    _attr_color_temp: Incomplete
+    _attr_effect_list: Incomplete
+    _attr_effect: Incomplete
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
     _attr_supported_features: int
     def async_update_group_state(self) -> None: ...

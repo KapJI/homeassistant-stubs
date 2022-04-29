@@ -3,6 +3,7 @@ from . import area_registry as area_registry, device_registry as device_registry
 from .entity import Entity as Entity
 from .entity_platform import EntityPlatform as EntityPlatform
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Iterable
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SERVICE as CONF_SERVICE, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
@@ -17,7 +18,7 @@ from typing_extensions import TypeGuard as TypeGuard
 
 CONF_SERVICE_ENTITY_ID: str
 CONF_SERVICE_DATA_TEMPLATE: str
-_LOGGER: Any
+_LOGGER: Incomplete
 SERVICE_DESCRIPTION_CACHE: str
 
 class ServiceParams(TypedDict):
@@ -27,9 +28,9 @@ class ServiceParams(TypedDict):
     target: Union[dict, None]
 
 class ServiceTargetSelector:
-    entity_ids: Any
-    device_ids: Any
-    area_ids: Any
+    entity_ids: Incomplete
+    device_ids: Incomplete
+    area_ids: Incomplete
     def __init__(self, service_call: ServiceCall) -> None: ...
     @property
     def has_any_selector(self) -> bool: ...
@@ -62,8 +63,8 @@ def async_register_admin_service(hass: HomeAssistant, domain: str, service: str,
 def verify_domain_control(hass: HomeAssistant, domain: str) -> Callable[[Callable[[ServiceCall], Any]], Callable[[ServiceCall], Any]]: ...
 
 class ReloadServiceHelper:
-    _service_func: Any
+    _service_func: Incomplete
     _service_running: bool
-    _service_condition: Any
+    _service_condition: Incomplete
     def __init__(self, service_func: Callable[[ServiceCall], Awaitable]) -> None: ...
     async def execute_service(self, service_call: ServiceCall) -> None: ...

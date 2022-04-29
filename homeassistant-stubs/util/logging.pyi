@@ -1,11 +1,12 @@
 import logging.handlers
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Coroutine
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
 from typing import Any, overload
 
 class HideSensitiveDataFilter(logging.Filter):
-    text: Any
+    text: Incomplete
     def __init__(self, text: str) -> None: ...
     def filter(self, record: logging.LogRecord) -> bool: ...
 

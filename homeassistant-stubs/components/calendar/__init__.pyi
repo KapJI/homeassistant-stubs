@@ -1,4 +1,5 @@
 import datetime
+from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components import frontend as frontend, http as http
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,10 +13,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util import dt as dt
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
-ENTITY_ID_FORMAT: Any
-SCAN_INTERVAL: Any
+ENTITY_ID_FORMAT: Incomplete
+SCAN_INTERVAL: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -65,13 +66,13 @@ class CalendarEntity(Entity):
 class CalendarEventView(http.HomeAssistantView):
     url: str
     name: str
-    component: Any
+    component: Incomplete
     def __init__(self, component: EntityComponent) -> None: ...
     async def get(self, request: web.Request, entity_id: str) -> web.Response: ...
 
 class CalendarListView(http.HomeAssistantView):
     url: str
     name: str
-    component: Any
+    component: Incomplete
     def __init__(self, component: EntityComponent) -> None: ...
     async def get(self, request: web.Request) -> web.Response: ...

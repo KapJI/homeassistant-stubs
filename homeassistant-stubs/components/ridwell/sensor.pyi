@@ -1,5 +1,6 @@
 from . import RidwellEntity as RidwellEntity
 from .const import DATA_ACCOUNT as DATA_ACCOUNT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, SENSOR_TYPE_NEXT_PICKUP as SENSOR_TYPE_NEXT_PICKUP
+from _typeshed import Incomplete
 from aioridwell.model import RidwellAccount as RidwellAccount, RidwellPickupEvent as RidwellPickupEvent
 from collections.abc import Mapping
 from datetime import date, datetime
@@ -15,12 +16,12 @@ ATTR_CATEGORY: str
 ATTR_PICKUP_STATE: str
 ATTR_PICKUP_TYPES: str
 ATTR_QUANTITY: str
-SENSOR_DESCRIPTION: Any
+SENSOR_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RidwellSensor(RidwellEntity, SensorEntity):
-    _attr_name: Any
+    _attr_name: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, account: RidwellAccount, description: SensorEntityDescription) -> None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any]: ...

@@ -14,6 +14,7 @@ from .util.async_ import fire_coroutine_threadsafe as fire_coroutine_threadsafe,
 from .util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from .util.timeout import TimeoutManager as TimeoutManager
 from .util.unit_system import IMPERIAL_SYSTEM as IMPERIAL_SYSTEM, METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Collection, Coroutine, Iterable, Mapping
 from typing import Any, NamedTuple, TypeVar, overload
 
@@ -38,15 +39,15 @@ class ConfigSource(StrEnum):
     STORAGE: str
     YAML: str
 
-SOURCE_DISCOVERED: Any
-SOURCE_STORAGE: Any
-SOURCE_YAML: Any
+SOURCE_DISCOVERED: Incomplete
+SOURCE_STORAGE: Incomplete
+SOURCE_YAML: Incomplete
 TIMEOUT_EVENT_START: int
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def split_entity_id(entity_id: str) -> tuple[str, str]: ...
 
-VALID_ENTITY_ID: Any
+VALID_ENTITY_ID: Incomplete
 
 def valid_entity_id(entity_id: str) -> bool: ...
 def valid_state(state: str) -> bool: ...
@@ -59,9 +60,9 @@ class HassJobType(enum.Enum):
     Executor: int
 
 class HassJob:
-    __slots__: Any
-    target: Any
-    job_type: Any
+    __slots__: Incomplete
+    target: Incomplete
+    job_type: Incomplete
     def __init__(self, target: Callable[..., _R_co]) -> None: ...
     def __repr__(self) -> str: ...
 
@@ -80,20 +81,20 @@ class HomeAssistant:
     auth: AuthManager
     http: HomeAssistantHTTP
     config_entries: ConfigEntries
-    loop: Any
-    _pending_tasks: Any
+    loop: Incomplete
+    _pending_tasks: Incomplete
     _track_task: bool
-    bus: Any
-    services: Any
-    states: Any
-    config: Any
-    components: Any
-    helpers: Any
-    data: Any
-    state: Any
+    bus: Incomplete
+    services: Incomplete
+    states: Incomplete
+    config: Incomplete
+    components: Incomplete
+    helpers: Incomplete
+    data: Incomplete
+    state: Incomplete
     exit_code: int
-    _stopped: Any
-    timeout: Any
+    _stopped: Incomplete
+    timeout: Incomplete
     def __init__(self) -> None: ...
     @property
     def is_running(self) -> bool: ...
@@ -151,12 +152,12 @@ class EventOrigin(enum.Enum):
     def __str__(self) -> str: ...
 
 class Event:
-    __slots__: Any
-    event_type: Any
-    data: Any
-    origin: Any
-    time_fired: Any
-    context: Any
+    __slots__: Incomplete
+    event_type: Incomplete
+    data: Incomplete
+    origin: Incomplete
+    time_fired: Incomplete
+    context: Incomplete
     def __init__(self, event_type: str, data: Union[dict[str, Any], None] = ..., origin: EventOrigin = ..., time_fired: Union[datetime.datetime, None] = ..., context: Union[Context, None] = ...) -> None: ...
     def __hash__(self) -> int: ...
     def as_dict(self) -> dict[str, Any]: ...
@@ -168,8 +169,8 @@ class _FilterableJob(NamedTuple):
     event_filter: Union[Callable[[Event], bool], None]
 
 class EventBus:
-    _listeners: Any
-    _hass: Any
+    _listeners: Incomplete
+    _hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_listeners(self) -> dict[str, int]: ...
     @property
@@ -185,14 +186,14 @@ class EventBus:
 _StateT = TypeVar('_StateT', bound='State')
 
 class State:
-    __slots__: Any
-    entity_id: Any
-    state: Any
-    attributes: Any
-    last_updated: Any
-    last_changed: Any
-    context: Any
-    _as_dict: Any
+    __slots__: Incomplete
+    entity_id: Incomplete
+    state: Incomplete
+    attributes: Incomplete
+    last_updated: Incomplete
+    last_changed: Incomplete
+    context: Incomplete
+    _as_dict: Incomplete
     def __init__(self, entity_id: str, state: str, attributes: Union[Mapping[str, Any], None] = ..., last_changed: Union[datetime.datetime, None] = ..., last_updated: Union[datetime.datetime, None] = ..., context: Union[Context, None] = ..., validate_entity_id: Union[bool, None] = ...) -> None: ...
     @property
     def name(self) -> str: ...
@@ -203,10 +204,10 @@ class State:
     def __repr__(self) -> str: ...
 
 class StateMachine:
-    _states: Any
-    _reservations: Any
-    _bus: Any
-    _loop: Any
+    _states: Incomplete
+    _reservations: Incomplete
+    _bus: Incomplete
+    _loop: Incomplete
     def __init__(self, bus: EventBus, loop: asyncio.events.AbstractEventLoop) -> None: ...
     def entity_ids(self, domain_filter: Union[str, None] = ...) -> list[str]: ...
     def async_entity_ids(self, domain_filter: Union[str, Iterable[str], None] = ...) -> list[str]: ...
@@ -223,23 +224,23 @@ class StateMachine:
     def async_set(self, entity_id: str, new_state: str, attributes: Union[Mapping[str, Any], None] = ..., force_update: bool = ..., context: Union[Context, None] = ...) -> None: ...
 
 class Service:
-    __slots__: Any
-    job: Any
-    schema: Any
+    __slots__: Incomplete
+    job: Incomplete
+    schema: Incomplete
     def __init__(self, func: Callable[[ServiceCall], Union[None, Awaitable[None]]], schema: Union[vol.Schema, None], context: Union[Context, None] = ...) -> None: ...
 
 class ServiceCall:
-    __slots__: Any
-    domain: Any
-    service: Any
-    data: Any
-    context: Any
+    __slots__: Incomplete
+    domain: Incomplete
+    service: Incomplete
+    data: Incomplete
+    context: Incomplete
     def __init__(self, domain: str, service: str, data: Union[dict[str, Any], None] = ..., context: Union[Context, None] = ...) -> None: ...
     def __repr__(self) -> str: ...
 
 class ServiceRegistry:
-    _services: Any
-    _hass: Any
+    _services: Incomplete
+    _hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     @property
     def services(self) -> dict[str, dict[str, Service]]: ...
@@ -255,24 +256,24 @@ class ServiceRegistry:
     async def _execute_service(self, handler: Service, service_call: ServiceCall) -> None: ...
 
 class Config:
-    hass: Any
+    hass: Incomplete
     latitude: int
     longitude: int
     elevation: int
     location_name: str
     time_zone: str
-    units: Any
-    internal_url: Any
-    external_url: Any
+    units: Incomplete
+    internal_url: Incomplete
+    external_url: Incomplete
     currency: str
-    config_source: Any
+    config_source: Incomplete
     skip_pip: bool
-    components: Any
-    api: Any
-    config_dir: Any
-    allowlist_external_dirs: Any
-    allowlist_external_urls: Any
-    media_dirs: Any
+    components: Incomplete
+    api: Incomplete
+    config_dir: Incomplete
+    allowlist_external_dirs: Incomplete
+    allowlist_external_urls: Incomplete
+    media_dirs: Incomplete
     safe_mode: bool
     legacy_templates: bool
     def __init__(self, hass: HomeAssistant) -> None: ...

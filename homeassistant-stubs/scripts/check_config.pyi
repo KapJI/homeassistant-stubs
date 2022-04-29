@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant import core as core
 from homeassistant.config import get_default_config_dir as get_default_config_dir
@@ -7,14 +8,14 @@ from homeassistant.helpers.check_config import async_check_ha_config_file as asy
 from homeassistant.util.yaml import Secrets as Secrets
 from typing import Any
 
-REQUIREMENTS: Any
-_LOGGER: Any
+REQUIREMENTS: Incomplete
+_LOGGER: Incomplete
 MOCKS: dict[str, tuple[str, Callable]]
 PATCHES: dict[str, Any]
 C_HEAD: str
 ERROR_STR: str
 
-def color(the_color, *args, reset: Any | None = ...): ...
+def color(the_color, *args, reset: Incomplete | None = ...): ...
 def run(script_args: list) -> int: ...
 def check(config_dir, secrets: bool = ...): ...
 async def async_check_config(config_dir): ...

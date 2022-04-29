@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .utils import BondHub as BondHub
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, exceptions as exceptions
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
@@ -9,17 +10,17 @@ from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as 
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-_LOGGER: Any
-USER_SCHEMA: Any
-DISCOVERY_SCHEMA: Any
-TOKEN_SCHEMA: Any
+_LOGGER: Incomplete
+USER_SCHEMA: Incomplete
+DISCOVERY_SCHEMA: Incomplete
+TOKEN_SCHEMA: Incomplete
 
 async def async_get_token(hass: HomeAssistant, host: str) -> Union[str, None]: ...
 async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> tuple[str, str]: ...
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    _discovered: Any
+    _discovered: Incomplete
     def __init__(self) -> None: ...
     async def _async_try_automatic_configure(self) -> None: ...
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> FlowResult: ...
@@ -27,5 +28,5 @@ class ConfigFlow(config_entries.ConfigFlow):
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
 class InputValidationError(exceptions.HomeAssistantError):
-    base: Any
+    base: Incomplete
     def __init__(self, base: str) -> None: ...

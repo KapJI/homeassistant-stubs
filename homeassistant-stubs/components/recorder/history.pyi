@@ -1,5 +1,6 @@
 from .models import LazyState as LazyState, RecorderRuns as RecorderRuns, StateAttributes as StateAttributes, States as States, process_timestamp as process_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat
 from .util import execute as execute, session_scope as session_scope
+from _typeshed import Incomplete
 from collections.abc import Iterable, MutableMapping
 from datetime import datetime
 from homeassistant.components import recorder as recorder
@@ -8,22 +9,22 @@ from sqlalchemy import Column as Column
 from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 STATE_KEY: str
 LAST_CHANGED_KEY: str
-SIGNIFICANT_DOMAINS: Any
-SIGNIFICANT_DOMAINS_ENTITY_ID_LIKE: Any
-IGNORE_DOMAINS: Any
-IGNORE_DOMAINS_ENTITY_ID_LIKE: Any
-NEED_ATTRIBUTE_DOMAINS: Any
-BASE_STATES: Any
-BASE_STATES_NO_LAST_UPDATED: Any
-QUERY_STATE_NO_ATTR: Any
-QUERY_STATE_NO_ATTR_NO_LAST_UPDATED: Any
-QUERY_STATES_PRE_SCHEMA_25: Any
-QUERY_STATES_PRE_SCHEMA_25_NO_LAST_UPDATED: Any
-QUERY_STATES: Any
-QUERY_STATES_NO_LAST_UPDATED: Any
+SIGNIFICANT_DOMAINS: Incomplete
+SIGNIFICANT_DOMAINS_ENTITY_ID_LIKE: Incomplete
+IGNORE_DOMAINS: Incomplete
+IGNORE_DOMAINS_ENTITY_ID_LIKE: Incomplete
+NEED_ATTRIBUTE_DOMAINS: Incomplete
+BASE_STATES: Incomplete
+BASE_STATES_NO_LAST_UPDATED: Incomplete
+QUERY_STATE_NO_ATTR: Incomplete
+QUERY_STATE_NO_ATTR_NO_LAST_UPDATED: Incomplete
+QUERY_STATES_PRE_SCHEMA_25: Incomplete
+QUERY_STATES_PRE_SCHEMA_25_NO_LAST_UPDATED: Incomplete
+QUERY_STATES: Incomplete
+QUERY_STATES_NO_LAST_UPDATED: Incomplete
 HISTORY_BAKERY: str
 
 def query_and_join_attributes(hass: HomeAssistant, no_attributes: bool) -> tuple[list[Column], bool]: ...

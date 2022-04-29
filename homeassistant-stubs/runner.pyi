@@ -4,11 +4,12 @@ from .core import callback as callback
 from .helpers.frame import warn_use as warn_use
 from .util.executor import InterruptibleThreadPoolExecutor as InterruptibleThreadPoolExecutor
 from .util.thread import deadlock_safe_shutdown as deadlock_safe_shutdown
+from _typeshed import Incomplete
 from typing import Any
 
 MAX_EXECUTOR_WORKERS: int
 TASK_CANCELATION_TIMEOUT: int
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class RuntimeConfig:
     config_dir: str
@@ -23,7 +24,7 @@ class RuntimeConfig:
     def __init__(self, config_dir, skip_pip, safe_mode, verbose, log_rotate_days, log_file, log_no_color, debug, open_ui) -> None: ...
 
 class HassEventLoopPolicy(asyncio.DefaultEventLoopPolicy):
-    debug: Any
+    debug: Incomplete
     def __init__(self, debug: bool) -> None: ...
     @property
     def loop_name(self) -> str: ...

@@ -1,4 +1,5 @@
 from .entity import KaleidescapeEntity as KaleidescapeEntity
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -6,16 +7,15 @@ from homeassistant.const import STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any
 
-KALEIDESCAPE_PLAYING_STATES: Any
-KALEIDESCAPE_PAUSED_STATES: Any
-_LOGGER: Any
+KALEIDESCAPE_PLAYING_STATES: Incomplete
+KALEIDESCAPE_PAUSED_STATES: Incomplete
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class KaleidescapeMediaPlayer(KaleidescapeEntity, MediaPlayerEntity):
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     async def async_turn_on(self) -> None: ...
     async def async_turn_off(self) -> None: ...
     async def async_media_pause(self) -> None: ...

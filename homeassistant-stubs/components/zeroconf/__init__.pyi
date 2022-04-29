@@ -1,5 +1,6 @@
 from .models import HaAsyncServiceBrowser as HaAsyncServiceBrowser, HaAsyncZeroconf as HaAsyncZeroconf, HaZeroconf as HaZeroconf
 from .usage import install_multiple_zeroconf_catcher as install_multiple_zeroconf_catcher
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
@@ -17,11 +18,11 @@ from typing import Any, Final
 from zeroconf import ServiceStateChange
 from zeroconf.asyncio import AsyncServiceInfo
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
 ZEROCONF_TYPE: str
-HOMEKIT_TYPES: Any
-LOWER_MATCH_ATTRS: Any
+HOMEKIT_TYPES: Incomplete
+LOWER_MATCH_ATTRS: Incomplete
 CONF_DEFAULT_INTERFACE: str
 CONF_IPV6: str
 DEFAULT_DEFAULT_INTERFACE: bool
@@ -32,7 +33,7 @@ MAX_PROPERTY_VALUE_LEN: int
 MAX_NAME_LEN: int
 ATTR_PROPERTIES: Final[str]
 ATTR_PROPERTIES_ID: Final[str]
-CONFIG_SCHEMA: Any
+CONFIG_SCHEMA: Incomplete
 
 class ZeroconfServiceInfo(BaseServiceInfo):
     host: str
@@ -58,12 +59,12 @@ def _match_against_props(matcher: dict[str, str], props: dict[str, str]) -> bool
 def is_homekit_paired(props: dict[str, Any]) -> bool: ...
 
 class ZeroconfDiscovery:
-    hass: Any
-    zeroconf: Any
-    zeroconf_types: Any
-    homekit_models: Any
-    ipv6: Any
-    async_service_browser: Any
+    hass: Incomplete
+    zeroconf: Incomplete
+    zeroconf_types: Incomplete
+    homekit_models: Incomplete
+    ipv6: Incomplete
+    async_service_browser: Incomplete
     def __init__(self, hass: HomeAssistant, zeroconf: HaZeroconf, zeroconf_types: dict[str, list[dict[str, Union[str, dict[str, str]]]]], homekit_models: dict[str, str], ipv6: bool) -> None: ...
     async def async_setup(self) -> None: ...
     async def async_stop(self) -> None: ...

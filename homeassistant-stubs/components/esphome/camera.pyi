@@ -1,4 +1,5 @@
 from . import EsphomeEntity as EsphomeEntity, platform_async_setup_entry as platform_async_setup_entry
+from _typeshed import Incomplete
 from aioesphomeapi import CameraInfo, CameraState
 from aiohttp import web as web
 from homeassistant.components import camera as camera
@@ -11,7 +12,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EsphomeCamera(Camera, EsphomeEntity[CameraInfo, CameraState]):
-    _image_cond: Any
+    _image_cond: Incomplete
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     def _on_state_update(self) -> None: ...
     async def _on_state_update_coro(self) -> None: ...

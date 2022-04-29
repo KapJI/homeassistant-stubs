@@ -6,6 +6,7 @@ from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
 from .event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Iterable
 from contextvars import ContextVar
 from datetime import datetime, timedelta
@@ -17,7 +18,7 @@ from homeassistant.setup import async_start_setup as async_start_setup
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from logging import Logger
 from types import ModuleType
-from typing import Any
+from typing import Any, Protocol
 
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int
@@ -26,28 +27,28 @@ SLOW_ADD_MIN_TIMEOUT: int
 PLATFORM_NOT_READY_RETRIES: int
 DATA_ENTITY_PLATFORM: str
 PLATFORM_NOT_READY_BASE_WAIT_TIME: int
-_LOGGER: Any
+_LOGGER: Incomplete
 
-class AddEntitiesCallback:
+class AddEntitiesCallback(Protocol):
     def __call__(self, new_entities: Iterable[Entity], update_before_add: bool = ...) -> None: ...
 
 class EntityPlatform:
-    hass: Any
-    logger: Any
-    domain: Any
-    platform_name: Any
-    platform: Any
-    scan_interval: Any
-    entity_namespace: Any
-    config_entry: Any
-    entities: Any
-    _tasks: Any
+    hass: Incomplete
+    logger: Incomplete
+    domain: Incomplete
+    platform_name: Incomplete
+    platform: Incomplete
+    scan_interval: Incomplete
+    entity_namespace: Incomplete
+    config_entry: Incomplete
+    entities: Incomplete
+    _tasks: Incomplete
     _setup_complete: bool
-    _async_unsub_polling: Any
-    _async_cancel_retry_setup: Any
-    _process_updates: Any
-    parallel_updates: Any
-    parallel_updates_created: Any
+    _async_unsub_polling: Incomplete
+    _async_cancel_retry_setup: Incomplete
+    _process_updates: Incomplete
+    parallel_updates: Incomplete
+    parallel_updates_created: Incomplete
     def __init__(self, *, hass: HomeAssistant, logger: Logger, domain: str, platform_name: str, platform: Union[ModuleType, None], scan_interval: timedelta, entity_namespace: Union[str, None]) -> None: ...
     def __repr__(self) -> str: ...
     def _get_parallel_updates_semaphore(self, entity_has_async_update: bool) -> Union[asyncio.Semaphore, None]: ...

@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_TRANSITION as ATTR_TRANSITION
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
@@ -13,7 +14,7 @@ STATES: str
 def _hass_domain_validator(config): ...
 def _platform_validator(config): ...
 
-PLATFORM_SCHEMA: Any
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

@@ -1,4 +1,5 @@
-from typing import Any, Final
+from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: Final[str]
 CLIENT_VERSION: Final[str]
@@ -22,6 +23,6 @@ MAX_STREAMING_BITRATE: Final[str]
 MEDIA_SOURCE_KEY_PATH: Final[str]
 MEDIA_TYPE_AUDIO: Final[str]
 MEDIA_TYPE_NONE: Final[str]
-SUPPORTED_COLLECTION_TYPES: Final[Any]
+SUPPORTED_COLLECTION_TYPES: Final[Incomplete]
 USER_APP_NAME: Final[str]
-USER_AGENT: Final[Any]
+USER_AGENT: Final[Incomplete]

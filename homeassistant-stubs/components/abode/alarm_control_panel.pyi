@@ -1,22 +1,22 @@
 import homeassistant.components.alarm_control_panel as alarm
 from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from abodepy.devices.alarm import AbodeAlarm as AbodeAl
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 
 ICON: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AbodeAlarm(AbodeDevice, alarm.AlarmControlPanelEntity):
-    _attr_icon: Any
+    _attr_icon: Incomplete
     _attr_code_arm_required: bool
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     _device: AbodeAl
     @property
     def state(self) -> Union[str, None]: ...

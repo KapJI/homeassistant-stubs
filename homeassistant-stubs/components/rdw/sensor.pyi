@@ -1,4 +1,5 @@
 from .const import CONF_LICENSE_PLATE as CONF_LICENSE_PLATE, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import date
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
@@ -8,7 +9,6 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
 from vehicle import Vehicle as Vehicle
 
 class RDWSensorEntityDescriptionMixin:
@@ -24,8 +24,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RDWSensorEntity(CoordinatorEntity, SensorEntity):
     entity_description: RDWSensorEntityDescription
-    _attr_unique_id: Any
-    _attr_device_info: Any
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, *, coordinator: DataUpdateCoordinator, license_plate: str, description: RDWSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> Union[date, str, float, None]: ...

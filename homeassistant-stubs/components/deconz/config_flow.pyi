@@ -1,5 +1,6 @@
 from .const import CONF_ALLOW_CLIP_SENSOR as CONF_ALLOW_CLIP_SENSOR, CONF_ALLOW_DECONZ_GROUPS as CONF_ALLOW_DECONZ_GROUPS, CONF_ALLOW_NEW_DEVICES as CONF_ALLOW_NEW_DEVICES, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HASSIO_CONFIGURATION_URL as HASSIO_CONFIGURATION_URL, LOGGER as LOGGER
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp
 from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
@@ -39,8 +40,8 @@ class DeconzFlowHandler(ConfigFlow):
 
 class DeconzOptionsFlowHandler(OptionsFlow):
     gateway: DeconzGateway
-    config_entry: Any
-    options: Any
+    config_entry: Incomplete
+    options: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_deconz_devices(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

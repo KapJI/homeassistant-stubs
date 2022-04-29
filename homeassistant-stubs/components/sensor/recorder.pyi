@@ -1,5 +1,6 @@
 import datetime
 from . import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, STATE_CLASSES as STATE_CLASSES, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL as STATE_CLASS_TOTAL, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorDeviceClass as SensorDeviceClass
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from homeassistant.components.recorder import history as history, is_entity_recorded as is_entity_recorded, statistics as statistics
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult
@@ -10,8 +11,8 @@ from homeassistant.helpers.entity import entity_sources as entity_sources
 from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
-_LOGGER: Any
-DEFAULT_STATISTICS: Any
+_LOGGER: Incomplete
+DEFAULT_STATISTICS: Incomplete
 DEVICE_CLASS_UNITS: dict[str, str]
 UNIT_CONVERSIONS: dict[str, dict[str, Callable]]
 SEEN_DIP: str

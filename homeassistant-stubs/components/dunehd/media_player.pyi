@@ -1,4 +1,5 @@
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
@@ -7,21 +8,21 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from pdunehd import DuneHDPlayer as DuneHDPlayer
-from typing import Any, Final
+from typing import Final
 
 CONF_SOURCES: Final[str]
-PLATFORM_SCHEMA: Final[Any]
+PLATFORM_SCHEMA: Final[Incomplete]
 DUNEHD_PLAYER_SUPPORT: Final[int]
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DuneHDPlayerEntity(MediaPlayerEntity):
-    _player: Any
-    _name: Any
-    _media_title: Any
-    _state: Any
-    _unique_id: Any
+    _player: Incomplete
+    _name: Incomplete
+    _media_title: Incomplete
+    _state: Incomplete
+    _unique_id: Incomplete
     def __init__(self, player: DuneHDPlayer, name: str, unique_id: str) -> None: ...
     def update(self) -> None: ...
     @property

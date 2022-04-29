@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN, WEMO_SUBSCRIPTION_EVENT as WEMO_SUBSCRIPTION_EVENT
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_NAME as CONF_NAME, CONF_PARAMS as CONF_PARAMS, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -6,20 +7,19 @@ from homeassistant.helpers.device_registry import CONNECTION_UPNP as CONNECTION_
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pywemo import WeMoDevice as WeMoDevice
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class DeviceCoordinator(DataUpdateCoordinator):
-    hass: Any
-    wemo: Any
-    device_id: Any
-    device_info: Any
-    supports_long_press: Any
-    update_lock: Any
+    hass: Incomplete
+    wemo: Incomplete
+    device_id: Incomplete
+    device_info: Incomplete
+    supports_long_press: Incomplete
+    update_lock: Incomplete
     def __init__(self, hass: HomeAssistant, wemo: WeMoDevice, device_id: str) -> None: ...
     def subscription_callback(self, _device: WeMoDevice, event_type: str, params: str) -> None: ...
-    last_exception: Any
+    last_exception: Incomplete
     last_update_success: bool
     async def _async_subscription_callback(self, updated: bool) -> None: ...
     @property

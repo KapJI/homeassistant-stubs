@@ -1,13 +1,13 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from typing import Any
 from unifi_discovery import UnifiDevice as UnifiDevice
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DISCOVERY: str
-DISCOVERY_INTERVAL: Any
+DISCOVERY_INTERVAL: Incomplete
 
 def async_start_discovery(hass: HomeAssistant) -> None: ...
 async def async_discover_devices() -> list[UnifiDevice]: ...

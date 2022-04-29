@@ -1,5 +1,6 @@
 from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from abodepy.devices import AbodeDevice as AbodeDev
 from abodepy.devices.camera import AbodeCamera as AbodeCam
 from homeassistant.components.camera import Camera as Camera
@@ -10,14 +11,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util import Throttle as Throttle
 from typing import Any
 
-MIN_TIME_BETWEEN_UPDATES: Any
+MIN_TIME_BETWEEN_UPDATES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AbodeCamera(AbodeDevice, Camera):
     _device: AbodeCam
-    _event: Any
-    _response: Any
+    _event: Incomplete
+    _response: Incomplete
     def __init__(self, data: AbodeSystem, device: AbodeDev, event: Event) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def capture(self) -> bool: ...

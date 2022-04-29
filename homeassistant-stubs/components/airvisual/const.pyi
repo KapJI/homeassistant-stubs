@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-LOGGER: Any
+LOGGER: Incomplete
 INTEGRATION_TYPE_GEOGRAPHY_COORDS: str
 INTEGRATION_TYPE_GEOGRAPHY_NAME: str
 INTEGRATION_TYPE_NODE_PRO: str

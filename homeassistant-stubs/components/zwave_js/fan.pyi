@@ -3,6 +3,7 @@ from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import FanValueMapping as FanValueMapping, FanValueMappingDataTemplate as FanValueMappingDataTemplate
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_value_of_zwave_value as get_value_of_zwave_value
+from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, NotValidPresetModeError as NotValidPresetModeError
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -14,14 +15,14 @@ from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.model.value import Value as ZwaveValue
 
-DEFAULT_SPEED_RANGE: Any
+DEFAULT_SPEED_RANGE: Incomplete
 ATTR_FAN_STATE: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveFan(ZWaveBaseEntity, FanEntity):
-    _attr_supported_features: Any
-    _target_value: Any
+    _attr_supported_features: Incomplete
+    _target_value: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_turn_on(self, percentage: Union[int, None] = ..., preset_mode: Union[str, None] = ..., **kwargs: Any) -> None: ...
@@ -36,7 +37,7 @@ class ZwaveFan(ZWaveBaseEntity, FanEntity):
     def speed_count(self) -> int: ...
 
 class ValueMappingZwaveFan(ZwaveFan):
-    data_template: Any
+    data_template: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

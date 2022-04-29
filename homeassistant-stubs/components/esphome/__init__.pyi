@@ -1,4 +1,5 @@
 from .entry_data import RuntimeEntryData as RuntimeEntryData
+from _typeshed import Incomplete
 from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
 from collections.abc import Callable
 from homeassistant import const as const
@@ -20,7 +21,7 @@ from typing import Any, NamedTuple, TypeVar, overload
 
 DOMAIN: str
 CONF_NOISE_PSK: str
-_LOGGER: Any
+_LOGGER: Incomplete
 _T = TypeVar('_T')
 STORAGE_VERSION: int
 
@@ -45,7 +46,7 @@ class ServiceMetadata(NamedTuple):
     selector: dict[str, Any]
     description: Union[str, None]
 
-ARG_TYPE_METADATA: Any
+ARG_TYPE_METADATA: Incomplete
 
 async def _register_service(hass: HomeAssistant, entry_data: RuntimeEntryData, service: UserService) -> None: ...
 async def _setup_services(hass: HomeAssistant, entry_data: RuntimeEntryData, services: list[UserService]) -> None: ...
@@ -64,8 +65,8 @@ _EnumT = TypeVar('_EnumT', bound=APIIntEnum)
 _ValT = TypeVar('_ValT')
 
 class EsphomeEnumMapper:
-    _mapping: Any
-    _inverse: Any
+    _mapping: Incomplete
+    _inverse: Incomplete
     def __init__(self, mapping: dict[_EnumT, _ValT]) -> None: ...
     @overload
     def from_esphome(self, value: _EnumT) -> _ValT: ...
@@ -73,13 +74,13 @@ class EsphomeEnumMapper:
     def from_esphome(self, value: Union[_EnumT, None]) -> Union[_ValT, None]: ...
     def from_hass(self, value: _ValT) -> _EnumT: ...
 
-ICON_SCHEMA: Any
+ICON_SCHEMA: Incomplete
 ENTITY_CATEGORIES: EsphomeEnumMapper[EsphomeEntityCategory, Union[EntityCategory, None]]
 
 class EsphomeEntity(Entity):
-    _entry_data: Any
-    _component_key: Any
-    _key: Any
+    _entry_data: Incomplete
+    _component_key: Incomplete
+    _key: Incomplete
     def __init__(self, entry_data: RuntimeEntryData, component_key: str, key: int) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _on_state_update(self) -> None: ...

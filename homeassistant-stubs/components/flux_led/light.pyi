@@ -2,6 +2,7 @@ from .const import CONF_COLORS as CONF_COLORS, CONF_CUSTOM_EFFECT_COLORS as CONF
 from .coordinator import FluxLedUpdateCoordinator as FluxLedUpdateCoordinator
 from .entity import FluxOnOffEntity as FluxOnOffEntity
 from .util import _effect_brightness as _effect_brightness, _flux_color_mode_to_hass as _flux_color_mode_to_hass, _hass_color_modes as _hass_color_modes, _min_rgb_brightness as _min_rgb_brightness, _min_rgbw_brightness as _min_rgbw_brightness, _min_rgbwc_brightness as _min_rgbwc_brightness, _str_to_multi_color_effect as _str_to_multi_color_effect
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_WHITE as ATTR_WHITE, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.const import CONF_NAME as CONF_NAME
@@ -12,8 +13,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util.color import color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin
 from typing import Any, Final
 
-_LOGGER: Any
-MODE_ATTRS: Any
+_LOGGER: Incomplete
+MODE_ATTRS: Incomplete
 ATTR_FOREGROUND_COLOR: Final[str]
 ATTR_BACKGROUND_COLOR: Final[str]
 ATTR_SENSITIVITY: Final[str]
@@ -23,21 +24,21 @@ EFFECT_CUSTOM: Final[str]
 SERVICE_CUSTOM_EFFECT: Final[str]
 SERVICE_SET_ZONES: Final[str]
 SERVICE_SET_MUSIC_MODE: Final[str]
-CUSTOM_EFFECT_DICT: Final[Any]
-SET_MUSIC_MODE_DICT: Final[Any]
-SET_ZONES_DICT: Final[Any]
+CUSTOM_EFFECT_DICT: Final[Incomplete]
+SET_MUSIC_MODE_DICT: Final[Incomplete]
+SET_ZONES_DICT: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FluxLight(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], LightEntity):
-    _attr_supported_features: Any
-    _attr_min_mireds: Any
-    _attr_max_mireds: Any
-    _attr_supported_color_modes: Any
-    _attr_effect_list: Any
-    _custom_effect_colors: Any
-    _custom_effect_speed_pct: Any
-    _custom_effect_transition: Any
+    _attr_supported_features: Incomplete
+    _attr_min_mireds: Incomplete
+    _attr_max_mireds: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_effect_list: Incomplete
+    _custom_effect_colors: Incomplete
+    _custom_effect_speed_pct: Incomplete
+    _custom_effect_transition: Incomplete
     def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, name: str, custom_effect_colors: list[tuple[int, int, int]], custom_effect_speed_pct: int, custom_effect_transition: str) -> None: ...
     @property
     def brightness(self) -> int: ...

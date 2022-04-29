@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN, KEY_ACTIONS as KEY_ACTIONS, SENDKEYS as SENDKEYS
+from _typeshed import Incomplete
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.components.homeassistant.triggers import event as event
@@ -7,13 +8,13 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-TRIGGER_TYPES: Any
-LCN_DEVICE_TRIGGER_BASE_SCHEMA: Any
-ACCESS_CONTROL_SCHEMA: Any
-TRANSMITTER_SCHEMA: Any
-SENDKEYS_SCHEMA: Any
-TRIGGER_SCHEMA: Any
-TYPE_SCHEMAS: Any
+TRIGGER_TYPES: Incomplete
+LCN_DEVICE_TRIGGER_BASE_SCHEMA: Incomplete
+ACCESS_CONTROL_SCHEMA: Incomplete
+TRANSMITTER_SCHEMA: Incomplete
+SENDKEYS_SCHEMA: Incomplete
+TRIGGER_SCHEMA: Incomplete
+TYPE_SCHEMAS: Incomplete
 
 async def async_get_triggers(hass: HomeAssistant, device_id: str) -> list[dict[str, Any]]: ...
 async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: AutomationActionType, automation_info: AutomationTriggerInfo) -> CALLBACK_TYPE: ...

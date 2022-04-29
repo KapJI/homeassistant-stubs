@@ -2,6 +2,7 @@ from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
 from .const import CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, LOGGER as LOGGER
 from .helpers import async_enable_statistics as async_enable_statistics, update_data_collection_preference as update_data_collection_preference
 from .migrate import ZWaveMigrationData as ZWaveMigrationData, async_get_migration_data as async_get_migration_data, async_map_legacy_zwave_values as async_map_legacy_zwave_values, async_migrate_legacy_zwave as async_migrate_legacy_zwave
+from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Callable as Callable
 from homeassistant.components import websocket_api as websocket_api
@@ -15,7 +16,6 @@ from homeassistant.exceptions import Unauthorized as Unauthorized
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any
 from zwave_js_server.client import Client as Client
 from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics, ProvisioningEntry, QRProvisioningInformation
 from zwave_js_server.model.firmware import FirmwareUpdateFinished as FirmwareUpdateFinished, FirmwareUpdateProgress as FirmwareUpdateProgress
@@ -70,9 +70,9 @@ MINIMUM_QR_STRING_LENGTH: int
 def convert_planned_provisioning_entry(info: dict) -> ProvisioningEntry: ...
 def convert_qr_provisioning_information(info: dict) -> QRProvisioningInformation: ...
 
-PLANNED_PROVISIONING_ENTRY_SCHEMA: Any
-QR_PROVISIONING_INFORMATION_SCHEMA: Any
-QR_CODE_STRING_SCHEMA: Any
+PLANNED_PROVISIONING_ENTRY_SCHEMA: Incomplete
+QR_PROVISIONING_INFORMATION_SCHEMA: Incomplete
+QR_CODE_STRING_SCHEMA: Incomplete
 
 def async_get_entry(orig_func: Callable) -> Callable: ...
 def async_get_node(orig_func: Callable) -> Callable: ...

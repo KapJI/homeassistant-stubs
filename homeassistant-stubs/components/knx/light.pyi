@@ -1,6 +1,7 @@
 from .const import ColorTempModes as ColorTempModes, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import LightSchema as LightSchema
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
@@ -16,12 +17,12 @@ def _create_light(xknx: XKNX, config: ConfigType) -> XknxLight: ...
 
 class KNXLight(KnxEntity, LightEntity):
     _device: XknxLight
-    _max_kelvin: Any
-    _min_kelvin: Any
-    _attr_max_mireds: Any
-    _attr_min_mireds: Any
-    _attr_entity_category: Any
-    _attr_unique_id: Any
+    _max_kelvin: Incomplete
+    _min_kelvin: Incomplete
+    _attr_max_mireds: Incomplete
+    _attr_min_mireds: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     def _device_unique_id(self) -> str: ...
     @property

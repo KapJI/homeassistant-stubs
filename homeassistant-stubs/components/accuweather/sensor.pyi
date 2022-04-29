@@ -1,6 +1,7 @@
 from . import AccuWeatherDataUpdateCoordinator as AccuWeatherDataUpdateCoordinator
 from .const import API_IMPERIAL as API_IMPERIAL, API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_FORECAST as ATTR_FORECAST, DOMAIN as DOMAIN, FORECAST_SENSOR_TYPES as FORECAST_SENSOR_TYPES, MANUFACTURER as MANUFACTURER, MAX_FORECAST_DAYS as MAX_FORECAST_DAYS, NAME as NAME, SENSOR_TYPES as SENSOR_TYPES
 from .model import AccuWeatherSensorDescription as AccuWeatherSensorDescription
+from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
@@ -17,16 +18,16 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AccuWeatherSensor(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], SensorEntity):
-    _attr_attribution: Any
+    _attr_attribution: Incomplete
     entity_description: AccuWeatherSensorDescription
-    _sensor_data: Any
-    _attrs: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _unit_system: Any
-    _attr_native_unit_of_measurement: Any
-    _attr_device_info: Any
-    forecast_day: Any
+    _sensor_data: Incomplete
+    _attrs: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _unit_system: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
+    _attr_device_info: Incomplete
+    forecast_day: Incomplete
     def __init__(self, name: str, coordinator: AccuWeatherDataUpdateCoordinator, description: AccuWeatherSensorDescription, forecast_day: Union[int, None] = ...) -> None: ...
     @property
     def native_value(self) -> StateType: ...

@@ -1,11 +1,12 @@
 from .backports.enum import StrEnum as StrEnum
-from typing import Any, Final
+from _typeshed import Incomplete
+from typing import Final
 
 MAJOR_VERSION: Final[int]
 MINOR_VERSION: Final[int]
 PATCH_VERSION: Final[str]
-__short_version__: Final[Any]
-__version__: Final[Any]
+__short_version__: Final[Incomplete]
+__version__: Final[Incomplete]
 REQUIRED_PYTHON_VER: Final[tuple[int, int, int]]
 REQUIRED_NEXT_PYTHON_VER: Final[tuple[int, int, int]]
 REQUIRED_NEXT_PYTHON_HA_RELEASE: Final[str]

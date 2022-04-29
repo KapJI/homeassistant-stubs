@@ -1,5 +1,6 @@
 from .const import DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
+from _typeshed import Incomplete
 from google_nest_sdm.device import Device as Device
 from google_nest_sdm.thermostat_traits import ThermostatHeatCoolTrait as ThermostatHeatCoolTrait
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
@@ -13,14 +14,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 THERMOSTAT_MODE_MAP: dict[str, HVACMode]
-THERMOSTAT_INV_MODE_MAP: Any
+THERMOSTAT_INV_MODE_MAP: Incomplete
 THERMOSTAT_ECO_MODE: str
-THERMOSTAT_HVAC_STATUS_MAP: Any
-THERMOSTAT_RANGE_MODES: Any
-PRESET_MODE_MAP: Any
-PRESET_INV_MODE_MAP: Any
-FAN_MODE_MAP: Any
-FAN_INV_MODE_MAP: Any
+THERMOSTAT_HVAC_STATUS_MAP: Incomplete
+THERMOSTAT_RANGE_MODES: Incomplete
+PRESET_MODE_MAP: Incomplete
+PRESET_INV_MODE_MAP: Incomplete
+FAN_MODE_MAP: Incomplete
+FAN_INV_MODE_MAP: Incomplete
 MAX_FAN_DURATION: int
 MIN_TEMP: int
 MAX_TEMP: int
@@ -28,10 +29,10 @@ MAX_TEMP: int
 async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ThermostatEntity(ClimateEntity):
-    _attr_min_temp: Any
-    _attr_max_temp: Any
-    _device: Any
-    _device_info: Any
+    _attr_min_temp: Incomplete
+    _attr_max_temp: Incomplete
+    _device: Incomplete
+    _device_info: Incomplete
     _supported_features: int
     def __init__(self, device: Device) -> None: ...
     @property

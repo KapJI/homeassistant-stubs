@@ -1,4 +1,5 @@
 from .const import DevId as DevId, DiscoveryInfo as DiscoveryInfo
+from _typeshed import Incomplete
 from homeassistant.components import mysensors as mysensors
 from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
 from homeassistant.const import Platform as Platform
@@ -12,6 +13,6 @@ class MySensorsNotificationDevice(mysensors.device.MySensorsDevice):
     def __repr__(self) -> str: ...
 
 class MySensorsNotificationService(BaseNotificationService):
-    devices: Any
+    devices: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_send_message(self, message: str = ..., **kwargs: Any) -> None: ...

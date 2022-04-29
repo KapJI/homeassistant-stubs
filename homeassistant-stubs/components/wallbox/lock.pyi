@@ -1,5 +1,6 @@
 from . import InvalidAuth as InvalidAuth, WallboxCoordinator as WallboxCoordinator, WallboxEntity as WallboxEntity
 from .const import CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_LOCKED_UNLOCKED_KEY as CHARGER_LOCKED_UNLOCKED_KEY, CHARGER_SERIAL_NUMBER_KEY as CHARGER_SERIAL_NUMBER_KEY, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,9 +12,9 @@ LOCK_TYPES: dict[str, LockEntityDescription]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WallboxLock(WallboxEntity, LockEntity):
-    entity_description: Any
-    _attr_name: Any
-    _attr_unique_id: Any
+    entity_description: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, coordinator: WallboxCoordinator, entry: ConfigEntry, description: LockEntityDescription) -> None: ...
     @property
     def is_locked(self) -> bool: ...

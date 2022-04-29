@@ -1,5 +1,6 @@
 import pyatmo
 from .const import AUTH as AUTH, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, WEBHOOK_ACTIVATION as WEBHOOK_ACTIVATION, WEBHOOK_DEACTIVATION as WEBHOOK_DEACTIVATION, WEBHOOK_NACAMERA_CONNECTION as WEBHOOK_NACAMERA_CONNECTION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
@@ -7,16 +8,16 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 CAMERA_DATA_CLASS_NAME: str
 WEATHERSTATION_DATA_CLASS_NAME: str
 HOMECOACH_DATA_CLASS_NAME: str
 CLIMATE_TOPOLOGY_CLASS_NAME: str
 CLIMATE_STATE_CLASS_NAME: str
 PUBLICDATA_DATA_CLASS_NAME: str
-DATA_CLASSES: Any
+DATA_CLASSES: Incomplete
 BATCH_SIZE: int
-DEFAULT_INTERVALS: Any
+DEFAULT_INTERVALS: Incomplete
 SCAN_INTERVAL: int
 
 class NetatmoDevice:
@@ -34,12 +35,12 @@ class NetatmoDataClass:
     def __init__(self, name, interval, next_scan, subscriptions) -> None: ...
 
 class NetatmoDataHandler:
-    hass: Any
-    config_entry: Any
-    _auth: Any
-    data_classes: Any
-    data: Any
-    _queue: Any
+    hass: Incomplete
+    config_entry: Incomplete
+    _auth: Incomplete
+    data_classes: Incomplete
+    data: Incomplete
+    _queue: Incomplete
     _webhook: bool
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
     async def async_setup(self) -> None: ...

@@ -1,6 +1,7 @@
 from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from _typeshed import Incomplete
 from homeassistant.components.humidifier import HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntity as HumidifierEntity, HumidifierEntityDescription as HumidifierEntityDescription
 from homeassistant.components.humidifier.const import DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -21,8 +22,8 @@ class ZwaveHumidifierEntityDescriptionRequiredKeys:
 class ZwaveHumidifierEntityDescription(HumidifierEntityDescription, ZwaveHumidifierEntityDescriptionRequiredKeys):
     def __init__(self, *, on_mode, inverse_mode, setpoint_type, **) -> None: ...
 
-HUMIDIFIER_ENTITY_DESCRIPTION: Any
-DEHUMIDIFIER_ENTITY_DESCRIPTION: Any
+HUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
+DEHUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -30,8 +31,8 @@ class ZWaveHumidifier(ZWaveBaseEntity, HumidifierEntity):
     entity_description: ZwaveHumidifierEntityDescription
     _current_mode: ZwaveValue
     _setpoint: Union[ZwaveValue, None]
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo, description: ZwaveHumidifierEntityDescription) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...

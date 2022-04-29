@@ -3,6 +3,7 @@ from .entity_component import EntityComponent as EntityComponent
 from .entity_platform import EntityPlatform as EntityPlatform, async_get_platforms as async_get_platforms
 from .service import async_register_admin_service as async_register_admin_service
 from .typing import ConfigType as ConfigType
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.const import SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -11,7 +12,7 @@ from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import async_setup_component as async_setup_component
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 PLATFORM_RESET_LOCK: str
 
 async def async_reload_integration_platforms(hass: HomeAssistant, integration_name: str, integration_platforms: Iterable[str]) -> None: ...

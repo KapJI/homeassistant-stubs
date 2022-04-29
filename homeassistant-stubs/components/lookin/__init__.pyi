@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
 from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordinator, LookinPushCoordinator as LookinPushCoordinator
 from .models import LookinData as LookinData
+from _typeshed import Incomplete
 from aiolookin import Climate as Climate, LookInHttpProtocol, LookinUDPSubscriptions, MeteoSensor as MeteoSensor, Remote as Remote
 from aiolookin.models import UDPEvent as UDPEvent
 from collections.abc import Callable as Callable, Coroutine
@@ -11,16 +12,16 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-LOGGER: Any
+LOGGER: Incomplete
 UDP_MANAGER: str
 
 def _async_climate_updater(lookin_protocol: LookInHttpProtocol, uuid: str) -> Callable[[], Coroutine[None, Any, Remote]]: ...
 def _async_remote_updater(lookin_protocol: LookInHttpProtocol, uuid: str) -> Callable[[], Coroutine[None, Any, Remote]]: ...
 
 class LookinUDPManager:
-    _lock: Any
-    _listener: Any
-    _subscriptions: Any
+    _lock: Incomplete
+    _listener: Incomplete
+    _subscriptions: Incomplete
     def __init__(self) -> None: ...
     async def async_get_subscriptions(self) -> LookinUDPSubscriptions: ...
     async def async_stop(self) -> None: ...

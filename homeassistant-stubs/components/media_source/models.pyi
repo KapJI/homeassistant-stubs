@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN, URI_SCHEME as URI_SCHEME, URI_SCHEME_REGEX as URI_SCHEME_REGEX
+from _typeshed import Incomplete
 from abc import ABC
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia
 from homeassistant.components.media_player.const import MEDIA_CLASS_APP as MEDIA_CLASS_APP, MEDIA_TYPE_APP as MEDIA_TYPE_APP, MEDIA_TYPE_APPS as MEDIA_TYPE_APPS
@@ -12,8 +13,8 @@ class PlayMedia:
 
 class BrowseMediaSource(BrowseMedia):
     children: Union[list[Union[BrowseMediaSource, BrowseMedia]], None]
-    domain: Any
-    identifier: Any
+    domain: Incomplete
+    identifier: Incomplete
     def __init__(self, *, domain: Union[str, None], identifier: Union[str, None], **kwargs: Any) -> None: ...
 
 class MediaSourceItem:
@@ -29,7 +30,7 @@ class MediaSourceItem:
 
 class MediaSource(ABC):
     name: Union[str, None]
-    domain: Any
+    domain: Incomplete
     def __init__(self, domain: str) -> None: ...
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...

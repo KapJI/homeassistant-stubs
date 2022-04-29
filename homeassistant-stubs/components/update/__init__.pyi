@@ -1,4 +1,5 @@
 from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import EntityCategory, EntityDescription
@@ -8,7 +9,7 @@ from typing import Any
 class UpdateDeviceClass(StrEnum):
     FIRMWARE: str
 
-DEVICE_CLASSES_SCHEMA: Any
+DEVICE_CLASSES_SCHEMA: Incomplete
 
 class UpdateEntityDescription(EntityDescription):
     device_class: Union[UpdateDeviceClass, str, None]

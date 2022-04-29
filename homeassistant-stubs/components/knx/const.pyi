@@ -1,7 +1,8 @@
+from _typeshed import Incomplete
 from enum import Enum
 from homeassistant.components.climate.const import HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
 from homeassistant.const import Platform as Platform
-from typing import Any, Final, TypedDict
+from typing import Final, TypedDict
 
 DOMAIN: Final[str]
 KNX_ADDRESS: Final[str]
@@ -60,7 +61,7 @@ class ColorTempModes(Enum):
     ABSOLUTE: str
     RELATIVE: str
 
-SUPPORTED_PLATFORMS: Final[Any]
-CONTROLLER_MODES: Final[Any]
-CURRENT_HVAC_ACTIONS: Final[Any]
-PRESET_MODES: Final[Any]
+SUPPORTED_PLATFORMS: Final[Incomplete]
+CONTROLLER_MODES: Final[Incomplete]
+CURRENT_HVAC_ACTIONS: Final[Incomplete]
+PRESET_MODES: Final[Incomplete]

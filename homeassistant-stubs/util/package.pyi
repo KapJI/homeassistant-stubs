@@ -1,6 +1,6 @@
-from typing import Any
+from _typeshed import Incomplete
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def is_virtual_env() -> bool: ...
 def is_docker_env() -> bool: ...

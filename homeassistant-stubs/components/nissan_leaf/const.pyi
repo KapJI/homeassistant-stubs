@@ -1,4 +1,5 @@
-from typing import Any, Final
+from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: Final[str]
 DATA_LEAF: Final[str]
@@ -12,13 +13,13 @@ CONF_INTERVAL: Final[str]
 CONF_CHARGING_INTERVAL: Final[str]
 CONF_CLIMATE_INTERVAL: Final[str]
 CONF_FORCE_MILES: Final[str]
-CONF_VALID_REGIONS: Final[Any]
-INITIAL_UPDATE: Final[Any]
-MIN_UPDATE_INTERVAL: Final[Any]
-DEFAULT_INTERVAL: Final[Any]
-DEFAULT_CHARGING_INTERVAL: Final[Any]
-DEFAULT_CLIMATE_INTERVAL: Final[Any]
-RESTRICTED_INTERVAL: Final[Any]
+CONF_VALID_REGIONS: Final[Incomplete]
+INITIAL_UPDATE: Final[Incomplete]
+MIN_UPDATE_INTERVAL: Final[Incomplete]
+DEFAULT_INTERVAL: Final[Incomplete]
+DEFAULT_CHARGING_INTERVAL: Final[Incomplete]
+DEFAULT_CLIMATE_INTERVAL: Final[Incomplete]
+RESTRICTED_INTERVAL: Final[Incomplete]
 RESTRICTED_BATTERY: Final[int]
 MAX_RESPONSE_ATTEMPTS: Final[int]
 PYCARWINGS2_SLEEP: Final[int]

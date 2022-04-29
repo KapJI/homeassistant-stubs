@@ -1,6 +1,6 @@
 from . import Recorder as Recorder
-from typing import Any
+from _typeshed import Incomplete
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def repack_database(instance: Recorder) -> None: ...

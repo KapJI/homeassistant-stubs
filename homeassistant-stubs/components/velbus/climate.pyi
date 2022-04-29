@@ -1,5 +1,6 @@
 from . import VelbusEntity as VelbusEntity
 from .const import DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
+from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,11 +14,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class VelbusClimate(VelbusEntity, ClimateEntity):
     _channel: VelbusTemp
-    _attr_supported_features: Any
-    _attr_temperature_unit: Any
-    _attr_hvac_mode: Any
-    _attr_hvac_modes: Any
-    _attr_preset_modes: Any
+    _attr_supported_features: Incomplete
+    _attr_temperature_unit: Incomplete
+    _attr_hvac_mode: Incomplete
+    _attr_hvac_modes: Incomplete
+    _attr_preset_modes: Incomplete
     @property
     def target_temperature(self) -> Union[float, None]: ...
     @property

@@ -1,6 +1,7 @@
 from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import SwitchSchema as SwitchSchema
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
@@ -16,8 +17,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 
 class KNXSwitch(KnxEntity, SwitchEntity, RestoreEntity):
     _device: XknxSwitch
-    _attr_entity_category: Any
-    _attr_unique_id: Any
+    _attr_entity_category: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

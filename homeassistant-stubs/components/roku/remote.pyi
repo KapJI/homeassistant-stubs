@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .entity import RokuEntity as RokuEntity
 from .helpers import roku_exception_handler as roku_exception_handler
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, RemoteEntity as RemoteEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,8 +13,8 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RokuRemote(RokuEntity, RemoteEntity):
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, unique_id: str, coordinator: RokuDataUpdateCoordinator) -> None: ...
     @property
     def is_on(self) -> bool: ...

@@ -1,6 +1,6 @@
 from .core import Context as Context
+from _typeshed import Incomplete
 from collections.abc import Generator, Sequence
-from typing import Any
 
 class HomeAssistantError(Exception): ...
 class InvalidEntityFormatError(HomeAssistantError): ...
@@ -59,32 +59,32 @@ class ConfigEntryAuthFailed(IntegrationError): ...
 class InvalidStateError(HomeAssistantError): ...
 
 class Unauthorized(HomeAssistantError):
-    context: Any
-    user_id: Any
-    entity_id: Any
-    config_entry_id: Any
-    perm_category: Any
-    permission: Any
+    context: Incomplete
+    user_id: Incomplete
+    entity_id: Incomplete
+    config_entry_id: Incomplete
+    perm_category: Incomplete
+    permission: Incomplete
     def __init__(self, context: Union[Context, None] = ..., user_id: Union[str, None] = ..., entity_id: Union[str, None] = ..., config_entry_id: Union[str, None] = ..., perm_category: Union[str, None] = ..., permission: Union[str, None] = ...) -> None: ...
 
 class UnknownUser(Unauthorized): ...
 
 class ServiceNotFound(HomeAssistantError):
-    domain: Any
-    service: Any
+    domain: Incomplete
+    service: Incomplete
     def __init__(self, domain: str, service: str) -> None: ...
     def __str__(self) -> str: ...
 
 class MaxLengthExceeded(HomeAssistantError):
-    value: Any
-    property_name: Any
-    max_length: Any
+    value: Incomplete
+    property_name: Incomplete
+    max_length: Incomplete
     def __init__(self, value: str, property_name: str, max_length: int) -> None: ...
 
 class RequiredParameterMissing(HomeAssistantError):
-    parameter_names: Any
+    parameter_names: Incomplete
     def __init__(self, parameter_names: list[str]) -> None: ...
 
 class DependencyError(HomeAssistantError):
-    failed_dependencies: Any
+    failed_dependencies: Incomplete
     def __init__(self, failed_dependencies: list[str]) -> None: ...

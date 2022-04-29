@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -6,12 +7,11 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
-SCAN_INTERVAL: Any
-DEVICE_CLASSES: Any
+SCAN_INTERVAL: Incomplete
+DEVICE_CLASSES: Incomplete
 SERVICE_SCAN: str
 EVENT_DETECT_FACE: str
 ATTR_AGE: str
@@ -24,14 +24,14 @@ ATTR_TOTAL_FACES: str
 CONF_CONFIDENCE: str
 DEFAULT_TIMEOUT: int
 DEFAULT_CONFIDENCE: int
-SOURCE_SCHEMA: Any
-PLATFORM_SCHEMA: Any
-PLATFORM_SCHEMA_BASE: Any
+SOURCE_SCHEMA: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class ImageProcessingEntity(Entity):
-    timeout: Any
+    timeout: Incomplete
     @property
     def camera_entity(self) -> None: ...
     @property
@@ -41,7 +41,7 @@ class ImageProcessingEntity(Entity):
     async def async_update(self) -> None: ...
 
 class ImageProcessingFaceEntity(ImageProcessingEntity):
-    faces: Any
+    faces: Incomplete
     total_faces: int
     def __init__(self) -> None: ...
     @property

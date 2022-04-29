@@ -1,5 +1,6 @@
 from . import VelbusEntity as VelbusEntity
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,7 +12,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class VelbusCover(VelbusEntity, CoverEntity):
     _channel: VelbusBlind
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     def __init__(self, channel: VelbusBlind) -> None: ...
     @property
     def is_closed(self) -> Union[bool, None]: ...

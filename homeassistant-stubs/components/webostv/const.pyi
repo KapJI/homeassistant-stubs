@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-PLATFORMS: Any
+PLATFORMS: Incomplete
 DATA_CONFIG_ENTRY: str
 DATA_HASS_CONFIG: str
 DEFAULT_NAME: str
@@ -15,4 +15,4 @@ SERVICE_BUTTON: str
 SERVICE_COMMAND: str
 SERVICE_SELECT_SOUND_OUTPUT: str
 LIVE_TV_APP_ID: str
-WEBOSTV_EXCEPTIONS: Any
+WEBOSTV_EXCEPTIONS: Incomplete

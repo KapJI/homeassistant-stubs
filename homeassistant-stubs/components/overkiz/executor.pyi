@@ -1,15 +1,16 @@
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
+from _typeshed import Incomplete
 from pyoverkiz.enums import OverkizCommand
 from pyoverkiz.models import Device as Device
 from pyoverkiz.types import StateType as OverkizStateType
 from typing import Any
 
-COMMANDS_WITHOUT_DELAY: Any
+COMMANDS_WITHOUT_DELAY: Incomplete
 
 class OverkizExecutor:
-    device_url: Any
-    coordinator: Any
-    base_device_url: Any
+    device_url: Incomplete
+    coordinator: Incomplete
+    base_device_url: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
     def device(self) -> Device: ...

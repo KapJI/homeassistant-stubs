@@ -2,6 +2,7 @@ import pyatmo
 from .const import DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, MANUFACTURER as MANUFACTURER, SIGNAL_NAME as SIGNAL_NAME, TYPE_SECURITY as TYPE_SECURITY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from .data_handler import CAMERA_DATA_CLASS_NAME as CAMERA_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
+from _typeshed import Incomplete
 from homeassistant.components.light import LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -10,19 +11,19 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NetatmoLight(NetatmoBase, LightEntity):
-    _id: Any
-    _home_id: Any
-    _model: Any
-    _netatmo_type: Any
-    _device_name: Any
-    _attr_name: Any
+    _id: Incomplete
+    _home_id: Incomplete
+    _model: Incomplete
+    _netatmo_type: Incomplete
+    _device_name: Incomplete
+    _attr_name: Incomplete
     _is_on: bool
-    _attr_unique_id: Any
+    _attr_unique_id: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler, camera_id: str, camera_type: str, home_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def handle_event(self, event: dict) -> None: ...

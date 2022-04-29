@@ -1,10 +1,10 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 from synology_dsm.api.surveillance_station.const import SNAPSHOT_PROFILE_BALANCED
-from typing import Any
 
 DOMAIN: str
 ATTRIBUTION: str
-PLATFORMS: Any
+PLATFORMS: Incomplete
 COORDINATOR_CAMERAS: str
 COORDINATOR_CENTRAL: str
 COORDINATOR_SWITCHES: str
@@ -27,4 +27,4 @@ DEFAULT_SNAPSHOT_QUALITY = SNAPSHOT_PROFILE_BALANCED
 ENTITY_UNIT_LOAD: str
 SERVICE_REBOOT: str
 SERVICE_SHUTDOWN: str
-SERVICES: Any
+SERVICES: Incomplete

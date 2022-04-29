@@ -1,12 +1,13 @@
 from . import const as const
+from _typeshed import Incomplete
 from homeassistant.core import Event as Event, State as State
 from homeassistant.util.json import find_paths_unserializable_data as find_paths_unserializable_data, format_unserializable_data as format_unserializable_data
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from typing import Any, Final
 
-_LOGGER: Final[Any]
-MINIMAL_MESSAGE_SCHEMA: Final[Any]
-BASE_COMMAND_MESSAGE_SCHEMA: Final[Any]
+_LOGGER: Final[Incomplete]
+MINIMAL_MESSAGE_SCHEMA: Final[Incomplete]
+BASE_COMMAND_MESSAGE_SCHEMA: Final[Incomplete]
 IDEN_TEMPLATE: Final[str]
 IDEN_JSON_TEMPLATE: Final[str]
 COMPRESSED_STATE_STATE: str

@@ -1,11 +1,11 @@
 from .triggers import TriggersPlatformModule as TriggersPlatformModule, turn_on as turn_on
+from _typeshed import Incomplete
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
-TRIGGERS: Any
+TRIGGERS: Incomplete
 
 def _get_trigger_platform(config: ConfigType) -> TriggersPlatformModule: ...
 async def async_validate_trigger_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...

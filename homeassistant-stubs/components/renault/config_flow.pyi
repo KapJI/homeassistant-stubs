@@ -1,5 +1,6 @@
 from .const import CONF_KAMEREON_ACCOUNT_ID as CONF_KAMEREON_ACCOUNT_ID, CONF_LOCALE as CONF_LOCALE, DOMAIN as DOMAIN
 from .renault_hub import RenaultHub as RenaultHub
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.data_entry_flow import FlowResult as FlowResult
@@ -7,9 +8,9 @@ from typing import Any
 
 class RenaultFlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _original_data: Any
-    renault_config: Any
-    renault_hub: Any
+    _original_data: Incomplete
+    renault_config: Incomplete
+    renault_hub: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     def _show_user_form(self, errors: Union[dict[str, Any], None] = ...) -> FlowResult: ...

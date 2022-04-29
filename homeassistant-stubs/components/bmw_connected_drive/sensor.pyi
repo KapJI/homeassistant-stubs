@@ -1,6 +1,7 @@
 from . import BMWConnectedDriveBaseEntity as BMWConnectedDriveBaseEntity
 from .const import DOMAIN as DOMAIN, UNIT_MAP as UNIT_MAP
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
+from _typeshed import Incomplete
 from bimmer_connected.vehicle import ConnectedDriveVehicle as ConnectedDriveVehicle
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
@@ -10,9 +11,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.unit_system import UnitSystem as UnitSystem
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class BMWSensorEntityDescription(SensorEntityDescription):
     unit_metric: Union[str, None]
@@ -28,9 +28,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class BMWConnectedDriveSensor(BMWConnectedDriveBaseEntity, SensorEntity):
     entity_description: BMWSensorEntityDescription
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attr_native_unit_of_measurement: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: ConnectedDriveVehicle, description: BMWSensorEntityDescription, unit_system: UnitSystem) -> None: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def _handle_coordinator_update(self) -> None: ...

@@ -1,8 +1,9 @@
-from typing import Any, Final
+from _typeshed import Incomplete
+from typing import Final
 
-LOGGER: Final[Any]
+LOGGER: Final[Incomplete]
 DOMAIN: Final[str]
-ENTITY_ID_FORMAT: Final[Any]
+ENTITY_ID_FORMAT: Final[Incomplete]
 PLATFORM_TYPE_LEGACY: Final[str]
 PLATFORM_TYPE_ENTITY: Final[str]
 SOURCE_TYPE_GPS: Final[str]
@@ -10,11 +11,11 @@ SOURCE_TYPE_ROUTER: Final[str]
 SOURCE_TYPE_BLUETOOTH: Final[str]
 SOURCE_TYPE_BLUETOOTH_LE: Final[str]
 CONF_SCAN_INTERVAL: Final[str]
-SCAN_INTERVAL: Final[Any]
+SCAN_INTERVAL: Final[Incomplete]
 CONF_TRACK_NEW: Final[str]
 DEFAULT_TRACK_NEW: Final[bool]
 CONF_CONSIDER_HOME: Final[str]
-DEFAULT_CONSIDER_HOME: Final[Any]
+DEFAULT_CONSIDER_HOME: Final[Incomplete]
 CONF_NEW_DEVICE_DEFAULTS: Final[str]
 ATTR_ATTRIBUTES: Final[str]
 ATTR_BATTERY: Final[str]

@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .entity import RokuEntity as RokuEntity
 from .helpers import format_channel_name as format_channel_name, roku_exception_handler as roku_exception_handler
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,7 +10,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from rokuecp import Roku as Roku
 from rokuecp.models import Device as RokuDevice
-from typing import Any
 
 class RokuSelectEntityDescriptionMixin:
     options_fn: Callable[[RokuDevice], list[str]]
@@ -28,7 +28,7 @@ class RokuSelectEntityDescription(SelectEntityDescription, RokuSelectEntityDescr
     def __init__(self, options_fn, value_fn, set_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 ENTITIES: tuple[RokuSelectEntityDescription, ...]
-CHANNEL_ENTITY: Any
+CHANNEL_ENTITY: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

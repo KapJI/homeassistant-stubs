@@ -1,6 +1,7 @@
 from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import ClimateSchema as ClimateSchema
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY
@@ -13,20 +14,20 @@ from xknx import XKNX as XKNX
 from xknx.devices import Climate as XknxClimate
 
 ATTR_COMMAND_VALUE: str
-CONTROLLER_MODES_INV: Any
-PRESET_MODES_INV: Any
+CONTROLLER_MODES_INV: Incomplete
+PRESET_MODES_INV: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
 
 class KNXClimate(KnxEntity, ClimateEntity):
     _device: XknxClimate
-    _attr_temperature_unit: Any
-    _attr_entity_category: Any
-    _attr_supported_features: Any
-    _attr_target_temperature_step: Any
-    _attr_unique_id: Any
-    default_hvac_mode: Any
+    _attr_temperature_unit: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_target_temperature_step: Incomplete
+    _attr_unique_id: Incomplete
+    default_hvac_mode: Incomplete
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     @property
     def current_temperature(self) -> Union[float, None]: ...

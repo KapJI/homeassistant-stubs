@@ -1,5 +1,6 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Any, Final, TypedDict
+from typing import Final, TypedDict
 
 ATTR_DEVICES: Final[str]
 ATTR_GATEWAY_ID: Final[str]
@@ -15,7 +16,7 @@ CONF_TOPIC_IN_PREFIX: Final[str]
 CONF_TOPIC_OUT_PREFIX: Final[str]
 CONF_VERSION: Final[str]
 CONF_GATEWAY_TYPE: Final[str]
-ConfGatewayType: Any
+ConfGatewayType: Incomplete
 CONF_GATEWAY_TYPE_SERIAL: ConfGatewayType
 CONF_GATEWAY_TYPE_TCP: ConfGatewayType
 CONF_GATEWAY_TYPE_MQTT: ConfGatewayType
@@ -53,4 +54,4 @@ SWITCH_TYPES: dict[SensorType, set[ValueType]]
 PLATFORM_TYPES: dict[Platform, dict[SensorType, set[ValueType]]]
 FLAT_PLATFORM_TYPES: dict[tuple[str, SensorType], set[ValueType]]
 TYPE_TO_PLATFORMS: dict[SensorType, list[Platform]]
-PLATFORMS_WITH_ENTRY_SUPPORT: Any
+PLATFORMS_WITH_ENTRY_SUPPORT: Incomplete

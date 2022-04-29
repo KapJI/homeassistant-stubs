@@ -3,13 +3,13 @@ from .const import MAX_ROWS_TO_PURGE as MAX_ROWS_TO_PURGE
 from .models import Events as Events, RecorderRuns as RecorderRuns, StateAttributes as StateAttributes, States as States, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm
 from .repack import repack_database as repack_database
 from .util import retryable_database_job as retryable_database_job, session_scope as session_scope
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
 from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED
 from sqlalchemy.orm.session import Session as Session
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def purge_old_data(instance: Recorder, purge_before: datetime, repack: bool, apply_filter: bool = ...) -> bool: ...
 def _select_event_state_and_attributes_ids_to_purge(session: Session, purge_before: datetime) -> tuple[set[int], set[int], set[int]]: ...

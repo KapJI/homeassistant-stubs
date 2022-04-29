@@ -2,6 +2,7 @@ from . import auth_store as auth_store, models as models
 from .const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION, GROUP_ID_ADMIN as GROUP_ID_ADMIN
 from .mfa_modules import MultiFactorAuthModule as MultiFactorAuthModule, auth_mfa_module_from_config as auth_mfa_module_from_config
 from .providers import AuthProvider as AuthProvider, LoginFlow as LoginFlow, auth_provider_from_config as auth_provider_from_config
+from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
@@ -20,18 +21,18 @@ class InvalidProvider(Exception): ...
 async def auth_manager_from_config(hass: HomeAssistant, provider_configs: list[dict[str, Any]], module_configs: list[dict[str, Any]]) -> AuthManager: ...
 
 class AuthManagerFlowManager(data_entry_flow.FlowManager):
-    auth_manager: Any
+    auth_manager: Incomplete
     def __init__(self, hass: HomeAssistant, auth_manager: AuthManager) -> None: ...
     async def async_create_flow(self, handler_key: Any, *, context: Union[dict[str, Any], None] = ..., data: Union[dict[str, Any], None] = ...) -> data_entry_flow.FlowHandler: ...
     async def async_finish_flow(self, flow: data_entry_flow.FlowHandler, result: FlowResult) -> FlowResult: ...
 
 class AuthManager:
-    hass: Any
-    _store: Any
-    _providers: Any
-    _mfa_modules: Any
-    login_flow: Any
-    _revoke_callbacks: Any
+    hass: Incomplete
+    _store: Incomplete
+    _providers: Incomplete
+    _mfa_modules: Incomplete
+    login_flow: Incomplete
+    _revoke_callbacks: Incomplete
     def __init__(self, hass: HomeAssistant, store: auth_store.AuthStore, providers: _ProviderDict, mfa_modules: _MfaModuleDict) -> None: ...
     @property
     def auth_providers(self) -> list[AuthProvider]: ...

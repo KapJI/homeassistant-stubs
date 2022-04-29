@@ -1,5 +1,6 @@
 from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .const import ATTR_CHANGED_BY_ID as ATTR_CHANGED_BY_ID, ATTR_CHANGED_BY_KEYPAD as ATTR_CHANGED_BY_KEYPAD, ATTR_CHANGED_BY_TIME as ATTR_CHANGED_BY_TIME, DOMAIN as DOMAIN, ELK_USER_CODE_SERVICE_SCHEMA as ELK_USER_CODE_SERVICE_SCHEMA
+from _typeshed import Incomplete
 from elkm1_lib.areas import Area as Area
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
@@ -12,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any
 
-DISPLAY_MESSAGE_SERVICE_SCHEMA: Any
+DISPLAY_MESSAGE_SERVICE_SCHEMA: Incomplete
 SERVICE_ALARM_DISPLAY_MESSAGE: str
 SERVICE_ALARM_ARM_VACATION: str
 SERVICE_ALARM_ARM_HOME_INSTANT: str
@@ -23,14 +24,14 @@ SERVICE_ALARM_CLEAR_BYPASS: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElkArea(ElkAttachedEntity, AlarmControlPanelEntity, RestoreEntity):
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     _element: Area
-    _elk: Any
-    _changed_by_keypad: Any
-    _changed_by_time: Any
-    _changed_by_id: Any
-    _changed_by: Any
-    _state: Any
+    _elk: Incomplete
+    _changed_by_keypad: Incomplete
+    _changed_by_time: Incomplete
+    _changed_by_id: Incomplete
+    _changed_by: Incomplete
+    _state: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: dict[str, Any]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _watch_keypad(self, keypad: Element, changeset: dict[str, Any]) -> None: ...

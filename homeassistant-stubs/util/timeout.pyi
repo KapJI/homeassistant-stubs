@@ -1,6 +1,7 @@
 import asyncio
 import enum
 from .async_ import run_callback_threadsafe as run_callback_threadsafe
+from _typeshed import Incomplete
 from types import TracebackType
 from typing import Any
 
@@ -13,8 +14,8 @@ class _State(str, enum.Enum):
     EXIT: str
 
 class _GlobalFreezeContext:
-    _loop: Any
-    _manager: Any
+    _loop: Incomplete
+    _manager: Incomplete
     def __init__(self, manager: TimeoutManager) -> None: ...
     async def __aenter__(self) -> _GlobalFreezeContext: ...
     async def __aexit__(self, exc_type: type[BaseException], exc_val: BaseException, exc_tb: TracebackType) -> Union[bool, None]: ...
@@ -24,8 +25,8 @@ class _GlobalFreezeContext:
     def _exit(self) -> None: ...
 
 class _ZoneFreezeContext:
-    _loop: Any
-    _zone: Any
+    _loop: Incomplete
+    _zone: Incomplete
     def __init__(self, zone: _ZoneTimeoutManager) -> None: ...
     async def __aenter__(self) -> _ZoneFreezeContext: ...
     async def __aexit__(self, exc_type: type[BaseException], exc_val: BaseException, exc_tb: TracebackType) -> Union[bool, None]: ...
@@ -35,15 +36,15 @@ class _ZoneFreezeContext:
     def _exit(self) -> None: ...
 
 class _GlobalTaskContext:
-    _loop: Any
-    _manager: Any
-    _task: Any
-    _time_left: Any
-    _expiration_time: Any
-    _timeout_handler: Any
-    _wait_zone: Any
-    _state: Any
-    _cool_down: Any
+    _loop: Incomplete
+    _manager: Incomplete
+    _task: Incomplete
+    _time_left: Incomplete
+    _expiration_time: Incomplete
+    _timeout_handler: Incomplete
+    _wait_zone: Incomplete
+    _state: Incomplete
+    _cool_down: Incomplete
     def __init__(self, manager: TimeoutManager, task: asyncio.Task[Any], timeout: float, cool_down: float) -> None: ...
     async def __aenter__(self) -> _GlobalTaskContext: ...
     async def __aexit__(self, exc_type: type[BaseException], exc_val: BaseException, exc_tb: TracebackType) -> Union[bool, None]: ...
@@ -59,13 +60,13 @@ class _GlobalTaskContext:
     async def _on_wait(self) -> None: ...
 
 class _ZoneTaskContext:
-    _loop: Any
-    _zone: Any
-    _task: Any
-    _state: Any
-    _time_left: Any
-    _expiration_time: Any
-    _timeout_handler: Any
+    _loop: Incomplete
+    _zone: Incomplete
+    _task: Incomplete
+    _state: Incomplete
+    _time_left: Incomplete
+    _expiration_time: Incomplete
+    _timeout_handler: Incomplete
     def __init__(self, zone: _ZoneTimeoutManager, task: asyncio.Task[Any], timeout: float) -> None: ...
     @property
     def state(self) -> _State: ...
@@ -78,10 +79,10 @@ class _ZoneTaskContext:
     def reset(self) -> None: ...
 
 class _ZoneTimeoutManager:
-    _manager: Any
-    _zone: Any
-    _tasks: Any
-    _freezes: Any
+    _manager: Incomplete
+    _zone: Incomplete
+    _tasks: Incomplete
+    _freezes: Incomplete
     def __init__(self, manager: TimeoutManager, zone: str) -> None: ...
     def __repr__(self) -> str: ...
     @property
@@ -98,10 +99,10 @@ class _ZoneTimeoutManager:
     def reset(self) -> None: ...
 
 class TimeoutManager:
-    _loop: Any
-    _zones: Any
-    _globals: Any
-    _freezes: Any
+    _loop: Incomplete
+    _zones: Incomplete
+    _globals: Incomplete
+    _freezes: Incomplete
     def __init__(self) -> None: ...
     @property
     def zones_done(self) -> bool: ...

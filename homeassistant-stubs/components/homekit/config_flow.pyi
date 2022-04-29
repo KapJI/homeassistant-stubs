@@ -1,5 +1,6 @@
 from .const import CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_EXCLUDE_ACCESSORY_MODE as CONF_EXCLUDE_ACCESSORY_MODE, CONF_FILTER as CONF_FILTER, CONF_HOMEKIT_MODE as CONF_HOMEKIT_MODE, CONF_SUPPORT_AUDIO as CONF_SUPPORT_AUDIO, CONF_VIDEO_CODEC as CONF_VIDEO_CODEC, DEFAULT_CONFIG_FLOW_PORT as DEFAULT_CONFIG_FLOW_PORT, DEFAULT_HOMEKIT_MODE as DEFAULT_HOMEKIT_MODE, DOMAIN as DOMAIN, HOMEKIT_MODES as HOMEKIT_MODES, HOMEKIT_MODE_ACCESSORY as HOMEKIT_MODE_ACCESSORY, HOMEKIT_MODE_BRIDGE as HOMEKIT_MODE_BRIDGE, SHORT_BRIDGE_NAME as SHORT_BRIDGE_NAME, VIDEO_CODEC_COPY as VIDEO_CODEC_COPY
 from .util import async_find_next_available_port as async_find_next_available_port, state_needs_accessory_mode as state_needs_accessory_mode
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import device_automation as device_automation
@@ -17,12 +18,12 @@ CONF_CAMERA_COPY: str
 CONF_INCLUDE_EXCLUDE_MODE: str
 MODE_INCLUDE: str
 MODE_EXCLUDE: str
-INCLUDE_EXCLUDE_MODES: Any
-DOMAINS_NEED_ACCESSORY_MODE: Any
-NEVER_BRIDGED_DOMAINS: Any
-CAMERA_ENTITY_PREFIX: Any
-SUPPORTED_DOMAINS: Any
-DEFAULT_DOMAINS: Any
+INCLUDE_EXCLUDE_MODES: Incomplete
+DOMAINS_NEED_ACCESSORY_MODE: Incomplete
+NEVER_BRIDGED_DOMAINS: Incomplete
+CAMERA_ENTITY_PREFIX: Incomplete
+SUPPORTED_DOMAINS: Incomplete
+DEFAULT_DOMAINS: Incomplete
 _EMPTY_ENTITY_FILTER: dict[str, list[str]]
 
 async def _async_domain_names(hass: HomeAssistant, domains: list[str]) -> str: ...
@@ -32,7 +33,7 @@ async def _async_name_to_type_map(hass: HomeAssistant) -> dict[str, str]: ...
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    hk_data: Any
+    hk_data: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_pairing(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
@@ -46,9 +47,9 @@ class ConfigFlow(config_entries.ConfigFlow):
     def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> OptionsFlowHandler: ...
 
 class OptionsFlowHandler(config_entries.OptionsFlow):
-    config_entry: Any
-    hk_options: Any
-    included_cameras: Any
+    config_entry: Incomplete
+    hk_options: Incomplete
+    included_cameras: Incomplete
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None: ...
     async def async_step_yaml(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_advanced(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

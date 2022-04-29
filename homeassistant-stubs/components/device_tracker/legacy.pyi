@@ -1,5 +1,6 @@
 import voluptuous as vol
 from .const import ATTR_ATTRIBUTES as ATTR_ATTRIBUTES, ATTR_BATTERY as ATTR_BATTERY, ATTR_CONSIDER_HOME as ATTR_CONSIDER_HOME, ATTR_DEV_ID as ATTR_DEV_ID, ATTR_GPS as ATTR_GPS, ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_LOCATION_NAME as ATTR_LOCATION_NAME, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, CONF_NEW_DEVICE_DEFAULTS as CONF_NEW_DEVICE_DEFAULTS, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TRACK_NEW as CONF_TRACK_NEW, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME, DEFAULT_TRACK_NEW as DEFAULT_TRACK_NEW, DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORM_TYPE_LEGACY as PLATFORM_TYPE_LEGACY, SCAN_INTERVAL as SCAN_INTERVAL, SOURCE_TYPE_BLUETOOTH as SOURCE_TYPE_BLUETOOTH, SOURCE_TYPE_BLUETOOTH_LE as SOURCE_TYPE_BLUETOOTH_LE, SOURCE_TYPE_GPS as SOURCE_TYPE_GPS, SOURCE_TYPE_ROUTER as SOURCE_TYPE_ROUTER
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Sequence
 from datetime import datetime, timedelta
 from homeassistant import util as util
@@ -20,8 +21,8 @@ from typing import Any, Final
 
 SERVICE_SEE: Final[str]
 SOURCE_TYPES: Final[tuple[str, ...]]
-NEW_DEVICE_DEFAULTS_SCHEMA: Any
-PLATFORM_SCHEMA: Final[Any]
+NEW_DEVICE_DEFAULTS_SCHEMA: Incomplete
+PLATFORM_SCHEMA: Final[Incomplete]
 PLATFORM_SCHEMA_BASE: Final[vol.Schema]
 SERVICE_SEE_PAYLOAD_SCHEMA: Final[vol.Schema]
 YAML_DEVICES: Final[str]
@@ -50,13 +51,13 @@ def async_setup_scanner_platform(hass: HomeAssistant, config: ConfigType, scanne
 async def get_tracker(hass: HomeAssistant, config: ConfigType) -> DeviceTracker: ...
 
 class DeviceTracker:
-    hass: Any
-    devices: Any
-    mac_to_dev: Any
-    consider_home: Any
-    track_new: Any
-    defaults: Any
-    _is_updating: Any
+    hass: Incomplete
+    devices: Incomplete
+    mac_to_dev: Incomplete
+    consider_home: Incomplete
+    track_new: Incomplete
+    defaults: Incomplete
+    _is_updating: Incomplete
     def __init__(self, hass: HomeAssistant, consider_home: timedelta, track_new: bool, defaults: dict[str, Any], devices: Sequence[Device]) -> None: ...
     def see(self, mac: Union[str, None] = ..., dev_id: Union[str, None] = ..., host_name: Union[str, None] = ..., location_name: Union[str, None] = ..., gps: Union[GPSType, None] = ..., gps_accuracy: Union[int, None] = ..., battery: Union[int, None] = ..., attributes: Union[dict, None] = ..., source_type: str = ..., picture: Union[str, None] = ..., icon: Union[str, None] = ..., consider_home: Union[timedelta, None] = ...) -> None: ...
     async def async_see(self, mac: Union[str, None] = ..., dev_id: Union[str, None] = ..., host_name: Union[str, None] = ..., location_name: Union[str, None] = ..., gps: Union[GPSType, None] = ..., gps_accuracy: Union[int, None] = ..., battery: Union[int, None] = ..., attributes: Union[dict, None] = ..., source_type: str = ..., picture: Union[str, None] = ..., icon: Union[str, None] = ..., consider_home: Union[timedelta, None] = ...) -> None: ...
@@ -74,17 +75,17 @@ class Device(RestoreEntity):
     attributes: Union[dict, None]
     last_update_home: bool
     _state: str
-    hass: Any
-    entity_id: Any
-    consider_home: Any
-    dev_id: Any
-    mac: Any
-    track: Any
-    config_name: Any
-    config_picture: Any
-    _icon: Any
-    source_type: Any
-    _attributes: Any
+    hass: Incomplete
+    entity_id: Incomplete
+    consider_home: Incomplete
+    dev_id: Incomplete
+    mac: Incomplete
+    track: Incomplete
+    config_name: Incomplete
+    config_picture: Incomplete
+    _icon: Incomplete
+    source_type: Incomplete
+    _attributes: Incomplete
     def __init__(self, hass: HomeAssistant, consider_home: timedelta, track: bool, dev_id: str, mac: Union[str, None], name: Union[str, None] = ..., picture: Union[str, None] = ..., gravatar: Union[str, None] = ..., icon: Union[str, None] = ...) -> None: ...
     @property
     def name(self) -> str: ...

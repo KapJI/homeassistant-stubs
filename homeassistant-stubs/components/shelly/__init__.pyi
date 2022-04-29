@@ -1,5 +1,6 @@
 from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, ATTR_BETA as ATTR_BETA, ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLOCK as BLOCK, CONF_COAP_PORT as CONF_COAP_PORT, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DEFAULT_COAP_PORT as DEFAULT_COAP_PORT, DEVICE as DEVICE, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, LOGGER as LOGGER, MODELS_SUPPORTING_LIGHT_EFFECTS as MODELS_SUPPORTING_LIGHT_EFFECTS, POLLING_TIMEOUT_SEC as POLLING_TIMEOUT_SEC, REST as REST, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC as RPC, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_POLL as RPC_POLL, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, RPC_SENSORS_POLLING_INTERVAL as RPC_SENSORS_POLLING_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, SLEEP_PERIOD_MULTIPLIER as SLEEP_PERIOD_MULTIPLIER, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
 from .utils import device_update_info as device_update_info, get_block_device_name as get_block_device_name, get_block_device_sleep_period as get_block_device_sleep_period, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_rpc_device_name as get_rpc_device_name
+from _typeshed import Incomplete
 from aioshelly.block_device import BlockDevice
 from aioshelly.rpc_device import RpcDevice
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,13 +10,13 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client, device_registry as device_registry, update_coordinator as update_coordinator
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Final
+from typing import Final
 
-BLOCK_PLATFORMS: Final[Any]
-BLOCK_SLEEPING_PLATFORMS: Final[Any]
-RPC_PLATFORMS: Final[Any]
-COAP_SCHEMA: Final[Any]
-CONFIG_SCHEMA: Final[Any]
+BLOCK_PLATFORMS: Final[Incomplete]
+BLOCK_SLEEPING_PLATFORMS: Final[Incomplete]
+RPC_PLATFORMS: Final[Incomplete]
+COAP_SCHEMA: Final[Incomplete]
+CONFIG_SCHEMA: Final[Incomplete]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -24,15 +25,15 @@ async def async_block_device_setup(hass: HomeAssistant, entry: ConfigEntry, devi
 async def async_setup_rpc_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class BlockDeviceWrapper(update_coordinator.DataUpdateCoordinator):
-    device_id: Any
-    hass: Any
-    entry: Any
-    device: Any
-    _debounced_reload: Any
-    _last_cfg_changed: Any
-    _last_mode: Any
-    _last_effect: Any
-    _last_input_events_count: Any
+    device_id: Incomplete
+    hass: Incomplete
+    entry: Incomplete
+    device: Incomplete
+    _debounced_reload: Incomplete
+    _last_cfg_changed: Incomplete
+    _last_mode: Incomplete
+    _last_effect: Incomplete
+    _last_input_events_count: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: BlockDevice) -> None: ...
     async def _async_reload_entry(self) -> None: ...
     def _async_device_updates_handler(self) -> None: ...
@@ -49,8 +50,8 @@ class BlockDeviceWrapper(update_coordinator.DataUpdateCoordinator):
     def _handle_ha_stop(self, _event: Event) -> None: ...
 
 class ShellyDeviceRestWrapper(update_coordinator.DataUpdateCoordinator):
-    device: Any
-    entry: Any
+    device: Incomplete
+    entry: Incomplete
     def __init__(self, hass: HomeAssistant, device: BlockDevice, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> None: ...
     @property
@@ -61,11 +62,11 @@ def get_block_device_wrapper(hass: HomeAssistant, device_id: str) -> Union[Block
 def get_rpc_device_wrapper(hass: HomeAssistant, device_id: str) -> Union[RpcDeviceWrapper, None]: ...
 
 class RpcDeviceWrapper(update_coordinator.DataUpdateCoordinator):
-    device_id: Any
-    entry: Any
-    device: Any
-    _debounced_reload: Any
-    _last_event: Any
+    device_id: Incomplete
+    entry: Incomplete
+    device: Incomplete
+    _debounced_reload: Incomplete
+    _last_event: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: RpcDevice) -> None: ...
     async def _async_reload_entry(self) -> None: ...
     def _async_device_updates_handler(self) -> None: ...
@@ -82,9 +83,9 @@ class RpcDeviceWrapper(update_coordinator.DataUpdateCoordinator):
     async def _handle_ha_stop(self, _event: Event) -> None: ...
 
 class RpcPollingWrapper(update_coordinator.DataUpdateCoordinator):
-    device_id: Any
-    entry: Any
-    device: Any
+    device_id: Incomplete
+    entry: Incomplete
+    device: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: RpcDevice) -> None: ...
     async def _async_update_data(self) -> None: ...
     @property

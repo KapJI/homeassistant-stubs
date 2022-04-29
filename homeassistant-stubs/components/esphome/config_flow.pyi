@@ -1,4 +1,5 @@
 from . import CONF_NOISE_PSK as CONF_NOISE_PSK, DOMAIN as DOMAIN, DomainData as DomainData
+from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigFlow as ConfigFlow
@@ -11,11 +12,11 @@ ERROR_REQUIRES_ENCRYPTION_KEY: str
 
 class EsphomeFlowHandler(ConfigFlow):
     VERSION: int
-    _host: Any
-    _port: Any
-    _password: Any
-    _noise_psk: Any
-    _device_info: Any
+    _host: Incomplete
+    _port: Incomplete
+    _password: Incomplete
+    _noise_psk: Incomplete
+    _device_info: Incomplete
     def __init__(self) -> None: ...
     async def _async_step_user_base(self, user_input: Union[dict[str, Any], None] = ..., error: Union[str, None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

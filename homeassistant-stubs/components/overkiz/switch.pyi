@@ -1,6 +1,7 @@
 from . import HomeAssistantOverkizData as HomeAssistantOverkizData
 from .const import DOMAIN as DOMAIN
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -23,7 +24,7 @@ class OverkizSwitchDescription(SwitchEntityDescription, OverkizSwitchDescription
     def __init__(self, turn_on, turn_off, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, is_on, turn_on_args, turn_off_args) -> None: ...
 
 SWITCH_DESCRIPTIONS: list[OverkizSwitchDescription]
-SUPPORTED_DEVICES: Any
+SUPPORTED_DEVICES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

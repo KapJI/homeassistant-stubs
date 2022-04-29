@@ -1,11 +1,12 @@
 import json
 from .file import write_utf8_file as write_utf8_file, write_utf8_file_atomic as write_utf8_file_atomic
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.core import Event as Event, State as State
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class SerializationError(HomeAssistantError): ...
 class WriteError(HomeAssistantError): ...

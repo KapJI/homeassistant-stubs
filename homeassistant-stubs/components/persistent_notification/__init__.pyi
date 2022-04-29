@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
@@ -14,11 +15,11 @@ ATTR_NOTIFICATION_ID: str
 ATTR_TITLE: str
 ATTR_STATUS: str
 DOMAIN: str
-ENTITY_ID_FORMAT: Any
+ENTITY_ID_FORMAT: Incomplete
 EVENT_PERSISTENT_NOTIFICATIONS_UPDATED: str
-SCHEMA_SERVICE_NOTIFICATION: Any
+SCHEMA_SERVICE_NOTIFICATION: Incomplete
 DEFAULT_OBJECT_ID: str
-_LOGGER: Any
+_LOGGER: Incomplete
 STATE: str
 STATUS_UNREAD: str
 STATUS_READ: str

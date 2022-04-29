@@ -1,4 +1,5 @@
 from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE
@@ -9,10 +10,10 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-SCAN_INTERVAL: Any
-ENTITY_ID_FORMAT: Any
-MIN_TIME_BETWEEN_SCANS: Any
-_LOGGER: Any
+SCAN_INTERVAL: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+MIN_TIME_BETWEEN_SCANS: Incomplete
+_LOGGER: Incomplete
 
 class NumberMode(StrEnum):
     AUTO: str

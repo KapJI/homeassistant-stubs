@@ -1,4 +1,5 @@
 from .const import DATA_COORDINATOR as DATA_COORDINATOR, DATA_TILE as DATA_TILE, DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -8,12 +9,11 @@ from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
 from pytile.tile import Tile as Tile
-from typing import Any
 
-PLATFORMS: Any
-DEVICE_TYPES: Any
+PLATFORMS: Incomplete
+DEVICE_TYPES: Incomplete
 DEFAULT_INIT_TASK_LIMIT: int
-DEFAULT_UPDATE_INTERVAL: Any
+DEFAULT_UPDATE_INTERVAL: Incomplete
 CONF_SHOW_INACTIVE: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

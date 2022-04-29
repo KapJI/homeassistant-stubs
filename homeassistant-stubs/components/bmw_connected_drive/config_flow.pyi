@@ -1,12 +1,13 @@
 from . import DOMAIN as DOMAIN
 from .const import CONF_ALLOWED_REGIONS as CONF_ALLOWED_REGIONS, CONF_READ_ONLY as CONF_READ_ONLY
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, core as core, exceptions as exceptions
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_REGION as CONF_REGION, CONF_SOURCE as CONF_SOURCE, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-DATA_SCHEMA: Any
+DATA_SCHEMA: Incomplete
 
 async def validate_input(hass: core.HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 
@@ -17,8 +18,8 @@ class BMWConnectedDriveConfigFlow(config_entries.ConfigFlow):
     def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> BMWConnectedDriveOptionsFlow: ...
 
 class BMWConnectedDriveOptionsFlow(config_entries.OptionsFlow):
-    config_entry: Any
-    options: Any
+    config_entry: Incomplete
+    options: Incomplete
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_account_options(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

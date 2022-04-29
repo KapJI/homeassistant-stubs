@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Coroutine
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
 from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -13,8 +14,8 @@ def async_create_flow(hass: HomeAssistant, domain: str, context: dict[str, Any],
 def _async_init_flow(hass: HomeAssistant, domain: str, context: dict[str, Any], data: Any) -> Union[Coroutine[None, None, FlowResult], None]: ...
 
 class FlowDispatcher:
-    hass: Any
-    pending_flows: Any
+    hass: Incomplete
+    pending_flows: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_setup(self) -> None: ...
     def async_start(self, event: Event) -> None: ...

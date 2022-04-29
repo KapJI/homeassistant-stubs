@@ -1,10 +1,11 @@
+from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import Integration as Integration, MAX_LOAD_CONCURRENTLY as MAX_LOAD_CONCURRENTLY, async_get_config_flows as async_get_config_flows, async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
 from homeassistant.util.json import load_json as load_json
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 TRANSLATION_LOAD_LOCK: str
 TRANSLATION_FLATTEN_CACHE: str
 LOCALE_EN: str
@@ -17,9 +18,9 @@ def _build_resources(translation_strings: dict[str, dict[str, Any]], components:
 async def async_get_component_strings(hass: HomeAssistant, language: str, components: set[str]) -> dict[str, Any]: ...
 
 class _TranslationCache:
-    hass: Any
-    loaded: Any
-    cache: Any
+    hass: Incomplete
+    loaded: Incomplete
+    cache: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_fetch(self, language: str, category: str, components: set[str]) -> list[dict[str, dict[str, Any]]]: ...
     async def _async_load(self, language: str, components: set[str]) -> None: ...

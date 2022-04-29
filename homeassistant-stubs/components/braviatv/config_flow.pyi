@@ -1,4 +1,5 @@
 from .const import ATTR_CID as ATTR_CID, ATTR_MAC as ATTR_MAC, ATTR_MODEL as ATTR_MODEL, CLIENTID_PREFIX as CLIENTID_PREFIX, CONF_IGNORED_SOURCES as CONF_IGNORED_SOURCES, DOMAIN as DOMAIN, NICKNAME as NICKNAME
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, exceptions as exceptions
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PIN as CONF_PIN
@@ -10,10 +11,10 @@ def host_valid(host: str) -> bool: ...
 
 class BraviaTVConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    braviarc: Any
-    host: Any
+    braviarc: Incomplete
+    host: Incomplete
     title: str
-    mac: Any
+    mac: Incomplete
     def __init__(self) -> None: ...
     async def init_device(self, pin: str) -> None: ...
     @staticmethod
@@ -22,10 +23,10 @@ class BraviaTVConfigFlow(config_entries.ConfigFlow):
     async def async_step_authorize(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
 class BraviaTVOptionsFlowHandler(config_entries.OptionsFlow):
-    config_entry: Any
-    pin: Any
-    ignored_sources: Any
-    source_list: Any
+    config_entry: Incomplete
+    pin: Incomplete
+    ignored_sources: Incomplete
+    source_list: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

@@ -1,5 +1,6 @@
 from .common import AvmWrapper as AvmWrapper, FritzBoxBaseEntity as FritzBoxBaseEntity, FritzData as FritzData, FritzDevice as FritzDevice, FritzDeviceBase as FritzDeviceBase, SwitchInfo as SwitchInfo, device_filter_out_from_trackers as device_filter_out_from_trackers
 from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK, WIFI_STANDARD as WIFI_STANDARD
+from _typeshed import Incomplete
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util import slugify as slugify
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def deflection_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str) -> list[FritzBoxDeflectionSwitch]: ...
 def port_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str, local_ip: str) -> list[FritzBoxPortSwitch]: ...
@@ -22,15 +23,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class FritzBoxBaseSwitch(FritzBoxBaseEntity):
     _attr_is_on: Union[bool, None]
-    _description: Any
-    _friendly_name: Any
-    _icon: Any
-    _type: Any
-    _update: Any
-    _switch: Any
-    _name: Any
-    _unique_id: Any
-    _attributes: Any
+    _description: Incomplete
+    _friendly_name: Incomplete
+    _icon: Incomplete
+    _type: Incomplete
+    _update: Incomplete
+    _switch: Incomplete
+    _name: Incomplete
+    _unique_id: Incomplete
+    _attributes: Incomplete
     _is_available: bool
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, switch_info: SwitchInfo) -> None: ...
     @property
@@ -49,37 +50,37 @@ class FritzBoxBaseSwitch(FritzBoxBaseEntity):
     async def _async_handle_turn_on_off(self, turn_on: bool) -> None: ...
 
 class FritzBoxPortSwitch(FritzBoxBaseSwitch, SwitchEntity):
-    _avm_wrapper: Any
-    _attributes: Any
-    connection_type: Any
-    port_mapping: Any
-    _idx: Any
-    _attr_entity_category: Any
+    _avm_wrapper: Incomplete
+    _attributes: Incomplete
+    connection_type: Incomplete
+    port_mapping: Incomplete
+    _idx: Incomplete
+    _attr_entity_category: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, port_mapping: Union[dict[str, Any], None], port_name: str, idx: int, connection_type: str) -> None: ...
     _is_available: bool
-    _attr_is_on: Any
+    _attr_is_on: Incomplete
     async def _async_fetch_update(self) -> None: ...
     async def _async_switch_on_off_executor(self, turn_on: bool) -> bool: ...
 
 class FritzBoxDeflectionSwitch(FritzBoxBaseSwitch, SwitchEntity):
-    _avm_wrapper: Any
-    dict_of_deflection: Any
-    _attributes: Any
-    id: Any
-    _attr_entity_category: Any
+    _avm_wrapper: Incomplete
+    dict_of_deflection: Incomplete
+    _attributes: Incomplete
+    id: Incomplete
+    _attr_entity_category: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, dict_of_deflection: Any) -> None: ...
     _is_available: bool
-    _attr_is_on: Any
+    _attr_is_on: Incomplete
     async def _async_fetch_update(self) -> None: ...
     async def _async_switch_on_off_executor(self, turn_on: bool) -> None: ...
 
 class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
     _attr_icon: str
     _attr_is_on: bool
-    _name: Any
-    _attr_unique_id: Any
-    _attr_entity_category: Any
-    _attr_device_info: Any
+    _name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...
@@ -90,12 +91,12 @@ class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
     async def _async_handle_turn_on_off(self, turn_on: bool) -> bool: ...
 
 class FritzBoxWifiSwitch(FritzBoxBaseSwitch, SwitchEntity):
-    _avm_wrapper: Any
-    _attributes: Any
-    _attr_entity_category: Any
-    _network_num: Any
+    _avm_wrapper: Incomplete
+    _attributes: Incomplete
+    _attr_entity_category: Incomplete
+    _network_num: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, network_num: int, network_name: str) -> None: ...
     _is_available: bool
-    _attr_is_on: Any
+    _attr_is_on: Incomplete
     async def _async_fetch_update(self) -> None: ...
     async def _async_switch_on_off_executor(self, turn_on: bool) -> None: ...

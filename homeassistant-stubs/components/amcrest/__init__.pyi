@@ -7,6 +7,7 @@ from .const import CAMERAS as CAMERAS, COMM_RETRIES as COMM_RETRIES, COMM_TIMEOU
 from .helpers import service_signal as service_signal
 from .sensor import SENSOR_KEYS as SENSOR_KEYS
 from .switch import SWITCH_KEYS as SWITCH_KEYS
+from _typeshed import Incomplete
 from amcrest import ApiWrapper
 from collections.abc import AsyncIterator, Callable as Callable
 from datetime import datetime
@@ -22,7 +23,7 @@ from homeassistant.helpers.service import async_extract_entity_ids as async_extr
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 CONF_RESOLUTION: str
 CONF_STREAM_SOURCE: str
 CONF_FFMPEG_ARGUMENTS: str
@@ -32,25 +33,25 @@ DEFAULT_PORT: int
 DEFAULT_RESOLUTION: str
 DEFAULT_ARGUMENTS: str
 MAX_ERRORS: int
-RECHECK_INTERVAL: Any
+RECHECK_INTERVAL: Incomplete
 NOTIFICATION_ID: str
 NOTIFICATION_TITLE: str
-SCAN_INTERVAL: Any
-AUTHENTICATION_LIST: Any
+SCAN_INTERVAL: Incomplete
+AUTHENTICATION_LIST: Incomplete
 
 def _has_unique_names(devices: list[dict[str, Any]]) -> list[dict[str, Any]]: ...
 
-AMCREST_SCHEMA: Any
-CONFIG_SCHEMA: Any
+AMCREST_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 class AmcrestChecker(ApiWrapper):
-    _hass: Any
-    _wrap_name: Any
+    _hass: Incomplete
+    _wrap_name: Incomplete
     _wrap_errors: int
-    _wrap_lock: Any
+    _wrap_lock: Incomplete
     _wrap_login_err: bool
-    _wrap_event_flag: Any
-    _unsub_recheck: Any
+    _wrap_event_flag: Incomplete
+    _unsub_recheck: Incomplete
     def __init__(self, hass: HomeAssistant, name: str, host: str, port: int, user: str, password: str) -> None: ...
     @property
     def available(self) -> bool: ...

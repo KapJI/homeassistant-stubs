@@ -1,6 +1,7 @@
 from .const import DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, MEDIA_SOURCE_EVENT_TITLE_MAP as MEDIA_SOURCE_EVENT_TITLE_MAP
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from google_nest_sdm.device import Device as Device
 from google_nest_sdm.event import ImageEventBase as ImageEventBase
@@ -15,9 +16,8 @@ from homeassistant.components.media_source.models import BrowseMediaSource as Br
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 MEDIA_SOURCE_TITLE: str
 DEVICE_TITLE_FORMAT: str
 CLIP_TITLE_FORMAT: str
@@ -26,19 +26,19 @@ EVENT_THUMBNAIL_URL_FORMAT: str
 STORAGE_KEY: str
 STORAGE_VERSION: int
 STORAGE_SAVE_DELAY_SECONDS: int
-MEDIA_PATH: Any
+MEDIA_PATH: Incomplete
 DISK_READ_LRU_MAX_SIZE: int
 
 async def async_get_media_event_store(hass: HomeAssistant, subscriber: GoogleNestSubscriber) -> EventMediaStore: ...
 async def async_get_transcoder(hass: HomeAssistant) -> Transcoder: ...
 
 class NestEventMediaStore(EventMediaStore):
-    _hass: Any
-    _subscriber: Any
-    _store: Any
-    _media_path: Any
-    _data: Any
-    _devices: Any
+    _hass: Incomplete
+    _subscriber: Incomplete
+    _store: Incomplete
+    _media_path: Incomplete
+    _data: Incomplete
+    _devices: Incomplete
     def __init__(self, hass: HomeAssistant, subscriber: GoogleNestSubscriber, store: Store, media_path: str) -> None: ...
     async def async_load(self) -> Union[dict, None]: ...
     async def async_save(self, data: dict) -> None: ...
@@ -67,7 +67,7 @@ def parse_media_id(identifier: Union[str, None] = ...) -> Union[MediaId, None]: 
 
 class NestMediaSource(MediaSource):
     name: str
-    hass: Any
+    hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...

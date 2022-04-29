@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, WASTE_TYPE_TO_DESCRIPTION as WASTE_TYPE_TO_DESCRIPTION
 from .entity import TwenteMilieuEntity as TwenteMilieuEntity
+from _typeshed import Incomplete
 from datetime import date
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,7 +9,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from twentemilieu import WasteType
-from typing import Any
 
 class TwenteMilieuSensorDescriptionMixin:
     waste_type: WasteType
@@ -23,7 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class TwenteMilieuSensor(TwenteMilieuEntity, SensorEntity):
     entity_description: TwenteMilieuSensorDescription
-    _attr_unique_id: Any
+    _attr_unique_id: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, description: TwenteMilieuSensorDescription, entry: ConfigEntry) -> None: ...
     @property
     def native_value(self) -> Union[date, None]: ...

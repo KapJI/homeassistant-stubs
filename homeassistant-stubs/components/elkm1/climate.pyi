@@ -1,5 +1,6 @@
 from . import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
 from elkm1_lib.thermostats import Thermostat as Thermostat
@@ -11,18 +12,18 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-SUPPORT_HVAC: Any
-HASS_TO_ELK_HVAC_MODES: Any
-ELK_TO_HASS_HVAC_MODES: Any
-HASS_TO_ELK_FAN_MODES: Any
-ELK_TO_HASS_FAN_MODES: Any
+SUPPORT_HVAC: Incomplete
+HASS_TO_ELK_HVAC_MODES: Incomplete
+ELK_TO_HASS_HVAC_MODES: Incomplete
+HASS_TO_ELK_FAN_MODES: Incomplete
+ELK_TO_HASS_FAN_MODES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElkThermostat(ElkEntity, ClimateEntity):
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     _element: Thermostat
-    _state: Any
+    _state: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: dict[str, Any]) -> None: ...
     @property
     def temperature_unit(self) -> str: ...

@@ -1,6 +1,7 @@
 from . import RitualsDataUpdateCoordinator as RitualsDataUpdateCoordinator
 from .const import COORDINATORS as COORDINATORS, DEVICES as DEVICES, DOMAIN as DOMAIN
 from .entity import DiffuserEntity as DiffuserEntity
+from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -12,7 +13,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class DiffuserSwitch(DiffuserEntity, SwitchEntity):
     _attr_icon: str
-    _attr_is_on: Any
+    _attr_is_on: Incomplete
     def __init__(self, diffuser: Diffuser, coordinator: RitualsDataUpdateCoordinator) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

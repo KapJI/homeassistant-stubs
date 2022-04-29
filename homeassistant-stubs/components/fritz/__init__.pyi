@@ -1,13 +1,13 @@
 from .common import AvmWrapper as AvmWrapper, FritzData as FritzData
 from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, PLATFORMS as PLATFORMS
 from .services import async_setup_services as async_setup_services, async_unload_services as async_unload_services
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

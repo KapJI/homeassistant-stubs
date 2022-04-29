@@ -1,7 +1,8 @@
-from typing import Any, Final
+from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: Final[str]
-LOGGER: Any
-SCAN_INTERVAL: Any
+LOGGER: Incomplete
+SCAN_INTERVAL: Incomplete
 ATTR_ON: str
 SERVICE_IDENTIFY: str

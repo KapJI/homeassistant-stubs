@@ -1,6 +1,7 @@
 from .const import CONF_MOUNT_DIR as CONF_MOUNT_DIR, CONF_TYPE_OWSERVER as CONF_TYPE_OWSERVER, CONF_TYPE_SYSBUS as CONF_TYPE_SYSBUS, DEFAULT_OWSERVER_HOST as DEFAULT_OWSERVER_HOST, DEFAULT_OWSERVER_PORT as DEFAULT_OWSERVER_PORT, DEFAULT_SYSBUS_MOUNT_DIR as DEFAULT_SYSBUS_MOUNT_DIR, DEVICE_SUPPORT_OPTIONS as DEVICE_SUPPORT_OPTIONS, DOMAIN as DOMAIN, INPUT_ENTRY_CLEAR_OPTIONS as INPUT_ENTRY_CLEAR_OPTIONS, INPUT_ENTRY_DEVICE_SELECTION as INPUT_ENTRY_DEVICE_SELECTION, OPTION_ENTRY_DEVICE_OPTIONS as OPTION_ENTRY_DEVICE_OPTIONS, OPTION_ENTRY_SENSOR_PRECISION as OPTION_ENTRY_SENSOR_PRECISION, PRECISION_MAPPING_FAMILY_28 as PRECISION_MAPPING_FAMILY_28
 from .model import OWServerDeviceDescription as OWServerDeviceDescription
 from .onewirehub import CannotConnect as CannotConnect, InvalidPath as InvalidPath, OneWireHub as OneWireHub
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -8,16 +9,16 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.device_registry import DeviceRegistry as DeviceRegistry
 from typing import Any
 
-DATA_SCHEMA_USER: Any
-DATA_SCHEMA_OWSERVER: Any
-DATA_SCHEMA_MOUNTDIR: Any
+DATA_SCHEMA_USER: Incomplete
+DATA_SCHEMA_OWSERVER: Incomplete
+DATA_SCHEMA_MOUNTDIR: Incomplete
 
 async def validate_input_owserver(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 async def validate_input_mount_dir(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 
 class OneWireFlowHandler(ConfigFlow):
     VERSION: int
-    onewire_config: Any
+    onewire_config: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_owserver(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
@@ -26,10 +27,10 @@ class OneWireFlowHandler(ConfigFlow):
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
 
 class OnewireOptionsFlowHandler(OptionsFlow):
-    entry_id: Any
-    options: Any
-    configurable_devices: Any
-    devices_to_configure: Any
+    entry_id: Incomplete
+    options: Incomplete
+    configurable_devices: Incomplete
+    devices_to_configure: Incomplete
     current_device: str
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

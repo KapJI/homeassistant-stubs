@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from aiohttp import BasicAuth
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, BaseNotificationService as BaseNotificationService, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.const import ATTR_ICON as ATTR_ICON, CONF_API_KEY as CONF_API_KEY, CONF_ICON as CONF_ICON, CONF_USERNAME as CONF_USERNAME
@@ -7,7 +8,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from slack import WebClient
 from typing import Any, TypedDict
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ATTR_BLOCKS: str
 ATTR_BLOCKS_TEMPLATE: str
 ATTR_FILE: str
@@ -17,11 +18,11 @@ ATTR_URL: str
 ATTR_USERNAME: str
 CONF_DEFAULT_CHANNEL: str
 DEFAULT_TIMEOUT_SECONDS: int
-FILE_PATH_SCHEMA: Any
-FILE_URL_SCHEMA: Any
-DATA_FILE_SCHEMA: Any
-DATA_TEXT_ONLY_SCHEMA: Any
-DATA_SCHEMA: Any
+FILE_PATH_SCHEMA: Incomplete
+FILE_URL_SCHEMA: Incomplete
+DATA_FILE_SCHEMA: Incomplete
+DATA_TEXT_ONLY_SCHEMA: Incomplete
+DATA_SCHEMA: Incomplete
 
 class AuthDictT(TypedDict):
     auth: BasicAuth
@@ -46,11 +47,11 @@ def _async_get_filename_from_url(url: str) -> str: ...
 def _async_sanitize_channel_names(channel_list: list[str]) -> list[str]: ...
 
 class SlackNotificationService(BaseNotificationService):
-    _client: Any
-    _default_channel: Any
-    _hass: Any
-    _icon: Any
-    _username: Any
+    _client: Incomplete
+    _default_channel: Incomplete
+    _hass: Incomplete
+    _icon: Incomplete
+    _username: Incomplete
     def __init__(self, hass: HomeAssistant, client: WebClient, default_channel: str, username: Union[str, None], icon: Union[str, None]) -> None: ...
     async def _async_send_local_file_message(self, path: str, targets: list[str], message: str, title: Union[str, None]) -> None: ...
     async def _async_send_remote_file_message(self, url: str, targets: list[str], message: str, title: Union[str, None], *, username: Union[str, None] = ..., password: Union[str, None] = ...) -> None: ...

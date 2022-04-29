@@ -1,4 +1,5 @@
 from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, CONF_IDENTITY as CONF_IDENTITY, CONF_KEY as CONF_KEY, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import CONF_HOST as CONF_HOST
@@ -9,12 +10,12 @@ from typing import Any
 KEY_SECURITY_CODE: str
 
 class AuthError(Exception):
-    code: Any
+    code: Incomplete
     def __init__(self, code: str) -> None: ...
 
 class FlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _host: Any
+    _host: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_auth(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

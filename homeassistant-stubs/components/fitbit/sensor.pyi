@@ -1,4 +1,5 @@
 from .const import ATTRIBUTION as ATTRIBUTION, ATTR_ACCESS_TOKEN as ATTR_ACCESS_TOKEN, ATTR_LAST_SAVED_AT as ATTR_LAST_SAVED_AT, ATTR_REFRESH_TOKEN as ATTR_REFRESH_TOKEN, BATTERY_LEVELS as BATTERY_LEVELS, CONF_CLOCK_FORMAT as CONF_CLOCK_FORMAT, CONF_MONITORED_RESOURCES as CONF_MONITORED_RESOURCES, DEFAULT_CLOCK_FORMAT as DEFAULT_CLOCK_FORMAT, DEFAULT_CONFIG as DEFAULT_CONFIG, FITBIT_AUTH_CALLBACK_PATH as FITBIT_AUTH_CALLBACK_PATH, FITBIT_AUTH_START as FITBIT_AUTH_START, FITBIT_CONFIG_FILE as FITBIT_CONFIG_FILE, FITBIT_DEFAULT_RESOURCES as FITBIT_DEFAULT_RESOURCES, FITBIT_MEASUREMENTS as FITBIT_MEASUREMENTS, FITBIT_RESOURCES_KEYS as FITBIT_RESOURCES_KEYS, FITBIT_RESOURCES_LIST as FITBIT_RESOURCES_LIST, FITBIT_RESOURCE_BATTERY as FITBIT_RESOURCE_BATTERY, FitbitSensorEntityDescription as FitbitSensorEntityDescription
+from _typeshed import Incomplete
 from aiohttp.web import Request as Request
 from fitbit import Fitbit
 from fitbit.api import FitbitOauth2Client
@@ -12,12 +13,12 @@ from homeassistant.helpers.icon import icon_for_battery_level as icon_for_batter
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.json import load_json as load_json, save_json as save_json
-from typing import Any, Final
+from typing import Final
 
-_LOGGER: Final[Any]
+_LOGGER: Final[Incomplete]
 _CONFIGURING: dict[str, str]
-SCAN_INTERVAL: Final[Any]
-PLATFORM_SCHEMA: Final[Any]
+SCAN_INTERVAL: Final[Incomplete]
+PLATFORM_SCHEMA: Final[Incomplete]
 
 def request_app_setup(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, config_path: str, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 def request_oauth_completion(hass: HomeAssistant) -> None: ...
@@ -25,27 +26,27 @@ def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEnt
 
 class FitbitAuthCallbackView(HomeAssistantView):
     requires_auth: bool
-    url: Any
+    url: Incomplete
     name: str
-    config: Any
-    add_entities: Any
-    oauth: Any
+    config: Incomplete
+    add_entities: Incomplete
+    oauth: Incomplete
     def __init__(self, config: ConfigType, add_entities: AddEntitiesCallback, oauth: FitbitOauth2Client) -> None: ...
     async def get(self, request: Request) -> str: ...
 
 class FitbitSensor(SensorEntity):
     entity_description: FitbitSensorEntityDescription
-    client: Any
-    config_path: Any
-    is_metric: Any
-    clock_format: Any
-    extra: Any
-    _attr_name: Any
-    _attr_native_unit_of_measurement: Any
+    client: Incomplete
+    config_path: Incomplete
+    is_metric: Incomplete
+    clock_format: Incomplete
+    extra: Incomplete
+    _attr_name: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
     def __init__(self, client: Fitbit, config_path: str, description: FitbitSensorEntityDescription, is_metric: bool, clock_format: str, extra: Union[dict[str, str], None] = ...) -> None: ...
     @property
     def icon(self) -> Union[str, None]: ...
     @property
     def extra_state_attributes(self) -> dict[str, Union[str, None]]: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def update(self) -> None: ...

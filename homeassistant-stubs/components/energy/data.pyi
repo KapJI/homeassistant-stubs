@@ -1,8 +1,9 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import singleton as singleton, storage as storage
-from typing import Any, Literal, TypedDict, Union
+from typing import Literal, TypedDict, Union
 
 STORAGE_VERSION: int
 STORAGE_KEY = DOMAIN
@@ -59,26 +60,26 @@ class EnergyPreferencesUpdate(EnergyPreferences): ...
 
 def _flow_from_ensure_single_price(val: FlowFromGridSourceType) -> FlowFromGridSourceType: ...
 
-FLOW_FROM_GRID_SOURCE_SCHEMA: Any
-FLOW_TO_GRID_SOURCE_SCHEMA: Any
+FLOW_FROM_GRID_SOURCE_SCHEMA: Incomplete
+FLOW_TO_GRID_SOURCE_SCHEMA: Incomplete
 
 def _generate_unique_value_validator(key: str) -> Callable[[list[dict]], list[dict]]: ...
 
-GRID_SOURCE_SCHEMA: Any
-SOLAR_SOURCE_SCHEMA: Any
-BATTERY_SOURCE_SCHEMA: Any
-GAS_SOURCE_SCHEMA: Any
+GRID_SOURCE_SCHEMA: Incomplete
+SOLAR_SOURCE_SCHEMA: Incomplete
+BATTERY_SOURCE_SCHEMA: Incomplete
+GAS_SOURCE_SCHEMA: Incomplete
 
 def check_type_limits(value: list[SourceType]) -> list[SourceType]: ...
 
-ENERGY_SOURCE_SCHEMA: Any
-DEVICE_CONSUMPTION_SCHEMA: Any
+ENERGY_SOURCE_SCHEMA: Incomplete
+DEVICE_CONSUMPTION_SCHEMA: Incomplete
 
 class EnergyManager:
-    _hass: Any
-    _store: Any
-    data: Any
-    _update_listeners: Any
+    _hass: Incomplete
+    _store: Incomplete
+    data: Incomplete
+    _update_listeners: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_initialize(self) -> None: ...
     @staticmethod

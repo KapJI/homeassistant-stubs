@@ -1,4 +1,5 @@
 from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_PROTOCOL as CONF_PROTOCOL, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, DSMR_VERSIONS as DSMR_VERSIONS, LOGGER as LOGGER, RFXTRX_DSMR_PROTOCOL as RFXTRX_DSMR_PROTOCOL
+from _typeshed import Incomplete
 from dsmr_parser.objects import DSMRObject as DSMRObject
 from homeassistant import config_entries as config_entries, core as core, exceptions as exceptions
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,12 +11,12 @@ from typing import Any
 CONF_MANUAL_PATH: str
 
 class DSMRConnection:
-    _host: Any
-    _port: Any
-    _dsmr_version: Any
-    _protocol: Any
-    _telegram: Any
-    _equipment_identifier: Any
+    _host: Incomplete
+    _port: Incomplete
+    _dsmr_version: Incomplete
+    _protocol: Incomplete
+    _telegram: Incomplete
+    _equipment_identifier: Incomplete
     def __init__(self, host: Union[str, None], port: int, dsmr_version: str, protocol: str) -> None: ...
     def equipment_identifier(self) -> Union[str, None]: ...
     def equipment_identifier_gas(self) -> Union[str, None]: ...
@@ -35,7 +36,7 @@ class DSMRFlowHandler(config_entries.ConfigFlow):
     async def async_validate_dsmr(self, input_data: dict[str, Any], errors: dict[str, str]) -> dict[str, Any]: ...
 
 class DSMROptionFlowHandler(config_entries.OptionsFlow):
-    entry: Any
+    entry: Incomplete
     def __init__(self, entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 

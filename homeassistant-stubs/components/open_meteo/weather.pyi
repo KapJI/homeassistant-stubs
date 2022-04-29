@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN, WMO_TO_HA_CONDITION_MAP as WMO_TO_HA_CONDITION_MAP
+from _typeshed import Incomplete
 from homeassistant.components.weather import Forecast as Forecast, WeatherEntity as WeatherEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS
@@ -8,15 +9,14 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from open_meteo import Forecast as OpenMeteoForecast
-from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OpenMeteoWeatherEntity(CoordinatorEntity[DataUpdateCoordinator[OpenMeteoForecast]], WeatherEntity):
-    _attr_temperature_unit: Any
-    _attr_unique_id: Any
-    _attr_name: Any
-    _attr_device_info: Any
+    _attr_temperature_unit: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_name: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, *, entry: ConfigEntry, coordinator: DataUpdateCoordinator[OpenMeteoForecast]) -> None: ...
     @property
     def condition(self) -> Union[str, None]: ...

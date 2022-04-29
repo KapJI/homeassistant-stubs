@@ -1,5 +1,6 @@
 import logging
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, UPDATE_INTERVAL as UPDATE_INTERVAL
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,15 +14,15 @@ from typing import Any
 EVENT_HANDLERS: Registry[str, Callable[[OverkizDataUpdateCoordinator, Event], Coroutine[Any, Any, None]]]
 
 class OverkizDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
-    data: Any
-    client: Any
-    devices: Any
-    is_stateless: Any
-    executions: Any
-    areas: Any
-    config_entry_id: Any
+    data: Incomplete
+    client: Incomplete
+    devices: Incomplete
+    is_stateless: Incomplete
+    executions: Incomplete
+    areas: Incomplete
+    config_entry_id: Incomplete
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, client: OverkizClient, devices: list[Device], places: Place, update_interval: Union[timedelta, None] = ..., config_entry_id: str) -> None: ...
-    update_interval: Any
+    update_interval: Incomplete
     async def _async_update_data(self) -> dict[str, Device]: ...
     async def _get_devices(self) -> dict[str, Device]: ...
     def _places_to_area(self, place: Place) -> dict[str, str]: ...

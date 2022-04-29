@@ -1,5 +1,6 @@
 from . import LeafEntity as LeafEntity
 from .const import DATA_CLIMATE as DATA_CLIMATE, DATA_LEAF as DATA_LEAF
+from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -7,12 +8,12 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from pycarwings2.pycarwings2 import Leaf as Leaf
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class LeafClimateSwitch(LeafEntity, SwitchEntity):
-    _attr_unique_id: Any
+    _attr_unique_id: Incomplete
     def __init__(self, car: Leaf) -> None: ...
     @property
     def name(self) -> str: ...

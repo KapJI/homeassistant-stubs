@@ -1,6 +1,7 @@
 from . import Trackables as Trackables
 from .const import CLIENT as CLIENT, DOMAIN as DOMAIN, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, TRACKABLES as TRACKABLES, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_POSITION_UPDATED as TRACKER_POSITION_UPDATED
 from .entity import TractiveEntity as TractiveEntity
+from _typeshed import Incomplete
 from homeassistant.components.device_tracker import SOURCE_TYPE_BLUETOOTH as SOURCE_TYPE_BLUETOOTH, SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,13 +14,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class TractiveDeviceTracker(TractiveEntity, TrackerEntity):
     _attr_icon: str
-    _battery_level: Any
-    _latitude: Any
-    _longitude: Any
-    _accuracy: Any
-    _source_type: Any
-    _attr_name: Any
-    _attr_unique_id: Any
+    _battery_level: Incomplete
+    _latitude: Incomplete
+    _longitude: Incomplete
+    _accuracy: Incomplete
+    _source_type: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, user_id: str, item: Trackables) -> None: ...
     @property
     def source_type(self) -> str: ...

@@ -1,5 +1,6 @@
 from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
 from .request_context import current_request as current_request
+from _typeshed import Incomplete
 from aiohttp.web import Application as Application, Request as Request, StreamResponse as StreamResponse
 from collections.abc import Callable as Callable
 from datetime import timedelta
@@ -8,9 +9,9 @@ from homeassistant.auth.models import User as User
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.network import is_local as is_local
-from typing import Any, Final
+from typing import Final
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DATA_API_PASSWORD: Final[str]
 DATA_SIGN_SECRET: Final[str]
 SIGN_QUERY_PARAM: Final[str]

@@ -1,5 +1,6 @@
 from . import RidwellEntity as RidwellEntity
 from .const import DATA_ACCOUNT as DATA_ACCOUNT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from aioridwell.model import RidwellPickupEvent as RidwellPickupEvent
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 SWITCH_TYPE_OPT_IN: str
-SWITCH_DESCRIPTION: Any
+SWITCH_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

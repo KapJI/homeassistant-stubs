@@ -1,5 +1,6 @@
 from .deconz_device import DeconzDevice as DeconzDevice
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from _typeshed import Incomplete
 from homeassistant.components.fan import DOMAIN as DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -14,10 +15,10 @@ ORDERED_NAMED_FAN_SPEEDS: list[Literal[0, 1, 2, 3, 4, 5, 6]]
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzFan(DeconzDevice, FanEntity):
-    TYPE: Any
+    TYPE: Incomplete
     _device: Fan
     _default_on_speed: Literal[0, 1, 2, 3, 4, 5, 6]
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     def __init__(self, device: Fan, gateway: DeconzGateway) -> None: ...
     @property
     def is_on(self) -> bool: ...

@@ -1,7 +1,7 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Any
 
-LOGGER: Any
+LOGGER: Incomplete
 DOMAIN: str
 HASSIO_CONFIGURATION_URL: str
 CONF_BRIDGE_ID: str
@@ -14,12 +14,12 @@ CONF_ALLOW_CLIP_SENSOR: str
 CONF_ALLOW_DECONZ_GROUPS: str
 CONF_ALLOW_NEW_DEVICES: str
 CONF_MASTER_GATEWAY: str
-PLATFORMS: Any
+PLATFORMS: Incomplete
 ATTR_DARK: str
 ATTR_LOCKED: str
 ATTR_OFFSET: str
 ATTR_ON: str
 ATTR_VALVE: str
-POWER_PLUGS: Any
+POWER_PLUGS: Incomplete
 CONF_ANGLE: str
 CONF_GESTURE: str

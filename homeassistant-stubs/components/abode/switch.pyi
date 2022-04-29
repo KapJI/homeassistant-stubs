@@ -1,5 +1,6 @@
 from . import AbodeAutomation as AbodeAutomation, AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from abodepy.devices.switch import AbodeSwitch as AbodeSW
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,7 +9,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-DEVICE_TYPES: Any
+DEVICE_TYPES: Incomplete
 ICON: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -21,7 +22,7 @@ class AbodeSwitch(AbodeDevice, SwitchEntity):
     def is_on(self) -> bool: ...
 
 class AbodeAutomationSwitch(AbodeAutomation, SwitchEntity):
-    _attr_icon: Any
+    _attr_icon: Incomplete
     async def async_added_to_hass(self) -> None: ...
     def turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...

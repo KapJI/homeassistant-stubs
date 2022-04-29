@@ -1,9 +1,9 @@
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from _typeshed import Incomplete
 from collections.abc import Container, Iterable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify
-from typing import Any
 
 DATA_REGISTRY: str
 EVENT_AREA_REGISTRY_UPDATED: str
@@ -24,10 +24,10 @@ class AreaEntry:
     def __ge__(self, other): ...
 
 class AreaRegistry:
-    hass: Any
-    areas: Any
-    _store: Any
-    _normalized_name_area_idx: Any
+    hass: Incomplete
+    areas: Incomplete
+    _store: Incomplete
+    _normalized_name_area_idx: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_get_area(self, area_id: str) -> Union[AreaEntry, None]: ...
     def async_get_area_by_name(self, name: str) -> Union[AreaEntry, None]: ...

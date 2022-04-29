@@ -1,5 +1,6 @@
 import types
 import voluptuous as vol
+from _typeshed import Incomplete
 from homeassistant import data_entry_flow as data_entry_flow, requirements as requirements
 from homeassistant.const import CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -9,15 +10,15 @@ from homeassistant.util.decorator import Registry as Registry
 from typing import Any
 
 MULTI_FACTOR_AUTH_MODULES: Registry[str, type[MultiFactorAuthModule]]
-MULTI_FACTOR_AUTH_MODULE_SCHEMA: Any
+MULTI_FACTOR_AUTH_MODULE_SCHEMA: Incomplete
 DATA_REQS: str
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class MultiFactorAuthModule:
     DEFAULT_TITLE: str
     MAX_RETRY_TIME: int
-    hass: Any
-    config: Any
+    hass: Incomplete
+    config: Incomplete
     def __init__(self, hass: HomeAssistant, config: dict[str, Any]) -> None: ...
     @property
     def id(self) -> str: ...
@@ -34,9 +35,9 @@ class MultiFactorAuthModule:
     async def async_validate(self, user_id: str, user_input: dict[str, Any]) -> bool: ...
 
 class SetupFlow(data_entry_flow.FlowHandler):
-    _auth_module: Any
-    _setup_schema: Any
-    _user_id: Any
+    _auth_module: Incomplete
+    _setup_schema: Incomplete
+    _user_id: Incomplete
     def __init__(self, auth_module: MultiFactorAuthModule, setup_schema: vol.Schema, user_id: str) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, str], None] = ...) -> FlowResult: ...
 

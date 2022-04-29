@@ -1,5 +1,6 @@
 from .const import NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
 from .hub import NeatoHub as NeatoHub
+from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
@@ -9,22 +10,22 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pybotvac.robot import Robot as Robot
 from typing import Any
 
-_LOGGER: Any
-SCAN_INTERVAL: Any
+_LOGGER: Incomplete
+SCAN_INTERVAL: Incomplete
 SWITCH_TYPE_SCHEDULE: str
-SWITCH_TYPES: Any
+SWITCH_TYPES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NeatoConnectedSwitch(SwitchEntity):
-    type: Any
-    robot: Any
+    type: Incomplete
+    robot: Incomplete
     _available: bool
-    _robot_name: Any
-    _state: Any
-    _schedule_state: Any
-    _clean_state: Any
-    _robot_serial: Any
+    _robot_name: Incomplete
+    _state: Incomplete
+    _schedule_state: Incomplete
+    _clean_state: Incomplete
+    _robot_serial: Incomplete
     def __init__(self, neato: NeatoHub, robot: Robot, switch_type: str) -> None: ...
     def update(self) -> None: ...
     @property

@@ -1,4 +1,5 @@
 from .const import ATTRIBUTION as ATTRIBUTION, CONF_STATION_ID as CONF_STATION_ID, SCAN_INTERVAL as SCAN_INTERVAL
+from _typeshed import Incomplete
 from asmog import AmpioSmog
 from homeassistant.components.air_quality import AirQualityEntity as AirQualityEntity
 from homeassistant.const import CONF_NAME as CONF_NAME
@@ -7,17 +8,17 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import Throttle as Throttle
-from typing import Any, Final
+from typing import Final
 
-_LOGGER: Final[Any]
-PLATFORM_SCHEMA: Final[Any]
+_LOGGER: Final[Incomplete]
+PLATFORM_SCHEMA: Final[Incomplete]
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class AmpioSmogQuality(AirQualityEntity):
-    _ampio: Any
-    _station_id: Any
-    _name: Any
+    _ampio: Incomplete
+    _station_id: Incomplete
+    _name: Incomplete
     def __init__(self, api: AmpioSmogMapData, station_id: str, name: Union[str, None]) -> None: ...
     @property
     def name(self) -> str: ...
@@ -32,6 +33,6 @@ class AmpioSmogQuality(AirQualityEntity):
     async def async_update(self) -> None: ...
 
 class AmpioSmogMapData:
-    api: Any
+    api: Incomplete
     def __init__(self, api: AmpioSmog) -> None: ...
     async def async_update(self) -> None: ...

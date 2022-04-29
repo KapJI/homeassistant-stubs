@@ -1,5 +1,6 @@
 import asyncio
 from .const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from homeassistant.components import zone as zone
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
@@ -10,7 +11,6 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -19,7 +19,7 @@ def _async_register_mac(hass: HomeAssistant, domain: str, mac: str, unique_id: s
 
 class BaseTrackerEntity(Entity):
     _attr_device_info: None
-    _attr_entity_category: Any
+    _attr_entity_category: Incomplete
     @property
     def battery_level(self) -> Union[int, None]: ...
     @property
@@ -64,7 +64,7 @@ class ScannerEntity(BaseTrackerEntity):
     def entity_registry_enabled_default(self) -> bool: ...
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: Union[asyncio.Semaphore, None]) -> None: ...
     def find_device_entry(self) -> Union[dr.DeviceEntry, None]: ...
-    registry_entry: Any
+    registry_entry: Incomplete
     async def async_internal_added_to_hass(self) -> None: ...
     @property
     def state_attributes(self) -> dict[str, StateType]: ...

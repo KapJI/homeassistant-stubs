@@ -1,12 +1,12 @@
 from .models import DSMRSensorEntityDescription as DSMRSensorEntityDescription
+from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from homeassistant.const import Platform as Platform
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
-from typing import Any
 
 DOMAIN: str
-LOGGER: Any
-PLATFORMS: Any
+LOGGER: Incomplete
+PLATFORMS: Incomplete
 CONF_DSMR_VERSION: str
 CONF_PROTOCOL: str
 CONF_RECONNECT_INTERVAL: str
@@ -22,7 +22,7 @@ DEFAULT_TIME_BETWEEN_UPDATE: int
 DATA_TASK: str
 DEVICE_NAME_ELECTRICITY: str
 DEVICE_NAME_GAS: str
-DSMR_VERSIONS: Any
+DSMR_VERSIONS: Incomplete
 DSMR_PROTOCOL: str
 RFXTRX_DSMR_PROTOCOL: str
 SENSORS: tuple[DSMRSensorEntityDescription, ...]

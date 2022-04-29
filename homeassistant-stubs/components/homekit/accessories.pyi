@@ -1,5 +1,6 @@
 from .const import ATTR_DISPLAY_NAME as ATTR_DISPLAY_NAME, ATTR_INTEGRATION as ATTR_INTEGRATION, ATTR_VALUE as ATTR_VALUE, BRIDGE_MODEL as BRIDGE_MODEL, BRIDGE_SERIAL_NUMBER as BRIDGE_SERIAL_NUMBER, CHAR_BATTERY_LEVEL as CHAR_BATTERY_LEVEL, CHAR_CHARGING_STATE as CHAR_CHARGING_STATE, CHAR_HARDWARE_REVISION as CHAR_HARDWARE_REVISION, CHAR_STATUS_LOW_BATTERY as CHAR_STATUS_LOW_BATTERY, CONF_FEATURE_LIST as CONF_FEATURE_LIST, CONF_LINKED_BATTERY_CHARGING_SENSOR as CONF_LINKED_BATTERY_CHARGING_SENSOR, CONF_LINKED_BATTERY_SENSOR as CONF_LINKED_BATTERY_SENSOR, CONF_LOW_BATTERY_THRESHOLD as CONF_LOW_BATTERY_THRESHOLD, DEFAULT_LOW_BATTERY_THRESHOLD as DEFAULT_LOW_BATTERY_THRESHOLD, DOMAIN as DOMAIN, EVENT_HOMEKIT_CHANGED as EVENT_HOMEKIT_CHANGED, HK_CHARGING as HK_CHARGING, HK_NOT_CHARGABLE as HK_NOT_CHARGABLE, HK_NOT_CHARGING as HK_NOT_CHARGING, MANUFACTURER as MANUFACTURER, MAX_MANUFACTURER_LENGTH as MAX_MANUFACTURER_LENGTH, MAX_MODEL_LENGTH as MAX_MODEL_LENGTH, MAX_SERIAL_LENGTH as MAX_SERIAL_LENGTH, MAX_VERSION_LENGTH as MAX_VERSION_LENGTH, SERVICE_HOMEKIT_RESET_ACCESSORY as SERVICE_HOMEKIT_RESET_ACCESSORY, SERV_ACCESSORY_INFO as SERV_ACCESSORY_INFO, SERV_BATTERY_SERVICE as SERV_BATTERY_SERVICE, TYPE_FAUCET as TYPE_FAUCET, TYPE_OUTLET as TYPE_OUTLET, TYPE_SHOWER as TYPE_SHOWER, TYPE_SPRINKLER as TYPE_SPRINKLER, TYPE_SWITCH as TYPE_SWITCH, TYPE_VALVE as TYPE_VALVE
 from .util import accessory_friendly_name as accessory_friendly_name, async_dismiss_setup_message as async_dismiss_setup_message, async_show_setup_message as async_show_setup_message, cleanup_name_for_homekit as cleanup_name_for_homekit, convert_to_float as convert_to_float, format_version as format_version, validate_media_player_features as validate_media_player_features
+from _typeshed import Incomplete
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntityFeature as CoverEntityFeature
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass
 from homeassistant.components.remote import RemoteEntityFeature as RemoteEntityFeature
@@ -13,25 +14,25 @@ from pyhap.accessory_driver import AccessoryDriver
 from typing import Any
 from uuid import UUID
 
-_LOGGER: Any
-SWITCH_TYPES: Any
+_LOGGER: Incomplete
+SWITCH_TYPES: Incomplete
 TYPES: Registry[str, type[HomeAccessory]]
 
 def get_accessory(hass: HomeAssistant, driver: HomeDriver, state: State, aid: Union[int, None], config: dict) -> Union[HomeAccessory, None]: ...
 
 class HomeAccessory(Accessory):
-    config: Any
-    device_id: Any
-    category: Any
-    entity_id: Any
-    hass: Any
-    _subscriptions: Any
-    _char_battery: Any
-    _char_charging: Any
-    _char_low_battery: Any
-    linked_battery_sensor: Any
-    linked_battery_charging_sensor: Any
-    low_battery_threshold: Any
+    config: Incomplete
+    device_id: Incomplete
+    category: Incomplete
+    entity_id: Incomplete
+    hass: Incomplete
+    _subscriptions: Incomplete
+    _char_battery: Incomplete
+    _char_charging: Incomplete
+    _char_low_battery: Incomplete
+    linked_battery_sensor: Incomplete
+    linked_battery_charging_sensor: Incomplete
+    low_battery_threshold: Incomplete
     def __init__(self, hass: HomeAssistant, driver: HomeDriver, name: str, entity_id: str, aid: int, config: dict, *args: Any, category: str = ..., device_id: Union[str, None] = ..., **kwargs: Any) -> None: ...
     @property
     def available(self) -> bool: ...
@@ -47,16 +48,16 @@ class HomeAccessory(Accessory):
     async def stop(self) -> None: ...
 
 class HomeBridge(Bridge):
-    hass: Any
+    hass: Incomplete
     def __init__(self, hass: HomeAssistant, driver: HomeDriver, name: str) -> None: ...
     def setup_message(self) -> None: ...
     async def async_get_snapshot(self, info: dict) -> bytes: ...
 
 class HomeDriver(AccessoryDriver):
-    hass: Any
-    _entry_id: Any
-    _bridge_name: Any
-    _entry_title: Any
+    hass: Incomplete
+    _entry_id: Incomplete
+    _bridge_name: Incomplete
+    _entry_title: Incomplete
     def __init__(self, hass: HomeAssistant, entry_id: str, bridge_name: str, entry_title: str, **kwargs: Any) -> None: ...
     def pair(self, client_uuid: UUID, client_public: str, client_permissions: int) -> bool: ...
     def unpair(self, client_uuid: UUID) -> None: ...

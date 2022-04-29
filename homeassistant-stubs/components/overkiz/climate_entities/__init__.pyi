@@ -1,4 +1,4 @@
 from .atlantic_electrical_heater import AtlanticElectricalHeater as AtlanticElectricalHeater
-from typing import Any
+from _typeshed import Incomplete
 
-WIDGET_TO_CLIMATE_ENTITY: Any
+WIDGET_TO_CLIMATE_ENTITY: Incomplete

@@ -1,6 +1,7 @@
 from .const import ATTR_DARK as ATTR_DARK, ATTR_ON as ATTR_ON
 from .deconz_device import DeconzDevice as DeconzDevice
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,12 +11,11 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.interfaces.sensors import SensorResources as SensorResources
-from typing import Any
 
 ATTR_ORIENTATION: str
 ATTR_TILTANGLE: str
 ATTR_VIBRATIONSTRENGTH: str
-PROVIDES_EXTRA_ATTRIBUTES: Any
+PROVIDES_EXTRA_ATTRIBUTES: Incomplete
 
 class DeconzBinarySensorDescriptionMixin:
     suffix: str
@@ -26,17 +26,17 @@ class DeconzBinarySensorDescriptionMixin:
 class DeconzBinarySensorDescription(BinarySensorEntityDescription, DeconzBinarySensorDescriptionMixin):
     def __init__(self, suffix, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
-ENTITY_DESCRIPTIONS: Any
-BINARY_SENSOR_DESCRIPTIONS: Any
+ENTITY_DESCRIPTIONS: Incomplete
+BINARY_SENSOR_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzBinarySensor(DeconzDevice, BinarySensorEntity):
-    TYPE: Any
+    TYPE: Incomplete
     _device: SensorResources
     entity_description: DeconzBinarySensorDescription
-    _attr_name: Any
-    _update_keys: Any
+    _attr_name: Incomplete
+    _update_keys: Incomplete
     def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzBinarySensorDescription) -> None: ...
     @property
     def unique_id(self) -> str: ...

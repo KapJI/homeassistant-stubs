@@ -1,5 +1,6 @@
 from .const import ACTION as ACTION, ALERTS as ALERTS, ERRORS as ERRORS, MODE as MODE, NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEATO_MAP_DATA as NEATO_MAP_DATA, NEATO_PERSISTENT_MAPS as NEATO_PERSISTENT_MAPS, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
 from .hub import NeatoHub as NeatoHub
+from _typeshed import Incomplete
 from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED
@@ -10,8 +11,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pybotvac import Robot as Robot
 from typing import Any
 
-_LOGGER: Any
-SCAN_INTERVAL: Any
+_LOGGER: Incomplete
+SCAN_INTERVAL: Incomplete
 ATTR_CLEAN_START: str
 ATTR_CLEAN_STOP: str
 ATTR_CLEAN_AREA: str
@@ -29,30 +30,30 @@ ATTR_ZONE: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NeatoConnectedVacuum(StateVacuumEntity):
-    _attr_supported_features: Any
-    robot: Any
-    _available: Any
-    _mapdata: Any
-    _name: Any
-    _robot_has_map: Any
-    _robot_maps: Any
-    _robot_serial: Any
-    _status_state: Any
-    _clean_state: Any
-    _state: Any
-    _clean_time_start: Any
-    _clean_time_stop: Any
-    _clean_area: Any
-    _clean_battery_start: Any
-    _clean_battery_end: Any
-    _clean_susp_charge_count: Any
-    _clean_susp_time: Any
-    _clean_pause_time: Any
-    _clean_error_time: Any
-    _launched_from: Any
-    _battery_level: Any
-    _robot_boundaries: Any
-    _robot_stats: Any
+    _attr_supported_features: Incomplete
+    robot: Incomplete
+    _available: Incomplete
+    _mapdata: Incomplete
+    _name: Incomplete
+    _robot_has_map: Incomplete
+    _robot_maps: Incomplete
+    _robot_serial: Incomplete
+    _status_state: Incomplete
+    _clean_state: Incomplete
+    _state: Incomplete
+    _clean_time_start: Incomplete
+    _clean_time_stop: Incomplete
+    _clean_area: Incomplete
+    _clean_battery_start: Incomplete
+    _clean_battery_end: Incomplete
+    _clean_susp_charge_count: Incomplete
+    _clean_susp_time: Incomplete
+    _clean_pause_time: Incomplete
+    _clean_error_time: Incomplete
+    _launched_from: Incomplete
+    _battery_level: Incomplete
+    _robot_boundaries: Incomplete
+    _robot_stats: Incomplete
     def __init__(self, neato: NeatoHub, robot: Robot, mapdata: Union[dict[str, Any], None], persistent_maps: Union[dict[str, Any], None]) -> None: ...
     def update(self) -> None: ...
     @property

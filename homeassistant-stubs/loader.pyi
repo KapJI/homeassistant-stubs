@@ -6,22 +6,23 @@ from .generated.ssdp import SSDP as SSDP
 from .generated.usb import USB as USB
 from .generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
 from .util.async_ import gather_with_concurrency as gather_with_concurrency
+from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Callable
 from types import ModuleType
 from typing import Any, Literal, TypeVar, TypedDict
 
 _CallableT = TypeVar('_CallableT', bound=Callable[..., Any])
-_LOGGER: Any
+_LOGGER: Incomplete
 DATA_COMPONENTS: str
 DATA_INTEGRATIONS: str
 DATA_CUSTOM_COMPONENTS: str
 PACKAGE_CUSTOM_COMPONENTS: str
 PACKAGE_BUILTIN: str
 CUSTOM_WARNING: str
-_UNDEF: Any
+_UNDEF: Incomplete
 MAX_LOAD_CONCURRENTLY: int
-MOVED_ZEROCONF_PROPS: Any
+MOVED_ZEROCONF_PROPS: Incomplete
 
 class DHCPMatcherRequired(TypedDict):
     domain: str
@@ -72,12 +73,12 @@ async def async_get_mqtt(hass: HomeAssistant) -> dict[str, list[str]]: ...
 class Integration:
     @classmethod
     def resolve_from_root(cls, hass: HomeAssistant, root_module: ModuleType, domain: str) -> Union[Integration, None]: ...
-    hass: Any
-    pkg_path: Any
-    file_path: Any
-    manifest: Any
-    _all_dependencies_resolved: Any
-    _all_dependencies: Any
+    hass: Incomplete
+    pkg_path: Incomplete
+    file_path: Incomplete
+    manifest: Incomplete
+    _all_dependencies_resolved: Incomplete
+    _all_dependencies: Incomplete
     def __init__(self, hass: HomeAssistant, pkg_path: str, file_path: pathlib.Path, manifest: Manifest) -> None: ...
     @property
     def name(self) -> str: ...
@@ -137,29 +138,29 @@ async def _async_get_integration(hass: HomeAssistant, domain: str) -> Integratio
 class LoaderError(Exception): ...
 
 class IntegrationNotFound(LoaderError):
-    domain: Any
+    domain: Incomplete
     def __init__(self, domain: str) -> None: ...
 
 class CircularDependency(LoaderError):
-    from_domain: Any
-    to_domain: Any
+    from_domain: Incomplete
+    to_domain: Incomplete
     def __init__(self, from_domain: str, to_domain: str) -> None: ...
 
 def _load_file(hass: HomeAssistant, comp_or_platform: str, base_paths: list[str]) -> Union[ModuleType, None]: ...
 
 class ModuleWrapper:
-    _hass: Any
-    _module: Any
+    _hass: Incomplete
+    _module: Incomplete
     def __init__(self, hass: HomeAssistant, module: ModuleType) -> None: ...
     def __getattr__(self, attr: str) -> Any: ...
 
 class Components:
-    _hass: Any
+    _hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def __getattr__(self, comp_name: str) -> ModuleWrapper: ...
 
 class Helpers:
-    _hass: Any
+    _hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def __getattr__(self, helper_name: str) -> ModuleWrapper: ...
 

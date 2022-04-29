@@ -1,6 +1,7 @@
 from .const import BPUP_SUBS as BPUP_SUBS, DOMAIN as DOMAIN, HUB as HUB, SERVICE_SET_FAN_SPEED_TRACKED_STATE as SERVICE_SET_FAN_SPEED_TRACKED_STATE
 from .entity import BondEntity as BondEntity
 from .utils import BondDevice as BondDevice, BondHub as BondHub
+from _typeshed import Incomplete
 from bond_api import BPUPSubscriptions as BPUPSubscriptions
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,18 +13,18 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 PRESET_MODE_BREEZE: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BondFan(BondEntity, FanEntity):
-    _power: Any
-    _speed: Any
-    _direction: Any
-    _attr_preset_modes: Any
+    _power: Incomplete
+    _speed: Incomplete
+    _direction: Incomplete
+    _attr_preset_modes: Incomplete
     def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions) -> None: ...
-    _attr_preset_mode: Any
+    _attr_preset_mode: Incomplete
     def _apply_state(self, state: dict) -> None: ...
     @property
     def supported_features(self) -> int: ...

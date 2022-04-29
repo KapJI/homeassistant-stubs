@@ -1,4 +1,5 @@
 from .const import CONF_CITY as CONF_CITY, CONF_COUNTRY as CONF_COUNTRY, CONF_GEOGRAPHIES as CONF_GEOGRAPHIES, CONF_INTEGRATION_TYPE as CONF_INTEGRATION_TYPE, DOMAIN as DOMAIN, INTEGRATION_TYPE_GEOGRAPHY_COORDS as INTEGRATION_TYPE_GEOGRAPHY_COORDS, INTEGRATION_TYPE_GEOGRAPHY_NAME as INTEGRATION_TYPE_GEOGRAPHY_NAME, INTEGRATION_TYPE_NODE_PRO as INTEGRATION_TYPE_NODE_PRO, LOGGER as LOGGER
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,10 +11,10 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
-PLATFORMS: Any
+PLATFORMS: Incomplete
 DEFAULT_ATTRIBUTION: str
-DEFAULT_NODE_PRO_UPDATE_INTERVAL: Any
-CONFIG_SCHEMA: Any
+DEFAULT_NODE_PRO_UPDATE_INTERVAL: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 def async_get_geography_id(geography_dict: Mapping[str, Any]) -> str: ...
 def async_get_cloud_api_update_interval(hass: HomeAssistant, api_key: str, num_consumers: int) -> timedelta: ...
@@ -27,9 +28,9 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 
 class AirVisualEntity(CoordinatorEntity):
-    _attr_extra_state_attributes: Any
-    _entry: Any
-    entity_description: Any
+    _attr_extra_state_attributes: Incomplete
+    _entry: Incomplete
+    entity_description: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, entry: ConfigEntry, description: EntityDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def update_from_latest_data(self) -> None: ...

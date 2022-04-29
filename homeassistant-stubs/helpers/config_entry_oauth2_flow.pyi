@@ -2,6 +2,7 @@ import abc
 import logging
 from .aiohttp_client import async_get_clientsession as async_get_clientsession
 from .network import NoURLAvailableError as NoURLAvailableError
+from _typeshed import Incomplete
 from abc import ABC, ABCMeta, abstractmethod
 from aiohttp import client as client, web
 from collections.abc import Awaitable, Callable as Callable
@@ -11,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DATA_JWT_SECRET: str
 DATA_IMPLEMENTATIONS: str
 DATA_PROVIDERS: str
@@ -35,12 +36,12 @@ class AbstractOAuth2Implementation(ABC, metaclass=abc.ABCMeta):
     async def _async_refresh_token(self, token: dict) -> dict: ...
 
 class LocalOAuth2Implementation(AbstractOAuth2Implementation):
-    hass: Any
-    _domain: Any
-    client_id: Any
-    client_secret: Any
-    authorize_url: Any
-    token_url: Any
+    hass: Incomplete
+    _domain: Incomplete
+    client_id: Incomplete
+    client_secret: Incomplete
+    authorize_url: Incomplete
+    token_url: Incomplete
     def __init__(self, hass: HomeAssistant, domain: str, client_id: str, client_secret: str, authorize_url: str, token_url: str) -> None: ...
     @property
     def name(self) -> str: ...
@@ -58,8 +59,8 @@ class LocalOAuth2Implementation(AbstractOAuth2Implementation):
 class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
     DOMAIN: str
     VERSION: int
-    external_data: Any
-    flow_impl: Any
+    external_data: Incomplete
+    flow_impl: Incomplete
     def __init__(self) -> None: ...
     @property
     @abstractmethod
@@ -81,14 +82,14 @@ def async_add_implementation_provider(hass: HomeAssistant, provider_domain: str,
 
 class OAuth2AuthorizeCallbackView(http.HomeAssistantView):
     requires_auth: bool
-    url: Any
+    url: Incomplete
     name: str
     async def get(self, request: web.Request) -> web.Response: ...
 
 class OAuth2Session:
-    hass: Any
-    config_entry: Any
-    implementation: Any
+    hass: Incomplete
+    config_entry: Incomplete
+    implementation: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: config_entries.ConfigEntry, implementation: AbstractOAuth2Implementation) -> None: ...
     @property
     def token(self) -> dict: ...

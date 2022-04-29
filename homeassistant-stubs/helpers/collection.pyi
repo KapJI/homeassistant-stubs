@@ -4,6 +4,7 @@ from . import entity_registry as entity_registry
 from .entity import Entity as Entity
 from .entity_component import EntityComponent as EntityComponent
 from .storage import Store as Store
+from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Awaitable, Callable, Iterable
 from homeassistant.components import websocket_api as websocket_api
@@ -30,22 +31,22 @@ ChangeSetListener = Callable[[Iterable[CollectionChangeSet]], Awaitable[None]]
 class CollectionError(HomeAssistantError): ...
 
 class ItemNotFound(CollectionError):
-    item_id: Any
+    item_id: Incomplete
     def __init__(self, item_id: str) -> None: ...
 
 class IDManager:
-    collections: Any
+    collections: Incomplete
     def __init__(self) -> None: ...
     def add_collection(self, collection: dict[str, Any]) -> None: ...
     def has_id(self, item_id: str) -> bool: ...
     def generate_id(self, suggestion: str) -> str: ...
 
 class ObservableCollection(ABC):
-    logger: Any
-    id_manager: Any
-    data: Any
-    listeners: Any
-    change_set_listeners: Any
+    logger: Incomplete
+    id_manager: Incomplete
+    data: Incomplete
+    listeners: Incomplete
+    change_set_listeners: Incomplete
     def __init__(self, logger: logging.Logger, id_manager: Union[IDManager, None] = ...) -> None: ...
     def async_items(self) -> list[dict]: ...
     def async_add_listener(self, listener: ChangeListener) -> None: ...
@@ -56,7 +57,7 @@ class YamlCollection(ObservableCollection):
     async def async_load(self, data: list[dict]) -> None: ...
 
 class StorageCollection(ObservableCollection, metaclass=abc.ABCMeta):
-    store: Any
+    store: Incomplete
     def __init__(self, store: Store, logger: logging.Logger, id_manager: Union[IDManager, None] = ...) -> None: ...
     @property
     def hass(self) -> HomeAssistant: ...
@@ -81,11 +82,11 @@ class IDLessCollection(ObservableCollection):
 def sync_entity_lifecycle(hass: HomeAssistant, domain: str, platform: str, entity_component: EntityComponent, collection: ObservableCollection, create_entity: Callable[[dict], Entity]) -> None: ...
 
 class StorageCollectionWebsocket:
-    storage_collection: Any
-    api_prefix: Any
-    model_name: Any
-    create_schema: Any
-    update_schema: Any
+    storage_collection: Incomplete
+    api_prefix: Incomplete
+    model_name: Incomplete
+    create_schema: Incomplete
+    update_schema: Incomplete
     def __init__(self, storage_collection: StorageCollection, api_prefix: str, model_name: str, create_schema: dict, update_schema: dict) -> None: ...
     @property
     def item_id_key(self) -> str: ...

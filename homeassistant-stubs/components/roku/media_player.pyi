@@ -4,6 +4,7 @@ from .const import ATTR_ARTIST_NAME as ATTR_ARTIST_NAME, ATTR_CONTENT_ID as ATTR
 from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .entity import RokuEntity as RokuEntity
 from .helpers import format_channel_name as format_channel_name, roku_exception_handler as roku_exception_handler
+from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, async_process_play_media_url as async_process_play_media_url
 from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, MEDIA_TYPE_APP as MEDIA_TYPE_APP, MEDIA_TYPE_CHANNEL as MEDIA_TYPE_CHANNEL, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, MEDIA_TYPE_URL as MEDIA_TYPE_URL, MEDIA_TYPE_VIDEO as MEDIA_TYPE_VIDEO
@@ -15,19 +16,19 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-_LOGGER: Any
-STREAM_FORMAT_TO_MEDIA_TYPE: Any
-ATTRS_TO_LAUNCH_PARAMS: Any
-ATTRS_TO_PLAY_ON_ROKU_PARAMS: Any
-ATTRS_TO_PLAY_ON_ROKU_AUDIO_PARAMS: Any
-SEARCH_SCHEMA: Any
+_LOGGER: Incomplete
+STREAM_FORMAT_TO_MEDIA_TYPE: Incomplete
+ATTRS_TO_LAUNCH_PARAMS: Incomplete
+ATTRS_TO_PLAY_ON_ROKU_PARAMS: Incomplete
+ATTRS_TO_PLAY_ON_ROKU_AUDIO_PARAMS: Incomplete
+SEARCH_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
-    _attr_supported_features: Any
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_supported_features: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, unique_id: Union[str, None], coordinator: RokuDataUpdateCoordinator) -> None: ...
     def _media_playback_trackable(self) -> bool: ...
     @property

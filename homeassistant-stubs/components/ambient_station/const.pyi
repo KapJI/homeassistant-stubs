@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-LOGGER: Any
+LOGGER: Incomplete
 ATTR_LAST_DATA: str
 CONF_APP_KEY: str
 TYPE_SOLARRADIATION: str

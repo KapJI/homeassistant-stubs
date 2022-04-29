@@ -2,6 +2,7 @@ from . import get_hub as get_hub
 from .base_platform import BaseStructPlatform as BaseStructPlatform
 from .const import CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_WRITE_REGISTER as CALL_TYPE_WRITE_REGISTER, CALL_TYPE_WRITE_REGISTERS as CALL_TYPE_WRITE_REGISTERS, CONF_CLIMATES as CONF_CLIMATES, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_STEP as CONF_STEP, CONF_TARGET_TEMP as CONF_TARGET_TEMP, DataType as DataType
 from .modbus import ModbusHub as ModbusHub
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
@@ -17,25 +18,25 @@ PARALLEL_UPDATES: int
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class ModbusThermostat(BaseStructPlatform, RestoreEntity, ClimateEntity):
-    _attr_hvac_mode: Any
-    _attr_hvac_modes: Any
-    _attr_supported_features: Any
-    _target_temperature_register: Any
-    _unit: Any
-    _attr_current_temperature: Any
-    _attr_target_temperature: Any
-    _attr_temperature_unit: Any
-    _attr_precision: Any
-    _attr_min_temp: Any
-    _attr_max_temp: Any
-    _attr_target_temperature_step: Any
+    _attr_hvac_mode: Incomplete
+    _attr_hvac_modes: Incomplete
+    _attr_supported_features: Incomplete
+    _target_temperature_register: Incomplete
+    _unit: Incomplete
+    _attr_current_temperature: Incomplete
+    _attr_target_temperature: Incomplete
+    _attr_temperature_unit: Incomplete
+    _attr_precision: Incomplete
+    _attr_min_temp: Incomplete
+    _attr_max_temp: Incomplete
+    _attr_target_temperature_step: Incomplete
     def __init__(self, hub: ModbusHub, config: dict[str, Any]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
-    _attr_available: Any
+    _attr_available: Incomplete
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     _call_active: bool
     async def async_update(self, now: Union[datetime, None] = ...) -> None: ...
-    _lazy_errors: Any
-    _value: Any
+    _lazy_errors: Incomplete
+    _value: Incomplete
     async def _async_read_register(self, register_type: str, register: int) -> Union[float, None]: ...

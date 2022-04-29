@@ -3,6 +3,7 @@ from .const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION, GROUP_ID_
 from .permissions import system_policies as system_policies
 from .permissions.models import PermissionLookup as PermissionLookup
 from .permissions.types import PolicyType as PolicyType
+from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
@@ -14,12 +15,12 @@ GROUP_NAME_USER: str
 GROUP_NAME_READ_ONLY: str
 
 class AuthStore:
-    hass: Any
-    _users: Any
-    _groups: Any
-    _perm_lookup: Any
-    _store: Any
-    _lock: Any
+    hass: Incomplete
+    _users: Incomplete
+    _groups: Incomplete
+    _perm_lookup: Incomplete
+    _store: Incomplete
+    _lock: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_get_groups(self) -> list[models.Group]: ...
     async def async_get_group(self, group_id: str) -> Union[models.Group, None]: ...

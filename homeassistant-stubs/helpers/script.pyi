@@ -8,6 +8,7 @@ from .script_variables import ScriptVariables as ScriptVariables
 from .trace import TraceElement as TraceElement, async_trace_path as async_trace_path, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_id_get as trace_id_get, trace_path as trace_path, trace_path_get as trace_path_get, trace_path_stack_cv as trace_path_stack_cv, trace_set_result as trace_set_result, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top, trace_update_result as trace_update_result
 from .trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from .typing import ConfigType as ConfigType
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator, Sequence
 from contextvars import ContextVar
 from homeassistant import exceptions as exceptions
@@ -24,12 +25,12 @@ SCRIPT_MODE_PARALLEL: str
 SCRIPT_MODE_QUEUED: str
 SCRIPT_MODE_RESTART: str
 SCRIPT_MODE_SINGLE: str
-SCRIPT_MODE_CHOICES: Any
+SCRIPT_MODE_CHOICES: Incomplete
 DEFAULT_SCRIPT_MODE = SCRIPT_MODE_SINGLE
 CONF_MAX: str
 DEFAULT_MAX: int
 CONF_MAX_EXCEEDED: str
-_MAX_EXCEEDED_CHOICES: Any
+_MAX_EXCEEDED_CHOICES: Incomplete
 DEFAULT_MAX_EXCEEDED: str
 ATTR_CUR: str
 ATTR_MAX: str
@@ -38,8 +39,8 @@ DATA_SCRIPT_BREAKPOINTS: str
 DATA_NEW_SCRIPT_RUNS_NOT_ALLOWED: str
 RUN_ID_ANY: str
 NODE_ANY: str
-_LOGGER: Any
-_LOG_EXCEPTION: Any
+_LOGGER: Incomplete
+_LOG_EXCEPTION: Incomplete
 _TIMEOUT_MSG: str
 _SHUTDOWN_MAX_WAIT: int
 ACTION_TRACE_NODE_MAX_LEN: int
@@ -49,10 +50,10 @@ SCRIPT_DEBUG_CONTINUE_ALL: str
 script_stack_cv: ContextVar[Union[list[int], None]]
 
 def action_trace_append(variables, path): ...
-async def trace_action(hass, script_run, stop, variables) -> Generator[Any, None, None]: ...
+async def trace_action(hass, script_run, stop, variables) -> Generator[Incomplete, None, None]: ...
 def make_script_schema(schema, default_script_mode, extra=...): ...
 
-STATIC_VALIDATION_ACTION_TYPES: Any
+STATIC_VALIDATION_ACTION_TYPES: Incomplete
 
 async def async_validate_actions_config(hass: HomeAssistant, actions: list[ConfigType]) -> list[ConfigType]: ...
 async def async_validate_action_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
@@ -61,20 +62,20 @@ class _AbortScript(Exception): ...
 class _StopScript(Exception): ...
 
 class _ScriptRun:
-    _hass: Any
-    _script: Any
-    _variables: Any
-    _context: Any
-    _log_exceptions: Any
+    _hass: Incomplete
+    _script: Incomplete
+    _variables: Incomplete
+    _context: Incomplete
+    _log_exceptions: Incomplete
     _step: int
-    _action: Any
-    _stop: Any
-    _stopped: Any
+    _action: Incomplete
+    _stop: Incomplete
+    _stopped: Incomplete
     def __init__(self, hass: HomeAssistant, script: Script, variables: dict[str, Any], context: Union[Context, None], log_exceptions: bool) -> None: ...
     def _changed(self) -> None: ...
     async def _async_get_condition(self, config): ...
     def _log(self, msg: str, *args: Any, level: int = ..., **kwargs: Any) -> None: ...
-    def _step_log(self, default_message, timeout: Any | None = ...) -> None: ...
+    def _step_log(self, default_message, timeout: Incomplete | None = ...) -> None: ...
     async def async_run(self) -> None: ...
     async def _async_step(self, log_exceptions) -> None: ...
     def _finish(self) -> None: ...
@@ -90,7 +91,7 @@ class _ScriptRun:
     async def _async_scene_step(self) -> None: ...
     async def _async_event_step(self) -> None: ...
     async def _async_condition_step(self) -> None: ...
-    def _test_conditions(self, conditions, name, condition_path: Any | None = ...): ...
+    def _test_conditions(self, conditions, name, condition_path: Incomplete | None = ...): ...
     async def _async_repeat_step(self) -> None: ...
     async def _async_choose_step(self) -> None: ...
     async def _async_if_step(self) -> None: ...
@@ -121,38 +122,38 @@ class _IfData(TypedDict):
     if_else: Union[Script, None]
 
 class Script:
-    _top_level: Any
-    _hass: Any
-    sequence: Any
-    name: Any
-    domain: Any
-    running_description: Any
-    _change_listener: Any
-    _change_listener_job: Any
-    script_mode: Any
-    _log_exceptions: Any
-    last_action: Any
-    last_triggered: Any
-    _runs: Any
-    max_runs: Any
-    _max_exceeded: Any
-    _queue_lck: Any
-    _config_cache: Any
-    _repeat_script: Any
-    _choose_data: Any
-    _if_data: Any
-    _parallel_scripts: Any
-    _referenced_entities: Any
-    _referenced_devices: Any
-    _referenced_areas: Any
-    variables: Any
-    _variables_dynamic: Any
+    _top_level: Incomplete
+    _hass: Incomplete
+    sequence: Incomplete
+    name: Incomplete
+    domain: Incomplete
+    running_description: Incomplete
+    _change_listener: Incomplete
+    _change_listener_job: Incomplete
+    script_mode: Incomplete
+    _log_exceptions: Incomplete
+    last_action: Incomplete
+    last_triggered: Incomplete
+    _runs: Incomplete
+    max_runs: Incomplete
+    _max_exceeded: Incomplete
+    _queue_lck: Incomplete
+    _config_cache: Incomplete
+    _repeat_script: Incomplete
+    _choose_data: Incomplete
+    _if_data: Incomplete
+    _parallel_scripts: Incomplete
+    _referenced_entities: Incomplete
+    _referenced_devices: Incomplete
+    _referenced_areas: Incomplete
+    variables: Incomplete
+    _variables_dynamic: Incomplete
     def __init__(self, hass: HomeAssistant, sequence: Sequence[dict[str, Any]], name: str, domain: str, *, running_description: Union[str, None] = ..., change_listener: Union[Callable[..., Any], None] = ..., script_mode: str = ..., max_runs: int = ..., max_exceeded: str = ..., logger: Union[logging.Logger, None] = ..., log_exceptions: bool = ..., top_level: bool = ..., variables: Union[ScriptVariables, None] = ...) -> None: ...
     @property
     def change_listener(self) -> Union[Callable[..., Any], None]: ...
     @change_listener.setter
     def change_listener(self, change_listener: Callable[..., Any]) -> None: ...
-    _logger: Any
+    _logger: Incomplete
     def _set_logger(self, logger: Union[logging.Logger, None] = ...) -> None: ...
     def update_logger(self, logger: Union[logging.Logger, None] = ...) -> None: ...
     def _changed(self) -> None: ...

@@ -1,4 +1,5 @@
 from .const import CONF_UID as CONF_UID, DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp, zeroconf as zeroconf
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PORT as CONF_PORT
@@ -7,7 +8,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
 DEFAULT_PORT: int
-DATA_SCHEMA: Any
+DATA_SCHEMA: Incomplete
 UNIQUE_ID: str
 
 def async_get_pin_from_discovery_hostname(hostname: str) -> str: ...
@@ -16,7 +17,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    discovery_info: Any
+    discovery_info: Incomplete
     def __init__(self) -> None: ...
     async def _async_set_unique_id(self, pin: str) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

@@ -2,6 +2,7 @@ from .action import DeviceAutomationActionProtocol as DeviceAutomationActionProt
 from .condition import DeviceAutomationConditionProtocol as DeviceAutomationConditionProtocol
 from .exceptions import DeviceNotFound as DeviceNotFound, InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from .trigger import DeviceAutomationTriggerProtocol as DeviceAutomationTriggerProtocol
+from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
 from enum import Enum
 from homeassistant.components import websocket_api as websocket_api
@@ -15,7 +16,7 @@ from typing import Any, Literal, NamedTuple, Union, overload
 
 DeviceAutomationPlatformType = Union[ModuleType, DeviceAutomationTriggerProtocol, DeviceAutomationConditionProtocol, DeviceAutomationActionProtocol]
 DOMAIN: str
-DEVICE_TRIGGER_BASE_SCHEMA: Any
+DEVICE_TRIGGER_BASE_SCHEMA: Incomplete
 
 class DeviceAutomationDetails(NamedTuple):
     section: str
@@ -23,11 +24,11 @@ class DeviceAutomationDetails(NamedTuple):
     get_capabilities_func: str
 
 class DeviceAutomationType(Enum):
-    TRIGGER: Any
-    CONDITION: Any
-    ACTION: Any
+    TRIGGER: Incomplete
+    CONDITION: Incomplete
+    ACTION: Incomplete
 
-TYPES: Any
+TYPES: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 @overload

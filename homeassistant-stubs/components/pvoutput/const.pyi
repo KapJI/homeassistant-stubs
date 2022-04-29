@@ -1,8 +1,9 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Any, Final
+from typing import Final
 
 DOMAIN: Final[str]
-PLATFORMS: Any
-LOGGER: Any
-SCAN_INTERVAL: Any
+PLATFORMS: Incomplete
+LOGGER: Incomplete
+SCAN_INTERVAL: Incomplete
 CONF_SYSTEM_ID: str

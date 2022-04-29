@@ -1,4 +1,5 @@
 from .const import CATEGORY_CDC_REPORT as CATEGORY_CDC_REPORT, CATEGORY_USER_REPORT as CATEGORY_USER_REPORT, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -25,16 +26,16 @@ SENSOR_TYPE_USER_LEPTO: str
 SENSOR_TYPE_USER_NO_SYMPTOMS: str
 SENSOR_TYPE_USER_SYMPTOMS: str
 SENSOR_TYPE_USER_TOTAL: str
-CDC_SENSOR_DESCRIPTIONS: Any
-USER_SENSOR_DESCRIPTIONS: Any
-EXTENDED_SENSOR_TYPE_MAPPING: Any
+CDC_SENSOR_DESCRIPTIONS: Incomplete
+USER_SENSOR_DESCRIPTIONS: Incomplete
+EXTENDED_SENSOR_TYPE_MAPPING: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FluNearYouSensor(CoordinatorEntity, SensorEntity):
-    _attr_unique_id: Any
-    _entry: Any
-    entity_description: Any
+    _attr_unique_id: Incomplete
+    _entry: Incomplete
+    entity_description: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, entry: ConfigEntry, description: SensorEntityDescription) -> None: ...
 
 class CdcSensor(FluNearYouSensor):

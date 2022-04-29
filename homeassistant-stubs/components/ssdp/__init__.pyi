@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from async_upnp_client.const import AddressTupleVXType as AddressTupleVXType, DeviceOrServiceType as DeviceOrServiceType, SsdpSource
 from async_upnp_client.ssdp_listener import SsdpDevice as SsdpDevice
 from async_upnp_client.utils import CaseInsensitiveDict
@@ -17,8 +18,8 @@ from ipaddress import IPv4Address, IPv6Address
 from typing import Any
 
 DOMAIN: str
-SCAN_INTERVAL: Any
-IPV4_BROADCAST: Any
+SCAN_INTERVAL: Incomplete
+IPV4_BROADCAST: Incomplete
 ATTR_SSDP_LOCATION: str
 ATTR_SSDP_ST: str
 ATTR_SSDP_NT: str
@@ -42,8 +43,8 @@ ATTR_UPNP_UDN: str
 ATTR_UPNP_UPC: str
 ATTR_UPNP_PRESENTATION_URL: str
 ATTR_HA_MATCHING_DOMAINS: str
-PRIMARY_MATCH_KEYS: Any
-_LOGGER: Any
+PRIMARY_MATCH_KEYS: Incomplete
+_LOGGER: Incomplete
 
 class _HaServiceDescription:
     x_homeassistant_matching_domains: set[str]
@@ -70,7 +71,7 @@ class SsdpServiceInfo(_HaServiceDescription, _SsdpServiceDescription, _UpnpServi
     def __contains__(self, name: str) -> bool: ...
     def __init__(self, upnp, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
 
-SsdpChange: Any
+SsdpChange: Incomplete
 SsdpCallback = Callable[[SsdpServiceInfo, SsdpChange], Awaitable]
 SSDP_SOURCE_SSDP_CHANGE_MAPPING: Mapping[SsdpSource, SsdpChange]
 
@@ -83,18 +84,18 @@ async def _async_process_callbacks(callbacks: list[SsdpCallback], discovery_info
 def _async_headers_match(headers: CaseInsensitiveDict, lower_match_dict: dict[str, str]) -> bool: ...
 
 class IntegrationMatchers:
-    _match_by_key: Any
+    _match_by_key: Incomplete
     def __init__(self) -> None: ...
     def async_setup(self, integration_matchers: dict[str, list[dict[str, str]]]) -> None: ...
     def async_matching_domains(self, info_with_desc: CaseInsensitiveDict) -> set[str]: ...
 
 class Scanner:
-    hass: Any
-    _cancel_scan: Any
-    _ssdp_listeners: Any
-    _callbacks: Any
-    _description_cache: Any
-    integration_matchers: Any
+    hass: Incomplete
+    _cancel_scan: Incomplete
+    _ssdp_listeners: Incomplete
+    _callbacks: Incomplete
+    _description_cache: Incomplete
+    integration_matchers: Incomplete
     def __init__(self, hass: HomeAssistant, integration_matchers: IntegrationMatchers) -> None: ...
     @property
     def _ssdp_devices(self) -> list[SsdpDevice]: ...

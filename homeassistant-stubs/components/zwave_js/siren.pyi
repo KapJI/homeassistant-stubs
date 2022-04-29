@@ -1,6 +1,7 @@
 from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from _typeshed import Incomplete
 from homeassistant.components.siren import SirenEntity as SirenEntity, SirenEntityFeature as SirenEntityFeature
 from homeassistant.components.siren.const import ATTR_TONE as ATTR_TONE, ATTR_VOLUME_LEVEL as ATTR_VOLUME_LEVEL
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,8 +14,8 @@ from zwave_js_server.client import Client as ZwaveClient
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveSirenEntity(ZWaveBaseEntity, SirenEntity):
-    _attr_available_tones: Any
-    _attr_supported_features: Any
+    _attr_available_tones: Incomplete
+    _attr_supported_features: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...

@@ -3,6 +3,7 @@ from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import NumericSensorDataTemplate as NumericSensorDataTemplate, NumericSensorDataTemplateData as NumericSensorDataTemplateData
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_device_id as get_device_id, get_valueless_base_unique_id as get_valueless_base_unique_id
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,22 +12,21 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const import NodeStatus
 from zwave_js_server.model.node import Node as ZwaveNode
 
-LOGGER: Any
+LOGGER: Incomplete
 STATUS_ICON: dict[NodeStatus, str]
 ENTITY_DESCRIPTION_KEY_MAP: dict[str, SensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveSensorBase(ZWaveBaseEntity, SensorEntity):
-    entity_description: Any
-    _attr_native_unit_of_measurement: Any
+    entity_description: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
     _attr_force_update: bool
-    _attr_name: Any
+    _attr_name: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: Union[str, None] = ...) -> None: ...
 
 class ZWaveStringSensor(ZwaveSensorBase):
@@ -36,7 +36,7 @@ class ZWaveStringSensor(ZwaveSensorBase):
     def native_unit_of_measurement(self) -> Union[str, None]: ...
 
 class ZWaveNumericSensor(ZwaveSensorBase):
-    _attr_native_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Incomplete
     def on_value_update(self) -> None: ...
     @property
     def native_value(self) -> float: ...
@@ -49,7 +49,7 @@ class ZWaveMeterSensor(ZWaveNumericSensor):
     async def async_reset_meter(self, meter_type: Union[int, None] = ..., value: Union[int, None] = ...) -> None: ...
 
 class ZWaveListSensor(ZwaveSensorBase):
-    _attr_name: Any
+    _attr_name: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: Union[str, None] = ...) -> None: ...
     @property
     def native_value(self) -> Union[str, None]: ...
@@ -57,8 +57,8 @@ class ZWaveListSensor(ZwaveSensorBase):
     def extra_state_attributes(self) -> Union[dict[str, str], None]: ...
 
 class ZWaveConfigParameterSensor(ZwaveSensorBase):
-    _primary_value: Any
-    _attr_name: Any
+    _primary_value: Incomplete
+    _attr_name: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: Union[str, None] = ...) -> None: ...
     @property
     def native_value(self) -> Union[str, None]: ...
@@ -67,15 +67,15 @@ class ZWaveConfigParameterSensor(ZwaveSensorBase):
 
 class ZWaveNodeStatusSensor(SensorEntity):
     _attr_should_poll: bool
-    _attr_entity_category: Any
-    config_entry: Any
-    client: Any
-    node: Any
-    _attr_name: Any
-    _base_unique_id: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
-    _attr_native_value: Any
+    _attr_entity_category: Incomplete
+    config_entry: Incomplete
+    client: Incomplete
+    node: Incomplete
+    _attr_name: Incomplete
+    _base_unique_id: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    _attr_native_value: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, node: ZwaveNode) -> None: ...
     async def async_poll_value(self, _: bool) -> None: ...
     def _status_changed(self, _: dict) -> None: ...

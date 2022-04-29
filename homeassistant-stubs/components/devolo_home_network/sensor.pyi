@@ -1,5 +1,6 @@
 from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_WIFI_CLIENTS as CONNECTED_WIFI_CLIENTS, DOMAIN as DOMAIN, NEIGHBORING_WIFI_NETWORKS as NEIGHBORING_WIFI_NETWORKS
 from .entity import DevoloEntity as DevoloEntity
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from devolo_plc_api.device import Device as Device
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -22,7 +23,7 @@ SENSOR_TYPES: dict[str, DevoloSensorEntityDescription]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloSensorEntity(DevoloEntity, SensorEntity):
-    entity_description: Any
+    entity_description: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, description: DevoloSensorEntityDescription, device: Device, device_name: str) -> None: ...
     @property
     def native_value(self) -> int: ...

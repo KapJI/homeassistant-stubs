@@ -1,5 +1,6 @@
 from .const import CONNECTION_EXCEPTIONS as CONNECTION_EXCEPTIONS, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_is_steamist_device as async_is_steamist_device, async_update_entry_from_discovery as async_update_entry_from_discovery
+from _typeshed import Incomplete
 from discovery30303 import Device30303
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp
@@ -10,12 +11,12 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    _discovered_devices: Any
-    _discovered_device: Any
+    _discovered_devices: Incomplete
+    _discovered_device: Incomplete
     def __init__(self) -> None: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> FlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> FlowResult: ...

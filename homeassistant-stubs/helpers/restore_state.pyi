@@ -5,6 +5,7 @@ from .event import async_track_time_interval as async_track_time_interval
 from .json import JSONEncoder as JSONEncoder
 from .singleton import singleton as singleton
 from .storage import Store as Store
+from _typeshed import Incomplete
 from abc import abstractmethod
 from datetime import datetime
 from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -13,11 +14,11 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any, TypeVar
 
 DATA_RESTORE_STATE_TASK: str
-_LOGGER: Any
+_LOGGER: Incomplete
 STORAGE_KEY: str
 STORAGE_VERSION: int
-STATE_DUMP_INTERVAL: Any
-STATE_EXPIRATION: Any
+STATE_DUMP_INTERVAL: Incomplete
+STATE_EXPIRATION: Incomplete
 _StoredStateT = TypeVar('_StoredStateT', bound='StoredState')
 
 class ExtraStoredData(metaclass=abc.ABCMeta):
@@ -25,14 +26,14 @@ class ExtraStoredData(metaclass=abc.ABCMeta):
     def as_dict(self) -> dict[str, Any]: ...
 
 class RestoredExtraData(ExtraStoredData):
-    json_dict: Any
+    json_dict: Incomplete
     def __init__(self, json_dict: dict[str, Any]) -> None: ...
     def as_dict(self) -> dict[str, Any]: ...
 
 class StoredState:
-    extra_data: Any
-    last_seen: Any
-    state: Any
+    extra_data: Incomplete
+    last_seen: Incomplete
+    state: Incomplete
     def __init__(self, state: State, extra_data: Union[ExtraStoredData, None], last_seen: datetime) -> None: ...
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
@@ -43,10 +44,10 @@ class RestoreStateData:
     async def async_get_instance(hass: HomeAssistant) -> RestoreStateData: ...
     @classmethod
     async def async_save_persistent_states(cls, hass: HomeAssistant) -> None: ...
-    hass: Any
-    store: Any
-    last_states: Any
-    entities: Any
+    hass: Incomplete
+    store: Incomplete
+    last_states: Incomplete
+    entities: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_get_stored_states(self) -> list[StoredState]: ...
     async def async_dump_states(self) -> None: ...

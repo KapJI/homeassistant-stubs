@@ -2,6 +2,7 @@ from .config import AutomationConfig as AutomationConfig, async_validate_config_
 from .const import CONF_ACTION as CONF_ACTION, CONF_INITIAL_STATE as CONF_INITIAL_STATE, CONF_TRACE as CONF_TRACE, CONF_TRIGGER as CONF_TRIGGER, CONF_TRIGGER_VARIABLES as CONF_TRIGGER_VARIABLES, DEFAULT_INITIAL_STATE as DEFAULT_INITIAL_STATE, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import async_get_blueprints as async_get_blueprints
 from .trace import trace_automation as trace_automation
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable
 from homeassistant.components import blueprint as blueprint
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ALIAS as CONF_ALIAS, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_PLATFORM as CONF_PLATFORM, CONF_VARIABLES as CONF_VARIABLES, CONF_ZONE as CONF_ZONE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
@@ -22,7 +23,7 @@ from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from typing import Any, TypedDict
 
-ENTITY_ID_FORMAT: Any
+ENTITY_ID_FORMAT: Incomplete
 CONF_SKIP_CONDITION: str
 CONF_STOP_ACTIONS: str
 DEFAULT_STOP_ACTIONS: bool
@@ -32,7 +33,7 @@ ATTR_LAST_TRIGGERED: str
 ATTR_SOURCE: str
 ATTR_VARIABLES: str
 SERVICE_TRIGGER: str
-_LOGGER: Any
+_LOGGER: Incomplete
 AutomationActionType = Callable[[HomeAssistant, TemplateVarsType], Awaitable[None]]
 
 class AutomationTriggerData(TypedDict):
@@ -57,22 +58,22 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class AutomationEntity(ToggleEntity, RestoreEntity):
     _attr_should_poll: bool
-    _attr_name: Any
-    _trigger_config: Any
-    _async_detach_triggers: Any
-    _cond_func: Any
-    action_script: Any
-    _initial_state: Any
+    _attr_name: Incomplete
+    _trigger_config: Incomplete
+    _async_detach_triggers: Incomplete
+    _cond_func: Incomplete
+    action_script: Incomplete
+    _initial_state: Incomplete
     _is_enabled: bool
-    _referenced_entities: Any
-    _referenced_devices: Any
-    _logger: Any
-    _variables: Any
-    _trigger_variables: Any
-    _raw_config: Any
-    _blueprint_inputs: Any
-    _trace_config: Any
-    _attr_unique_id: Any
+    _referenced_entities: Incomplete
+    _referenced_devices: Incomplete
+    _logger: Incomplete
+    _variables: Incomplete
+    _trigger_variables: Incomplete
+    _raw_config: Incomplete
+    _blueprint_inputs: Incomplete
+    _trace_config: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, automation_id, name, trigger_config, cond_func, action_script, initial_state, variables, trigger_variables, raw_config, blueprint_inputs, trace_config) -> None: ...
     @property
     def extra_state_attributes(self): ...
@@ -87,7 +88,7 @@ class AutomationEntity(ToggleEntity, RestoreEntity):
     async def async_added_to_hass(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    async def async_trigger(self, run_variables, context: Any | None = ..., skip_condition: bool = ...) -> None: ...
+    async def async_trigger(self, run_variables, context: Incomplete | None = ..., skip_condition: bool = ...) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_enable(self) -> None: ...
     async def async_disable(self, stop_actions=...) -> None: ...

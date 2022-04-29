@@ -1,4 +1,5 @@
 from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS
+from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
 from aiohttp.web_urldispatcher import AbstractRoute as AbstractRoute
@@ -10,7 +11,7 @@ from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from http import HTTPStatus
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class HomeAssistantView:
     url: Union[str, None]

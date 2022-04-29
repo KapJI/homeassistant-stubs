@@ -1,7 +1,8 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Any, Final
+from typing import Final
 
-MODEL_NAMES: Final[Any]
+MODEL_NAMES: Final[Incomplete]
 DOMAIN: Final[str]
-PLATFORMS: Final[Any]
-TYPE_TO_PLATFORM: Any
+PLATFORMS: Final[Incomplete]
+TYPE_TO_PLATFORM: Incomplete

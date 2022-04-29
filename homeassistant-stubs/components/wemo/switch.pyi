@@ -1,5 +1,6 @@
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity
 from .wemo_device import DeviceCoordinator as DeviceCoordinator
+from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_STANDBY as STATE_STANDBY, STATE_UNKNOWN as STATE_UNKNOWN
@@ -9,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util import convert as convert
 from typing import Any
 
-SCAN_INTERVAL: Any
+SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
 ATTR_SENSOR_STATE: str
 ATTR_SWITCH_MODE: str

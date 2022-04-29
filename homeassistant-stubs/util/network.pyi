@@ -1,9 +1,9 @@
+from _typeshed import Incomplete
 from ipaddress import IPv4Address, IPv6Address
-from typing import Any
 
-LOOPBACK_NETWORKS: Any
-PRIVATE_NETWORKS: Any
-LINK_LOCAL_NETWORK: Any
+LOOPBACK_NETWORKS: Incomplete
+PRIVATE_NETWORKS: Incomplete
+LINK_LOCAL_NETWORK: Incomplete
 
 def is_loopback(address: Union[IPv4Address, IPv6Address]) -> bool: ...
 def is_private(address: Union[IPv4Address, IPv6Address]) -> bool: ...

@@ -1,6 +1,7 @@
 from . import NanoleafEntryData as NanoleafEntryData
 from .const import DOMAIN as DOMAIN
 from .entity import NanoleafEntity as NanoleafEntity
+from _typeshed import Incomplete
 from aionanoleaf import Nanoleaf as Nanoleaf
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,18 +10,18 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
-RESERVED_EFFECTS: Any
+RESERVED_EFFECTS: Incomplete
 DEFAULT_NAME: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NanoleafLight(NanoleafEntity, LightEntity):
-    _attr_supported_color_modes: Any
-    _attr_supported_features: Any
-    _attr_unique_id: Any
-    _attr_name: Any
-    _attr_min_mireds: Any
-    _attr_max_mireds: Any
+    _attr_supported_color_modes: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_name: Incomplete
+    _attr_min_mireds: Incomplete
+    _attr_max_mireds: Incomplete
     def __init__(self, nanoleaf: Nanoleaf, coordinator: DataUpdateCoordinator) -> None: ...
     @property
     def brightness(self) -> int: ...

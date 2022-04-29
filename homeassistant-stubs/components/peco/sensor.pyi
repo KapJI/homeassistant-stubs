@@ -1,5 +1,6 @@
 from . import PECOCoordinatorData as PECOCoordinatorData
 from .const import ATTR_CONTENT as ATTR_CONTENT, CONF_COUNTY as CONF_COUNTY, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,7 +8,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any, Final
+from typing import Final
 
 class PECOSensorEntityDescriptionMixin:
     value_fn: Callable[[PECOCoordinatorData], Union[int, str]]
@@ -24,8 +25,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class PecoSensor(CoordinatorEntity[DataUpdateCoordinator[PECOCoordinatorData]], SensorEntity):
     entity_description: PECOSensorEntityDescription
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, description: PECOSensorEntityDescription, county: str, coordinator: DataUpdateCoordinator[PECOCoordinatorData]) -> None: ...
     @property
     def native_value(self) -> Union[int, str]: ...

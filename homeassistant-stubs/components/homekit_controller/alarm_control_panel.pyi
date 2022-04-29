@@ -1,4 +1,5 @@
 from . import HomeKitEntity as HomeKitEntity, KNOWN_DEVICES as KNOWN_DEVICES
+from _typeshed import Incomplete
 from aiohomekit.model.services import Service as Service
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,13 +9,13 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 ICON: str
-CURRENT_STATE_MAP: Any
-TARGET_STATE_MAP: Any
+CURRENT_STATE_MAP: Incomplete
+TARGET_STATE_MAP: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HomeKitAlarmControlPanelEntity(HomeKitEntity, AlarmControlPanelEntity):
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     def get_characteristic_types(self) -> list[str]: ...
     @property
     def icon(self) -> str: ...

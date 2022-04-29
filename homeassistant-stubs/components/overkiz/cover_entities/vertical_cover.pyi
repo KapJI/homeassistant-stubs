@@ -1,11 +1,12 @@
 from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from .generic_cover import COMMANDS_CLOSE_TILT as COMMANDS_CLOSE_TILT, COMMANDS_OPEN_TILT as COMMANDS_OPEN_TILT, COMMANDS_STOP as COMMANDS_STOP, OverkizGenericCover as OverkizGenericCover
+from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntityFeature as CoverEntityFeature
 from typing import Any
 
-COMMANDS_OPEN: Any
-COMMANDS_CLOSE: Any
-OVERKIZ_DEVICE_TO_DEVICE_CLASS: Any
+COMMANDS_OPEN: Incomplete
+COMMANDS_CLOSE: Incomplete
+OVERKIZ_DEVICE_TO_DEVICE_CLASS: Incomplete
 
 class VerticalCover(OverkizGenericCover):
     @property
@@ -23,8 +24,8 @@ class VerticalCover(OverkizGenericCover):
     def is_closing(self) -> Union[bool, None]: ...
 
 class LowSpeedCover(VerticalCover):
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...

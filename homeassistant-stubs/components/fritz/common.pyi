@@ -1,4 +1,5 @@
 from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles, SERVICE_CLEANUP as SERVICE_CLEANUP, SERVICE_REBOOT as SERVICE_REBOOT, SERVICE_RECONNECT as SERVICE_RECONNECT, SERVICE_SET_GUEST_WIFI_PW as SERVICE_SET_GUEST_WIFI_PW
+from _typeshed import Incomplete
 from collections.abc import Callable, ValuesView
 from datetime import datetime
 from homeassistant.components.device_tracker.const import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
@@ -11,7 +12,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from types import MappingProxyType
 from typing import Any, TypedDict
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def _is_tracked(mac: str, current_devices: ValuesView) -> bool: ...
 def device_filter_out_from_trackers(mac: str, device: FritzDevice, current_devices: ValuesView) -> bool: ...
@@ -45,24 +46,24 @@ class HostInfo(TypedDict):
     status: bool
 
 class FritzBoxTools(update_coordinator.DataUpdateCoordinator):
-    _devices: Any
-    _options: Any
-    _unique_id: Any
-    connection: Any
-    fritz_guest_wifi: Any
-    fritz_hosts: Any
-    fritz_status: Any
-    hass: Any
-    host: Any
-    mesh_role: Any
-    device_conn_type: Any
+    _devices: Incomplete
+    _options: Incomplete
+    _unique_id: Incomplete
+    connection: Incomplete
+    fritz_guest_wifi: Incomplete
+    fritz_hosts: Incomplete
+    fritz_status: Incomplete
+    hass: Incomplete
+    host: Incomplete
+    mesh_role: Incomplete
+    device_conn_type: Incomplete
     device_is_router: bool
-    password: Any
-    port: Any
-    username: Any
-    _model: Any
-    _current_firmware: Any
-    _latest_firmware: Any
+    password: Incomplete
+    port: Incomplete
+    username: Incomplete
+    _model: Incomplete
+    _current_firmware: Incomplete
+    _latest_firmware: Incomplete
     _update_available: bool
     def __init__(self, hass: HomeAssistant, password: str, username: str = ..., host: str = ..., port: int = ...) -> None: ...
     async def async_setup(self, options: Union[MappingProxyType[str, Any], None] = ...) -> None: ...
@@ -132,9 +133,9 @@ class FritzData:
     def __init__(self, tracked, profile_switches) -> None: ...
 
 class FritzDeviceBase(update_coordinator.CoordinatorEntity[AvmWrapper]):
-    _avm_wrapper: Any
-    _mac: Any
-    _name: Any
+    _avm_wrapper: Incomplete
+    _mac: Incomplete
+    _name: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
     def name(self) -> str: ...
@@ -151,13 +152,13 @@ class FritzDeviceBase(update_coordinator.CoordinatorEntity[AvmWrapper]):
 
 class FritzDevice:
     _connected: bool
-    _connected_to: Any
-    _connection_type: Any
-    _ip_address: Any
-    _last_activity: Any
-    _mac: Any
-    _name: Any
-    _ssid: Any
+    _connected_to: Incomplete
+    _connection_type: Incomplete
+    _ip_address: Incomplete
+    _last_activity: Incomplete
+    _mac: Incomplete
+    _name: Incomplete
+    _ssid: Incomplete
     _wan_access: bool
     def __init__(self, mac: str, name: str) -> None: ...
     def update(self, dev_info: Device, consider_home: float) -> None: ...
@@ -189,8 +190,8 @@ class SwitchInfo(TypedDict):
     callback_switch: Callable
 
 class FritzBoxBaseEntity:
-    _avm_wrapper: Any
-    _device_name: Any
+    _avm_wrapper: Incomplete
+    _device_name: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_name: str) -> None: ...
     @property
     def mac_address(self) -> str: ...

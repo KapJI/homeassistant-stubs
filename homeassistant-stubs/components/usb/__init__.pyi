@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .models import USBDevice as USBDevice
 from .utils import usb_device_from_port as usb_device_from_port
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
@@ -16,7 +17,7 @@ from pyudev import Device as Device
 from serial.tools.list_ports_common import ListPortInfo as ListPortInfo
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 REQUEST_SCAN_COOLDOWN: int
 
 class UsbServiceInfo(BaseServiceInfo):
@@ -35,11 +36,11 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _fnmatch_lower(name: Union[str, None], pattern: str) -> bool: ...
 
 class USBDiscovery:
-    hass: Any
-    usb: Any
-    seen: Any
+    hass: Incomplete
+    usb: Incomplete
+    seen: Incomplete
     observer_active: bool
-    _request_debouncer: Any
+    _request_debouncer: Incomplete
     def __init__(self, hass: HomeAssistant, usb: list[dict[str, str]]) -> None: ...
     async def async_setup(self) -> None: ...
     async def async_start(self, event: Event) -> None: ...

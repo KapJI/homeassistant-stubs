@@ -1,16 +1,16 @@
 from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
 
 class ValloxBinarySensor(CoordinatorEntity[ValloxDataUpdateCoordinator], BinarySensorEntity):
     entity_description: ValloxBinarySensorEntityDescription
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...

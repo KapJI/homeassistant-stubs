@@ -16,12 +16,13 @@ from .helpers.frame import report as report
 from .helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from .setup import async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component
 from .util.decorator import Registry as Registry
+from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
 from contextvars import ContextVar
 from enum import Enum
 from typing import Any, TypeVar
 
-_LOGGER: Any
+_LOGGER: Incomplete
 SOURCE_DHCP: str
 SOURCE_DISCOVERY: str
 SOURCE_HASSIO: str
@@ -44,12 +45,12 @@ SAVE_DELAY: int
 _T = TypeVar('_T', bound='ConfigEntryState')
 
 class ConfigEntryState(Enum):
-    LOADED: Any
-    SETUP_ERROR: Any
-    MIGRATION_ERROR: Any
-    SETUP_RETRY: Any
-    NOT_LOADED: Any
-    FAILED_UNLOAD: Any
+    LOADED: Incomplete
+    SETUP_ERROR: Incomplete
+    MIGRATION_ERROR: Incomplete
+    SETUP_RETRY: Incomplete
+    NOT_LOADED: Incomplete
+    FAILED_UNLOAD: Incomplete
     _recoverable: bool
     def __new__(cls, value: str, recoverable: bool) -> _T: ...
     @property
@@ -57,14 +58,14 @@ class ConfigEntryState(Enum):
 
 DEFAULT_DISCOVERY_UNIQUE_ID: str
 DISCOVERY_NOTIFICATION_ID: str
-DISCOVERY_SOURCES: Any
+DISCOVERY_SOURCES: Incomplete
 RECONFIGURE_NOTIFICATION_ID: str
 EVENT_FLOW_DISCOVERED: str
 
 class ConfigEntryDisabler(StrEnum):
     USER: str
 
-DISABLED_USER: Any
+DISABLED_USER: Incomplete
 RELOAD_AFTER_UPDATE_DELAY: int
 CONN_CLASS_CLOUD_PUSH: str
 CONN_CLASS_CLOUD_POLL: str
@@ -77,28 +78,28 @@ class ConfigError(HomeAssistantError): ...
 class UnknownEntry(ConfigError): ...
 class OperationNotAllowed(ConfigError): ...
 
-UpdateListenerType: Any
+UpdateListenerType: Incomplete
 
 class ConfigEntry:
-    __slots__: Any
-    entry_id: Any
-    version: Any
-    domain: Any
-    title: Any
-    data: Any
-    options: Any
-    pref_disable_new_entities: Any
-    pref_disable_polling: Any
-    source: Any
-    state: Any
-    unique_id: Any
-    disabled_by: Any
+    __slots__: Incomplete
+    entry_id: Incomplete
+    version: Incomplete
+    domain: Incomplete
+    title: Incomplete
+    data: Incomplete
+    options: Incomplete
+    pref_disable_new_entities: Incomplete
+    pref_disable_polling: Incomplete
+    source: Incomplete
+    state: Incomplete
+    unique_id: Incomplete
+    disabled_by: Incomplete
     supports_unload: bool
     supports_remove_device: bool
-    update_listeners: Any
-    reason: Any
-    _async_cancel_retry_setup: Any
-    _on_unload: Any
+    update_listeners: Incomplete
+    reason: Incomplete
+    _async_cancel_retry_setup: Incomplete
+    _on_unload: Incomplete
     def __init__(self, version: int, domain: str, title: str, data: Mapping[str, Any], source: str, pref_disable_new_entities: Union[bool, None] = ..., pref_disable_polling: Union[bool, None] = ..., options: Union[Mapping[str, Any], None] = ..., unique_id: Union[str, None] = ..., entry_id: Union[str, None] = ..., state: ConfigEntryState = ..., disabled_by: Union[ConfigEntryDisabler, None] = ...) -> None: ...
     async def async_setup(self, hass: HomeAssistant, *, integration: Union[loader.Integration, None] = ..., tries: int = ...) -> None: ...
     async def async_shutdown(self) -> None: ...
@@ -115,8 +116,8 @@ class ConfigEntry:
 current_entry: ContextVar[Union[ConfigEntry, None]]
 
 class ConfigEntriesFlowManager(data_entry_flow.FlowManager):
-    config_entries: Any
-    _hass_config: Any
+    config_entries: Incomplete
+    _hass_config: Incomplete
     def __init__(self, hass: HomeAssistant, config_entries: ConfigEntries, hass_config: ConfigType) -> None: ...
     def _async_has_other_discovery_flows(self, flow_id: str) -> bool: ...
     async def async_finish_flow(self, flow: data_entry_flow.FlowHandler, result: data_entry_flow.FlowResult) -> data_entry_flow.FlowResult: ...
@@ -124,13 +125,13 @@ class ConfigEntriesFlowManager(data_entry_flow.FlowManager):
     async def async_post_init(self, flow: data_entry_flow.FlowHandler, result: data_entry_flow.FlowResult) -> None: ...
 
 class ConfigEntries:
-    hass: Any
-    flow: Any
-    options: Any
-    _hass_config: Any
-    _entries: Any
-    _domain_index: Any
-    _store: Any
+    hass: Incomplete
+    flow: Incomplete
+    options: Incomplete
+    _hass_config: Incomplete
+    _entries: Incomplete
+    _domain_index: Incomplete
+    _store: Incomplete
     def __init__(self, hass: HomeAssistant, hass_config: ConfigType) -> None: ...
     def async_domains(self, include_ignore: bool = ..., include_disabled: bool = ...) -> list[str]: ...
     def async_get_entry(self, entry_id: str) -> Union[ConfigEntry, None]: ...
@@ -192,10 +193,10 @@ class OptionsFlow(data_entry_flow.FlowHandler):
     handler: str
 
 class EntityRegistryDisabledHandler:
-    hass: Any
-    registry: Any
-    changed: Any
-    _remove_call_later: Any
+    hass: Incomplete
+    registry: Incomplete
+    changed: Incomplete
+    _remove_call_later: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_setup(self) -> None: ...
     async def _handle_entry_updated(self, event: Event) -> None: ...

@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
@@ -8,21 +9,20 @@ from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEnt
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any
 
-SCAN_INTERVAL: Any
-ENTITY_ID_FORMAT: Any
-MIN_TIME_BETWEEN_SCANS: Any
-_LOGGER: Any
+SCAN_INTERVAL: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+MIN_TIME_BETWEEN_SCANS: Incomplete
+_LOGGER: Incomplete
 
 class SwitchDeviceClass(StrEnum):
     OUTLET: str
     SWITCH: str
 
-DEVICE_CLASSES_SCHEMA: Any
-DEVICE_CLASSES: Any
-DEVICE_CLASS_OUTLET: Any
-DEVICE_CLASS_SWITCH: Any
+DEVICE_CLASSES_SCHEMA: Incomplete
+DEVICE_CLASSES: Incomplete
+DEVICE_CLASS_OUTLET: Incomplete
+DEVICE_CLASS_SWITCH: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

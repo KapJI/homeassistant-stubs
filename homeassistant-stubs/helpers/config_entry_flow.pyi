@@ -1,4 +1,5 @@
 from .typing import DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp, mqtt as mqtt, ssdp as ssdp, zeroconf as zeroconf
@@ -8,13 +9,13 @@ from typing import Any, TypeVar
 
 _R = TypeVar('_R', bound='Awaitable[bool] | bool')
 DiscoveryFunctionType = Callable[[HomeAssistant], _R]
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class DiscoveryFlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _domain: Any
-    _title: Any
-    _discovery_function: Any
+    _domain: Incomplete
+    _title: Incomplete
+    _discovery_function: Incomplete
     def __init__(self, domain: str, title: str, discovery_function: DiscoveryFunctionType[_R]) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
@@ -30,10 +31,10 @@ def register_discovery_flow(domain: str, title: str, discovery_function: Discove
 
 class WebhookFlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _domain: Any
-    _title: Any
-    _description_placeholder: Any
-    _allow_multiple: Any
+    _domain: Incomplete
+    _title: Incomplete
+    _description_placeholder: Incomplete
+    _allow_multiple: Incomplete
     def __init__(self, domain: str, title: str, description_placeholder: dict, allow_multiple: bool) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 

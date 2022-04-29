@@ -1,7 +1,8 @@
 from . import WebOsClientWrapper as WebOsClientWrapper
 from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_SOUND_OUTPUT as ATTR_SOUND_OUTPUT, CONF_SOURCES as CONF_SOURCES, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, LIVE_TV_APP_ID as LIVE_TV_APP_ID, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
+from _typeshed import Incomplete
 from aiowebostv import WebOsClient as WebOsClient
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant import util as util
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.components.media_player.const import MEDIA_TYPE_CHANNEL as MEDIA_TYPE_CHANNEL
@@ -16,46 +17,46 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any, TypeVar
 from typing_extensions import Concatenate as Concatenate
 
-_LOGGER: Any
-SUPPORT_WEBOSTV: Any
-SUPPORT_WEBOSTV_VOLUME: Any
-MIN_TIME_BETWEEN_SCANS: Any
-MIN_TIME_BETWEEN_FORCED_SCANS: Any
-SCAN_INTERVAL: Any
+_LOGGER: Incomplete
+SUPPORT_WEBOSTV: Incomplete
+SUPPORT_WEBOSTV_VOLUME: Incomplete
+MIN_TIME_BETWEEN_SCANS: Incomplete
+MIN_TIME_BETWEEN_FORCED_SCANS: Incomplete
+SCAN_INTERVAL: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 _T = TypeVar('_T', bound='LgWebOSMediaPlayerEntity')
-_P: Any
+_P: Incomplete
 
 def cmd(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
-    _attr_device_class: Any
-    _wrapper: Any
-    _client: Any
+    _attr_device_class: Incomplete
+    _wrapper: Incomplete
+    _client: Incomplete
     _attr_assumed_state: bool
-    _attr_name: Any
-    _attr_unique_id: Any
-    _sources: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _sources: Incomplete
     _paused: bool
-    _current_source: Any
-    _source_list: Any
+    _current_source: Incomplete
+    _source_list: Incomplete
     _supported_features: int
     def __init__(self, wrapper: WebOsClientWrapper, name: str, sources: Union[list[str], None], unique_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_signal_handler(self, data: dict[str, Any]) -> None: ...
     async def async_handle_state_update(self, _client: WebOsClient) -> None: ...
-    _attr_state: Any
-    _attr_is_volume_muted: Any
-    _attr_volume_level: Any
-    _attr_source: Any
-    _attr_source_list: Any
-    _attr_media_content_type: Any
-    _attr_media_title: Any
-    _attr_media_image_url: Any
-    _attr_device_info: Any
-    _attr_extra_state_attributes: Any
+    _attr_state: Incomplete
+    _attr_is_volume_muted: Incomplete
+    _attr_volume_level: Incomplete
+    _attr_source: Incomplete
+    _attr_source_list: Incomplete
+    _attr_media_content_type: Incomplete
+    _attr_media_title: Incomplete
+    _attr_media_image_url: Incomplete
+    _attr_device_info: Incomplete
+    _attr_extra_state_attributes: Incomplete
     def _update_states(self) -> None: ...
     def _update_sources(self) -> None: ...
     async def async_update(self) -> None: ...

@@ -1,5 +1,6 @@
 import httpx
 from .frame import warn_use as warn_use
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -8,7 +9,7 @@ from typing import Any
 
 DATA_ASYNC_CLIENT: str
 DATA_ASYNC_CLIENT_NOVERIFY: str
-SERVER_SOFTWARE: Any
+SERVER_SOFTWARE: Incomplete
 USER_AGENT: str
 
 def get_async_client(hass: HomeAssistant, verify_ssl: bool = ...) -> httpx.AsyncClient: ...

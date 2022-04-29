@@ -1,10 +1,11 @@
 from .utils import get_nested_attr as get_nested_attr
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from pyunifiprotect.data import ProtectDeviceModel
 from typing import Any, TypeVar
 
-_LOGGER: Any
+_LOGGER: Incomplete
 T = TypeVar('T', bound=ProtectDeviceModel)
 
 class ProtectRequiredKeysMixin(EntityDescription):

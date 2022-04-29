@@ -1,5 +1,6 @@
 from .deconz_device import DeconzDevice as DeconzDevice
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -8,15 +9,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pydeconz.models.light.cover import Cover
 from typing import Any
 
-DEVICE_CLASS: Any
+DEVICE_CLASS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzCover(DeconzDevice, CoverEntity):
-    TYPE: Any
+    TYPE: Incomplete
     _device: Cover
-    _attr_supported_features: Any
-    _attr_device_class: Any
+    _attr_supported_features: Incomplete
+    _attr_device_class: Incomplete
     def __init__(self, device: Cover, gateway: DeconzGateway) -> None: ...
     @property
     def current_cover_position(self) -> int: ...

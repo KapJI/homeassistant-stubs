@@ -1,4 +1,5 @@
 from . import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from datetime import date as Date
 from hdate import HDate
 from hdate.zmanim import Zmanim
@@ -10,24 +11,24 @@ from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-_LOGGER: Any
-DATA_SENSORS: Any
-TIME_SENSORS: Any
+_LOGGER: Incomplete
+DATA_SENSORS: Incomplete
+TIME_SENSORS: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class JewishCalendarSensor(SensorEntity):
-    entity_description: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _location: Any
-    _hebrew: Any
-    _candle_lighting_offset: Any
-    _havdalah_offset: Any
-    _diaspora: Any
-    _holiday_attrs: Any
+    entity_description: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _location: Incomplete
+    _hebrew: Incomplete
+    _candle_lighting_offset: Incomplete
+    _havdalah_offset: Incomplete
+    _diaspora: Incomplete
+    _holiday_attrs: Incomplete
     def __init__(self, data: dict[str, Union[str, bool, int, float]], description: SensorEntityDescription) -> None: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     async def async_update(self) -> None: ...
     def make_zmanim(self, date: Date) -> Zmanim: ...
     @property
@@ -35,5 +36,5 @@ class JewishCalendarSensor(SensorEntity):
     def get_state(self, daytime_date: HDate, after_shkia_date: HDate, after_tzais_date: HDate) -> Union[Any, None]: ...
 
 class JewishCalendarTimeSensor(JewishCalendarSensor):
-    _attr_device_class: Any
+    _attr_device_class: Incomplete
     def get_state(self, daytime_date: HDate, after_shkia_date: HDate, after_tzais_date: HDate) -> Union[Any, None]: ...

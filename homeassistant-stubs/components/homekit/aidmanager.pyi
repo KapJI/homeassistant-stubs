@@ -1,15 +1,15 @@
 from .util import get_aid_storage_filename_for_entry_id as get_aid_storage_filename_for_entry_id
+from _typeshed import Incomplete
 from collections.abc import Generator
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_registry import EntityRegistry as EntityRegistry, RegistryEntry as RegistryEntry
 from homeassistant.helpers.storage import Store as Store
-from typing import Any
 
 AID_MANAGER_STORAGE_VERSION: int
 AID_MANAGER_SAVE_DELAY: int
 ALLOCATIONS_KEY: str
 UNIQUE_IDS_KEY: str
-INVALID_AIDS: Any
+INVALID_AIDS: Incomplete
 AID_MIN: int
 AID_MAX: int
 
@@ -17,12 +17,12 @@ def get_system_unique_id(entity: RegistryEntry) -> str: ...
 def _generate_aids(unique_id: Union[str, None], entity_id: str) -> Generator[int, None, None]: ...
 
 class AccessoryAidStorage:
-    hass: Any
-    allocations: Any
-    allocated_aids: Any
-    _entry_id: Any
-    store: Any
-    _entity_registry: Any
+    hass: Incomplete
+    allocations: Incomplete
+    allocated_aids: Incomplete
+    _entry_id: Incomplete
+    store: Incomplete
+    _entity_registry: Incomplete
     def __init__(self, hass: HomeAssistant, entry_id: str) -> None: ...
     async def async_initialize(self) -> None: ...
     def get_or_allocate_aid_for_entity_id(self, entity_id: str) -> int: ...

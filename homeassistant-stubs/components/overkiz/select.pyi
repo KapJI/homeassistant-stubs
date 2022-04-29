@@ -1,6 +1,7 @@
 from . import HomeAssistantOverkizData as HomeAssistantOverkizData
 from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity, OverkizDeviceClass as OverkizDeviceClass
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,7 +9,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyoverkiz.enums import OverkizCommandParam
-from typing import Any
 
 class OverkizSelectDescriptionMixin:
     options: list[Union[str, OverkizCommandParam]]
@@ -22,7 +22,7 @@ def _select_option_open_closed_pedestrian(option: str, execute_command: Callable
 def _select_option_memorized_simple_volume(option: str, execute_command: Callable[..., Awaitable[None]]) -> Awaitable[None]: ...
 
 SELECT_DESCRIPTIONS: list[OverkizSelectDescription]
-SUPPORTED_STATES: Any
+SUPPORTED_STATES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

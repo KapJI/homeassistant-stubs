@@ -1,12 +1,12 @@
 from . import RitualsDataUpdateCoordinator as RitualsDataUpdateCoordinator
 from .const import COORDINATORS as COORDINATORS, DEVICES as DEVICES, DOMAIN as DOMAIN
 from .entity import DiffuserEntity as DiffuserEntity
+from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyrituals import Diffuser as Diffuser
-from typing import Any
 
 MIN_PERFUME_AMOUNT: int
 MAX_PERFUME_AMOUNT: int
@@ -16,8 +16,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class DiffuserPerfumeAmount(DiffuserEntity, NumberEntity):
     _attr_icon: str
-    _attr_max_value: Any
-    _attr_min_value: Any
+    _attr_max_value: Incomplete
+    _attr_min_value: Incomplete
     def __init__(self, diffuser: Diffuser, coordinator: RitualsDataUpdateCoordinator) -> None: ...
     @property
     def value(self) -> int: ...

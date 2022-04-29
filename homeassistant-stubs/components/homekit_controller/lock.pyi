@@ -1,4 +1,5 @@
 from . import HomeKitEntity as HomeKitEntity, KNOWN_DEVICES as KNOWN_DEVICES
+from _typeshed import Incomplete
 from aiohomekit.model.services import Service as Service
 from homeassistant.components.lock import LockEntity as LockEntity, STATE_JAMMED as STATE_JAMMED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,9 +8,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-CURRENT_STATE_MAP: Any
-TARGET_STATE_MAP: Any
-REVERSED_TARGET_STATE_MAP: Any
+CURRENT_STATE_MAP: Incomplete
+TARGET_STATE_MAP: Incomplete
+REVERSED_TARGET_STATE_MAP: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
 CONF_ROUND_DIGITS: str
@@ -9,4 +9,4 @@ CONF_UNIT_TIME: str
 METHOD_TRAPEZOIDAL: str
 METHOD_LEFT: str
 METHOD_RIGHT: str
-INTEGRATION_METHODS: Any
+INTEGRATION_METHODS: Incomplete

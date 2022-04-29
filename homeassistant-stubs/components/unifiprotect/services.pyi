@@ -1,6 +1,7 @@
 from .const import ATTR_MESSAGE as ATTR_MESSAGE, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .utils import _async_unifi_mac_from_hass as _async_unifi_mac_from_hass
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -13,8 +14,8 @@ from typing import Any
 SERVICE_ADD_DOORBELL_TEXT: str
 SERVICE_REMOVE_DOORBELL_TEXT: str
 SERVICE_SET_DEFAULT_DOORBELL_TEXT: str
-ALL_GLOBAL_SERIVCES: Any
-DOORBELL_TEXT_SCHEMA: Any
+ALL_GLOBAL_SERIVCES: Incomplete
+DOORBELL_TEXT_SCHEMA: Incomplete
 
 def _async_all_ufp_instances(hass: HomeAssistant) -> list[ProtectApiClient]: ...
 def _async_get_macs_for_device(device_entry: dr.DeviceEntry) -> list[str]: ...

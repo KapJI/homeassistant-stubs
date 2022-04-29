@@ -1,5 +1,6 @@
 from . import AUTH_PROVIDERS as AUTH_PROVIDERS, AUTH_PROVIDER_SCHEMA as AUTH_PROVIDER_SCHEMA, AuthProvider as AuthProvider, LoginFlow as LoginFlow
 from ..models import Credentials as Credentials, UserMeta as UserMeta
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -12,7 +13,7 @@ STORAGE_KEY: str
 
 def _disallow_id(conf: dict[str, Any]) -> dict[str, Any]: ...
 
-CONFIG_SCHEMA: Any
+CONFIG_SCHEMA: Incomplete
 
 def async_get_provider(hass: HomeAssistant) -> HassAuthProvider: ...
 
@@ -20,9 +21,9 @@ class InvalidAuth(HomeAssistantError): ...
 class InvalidUser(HomeAssistantError): ...
 
 class Data:
-    hass: Any
-    _store: Any
-    _data: Any
+    hass: Incomplete
+    _store: Incomplete
+    _data: Incomplete
     is_legacy: bool
     def __init__(self, hass: HomeAssistant) -> None: ...
     def normalize_username(self, username: str) -> str: ...
@@ -38,8 +39,8 @@ class Data:
 
 class HassAuthProvider(AuthProvider):
     DEFAULT_TITLE: str
-    data: Any
-    _init_lock: Any
+    data: Incomplete
+    _init_lock: Incomplete
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     async def async_initialize(self) -> None: ...
     async def async_login_flow(self, context: Union[dict[str, Any], None]) -> LoginFlow: ...

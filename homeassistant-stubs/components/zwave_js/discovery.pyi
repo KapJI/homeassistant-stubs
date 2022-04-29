@@ -1,6 +1,7 @@
 from .const import LOGGER as LOGGER
 from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, ConfigurableFanValueMappingDataTemplate as ConfigurableFanValueMappingDataTemplate, CoverTiltDataTemplate as CoverTiltDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, FanValueMapping as FanValueMapping, FixedFanValueMappingDataTemplate as FixedFanValueMappingDataTemplate, NumericSensorDataTemplate as NumericSensorDataTemplate
 from .helpers import ZwaveValueID as ZwaveValueID
+from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
 from homeassistant.core import callback as callback
@@ -65,11 +66,11 @@ class ZWaveDiscoverySchema:
 
 def get_config_parameter_discovery_schema(property_: Union[set[Union[str, int]], None] = ..., property_name: Union[set[str], None] = ..., property_key: Union[set[Union[str, int, None]], None] = ..., property_key_name: Union[set[Union[str, None]], None] = ..., **kwargs: Any) -> ZWaveDiscoverySchema: ...
 
-DOOR_LOCK_CURRENT_MODE_SCHEMA: Any
-SWITCH_MULTILEVEL_CURRENT_VALUE_SCHEMA: Any
-SWITCH_BINARY_CURRENT_VALUE_SCHEMA: Any
-SIREN_TONE_SCHEMA: Any
-DISCOVERY_SCHEMAS: Any
+DOOR_LOCK_CURRENT_MODE_SCHEMA: Incomplete
+SWITCH_MULTILEVEL_CURRENT_VALUE_SCHEMA: Incomplete
+SWITCH_BINARY_CURRENT_VALUE_SCHEMA: Incomplete
+SIREN_TONE_SCHEMA: Incomplete
+DISCOVERY_SCHEMAS: Incomplete
 
 def async_discover_node_values(node: ZwaveNode, device: DeviceEntry, discovered_value_ids: dict[str, set[str]]) -> Generator[ZwaveDiscoveryInfo, None, None]: ...
 def async_discover_single_value(value: ZwaveValue, device: DeviceEntry, discovered_value_ids: dict[str, set[str]]) -> Generator[ZwaveDiscoveryInfo, None, None]: ...

@@ -1,4 +1,5 @@
 from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from _typeshed import Incomplete
 from aioesphomeapi import LightColorCapability, LightInfo, LightState
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, ColorMode as ColorMode, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -6,11 +7,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-FLASH_LENGTHS: Any
+FLASH_LENGTHS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-_COLOR_MODE_MAPPING: Any
+_COLOR_MODE_MAPPING: Incomplete
 
 def _color_mode_to_ha(mode: int) -> str: ...
 def _filter_color_modes(supported: list[int], features: LightColorCapability) -> list[int]: ...

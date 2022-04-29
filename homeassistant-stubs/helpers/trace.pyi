@@ -1,18 +1,19 @@
 from .typing import TemplateVarsType as TemplateVarsType
+from _typeshed import Incomplete
 from collections import deque
 from collections.abc import Callable as Callable, Generator
 from contextvars import ContextVar
 from typing import Any
 
 class TraceElement:
-    _child_key: Any
-    _child_run_id: Any
-    _error: Any
-    path: Any
-    _result: Any
+    _child_key: Incomplete
+    _child_run_id: Incomplete
+    _error: Incomplete
+    path: Incomplete
+    _result: Incomplete
     reuse_by_child: bool
-    _timestamp: Any
-    _variables: Any
+    _timestamp: Incomplete
+    _variables: Incomplete
     def __init__(self, variables: TemplateVarsType, path: str) -> None: ...
     def __repr__(self) -> str: ...
     def set_child_id(self, child_key: str, child_run_id: str) -> None: ...

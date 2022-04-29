@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import EventThumbnailMixin as EventThumbnailMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
 from .models import ProtectRequiredKeysMixin as ProtectRequiredKeysMixin
+from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODEL as ATTR_MODEL
@@ -9,15 +10,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyunifiprotect.data import Camera as Camera, Event as Event, Light as Light, NVR as NVR, Sensor
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 _KEY_DOOR: str
 
 class ProtectBinaryEntityDescription(ProtectRequiredKeysMixin, BinarySensorEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled) -> None: ...
 
-MOUNT_DEVICE_CLASS_MAP: Any
+MOUNT_DEVICE_CLASS_MAP: Incomplete
 CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 LIGHT_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 SENSE_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
@@ -32,16 +32,16 @@ def _async_nvr_entities(data: ProtectData) -> list[ProtectDeviceEntity]: ...
 class ProtectDeviceBinarySensor(ProtectDeviceEntity, BinarySensorEntity):
     device: Union[Camera, Light, Sensor]
     entity_description: ProtectBinaryEntityDescription
-    _attr_is_on: Any
+    _attr_is_on: Incomplete
     def _async_update_device_from_protect(self) -> None: ...
 
 class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
     entity_description: ProtectBinaryEntityDescription
-    _index: Any
+    _index: Incomplete
     def __init__(self, data: ProtectData, device: NVR, description: ProtectBinaryEntityDescription, index: int) -> None: ...
-    _attr_available: Any
-    _attr_is_on: Any
-    _attr_extra_state_attributes: Any
+    _attr_available: Incomplete
+    _attr_is_on: Incomplete
+    _attr_extra_state_attributes: Incomplete
     def _async_update_device_from_protect(self) -> None: ...
 
 class ProtectEventBinarySensor(EventThumbnailMixin, ProtectDeviceBinarySensor):

@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -7,15 +8,14 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from homeassistant.util.dt import utcnow as utcnow
 from rokuecp import Roku
 from rokuecp.models import Device
-from typing import Any
 
 REQUEST_REFRESH_DELAY: float
-SCAN_INTERVAL: Any
-_LOGGER: Any
+SCAN_INTERVAL: Incomplete
+_LOGGER: Incomplete
 
 class RokuDataUpdateCoordinator(DataUpdateCoordinator[Device]):
     last_full_update: Union[datetime, None]
     roku: Roku
-    full_update_interval: Any
+    full_update_interval: Incomplete
     def __init__(self, hass: HomeAssistant, *, host: str) -> None: ...
     async def _async_update_data(self) -> Device: ...

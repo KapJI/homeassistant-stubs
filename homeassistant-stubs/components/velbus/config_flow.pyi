@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import usb as usb
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
@@ -11,7 +12,7 @@ def velbus_entries(hass: HomeAssistant) -> set[str]: ...
 
 class VelbusConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    _errors: Any
+    _errors: Incomplete
     _device: str
     _title: str
     def __init__(self) -> None: ...

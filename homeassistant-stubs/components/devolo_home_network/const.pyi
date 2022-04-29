@@ -1,13 +1,13 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Any
 
 DOMAIN: str
-PLATFORMS: Any
+PLATFORMS: Incomplete
 PRODUCT: str
 SERIAL_NUMBER: str
 TITLE: str
-LONG_UPDATE_INTERVAL: Any
-SHORT_UPDATE_INTERVAL: Any
+LONG_UPDATE_INTERVAL: Incomplete
+SHORT_UPDATE_INTERVAL: Incomplete
 CONNECTED_PLC_DEVICES: str
 CONNECTED_WIFI_CLIENTS: str
 NEIGHBORING_WIFI_NETWORKS: str

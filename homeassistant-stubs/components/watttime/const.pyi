@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-LOGGER: Any
+LOGGER: Incomplete
 CONF_BALANCING_AUTHORITY: str
 CONF_BALANCING_AUTHORITY_ABBREV: str
 CONF_SHOW_ON_MAP: str

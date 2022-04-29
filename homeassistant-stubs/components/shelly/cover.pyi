@@ -2,6 +2,7 @@ from . import BlockDeviceWrapper as BlockDeviceWrapper, RpcDeviceWrapper as RpcD
 from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, RPC as RPC
 from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
 from .utils import get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids
+from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -14,9 +15,9 @@ async def async_setup_block_entry(hass: HomeAssistant, config_entry: ConfigEntry
 async def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockShellyCover(ShellyBlockEntity, CoverEntity):
-    _attr_device_class: Any
-    control_result: Any
-    _attr_supported_features: Any
+    _attr_device_class: Incomplete
+    control_result: Incomplete
+    _attr_supported_features: Incomplete
     def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
     @property
     def is_closed(self) -> bool: ...
@@ -33,9 +34,9 @@ class BlockShellyCover(ShellyBlockEntity, CoverEntity):
     def _update_callback(self) -> None: ...
 
 class RpcShellyCover(ShellyRpcEntity, CoverEntity):
-    _attr_device_class: Any
-    _id: Any
-    _attr_supported_features: Any
+    _attr_device_class: Incomplete
+    _id: Incomplete
+    _attr_supported_features: Incomplete
     def __init__(self, wrapper: RpcDeviceWrapper, id_: int) -> None: ...
     @property
     def is_closed(self) -> Union[bool, None]: ...

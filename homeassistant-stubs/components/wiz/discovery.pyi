@@ -1,11 +1,11 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from pywizlight.discovery import DiscoveredBulb
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def async_discover_devices(hass: HomeAssistant, timeout: int) -> list[DiscoveredBulb]: ...
 def async_trigger_discovery(hass: HomeAssistant, discovered_devices: list[DiscoveredBulb]) -> None: ...

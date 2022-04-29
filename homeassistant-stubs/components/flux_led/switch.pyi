@@ -2,6 +2,7 @@ from .const import CONF_REMOTE_ACCESS_ENABLED as CONF_REMOTE_ACCESS_ENABLED, CON
 from .coordinator import FluxLedUpdateCoordinator as FluxLedUpdateCoordinator
 from .discovery import async_clear_discovery_cache as async_clear_discovery_cache
 from .entity import FluxBaseEntity as FluxBaseEntity, FluxEntity as FluxEntity, FluxOnOffEntity as FluxOnOffEntity
+from _typeshed import Incomplete
 from flux_led.aio import AIOWifiLedBulb as AIOWifiLedBulb
 from homeassistant import config_entries as config_entries
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
@@ -18,9 +19,9 @@ class FluxSwitch(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], S
     async def _async_turn_on(self, **kwargs: Any) -> None: ...
 
 class FluxRemoteAccessSwitch(FluxBaseEntity, SwitchEntity):
-    _attr_entity_category: Any
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_entity_category: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def _async_update_entry(self, new_state: bool) -> None: ...

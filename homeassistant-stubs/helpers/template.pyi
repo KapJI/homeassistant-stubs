@@ -1,6 +1,7 @@
 import jinja2
 from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry
 from .typing import TemplateVarsType as TemplateVarsType
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator, Iterable
 from contextvars import ContextVar
 from datetime import datetime
@@ -14,21 +15,21 @@ from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from jinja2.sandbox import ImmutableSandboxedEnvironment
 from typing import Any
 
-_LOGGER: Any
-_SENTINEL: Any
+_LOGGER: Incomplete
+_SENTINEL: Incomplete
 DATE_STR_FORMAT: str
 _RENDER_INFO: str
 _ENVIRONMENT: str
 _ENVIRONMENT_LIMITED: str
 _ENVIRONMENT_STRICT: str
-_RE_JINJA_DELIMITERS: Any
-_IS_NUMERIC: Any
-_RESERVED_NAMES: Any
+_RE_JINJA_DELIMITERS: Incomplete
+_IS_NUMERIC: Incomplete
+_RESERVED_NAMES: Incomplete
 _GROUP_DOMAIN_PREFIX: str
 _ZONE_DOMAIN_PREFIX: str
-_COLLECTABLE_STATE_ATTRIBUTES: Any
-ALL_STATES_RATE_LIMIT: Any
-DOMAIN_STATES_RATE_LIMIT: Any
+_COLLECTABLE_STATE_ATTRIBUTES: Incomplete
+ALL_STATES_RATE_LIMIT: Incomplete
+DOMAIN_STATES_RATE_LIMIT: Incomplete
 template_cv: ContextVar[Union[tuple[str, str], None]]
 
 def attach(hass: HomeAssistant, obj: Any) -> None: ...
@@ -43,7 +44,7 @@ def gen_result_wrapper(kls): ...
 
 class TupleWrapper(tuple, ResultWrapper):
     def __new__(cls, value: tuple, *, render_result: Union[str, None] = ...) -> TupleWrapper: ...
-    render_result: Any
+    render_result: Incomplete
     def __init__(self, value: tuple, *, render_result: Union[str, None] = ...) -> None: ...
     def __str__(self) -> str: ...
 
@@ -53,18 +54,18 @@ def _true(arg: str) -> bool: ...
 def _false(arg: str) -> bool: ...
 
 class RenderInfo:
-    template: Any
-    filter_lifecycle: Any
-    filter: Any
-    _result: Any
+    template: Incomplete
+    filter_lifecycle: Incomplete
+    filter: Incomplete
+    _result: Incomplete
     is_static: bool
-    exception: Any
+    exception: Incomplete
     all_states: bool
     all_states_lifecycle: bool
-    domains: Any
-    domains_lifecycle: Any
-    entities: Any
-    rate_limit: Any
+    domains: Incomplete
+    domains_lifecycle: Incomplete
+    entities: Incomplete
+    rate_limit: Incomplete
     has_time: bool
     def __init__(self, template: Template) -> None: ...
     def __repr__(self) -> str: ...
@@ -77,16 +78,16 @@ class RenderInfo:
     def _freeze(self) -> None: ...
 
 class Template:
-    __slots__: Any
-    template: Any
-    _compiled_code: Any
-    _compiled: Any
-    hass: Any
-    is_static: Any
-    _exc_info: Any
-    _limited: Any
-    _strict: Any
-    def __init__(self, template, hass: Any | None = ...) -> None: ...
+    __slots__: Incomplete
+    template: Incomplete
+    _compiled_code: Incomplete
+    _compiled: Incomplete
+    hass: Incomplete
+    is_static: Incomplete
+    _exc_info: Incomplete
+    _limited: Incomplete
+    _strict: Incomplete
+    def __init__(self, template, hass: Incomplete | None = ...) -> None: ...
     @property
     def _env(self) -> TemplateEnvironment: ...
     def ensure_valid(self) -> None: ...
@@ -96,17 +97,17 @@ class Template:
     async def async_render_will_timeout(self, timeout: float, variables: TemplateVarsType = ..., strict: bool = ..., **kwargs: Any) -> bool: ...
     def async_render_to_info(self, variables: TemplateVarsType = ..., strict: bool = ..., **kwargs: Any) -> RenderInfo: ...
     def render_with_possible_json_value(self, value, error_value=...): ...
-    def async_render_with_possible_json_value(self, value, error_value=..., variables: Any | None = ...): ...
+    def async_render_with_possible_json_value(self, value, error_value=..., variables: Incomplete | None = ...): ...
     def _ensure_compiled(self, limited: bool = ..., strict: bool = ...) -> jinja2.Template: ...
     def __eq__(self, other): ...
     def __hash__(self) -> int: ...
     def __repr__(self) -> str: ...
 
 class AllStates:
-    _hass: Any
+    _hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def __getattr__(self, name): ...
-    __getitem__: Any
+    __getitem__: Incomplete
     def _collect_all(self) -> None: ...
     def _collect_all_lifecycle(self) -> None: ...
     def __iter__(self): ...
@@ -115,11 +116,11 @@ class AllStates:
     def __repr__(self) -> str: ...
 
 class DomainStates:
-    _hass: Any
-    _domain: Any
+    _hass: Incomplete
+    _domain: Incomplete
     def __init__(self, hass: HomeAssistant, domain: str) -> None: ...
     def __getattr__(self, name): ...
-    __getitem__: Any
+    __getitem__: Incomplete
     def _collect_domain(self) -> None: ...
     def _collect_domain_lifecycle(self) -> None: ...
     def __iter__(self): ...
@@ -127,11 +128,11 @@ class DomainStates:
     def __repr__(self) -> str: ...
 
 class TemplateStateBase(State):
-    __slots__: Any
+    __slots__: Incomplete
     _state: State
-    _hass: Any
-    _collect: Any
-    _entity_id: Any
+    _hass: Incomplete
+    _collect: Incomplete
+    _entity_id: Incomplete
     def __init__(self, hass: HomeAssistant, collect: bool, entity_id: str) -> None: ...
     def _collect_state(self) -> None: ...
     def __getitem__(self, item): ...
@@ -158,8 +159,8 @@ class TemplateStateBase(State):
     def __eq__(self, other: Any) -> bool: ...
 
 class TemplateState(TemplateStateBase):
-    __slots__: Any
-    _state: Any
+    __slots__: Incomplete
+    _state: Incomplete
     def __init__(self, hass: HomeAssistant, state: State, collect: bool = ...) -> None: ...
     def __repr__(self) -> str: ...
 
@@ -252,11 +253,11 @@ class LoggingUndefined(jinja2.Undefined):
     def __bool__(self): ...
 
 class TemplateEnvironment(ImmutableSandboxedEnvironment):
-    hass: Any
-    template_cache: Any
+    hass: Incomplete
+    template_cache: Incomplete
     def __init__(self, hass, limited: bool = ..., strict: bool = ...): ...
     def is_safe_callable(self, obj): ...
     def is_safe_attribute(self, obj, attr, value): ...
-    def compile(self, source, name: Any | None = ..., filename: Any | None = ..., raw: bool = ..., defer_init: bool = ...): ...
+    def compile(self, source, name: Incomplete | None = ..., filename: Incomplete | None = ..., raw: bool = ..., defer_init: bool = ...): ...
 
-_NO_HASS_ENV: Any
+_NO_HASS_ENV: Incomplete

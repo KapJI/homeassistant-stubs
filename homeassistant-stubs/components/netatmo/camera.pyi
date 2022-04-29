@@ -2,6 +2,7 @@ import pyatmo
 from .const import ATTR_CAMERA_LIGHT_MODE as ATTR_CAMERA_LIGHT_MODE, ATTR_PERSON as ATTR_PERSON, ATTR_PERSONS as ATTR_PERSONS, ATTR_PSEUDO as ATTR_PSEUDO, CAMERA_LIGHT_MODES as CAMERA_LIGHT_MODES, DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DATA_HANDLER as DATA_HANDLER, DATA_PERSONS as DATA_PERSONS, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, EVENT_TYPE_OFF as EVENT_TYPE_OFF, EVENT_TYPE_ON as EVENT_TYPE_ON, MANUFACTURER as MANUFACTURER, MODELS as MODELS, SERVICE_SET_CAMERA_LIGHT as SERVICE_SET_CAMERA_LIGHT, SERVICE_SET_PERSONS_HOME as SERVICE_SET_PERSONS_HOME, SERVICE_SET_PERSON_AWAY as SERVICE_SET_PERSON_AWAY, SIGNAL_NAME as SIGNAL_NAME, TYPE_SECURITY as TYPE_SECURITY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_NACAMERA_CONNECTION as WEBHOOK_NACAMERA_CONNECTION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from .data_handler import CAMERA_DATA_CLASS_NAME as CAMERA_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
+from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -11,28 +12,28 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DEFAULT_QUALITY: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NetatmoCamera(NetatmoBase, Camera):
-    _attr_supported_features: Any
-    _id: Any
-    _home_id: Any
-    _device_name: Any
-    _attr_name: Any
-    _model: Any
-    _netatmo_type: Any
-    _attr_unique_id: Any
-    _quality: Any
-    _vpnurl: Any
-    _localurl: Any
-    _status: Any
-    _sd_status: Any
-    _alim_status: Any
-    _is_local: Any
-    _light_state: Any
+    _attr_supported_features: Incomplete
+    _id: Incomplete
+    _home_id: Incomplete
+    _device_name: Incomplete
+    _attr_name: Incomplete
+    _model: Incomplete
+    _netatmo_type: Incomplete
+    _attr_unique_id: Incomplete
+    _quality: Incomplete
+    _vpnurl: Incomplete
+    _localurl: Incomplete
+    _status: Incomplete
+    _sd_status: Incomplete
+    _alim_status: Incomplete
+    _is_local: Incomplete
+    _light_state: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler, camera_id: str, camera_type: str, home_id: str, quality: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_is_streaming: bool

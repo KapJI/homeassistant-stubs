@@ -1,12 +1,13 @@
 from .dt import as_local as as_local, utcnow as utcnow
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, KeysView
 from datetime import timedelta
 from typing import Any, TypeVar
 
 _T = TypeVar('_T')
 _U = TypeVar('_U')
-RE_SANITIZE_FILENAME: Any
-RE_SANITIZE_PATH: Any
+RE_SANITIZE_FILENAME: Incomplete
+RE_SANITIZE_PATH: Incomplete
 
 def raise_if_invalid_filename(filename: str) -> None: ...
 def raise_if_invalid_path(path: str) -> None: ...
@@ -17,7 +18,7 @@ def ensure_unique_string(preferred_string: str, current_strings: Union[Iterable[
 def get_random_string(length: int = ...) -> str: ...
 
 class Throttle:
-    min_time: Any
-    limit_no_throttle: Any
+    min_time: Incomplete
+    limit_no_throttle: Incomplete
     def __init__(self, min_time: timedelta, limit_no_throttle: Union[timedelta, None] = ...) -> None: ...
     def __call__(self, method: Callable) -> Callable: ...

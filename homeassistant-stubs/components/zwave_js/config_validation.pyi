@@ -1,7 +1,8 @@
+from _typeshed import Incomplete
 from typing import Any
 
-BITMASK_SCHEMA: Any
+BITMASK_SCHEMA: Incomplete
 
 def boolean(value: Any) -> bool: ...
 
-VALUE_SCHEMA: Any
+VALUE_SCHEMA: Incomplete

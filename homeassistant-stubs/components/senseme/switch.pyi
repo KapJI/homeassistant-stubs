@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .entity import SensemeEntity as SensemeEntity
+from _typeshed import Incomplete
 from aiosenseme import SensemeFan as SensemeFan
 from aiosenseme.device import SensemeDevice as SensemeDevice
 from collections.abc import Callable as Callable
@@ -21,18 +22,18 @@ def _set_sleep_mode(device: SensemeDevice, value: bool) -> None: ...
 def _set_motion_fan_auto(device: SensemeDevice, value: bool) -> None: ...
 def _set_motion_light_auto(device: SensemeDevice, value: bool) -> None: ...
 
-FAN_SWITCHES: Any
-FAN_LIGHT_SWITCHES: Any
-LIGHT_SWITCHES: Any
+FAN_SWITCHES: Incomplete
+FAN_LIGHT_SWITCHES: Incomplete
+LIGHT_SWITCHES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HASensemeSwitch(SensemeEntity, SwitchEntity):
     entity_description: SenseMESwitchEntityDescription
-    _attr_device_class: Any
-    _attr_unique_id: Any
+    _attr_device_class: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, device: SensemeFan, description: SenseMESwitchEntityDescription) -> None: ...
-    _attr_is_on: Any
+    _attr_is_on: Incomplete
     def _async_update_attrs(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

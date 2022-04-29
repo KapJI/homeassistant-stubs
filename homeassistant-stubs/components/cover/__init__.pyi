@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from enum import IntEnum
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,10 +11,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
-SCAN_INTERVAL: Any
-ENTITY_ID_FORMAT: Any
+SCAN_INTERVAL: Incomplete
+ENTITY_ID_FORMAT: Incomplete
 
 class CoverDeviceClass(StrEnum):
     AWNING: str
@@ -27,18 +28,18 @@ class CoverDeviceClass(StrEnum):
     SHUTTER: str
     WINDOW: str
 
-DEVICE_CLASSES_SCHEMA: Any
-DEVICE_CLASSES: Any
-DEVICE_CLASS_AWNING: Any
-DEVICE_CLASS_BLIND: Any
-DEVICE_CLASS_CURTAIN: Any
-DEVICE_CLASS_DAMPER: Any
-DEVICE_CLASS_DOOR: Any
-DEVICE_CLASS_GARAGE: Any
-DEVICE_CLASS_GATE: Any
-DEVICE_CLASS_SHADE: Any
-DEVICE_CLASS_SHUTTER: Any
-DEVICE_CLASS_WINDOW: Any
+DEVICE_CLASSES_SCHEMA: Incomplete
+DEVICE_CLASSES: Incomplete
+DEVICE_CLASS_AWNING: Incomplete
+DEVICE_CLASS_BLIND: Incomplete
+DEVICE_CLASS_CURTAIN: Incomplete
+DEVICE_CLASS_DAMPER: Incomplete
+DEVICE_CLASS_DOOR: Incomplete
+DEVICE_CLASS_GARAGE: Incomplete
+DEVICE_CLASS_GATE: Incomplete
+DEVICE_CLASS_SHADE: Incomplete
+DEVICE_CLASS_SHUTTER: Incomplete
+DEVICE_CLASS_WINDOW: Incomplete
 
 class CoverEntityFeature(IntEnum):
     OPEN: int

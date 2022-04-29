@@ -1,6 +1,7 @@
 import abc
 from .const import CONF_MINOR_VERSION as CONF_MINOR_VERSION, DOMAIN as DOMAIN, SIGNAL_STATE_UPDATED as SIGNAL_STATE_UPDATED
 from .coordinator import FluxLedUpdateCoordinator as FluxLedUpdateCoordinator
+from _typeshed import Incomplete
 from abc import abstractmethod
 from flux_led.aiodevice import AIOWifiLedBulb as AIOWifiLedBulb
 from homeassistant import config_entries as config_entries
@@ -15,17 +16,17 @@ def _async_device_info(device: AIOWifiLedBulb, entry: config_entries.ConfigEntry
 
 class FluxBaseEntity(Entity):
     _attr_should_poll: bool
-    _device: Any
-    entry: Any
-    _attr_device_info: Any
+    _device: Incomplete
+    entry: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
 
 class FluxEntity(CoordinatorEntity[FluxLedUpdateCoordinator]):
-    _device: Any
+    _device: Incomplete
     _responding: bool
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, name: str, key: Union[str, None]) -> None: ...
     async def _async_ensure_device_on(self) -> None: ...
     @property

@@ -10,14 +10,15 @@ from .requirements import RequirementsNotFound as RequirementsNotFound, async_ge
 from .util.package import is_docker_env as is_docker_env
 from .util.unit_system import IMPERIAL_SYSTEM as IMPERIAL_SYSTEM, METRIC_SYSTEM as METRIC_SYSTEM
 from .util.yaml import SECRET_YAML as SECRET_YAML, Secrets as Secrets, load_yaml as load_yaml
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
 from types import ModuleType
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DATA_PERSISTENT_ERRORS: str
-RE_YAML_ERROR: Any
-RE_ASCII: Any
+RE_YAML_ERROR: Incomplete
+RE_ASCII: Incomplete
 YAML_CONFIG_FILE: str
 VERSION_FILE: str
 CONFIG_DIR_NAME: str
@@ -25,9 +26,9 @@ DATA_CUSTOMIZE: str
 AUTOMATION_CONFIG_PATH: str
 SCRIPT_CONFIG_PATH: str
 SCENE_CONFIG_PATH: str
-LOAD_EXCEPTIONS: Any
-INTEGRATION_LOAD_EXCEPTIONS: Any
-DEFAULT_CONFIG: Any
+LOAD_EXCEPTIONS: Incomplete
+INTEGRATION_LOAD_EXCEPTIONS: Incomplete
+DEFAULT_CONFIG: Incomplete
 DEFAULT_SECRETS: str
 TTS_PRE_92: str
 TTS_92: str
@@ -36,10 +37,10 @@ def _no_duplicate_auth_provider(configs: Sequence[dict[str, Any]]) -> Sequence[d
 def _no_duplicate_auth_mfa_module(configs: Sequence[dict[str, Any]]) -> Sequence[dict[str, Any]]: ...
 def _filter_bad_internal_external_urls(conf: dict) -> dict: ...
 
-PACKAGES_CONFIG_SCHEMA: Any
-CUSTOMIZE_DICT_SCHEMA: Any
-CUSTOMIZE_CONFIG_SCHEMA: Any
-CORE_CONFIG_SCHEMA: Any
+PACKAGES_CONFIG_SCHEMA: Incomplete
+CUSTOMIZE_DICT_SCHEMA: Incomplete
+CUSTOMIZE_CONFIG_SCHEMA: Incomplete
+CORE_CONFIG_SCHEMA: Incomplete
 
 def get_default_config_dir() -> str: ...
 async def async_ensure_config_exists(hass: HomeAssistant) -> bool: ...

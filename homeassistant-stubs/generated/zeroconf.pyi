@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
-ZEROCONF: Any
-HOMEKIT: Any
+ZEROCONF: Incomplete
+HOMEKIT: Incomplete

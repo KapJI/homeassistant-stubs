@@ -1,6 +1,6 @@
+from _typeshed import Incomplete
 from enum import Enum
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_COVERS as CONF_COVERS, CONF_LIGHTS as CONF_LIGHTS, CONF_SENSORS as CONF_SENSORS, CONF_SWITCHES as CONF_SWITCHES, Platform as Platform
-from typing import Any
 
 CONF_BAUDRATE: str
 CONF_BYTESIZE: str
@@ -95,4 +95,4 @@ DEFAULT_STRUCTURE_PREFIX: str
 DEFAULT_TEMP_UNIT: str
 MODBUS_DOMAIN: str
 ACTIVE_SCAN_INTERVAL: int
-PLATFORMS: Any
+PLATFORMS: Incomplete

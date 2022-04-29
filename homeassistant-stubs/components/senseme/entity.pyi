@@ -1,15 +1,15 @@
+from _typeshed import Incomplete
 from aiosenseme import SensemeDevice as SensemeDevice
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
-from typing import Any
 
 class SensemeEntity(Entity):
     _attr_should_poll: bool
-    _device: Any
-    _attr_name: Any
-    _attr_device_info: Any
+    _device: Incomplete
+    _attr_name: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, device: SensemeDevice, name: str) -> None: ...
-    _attr_available: Any
+    _attr_available: Incomplete
     def _async_update_attrs(self) -> None: ...
     def _async_update_from_device(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...

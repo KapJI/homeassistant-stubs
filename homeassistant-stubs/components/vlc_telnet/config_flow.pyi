@@ -1,5 +1,6 @@
 import voluptuous as vol
 from .const import DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from aiovlc.client import Client
 from homeassistant import core as core, exceptions as exceptions
 from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
@@ -8,11 +9,11 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, 
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def user_form_schema(user_input: Union[dict[str, Any], None]) -> vol.Schema: ...
 
-STEP_REAUTH_DATA_SCHEMA: Any
+STEP_REAUTH_DATA_SCHEMA: Incomplete
 
 async def vlc_connect(vlc: Client) -> None: ...
 async def validate_input(hass: core.HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...

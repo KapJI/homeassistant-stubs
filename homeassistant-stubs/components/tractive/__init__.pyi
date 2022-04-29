@@ -1,5 +1,6 @@
 import aiotractive
 from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_DAILY_GOAL as ATTR_DAILY_GOAL, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, ATTR_MINUTES_ACTIVE as ATTR_MINUTES_ACTIVE, ATTR_TRACKER_STATE as ATTR_TRACKER_STATE, CLIENT as CLIENT, CLIENT_ID as CLIENT_ID, DOMAIN as DOMAIN, RECONNECT_INTERVAL as RECONNECT_INTERVAL, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, TRACKABLES as TRACKABLES, TRACKER_ACTIVITY_STATUS_UPDATED as TRACKER_ACTIVITY_STATUS_UPDATED, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_POSITION_UPDATED as TRACKER_POSITION_UPDATED
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_PASSWORD, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
@@ -8,8 +9,8 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from typing import Any
 
-PLATFORMS: Any
-_LOGGER: Any
+PLATFORMS: Incomplete
+_LOGGER: Incomplete
 
 class Trackables:
     tracker: aiotractive.tracker.Tracker
@@ -24,12 +25,12 @@ async def _generate_trackables(client: aiotractive.Tractive, trackable: aiotract
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class TractiveClient:
-    _hass: Any
-    _client: Any
-    _user_id: Any
+    _hass: Incomplete
+    _client: Incomplete
+    _user_id: Incomplete
     _last_hw_time: int
     _last_pos_time: int
-    _listen_task: Any
+    _listen_task: Incomplete
     def __init__(self, hass: HomeAssistant, client: aiotractive.Tractive, user_id: str) -> None: ...
     @property
     def user_id(self) -> str: ...

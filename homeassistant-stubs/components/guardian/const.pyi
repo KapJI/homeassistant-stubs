@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-LOGGER: Any
+LOGGER: Incomplete
 API_SENSOR_PAIRED_SENSOR_STATUS: str
 API_SENSOR_PAIR_DUMP: str
 API_SYSTEM_DIAGNOSTICS: str

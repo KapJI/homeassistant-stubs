@@ -1,4 +1,5 @@
 from .gateway import DeconzGateway as DeconzGateway
+from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_ZIGBEE as CONNECTION_ZIGBEE
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -7,11 +8,10 @@ from pydeconz.models.group import Group as DeconzGroup
 from pydeconz.models.light import LightBase as DeconzLight
 from pydeconz.models.scene import Scene as PydeconzScene
 from pydeconz.models.sensor import SensorBase as DeconzSensor
-from typing import Any
 
 class DeconzBase:
-    _device: Any
-    gateway: Any
+    _device: Incomplete
+    gateway: Incomplete
     def __init__(self, device: Union[DeconzGroup, DeconzLight, DeconzSensor, PydeconzScene], gateway: DeconzGateway) -> None: ...
     @property
     def unique_id(self) -> str: ...
@@ -23,7 +23,7 @@ class DeconzBase:
 class DeconzDevice(DeconzBase, Entity):
     _attr_should_poll: bool
     TYPE: str
-    _attr_name: Any
+    _attr_name: Incomplete
     def __init__(self, device: Union[DeconzGroup, DeconzLight, DeconzSensor, PydeconzScene], gateway: DeconzGateway) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
@@ -34,8 +34,8 @@ class DeconzDevice(DeconzBase, Entity):
 
 class DeconzSceneMixin(DeconzDevice):
     _device: PydeconzScene
-    _attr_name: Any
-    _group_identifier: Any
+    _attr_name: Incomplete
+    _group_identifier: Incomplete
     def __init__(self, device: PydeconzScene, gateway: DeconzGateway) -> None: ...
     def get_device_identifier(self) -> str: ...
     def get_parent_identifier(self) -> str: ...

@@ -1,20 +1,21 @@
+from _typeshed import Incomplete
 from aiohttp import web as web
 from multidict import MultiDict
 from typing import Any
 
 class MockStreamReader:
-    _content: Any
+    _content: Incomplete
     def __init__(self, content: bytes) -> None: ...
     async def read(self, byte_count: int = ...) -> bytes: ...
 
 class MockRequest:
     mock_source: Union[str, None]
-    method: Any
-    url: Any
-    status: Any
-    headers: Any
-    query_string: Any
-    _content: Any
+    method: Incomplete
+    url: Incomplete
+    status: Incomplete
+    headers: Incomplete
+    query_string: Incomplete
+    _content: Incomplete
     def __init__(self, content: bytes, mock_source: str, method: str = ..., status: int = ..., headers: Union[dict[str, str], None] = ..., query_string: Union[str, None] = ..., url: str = ...) -> None: ...
     @property
     def query(self) -> MultiDict[str]: ...

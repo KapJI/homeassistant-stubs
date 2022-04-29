@@ -1,6 +1,7 @@
 from . import Trackables as Trackables
 from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, CLIENT as CLIENT, DOMAIN as DOMAIN, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, TRACKABLES as TRACKABLES, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED
 from .entity import TractiveEntity as TractiveEntity
+from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -9,7 +10,7 @@ from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Literal
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class TractiveRequiredKeysMixin:
     method: Literal['async_set_buzzer', 'async_set_led', 'async_set_live_tracking']
@@ -24,14 +25,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class TractiveSwitch(TractiveEntity, SwitchEntity):
     entity_description: TractiveSwitchEntityDescription
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _attr_available: bool
-    _tracker: Any
-    _method: Any
+    _tracker: Incomplete
+    _method: Incomplete
     def __init__(self, user_id: str, item: Trackables, description: TractiveSwitchEntityDescription) -> None: ...
     def handle_server_unavailable(self) -> None: ...
-    _attr_is_on: Any
+    _attr_is_on: Incomplete
     def handle_hardware_status_update(self, event: dict[str, Any]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

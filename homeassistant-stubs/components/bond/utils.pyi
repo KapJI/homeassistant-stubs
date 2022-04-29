@@ -1,16 +1,17 @@
 from .const import BRIDGE_MAKE as BRIDGE_MAKE
+from _typeshed import Incomplete
 from bond_api import Bond as Bond
 from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
 from typing import Any
 
 MAX_REQUESTS: int
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class BondDevice:
-    device_id: Any
-    props: Any
-    _attrs: Any
-    _supported_actions: Any
+    device_id: Incomplete
+    props: Incomplete
+    _attrs: Incomplete
+    _supported_actions: Incomplete
     def __init__(self, device_id: str, attrs: dict[str, Any], props: dict[str, Any]) -> None: ...
     def __repr__(self) -> str: ...
     @property
@@ -40,11 +41,11 @@ class BondDevice:
     def supports_set_brightness(self) -> bool: ...
 
 class BondHub:
-    bond: Any
-    host: Any
-    _bridge: Any
-    _version: Any
-    _devices: Any
+    bond: Incomplete
+    host: Incomplete
+    _bridge: Incomplete
+    _version: Incomplete
+    _devices: Incomplete
     def __init__(self, bond: Bond, host: str) -> None: ...
     async def setup(self, max_devices: Union[int, None] = ...) -> None: ...
     @property

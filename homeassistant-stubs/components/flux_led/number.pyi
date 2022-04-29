@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import FluxLedUpdateCoordinator as FluxLedUpdateCoordinator
 from .entity import FluxEntity as FluxEntity
 from .util import _effect_brightness as _effect_brightness
+from _typeshed import Incomplete
 from abc import abstractmethod
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import EFFECT_RANDOM as EFFECT_RANDOM
@@ -14,9 +15,8 @@ from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DEBOUNCE_TIME: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -25,19 +25,19 @@ class FluxSpeedNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], N
     _attr_min_value: int
     _attr_max_value: int
     _attr_step: int
-    _attr_mode: Any
+    _attr_mode: Incomplete
     _attr_icon: str
     @property
     def value(self) -> float: ...
     async def async_set_value(self, value: float) -> None: ...
 
 class FluxConfigNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], NumberEntity, metaclass=abc.ABCMeta):
-    _attr_entity_category: Any
+    _attr_entity_category: Incomplete
     _attr_min_value: int
     _attr_step: int
-    _attr_mode: Any
-    _debouncer: Any
-    _pending_value: Any
+    _attr_mode: Incomplete
+    _debouncer: Incomplete
+    _pending_value: Incomplete
     def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, name: str, key: Union[str, None]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_set_value(self, value: float) -> None: ...

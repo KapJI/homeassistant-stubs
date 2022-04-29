@@ -1,6 +1,7 @@
 from . import GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
 from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_INDEX as ATTR_INDEX, ATTR_PM25 as ATTR_PM25, ATTR_STATION as ATTR_STATION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SENSOR_TYPES as SENSOR_TYPES, URL as URL
 from .model import GiosSensorEntityDescription as GiosSensorEntityDescription
+from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_NAME as ATTR_NAME, CONF_NAME as CONF_NAME
@@ -13,16 +14,16 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class GiosSensor(CoordinatorEntity[GiosDataUpdateCoordinator], SensorEntity):
     entity_description: GiosSensorEntityDescription
-    _attr_device_info: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attrs: Any
+    _attr_device_info: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attrs: Incomplete
     def __init__(self, name: str, coordinator: GiosDataUpdateCoordinator, description: GiosSensorEntityDescription) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...

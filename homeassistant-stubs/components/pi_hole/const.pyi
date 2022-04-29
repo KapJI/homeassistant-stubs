@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from hole import Hole as Hole
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntityDescription as BinarySensorEntityDescription
@@ -16,7 +17,7 @@ DEFAULT_STATISTICS_ONLY: bool
 SERVICE_DISABLE: str
 SERVICE_DISABLE_ATTR_DURATION: str
 ATTR_BLOCKED_DOMAINS: str
-MIN_TIME_BETWEEN_UPDATES: Any
+MIN_TIME_BETWEEN_UPDATES: Incomplete
 DATA_KEY_API: str
 DATA_KEY_COORDINATOR: str
 

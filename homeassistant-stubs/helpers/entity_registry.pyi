@@ -2,6 +2,7 @@ from . import storage as storage
 from .device_registry import EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED
 from .entity import EntityCategory as EntityCategory
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from _typeshed import Incomplete
 from collections import UserDict
 from collections.abc import Callable as Callable, Iterable, Mapping
 from homeassistant.backports.enum import StrEnum as StrEnum
@@ -18,11 +19,11 @@ PATH_REGISTRY: str
 DATA_REGISTRY: str
 EVENT_ENTITY_REGISTRY_UPDATED: str
 SAVE_DELAY: int
-_LOGGER: Any
+_LOGGER: Incomplete
 STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
 STORAGE_KEY: str
-ENTITY_DESCRIBING_ATTRIBUTES: Any
+ENTITY_DESCRIBING_ATTRIBUTES: Incomplete
 
 class RegistryEntryDisabler(StrEnum):
     CONFIG_ENTRY: str
@@ -73,8 +74,8 @@ class EntityRegistryStore(storage.Store):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict) -> dict: ...
 
 class EntityRegistryItems(UserDict[str, 'RegistryEntry']):
-    _entry_ids: Any
-    _index: Any
+    _entry_ids: Incomplete
+    _index: Incomplete
     def __init__(self) -> None: ...
     def __setitem__(self, key: str, entry: RegistryEntry) -> None: ...
     def __delitem__(self, key: str) -> None: ...
@@ -83,8 +84,8 @@ class EntityRegistryItems(UserDict[str, 'RegistryEntry']):
 
 class EntityRegistry:
     entities: EntityRegistryItems
-    hass: Any
-    _store: Any
+    hass: Incomplete
+    _store: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_get_device_class_lookup(self, domain_device_classes: set[tuple[str, Union[str, None]]]) -> dict[str, dict[tuple[str, Union[str, None]], str]]: ...
     def async_is_registered(self, entity_id: str) -> bool: ...

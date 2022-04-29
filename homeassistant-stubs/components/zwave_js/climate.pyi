@@ -3,6 +3,7 @@ from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_value_of_zwave_value as get_value_of_zwave_value
+from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, DEFAULT_MAX_TEMP as DEFAULT_MAX_TEMP, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP
 from homeassistant.components.climate.const import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -22,16 +23,16 @@ ATTR_FAN_STATE: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
-    _hvac_modes: Any
-    _hvac_presets: Any
-    _unit_value: Any
-    _current_mode: Any
-    _setpoint_values: Any
-    _operating_state: Any
-    _current_temp: Any
-    _current_humidity: Any
-    _fan_mode: Any
-    _fan_state: Any
+    _hvac_modes: Incomplete
+    _hvac_presets: Incomplete
+    _unit_value: Incomplete
+    _current_mode: Incomplete
+    _setpoint_values: Incomplete
+    _operating_state: Incomplete
+    _current_temp: Incomplete
+    _current_humidity: Incomplete
+    _fan_mode: Incomplete
+    _fan_state: Incomplete
     _attr_supported_features: int
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     def _setpoint_value(self, setpoint_type: ThermostatSetpointType) -> ZwaveValue: ...
@@ -78,7 +79,7 @@ class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
 
 class DynamicCurrentTempClimate(ZWaveClimate):
-    data_template: Any
+    data_template: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def current_temperature(self) -> Union[float, None]: ...

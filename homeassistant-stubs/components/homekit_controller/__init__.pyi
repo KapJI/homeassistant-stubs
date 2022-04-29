@@ -3,6 +3,7 @@ from .connection import HKDevice as HKDevice, valid_serial_number as valid_seria
 from .const import ENTITY_MAP as ENTITY_MAP, KNOWN_DEVICES as KNOWN_DEVICES, TRIGGERS as TRIGGERS
 from .storage import EntityMapStorage as EntityMapStorage
 from .utils import async_get_controller as async_get_controller
+from _typeshed import Incomplete
 from aiohomekit.model import Accessory as Accessory
 from aiohomekit.model.characteristics import Characteristic as Characteristic
 from aiohomekit.model.services import Service as Service
@@ -15,13 +16,13 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class HomeKitEntity(Entity):
     _attr_should_poll: bool
-    _accessory: Any
-    _aid: Any
-    _iid: Any
+    _accessory: Incomplete
+    _aid: Incomplete
+    _iid: Incomplete
     _features: int
     def __init__(self, accessory: HKDevice, devinfo: ConfigType) -> None: ...
     @property
@@ -33,8 +34,8 @@ class HomeKitEntity(Entity):
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_put_characteristics(self, characteristics: dict[str, Any]) -> None: ...
-    pollable_characteristics: Any
-    watchable_characteristics: Any
+    pollable_characteristics: Incomplete
+    watchable_characteristics: Incomplete
     def setup(self) -> None: ...
     def _setup_characteristic(self, char: Characteristic) -> None: ...
     @property
@@ -52,7 +53,7 @@ class AccessoryEntity(HomeKitEntity):
     def unique_id(self) -> str: ...
 
 class CharacteristicEntity(HomeKitEntity):
-    _char: Any
+    _char: Incomplete
     def __init__(self, accessory: HKDevice, devinfo: ConfigType, char: Characteristic) -> None: ...
     @property
     def unique_id(self) -> str: ...

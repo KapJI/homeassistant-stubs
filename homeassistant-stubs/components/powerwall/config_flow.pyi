@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, core as core, exceptions as exceptions
 from homeassistant.components import dhcp as dhcp
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD
@@ -7,16 +8,16 @@ from homeassistant.util.network import is_ip_address as is_ip_address
 from tesla_powerwall import Powerwall, SiteInfo as SiteInfo
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 def _login_and_fetch_site_info(power_wall: Powerwall, password: str) -> tuple[SiteInfo, str]: ...
 async def validate_input(hass: core.HomeAssistant, data: dict[str, str]) -> dict[str, str]: ...
 
 class ConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    ip_address: Any
-    title: Any
-    reauth_entry: Any
+    ip_address: Incomplete
+    title: Incomplete
+    reauth_entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> FlowResult: ...
     async def _async_try_connect(self, user_input: dict[str, Any]) -> tuple[Union[dict[str, Any], None], Union[dict[str, str], None]]: ...

@@ -1,5 +1,6 @@
 from . import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from .const import DOMAIN as DOMAIN, KEY_MONITORING_CHECK_NOTIFICATIONS as KEY_MONITORING_CHECK_NOTIFICATIONS, KEY_MONITORING_STATUS as KEY_MONITORING_STATUS, KEY_WLAN_WIFI_FEATURE_SWITCH as KEY_WLAN_WIFI_FEATURE_SWITCH
+from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -7,7 +8,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -25,10 +26,10 @@ class HuaweiLteBaseBinarySensor(HuaweiLteBaseEntityWithDevice, BinarySensorEntit
     async def async_update(self) -> None: ...
     def __init__(self, router) -> None: ...
 
-CONNECTION_STATE_ATTRIBUTES: Any
+CONNECTION_STATE_ATTRIBUTES: Incomplete
 
 class HuaweiLteMobileConnectionBinarySensor(HuaweiLteBaseBinarySensor):
-    key: Any
+    key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     @property
@@ -54,7 +55,7 @@ class HuaweiLteBaseWifiStatusBinarySensor(HuaweiLteBaseBinarySensor):
     def icon(self) -> str: ...
 
 class HuaweiLteWifiStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
-    key: Any
+    key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     @property
@@ -62,7 +63,7 @@ class HuaweiLteWifiStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
     def __init__(self, router) -> None: ...
 
 class HuaweiLteWifi24ghzStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
-    key: Any
+    key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     @property
@@ -70,7 +71,7 @@ class HuaweiLteWifi24ghzStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
     def __init__(self, router) -> None: ...
 
 class HuaweiLteWifi5ghzStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
-    key: Any
+    key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     @property
@@ -78,7 +79,7 @@ class HuaweiLteWifi5ghzStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
     def __init__(self, router) -> None: ...
 
 class HuaweiLteSmsStorageFullBinarySensor(HuaweiLteBaseBinarySensor):
-    key: Any
+    key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     @property

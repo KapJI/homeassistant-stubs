@@ -1,18 +1,19 @@
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from logging import Logger
 from typing import Any
 
 class Debouncer:
-    hass: Any
-    logger: Any
-    _function: Any
-    cooldown: Any
-    immediate: Any
-    _timer_task: Any
+    hass: Incomplete
+    logger: Incomplete
+    _function: Incomplete
+    cooldown: Incomplete
+    immediate: Incomplete
+    _timer_task: Incomplete
     _execute_at_end_of_timer: bool
-    _execute_lock: Any
-    _job: Any
+    _execute_lock: Incomplete
+    _job: Incomplete
     def __init__(self, hass: HomeAssistant, logger: Logger, *, cooldown: float, immediate: bool, function: Union[Callable[..., Awaitable[Any]], None] = ...) -> None: ...
     @property
     def function(self) -> Union[Callable[..., Awaitable[Any]], None]: ...

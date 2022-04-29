@@ -1,4 +1,5 @@
 from .const import CONF_STATE_CLASS as CONF_STATE_CLASS
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from datetime import date, datetime
 from decimal import Decimal
@@ -13,12 +14,12 @@ from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredDa
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from typing import Any, Final
 
-_LOGGER: Final[Any]
+_LOGGER: Final[Incomplete]
 ATTR_LAST_RESET: Final[str]
 ATTR_STATE_CLASS: Final[str]
 DOMAIN: Final[str]
-ENTITY_ID_FORMAT: Final[Any]
-SCAN_INTERVAL: Final[Any]
+ENTITY_ID_FORMAT: Final[Incomplete]
+SCAN_INTERVAL: Final[Incomplete]
 
 class SensorDeviceClass(StrEnum):
     APPARENT_POWER: str
@@ -53,7 +54,7 @@ class SensorDeviceClass(StrEnum):
     VOLATILE_ORGANIC_COMPOUNDS: str
     VOLTAGE: str
 
-DEVICE_CLASSES_SCHEMA: Final[Any]
+DEVICE_CLASSES_SCHEMA: Final[Incomplete]
 DEVICE_CLASSES: Final[list[str]]
 
 class SensorStateClass(StrEnum):
@@ -61,7 +62,7 @@ class SensorStateClass(StrEnum):
     TOTAL: str
     TOTAL_INCREASING: str
 
-STATE_CLASSES_SCHEMA: Final[Any]
+STATE_CLASSES_SCHEMA: Final[Incomplete]
 STATE_CLASS_MEASUREMENT: Final[str]
 STATE_CLASS_TOTAL: Final[str]
 STATE_CLASS_TOTAL_INCREASING: Final[str]

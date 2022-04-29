@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,18 +9,17 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
-SCAN_INTERVAL: Any
-ENTITY_ID_FORMAT: Any
-MIN_TIME_BETWEEN_SCANS: Any
-_LOGGER: Any
+SCAN_INTERVAL: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+MIN_TIME_BETWEEN_SCANS: Incomplete
+_LOGGER: Incomplete
 
 class ButtonDeviceClass(StrEnum):
     RESTART: str
     UPDATE: str
 
-DEVICE_CLASSES_SCHEMA: Any
+DEVICE_CLASSES_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

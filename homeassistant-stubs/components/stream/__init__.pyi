@@ -2,6 +2,7 @@ from .const import ATTR_ENDPOINTS as ATTR_ENDPOINTS, ATTR_SETTINGS as ATTR_SETTI
 from .core import IdleTimer as IdleTimer, KeyFrameConverter as KeyFrameConverter, PROVIDERS as PROVIDERS, StreamOutput as StreamOutput, StreamSettings as StreamSettings
 from .diagnostics import Diagnostics as Diagnostics
 from .hls import HlsStreamOutput as HlsStreamOutput, async_setup_hls as async_setup_hls
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -9,34 +10,34 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-_LOGGER: Any
-STREAM_SOURCE_REDACT_PATTERN: Any
+_LOGGER: Incomplete
+STREAM_SOURCE_REDACT_PATTERN: Incomplete
 
 def redact_credentials(data: str) -> str: ...
 def create_stream(hass: HomeAssistant, stream_source: str, options: dict[str, str], stream_label: Union[str, None] = ...) -> Stream: ...
 
-DOMAIN_SCHEMA: Any
-CONFIG_SCHEMA: Any
+DOMAIN_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 def filter_libav_logging() -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class Stream:
-    hass: Any
-    source: Any
-    options: Any
-    _stream_label: Any
+    hass: Incomplete
+    source: Incomplete
+    options: Incomplete
+    _stream_label: Incomplete
     keepalive: bool
-    access_token: Any
-    _thread: Any
-    _thread_quit: Any
-    _outputs: Any
+    access_token: Incomplete
+    _thread: Incomplete
+    _thread_quit: Incomplete
+    _outputs: Incomplete
     _fast_restart_once: bool
-    _keyframe_converter: Any
+    _keyframe_converter: Incomplete
     _available: bool
-    _update_callback: Any
-    _logger: Any
-    _diagnostics: Any
+    _update_callback: Incomplete
+    _logger: Incomplete
+    _diagnostics: Incomplete
     def __init__(self, hass: HomeAssistant, source: str, options: dict[str, str], stream_label: Union[str, None] = ...) -> None: ...
     def endpoint_url(self, fmt: str) -> str: ...
     def outputs(self) -> Mapping[str, StreamOutput]: ...

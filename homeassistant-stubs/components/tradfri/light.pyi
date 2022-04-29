@@ -1,6 +1,7 @@
 from .base_class import TradfriBaseEntity as TradfriBaseEntity
 from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, KEY_API as KEY_API
 from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,14 +13,14 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TradfriLight(TradfriBaseEntity, LightEntity):
-    _attr_supported_features: Any
-    _device_control: Any
-    _device_data: Any
-    _attr_unique_id: Any
-    _hs_color: Any
-    _attr_supported_color_modes: Any
-    _attr_min_mireds: Any
-    _attr_max_mireds: Any
+    _attr_supported_features: Incomplete
+    _device_control: Incomplete
+    _device_data: Incomplete
+    _attr_unique_id: Incomplete
+    _hs_color: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_min_mireds: Incomplete
+    _attr_max_mireds: Incomplete
     def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Union[Command, list[Command]]], Any], gateway_id: str) -> None: ...
     def _refresh(self) -> None: ...
     @property

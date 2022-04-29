@@ -1,5 +1,6 @@
 from . import BrotherDataUpdateCoordinator as BrotherDataUpdateCoordinator
 from .const import DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -54,11 +55,11 @@ ATTRS_MAP: dict[str, tuple[str, str]]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BrotherPrinterSensor(CoordinatorEntity, SensorEntity):
-    _attrs: Any
-    _attr_device_info: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    entity_description: Any
+    _attrs: Incomplete
+    _attr_device_info: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    entity_description: Incomplete
     def __init__(self, coordinator: BrotherDataUpdateCoordinator, description: BrotherSensorEntityDescription, device_info: DeviceInfo) -> None: ...
     @property
     def native_value(self) -> Union[StateType, datetime]: ...

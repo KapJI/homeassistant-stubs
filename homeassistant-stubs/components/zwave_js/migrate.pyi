@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import LIGHT_LUX as LIGHT_LUX, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -8,20 +9,20 @@ from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.entity_registry import EntityRegistry as EntityRegistry, RegistryEntry as RegistryEntry, async_entries_for_device as async_entries_for_device
 from homeassistant.helpers.singleton import singleton as singleton
 from homeassistant.helpers.storage import Store as Store
-from typing import Any, TypedDict
+from typing import TypedDict
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.model.value import Value as ZwaveValue
 
-_LOGGER: Any
-LEGACY_ZWAVE_MIGRATION: Any
+_LOGGER: Incomplete
+LEGACY_ZWAVE_MIGRATION: Incomplete
 MIGRATED: str
 STORAGE_WRITE_DELAY: int
-STORAGE_KEY: Any
+STORAGE_KEY: Incomplete
 STORAGE_VERSION: int
-NOTIFICATION_CC_LABEL_TO_PROPERTY_NAME: Any
-SENSOR_MULTILEVEL_CC_LABEL_TO_PROPERTY_NAME: Any
-CC_ID_LABEL_TO_PROPERTY: Any
-UNIT_LEGACY_MIGRATION_MAP: Any
+NOTIFICATION_CC_LABEL_TO_PROPERTY_NAME: Incomplete
+SENSOR_MULTILEVEL_CC_LABEL_TO_PROPERTY_NAME: Incomplete
+CC_ID_LABEL_TO_PROPERTY: Incomplete
+UNIT_LEGACY_MIGRATION_MAP: Incomplete
 
 class ZWaveMigrationData(TypedDict):
     node_id: int
@@ -58,9 +59,9 @@ async def async_get_migration_data(hass: HomeAssistant, config_entry: ConfigEntr
 async def get_legacy_zwave_migration(hass: HomeAssistant) -> LegacyZWaveMigration: ...
 
 class LegacyZWaveMigration:
-    _hass: Any
-    _store: Any
-    _data: Any
+    _hass: Incomplete
+    _store: Incomplete
+    _data: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def load_data(self) -> None: ...
     def save_data(self, config_entry_id: str, entity_id: str, data: ZWaveJSMigrationData) -> None: ...

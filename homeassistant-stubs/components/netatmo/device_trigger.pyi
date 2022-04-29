@@ -1,5 +1,6 @@
 from .climate import STATE_NETATMO_AWAY as STATE_NETATMO_AWAY, STATE_NETATMO_HG as STATE_NETATMO_HG, STATE_NETATMO_SCHEDULE as STATE_NETATMO_SCHEDULE
 from .const import CLIMATE_TRIGGERS as CLIMATE_TRIGGERS, DOMAIN as DOMAIN, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, INDOOR_CAMERA_TRIGGERS as INDOOR_CAMERA_TRIGGERS, MODEL_NACAMERA as MODEL_NACAMERA, MODEL_NATHERM1 as MODEL_NATHERM1, MODEL_NOC as MODEL_NOC, MODEL_NRV as MODEL_NRV, NETATMO_EVENT as NETATMO_EVENT, OUTDOOR_CAMERA_TRIGGERS as OUTDOOR_CAMERA_TRIGGERS
+from _typeshed import Incomplete
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
@@ -10,10 +11,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 CONF_SUBTYPE: str
-DEVICES: Any
-SUBTYPES: Any
-TRIGGER_TYPES: Any
-TRIGGER_SCHEMA: Any
+DEVICES: Incomplete
+SUBTYPES: Incomplete
+TRIGGER_TYPES: Incomplete
+TRIGGER_SCHEMA: Incomplete
 
 async def async_validate_trigger_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
 async def async_get_triggers(hass: HomeAssistant, device_id: str) -> list[dict[str, Any]]: ...

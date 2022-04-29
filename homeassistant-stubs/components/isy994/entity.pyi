@@ -1,5 +1,6 @@
 from . import _async_isy_to_configuration_url as _async_isy_to_configuration_url
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -11,10 +12,10 @@ from typing import Any
 
 class ISYEntity(Entity):
     _name: Union[str, None]
-    _node: Any
-    _attrs: Any
-    _change_handler: Any
-    _control_handler: Any
+    _node: Incomplete
+    _attrs: Incomplete
+    _change_handler: Incomplete
+    _control_handler: Incomplete
     def __init__(self, node: Node) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def async_on_update(self, event: NodeProperty) -> None: ...
@@ -40,8 +41,8 @@ class ISYNodeEntity(ISYEntity):
     async def async_rename_node(self, name: str) -> None: ...
 
 class ISYProgramEntity(ISYEntity):
-    _name: Any
-    _actions: Any
+    _name: Incomplete
+    _actions: Incomplete
     def __init__(self, name: str, status: Union[Any, None], actions: Program = ...) -> None: ...
     @property
     def extra_state_attributes(self) -> dict: ...

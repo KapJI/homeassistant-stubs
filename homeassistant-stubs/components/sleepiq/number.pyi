@@ -1,6 +1,7 @@
 from .const import ACTUATOR as ACTUATOR, DOMAIN as DOMAIN, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, ICON_OCCUPIED as ICON_OCCUPIED
 from .coordinator import SleepIQData as SleepIQData
 from .entity import SleepIQBedEntity as SleepIQBedEntity
+from _typeshed import Incomplete
 from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSleeper
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
@@ -34,10 +35,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SleepIQNumberEntity(SleepIQBedEntity, NumberEntity):
     entity_description: SleepIQNumberEntityDescription
     _attr_icon: str
-    device: Any
-    _attr_name: Any
-    _attr_unique_id: Any
+    device: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, bed: SleepIQBed, device: Any, description: SleepIQNumberEntityDescription) -> None: ...
-    _attr_value: Any
+    _attr_value: Incomplete
     def _async_update_attrs(self) -> None: ...
     async def async_set_value(self, value: float) -> None: ...

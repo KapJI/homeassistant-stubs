@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, POWERWALL_API_CHANGED as POWERWALL_API_CHANGED, POWERWALL_COORDINATOR as POWERWALL_COORDINATOR, POWERWALL_HTTP_SESSION as POWERWALL_HTTP_SESSION, POWERWALL_LOGIN_FAILED_COUNT as POWERWALL_LOGIN_FAILED_COUNT, UPDATE_INTERVAL as UPDATE_INTERVAL
 from .models import PowerwallBaseInfo as PowerwallBaseInfo, PowerwallData as PowerwallData, PowerwallRuntimeData as PowerwallRuntimeData
+from _typeshed import Incomplete
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, Platform as Platform
@@ -8,21 +9,20 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.network import is_ip_address as is_ip_address
 from tesla_powerwall import Powerwall
-from typing import Any
 
-CONFIG_SCHEMA: Any
-PLATFORMS: Any
-_LOGGER: Any
+CONFIG_SCHEMA: Incomplete
+PLATFORMS: Incomplete
+_LOGGER: Incomplete
 MAX_LOGIN_FAILURES: int
 API_CHANGED_ERROR_BODY: str
 API_CHANGED_TITLE: str
 
 class PowerwallDataManager:
-    hass: Any
-    ip_address: Any
-    password: Any
-    runtime_data: Any
-    power_wall: Any
+    hass: Incomplete
+    ip_address: Incomplete
+    password: Incomplete
+    runtime_data: Incomplete
+    power_wall: Incomplete
     def __init__(self, hass: HomeAssistant, power_wall: Powerwall, ip_address: str, password: Union[str, None], runtime_data: PowerwallRuntimeData) -> None: ...
     @property
     def login_failed_count(self) -> int: ...

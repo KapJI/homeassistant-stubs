@@ -2,6 +2,7 @@ from . import entity_registry as entity_registry, storage as storage
 from .debounce import Debouncer as Debouncer
 from .frame import report as report
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
@@ -10,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, R
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, NamedTuple
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DATA_REGISTRY: str
 EVENT_DEVICE_REGISTRY_UPDATED: str
 STORAGE_KEY: str
@@ -21,8 +22,8 @@ CLEANUP_DELAY: int
 CONNECTION_NETWORK_MAC: str
 CONNECTION_UPNP: str
 CONNECTION_ZIGBEE: str
-ORPHANED_DEVICE_KEEP_SECONDS: Any
-RUNTIME_ONLY_ATTRS: Any
+ORPHANED_DEVICE_KEEP_SECONDS: Incomplete
+RUNTIME_ONLY_ATTRS: Incomplete
 
 class _DeviceIndex(NamedTuple):
     identifiers: dict[tuple[str, str], str]
@@ -33,9 +34,9 @@ class DeviceEntryDisabler(StrEnum):
     INTEGRATION: str
     USER: str
 
-DISABLED_CONFIG_ENTRY: Any
-DISABLED_INTEGRATION: Any
-DISABLED_USER: Any
+DISABLED_CONFIG_ENTRY: Incomplete
+DISABLED_INTEGRATION: Incomplete
+DISABLED_USER: Incomplete
 
 class DeviceEntryType(StrEnum):
     SERVICE: str
@@ -90,8 +91,8 @@ class DeviceRegistry:
     deleted_devices: dict[str, DeletedDeviceEntry]
     _registered_index: _DeviceIndex
     _deleted_index: _DeviceIndex
-    hass: Any
-    _store: Any
+    hass: Incomplete
+    _store: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_get(self, device_id: str) -> Union[DeviceEntry, None]: ...
     def async_get_device(self, identifiers: set[tuple[str, str]], connections: Union[set[tuple[str, str]], None] = ...) -> Union[DeviceEntry, None]: ...

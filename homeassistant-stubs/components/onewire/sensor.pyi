@@ -2,6 +2,7 @@ from .const import CONF_TYPE_OWSERVER as CONF_TYPE_OWSERVER, CONF_TYPE_SYSBUS as
 from .model import OWDirectDeviceDescription as OWDirectDeviceDescription, OWServerDeviceDescription as OWServerDeviceDescription
 from .onewire_entities import OneWireBaseEntity as OneWireBaseEntity, OneWireEntityDescription as OneWireEntityDescription, OneWireProxyEntity as OneWireProxyEntity
 from .onewirehub import OneWireHub as OneWireHub
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -20,8 +21,8 @@ class OneWireSensorEntityDescription(OneWireEntityDescription, SensorEntityDescr
 
 def _get_sensor_precision_family_28(device_id: str, options: Mapping[str, Any]) -> str: ...
 
-SIMPLE_TEMPERATURE_SENSOR_DESCRIPTION: Any
-_LOGGER: Any
+SIMPLE_TEMPERATURE_SENSOR_DESCRIPTION: Incomplete
+_LOGGER: Incomplete
 DEVICE_SENSORS: dict[str, tuple[OneWireSensorEntityDescription, ...]]
 HOBBYBOARD_EF: dict[str, tuple[OneWireSensorEntityDescription, ...]]
 EDS_SENSORS: dict[str, tuple[OneWireSensorEntityDescription, ...]]
@@ -39,12 +40,12 @@ class OneWireProxySensor(OneWireProxyEntity, OneWireSensor):
     def native_value(self) -> StateType: ...
 
 class OneWireDirectSensor(OneWireSensor):
-    _attr_unique_id: Any
-    _owsensor: Any
+    _attr_unique_id: Incomplete
+    _owsensor: Incomplete
     def __init__(self, description: OneWireSensorEntityDescription, device_id: str, device_info: DeviceInfo, device_file: str, name: str, owsensor: OneWireInterface) -> None: ...
     @property
     def native_value(self) -> StateType: ...
     async def get_temperature(self) -> float: ...
-    _value_raw: Any
-    _state: Any
+    _value_raw: Incomplete
+    _state: Incomplete
     async def async_update(self) -> None: ...

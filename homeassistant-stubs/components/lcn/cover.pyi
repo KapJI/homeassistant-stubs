@@ -1,6 +1,7 @@
 from . import LcnEntity as LcnEntity
 from .const import CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_MOTOR as CONF_MOTOR, CONF_REVERSE_TIME as CONF_REVERSE_TIME
 from .helpers import DeviceConnectionType as DeviceConnectionType, InputType as InputType, get_device_connection as get_device_connection
+from _typeshed import Incomplete
 from homeassistant.components.cover import CoverEntity as CoverEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES
@@ -15,8 +16,8 @@ def create_lcn_cover_entity(hass: HomeAssistant, entity_config: ConfigType, conf
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LcnOutputsCover(LcnEntity, CoverEntity):
-    output_ids: Any
-    reverse_time: Any
+    output_ids: Incomplete
+    reverse_time: Incomplete
     _is_closed: bool
     _is_closing: bool
     _is_opening: bool
@@ -37,9 +38,9 @@ class LcnOutputsCover(LcnEntity, CoverEntity):
     def input_received(self, input_obj: InputType) -> None: ...
 
 class LcnRelayCover(LcnEntity, CoverEntity):
-    motor: Any
-    motor_port_onoff: Any
-    motor_port_updown: Any
+    motor: Incomplete
+    motor_port_onoff: Incomplete
+    motor_port_updown: Incomplete
     _is_closed: bool
     _is_closing: bool
     _is_opening: bool

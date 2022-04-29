@@ -1,12 +1,12 @@
 from . import AmbientStation as AmbientStation, AmbientWeatherEntity as AmbientWeatherEntity
 from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DOMAIN as DOMAIN, TYPE_SOLARRADIATION as TYPE_SOLARRADIATION, TYPE_SOLARRADIATION_LX as TYPE_SOLARRADIATION_LX
+from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_NAME as ATTR_NAME, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, IRRADIATION_WATTS_PER_SQUARE_METER as IRRADIATION_WATTS_PER_SQUARE_METER, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, PRECIPITATION_INCHES as PRECIPITATION_INCHES, PRECIPITATION_INCHES_PER_HOUR as PRECIPITATION_INCHES_PER_HOUR, PRESSURE_INHG as PRESSURE_INHG, SPEED_MILES_PER_HOUR as SPEED_MILES_PER_HOUR, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 
 TYPE_24HOURRAININ: str
 TYPE_AQI_PM25: str
@@ -86,12 +86,12 @@ TYPE_WINDSPDMPH_AVG10M: str
 TYPE_WINDSPDMPH_AVG2M: str
 TYPE_WINDSPEEDMPH: str
 TYPE_YEARLYRAININ: str
-SENSOR_DESCRIPTIONS: Any
+SENSOR_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AmbientWeatherSensor(AmbientWeatherEntity, SensorEntity):
-    entity_id: Any
+    entity_id: Incomplete
     def __init__(self, ambient: AmbientStation, mac_address: str, station_name: str, description: EntityDescription) -> None: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def update_from_latest_data(self) -> None: ...

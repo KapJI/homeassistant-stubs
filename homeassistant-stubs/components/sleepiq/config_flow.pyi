@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -6,11 +7,11 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class SleepIQFlowHandler(ConfigFlow):
     VERSION: int
-    _reauth_entry: Any
+    _reauth_entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_import(self, import_config: dict[str, Any]) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

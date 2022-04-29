@@ -4,6 +4,7 @@ from .device_registry import DeviceEntryType as DeviceEntryType
 from .entity_platform import EntityPlatform as EntityPlatform
 from .event import async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from .typing import StateType as StateType
+from _typeshed import Incomplete
 from abc import ABC
 from collections.abc import Awaitable, Iterable, Mapping, MutableMapping
 from datetime import datetime, timedelta
@@ -17,12 +18,12 @@ from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from typing import Any, Final, Literal, TypedDict
 
-_LOGGER: Any
+_LOGGER: Incomplete
 SLOW_UPDATE_WARNING: int
 DATA_ENTITY_SOURCE: str
 SOURCE_CONFIG_ENTRY: str
 SOURCE_PLATFORM_CONFIG: str
-FLOAT_PRECISION: Any
+FLOAT_PRECISION: Incomplete
 
 def entity_sources(hass: HomeAssistant) -> dict[str, dict[str, str]]: ...
 def generate_entity_id(entity_id_format: str, name: Union[str, None], current_ids: Union[list[str], None] = ..., hass: Union[HomeAssistant, None] = ...) -> str: ...
@@ -53,12 +54,12 @@ class EntityCategory(StrEnum):
     DIAGNOSTIC: str
     SYSTEM: str
 
-ENTITY_CATEGORIES_SCHEMA: Final[Any]
+ENTITY_CATEGORIES_SCHEMA: Final[Incomplete]
 
 class EntityPlatformState(Enum):
-    NOT_ADDED: Any
-    ADDED: Any
-    REMOVED: Any
+    NOT_ADDED: Incomplete
+    ADDED: Incomplete
+    REMOVED: Incomplete
 
 class EntityDescription:
     key: str
@@ -86,7 +87,7 @@ class Entity(ABC):
     _on_remove: Union[list[CALLBACK_TYPE], None]
     _context: Union[Context, None]
     _context_set: Union[datetime, None]
-    _platform_state: Any
+    _platform_state: Incomplete
     _attr_assumed_state: bool
     _attr_attribution: Union[str, None]
     _attr_available: bool

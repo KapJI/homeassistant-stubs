@@ -1,9 +1,10 @@
 from .thread import async_raise as async_raise
+from _typeshed import Incomplete
 from concurrent.futures import ThreadPoolExecutor
 from threading import Thread
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 MAX_LOG_ATTEMPTS: int
 _JOIN_ATTEMPTS: int
 EXECUTOR_SHUTDOWN_TIMEOUT: int

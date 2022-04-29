@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components import ssdp as ssdp, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigFlow as ConfigFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
@@ -7,10 +8,10 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-DATA_SCHEMA: Any
+DATA_SCHEMA: Incomplete
 ERROR_CANNOT_CONNECT: str
 ERROR_UNKNOWN: str
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]: ...
 

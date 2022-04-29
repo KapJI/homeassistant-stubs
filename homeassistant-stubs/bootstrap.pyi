@@ -10,9 +10,10 @@ from .setup import DATA_SETUP as DATA_SETUP, DATA_SETUP_STARTED as DATA_SETUP_ST
 from .util.async_ import gather_with_concurrency as gather_with_concurrency
 from .util.logging import async_activate_log_queue_handler as async_activate_log_queue_handler
 from .util.package import async_get_user_site as async_get_user_site, is_virtual_env as is_virtual_env
+from _typeshed import Incomplete
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ERROR_LOG_FILENAME: str
 DATA_LOGGING: str
 LOG_SLOW_STARTUP_INTERVAL: int
@@ -22,11 +23,11 @@ STAGE_2_TIMEOUT: int
 WRAP_UP_TIMEOUT: int
 COOLDOWN_TIME: int
 MAX_LOAD_CONCURRENTLY: int
-DEBUGGER_INTEGRATIONS: Any
-CORE_INTEGRATIONS: Any
-LOGGING_INTEGRATIONS: Any
-DISCOVERY_INTEGRATIONS: Any
-STAGE_1_INTEGRATIONS: Any
+DEBUGGER_INTEGRATIONS: Incomplete
+CORE_INTEGRATIONS: Incomplete
+LOGGING_INTEGRATIONS: Incomplete
+DISCOVERY_INTEGRATIONS: Incomplete
+STAGE_1_INTEGRATIONS: Incomplete
 
 async def async_setup_hass(runtime_config: RuntimeConfig) -> Union[core.HomeAssistant, None]: ...
 def open_hass_ui(hass: core.HomeAssistant) -> None: ...

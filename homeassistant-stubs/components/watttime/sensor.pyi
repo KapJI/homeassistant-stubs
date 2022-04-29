@@ -1,4 +1,5 @@
 from .const import CONF_BALANCING_AUTHORITY as CONF_BALANCING_AUTHORITY, CONF_BALANCING_AUTHORITY_ABBREV as CONF_BALANCING_AUTHORITY_ABBREV, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,15 +13,15 @@ from typing import Any
 ATTR_BALANCING_AUTHORITY: str
 SENSOR_TYPE_REALTIME_EMISSIONS_MOER: str
 SENSOR_TYPE_REALTIME_EMISSIONS_PERCENT: str
-REALTIME_EMISSIONS_SENSOR_DESCRIPTIONS: Any
+REALTIME_EMISSIONS_SENSOR_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RealtimeEmissionsSensor(CoordinatorEntity, SensorEntity):
-    _attr_name: Any
-    _attr_unique_id: Any
-    _entry: Any
-    entity_description: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _entry: Incomplete
+    entity_description: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, entry: ConfigEntry, description: SensorEntityDescription) -> None: ...
     @property
     def extra_state_attributes(self) -> Union[Mapping[str, Any], None]: ...

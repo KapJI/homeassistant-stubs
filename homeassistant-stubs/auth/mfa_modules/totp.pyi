@@ -1,12 +1,13 @@
 import voluptuous as vol
 from . import MULTI_FACTOR_AUTH_MODULES as MULTI_FACTOR_AUTH_MODULES, MULTI_FACTOR_AUTH_MODULE_SCHEMA as MULTI_FACTOR_AUTH_MODULE_SCHEMA, MultiFactorAuthModule as MultiFactorAuthModule, SetupFlow as SetupFlow
+from _typeshed import Incomplete
 from homeassistant.auth.models import User as User
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-REQUIREMENTS: Any
-CONFIG_SCHEMA: Any
+REQUIREMENTS: Incomplete
+CONFIG_SCHEMA: Incomplete
 STORAGE_VERSION: int
 STORAGE_KEY: str
 STORAGE_USERS: str
@@ -21,9 +22,9 @@ def _generate_secret_and_qr_code(username: str) -> tuple[str, str, str]: ...
 class TotpAuthModule(MultiFactorAuthModule):
     DEFAULT_TITLE: str
     MAX_RETRY_TIME: int
-    _users: Any
-    _user_store: Any
-    _init_lock: Any
+    _users: Incomplete
+    _user_store: Incomplete
+    _init_lock: Incomplete
     def __init__(self, hass: HomeAssistant, config: dict[str, Any]) -> None: ...
     @property
     def input_schema(self) -> vol.Schema: ...
@@ -38,10 +39,10 @@ class TotpAuthModule(MultiFactorAuthModule):
     def _validate_2fa(self, user_id: str, code: str) -> bool: ...
 
 class TotpSetupFlow(SetupFlow):
-    _auth_module: Any
-    _user: Any
+    _auth_module: Incomplete
+    _user: Incomplete
     _ota_secret: str
-    _url: Any
-    _image: Any
+    _url: Incomplete
+    _image: Incomplete
     def __init__(self, auth_module: TotpAuthModule, setup_schema: vol.Schema, user: User) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, str], None] = ...) -> FlowResult: ...

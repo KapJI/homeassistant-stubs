@@ -1,5 +1,6 @@
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
 from .helpers import on_unload as on_unload
+from _typeshed import Incomplete
 from homeassistant.components import mysensors as mysensors
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -15,7 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class MySensorsSensor(mysensors.device.MySensorsEntity, SensorEntity):
     _attr_force_update: bool
-    entity_description: Any
+    entity_description: Incomplete
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @property
     def native_value(self) -> Union[str, None]: ...

@@ -1,6 +1,7 @@
 from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -10,8 +11,8 @@ from typing import Any
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const.command_class.color_switch import ColorComponent
 
-LOGGER: Any
-MULTI_COLOR_MAP: Any
+LOGGER: Incomplete
+MULTI_COLOR_MAP: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def byte_to_zwave_brightness(value: int) -> int: ...
@@ -20,20 +21,20 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     _supports_color: bool
     _supports_rgbw: bool
     _supports_color_temp: bool
-    _hs_color: Any
-    _rgbw_color: Any
-    _color_mode: Any
-    _color_temp: Any
+    _hs_color: Incomplete
+    _rgbw_color: Incomplete
+    _color_mode: Incomplete
+    _color_temp: Incomplete
     _min_mireds: int
     _max_mireds: int
-    _warm_white: Any
-    _cold_white: Any
-    _supported_color_modes: Any
-    _target_brightness: Any
-    _target_color: Any
+    _warm_white: Incomplete
+    _cold_white: Incomplete
+    _supported_color_modes: Incomplete
+    _target_brightness: Incomplete
+    _target_color: Incomplete
     _attr_supported_features: int
-    supports_brightness_transition: Any
-    supports_color_transition: Any
+    supports_brightness_transition: Incomplete
+    supports_color_transition: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     def on_value_update(self) -> None: ...
     @property
@@ -61,7 +62,7 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     def _calculate_color_values(self) -> None: ...
 
 class ZwaveBlackIsOffLight(ZwaveLight):
-    _last_color: Any
+    _last_color: Incomplete
     def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def brightness(self) -> int: ...

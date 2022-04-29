@@ -1,6 +1,6 @@
 from .const import CAT_ENTITIES as CAT_ENTITIES, POLICY_READ as POLICY_READ, SUBCAT_ALL as SUBCAT_ALL
-from typing import Any
+from _typeshed import Incomplete
 
-ADMIN_POLICY: Any
-USER_POLICY: Any
-READ_ONLY_POLICY: Any
+ADMIN_POLICY: Incomplete
+USER_POLICY: Incomplete
+READ_ONLY_POLICY: Incomplete

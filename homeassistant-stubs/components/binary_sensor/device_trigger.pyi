@@ -1,10 +1,10 @@
 from . import BinarySensorDeviceClass as BinarySensorDeviceClass, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.components.device_automation.const import CONF_TURNED_OFF as CONF_TURNED_OFF, CONF_TURNED_ON as CONF_TURNED_ON
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_TYPE as CONF_TYPE
 from homeassistant.helpers.entity import get_device_class as get_device_class
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device
-from typing import Any
 
 DEVICE_CLASS_NONE: str
 CONF_BAT_LOW: str
@@ -57,10 +57,10 @@ CONF_VIBRATION: str
 CONF_NO_VIBRATION: str
 CONF_OPENED: str
 CONF_NOT_OPENED: str
-TURNED_ON: Any
-TURNED_OFF: Any
-ENTITY_TRIGGERS: Any
-TRIGGER_SCHEMA: Any
+TURNED_ON: Incomplete
+TURNED_OFF: Incomplete
+ENTITY_TRIGGERS: Incomplete
+TRIGGER_SCHEMA: Incomplete
 
 async def async_attach_trigger(hass, config, action, automation_info): ...
 async def async_get_triggers(hass, device_id): ...

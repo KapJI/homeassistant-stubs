@@ -1,5 +1,6 @@
 import logging
 from .const import NEATO_DOMAIN as NEATO_DOMAIN
+from _typeshed import Incomplete
 from homeassistant.config_entries import SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
@@ -7,7 +8,7 @@ from types import MappingProxyType
 from typing import Any
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler):
-    DOMAIN: Any
+    DOMAIN: Incomplete
     @property
     def logger(self) -> logging.Logger: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from enum import IntEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,7 +11,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ATTR_ACTIVITY: str
 ATTR_ACTIVITY_LIST: str
 ATTR_CURRENT_ACTIVITY: str
@@ -22,9 +23,9 @@ ATTR_HOLD_SECS: str
 ATTR_ALTERNATIVE: str
 ATTR_TIMEOUT: str
 DOMAIN: str
-SCAN_INTERVAL: Any
-ENTITY_ID_FORMAT: Any
-MIN_TIME_BETWEEN_SCANS: Any
+SCAN_INTERVAL: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+MIN_TIME_BETWEEN_SCANS: Incomplete
 SERVICE_SEND_COMMAND: str
 SERVICE_LEARN_COMMAND: str
 SERVICE_DELETE_COMMAND: str
@@ -41,7 +42,7 @@ class RemoteEntityFeature(IntEnum):
 SUPPORT_LEARN_COMMAND: int
 SUPPORT_DELETE_COMMAND: int
 SUPPORT_ACTIVITY: int
-REMOTE_SERVICE_ACTIVITY_SCHEMA: Any
+REMOTE_SERVICE_ACTIVITY_SCHEMA: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

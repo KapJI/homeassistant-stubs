@@ -1,6 +1,7 @@
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import CoverSchema as CoverSchema
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant import config_entries as config_entries
@@ -18,11 +19,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 
 class KNXCover(KnxEntity, CoverEntity):
     _device: XknxCover
-    _unsubscribe_auto_updater: Any
-    _attr_entity_category: Any
-    _attr_supported_features: Any
-    _attr_device_class: Any
-    _attr_unique_id: Any
+    _unsubscribe_auto_updater: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_device_class: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     async def after_update_callback(self, device: XknxDevice) -> None: ...
     @property

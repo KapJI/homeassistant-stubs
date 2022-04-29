@@ -1,6 +1,7 @@
 from . import HomeAssistantElgatoData as HomeAssistantElgatoData
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_IDENTIFY as SERVICE_IDENTIFY
 from .entity import ElgatoEntity as ElgatoEntity
+from _typeshed import Incomplete
 from elgato import Elgato as Elgato, Info as Info, Settings as Settings, State
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -17,9 +18,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ElgatoLight(ElgatoEntity, CoordinatorEntity[DataUpdateCoordinator[State]], LightEntity):
     _attr_min_mireds: int
     _attr_max_mireds: int
-    _attr_name: Any
-    _attr_supported_color_modes: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[State], client: Elgato, info: Info, mac: Union[str, None], settings: Settings) -> None: ...
     @property
     def brightness(self) -> Union[int, None]: ...

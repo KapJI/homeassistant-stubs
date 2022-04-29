@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp, zeroconf as zeroconf
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_TOKEN as CONF_TOKEN
@@ -7,16 +8,16 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.util.json import load_json as load_json, save_json as save_json
 from typing import Any, Final
 
-_LOGGER: Any
+_LOGGER: Incomplete
 CONFIG_FILE: Final[str]
-USER_SCHEMA: Final[Any]
+USER_SCHEMA: Final[Incomplete]
 
 class ConfigFlow(config_entries.ConfigFlow):
     reauth_entry: Union[config_entries.ConfigEntry, None]
     VERSION: int
-    nanoleaf: Any
-    discovery_conf: Any
-    device_id: Any
+    nanoleaf: Incomplete
+    discovery_conf: Incomplete
+    device_id: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_reauth(self, data: dict[str, str]) -> FlowResult: ...

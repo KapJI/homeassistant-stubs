@@ -1,4 +1,5 @@
 from .const import CONF_MJPEG_URL as CONF_MJPEG_URL, CONF_STILL_IMAGE_URL as CONF_STILL_IMAGE_URL, DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Iterable
 from homeassistant.components.camera import Camera as Camera
@@ -8,22 +9,21 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_web as async_aiohttp_proxy_web, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def extract_image_from_mjpeg(stream: Iterable[bytes]) -> Union[bytes, None]: ...
 
 class MjpegCamera(Camera):
-    _attr_name: Any
-    _authentication: Any
-    _username: Any
-    _password: Any
-    _mjpeg_url: Any
-    _still_image_url: Any
-    _auth: Any
-    _verify_ssl: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
+    _attr_name: Incomplete
+    _authentication: Incomplete
+    _username: Incomplete
+    _password: Incomplete
+    _mjpeg_url: Incomplete
+    _still_image_url: Incomplete
+    _auth: Incomplete
+    _verify_ssl: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, *, name: str, mjpeg_url: str, still_image_url: Union[str, None], authentication: Union[str, None] = ..., username: Union[str, None] = ..., password: str = ..., verify_ssl: bool = ..., unique_id: Union[str, None] = ..., device_info: Union[DeviceInfo, None] = ...) -> None: ...
     async def async_camera_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...
     def camera_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...

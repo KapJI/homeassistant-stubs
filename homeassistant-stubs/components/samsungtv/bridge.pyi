@@ -1,5 +1,6 @@
 import abc
 from .const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_SESSION_ID as CONF_SESSION_ID, ENCRYPTED_WEBSOCKET_PORT as ENCRYPTED_WEBSOCKET_PORT, LEGACY_PORT as LEGACY_PORT, LOGGER as LOGGER, METHOD_ENCRYPTED_WEBSOCKET as METHOD_ENCRYPTED_WEBSOCKET, METHOD_LEGACY as METHOD_LEGACY, METHOD_WEBSOCKET as METHOD_WEBSOCKET, RESULT_AUTH_MISSING as RESULT_AUTH_MISSING, RESULT_CANNOT_CONNECT as RESULT_CANNOT_CONNECT, RESULT_NOT_SUPPORTED as RESULT_NOT_SUPPORTED, RESULT_SUCCESS as RESULT_SUCCESS, SUCCESSFUL_RESULTS as SUCCESSFUL_RESULTS, TIMEOUT_REQUEST as TIMEOUT_REQUEST, TIMEOUT_WEBSOCKET as TIMEOUT_WEBSOCKET, VALUE_CONF_ID as VALUE_CONF_ID, VALUE_CONF_NAME as VALUE_CONF_NAME, WEBSOCKET_PORTS as WEBSOCKET_PORTS
+from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_METHOD as CONF_METHOD, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TIMEOUT as CONF_TIMEOUT, CONF_TOKEN as CONF_TOKEN
@@ -14,9 +15,9 @@ from samsungtvws.encrypted.remote import SamsungTVEncryptedWSAsyncRemote
 from typing import Any, TypeVar
 
 KEY_PRESS_TIMEOUT: float
-ENCRYPTED_MODEL_USES_POWER_OFF: Any
-ENCRYPTED_MODEL_USES_POWER: Any
-REST_EXCEPTIONS: Any
+ENCRYPTED_MODEL_USES_POWER_OFF: Incomplete
+ENCRYPTED_MODEL_USES_POWER: Incomplete
+REST_EXCEPTIONS: Incomplete
 _TRemote = TypeVar('_TRemote', SamsungTVWSAsyncRemote, SamsungTVEncryptedWSAsyncRemote)
 _TCommand = TypeVar('_TCommand', SamsungTVCommand, SamsungTVEncryptedCommand)
 
@@ -26,15 +27,15 @@ async def async_get_device_info(hass: HomeAssistant, host: str) -> tuple[str, Un
 class SamsungTVBridge(ABC, metaclass=abc.ABCMeta):
     @staticmethod
     def get_bridge(hass: HomeAssistant, method: str, host: str, port: Union[int, None] = ..., entry_data: Union[Mapping[str, Any], None] = ...) -> SamsungTVBridge: ...
-    hass: Any
-    port: Any
-    method: Any
-    host: Any
-    token: Any
-    session_id: Any
-    _reauth_callback: Any
-    _update_config_entry: Any
-    _app_list_callback: Any
+    hass: Incomplete
+    port: Incomplete
+    method: Incomplete
+    host: Incomplete
+    token: Incomplete
+    session_id: Incomplete
+    _reauth_callback: Incomplete
+    _update_config_entry: Incomplete
+    _app_list_callback: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: Union[int, None] = ...) -> None: ...
     def register_reauth_callback(self, func: CALLBACK_TYPE) -> None: ...
     def register_update_config_entry_callback(self, func: Callable[[Mapping[str, Any]], None]) -> None: ...
@@ -58,8 +59,8 @@ class SamsungTVBridge(ABC, metaclass=abc.ABCMeta):
     def _notify_app_list_callback(self, app_list: dict[str, str]) -> None: ...
 
 class SamsungTVLegacyBridge(SamsungTVBridge):
-    config: Any
-    _remote: Any
+    config: Incomplete
+    _remote: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: Union[int, None]) -> None: ...
     async def async_is_on(self) -> bool: ...
     def _is_on(self) -> bool: ...
@@ -74,8 +75,8 @@ class SamsungTVLegacyBridge(SamsungTVBridge):
     def _close_remote(self) -> None: ...
 
 class SamsungTVWSBaseBridge(SamsungTVBridge, metaclass=abc.ABCMeta):
-    _remote: Any
-    _remote_lock: Any
+    _remote: Incomplete
+    _remote_lock: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: Union[int, None] = ...) -> None: ...
     async def async_is_on(self) -> bool: ...
     async def _async_send_commands(self, commands: list[_TCommand]) -> None: ...
@@ -85,9 +86,9 @@ class SamsungTVWSBaseBridge(SamsungTVBridge, metaclass=abc.ABCMeta):
     async def async_close_remote(self) -> None: ...
 
 class SamsungTVWSBridge(SamsungTVWSBaseBridge[SamsungTVWSAsyncRemote, SamsungTVCommand]):
-    token: Any
-    _rest_api: Any
-    _device_info: Any
+    token: Incomplete
+    _rest_api: Incomplete
+    _device_info: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: Union[int, None] = ..., entry_data: Union[Mapping[str, Any], None] = ...) -> None: ...
     def _get_device_spec(self, key: str) -> Union[Any, None]: ...
     async def async_is_on(self) -> bool: ...
@@ -96,24 +97,24 @@ class SamsungTVWSBridge(SamsungTVWSBaseBridge[SamsungTVWSAsyncRemote, SamsungTVC
     async def async_launch_app(self, app_id: str) -> None: ...
     async def async_request_app_list(self) -> None: ...
     async def async_send_keys(self, keys: list[str]) -> None: ...
-    _remote: Any
+    _remote: Incomplete
     async def _async_get_remote_under_lock(self) -> Union[SamsungTVWSAsyncRemote, None]: ...
     def _remote_event(self, event: str, response: Any) -> None: ...
     async def _async_send_power_off(self) -> None: ...
 
 class SamsungTVEncryptedBridge(SamsungTVWSBaseBridge[SamsungTVEncryptedWSAsyncRemote, SamsungTVEncryptedCommand]):
     _power_off_warning_logged: bool
-    _model: Any
-    _short_model: Any
-    token: Any
-    session_id: Any
-    _rest_api_port: Any
-    _device_info: Any
+    _model: Incomplete
+    _short_model: Incomplete
+    token: Incomplete
+    session_id: Incomplete
+    _rest_api_port: Incomplete
+    _device_info: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: Union[int, None] = ..., entry_data: Union[Mapping[str, Any], None] = ...) -> None: ...
-    port: Any
+    port: Incomplete
     async def async_try_connect(self) -> str: ...
     async def async_device_info(self) -> Union[dict[str, Any], None]: ...
     async def async_send_keys(self, keys: list[str]) -> None: ...
-    _remote: Any
+    _remote: Incomplete
     async def _async_get_remote_under_lock(self) -> Union[SamsungTVEncryptedWSAsyncRemote, None]: ...
     async def _async_send_power_off(self) -> None: ...

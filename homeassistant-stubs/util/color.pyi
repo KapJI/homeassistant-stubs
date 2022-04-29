@@ -1,11 +1,12 @@
-from typing import Any, NamedTuple
+from _typeshed import Incomplete
+from typing import NamedTuple
 
 class RGBColor(NamedTuple):
     r: int
     g: int
     b: int
 
-COLORS: Any
+COLORS: Incomplete
 
 class XYPoint:
     x: float

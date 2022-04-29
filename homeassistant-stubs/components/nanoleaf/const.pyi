@@ -1,6 +1,6 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-NANOLEAF_EVENT: Any
-TOUCH_MODELS: Any
-TOUCH_GESTURE_TRIGGER_MAP: Any
+NANOLEAF_EVENT: Incomplete
+TOUCH_MODELS: Incomplete
+TOUCH_GESTURE_TRIGGER_MAP: Incomplete

@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN, TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
 from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordinator
 from .entity import LookinCoordinatorEntity as LookinCoordinatorEntity
 from .models import LookinData as LookinData
+from _typeshed import Incomplete
 from aiolookin import Climate, MeteoSensor as MeteoSensor
 from aiolookin.models import UDPEvent as UDPEvent
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
@@ -12,28 +13,28 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Final
 
-LOOKIN_FAN_MODE_IDX_TO_HASS: Final[Any]
-LOOKIN_SWING_MODE_IDX_TO_HASS: Final[Any]
-LOOKIN_HVAC_MODE_IDX_TO_HASS: Final[Any]
+LOOKIN_FAN_MODE_IDX_TO_HASS: Final[Incomplete]
+LOOKIN_SWING_MODE_IDX_TO_HASS: Final[Incomplete]
+LOOKIN_HVAC_MODE_IDX_TO_HASS: Final[Incomplete]
 HASS_TO_LOOKIN_HVAC_MODE: dict[str, int]
 HASS_TO_LOOKIN_FAN_MODE: dict[str, int]
 HASS_TO_LOOKIN_SWING_MODE: dict[str, int]
 MIN_TEMP: Final[int]
 MAX_TEMP: Final[int]
-LOGGER: Any
+LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ConditionerEntity(LookinCoordinatorEntity, ClimateEntity):
     _attr_current_humidity: Union[float, None]
-    _attr_temperature_unit: Any
+    _attr_temperature_unit: Incomplete
     _attr_supported_features: int
     _attr_fan_modes: list[str]
     _attr_swing_modes: list[str]
     _attr_hvac_modes: list[HVACMode]
-    _attr_min_temp: Any
-    _attr_max_temp: Any
-    _attr_target_temperature_step: Any
+    _attr_min_temp: Incomplete
+    _attr_max_temp: Incomplete
+    _attr_target_temperature_step: Incomplete
     def __init__(self, uuid: str, device: Climate, lookin_data: LookinData, coordinator: LookinDataUpdateCoordinator) -> None: ...
     @property
     def _climate(self) -> Climate: ...
@@ -42,11 +43,11 @@ class ConditionerEntity(LookinCoordinatorEntity, ClimateEntity):
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
     async def _async_update_conditioner(self) -> None: ...
-    _attr_current_temperature: Any
-    _attr_target_temperature: Any
-    _attr_fan_mode: Any
-    _attr_swing_mode: Any
-    _attr_hvac_mode: Any
+    _attr_current_temperature: Incomplete
+    _attr_target_temperature: Incomplete
+    _attr_fan_mode: Incomplete
+    _attr_swing_mode: Incomplete
+    _attr_hvac_mode: Incomplete
     def _async_update_from_data(self) -> None: ...
     def _async_update_meteo_from_value(self, event: UDPEvent) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

@@ -1,6 +1,7 @@
 from . import BlockDeviceWrapper as BlockDeviceWrapper
 from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, LOGGER as LOGGER, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
 from .utils import get_device_entry_gen as get_device_entry_gen
+from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
@@ -18,22 +19,22 @@ async def async_setup_climate_entities(async_add_entities: AddEntitiesCallback, 
 async def async_restore_climate_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, wrapper: BlockDeviceWrapper) -> None: ...
 
 class BlockSleepingClimate(update_coordinator.CoordinatorEntity, RestoreEntity, ClimateEntity):
-    _attr_hvac_modes: Any
+    _attr_hvac_modes: Incomplete
     _attr_icon: str
-    _attr_max_temp: Any
-    _attr_min_temp: Any
+    _attr_max_temp: Incomplete
+    _attr_min_temp: Incomplete
     _attr_supported_features: int
-    _attr_target_temperature_step: Any
-    _attr_temperature_unit: Any
-    wrapper: Any
-    block: Any
-    control_result: Any
-    device_block: Any
-    last_state: Any
-    last_state_attributes: Any
-    _preset_modes: Any
-    _unique_id: Any
-    _channel: Any
+    _attr_target_temperature_step: Incomplete
+    _attr_temperature_unit: Incomplete
+    wrapper: Incomplete
+    block: Incomplete
+    control_result: Incomplete
+    device_block: Incomplete
+    last_state: Incomplete
+    last_state_attributes: Incomplete
+    _preset_modes: Incomplete
+    _unique_id: Incomplete
+    _channel: Incomplete
     def __init__(self, wrapper: BlockDeviceWrapper, sensor_block: Union[Block, None], device_block: Union[Block, None], entry: Union[entity_registry.RegistryEntry, None] = ...) -> None: ...
     @property
     def unique_id(self) -> str: ...

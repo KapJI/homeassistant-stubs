@@ -5,13 +5,13 @@ from .core import CALLBACK_TYPE as CALLBACK_TYPE
 from .exceptions import DependencyError as DependencyError, HomeAssistantError as HomeAssistantError
 from .helpers.typing import ConfigType as ConfigType
 from .util import ensure_unique_string as ensure_unique_string
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Generator, Iterable
 from types import ModuleType
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ATTR_COMPONENT: str
-BASE_PLATFORMS: Any
+BASE_PLATFORMS: Incomplete
 DATA_SETUP_DONE: str
 DATA_SETUP_STARTED: str
 DATA_SETUP_TIME: str

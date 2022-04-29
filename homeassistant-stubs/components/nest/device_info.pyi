@@ -1,13 +1,13 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from google_nest_sdm.device import Device as Device
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
-from typing import Any
 
 DEVICE_TYPE_MAP: dict[str, str]
 
 class NestDeviceInfo:
     device_brand: str
-    _device: Any
+    _device: Incomplete
     def __init__(self, device: Device) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...

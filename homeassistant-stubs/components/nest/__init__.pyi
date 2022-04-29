@@ -4,6 +4,7 @@ from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CON
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, NEST_EVENT as NEST_EVENT
 from .legacy import async_setup_legacy as async_setup_legacy, async_setup_legacy_entry as async_setup_legacy_entry
 from .media_source import async_get_media_event_store as async_get_media_event_store, async_get_transcoder as async_get_transcoder, get_media_source_devices as get_media_source_devices
+from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable
@@ -21,22 +22,21 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from http import HTTPStatus
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DATA_NEST_UNAVAILABLE: str
 NEST_SETUP_NOTIFICATION: str
-SENSOR_SCHEMA: Any
-CONFIG_SCHEMA: Any
-PLATFORMS: Any
+SENSOR_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
+PLATFORMS: Incomplete
 EVENT_MEDIA_CACHE_SIZE: int
 THUMBNAIL_SIZE_PX: int
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class SignalUpdateCallback:
-    _hass: Any
-    _config_reload_cb: Any
+    _hass: Incomplete
+    _config_reload_cb: Incomplete
     def __init__(self, hass: HomeAssistant, config_reload_cb: Callable[[], Awaitable[None]]) -> None: ...
     async def async_handle_event(self, event_message: EventMessage) -> None: ...
 
@@ -45,7 +45,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 
 class NestEventViewBase(HomeAssistantView, ABC, metaclass=abc.ABCMeta):
-    hass: Any
+    hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def get(self, request: web.Request, device_id: str, event_token: str) -> web.StreamResponse: ...
     @abstractmethod
@@ -63,8 +63,8 @@ class NestEventMediaView(NestEventViewBase):
 class NestEventMediaThumbnailView(NestEventViewBase):
     url: str
     name: str
-    _lock: Any
-    hass: Any
+    _lock: Incomplete
+    hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def load_media(self, nest_device: Device, event_token: str) -> Union[Media, None]: ...
     async def handle_media(self, media: Media) -> web.StreamResponse: ...

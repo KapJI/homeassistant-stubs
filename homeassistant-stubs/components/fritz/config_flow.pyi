@@ -1,4 +1,5 @@
 from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, ERROR_AUTH_INVALID as ERROR_AUTH_INVALID, ERROR_CANNOT_CONNECT as ERROR_CANNOT_CONNECT, ERROR_UNKNOWN as ERROR_UNKNOWN, ERROR_UPNP_NOT_CONFIGURED as ERROR_UPNP_NOT_CONFIGURED
+from _typeshed import Incomplete
 from homeassistant.components import ssdp as ssdp
 from homeassistant.components.device_tracker.const import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, OptionsFlow as OptionsFlow
@@ -8,17 +9,17 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 from urllib.parse import ParseResult as ParseResult
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class FritzBoxToolsFlowHandler(ConfigFlow):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
-    _host: Any
-    _entry: Any
+    _host: Incomplete
+    _entry: Incomplete
     _name: str
     _password: str
-    _port: Any
+    _port: Incomplete
     _username: str
     _model: str
     def __init__(self) -> None: ...
@@ -35,6 +36,6 @@ class FritzBoxToolsFlowHandler(ConfigFlow):
     async def async_step_reauth_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
 class FritzBoxToolsOptionsFlowHandler(OptionsFlow):
-    config_entry: Any
+    config_entry: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

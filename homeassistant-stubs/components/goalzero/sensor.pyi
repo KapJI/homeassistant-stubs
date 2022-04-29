@@ -1,5 +1,6 @@
 from . import YetiEntity as YetiEntity
 from .const import DATA_KEY_API as DATA_KEY_API, DATA_KEY_COORDINATOR as DATA_KEY_COORDINATOR, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from goalzero import Yeti as Yeti
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,16 +10,15 @@ from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class YetiSensor(YetiEntity, SensorEntity):
-    _attr_name: Any
-    entity_description: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    entity_description: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, api: Yeti, coordinator: DataUpdateCoordinator, name: str, description: SensorEntityDescription, server_unique_id: str) -> None: ...
     @property
     def native_value(self) -> StateType: ...

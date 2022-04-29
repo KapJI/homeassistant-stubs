@@ -1,9 +1,10 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 from typing import Any, TypedDict
 
-ENTITY_MAP_STORAGE_KEY: Any
+ENTITY_MAP_STORAGE_KEY: Incomplete
 ENTITY_MAP_STORAGE_VERSION: int
 ENTITY_MAP_SAVE_DELAY: int
 
@@ -15,9 +16,9 @@ class StorageLayout(TypedDict):
     pairings: dict[str, Pairing]
 
 class EntityMapStorage:
-    hass: Any
-    store: Any
-    storage_data: Any
+    hass: Incomplete
+    store: Incomplete
+    storage_data: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_initialize(self) -> None: ...
     def get_map(self, homekit_id: str) -> Union[Pairing, None]: ...

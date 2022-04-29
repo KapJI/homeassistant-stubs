@@ -1,7 +1,7 @@
+from _typeshed import Incomplete
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class WriteError(HomeAssistantError): ...
 

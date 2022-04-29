@@ -1,8 +1,8 @@
 import re
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE
 from homeassistant.core import split_entity_id as split_entity_id
-from typing import Any
 
 CONF_INCLUDE_DOMAINS: str
 CONF_INCLUDE_ENTITY_GLOBS: str
@@ -13,15 +13,15 @@ CONF_EXCLUDE_ENTITIES: str
 CONF_ENTITY_GLOBS: str
 
 class EntityFilter:
-    empty_filter: Any
-    config: Any
-    _include_e: Any
-    _exclude_e: Any
-    _include_d: Any
-    _exclude_d: Any
-    _include_eg: Any
-    _exclude_eg: Any
-    _filter: Any
+    empty_filter: Incomplete
+    config: Incomplete
+    _include_e: Incomplete
+    _exclude_e: Incomplete
+    _include_d: Incomplete
+    _exclude_d: Incomplete
+    _include_eg: Incomplete
+    _exclude_eg: Incomplete
+    _filter: Incomplete
     def __init__(self, config: dict[str, list[str]]) -> None: ...
     def explicitly_included(self, entity_id: str) -> bool: ...
     def explicitly_excluded(self, entity_id: str) -> bool: ...
@@ -29,14 +29,14 @@ class EntityFilter:
 
 def convert_filter(config: dict[str, list[str]]) -> EntityFilter: ...
 
-BASE_FILTER_SCHEMA: Any
-FILTER_SCHEMA: Any
+BASE_FILTER_SCHEMA: Incomplete
+FILTER_SCHEMA: Incomplete
 
 def convert_include_exclude_filter(config: dict[str, dict[str, list[str]]]) -> EntityFilter: ...
 
-INCLUDE_EXCLUDE_FILTER_SCHEMA_INNER: Any
-INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA: Any
-INCLUDE_EXCLUDE_FILTER_SCHEMA: Any
+INCLUDE_EXCLUDE_FILTER_SCHEMA_INNER: Incomplete
+INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA: Incomplete
+INCLUDE_EXCLUDE_FILTER_SCHEMA: Incomplete
 
 def _glob_to_re(glob: str) -> re.Pattern[str]: ...
 def _test_against_patterns(patterns: list[re.Pattern[str]], entity_id: str) -> bool: ...

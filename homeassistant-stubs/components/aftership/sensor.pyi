@@ -1,4 +1,5 @@
 from .const import ADD_TRACKING_SERVICE_SCHEMA as ADD_TRACKING_SERVICE_SCHEMA, ATTRIBUTION as ATTRIBUTION, ATTR_TRACKINGS as ATTR_TRACKINGS, BASE as BASE, CONF_SLUG as CONF_SLUG, CONF_TITLE as CONF_TITLE, CONF_TRACKING_NUMBER as CONF_TRACKING_NUMBER, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, ICON as ICON, MIN_TIME_BETWEEN_UPDATES as MIN_TIME_BETWEEN_UPDATES, REMOVE_TRACKING_SERVICE_SCHEMA as REMOVE_TRACKING_SERVICE_SCHEMA, SERVICE_ADD_TRACKING as SERVICE_ADD_TRACKING, SERVICE_REMOVE_TRACKING as SERVICE_REMOVE_TRACKING, UPDATE_TOPIC as UPDATE_TOPIC
+from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
@@ -10,19 +11,19 @@ from homeassistant.util import Throttle as Throttle
 from pyaftership import AfterShip
 from typing import Any, Final
 
-_LOGGER: Final[Any]
-PLATFORM_SCHEMA: Final[Any]
+_LOGGER: Final[Incomplete]
+PLATFORM_SCHEMA: Final[Incomplete]
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class AfterShipSensor(SensorEntity):
-    _attr_attribution: Any
+    _attr_attribution: Incomplete
     _attr_native_unit_of_measurement: str
     _attr_icon: str
-    _attributes: Any
-    _state: Any
-    aftership: Any
-    _attr_name: Any
+    _attributes: Incomplete
+    _state: Incomplete
+    aftership: Incomplete
+    _attr_name: Incomplete
     def __init__(self, aftership: AfterShip, name: str) -> None: ...
     @property
     def native_value(self) -> Union[int, None]: ...

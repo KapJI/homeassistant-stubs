@@ -1,13 +1,13 @@
 from . import AsekoDataUpdateCoordinator as AsekoDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
 from .entity import AsekoEntity as AsekoEntity
+from _typeshed import Incomplete
 from aioaseko import Unit as Unit
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 
 class AsekoBinarySensorDescriptionMixin:
     value_fn: Callable[[Unit], bool]
@@ -22,8 +22,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class AsekoUnitBinarySensorEntity(AsekoEntity, BinarySensorEntity):
     entity_description: AsekoBinarySensorEntityDescription
-    _attr_name: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, unit: Unit, coordinator: AsekoDataUpdateCoordinator, entity_description: AsekoBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

@@ -1,10 +1,11 @@
 import datetime as dt
+from _typeshed import Incomplete
 from typing import Any
 
 DATE_STR_FORMAT: str
-UTC: Any
+UTC: Incomplete
 DEFAULT_TIME_ZONE: dt.tzinfo
-DATETIME_RE: Any
+DATETIME_RE: Incomplete
 
 def set_default_time_zone(time_zone: dt.tzinfo) -> None: ...
 def get_time_zone(time_zone_str: str) -> Union[dt.tzinfo, None]: ...

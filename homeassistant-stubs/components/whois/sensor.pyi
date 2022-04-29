@@ -1,4 +1,5 @@
 from .const import ATTR_EXPIRES as ATTR_EXPIRES, ATTR_NAME_SERVERS as ATTR_NAME_SERVERS, ATTR_REGISTRAR as ATTR_REGISTRAR, ATTR_UPDATED as ATTR_UPDATED, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
@@ -9,7 +10,6 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
 from whois import Domain as Domain
 
 class WhoisSensorEntityDescriptionMixin:
@@ -28,10 +28,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WhoisSensorEntity(CoordinatorEntity, SensorEntity):
     entity_description: WhoisSensorEntityDescription
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
-    _domain: Any
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    _domain: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, description: WhoisSensorEntityDescription, domain: str) -> None: ...
     @property
     def native_value(self) -> Union[datetime, int, str, None]: ...

@@ -1,6 +1,7 @@
 from .const import POWER_PLUGS as POWER_PLUGS
 from .deconz_device import DeconzDevice as DeconzDevice
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DOMAIN as DOMAIN, EFFECT_COLORLOOP as EFFECT_COLORLOOP, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -13,8 +14,8 @@ from pydeconz.models.light.light import Light
 from typing import Any, TypeVar, TypedDict
 
 DECONZ_GROUP: str
-EFFECT_TO_DECONZ: Any
-FLASH_TO_DECONZ: Any
+EFFECT_TO_DECONZ: Incomplete
+FLASH_TO_DECONZ: Incomplete
 _L = TypeVar('_L', Group, Light)
 
 class SetStateAttributes(TypedDict):
@@ -31,10 +32,10 @@ class SetStateAttributes(TypedDict):
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzBaseLight(DeconzDevice, LightEntity):
-    TYPE: Any
+    TYPE: Incomplete
     _device: _L
-    _attr_supported_color_modes: Any
-    _attr_effect_list: Any
+    _attr_supported_color_modes: Incomplete
+    _attr_effect_list: Incomplete
     def __init__(self, device: _L, gateway: DeconzGateway) -> None: ...
     @property
     def color_mode(self) -> Union[str, None]: ...
@@ -62,7 +63,7 @@ class DeconzLight(DeconzBaseLight[Light]):
 
 class DeconzGroup(DeconzBaseLight[Group]):
     _device: Group
-    _unique_id: Any
+    _unique_id: Incomplete
     def __init__(self, device: Group, gateway: DeconzGateway) -> None: ...
     @property
     def unique_id(self) -> str: ...

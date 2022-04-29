@@ -3,6 +3,7 @@ import voluptuous as vol
 from . import config_per_platform as config_per_platform, discovery as discovery, entity as entity, service as service
 from .entity_platform import EntityPlatform as EntityPlatform
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -14,20 +15,20 @@ from homeassistant.setup import async_prepare_setup_platform as async_prepare_se
 from types import ModuleType
 from typing import Any
 
-DEFAULT_SCAN_INTERVAL: Any
+DEFAULT_SCAN_INTERVAL: Incomplete
 DATA_INSTANCES: str
 
 async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None: ...
 
 class EntityComponent:
-    logger: Any
-    hass: Any
-    domain: Any
-    scan_interval: Any
-    config: Any
-    _platforms: Any
-    async_add_entities: Any
-    add_entities: Any
+    logger: Incomplete
+    hass: Incomplete
+    domain: Incomplete
+    scan_interval: Incomplete
+    config: Incomplete
+    _platforms: Incomplete
+    async_add_entities: Incomplete
+    add_entities: Incomplete
     def __init__(self, logger: logging.Logger, domain: str, hass: HomeAssistant, scan_interval: timedelta = ...) -> None: ...
     @property
     def entities(self) -> Iterable[entity.Entity]: ...

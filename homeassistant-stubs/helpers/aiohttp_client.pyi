@@ -1,5 +1,6 @@
 import aiohttp
 from .frame import warn_use as warn_use
+from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
@@ -12,7 +13,7 @@ DATA_CONNECTOR: str
 DATA_CONNECTOR_NOTVERIFY: str
 DATA_CLIENTSESSION: str
 DATA_CLIENTSESSION_NOTVERIFY: str
-SERVER_SOFTWARE: Any
+SERVER_SOFTWARE: Incomplete
 WARN_CLOSE_MSG: str
 
 def async_get_clientsession(hass: HomeAssistant, verify_ssl: bool = ...) -> aiohttp.ClientSession: ...

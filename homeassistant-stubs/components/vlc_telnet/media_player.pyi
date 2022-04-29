@@ -1,6 +1,7 @@
 from .const import DATA_AVAILABLE as DATA_AVAILABLE, DATA_VLC as DATA_VLC, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from aiovlc.client import Client as Client
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from datetime import datetime
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, async_process_play_media_url as async_process_play_media_url
@@ -17,29 +18,29 @@ from typing_extensions import Concatenate as Concatenate
 
 MAX_VOLUME: int
 _T = TypeVar('_T', bound='VlcDevice')
-_P: Any
+_P: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def catch_vlc_errors(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class VlcDevice(MediaPlayerEntity):
-    _attr_supported_features: Any
-    _config_entry: Any
-    _name: Any
-    _volume: Any
-    _muted: Any
-    _state: Any
-    _media_position_updated_at: Any
-    _media_position: Any
-    _media_duration: Any
-    _vlc: Any
-    _available: Any
+    _attr_supported_features: Incomplete
+    _config_entry: Incomplete
+    _name: Incomplete
+    _volume: Incomplete
+    _muted: Incomplete
+    _state: Incomplete
+    _media_position_updated_at: Incomplete
+    _media_position: Incomplete
+    _media_duration: Incomplete
+    _vlc: Incomplete
+    _available: Incomplete
     _volume_bkp: float
-    _media_artist: Any
-    _media_title: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
-    _using_addon: Any
+    _media_artist: Incomplete
+    _media_title: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    _using_addon: Incomplete
     def __init__(self, config_entry: ConfigEntry, vlc: Client, name: str, available: bool) -> None: ...
     async def async_update(self) -> None: ...
     @property

@@ -1,6 +1,7 @@
 from .base_class import TradfriBaseEntity as TradfriBaseEntity
 from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, KEY_API as KEY_API, LOGGER as LOGGER
 from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -30,8 +31,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class TradfriSensor(TradfriBaseEntity, SensorEntity):
     entity_description: TradfriSensorEntityDescription
-    _attr_unique_id: Any
-    _attr_name: Any
+    _attr_unique_id: Incomplete
+    _attr_name: Incomplete
     def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Union[Command, list[Command]]], Any], gateway_id: str, description: TradfriSensorEntityDescription) -> None: ...
-    _attr_native_value: Any
+    _attr_native_value: Incomplete
     def _refresh(self) -> None: ...

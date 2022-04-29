@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
 CONF_FEEDERS: str
@@ -7,7 +7,7 @@ CONF_PETS: str
 SURE_API_TIMEOUT: int
 SURE_BATT_VOLTAGE_FULL: float
 SURE_BATT_VOLTAGE_LOW: float
-SURE_BATT_VOLTAGE_DIFF: Any
+SURE_BATT_VOLTAGE_DIFF: Incomplete
 SERVICE_SET_LOCK_STATE: str
 SERVICE_SET_PET_LOCATION: str
 ATTR_FLAP_ID: str

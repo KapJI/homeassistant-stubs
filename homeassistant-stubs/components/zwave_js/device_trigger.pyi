@@ -5,6 +5,7 @@ from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_DATA_TYPE as A
 from .device_automation_helpers import CONF_SUBTYPE as CONF_SUBTYPE, NODE_STATUSES as NODE_STATUSES, generate_config_parameter_subtype as generate_config_parameter_subtype
 from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, async_get_node_status_sensor_entity_id as async_get_node_status_sensor_entity_id, async_is_device_config_entry_not_loaded as async_is_device_config_entry_not_loaded, check_type_schema_map as check_type_schema_map, copy_available_params as copy_available_params, get_value_state_schema as get_value_state_schema, get_zwave_value_from_config as get_zwave_value_from_config, remove_keys_with_empty_values as remove_keys_with_empty_values
 from .triggers.value_updated import ATTR_FROM as ATTR_FROM, ATTR_TO as ATTR_TO
+from _typeshed import Incomplete
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
@@ -21,25 +22,25 @@ NOTIFICATION_NOTIFICATION: str
 BASIC_VALUE_NOTIFICATION: str
 CENTRAL_SCENE_VALUE_NOTIFICATION: str
 SCENE_ACTIVATION_VALUE_NOTIFICATION: str
-CONFIG_PARAMETER_VALUE_UPDATED: Any
-VALUE_VALUE_UPDATED: Any
+CONFIG_PARAMETER_VALUE_UPDATED: Incomplete
+VALUE_VALUE_UPDATED: Incomplete
 NODE_STATUS: str
-NOTIFICATION_EVENT_CC_MAPPINGS: Any
-BASE_EVENT_SCHEMA: Any
-NOTIFICATION_NOTIFICATION_SCHEMA: Any
-ENTRY_CONTROL_NOTIFICATION_SCHEMA: Any
-BASE_VALUE_NOTIFICATION_EVENT_SCHEMA: Any
-BASIC_VALUE_NOTIFICATION_SCHEMA: Any
-CENTRAL_SCENE_VALUE_NOTIFICATION_SCHEMA: Any
-SCENE_ACTIVATION_VALUE_NOTIFICATION_SCHEMA: Any
-BASE_STATE_SCHEMA: Any
-NODE_STATUS_SCHEMA: Any
-BASE_VALUE_UPDATED_SCHEMA: Any
-CONFIG_PARAMETER_VALUE_UPDATED_SCHEMA: Any
-VALUE_VALUE_UPDATED_SCHEMA: Any
-TYPE_SCHEMA_MAP: Any
-TRIGGER_TYPE_SCHEMA: Any
-TRIGGER_SCHEMA: Any
+NOTIFICATION_EVENT_CC_MAPPINGS: Incomplete
+BASE_EVENT_SCHEMA: Incomplete
+NOTIFICATION_NOTIFICATION_SCHEMA: Incomplete
+ENTRY_CONTROL_NOTIFICATION_SCHEMA: Incomplete
+BASE_VALUE_NOTIFICATION_EVENT_SCHEMA: Incomplete
+BASIC_VALUE_NOTIFICATION_SCHEMA: Incomplete
+CENTRAL_SCENE_VALUE_NOTIFICATION_SCHEMA: Incomplete
+SCENE_ACTIVATION_VALUE_NOTIFICATION_SCHEMA: Incomplete
+BASE_STATE_SCHEMA: Incomplete
+NODE_STATUS_SCHEMA: Incomplete
+BASE_VALUE_UPDATED_SCHEMA: Incomplete
+CONFIG_PARAMETER_VALUE_UPDATED_SCHEMA: Incomplete
+VALUE_VALUE_UPDATED_SCHEMA: Incomplete
+TYPE_SCHEMA_MAP: Incomplete
+TRIGGER_TYPE_SCHEMA: Incomplete
+TRIGGER_SCHEMA: Incomplete
 
 async def async_validate_trigger_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
 def get_trigger_platform_from_type(trigger_type: str) -> str: ...

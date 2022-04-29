@@ -1,5 +1,6 @@
 from . import SENZDataUpdateCoordinator as SENZDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from aiosenz import Thermostat as Thermostat
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
@@ -14,16 +15,16 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SENZClimate(CoordinatorEntity, ClimateEntity):
-    _attr_temperature_unit: Any
-    _attr_precision: Any
-    _attr_hvac_modes: Any
-    _attr_supported_features: Any
+    _attr_temperature_unit: Incomplete
+    _attr_precision: Incomplete
+    _attr_hvac_modes: Incomplete
+    _attr_supported_features: Incomplete
     _attr_max_temp: int
     _attr_min_temp: int
-    _thermostat: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
+    _thermostat: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, thermostat: Thermostat, coordinator: SENZDataUpdateCoordinator) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     @property

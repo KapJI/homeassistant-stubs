@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TYPE as CONF_TYPE, DATA_GIBIBYTES as DATA_GIBIBYTES, DATA_MEBIBYTES as DATA_MEBIBYTES, DATA_RATE_MEGABYTES_PER_SECOND as DATA_RATE_MEGABYTES_PER_SECOND, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS
@@ -10,7 +11,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.util import slugify as slugify
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 CONF_ARG: str
 CPU_ICON: str
 SENSOR_TYPE_NAME: int
@@ -28,9 +29,9 @@ SENSOR_TYPES: dict[str, SysMonitorSensorEntityDescription]
 
 def check_required_arg(value: Any) -> Any: ...
 
-IO_COUNTER: Any
-IF_ADDRS_FAMILY: Any
-CPU_SENSOR_PREFIXES: Any
+IO_COUNTER: Incomplete
+IF_ADDRS_FAMILY: Incomplete
+CPU_SENSOR_PREFIXES: Incomplete
 
 class SensorData:
     argument: Any
@@ -45,11 +46,11 @@ async def async_setup_sensor_registry_updates(hass: HomeAssistant, sensor_regist
 
 class SystemMonitorSensor(SensorEntity):
     should_poll: bool
-    entity_description: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _sensor_registry: Any
-    _argument: Any
+    entity_description: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _sensor_registry: Incomplete
+    _argument: Incomplete
     def __init__(self, sensor_registry: dict[tuple[str, str], SensorData], sensor_description: SysMonitorSensorEntityDescription, argument: str = ...) -> None: ...
     @property
     def native_value(self) -> Union[str, datetime, None]: ...

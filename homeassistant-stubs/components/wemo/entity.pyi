@@ -1,16 +1,16 @@
 from .wemo_device import DeviceCoordinator as DeviceCoordinator
+from _typeshed import Incomplete
 from collections.abc import Generator
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class WemoEntity(CoordinatorEntity[DeviceCoordinator]):
     _name_suffix: Union[str, None]
     _unique_id_suffix: Union[str, None]
-    wemo: Any
-    _device_info: Any
+    wemo: Incomplete
+    _device_info: Incomplete
     def __init__(self, coordinator: DeviceCoordinator) -> None: ...
     @property
     def name_suffix(self) -> Union[str, None]: ...

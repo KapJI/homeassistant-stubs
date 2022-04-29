@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity, async_all_device_entities as async_all_device_entities
 from .models import ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
+from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import TIME_SECONDS as TIME_SECONDS
@@ -9,7 +10,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyunifiprotect.data.devices import Camera as Camera, Doorlock, Light
-from typing import Any
 
 class NumberKeysMixin:
     ufp_max: int
@@ -35,10 +35,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ProtectNumbers(ProtectDeviceEntity, NumberEntity):
     device: Union[Camera, Light]
     entity_description: ProtectNumberEntityDescription
-    _attr_max_value: Any
-    _attr_min_value: Any
-    _attr_step: Any
+    _attr_max_value: Incomplete
+    _attr_min_value: Incomplete
+    _attr_step: Incomplete
     def __init__(self, data: ProtectData, device: Union[Camera, Light], description: ProtectNumberEntityDescription) -> None: ...
-    _attr_value: Any
+    _attr_value: Incomplete
     def _async_update_device_from_protect(self) -> None: ...
     async def async_set_value(self, value: float) -> None: ...

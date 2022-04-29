@@ -1,5 +1,6 @@
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
 from .helpers import on_unload as on_unload
+from _typeshed import Incomplete
 from homeassistant.components import mysensors as mysensors
 from homeassistant.components.climate import ClimateEntity as ClimateEntity
 from homeassistant.components.climate.const import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
@@ -10,15 +11,15 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-DICT_HA_TO_MYS: Any
-DICT_MYS_TO_HA: Any
-FAN_LIST: Any
-OPERATION_LIST: Any
+DICT_HA_TO_MYS: Incomplete
+DICT_MYS_TO_HA: Incomplete
+FAN_LIST: Incomplete
+OPERATION_LIST: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MySensorsHVAC(mysensors.device.MySensorsEntity, ClimateEntity):
-    _attr_hvac_modes: Any
+    _attr_hvac_modes: Incomplete
     @property
     def supported_features(self) -> int: ...
     @property

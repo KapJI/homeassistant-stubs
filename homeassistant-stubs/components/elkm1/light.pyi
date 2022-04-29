@@ -1,5 +1,6 @@
 from . import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
 from elkm1_lib.lights import Light as Light
@@ -12,10 +13,10 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElkLight(ElkEntity, LightEntity):
-    _attr_color_mode: Any
-    _attr_supported_color_modes: Any
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
     _element: Light
-    _brightness: Any
+    _brightness: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: dict[str, Any]) -> None: ...
     @property
     def brightness(self) -> int: ...

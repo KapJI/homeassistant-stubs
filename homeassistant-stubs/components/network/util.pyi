@@ -1,11 +1,11 @@
 import ifaddr
 from .const import MDNS_TARGET_IP as MDNS_TARGET_IP
 from .models import Adapter as Adapter, IPv4ConfiguredAddress as IPv4ConfiguredAddress, IPv6ConfiguredAddress as IPv6ConfiguredAddress
+from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from ipaddress import IPv4Address, IPv6Address
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def async_load_adapters() -> list[Adapter]: ...
 def enable_adapters(adapters: list[Adapter], enabled_interfaces: list[str]) -> bool: ...

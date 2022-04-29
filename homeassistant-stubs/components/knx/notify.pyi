@@ -1,5 +1,6 @@
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .schema import NotifySchema as NotifySchema
+from _typeshed import Incomplete
 from homeassistant.components.notify import BaseNotificationService as BaseNotificationService
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,7 +12,7 @@ from xknx.devices import Notification as XknxNotification
 async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[KNXNotificationService, None]: ...
 
 class KNXNotificationService(BaseNotificationService):
-    devices: Any
+    devices: Incomplete
     def __init__(self, devices: list[XknxNotification]) -> None: ...
     @property
     def targets(self) -> dict[str, str]: ...

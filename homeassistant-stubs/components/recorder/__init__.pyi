@@ -8,6 +8,7 @@ from .models import Base as Base, Events as Events, StateAttributes as StateAttr
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
 from .run_history import RunHistory as RunHistory
 from .util import dburl_to_path as dburl_to_path, end_incomplete_runs as end_incomplete_runs, is_second_sunday as is_second_sunday, move_away_broken_database as move_away_broken_database, periodic_db_cleanups as periodic_db_cleanups, session_scope as session_scope, setup_connection_for_dialect as setup_connection_for_dialect, validate_or_move_away_sqlite_database as validate_or_move_away_sqlite_database, write_lock_db_sqlite as write_lock_db_sqlite
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
 from homeassistant.components import persistent_notification as persistent_notification
@@ -25,9 +26,9 @@ from sqlalchemy.orm.query import Query as Query
 from sqlalchemy.orm.session import Session as Session
 from typing import Any, TypeVar
 
-_LOGGER: Any
+_LOGGER: Incomplete
 T = TypeVar('T')
-EXCLUDE_ATTRIBUTES: Any
+EXCLUDE_ATTRIBUTES: Incomplete
 SERVICE_PURGE: str
 SERVICE_PURGE_ENTITIES: str
 SERVICE_ENABLE: str
@@ -35,12 +36,12 @@ SERVICE_DISABLE: str
 ATTR_KEEP_DAYS: str
 ATTR_REPACK: str
 ATTR_APPLY_FILTER: str
-SERVICE_PURGE_SCHEMA: Any
+SERVICE_PURGE_SCHEMA: Incomplete
 ATTR_DOMAINS: str
 ATTR_ENTITY_GLOBS: str
-SERVICE_PURGE_ENTITIES_SCHEMA: Any
-SERVICE_ENABLE_SCHEMA: Any
-SERVICE_DISABLE_SCHEMA: Any
+SERVICE_PURGE_ENTITIES_SCHEMA: Incomplete
+SERVICE_ENABLE_SCHEMA: Incomplete
+SERVICE_DISABLE_SCHEMA: Incomplete
 DEFAULT_URL: str
 DEFAULT_DB_FILE: str
 DEFAULT_DB_INTEGRITY_CHECK: bool
@@ -50,7 +51,7 @@ DEFAULT_COMMIT_INTERVAL: int
 KEEPALIVE_TIME: int
 EXPIRE_AFTER_COMMITS: int
 STATE_ATTRIBUTES_ID_CACHE_SIZE: int
-SHUTDOWN_TASK: Any
+SHUTDOWN_TASK: Incomplete
 DB_LOCK_TIMEOUT: int
 DB_LOCK_QUEUE_CHECK_TIMEOUT: int
 CONF_AUTO_PURGE: str
@@ -64,14 +65,14 @@ CONF_EVENT_TYPES: str
 CONF_COMMIT_INTERVAL: str
 INVALIDATED_ERR: str
 CONNECTIVITY_ERR: str
-EXCLUDE_SCHEMA: Any
-FILTER_SCHEMA: Any
+EXCLUDE_SCHEMA: Incomplete
+FILTER_SCHEMA: Incomplete
 ALLOW_IN_MEMORY_DB: bool
 
 def validate_db_url(db_url: str) -> Any: ...
 
-CONFIG_SCHEMA: Any
-MAX_DB_EXECUTOR_WORKERS: Any
+CONFIG_SCHEMA: Incomplete
+MAX_DB_EXECUTOR_WORKERS: Incomplete
 
 def get_instance(hass: HomeAssistant) -> Recorder: ...
 def is_entity_recorded(hass: HomeAssistant, entity_id: str) -> bool: ...
@@ -164,50 +165,50 @@ class AddRecorderPlatformTask(RecorderTask):
     def run(self, instance: Recorder) -> None: ...
     def __init__(self, domain, platform) -> None: ...
 
-COMMIT_TASK: Any
-KEEP_ALIVE_TASK: Any
+COMMIT_TASK: Incomplete
+KEEP_ALIVE_TASK: Incomplete
 
 class Recorder(threading.Thread):
     stop_requested: bool
-    hass: Any
-    auto_purge: Any
-    auto_repack: Any
-    keep_days: Any
-    _hass_started: Any
-    commit_interval: Any
-    queue: Any
-    db_url: Any
-    db_max_retries: Any
-    db_retry_wait: Any
-    async_db_ready: Any
-    async_recorder_ready: Any
-    _queue_watch: Any
-    engine: Any
-    run_history: Any
-    entity_filter: Any
-    exclude_t: Any
+    hass: Incomplete
+    auto_purge: Incomplete
+    auto_repack: Incomplete
+    keep_days: Incomplete
+    _hass_started: Incomplete
+    commit_interval: Incomplete
+    queue: Incomplete
+    db_url: Incomplete
+    db_max_retries: Incomplete
+    db_retry_wait: Incomplete
+    async_db_ready: Incomplete
+    async_recorder_ready: Incomplete
+    _queue_watch: Incomplete
+    engine: Incomplete
+    run_history: Incomplete
+    entity_filter: Incomplete
+    exclude_t: Incomplete
     _commits_without_expire: int
-    _old_states: Any
-    _state_attributes_ids: Any
-    _pending_state_attributes: Any
-    _pending_expunge: Any
-    _bakery: Any
-    _find_shared_attr_query: Any
-    event_session: Any
-    get_session: Any
-    _completed_first_database_setup: Any
-    _event_listener: Any
-    async_migration_event: Any
+    _old_states: Incomplete
+    _state_attributes_ids: Incomplete
+    _pending_state_attributes: Incomplete
+    _pending_expunge: Incomplete
+    _bakery: Incomplete
+    _find_shared_attr_query: Incomplete
+    event_session: Incomplete
+    get_session: Incomplete
+    _completed_first_database_setup: Incomplete
+    _event_listener: Incomplete
+    async_migration_event: Incomplete
     migration_in_progress: bool
-    _queue_watcher: Any
+    _queue_watcher: Incomplete
     _db_supports_row_number: bool
-    _database_lock_task: Any
-    _db_executor: Any
-    _exclude_attributes_by_domain: Any
-    _keep_alive_listener: Any
-    _commit_listener: Any
-    _periodic_listener: Any
-    _nightly_listener: Any
+    _database_lock_task: Incomplete
+    _db_executor: Incomplete
+    _exclude_attributes_by_domain: Incomplete
+    _keep_alive_listener: Incomplete
+    _commit_listener: Incomplete
+    _periodic_listener: Incomplete
+    _nightly_listener: Incomplete
     enabled: bool
     def __init__(self, hass: HomeAssistant, auto_purge: bool, auto_repack: bool, keep_days: int, commit_interval: int, uri: str, db_max_retries: int, db_retry_wait: int, entity_filter: Callable[[str], bool], exclude_t: list[str], exclude_attributes_by_domain: dict[str, set[str]], bakery: baked.bakery) -> None: ...
     def set_enable(self, enable: bool) -> None: ...

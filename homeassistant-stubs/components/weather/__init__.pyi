@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -5,9 +6,9 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Final, TypedDict
+from typing import Final, TypedDict
 
-_LOGGER: Any
+_LOGGER: Incomplete
 ATTR_CONDITION_CLASS: str
 ATTR_CONDITION_CLEAR_NIGHT: str
 ATTR_CONDITION_CLOUDY: str
@@ -42,8 +43,8 @@ ATTR_WEATHER_VISIBILITY: str
 ATTR_WEATHER_WIND_BEARING: str
 ATTR_WEATHER_WIND_SPEED: str
 DOMAIN: str
-ENTITY_ID_FORMAT: Any
-SCAN_INTERVAL: Any
+ENTITY_ID_FORMAT: Incomplete
+SCAN_INTERVAL: Incomplete
 ROUNDING_PRECISION: int
 
 class Forecast(TypedDict):

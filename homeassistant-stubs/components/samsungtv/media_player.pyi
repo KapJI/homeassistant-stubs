@@ -1,5 +1,6 @@
 from .bridge import SamsungTVBridge as SamsungTVBridge, SamsungTVWSBridge as SamsungTVWSBridge
 from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_ON_ACTION as CONF_ON_ACTION, CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
 from async_upnp_client.client import UpnpDevice as UpnpDevice, UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from collections.abc import Sequence
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature
@@ -15,42 +16,42 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.script import Script as Script
 from typing import Any
 
-SOURCES: Any
-SUPPORT_SAMSUNGTV: Any
-SCAN_INTERVAL_PLUS_OFF_TIME: Any
+SOURCES: Incomplete
+SUPPORT_SAMSUNGTV: Incomplete
+SCAN_INTERVAL_PLUS_OFF_TIME: Incomplete
 APP_LIST_DELAY: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SamsungTVDevice(MediaPlayerEntity):
     _attr_source_list: list[str]
-    _config_entry: Any
-    _host: Any
-    _mac: Any
-    _ssdp_rendering_control_location: Any
-    _on_script: Any
+    _config_entry: Incomplete
+    _host: Incomplete
+    _mac: Incomplete
+    _ssdp_rendering_control_location: Incomplete
+    _on_script: Incomplete
     _playing: bool
-    _attr_name: Any
-    _attr_state: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_state: Incomplete
+    _attr_unique_id: Incomplete
     _attr_is_volume_muted: bool
-    _attr_device_class: Any
-    _app_list: Any
-    _app_list_event: Any
-    _attr_supported_features: Any
-    _attr_device_info: Any
-    _end_of_power_off: Any
-    _bridge: Any
+    _attr_device_class: Incomplete
+    _app_list: Incomplete
+    _app_list_event: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_device_info: Incomplete
+    _end_of_power_off: Incomplete
+    _bridge: Incomplete
     _auth_failed: bool
-    _dmr_device: Any
-    _upnp_server: Any
+    _dmr_device: Incomplete
+    _upnp_server: Incomplete
     def __init__(self, bridge: SamsungTVBridge, config_entry: ConfigEntry, on_script: Union[Script, None]) -> None: ...
     def _update_sources(self) -> None: ...
     def _app_list_callback(self, app_list: dict[str, str]) -> None: ...
     def access_denied(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_update(self) -> None: ...
-    _attr_volume_level: Any
+    _attr_volume_level: Incomplete
     def _update_from_upnp(self) -> bool: ...
     async def _async_startup_app_list(self) -> None: ...
     async def _async_startup_dmr(self) -> None: ...

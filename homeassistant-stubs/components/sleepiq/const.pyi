@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DATA_SLEEPIQ: str
 DOMAIN: str
@@ -10,9 +10,9 @@ ICON_OCCUPIED: str
 IS_IN_BED: str
 PRESSURE: str
 SLEEP_NUMBER: str
-ENTITY_TYPES: Any
+ENTITY_TYPES: Incomplete
 LEFT: str
 RIGHT: str
-SIDES: Any
+SIDES: Incomplete
 SLEEPIQ_DATA: str
 SLEEPIQ_STATUS_COORDINATOR: str

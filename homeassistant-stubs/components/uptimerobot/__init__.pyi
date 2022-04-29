@@ -1,4 +1,5 @@
 from .const import API_ATTR_OK as API_ATTR_OK, COORDINATOR_UPDATE_INTERVAL as COORDINATOR_UPDATE_INTERVAL, DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORMS as PLATFORMS
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -7,7 +8,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import DeviceRegistry as DeviceRegistry, async_entries_for_config_entry as async_entries_for_config_entry, async_get_registry as async_get_registry
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyuptimerobot import UptimeRobot, UptimeRobotMonitor as UptimeRobotMonitor
-from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -15,8 +15,8 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class UptimeRobotDataUpdateCoordinator(DataUpdateCoordinator):
     data: list[UptimeRobotMonitor]
     config_entry: ConfigEntry
-    _config_entry_id: Any
-    _device_registry: Any
-    api: Any
+    _config_entry_id: Incomplete
+    _device_registry: Incomplete
+    api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry_id: str, dev_reg: DeviceRegistry, api: UptimeRobot) -> None: ...
     async def _async_update_data(self) -> Union[list[UptimeRobotMonitor], None]: ...

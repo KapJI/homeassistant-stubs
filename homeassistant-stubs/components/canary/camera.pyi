@@ -1,5 +1,6 @@
 from .const import CONF_FFMPEG_ARGUMENTS as CONF_FFMPEG_ARGUMENTS, DATA_COORDINATOR as DATA_COORDINATOR, DEFAULT_FFMPEG_ARGUMENTS as DEFAULT_FFMPEG_ARGUMENTS, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .coordinator import CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
+from _typeshed import Incomplete
 from aiohttp.web import Request as Request, StreamResponse as StreamResponse
 from canary.api import Device as Device, Location as Location
 from canary.live_stream_api import LiveStreamSession as LiveStreamSession
@@ -13,22 +14,22 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import Throttle as Throttle
-from typing import Any, Final
+from typing import Final
 
-MIN_TIME_BETWEEN_SESSION_RENEW: Final[Any]
-PLATFORM_SCHEMA: Final[Any]
+MIN_TIME_BETWEEN_SESSION_RENEW: Final[Incomplete]
+PLATFORM_SCHEMA: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CanaryCamera(CoordinatorEntity[CanaryDataUpdateCoordinator], Camera):
-    _ffmpeg: Any
-    _ffmpeg_arguments: Any
-    _location_id: Any
-    _device: Any
-    _live_stream_session: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
+    _ffmpeg: Incomplete
+    _ffmpeg_arguments: Incomplete
+    _location_id: Incomplete
+    _device: Incomplete
+    _live_stream_session: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: CanaryDataUpdateCoordinator, location_id: str, device: Device, ffmpeg_args: str) -> None: ...
     @property
     def location(self) -> Location: ...

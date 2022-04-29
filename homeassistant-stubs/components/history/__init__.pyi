@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Iterable
 from datetime import datetime as dt
@@ -11,16 +12,15 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.deprecation import deprecated_class as deprecated_class, deprecated_function as deprecated_function
 from homeassistant.helpers.entityfilter import CONF_ENTITY_GLOBS as CONF_ENTITY_GLOBS, INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
 CONF_ORDER: str
-GLOB_TO_SQL_CHARS: Any
-CONFIG_SCHEMA: Any
+GLOB_TO_SQL_CHARS: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 def get_significant_states(hass, *args, **kwargs): ...
-def state_changes_during_period(hass, start_time, end_time: Any | None = ..., entity_id: Any | None = ...): ...
+def state_changes_during_period(hass, start_time, end_time: Incomplete | None = ..., entity_id: Incomplete | None = ...): ...
 def get_last_state_changes(hass, number_of_states, entity_id): ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
@@ -32,9 +32,9 @@ async def ws_get_list_statistic_ids(hass: HomeAssistant, connection: websocket_a
 class HistoryPeriodView(HomeAssistantView):
     url: str
     name: str
-    extra_urls: Any
-    filters: Any
-    use_include_order: Any
+    extra_urls: Incomplete
+    filters: Incomplete
+    use_include_order: Incomplete
     def __init__(self, filters: Union[Filters, None], use_include_order: bool) -> None: ...
     async def get(self, request: web.Request, datetime: Union[str, None] = ...) -> web.Response: ...
     def _sorted_significant_states_json(self, hass, start_time, end_time, entity_ids, include_start_time_state, significant_changes_only, minimal_response, no_attributes): ...
@@ -42,12 +42,12 @@ class HistoryPeriodView(HomeAssistantView):
 def sqlalchemy_filter_from_include_exclude_conf(conf: ConfigType) -> Union[Filters, None]: ...
 
 class Filters:
-    excluded_entities: Any
-    excluded_domains: Any
-    excluded_entity_globs: Any
-    included_entities: Any
-    included_domains: Any
-    included_entity_globs: Any
+    excluded_entities: Incomplete
+    excluded_domains: Incomplete
+    excluded_entity_globs: Incomplete
+    included_entities: Incomplete
+    included_domains: Incomplete
+    included_entity_globs: Incomplete
     def __init__(self) -> None: ...
     def apply(self, query): ...
     @property

@@ -1,6 +1,7 @@
 from .const import CONF_USB_PATH as CONF_USB_PATH, CONF_USB_SPHERE as CONF_USB_SPHERE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, SSE_LISTENERS as SSE_LISTENERS, UART_LISTENERS as UART_LISTENERS
 from .helpers import get_port as get_port
 from .listeners import setup_sse_listeners as setup_sse_listeners, setup_uart_listeners as setup_uart_listeners
+from _typeshed import Incomplete
 from crownstone_cloud import CrownstoneCloud
 from crownstone_sse import CrownstoneSSEAsync
 from crownstone_uart import CrownstoneUart
@@ -11,18 +12,17 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class CrownstoneEntryManager:
     uart: Union[CrownstoneUart, None]
     cloud: CrownstoneCloud
     sse: CrownstoneSSEAsync
-    hass: Any
-    config_entry: Any
-    listeners: Any
-    usb_sphere_id: Any
+    hass: Incomplete
+    config_entry: Incomplete
+    listeners: Incomplete
+    usb_sphere_id: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
     async def async_setup(self) -> bool: ...
     async def async_process_events(self, sse_client: CrownstoneSSEAsync) -> None: ...

@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,9 +10,8 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from kasa import SmartDevice as SmartDevice
-from typing import Any
 
-DISCOVERY_INTERVAL: Any
+DISCOVERY_INTERVAL: Incomplete
 
 def async_trigger_discovery(hass: HomeAssistant, discovered_devices: dict[str, SmartDevice]) -> None: ...
 async def async_discover_devices(hass: HomeAssistant) -> dict[str, SmartDevice]: ...

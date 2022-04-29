@@ -1,5 +1,6 @@
 from . import GroupEntity as GroupEntity
 from .util import attribute_equal as attribute_equal, most_frequent_attribute as most_frequent_attribute, reduce_attribute as reduce_attribute, states_equal as states_equal
+from _typeshed import Incomplete
 from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PERCENTAGE_STEP as ATTR_PERCENTAGE_STEP, DOMAIN as DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SERVICE_OSCILLATE as SERVICE_OSCILLATE, SERVICE_SET_DIRECTION as SERVICE_SET_DIRECTION, SERVICE_SET_PERCENTAGE as SERVICE_SET_PERCENTAGE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_ON as STATE_ON
@@ -9,27 +10,27 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-SUPPORTED_FLAGS: Any
+SUPPORTED_FLAGS: Incomplete
 DEFAULT_NAME: str
 PARALLEL_UPDATES: int
-_LOGGER: Any
+_LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FanGroup(GroupEntity, FanEntity):
     _attr_assumed_state: bool
-    _entities: Any
-    _fans: Any
-    _percentage: Any
-    _oscillating: Any
-    _direction: Any
+    _entities: Incomplete
+    _fans: Incomplete
+    _percentage: Incomplete
+    _oscillating: Incomplete
+    _direction: Incomplete
     _supported_features: int
     _speed_count: int
     _is_on: bool
-    _attr_name: Any
-    _attr_extra_state_attributes: Any
-    _attr_unique_id: Any
+    _attr_name: Incomplete
+    _attr_extra_state_attributes: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, unique_id: Union[str, None], name: str, entities: list[str]) -> None: ...
     @property
     def supported_features(self) -> int: ...

@@ -2,6 +2,7 @@ from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from .loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from typing import Any
 
@@ -13,11 +14,11 @@ DATA_INTEGRATIONS_WITH_REQS: str
 DATA_INSTALL_FAILURE_HISTORY: str
 CONSTRAINT_FILE: str
 DISCOVERY_INTEGRATIONS: dict[str, Iterable[str]]
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class RequirementsNotFound(HomeAssistantError):
-    domain: Any
-    requirements: Any
+    domain: Incomplete
+    requirements: Incomplete
     def __init__(self, domain: str, requirements: list[str]) -> None: ...
 
 async def async_get_integration_with_requirements(hass: HomeAssistant, domain: str, done: Union[set[str], None] = ...) -> Integration: ...

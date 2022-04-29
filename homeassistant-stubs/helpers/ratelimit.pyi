@@ -1,14 +1,15 @@
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable
 from datetime import datetime, timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 
 class KeyedRateLimit:
-    hass: Any
-    _last_triggered: Any
-    _rate_limit_timers: Any
+    hass: Incomplete
+    _last_triggered: Incomplete
+    _rate_limit_timers: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_has_timer(self, key: Hashable) -> bool: ...
     def async_triggered(self, key: Hashable, now: Union[datetime, None] = ...) -> None: ...

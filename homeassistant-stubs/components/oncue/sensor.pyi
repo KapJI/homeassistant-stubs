@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .entity import OncueEntity as OncueEntity
+from _typeshed import Incomplete
 from aiooncue import OncueDevice as OncueDevice, OncueSensor as OncueSensor
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,16 +9,15 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
-SENSOR_MAP: Any
-UNIT_MAPPINGS: Any
+SENSOR_MAP: Incomplete
+UNIT_MAPPINGS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OncueSensorEntity(OncueEntity, SensorEntity):
-    _attr_native_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, device_id: str, device: OncueDevice, sensor: OncueSensor, description: SensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> str: ...

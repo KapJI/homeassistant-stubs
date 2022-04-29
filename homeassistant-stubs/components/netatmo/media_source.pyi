@@ -1,12 +1,12 @@
 from .const import DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from _typeshed import Incomplete
 from homeassistant.components.media_player.const import MEDIA_CLASS_DIRECTORY as MEDIA_CLASS_DIRECTORY, MEDIA_CLASS_VIDEO as MEDIA_CLASS_VIDEO, MEDIA_TYPE_VIDEO as MEDIA_TYPE_VIDEO
 from homeassistant.components.media_player.errors import BrowseError as BrowseError
 from homeassistant.components.media_source.error import MediaSourceError as MediaSourceError, Unresolvable as Unresolvable
 from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 MIME_TYPE: str
 
 class IncompatibleMediaSource(MediaSourceError): ...
@@ -15,8 +15,8 @@ async def async_get_media_source(hass: HomeAssistant) -> NetatmoSource: ...
 
 class NetatmoSource(MediaSource):
     name: str
-    hass: Any
-    events: Any
+    hass: Incomplete
+    events: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...

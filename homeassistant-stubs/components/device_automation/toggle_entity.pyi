@@ -1,6 +1,7 @@
 import voluptuous as vol
 from . import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA, entity as entity
 from .const import CONF_IS_OFF as CONF_IS_OFF, CONF_IS_ON as CONF_IS_ON, CONF_TOGGLE as CONF_TOGGLE, CONF_TURNED_OFF as CONF_TURNED_OFF, CONF_TURNED_ON as CONF_TURNED_ON, CONF_TURN_OFF as CONF_TURN_OFF, CONF_TURN_ON as CONF_TURN_ON
+from _typeshed import Incomplete
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_CONDITION as CONF_CONDITION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_PLATFORM as CONF_PLATFORM, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HomeAssistant as HomeAssistant, callback as callback
@@ -9,14 +10,14 @@ from homeassistant.helpers.entity_registry import async_entries_for_device as as
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from typing import Any
 
-ENTITY_ACTIONS: Any
-ENTITY_CONDITIONS: Any
-ENTITY_TRIGGERS: Any
-DEVICE_ACTION_TYPES: Any
-ACTION_SCHEMA: Any
-CONDITION_SCHEMA: Any
-_TOGGLE_TRIGGER_SCHEMA: Any
-TRIGGER_SCHEMA: Any
+ENTITY_ACTIONS: Incomplete
+ENTITY_CONDITIONS: Incomplete
+ENTITY_TRIGGERS: Incomplete
+DEVICE_ACTION_TYPES: Incomplete
+ACTION_SCHEMA: Incomplete
+CONDITION_SCHEMA: Incomplete
+_TOGGLE_TRIGGER_SCHEMA: Incomplete
+TRIGGER_SCHEMA: Incomplete
 
 async def async_call_action_from_config(hass: HomeAssistant, config: ConfigType, variables: TemplateVarsType, context: Union[Context, None], domain: str) -> None: ...
 def async_condition_from_config(hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...

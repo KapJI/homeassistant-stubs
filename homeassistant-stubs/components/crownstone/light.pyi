@@ -2,6 +2,7 @@ from .const import CROWNSTONE_INCLUDE_TYPES as CROWNSTONE_INCLUDE_TYPES, CROWNST
 from .devices import CrownstoneBaseEntity as CrownstoneBaseEntity
 from .entry_manager import CrownstoneEntryManager as CrownstoneEntryManager
 from .helpers import map_from_to as map_from_to
+from _typeshed import Incomplete
 from crownstone_cloud.cloud_models.crownstones import Crownstone as Crownstone
 from crownstone_uart import CrownstoneUart as CrownstoneUart
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
@@ -18,9 +19,9 @@ def hass_to_crownstone_state(value: int) -> int: ...
 
 class CrownstoneEntity(CrownstoneBaseEntity, LightEntity):
     _attr_icon: str
-    usb: Any
-    _attr_name: Any
-    _attr_unique_id: Any
+    usb: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, crownstone_data: Crownstone, usb: Union[CrownstoneUart, None] = ...) -> None: ...
     @property
     def brightness(self) -> Union[int, None]: ...

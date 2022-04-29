@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .data import EnergyManager as EnergyManager, async_get_manager as async_get_manager
+from _typeshed import Incomplete
 from homeassistant.components.sensor import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.components.sensor.recorder import reset_detected as reset_detected
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, ENERGY_MEGA_WATT_HOUR as ENERGY_MEGA_WATT_HOUR, ENERGY_WATT_HOUR as ENERGY_WATT_HOUR, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
@@ -7,12 +8,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, State as State, c
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Final, Literal
+from typing import Final, Literal
 
-SUPPORTED_STATE_CLASSES: Any
-VALID_ENERGY_UNITS: Any
-VALID_ENERGY_UNITS_GAS: Any
-_LOGGER: Any
+SUPPORTED_STATE_CLASSES: Incomplete
+VALID_ENERGY_UNITS: Incomplete
+VALID_ENERGY_UNITS_GAS: Incomplete
+_LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
@@ -26,12 +27,12 @@ class SourceAdapter:
     entity_id_suffix: str
     def __init__(self, source_type, flow_type, stat_energy_key, entity_energy_key, total_money_key, name_suffix, entity_id_suffix) -> None: ...
 
-SOURCE_ADAPTERS: Final[Any]
+SOURCE_ADAPTERS: Final[Incomplete]
 
 class SensorManager:
-    manager: Any
-    async_add_entities: Any
-    current_entities: Any
+    manager: Incomplete
+    async_add_entities: Incomplete
+    current_entities: Incomplete
     def __init__(self, manager: EnergyManager, async_add_entities: AddEntitiesCallback) -> None: ...
     async def async_start(self) -> None: ...
     async def _process_manager_data(self) -> None: ...
@@ -41,19 +42,19 @@ class EnergyCostSensor(SensorEntity):
     _attr_entity_registry_visible_default: bool
     _wrong_state_class_reported: bool
     _wrong_unit_reported: bool
-    _adapter: Any
-    entity_id: Any
-    _attr_device_class: Any
-    _attr_state_class: Any
-    _config: Any
-    _last_energy_sensor_state: Any
-    add_finished: Any
+    _adapter: Incomplete
+    entity_id: Incomplete
+    _attr_device_class: Incomplete
+    _attr_state_class: Incomplete
+    _config: Incomplete
+    _last_energy_sensor_state: Incomplete
+    add_finished: Incomplete
     def __init__(self, adapter: SourceAdapter, config: dict) -> None: ...
     _attr_native_value: float
-    _attr_last_reset: Any
+    _attr_last_reset: Incomplete
     def _reset(self, energy_state: State) -> None: ...
     def _update_cost(self) -> None: ...
-    _attr_name: Any
+    _attr_name: Incomplete
     async def async_added_to_hass(self) -> None: ...
     def add_to_platform_abort(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

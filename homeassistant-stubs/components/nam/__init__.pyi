@@ -1,4 +1,5 @@
 from .const import ATTR_SDS011 as ATTR_SDS011, ATTR_SPS30 as ATTR_SPS30, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_UPDATE_INTERVAL as DEFAULT_UPDATE_INTERVAL, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -9,17 +10,16 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from nettigo_air_monitor import NAMSensors as NAMSensors, NettigoAirMonitor
-from typing import Any
 
-_LOGGER: Any
-PLATFORMS: Any
+_LOGGER: Incomplete
+PLATFORMS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class NAMDataUpdateCoordinator(DataUpdateCoordinator):
-    _unique_id: Any
-    nam: Any
+    _unique_id: Incomplete
+    nam: Incomplete
     def __init__(self, hass: HomeAssistant, nam: NettigoAirMonitor, unique_id: Union[str, None]) -> None: ...
     async def _async_update_data(self) -> NAMSensors: ...
     @property

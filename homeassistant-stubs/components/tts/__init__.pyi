@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
@@ -13,9 +14,9 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from homeassistant.util.network import normalize_url as normalize_url
 from homeassistant.util.yaml import load_yaml as load_yaml
-from typing import Any, Optional
+from typing import Optional
 
-_LOGGER: Any
+_LOGGER: Incomplete
 TtsAudioType = tuple[Optional[str], Optional[bytes]]
 ATTR_CACHE: str
 ATTR_LANGUAGE: str
@@ -37,29 +38,29 @@ MEM_CACHE_FILENAME: str
 MEM_CACHE_VOICE: str
 SERVICE_CLEAR_CACHE: str
 SERVICE_SAY: str
-_RE_VOICE_FILE: Any
+_RE_VOICE_FILE: Incomplete
 KEY_PATTERN: str
 
 def _deprecated_platform(value): ...
 def valid_base_url(value: str) -> str: ...
 
-PLATFORM_SCHEMA: Any
-PLATFORM_SCHEMA_BASE: Any
-SCHEMA_SERVICE_SAY: Any
-SCHEMA_SERVICE_CLEAR_CACHE: Any
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCHEMA_SERVICE_SAY: Incomplete
+SCHEMA_SERVICE_CLEAR_CACHE: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _hash_options(options: dict) -> str: ...
 
 class SpeechManager:
-    hass: Any
-    providers: Any
-    use_cache: Any
-    cache_dir: Any
-    time_memory: Any
-    base_url: Any
-    file_cache: Any
-    mem_cache: Any
+    hass: Incomplete
+    providers: Incomplete
+    use_cache: Incomplete
+    cache_dir: Incomplete
+    time_memory: Incomplete
+    base_url: Incomplete
+    file_cache: Incomplete
+    mem_cache: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_init_cache(self, use_cache: bool, cache_dir: str, time_memory: int, base_url: Union[str, None]) -> None: ...
     async def async_clear_cache(self) -> None: ...
@@ -95,7 +96,7 @@ class TextToSpeechUrlView(HomeAssistantView):
     requires_auth: bool
     url: str
     name: str
-    tts: Any
+    tts: Incomplete
     def __init__(self, tts: SpeechManager) -> None: ...
     async def post(self, request: web.Request) -> web.Response: ...
 
@@ -103,7 +104,7 @@ class TextToSpeechView(HomeAssistantView):
     requires_auth: bool
     url: str
     name: str
-    tts: Any
+    tts: Incomplete
     def __init__(self, tts: SpeechManager) -> None: ...
     async def get(self, request: web.Request, filename: str) -> web.Response: ...
 

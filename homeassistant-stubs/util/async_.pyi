@@ -1,13 +1,14 @@
 import concurrent.futures
+from _typeshed import Incomplete
 from asyncio.events import AbstractEventLoop
 from collections.abc import Callable as Callable, Coroutine
 from typing import Any, TypeVar
 
-_LOGGER: Any
+_LOGGER: Incomplete
 _SHUTDOWN_RUN_CALLBACK_THREADSAFE: str
 _T = TypeVar('_T')
 _R = TypeVar('_R')
-_P: Any
+_P: Incomplete
 
 def fire_coroutine_threadsafe(coro: Coroutine[Any, Any, Any], loop: AbstractEventLoop) -> None: ...
 def run_callback_threadsafe(loop: AbstractEventLoop, callback: Callable[..., _T], *args: Any) -> concurrent.futures.Future[_T]: ...

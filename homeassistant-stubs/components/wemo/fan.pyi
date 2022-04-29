@@ -1,6 +1,7 @@
 from .const import SERVICE_RESET_FILTER_LIFE as SERVICE_RESET_FILTER_LIFE, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity
 from .wemo_device import DeviceCoordinator as DeviceCoordinator
+from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -11,7 +12,7 @@ from homeassistant.util.percentage import int_states_in_range as int_states_in_r
 from pywemo.ouimeaux_device.humidifier import Humidifier as Humidifier
 from typing import Any
 
-SCAN_INTERVAL: Any
+SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
 ATTR_CURRENT_HUMIDITY: str
 ATTR_TARGET_HUMIDITY: str
@@ -19,15 +20,15 @@ ATTR_FAN_MODE: str
 ATTR_FILTER_LIFE: str
 ATTR_FILTER_EXPIRED: str
 ATTR_WATER_LEVEL: str
-SPEED_RANGE: Any
-SET_HUMIDITY_SCHEMA: Any
+SPEED_RANGE: Incomplete
+SET_HUMIDITY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WemoHumidifier(WemoBinaryStateEntity, FanEntity):
-    _attr_supported_features: Any
+    _attr_supported_features: Incomplete
     wemo: Humidifier
-    _last_fan_on_mode: Any
+    _last_fan_on_mode: Incomplete
     def __init__(self, coordinator: DeviceCoordinator) -> None: ...
     @property
     def icon(self) -> str: ...

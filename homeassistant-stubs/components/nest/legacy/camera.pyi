@@ -1,27 +1,27 @@
 from .const import DATA_NEST as DATA_NEST, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 NEST_BRAND: str
 
-def setup_platform(hass, config, add_entities, discovery_info: Any | None = ...) -> None: ...
+def setup_platform(hass, config, add_entities, discovery_info: Incomplete | None = ...) -> None: ...
 async def async_setup_legacy_entry(hass, entry, async_add_entities) -> None: ...
 
 class NestCamera(Camera):
-    _attr_supported_features: Any
-    structure: Any
-    device: Any
-    _location: Any
-    _name: Any
-    _online: Any
-    _is_streaming: Any
+    _attr_supported_features: Incomplete
+    structure: Incomplete
+    device: Incomplete
+    _location: Incomplete
+    _name: Incomplete
+    _online: Incomplete
+    _is_streaming: Incomplete
     _is_video_history_enabled: bool
-    _time_between_snapshots: Any
-    _last_image: Any
-    _next_snapshot_at: Any
+    _time_between_snapshots: Incomplete
+    _last_image: Incomplete
+    _next_snapshot_at: Incomplete
     def __init__(self, structure, device) -> None: ...
     @property
     def name(self): ...

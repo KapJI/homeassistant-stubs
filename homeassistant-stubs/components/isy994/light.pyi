@@ -2,6 +2,7 @@ from .const import CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, ISY994_
 from .entity import ISYNodeEntity as ISYNodeEntity
 from .helpers import migrate_old_unique_ids as migrate_old_unique_ids
 from .services import async_setup_light_services as async_setup_light_services
+from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -16,10 +17,10 @@ ATTR_LAST_BRIGHTNESS: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ISYLightEntity(ISYNodeEntity, LightEntity, RestoreEntity):
-    _attr_color_mode: Any
-    _attr_supported_color_modes: Any
-    _last_brightness: Any
-    _restore_light_state: Any
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _last_brightness: Incomplete
+    _restore_light_state: Incomplete
     def __init__(self, node: Node, restore_light_state: bool) -> None: ...
     @property
     def is_on(self) -> bool: ...

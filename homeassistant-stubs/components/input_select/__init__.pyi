@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_OPTION as ATTR_OPTION, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -10,7 +11,7 @@ from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 DOMAIN: str
 CONF_INITIAL: str
 CONF_OPTIONS: str
@@ -28,14 +29,14 @@ STORAGE_VERSION_MINOR: int
 
 def _unique(options: Any) -> Any: ...
 
-CREATE_FIELDS: Any
-UPDATE_FIELDS: Any
+CREATE_FIELDS: Incomplete
+UPDATE_FIELDS: Incomplete
 
 def _remove_duplicates(options: list[str], name: Union[str, None]) -> list[str]: ...
 def _cv_input_select(cfg: dict[str, Any]) -> dict[str, Any]: ...
 
-CONFIG_SCHEMA: Any
-RELOAD_SERVICE_SCHEMA: Any
+CONFIG_SCHEMA: Incomplete
+RELOAD_SERVICE_SCHEMA: Incomplete
 
 class InputSelectStore(Store):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
@@ -43,8 +44,8 @@ class InputSelectStore(Store):
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class InputSelectStorageCollection(collection.StorageCollection):
-    CREATE_SCHEMA: Any
-    UPDATE_SCHEMA: Any
+    CREATE_SCHEMA: Incomplete
+    UPDATE_SCHEMA: Incomplete
     async def _process_create_data(self, data: dict[str, Any]) -> dict[str, Any]: ...
     def _get_suggested_id(self, info: dict[str, Any]) -> str: ...
     async def _update_data(self, data: dict[str, Any], update_data: dict[str, Any]) -> dict[str, Any]: ...
@@ -52,11 +53,11 @@ class InputSelectStorageCollection(collection.StorageCollection):
 class InputSelect(SelectEntity, RestoreEntity):
     _attr_should_poll: bool
     editable: bool
-    _attr_current_option: Any
-    _attr_icon: Any
-    _attr_name: Any
-    _attr_options: Any
-    _attr_unique_id: Any
+    _attr_current_option: Incomplete
+    _attr_icon: Incomplete
+    _attr_name: Incomplete
+    _attr_options: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
     @classmethod
     def from_yaml(cls, config: ConfigType) -> InputSelect: ...

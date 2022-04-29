@@ -1,5 +1,6 @@
 from .bridge import SamsungTVBridge as SamsungTVBridge, async_get_device_info as async_get_device_info, mac_from_device_info as mac_from_device_info
 from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_SESSION_ID as CONF_SESSION_ID, CONF_SSDP_MAIN_TV_AGENT_LOCATION as CONF_SSDP_MAIN_TV_AGENT_LOCATION, CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, DEFAULT_MANUFACTURER as DEFAULT_MANUFACTURER, DOMAIN as DOMAIN, ENCRYPTED_WEBSOCKET_PORT as ENCRYPTED_WEBSOCKET_PORT, LEGACY_PORT as LEGACY_PORT, LOGGER as LOGGER, METHOD_ENCRYPTED_WEBSOCKET as METHOD_ENCRYPTED_WEBSOCKET, METHOD_LEGACY as METHOD_LEGACY, METHOD_WEBSOCKET as METHOD_WEBSOCKET, RESULT_AUTH_MISSING as RESULT_AUTH_MISSING, RESULT_CANNOT_CONNECT as RESULT_CANNOT_CONNECT, RESULT_INVALID_PIN as RESULT_INVALID_PIN, RESULT_NOT_SUPPORTED as RESULT_NOT_SUPPORTED, RESULT_SUCCESS as RESULT_SUCCESS, RESULT_UNKNOWN_HOST as RESULT_UNKNOWN_HOST, SUCCESSFUL_RESULTS as SUCCESSFUL_RESULTS, UPNP_SVC_MAIN_TV_AGENT as UPNP_SVC_MAIN_TV_AGENT, UPNP_SVC_RENDERING_CONTROL as UPNP_SVC_RENDERING_CONTROL, WEBSOCKET_PORTS as WEBSOCKET_PORTS
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, data_entry_flow as data_entry_flow
 from homeassistant.components import dhcp as dhcp, ssdp as ssdp, zeroconf as zeroconf
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_METHOD as CONF_METHOD, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TOKEN as CONF_TOKEN
@@ -9,30 +10,30 @@ from homeassistant.helpers.device_registry import format_mac as format_mac
 from types import MappingProxyType
 from typing import Any
 
-DATA_SCHEMA: Any
+DATA_SCHEMA: Incomplete
 
 def _strip_uuid(udn: str) -> str: ...
 def _entry_is_complete(entry: config_entries.ConfigEntry, ssdp_rendering_control_location: Union[str, None], ssdp_main_tv_agent_location: Union[str, None]) -> bool: ...
 
 class SamsungTVConfigFlow(config_entries.ConfigFlow):
     VERSION: int
-    _reauth_entry: Any
+    _reauth_entry: Incomplete
     _host: str
-    _mac: Any
-    _udn: Any
-    _upnp_udn: Any
-    _ssdp_rendering_control_location: Any
-    _ssdp_main_tv_agent_location: Any
-    _manufacturer: Any
-    _model: Any
-    _connect_result: Any
-    _method: Any
-    _name: Any
+    _mac: Incomplete
+    _udn: Incomplete
+    _upnp_udn: Incomplete
+    _ssdp_rendering_control_location: Incomplete
+    _ssdp_main_tv_agent_location: Incomplete
+    _manufacturer: Incomplete
+    _model: Incomplete
+    _connect_result: Incomplete
+    _method: Incomplete
+    _name: Incomplete
     _title: str
-    _id: Any
-    _bridge: Any
-    _device_info: Any
-    _authenticator: Any
+    _id: Incomplete
+    _bridge: Incomplete
+    _device_info: Incomplete
+    _authenticator: Incomplete
     def __init__(self) -> None: ...
     def _base_config_entry(self) -> dict[str, Any]: ...
     def _get_entry_from_bridge(self) -> data_entry_flow.FlowResult: ...

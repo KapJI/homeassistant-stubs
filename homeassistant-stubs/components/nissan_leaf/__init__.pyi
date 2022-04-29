@@ -1,4 +1,5 @@
 from .const import CONF_CHARGING_INTERVAL as CONF_CHARGING_INTERVAL, CONF_CLIMATE_INTERVAL as CONF_CLIMATE_INTERVAL, CONF_FORCE_MILES as CONF_FORCE_MILES, CONF_INTERVAL as CONF_INTERVAL, CONF_VALID_REGIONS as CONF_VALID_REGIONS, DATA_BATTERY as DATA_BATTERY, DATA_CHARGING as DATA_CHARGING, DATA_CLIMATE as DATA_CLIMATE, DATA_LEAF as DATA_LEAF, DATA_PLUGGED_IN as DATA_PLUGGED_IN, DATA_RANGE_AC as DATA_RANGE_AC, DATA_RANGE_AC_OFF as DATA_RANGE_AC_OFF, DEFAULT_CHARGING_INTERVAL as DEFAULT_CHARGING_INTERVAL, DEFAULT_CLIMATE_INTERVAL as DEFAULT_CLIMATE_INTERVAL, DEFAULT_INTERVAL as DEFAULT_INTERVAL, DOMAIN as DOMAIN, INITIAL_UPDATE as INITIAL_UPDATE, MAX_RESPONSE_ATTEMPTS as MAX_RESPONSE_ATTEMPTS, MIN_UPDATE_INTERVAL as MIN_UPDATE_INTERVAL, PYCARWINGS2_SLEEP as PYCARWINGS2_SLEEP, RESTRICTED_BATTERY as RESTRICTED_BATTERY, RESTRICTED_INTERVAL as RESTRICTED_INTERVAL
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_REGION as CONF_REGION, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -12,31 +13,31 @@ from pycarwings2 import Leaf as Leaf
 from pycarwings2.responses import CarwingsLatestBatteryStatusResponse as CarwingsLatestBatteryStatusResponse, CarwingsLatestClimateControlStatusResponse as CarwingsLatestClimateControlStatusResponse
 from typing import Any
 
-_LOGGER: Any
-CONFIG_SCHEMA: Any
-PLATFORMS: Any
+_LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
+PLATFORMS: Incomplete
 SIGNAL_UPDATE_LEAF: str
 SERVICE_UPDATE_LEAF: str
 SERVICE_START_CHARGE_LEAF: str
 ATTR_VIN: str
-UPDATE_LEAF_SCHEMA: Any
-START_CHARGE_LEAF_SCHEMA: Any
+UPDATE_LEAF_SCHEMA: Incomplete
+START_CHARGE_LEAF_SCHEMA: Incomplete
 
 def setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _extract_start_date(battery_info: CarwingsLatestBatteryStatusResponse) -> Union[datetime, None]: ...
 
 class LeafDataStore:
-    hass: Any
-    leaf: Any
-    car_config: Any
-    force_miles: Any
-    data: Any
-    next_update: Any
-    last_check: Any
+    hass: Incomplete
+    leaf: Incomplete
+    car_config: Incomplete
+    force_miles: Incomplete
+    data: Incomplete
+    next_update: Incomplete
+    last_check: Incomplete
     request_in_progress: bool
-    last_battery_response: Any
-    last_climate_response: Any
-    _remove_listener: Any
+    last_battery_response: Incomplete
+    last_climate_response: Incomplete
+    _remove_listener: Incomplete
     def __init__(self, hass: HomeAssistant, leaf: Leaf, car_config: dict[str, Any]) -> None: ...
     async def async_update_data(self, now: datetime) -> None: ...
     def get_next_interval(self) -> datetime: ...
@@ -48,7 +49,7 @@ class LeafDataStore:
     def schedule_update(self) -> None: ...
 
 class LeafEntity(Entity):
-    car: Any
+    car: Incomplete
     def __init__(self, car: Leaf) -> None: ...
     def log_registration(self) -> None: ...
     @property

@@ -1,5 +1,6 @@
+from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Any, Final
+from typing import Final
 
 DOMAIN: str
 ATTR_CURRENT_A: Final[str]
@@ -12,4 +13,4 @@ CONF_LIGHT: Final[str]
 CONF_STRIP: Final[str]
 CONF_SWITCH: Final[str]
 CONF_SENSOR: Final[str]
-PLATFORMS: Final[Any]
+PLATFORMS: Final[Incomplete]

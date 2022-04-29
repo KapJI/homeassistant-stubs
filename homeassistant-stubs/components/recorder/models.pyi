@@ -1,4 +1,5 @@
 from .const import ALL_DOMAIN_EXCLUDE_ATTRS as ALL_DOMAIN_EXCLUDE_ATTRS, JSON_DUMP as JSON_DUMP
+from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.const import MAX_LENGTH_EVENT_CONTEXT_ID as MAX_LENGTH_EVENT_CONTEXT_ID, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_EVENT_ORIGIN as MAX_LENGTH_EVENT_ORIGIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import Context as Context, Event as Event, EventOrigin as EventOrigin, State as State, split_entity_id as split_entity_id
@@ -7,9 +8,9 @@ from sqlalchemy import Column
 from sqlalchemy.engine.row import Row as Row
 from typing import Any, TypedDict, overload
 
-Base: Any
+Base: Incomplete
 SCHEMA_VERSION: int
-_LOGGER: Any
+_LOGGER: Incomplete
 DB_TIMEZONE: str
 TABLE_EVENTS: str
 TABLE_STATES: str
@@ -20,53 +21,53 @@ TABLE_STATISTICS: str
 TABLE_STATISTICS_META: str
 TABLE_STATISTICS_RUNS: str
 TABLE_STATISTICS_SHORT_TERM: str
-ALL_TABLES: Any
+ALL_TABLES: Incomplete
 EMPTY_JSON_OBJECT: str
-DATETIME_TYPE: Any
-DOUBLE_TYPE: Any
+DATETIME_TYPE: Incomplete
+DOUBLE_TYPE: Incomplete
 
 class Events(Base):
-    __table_args__: Any
-    __tablename__: Any
-    event_id: Any
-    event_type: Any
-    event_data: Any
-    origin: Any
-    time_fired: Any
-    context_id: Any
-    context_user_id: Any
-    context_parent_id: Any
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    event_id: Incomplete
+    event_type: Incomplete
+    event_data: Incomplete
+    origin: Incomplete
+    time_fired: Incomplete
+    context_id: Incomplete
+    context_user_id: Incomplete
+    context_parent_id: Incomplete
     def __repr__(self) -> str: ...
     @staticmethod
     def from_event(event: Event, event_data: Union[UndefinedType, None] = ...) -> Events: ...
     def to_native(self, validate_entity_id: bool = ...) -> Union[Event, None]: ...
 
 class States(Base):
-    __table_args__: Any
-    __tablename__: Any
-    state_id: Any
-    entity_id: Any
-    state: Any
-    attributes: Any
-    event_id: Any
-    last_changed: Any
-    last_updated: Any
-    old_state_id: Any
-    attributes_id: Any
-    event: Any
-    old_state: Any
-    state_attributes: Any
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    state_id: Incomplete
+    entity_id: Incomplete
+    state: Incomplete
+    attributes: Incomplete
+    event_id: Incomplete
+    last_changed: Incomplete
+    last_updated: Incomplete
+    old_state_id: Incomplete
+    attributes_id: Incomplete
+    event: Incomplete
+    old_state: Incomplete
+    state_attributes: Incomplete
     def __repr__(self) -> str: ...
     @staticmethod
     def from_event(event: Event) -> States: ...
     def to_native(self, validate_entity_id: bool = ...) -> Union[State, None]: ...
 
 class StateAttributes(Base):
-    __table_args__: Any
-    __tablename__: Any
-    attributes_id: Any
-    hash: Any
-    shared_attrs: Any
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    attributes_id: Incomplete
+    hash: Incomplete
+    shared_attrs: Incomplete
     def __repr__(self) -> str: ...
     @staticmethod
     def from_event(event: Event) -> StateAttributes: ...
@@ -92,28 +93,28 @@ class StatisticData(StatisticDataBase):
     sum: float
 
 class StatisticsBase:
-    id: Any
-    created: Any
+    id: Incomplete
+    created: Incomplete
     def metadata_id(self) -> Column: ...
-    start: Any
-    mean: Any
-    min: Any
-    max: Any
-    last_reset: Any
-    state: Any
-    sum: Any
+    start: Incomplete
+    mean: Incomplete
+    min: Incomplete
+    max: Incomplete
+    last_reset: Incomplete
+    state: Incomplete
+    sum: Incomplete
     @classmethod
     def from_stats(cls, metadata_id: int, stats: StatisticData) -> StatisticsBase: ...
 
 class Statistics(Base, StatisticsBase):
-    duration: Any
-    __table_args__: Any
-    __tablename__: Any
+    duration: Incomplete
+    __table_args__: Incomplete
+    __tablename__: Incomplete
 
 class StatisticsShortTerm(Base, StatisticsBase):
-    duration: Any
-    __table_args__: Any
-    __tablename__: Any
+    duration: Incomplete
+    __table_args__: Incomplete
+    __tablename__: Incomplete
 
 class StatisticMetaData(TypedDict):
     has_mean: bool
@@ -124,41 +125,41 @@ class StatisticMetaData(TypedDict):
     unit_of_measurement: Union[str, None]
 
 class StatisticsMeta(Base):
-    __table_args__: Any
-    __tablename__: Any
-    id: Any
-    statistic_id: Any
-    source: Any
-    unit_of_measurement: Any
-    has_mean: Any
-    has_sum: Any
-    name: Any
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    id: Incomplete
+    statistic_id: Incomplete
+    source: Incomplete
+    unit_of_measurement: Incomplete
+    has_mean: Incomplete
+    has_sum: Incomplete
+    name: Incomplete
     @staticmethod
     def from_meta(meta: StatisticMetaData) -> StatisticsMeta: ...
 
 class RecorderRuns(Base):
-    __table_args__: Any
-    __tablename__: Any
-    run_id: Any
-    start: Any
-    end: Any
-    closed_incorrect: Any
-    created: Any
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    run_id: Incomplete
+    start: Incomplete
+    end: Incomplete
+    closed_incorrect: Incomplete
+    created: Incomplete
     def __repr__(self) -> str: ...
     def entity_ids(self, point_in_time: Union[datetime, None] = ...) -> list[str]: ...
     def to_native(self, validate_entity_id: bool = ...) -> RecorderRuns: ...
 
 class SchemaChanges(Base):
-    __tablename__: Any
-    change_id: Any
-    schema_version: Any
-    changed: Any
+    __tablename__: Incomplete
+    change_id: Incomplete
+    schema_version: Incomplete
+    changed: Incomplete
     def __repr__(self) -> str: ...
 
 class StatisticsRuns(Base):
-    __tablename__: Any
-    run_id: Any
-    start: Any
+    __tablename__: Incomplete
+    run_id: Incomplete
+    start: Incomplete
     def __repr__(self) -> str: ...
 
 
@@ -172,15 +173,15 @@ def process_timestamp_to_utc_isoformat(ts: None) -> None: ...
 def process_timestamp_to_utc_isoformat(ts: datetime) -> str: ...
 
 class LazyState(State):
-    __slots__: Any
-    _row: Any
-    entity_id: Any
-    state: Any
-    _attributes: Any
-    _last_changed: Any
-    _last_updated: Any
-    _context: Any
-    _attr_cache: Any
+    __slots__: Incomplete
+    _row: Incomplete
+    entity_id: Incomplete
+    state: Incomplete
+    _attributes: Incomplete
+    _last_changed: Incomplete
+    _last_updated: Incomplete
+    _context: Incomplete
+    _attr_cache: Incomplete
     def __init__(self, row: Row, attr_cache: Union[dict[str, dict[str, Any]], None] = ...) -> None: ...
     @property
     def attributes(self) -> dict[str, Any]: ...

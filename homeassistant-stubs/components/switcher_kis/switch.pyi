@@ -1,5 +1,6 @@
 from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import CONF_AUTO_OFF as CONF_AUTO_OFF, CONF_TIMER_MINUTES as CONF_TIMER_MINUTES, SERVICE_SET_AUTO_OFF_NAME as SERVICE_SET_AUTO_OFF_NAME, SERVICE_TURN_ON_WITH_TIMER_NAME as SERVICE_TURN_ON_WITH_TIMER_NAME, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
+from _typeshed import Incomplete
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from datetime import timedelta
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
@@ -12,17 +13,17 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-_LOGGER: Any
-SERVICE_SET_AUTO_OFF_SCHEMA: Any
-SERVICE_TURN_ON_WITH_TIMER_SCHEMA: Any
+_LOGGER: Incomplete
+SERVICE_SET_AUTO_OFF_SCHEMA: Incomplete
+SERVICE_TURN_ON_WITH_TIMER_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SwitcherBaseSwitchEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], SwitchEntity):
-    control_result: Any
-    _attr_name: Any
-    _attr_unique_id: Any
-    _attr_device_info: Any
+    control_result: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     async def _async_call_api(self, api: str, *args: Any) -> None: ...
@@ -34,10 +35,10 @@ class SwitcherBaseSwitchEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator],
     async def async_turn_on_with_timer_service(self, timer_minutes: int) -> None: ...
 
 class SwitcherPowerPlugSwitchEntity(SwitcherBaseSwitchEntity):
-    _attr_device_class: Any
+    _attr_device_class: Incomplete
 
 class SwitcherWaterHeaterSwitchEntity(SwitcherBaseSwitchEntity):
-    _attr_device_class: Any
+    _attr_device_class: Incomplete
     async def async_set_auto_off_service(self, auto_off: timedelta) -> None: ...
     control_result: bool
     async def async_turn_on_with_timer_service(self, timer_minutes: int) -> None: ...

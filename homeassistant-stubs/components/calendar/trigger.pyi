@@ -1,5 +1,6 @@
 import datetime
 from . import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
@@ -9,21 +10,21 @@ from homeassistant.helpers.event import async_track_point_in_utc_time as async_t
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 EVENT_START: str
 EVENT_END: str
-UPDATE_INTERVAL: Any
-TRIGGER_SCHEMA: Any
+UPDATE_INTERVAL: Incomplete
+TRIGGER_SCHEMA: Incomplete
 
 class CalendarEventListener:
-    _hass: Any
-    _job: Any
-    _trigger_data: Any
-    _entity: Any
-    _unsub_event: Any
-    _unsub_refresh: Any
-    _events: Any
-    _event_type: Any
+    _hass: Incomplete
+    _job: Incomplete
+    _trigger_data: Incomplete
+    _entity: Incomplete
+    _unsub_event: Incomplete
+    _unsub_refresh: Incomplete
+    _events: Incomplete
+    _event_type: Incomplete
     def __init__(self, hass: HomeAssistant, job: HassJob, trigger_data: dict[str, Any], entity: CalendarEntity, event_type: str) -> None: ...
     async def async_attach(self) -> None: ...
     def async_detach(self) -> None: ...

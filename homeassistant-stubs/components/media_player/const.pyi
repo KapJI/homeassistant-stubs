@@ -1,7 +1,7 @@
+from _typeshed import Incomplete
 from enum import IntEnum
-from typing import Any
 
-CONTENT_AUTH_EXPIRY_TIME: Any
+CONTENT_AUTH_EXPIRY_TIME: Incomplete
 ATTR_APP_ID: str
 ATTR_APP_NAME: str
 ATTR_ENTITY_PICTURE_LOCAL: str
@@ -83,7 +83,7 @@ SERVICE_UNJOIN: str
 REPEAT_MODE_ALL: str
 REPEAT_MODE_OFF: str
 REPEAT_MODE_ONE: str
-REPEAT_MODES: Any
+REPEAT_MODES: Incomplete
 
 class MediaPlayerEntityFeature(IntEnum):
     PAUSE: int

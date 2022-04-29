@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from enum import IntEnum
 from homeassistant.backports.enum import StrEnum as StrEnum
@@ -10,12 +11,11 @@ from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEnt
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any
 
 DOMAIN: str
-SCAN_INTERVAL: Any
+SCAN_INTERVAL: Incomplete
 DATA_PROFILES: str
-ENTITY_ID_FORMAT: Any
+ENTITY_ID_FORMAT: Incomplete
 
 class LightEntityFeature(IntEnum):
     EFFECT: int
@@ -54,9 +54,9 @@ COLOR_MODE_RGB: str
 COLOR_MODE_RGBW: str
 COLOR_MODE_RGBWW: str
 COLOR_MODE_WHITE: str
-VALID_COLOR_MODES: Any
-COLOR_MODES_BRIGHTNESS: Any
-COLOR_MODES_COLOR: Any
+VALID_COLOR_MODES: Incomplete
+COLOR_MODES_BRIGHTNESS: Incomplete
+COLOR_MODES_COLOR: Incomplete
 
 def valid_supported_color_modes(color_modes: Iterable[Union[ColorMode, str]]) -> set[Union[ColorMode, str]]: ...
 def brightness_supported(color_modes: Union[Iterable[Union[ColorMode, str]], None]) -> bool: ...
@@ -92,15 +92,15 @@ EFFECT_RANDOM: str
 EFFECT_WHITE: str
 COLOR_GROUP: str
 LIGHT_PROFILES_FILE: str
-VALID_TRANSITION: Any
-VALID_BRIGHTNESS: Any
-VALID_BRIGHTNESS_PCT: Any
-VALID_BRIGHTNESS_STEP: Any
-VALID_BRIGHTNESS_STEP_PCT: Any
-VALID_FLASH: Any
-LIGHT_TURN_ON_SCHEMA: Any
-LIGHT_TURN_OFF_SCHEMA: Any
-_LOGGER: Any
+VALID_TRANSITION: Incomplete
+VALID_BRIGHTNESS: Incomplete
+VALID_BRIGHTNESS_PCT: Incomplete
+VALID_BRIGHTNESS_STEP: Incomplete
+VALID_BRIGHTNESS_STEP_PCT: Incomplete
+VALID_FLASH: Incomplete
+LIGHT_TURN_ON_SCHEMA: Incomplete
+LIGHT_TURN_OFF_SCHEMA: Incomplete
+_LOGGER: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 def preprocess_turn_on_alternatives(hass, params) -> None: ...
@@ -118,15 +118,15 @@ class Profile:
     brightness: Union[int, None]
     transition: Union[int, None]
     hs_color: Union[tuple[float, float], None]
-    SCHEMA: Any
+    SCHEMA: Incomplete
     def __post_init__(self) -> None: ...
     @classmethod
     def from_csv_row(cls, csv_row: list[str]) -> Profile: ...
     def __init__(self, name, color_x, color_y, brightness, transition) -> None: ...
 
 class Profiles:
-    hass: Any
-    data: Any
+    hass: Incomplete
+    data: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def _load_profile_data(self) -> dict[str, Profile]: ...
     async def async_initialize(self) -> None: ...

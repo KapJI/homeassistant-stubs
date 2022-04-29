@@ -1,6 +1,7 @@
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import Platform as Platform
-from typing import Any, Final
+from typing import Final
 
 class FritzState(StrEnum):
     RING: str
@@ -27,6 +28,6 @@ DEFAULT_PHONEBOOK: int
 DEFAULT_NAME: str
 DOMAIN: Final[str]
 MANUFACTURER: Final[str]
-PLATFORMS: Any
+PLATFORMS: Incomplete
 UNDO_UPDATE_LISTENER: Final[str]
 FRITZBOX_PHONEBOOK: Final[str]

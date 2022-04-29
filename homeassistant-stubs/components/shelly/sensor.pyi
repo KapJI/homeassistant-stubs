@@ -2,6 +2,7 @@ from . import BlockDeviceWrapper as BlockDeviceWrapper
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS
 from .entity import BlockEntityDescription as BlockEntityDescription, RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
 from .utils import get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, temperature_unit as temperature_unit
+from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -12,7 +13,7 @@ from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any, Final
+from typing import Final
 
 class BlockSensorDescription(BlockEntityDescription, SensorEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
@@ -23,16 +24,16 @@ class RpcSensorDescription(RpcEntityDescription, SensorEntityDescription):
 class RestSensorDescription(RestEntityDescription, SensorEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, value, extra_state_attributes) -> None: ...
 
-SENSORS: Final[Any]
-REST_SENSORS: Final[Any]
-RPC_SENSORS: Final[Any]
+SENSORS: Final[Incomplete]
+REST_SENSORS: Final[Incomplete]
+RPC_SENSORS: Final[Incomplete]
 
 def _build_block_description(entry: RegistryEntry) -> BlockSensorDescription: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockSensor(ShellyBlockAttributeEntity, SensorEntity):
     entity_description: BlockSensorDescription
-    _attr_native_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Incomplete
     def __init__(self, wrapper: BlockDeviceWrapper, block: Block, attribute: str, description: BlockSensorDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
@@ -49,7 +50,7 @@ class RpcSensor(ShellyRpcAttributeEntity, SensorEntity):
 
 class BlockSleepingSensor(ShellySleepingBlockAttributeEntity, SensorEntity):
     entity_description: BlockSensorDescription
-    _attr_native_unit_of_measurement: Any
+    _attr_native_unit_of_measurement: Incomplete
     def __init__(self, wrapper: BlockDeviceWrapper, block: Union[Block, None], attribute: str, description: BlockSensorDescription, entry: Union[RegistryEntry, None] = ..., sensors: Union[Mapping[tuple[str, str], BlockSensorDescription], None] = ...) -> None: ...
     @property
     def native_value(self) -> StateType: ...

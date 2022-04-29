@@ -1,4 +1,5 @@
-from typing import Any, Final
+from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: Final[str]
 STORAGE_KEY: Final[str]
@@ -11,4 +12,4 @@ LOOPBACK_TARGET_IP: Final[str]
 MDNS_TARGET_IP: Final[str]
 PUBLIC_TARGET_IP: Final[str]
 IPV4_BROADCAST_ADDR: Final[str]
-NETWORK_CONFIG_SCHEMA: Any
+NETWORK_CONFIG_SCHEMA: Incomplete

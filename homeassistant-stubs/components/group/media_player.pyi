@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, ATTR_MEDIA_SEEK_POSITION as ATTR_MEDIA_SEEK_POSITION, ATTR_MEDIA_SHUFFLE as ATTR_MEDIA_SHUFFLE, ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, ATTR_MEDIA_VOLUME_MUTED as ATTR_MEDIA_VOLUME_MUTED, DOMAIN as DOMAIN, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SERVICE_CLEAR_PLAYLIST as SERVICE_CLEAR_PLAYLIST, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, SERVICE_MEDIA_NEXT_TRACK as SERVICE_MEDIA_NEXT_TRACK, SERVICE_MEDIA_PAUSE as SERVICE_MEDIA_PAUSE, SERVICE_MEDIA_PLAY as SERVICE_MEDIA_PLAY, SERVICE_MEDIA_PREVIOUS_TRACK as SERVICE_MEDIA_PREVIOUS_TRACK, SERVICE_MEDIA_SEEK as SERVICE_MEDIA_SEEK, SERVICE_MEDIA_STOP as SERVICE_MEDIA_STOP, SERVICE_SHUFFLE_SET as SERVICE_SHUFFLE_SET, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_MUTE as SERVICE_VOLUME_MUTE, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
@@ -21,12 +22,12 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MediaPlayerGroup(MediaPlayerEntity):
-    _name: Any
-    _state: Any
+    _name: Incomplete
+    _state: Incomplete
     _supported_features: int
-    _attr_unique_id: Any
-    _entities: Any
-    _features: Any
+    _attr_unique_id: Incomplete
+    _entities: Incomplete
+    _features: Incomplete
     def __init__(self, unique_id: Union[str, None], name: str, entities: list[str]) -> None: ...
     def async_on_state_change(self, event: EventType) -> None: ...
     def async_update_supported_features(self, entity_id: str, new_state: Union[State, None]) -> None: ...

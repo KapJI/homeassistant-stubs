@@ -1,5 +1,6 @@
 import voluptuous as vol
 from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -26,6 +27,6 @@ class RainMachineFlowHandler(config_entries.ConfigFlow):
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
 class RainMachineOptionsFlowHandler(config_entries.OptionsFlow):
-    config_entry: Any
+    config_entry: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

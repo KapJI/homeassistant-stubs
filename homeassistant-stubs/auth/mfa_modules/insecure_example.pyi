@@ -1,13 +1,14 @@
 import voluptuous as vol
 from . import MULTI_FACTOR_AUTH_MODULES as MULTI_FACTOR_AUTH_MODULES, MULTI_FACTOR_AUTH_MODULE_SCHEMA as MULTI_FACTOR_AUTH_MODULE_SCHEMA, MultiFactorAuthModule as MultiFactorAuthModule, SetupFlow as SetupFlow
+from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 
-CONFIG_SCHEMA: Any
+CONFIG_SCHEMA: Incomplete
 
 class InsecureExampleModule(MultiFactorAuthModule):
     DEFAULT_TITLE: str
-    _data: Any
+    _data: Incomplete
     def __init__(self, hass: HomeAssistant, config: dict[str, Any]) -> None: ...
     @property
     def input_schema(self) -> vol.Schema: ...

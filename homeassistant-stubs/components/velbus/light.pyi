@@ -1,5 +1,6 @@
 from . import VelbusEntity as VelbusEntity
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_FLASH as ATTR_FLASH, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -12,9 +13,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class VelbusLight(VelbusEntity, LightEntity):
     _channel: VelbusDimmer
-    _attr_color_mode: Any
-    _attr_supported_color_modes: Any
-    _attr_supported_features: Any
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_supported_features: Incomplete
     @property
     def is_on(self) -> bool: ...
     @property
@@ -25,11 +26,11 @@ class VelbusLight(VelbusEntity, LightEntity):
 class VelbusButtonLight(VelbusEntity, LightEntity):
     _channel: VelbusButton
     _attr_entity_registry_enabled_default: bool
-    _attr_entity_category: Any
-    _attr_color_mode: Any
-    _attr_supported_color_modes: Any
-    _attr_supported_features: Any
-    _attr_name: Any
+    _attr_entity_category: Incomplete
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_name: Incomplete
     def __init__(self, channel: VelbusChannel) -> None: ...
     @property
     def is_on(self) -> Any: ...

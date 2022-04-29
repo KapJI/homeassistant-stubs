@@ -1,9 +1,10 @@
+from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from traceback import FrameSummary
-from typing import Any, TypeVar
+from typing import TypeVar
 
-_LOGGER: Any
+_LOGGER: Incomplete
 _REPORTED_INTEGRATIONS: set[str]
 _CallableT = TypeVar('_CallableT', bound=Callable)
 

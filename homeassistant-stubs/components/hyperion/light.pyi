@@ -1,5 +1,6 @@
 from . import get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
 from .const import CONF_EFFECT_HIDE_LIST as CONF_EFFECT_HIDE_LIST, CONF_INSTANCE_CLIENTS as CONF_INSTANCE_CLIENTS, CONF_PRIORITY as CONF_PRIORITY, DEFAULT_ORIGIN as DEFAULT_ORIGIN, DEFAULT_PRIORITY as DEFAULT_PRIORITY, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, NAME_SUFFIX_HYPERION_LIGHT as NAME_SUFFIX_HYPERION_LIGHT, NAME_SUFFIX_HYPERION_PRIORITY_LIGHT as NAME_SUFFIX_HYPERION_PRIORITY_LIGHT, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_LIGHT as TYPE_HYPERION_LIGHT, TYPE_HYPERION_PRIORITY_LIGHT as TYPE_HYPERION_PRIORITY_LIGHT
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,17 +12,17 @@ from hyperion import client as client
 from types import MappingProxyType
 from typing import Any
 
-_LOGGER: Any
-COLOR_BLACK: Any
+_LOGGER: Incomplete
+COLOR_BLACK: Incomplete
 CONF_DEFAULT_COLOR: str
 CONF_HDMI_PRIORITY: str
 CONF_EFFECT_LIST: str
 KEY_EFFECT_SOLID: str
-DEFAULT_COLOR: Any
+DEFAULT_COLOR: Incomplete
 DEFAULT_BRIGHTNESS: int
 DEFAULT_EFFECT = KEY_EFFECT_SOLID
 DEFAULT_NAME: str
-DEFAULT_PORT: Any
+DEFAULT_PORT: Incomplete
 DEFAULT_HDMI_PRIORITY: int
 DEFAULT_EFFECT_LIST: list[str]
 ICON_LIGHTBULB: str
@@ -31,21 +32,21 @@ ICON_EXTERNAL_SOURCE: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HyperionBaseLight(LightEntity):
-    _attr_color_mode: Any
-    _attr_supported_color_modes: Any
-    _attr_supported_features: Any
-    _unique_id: Any
-    _name: Any
-    _device_id: Any
-    _instance_name: Any
-    _options: Any
-    _client: Any
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_supported_features: Incomplete
+    _unique_id: Incomplete
+    _name: Incomplete
+    _device_id: Incomplete
+    _instance_name: Incomplete
+    _options: Incomplete
+    _client: Incomplete
     _brightness: int
-    _rgb_color: Any
-    _effect: Any
-    _static_effect_list: Any
-    _effect_list: Any
-    _client_callbacks: Any
+    _rgb_color: Incomplete
+    _effect: Incomplete
+    _static_effect_list: Incomplete
+    _effect_list: Incomplete
+    _client_callbacks: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, options: MappingProxyType[str, Any], hyperion_client: client.HyperionClient) -> None: ...
     def _compute_unique_id(self, server_id: str, instance_num: int) -> str: ...
     def _compute_name(self, instance_name: str) -> str: ...
@@ -110,4 +111,4 @@ class HyperionPriorityLight(HyperionBaseLight):
     def _is_priority_entry_black(cls, priority: Union[dict[str, Any], None]) -> bool: ...
     def _allow_priority_update(self, priority: Union[dict[str, Any], None] = ...) -> bool: ...
 
-LIGHT_TYPES: Any
+LIGHT_TYPES: Incomplete

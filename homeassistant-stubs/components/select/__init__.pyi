@@ -1,4 +1,5 @@
 from .const import ATTR_OPTION as ATTR_OPTION, ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION
+from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
@@ -7,10 +8,10 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
-SCAN_INTERVAL: Any
-ENTITY_ID_FORMAT: Any
-MIN_TIME_BETWEEN_SCANS: Any
-_LOGGER: Any
+SCAN_INTERVAL: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+MIN_TIME_BETWEEN_SCANS: Incomplete
+_LOGGER: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_select_option(entity: SelectEntity, service_call: ServiceCall) -> None: ...

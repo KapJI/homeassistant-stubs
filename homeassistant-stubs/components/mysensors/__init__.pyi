@@ -2,6 +2,7 @@ from .const import ATTR_DEVICES as ATTR_DEVICES, CONF_BAUD_RATE as CONF_BAUD_RAT
 from .device import MySensorsDevice as MySensorsDevice, get_mysensors_devices as get_mysensors_devices
 from .gateway import finish_setup as finish_setup, gw_stop as gw_stop, setup_gateway as setup_gateway
 from .helpers import on_unload as on_unload
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components.mqtt import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
@@ -13,9 +14,8 @@ from homeassistant.helpers.discovery import async_load_platform as async_load_pl
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from mysensors import BaseAsyncGateway as BaseAsyncGateway
-from typing import Any
 
-_LOGGER: Any
+_LOGGER: Incomplete
 CONF_DEBUG: str
 CONF_NODE_NAME: str
 DATA_HASS_CONFIG: str
@@ -28,9 +28,9 @@ def has_all_unique_files(value: list[dict]) -> list[dict]: ...
 def is_persistence_file(value: str) -> str: ...
 def deprecated(key: str) -> Callable[[dict], dict]: ...
 
-NODE_SCHEMA: Any
-GATEWAY_SCHEMA: Any
-CONFIG_SCHEMA: Any
+NODE_SCHEMA: Incomplete
+GATEWAY_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

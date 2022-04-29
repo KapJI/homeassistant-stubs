@@ -1,8 +1,9 @@
 from .objects import Input as Input
+from _typeshed import Incomplete
 from typing import Any
 
 class UndefinedSubstitution(Exception):
-    input: Any
+    input: Incomplete
     def __init__(self, input_name: str) -> None: ...
 
 def extract_inputs(obj: Any) -> set[str]: ...

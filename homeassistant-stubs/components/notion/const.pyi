@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
 DOMAIN: str
-LOGGER: Any
+LOGGER: Incomplete
 SENSOR_BATTERY: str
 SENSOR_DOOR: str
 SENSOR_GARAGE_DOOR: str

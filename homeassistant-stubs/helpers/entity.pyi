@@ -52,7 +52,6 @@ class DeviceInfo(TypedDict):
 class EntityCategory(StrEnum):
     CONFIG: str
     DIAGNOSTIC: str
-    SYSTEM: str
 
 ENTITY_CATEGORIES_SCHEMA: Final[Incomplete]
 

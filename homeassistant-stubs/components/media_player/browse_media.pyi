@@ -5,6 +5,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_supervisor_network_url as get_supervisor_network_url, get_url as get_url, is_hass_url as is_hass_url
 
+PATHS_WITHOUT_AUTH: Incomplete
+
 def async_process_play_media_url(hass: HomeAssistant, media_content_id: str, *, allow_relative_url: bool = ..., for_supervisor_network: bool = ...) -> str: ...
 
 class BrowseMedia:

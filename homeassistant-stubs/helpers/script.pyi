@@ -122,7 +122,7 @@ class _IfData(TypedDict):
     if_else: Union[Script, None]
 
 class Script:
-    _top_level: Incomplete
+    top_level: Incomplete
     _hass: Incomplete
     sequence: Incomplete
     name: Incomplete

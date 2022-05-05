@@ -4,7 +4,7 @@ import threading
 from . import history as history, migration as migration, purge as purge, statistics as statistics, websocket_api as websocket_api
 from .const import CONF_DB_INTEGRITY_CHECK as CONF_DB_INTEGRITY_CHECK, DATA_INSTANCE as DATA_INSTANCE, DB_WORKER_PREFIX as DB_WORKER_PREFIX, DOMAIN as DOMAIN, MAX_QUEUE_BACKLOG as MAX_QUEUE_BACKLOG, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
-from .models import Base as Base, Events as Events, StateAttributes as StateAttributes, States as States, StatisticsRuns as StatisticsRuns, process_timestamp as process_timestamp
+from .models import Base as Base, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatisticsRuns as StatisticsRuns, process_timestamp as process_timestamp
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
 from .run_history import RunHistory as RunHistory
 from .util import dburl_to_path as dburl_to_path, end_incomplete_runs as end_incomplete_runs, is_second_sunday as is_second_sunday, move_away_broken_database as move_away_broken_database, periodic_db_cleanups as periodic_db_cleanups, session_scope as session_scope, setup_connection_for_dialect as setup_connection_for_dialect, validate_or_move_away_sqlite_database as validate_or_move_away_sqlite_database, write_lock_db_sqlite as write_lock_db_sqlite
@@ -187,6 +187,7 @@ class Recorder(threading.Thread):
     run_history: Incomplete
     entity_filter: Incomplete
     exclude_t: Incomplete
+    schema_version: int
     _commits_without_expire: int
     _old_states: Incomplete
     _state_attributes_ids: Incomplete

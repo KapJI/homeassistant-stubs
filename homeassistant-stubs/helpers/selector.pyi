@@ -4,6 +4,7 @@ from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.util import decorator as decorator
+from homeassistant.util.yaml.dumper import represent_odict as represent_odict
 from typing import Any, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]
@@ -18,6 +19,7 @@ class Selector:
     selector_type: str
     def __init__(self, config: Any = ...) -> None: ...
     def serialize(self) -> Any: ...
+    def serialize_config(self) -> Any: ...
 
 SINGLE_ENTITY_SELECTOR_CONFIG_SCHEMA: Incomplete
 
@@ -193,6 +195,7 @@ class NumberSelector(Selector):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[NumberSelectorConfig, None] = ...) -> None: ...
+    def serialize_config(self) -> Any: ...
     def __call__(self, data: Any) -> float: ...
 
 class ObjectSelectorConfig(TypedDict): ...

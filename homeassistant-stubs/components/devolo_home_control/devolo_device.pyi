@@ -3,6 +3,7 @@ from .subscriber import Subscriber as Subscriber
 from _typeshed import Incomplete
 from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 
 _LOGGER: Incomplete

@@ -39,7 +39,7 @@ isort = "^5.10.1"
 mypy = "^0.960"
 pre-commit = "^2.19.0"
 pylint = "^2.13.9"
-types-requests = "^2.27.27"
+types-requests = "^2.27.28"
 PyGithub = "^1.54.1"
 
 [build-system]

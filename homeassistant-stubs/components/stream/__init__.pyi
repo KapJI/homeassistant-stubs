@@ -1,26 +1,11 @@
-from .const import ATTR_ENDPOINTS as ATTR_ENDPOINTS, ATTR_SETTINGS as ATTR_SETTINGS, ATTR_STREAMS as ATTR_STREAMS, CONF_LL_HLS as CONF_LL_HLS, CONF_PART_DURATION as CONF_PART_DURATION, CONF_SEGMENT_DURATION as CONF_SEGMENT_DURATION, DOMAIN as DOMAIN, HLS_PROVIDER as HLS_PROVIDER, MAX_SEGMENTS as MAX_SEGMENTS, OUTPUT_IDLE_TIMEOUT as OUTPUT_IDLE_TIMEOUT, RECORDER_PROVIDER as RECORDER_PROVIDER, SEGMENT_DURATION_ADJUSTER as SEGMENT_DURATION_ADJUSTER, STREAM_RESTART_INCREMENT as STREAM_RESTART_INCREMENT, STREAM_RESTART_RESET_TIME as STREAM_RESTART_RESET_TIME, TARGET_SEGMENT_DURATION_NON_LL_HLS as TARGET_SEGMENT_DURATION_NON_LL_HLS
-from .core import IdleTimer as IdleTimer, KeyFrameConverter as KeyFrameConverter, PROVIDERS as PROVIDERS, StreamOutput as StreamOutput, StreamSettings as StreamSettings
-from .diagnostics import Diagnostics as Diagnostics
-from .hls import HlsStreamOutput as HlsStreamOutput, async_setup_hls as async_setup_hls
+from .const import CONF_RTSP_TRANSPORT as CONF_RTSP_TRANSPORT, CONF_USE_WALLCLOCK_AS_TIMESTAMPS as CONF_USE_WALLCLOCK_AS_TIMESTAMPS, FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER, OUTPUT_FORMATS as OUTPUT_FORMATS, RTSP_TRANSPORTS as RTSP_TRANSPORTS, SOURCE_TIMEOUT as SOURCE_TIMEOUT
+from .core import StreamOutput
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Mapping
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from collections.abc import Callable, Mapping
+from homeassistant.core import HomeAssistant
 from typing import Any
 
-_LOGGER: Incomplete
-STREAM_SOURCE_REDACT_PATTERN: Incomplete
-
-def redact_credentials(data: str) -> str: ...
-def create_stream(hass: HomeAssistant, stream_source: str, options: dict[str, str], stream_label: Union[str, None] = ...) -> Stream: ...
-
-DOMAIN_SCHEMA: Incomplete
-CONFIG_SCHEMA: Incomplete
-
-def filter_libav_logging() -> None: ...
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+def create_stream(hass: HomeAssistant, stream_source: str, options: dict[str, Union[str, bool]], stream_label: Union[str, None] = ...) -> Stream: ...
 
 class Stream:
     hass: Incomplete
@@ -56,5 +41,3 @@ class Stream:
     async def async_record(self, video_path: str, duration: int = ..., lookback: int = ...) -> None: ...
     async def async_get_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...
     def get_diagnostics(self) -> dict[str, Any]: ...
-
-def _should_retry() -> bool: ...

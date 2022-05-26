@@ -9,14 +9,16 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
-from zwave_js_server.client import Client as ZwaveClient
+from zwave_js_server.model.driver import Driver as Driver
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveSirenEntity(ZWaveBaseEntity, SirenEntity):
     _attr_available_tones: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...
     async def async_set_value(self, new_value: int, options: Union[dict[str, Any], None] = ...) -> None: ...

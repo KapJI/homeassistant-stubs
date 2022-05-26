@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_EVENT as CONF_EVENT, CONF_ID as CONF_ID, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_XY as CONF_XY
 from homeassistant.core import callback as callback
 from homeassistant.util import slugify as slugify
+from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor.ancillary_control import AncillaryControl
 from pydeconz.models.sensor.switch import Switch
 

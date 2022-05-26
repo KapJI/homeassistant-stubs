@@ -1,4 +1,5 @@
 from . import const as const
+from .const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_CONTEXT as COMPRESSED_STATE_CONTEXT, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from _typeshed import Incomplete
 from homeassistant.core import Event as Event, State as State
 from homeassistant.util.json import find_paths_unserializable_data as find_paths_unserializable_data, format_unserializable_data as format_unserializable_data
@@ -10,11 +11,6 @@ MINIMAL_MESSAGE_SCHEMA: Final[Incomplete]
 BASE_COMMAND_MESSAGE_SCHEMA: Final[Incomplete]
 IDEN_TEMPLATE: Final[str]
 IDEN_JSON_TEMPLATE: Final[str]
-COMPRESSED_STATE_STATE: str
-COMPRESSED_STATE_ATTRIBUTES: str
-COMPRESSED_STATE_CONTEXT: str
-COMPRESSED_STATE_LAST_CHANGED: str
-COMPRESSED_STATE_LAST_UPDATED: str
 STATE_DIFF_ADDITIONS: str
 STATE_DIFF_REMOVALS: str
 ENTITY_EVENT_ADD: str
@@ -23,7 +19,7 @@ ENTITY_EVENT_CHANGE: str
 
 def result_message(iden: int, result: Any = ...) -> dict[str, Any]: ...
 def error_message(iden: Union[int, None], code: str, message: str) -> dict[str, Any]: ...
-def event_message(iden: JSON_TYPE, event: Any) -> dict[str, Any]: ...
+def event_message(iden: Union[JSON_TYPE, int], event: Any) -> dict[str, Any]: ...
 def cached_event_message(iden: int, event: Event) -> str: ...
 def _cached_event_message(event: Event) -> str: ...
 def cached_state_diff_message(iden: int, event: Event) -> str: ...

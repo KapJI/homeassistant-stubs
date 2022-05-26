@@ -9,9 +9,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
-from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const.command_class.humidity_control import HumidityControlMode, HumidityControlSetpointType
+from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as ZwaveValue
+
+PARALLEL_UPDATES: int
 
 class ZwaveHumidifierEntityDescriptionRequiredKeys:
     on_mode: HumidityControlMode
@@ -33,7 +35,7 @@ class ZWaveHumidifier(ZWaveBaseEntity, HumidifierEntity):
     _setpoint: Union[ZwaveValue, None]
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo, description: ZwaveHumidifierEntityDescription) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, description: ZwaveHumidifierEntityDescription) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...
     def _supports_inverse_mode(self) -> bool: ...

@@ -12,7 +12,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from typing import Any
 
 _LOGGER: Incomplete
-DATA_SENSORS: Incomplete
+INFO_SENSORS: Incomplete
 TIME_SENSORS: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...

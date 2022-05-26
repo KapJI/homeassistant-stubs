@@ -6,11 +6,13 @@ from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
-from zwave_js_server.client import Client as ZwaveClient
+from zwave_js_server.model.driver import Driver as Driver
 
+PARALLEL_UPDATES: int
 LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -20,7 +22,7 @@ def zwave_tilt_to_percent(value: int) -> int: ...
 
 class ZWaveCover(ZWaveBaseEntity, CoverEntity):
     _attr_device_class: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_closed(self) -> Union[bool, None]: ...
     @property
@@ -33,7 +35,7 @@ class ZWaveCover(ZWaveBaseEntity, CoverEntity):
 class ZWaveTiltCover(ZWaveCover):
     _attr_supported_features: Incomplete
     data_template: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def current_cover_tilt_position(self) -> Union[int, None]: ...
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...
@@ -44,7 +46,7 @@ class ZwaveMotorizedBarrier(ZWaveBaseEntity, CoverEntity):
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     _target_state: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_opening(self) -> Union[bool, None]: ...
     @property

@@ -11,6 +11,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
 LOGGER: Incomplete
 STATE_TO_ZWAVE_MAP: dict[int, dict[str, Union[int, bool]]]
 

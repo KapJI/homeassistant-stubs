@@ -1,5 +1,5 @@
 import asyncio
-from .const import CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DOMAIN as DOMAIN, MEDIA_METADATA_DIDL as MEDIA_METADATA_DIDL, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP, MEDIA_UPNP_CLASS_MAP as MEDIA_UPNP_CLASS_MAP, REPEAT_PLAY_MODES as REPEAT_PLAY_MODES, SHUFFLE_PLAY_MODES as SHUFFLE_PLAY_MODES, STREAMABLE_PROTOCOLS as STREAMABLE_PROTOCOLS
+from .const import CONF_BROWSE_UNFILTERED as CONF_BROWSE_UNFILTERED, CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DOMAIN as DOMAIN, MEDIA_METADATA_DIDL as MEDIA_METADATA_DIDL, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP, MEDIA_UPNP_CLASS_MAP as MEDIA_UPNP_CLASS_MAP, REPEAT_PLAY_MODES as REPEAT_PLAY_MODES, SHUFFLE_PLAY_MODES as SHUFFLE_PLAY_MODES, STREAMABLE_PROTOCOLS as STREAMABLE_PROTOCOLS
 from .data import EventListenAddr as EventListenAddr, get_domain_data as get_domain_data
 from _typeshed import Incomplete
 from async_upnp_client.client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
@@ -15,14 +15,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, TypeVar
-from typing_extensions import Concatenate as Concatenate
+from typing_extensions import Concatenate
 
 PARALLEL_UPDATES: int
-_T = TypeVar('_T', bound='DlnaDmrEntity')
+_DlnaDmrEntityT = TypeVar('_DlnaDmrEntityT', bound='DlnaDmrEntity')
 _R = TypeVar('_R')
 _P: Incomplete
 
-def catch_request_errors(func: Callable[Concatenate[_T, _P], Awaitable[_R]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Union[_R, None]]]: ...
+def catch_request_errors(func: Callable[Concatenate[_DlnaDmrEntityT, _P], Awaitable[_R]]) -> Callable[Concatenate[_DlnaDmrEntityT, _P], Coroutine[Any, Any, Union[_R, None]]]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DlnaDmrEntity(MediaPlayerEntity):
@@ -31,6 +31,7 @@ class DlnaDmrEntity(MediaPlayerEntity):
     _event_addr: EventListenAddr
     poll_availability: bool
     location: str
+    browse_unfiltered: bool
     _device_lock: asyncio.Lock
     _device: Union[DmrDevice, None]
     check_available: bool
@@ -38,7 +39,7 @@ class DlnaDmrEntity(MediaPlayerEntity):
     _bootid: Union[int, None]
     _attr_should_poll: bool
     _attr_name: Incomplete
-    def __init__(self, udn: str, device_type: str, name: str, event_port: int, event_callback_url: Union[str, None], poll_availability: bool, location: str) -> None: ...
+    def __init__(self, udn: str, device_type: str, name: str, event_port: int, event_callback_url: Union[str, None], poll_availability: bool, location: str, browse_unfiltered: bool) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_ssdp_callback(self, info: ssdp.SsdpServiceInfo, change: ssdp.SsdpChange) -> None: ...

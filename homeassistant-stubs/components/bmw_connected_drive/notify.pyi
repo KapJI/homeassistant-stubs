@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from _typeshed import Incomplete
-from bimmer_connected.vehicle import ConnectedDriveVehicle
+from bimmer_connected.vehicle import MyBMWVehicle
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LOCATION as ATTR_LOCATION, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -19,5 +19,5 @@ def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[D
 
 class BMWNotificationService(BaseNotificationService):
     targets: Incomplete
-    def __init__(self, targets: dict[str, ConnectedDriveVehicle]) -> None: ...
+    def __init__(self, targets: dict[str, MyBMWVehicle]) -> None: ...
     def send_message(self, message: str = ..., **kwargs: Any) -> None: ...

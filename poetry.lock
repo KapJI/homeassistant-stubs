@@ -118,7 +118,7 @@ tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>
 
 [[package]]
 name = "awesomeversion"
-version = "22.2.0"
+version = "22.5.1"
 description = "One version package to rule them all, One version package to find them, One version package to bring them all, and in the darkness bind them."
 category = "main"
 optional = false
@@ -383,7 +383,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "homeassistant"
-version = "2022.5.5"
+version = "2022.6.0b0"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -395,15 +395,15 @@ astral = "2.2"
 async-timeout = "4.0.2"
 atomicwrites = "1.4.0"
 attrs = "21.2.0"
-awesomeversion = "22.2.0"
+awesomeversion = "22.5.1"
 bcrypt = "3.1.7"
 certifi = ">=2021.5.30"
 ciso8601 = "2.2.0"
 cryptography = "36.0.2"
 httpx = "0.22.0"
 ifaddr = "0.1.7"
-jinja2 = "3.1.1"
-PyJWT = "2.3.0"
+jinja2 = "3.1.2"
+PyJWT = "2.4.0"
 python-slugify = "4.0.1"
 pyyaml = "6.0"
 requests = "2.27.1"
@@ -494,7 +494,7 @@ plugins = ["setuptools"]
 
 [[package]]
 name = "jinja2"
-version = "3.1.1"
+version = "3.1.2"
 description = "A very fast and expressive template engine."
 category = "main"
 optional = false
@@ -651,7 +651,7 @@ integrations = ["cryptography"]
 
 [[package]]
 name = "pyjwt"
-version = "2.3.0"
+version = "2.4.0"
 description = "JSON Web Token implementation in Python"
 category = "main"
 optional = false
@@ -902,7 +902,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "d95627768fa7f598a06160e60d2ef2feb4d4f16df6ba21883a46e3e5d6f99783"
+content-hash = "44d865eb7700552748c9d6d43064de246448aae11d4eb9001cb2c3bf7d42d0fa"
 
 [metadata.files]
 aiohttp = [
@@ -1016,8 +1016,8 @@ attrs = [
     {file = "attrs-21.2.0.tar.gz", hash = "sha256:ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"},
 ]
 awesomeversion = [
-    {file = "awesomeversion-22.2.0-py3-none-any.whl", hash = "sha256:fd1b059c103103fb6c41de024de60f6a9e05007c5a62ed1cee4a2f7d7ff672d6"},
-    {file = "awesomeversion-22.2.0.tar.gz", hash = "sha256:d0f97caf565fadaee80347596b49edcca860690fc76293fe3aec9393e5e31097"},
+    {file = "awesomeversion-22.5.1-py3-none-any.whl", hash = "sha256:d4f110a62228e323ee2df5f0c700b3c047507c8fd8e7a39602ecbd8b4743ea62"},
+    {file = "awesomeversion-22.5.1.tar.gz", hash = "sha256:84bcd85ab1bb9a287cfd1b2e5145f888b6e02ef3e3a63a07453f10f2f6e50fe3"},
 ]
 bcrypt = [
     {file = "bcrypt-3.1.7-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:d7bdc26475679dd073ba0ed2766445bb5b20ca4793ca0db32b399dccc6bc84b7"},
@@ -1279,8 +1279,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 homeassistant = [
-    {file = "homeassistant-2022.5.5-py3-none-any.whl", hash = "sha256:e8266cad656f68c3e42411f8d2427ace9b26c2697c3d7abce9e2a8591a2d03f2"},
-    {file = "homeassistant-2022.5.5.tar.gz", hash = "sha256:1eea334754ca6bf66423cceafbefb5703839ad0bda5196b386803c07fbcf055b"},
+    {file = "homeassistant-2022.6.0b0-py3-none-any.whl", hash = "sha256:317d78b38a0ddfb3a8333aaac612cf985739ea95eab215df230e3d7e283362aa"},
+    {file = "homeassistant-2022.6.0b0.tar.gz", hash = "sha256:1af94f293cfe7ec07e497360ef68fb47ba507cfe185ee0c1c871767aa0ad323a"},
 ]
 httpcore = [
     {file = "httpcore-0.14.7-py3-none-any.whl", hash = "sha256:47d772f754359e56dd9d892d9593b6f9870a37aeb8ba51e9a88b09b3d68cfade"},
@@ -1307,8 +1307,8 @@ isort = [
     {file = "isort-5.10.1.tar.gz", hash = "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"},
 ]
 jinja2 = [
-    {file = "Jinja2-3.1.1-py3-none-any.whl", hash = "sha256:539835f51a74a69f41b848a9645dbdc35b4f20a3b601e2d9a7e22947b15ff119"},
-    {file = "Jinja2-3.1.1.tar.gz", hash = "sha256:640bed4bb501cbd17194b3cace1dc2126f5b619cf068a726b98192a0fde74ae9"},
+    {file = "Jinja2-3.1.2-py3-none-any.whl", hash = "sha256:6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61"},
+    {file = "Jinja2-3.1.2.tar.gz", hash = "sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852"},
 ]
 lazy-object-proxy = [
     {file = "lazy-object-proxy-1.6.0.tar.gz", hash = "sha256:489000d368377571c6f982fba6497f2aa13c6d1facc40660963da62f5c379726"},
@@ -1510,8 +1510,8 @@ pygithub = [
     {file = "PyGithub-1.55.tar.gz", hash = "sha256:1bbfff9372047ff3f21d5cd8e07720f3dbfdaf6462fcaed9d815f528f1ba7283"},
 ]
 pyjwt = [
-    {file = "PyJWT-2.3.0-py3-none-any.whl", hash = "sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f"},
-    {file = "PyJWT-2.3.0.tar.gz", hash = "sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41"},
+    {file = "PyJWT-2.4.0-py3-none-any.whl", hash = "sha256:72d1d253f32dbd4f5c88eaf1fdc62f3a19f676ccbadb9dbc5d07e951b2b26daf"},
+    {file = "PyJWT-2.4.0.tar.gz", hash = "sha256:d42908208c699b3b973cbeb01a969ba6a96c821eefb1c5bfe4c390c01d67abba"},
 ]
 pylint = [
     {file = "pylint-2.13.9-py3-none-any.whl", hash = "sha256:705c620d388035bdd9ff8b44c5bcdd235bfb49d276d488dd2c8ff1736aa42526"},

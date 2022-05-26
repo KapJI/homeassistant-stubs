@@ -6,7 +6,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from kasa import SmartDevice as SmartDevice
 from typing import Any, TypeVar
-from typing_extensions import Concatenate as Concatenate
+from typing_extensions import Concatenate
 
 _T = TypeVar('_T', bound='CoordinatedTPLinkEntity')
 _P: Incomplete

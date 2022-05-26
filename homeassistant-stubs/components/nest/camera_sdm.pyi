@@ -1,15 +1,16 @@
 import datetime
-from .const import DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
+from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from google_nest_sdm.camera_traits import RtspStream as RtspStream
 from google_nest_sdm.device import Device as Device
+from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.components.camera.const import StreamType as StreamType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time

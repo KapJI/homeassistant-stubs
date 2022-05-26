@@ -8,7 +8,7 @@ from homeassistant.components.sensor import DOMAIN as DOMAIN, SensorDeviceClass 
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_VOLTAGE as ATTR_VOLTAGE, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, POWER_WATT as POWER_WATT, PRESSURE_HPA as PRESSURE_HPA, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -49,16 +49,10 @@ class DeconzSensor(DeconzDevice, SensorEntity):
     @property
     def extra_state_attributes(self) -> dict[str, Union[bool, float, int, str, None]]: ...
 
-class DeconzSensorStateTracker:
+class DeconzBatteryTracker:
     sensor: Incomplete
     gateway: Incomplete
-    def __init__(self, sensor: SensorResources, gateway: DeconzGateway) -> None: ...
-    def close(self) -> None: ...
+    async_add_entities: Incomplete
+    unsub: Incomplete
+    def __init__(self, sensor_id: str, gateway: DeconzGateway, async_add_entities: AddEntitiesCallback) -> None: ...
     def async_update_callback(self) -> None: ...
-
-class DeconzBatteryHandler:
-    gateway: Incomplete
-    _trackers: Incomplete
-    def __init__(self, gateway: DeconzGateway) -> None: ...
-    def create_tracker(self, sensor: SensorResources) -> None: ...
-    def remove_tracker(self, sensor: SensorResources) -> None: ...

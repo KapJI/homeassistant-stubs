@@ -1,11 +1,8 @@
 from .const import DOMAIN as DOMAIN
-from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, exceptions as exceptions
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from typing import Any, Final
-
-_LOGGER: Final[Incomplete]
+from typing import Any
 
 def host_valid(host: str) -> bool: ...
 
@@ -13,7 +10,6 @@ class DuneHDConfigFlow(config_entries.ConfigFlow):
     VERSION: int
     async def init_device(self, host: str) -> None: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_import(self, user_input: Union[dict[str, str], None] = ...) -> FlowResult: ...
     def host_already_configured(self, host: str) -> bool: ...
 
 class CannotConnect(exceptions.HomeAssistantError): ...

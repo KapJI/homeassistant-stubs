@@ -3,7 +3,7 @@ from .const import DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, EVENT_TYPE_LI
 from .data_handler import CAMERA_DATA_CLASS_NAME as CAMERA_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from _typeshed import Incomplete
-from homeassistant.components.light import LightEntity as LightEntity
+from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
@@ -16,6 +16,8 @@ _LOGGER: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NetatmoLight(NetatmoBase, LightEntity):
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
     _id: Incomplete
     _home_id: Incomplete
     _model: Incomplete

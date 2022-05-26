@@ -2,7 +2,7 @@ from .util import get_aid_storage_filename_for_entry_id as get_aid_storage_filen
 from _typeshed import Incomplete
 from collections.abc import Generator
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_registry import EntityRegistry as EntityRegistry, RegistryEntry as RegistryEntry
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.storage import Store as Store
 
 AID_MANAGER_STORAGE_VERSION: int
@@ -13,7 +13,7 @@ INVALID_AIDS: Incomplete
 AID_MIN: int
 AID_MAX: int
 
-def get_system_unique_id(entity: RegistryEntry) -> str: ...
+def get_system_unique_id(entity: er.RegistryEntry) -> str: ...
 def _generate_aids(unique_id: Union[str, None], entity_id: str) -> Generator[int, None, None]: ...
 
 class AccessoryAidStorage:

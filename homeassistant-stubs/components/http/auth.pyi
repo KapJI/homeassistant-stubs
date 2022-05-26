@@ -8,6 +8,7 @@ from homeassistant.auth.const import GROUP_ID_READ_ONLY as GROUP_ID_READ_ONLY
 from homeassistant.auth.models import User as User
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.storage import Store as Store
 from homeassistant.util.network import is_local as is_local
 from typing import Final
 

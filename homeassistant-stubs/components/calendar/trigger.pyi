@@ -2,7 +2,7 @@ import datetime
 from . import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
-from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_PLATFORM as CONF_PLATFORM
+from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_OFFSET as CONF_OFFSET, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -21,11 +21,12 @@ class CalendarEventListener:
     _job: Incomplete
     _trigger_data: Incomplete
     _entity: Incomplete
+    _offset: Incomplete
     _unsub_event: Incomplete
     _unsub_refresh: Incomplete
     _events: Incomplete
     _event_type: Incomplete
-    def __init__(self, hass: HomeAssistant, job: HassJob, trigger_data: dict[str, Any], entity: CalendarEntity, event_type: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, job: HassJob, trigger_data: dict[str, Any], entity: CalendarEntity, event_type: str, offset: datetime.timedelta) -> None: ...
     async def async_attach(self) -> None: ...
     def async_detach(self) -> None: ...
     async def _fetch_events(self, last_endtime: datetime.datetime) -> None: ...

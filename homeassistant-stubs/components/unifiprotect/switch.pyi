@@ -8,8 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pyunifiprotect.data import Camera
-from pyunifiprotect.data.base import ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
+from pyunifiprotect.data import Camera, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any
 
 _LOGGER: Incomplete
@@ -22,11 +21,11 @@ _KEY_PRIVACY_MODE: str
 def _get_is_highfps(obj: Camera) -> bool: ...
 async def _set_highfps(obj: Camera, value: bool) -> None: ...
 
-ALL_DEVICES_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 CAMERA_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 SENSE_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 LIGHT_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 DOORLOCK_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
+VIEWER_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

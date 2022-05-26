@@ -30,14 +30,16 @@ ATTR_ZONE: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NeatoConnectedVacuum(StateVacuumEntity):
+    _attr_icon: str
     _attr_supported_features: Incomplete
     robot: Incomplete
-    _available: Incomplete
+    _attr_available: Incomplete
     _mapdata: Incomplete
-    _name: Incomplete
+    _attr_name: Incomplete
     _robot_has_map: Incomplete
     _robot_maps: Incomplete
     _robot_serial: Incomplete
+    _attr_unique_id: Incomplete
     _status_state: Incomplete
     _clean_state: Incomplete
     _state: Incomplete
@@ -51,25 +53,13 @@ class NeatoConnectedVacuum(StateVacuumEntity):
     _clean_pause_time: Incomplete
     _clean_error_time: Incomplete
     _launched_from: Incomplete
-    _battery_level: Incomplete
     _robot_boundaries: Incomplete
     _robot_stats: Incomplete
     def __init__(self, neato: NeatoHub, robot: Robot, mapdata: Union[dict[str, Any], None], persistent_maps: Union[dict[str, Any], None]) -> None: ...
+    _attr_battery_level: Incomplete
     def update(self) -> None: ...
     @property
-    def name(self) -> str: ...
-    @property
-    def supported_features(self) -> int: ...
-    @property
-    def battery_level(self) -> Union[int, None]: ...
-    @property
-    def available(self) -> bool: ...
-    @property
-    def icon(self) -> str: ...
-    @property
     def state(self) -> Union[str, None]: ...
-    @property
-    def unique_id(self) -> str: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property

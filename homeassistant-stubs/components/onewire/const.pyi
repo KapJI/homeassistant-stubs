@@ -1,18 +1,13 @@
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 
-CONF_MOUNT_DIR: str
-CONF_TYPE_OWSERVER: str
-CONF_TYPE_SYSBUS: str
-DEFAULT_OWSERVER_HOST: str
-DEFAULT_OWSERVER_PORT: int
-DEFAULT_SYSBUS_MOUNT_DIR: str
+DEFAULT_HOST: str
+DEFAULT_PORT: int
 DOMAIN: str
 DEVICE_KEYS_0_3: Incomplete
 DEVICE_KEYS_0_7: Incomplete
 DEVICE_KEYS_A_B: Incomplete
-DEVICE_SUPPORT_OWSERVER: Incomplete
-DEVICE_SUPPORT_SYSBUS: Incomplete
+DEVICE_SUPPORT: Incomplete
 DEVICE_SUPPORT_OPTIONS: Incomplete
 PRECISION_MAPPING_FAMILY_28: Incomplete
 OPTION_ENTRY_DEVICE_OPTIONS: str

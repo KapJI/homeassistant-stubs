@@ -8,7 +8,8 @@ from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_DOMAIN as
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as entity_registry
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from typing import Any
 
 ACTION_TYPES: Incomplete
 CLEAR_LOCK_USERCODE_SCHEMA: Incomplete
@@ -20,6 +21,6 @@ SET_LOCK_USERCODE_SCHEMA: Incomplete
 SET_VALUE_SCHEMA: Incomplete
 ACTION_SCHEMA: Incomplete
 
-async def async_get_actions(hass: HomeAssistant, device_id: str) -> list[dict]: ...
-async def async_call_action_from_config(hass: HomeAssistant, config: dict, variables: dict, context: Union[Context, None]) -> None: ...
+async def async_get_actions(hass: HomeAssistant, device_id: str) -> list[dict[str, Any]]: ...
+async def async_call_action_from_config(hass: HomeAssistant, config: ConfigType, variables: TemplateVarsType, context: Union[Context, None]) -> None: ...
 async def async_get_action_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...

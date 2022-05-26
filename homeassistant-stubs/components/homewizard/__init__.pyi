@@ -4,7 +4,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete
 

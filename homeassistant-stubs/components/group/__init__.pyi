@@ -11,7 +11,7 @@ from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
+from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component, async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.reload import async_reload_integration_platforms as async_reload_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass

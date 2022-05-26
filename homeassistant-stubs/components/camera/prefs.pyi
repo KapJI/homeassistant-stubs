@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from typing import Final
 

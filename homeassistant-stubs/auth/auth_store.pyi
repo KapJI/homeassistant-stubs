@@ -6,6 +6,7 @@ from .permissions.types import PolicyType as PolicyType
 from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.storage import Store as Store
 from typing import Any
 
 STORAGE_VERSION: int

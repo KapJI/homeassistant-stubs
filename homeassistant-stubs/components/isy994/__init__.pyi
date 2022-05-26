@@ -1,11 +1,11 @@
-from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_TLS_VER as CONF_TLS_VER, CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_RESTORE_LIGHT_STATE as DEFAULT_RESTORE_LIGHT_STATE, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, ISY994_ISY as ISY994_ISY, ISY994_NODES as ISY994_NODES, ISY994_PROGRAMS as ISY994_PROGRAMS, ISY994_VARIABLES as ISY994_VARIABLES, MANUFACTURER as MANUFACTURER, PLATFORMS as PLATFORMS, PROGRAM_PLATFORMS as PROGRAM_PLATFORMS, _LOGGER as _LOGGER
+from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_TLS_VER as CONF_TLS_VER, CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_RESTORE_LIGHT_STATE as DEFAULT_RESTORE_LIGHT_STATE, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, ISY994_ISY as ISY994_ISY, ISY994_NODES as ISY994_NODES, ISY994_PROGRAMS as ISY994_PROGRAMS, ISY994_VARIABLES as ISY994_VARIABLES, MANUFACTURER as MANUFACTURER, PLATFORMS as PLATFORMS, PROGRAM_PLATFORMS as PROGRAM_PLATFORMS, SENSOR_AUX as SENSOR_AUX, _LOGGER as _LOGGER
 from .helpers import _categorize_nodes as _categorize_nodes, _categorize_programs as _categorize_programs, _categorize_variables as _categorize_variables
 from .services import async_setup_services as async_setup_services, async_unload_services as async_unload_services
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from pyisy import ISY

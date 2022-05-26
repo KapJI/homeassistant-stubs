@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 DOMAIN: str
 DATA_SDM: str
 DATA_SUBSCRIBER: str
+DATA_DEVICE_MANAGER: str
 DATA_NEST_CONFIG: str
 WEB_AUTH_DOMAIN = DOMAIN
 INSTALLED_AUTH_DOMAIN: Incomplete

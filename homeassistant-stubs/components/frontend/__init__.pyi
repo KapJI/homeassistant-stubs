@@ -11,6 +11,7 @@ from homeassistant.config import async_hass_config_yaml as async_hass_config_yam
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import service as service
+from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.translation import async_get_translations as async_get_translations
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass

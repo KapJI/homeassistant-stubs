@@ -1,7 +1,6 @@
 from _typeshed import Incomplete
-from aiohwenergy.device import Device
 from homeassistant.const import Platform as Platform
-from homeassistant.helpers.typing import StateType as StateType
+from homewizard_energy.models import Data, Device, State
 from typing import TypedDict
 
 DOMAIN: str
@@ -17,4 +16,5 @@ UPDATE_INTERVAL: Incomplete
 
 class DeviceResponseEntry(TypedDict):
     device: Device
-    data: dict[str, StateType]
+    data: Data
+    state: State

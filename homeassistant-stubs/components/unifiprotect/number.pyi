@@ -9,7 +9,7 @@ from homeassistant.const import TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pyunifiprotect.data.devices import Camera as Camera, Doorlock, Light
+from pyunifiprotect.data import Camera as Camera, Doorlock, Light
 
 class NumberKeysMixin:
     ufp_max: int
@@ -29,6 +29,7 @@ CAMERA_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 LIGHT_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 SENSE_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 DOORLOCK_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
+CHIME_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

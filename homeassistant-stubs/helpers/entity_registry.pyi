@@ -1,6 +1,7 @@
 from . import storage as storage
 from .device_registry import EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED
 from .entity import EntityCategory as EntityCategory
+from .frame import report as report
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections import UserDict

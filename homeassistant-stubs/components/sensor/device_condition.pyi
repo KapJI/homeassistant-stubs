@@ -1,3 +1,4 @@
+import voluptuous as vol
 from . import ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass
 from _typeshed import Incomplete
 from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
@@ -6,7 +7,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import condition as condition
 from homeassistant.helpers.entity import get_capability as get_capability, get_device_class as get_device_class, get_unit_of_measurement as get_unit_of_measurement
-from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device, async_get_registry as async_get_registry
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 DEVICE_CLASS_NONE: str
@@ -42,4 +42,4 @@ CONDITION_SCHEMA: Incomplete
 
 async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 def async_condition_from_config(hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...
-async def async_get_condition_capabilities(hass, config): ...
+async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...

@@ -4,6 +4,7 @@ from .util import async_load_adapters as async_load_adapters, enable_adapters as
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.singleton import singleton as singleton
+from homeassistant.helpers.storage import Store as Store
 from typing import Any
 
 _LOGGER: Incomplete

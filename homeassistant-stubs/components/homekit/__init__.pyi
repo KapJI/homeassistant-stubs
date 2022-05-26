@@ -16,10 +16,10 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_DEVICES as CONF_DEVICES, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
-from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
+from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry, instance_id as instance_id
 from homeassistant.helpers.entityfilter import BASE_FILTER_SCHEMA as BASE_FILTER_SCHEMA, EntityFilter as EntityFilter, FILTER_SCHEMA as FILTER_SCHEMA
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
-from homeassistant.helpers.service import async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
+from homeassistant.helpers.service import async_extract_referenced_entity_ids as async_extract_referenced_entity_ids, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from typing import Any

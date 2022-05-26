@@ -7,24 +7,26 @@ from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, ST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util import convert as convert
+from pywemo import Switch as Switch
 from typing import Any
 
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
+ATTR_COFFEMAKER_MODE: str
+ATTR_CURRENT_STATE_DETAIL: str
+ATTR_ON_LATEST_TIME: str
+ATTR_ON_TODAY_TIME: str
+ATTR_ON_TOTAL_TIME: str
+ATTR_POWER_THRESHOLD: str
 ATTR_SENSOR_STATE: str
 ATTR_SWITCH_MODE: str
-ATTR_CURRENT_STATE_DETAIL: str
-ATTR_COFFEMAKER_MODE: str
 MAKER_SWITCH_MOMENTARY: str
 MAKER_SWITCH_TOGGLE: str
-WEMO_ON: int
-WEMO_OFF: int
-WEMO_STANDBY: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WemoSwitch(WemoBinaryStateEntity, SwitchEntity):
+    wemo: Switch
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @staticmethod

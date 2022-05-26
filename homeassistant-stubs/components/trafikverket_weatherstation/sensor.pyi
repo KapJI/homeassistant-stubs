@@ -11,9 +11,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from homeassistant.util.dt import as_utc as as_utc, get_time_zone as get_time_zone
-
-STOCKHOLM_TIMEZONE: Incomplete
+from homeassistant.util.dt import as_utc as as_utc
 
 class TrafikverketRequiredKeysMixin:
     api_key: str

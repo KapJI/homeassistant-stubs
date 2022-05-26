@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from pydeconz.models.event import EventType as EventType
 from pydeconz.models.scene import Scene as PydeconzScene
 
 class DeconzButtonDescriptionMixin:

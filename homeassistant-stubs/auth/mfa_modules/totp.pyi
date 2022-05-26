@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.auth.models import User as User
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers.storage import Store as Store
 from typing import Any
 
 REQUIREMENTS: Incomplete

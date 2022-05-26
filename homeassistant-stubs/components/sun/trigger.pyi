@@ -1,8 +1,10 @@
 from _typeshed import Incomplete
+from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.const import CONF_EVENT as CONF_EVENT, CONF_OFFSET as CONF_OFFSET, CONF_PLATFORM as CONF_PLATFORM, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE
-from homeassistant.core import HassJob as HassJob, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_sunrise as async_track_sunrise, async_track_sunset as async_track_sunset
+from homeassistant.helpers.typing import ConfigType as ConfigType
 
 TRIGGER_SCHEMA: Incomplete
 
-async def async_attach_trigger(hass, config, action, automation_info): ...
+async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: AutomationActionType, automation_info: AutomationTriggerInfo) -> CALLBACK_TYPE: ...

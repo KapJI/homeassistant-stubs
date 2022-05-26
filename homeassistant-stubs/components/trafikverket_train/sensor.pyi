@@ -1,9 +1,9 @@
-from .const import CONF_FROM as CONF_FROM, CONF_TIME as CONF_TIME, CONF_TO as CONF_TO, CONF_TRAINS as CONF_TRAINS, DOMAIN as DOMAIN
+from .const import CONF_FROM as CONF_FROM, CONF_TIME as CONF_TIME, CONF_TO as CONF_TO, DOMAIN as DOMAIN
 from .util import create_unique_id as create_unique_id
 from _typeshed import Incomplete
 from datetime import date, datetime, time
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_NAME as CONF_NAME, CONF_WEEKDAY as CONF_WEEKDAY, WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
@@ -11,8 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.util.dt import as_utc as as_utc, get_time_zone as get_time_zone, parse_time as parse_time
+from homeassistant.util import dt as dt
 from pytrafikverket import TrafikverketTrain
 from pytrafikverket.trafikverket_train import StationInfo as StationInfo, TrainStop as TrainStop
 
@@ -27,9 +26,7 @@ ATTR_OTHER_INFORMATION: str
 ATTR_DEVIATIONS: str
 ICON: str
 SCAN_INTERVAL: Incomplete
-STOCKHOLM_TIMEZONE: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def next_weekday(fromdate: date, weekday: int) -> date: ...
 def next_departuredate(departure: list[str]) -> date: ...

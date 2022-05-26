@@ -12,10 +12,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
-from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const.command_class.thermostat import ThermostatSetpointType
+from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as ZwaveValue
 
+PARALLEL_UPDATES: int
 ZW_HVAC_MODE_MAP: dict[int, HVACMode]
 HVAC_CURRENT_MAP: dict[int, HVACAction]
 ATTR_FAN_STATE: str
@@ -34,11 +35,11 @@ class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
     _fan_mode: Incomplete
     _fan_state: Incomplete
     _attr_supported_features: int
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     def _setpoint_value(self, setpoint_type: ThermostatSetpointType) -> ZwaveValue: ...
     def _set_modes_and_presets(self) -> None: ...
     @property
-    def _current_mode_setpoint_enums(self) -> list[Union[ThermostatSetpointType, None]]: ...
+    def _current_mode_setpoint_enums(self) -> list[ThermostatSetpointType]: ...
     @property
     def temperature_unit(self) -> str: ...
     @property
@@ -80,6 +81,6 @@ class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
 
 class DynamicCurrentTempClimate(ZWaveClimate):
     data_template: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def current_temperature(self) -> Union[float, None]: ...

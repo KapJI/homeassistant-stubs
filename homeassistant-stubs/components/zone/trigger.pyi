@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_PLATFORM as CONF_PLATFORM, CONF_ZONE as CONF_ZONE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import condition as condition, location as location
@@ -13,4 +14,4 @@ _EVENT_DESCRIPTION: Incomplete
 _TRIGGER_SCHEMA: Incomplete
 
 async def async_validate_trigger_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
-async def async_attach_trigger(hass, config, action, automation_info, *, platform_type: str = ...) -> CALLBACK_TYPE: ...
+async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: AutomationActionType, automation_info: AutomationTriggerInfo, *, platform_type: str = ...) -> CALLBACK_TYPE: ...

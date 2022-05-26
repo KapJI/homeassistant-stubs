@@ -11,7 +11,6 @@ from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.frame import report as report
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_ssdp as async_get_ssdp, bind_hass as bind_hass
 from ipaddress import IPv4Address, IPv6Address
@@ -29,6 +28,8 @@ ATTR_SSDP_EXT: str
 ATTR_SSDP_SERVER: str
 ATTR_SSDP_BOOTID: str
 ATTR_SSDP_NEXTBOOTID: str
+ATTR_ST: str
+ATTR_NT: str
 ATTR_UPNP_DEVICE_TYPE: str
 ATTR_UPNP_FRIENDLY_NAME: str
 ATTR_UPNP_MANUFACTURER: str
@@ -66,9 +67,6 @@ class _UpnpServiceDescription:
     def __init__(self, upnp) -> None: ...
 
 class SsdpServiceInfo(_HaServiceDescription, _SsdpServiceDescription, _UpnpServiceDescription, BaseServiceInfo):
-    def __getitem__(self, name: str) -> Any: ...
-    def get(self, name: str, default: Any = ...) -> Any: ...
-    def __contains__(self, name: str) -> bool: ...
     def __init__(self, upnp, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
 
 SsdpChange: Incomplete

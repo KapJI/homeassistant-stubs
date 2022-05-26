@@ -15,7 +15,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any, TypeVar
-from typing_extensions import Concatenate as Concatenate
+from typing_extensions import Concatenate
 
 _LOGGER: Incomplete
 SUPPORT_WEBOSTV: Incomplete

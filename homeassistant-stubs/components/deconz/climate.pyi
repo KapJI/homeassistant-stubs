@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSI
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pydeconz.models.sensor.thermostat import Thermostat
+from pydeconz.models.sensor.thermostat import Thermostat as Thermostat
 from typing import Any
 
 DECONZ_FAN_SMART: str

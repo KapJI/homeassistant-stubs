@@ -4,6 +4,7 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CO
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
+from homeassistant.helpers.service import entity_service_call as entity_service_call
 from typing import Any
 
 SERVICE_SYSTEM_QUERY: str

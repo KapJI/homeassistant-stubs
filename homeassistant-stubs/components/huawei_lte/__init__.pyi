@@ -10,6 +10,7 @@ from homeassistant.helpers import discovery as discovery, entity_registry as ent
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, dispatcher_send as dispatcher_send
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from huawei_lte_api.Client import Client
 from huawei_lte_api.Connection import Connection

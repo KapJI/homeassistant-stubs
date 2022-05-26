@@ -9,7 +9,7 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, bind_hass as bind_hass
+from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from homeassistant.requirements import async_get_integration_with_requirements as async_get_integration_with_requirements
 from types import ModuleType
 from typing import Any, Literal, NamedTuple, Union, overload

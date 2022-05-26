@@ -4,10 +4,10 @@ from _typeshed import Incomplete
 from homeassistant.components.fan import DOMAIN as DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item
-from pydeconz.models.light.fan import Fan
+from pydeconz.models.event import EventType as EventType
+from pydeconz.models.light.fan import Fan as Fan
 from typing import Any, Literal
 
 ORDERED_NAMED_FAN_SPEEDS: list[Literal[0, 1, 2, 3, 4, 5, 6]]

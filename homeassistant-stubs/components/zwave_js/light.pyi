@@ -8,9 +8,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
-from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const.command_class.color_switch import ColorComponent
+from zwave_js_server.model.driver import Driver as Driver
 
+PARALLEL_UPDATES: int
 LOGGER: Incomplete
 MULTI_COLOR_MAP: Incomplete
 
@@ -35,7 +36,7 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     _attr_supported_features: int
     supports_brightness_transition: Incomplete
     supports_color_transition: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     def on_value_update(self) -> None: ...
     @property
     def brightness(self) -> Union[int, None]: ...
@@ -63,7 +64,7 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
 
 class ZwaveBlackIsOffLight(ZwaveLight):
     _last_color: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def brightness(self) -> int: ...
     @property

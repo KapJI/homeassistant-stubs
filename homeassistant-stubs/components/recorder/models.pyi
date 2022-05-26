@@ -1,10 +1,11 @@
 from .const import ALL_DOMAIN_EXCLUDE_ATTRS as ALL_DOMAIN_EXCLUDE_ATTRS, JSON_DUMP as JSON_DUMP
 from _typeshed import Incomplete
 from datetime import datetime
+from homeassistant.components.websocket_api.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.const import MAX_LENGTH_EVENT_CONTEXT_ID as MAX_LENGTH_EVENT_CONTEXT_ID, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_EVENT_ORIGIN as MAX_LENGTH_EVENT_ORIGIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import Context as Context, Event as Event, EventOrigin as EventOrigin, State as State, split_entity_id as split_entity_id
-from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from sqlalchemy import Column
+from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.row import Row as Row
 from typing import Any, TypedDict, overload
 
@@ -13,6 +14,7 @@ SCHEMA_VERSION: int
 _LOGGER: Incomplete
 DB_TIMEZONE: str
 TABLE_EVENTS: str
+TABLE_EVENT_DATA: str
 TABLE_STATES: str
 TABLE_STATE_ATTRIBUTES: str
 TABLE_RECORDER_RUNS: str
@@ -22,9 +24,22 @@ TABLE_STATISTICS_META: str
 TABLE_STATISTICS_RUNS: str
 TABLE_STATISTICS_SHORT_TERM: str
 ALL_TABLES: Incomplete
+TABLES_TO_CHECK: Incomplete
+LAST_UPDATED_INDEX: str
+ENTITY_ID_LAST_UPDATED_INDEX: str
 EMPTY_JSON_OBJECT: str
+
+class FAST_PYSQLITE_DATETIME(sqlite.DATETIME):
+    def result_processor(self, dialect, coltype): ...
+
+JSON_VARIENT_CAST: Incomplete
+JSONB_VARIENT_CAST: Incomplete
 DATETIME_TYPE: Incomplete
 DOUBLE_TYPE: Incomplete
+EVENT_ORIGIN_ORDER: Incomplete
+EVENT_ORIGIN_TO_IDX: Incomplete
+
+class UnsupportedDialect(Exception): ...
 
 class Events(Base):
     __table_args__: Incomplete
@@ -33,14 +48,32 @@ class Events(Base):
     event_type: Incomplete
     event_data: Incomplete
     origin: Incomplete
+    origin_idx: Incomplete
     time_fired: Incomplete
     context_id: Incomplete
     context_user_id: Incomplete
     context_parent_id: Incomplete
+    data_id: Incomplete
+    event_data_rel: Incomplete
     def __repr__(self) -> str: ...
     @staticmethod
-    def from_event(event: Event, event_data: Union[UndefinedType, None] = ...) -> Events: ...
+    def from_event(event: Event) -> Events: ...
     def to_native(self, validate_entity_id: bool = ...) -> Union[Event, None]: ...
+
+class EventData(Base):
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    data_id: Incomplete
+    hash: Incomplete
+    shared_data: Incomplete
+    def __repr__(self) -> str: ...
+    @staticmethod
+    def from_event(event: Event) -> EventData: ...
+    @staticmethod
+    def shared_data_from_event(event: Event) -> str: ...
+    @staticmethod
+    def hash_shared_data(shared_data: str) -> int: ...
+    def to_native(self) -> dict[str, Any]: ...
 
 class States(Base):
     __table_args__: Incomplete
@@ -54,7 +87,10 @@ class States(Base):
     last_updated: Incomplete
     old_state_id: Incomplete
     attributes_id: Incomplete
-    event: Incomplete
+    context_id: Incomplete
+    context_user_id: Incomplete
+    context_parent_id: Incomplete
+    origin_idx: Incomplete
     old_state: Incomplete
     state_attributes: Incomplete
     def __repr__(self) -> str: ...
@@ -171,6 +207,7 @@ def process_timestamp(ts: datetime) -> datetime: ...
 def process_timestamp_to_utc_isoformat(ts: None) -> None: ...
 @overload
 def process_timestamp_to_utc_isoformat(ts: datetime) -> str: ...
+def process_datetime_to_timestamp(ts: datetime) -> float: ...
 
 class LazyState(State):
     __slots__: Incomplete
@@ -181,8 +218,8 @@ class LazyState(State):
     _last_changed: Incomplete
     _last_updated: Incomplete
     _context: Incomplete
-    _attr_cache: Incomplete
-    def __init__(self, row: Row, attr_cache: Union[dict[str, dict[str, Any]], None] = ...) -> None: ...
+    attr_cache: Incomplete
+    def __init__(self, row: Row, attr_cache: dict[str, dict[str, Any]], start_time: Union[datetime, None] = ...) -> None: ...
     @property
     def attributes(self) -> dict[str, Any]: ...
     @attributes.setter
@@ -201,3 +238,6 @@ class LazyState(State):
     def last_updated(self, value: datetime) -> None: ...
     def as_dict(self) -> dict[str, Any]: ...
     def __eq__(self, other: Any) -> bool: ...
+
+def decode_attributes_from_row(row: Row, attr_cache: dict[str, dict[str, Any]]) -> dict[str, Any]: ...
+def row_to_compressed_state(row: Row, attr_cache: dict[str, dict[str, Any]], start_time: Union[datetime, None] = ...) -> dict[str, Any]: ...

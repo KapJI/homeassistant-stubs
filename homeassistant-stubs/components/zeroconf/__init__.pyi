@@ -9,8 +9,7 @@ from homeassistant.components.network.models import Adapter as Adapter
 from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
-from homeassistant.helpers import discovery_flow as discovery_flow
-from homeassistant.helpers.frame import report as report
+from homeassistant.helpers import discovery_flow as discovery_flow, instance_id as instance_id
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import Integration as Integration, async_get_homekit as async_get_homekit, async_get_integration as async_get_integration, async_get_zeroconf as async_get_zeroconf, bind_hass as bind_hass
@@ -43,8 +42,6 @@ class ZeroconfServiceInfo(BaseServiceInfo):
     type: str
     name: str
     properties: dict[str, Any]
-    def __getitem__(self, name: str) -> Any: ...
-    def get(self, name: str, default: Any = ...) -> Any: ...
     def __init__(self, host, addresses, port, hostname, type, name, properties) -> None: ...
 
 async def async_get_instance(hass: HomeAssistant) -> HaZeroconf: ...

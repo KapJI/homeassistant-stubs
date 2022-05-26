@@ -11,13 +11,13 @@ DATA_SCHEMA: Incomplete
 
 async def validate_input(hass: core.HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 
-class BMWConnectedDriveConfigFlow(config_entries.ConfigFlow):
+class BMWConfigFlow(config_entries.ConfigFlow):
     VERSION: int
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     @staticmethod
-    def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> BMWConnectedDriveOptionsFlow: ...
+    def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> BMWOptionsFlow: ...
 
-class BMWConnectedDriveOptionsFlow(config_entries.OptionsFlow):
+class BMWOptionsFlow(config_entries.OptionsFlow):
     config_entry: Incomplete
     options: Incomplete
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None: ...

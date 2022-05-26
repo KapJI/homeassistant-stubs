@@ -10,6 +10,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components import http as http
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.loader import async_get_application_credentials as async_get_application_credentials
 from typing import Any
 
 _LOGGER: Incomplete
@@ -18,6 +19,7 @@ DATA_IMPLEMENTATIONS: str
 DATA_PROVIDERS: str
 AUTH_CALLBACK_PATH: str
 HEADER_FRONTEND_BASE: str
+MY_AUTH_CALLBACK_PATH: str
 CLOCK_OUT_OF_SYNC_MAX_SEC: int
 
 class AbstractOAuth2Implementation(ABC, metaclass=abc.ABCMeta):
@@ -78,7 +80,7 @@ class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
 def async_register_implementation(hass: HomeAssistant, domain: str, implementation: AbstractOAuth2Implementation) -> None: ...
 async def async_get_implementations(hass: HomeAssistant, domain: str) -> dict[str, AbstractOAuth2Implementation]: ...
 async def async_get_config_entry_implementation(hass: HomeAssistant, config_entry: config_entries.ConfigEntry) -> AbstractOAuth2Implementation: ...
-def async_add_implementation_provider(hass: HomeAssistant, provider_domain: str, async_provide_implementation: Callable[[HomeAssistant, str], Awaitable[Union[AbstractOAuth2Implementation, None]]]) -> None: ...
+def async_add_implementation_provider(hass: HomeAssistant, provider_domain: str, async_provide_implementation: Callable[[HomeAssistant, str], Awaitable[list[AbstractOAuth2Implementation]]]) -> None: ...
 
 class OAuth2AuthorizeCallbackView(http.HomeAssistantView):
     requires_auth: bool

@@ -1,4 +1,4 @@
-from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
+from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator, ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN, METRIC_KEY_MODE as METRIC_KEY_MODE, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, MODE_OFF as MODE_OFF, MODE_ON as MODE_ON, STR_TO_VALLOX_PROFILE_SETTABLE as STR_TO_VALLOX_PROFILE_SETTABLE, VALLOX_PROFILE_TO_STR_SETTABLE as VALLOX_PROFILE_TO_STR_SETTABLE
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -7,7 +7,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, NamedTuple
 from vallox_websocket_api import Vallox as Vallox
 
@@ -22,7 +21,7 @@ EXTRA_STATE_ATTRIBUTES: Incomplete
 def _convert_fan_speed_value(value: StateType) -> Union[int, None]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class ValloxFan(CoordinatorEntity[ValloxDataUpdateCoordinator], FanEntity):
+class ValloxFan(ValloxEntity, FanEntity):
     _attr_supported_features: Incomplete
     _client: Incomplete
     _attr_name: Incomplete

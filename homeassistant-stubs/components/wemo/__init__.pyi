@@ -31,7 +31,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 class WemoDispatcher:
     _config_entry: Incomplete
     _added_serial_numbers: Incomplete
-    _loaded_components: Incomplete
+    _loaded_platforms: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_add_unique_device(self, hass: HomeAssistant, wemo: pywemo.WeMoDevice) -> None: ...
 

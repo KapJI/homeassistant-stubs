@@ -6,7 +6,7 @@ from homeassistant.components import ssdp as ssdp
 from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from huawei_lte_api.Connection import GetResponseType as GetResponseType
+from huawei_lte_api.Session import GetResponseType as GetResponseType
 from typing import Any
 
 _LOGGER: Incomplete

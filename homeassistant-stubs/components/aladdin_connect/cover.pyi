@@ -1,11 +1,12 @@
-from .const import NOTIFICATION_ID as NOTIFICATION_ID, NOTIFICATION_TITLE as NOTIFICATION_TITLE, STATES_MAP as STATES_MAP, SUPPORTED_FEATURES as SUPPORTED_FEATURES
+from .const import DOMAIN as DOMAIN, STATES_MAP as STATES_MAP, SUPPORTED_FEATURES as SUPPORTED_FEATURES
 from .model import DoorDevice as DoorDevice
 from _typeshed import Incomplete
-from aladdin_connect import AladdinConnectClient
-from homeassistant.components import persistent_notification as persistent_notification
+from aladdin_connect import AladdinConnectClient as AladdinConnectClient
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, Final
@@ -13,7 +14,8 @@ from typing import Any, Final
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AladdinDevice(CoverEntity):
     _attr_device_class: Incomplete

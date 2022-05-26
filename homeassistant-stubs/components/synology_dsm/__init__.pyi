@@ -6,8 +6,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MAC as CONF_MAC, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers import device_registry as device_registry
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from synology_dsm.api.surveillance_station.camera import SynoCamera as SynoCamera

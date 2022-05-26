@@ -5,16 +5,20 @@ from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from zwave_js_server.client import Client as ZwaveClient
+from zwave_js_server.model.driver import Driver as Driver
+from zwave_js_server.model.value import Value as Value
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveNumberEntity(ZWaveBaseEntity, NumberEntity):
     _target_value: Incomplete
     _attr_name: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def min_value(self) -> float: ...
     @property
@@ -31,7 +35,7 @@ class ZwaveVolumeNumberEntity(ZWaveBaseEntity, NumberEntity):
     _attr_max_value: int
     _attr_step: float
     _attr_name: Incomplete
-    def __init__(self, config_entry: ConfigEntry, client: ZwaveClient, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def value(self) -> Union[float, None]: ...
     async def async_set_value(self, value: float) -> None: ...

@@ -5,7 +5,7 @@ from homeassistant.components.media_player.const import MEDIA_CLASS_APP as MEDIA
 from homeassistant.components.media_player.errors import BrowseError as BrowseError
 from homeassistant.components.media_source.error import Unresolvable as Unresolvable
 from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
-from homeassistant.components.stream.const import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
+from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent

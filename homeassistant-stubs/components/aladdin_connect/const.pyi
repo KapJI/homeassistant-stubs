@@ -6,4 +6,5 @@ from typing import Final
 NOTIFICATION_ID: Final[str]
 NOTIFICATION_TITLE: Final[str]
 STATES_MAP: Final[dict[str, str]]
+DOMAIN: str
 SUPPORTED_FEATURES: Final[Incomplete]

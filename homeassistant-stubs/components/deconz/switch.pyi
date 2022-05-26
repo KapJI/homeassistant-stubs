@@ -5,8 +5,8 @@ from _typeshed import Incomplete
 from homeassistant.components.switch import DOMAIN as DOMAIN, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from pydeconz.models.event import EventType as EventType
 from pydeconz.models.light.light import Light as Light
 from typing import Any
 

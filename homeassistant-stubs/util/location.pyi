@@ -12,17 +12,17 @@ MAX_ITERATIONS: int
 CONVERGENCE_THRESHOLD: float
 
 class LocationInfo(NamedTuple):
-    ip: Incomplete
-    country_code: Incomplete
-    currency: Incomplete
-    region_code: Incomplete
-    region_name: Incomplete
-    city: Incomplete
-    zip_code: Incomplete
-    time_zone: Incomplete
-    latitude: Incomplete
-    longitude: Incomplete
-    use_metric: Incomplete
+    ip: str
+    country_code: str
+    currency: str
+    region_code: str
+    region_name: str
+    city: str
+    zip_code: str
+    time_zone: str
+    latitude: float
+    longitude: float
+    use_metric: bool
 
 async def async_detect_location_info(session: aiohttp.ClientSession) -> Union[LocationInfo, None]: ...
 def distance(lat1: Union[float, None], lon1: Union[float, None], lat2: float, lon2: float) -> Union[float, None]: ...

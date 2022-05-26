@@ -5,9 +5,9 @@ from collections.abc import Callable as Callable
 from homeassistant.components.number import DOMAIN as DOMAIN, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor.presence import Presence
 
 class DeconzNumberDescriptionMixin:

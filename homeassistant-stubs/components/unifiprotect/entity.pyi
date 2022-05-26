@@ -6,14 +6,13 @@ from _typeshed import Incomplete
 from collections.abc import Sequence
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
-from pyunifiprotect.data import Event as Event, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
-from pyunifiprotect.data.nvr import NVR as NVR
+from pyunifiprotect.data import Event as Event, ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any
 
 _LOGGER: Incomplete
 
 def _async_device_entities(data: ProtectData, klass: type[ProtectDeviceEntity], model_type: ModelType, descs: Sequence[ProtectRequiredKeysMixin]) -> list[ProtectDeviceEntity]: ...
-def async_all_device_entities(data: ProtectData, klass: type[ProtectDeviceEntity], camera_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., light_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., sense_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., viewer_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., lock_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., all_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ...) -> list[ProtectDeviceEntity]: ...
+def async_all_device_entities(data: ProtectData, klass: type[ProtectDeviceEntity], camera_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., light_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., sense_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., viewer_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., lock_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., chime_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ..., all_descs: Union[Sequence[ProtectRequiredKeysMixin], None] = ...) -> list[ProtectDeviceEntity]: ...
 
 class ProtectDeviceEntity(Entity):
     device: ProtectAdoptableDeviceModel

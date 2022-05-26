@@ -10,12 +10,10 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow, system_info as system_info
 from homeassistant.helpers.debounce import Debouncer as Debouncer
-from homeassistant.helpers.frame import report as report
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_usb as async_get_usb
 from pyudev import Device as Device
 from serial.tools.list_ports_common import ListPortInfo as ListPortInfo
-from typing import Any
 
 _LOGGER: Incomplete
 REQUEST_SCAN_COOLDOWN: int
@@ -27,7 +25,6 @@ class UsbServiceInfo(BaseServiceInfo):
     serial_number: Union[str, None]
     manufacturer: Union[str, None]
     description: Union[str, None]
-    def __getitem__(self, name: str) -> Any: ...
     def __init__(self, device, vid, pid, serial_number, manufacturer, description) -> None: ...
 
 def human_readable_device_name(device: str, serial_number: Union[str, None], manufacturer: Union[str, None], description: Union[str, None], vid: Union[str, None], pid: Union[str, None]) -> str: ...

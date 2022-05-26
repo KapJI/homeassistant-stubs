@@ -14,14 +14,14 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, TypeVar
-from typing_extensions import Concatenate as Concatenate
+from typing_extensions import Concatenate
 
 MAX_VOLUME: int
-_T = TypeVar('_T', bound='VlcDevice')
+_VlcDeviceT = TypeVar('_VlcDeviceT', bound='VlcDevice')
 _P: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def catch_vlc_errors(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
+def catch_vlc_errors(func: Callable[Concatenate[_VlcDeviceT, _P], Awaitable[None]]) -> Callable[Concatenate[_VlcDeviceT, _P], Coroutine[Any, Any, None]]: ...
 
 class VlcDevice(MediaPlayerEntity):
     _attr_supported_features: Incomplete
@@ -42,6 +42,7 @@ class VlcDevice(MediaPlayerEntity):
     _attr_device_info: Incomplete
     _using_addon: Incomplete
     def __init__(self, config_entry: ConfigEntry, vlc: Client, name: str, available: bool) -> None: ...
+    _attr_media_album_name: Incomplete
     async def async_update(self) -> None: ...
     @property
     def name(self) -> str: ...

@@ -10,7 +10,6 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_GPS_ACCUR
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery
-from homeassistant.helpers.entity_registry import async_get_registry as async_get_registry
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval, async_track_utc_time_change as async_track_utc_time_change
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, GPSType as GPSType, StateType as StateType

@@ -12,6 +12,7 @@ from typing import Any
 
 class ISYEntity(Entity):
     _name: Union[str, None]
+    _attr_should_poll: bool
     _node: Incomplete
     _attrs: Incomplete
     _change_handler: Incomplete
@@ -28,8 +29,6 @@ class ISYEntity(Entity):
     def old_unique_id(self) -> Union[str, None]: ...
     @property
     def name(self) -> str: ...
-    @property
-    def should_poll(self) -> bool: ...
 
 class ISYNodeEntity(ISYEntity):
     @property

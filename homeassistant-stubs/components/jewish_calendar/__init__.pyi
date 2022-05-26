@@ -6,6 +6,7 @@ from homeassistant.helpers.discovery import async_load_platform as async_load_pl
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 DOMAIN: str
+PLATFORMS: list[Platform]
 CONF_DIASPORA: str
 CONF_LANGUAGE: str
 CONF_CANDLE_LIGHT_MINUTES: str

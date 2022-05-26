@@ -5,6 +5,7 @@ from homeassistant.const import CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CO
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import ServiceNotFound as ServiceNotFound
+from homeassistant.helpers.storage import Store as Store
 from typing import Any
 
 REQUIREMENTS: Incomplete

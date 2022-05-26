@@ -14,6 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class OverkizLight(OverkizEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
+    _attr_color_mode: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
     def is_on(self) -> bool: ...

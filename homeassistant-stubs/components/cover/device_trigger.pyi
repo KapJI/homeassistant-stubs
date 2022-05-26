@@ -8,7 +8,6 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers import entity_registry as entity_registry
 from homeassistant.helpers.entity import get_supported_features as get_supported_features
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
 POSITION_TRIGGER_TYPES: Incomplete
 STATE_TRIGGER_TYPES: Incomplete
@@ -16,6 +15,6 @@ POSITION_TRIGGER_SCHEMA: Incomplete
 STATE_TRIGGER_SCHEMA: Incomplete
 TRIGGER_SCHEMA: Incomplete
 
-async def async_get_triggers(hass: HomeAssistant, device_id: str) -> list[dict[str, Any]]: ...
+async def async_get_triggers(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 async def async_get_trigger_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
 async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: AutomationActionType, automation_info: AutomationTriggerInfo) -> CALLBACK_TYPE: ...

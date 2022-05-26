@@ -7,8 +7,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from zwave_js_server.client import Client as ZwaveClient
+from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -20,7 +22,7 @@ class ZWaveNodePingButton(ButtonEntity):
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, client: ZwaveClient, node: ZwaveNode) -> None: ...
+    def __init__(self, driver: Driver, node: ZwaveNode) -> None: ...
     async def async_poll_value(self, _: bool) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_press(self) -> None: ...

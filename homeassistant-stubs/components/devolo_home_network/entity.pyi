@@ -5,8 +5,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 
 class DevoloEntity(CoordinatorEntity):
-    _device: Incomplete
-    _device_name: Incomplete
+    device: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, device: Device, device_name: str) -> None: ...

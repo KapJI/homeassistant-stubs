@@ -1,5 +1,4 @@
 import abc
-from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Iterable
@@ -12,7 +11,6 @@ from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceRegistry as DeviceRegistry, async_get as async_get, format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.event import async_track_state_added_domain as async_track_state_added_domain, async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.frame import report as report
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as async_get_dhcp
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
@@ -35,8 +33,6 @@ class DhcpServiceInfo(BaseServiceInfo):
     ip: str
     hostname: str
     macaddress: str
-    def __getitem__(self, name: str) -> Any: ...
-    def get(self, name: str, default: Any = ...) -> Any: ...
     def __init__(self, ip, hostname, macaddress) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

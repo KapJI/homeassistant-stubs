@@ -23,7 +23,6 @@ class PowerwallData:
 
 class PowerwallRuntimeData(TypedDict):
     coordinator: Union[DataUpdateCoordinator, None]
-    login_failed_count: int
     base_info: PowerwallBaseInfo
     api_changed: bool
     http_session: Session

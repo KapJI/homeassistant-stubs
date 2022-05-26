@@ -1,9 +1,9 @@
 import abc
 from . import api as api, config_flow as config_flow
-from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, DATA_NEST_CONFIG as DATA_NEST_CONFIG, DATA_SDM as DATA_SDM, DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
+from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DATA_NEST_CONFIG as DATA_NEST_CONFIG, DATA_SDM as DATA_SDM, DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, NEST_EVENT as NEST_EVENT
 from .legacy import async_setup_legacy as async_setup_legacy, async_setup_legacy_entry as async_setup_legacy_entry
-from .media_source import async_get_media_event_store as async_get_media_event_store, async_get_transcoder as async_get_transcoder, get_media_source_devices as get_media_source_devices
+from .media_source import async_get_media_event_store as async_get_media_event_store, async_get_media_source_devices as async_get_media_source_devices, async_get_transcoder as async_get_transcoder
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from aiohttp import web

@@ -74,6 +74,7 @@ UOM_FAN_MODES: str
 UOM_INDEX: str
 UOM_ON_OFF: str
 UOM_PERCENTAGE: str
+SENSOR_AUX: str
 NODE_FILTERS: dict[Platform, dict[str, list[str]]]
 UOM_FRIENDLY_NAME: Incomplete
 UOM_TO_STATES: Incomplete

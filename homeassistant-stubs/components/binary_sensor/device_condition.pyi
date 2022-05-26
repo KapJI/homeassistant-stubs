@@ -6,7 +6,6 @@ from homeassistant.const import CONF_CONDITION as CONF_CONDITION, CONF_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import condition as condition
 from homeassistant.helpers.entity import get_device_class as get_device_class
-from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device, async_get_registry as async_get_registry
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 DEVICE_CLASS_NONE: str

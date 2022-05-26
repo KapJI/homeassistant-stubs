@@ -8,8 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyunifiprotect.api import ProtectApiClient as ProtectApiClient
-from pyunifiprotect.data import Camera as UFPCamera
-from pyunifiprotect.data.devices import CameraChannel as CameraChannel
+from pyunifiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel
 
 _LOGGER: Incomplete
 

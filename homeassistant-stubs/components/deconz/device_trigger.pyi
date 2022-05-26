@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import DOMAIN as DOMAIN
 from .deconz_event import CONF_DECONZ_EVENT as CONF_DECONZ_EVENT, CONF_GESTURE as CONF_GESTURE, DeconzAlarmEvent as DeconzAlarmEvent, DeconzEvent as DeconzEvent
 from .gateway import DeconzGateway as DeconzGateway
@@ -10,7 +9,6 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
 
 CONF_SUBTYPE: str
 CONF_SHORT_PRESS: str
@@ -154,6 +152,6 @@ REMOTES: Incomplete
 TRIGGER_SCHEMA: Incomplete
 
 def _get_deconz_event_from_device(hass: HomeAssistant, device: dr.DeviceEntry) -> Union[DeconzAlarmEvent, DeconzEvent]: ...
-async def async_validate_trigger_config(hass: HomeAssistant, config: dict[str, Any]) -> vol.Schema: ...
+async def async_validate_trigger_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
 async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: AutomationActionType, automation_info: AutomationTriggerInfo) -> CALLBACK_TYPE: ...
-async def async_get_triggers(hass: HomeAssistant, device_id: str) -> Union[list, None]: ...
+async def async_get_triggers(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...

@@ -14,5 +14,6 @@ class FluxLedUpdateCoordinator(DataUpdateCoordinator):
     device: Incomplete
     title: Incomplete
     entry: Incomplete
+    force_next_update: bool
     def __init__(self, hass: HomeAssistant, device: AIOWifiLedBulb, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> None: ...

@@ -1,27 +1,15 @@
 import sqlalchemy
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from datetime import datetime as dt
-from homeassistant.components.recorder.models import EventData as EventData, Events as Events, JSONB_VARIENT_CAST as JSONB_VARIENT_CAST, JSON_VARIENT_CAST as JSON_VARIENT_CAST, StateAttributes as StateAttributes, States as States
-from sqlalchemy import JSON
+from homeassistant.components.recorder.models import EventData as EventData, Events as Events, OLD_FORMAT_ATTRS_JSON as OLD_FORMAT_ATTRS_JSON, OLD_STATE as OLD_STATE, SHARED_ATTRS_JSON as SHARED_ATTRS_JSON, StateAttributes as StateAttributes, States as States
 from sqlalchemy.orm import Query as Query
 from sqlalchemy.sql.elements import ClauseList as ClauseList
 from sqlalchemy.sql.selectable import Select as Select
-from typing import Any
 
 CONTINUOUS_DOMAINS: Incomplete
 CONTINUOUS_ENTITY_ID_LIKE: Incomplete
 UNIT_OF_MEASUREMENT_JSON: str
 UNIT_OF_MEASUREMENT_JSON_LIKE: Incomplete
-OLD_STATE: Incomplete
-
-class JSONLiteral(JSON):
-    def literal_processor(self, dialect: str) -> Callable[[Any], str]: ...
-
-EVENT_DATA_JSON: Incomplete
-OLD_FORMAT_EVENT_DATA_JSON: Incomplete
-SHARED_ATTRS_JSON: Incomplete
-OLD_FORMAT_ATTRS_JSON: Incomplete
 PSUEDO_EVENT_STATE_CHANGED: Incomplete
 EVENT_COLUMNS: Incomplete
 STATE_COLUMNS: Incomplete

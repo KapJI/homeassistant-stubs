@@ -2,7 +2,7 @@ from .const import BPUP_SUBS as BPUP_SUBS, DOMAIN as DOMAIN, HUB as HUB
 from .entity import BondEntity as BondEntity
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from _typeshed import Incomplete
-from bond_api import BPUPSubscriptions as BPUPSubscriptions
+from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant

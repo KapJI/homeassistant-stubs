@@ -1,6 +1,6 @@
 from .const import BRIDGE_MAKE as BRIDGE_MAKE
 from _typeshed import Incomplete
-from bond_api import Bond as Bond
+from bond_async import Bond as Bond
 from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
 from typing import Any
 

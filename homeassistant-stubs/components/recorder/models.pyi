@@ -1,10 +1,11 @@
 from .const import ALL_DOMAIN_EXCLUDE_ATTRS as ALL_DOMAIN_EXCLUDE_ATTRS, JSON_DUMP as JSON_DUMP
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components.websocket_api.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.const import MAX_LENGTH_EVENT_CONTEXT_ID as MAX_LENGTH_EVENT_CONTEXT_ID, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_EVENT_ORIGIN as MAX_LENGTH_EVENT_ORIGIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import Context as Context, Event as Event, EventOrigin as EventOrigin, State as State, split_entity_id as split_entity_id
-from sqlalchemy import Column
+from sqlalchemy import Column, JSON
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.row import Row as Row
 from typing import Any, TypedDict, overload
@@ -36,6 +37,10 @@ JSON_VARIENT_CAST: Incomplete
 JSONB_VARIENT_CAST: Incomplete
 DATETIME_TYPE: Incomplete
 DOUBLE_TYPE: Incomplete
+
+class JSONLiteral(JSON):
+    def literal_processor(self, dialect: str) -> Callable[[Any], str]: ...
+
 EVENT_ORIGIN_ORDER: Incomplete
 EVENT_ORIGIN_TO_IDX: Incomplete
 
@@ -197,6 +202,15 @@ class StatisticsRuns(Base):
     run_id: Incomplete
     start: Incomplete
     def __repr__(self) -> str: ...
+
+EVENT_DATA_JSON: Incomplete
+OLD_FORMAT_EVENT_DATA_JSON: Incomplete
+SHARED_ATTRS_JSON: Incomplete
+OLD_FORMAT_ATTRS_JSON: Incomplete
+ENTITY_ID_IN_EVENT: Column
+OLD_ENTITY_ID_IN_EVENT: Column
+DEVICE_ID_IN_EVENT: Column
+OLD_STATE: Incomplete
 
 
 @overload

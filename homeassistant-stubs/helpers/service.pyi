@@ -5,7 +5,6 @@ from .entity_platform import EntityPlatform as EntityPlatform
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Iterable
-from contextvars import ContextVar
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SERVICE as CONF_SERVICE, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -21,9 +20,6 @@ CONF_SERVICE_ENTITY_ID: str
 CONF_SERVICE_DATA_TEMPLATE: str
 _LOGGER: Incomplete
 SERVICE_DESCRIPTION_CACHE: str
-_current_entity: ContextVar[Union[str, None]]
-
-def async_get_current_entity() -> Union[str, None]: ...
 
 class ServiceParams(TypedDict):
     domain: str

@@ -118,7 +118,7 @@ tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>
 
 [[package]]
 name = "awesomeversion"
-version = "22.5.1"
+version = "22.5.2"
 description = "One version package to rule them all, One version package to find them, One version package to bring them all, and in the darkness bind them."
 category = "main"
 optional = false
@@ -383,7 +383,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "homeassistant"
-version = "2022.6.0b2"
+version = "2022.6.0b3"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -395,7 +395,7 @@ astral = "2.2"
 async-timeout = "4.0.2"
 atomicwrites = "1.4.0"
 attrs = "21.2.0"
-awesomeversion = "22.5.1"
+awesomeversion = "22.5.2"
 bcrypt = "3.1.7"
 certifi = ">=2021.5.30"
 ciso8601 = "2.2.0"
@@ -901,7 +901,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "aaff9481f017c6c64f8607a954c058c53b4d0cb51f0a14fe19981fb28439682e"
+content-hash = "5f7a25a611686dfe9914b4251d4b467d09865accf7ffffbeeabd76277ea75672"
 
 [metadata.files]
 aiohttp = [
@@ -1015,8 +1015,8 @@ attrs = [
     {file = "attrs-21.2.0.tar.gz", hash = "sha256:ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"},
 ]
 awesomeversion = [
-    {file = "awesomeversion-22.5.1-py3-none-any.whl", hash = "sha256:d4f110a62228e323ee2df5f0c700b3c047507c8fd8e7a39602ecbd8b4743ea62"},
-    {file = "awesomeversion-22.5.1.tar.gz", hash = "sha256:84bcd85ab1bb9a287cfd1b2e5145f888b6e02ef3e3a63a07453f10f2f6e50fe3"},
+    {file = "awesomeversion-22.5.2-py3-none-any.whl", hash = "sha256:2da07f8d89dcc8a6c1fa8917cff22afa51f43f2b03a011486d8b519fae7e17af"},
+    {file = "awesomeversion-22.5.2.tar.gz", hash = "sha256:051f89efd8ba0b157fb516bda5e1dad4d63f87e8f9c0c148930023d984fce62f"},
 ]
 bcrypt = [
     {file = "bcrypt-3.1.7-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:d7bdc26475679dd073ba0ed2766445bb5b20ca4793ca0db32b399dccc6bc84b7"},
@@ -1278,8 +1278,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 homeassistant = [
-    {file = "homeassistant-2022.6.0b2-py3-none-any.whl", hash = "sha256:fd8422542e8a36371d88efd94985bd0f77b74eb959a3757c245c3d76ca657970"},
-    {file = "homeassistant-2022.6.0b2.tar.gz", hash = "sha256:e9e7d47a3dd72437816661ca7dc10bc059ec96998df9896132e5aab3f7e438df"},
+    {file = "homeassistant-2022.6.0b3-py3-none-any.whl", hash = "sha256:3058cd37888c261c6db9b0b055663ff6b8e17efcc2d2ec4ab36ec9281ea980ea"},
+    {file = "homeassistant-2022.6.0b3.tar.gz", hash = "sha256:b5a401e3d058c98ec4b82b8898a06cc80a62b227f2493f6fabd172f63717d2c2"},
 ]
 httpcore = [
     {file = "httpcore-0.15.0-py3-none-any.whl", hash = "sha256:1105b8b73c025f23ff7c36468e4432226cbb959176eab66864b8e31c4ee27fa6"},

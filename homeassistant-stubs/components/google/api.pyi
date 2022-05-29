@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from gcal_sync.auth import AbstractAuth
 from homeassistant.components.application_credentials import AuthImplementation as AuthImplementation
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
@@ -33,7 +34,7 @@ class DeviceFlow:
     def user_code(self) -> str: ...
     async def start_exchange_task(self, finished_cb: Callable[[Union[Credentials, None]], Awaitable[None]]) -> None: ...
 
-def get_feature_access(hass: HomeAssistant) -> FeatureAccess: ...
+def get_feature_access(hass: HomeAssistant, config_entry: Union[ConfigEntry, None] = ...) -> FeatureAccess: ...
 async def async_create_device_flow(hass: HomeAssistant, client_id: str, client_secret: str, access: FeatureAccess) -> DeviceFlow: ...
 
 class ApiAuthImpl(AbstractAuth):

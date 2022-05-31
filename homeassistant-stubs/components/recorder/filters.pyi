@@ -11,7 +11,11 @@ from typing import Any
 DOMAIN: str
 HISTORY_FILTERS: str
 GLOB_TO_SQL_CHARS: Incomplete
+FILTER_TYPES: Incomplete
+FITLER_MATCHERS: Incomplete
 
+def extract_include_exclude_filter_conf(conf: ConfigType) -> dict[str, Any]: ...
+def merge_include_exclude_filters(base_filter: dict[str, Any], add_filter: dict[str, Any]) -> dict[str, Any]: ...
 def sqlalchemy_filter_from_include_exclude_conf(conf: ConfigType) -> Union[Filters, None]: ...
 
 class Filters:

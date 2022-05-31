@@ -4,7 +4,7 @@ from .models import LazyEventPartialState as LazyEventPartialState
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import frontend as frontend
-from homeassistant.components.recorder.filters import sqlalchemy_filter_from_include_exclude_conf as sqlalchemy_filter_from_include_exclude_conf
+from homeassistant.components.recorder.filters import extract_include_exclude_filter_conf as extract_include_exclude_filter_conf, merge_include_exclude_filters as merge_include_exclude_filters, sqlalchemy_filter_from_include_exclude_conf as sqlalchemy_filter_from_include_exclude_conf
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY
 from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA, convert_include_exclude_filter as convert_include_exclude_filter

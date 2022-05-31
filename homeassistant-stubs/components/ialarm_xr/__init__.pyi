@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, IALARMXR_TO_HASS as IALARMXR_TO_HASS
+from .const import DOMAIN as DOMAIN
 from .utils import async_get_ialarmxr_mac as async_get_ialarmxr_mac
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import SCAN_INTERVAL as SCAN_INTERVAL

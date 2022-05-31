@@ -33,6 +33,12 @@ CACHE_CONTENT: str
 ENTITY_IMAGE_CACHE: Incomplete
 SCAN_INTERVAL: Incomplete
 
+class MediaPlayerEnqueue(StrEnum):
+    ADD: str
+    NEXT: str
+    PLAY: str
+    REPLACE: str
+
 class MediaPlayerDeviceClass(StrEnum):
     TV: str
     SPEAKER: str

@@ -2,8 +2,8 @@ from . import BMWBaseEntity as BMWBaseEntity
 from .const import DOMAIN as DOMAIN, UNIT_MAP as UNIT_MAP
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from _typeshed import Incomplete
+from bimmer_connected.models import ValueWithUnit as ValueWithUnit
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
-from bimmer_connected.vehicle.models import ValueWithUnit as ValueWithUnit
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -11,10 +11,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util.network import is_ip_address as is_ip_address
 from regenmaschine.controller import Controller
 
-DEFAULT_ATTRIBUTION: str
-DEFAULT_ICON: str
 DEFAULT_SSL: bool
-DEFAULT_UPDATE_INTERVAL: Incomplete
 CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 UPDATE_INTERVALS: Incomplete

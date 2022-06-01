@@ -1,6 +1,7 @@
 class RainMachineDescriptionMixinApiCategory:
     api_category: str
-    def __init__(self, api_category) -> None: ...
+    data_key: str
+    def __init__(self, api_category, data_key) -> None: ...
 
 class RainMachineDescriptionMixinUid:
     uid: int

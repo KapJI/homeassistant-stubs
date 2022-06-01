@@ -1,6 +1,7 @@
 from . import RainMachineEntity as RainMachineEntity
 from .const import DATA_CONTROLLER as DATA_CONTROLLER, DATA_COORDINATOR as DATA_COORDINATOR, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN, RUN_STATE_MAP as RUN_STATE_MAP, RunStates as RunStates
 from .model import RainMachineDescriptionMixinApiCategory as RainMachineDescriptionMixinApiCategory, RainMachineDescriptionMixinUid as RainMachineDescriptionMixinUid
+from .util import key_exists as key_exists
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -19,7 +20,7 @@ TYPE_FREEZE_TEMP: str
 TYPE_ZONE_RUN_COMPLETION_TIME: str
 
 class RainMachineSensorDescriptionApiCategory(SensorEntityDescription, RainMachineDescriptionMixinApiCategory):
-    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, api_category, data_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 class RainMachineSensorDescriptionUid(SensorEntityDescription, RainMachineDescriptionMixinUid):
     def __init__(self, uid, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...

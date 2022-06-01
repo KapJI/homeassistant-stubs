@@ -29,11 +29,13 @@ class IntegrationSensor(RestoreEntity, SensorEntity):
     _unit_of_measurement: Incomplete
     _unit_prefix: Incomplete
     _unit_time: Incomplete
+    _unit_time_str: Incomplete
     _attr_state_class: Incomplete
     _attr_icon: str
     _attr_should_poll: bool
     _attr_extra_state_attributes: Incomplete
     def __init__(self, *, integration_method: str, name: Union[str, None], round_digits: int, source_entity: str, unique_id: Union[str, None], unit_prefix: Union[str, None], unit_time: str) -> None: ...
+    def _unit(self, source_unit: str) -> str: ...
     _attr_device_class: Incomplete
     async def async_added_to_hass(self) -> None: ...
     @property

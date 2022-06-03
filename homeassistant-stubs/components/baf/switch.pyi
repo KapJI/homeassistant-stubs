@@ -19,6 +19,7 @@ class BAFSwitchDescription(SwitchEntityDescription, BAFSwitchDescriptionMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
 
 BASE_SWITCHES: Incomplete
+AUTO_COMFORT_SWITCHES: Incomplete
 FAN_SWITCHES: Incomplete
 LIGHT_SWITCHES: Incomplete
 

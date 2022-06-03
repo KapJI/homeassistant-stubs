@@ -1,10 +1,10 @@
 import sqlalchemy
-from .common import select_events_context_id_subquery as select_events_context_id_subquery, select_events_context_only as select_events_context_only, select_events_without_states as select_events_without_states, select_states_context_only as select_states_context_only
+from .common import apply_events_context_hints as apply_events_context_hints, apply_states_context_hints as apply_states_context_hints, select_events_context_id_subquery as select_events_context_id_subquery, select_events_context_only as select_events_context_only, select_events_without_states as select_events_without_states, select_states_context_only as select_states_context_only
 from .devices import apply_event_device_id_matchers as apply_event_device_id_matchers
 from .entities import apply_entities_hints as apply_entities_hints, apply_event_entity_id_matchers as apply_event_entity_id_matchers, states_query_for_entity_ids as states_query_for_entity_ids
 from collections.abc import Iterable
 from datetime import datetime as dt
-from homeassistant.components.recorder.models import Events as Events, States as States
+from homeassistant.components.recorder.models import EventData as EventData, Events as Events, States as States
 from sqlalchemy.orm import Query as Query
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
 from sqlalchemy.sql.selectable import CTE as CTE, CompoundSelect as CompoundSelect

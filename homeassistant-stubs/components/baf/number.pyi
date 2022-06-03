@@ -19,6 +19,7 @@ class BAFNumberDescriptionMixin:
 class BAFNumberDescription(NumberEntityDescription, BAFNumberDescriptionMixin):
     def __init__(self, value_fn, mode, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, max_value, min_value, step) -> None: ...
 
+AUTO_COMFORT_NUMBER_DESCRIPTIONS: Incomplete
 FAN_NUMBER_DESCRIPTIONS: Incomplete
 LIGHT_NUMBER_DESCRIPTIONS: Incomplete
 

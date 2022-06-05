@@ -10,6 +10,7 @@ from typing import Any
 
 DOMAIN: str
 HISTORY_FILTERS: str
+JSON_NULL: Incomplete
 GLOB_TO_SQL_CHARS: Incomplete
 FILTER_TYPES: Incomplete
 FITLER_MATCHERS: Incomplete

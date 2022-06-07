@@ -1,5 +1,4 @@
-import re
-from .const import ATTR_MESSAGE as ATTR_MESSAGE, CONTEXT_DOMAIN as CONTEXT_DOMAIN, CONTEXT_ENTITY_ID as CONTEXT_ENTITY_ID, CONTEXT_ENTITY_ID_NAME as CONTEXT_ENTITY_ID_NAME, CONTEXT_EVENT_TYPE as CONTEXT_EVENT_TYPE, CONTEXT_MESSAGE as CONTEXT_MESSAGE, CONTEXT_NAME as CONTEXT_NAME, CONTEXT_SERVICE as CONTEXT_SERVICE, CONTEXT_SOURCE as CONTEXT_SOURCE, CONTEXT_STATE as CONTEXT_STATE, CONTEXT_USER_ID as CONTEXT_USER_ID, DOMAIN as DOMAIN, LOGBOOK_ENTITIES_FILTER as LOGBOOK_ENTITIES_FILTER, LOGBOOK_ENTRY_DOMAIN as LOGBOOK_ENTRY_DOMAIN, LOGBOOK_ENTRY_ENTITY_ID as LOGBOOK_ENTRY_ENTITY_ID, LOGBOOK_ENTRY_ICON as LOGBOOK_ENTRY_ICON, LOGBOOK_ENTRY_MESSAGE as LOGBOOK_ENTRY_MESSAGE, LOGBOOK_ENTRY_NAME as LOGBOOK_ENTRY_NAME, LOGBOOK_ENTRY_SOURCE as LOGBOOK_ENTRY_SOURCE, LOGBOOK_ENTRY_STATE as LOGBOOK_ENTRY_STATE, LOGBOOK_ENTRY_WHEN as LOGBOOK_ENTRY_WHEN, LOGBOOK_FILTERS as LOGBOOK_FILTERS
+from .const import ATTR_MESSAGE as ATTR_MESSAGE, CONTEXT_DOMAIN as CONTEXT_DOMAIN, CONTEXT_ENTITY_ID as CONTEXT_ENTITY_ID, CONTEXT_ENTITY_ID_NAME as CONTEXT_ENTITY_ID_NAME, CONTEXT_EVENT_TYPE as CONTEXT_EVENT_TYPE, CONTEXT_MESSAGE as CONTEXT_MESSAGE, CONTEXT_NAME as CONTEXT_NAME, CONTEXT_SERVICE as CONTEXT_SERVICE, CONTEXT_SOURCE as CONTEXT_SOURCE, CONTEXT_STATE as CONTEXT_STATE, CONTEXT_USER_ID as CONTEXT_USER_ID, DOMAIN as DOMAIN, LOGBOOK_ENTRY_DOMAIN as LOGBOOK_ENTRY_DOMAIN, LOGBOOK_ENTRY_ENTITY_ID as LOGBOOK_ENTRY_ENTITY_ID, LOGBOOK_ENTRY_ICON as LOGBOOK_ENTRY_ICON, LOGBOOK_ENTRY_MESSAGE as LOGBOOK_ENTRY_MESSAGE, LOGBOOK_ENTRY_NAME as LOGBOOK_ENTRY_NAME, LOGBOOK_ENTRY_SOURCE as LOGBOOK_ENTRY_SOURCE, LOGBOOK_ENTRY_STATE as LOGBOOK_ENTRY_STATE, LOGBOOK_ENTRY_WHEN as LOGBOOK_ENTRY_WHEN, LOGBOOK_FILTERS as LOGBOOK_FILTERS
 from .helpers import is_sensor_continuous as is_sensor_continuous
 from .models import EventAsRow as EventAsRow, LazyEventPartialState as LazyEventPartialState, async_event_to_row as async_event_to_row
 from .queries import statement_for_request as statement_for_request
@@ -13,14 +12,9 @@ from homeassistant.components.recorder.util import session_scope as session_scop
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_NAME as ATTR_NAME, ATTR_SERVICE as ATTR_SERVICE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY
 from homeassistant.core import HomeAssistant as HomeAssistant, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er
-from homeassistant.helpers.entityfilter import EntityFilter as EntityFilter
 from sqlalchemy.engine.row import Row as Row
 from sqlalchemy.orm.query import Query as Query
 from typing import Any
-
-_LOGGER: Incomplete
-ENTITY_ID_JSON_EXTRACT: Incomplete
-DOMAIN_JSON_EXTRACT: Incomplete
 
 class LogbookRun:
     context_lookup: ContextLookup
@@ -39,7 +33,6 @@ class EventProcessor:
     device_ids: Incomplete
     context_id: Incomplete
     filters: Incomplete
-    entities_filter: Incomplete
     logbook_run: Incomplete
     context_augmenter: Incomplete
     def __init__(self, hass: HomeAssistant, event_types: tuple[str, ...], entity_ids: Union[list[str], None] = ..., device_ids: Union[list[str], None] = ..., context_id: Union[str, None] = ..., timestamp: bool = ..., include_entity_name: bool = ...) -> None: ...
@@ -49,7 +42,7 @@ class EventProcessor:
     def get_events(self, start_day: dt, end_day: dt) -> list[dict[str, Any]]: ...
     def humanify(self, row_generator: Generator[Union[Row, EventAsRow], None, None]) -> list[dict[str, str]]: ...
 
-def _humanify(rows: Generator[Union[Row, EventAsRow], None, None], entities_filter: Union[EntityFilter, Callable[[str], bool], None], ent_reg: er.EntityRegistry, logbook_run: LogbookRun, context_augmenter: ContextAugmenter) -> Generator[dict[str, Any], None, None]: ...
+def _humanify(rows: Generator[Union[Row, EventAsRow], None, None], ent_reg: er.EntityRegistry, logbook_run: LogbookRun, context_augmenter: ContextAugmenter) -> Generator[dict[str, Any], None, None]: ...
 
 class ContextLookup:
     hass: Incomplete
@@ -71,7 +64,6 @@ class ContextAugmenter:
     def augment(self, data: dict[str, Any], row: Union[Row, EventAsRow], context_id: Union[str, None]) -> None: ...
 
 def _rows_match(row: Union[Row, EventAsRow], other_row: Union[Row, EventAsRow]) -> bool: ...
-def _row_event_data_extract(row: Union[Row, EventAsRow], extractor: re.Pattern) -> Union[str, None]: ...
 def _row_time_fired_isoformat(row: Union[Row, EventAsRow]) -> str: ...
 def _row_time_fired_timestamp(row: Union[Row, EventAsRow]) -> float: ...
 

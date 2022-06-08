@@ -1,4 +1,4 @@
-from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, platform_async_setup_entry as platform_async_setup_entry
+from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from _typeshed import Incomplete
 from aioesphomeapi import MediaPlayerEntityState, MediaPlayerInfo, MediaPlayerState
 from homeassistant.components import media_source as media_source
@@ -17,11 +17,8 @@ _STATES: EsphomeEnumMapper[MediaPlayerState, str]
 
 class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState], MediaPlayerEntity):
     _attr_device_class: Incomplete
-    @property
     def state(self) -> Union[str, None]: ...
-    @property
     def is_volume_muted(self) -> bool: ...
-    @property
     def volume_level(self) -> Union[float, None]: ...
     @property
     def supported_features(self) -> int: ...

@@ -7,9 +7,11 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
+from homeassistant.helpers.entity import EntityCategory as EntityCategory, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util.dt import utcnow as utcnow
+from regenmaschine.controller import Controller as Controller
 
 DEFAULT_ZONE_COMPLETION_TIME_WOBBLE_TOLERANCE: Incomplete
 TYPE_FLOW_SENSOR_CLICK_M3: str
@@ -39,5 +41,7 @@ class UniversalRestrictionsSensor(RainMachineEntity, SensorEntity):
 
 class ZoneTimeRemainingSensor(RainMachineEntity, SensorEntity):
     entity_description: RainMachineSensorDescriptionUid
+    _running_or_queued: bool
+    def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator, controller: Controller, description: EntityDescription) -> None: ...
     _attr_native_value: Incomplete
     def update_from_latest_data(self) -> None: ...

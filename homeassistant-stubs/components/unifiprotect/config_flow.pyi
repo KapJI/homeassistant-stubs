@@ -1,4 +1,5 @@
 from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, OUTDATED_LOG_MESSAGE as OUTDATED_LOG_MESSAGE
+from .data import async_last_update_was_successful as async_last_update_was_successful
 from .discovery import async_start_discovery as async_start_discovery
 from .utils import _async_resolve as _async_resolve, _async_short_mac as _async_short_mac, _async_unifi_mac_from_hass as _async_unifi_mac_from_hass
 from _typeshed import Incomplete
@@ -7,7 +8,7 @@ from homeassistant.components import dhcp as dhcp, ssdp as ssdp
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
+from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util.network import is_ip_address as is_ip_address
@@ -15,9 +16,11 @@ from pyunifiprotect.data import NVR as NVR
 from typing import Any
 
 _LOGGER: Incomplete
+ENTRY_FAILURE_STATES: Incomplete
 
 async def async_local_user_documentation_url(hass: HomeAssistant) -> str: ...
 def _host_is_direct_connect(host: str) -> bool: ...
+async def _async_console_is_offline(hass: HomeAssistant, entry: config_entries.ConfigEntry) -> bool: ...
 
 class ProtectFlowHandler(config_entries.ConfigFlow):
     VERSION: int

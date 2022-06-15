@@ -1,4 +1,4 @@
-from .const import CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DEVICES_WITH_ENTITIES as DEVICES_WITH_ENTITIES
+from .const import CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DEVICES_WITH_ENTITIES as DEVICES_WITH_ENTITIES, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Generator, Iterable
 from datetime import timedelta
@@ -11,6 +11,8 @@ from pyunifiprotect.data.base import ProtectAdoptableDeviceModel as ProtectAdopt
 from typing import Any
 
 _LOGGER: Incomplete
+
+def async_last_update_was_successful(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class ProtectData:
     _hass: Incomplete

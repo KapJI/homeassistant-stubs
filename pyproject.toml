@@ -54,7 +54,12 @@ multi_line_output = 3
 max-line-length = "88"
 
 [tool.pylint.basic]
-good-names = ["ex", "fp"]
+good-names = ["ex", "fp", "i"]
+
+[tool.pylint.messages_control]
+disable = [
+    "too-many-arguments",
+]
 
 [tool.mypy]
 python_version = 3.8

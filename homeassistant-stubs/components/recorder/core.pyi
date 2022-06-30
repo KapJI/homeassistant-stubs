@@ -2,8 +2,9 @@ import asyncio
 import threading
 from . import migration as migration, statistics as statistics
 from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, KEEPALIVE_TIME as KEEPALIVE_TIME, MAX_QUEUE_BACKLOG as MAX_QUEUE_BACKLOG, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
+from .db_schema import Base as Base, EventData as EventData, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatisticsRuns as StatisticsRuns
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
-from .models import Base as Base, EventData as EventData, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, StatisticsRuns as StatisticsRuns, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
+from .models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
 from .queries import find_shared_attributes_id as find_shared_attributes_id, find_shared_data_id as find_shared_data_id
 from .run_history import RunHistory as RunHistory
@@ -17,6 +18,7 @@ from homeassistant.components import persistent_notification as persistent_notif
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_time_change as async_track_time_change, async_track_time_interval as async_track_time_interval, async_track_utc_time_change as async_track_utc_time_change
+from homeassistant.helpers.json import JSON_ENCODE_EXCEPTIONS as JSON_ENCODE_EXCEPTIONS
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from sqlalchemy.engine import Engine as Engine
 from sqlalchemy.orm.session import Session as Session

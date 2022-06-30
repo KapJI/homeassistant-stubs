@@ -1,6 +1,8 @@
-from .const import DOMAIN as DOMAIN
+from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from google_nest_sdm.device import Device as Device
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 
 DEVICE_TYPE_MAP: dict[str, str]
@@ -17,3 +19,6 @@ class NestDeviceInfo:
     def device_model(self) -> Union[str, None]: ...
     @property
     def suggested_area(self) -> Union[str, None]: ...
+
+def async_nest_devices(hass: HomeAssistant) -> Mapping[str, Device]: ...
+def async_nest_devices_by_device_id(hass: HomeAssistant) -> Mapping[str, Device]: ...

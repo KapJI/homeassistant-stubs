@@ -6,11 +6,11 @@ from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL a
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, ToggleEntity as ToggleEntity
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pywizlight.bulblibrary import BulbType as BulbType
-from typing import Any
+from typing import Any, Optional
 
-class WizEntity(CoordinatorEntity, Entity, metaclass=abc.ABCMeta):
+class WizEntity(CoordinatorEntity[DataUpdateCoordinator[Optional[float]]], Entity, metaclass=abc.ABCMeta):
     _device: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete

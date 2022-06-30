@@ -10,7 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 
 class HomeKitButtonEntityDescription(ButtonEntityDescription):
     write_value: Union[int, str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, write_value) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, write_value) -> None: ...
 
 BUTTON_ENTITIES: dict[str, HomeKitButtonEntityDescription]
 

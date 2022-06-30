@@ -1,5 +1,6 @@
 from . import SynoApi as SynoApi
-from .const import DOMAIN as DOMAIN, SYNO_API as SYNO_API
+from .const import DOMAIN as DOMAIN
+from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
@@ -16,7 +17,7 @@ class SynologyDSMbuttonDescriptionMixin:
     def __init__(self, press_action) -> None: ...
 
 class SynologyDSMbuttonDescription(ButtonEntityDescription, SynologyDSMbuttonDescriptionMixin):
-    def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 BUTTONS: Final[Incomplete]
 

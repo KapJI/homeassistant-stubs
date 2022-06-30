@@ -10,6 +10,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any, Optional
 
 EVENT_USER_ADDED: str
+EVENT_USER_UPDATED: str
 EVENT_USER_REMOVED: str
 _MfaModuleDict = dict[str, MultiFactorAuthModule]
 _ProviderKey = tuple[str, Optional[str]]

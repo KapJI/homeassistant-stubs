@@ -1,5 +1,6 @@
 from .const import SupportedDialect as SupportedDialect
-from .models import Base as Base, SCHEMA_VERSION as SCHEMA_VERSION, SchemaChanges as SchemaChanges, Statistics as Statistics, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm, TABLE_STATES as TABLE_STATES, process_timestamp as process_timestamp
+from .db_schema import Base as Base, SCHEMA_VERSION as SCHEMA_VERSION, SchemaChanges as SchemaChanges, Statistics as Statistics, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm, TABLE_STATES as TABLE_STATES
+from .models import process_timestamp as process_timestamp
 from .statistics import delete_statistics_duplicates as delete_statistics_duplicates, delete_statistics_meta_duplicates as delete_statistics_meta_duplicates, get_start_time as get_start_time
 from .util import session_scope as session_scope
 from _typeshed import Incomplete

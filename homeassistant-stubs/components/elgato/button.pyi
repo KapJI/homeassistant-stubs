@@ -7,6 +7,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MAC as CONF_MAC
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 

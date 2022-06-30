@@ -11,7 +11,6 @@ from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
 
 PARALLEL_UPDATES: int
-LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

@@ -11,7 +11,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from zwave_js_server.model.driver import Driver as Driver
 
 PARALLEL_UPDATES: int
-LOGGER: Incomplete
 NOTIFICATION_SMOKE_ALARM: str
 NOTIFICATION_CARBON_MONOOXIDE: str
 NOTIFICATION_CARBON_DIOXIDE: str
@@ -34,14 +33,14 @@ NOTIFICATION_GAS: str
 class NotificationZWaveJSEntityDescription(BinarySensorEntityDescription):
     off_state: str
     states: Union[tuple[str, ...], None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, off_state, states) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, off_state, states) -> None: ...
 
 class PropertyZWaveJSMixin:
     on_states: tuple[str, ...]
     def __init__(self, on_states) -> None: ...
 
 class PropertyZWaveJSEntityDescription(BinarySensorEntityDescription, PropertyZWaveJSMixin):
-    def __init__(self, on_states, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, on_states, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 NOTIFICATION_SENSOR_MAPPINGS: tuple[NotificationZWaveJSEntityDescription, ...]
 PROPERTY_SENSOR_MAPPINGS: dict[str, PropertyZWaveJSEntityDescription]

@@ -6,6 +6,7 @@ from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_REGION as C
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
+DEFAULT_SCAN_INTERVAL_SECONDS: int
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 
@@ -14,6 +15,6 @@ class BMWDataUpdateCoordinator(DataUpdateCoordinator):
     read_only: Incomplete
     _entry: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry) -> None: ...
+    update_interval: Incomplete
     async def _async_update_data(self) -> None: ...
     def _update_config_entry_refresh_token(self, refresh_token: Union[str, None]) -> None: ...
-    def notify_listeners(self) -> None: ...

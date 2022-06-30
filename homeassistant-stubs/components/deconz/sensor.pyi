@@ -27,7 +27,7 @@ class DeconzSensorDescriptionMixin:
 
 class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMixin):
     suffix: str
-    def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, suffix) -> None: ...
+    def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, suffix) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 SENSOR_DESCRIPTIONS: Incomplete

@@ -1,32 +1,33 @@
-from . import CONF_CAL_ID as CONF_CAL_ID, CONF_IGNORE_AVAILABILITY as CONF_IGNORE_AVAILABILITY, CONF_SEARCH as CONF_SEARCH, CONF_TRACK as CONF_TRACK, DATA_SERVICE as DATA_SERVICE, DEFAULT_CONF_OFFSET as DEFAULT_CONF_OFFSET, DOMAIN as DOMAIN, SERVICE_SCAN_CALENDARS as SERVICE_SCAN_CALENDARS
-from .const import DISCOVER_CALENDAR as DISCOVER_CALENDAR
+from . import CONF_IGNORE_AVAILABILITY as CONF_IGNORE_AVAILABILITY, CONF_SEARCH as CONF_SEARCH, CONF_TRACK as CONF_TRACK, DATA_SERVICE as DATA_SERVICE, DEFAULT_CONF_OFFSET as DEFAULT_CONF_OFFSET, DOMAIN as DOMAIN, YAML_DEVICES as YAML_DEVICES, get_calendar_info as get_calendar_info, load_config as load_config, update_config as update_config
+from .api import get_feature_access as get_feature_access
+from .const import EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TYPES_CONF as EVENT_TYPES_CONF, FeatureAccess as FeatureAccess
 from _typeshed import Incomplete
 from datetime import datetime
 from gcal_sync.api import GoogleCalendarService as GoogleCalendarService
-from gcal_sync.model import Event as Event
+from gcal_sync.model import Event
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, extract_offset as extract_offset, is_offset_reached as is_offset_reached
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_OFFSET as CONF_OFFSET
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
+from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity import generate_entity_id as generate_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util import Throttle as Throttle
 from typing import Any
 
 _LOGGER: Incomplete
-DEFAULT_GOOGLE_SEARCH_PARAMS: Incomplete
 MIN_TIME_BETWEEN_UPDATES: Incomplete
-TRANSPARENCY: str
 OPAQUE: str
+_EVENT_IN_TYPES: Incomplete
+SERVICE_CREATE_EVENT: str
+CREATE_EVENT_SCHEMA: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def _async_setup_entities(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback, disc_info: dict[str, Any]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class GoogleCalendarEntity(CalendarEntity):
-    _calendar_service: Incomplete
-    _calendar_id: Incomplete
+    calendar_service: Incomplete
+    calendar_id: Incomplete
     _search: Incomplete
     _ignore_availability: Incomplete
     _event: Incomplete
@@ -36,7 +37,7 @@ class GoogleCalendarEntity(CalendarEntity):
     entity_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
-    def __init__(self, calendar_service: GoogleCalendarService, calendar_id: str, data: dict[str, Any], entity_id: str, unique_id: str, entity_enabled: bool) -> None: ...
+    def __init__(self, calendar_service: GoogleCalendarService, calendar_id: str, data: dict[str, Any], entity_id: str, unique_id: Union[str, None], entity_enabled: bool) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, bool]: ...
     @property
@@ -50,3 +51,4 @@ class GoogleCalendarEntity(CalendarEntity):
     async def async_update(self) -> None: ...
 
 def _get_calendar_event(event: Event) -> CalendarEvent: ...
+async def async_create_event(entity: GoogleCalendarEntity, call: ServiceCall) -> None: ...

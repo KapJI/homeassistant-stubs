@@ -1,4 +1,4 @@
-from canary.api import Location as Location
+from canary.model import Location as Location
 from collections.abc import ValuesView
 from typing import Optional, TypedDict
 

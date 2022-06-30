@@ -1,6 +1,7 @@
 from . import SynoApi as SynoApi
-from .const import COORDINATOR_SWITCHES as COORDINATOR_SWITCHES, DOMAIN as DOMAIN, SYNO_API as SYNO_API
+from .const import DOMAIN as DOMAIN
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
+from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,7 +14,7 @@ from typing import Any
 _LOGGER: Incomplete
 
 class SynologyDSMSwitchEntityDescription(SwitchEntityDescription, SynologyDSMEntityDescription):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 SURVEILLANCE_SWITCH: tuple[SynologyDSMSwitchEntityDescription, ...]
 

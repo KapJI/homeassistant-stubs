@@ -5,6 +5,7 @@ from collections.abc import Callable as Callable
 from homeassistant.auth.models import RefreshToken as RefreshToken, User as User
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
+from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP
 from typing import Any
 
 current_connection: Incomplete

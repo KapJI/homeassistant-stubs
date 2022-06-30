@@ -5,11 +5,12 @@ from _typeshed import Incomplete
 from aiohttp import web
 from av import CodecContext, Packet as Packet
 from collections import deque
-from collections.abc import Iterable
+from collections.abc import Callable as Callable, Coroutine, Iterable
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.decorator import Registry as Registry
+from typing import Any
 
 PROVIDERS: Registry[str, type[StreamOutput]]
 
@@ -70,7 +71,7 @@ class IdleTimer:
     _callback: Incomplete
     _unsub: Incomplete
     idle: bool
-    def __init__(self, hass: HomeAssistant, timeout: int, idle_callback: CALLBACK_TYPE) -> None: ...
+    def __init__(self, hass: HomeAssistant, timeout: int, idle_callback: Callable[[], Coroutine[Any, Any, None]]) -> None: ...
     def start(self) -> None: ...
     def awake(self) -> None: ...
     def clear(self) -> None: ...
@@ -79,10 +80,11 @@ class IdleTimer:
 class StreamOutput:
     _hass: Incomplete
     idle_timer: Incomplete
+    stream_settings: Incomplete
     _event: Incomplete
     _part_event: Incomplete
     _segments: Incomplete
-    def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, deque_maxlen: Union[int, None] = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, stream_settings: StreamSettings, deque_maxlen: Union[int, None] = ...) -> None: ...
     @property
     def name(self) -> Union[str, None]: ...
     @property

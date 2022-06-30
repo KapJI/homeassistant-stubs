@@ -1,7 +1,7 @@
 from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
 from abodepy.devices.light import AbodeLight as AbodeLT
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, LightEntity as LightEntity, SUPPORT_BRIGHTNESS as SUPPORT_BRIGHTNESS, SUPPORT_COLOR as SUPPORT_COLOR, SUPPORT_COLOR_TEMP as SUPPORT_COLOR_TEMP
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,5 +22,9 @@ class AbodeLight(AbodeDevice, LightEntity):
     def color_temp(self) -> Union[int, None]: ...
     @property
     def hs_color(self) -> Union[tuple[float, float], None]: ...
+    @property
+    def color_mode(self) -> Union[str, None]: ...
+    @property
+    def supported_color_modes(self) -> Union[set[str], None]: ...
     @property
     def supported_features(self) -> int: ...

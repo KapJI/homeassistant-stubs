@@ -8,9 +8,10 @@ from aiohomekit.model import Accessory as Accessory
 from aiohomekit.model.characteristics import Characteristic as Characteristic
 from aiohomekit.model.services import Service as Service
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -62,3 +63,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...

@@ -1,5 +1,5 @@
 from . import HomeAssistantElgatoData as HomeAssistantElgatoData
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_IDENTIFY as SERVICE_IDENTIFY
+from .const import DOMAIN as DOMAIN, SERVICE_IDENTIFY as SERVICE_IDENTIFY
 from .entity import ElgatoEntity as ElgatoEntity
 from _typeshed import Incomplete
 from elgato import Elgato as Elgato, Info as Info, Settings as Settings, State
@@ -7,6 +7,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MAC as CONF_MAC
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any

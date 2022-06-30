@@ -20,7 +20,7 @@ TYPE_RAINSENSOR: str
 TYPE_WEEKDAY: str
 
 class RainMachineBinarySensorDescription(BinarySensorEntityDescription, RainMachineDescriptionMixinApiCategory):
-    def __init__(self, api_category, data_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, api_category, data_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

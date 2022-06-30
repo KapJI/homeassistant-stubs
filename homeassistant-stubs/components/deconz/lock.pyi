@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.light.lock import Lock as Lock
-from pydeconz.models.sensor.door_lock import DoorLock as DoorLock
+from pydeconz.models.sensor.door_lock import DoorLock
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

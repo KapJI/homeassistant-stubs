@@ -1,7 +1,8 @@
 from .const import DOMAIN as DOMAIN
 from .model import CanaryData as CanaryData
 from _typeshed import Incomplete
-from canary.api import Api as Api, Location as Location
+from canary.api import Api as Api
+from canary.model import Location as Location
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 

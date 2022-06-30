@@ -11,7 +11,7 @@ from typing import Final
 
 class QswBinarySensorEntityDescription(BinarySensorEntityDescription, QswEntityDescription):
     attributes: Union[dict[str, list[str]], None]
-    def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, attributes) -> None: ...
+    def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, attributes) -> None: ...
 
 BINARY_SENSOR_TYPES: Final[tuple[QswBinarySensorEntityDescription, ...]]
 

@@ -1,4 +1,4 @@
-from .models import ENTITY_ID_IN_EVENT as ENTITY_ID_IN_EVENT, OLD_ENTITY_ID_IN_EVENT as OLD_ENTITY_ID_IN_EVENT, States as States
+from .db_schema import ENTITY_ID_IN_EVENT as ENTITY_ID_IN_EVENT, OLD_ENTITY_ID_IN_EVENT as OLD_ENTITY_ID_IN_EVENT, States as States
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE

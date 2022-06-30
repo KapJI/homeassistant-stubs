@@ -2,8 +2,8 @@ from .const import CONF_FFMPEG_ARGUMENTS as CONF_FFMPEG_ARGUMENTS, DATA_COORDINA
 from .coordinator import CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, StreamResponse as StreamResponse
-from canary.api import Device as Device, Location as Location
 from canary.live_stream_api import LiveStreamSession as LiveStreamSession
+from canary.model import Device as Device, Location as Location
 from homeassistant.components import ffmpeg as ffmpeg
 from homeassistant.components.camera import Camera as Camera
 from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager, get_ffmpeg_manager as get_ffmpeg_manager

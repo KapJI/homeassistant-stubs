@@ -7,7 +7,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
 
 BUTTON_TYPES: Incomplete
 
@@ -18,4 +17,4 @@ class YalePanicButton(YaleAlarmEntity, ButtonEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator, description: ButtonEntityDescription) -> None: ...
-    async def async_press(self, **kwargs: Any) -> None: ...
+    async def async_press(self) -> None: ...

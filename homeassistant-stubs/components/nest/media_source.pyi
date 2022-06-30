@@ -1,10 +1,9 @@
-from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
-from .device_info import NestDeviceInfo as NestDeviceInfo
+from .const import DOMAIN as DOMAIN
+from .device_info import NestDeviceInfo as NestDeviceInfo, async_nest_devices_by_device_id as async_nest_devices_by_device_id
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, MEDIA_SOURCE_EVENT_TITLE_MAP as MEDIA_SOURCE_EVENT_TITLE_MAP
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from google_nest_sdm.device import Device as Device
-from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from google_nest_sdm.event import ImageEventBase as ImageEventBase
 from google_nest_sdm.event_media import ClipPreviewSession as ClipPreviewSession, EventMediaStore, ImageSession as ImageSession
 from google_nest_sdm.google_nest_subscriber import GoogleNestSubscriber as GoogleNestSubscriber

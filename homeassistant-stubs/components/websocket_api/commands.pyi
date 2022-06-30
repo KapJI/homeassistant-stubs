@@ -9,7 +9,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, S
 from homeassistant.helpers import entity as entity, template as template
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result
-from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder
+from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder, JSON_DUMP as JSON_DUMP
 from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from homeassistant.setup import DATA_SETUP_TIME as DATA_SETUP_TIME, async_get_loaded_integrations as async_get_loaded_integrations

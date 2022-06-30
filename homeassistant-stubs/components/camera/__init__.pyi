@@ -56,7 +56,7 @@ WS_TYPE_CAMERA_THUMBNAIL: Final[str]
 SCHEMA_WS_CAMERA_THUMBNAIL: Final[Incomplete]
 
 class CameraEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 class Image:
     content_type: str

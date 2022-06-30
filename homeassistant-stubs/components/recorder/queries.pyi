@@ -1,5 +1,5 @@
 from .const import MAX_ROWS_TO_PURGE as MAX_ROWS_TO_PURGE
-from .models import EventData as EventData, Events as Events, RecorderRuns as RecorderRuns, StateAttributes as StateAttributes, States as States, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm
+from .db_schema import EventData as EventData, Events as Events, RecorderRuns as RecorderRuns, StateAttributes as StateAttributes, States as States, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm
 from collections.abc import Iterable
 from datetime import datetime
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement

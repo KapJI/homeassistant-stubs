@@ -4,7 +4,7 @@ from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.util import decorator as decorator
-from homeassistant.util.yaml.dumper import represent_odict as represent_odict
+from homeassistant.util.yaml.dumper import add_representer as add_representer, represent_odict as represent_odict
 from typing import Any, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]

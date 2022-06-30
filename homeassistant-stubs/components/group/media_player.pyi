@@ -22,6 +22,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MediaPlayerGroup(MediaPlayerEntity):
+    _attr_available: bool
     _name: Incomplete
     _state: Incomplete
     _supported_features: int

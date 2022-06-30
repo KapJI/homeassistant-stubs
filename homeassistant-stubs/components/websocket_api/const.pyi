@@ -1,7 +1,6 @@
 from .connection import ActiveConnection as ActiveConnection
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from typing import Final
 
 WebSocketCommandHandler: Incomplete
@@ -26,7 +25,6 @@ CANCELLATION_ERRORS: Final[Incomplete]
 SIGNAL_WEBSOCKET_CONNECTED: Final[str]
 SIGNAL_WEBSOCKET_DISCONNECTED: Final[str]
 DATA_CONNECTIONS: Final[Incomplete]
-JSON_DUMP: Final[Incomplete]
 COMPRESSED_STATE_STATE: str
 COMPRESSED_STATE_ATTRIBUTES: str
 COMPRESSED_STATE_CONTEXT: str

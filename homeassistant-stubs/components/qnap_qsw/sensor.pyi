@@ -12,7 +12,7 @@ from typing import Final
 
 class QswSensorEntityDescription(SensorEntityDescription, QswEntityDescription):
     attributes: Union[dict[str, list[str]], None]
-    def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, attributes) -> None: ...
+    def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, attributes) -> None: ...
 
 SENSOR_TYPES: Final[tuple[QswSensorEntityDescription, ...]]
 

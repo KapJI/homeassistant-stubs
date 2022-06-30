@@ -16,6 +16,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BinarySensorGroup(GroupEntity, BinarySensorEntity):
+    _attr_available: bool
     _entity_ids: Incomplete
     _attr_name: Incomplete
     _attr_extra_state_attributes: Incomplete
@@ -24,7 +25,6 @@ class BinarySensorGroup(GroupEntity, BinarySensorEntity):
     mode: Incomplete
     def __init__(self, unique_id: Union[str, None], name: str, device_class: Union[str, None], entity_ids: list[str], mode: Union[str, None]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    _attr_available: Incomplete
     _attr_is_on: Incomplete
     def async_update_group_state(self) -> None: ...
     @property

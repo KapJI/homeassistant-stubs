@@ -6,6 +6,7 @@ from .generated.mqtt import MQTT as MQTT
 from .generated.ssdp import SSDP as SSDP
 from .generated.usb import USB as USB
 from .generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
+from .helpers.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from .util.async_ import gather_with_concurrency as gather_with_concurrency
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion

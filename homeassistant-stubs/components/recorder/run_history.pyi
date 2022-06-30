@@ -1,4 +1,5 @@
-from .models import RecorderRuns as RecorderRuns, process_timestamp as process_timestamp
+from .db_schema import RecorderRuns as RecorderRuns
+from .models import process_timestamp as process_timestamp
 from _typeshed import Incomplete
 from datetime import datetime
 from sqlalchemy.orm.session import Session as Session

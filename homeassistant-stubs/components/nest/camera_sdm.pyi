@@ -8,6 +8,7 @@ from google_nest_sdm.device import Device as Device
 from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.components.camera.const import StreamType as StreamType
+from homeassistant.components.stream import CONF_EXTRA_PART_WAIT_TIME as CONF_EXTRA_PART_WAIT_TIME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

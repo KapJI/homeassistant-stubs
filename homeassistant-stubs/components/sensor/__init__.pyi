@@ -81,14 +81,14 @@ class SensorEntityDescription(EntityDescription):
     native_unit_of_measurement: Union[str, None]
     state_class: Union[SensorStateClass, str, None]
     unit_of_measurement: None
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 class SensorEntity(Entity):
     entity_description: SensorEntityDescription
     _attr_device_class: Union[SensorDeviceClass, str, None]
     _attr_last_reset: Union[datetime, None]
     _attr_native_unit_of_measurement: Union[str, None]
-    _attr_native_value: Union[StateType, date, datetime]
+    _attr_native_value: Union[StateType, date, datetime, Decimal]
     _attr_state_class: Union[SensorStateClass, str, None]
     _attr_state: None
     _attr_unit_of_measurement: None
@@ -108,7 +108,7 @@ class SensorEntity(Entity):
     @property
     def state_attributes(self) -> Union[dict[str, Any], None]: ...
     @property
-    def native_value(self) -> Union[StateType, date, datetime]: ...
+    def native_value(self) -> Union[StateType, date, datetime, Decimal]: ...
     @property
     def native_unit_of_measurement(self) -> Union[str, None]: ...
     @property

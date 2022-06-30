@@ -23,8 +23,6 @@ from zwave_js_server.model.value import Value as Value, ValueNotification as Val
 CONNECT_TIMEOUT: int
 DATA_CLIENT_LISTEN_TASK: str
 DATA_START_PLATFORM_TASK: str
-DATA_CONNECT_FAILED_LOGGED: str
-DATA_INVALID_SERVER_VERSION_LOGGED: str
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def register_node_in_dev_reg(hass: HomeAssistant, entry: ConfigEntry, dev_reg: device_registry.DeviceRegistry, driver: Driver, node: ZwaveNode, remove_device_func: Callable[[device_registry.DeviceEntry], None]) -> device_registry.DeviceEntry: ...

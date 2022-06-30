@@ -1,4 +1,7 @@
 from .atlantic_electrical_heater import AtlanticElectricalHeater as AtlanticElectricalHeater
+from .atlantic_electrical_towel_dryer import AtlanticElectricalTowelDryer as AtlanticElectricalTowelDryer
+from .atlantic_pass_apc_zone_control import AtlanticPassAPCZoneControl as AtlanticPassAPCZoneControl
+from .somfy_thermostat import SomfyThermostat as SomfyThermostat
 from _typeshed import Incomplete
 
 WIDGET_TO_CLIMATE_ENTITY: Incomplete

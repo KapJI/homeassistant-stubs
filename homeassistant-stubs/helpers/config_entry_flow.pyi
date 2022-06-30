@@ -2,7 +2,7 @@ from .typing import DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFIN
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable
 from homeassistant import config_entries as config_entries
-from homeassistant.components import dhcp as dhcp, mqtt as mqtt, ssdp as ssdp, zeroconf as zeroconf
+from homeassistant.components import dhcp as dhcp, mqtt as mqtt, onboarding as onboarding, ssdp as ssdp, zeroconf as zeroconf
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any, TypeVar

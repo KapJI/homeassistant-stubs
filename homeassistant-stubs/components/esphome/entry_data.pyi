@@ -1,4 +1,5 @@
 import asyncio
+from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, UserService
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,6 +9,7 @@ from homeassistant.helpers.storage import Store as Store
 from typing import Any
 
 SAVE_DELAY: int
+_LOGGER: Incomplete
 INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], str]
 
 class RuntimeEntryData:

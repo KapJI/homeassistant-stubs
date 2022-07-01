@@ -383,7 +383,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "homeassistant"
-version = "2022.7.0b0"
+version = "2022.7.0b1"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -407,7 +407,7 @@ orjson = "3.7.5"
 PyJWT = "2.4.0"
 python-slugify = "4.0.1"
 pyyaml = "6.0"
-requests = "2.28.0"
+requests = "2.28.1"
 typing-extensions = ">=3.10.0.2,<5.0"
 voluptuous = "0.13.1"
 voluptuous-serialize = "2.5.0"
@@ -742,7 +742,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "requests"
-version = "2.28.0"
+version = "2.28.1"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
@@ -750,13 +750,13 @@ python-versions = ">=3.7, <4"
 
 [package.dependencies]
 certifi = ">=2017.4.17"
-charset-normalizer = ">=2.0.0,<2.1.0"
+charset-normalizer = ">=2,<3"
 idna = ">=2.5,<4"
 urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
-use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
+use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "rfc3986"
@@ -920,7 +920,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "c21302e95064e83965fc792e7e48c8da5d9dc37921967eec6ae201fa436e7182"
+content-hash = "b203b6b60a295e44a6a1594a38cfb5c2cdc2ace7452ec4ea5f4704192f02fb81"
 
 [metadata.files]
 aiohttp = [
@@ -1297,8 +1297,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 homeassistant = [
-    {file = "homeassistant-2022.7.0b0-py3-none-any.whl", hash = "sha256:00ae85b7cf4b86d02122319721d0a4b595ee3308ce0cc7b6e96689fb201ced57"},
-    {file = "homeassistant-2022.7.0b0.tar.gz", hash = "sha256:922ccf634548b6a5614079b862b6379a4cc6e12a74413fb4edd99d45f18d24f7"},
+    {file = "homeassistant-2022.7.0b1-py3-none-any.whl", hash = "sha256:c36c2f8e1f9b4d87fe5202da30b698bdabfeb321746ca3a1bbc77fea0e693d00"},
+    {file = "homeassistant-2022.7.0b1.tar.gz", hash = "sha256:25f46e49f2c4c1dc81e9d98f6fab0a5da581010e3733245da52cb89168cf8f87"},
 ]
 httpcore = [
     {file = "httpcore-0.15.0-py3-none-any.whl", hash = "sha256:1105b8b73c025f23ff7c36468e4432226cbb959176eab66864b8e31c4ee27fa6"},
@@ -1637,8 +1637,8 @@ pyyaml = [
     {file = "PyYAML-6.0.tar.gz", hash = "sha256:68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2"},
 ]
 requests = [
-    {file = "requests-2.28.0-py3-none-any.whl", hash = "sha256:bc7861137fbce630f17b03d3ad02ad0bf978c844f3536d0edda6499dafce2b6f"},
-    {file = "requests-2.28.0.tar.gz", hash = "sha256:d568723a7ebd25875d8d1eaf5dfa068cd2fc8194b2e483d7b1f7c81918dbec6b"},
+    {file = "requests-2.28.1-py3-none-any.whl", hash = "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"},
+    {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
 ]
 rfc3986 = [
     {file = "rfc3986-1.5.0-py2.py3-none-any.whl", hash = "sha256:a86d6e1f5b1dc238b218b012df0aa79409667bb209e58da56d0b94704e712a97"},

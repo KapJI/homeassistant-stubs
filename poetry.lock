@@ -383,7 +383,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "homeassistant"
-version = "2022.7.0b2"
+version = "2022.7.0b3"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -920,7 +920,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "052f31875e70f50998ba12392f6b6b96d1e6d57b5371d77e3bf3d4f24e93a892"
+content-hash = "d8b9c39169f5979604a0ffeb7495970ca9fea25728a5b4d26e0c5aafc8c0f7c6"
 
 [metadata.files]
 aiohttp = [
@@ -1297,8 +1297,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 homeassistant = [
-    {file = "homeassistant-2022.7.0b2-py3-none-any.whl", hash = "sha256:6c5192f5ce8d2009e87ba917b5fe4fb9c43acb4305a2d61848a142ca3e680880"},
-    {file = "homeassistant-2022.7.0b2.tar.gz", hash = "sha256:ff00b76599503c999eab4bbfc14a0b7f3c8bb89ed71a264057918652eb4a4fc3"},
+    {file = "homeassistant-2022.7.0b3-py3-none-any.whl", hash = "sha256:2b1c20ddbac843fe0156a5df083df3246f947b913c6d69be45788e00a9e5411e"},
+    {file = "homeassistant-2022.7.0b3.tar.gz", hash = "sha256:6b1b703e60cc461b303aa9367ade84de359c8b88621f90856bade26dd34b9e89"},
 ]
 httpcore = [
     {file = "httpcore-0.15.0-py3-none-any.whl", hash = "sha256:1105b8b73c025f23ff7c36468e4432226cbb959176eab66864b8e31c4ee27fa6"},

@@ -1,6 +1,6 @@
 import asyncio
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState, UserService
+from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, UserService
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
@@ -12,13 +12,12 @@ from typing import Any
 SAVE_DELAY: int
 _LOGGER: Incomplete
 INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], str]
-STATE_TYPE_TO_COMPONENT_KEY: Incomplete
 
 class RuntimeEntryData:
     entry_id: str
     client: APIClient
     store: Store
-    state: dict[str, dict[int, EntityState]]
+    state: dict[type[EntityState], dict[int, EntityState]]
     info: dict[str, dict[int, EntityInfo]]
     old_info: dict[str, dict[int, EntityInfo]]
     services: dict[int, UserService]
@@ -27,14 +26,14 @@ class RuntimeEntryData:
     api_version: APIVersion
     cleanup_callbacks: list[Callable[[], None]]
     disconnect_callbacks: list[Callable[[], None]]
-    state_subscriptions: dict[tuple[str, int], Callable[[], None]]
+    state_subscriptions: dict[tuple[type[EntityState], int], Callable[[], None]]
     loaded_platforms: set[str]
     platform_load_lock: asyncio.Lock
     _storage_contents: Union[dict[str, Any], None]
     def async_remove_entity(self, hass: HomeAssistant, component_key: str, key: int) -> None: ...
     async def _ensure_platforms_loaded(self, hass: HomeAssistant, entry: ConfigEntry, platforms: set[str]) -> None: ...
     async def async_update_static_infos(self, hass: HomeAssistant, entry: ConfigEntry, infos: list[EntityInfo]) -> None: ...
-    def async_subscribe_state_update(self, component_key: str, state_key: int, entity_callback: Callable[[], None]) -> Callable[[], None]: ...
+    def async_subscribe_state_update(self, state_type: type[EntityState], state_key: int, entity_callback: Callable[[], None]) -> Callable[[], None]: ...
     def async_update_state(self, state: EntityState) -> None: ...
     def async_update_device_state(self, hass: HomeAssistant) -> None: ...
     async def async_load_from_store(self) -> tuple[list[EntityInfo], list[UserService]]: ...

@@ -1,5 +1,6 @@
 import aiohttp
 from .frame import warn_use as warn_use
+from .json import json_dumps as json_dumps
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable

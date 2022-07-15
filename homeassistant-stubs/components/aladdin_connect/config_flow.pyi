@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CLIENT_ID as CLIENT_ID, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries

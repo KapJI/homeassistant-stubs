@@ -1,6 +1,6 @@
 import datetime
 from . import Stream as Stream
-from .const import ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN
+from .const import ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN, SEGMENT_DURATION_ADJUSTER as SEGMENT_DURATION_ADJUSTER, TARGET_SEGMENT_DURATION_NON_LL_HLS as TARGET_SEGMENT_DURATION_NON_LL_HLS
 from _typeshed import Incomplete
 from aiohttp import web
 from av import CodecContext, Packet as Packet
@@ -12,6 +12,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.decorator import Registry as Registry
 from typing import Any
 
+_LOGGER: Incomplete
 PROVIDERS: Registry[str, type[StreamOutput]]
 
 class StreamSettings:
@@ -25,6 +26,8 @@ class StreamSettings:
     def __le__(self, other): ...
     def __gt__(self, other): ...
     def __ge__(self, other): ...
+
+STREAM_SETTINGS_NON_LL_HLS: Incomplete
 
 class Part:
     duration: float

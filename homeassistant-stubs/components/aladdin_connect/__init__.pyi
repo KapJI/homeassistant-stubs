@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CLIENT_ID as CLIENT_ID, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform

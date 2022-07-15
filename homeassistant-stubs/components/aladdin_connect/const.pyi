@@ -8,3 +8,4 @@ NOTIFICATION_TITLE: Final[str]
 STATES_MAP: Final[dict[str, str]]
 DOMAIN: str
 SUPPORTED_FEATURES: Final[Incomplete]
+CLIENT_ID: str

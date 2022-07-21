@@ -24,6 +24,7 @@ class ProtectData:
     _pending_camera_ids: Incomplete
     _unsub_interval: Incomplete
     _unsub_websocket: Incomplete
+    _auth_failures: int
     last_update_success: bool
     api: Incomplete
     def __init__(self, hass: HomeAssistant, protect: ProtectApiClient, update_interval: timedelta, entry: ConfigEntry) -> None: ...

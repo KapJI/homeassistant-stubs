@@ -25,6 +25,7 @@ class AladdinDevice(CoverEntity):
     _device_id: Incomplete
     _number: Incomplete
     _attr_name: Incomplete
+    _serial: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, acc: AladdinConnectClient, device: DoorDevice, entry: ConfigEntry) -> None: ...
     async def async_added_to_hass(self) -> None: ...

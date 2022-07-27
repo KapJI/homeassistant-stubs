@@ -1,39 +1,31 @@
-import voluptuous as vol
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_CODE as CONF_CODE, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_CODE as CONF_CODE, CONF_TOKEN as CONF_TOKEN, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from typing import Any
+from typing import Any, NamedTuple
 
-DEFAULT_EMAIL_2FA_SLEEP: int
-DEFAULT_EMAIL_2FA_TIMEOUT: int
-STEP_REAUTH_SCHEMA: Incomplete
-STEP_SMS_2FA_SCHEMA: Incomplete
+CONF_AUTH_CODE: str
 STEP_USER_SCHEMA: Incomplete
+
+class SimpliSafeOAuthValues(NamedTuple):
+    auth_url: str
+    code_verifier: str
+
+def async_get_simplisafe_oauth_values() -> SimpliSafeOAuthValues: ...
 
 class SimpliSafeFlowHandler(config_entries.ConfigFlow):
     VERSION: int
-    _email_2fa_task: Incomplete
-    _password: Incomplete
+    _oauth_values: Incomplete
     _reauth: bool
-    _simplisafe: Incomplete
-    _username: Incomplete
     def __init__(self) -> None: ...
-    async def _async_authenticate(self, originating_step_id: str, originating_step_schema: vol.Schema) -> FlowResult: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SimpliSafeOptionsFlowHandler: ...
-    async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> FlowResult: ...
-    async def _async_get_email_2fa(self) -> None: ...
-    async def async_step_email_2fa(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_email_2fa_error(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_finish(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_reauth_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
-    async def async_step_sms_2fa(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_reauth(self, config: Mapping[str, Any]) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
 class SimpliSafeOptionsFlowHandler(config_entries.OptionsFlow):

@@ -1,0 +1,8 @@
+from _typeshed import Incomplete
+
+DOMAIN: str
+DEFAULT_NAME: str
+CONF_ADAPTER: str
+MACOS_DEFAULT_BLUETOOTH_ADAPTER: str
+UNIX_DEFAULT_BLUETOOTH_ADAPTER: str
+DEFAULT_ADAPTERS: Incomplete

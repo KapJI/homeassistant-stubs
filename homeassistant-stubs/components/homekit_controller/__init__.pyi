@@ -1,8 +1,8 @@
 from .config_flow import normalize_hkid as normalize_hkid
 from .connection import HKDevice as HKDevice, valid_serial_number as valid_serial_number
 from .const import ENTITY_MAP as ENTITY_MAP, KNOWN_DEVICES as KNOWN_DEVICES, TRIGGERS as TRIGGERS
-from .storage import EntityMapStorage as EntityMapStorage
-from .utils import async_get_controller as async_get_controller
+from .storage import async_get_entity_storage as async_get_entity_storage
+from .utils import async_get_controller as async_get_controller, folded_name as folded_name
 from _typeshed import Incomplete
 from aiohomekit.model import Accessory as Accessory
 from aiohomekit.model.characteristics import Characteristic as Characteristic
@@ -24,6 +24,7 @@ class HomeKitEntity(Entity):
     _accessory: Incomplete
     _aid: Incomplete
     _iid: Incomplete
+    _char_name: Incomplete
     _features: int
     def __init__(self, accessory: HKDevice, devinfo: ConfigType) -> None: ...
     @property
@@ -41,6 +42,8 @@ class HomeKitEntity(Entity):
     def _setup_characteristic(self, char: Characteristic) -> None: ...
     @property
     def unique_id(self) -> str: ...
+    @property
+    def default_name(self) -> Union[str, None]: ...
     @property
     def name(self) -> Union[str, None]: ...
     @property

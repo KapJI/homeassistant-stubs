@@ -4,7 +4,6 @@ from .entity import YaleAlarmEntity as YaleAlarmEntity
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
@@ -14,7 +13,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class YalePanicButton(YaleAlarmEntity, ButtonEntity):
     entity_description: ButtonEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator, description: ButtonEntityDescription) -> None: ...
     async def async_press(self) -> None: ...

@@ -39,16 +39,15 @@ def _create_elk_services(hass: HomeAssistant) -> None: ...
 def create_elk_entities(elk_data: dict[str, Any], elk_elements: list[Element], element_type: str, class_: Any, entities: list[ElkEntity]) -> Union[list[ElkEntity], None]: ...
 
 class ElkEntity(Entity):
+    _attr_has_entity_name: bool
     _elk: Incomplete
     _element: Incomplete
     _mac: Incomplete
     _prefix: Incomplete
-    _name_prefix: Incomplete
     _temperature_unit: Incomplete
     _unique_id: Incomplete
+    _attr_name: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: dict[str, Any]) -> None: ...
-    @property
-    def name(self) -> str: ...
     @property
     def unique_id(self) -> str: ...
     @property

@@ -19,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ReCollectWasteSensor(CoordinatorEntity, SensorEntity):
     _attr_device_class: Incomplete
+    _attr_has_entity_name: bool
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     _entry: Incomplete

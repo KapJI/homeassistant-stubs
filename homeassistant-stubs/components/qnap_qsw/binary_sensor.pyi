@@ -1,5 +1,5 @@
-from .const import ATTR_MESSAGE as ATTR_MESSAGE, DOMAIN as DOMAIN
-from .coordinator import QswUpdateCoordinator as QswUpdateCoordinator
+from .const import ATTR_MESSAGE as ATTR_MESSAGE, DOMAIN as DOMAIN, QSW_COORD_DATA as QSW_COORD_DATA
+from .coordinator import QswDataCoordinator as QswDataCoordinator
 from .entity import QswEntityDescription as QswEntityDescription, QswSensorEntity as QswSensorEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
@@ -21,6 +21,6 @@ class QswBinarySensor(QswSensorEntity, BinarySensorEntity):
     entity_description: QswBinarySensorEntityDescription
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: QswUpdateCoordinator, description: QswBinarySensorEntityDescription, entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: QswDataCoordinator, description: QswBinarySensorEntityDescription, entry: ConfigEntry) -> None: ...
     _attr_is_on: Incomplete
     def _async_update_attrs(self) -> None: ...

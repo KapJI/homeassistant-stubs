@@ -1,5 +1,5 @@
-from .const import CONF_UID as CONF_UID, DATA_COORDINATOR as DATA_COORDINATOR, DATA_COORDINATOR_PAIRED_SENSOR as DATA_COORDINATOR_PAIRED_SENSOR, DOMAIN as DOMAIN
-from .util import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
+from . import GuardianData as GuardianData
+from .const import CONF_UID as CONF_UID, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

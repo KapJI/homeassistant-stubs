@@ -1,0 +1,3 @@
+from .const import MACOS_DEFAULT_BLUETOOTH_ADAPTER as MACOS_DEFAULT_BLUETOOTH_ADAPTER, UNIX_DEFAULT_BLUETOOTH_ADAPTER as UNIX_DEFAULT_BLUETOOTH_ADAPTER
+
+async def async_get_bluetooth_adapters() -> list[str]: ...

@@ -32,7 +32,6 @@ ATTR_SYSTEM_ID: str
 ATTR_TIMESTAMP: str
 DEFAULT_CONFIG_URL: str
 DEFAULT_ENTITY_MODEL: str
-DEFAULT_ENTITY_NAME: str
 DEFAULT_ERROR_THRESHOLD: int
 DEFAULT_SCAN_INTERVAL: Incomplete
 DEFAULT_SOCKET_MIN_RETRY: int
@@ -79,10 +78,10 @@ class SimpliSafe:
     async def async_update(self) -> None: ...
 
 class SimpliSafeEntity(CoordinatorEntity):
+    _attr_has_entity_name: bool
     _error_count: int
     _attr_extra_state_attributes: Incomplete
     _attr_device_info: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _device: Incomplete
     _online: bool

@@ -33,6 +33,7 @@ async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_a
 class ThermostatEntity(ClimateEntity):
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
+    _attr_has_entity_name: bool
     _device: Incomplete
     _device_info: Incomplete
     _attr_supported_features: int
@@ -41,8 +42,6 @@ class ThermostatEntity(ClimateEntity):
     def should_poll(self) -> bool: ...
     @property
     def unique_id(self) -> Union[str, None]: ...
-    @property
-    def name(self) -> Union[str, None]: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     async def async_added_to_hass(self) -> None: ...

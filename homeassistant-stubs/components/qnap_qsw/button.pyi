@@ -1,6 +1,6 @@
-from .const import DOMAIN as DOMAIN, QSW_REBOOT as QSW_REBOOT
-from .coordinator import QswUpdateCoordinator as QswUpdateCoordinator
-from .entity import QswEntity as QswEntity
+from .const import DOMAIN as DOMAIN, QSW_COORD_DATA as QSW_COORD_DATA, QSW_REBOOT as QSW_REBOOT
+from .coordinator import QswDataCoordinator as QswDataCoordinator
+from .entity import QswDataEntity as QswDataEntity
 from _typeshed import Incomplete
 from aioqsw.localapi import QnapQswApi as QnapQswApi
 from collections.abc import Awaitable, Callable as Callable
@@ -22,9 +22,9 @@ BUTTON_TYPES: Final[tuple[QswButtonDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class QswButton(QswEntity, ButtonEntity):
+class QswButton(QswDataEntity, ButtonEntity):
     entity_description: QswButtonDescription
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: QswUpdateCoordinator, description: QswButtonDescription, entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: QswDataCoordinator, description: QswButtonDescription, entry: ConfigEntry) -> None: ...
     async def async_press(self) -> None: ...

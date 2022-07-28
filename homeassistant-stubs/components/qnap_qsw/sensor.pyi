@@ -1,5 +1,5 @@
-from .const import ATTR_MAX as ATTR_MAX, DOMAIN as DOMAIN, RPM as RPM
-from .coordinator import QswUpdateCoordinator as QswUpdateCoordinator
+from .const import ATTR_MAX as ATTR_MAX, DOMAIN as DOMAIN, QSW_COORD_DATA as QSW_COORD_DATA, RPM as RPM
+from .coordinator import QswDataCoordinator as QswDataCoordinator
 from .entity import QswEntityDescription as QswEntityDescription, QswSensorEntity as QswSensorEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -22,6 +22,6 @@ class QswSensor(QswSensorEntity, SensorEntity):
     entity_description: QswSensorEntityDescription
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: QswUpdateCoordinator, description: QswSensorEntityDescription, entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: QswDataCoordinator, description: QswSensorEntityDescription, entry: ConfigEntry) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...

@@ -72,16 +72,16 @@ class Forecast(TypedDict):
     datetime: str
     precipitation_probability: Union[int, None]
     native_precipitation: Union[float, None]
-    precipitation: Union[float, None]
+    precipitation: None
     native_pressure: Union[float, None]
-    pressure: Union[float, None]
+    pressure: None
     native_temperature: Union[float, None]
-    temperature: Union[float, None]
+    temperature: None
     native_templow: Union[float, None]
-    templow: Union[float, None]
+    templow: None
     wind_bearing: Union[float, str, None]
     native_wind_speed: Union[float, None]
-    wind_speed: Union[float, None]
+    wind_speed: None
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -97,17 +97,17 @@ class WeatherEntity(Entity):
     _attr_humidity: Union[float, None]
     _attr_ozone: Union[float, None]
     _attr_precision: float
-    _attr_pressure: Union[float, None]
-    _attr_pressure_unit: Union[str, None]
+    _attr_pressure: None
+    _attr_pressure_unit: None
     _attr_state: None
-    _attr_temperature: Union[float, None]
-    _attr_temperature_unit: Union[str, None]
-    _attr_visibility: Union[float, None]
-    _attr_visibility_unit: Union[str, None]
-    _attr_precipitation_unit: Union[str, None]
+    _attr_temperature: None
+    _attr_temperature_unit: None
+    _attr_visibility: None
+    _attr_visibility_unit: None
+    _attr_precipitation_unit: None
     _attr_wind_bearing: Union[float, str, None]
-    _attr_wind_speed: Union[float, None]
-    _attr_wind_speed_unit: Union[str, None]
+    _attr_wind_speed: None
+    _attr_wind_speed_unit: None
     _attr_native_pressure: Union[float, None]
     _attr_native_pressure_unit: Union[str, None]
     _attr_native_temperature: Union[float, None]

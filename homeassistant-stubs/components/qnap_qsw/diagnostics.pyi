@@ -1,5 +1,5 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import QswUpdateCoordinator as QswUpdateCoordinator
+from .const import DOMAIN as DOMAIN, QSW_COORD_DATA as QSW_COORD_DATA, QSW_COORD_FW as QSW_COORD_FW
+from .coordinator import QswDataCoordinator as QswDataCoordinator, QswFirmwareCoordinator as QswFirmwareCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics.util import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

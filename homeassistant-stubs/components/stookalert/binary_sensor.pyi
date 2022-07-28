@@ -15,8 +15,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class StookalertBinarySensor(BinarySensorEntity):
     _attr_attribution: str
     _attr_device_class: Incomplete
+    _attr_has_entity_name: bool
     _client: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, client: stookalert.stookalert, entry: ConfigEntry) -> None: ...

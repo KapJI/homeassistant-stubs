@@ -7,7 +7,7 @@ from homeassistant.components import configurator as configurator
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url

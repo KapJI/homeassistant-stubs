@@ -3,8 +3,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_MODE as ATTR_MODE, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.const import ATTR_MODE as ATTR_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -28,6 +28,7 @@ class NumberMode(StrEnum):
     SLIDER: str
 
 UNIT_CONVERSIONS: dict[str, Callable[[float, str, str], float]]
+VALID_UNITS: dict[str, tuple[str, ...]]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_set_value(entity: NumberEntity, service_call: ServiceCall) -> None: ...
@@ -53,17 +54,20 @@ class NumberEntity(Entity):
     entity_description: NumberEntityDescription
     _attr_max_value: None
     _attr_min_value: None
+    _attr_mode: NumberMode
     _attr_state: None
     _attr_step: None
-    _attr_mode: NumberMode
+    _attr_unit_of_measurement: None
     _attr_value: None
     _attr_native_max_value: float
     _attr_native_min_value: float
     _attr_native_step: float
-    _attr_native_value: float
+    _attr_native_value: Union[float, None]
     _attr_native_unit_of_measurement: Union[str, None]
     _deprecated_number_entity_reported: bool
+    _number_option_unit_of_measurement: Union[str, None]
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
+    async def async_internal_added_to_hass(self) -> None: ...
     @property
     def capability_attributes(self) -> dict[str, Any]: ...
     @property
@@ -97,6 +101,7 @@ class NumberEntity(Entity):
     def _convert_to_state_value(self, value: float, method: Callable) -> float: ...
     def convert_to_native_value(self, value: float) -> float: ...
     def _report_deprecated_number_entity(self) -> None: ...
+    def async_registry_entry_updated(self) -> None: ...
 
 class NumberExtraStoredData(ExtraStoredData):
     native_max_value: Union[float, None]

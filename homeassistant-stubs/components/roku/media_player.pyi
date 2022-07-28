@@ -27,9 +27,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
     _attr_supported_features: Incomplete
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
-    def __init__(self, unique_id: Union[str, None], coordinator: RokuDataUpdateCoordinator) -> None: ...
     def _media_playback_trackable(self) -> bool: ...
     @property
     def device_class(self) -> Union[str, None]: ...

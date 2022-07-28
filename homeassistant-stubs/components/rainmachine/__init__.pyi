@@ -57,9 +57,9 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: 
 async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 
 class RainMachineEntity(CoordinatorEntity):
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _controller: Incomplete
     entity_description: Incomplete

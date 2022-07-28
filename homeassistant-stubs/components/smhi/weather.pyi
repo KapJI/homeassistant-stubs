@@ -31,7 +31,7 @@ class SmhiWeather(WeatherEntity):
     _attr_native_precipitation_unit: Incomplete
     _attr_native_wind_speed_unit: Incomplete
     _attr_native_pressure_unit: Incomplete
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _forecasts: Incomplete
     _fail_count: int

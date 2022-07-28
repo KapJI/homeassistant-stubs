@@ -32,10 +32,10 @@ class AmbientStation:
     async def ws_disconnect(self) -> None: ...
 
 class AmbientWeatherEntity(Entity):
+    _attr_has_entity_name: bool
     _attr_should_poll: bool
     _ambient: Incomplete
     _attr_device_info: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _mac_address: Incomplete
     entity_description: Incomplete

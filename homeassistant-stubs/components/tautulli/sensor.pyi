@@ -43,7 +43,6 @@ class TautulliSensor(TautulliEntity, SensorEntity):
 class TautulliSessionSensor(TautulliEntity, SensorEntity):
     entity_description: TautulliSessionSensorEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: TautulliDataUpdateCoordinator, description: EntityDescription, user: PyTautulliApiUser) -> None: ...
     @property
     def native_value(self) -> StateType: ...

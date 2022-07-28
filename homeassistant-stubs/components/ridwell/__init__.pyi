@@ -1,4 +1,4 @@
-from .const import DATA_ACCOUNT as DATA_ACCOUNT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, LOGGER as LOGGER, SENSOR_TYPE_NEXT_PICKUP as SENSOR_TYPE_NEXT_PICKUP
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SENSOR_TYPE_NEXT_PICKUP as SENSOR_TYPE_NEXT_PICKUP
 from _typeshed import Incomplete
 from aioridwell.model import RidwellAccount as RidwellAccount, RidwellPickupEvent as RidwellPickupEvent
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,11 +12,17 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 DEFAULT_UPDATE_INTERVAL: Incomplete
 PLATFORMS: list[Platform]
 
+class RidwellData:
+    accounts: dict[str, RidwellAccount]
+    coordinator: DataUpdateCoordinator
+    def __init__(self, accounts, coordinator) -> None: ...
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class RidwellEntity(CoordinatorEntity):
+    _attr_has_entity_name: bool
     _account: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete

@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, Final
@@ -24,10 +25,13 @@ class AladdinDevice(CoverEntity):
     _acc: Incomplete
     _device_id: Incomplete
     _number: Incomplete
-    _attr_name: Incomplete
+    _name: Incomplete
     _serial: Incomplete
     _attr_unique_id: Incomplete
+    _attr_has_entity_name: bool
     def __init__(self, acc: AladdinConnectClient, device: DoorDevice, entry: ConfigEntry) -> None: ...
+    @property
+    def device_info(self) -> Union[DeviceInfo, None]: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...

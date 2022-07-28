@@ -6,6 +6,7 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import Any
 
 _LOGGER: Incomplete
 ATTR_DISTANCE: str
@@ -19,8 +20,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class GeolocationEvent(Entity):
+    _attr_source: str
+    _attr_distance: Union[float, None]
+    _attr_latitude: Union[float, None]
+    _attr_longitude: Union[float, None]
     @property
-    def state(self): ...
+    def state(self) -> Union[float, None]: ...
     @property
     def source(self) -> str: ...
     @property
@@ -30,4 +35,4 @@ class GeolocationEvent(Entity):
     @property
     def longitude(self) -> Union[float, None]: ...
     @property
-    def state_attributes(self): ...
+    def state_attributes(self) -> dict[str, Any]: ...

@@ -13,11 +13,11 @@ from open_meteo import Forecast as OpenMeteoForecast
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OpenMeteoWeatherEntity(CoordinatorEntity[DataUpdateCoordinator[OpenMeteoForecast]], WeatherEntity):
+    _attr_has_entity_name: bool
     _attr_native_precipitation_unit: Incomplete
     _attr_native_temperature_unit: Incomplete
     _attr_native_wind_speed_unit: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, *, entry: ConfigEntry, coordinator: DataUpdateCoordinator[OpenMeteoForecast]) -> None: ...
     @property

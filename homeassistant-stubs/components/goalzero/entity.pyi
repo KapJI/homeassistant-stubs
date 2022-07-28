@@ -8,8 +8,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 class GoalZeroEntity(CoordinatorEntity[GoalZeroDataUpdateCoordinator]):
     _attr_attribution: Incomplete
+    _attr_has_entity_name: bool
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: GoalZeroDataUpdateCoordinator, description: EntityDescription) -> None: ...
     @property

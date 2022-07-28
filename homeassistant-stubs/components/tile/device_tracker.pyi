@@ -1,4 +1,5 @@
-from .const import DATA_COORDINATOR as DATA_COORDINATOR, DATA_TILE as DATA_TILE, DOMAIN as DOMAIN
+from . import TileData as TileData
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity

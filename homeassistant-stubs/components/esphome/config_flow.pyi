@@ -10,6 +10,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
 ERROR_REQUIRES_ENCRYPTION_KEY: str
+ESPHOME_URL: str
 
 class EsphomeFlowHandler(ConfigFlow):
     VERSION: int

@@ -19,7 +19,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ElgatoLight(ElgatoEntity, CoordinatorEntity[DataUpdateCoordinator[State]], LightEntity):
     _attr_min_mireds: int
     _attr_max_mireds: int
-    _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[State], client: Elgato, info: Info, mac: Union[str, None], settings: Settings) -> None: ...

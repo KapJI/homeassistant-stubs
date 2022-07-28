@@ -9,7 +9,7 @@ from pydeconz.models.event import EventType as EventType
 from pydeconz.models.light.cover import Cover as Cover
 from typing import Any
 
-DEVICE_CLASS: Incomplete
+DECONZ_TYPE_TO_DEVICE_CLASS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -18,7 +18,7 @@ class DeconzCover(DeconzDevice, CoverEntity):
     _device: Cover
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
-    def __init__(self, device: Cover, gateway: DeconzGateway) -> None: ...
+    def __init__(self, cover_id: str, gateway: DeconzGateway) -> None: ...
     @property
     def current_cover_position(self) -> int: ...
     @property

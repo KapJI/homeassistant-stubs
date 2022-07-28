@@ -24,6 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RDWSensorEntity(CoordinatorEntity, SensorEntity):
     entity_description: RDWSensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: DataUpdateCoordinator, license_plate: str, description: RDWSensorEntityDescription) -> None: ...

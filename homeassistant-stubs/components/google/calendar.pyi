@@ -8,12 +8,12 @@ from gcal_sync.model import Event
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, extract_offset as extract_offset, is_offset_reached as is_offset_reached
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_OFFSET as CONF_OFFSET
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
-from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity import generate_entity_id as generate_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util import Throttle as Throttle
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
 _LOGGER: Incomplete
@@ -25,29 +25,40 @@ CREATE_EVENT_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class GoogleCalendarEntity(CalendarEntity):
+class CalendarUpdateCoordinator(DataUpdateCoordinator):
     calendar_service: Incomplete
     calendar_id: Incomplete
     _search: Incomplete
+    def __init__(self, hass: HomeAssistant, calendar_service: GoogleCalendarService, name: str, calendar_id: str, search: Union[str, None]) -> None: ...
+    async def async_get_events(self, start_date: datetime, end_date: datetime) -> list[Event]: ...
+    async def _async_update_data(self) -> list[Event]: ...
+
+class GoogleCalendarEntity(CoordinatorEntity, CalendarEntity):
+    _attr_has_entity_name: bool
+    coordinator: Incomplete
+    calendar_id: Incomplete
     _ignore_availability: Incomplete
     _event: Incomplete
-    _name: Incomplete
+    _attr_name: Incomplete
     _offset: Incomplete
     _offset_value: Incomplete
     entity_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
-    def __init__(self, calendar_service: GoogleCalendarService, calendar_id: str, data: dict[str, Any], entity_id: str, unique_id: Union[str, None], entity_enabled: bool) -> None: ...
+    def __init__(self, coordinator: CalendarUpdateCoordinator, calendar_id: str, data: dict[str, Any], entity_id: str, unique_id: Union[str, None], entity_enabled: bool) -> None: ...
+    @property
+    def should_poll(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict[str, bool]: ...
     @property
     def offset_reached(self) -> bool: ...
     @property
     def event(self) -> Union[CalendarEvent, None]: ...
-    @property
-    def name(self) -> str: ...
     def _event_filter(self, event: Event) -> bool: ...
+    async def async_added_to_hass(self) -> None: ...
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...
+    def _apply_coordinator_update(self) -> None: ...
+    def _handle_coordinator_update(self) -> None: ...
     async def async_update(self) -> None: ...
 
 def _get_calendar_event(event: Event) -> CalendarEvent: ...

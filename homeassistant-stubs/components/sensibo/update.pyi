@@ -27,7 +27,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SensiboDeviceUpdate(SensiboDeviceBaseEntity, UpdateEntity):
     entity_description: SensiboDeviceUpdateEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_title: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceUpdateEntityDescription) -> None: ...
     @property

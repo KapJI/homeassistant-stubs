@@ -1,5 +1,5 @@
 import pyatmo
-from .const import CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_BATTERY as NETATMO_CREATE_BATTERY, SIGNAL_NAME as SIGNAL_NAME, TYPE_WEATHER as TYPE_WEATHER
+from .const import CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, NETATMO_CREATE_BATTERY as NETATMO_CREATE_BATTERY, SIGNAL_NAME as SIGNAL_NAME, TYPE_WEATHER as TYPE_WEATHER
 from .data_handler import HOMECOACH_DATA_CLASS_NAME as HOMECOACH_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, PUBLICDATA_DATA_CLASS_NAME as PUBLICDATA_DATA_CLASS_NAME, WEATHERSTATION_DATA_CLASS_NAME as WEATHERSTATION_DATA_CLASS_NAME
 from .helper import NetatmoArea as NetatmoArea
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
@@ -64,7 +64,7 @@ class NetatmoClimateBatterySensor(NetatmoBase, SensorEntity):
     _module: Incomplete
     _id: Incomplete
     _attr_name: Incomplete
-    _state_class_name: Incomplete
+    _signal_name: Incomplete
     _room_id: Incomplete
     _model: Incomplete
     _attr_unique_id: Incomplete
@@ -98,7 +98,7 @@ class NetatmoPublicSensor(NetatmoBase, SensorEntity):
     @property
     def _data(self) -> pyatmo.AsyncPublicData: ...
     async def async_added_to_hass(self) -> None: ...
-    _data_classes: Incomplete
+    _publishers: Incomplete
     async def async_config_update_callback(self, area: NetatmoArea) -> None: ...
     _attr_native_value: Incomplete
     _attr_available: bool

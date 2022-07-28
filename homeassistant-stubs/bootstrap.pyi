@@ -2,12 +2,11 @@ from . import config_entries as config_entries, core as core, loader as loader
 from .components import http as http, persistent_notification as persistent_notification
 from .const import REQUIRED_NEXT_PYTHON_HA_RELEASE as REQUIRED_NEXT_PYTHON_HA_RELEASE, REQUIRED_NEXT_PYTHON_VER as REQUIRED_NEXT_PYTHON_VER, SIGNAL_BOOTSTRAP_INTEGRATONS as SIGNAL_BOOTSTRAP_INTEGRATONS
 from .exceptions import HomeAssistantError as HomeAssistantError
-from .helpers import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry
+from .helpers import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, recorder as recorder
 from .helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from .helpers.typing import ConfigType as ConfigType
 from .runner import RuntimeConfig as RuntimeConfig
 from .setup import DATA_SETUP as DATA_SETUP, DATA_SETUP_STARTED as DATA_SETUP_STARTED, DATA_SETUP_TIME as DATA_SETUP_TIME, async_set_domains_to_be_loaded as async_set_domains_to_be_loaded, async_setup_component as async_setup_component
-from .util.async_ import gather_with_concurrency as gather_with_concurrency
 from .util.logging import async_activate_log_queue_handler as async_activate_log_queue_handler
 from .util.package import async_get_user_site as async_get_user_site, is_virtual_env as is_virtual_env
 from _typeshed import Incomplete
@@ -26,6 +25,8 @@ MAX_LOAD_CONCURRENTLY: int
 DEBUGGER_INTEGRATIONS: Incomplete
 CORE_INTEGRATIONS: Incomplete
 LOGGING_INTEGRATIONS: Incomplete
+FRONTEND_INTEGRATIONS: Incomplete
+RECORDER_INTEGRATIONS: Incomplete
 DISCOVERY_INTEGRATIONS: Incomplete
 STAGE_1_INTEGRATIONS: Incomplete
 

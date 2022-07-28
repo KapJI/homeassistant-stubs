@@ -2,9 +2,9 @@ from .api import SENZConfigEntryAuth as SENZConfigEntryAuth
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiosenz import Thermostat
-from homeassistant.components.application_credentials import ClientCredential as ClientCredential, async_import_client_credential as async_import_client_credential
+from homeassistant.components.repairs import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, Platform as Platform
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow, httpx_client as httpx_client

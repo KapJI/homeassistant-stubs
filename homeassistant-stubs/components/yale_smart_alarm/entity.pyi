@@ -7,11 +7,12 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class YaleEntity(CoordinatorEntity[YaleDataUpdateCoordinator], Entity):
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator, data: dict) -> None: ...
 
 class YaleAlarmEntity(CoordinatorEntity[YaleDataUpdateCoordinator], Entity):
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator) -> None: ...

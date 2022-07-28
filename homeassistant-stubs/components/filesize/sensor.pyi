@@ -23,6 +23,7 @@ class FileSizeCoordinator(DataUpdateCoordinator):
 
 class FilesizeEntity(CoordinatorEntity[FileSizeCoordinator], SensorEntity):
     entity_description: SensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

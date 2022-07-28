@@ -1,22 +1,33 @@
-from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_PRECISION as CONF_PRECISION, CONF_PROTOCOL as CONF_PROTOCOL, CONF_RECONNECT_INTERVAL as CONF_RECONNECT_INTERVAL, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DATA_TASK as DATA_TASK, DEFAULT_PRECISION as DEFAULT_PRECISION, DEFAULT_RECONNECT_INTERVAL as DEFAULT_RECONNECT_INTERVAL, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DEVICE_NAME_ELECTRICITY as DEVICE_NAME_ELECTRICITY, DEVICE_NAME_GAS as DEVICE_NAME_GAS, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, LOGGER as LOGGER, SENSORS as SENSORS
-from .models import DSMRSensorEntityDescription as DSMRSensorEntityDescription
+from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_PRECISION as CONF_PRECISION, CONF_PROTOCOL as CONF_PROTOCOL, CONF_RECONNECT_INTERVAL as CONF_RECONNECT_INTERVAL, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DATA_TASK as DATA_TASK, DEFAULT_PRECISION as DEFAULT_PRECISION, DEFAULT_RECONNECT_INTERVAL as DEFAULT_RECONNECT_INTERVAL, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DEVICE_NAME_ELECTRICITY as DEVICE_NAME_ELECTRICITY, DEVICE_NAME_GAS as DEVICE_NAME_GAS, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, LOGGER as LOGGER
 from _typeshed import Incomplete
 from dsmr_parser.objects import DSMRObject as DSMRObject
-from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import EventType as EventType, StateType as StateType
 from homeassistant.util import Throttle as Throttle
 
 UNIT_CONVERSION: Incomplete
 
+class DSMRSensorEntityDescriptionMixin:
+    obis_reference: str
+    def __init__(self, obis_reference) -> None: ...
+
+class DSMRSensorEntityDescription(SensorEntityDescription, DSMRSensorEntityDescriptionMixin):
+    dsmr_versions: Union[set[str], None]
+    is_gas: bool
+    def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, dsmr_versions, is_gas) -> None: ...
+
+SENSORS: tuple[DSMRSensorEntityDescription, ...]
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DSMREntity(SensorEntity):
     entity_description: DSMRSensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_should_poll: bool
     _entry: Incomplete
     telegram: Incomplete

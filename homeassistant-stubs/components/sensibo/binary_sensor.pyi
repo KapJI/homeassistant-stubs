@@ -37,7 +37,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SensiboMotionSensor(SensiboMotionBaseEntity, BinarySensorEntity):
     entity_description: SensiboMotionBinarySensorEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, sensor_id: str, sensor_data: MotionSensor, entity_description: SensiboMotionBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...
@@ -45,7 +44,6 @@ class SensiboMotionSensor(SensiboMotionBaseEntity, BinarySensorEntity):
 class SensiboDeviceSensor(SensiboDeviceBaseEntity, BinarySensorEntity):
     entity_description: SensiboDeviceBinarySensorEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...

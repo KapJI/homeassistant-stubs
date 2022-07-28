@@ -1,4 +1,4 @@
-from .const import DATA_COORDINATOR as DATA_COORDINATOR, DATA_TILE as DATA_TILE, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
@@ -15,6 +15,11 @@ DEVICE_TYPES: Incomplete
 DEFAULT_INIT_TASK_LIMIT: int
 DEFAULT_UPDATE_INTERVAL: Incomplete
 CONF_SHOW_INACTIVE: str
+
+class TileData:
+    coordinators: dict[str, DataUpdateCoordinator]
+    tiles: dict[str, Tile]
+    def __init__(self, coordinators, tiles) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

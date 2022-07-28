@@ -34,7 +34,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete
     _attr_precision: Incomplete

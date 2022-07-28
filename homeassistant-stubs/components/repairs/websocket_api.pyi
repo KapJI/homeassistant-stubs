@@ -1,0 +1,26 @@
+from .const import DOMAIN as DOMAIN
+from .issue_handler import async_ignore_issue as async_ignore_issue
+from aiohttp import web as web
+from homeassistant import data_entry_flow as data_entry_flow
+from homeassistant.auth.permissions.const import POLICY_EDIT as POLICY_EDIT
+from homeassistant.components import websocket_api as websocket_api
+from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import Unauthorized as Unauthorized
+from homeassistant.helpers.data_entry_flow import FlowManagerIndexView as FlowManagerIndexView, FlowManagerResourceView as FlowManagerResourceView
+from typing import Any
+
+def async_setup(hass: HomeAssistant) -> None: ...
+def ws_ignore_issue(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+def ws_list_issues(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+
+class RepairsFlowIndexView(FlowManagerIndexView):
+    url: str
+    name: str
+    async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+
+class RepairsFlowResourceView(FlowManagerResourceView):
+    url: str
+    name: str
+    async def get(self, request: web.Request, flow_id: str) -> web.Response: ...
+    async def post(self, request: web.Request, flow_id: str) -> web.Response: ...

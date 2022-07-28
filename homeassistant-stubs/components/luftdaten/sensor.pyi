@@ -14,6 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SensorCommunitySensor(CoordinatorEntity, SensorEntity):
     _attr_attribution: str
+    _attr_has_entity_name: bool
     _attr_should_poll: bool
     entity_description: Incomplete
     _attr_unique_id: Incomplete

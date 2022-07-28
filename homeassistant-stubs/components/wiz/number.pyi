@@ -29,7 +29,6 @@ class WizSpeedNumber(WizEntity, NumberEntity):
     entity_description: WizNumberEntityDescription
     _attr_mode: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, wiz_data: WizData, name: str, description: WizNumberEntityDescription) -> None: ...
     @property
     def available(self) -> bool: ...

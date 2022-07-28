@@ -1,7 +1,10 @@
+from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum as StrEnum
 
 DOMAIN: str
+BIDIRECTIONAL_MODEL_PREFIXES: Incomplete
 CONF_STATION: str
+CHARGER_ADDED_DISCHARGED_ENERGY_KEY: str
 CHARGER_ADDED_ENERGY_KEY: str
 CHARGER_ADDED_RANGE_KEY: str
 CHARGER_CHARGING_POWER_KEY: str

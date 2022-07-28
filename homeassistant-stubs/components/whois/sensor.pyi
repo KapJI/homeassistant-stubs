@@ -28,7 +28,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WhoisSensorEntity(CoordinatorEntity, SensorEntity):
     entity_description: WhoisSensorEntityDescription
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _domain: Incomplete

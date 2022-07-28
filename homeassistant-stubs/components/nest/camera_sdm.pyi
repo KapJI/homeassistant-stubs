@@ -24,6 +24,7 @@ STREAM_EXPIRATION_BUFFER: Incomplete
 async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NestCamera(Camera):
+    _attr_has_entity_name: bool
     _device: Incomplete
     _device_info: Incomplete
     _stream: Incomplete
@@ -35,8 +36,6 @@ class NestCamera(Camera):
     def should_poll(self) -> bool: ...
     @property
     def unique_id(self) -> str: ...
-    @property
-    def name(self) -> Union[str, None]: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     @property

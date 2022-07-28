@@ -23,6 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RDWBinarySensorEntity(CoordinatorEntity, BinarySensorEntity):
     entity_description: RDWBinarySensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: DataUpdateCoordinator, description: RDWBinarySensorEntityDescription) -> None: ...

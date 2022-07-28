@@ -1,5 +1,5 @@
 from . import AirlyDataUpdateCoordinator as AirlyDataUpdateCoordinator
-from .const import ATTRIBUTION as ATTRIBUTION, ATTR_ADVICE as ATTR_ADVICE, ATTR_API_ADVICE as ATTR_API_ADVICE, ATTR_API_CAQI as ATTR_API_CAQI, ATTR_API_CAQI_DESCRIPTION as ATTR_API_CAQI_DESCRIPTION, ATTR_API_CAQI_LEVEL as ATTR_API_CAQI_LEVEL, ATTR_API_HUMIDITY as ATTR_API_HUMIDITY, ATTR_API_PM1 as ATTR_API_PM1, ATTR_API_PM10 as ATTR_API_PM10, ATTR_API_PM25 as ATTR_API_PM25, ATTR_API_PRESSURE as ATTR_API_PRESSURE, ATTR_API_TEMPERATURE as ATTR_API_TEMPERATURE, ATTR_DESCRIPTION as ATTR_DESCRIPTION, ATTR_LEVEL as ATTR_LEVEL, ATTR_LIMIT as ATTR_LIMIT, ATTR_PERCENT as ATTR_PERCENT, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SUFFIX_LIMIT as SUFFIX_LIMIT, SUFFIX_PERCENT as SUFFIX_PERCENT, URL as URL
+from .const import ATTRIBUTION as ATTRIBUTION, ATTR_ADVICE as ATTR_ADVICE, ATTR_API_ADVICE as ATTR_API_ADVICE, ATTR_API_CAQI as ATTR_API_CAQI, ATTR_API_CAQI_DESCRIPTION as ATTR_API_CAQI_DESCRIPTION, ATTR_API_CAQI_LEVEL as ATTR_API_CAQI_LEVEL, ATTR_API_HUMIDITY as ATTR_API_HUMIDITY, ATTR_API_PM1 as ATTR_API_PM1, ATTR_API_PM10 as ATTR_API_PM10, ATTR_API_PM25 as ATTR_API_PM25, ATTR_API_PRESSURE as ATTR_API_PRESSURE, ATTR_API_TEMPERATURE as ATTR_API_TEMPERATURE, ATTR_DESCRIPTION as ATTR_DESCRIPTION, ATTR_LEVEL as ATTR_LEVEL, ATTR_LIMIT as ATTR_LIMIT, ATTR_PERCENT as ATTR_PERCENT, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SUFFIX_LIMIT as SUFFIX_LIMIT, SUFFIX_PERCENT as SUFFIX_PERCENT, URL as URL
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -24,9 +24,9 @@ SENSOR_TYPES: tuple[AirlySensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirlySensor(CoordinatorEntity[AirlyDataUpdateCoordinator], SensorEntity):
+    _attr_has_entity_name: bool
     entity_description: AirlySensorEntityDescription
     _attr_device_info: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attrs: Incomplete
     def __init__(self, coordinator: AirlyDataUpdateCoordinator, name: str, description: AirlySensorEntityDescription) -> None: ...

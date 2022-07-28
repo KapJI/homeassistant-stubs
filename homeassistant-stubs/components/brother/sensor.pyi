@@ -55,9 +55,9 @@ ATTRS_MAP: dict[str, tuple[str, str]]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BrotherPrinterSensor(CoordinatorEntity, SensorEntity):
+    _attr_has_entity_name: bool
     _attrs: Incomplete
     _attr_device_info: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: BrotherDataUpdateCoordinator, description: BrotherSensorEntityDescription, device_info: DeviceInfo) -> None: ...

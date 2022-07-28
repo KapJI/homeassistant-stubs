@@ -8,10 +8,11 @@ from homeassistant.core import Context as Context, Event as Event, EventOrigin a
 from homeassistant.helpers.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, JSON_DUMP as JSON_DUMP, json_bytes as json_bytes, json_loads as json_loads
 from sqlalchemy import Column, JSON
 from sqlalchemy.dialects import sqlite
-from typing import Any
+from typing import Any, TypeVar
 
 Base: Incomplete
 SCHEMA_VERSION: int
+_StatisticsBaseSelfT = TypeVar('_StatisticsBaseSelfT', bound='StatisticsBase')
 _LOGGER: Incomplete
 TABLE_EVENTS: str
 TABLE_EVENT_DATA: str
@@ -128,7 +129,7 @@ class StatisticsBase:
     state: Incomplete
     sum: Incomplete
     @classmethod
-    def from_stats(cls, metadata_id: int, stats: StatisticData) -> StatisticsBase: ...
+    def from_stats(cls, metadata_id: int, stats: StatisticData) -> _StatisticsBaseSelfT: ...
 
 class Statistics(Base, StatisticsBase):
     duration: Incomplete

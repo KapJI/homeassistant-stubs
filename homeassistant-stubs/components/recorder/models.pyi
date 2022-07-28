@@ -1,3 +1,4 @@
+import asyncio
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.websocket_api.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
@@ -11,6 +12,11 @@ DB_TIMEZONE: str
 EMPTY_JSON_OBJECT: str
 
 class UnsupportedDialect(Exception): ...
+
+class RecorderData:
+    recorder_platforms: dict[str, Any]
+    db_connected: asyncio.Future
+    def __init__(self, recorder_platforms, db_connected) -> None: ...
 
 class StatisticResult(TypedDict):
     meta: StatisticMetaData

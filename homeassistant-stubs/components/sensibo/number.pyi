@@ -25,7 +25,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SensiboNumber(SensiboDeviceBaseEntity, NumberEntity):
     entity_description: SensiboNumberEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboNumberEntityDescription) -> None: ...
     @property
     def native_value(self) -> Union[float, None]: ...

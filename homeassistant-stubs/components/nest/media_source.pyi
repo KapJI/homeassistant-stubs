@@ -16,6 +16,7 @@ from homeassistant.components.media_source.models import BrowseMediaSource as Br
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
+from typing import Any
 
 _LOGGER: Incomplete
 MEDIA_SOURCE_TITLE: str
@@ -39,7 +40,7 @@ class NestEventMediaStore(EventMediaStore):
     _media_path: Incomplete
     _data: Incomplete
     _devices: Incomplete
-    def __init__(self, hass: HomeAssistant, subscriber: GoogleNestSubscriber, store: Store, media_path: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, subscriber: GoogleNestSubscriber, store: Store[dict[str, Any]], media_path: str) -> None: ...
     async def async_load(self) -> Union[dict, None]: ...
     async def async_save(self, data: dict) -> None: ...
     def get_media_key(self, device_id: str, event: ImageEventBase) -> str: ...

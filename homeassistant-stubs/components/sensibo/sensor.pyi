@@ -6,7 +6,7 @@ from collections.abc import Callable as Callable, Mapping
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -35,22 +35,25 @@ FILTER_LAST_RESET_DESCRIPTION: Incomplete
 MOTION_SENSOR_TYPES: tuple[SensiboMotionSensorEntityDescription, ...]
 PURE_SENSOR_TYPES: tuple[SensiboDeviceSensorEntityDescription, ...]
 DEVICE_SENSOR_TYPES: tuple[SensiboDeviceSensorEntityDescription, ...]
+AIRQ_SENSOR_TYPES: tuple[SensiboDeviceSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensiboMotionSensor(SensiboMotionBaseEntity, SensorEntity):
     entity_description: SensiboMotionSensorEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, sensor_id: str, sensor_data: MotionSensor, entity_description: SensiboMotionSensorEntityDescription) -> None: ...
+    @property
+    def native_unit_of_measurement(self) -> Union[str, None]: ...
     @property
     def native_value(self) -> StateType: ...
 
 class SensiboDeviceSensor(SensiboDeviceBaseEntity, SensorEntity):
     entity_description: SensiboDeviceSensorEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceSensorEntityDescription) -> None: ...
+    @property
+    def native_unit_of_measurement(self) -> Union[str, None]: ...
     @property
     def native_value(self) -> Union[StateType, datetime]: ...
     @property

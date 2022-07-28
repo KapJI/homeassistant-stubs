@@ -8,21 +8,24 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.color import color_hs_to_xy as color_hs_to_xy
+from pydeconz.interfaces.groups import GroupHandler as GroupHandler
+from pydeconz.interfaces.lights import LightHandler as LightHandler
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.group import Group
-from pydeconz.models.light.light import Light
+from pydeconz.models.light.light import Light, LightAlert, LightEffect
 from typing import Any, TypeVar, TypedDict
 
 DECONZ_GROUP: str
 EFFECT_TO_DECONZ: Incomplete
 FLASH_TO_DECONZ: Incomplete
+DECONZ_TO_COLOR_MODE: Incomplete
 _L = TypeVar('_L', Group, Light)
 
 class SetStateAttributes(TypedDict):
-    alert: str
+    alert: LightAlert
     brightness: int
     color_temperature: int
-    effect: str
+    effect: LightEffect
     hue: int
     on: bool
     saturation: int
@@ -34,6 +37,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class DeconzBaseLight(DeconzDevice, LightEntity):
     TYPE: Incomplete
     _device: _L
+    api: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
     def __init__(self, device: _L, gateway: DeconzGateway) -> None: ...
@@ -63,8 +67,10 @@ class DeconzLight(DeconzBaseLight[Light]):
     def async_update_callback(self) -> None: ...
 
 class DeconzGroup(DeconzBaseLight[Group]):
+    _attr_has_entity_name: bool
     _device: Group
     _unique_id: Incomplete
+    _attr_name: Incomplete
     def __init__(self, device: Group, gateway: DeconzGateway) -> None: ...
     @property
     def unique_id(self) -> str: ...

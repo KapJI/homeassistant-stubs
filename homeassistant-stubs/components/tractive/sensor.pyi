@@ -19,7 +19,7 @@ class TractiveSensorEntityDescription(SensorEntityDescription, TractiveRequiredK
     def __init__(self, entity_class, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 class TractiveSensor(TractiveEntity, SensorEntity):
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, user_id: str, item: Trackables, description: TractiveSensorEntityDescription) -> None: ...

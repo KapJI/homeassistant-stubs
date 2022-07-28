@@ -12,7 +12,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TwenteMilieuCalendar(TwenteMilieuEntity, CalendarEntity):
-    _attr_name: str
+    _attr_has_entity_name: bool
     _attr_icon: str
     _attr_unique_id: Incomplete
     _event: Incomplete

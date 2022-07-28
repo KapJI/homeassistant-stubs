@@ -33,7 +33,9 @@ class DeconzDevice(DeconzBase, Entity):
     def available(self) -> bool: ...
 
 class DeconzSceneMixin(DeconzDevice):
+    _attr_has_entity_name: bool
     _device: PydeconzScene
+    group: Incomplete
     _attr_name: Incomplete
     _group_identifier: Incomplete
     def __init__(self, device: PydeconzScene, gateway: DeconzGateway) -> None: ...

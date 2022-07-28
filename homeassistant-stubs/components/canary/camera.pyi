@@ -13,11 +13,11 @@ from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as a
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from homeassistant.util import Throttle as Throttle
 from typing import Final
 
-MIN_TIME_BETWEEN_SESSION_RENEW: Final[Incomplete]
+FORCE_CAMERA_REFRESH_INTERVAL: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -30,6 +30,8 @@ class CanaryCamera(CoordinatorEntity[CanaryDataUpdateCoordinator], Camera):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
+    _image: Incomplete
+    _expires_at: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: CanaryDataUpdateCoordinator, location_id: str, device: Device, ffmpeg_args: str) -> None: ...
     @property
     def location(self) -> Location: ...

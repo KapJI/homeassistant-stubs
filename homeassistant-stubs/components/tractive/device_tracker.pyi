@@ -13,13 +13,14 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TractiveDeviceTracker(TractiveEntity, TrackerEntity):
+    _attr_has_entity_name: bool
     _attr_icon: str
+    _attr_name: str
     _battery_level: Incomplete
     _latitude: Incomplete
     _longitude: Incomplete
     _accuracy: Incomplete
     _source_type: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, user_id: str, item: Trackables) -> None: ...
     @property

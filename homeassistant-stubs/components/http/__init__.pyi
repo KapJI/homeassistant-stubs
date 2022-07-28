@@ -22,7 +22,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.setup import async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
 from ipaddress import IPv4Network, IPv6Network
-from typing import Final, TypedDict
+from typing import Any, Final, TypedDict
 
 DOMAIN: Final[str]
 CONF_SERVER_HOST: Final[str]
@@ -64,7 +64,7 @@ class ConfData(TypedDict):
     ip_ban_enabled: bool
     ssl_profile: str
 
-async def async_get_last_config(hass: HomeAssistant) -> Union[dict, None]: ...
+async def async_get_last_config(hass: HomeAssistant) -> Union[dict[str, Any], None]: ...
 
 class ApiConfig:
     local_ip: Incomplete

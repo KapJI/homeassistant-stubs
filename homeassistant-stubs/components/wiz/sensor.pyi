@@ -17,7 +17,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class WizSensor(WizEntity, SensorEntity):
     entity_description: SensorEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, wiz_data: WizData, name: str, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...

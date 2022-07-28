@@ -25,7 +25,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SensiboSelect(SensiboDeviceBaseEntity, SelectEntity):
     entity_description: SensiboSelectEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboSelectEntityDescription) -> None: ...
     @property
     def current_option(self) -> Union[str, None]: ...

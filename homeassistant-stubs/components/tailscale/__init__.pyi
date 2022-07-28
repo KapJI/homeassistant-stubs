@@ -15,10 +15,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class TailscaleEntity(CoordinatorEntity):
+    _attr_has_entity_name: bool
     entity_description: Incomplete
     device_id: Incomplete
-    friendly_name: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, *, coordinator: DataUpdateCoordinator, device: TailscaleDevice, description: EntityDescription) -> None: ...
     @property

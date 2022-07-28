@@ -59,7 +59,7 @@ class AirVisualGeographySensor(AirVisualEntity, SensorEntity):
     def update_from_latest_data(self) -> None: ...
 
 class AirVisualNodeProSensor(AirVisualEntity, SensorEntity):
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, entry: ConfigEntry, description: SensorEntityDescription) -> None: ...
     @property

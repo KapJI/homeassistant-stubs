@@ -9,7 +9,7 @@ class RokuEntity(CoordinatorEntity[RokuDataUpdateCoordinator]):
     _device_id: Incomplete
     entity_description: Incomplete
     _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, *, device_id: Union[str, None], coordinator: RokuDataUpdateCoordinator, description: Union[EntityDescription, None] = ...) -> None: ...
-    @property
-    def device_info(self) -> Union[DeviceInfo, None]: ...

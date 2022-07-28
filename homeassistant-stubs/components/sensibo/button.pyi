@@ -17,6 +17,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SensiboDeviceButton(SensiboDeviceBaseEntity, ButtonEntity):
     entity_description: ButtonEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: ButtonEntityDescription) -> None: ...
     async def async_press(self) -> None: ...

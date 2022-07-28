@@ -1,8 +1,5 @@
-from .models import DSMRSensorEntityDescription as DSMRSensorEntityDescription
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from homeassistant.const import Platform as Platform
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 
 DOMAIN: str
 LOGGER: Incomplete
@@ -25,4 +22,3 @@ DEVICE_NAME_GAS: str
 DSMR_VERSIONS: Incomplete
 DSMR_PROTOCOL: str
 RFXTRX_DSMR_PROTOCOL: str
-SENSORS: tuple[DSMRSensorEntityDescription, ...]

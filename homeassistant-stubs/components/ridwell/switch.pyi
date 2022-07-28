@@ -1,5 +1,5 @@
-from . import RidwellEntity as RidwellEntity
-from .const import DATA_ACCOUNT as DATA_ACCOUNT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN
+from . import RidwellData as RidwellData, RidwellEntity as RidwellEntity
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aioridwell.model import RidwellPickupEvent as RidwellPickupEvent
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription

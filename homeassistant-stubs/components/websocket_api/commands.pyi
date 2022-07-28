@@ -6,12 +6,13 @@ from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, P
 from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATONS as SIGNAL_BOOTSTRAP_INTEGRATONS
 from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError, Unauthorized as Unauthorized
+from homeassistant.generated import supported_brands as supported_brands
 from homeassistant.helpers import entity as entity, template as template
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result
 from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder, JSON_DUMP as JSON_DUMP
 from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
-from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
+from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.setup import DATA_SETUP_TIME as DATA_SETUP_TIME, async_get_loaded_integrations as async_get_loaded_integrations
 from homeassistant.util.json import find_paths_unserializable_data as find_paths_unserializable_data, format_unserializable_data as format_unserializable_data
 from typing import Any
@@ -38,3 +39,4 @@ async def handle_test_condition(hass: HomeAssistant, connection: ActiveConnectio
 async def handle_execute_script(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def handle_fire_event(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def handle_validate_config(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+async def handle_supported_brands(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...

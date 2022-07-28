@@ -4,6 +4,7 @@ from .discovery import async_start_discovery as async_start_discovery
 from .migrate import async_migrate_data as async_migrate_data
 from .services import async_cleanup_services as async_cleanup_services, async_setup_services as async_setup_services
 from .utils import _async_unifi_mac_from_hass as _async_unifi_mac_from_hass, async_get_devices as async_get_devices
+from .views import ThumbnailProxyView as ThumbnailProxyView, VideoProxyView as VideoProxyView
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP

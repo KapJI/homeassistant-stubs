@@ -11,9 +11,9 @@ from pywizlight.bulblibrary import BulbType as BulbType
 from typing import Any, Optional
 
 class WizEntity(CoordinatorEntity[DataUpdateCoordinator[Optional[float]]], Entity, metaclass=abc.ABCMeta):
+    _attr_has_entity_name: bool
     _device: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, wiz_data: WizData, name: str) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

@@ -18,10 +18,9 @@ class IntegrationAlert:
     integration: str
     filename: str
     date_updated: Union[str, None]
-    alert_url: Union[str, None]
     @property
     def issue_id(self) -> str: ...
-    def __init__(self, integration, filename, date_updated, alert_url) -> None: ...
+    def __init__(self, integration, filename, date_updated) -> None: ...
 
 class AlertUpdateCoordinator(DataUpdateCoordinator[dict[str, IntegrationAlert]]):
     ha_version: Incomplete

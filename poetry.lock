@@ -425,7 +425,7 @@ bleak = ">=0.14.3"
 
 [[package]]
 name = "homeassistant"
-version = "2022.8.0b3"
+version = "2022.8.0b4"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -1017,7 +1017,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "5cdc9a8a74f9e98193100bfd9de6fc71926d2c7a5117c764f582d249a777d9b0"
+content-hash = "934bbf046930711b857d5d403ffdf321c89718aec23aa3119b03322c56b284c9"
 
 [metadata.files]
 aiohttp = []

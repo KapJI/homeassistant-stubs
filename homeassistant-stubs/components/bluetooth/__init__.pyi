@@ -18,6 +18,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.service_info.bluetooth import BluetoothServiceInfo as BluetoothServiceInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_bluetooth as async_get_bluetooth
+from homeassistant.util.package import is_docker_env as is_docker_env
 from typing import Final
 
 _LOGGER: Incomplete

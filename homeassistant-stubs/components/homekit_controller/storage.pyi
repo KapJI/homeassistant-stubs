@@ -7,6 +7,7 @@ from typing import Any, TypedDict
 ENTITY_MAP_STORAGE_KEY: Incomplete
 ENTITY_MAP_STORAGE_VERSION: int
 ENTITY_MAP_SAVE_DELAY: int
+_LOGGER: Incomplete
 
 class Pairing(TypedDict):
     config_num: int

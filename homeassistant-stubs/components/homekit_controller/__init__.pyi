@@ -1,7 +1,7 @@
 from .config_flow import normalize_hkid as normalize_hkid
 from .connection import HKDevice as HKDevice, valid_serial_number as valid_serial_number
 from .const import ENTITY_MAP as ENTITY_MAP, KNOWN_DEVICES as KNOWN_DEVICES, TRIGGERS as TRIGGERS
-from .storage import async_get_entity_storage as async_get_entity_storage
+from .storage import EntityMapStorage as EntityMapStorage, async_get_entity_storage as async_get_entity_storage
 from .utils import async_get_controller as async_get_controller, folded_name as folded_name
 from _typeshed import Incomplete
 from aiohomekit.model import Accessory as Accessory

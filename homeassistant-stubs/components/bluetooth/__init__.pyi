@@ -1,3 +1,4 @@
+import time
 from . import models as models
 from .const import CONF_ADAPTER as CONF_ADAPTER, DEFAULT_ADAPTERS as DEFAULT_ADAPTERS, DOMAIN as DOMAIN
 from .match import ADDRESS as ADDRESS, BluetoothCallbackMatcher as BluetoothCallbackMatcher, IntegrationMatcher as IntegrationMatcher, ble_device_matches as ble_device_matches
@@ -8,6 +9,7 @@ from _typeshed import Incomplete
 from bleak.backends.device import BLEDevice as BLEDevice
 from bleak.backends.scanner import AdvertisementData as AdvertisementData
 from collections.abc import Callable
+from datetime import datetime
 from enum import Enum
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -25,6 +27,9 @@ _LOGGER: Incomplete
 UNAVAILABLE_TRACK_SECONDS: Final[Incomplete]
 START_TIMEOUT: int
 SOURCE_LOCAL: Final[str]
+SCANNER_WATCHDOG_TIMEOUT: Final[Incomplete]
+SCANNER_WATCHDOG_INTERVAL: Final[Incomplete]
+MONOTONIC_TIME = time.monotonic
 
 class BluetoothServiceInfoBleak(BluetoothServiceInfo):
     device: BLEDevice
@@ -59,16 +64,24 @@ class BluetoothManager:
     hass: Incomplete
     _integration_matcher: Incomplete
     scanner: Incomplete
+    start_stop_lock: Incomplete
     _cancel_device_detected: Incomplete
     _cancel_unavailable_tracking: Incomplete
+    _cancel_stop: Incomplete
+    _cancel_watchdog: Incomplete
     _unavailable_callbacks: Incomplete
     _callbacks: Incomplete
+    _last_detection: float
     _reloading: bool
+    _adapter: Incomplete
+    _scanning_mode: Incomplete
     def __init__(self, hass: HomeAssistant, integration_matcher: IntegrationMatcher) -> None: ...
     def async_setup(self) -> None: ...
     def async_get_scanner(self) -> HaBleakScannerWrapper: ...
     def async_start_reload(self) -> None: ...
     async def async_start(self, scanning_mode: BluetoothScanningMode, adapter: Union[str, None]) -> None: ...
+    def _async_setup_scanner_watchdog(self) -> None: ...
+    async def _async_scanner_watchdog(self, now: datetime) -> None: ...
     def async_setup_unavailable_tracking(self) -> None: ...
     def _device_detected(self, device: BLEDevice, advertisement_data: AdvertisementData) -> None: ...
     def async_track_unavailable(self, callback: Callable[[str], None], address: str) -> Callable[[], None]: ...
@@ -76,4 +89,5 @@ class BluetoothManager:
     def async_ble_device_from_address(self, address: str) -> Union[BLEDevice, None]: ...
     def async_address_present(self, address: str) -> bool: ...
     def async_discovered_service_info(self) -> list[BluetoothServiceInfoBleak]: ...
-    async def async_stop(self, event: Union[Event, None] = ...) -> None: ...
+    async def _async_hass_stopping(self, event: Event) -> None: ...
+    async def async_stop(self) -> None: ...

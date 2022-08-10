@@ -11,7 +11,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 PLATFORMS: Incomplete
 ATTR_SYSTEM_MODE: str
 ATTR_SYSTEM_NAME: str
-DEFAULT_ATTRIBUTION: str
 DEFAULT_SCAN_INTERVAL: Incomplete
 CONFIG_SCHEMA: Incomplete
 

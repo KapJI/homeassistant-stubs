@@ -7,7 +7,7 @@ from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import LENGTH_KILOMETERS as LENGTH_KILOMETERS, LENGTH_MILES as LENGTH_MILES, PERCENTAGE as PERCENTAGE, VOLUME_GALLONS as VOLUME_GALLONS, VOLUME_LITERS as VOLUME_LITERS
+from homeassistant.const import LENGTH as LENGTH, PERCENTAGE as PERCENTAGE, VOLUME as VOLUME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -17,10 +17,9 @@ _LOGGER: Incomplete
 
 class BMWSensorEntityDescription(SensorEntityDescription):
     key_class: Union[str, None]
-    unit_metric: Union[str, None]
-    unit_imperial: Union[str, None]
+    unit_type: Union[str, None]
     value: Callable
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, key_class, unit_metric, unit_imperial, value) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, key_class, unit_type, value) -> None: ...
 
 def convert_and_round(state: ValueWithUnit, converter: Callable[[Union[float, None], str], float], precision: int) -> Union[float, None]: ...
 

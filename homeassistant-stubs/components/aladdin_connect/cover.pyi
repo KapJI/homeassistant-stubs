@@ -27,6 +27,7 @@ class AladdinDevice(CoverEntity):
     _number: Incomplete
     _name: Incomplete
     _serial: Incomplete
+    _model: Incomplete
     _attr_unique_id: Incomplete
     _attr_has_entity_name: bool
     def __init__(self, acc: AladdinConnectClient, device: DoorDevice, entry: ConfigEntry) -> None: ...

@@ -30,7 +30,7 @@ class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMi
     def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, suffix) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
-SENSOR_DESCRIPTIONS: Incomplete
+COMMON_SENSOR_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -53,6 +53,6 @@ class DeconzBatteryTracker:
     sensor: Incomplete
     gateway: Incomplete
     async_add_entities: Incomplete
-    unsub: Incomplete
+    unsubscribe: Incomplete
     def __init__(self, sensor_id: str, gateway: DeconzGateway, async_add_entities: AddEntitiesCallback) -> None: ...
     def async_update_callback(self) -> None: ...

@@ -6,3 +6,4 @@ class DoorDevice(TypedDict):
     name: str
     status: str
     serial: str
+    model: str

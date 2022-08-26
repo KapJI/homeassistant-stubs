@@ -27,9 +27,11 @@ class AladdinConnectSensor(SensorEntity):
     _device_id: Incomplete
     _number: Incomplete
     _name: Incomplete
+    _model: Incomplete
     _acc: Incomplete
     _attr_unique_id: Incomplete
     _attr_has_entity_name: bool
+    _attr_entity_registry_enabled_default: bool
     def __init__(self, acc: AladdinConnectClient, device: DoorDevice, description: AccSensorEntityDescription) -> None: ...
     @property
     def device_info(self) -> Union[DeviceInfo, None]: ...

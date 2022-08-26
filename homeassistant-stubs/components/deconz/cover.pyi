@@ -18,6 +18,7 @@ class DeconzCover(DeconzDevice, CoverEntity):
     _device: Cover
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
+    legacy_mode: Incomplete
     def __init__(self, cover_id: str, gateway: DeconzGateway) -> None: ...
     @property
     def current_cover_position(self) -> int: ...

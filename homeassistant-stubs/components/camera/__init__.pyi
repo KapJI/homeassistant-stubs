@@ -11,7 +11,7 @@ from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS, Stream as Stream, create_stream as create_stream
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE

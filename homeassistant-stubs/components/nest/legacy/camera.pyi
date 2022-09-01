@@ -11,6 +11,7 @@ def setup_platform(hass, config, add_entities, discovery_info: Incomplete | None
 async def async_setup_legacy_entry(hass, entry, async_add_entities) -> None: ...
 
 class NestCamera(Camera):
+    _attr_should_poll: bool
     _attr_supported_features: Incomplete
     structure: Incomplete
     device: Incomplete
@@ -29,8 +30,6 @@ class NestCamera(Camera):
     def unique_id(self): ...
     @property
     def device_info(self) -> DeviceInfo: ...
-    @property
-    def should_poll(self): ...
     @property
     def is_recording(self): ...
     @property

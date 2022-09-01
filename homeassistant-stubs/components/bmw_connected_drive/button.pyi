@@ -25,7 +25,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class BMWButton(BMWBaseEntity, ButtonEntity):
     entity_description: BMWButtonEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: MyBMWVehicle, description: BMWButtonEntityDescription) -> None: ...
     async def async_press(self) -> None: ...

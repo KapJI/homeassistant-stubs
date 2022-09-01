@@ -15,6 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ISYThermostatEntity(ISYNodeEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
+    _attr_precision: Incomplete
     _attr_supported_features: Incomplete
     _uom: Incomplete
     _hvac_action: Incomplete
@@ -25,8 +26,6 @@ class ISYThermostatEntity(ISYNodeEntity, ClimateEntity):
     _target_temp_low: int
     _target_temp_high: int
     def __init__(self, node: Node) -> None: ...
-    @property
-    def precision(self) -> float: ...
     @property
     def temperature_unit(self) -> str: ...
     @property

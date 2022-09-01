@@ -90,6 +90,7 @@ class Entity(ABC):
     _attr_assumed_state: bool
     _attr_attribution: Union[str, None]
     _attr_available: bool
+    _attr_capability_attributes: Union[Mapping[str, Any], None]
     _attr_context_recent_time: timedelta
     _attr_device_class: Union[str, None]
     _attr_device_info: Union[DeviceInfo, None]

@@ -6,16 +6,15 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.models.event import EventType as EventType
-from pydeconz.models.light.cover import Cover as Cover
+from pydeconz.models.light.cover import Cover
 from typing import Any
 
 DECONZ_TYPE_TO_DEVICE_CLASS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzCover(DeconzDevice, CoverEntity):
+class DeconzCover(DeconzDevice[Cover], CoverEntity):
     TYPE: Incomplete
-    _device: Cover
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     legacy_mode: Incomplete

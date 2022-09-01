@@ -2,7 +2,7 @@ from . import Trackables as Trackables
 from .const import CLIENT as CLIENT, DOMAIN as DOMAIN, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, TRACKABLES as TRACKABLES, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_POSITION_UPDATED as TRACKER_POSITION_UPDATED
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import SOURCE_TYPE_BLUETOOTH as SOURCE_TYPE_BLUETOOTH, SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
+from homeassistant.components.device_tracker import SourceType as SourceType
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -24,7 +24,7 @@ class TractiveDeviceTracker(TractiveEntity, TrackerEntity):
     _attr_unique_id: Incomplete
     def __init__(self, user_id: str, item: Trackables) -> None: ...
     @property
-    def source_type(self) -> str: ...
+    def source_type(self) -> SourceType: ...
     @property
     def latitude(self) -> float: ...
     @property

@@ -13,13 +13,13 @@ from pydeconz.interfaces.lights import LightHandler as LightHandler
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.group import Group
 from pydeconz.models.light.light import Light, LightAlert, LightEffect
-from typing import Any, TypeVar, TypedDict
+from typing import Any, TypeVar, TypedDict, Union
 
 DECONZ_GROUP: str
 EFFECT_TO_DECONZ: Incomplete
 FLASH_TO_DECONZ: Incomplete
 DECONZ_TO_COLOR_MODE: Incomplete
-_L = TypeVar('_L', Group, Light)
+_LightDeviceT = TypeVar('_LightDeviceT', bound=Union[Group, Light])
 
 class SetStateAttributes(TypedDict):
     alert: LightAlert
@@ -34,13 +34,12 @@ class SetStateAttributes(TypedDict):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzBaseLight(DeconzDevice, LightEntity):
+class DeconzBaseLight(DeconzDevice[_LightDeviceT], LightEntity):
     TYPE: Incomplete
-    _device: _L
     api: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
-    def __init__(self, device: _L, gateway: DeconzGateway) -> None: ...
+    def __init__(self, device: _LightDeviceT, gateway: DeconzGateway) -> None: ...
     @property
     def color_mode(self) -> Union[str, None]: ...
     @property
@@ -59,7 +58,6 @@ class DeconzBaseLight(DeconzDevice, LightEntity):
     def extra_state_attributes(self) -> dict[str, bool]: ...
 
 class DeconzLight(DeconzBaseLight[Light]):
-    _device: Light
     @property
     def max_mireds(self) -> int: ...
     @property
@@ -68,7 +66,6 @@ class DeconzLight(DeconzBaseLight[Light]):
 
 class DeconzGroup(DeconzBaseLight[Group]):
     _attr_has_entity_name: bool
-    _device: Group
     _unique_id: Incomplete
     _attr_name: Incomplete
     def __init__(self, device: Group, gateway: DeconzGateway) -> None: ...

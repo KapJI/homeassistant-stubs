@@ -23,14 +23,12 @@ ENTITY_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzNumber(DeconzDevice, NumberEntity):
+class DeconzNumber(DeconzDevice[Presence], NumberEntity):
     TYPE: Incomplete
-    _device: Presence
     entity_description: Incomplete
-    _attr_name: Incomplete
-    _update_keys: Incomplete
+    _update_key: Incomplete
+    _name_suffix: Incomplete
     def __init__(self, device: Presence, gateway: DeconzGateway, description: DeconzNumberDescription) -> None: ...
-    def async_update_callback(self) -> None: ...
     @property
     def native_value(self) -> Union[float, None]: ...
     async def async_set_native_value(self, value: float) -> None: ...

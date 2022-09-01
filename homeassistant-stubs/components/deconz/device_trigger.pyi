@@ -1,13 +1,13 @@
 from . import DOMAIN as DOMAIN
-from .deconz_event import CONF_DECONZ_EVENT as CONF_DECONZ_EVENT, CONF_GESTURE as CONF_GESTURE, DeconzAlarmEvent as DeconzAlarmEvent, DeconzEvent as DeconzEvent
+from .deconz_event import CONF_DECONZ_EVENT as CONF_DECONZ_EVENT, CONF_GESTURE as CONF_GESTURE, DeconzAlarmEvent as DeconzAlarmEvent, DeconzEvent as DeconzEvent, DeconzPresenceEvent as DeconzPresenceEvent
 from .gateway import DeconzGateway as DeconzGateway
 from _typeshed import Incomplete
-from homeassistant.components.automation import AutomationActionType as AutomationActionType, AutomationTriggerInfo as AutomationTriggerInfo
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_EVENT as CONF_EVENT, CONF_PLATFORM as CONF_PLATFORM, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 CONF_SUBTYPE: str
@@ -151,7 +151,7 @@ UBISYS_CONTROL_UNIT_C4: Incomplete
 REMOTES: Incomplete
 TRIGGER_SCHEMA: Incomplete
 
-def _get_deconz_event_from_device(hass: HomeAssistant, device: dr.DeviceEntry) -> Union[DeconzAlarmEvent, DeconzEvent]: ...
+def _get_deconz_event_from_device(hass: HomeAssistant, device: dr.DeviceEntry) -> Union[DeconzAlarmEvent, DeconzEvent, DeconzPresenceEvent]: ...
 async def async_validate_trigger_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
-async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: AutomationActionType, automation_info: AutomationTriggerInfo) -> CALLBACK_TYPE: ...
+async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: TriggerActionType, trigger_info: TriggerInfo) -> CALLBACK_TYPE: ...
 async def async_get_triggers(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...

@@ -1,9 +1,10 @@
 import abc
+import re
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Iterable
 from homeassistant import config_entries as config_entries
-from homeassistant.components.device_tracker.const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SOURCE_TYPE_ROUTER as SOURCE_TYPE_ROUTER
+from homeassistant.components.device_tracker.const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
@@ -87,3 +88,5 @@ def _dhcp_options_as_dict(dhcp_options: Iterable[tuple[str, Union[int, bytes, No
 def _format_mac(mac_address: str) -> str: ...
 def _verify_l2socket_setup(cap_filter: str) -> None: ...
 def _verify_working_pcap(cap_filter: str) -> None: ...
+def _compile_fnmatch(pattern: str) -> re.Pattern: ...
+def _memorized_fnmatch(name: str, pattern: str) -> bool: ...

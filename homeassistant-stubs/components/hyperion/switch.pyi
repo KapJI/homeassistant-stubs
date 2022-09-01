@@ -19,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class HyperionComponentSwitch(SwitchEntity):
     _attr_entity_category: Incomplete
+    _attr_should_poll: bool
     _unique_id: Incomplete
     _device_id: Incomplete
     _name: Incomplete
@@ -27,8 +28,6 @@ class HyperionComponentSwitch(SwitchEntity):
     _client: Incomplete
     _client_callbacks: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, component_name: str, hyperion_client: client.HyperionClient) -> None: ...
-    @property
-    def should_poll(self) -> bool: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     @property

@@ -12,6 +12,7 @@ T = TypeVar('T', bound=Union[ProtectAdoptableDeviceModel, NVR])
 class PermRequired(int, Enum):
     NO_WRITE: int
     WRITE: int
+    DELETE: int
 
 class ProtectRequiredKeysMixin(EntityDescription):
     ufp_required_field: Union[str, None]

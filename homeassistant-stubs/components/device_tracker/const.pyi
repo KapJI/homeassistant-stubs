@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from homeassistant.backports.enum import StrEnum as StrEnum
 from typing import Final
 
 LOGGER: Final[Incomplete]
@@ -10,6 +11,13 @@ SOURCE_TYPE_GPS: Final[str]
 SOURCE_TYPE_ROUTER: Final[str]
 SOURCE_TYPE_BLUETOOTH: Final[str]
 SOURCE_TYPE_BLUETOOTH_LE: Final[str]
+
+class SourceType(StrEnum):
+    GPS: str
+    ROUTER: str
+    BLUETOOTH: str
+    BLUETOOTH_LE: str
+
 CONF_SCAN_INTERVAL: Final[str]
 SCAN_INTERVAL: Final[Incomplete]
 CONF_TRACK_NEW: Final[str]

@@ -1,7 +1,7 @@
 from . import BlockDeviceWrapper as BlockDeviceWrapper
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS
 from .entity import BlockEntityDescription as BlockEntityDescription, RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
-from .utils import get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, temperature_unit as temperature_unit
+from .utils import get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, is_rpc_device_externally_powered as is_rpc_device_externally_powered, temperature_unit as temperature_unit
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Mapping

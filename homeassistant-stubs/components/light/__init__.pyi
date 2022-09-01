@@ -28,7 +28,6 @@ SUPPORT_EFFECT: int
 SUPPORT_FLASH: int
 SUPPORT_COLOR: int
 SUPPORT_TRANSITION: int
-SUPPORT_WHITE_VALUE: int
 ATTR_COLOR_MODE: str
 ATTR_SUPPORTED_COLOR_MODES: str
 
@@ -76,7 +75,6 @@ ATTR_KELVIN: str
 ATTR_MIN_MIREDS: str
 ATTR_MAX_MIREDS: str
 ATTR_COLOR_NAME: str
-ATTR_WHITE_VALUE: str
 ATTR_WHITE: str
 ATTR_BRIGHTNESS: str
 ATTR_BRIGHTNESS_PCT: str
@@ -177,8 +175,6 @@ class LightEntity(ToggleEntity):
     def min_mireds(self) -> int: ...
     @property
     def max_mireds(self) -> int: ...
-    @property
-    def white_value(self) -> Union[int, None]: ...
     @property
     def effect_list(self) -> Union[list[str], None]: ...
     @property

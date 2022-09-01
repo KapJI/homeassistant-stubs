@@ -40,6 +40,7 @@ def create_elk_entities(elk_data: dict[str, Any], elk_elements: list[Element], e
 
 class ElkEntity(Entity):
     _attr_has_entity_name: bool
+    _attr_should_poll: bool
     _elk: Incomplete
     _element: Incomplete
     _mac: Incomplete
@@ -50,8 +51,6 @@ class ElkEntity(Entity):
     def __init__(self, element: Element, elk: Elk, elk_data: dict[str, Any]) -> None: ...
     @property
     def unique_id(self) -> str: ...
-    @property
-    def should_poll(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property

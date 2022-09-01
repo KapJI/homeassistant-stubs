@@ -33,6 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class HyperionBaseLight(LightEntity):
     _attr_color_mode: Incomplete
+    _attr_should_poll: bool
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
     _unique_id: Incomplete
@@ -52,8 +53,6 @@ class HyperionBaseLight(LightEntity):
     def _compute_name(self, instance_name: str) -> str: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
-    @property
-    def should_poll(self) -> bool: ...
     @property
     def name(self) -> str: ...
     @property

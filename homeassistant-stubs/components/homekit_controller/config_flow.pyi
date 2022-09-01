@@ -1,4 +1,3 @@
-from .connection import HKDevice as HKDevice
 from .const import DOMAIN as DOMAIN, KNOWN_DEVICES as KNOWN_DEVICES
 from .storage import async_get_entity_storage as async_get_entity_storage
 from .utils import async_get_controller as async_get_controller

@@ -1,3 +1,4 @@
+from .. import recorder as recorder
 from .db_schema import RecorderRuns as RecorderRuns, StateAttributes as StateAttributes, States as States
 from .filters import Filters as Filters
 from .models import LazyState as LazyState, process_datetime_to_timestamp as process_datetime_to_timestamp, process_timestamp as process_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat, row_to_compressed_state as row_to_compressed_state
@@ -5,7 +6,6 @@ from .util import execute_stmt_lambda_element as execute_stmt_lambda_element, se
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, MutableMapping
 from datetime import datetime
-from homeassistant.components import recorder as recorder
 from homeassistant.components.websocket_api.const import COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, split_entity_id as split_entity_id
 from sqlalchemy import Column as Column

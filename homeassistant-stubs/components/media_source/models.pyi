@@ -12,7 +12,6 @@ class PlayMedia:
     def __init__(self, url, mime_type) -> None: ...
 
 class BrowseMediaSource(BrowseMedia):
-    children: Union[list[Union[BrowseMediaSource, BrowseMedia]], None]
     domain: Incomplete
     identifier: Incomplete
     def __init__(self, *, domain: Union[str, None], identifier: Union[str, None], **kwargs: Any) -> None: ...

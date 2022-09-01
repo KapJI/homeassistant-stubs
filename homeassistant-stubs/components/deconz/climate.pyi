@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSI
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.models.event import EventType as EventType
-from pydeconz.models.sensor.thermostat import Thermostat as Thermostat
+from pydeconz.models.sensor.thermostat import Thermostat
 from typing import Any
 
 DECONZ_FAN_SMART: str
@@ -25,9 +25,8 @@ DECONZ_TO_PRESET_MODE: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzThermostat(DeconzDevice, ClimateEntity):
+class DeconzThermostat(DeconzDevice[Thermostat], ClimateEntity):
     TYPE: Incomplete
-    _device: Thermostat
     _attr_temperature_unit: Incomplete
     _attr_hvac_modes: Incomplete
     _deconz_to_hvac_mode: Incomplete

@@ -29,7 +29,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class BMWSensor(BMWBaseEntity, SensorEntity):
     entity_description: BMWSensorEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: MyBMWVehicle, description: BMWSensorEntityDescription, unit_system: UnitSystem) -> None: ...

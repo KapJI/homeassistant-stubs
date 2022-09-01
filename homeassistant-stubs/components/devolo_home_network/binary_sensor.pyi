@@ -3,7 +3,7 @@ from .entity import DevoloEntity as DevoloEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from devolo_plc_api.device import Device as Device
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DEVICE_CLASS_PLUG as DEVICE_CLASS_PLUG
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory

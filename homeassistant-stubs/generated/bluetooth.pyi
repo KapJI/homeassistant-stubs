@@ -1,1 +1,1 @@
-BLUETOOTH: list[dict[str, Union[str, int, list[int]]]]
+BLUETOOTH: list[dict[str, Union[bool, str, int, list[int]]]]

@@ -1,5 +1,5 @@
 import asyncio
-from .const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, DOMAIN as DOMAIN, LOGGER as LOGGER, SourceType as SourceType
 from _typeshed import Incomplete
 from homeassistant.components import zone as zone
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -23,7 +23,7 @@ class BaseTrackerEntity(Entity):
     @property
     def battery_level(self) -> Union[int, None]: ...
     @property
-    def source_type(self) -> str: ...
+    def source_type(self) -> Union[SourceType, str]: ...
     @property
     def state_attributes(self) -> dict[str, StateType]: ...
 

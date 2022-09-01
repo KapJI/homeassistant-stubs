@@ -20,7 +20,6 @@ async def update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 class AccuWeatherDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     location_key: Incomplete
     forecast: Incomplete
-    is_metric: Incomplete
     accuweather: Incomplete
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, session: ClientSession, api_key: str, location_key: str, forecast: bool, name: str) -> None: ...

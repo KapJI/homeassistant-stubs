@@ -1,5 +1,4 @@
 from .const import DOMAIN as DOMAIN
-from .issue_handler import async_ignore_issue as async_ignore_issue
 from aiohttp import web as web
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.auth.permissions.const import POLICY_EDIT as POLICY_EDIT
@@ -8,6 +7,7 @@ from homeassistant.components.http.data_validator import RequestDataValidator as
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import Unauthorized as Unauthorized
 from homeassistant.helpers.data_entry_flow import FlowManagerIndexView as FlowManagerIndexView, FlowManagerResourceView as FlowManagerResourceView
+from homeassistant.helpers.issue_registry import async_ignore_issue as async_ignore_issue
 from typing import Any
 
 def async_setup(hass: HomeAssistant) -> None: ...

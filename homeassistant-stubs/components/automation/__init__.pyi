@@ -3,25 +3,26 @@ from .const import CONF_ACTION as CONF_ACTION, CONF_INITIAL_STATE as CONF_INITIA
 from .helpers import async_get_blueprints as async_get_blueprints
 from .trace import trace_automation as trace_automation
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable
+from collections.abc import Callable as Callable
 from homeassistant.components import blueprint as blueprint
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ALIAS as CONF_ALIAS, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_PLATFORM as CONF_PLATFORM, CONF_VARIABLES as CONF_VARIABLES, CONF_ZONE as CONF_ZONE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import Context as Context, CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
-from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
+from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError
 from homeassistant.helpers import condition as condition, extract_domain_configs as extract_domain_configs
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_MAX, CONF_MAX as CONF_MAX, CONF_MAX_EXCEEDED as CONF_MAX_EXCEEDED, Script as Script, script_stack_cv as script_stack_cv
 from homeassistant.helpers.script_variables import ScriptVariables as ScriptVariables
 from homeassistant.helpers.service import ReloadServiceHelper as ReloadServiceHelper, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.trace import TraceElement as TraceElement, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_get as trace_get, trace_path as trace_path
-from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers
-from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerData as TriggerData, TriggerInfo as TriggerInfo, async_initialize_triggers as async_initialize_triggers
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
-from typing import Any, TypedDict
+from typing import Any
 
 ENTITY_ID_FORMAT: Incomplete
 CONF_SKIP_CONDITION: str
@@ -34,18 +35,9 @@ ATTR_SOURCE: str
 ATTR_VARIABLES: str
 SERVICE_TRIGGER: str
 _LOGGER: Incomplete
-AutomationActionType = Callable[[HomeAssistant, TemplateVarsType], Awaitable[None]]
-
-class AutomationTriggerData(TypedDict):
-    id: str
-    idx: str
-
-class AutomationTriggerInfo(TypedDict):
-    domain: str
-    name: str
-    home_assistant_start: bool
-    variables: TemplateVarsType
-    trigger_data: AutomationTriggerData
+AutomationActionType = TriggerActionType
+AutomationTriggerData = TriggerData
+AutomationTriggerInfo = TriggerInfo
 
 def is_on(hass, entity_id): ...
 def automations_with_entity(hass: HomeAssistant, entity_id: str) -> list[str]: ...
@@ -88,7 +80,7 @@ class AutomationEntity(ToggleEntity, RestoreEntity):
     async def async_added_to_hass(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    async def async_trigger(self, run_variables, context: Incomplete | None = ..., skip_condition: bool = ...) -> None: ...
+    async def async_trigger(self, run_variables: dict[str, Any], context: Union[Context, None] = ..., skip_condition: bool = ...) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_enable(self) -> None: ...
     async def async_disable(self, stop_actions=...) -> None: ...

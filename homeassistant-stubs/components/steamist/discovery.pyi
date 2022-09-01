@@ -5,6 +5,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.const import CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.util.network import is_ip_address as is_ip_address
 
 _LOGGER: Incomplete

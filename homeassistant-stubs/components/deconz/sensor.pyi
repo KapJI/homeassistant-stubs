@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from pydeconz.interfaces.sensors import SensorResources as SensorResources
+from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
 
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
@@ -32,18 +32,17 @@ class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMi
 ENTITY_DESCRIPTIONS: Incomplete
 COMMON_SENSOR_DESCRIPTIONS: Incomplete
 
+def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: DeconzSensorDescription) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzSensor(DeconzDevice, SensorEntity):
+class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
     TYPE: Incomplete
-    _device: SensorResources
     entity_description: DeconzSensorDescription
-    _attr_name: Incomplete
-    _update_keys: Incomplete
+    _update_key: Incomplete
+    _name_suffix: Incomplete
     def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzSensorDescription) -> None: ...
     @property
     def unique_id(self) -> str: ...
-    def async_update_callback(self) -> None: ...
     @property
     def native_value(self) -> Union[StateType, datetime]: ...
     @property

@@ -1,4 +1,5 @@
-from . import HomeKitEntity as HomeKitEntity, KNOWN_DEVICES as KNOWN_DEVICES
+from . import KNOWN_DEVICES as KNOWN_DEVICES
+from .entity import HomeKitEntity as HomeKitEntity
 from _typeshed import Incomplete
 from aiohomekit.model.services import Service as Service
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature

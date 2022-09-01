@@ -8,12 +8,13 @@ class BasePassiveBluetoothCoordinator:
     logger: Incomplete
     name: Incomplete
     address: Incomplete
+    connectable: Incomplete
     _cancel_track_unavailable: Incomplete
     _cancel_bluetooth_advertisements: Incomplete
     _present: bool
     mode: Incomplete
     last_seen: float
-    def __init__(self, hass: HomeAssistant, logger: logging.Logger, address: str, mode: BluetoothScanningMode) -> None: ...
+    def __init__(self, hass: HomeAssistant, logger: logging.Logger, address: str, mode: BluetoothScanningMode, connectable: bool) -> None: ...
     def async_start(self) -> CALLBACK_TYPE: ...
     @property
     def available(self) -> bool: ...

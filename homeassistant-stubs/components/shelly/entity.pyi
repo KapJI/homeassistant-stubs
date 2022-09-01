@@ -35,7 +35,7 @@ class RpcEntityRequiredKeysMixin:
 class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     value: Union[Callable[[Any, Any], Any], None]
     available: Union[Callable[[dict], bool], None]
-    removal_condition: Union[Callable[[dict, str], bool], None]
+    removal_condition: Union[Callable[[dict, dict, str], bool], None]
     extra_state_attributes: Union[Callable[[dict, dict], Union[dict, None]], None]
     use_polling_wrapper: bool
     supported: Callable

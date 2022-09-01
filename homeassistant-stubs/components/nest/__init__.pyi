@@ -16,12 +16,12 @@ from homeassistant.components.application_credentials import ClientCredential as
 from homeassistant.components.camera import Image as Image, img_util as img_util
 from homeassistant.components.http.const import KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
-from homeassistant.components.repairs import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, CONF_SENSORS as CONF_SENSORS, CONF_STRUCTURE as CONF_STRUCTURE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from http import HTTPStatus
 

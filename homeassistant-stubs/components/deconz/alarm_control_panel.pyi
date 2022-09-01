@@ -7,16 +7,16 @@ from homeassistant.const import STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.models.event import EventType as EventType
-from pydeconz.models.sensor.ancillary_control import AncillaryControl as AncillaryControl
+from pydeconz.models.sensor.ancillary_control import AncillaryControl
 
 DECONZ_TO_ALARM_STATE: Incomplete
 
 def get_alarm_system_id_for_unique_id(gateway: DeconzGateway, unique_id: str) -> Union[str, None]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzAlarmControlPanel(DeconzDevice, AlarmControlPanelEntity):
+class DeconzAlarmControlPanel(DeconzDevice[AncillaryControl], AlarmControlPanelEntity):
+    _update_key: str
     TYPE: Incomplete
-    _device: AncillaryControl
     _attr_code_format: Incomplete
     _attr_supported_features: Incomplete
     alarm_system_id: Incomplete

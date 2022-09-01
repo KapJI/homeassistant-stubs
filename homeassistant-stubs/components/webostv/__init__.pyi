@@ -2,12 +2,12 @@ from .const import ATTR_BUTTON as ATTR_BUTTON, ATTR_CONFIG_ENTRY_ID as ATTR_CONF
 from _typeshed import Incomplete
 from aiowebostv import WebOsClient
 from collections.abc import Callable as Callable
-from homeassistant.components.automation import AutomationActionType as AutomationActionType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Context as Context, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
@@ -29,7 +29,7 @@ class PluggableAction:
     _actions: Incomplete
     def __init__(self) -> None: ...
     def __bool__(self) -> bool: ...
-    def async_attach(self, action: AutomationActionType, variables: dict[str, Any]) -> Callable[[], None]: ...
+    def async_attach(self, action: TriggerActionType, variables: dict[str, Any]) -> Callable[[], None]: ...
     def async_run(self, hass: HomeAssistant, context: Union[Context, None] = ...) -> None: ...
 
 class WebOsClientWrapper:

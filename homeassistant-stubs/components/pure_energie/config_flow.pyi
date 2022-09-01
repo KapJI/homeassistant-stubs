@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.selector import TextSelector as TextSelector
 from typing import Any
 
 class PureEnergieFlowHandler(ConfigFlow):

@@ -1,4 +1,4 @@
-from .const import CONF_BAUD_RATE as CONF_BAUD_RATE, CONF_DEVICE as CONF_DEVICE, CONF_GATEWAY_TYPE as CONF_GATEWAY_TYPE, CONF_GATEWAY_TYPE_ALL as CONF_GATEWAY_TYPE_ALL, CONF_GATEWAY_TYPE_MQTT as CONF_GATEWAY_TYPE_MQTT, CONF_GATEWAY_TYPE_SERIAL as CONF_GATEWAY_TYPE_SERIAL, CONF_GATEWAY_TYPE_TCP as CONF_GATEWAY_TYPE_TCP, CONF_PERSISTENCE_FILE as CONF_PERSISTENCE_FILE, CONF_RETAIN as CONF_RETAIN, CONF_TCP_PORT as CONF_TCP_PORT, CONF_TOPIC_IN_PREFIX as CONF_TOPIC_IN_PREFIX, CONF_TOPIC_OUT_PREFIX as CONF_TOPIC_OUT_PREFIX, CONF_VERSION as CONF_VERSION, ConfGatewayType as ConfGatewayType, DOMAIN as DOMAIN
+from .const import CONF_BAUD_RATE as CONF_BAUD_RATE, CONF_DEVICE as CONF_DEVICE, CONF_GATEWAY_TYPE as CONF_GATEWAY_TYPE, CONF_GATEWAY_TYPE_MQTT as CONF_GATEWAY_TYPE_MQTT, CONF_GATEWAY_TYPE_SERIAL as CONF_GATEWAY_TYPE_SERIAL, CONF_GATEWAY_TYPE_TCP as CONF_GATEWAY_TYPE_TCP, CONF_PERSISTENCE_FILE as CONF_PERSISTENCE_FILE, CONF_RETAIN as CONF_RETAIN, CONF_TCP_PORT as CONF_TCP_PORT, CONF_TOPIC_IN_PREFIX as CONF_TOPIC_IN_PREFIX, CONF_TOPIC_OUT_PREFIX as CONF_TOPIC_OUT_PREFIX, CONF_VERSION as CONF_VERSION, ConfGatewayType as ConfGatewayType, DOMAIN as DOMAIN
 from .gateway import MQTT_COMPONENT as MQTT_COMPONENT, is_serial_port as is_serial_port, is_socket_address as is_socket_address, try_connect as try_connect
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -6,11 +6,13 @@ from homeassistant.components.mqtt import valid_publish_topic as valid_publish_t
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers import selector as selector
 from typing import Any
 
 DEFAULT_BAUD_RATE: int
 DEFAULT_TCP_PORT: int
 DEFAULT_VERSION: str
+_PORT_SELECTOR: Incomplete
 
 def is_persistence_file(value: str) -> str: ...
 def _get_schema_common(user_input: dict[str, str]) -> dict: ...

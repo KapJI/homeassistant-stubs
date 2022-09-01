@@ -1,19 +1,18 @@
 from .const import DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN
 from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
+from .entity import LIFXEntity as LIFXEntity
 from .manager import LIFXManager as LIFXManager, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP
 from .util import convert_16_to_8 as convert_16_to_8, convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk, lifx_features as lifx_features, merge_hsbk as merge_hsbk
 from _typeshed import Incomplete
 from homeassistant import util as util
 from homeassistant.components.light import ATTR_EFFECT as ATTR_EFFECT, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LIGHT_TURN_ON_SCHEMA as LIGHT_TURN_ON_SCHEMA, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 SERVICE_LIFX_SET_STATE: str
@@ -29,10 +28,9 @@ HSBK_KELVIN: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class LIFXLight(CoordinatorEntity[LIFXUpdateCoordinator], LightEntity):
+class LIFXLight(LIFXEntity, LightEntity):
     _attr_supported_features: Incomplete
     mac_addr: Incomplete
-    bulb: Incomplete
     manager: Incomplete
     effects_conductor: Incomplete
     postponed_update: Incomplete
@@ -41,7 +39,6 @@ class LIFXLight(CoordinatorEntity[LIFXUpdateCoordinator], LightEntity):
     _attr_name: Incomplete
     _attr_min_mireds: Incomplete
     _attr_max_mireds: Incomplete
-    _attr_device_info: Incomplete
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     def __init__(self, coordinator: LIFXUpdateCoordinator, manager: LIFXManager, entry: ConfigEntry) -> None: ...

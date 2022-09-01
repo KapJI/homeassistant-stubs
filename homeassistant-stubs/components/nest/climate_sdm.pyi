@@ -34,12 +34,11 @@ class ThermostatEntity(ClimateEntity):
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_has_entity_name: bool
+    _attr_should_poll: bool
     _device: Incomplete
     _device_info: Incomplete
     _attr_supported_features: int
     def __init__(self, device: Device) -> None: ...
-    @property
-    def should_poll(self) -> bool: ...
     @property
     def unique_id(self) -> Union[str, None]: ...
     @property

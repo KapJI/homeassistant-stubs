@@ -7,16 +7,15 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item
 from pydeconz.models.event import EventType as EventType
-from pydeconz.models.light.light import Light as Light, LightFanSpeed
+from pydeconz.models.light.light import Light, LightFanSpeed
 from typing import Any
 
 ORDERED_NAMED_FAN_SPEEDS: list[LightFanSpeed]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzFan(DeconzDevice, FanEntity):
+class DeconzFan(DeconzDevice[Light], FanEntity):
     TYPE: Incomplete
-    _device: Light
     _default_on_speed: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, device: Light, gateway: DeconzGateway) -> None: ...

@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONF_NAME as CONF_NAME, PERCENTAGE as PERCENTAGE, PRESSURE_HPA as PRESSURE_HPA, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONF_NAME as CONF_NAME, PERCENTAGE as PERCENTAGE, PRESSURE_HPA as PRESSURE_HPA, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
@@ -24,6 +24,7 @@ SENSOR_TYPES: tuple[AirlySensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirlySensor(CoordinatorEntity[AirlyDataUpdateCoordinator], SensorEntity):
+    _attr_attribution: Incomplete
     _attr_has_entity_name: bool
     entity_description: AirlySensorEntityDescription
     _attr_device_info: Incomplete

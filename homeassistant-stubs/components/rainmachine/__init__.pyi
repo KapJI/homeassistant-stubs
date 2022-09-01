@@ -1,20 +1,22 @@
 from .config_flow import get_client_controller as get_client_controller
-from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_CONTROLLER as DATA_CONTROLLER, DATA_COORDINATOR as DATA_COORDINATOR, DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_CURRENT as DATA_RESTRICTIONS_CURRENT, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_API_VERSIONS as DATA_API_VERSIONS, DATA_MACHINE_FIRMWARE_UPDATE_STATUS as DATA_MACHINE_FIRMWARE_UPDATE_STATUS, DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_CURRENT as DATA_RESTRICTIONS_CURRENT, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .model import RainMachineEntityDescription as RainMachineEntityDescription
+from .util import RainMachineDataUpdateCoordinator as RainMachineDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, UpdateFailed as UpdateFailed
+from homeassistant.util.dt import as_timestamp as as_timestamp, utcnow as utcnow
 from homeassistant.util.network import is_ip_address as is_ip_address
-from regenmaschine.controller import Controller
+from regenmaschine.controller import Controller as Controller
 
 DEFAULT_SSL: bool
 CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
-UPDATE_INTERVALS: Incomplete
 CONF_CONDITION: str
 CONF_DEWPOINT: str
 CONF_DURATION: str
@@ -48,6 +50,12 @@ SERVICE_SCHEMA: Incomplete
 SERVICE_PAUSE_WATERING_SCHEMA: Incomplete
 SERVICE_PUSH_WEATHER_DATA_SCHEMA: Incomplete
 SERVICE_RESTRICT_WATERING_SCHEMA: Incomplete
+COORDINATOR_UPDATE_INTERVAL_MAP: Incomplete
+
+class RainMachineData:
+    controller: Controller
+    coordinators: dict[str, RainMachineDataUpdateCoordinator]
+    def __init__(self, controller, coordinators) -> None: ...
 
 def async_get_controller_for_service_call(hass: HomeAssistant, call: ServiceCall) -> Controller: ...
 async def async_update_programs_and_zones(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
@@ -58,12 +66,15 @@ async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: .
 
 class RainMachineEntity(CoordinatorEntity):
     _attr_has_entity_name: bool
-    _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
-    _controller: Incomplete
+    _entry: Incomplete
+    _data: Incomplete
+    _version_coordinator: Incomplete
     entity_description: Incomplete
-    def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator, controller: Controller, description: EntityDescription) -> None: ...
+    def __init__(self, entry: ConfigEntry, data: RainMachineData, description: RainMachineEntityDescription) -> None: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
     def _handle_coordinator_update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def update_from_latest_data(self) -> None: ...

@@ -17,7 +17,6 @@ ConfGatewayType: Incomplete
 CONF_GATEWAY_TYPE_SERIAL: ConfGatewayType
 CONF_GATEWAY_TYPE_TCP: ConfGatewayType
 CONF_GATEWAY_TYPE_MQTT: ConfGatewayType
-CONF_GATEWAY_TYPE_ALL: list[str]
 DOMAIN: Final[str]
 MYSENSORS_GATEWAY_START_TASK: str
 MYSENSORS_GATEWAYS: Final[str]

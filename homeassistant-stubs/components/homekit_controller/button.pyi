@@ -1,5 +1,6 @@
-from . import CharacteristicEntity as CharacteristicEntity, KNOWN_DEVICES as KNOWN_DEVICES
+from . import KNOWN_DEVICES as KNOWN_DEVICES
 from .connection import HKDevice as HKDevice
+from .entity import CharacteristicEntity as CharacteristicEntity
 from aiohomekit.model.characteristics import Characteristic as Characteristic
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

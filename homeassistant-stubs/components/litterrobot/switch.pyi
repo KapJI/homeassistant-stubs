@@ -1,28 +1,32 @@
 from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotConfigEntity as LitterRobotConfigEntity
+from .entity import LitterRobotConfigEntity as LitterRobotConfigEntity, _RobotT as _RobotT
 from .hub import LitterRobotHub as LitterRobotHub
-from homeassistant.components.switch import SwitchEntity as SwitchEntity
+from _typeshed import Incomplete
+from collections.abc import Callable as Callable, Coroutine
+from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-class LitterRobotNightLightModeSwitch(LitterRobotConfigEntity, SwitchEntity):
+class RequiredKeysMixin:
+    icons: tuple[str, str]
+    set_fn: Callable[[_RobotT], Callable[[bool], Coroutine[Any, Any, bool]]]
+    def __init__(self, icons, set_fn) -> None: ...
+
+class RobotSwitchEntityDescription(SwitchEntityDescription, RequiredKeysMixin[_RobotT]):
+    def __init__(self, icons, set_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+
+ROBOT_SWITCHES: Incomplete
+
+class RobotSwitchEntity(LitterRobotConfigEntity[_RobotT], SwitchEntity):
+    entity_description: RobotSwitchEntityDescription[_RobotT]
+    def __init__(self, robot: _RobotT, hub: LitterRobotHub, description: RobotSwitchEntityDescription[_RobotT]) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...
     @property
     def icon(self) -> str: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-
-class LitterRobotPanelLockoutSwitch(LitterRobotConfigEntity, SwitchEntity):
-    @property
-    def is_on(self) -> Union[bool, None]: ...
-    @property
-    def icon(self) -> str: ...
-    async def async_turn_on(self, **kwargs: Any) -> None: ...
-    async def async_turn_off(self, **kwargs: Any) -> None: ...
-
-ROBOT_SWITCHES: list[tuple[type[Union[LitterRobotNightLightModeSwitch, LitterRobotPanelLockoutSwitch]], str]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

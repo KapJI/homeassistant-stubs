@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT
+from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT, async_update_unique_id as async_update_unique_id
 from .hub import LitterRobotHub as LitterRobotHub
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -21,7 +21,6 @@ class RobotSensorEntityDescription(SensorEntityDescription):
 
 class LitterRobotSensorEntity(LitterRobotEntity[_RobotT], SensorEntity):
     entity_description: RobotSensorEntityDescription[_RobotT]
-    def __init__(self, robot: _RobotT, hub: LitterRobotHub, description: RobotSensorEntityDescription[_RobotT]) -> None: ...
     @property
     def native_value(self) -> Union[float, datetime, str, None]: ...
     @property

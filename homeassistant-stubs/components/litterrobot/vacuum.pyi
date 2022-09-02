@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotControlEntity as LitterRobotControlEntity
+from .entity import LitterRobotControlEntity as LitterRobotControlEntity, async_update_unique_id as async_update_unique_id
 from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
-from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_PAUSED as STATE_PAUSED, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_PAUSED as STATE_PAUSED, StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,10 +11,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pylitterbot import LitterRobot
 from typing import Any
 
-_LOGGER: Incomplete
-TYPE_LITTER_BOX: str
 SERVICE_SET_SLEEP_MODE: str
 LITTER_BOX_STATUS_STATE_MAP: Incomplete
+LITTER_BOX_ENTITY: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

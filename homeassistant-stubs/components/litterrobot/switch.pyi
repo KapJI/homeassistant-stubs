@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotConfigEntity as LitterRobotConfigEntity, _RobotT as _RobotT
+from .entity import LitterRobotConfigEntity as LitterRobotConfigEntity, _RobotT as _RobotT, async_update_unique_id as async_update_unique_id
 from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
@@ -21,7 +21,6 @@ ROBOT_SWITCHES: Incomplete
 
 class RobotSwitchEntity(LitterRobotConfigEntity[_RobotT], SwitchEntity):
     entity_description: RobotSwitchEntityDescription[_RobotT]
-    def __init__(self, robot: _RobotT, hub: LitterRobotHub, description: RobotSwitchEntityDescription[_RobotT]) -> None: ...
     @property
     def is_on(self) -> Union[bool, None]: ...
     @property

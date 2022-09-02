@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT
+from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT, async_update_unique_id as async_update_unique_id
 from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
@@ -24,5 +24,4 @@ FEEDER_ROBOT_BUTTON: Incomplete
 
 class LitterRobotButtonEntity(LitterRobotEntity[_RobotT], ButtonEntity):
     entity_description: RobotButtonEntityDescription[_RobotT]
-    def __init__(self, robot: _RobotT, hub: LitterRobotHub, description: RobotButtonEntityDescription[_RobotT]) -> None: ...
     async def async_press(self) -> None: ...

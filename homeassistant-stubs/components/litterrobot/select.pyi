@@ -1,10 +1,11 @@
 from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotConfigEntity as LitterRobotConfigEntity, _RobotT as _RobotT
+from .entity import LitterRobotConfigEntity as LitterRobotConfigEntity, _RobotT as _RobotT, async_update_unique_id as async_update_unique_id
 from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import TIME_MINUTES as TIME_MINUTES
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, TypeVar

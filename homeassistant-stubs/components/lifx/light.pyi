@@ -1,4 +1,4 @@
-from .const import DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN
+from .const import ATTR_INFRARED as ATTR_INFRARED, ATTR_POWER as ATTR_POWER, ATTR_ZONES as ATTR_ZONES, DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN
 from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .entity import LIFXEntity as LIFXEntity
 from .manager import LIFXManager as LIFXManager, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP
@@ -15,11 +15,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from typing import Any
 
+LIFX_STATE_SETTLE_DELAY: float
 SERVICE_LIFX_SET_STATE: str
-COLOR_ZONE_POPULATE_DELAY: float
-ATTR_INFRARED: str
-ATTR_ZONES: str
-ATTR_POWER: str
 LIFX_SET_STATE_SCHEMA: Incomplete
 HSBK_HUE: int
 HSBK_SATURATION: int

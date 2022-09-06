@@ -2,7 +2,7 @@ from .const import ATTR_METER_TYPE as ATTR_METER_TYPE, ATTR_METER_TYPE_NAME as A
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import NumericSensorDataTemplate as NumericSensorDataTemplate, NumericSensorDataTemplateData as NumericSensorDataTemplateData
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
-from .helpers import get_device_id as get_device_id, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
+from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from zwave_js_server.const import NodeStatus
 from zwave_js_server.model.driver import Driver as Driver

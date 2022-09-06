@@ -1,5 +1,5 @@
 from .const import API_KEY_FIRMWARE_UPDATE_SERVICE as API_KEY_FIRMWARE_UPDATE_SERVICE, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, LOGGER as LOGGER
-from .helpers import get_device_id as get_device_id, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity
@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
+from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver

@@ -14,6 +14,10 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from typing import Any, Final
 
 FILTER_UUIDS: Final[str]
+APPLE_MFR_ID: Final[int]
+APPLE_HOMEKIT_START_BYTE: Final[int]
+APPLE_DEVICE_ID_START_BYTE: Final[int]
+APPLE_START_BYTES_WANTED: Final[Incomplete]
 RSSI_SWITCH_THRESHOLD: int
 _LOGGER: Incomplete
 

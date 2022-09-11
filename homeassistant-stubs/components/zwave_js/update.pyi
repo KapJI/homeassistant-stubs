@@ -16,7 +16,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.start import async_at_start as async_at_start
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
-from zwave_js_server.model.firmware import FirmwareUpdateInfo as FirmwareUpdateInfo
+from zwave_js_server.model.firmware import FirmwareUpdateInfo as FirmwareUpdateInfo, FirmwareUpdateProgress as FirmwareUpdateProgress
 from zwave_js_server.model.node import Node as ZwaveNode
 
 PARALLEL_UPDATES: int
@@ -35,6 +35,8 @@ class ZWaveNodeFirmwareUpdate(UpdateEntity):
     _latest_version_firmware: Incomplete
     _status_unsub: Incomplete
     _poll_unsub: Incomplete
+    _progress_unsub: Incomplete
+    _num_files_installed: int
     _attr_name: str
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
@@ -42,6 +44,9 @@ class ZWaveNodeFirmwareUpdate(UpdateEntity):
     _attr_device_info: Incomplete
     def __init__(self, driver: Driver, node: ZwaveNode, semaphore: asyncio.Semaphore) -> None: ...
     def _update_on_status_change(self, _: dict[str, Any]) -> None: ...
+    _attr_in_progress: Incomplete
+    def _update_progress(self, event: dict[str, Any]) -> None: ...
+    def _reset_progress(self) -> None: ...
     _attr_latest_version: Incomplete
     async def _async_update(self, _: Union[HomeAssistant, datetime, None] = ...) -> None: ...
     async def async_release_notes(self) -> Union[str, None]: ...

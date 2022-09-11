@@ -1,4 +1,5 @@
 from .const import CONF_CYCLES as CONF_CYCLES, CONF_ICON_TYPE as CONF_ICON_TYPE, CONF_PRIORITY as CONF_PRIORITY, CONF_SOUND as CONF_SOUND, DOMAIN as DOMAIN
+from .coordinator import LaMetricDataUpdateCoordinator as LaMetricDataUpdateCoordinator
 from _typeshed import Incomplete
 from demetriek import LaMetricDevice as LaMetricDevice
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, BaseNotificationService as BaseNotificationService

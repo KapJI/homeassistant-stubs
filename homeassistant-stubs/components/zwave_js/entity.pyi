@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
-from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id
+from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import callback as callback

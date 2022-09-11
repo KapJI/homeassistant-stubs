@@ -1,5 +1,5 @@
 from .const import ATTR_MESSAGE as ATTR_MESSAGE, DOMAIN as DOMAIN
-from .data import async_ufp_data_for_config_entry_ids as async_ufp_data_for_config_entry_ids
+from .data import async_ufp_instance_for_config_entry_ids as async_ufp_instance_for_config_entry_ids
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState

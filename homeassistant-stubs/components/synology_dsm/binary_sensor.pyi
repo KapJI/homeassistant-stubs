@@ -1,6 +1,7 @@
 from . import SynoApi as SynoApi
-from .const import COORDINATOR_CENTRAL as COORDINATOR_CENTRAL, DOMAIN as DOMAIN, SYNO_API as SYNO_API
+from .const import DOMAIN as DOMAIN
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMDeviceEntity as SynologyDSMDeviceEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
+from .models import SynologyDSMData as SynologyDSMData
 from collections.abc import Mapping
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,7 +13,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 class SynologyDSMBinarySensorEntityDescription(BinarySensorEntityDescription, SynologyDSMEntityDescription):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 UPGRADE_BINARY_SENSORS: tuple[SynologyDSMBinarySensorEntityDescription, ...]
 SECURITY_BINARY_SENSORS: tuple[SynologyDSMBinarySensorEntityDescription, ...]

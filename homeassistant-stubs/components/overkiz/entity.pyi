@@ -34,3 +34,4 @@ class OverkizDeviceClass(StrEnum):
     PRIORITY_LOCK_ORIGINATOR: str
     SENSOR_DEFECT: str
     SENSOR_ROOM: str
+    THREE_WAY_HANDLE_DIRECTION: str

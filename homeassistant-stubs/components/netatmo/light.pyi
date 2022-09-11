@@ -1,5 +1,5 @@
 import pyatmo
-from .const import DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, MANUFACTURER as MANUFACTURER, SIGNAL_NAME as SIGNAL_NAME, TYPE_SECURITY as TYPE_SECURITY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
+from .const import DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, SIGNAL_NAME as SIGNAL_NAME, TYPE_SECURITY as TYPE_SECURITY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from .data_handler import CAMERA_DATA_CLASS_NAME as CAMERA_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from _typeshed import Incomplete
@@ -17,13 +17,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class NetatmoLight(NetatmoBase, LightEntity):
     _attr_color_mode: Incomplete
+    _attr_has_entity_name: bool
     _attr_supported_color_modes: Incomplete
     _id: Incomplete
     _home_id: Incomplete
     _model: Incomplete
     _netatmo_type: Incomplete
     _device_name: Incomplete
-    _attr_name: Incomplete
     _is_on: bool
     _attr_unique_id: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler, camera_id: str, camera_type: str, home_id: str) -> None: ...

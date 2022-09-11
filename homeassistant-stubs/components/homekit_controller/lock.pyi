@@ -1,4 +1,5 @@
-from . import HomeKitEntity as HomeKitEntity, KNOWN_DEVICES as KNOWN_DEVICES
+from . import KNOWN_DEVICES as KNOWN_DEVICES
+from .entity import HomeKitEntity as HomeKitEntity
 from _typeshed import Incomplete
 from aiohomekit.model.services import Service as Service
 from homeassistant.components.lock import LockEntity as LockEntity, STATE_JAMMED as STATE_JAMMED

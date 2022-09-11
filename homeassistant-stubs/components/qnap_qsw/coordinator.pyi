@@ -5,10 +5,16 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
-SCAN_INTERVAL: Incomplete
+DATA_SCAN_INTERVAL: Incomplete
+FW_SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 
-class QswUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
+class QswDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
+    qsw: Incomplete
+    def __init__(self, hass: HomeAssistant, qsw: QnapQswApi) -> None: ...
+    async def _async_update_data(self) -> dict[str, Any]: ...
+
+class QswFirmwareCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     qsw: Incomplete
     def __init__(self, hass: HomeAssistant, qsw: QnapQswApi) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

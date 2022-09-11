@@ -1,6 +1,4 @@
-from . import Recorder as Recorder
-from .const import DATA_INSTANCE as DATA_INSTANCE
-from .util import async_migration_in_progress as async_migration_in_progress
+from .util import async_migration_in_progress as async_migration_in_progress, get_instance as get_instance
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

@@ -2,7 +2,7 @@ from .const import DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, MANUF
 from .coordinator import CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
 from .model import SensorTypeItem as SensorTypeItem
 from _typeshed import Incomplete
-from canary.api import Device as Device, Location as Location
+from canary.model import Device as Device, Location as Location
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, TEMP_CELSIUS as TEMP_CELSIUS

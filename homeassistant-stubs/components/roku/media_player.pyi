@@ -10,7 +10,7 @@ from homeassistant.components.media_player import BrowseMedia as BrowseMedia, Me
 from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, MEDIA_TYPE_APP as MEDIA_TYPE_APP, MEDIA_TYPE_CHANNEL as MEDIA_TYPE_CHANNEL, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, MEDIA_TYPE_URL as MEDIA_TYPE_URL, MEDIA_TYPE_VIDEO as MEDIA_TYPE_VIDEO
 from homeassistant.components.stream.const import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_NAME as ATTR_NAME, STATE_HOME as STATE_HOME, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING, STATE_STANDBY as STATE_STANDBY
+from homeassistant.const import ATTR_NAME as ATTR_NAME, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING, STATE_STANDBY as STATE_STANDBY
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -27,9 +27,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
     _attr_supported_features: Incomplete
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
-    def __init__(self, unique_id: Union[str, None], coordinator: RokuDataUpdateCoordinator) -> None: ...
     def _media_playback_trackable(self) -> bool: ...
     @property
     def device_class(self) -> Union[str, None]: ...

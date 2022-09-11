@@ -22,6 +22,7 @@ ELK_TO_HASS_FAN_MODES: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElkThermostat(ElkEntity, ClimateEntity):
+    _attr_precision: Incomplete
     _attr_supported_features: Incomplete
     _element: Thermostat
     _state: Incomplete
@@ -44,8 +45,6 @@ class ElkThermostat(ElkEntity, ClimateEntity):
     def hvac_mode(self) -> Union[str, None]: ...
     @property
     def hvac_modes(self) -> list[HVACMode]: ...
-    @property
-    def precision(self) -> int: ...
     @property
     def is_aux_heat(self) -> bool: ...
     @property

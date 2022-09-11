@@ -1,7 +1,9 @@
 import aiohttp
 from .frame import warn_use as warn_use
+from .json import json_dumps as json_dumps, json_loads as json_loads
 from _typeshed import Incomplete
 from aiohttp import web
+from aiohttp.typedefs import JSONDecoder as JSONDecoder
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
@@ -15,6 +17,9 @@ DATA_CLIENTSESSION: str
 DATA_CLIENTSESSION_NOTVERIFY: str
 SERVER_SOFTWARE: Incomplete
 WARN_CLOSE_MSG: str
+
+class HassClientResponse(aiohttp.ClientResponse):
+    async def json(self, *args: Any, loads: JSONDecoder = ..., **kwargs: Any) -> Any: ...
 
 def async_get_clientsession(hass: HomeAssistant, verify_ssl: bool = ...) -> aiohttp.ClientSession: ...
 def async_create_clientsession(hass: HomeAssistant, verify_ssl: bool = ..., auto_cleanup: bool = ..., **kwargs: Any) -> aiohttp.ClientSession: ...

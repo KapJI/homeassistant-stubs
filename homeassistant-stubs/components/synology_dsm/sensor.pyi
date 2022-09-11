@@ -1,6 +1,7 @@
 from . import SynoApi as SynoApi
-from .const import CONF_VOLUMES as CONF_VOLUMES, COORDINATOR_CENTRAL as COORDINATOR_CENTRAL, DOMAIN as DOMAIN, ENTITY_UNIT_LOAD as ENTITY_UNIT_LOAD, SYNO_API as SYNO_API
+from .const import CONF_VOLUMES as CONF_VOLUMES, DOMAIN as DOMAIN, ENTITY_UNIT_LOAD as ENTITY_UNIT_LOAD
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMDeviceEntity as SynologyDSMDeviceEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
+from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,7 +14,7 @@ from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
 
 class SynologyDSMSensorEntityDescription(SensorEntityDescription, SynologyDSMEntityDescription):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 UTILISATION_SENSORS: tuple[SynologyDSMSensorEntityDescription, ...]
 STORAGE_VOL_SENSORS: tuple[SynologyDSMSensorEntityDescription, ...]

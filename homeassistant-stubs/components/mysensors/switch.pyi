@@ -1,8 +1,8 @@
+from .. import mysensors as mysensors
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, SERVICE_SEND_IR_CODE as SERVICE_SEND_IR_CODE, SensorType as SensorType
 from .device import MySensorsDevice as MySensorsDevice
 from .helpers import on_unload as on_unload
 from _typeshed import Incomplete
-from homeassistant.components import mysensors as mysensors
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON

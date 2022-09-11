@@ -12,6 +12,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AmbeeSensorEntity(CoordinatorEntity, SensorEntity):
+    _attr_has_entity_name: bool
     _service_key: Incomplete
     entity_id: Incomplete
     entity_description: Incomplete

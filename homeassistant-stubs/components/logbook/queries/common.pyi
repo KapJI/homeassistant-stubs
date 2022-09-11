@@ -2,8 +2,8 @@ import sqlalchemy
 from ..const import ALWAYS_CONTINUOUS_DOMAINS as ALWAYS_CONTINUOUS_DOMAINS, CONDITIONALLY_CONTINUOUS_DOMAINS as CONDITIONALLY_CONTINUOUS_DOMAINS
 from _typeshed import Incomplete
 from datetime import datetime as dt
+from homeassistant.components.recorder.db_schema import EVENTS_CONTEXT_ID_INDEX as EVENTS_CONTEXT_ID_INDEX, EventData as EventData, Events as Events, OLD_FORMAT_ATTRS_JSON as OLD_FORMAT_ATTRS_JSON, OLD_STATE as OLD_STATE, SHARED_ATTRS_JSON as SHARED_ATTRS_JSON, STATES_CONTEXT_ID_INDEX as STATES_CONTEXT_ID_INDEX, StateAttributes as StateAttributes, States as States
 from homeassistant.components.recorder.filters import like_domain_matchers as like_domain_matchers
-from homeassistant.components.recorder.models import EVENTS_CONTEXT_ID_INDEX as EVENTS_CONTEXT_ID_INDEX, EventData as EventData, Events as Events, OLD_FORMAT_ATTRS_JSON as OLD_FORMAT_ATTRS_JSON, OLD_STATE as OLD_STATE, SHARED_ATTRS_JSON as SHARED_ATTRS_JSON, STATES_CONTEXT_ID_INDEX as STATES_CONTEXT_ID_INDEX, StateAttributes as StateAttributes, States as States
 from sqlalchemy.orm import Query as Query
 from sqlalchemy.sql.elements import ClauseList as ClauseList
 from sqlalchemy.sql.selectable import Select as Select

@@ -44,6 +44,7 @@ class NestLegacyDevice:
     def _devices(self, device_type) -> Generator[Incomplete, None, None]: ...
 
 class NestSensorDevice(Entity):
+    _attr_should_poll: bool
     structure: Incomplete
     variable: Incomplete
     device: Incomplete
@@ -53,8 +54,6 @@ class NestSensorDevice(Entity):
     def __init__(self, structure, device, variable) -> None: ...
     @property
     def name(self): ...
-    @property
-    def should_poll(self): ...
     @property
     def unique_id(self): ...
     @property

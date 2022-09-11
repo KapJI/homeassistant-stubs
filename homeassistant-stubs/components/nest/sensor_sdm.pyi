@@ -17,6 +17,7 @@ async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_a
 class SensorBase(SensorEntity):
     _attr_should_poll: bool
     _attr_state_class: Incomplete
+    _attr_has_entity_name: bool
     _device: Incomplete
     _device_info: Incomplete
     _attr_unique_id: Incomplete
@@ -27,15 +28,13 @@ class SensorBase(SensorEntity):
 class TemperatureSensor(SensorBase):
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    @property
-    def name(self) -> str: ...
+    _attr_name: str
     @property
     def native_value(self) -> float: ...
 
 class HumiditySensor(SensorBase):
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    @property
-    def name(self) -> str: ...
+    _attr_name: str
     @property
     def native_value(self) -> int: ...

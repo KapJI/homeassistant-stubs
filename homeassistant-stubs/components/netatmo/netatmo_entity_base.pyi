@@ -7,7 +7,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 
 class NetatmoBase(Entity):
     data_handler: Incomplete
-    _data_classes: Incomplete
+    _publishers: Incomplete
     _device_name: str
     _id: str
     _model: str

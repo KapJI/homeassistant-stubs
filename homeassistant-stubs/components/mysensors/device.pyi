@@ -55,8 +55,7 @@ class MySensorsDevice:
 def get_mysensors_devices(hass: HomeAssistant, domain: Platform) -> dict[DevId, MySensorsDevice]: ...
 
 class MySensorsEntity(MySensorsDevice, Entity):
-    @property
-    def should_poll(self) -> bool: ...
+    _attr_should_poll: bool
     @property
     def available(self) -> bool: ...
     @property

@@ -4,7 +4,7 @@ from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.util import decorator as decorator
-from homeassistant.util.yaml.dumper import represent_odict as represent_odict
+from homeassistant.util.yaml import dumper as dumper
 from typing import Any, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]
@@ -66,6 +66,7 @@ class AreaSelector(Selector):
 
 class AttributeSelectorConfig(TypedDict):
     entity_id: str
+    hide_attributes: list[str]
 
 class AttributeSelector(Selector):
     selector_type: str
@@ -98,6 +99,15 @@ class ColorTempSelector(Selector):
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[ColorTempSelectorConfig, None] = ...) -> None: ...
     def __call__(self, data: Any) -> int: ...
+
+class ConfigEntrySelectorConfig(TypedDict):
+    integration: str
+
+class ConfigEntrySelector(Selector):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: Union[ConfigEntrySelectorConfig, None] = ...) -> None: ...
+    def __call__(self, data: Any) -> str: ...
 
 class DateSelectorConfig(TypedDict): ...
 
@@ -230,6 +240,15 @@ class TargetSelectorConfig(TypedDict):
     entity: SingleEntitySelectorConfig
     device: SingleDeviceSelectorConfig
 
+class StateSelectorConfig(TypedDict):
+    entity_id: str
+
+class StateSelector(Selector):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: StateSelectorConfig) -> None: ...
+    def __call__(self, data: Any) -> str: ...
+
 class TargetSelector(Selector):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
@@ -285,4 +304,13 @@ class TimeSelector(Selector):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[TimeSelectorConfig, None] = ...) -> None: ...
+    def __call__(self, data: Any) -> str: ...
+
+class FileSelectorConfig(TypedDict):
+    accept: str
+
+class FileSelector(Selector):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: Union[FileSelectorConfig, None] = ...) -> None: ...
     def __call__(self, data: Any) -> str: ...

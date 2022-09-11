@@ -19,7 +19,7 @@ STORAGE_KEY: str
 STORAGE_VERSION: int
 STATE_DUMP_INTERVAL: Incomplete
 STATE_EXPIRATION: Incomplete
-_StoredStateT = TypeVar('_StoredStateT', bound='StoredState')
+_StoredStateSelfT = TypeVar('_StoredStateSelfT', bound='StoredState')
 
 class ExtraStoredData(metaclass=abc.ABCMeta):
     @abstractmethod
@@ -37,7 +37,7 @@ class StoredState:
     def __init__(self, state: State, extra_data: Union[ExtraStoredData, None], last_seen: datetime) -> None: ...
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
-    def from_dict(cls, json_dict: dict) -> _StoredStateT: ...
+    def from_dict(cls, json_dict: dict) -> _StoredStateSelfT: ...
 
 class RestoreStateData:
     @staticmethod

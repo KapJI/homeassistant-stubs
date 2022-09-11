@@ -17,7 +17,7 @@ class WhoisSensorEntityDescriptionMixin:
     def __init__(self, value_fn) -> None: ...
 
 class WhoisSensorEntityDescription(SensorEntityDescription, WhoisSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 def _days_until_expiration(domain: Domain) -> Union[int, None]: ...
 def _ensure_timezone(timestamp: Union[datetime, None]) -> Union[datetime, None]: ...
@@ -28,7 +28,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WhoisSensorEntity(CoordinatorEntity, SensorEntity):
     entity_description: WhoisSensorEntityDescription
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _domain: Incomplete

@@ -1,5 +1,6 @@
-from . import CharacteristicEntity as CharacteristicEntity, KNOWN_DEVICES as KNOWN_DEVICES
+from . import KNOWN_DEVICES as KNOWN_DEVICES
 from .const import DEVICE_CLASS_ECOBEE_MODE as DEVICE_CLASS_ECOBEE_MODE
+from .entity import CharacteristicEntity as CharacteristicEntity
 from _typeshed import Incomplete
 from aiohomekit.model.characteristics import Characteristic as Characteristic
 from homeassistant.components.select import SelectEntity as SelectEntity

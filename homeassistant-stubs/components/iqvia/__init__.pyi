@@ -17,6 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class IQVIAEntity(CoordinatorEntity):
+    _attr_has_entity_name: bool
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     _entry: Incomplete

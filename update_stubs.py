@@ -38,8 +38,11 @@ def main() -> int:
     # Create new packages
     gh_repo = get_github_repo("GITHUB_TOKEN")
     gh_admin_repo = get_github_repo("ADMIN_TOKEN")
-    for version in missing_versions:
-        create_package(version, repo_root, homeassistant_root, gh_repo, gh_admin_repo)
+    for i, version in enumerate(missing_versions):
+        latest = i + 1 == len(missing_versions)
+        create_package(
+            version, repo_root, homeassistant_root, gh_repo, gh_admin_repo, latest
+        )
     return 0
 
 
@@ -81,10 +84,15 @@ def create_package(
     homeassistant_root: Path,
     gh_repo: Repository,
     gh_admin_repo: Repository,
+    latest: bool,
 ) -> None:
     """Create package for given version and upload it to PyPI."""
     print(f"Creating package for {version}...")
-    update_dependency(repo_root, version)
+    if not update_dependency(repo_root, version):
+        if latest:
+            return
+        # At this point package should be published.
+        sys.exit(1)
     checkout_version(homeassistant_root, version)
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
@@ -95,15 +103,16 @@ def create_package(
     publish_package(repo_root)
 
 
-def update_dependency(repo_root: Path, version: str) -> None:
+def update_dependency(repo_root: Path, version: str) -> bool:
     """Update version of homeassistant dependency."""
     try:
         subprocess.run(
             ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
         )
+        return True
     except subprocess.CalledProcessError as ex:
         print(f"Failed to add dependency: {ex}")
-        return
+        return False
 
 
 def checkout_version(homeassistant_root: Path, version: str) -> None:

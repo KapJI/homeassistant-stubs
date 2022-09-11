@@ -17,15 +17,15 @@ class TractiveRequiredKeysMixin:
     def __init__(self, method) -> None: ...
 
 class TractiveSwitchEntityDescription(SwitchEntityDescription, TractiveRequiredKeysMixin):
-    def __init__(self, method, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, method, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 SWITCH_TYPES: tuple[TractiveSwitchEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TractiveSwitch(TractiveEntity, SwitchEntity):
+    _attr_has_entity_name: bool
     entity_description: TractiveSwitchEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_available: bool
     _tracker: Incomplete

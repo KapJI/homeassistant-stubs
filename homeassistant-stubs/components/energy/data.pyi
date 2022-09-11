@@ -20,7 +20,7 @@ class FlowFromGridSourceType(TypedDict):
 class FlowToGridSourceType(TypedDict):
     stat_energy_to: str
     stat_compensation: Union[str, None]
-    entity_energy_from: Union[str, None]
+    entity_energy_to: Union[str, None]
     entity_energy_price: Union[str, None]
     number_energy_price: Union[float, None]
 

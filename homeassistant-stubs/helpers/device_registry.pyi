@@ -19,6 +19,7 @@ STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
 SAVE_DELAY: int
 CLEANUP_DELAY: int
+CONNECTION_BLUETOOTH: str
 CONNECTION_NETWORK_MAC: str
 CONNECTION_UPNP: str
 CONNECTION_ZIGBEE: str
@@ -83,7 +84,7 @@ class DeletedDeviceEntry:
 def format_mac(mac: str) -> str: ...
 def _async_get_device_id_from_index(devices_index: _DeviceIndex, identifiers: set[tuple[str, str]], connections: Union[set[tuple[str, str]], None]) -> Union[str, None]: ...
 
-class DeviceRegistryStore(storage.Store):
+class DeviceRegistryStore(storage.Store[dict[str, list[dict[str, Any]]]]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class DeviceRegistry:

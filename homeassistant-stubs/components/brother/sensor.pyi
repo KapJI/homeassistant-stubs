@@ -55,9 +55,9 @@ ATTRS_MAP: dict[str, tuple[str, str]]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BrotherPrinterSensor(CoordinatorEntity, SensorEntity):
+    _attr_has_entity_name: bool
     _attrs: Incomplete
     _attr_device_info: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: BrotherDataUpdateCoordinator, description: BrotherSensorEntityDescription, device_info: DeviceInfo) -> None: ...
@@ -72,6 +72,6 @@ class BrotherPrinterUptimeSensor(BrotherPrinterSensor):
 
 class BrotherSensorEntityDescription(SensorEntityDescription):
     entity_class: type[BrotherPrinterSensor]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, entity_class) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, entity_class) -> None: ...
 
 SENSOR_TYPES: tuple[BrotherSensorEntityDescription, ...]

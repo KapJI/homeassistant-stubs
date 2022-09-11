@@ -46,7 +46,7 @@ class NetatmoThermostat(NetatmoBase, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _room: Incomplete
     _id: Incomplete
-    _climate_state_class: Incomplete
+    _signal_name: Incomplete
     _climate_state: Incomplete
     _model: Incomplete
     _netatmo_type: Incomplete

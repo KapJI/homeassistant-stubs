@@ -1,8 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.loader import Integration as Integration, MAX_LOAD_CONCURRENTLY as MAX_LOAD_CONCURRENTLY, async_get_config_flows as async_get_config_flows, async_get_integration as async_get_integration, bind_hass as bind_hass
-from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
+from homeassistant.loader import Integration as Integration, async_get_config_flows as async_get_config_flows, async_get_integrations as async_get_integrations, bind_hass as bind_hass
 from homeassistant.util.json import load_json as load_json
 from typing import Any
 

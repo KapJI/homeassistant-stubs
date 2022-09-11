@@ -12,7 +12,7 @@ _LOGGER: Incomplete
 
 class FritzBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_suitable: Callable[[ConnectionInfo], bool]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, is_suitable) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, is_suitable) -> None: ...
 
 SENSOR_TYPES: tuple[FritzBinarySensorEntityDescription, ...]
 

@@ -24,7 +24,7 @@ class TriggeredBinarySensor(SimpliSafeEntity, BinarySensorEntity):
 class BatteryBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
     _attr_entity_category: Incomplete
-    _attr_name: Incomplete
+    _attr_name: str
     _attr_unique_id: Incomplete
     _device: Incomplete
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, sensor: SensorV3) -> None: ...

@@ -6,9 +6,6 @@ ATTR_DEVICES: Final[str]
 ATTR_GATEWAY_ID: Final[str]
 CONF_BAUD_RATE: Final[str]
 CONF_DEVICE: Final[str]
-CONF_GATEWAYS: Final[str]
-CONF_NODES: Final[str]
-CONF_PERSISTENCE: Final[str]
 CONF_PERSISTENCE_FILE: Final[str]
 CONF_RETAIN: Final[str]
 CONF_TCP_PORT: Final[str]
@@ -20,7 +17,6 @@ ConfGatewayType: Incomplete
 CONF_GATEWAY_TYPE_SERIAL: ConfGatewayType
 CONF_GATEWAY_TYPE_TCP: ConfGatewayType
 CONF_GATEWAY_TYPE_MQTT: ConfGatewayType
-CONF_GATEWAY_TYPE_ALL: list[str]
 DOMAIN: Final[str]
 MYSENSORS_GATEWAY_START_TASK: str
 MYSENSORS_GATEWAYS: Final[str]

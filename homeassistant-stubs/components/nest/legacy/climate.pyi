@@ -22,6 +22,7 @@ def setup_platform(hass, config, add_entities, discovery_info: Incomplete | None
 async def async_setup_legacy_entry(hass, entry, async_add_entities) -> None: ...
 
 class NestThermostat(ClimateEntity):
+    _attr_should_poll: bool
     _unit: Incomplete
     structure: Incomplete
     device: Incomplete
@@ -45,8 +46,6 @@ class NestThermostat(ClimateEntity):
     _min_temperature: Incomplete
     _max_temperature: Incomplete
     def __init__(self, structure, device, temp_unit) -> None: ...
-    @property
-    def should_poll(self): ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def supported_features(self): ...

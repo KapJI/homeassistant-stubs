@@ -8,6 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from pytautulli import PyTautulliApiUser as PyTautulliApiUser
 
 PLATFORMS: Incomplete
 
@@ -15,7 +16,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class TautulliEntity(CoordinatorEntity[TautulliDataUpdateCoordinator]):
-    entity_description: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
+    entity_description: Incomplete
+    user: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: TautulliDataUpdateCoordinator, description: EntityDescription) -> None: ...
+    def __init__(self, coordinator: TautulliDataUpdateCoordinator, description: EntityDescription, user: Union[PyTautulliApiUser, None] = ...) -> None: ...

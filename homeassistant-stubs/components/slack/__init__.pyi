@@ -1,4 +1,4 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import DATA_CLIENT as DATA_CLIENT, DATA_HASS_CONFIG as DATA_HASS_CONFIG, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_PLATFORM as CONF_PLATFORM, Platform as Platform

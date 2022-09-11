@@ -1,10 +1,10 @@
-from .const import DATA_TILE as DATA_TILE, DOMAIN as DOMAIN
+from . import TileData as TileData
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from pytile.tile import Tile as Tile
 from typing import Any
 
 CONF_ALTITUDE: str

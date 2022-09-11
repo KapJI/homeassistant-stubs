@@ -4,12 +4,20 @@ from .helpers import ZwaveValueID as ZwaveValueID
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
+from homeassistant.backports.enum import StrEnum as StrEnum
+from homeassistant.const import Platform as Platform
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from typing import Any
 from zwave_js_server.model.device_class import DeviceClassItem as DeviceClassItem
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import Value as ZwaveValue
+
+class ValueType(StrEnum):
+    ANY: str
+    BOOLEAN: str
+    NUMBER: str
+    STRING: str
 
 class DataclassMustHaveAtLeastOne:
     def __post_init__(self) -> None: ...
@@ -26,7 +34,7 @@ class ZwaveDiscoveryInfo:
     node: ZwaveNode
     primary_value: ZwaveValue
     assumed_state: bool
-    platform: str
+    platform: Platform
     platform_data: Any
     additional_value_ids_to_watch: set[str]
     platform_hint: Union[str, None]
@@ -45,7 +53,7 @@ class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):
     def __init__(self, command_class, endpoint, property, property_name, property_key, property_key_name, type) -> None: ...
 
 class ZWaveDiscoverySchema:
-    platform: str
+    platform: Platform
     primary_value: ZWaveValueDiscoverySchema
     hint: Union[str, None]
     data_template: Union[BaseDiscoverySchemaDataTemplate, None]

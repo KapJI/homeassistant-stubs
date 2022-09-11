@@ -1,9 +1,7 @@
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, PRESSURE_HPA as PRESSURE_HPA, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, TEMP_CELSIUS as TEMP_CELSIUS
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from typing import Final
 
+SUFFIX_CAQI: Final[str]
 SUFFIX_P0: Final[str]
 SUFFIX_P1: Final[str]
 SUFFIX_P2: Final[str]
@@ -21,20 +19,22 @@ ATTR_HECA_HUMIDITY: Final[str]
 ATTR_HECA_TEMPERATURE: Final[str]
 ATTR_MHZ14A_CARBON_DIOXIDE: Final[str]
 ATTR_SDS011: Final[str]
+ATTR_SDS011_CAQI: Final[Incomplete]
+ATTR_SDS011_CAQI_LEVEL: Final[Incomplete]
 ATTR_SDS011_P1: Final[Incomplete]
 ATTR_SDS011_P2: Final[Incomplete]
 ATTR_SHT3X_HUMIDITY: Final[str]
 ATTR_SHT3X_TEMPERATURE: Final[str]
 ATTR_SIGNAL_STRENGTH: Final[str]
 ATTR_SPS30: Final[str]
+ATTR_SPS30_CAQI: Final[Incomplete]
+ATTR_SPS30_CAQI_LEVEL: Final[Incomplete]
 ATTR_SPS30_P0: Final[Incomplete]
 ATTR_SPS30_P1: Final[Incomplete]
 ATTR_SPS30_P2: Final[Incomplete]
 ATTR_SPS30_P4: Final[Incomplete]
 ATTR_UPTIME: Final[str]
-DEFAULT_NAME: Final[str]
 DEFAULT_UPDATE_INTERVAL: Final[Incomplete]
 DOMAIN: Final[str]
 MANUFACTURER: Final[str]
 MIGRATION_SENSORS: Final[Incomplete]
-SENSORS: Final[tuple[SensorEntityDescription, ...]]

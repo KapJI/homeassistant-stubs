@@ -1,16 +1,18 @@
 import datetime
 from . import Stream as Stream
-from .const import ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN
+from .const import ATTR_STREAMS as ATTR_STREAMS, DOMAIN as DOMAIN, SEGMENT_DURATION_ADJUSTER as SEGMENT_DURATION_ADJUSTER, TARGET_SEGMENT_DURATION_NON_LL_HLS as TARGET_SEGMENT_DURATION_NON_LL_HLS
 from _typeshed import Incomplete
 from aiohttp import web
 from av import CodecContext, Packet as Packet
 from collections import deque
-from collections.abc import Iterable
+from collections.abc import Callable as Callable, Coroutine, Iterable
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.decorator import Registry as Registry
+from typing import Any
 
+_LOGGER: Incomplete
 PROVIDERS: Registry[str, type[StreamOutput]]
 
 class StreamSettings:
@@ -24,6 +26,8 @@ class StreamSettings:
     def __le__(self, other): ...
     def __gt__(self, other): ...
     def __ge__(self, other): ...
+
+STREAM_SETTINGS_NON_LL_HLS: Incomplete
 
 class Part:
     duration: float
@@ -70,7 +74,7 @@ class IdleTimer:
     _callback: Incomplete
     _unsub: Incomplete
     idle: bool
-    def __init__(self, hass: HomeAssistant, timeout: int, idle_callback: CALLBACK_TYPE) -> None: ...
+    def __init__(self, hass: HomeAssistant, timeout: int, idle_callback: Callable[[], Coroutine[Any, Any, None]]) -> None: ...
     def start(self) -> None: ...
     def awake(self) -> None: ...
     def clear(self) -> None: ...
@@ -79,10 +83,11 @@ class IdleTimer:
 class StreamOutput:
     _hass: Incomplete
     idle_timer: Incomplete
+    stream_settings: Incomplete
     _event: Incomplete
     _part_event: Incomplete
     _segments: Incomplete
-    def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, deque_maxlen: Union[int, None] = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, stream_settings: StreamSettings, deque_maxlen: Union[int, None] = ...) -> None: ...
     @property
     def name(self) -> Union[str, None]: ...
     @property

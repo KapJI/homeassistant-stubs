@@ -18,7 +18,7 @@ class TrafikverketRequiredKeysMixin:
     def __init__(self, api_key) -> None: ...
 
 class TrafikverketSensorEntityDescription(SensorEntityDescription, TrafikverketRequiredKeysMixin):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSOR_TYPES: tuple[TrafikverketSensorEntityDescription, ...]
 
@@ -28,7 +28,7 @@ def _to_datetime(measuretime: str) -> datetime: ...
 class TrafikverketWeatherStation(CoordinatorEntity[TVDataUpdateCoordinator], SensorEntity):
     entity_description: TrafikverketSensorEntityDescription
     _attr_attribution: Incomplete
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: TVDataUpdateCoordinator, entry_id: str, sensor_station: str, description: TrafikverketSensorEntityDescription) -> None: ...

@@ -1,5 +1,5 @@
-from . import RidwellEntity as RidwellEntity
-from .const import DATA_ACCOUNT as DATA_ACCOUNT, DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, SENSOR_TYPE_NEXT_PICKUP as SENSOR_TYPE_NEXT_PICKUP
+from . import RidwellData as RidwellData, RidwellEntity as RidwellEntity
+from .const import DOMAIN as DOMAIN, SENSOR_TYPE_NEXT_PICKUP as SENSOR_TYPE_NEXT_PICKUP
 from _typeshed import Incomplete
 from aioridwell.model import RidwellAccount as RidwellAccount, RidwellPickupEvent as RidwellPickupEvent
 from collections.abc import Mapping

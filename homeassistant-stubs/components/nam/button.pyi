@@ -1,5 +1,5 @@
 from . import NAMDataUpdateCoordinator as NAMDataUpdateCoordinator
-from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -15,6 +15,7 @@ RESTART_BUTTON: ButtonEntityDescription
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NAMButton(CoordinatorEntity[NAMDataUpdateCoordinator], ButtonEntity):
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete

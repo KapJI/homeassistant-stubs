@@ -1,4 +1,5 @@
-from .const import DOMAIN as DOMAIN, ISY994_ISY as ISY994_ISY, ISY994_NODES as ISY994_NODES, ISY994_PROGRAMS as ISY994_PROGRAMS, ISY994_VARIABLES as ISY994_VARIABLES, PLATFORMS as PLATFORMS, PROGRAM_PLATFORMS as PROGRAM_PLATFORMS, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, ISY994_ISY as ISY994_ISY, _LOGGER as _LOGGER
+from .util import unique_ids_for_config_entry_id as unique_ids_for_config_entry_id
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback

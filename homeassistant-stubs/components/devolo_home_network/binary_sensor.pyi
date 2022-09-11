@@ -3,7 +3,7 @@ from .entity import DevoloEntity as DevoloEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from devolo_plc_api.device import Device as Device
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DEVICE_CLASS_PLUG as DEVICE_CLASS_PLUG
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
@@ -17,7 +17,7 @@ class DevoloBinarySensorRequiredKeysMixin:
     def __init__(self, value_func) -> None: ...
 
 class DevoloBinarySensorEntityDescription(BinarySensorEntityDescription, DevoloBinarySensorRequiredKeysMixin):
-    def __init__(self, value_func, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, value_func, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 SENSOR_TYPES: dict[str, DevoloBinarySensorEntityDescription]
 

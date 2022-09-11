@@ -16,6 +16,7 @@ _LOGGER: Incomplete
 DATA_API_PASSWORD: Final[str]
 DATA_SIGN_SECRET: Final[str]
 SIGN_QUERY_PARAM: Final[str]
+SAFE_QUERY_PARAMS: Final[Incomplete]
 STORAGE_VERSION: int
 STORAGE_KEY: str
 CONTENT_USER_NAME: str

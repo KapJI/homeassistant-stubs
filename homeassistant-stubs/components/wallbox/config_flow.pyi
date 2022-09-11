@@ -1,6 +1,7 @@
 from . import InvalidAuth as InvalidAuth, WallboxCoordinator as WallboxCoordinator
 from .const import CONF_STATION as CONF_STATION, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from homeassistant import config_entries as config_entries, core as core
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.data_entry_flow import FlowResult as FlowResult
@@ -14,5 +15,5 @@ async def validate_input(hass: core.HomeAssistant, data: dict[str, Any]) -> dict
 class ConfigFlow(config_entries.ConfigFlow):
     _reauth_entry: Incomplete
     def __init__(self) -> None: ...
-    async def async_step_reauth(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

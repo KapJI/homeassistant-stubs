@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN, WMO_TO_HA_CONDITION_MAP as WMO_TO_HA_CONDIT
 from _typeshed import Incomplete
 from homeassistant.components.weather import Forecast as Forecast, WeatherEntity as WeatherEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import LENGTH_MILLIMETERS as LENGTH_MILLIMETERS, SPEED_KILOMETERS_PER_HOUR as SPEED_KILOMETERS_PER_HOUR, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
@@ -13,17 +13,19 @@ from open_meteo import Forecast as OpenMeteoForecast
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OpenMeteoWeatherEntity(CoordinatorEntity[DataUpdateCoordinator[OpenMeteoForecast]], WeatherEntity):
-    _attr_temperature_unit: Incomplete
+    _attr_has_entity_name: bool
+    _attr_native_precipitation_unit: Incomplete
+    _attr_native_temperature_unit: Incomplete
+    _attr_native_wind_speed_unit: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, *, entry: ConfigEntry, coordinator: DataUpdateCoordinator[OpenMeteoForecast]) -> None: ...
     @property
     def condition(self) -> Union[str, None]: ...
     @property
-    def temperature(self) -> Union[float, None]: ...
+    def native_temperature(self) -> Union[float, None]: ...
     @property
-    def wind_speed(self) -> Union[float, None]: ...
+    def native_wind_speed(self) -> Union[float, None]: ...
     @property
     def wind_bearing(self) -> Union[float, str, None]: ...
     @property

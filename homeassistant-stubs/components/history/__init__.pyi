@@ -9,9 +9,9 @@ from homeassistant.components.recorder.filters import Filters as Filters, sqlalc
 from homeassistant.components.recorder.statistics import list_statistic_ids as list_statistic_ids, statistics_during_period as statistics_during_period
 from homeassistant.components.recorder.util import session_scope as session_scope
 from homeassistant.components.websocket_api import messages as messages
-from homeassistant.components.websocket_api.const import JSON_DUMP as JSON_DUMP
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA
+from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Literal
 

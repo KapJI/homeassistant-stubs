@@ -11,7 +11,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 PLATFORMS: Incomplete
 ATTR_SYSTEM_MODE: str
 ATTR_SYSTEM_NAME: str
-DEFAULT_ATTRIBUTION: str
 DEFAULT_SCAN_INTERVAL: Incomplete
 CONFIG_SCHEMA: Incomplete
 
@@ -20,9 +19,9 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 def _async_register_new_bridge(hass: HomeAssistant, bridge: dict, entry: ConfigEntry) -> None: ...
 
 class NotionEntity(CoordinatorEntity):
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _bridge_id: Incomplete
     _sensor_id: Incomplete

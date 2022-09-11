@@ -1,6 +1,6 @@
 import abc
 from . import api as api, config_flow as config_flow
-from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DATA_NEST_CONFIG as DATA_NEST_CONFIG, DATA_SDM as DATA_SDM, DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
+from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, CONF_SUBSCRIBER_ID_IMPORTED as CONF_SUBSCRIBER_ID_IMPORTED, DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DATA_NEST_CONFIG as DATA_NEST_CONFIG, DATA_SDM as DATA_SDM, DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN, INSTALLED_AUTH_DOMAIN as INSTALLED_AUTH_DOMAIN, WEB_AUTH_DOMAIN as WEB_AUTH_DOMAIN
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, NEST_EVENT as NEST_EVENT
 from .legacy import async_setup_legacy as async_setup_legacy, async_setup_legacy_entry as async_setup_legacy_entry
 from .media_source import async_get_media_event_store as async_get_media_event_store, async_get_media_source_devices as async_get_media_source_devices, async_get_transcoder as async_get_transcoder
@@ -12,6 +12,7 @@ from google_nest_sdm.device import Device as Device
 from google_nest_sdm.event import EventMessage as EventMessage
 from google_nest_sdm.event_media import Media as Media
 from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
+from homeassistant.components.application_credentials import ClientCredential as ClientCredential, async_import_client_credential as async_import_client_credential
 from homeassistant.components.camera import Image as Image, img_util as img_util
 from homeassistant.components.http.const import KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
@@ -20,12 +21,11 @@ from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from http import HTTPStatus
 
 _LOGGER: Incomplete
-DATA_NEST_UNAVAILABLE: str
-NEST_SETUP_NOTIFICATION: str
 SENSOR_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
@@ -41,6 +41,7 @@ class SignalUpdateCallback:
     async def async_handle_event(self, event_message: EventMessage) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_import_config(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 

@@ -3,7 +3,7 @@ from ipaddress import IPv4Address, IPv6Address
 
 LOOPBACK_NETWORKS: Incomplete
 PRIVATE_NETWORKS: Incomplete
-LINK_LOCAL_NETWORK: Incomplete
+LINK_LOCAL_NETWORKS: Incomplete
 
 def is_loopback(address: Union[IPv4Address, IPv6Address]) -> bool: ...
 def is_private(address: Union[IPv4Address, IPv6Address]) -> bool: ...

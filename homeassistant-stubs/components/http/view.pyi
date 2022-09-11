@@ -7,7 +7,7 @@ from collections.abc import Awaitable, Callable as Callable
 from homeassistant import exceptions as exceptions
 from homeassistant.const import CONTENT_TYPE_JSON as CONTENT_TYPE_JSON
 from homeassistant.core import Context as Context, is_callback as is_callback
-from homeassistant.helpers.json import JSONEncoder as JSONEncoder
+from homeassistant.helpers.json import JSON_ENCODE_EXCEPTIONS as JSON_ENCODE_EXCEPTIONS, json_bytes as json_bytes
 from http import HTTPStatus
 from typing import Any
 

@@ -1,7 +1,8 @@
+from .bluetooth import async_connect_scanner as async_connect_scanner
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
-from collections.abc import Callable
+from collections.abc import Callable as Callable
 from homeassistant import const as const
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -22,7 +23,8 @@ from typing import Any, NamedTuple, TypeVar, overload
 DOMAIN: str
 CONF_NOISE_PSK: str
 _LOGGER: Incomplete
-_T = TypeVar('_T')
+_R = TypeVar('_R')
+_DomainDataSelfT = TypeVar('_DomainDataSelfT', bound='DomainData')
 STORAGE_VERSION: int
 
 class DomainData:
@@ -34,7 +36,7 @@ class DomainData:
     def is_entry_loaded(self, entry: ConfigEntry) -> bool: ...
     def get_or_create_store(self, hass: HomeAssistant, entry: ConfigEntry) -> Store: ...
     @classmethod
-    def get(cls, hass: HomeAssistant) -> _T: ...
+    def get(cls, hass: HomeAssistant) -> _DomainDataSelfT: ...
     def __init__(self, _entry_datas, _stores) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -58,9 +60,7 @@ _EntityT = TypeVar('_EntityT', bound='EsphomeEntity[Any,Any]')
 _StateT = TypeVar('_StateT', bound=EntityState)
 
 async def platform_async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback, *, component_key: str, info_type: type[_InfoT], entity_type: type[_EntityT], state_type: type[_StateT]) -> None: ...
-_PropT = TypeVar('_PropT', bound=Callable[..., Any])
-
-def esphome_state_property(func: _PropT) -> _PropT: ...
+def esphome_state_property(func: Callable[[_EntityT], _R]) -> Callable[[_EntityT], Union[_R, None]]: ...
 _EnumT = TypeVar('_EnumT', bound=APIIntEnum)
 _ValT = TypeVar('_ValT')
 
@@ -78,10 +78,12 @@ ICON_SCHEMA: Incomplete
 ENTITY_CATEGORIES: EsphomeEnumMapper[EsphomeEntityCategory, Union[EntityCategory, None]]
 
 class EsphomeEntity(Entity):
+    _attr_should_poll: bool
     _entry_data: Incomplete
     _component_key: Incomplete
     _key: Incomplete
-    def __init__(self, entry_data: RuntimeEntryData, component_key: str, key: int) -> None: ...
+    _state_type: Incomplete
+    def __init__(self, entry_data: RuntimeEntryData, component_key: str, key: int, state_type: type[_StateT]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _on_state_update(self) -> None: ...
     def _on_device_update(self) -> None: ...
@@ -109,8 +111,6 @@ class EsphomeEntity(Entity):
     def name(self) -> str: ...
     @property
     def icon(self) -> Union[str, None]: ...
-    @property
-    def should_poll(self) -> bool: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     @property

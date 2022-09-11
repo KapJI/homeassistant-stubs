@@ -16,7 +16,7 @@ class RDWSensorEntityDescriptionMixin:
     def __init__(self, value_fn) -> None: ...
 
 class RDWSensorEntityDescription(SensorEntityDescription, RDWSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 SENSORS: tuple[RDWSensorEntityDescription, ...]
 
@@ -24,6 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RDWSensorEntity(CoordinatorEntity, SensorEntity):
     entity_description: RDWSensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: DataUpdateCoordinator, license_plate: str, description: RDWSensorEntityDescription) -> None: ...

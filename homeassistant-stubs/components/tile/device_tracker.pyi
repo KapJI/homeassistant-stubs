@@ -1,8 +1,9 @@
-from .const import DATA_COORDINATOR as DATA_COORDINATOR, DATA_TILE as DATA_TILE, DOMAIN as DOMAIN
+from . import TileData as TileData
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable
+from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSeeCallback
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
-from homeassistant.components.device_tracker.const import SOURCE_TYPE_GPS as SOURCE_TYPE_GPS
+from homeassistant.components.device_tracker.const import SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -23,7 +24,7 @@ ATTR_VOIP_STATE: str
 DEFAULT_ICON: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: Callable[..., Awaitable[None]], discovery_info: Union[DiscoveryInfoType, None] = ...) -> bool: ...
+async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: AsyncSeeCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> bool: ...
 
 class TileDeviceTracker(CoordinatorEntity, TrackerEntity):
     _attr_icon: Incomplete
@@ -42,7 +43,7 @@ class TileDeviceTracker(CoordinatorEntity, TrackerEntity):
     @property
     def longitude(self) -> Union[float, None]: ...
     @property
-    def source_type(self) -> str: ...
+    def source_type(self) -> SourceType: ...
     def _handle_coordinator_update(self) -> None: ...
     def _update_from_latest_data(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...

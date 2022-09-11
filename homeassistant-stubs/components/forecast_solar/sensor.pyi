@@ -15,6 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ForecastSolarSensorEntity(CoordinatorEntity, SensorEntity):
     entity_description: ForecastSolarSensorEntityDescription
+    _attr_has_entity_name: bool
     entity_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

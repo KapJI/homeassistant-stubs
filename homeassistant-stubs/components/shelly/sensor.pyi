@@ -1,7 +1,7 @@
 from . import BlockDeviceWrapper as BlockDeviceWrapper
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS
 from .entity import BlockEntityDescription as BlockEntityDescription, RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
-from .utils import get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, temperature_unit as temperature_unit
+from .utils import get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, is_rpc_device_externally_powered as is_rpc_device_externally_powered, temperature_unit as temperature_unit
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Mapping
@@ -16,13 +16,13 @@ from homeassistant.helpers.typing import StateType as StateType
 from typing import Final
 
 class BlockSensorDescription(BlockEntityDescription, SensorEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
 class RpcSensorDescription(RpcEntityDescription, SensorEntityDescription):
-    def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, value, available, removal_condition, extra_state_attributes, use_polling_wrapper, supported) -> None: ...
+    def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, value, available, removal_condition, extra_state_attributes, use_polling_wrapper, supported) -> None: ...
 
 class RestSensorDescription(RestEntityDescription, SensorEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, value, extra_state_attributes) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, value, extra_state_attributes) -> None: ...
 
 SENSORS: Final[Incomplete]
 REST_SENSORS: Final[Incomplete]

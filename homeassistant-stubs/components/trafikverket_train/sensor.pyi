@@ -4,15 +4,13 @@ from _typeshed import Incomplete
 from datetime import date, datetime, time
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_NAME as CONF_NAME, CONF_WEEKDAY as CONF_WEEKDAY, WEEKDAYS as WEEKDAYS
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_WEEKDAY as CONF_WEEKDAY, WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util import dt as dt
-from pytrafikverket import TrafikverketTrain
+from pytrafikverket import TrafikverketTrain as TrafikverketTrain
 from pytrafikverket.trafikverket_train import StationInfo as StationInfo, TrainStop as TrainStop
 
 _LOGGER: Incomplete

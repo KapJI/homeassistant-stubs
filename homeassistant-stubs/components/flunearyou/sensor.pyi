@@ -33,6 +33,7 @@ EXTENDED_SENSOR_TYPE_MAPPING: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FluNearYouSensor(CoordinatorEntity, SensorEntity):
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _entry: Incomplete
     entity_description: Incomplete

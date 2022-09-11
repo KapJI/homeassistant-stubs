@@ -8,6 +8,7 @@ from google_nest_sdm.device import Device as Device
 from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.components.camera.const import StreamType as StreamType
+from homeassistant.components.stream import CONF_EXTRA_PART_WAIT_TIME as CONF_EXTRA_PART_WAIT_TIME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -23,6 +24,7 @@ STREAM_EXPIRATION_BUFFER: Incomplete
 async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NestCamera(Camera):
+    _attr_has_entity_name: bool
     _device: Incomplete
     _device_info: Incomplete
     _stream: Incomplete
@@ -31,11 +33,7 @@ class NestCamera(Camera):
     _attr_is_streaming: Incomplete
     def __init__(self, device: Device) -> None: ...
     @property
-    def should_poll(self) -> bool: ...
-    @property
     def unique_id(self) -> str: ...
-    @property
-    def name(self) -> Union[str, None]: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     @property

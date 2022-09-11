@@ -5,24 +5,27 @@ from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DOMAIN as DOMAIN, EFFECT_COLORLOOP as EFFECT_COLORLOOP, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.color import color_hs_to_xy as color_hs_to_xy
+from pydeconz.interfaces.groups import GroupHandler as GroupHandler
+from pydeconz.interfaces.lights import LightHandler as LightHandler
+from pydeconz.models.event import EventType as EventType
 from pydeconz.models.group import Group
-from pydeconz.models.light.light import Light
-from typing import Any, TypeVar, TypedDict
+from pydeconz.models.light.light import Light, LightAlert, LightEffect
+from typing import Any, TypeVar, TypedDict, Union
 
 DECONZ_GROUP: str
 EFFECT_TO_DECONZ: Incomplete
 FLASH_TO_DECONZ: Incomplete
-_L = TypeVar('_L', Group, Light)
+DECONZ_TO_COLOR_MODE: Incomplete
+_LightDeviceT = TypeVar('_LightDeviceT', bound=Union[Group, Light])
 
 class SetStateAttributes(TypedDict):
-    alert: str
+    alert: LightAlert
     brightness: int
     color_temperature: int
-    effect: str
+    effect: LightEffect
     hue: int
     on: bool
     saturation: int
@@ -31,12 +34,12 @@ class SetStateAttributes(TypedDict):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzBaseLight(DeconzDevice, LightEntity):
+class DeconzBaseLight(DeconzDevice[_LightDeviceT], LightEntity):
     TYPE: Incomplete
-    _device: _L
+    api: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
-    def __init__(self, device: _L, gateway: DeconzGateway) -> None: ...
+    def __init__(self, device: _LightDeviceT, gateway: DeconzGateway) -> None: ...
     @property
     def color_mode(self) -> Union[str, None]: ...
     @property
@@ -55,15 +58,16 @@ class DeconzBaseLight(DeconzDevice, LightEntity):
     def extra_state_attributes(self) -> dict[str, bool]: ...
 
 class DeconzLight(DeconzBaseLight[Light]):
-    _device: Light
     @property
     def max_mireds(self) -> int: ...
     @property
     def min_mireds(self) -> int: ...
+    def async_update_callback(self) -> None: ...
 
 class DeconzGroup(DeconzBaseLight[Group]):
-    _device: Group
+    _attr_has_entity_name: bool
     _unique_id: Incomplete
+    _attr_name: Incomplete
     def __init__(self, device: Group, gateway: DeconzGateway) -> None: ...
     @property
     def unique_id(self) -> str: ...

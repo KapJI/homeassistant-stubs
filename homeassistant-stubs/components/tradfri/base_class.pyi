@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
 from _typeshed import Incomplete
 from abc import abstractmethod
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -11,7 +11,7 @@ from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
 from typing import Any
 
-def handle_error(func: Callable[[Union[Command, list[Command]]], Any]) -> Callable[[str], Any]: ...
+def handle_error(func: Callable[[Union[Command, list[Command]]], Any]) -> Callable[[Union[Command, list[Command]]], Coroutine[Any, Any, None]]: ...
 
 class TradfriBaseEntity(CoordinatorEntity[TradfriDeviceDataUpdateCoordinator], metaclass=abc.ABCMeta):
     _gateway_id: Incomplete

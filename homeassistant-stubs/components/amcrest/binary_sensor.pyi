@@ -13,7 +13,7 @@ from homeassistant.util import Throttle as Throttle
 class AmcrestSensorEntityDescription(BinarySensorEntityDescription):
     event_code: Union[str, None]
     should_poll: bool
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, event_code, should_poll) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, event_code, should_poll) -> None: ...
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete

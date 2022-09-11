@@ -4,7 +4,7 @@ from .schema import WeatherSchema as WeatherSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.weather import WeatherEntity as WeatherEntity
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, PRESSURE_PA as PRESSURE_PA, Platform as Platform, SPEED_METERS_PER_SECOND as SPEED_METERS_PER_SECOND, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -16,14 +16,16 @@ def _create_weather(xknx: XKNX, config: ConfigType) -> XknxWeather: ...
 
 class KNXWeather(KnxEntity, WeatherEntity):
     _device: XknxWeather
-    _attr_temperature_unit: Incomplete
+    _attr_native_pressure_unit: Incomplete
+    _attr_native_temperature_unit: Incomplete
+    _attr_native_wind_speed_unit: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_category: Incomplete
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
     @property
-    def temperature(self) -> Union[float, None]: ...
+    def native_temperature(self) -> Union[float, None]: ...
     @property
-    def pressure(self) -> Union[float, None]: ...
+    def native_pressure(self) -> Union[float, None]: ...
     @property
     def condition(self) -> str: ...
     @property
@@ -31,4 +33,4 @@ class KNXWeather(KnxEntity, WeatherEntity):
     @property
     def wind_bearing(self) -> Union[int, None]: ...
     @property
-    def wind_speed(self) -> Union[float, None]: ...
+    def native_wind_speed(self) -> Union[float, None]: ...

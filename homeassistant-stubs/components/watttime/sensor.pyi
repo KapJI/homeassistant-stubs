@@ -18,6 +18,7 @@ REALTIME_EMISSIONS_SENSOR_DESCRIPTIONS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RealtimeEmissionsSensor(CoordinatorEntity, SensorEntity):
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _entry: Incomplete

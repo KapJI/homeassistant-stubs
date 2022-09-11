@@ -1,6 +1,6 @@
-from .const import DOMAIN as DOMAIN, QSW_REBOOT as QSW_REBOOT
-from .coordinator import QswUpdateCoordinator as QswUpdateCoordinator
-from .entity import QswEntity as QswEntity
+from .const import DOMAIN as DOMAIN, QSW_COORD_DATA as QSW_COORD_DATA, QSW_REBOOT as QSW_REBOOT
+from .coordinator import QswDataCoordinator as QswDataCoordinator
+from .entity import QswDataEntity as QswDataEntity
 from _typeshed import Incomplete
 from aioqsw.localapi import QnapQswApi as QnapQswApi
 from collections.abc import Awaitable, Callable as Callable
@@ -16,15 +16,15 @@ class QswButtonDescriptionMixin:
     def __init__(self, press_action) -> None: ...
 
 class QswButtonDescription(ButtonEntityDescription, QswButtonDescriptionMixin):
-    def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+    def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 BUTTON_TYPES: Final[tuple[QswButtonDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class QswButton(QswEntity, ButtonEntity):
+class QswButton(QswDataEntity, ButtonEntity):
     entity_description: QswButtonDescription
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: QswUpdateCoordinator, description: QswButtonDescription, entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: QswDataCoordinator, description: QswButtonDescription, entry: ConfigEntry) -> None: ...
     async def async_press(self) -> None: ...

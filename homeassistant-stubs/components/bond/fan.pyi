@@ -1,5 +1,6 @@
-from .const import BPUP_SUBS as BPUP_SUBS, DOMAIN as DOMAIN, HUB as HUB, SERVICE_SET_FAN_SPEED_TRACKED_STATE as SERVICE_SET_FAN_SPEED_TRACKED_STATE
+from .const import DOMAIN as DOMAIN, SERVICE_SET_FAN_SPEED_TRACKED_STATE as SERVICE_SET_FAN_SPEED_TRACKED_STATE
 from .entity import BondEntity as BondEntity
+from .models import BondData as BondData
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from _typeshed import Incomplete
 from bond_async import BPUPSubscriptions as BPUPSubscriptions
@@ -8,7 +9,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
@@ -25,7 +25,7 @@ class BondFan(BondEntity, FanEntity):
     _attr_preset_modes: Incomplete
     def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions) -> None: ...
     _attr_preset_mode: Incomplete
-    def _apply_state(self, state: dict) -> None: ...
+    def _apply_state(self) -> None: ...
     @property
     def supported_features(self) -> int: ...
     @property

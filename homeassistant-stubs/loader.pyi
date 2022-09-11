@@ -1,15 +1,16 @@
 import pathlib
 from .core import HomeAssistant as HomeAssistant
 from .generated.application_credentials import APPLICATION_CREDENTIALS as APPLICATION_CREDENTIALS
+from .generated.bluetooth import BLUETOOTH as BLUETOOTH
 from .generated.dhcp import DHCP as DHCP
 from .generated.mqtt import MQTT as MQTT
 from .generated.ssdp import SSDP as SSDP
 from .generated.usb import USB as USB
 from .generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
-from .util.async_ import gather_with_concurrency as gather_with_concurrency
+from .helpers.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 from types import ModuleType
 from typing import Any, Literal, TypeVar, TypedDict
 
@@ -35,6 +36,31 @@ class DHCPMatcherOptional(TypedDict):
 
 class DHCPMatcher(DHCPMatcherRequired, DHCPMatcherOptional): ...
 
+class BluetoothMatcherRequired(TypedDict):
+    domain: str
+
+class BluetoothMatcherOptional(TypedDict):
+    local_name: str
+    service_uuid: str
+    service_data_uuid: str
+    manufacturer_id: int
+    manufacturer_data_start: list[int]
+    connectable: bool
+
+class BluetoothMatcher(BluetoothMatcherRequired, BluetoothMatcherOptional): ...
+
+class USBMatcherRequired(TypedDict):
+    domain: str
+
+class USBMatcherOptional(TypedDict):
+    vid: str
+    pid: str
+    serial_number: str
+    manufacturer: str
+    description: str
+
+class USBMatcher(USBMatcherRequired, USBMatcherOptional): ...
+
 class Manifest(TypedDict):
     name: str
     disabled: str
@@ -48,6 +74,7 @@ class Manifest(TypedDict):
     issue_tracker: str
     quality_scale: str
     iot_class: str
+    bluetooth: list[dict[str, Union[int, str]]]
     mqtt: list[str]
     ssdp: list[dict[str, str]]
     zeroconf: list[Union[str, dict[str, str]]]
@@ -58,6 +85,7 @@ class Manifest(TypedDict):
     version: str
     codeowners: list[str]
     loggers: list[str]
+    supported_brands: dict[str, str]
 
 def manifest_from_legacy_module(domain: str, module: ModuleType) -> Manifest: ...
 async def _async_get_custom_components(hass: HomeAssistant) -> dict[str, Integration]: ...
@@ -66,8 +94,9 @@ async def async_get_config_flows(hass: HomeAssistant, type_filter: Union[Literal
 async def async_get_application_credentials(hass: HomeAssistant) -> list[str]: ...
 def async_process_zeroconf_match_dict(entry: dict[str, Any]) -> dict[str, Any]: ...
 async def async_get_zeroconf(hass: HomeAssistant) -> dict[str, list[dict[str, Union[str, dict[str, str]]]]]: ...
+async def async_get_bluetooth(hass: HomeAssistant) -> list[BluetoothMatcher]: ...
 async def async_get_dhcp(hass: HomeAssistant) -> list[DHCPMatcher]: ...
-async def async_get_usb(hass: HomeAssistant) -> list[dict[str, str]]: ...
+async def async_get_usb(hass: HomeAssistant) -> list[USBMatcher]: ...
 async def async_get_homekit(hass: HomeAssistant) -> dict[str, str]: ...
 async def async_get_ssdp(hass: HomeAssistant) -> dict[str, list[dict[str, str]]]: ...
 async def async_get_mqtt(hass: HomeAssistant) -> dict[str, list[str]]: ...
@@ -115,6 +144,8 @@ class Integration:
     @property
     def zeroconf(self) -> Union[list[Union[str, dict[str, str]]], None]: ...
     @property
+    def bluetooth(self) -> Union[list[dict[str, Union[str, int]]], None]: ...
+    @property
     def dhcp(self) -> Union[list[dict[str, Union[str, bool]]], None]: ...
     @property
     def usb(self) -> Union[list[dict[str, str]], None]: ...
@@ -134,8 +165,9 @@ class Integration:
     def _import_platform(self, platform_name: str) -> ModuleType: ...
     def __repr__(self) -> str: ...
 
+def _resolve_integrations_from_root(hass: HomeAssistant, root_module: ModuleType, domains: list[str]) -> dict[str, Integration]: ...
 async def async_get_integration(hass: HomeAssistant, domain: str) -> Integration: ...
-async def _async_get_integration(hass: HomeAssistant, domain: str) -> Integration: ...
+async def async_get_integrations(hass: HomeAssistant, domains: Iterable[str]) -> dict[str, Union[Integration, Exception]]: ...
 
 class LoaderError(Exception): ...
 

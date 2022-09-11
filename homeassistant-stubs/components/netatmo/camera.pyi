@@ -18,11 +18,12 @@ DEFAULT_QUALITY: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NetatmoCamera(NetatmoBase, Camera):
+    _attr_brand: Incomplete
+    _attr_has_entity_name: bool
     _attr_supported_features: Incomplete
     _id: Incomplete
     _home_id: Incomplete
     _device_name: Incomplete
-    _attr_name: Incomplete
     _model: Incomplete
     _netatmo_type: Incomplete
     _attr_unique_id: Incomplete
@@ -43,8 +44,6 @@ class NetatmoCamera(NetatmoBase, Camera):
     async def async_camera_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...
     @property
     def available(self) -> bool: ...
-    @property
-    def brand(self) -> str: ...
     @property
     def motion_detection_enabled(self) -> bool: ...
     @property

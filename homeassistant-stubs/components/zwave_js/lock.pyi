@@ -1,7 +1,6 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, SERVICE_CLEAR_LOCK_USERCODE as SERVICE_CLEAR_LOCK_USERCODE, SERVICE_SET_LOCK_USERCODE as SERVICE_SET_LOCK_USERCODE
+from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_CLEAR_LOCK_USERCODE as SERVICE_CLEAR_LOCK_USERCODE, SERVICE_SET_LOCK_USERCODE as SERVICE_SET_LOCK_USERCODE
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
-from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_LOCKED as STATE_LOCKED, STATE_UNLOCKED as STATE_UNLOCKED
@@ -12,7 +11,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 PARALLEL_UPDATES: int
-LOGGER: Incomplete
 STATE_TO_ZWAVE_MAP: dict[int, dict[str, Union[int, bool]]]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

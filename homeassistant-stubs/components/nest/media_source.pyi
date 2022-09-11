@@ -1,10 +1,9 @@
-from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
-from .device_info import NestDeviceInfo as NestDeviceInfo
+from .const import DOMAIN as DOMAIN
+from .device_info import NestDeviceInfo as NestDeviceInfo, async_nest_devices_by_device_id as async_nest_devices_by_device_id
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, MEDIA_SOURCE_EVENT_TITLE_MAP as MEDIA_SOURCE_EVENT_TITLE_MAP
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from google_nest_sdm.device import Device as Device
-from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from google_nest_sdm.event import ImageEventBase as ImageEventBase
 from google_nest_sdm.event_media import ClipPreviewSession as ClipPreviewSession, EventMediaStore, ImageSession as ImageSession
 from google_nest_sdm.google_nest_subscriber import GoogleNestSubscriber as GoogleNestSubscriber
@@ -17,6 +16,7 @@ from homeassistant.components.media_source.models import BrowseMediaSource as Br
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
+from typing import Any
 
 _LOGGER: Incomplete
 MEDIA_SOURCE_TITLE: str
@@ -40,7 +40,7 @@ class NestEventMediaStore(EventMediaStore):
     _media_path: Incomplete
     _data: Incomplete
     _devices: Incomplete
-    def __init__(self, hass: HomeAssistant, subscriber: GoogleNestSubscriber, store: Store, media_path: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, subscriber: GoogleNestSubscriber, store: Store[dict[str, Any]], media_path: str) -> None: ...
     async def async_load(self) -> Union[dict, None]: ...
     async def async_save(self, data: dict) -> None: ...
     def get_media_key(self, device_id: str, event: ImageEventBase) -> str: ...

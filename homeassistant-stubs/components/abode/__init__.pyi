@@ -44,6 +44,7 @@ def setup_abode_events(hass: HomeAssistant) -> None: ...
 
 class AbodeEntity(entity.Entity):
     _attr_attribution: Incomplete
+    _attr_has_entity_name: bool
     _data: Incomplete
     _attr_should_poll: Incomplete
     def __init__(self, data: AbodeSystem) -> None: ...
@@ -54,7 +55,6 @@ class AbodeEntity(entity.Entity):
 
 class AbodeDevice(AbodeEntity):
     _device: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, data: AbodeSystem, device: AbodeDev) -> None: ...
     async def async_added_to_hass(self) -> None: ...

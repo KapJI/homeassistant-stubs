@@ -14,7 +14,7 @@ from typing import Any
 TRACKERS_WITH_BUILTIN_BATTERY: Incomplete
 
 class TractiveBinarySensor(TractiveEntity, BinarySensorEntity):
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, user_id: str, item: Trackables, description: BinarySensorEntityDescription) -> None: ...

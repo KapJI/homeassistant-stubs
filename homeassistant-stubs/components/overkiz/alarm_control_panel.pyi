@@ -29,7 +29,7 @@ class OverkizAlarmDescription(AlarmControlPanelEntityDescription, OverkizAlarmDe
     alarm_arm_away_args: Union[OverkizStateType, list[OverkizStateType]]
     alarm_trigger: Union[str, None]
     alarm_trigger_args: Union[OverkizStateType, list[OverkizStateType]]
-    def __init__(self, supported_features, fn_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement, alarm_disarm, alarm_disarm_args, alarm_arm_home, alarm_arm_home_args, alarm_arm_night, alarm_arm_night_args, alarm_arm_away, alarm_arm_away_args, alarm_trigger, alarm_trigger_args) -> None: ...
+    def __init__(self, supported_features, fn_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, alarm_disarm, alarm_disarm_args, alarm_arm_home, alarm_arm_home_args, alarm_arm_night, alarm_arm_night_args, alarm_arm_away, alarm_arm_away_args, alarm_trigger, alarm_trigger_args) -> None: ...
 
 MAP_INTERNAL_STATUS_STATE: dict[str, str]
 

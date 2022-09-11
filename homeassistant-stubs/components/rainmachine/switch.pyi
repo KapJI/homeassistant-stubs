@@ -1,8 +1,9 @@
-from . import RainMachineEntity as RainMachineEntity, async_update_programs_and_zones as async_update_programs_and_zones
-from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_CONTROLLER as DATA_CONTROLLER, DATA_COORDINATOR as DATA_COORDINATOR, DATA_PROGRAMS as DATA_PROGRAMS, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN, RUN_STATE_MAP as RUN_STATE_MAP
-from .model import RainMachineDescriptionMixinUid as RainMachineDescriptionMixinUid
+from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity, async_update_programs_and_zones as async_update_programs_and_zones
+from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_PROGRAMS as DATA_PROGRAMS, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
+from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinUid as RainMachineEntityDescriptionMixinUid
+from .util import RUN_STATE_MAP as RUN_STATE_MAP
 from _typeshed import Incomplete
-from collections.abc import Coroutine
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ID as ATTR_ID
@@ -11,9 +12,8 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from regenmaschine.controller import Controller as Controller
-from typing import Any
+from typing import Any, TypeVar
+from typing_extensions import Concatenate
 
 ATTR_AREA: str
 ATTR_CS_ON: str
@@ -40,9 +40,13 @@ SLOPE_TYPE_MAP: Incomplete
 SPRINKLER_TYPE_MAP: Incomplete
 SUN_EXPOSURE_MAP: Incomplete
 VEGETATION_MAP: Incomplete
+_T = TypeVar('_T', bound='RainMachineBaseSwitch')
+_P: Incomplete
 
-class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineDescriptionMixinUid):
-    def __init__(self, uid, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, name, unit_of_measurement) -> None: ...
+def raise_on_request_error(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
+
+class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinUid):
+    def __init__(self, uid, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -50,8 +54,8 @@ class RainMachineBaseSwitch(RainMachineEntity, SwitchEntity):
     entity_description: RainMachineSwitchDescription
     _attr_is_on: bool
     _entry: Incomplete
-    def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator, controller: Controller, description: RainMachineSwitchDescription) -> None: ...
-    async def _async_run_api_coroutine(self, api_coro: Coroutine) -> None: ...
+    def __init__(self, entry: ConfigEntry, data: RainMachineData, description: RainMachineSwitchDescription) -> None: ...
+    def _update_activities(self) -> None: ...
     async def async_start_program(self) -> None: ...
     async def async_start_zone(self, *, zone_run_time: int) -> None: ...
     async def async_stop_program(self) -> None: ...

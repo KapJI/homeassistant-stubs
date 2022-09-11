@@ -24,6 +24,7 @@ ATTR_FAN_STATE: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
+    _attr_precision: Incomplete
     _hvac_modes: Incomplete
     _hvac_presets: Incomplete
     _unit_value: Incomplete
@@ -42,8 +43,6 @@ class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
     def _current_mode_setpoint_enums(self) -> list[ThermostatSetpointType]: ...
     @property
     def temperature_unit(self) -> str: ...
-    @property
-    def precision(self) -> float: ...
     @property
     def hvac_mode(self) -> HVACMode: ...
     @property

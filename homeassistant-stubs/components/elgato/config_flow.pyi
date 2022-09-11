@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from homeassistant.components import zeroconf as zeroconf
+from homeassistant.components import onboarding as onboarding, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigFlow as ConfigFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback

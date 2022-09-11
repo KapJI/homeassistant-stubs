@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id
 from _typeshed import Incomplete
@@ -9,7 +9,6 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as ZwaveValue
 
-LOGGER: Incomplete
 EVENT_VALUE_UPDATED: str
 EVENT_VALUE_REMOVED: str
 EVENT_DEAD: str

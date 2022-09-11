@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiooncue import OncueDevice as OncueDevice, OncueSensor as OncueSensor
+from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 

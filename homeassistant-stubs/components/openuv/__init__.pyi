@@ -30,6 +30,7 @@ class OpenUV:
     async def async_update(self) -> None: ...
 
 class OpenUvEntity(Entity):
+    _attr_has_entity_name: bool
     _attr_extra_state_attributes: Incomplete
     _attr_should_poll: bool
     _attr_unique_id: Incomplete

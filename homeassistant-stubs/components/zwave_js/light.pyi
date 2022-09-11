@@ -12,7 +12,6 @@ from zwave_js_server.const.command_class.color_switch import ColorComponent
 from zwave_js_server.model.driver import Driver as Driver
 
 PARALLEL_UPDATES: int
-LOGGER: Incomplete
 MULTI_COLOR_MAP: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

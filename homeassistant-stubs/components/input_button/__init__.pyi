@@ -12,16 +12,14 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 
 DOMAIN: str
 _LOGGER: Incomplete
-CREATE_FIELDS: Incomplete
-UPDATE_FIELDS: Incomplete
+STORAGE_FIELDS: Incomplete
 CONFIG_SCHEMA: Incomplete
 RELOAD_SERVICE_SCHEMA: Incomplete
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
 
 class InputButtonStorageCollection(collection.StorageCollection):
-    CREATE_SCHEMA: Incomplete
-    UPDATE_SCHEMA: Incomplete
+    CREATE_UPDATE_SCHEMA: Incomplete
     async def _process_create_data(self, data: dict) -> vol.Schema: ...
     def _get_suggested_id(self, info: dict) -> str: ...
     async def _update_data(self, data: dict, update_data: dict) -> dict: ...

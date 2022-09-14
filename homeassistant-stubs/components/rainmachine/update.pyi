@@ -30,4 +30,5 @@ class RainMachineUpdateEntity(RainMachineEntity, UpdateEntity):
     _attr_installed_version: Incomplete
     _attr_in_progress: bool
     _attr_latest_version: Incomplete
+    _attr_title: Incomplete
     def update_from_latest_data(self) -> None: ...

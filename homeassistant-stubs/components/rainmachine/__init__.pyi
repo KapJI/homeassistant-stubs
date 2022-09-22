@@ -3,10 +3,11 @@ from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_API_VERSIONS a
 from .model import RainMachineEntityDescription as RainMachineEntityDescription
 from .util import RainMachineDataUpdateCoordinator as RainMachineDataUpdateCoordinator
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, UpdateFailed as UpdateFailed
@@ -57,7 +58,7 @@ class RainMachineData:
     coordinators: dict[str, RainMachineDataUpdateCoordinator]
     def __init__(self, controller, coordinators) -> None: ...
 
-def async_get_controller_for_service_call(hass: HomeAssistant, call: ServiceCall) -> Controller: ...
+def async_get_entry_for_service_call(hass: HomeAssistant, call: ServiceCall) -> ConfigEntry: ...
 async def async_update_programs_and_zones(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

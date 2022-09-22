@@ -22,7 +22,7 @@ SCANNER_WATCHDOG_INTERVAL: Final[Incomplete]
 class AdapterDetails(TypedDict):
     address: str
     sw_version: str
-    hw_version: str
+    hw_version: Union[str, None]
     passive_scan: bool
 
 ADAPTER_ADDRESS: Final[str]

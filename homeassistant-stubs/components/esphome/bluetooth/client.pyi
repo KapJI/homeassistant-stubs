@@ -1,6 +1,5 @@
 import uuid
 from ..domain_data import DomainData as DomainData
-from ..entry_data import RuntimeEntryData as RuntimeEntryData
 from .characteristic import BleakGATTCharacteristicESPHome as BleakGATTCharacteristicESPHome
 from .descriptor import BleakGATTDescriptorESPHome as BleakGATTDescriptorESPHome
 from .service import BleakGATTServiceESPHome as BleakGATTServiceESPHome
@@ -31,6 +30,7 @@ class ESPHomeClient(BaseBleakClient):
     _address_as_int: Incomplete
     _source: Incomplete
     domain_data: Incomplete
+    entry_data: Incomplete
     _client: Incomplete
     _is_connected: bool
     _mtu: Incomplete
@@ -39,7 +39,6 @@ class ESPHomeClient(BaseBleakClient):
     def __init__(self, address_or_ble_device: Union[BLEDevice, str], *args: Any, **kwargs: Any) -> None: ...
     def __str__(self) -> str: ...
     def _unsubscribe_connection_state(self) -> None: ...
-    def _async_get_entry_data(self) -> RuntimeEntryData: ...
     services: Incomplete
     def _async_ble_device_disconnected(self) -> None: ...
     def _async_esp_disconnected(self) -> None: ...

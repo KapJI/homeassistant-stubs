@@ -232,7 +232,11 @@ def get_modern_typed_paths(homeassistant_root: Path, strict_path: Path) -> list[
     core_paths = [
         path
         for path in package_root.iterdir()
-        if path.name != "components" and (path.is_dir() or path.name.endswith(".py"))
+        if path.name != "components"
+        and (
+            (path.is_dir() and (path / "__init__.py").is_file())
+            or path.name.endswith(".py")
+        )
     ]
 
     with strict_path.open() as fp:

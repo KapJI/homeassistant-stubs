@@ -66,9 +66,9 @@ class AdjustStatisticsTask(RecorderTask):
     statistic_id: str
     start_time: datetime
     sum_adjustment: float
-    display_unit: str
+    adjustment_unit: str
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, statistic_id, start_time, sum_adjustment, display_unit) -> None: ...
+    def __init__(self, statistic_id, start_time, sum_adjustment, adjustment_unit) -> None: ...
 
 class WaitTask(RecorderTask):
     commit_before: bool

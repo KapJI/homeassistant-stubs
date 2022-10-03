@@ -8,7 +8,6 @@ from homeassistant.components.bluetooth import HaBluetoothConnector as HaBluetoo
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, async_get_hass as async_get_hass
 
-CONNECTABLE_MIN_VERSION: Incomplete
 _LOGGER: Incomplete
 
 def async_can_connect(source: str) -> bool: ...

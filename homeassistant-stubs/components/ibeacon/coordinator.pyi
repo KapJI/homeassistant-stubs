@@ -1,5 +1,5 @@
 import time
-from .const import CONF_IGNORE_ADDRESSES as CONF_IGNORE_ADDRESSES, DOMAIN as DOMAIN, MAX_IDS as MAX_IDS, SIGNAL_IBEACON_DEVICE_NEW as SIGNAL_IBEACON_DEVICE_NEW, SIGNAL_IBEACON_DEVICE_SEEN as SIGNAL_IBEACON_DEVICE_SEEN, SIGNAL_IBEACON_DEVICE_UNAVAILABLE as SIGNAL_IBEACON_DEVICE_UNAVAILABLE, UNAVAILABLE_TIMEOUT as UNAVAILABLE_TIMEOUT, UPDATE_INTERVAL as UPDATE_INTERVAL
+from .const import CONF_IGNORE_ADDRESSES as CONF_IGNORE_ADDRESSES, CONF_IGNORE_UUIDS as CONF_IGNORE_UUIDS, DOMAIN as DOMAIN, MAX_IDS as MAX_IDS, MAX_IDS_PER_UUID as MAX_IDS_PER_UUID, SIGNAL_IBEACON_DEVICE_NEW as SIGNAL_IBEACON_DEVICE_NEW, SIGNAL_IBEACON_DEVICE_SEEN as SIGNAL_IBEACON_DEVICE_SEEN, SIGNAL_IBEACON_DEVICE_UNAVAILABLE as SIGNAL_IBEACON_DEVICE_UNAVAILABLE, UNAVAILABLE_TIMEOUT as UNAVAILABLE_TIMEOUT, UPDATE_INTERVAL as UPDATE_INTERVAL
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components import bluetooth as bluetooth
@@ -24,6 +24,7 @@ class IBeaconCoordinator:
     _entry: Incomplete
     _dev_reg: Incomplete
     _ignore_addresses: Incomplete
+    _ignore_uuids: Incomplete
     _last_ibeacon_advertisement_by_unique_id: Incomplete
     _group_ids_by_address: Incomplete
     _unique_ids_by_address: Incomplete
@@ -33,9 +34,11 @@ class IBeaconCoordinator:
     _group_ids_random_macs: Incomplete
     _last_seen_by_group_id: Incomplete
     _unavailable_group_ids: Incomplete
+    _major_minor_by_uuid: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, registry: DeviceRegistry) -> None: ...
     def _async_handle_unavailable(self, service_info: bluetooth.BluetoothServiceInfoBleak) -> None: ...
     def _async_cancel_unavailable_tracker(self, address: str) -> None: ...
+    def _async_ignore_uuid(self, uuid: str) -> None: ...
     def _async_ignore_address(self, address: str) -> None: ...
     def _async_purge_untrackable_entities(self, unique_ids: set[str]) -> None: ...
     def _async_convert_random_mac_tracking(self, group_id: str, service_info: bluetooth.BluetoothServiceInfoBleak, ibeacon_advertisement: iBeaconAdvertisement) -> None: ...

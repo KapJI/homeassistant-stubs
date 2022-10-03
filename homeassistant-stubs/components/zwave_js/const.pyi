@@ -1,5 +1,7 @@
 from _typeshed import Incomplete
+from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME
 
+USER_AGENT: Incomplete
 CONF_ADDON_DEVICE: str
 CONF_ADDON_EMULATE_HARDWARE: str
 CONF_ADDON_LOG_LEVEL: str

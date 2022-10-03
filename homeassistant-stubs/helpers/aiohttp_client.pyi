@@ -6,7 +6,7 @@ from aiohttp import web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
-from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
+from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any

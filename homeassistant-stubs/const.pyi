@@ -2,6 +2,7 @@ from .backports.enum import StrEnum as StrEnum
 from _typeshed import Incomplete
 from typing import Final
 
+APPLICATION_NAME: Final[str]
 MAJOR_VERSION: Final[int]
 MINOR_VERSION: Final[int]
 PATCH_VERSION: Final[str]

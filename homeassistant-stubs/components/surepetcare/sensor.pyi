@@ -24,6 +24,7 @@ class SureBattery(SurePetcareEntity, SensorEntity):
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class Felaqua(SurePetcareEntity, SensorEntity):
+    _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

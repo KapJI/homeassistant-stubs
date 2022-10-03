@@ -2,6 +2,7 @@
 """Fetch the latest homeassistant tag and generate typing stubs for it."""
 from __future__ import annotations
 
+import argparse
 import os
 import shutil
 import subprocess
@@ -21,6 +22,15 @@ BLACKLISTED_VERSIONS = [
 
 def main() -> int:
     """Run main function."""
+    parser = argparse.ArgumentParser(description="Generate typing stubs.")
+    parser.add_argument(
+        "--dry-run",
+        default=False,
+        action="store_true",
+        help="generate but do not publish anything",
+    )
+    args = parser.parse_args()
+
     repo_root = Path(os.path.dirname(os.path.realpath(__file__)))
     homeassistant_root = repo_root / "homeassistant_core"
 
@@ -36,12 +46,14 @@ def main() -> int:
         print(f"Missing version: {version}")
 
     # Create new packages
-    gh_repo = get_github_repo("GITHUB_TOKEN")
-    gh_admin_repo = get_github_repo("ADMIN_TOKEN")
     for i, version in enumerate(missing_versions):
         latest = i + 1 == len(missing_versions)
         create_package(
-            version, repo_root, homeassistant_root, gh_repo, gh_admin_repo, latest
+            version,
+            repo_root,
+            homeassistant_root,
+            latest,
+            args.dry_run,
         )
     return 0
 
@@ -82,9 +94,8 @@ def create_package(
     version: str,
     repo_root: Path,
     homeassistant_root: Path,
-    gh_repo: Repository,
-    gh_admin_repo: Repository,
     latest: bool,
+    dry_run: bool,
 ) -> None:
     """Create package for given version and upload it to PyPI."""
     print(f"Creating package for {version}...")
@@ -98,9 +109,12 @@ def create_package(
     generate_stubs(typed_paths, repo_root)
     build_package(repo_root, version)
     create_commit(repo_root, version)
-    push_commit(repo_root, gh_admin_repo)
-    create_github_release(version, gh_repo)
-    publish_package(repo_root)
+    if not dry_run:
+        gh_repo = get_github_repo("GITHUB_TOKEN")
+        gh_admin_repo = get_github_repo("ADMIN_TOKEN")
+        push_commit(repo_root, gh_admin_repo)
+        create_github_release(version, gh_repo)
+        publish_package(repo_root)
 
 
 def update_dependency(repo_root: Path, version: str) -> bool:

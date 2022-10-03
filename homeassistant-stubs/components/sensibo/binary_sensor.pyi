@@ -31,6 +31,7 @@ MOTION_SENSOR_TYPES: tuple[SensiboMotionBinarySensorEntityDescription, ...]
 MOTION_DEVICE_SENSOR_TYPES: tuple[SensiboDeviceBinarySensorEntityDescription, ...]
 DEVICE_SENSOR_TYPES: tuple[SensiboDeviceBinarySensorEntityDescription, ...]
 PURE_SENSOR_TYPES: tuple[SensiboDeviceBinarySensorEntityDescription, ...]
+DESCRIPTION_BY_MODELS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

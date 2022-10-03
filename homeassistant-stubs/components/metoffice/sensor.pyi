@@ -1,5 +1,5 @@
 from . import get_device_info as get_device_info
-from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_CLASSES as CONDITION_CLASSES, DOMAIN as DOMAIN, METOFFICE_COORDINATES as METOFFICE_COORDINATES, METOFFICE_DAILY_COORDINATOR as METOFFICE_DAILY_COORDINATOR, METOFFICE_HOURLY_COORDINATOR as METOFFICE_HOURLY_COORDINATOR, METOFFICE_NAME as METOFFICE_NAME, MODE_3HOURLY_LABEL as MODE_3HOURLY_LABEL, MODE_DAILY as MODE_DAILY, MODE_DAILY_LABEL as MODE_DAILY_LABEL, VISIBILITY_CLASSES as VISIBILITY_CLASSES, VISIBILITY_DISTANCE_CLASSES as VISIBILITY_DISTANCE_CLASSES
+from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_CLASSES as CONDITION_CLASSES, DOMAIN as DOMAIN, METOFFICE_COORDINATES as METOFFICE_COORDINATES, METOFFICE_DAILY_COORDINATOR as METOFFICE_DAILY_COORDINATOR, METOFFICE_HOURLY_COORDINATOR as METOFFICE_HOURLY_COORDINATOR, METOFFICE_NAME as METOFFICE_NAME, MODE_DAILY as MODE_DAILY, VISIBILITY_CLASSES as VISIBILITY_CLASSES, VISIBILITY_DISTANCE_CLASSES as VISIBILITY_DISTANCE_CLASSES
 from .data import MetOfficeData as MetOfficeData
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
@@ -19,6 +19,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MetOfficeCurrentSensor(CoordinatorEntity[DataUpdateCoordinator[MetOfficeData]], SensorEntity):
+    _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_device_info: Incomplete
     _attr_name: Incomplete

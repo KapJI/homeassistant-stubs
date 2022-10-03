@@ -19,7 +19,7 @@ from types import ModuleType
 from typing import Any, Final, Protocol
 
 SERVICE_SEE: Final[str]
-SOURCE_TYPES: Final[tuple[str, ...]]
+SOURCE_TYPES: Incomplete
 NEW_DEVICE_DEFAULTS_SCHEMA: Incomplete
 PLATFORM_SCHEMA: Final[Incomplete]
 PLATFORM_SCHEMA_BASE: Final[vol.Schema]

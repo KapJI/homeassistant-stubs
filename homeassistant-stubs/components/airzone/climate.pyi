@@ -3,8 +3,7 @@ from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from aioairzone.common import OperationMode
-from homeassistant.components.climate import ClimateEntity as ClimateEntity
-from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
+from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

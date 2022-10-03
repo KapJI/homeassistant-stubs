@@ -1,4 +1,3 @@
-import abc
 import voluptuous as vol
 from . import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA, DeviceAutomationType as DeviceAutomationType, async_get_device_automation_platform as async_get_device_automation_platform
 from .exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
@@ -7,11 +6,11 @@ from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, Protocol
 
 TRIGGER_SCHEMA: Incomplete
 
-class DeviceAutomationTriggerProtocol(metaclass=abc.ABCMeta):
+class DeviceAutomationTriggerProtocol(Protocol):
     TRIGGER_SCHEMA: vol.Schema
     async def async_validate_trigger_config(self, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     async def async_attach_trigger(self, hass: HomeAssistant, config: ConfigType, action: TriggerActionType, trigger_info: TriggerInfo) -> CALLBACK_TYPE: ...

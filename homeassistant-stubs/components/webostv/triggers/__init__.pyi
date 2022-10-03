@@ -1,5 +1,5 @@
-import abc
 import voluptuous as vol
+from typing import Protocol
 
-class TriggersPlatformModule(metaclass=abc.ABCMeta):
+class TriggersPlatformModule(Protocol):
     TRIGGER_SCHEMA: vol.Schema

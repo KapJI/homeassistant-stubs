@@ -7,6 +7,7 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter
 from typing import Any, Final, TypedDict
 
 _LOGGER: Incomplete
@@ -57,13 +58,13 @@ DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
 SCAN_INTERVAL: Incomplete
 ROUNDING_PRECISION: int
-VALID_UNITS_PRESSURE: tuple[str, ...]
-VALID_UNITS_TEMPERATURE: tuple[str, ...]
-VALID_UNITS_PRECIPITATION: tuple[str, ...]
-VALID_UNITS_VISIBILITY: tuple[str, ...]
-VALID_UNITS_WIND_SPEED: tuple[str, ...]
+VALID_UNITS_PRESSURE: set[str]
+VALID_UNITS_TEMPERATURE: set[str]
+VALID_UNITS_PRECIPITATION: set[str]
+VALID_UNITS_VISIBILITY: set[str]
+VALID_UNITS_WIND_SPEED: set[str]
 UNIT_CONVERSIONS: dict[str, Callable[[float, str, str], float]]
-VALID_UNITS: dict[str, tuple[str, ...]]
+VALID_UNITS: dict[str, set[str]]
 
 def round_temperature(temperature: Union[float, None], precision: float) -> Union[float, None]: ...
 
@@ -191,7 +192,7 @@ class WeatherEntity(Entity):
     @property
     def precision(self) -> float: ...
     @property
-    def state_attributes(self): ...
+    def state_attributes(self) -> dict[str, Any]: ...
     @property
     def state(self) -> Union[str, None]: ...
     @property

@@ -1,7 +1,7 @@
 from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
 from .const import DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN
 from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey, RainMachineEntityDescriptionMixinUid as RainMachineEntityDescriptionMixinUid
-from .util import RUN_STATE_MAP as RUN_STATE_MAP, RunStates as RunStates, key_exists as key_exists
+from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, RUN_STATE_MAP as RUN_STATE_MAP, RunStates as RunStates, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements, key_exists as key_exists
 from _typeshed import Incomplete
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

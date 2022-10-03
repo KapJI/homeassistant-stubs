@@ -8,6 +8,7 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 
 DEFAULT_MIN_TEMP: int

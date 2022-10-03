@@ -13,14 +13,12 @@ async def async_get_manager(hass: HomeAssistant) -> EnergyManager: ...
 class FlowFromGridSourceType(TypedDict):
     stat_energy_from: str
     stat_cost: Union[str, None]
-    entity_energy_from: Union[str, None]
     entity_energy_price: Union[str, None]
     number_energy_price: Union[float, None]
 
 class FlowToGridSourceType(TypedDict):
     stat_energy_to: str
     stat_compensation: Union[str, None]
-    entity_energy_to: Union[str, None]
     entity_energy_price: Union[str, None]
     number_energy_price: Union[float, None]
 
@@ -44,7 +42,6 @@ class GasSourceType(TypedDict):
     type: Literal['gas']
     stat_energy_from: str
     stat_cost: Union[str, None]
-    entity_energy_from: Union[str, None]
     entity_energy_price: Union[str, None]
     number_energy_price: Union[float, None]
 SourceType = Union[GridSourceType, SolarSourceType, BatterySourceType, GasSourceType]

@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.components.climate.const import PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME
+from homeassistant.components.climate import PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME
 from typing import Final
 
 DOMAIN: Final[str]

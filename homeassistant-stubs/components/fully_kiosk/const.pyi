@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.components.media_player.const import MediaPlayerEntityFeature as MediaPlayerEntityFeature
+from homeassistant.components.media_player import MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from typing import Final
 
 DOMAIN: Final[str]

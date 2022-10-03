@@ -33,8 +33,8 @@ def _to_iso_format(traintime: datetime) -> str: ...
 class TrainSensor(SensorEntity):
     _attr_icon: Incomplete
     _attr_device_class: Incomplete
+    _attr_has_entity_name: bool
     _train_api: Incomplete
-    _attr_name: Incomplete
     _from_station: Incomplete
     _to_station: Incomplete
     _weekday: Incomplete

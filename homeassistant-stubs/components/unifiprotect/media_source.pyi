@@ -5,8 +5,7 @@ from _typeshed import Incomplete
 from datetime import date, datetime, timedelta
 from enum import Enum
 from homeassistant.components.camera import CameraImageView as CameraImageView
-from homeassistant.components.media_player.const import MEDIA_CLASS_DIRECTORY as MEDIA_CLASS_DIRECTORY, MEDIA_CLASS_IMAGE as MEDIA_CLASS_IMAGE, MEDIA_CLASS_VIDEO as MEDIA_CLASS_VIDEO
-from homeassistant.components.media_player.errors import BrowseError as BrowseError
+from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

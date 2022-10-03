@@ -1,6 +1,6 @@
 from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity, async_update_programs_and_zones as async_update_programs_and_zones
-from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_PROGRAMS as DATA_PROGRAMS, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
-from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinUid as RainMachineEntityDescriptionMixinUid
+from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_PROGRAMS as DATA_PROGRAMS, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
+from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey, RainMachineEntityDescriptionMixinUid as RainMachineEntityDescriptionMixinUid
 from .util import RUN_STATE_MAP as RUN_STATE_MAP
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
@@ -45,8 +45,18 @@ _P: Incomplete
 
 def raise_on_request_error(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
-class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinUid):
+class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription):
+    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+
+class RainMachineActivitySwitchDescription(RainMachineSwitchDescription, RainMachineEntityDescriptionMixinUid):
     def __init__(self, uid, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+
+class RainMachineRestrictionSwitchDescription(RainMachineSwitchDescription, RainMachineEntityDescriptionMixinDataKey):
+    def __init__(self, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+
+TYPE_RESTRICTIONS_FREEZE_PROTECT_ENABLED: str
+TYPE_RESTRICTIONS_HOT_DAYS_EXTRA_WATERING: str
+RESTRICTIONS_SWITCH_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -62,6 +72,8 @@ class RainMachineBaseSwitch(RainMachineEntity, SwitchEntity):
     async def async_stop_zone(self) -> None: ...
 
 class RainMachineActivitySwitch(RainMachineBaseSwitch):
+    _attr_icon: str
+    entity_description: RainMachineActivitySwitchDescription
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_turn_off_when_active(self, **kwargs: Any) -> None: ...
     _attr_is_on: bool
@@ -69,6 +81,9 @@ class RainMachineActivitySwitch(RainMachineBaseSwitch):
     async def async_turn_on_when_active(self, **kwargs: Any) -> None: ...
 
 class RainMachineEnabledSwitch(RainMachineBaseSwitch):
+    _attr_entity_category: Incomplete
+    _attr_icon: str
+    entity_description: RainMachineActivitySwitchDescription
     _attr_is_on: Incomplete
     def update_from_latest_data(self) -> None: ...
 
@@ -83,6 +98,14 @@ class RainMachineProgram(RainMachineActivitySwitch):
 class RainMachineProgramEnabled(RainMachineEnabledSwitch):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+
+class RainMachineRestrictionSwitch(RainMachineBaseSwitch):
+    _attr_entity_category: Incomplete
+    entity_description: RainMachineRestrictionSwitchDescription
+    _attr_is_on: bool
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    def update_from_latest_data(self) -> None: ...
 
 class RainMachineZone(RainMachineActivitySwitch):
     async def async_start_zone(self, *, zone_run_time: int) -> None: ...

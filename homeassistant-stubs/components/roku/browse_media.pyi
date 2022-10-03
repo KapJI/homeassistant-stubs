@@ -2,9 +2,7 @@ from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .helpers import format_channel_name as format_channel_name
 from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia
-from homeassistant.components.media_player.const import MEDIA_CLASS_APP as MEDIA_CLASS_APP, MEDIA_CLASS_CHANNEL as MEDIA_CLASS_CHANNEL, MEDIA_CLASS_DIRECTORY as MEDIA_CLASS_DIRECTORY, MEDIA_TYPE_APP as MEDIA_TYPE_APP, MEDIA_TYPE_APPS as MEDIA_TYPE_APPS, MEDIA_TYPE_CHANNEL as MEDIA_TYPE_CHANNEL, MEDIA_TYPE_CHANNELS as MEDIA_TYPE_CHANNELS
-from homeassistant.components.media_player.errors import BrowseError as BrowseError
+from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.network import is_internal_request as is_internal_request
 

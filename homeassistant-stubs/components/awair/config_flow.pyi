@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from collections.abc import Mapping
-from homeassistant.components import zeroconf as zeroconf
+from homeassistant.components import onboarding as onboarding, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, SOURCE_ZEROCONF as SOURCE_ZEROCONF
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback

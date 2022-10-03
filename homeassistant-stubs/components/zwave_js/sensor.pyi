@@ -69,15 +69,16 @@ class ZWaveConfigParameterSensor(ZwaveSensorBase):
 class ZWaveNodeStatusSensor(SensorEntity):
     _attr_should_poll: bool
     _attr_entity_category: Incomplete
+    _attr_has_entity_name: bool
     config_entry: Incomplete
     node: Incomplete
-    _attr_name: Incomplete
+    _attr_name: str
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _attr_native_value: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, node: ZwaveNode) -> None: ...
     async def async_poll_value(self, _: bool) -> None: ...
+    _attr_native_value: Incomplete
     def _status_changed(self, _: dict) -> None: ...
     @property
     def icon(self) -> Union[str, None]: ...

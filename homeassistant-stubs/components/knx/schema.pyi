@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from abc import ABC
 from collections import OrderedDict
 from collections.abc import Callable as Callable
-from homeassistant.components.climate.const import HVACMode as HVACMode
+from homeassistant.components.climate import HVACMode as HVACMode
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, Platform as Platform

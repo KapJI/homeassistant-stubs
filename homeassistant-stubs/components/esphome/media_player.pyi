@@ -1,24 +1,21 @@
 from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from _typeshed import Incomplete
-from aioesphomeapi import MediaPlayerEntityState, MediaPlayerInfo, MediaPlayerState
+from aioesphomeapi import MediaPlayerEntityState, MediaPlayerInfo, MediaPlayerState as EspMediaPlayerState
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity
-from homeassistant.components.media_player.browse_media import BrowseMedia as BrowseMedia, async_process_play_media_url as async_process_play_media_url
-from homeassistant.components.media_player.const import MediaPlayerEntityFeature as MediaPlayerEntityFeature
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-_STATES: EsphomeEnumMapper[MediaPlayerState, str]
+_STATES: EsphomeEnumMapper[EspMediaPlayerState, MediaPlayerState]
 
 class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState], MediaPlayerEntity):
     _attr_device_class: Incomplete
     @property
-    def state(self) -> Union[str, None]: ...
+    def state(self) -> Union[MediaPlayerState, None]: ...
     @property
     def is_volume_muted(self) -> bool: ...
     @property

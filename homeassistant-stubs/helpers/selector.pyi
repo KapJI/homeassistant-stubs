@@ -5,7 +5,7 @@ from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.util import decorator as decorator
 from homeassistant.util.yaml import dumper as dumper
-from typing import Any, TypedDict
+from typing import Any, Literal, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]
 
@@ -190,7 +190,7 @@ class MediaSelector(Selector):
 class NumberSelectorConfig(TypedDict):
     min: float
     max: float
-    step: float
+    step: Union[float, Literal['any']]
     unit_of_measurement: str
     mode: NumberSelectorMode
 
@@ -198,7 +198,7 @@ class NumberSelectorMode(StrEnum):
     BOX: str
     SLIDER: str
 
-def has_min_max_if_slider(data: Any) -> Any: ...
+def validate_slider(data: Any) -> Any: ...
 
 class NumberSelector(Selector):
     selector_type: str

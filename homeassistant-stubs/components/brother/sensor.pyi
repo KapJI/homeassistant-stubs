@@ -51,6 +51,7 @@ ATTR_YELLOW_INK_REMAINING: str
 ATTR_YELLOW_TONER_REMAINING: str
 UNIT_PAGES: str
 ATTRS_MAP: dict[str, tuple[str, str]]
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

@@ -6,13 +6,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, Final
 
-DOMAIN: str
-STATES: str
+DOMAIN: Final[str]
+STATES: Final[str]
 
-def _hass_domain_validator(config): ...
-def _platform_validator(config): ...
+def _hass_domain_validator(config: dict[str, Any]) -> dict[str, Any]: ...
+def _platform_validator(config: dict[str, Any]) -> dict[str, Any]: ...
 
 PLATFORM_SCHEMA: Incomplete
 

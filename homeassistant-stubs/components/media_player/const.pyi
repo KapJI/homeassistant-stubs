@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from enum import IntEnum
+from homeassistant.backports.enum import StrEnum as StrEnum
 
 CONTENT_AUTH_EXPIRY_TIME: Incomplete
 ATTR_APP_ID: str
@@ -34,6 +35,38 @@ ATTR_MEDIA_VOLUME_MUTED: str
 ATTR_SOUND_MODE: str
 ATTR_SOUND_MODE_LIST: str
 DOMAIN: str
+
+class MediaPlayerState(StrEnum):
+    OFF: str
+    ON: str
+    IDLE: str
+    PLAYING: str
+    PAUSED: str
+    STANDBY: str
+    BUFFERING: str
+
+class MediaClass(StrEnum):
+    ALBUM: str
+    APP: str
+    ARTIST: str
+    CHANNEL: str
+    COMPOSER: str
+    CONTRIBUTING_ARTIST: str
+    DIRECTORY: str
+    EPISODE: str
+    GAME: str
+    GENRE: str
+    IMAGE: str
+    MOVIE: str
+    MUSIC: str
+    PLAYLIST: str
+    PODCAST: str
+    SEASON: str
+    TRACK: str
+    TV_SHOW: str
+    URL: str
+    VIDEO: str
+
 MEDIA_CLASS_ALBUM: str
 MEDIA_CLASS_APP: str
 MEDIA_CLASS_ARTIST: str
@@ -54,6 +87,30 @@ MEDIA_CLASS_TRACK: str
 MEDIA_CLASS_TV_SHOW: str
 MEDIA_CLASS_URL: str
 MEDIA_CLASS_VIDEO: str
+
+class MediaType(StrEnum):
+    ALBUM: str
+    APP: str
+    APPS: str
+    ARTIST: str
+    CHANNEL: str
+    CHANNELS: str
+    COMPOSER: str
+    CONTRIBUTING_ARTIST: str
+    EPISODE: str
+    GAME: str
+    GENRE: str
+    IMAGE: str
+    MOVIE: str
+    MUSIC: str
+    PLAYLIST: str
+    PODCAST: str
+    SEASON: str
+    TRACK: str
+    TVSHOW: str
+    URL: str
+    VIDEO: str
+
 MEDIA_TYPE_ALBUM: str
 MEDIA_TYPE_APP: str
 MEDIA_TYPE_APPS: str
@@ -81,6 +138,12 @@ SERVICE_PLAY_MEDIA: str
 SERVICE_SELECT_SOUND_MODE: str
 SERVICE_SELECT_SOURCE: str
 SERVICE_UNJOIN: str
+
+class RepeatMode(StrEnum):
+    ALL: str
+    OFF: str
+    ONE: str
+
 REPEAT_MODE_ALL: str
 REPEAT_MODE_OFF: str
 REPEAT_MODE_ONE: str

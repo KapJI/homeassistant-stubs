@@ -4,8 +4,7 @@ from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.helpers.collection import IDManager as IDManager, StorageCollection as StorageCollection, StorageCollectionWebsocket as StorageCollectionWebsocket, YamlCollection as YamlCollection, sync_entity_lifecycle as sync_entity_lifecycle
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.collection import CollectionEntity as CollectionEntity, IDManager as IDManager, StorageCollection as StorageCollection, StorageCollectionWebsocket as StorageCollectionWebsocket, YamlCollection as YamlCollection, sync_entity_lifecycle as sync_entity_lifecycle
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
@@ -39,7 +38,7 @@ class ScheduleStorageCollection(StorageCollection):
     async def _update_data(self, data: dict, update_data: dict) -> dict: ...
     async def _async_load_data(self) -> Union[dict, None]: ...
 
-class Schedule(Entity):
+class Schedule(CollectionEntity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _attr_state: Literal['on', 'off']
@@ -50,7 +49,9 @@ class Schedule(Entity):
     _attr_icon: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, config: ConfigType, editable: bool = ...) -> None: ...
+    def __init__(self, config: ConfigType, editable: bool) -> None: ...
+    @classmethod
+    def from_storage(cls, config: ConfigType) -> Schedule: ...
     @classmethod
     def from_yaml(cls, config: ConfigType) -> Schedule: ...
     async def async_update_config(self, config: ConfigType) -> None: ...

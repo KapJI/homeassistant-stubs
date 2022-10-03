@@ -1,6 +1,7 @@
 import voluptuous as vol
 from .action import DeviceAutomationActionProtocol as DeviceAutomationActionProtocol
 from .condition import DeviceAutomationConditionProtocol as DeviceAutomationConditionProtocol
+from .const import CONF_IS_OFF as CONF_IS_OFF, CONF_IS_ON as CONF_IS_ON, CONF_TURNED_OFF as CONF_TURNED_OFF, CONF_TURNED_ON as CONF_TURNED_ON
 from .exceptions import DeviceNotFound as DeviceNotFound, InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from .trigger import DeviceAutomationTriggerProtocol as DeviceAutomationTriggerProtocol
 from _typeshed import Incomplete

@@ -17,6 +17,13 @@ class RecorderTask(abc.ABC, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def run(self, instance: Recorder) -> None: ...
 
+class ChangeStatisticsUnitTask(RecorderTask):
+    statistic_id: str
+    new_unit_of_measurement: str
+    old_unit_of_measurement: str
+    def run(self, instance: Recorder) -> None: ...
+    def __init__(self, statistic_id, new_unit_of_measurement, old_unit_of_measurement) -> None: ...
+
 class ClearStatisticsTask(RecorderTask):
     statistic_ids: list[str]
     def run(self, instance: Recorder) -> None: ...
@@ -59,8 +66,9 @@ class AdjustStatisticsTask(RecorderTask):
     statistic_id: str
     start_time: datetime
     sum_adjustment: float
+    display_unit: str
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, statistic_id, start_time, sum_adjustment) -> None: ...
+    def __init__(self, statistic_id, start_time, sum_adjustment, display_unit) -> None: ...
 
 class WaitTask(RecorderTask):
     commit_before: bool

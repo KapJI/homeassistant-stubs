@@ -1,6 +1,9 @@
+from .unit_conversion import TemperatureConverter as TemperatureConverter
+from _typeshed import Incomplete
 from homeassistant.const import TEMPERATURE as TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT, TEMP_KELVIN as TEMP_KELVIN, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE
+from homeassistant.helpers.frame import report as report
 
-VALID_UNITS: tuple[str, ...]
+VALID_UNITS: Incomplete
 
 def fahrenheit_to_celsius(fahrenheit: float, interval: bool = ...) -> float: ...
 def kelvin_to_celsius(kelvin: float, interval: bool = ...) -> float: ...

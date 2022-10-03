@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Iterable
 from homeassistant import config_entries as config_entries
-from homeassistant.components.device_tracker.const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
+from homeassistant.components.device_tracker import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo

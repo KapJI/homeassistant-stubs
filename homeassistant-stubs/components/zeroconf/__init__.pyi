@@ -4,8 +4,7 @@ from .usage import install_multiple_zeroconf_catcher as install_multiple_zerocon
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
-from homeassistant.components.network import async_get_source_ip as async_get_source_ip
-from homeassistant.components.network.const import MDNS_TARGET_IP as MDNS_TARGET_IP
+from homeassistant.components.network import MDNS_TARGET_IP as MDNS_TARGET_IP, async_get_source_ip as async_get_source_ip
 from homeassistant.components.network.models import Adapter as Adapter
 from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback

@@ -1,8 +1,7 @@
 from . import Camera as Camera, _async_stream_endpoint_url as _async_stream_endpoint_url
 from .const import DOMAIN as DOMAIN, StreamType as StreamType
 from _typeshed import Incomplete
-from homeassistant.components.media_player.const import MEDIA_CLASS_APP as MEDIA_CLASS_APP, MEDIA_CLASS_VIDEO as MEDIA_CLASS_VIDEO
-from homeassistant.components.media_player.errors import BrowseError as BrowseError
+from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source.error import Unresolvable as Unresolvable
 from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER

@@ -1,9 +1,8 @@
 from .const import DOMAIN as DOMAIN
 from .entity import BraviaTVEntity as BraviaTVEntity
 from _typeshed import Incomplete
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature
+from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OFF as STATE_OFF, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
@@ -13,7 +12,7 @@ class BraviaTVMediaPlayer(BraviaTVEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     @property
-    def state(self) -> Union[str, None]: ...
+    def state(self) -> MediaPlayerState: ...
     @property
     def source(self) -> Union[str, None]: ...
     @property
@@ -27,7 +26,7 @@ class BraviaTVMediaPlayer(BraviaTVEntity, MediaPlayerEntity):
     @property
     def media_content_id(self) -> Union[str, None]: ...
     @property
-    def media_content_type(self) -> Union[str, None]: ...
+    def media_content_type(self) -> Union[MediaType, None]: ...
     @property
     def media_duration(self) -> Union[int, None]: ...
     async def async_turn_on(self) -> None: ...

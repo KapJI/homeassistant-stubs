@@ -1,13 +1,16 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from astral.location import Elevation as Elevation, Location as Location
+from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_ELEVATION as CONF_ELEVATION, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
 from homeassistant.helpers.sun import get_astral_location as get_astral_location, get_location_astral_event_next as get_location_astral_event_next
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import Any
 
 _LOGGER: Incomplete
 ENTITY_ID: str
@@ -35,34 +38,32 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class Sun(Entity):
+    _attr_name: str
     entity_id: Incomplete
+    location: Location
+    elevation: Elevation
+    next_rising: datetime
+    next_setting: datetime
+    next_dawn: datetime
+    next_dusk: datetime
+    next_midnight: datetime
+    next_noon: datetime
+    solar_elevation: float
+    solar_azimuth: float
+    rising: bool
+    _next_change: datetime
     hass: Incomplete
-    location: Incomplete
-    elevation: float
-    _state: Incomplete
-    next_dawn: Incomplete
-    next_midnight: Incomplete
-    solar_elevation: Incomplete
-    rising: Incomplete
-    _next_change: Incomplete
+    phase: Incomplete
     _config_listener: Incomplete
     _update_events_listener: Incomplete
     _update_sun_position_listener: Incomplete
-    def __init__(self, hass) -> None: ...
-    def update_location(self, *_) -> None: ...
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    def update_location(self, _: Union[Event, None] = ..., initial: bool = ...) -> None: ...
     def remove_listeners(self) -> None: ...
     @property
-    def name(self): ...
+    def state(self) -> str: ...
     @property
-    def state(self): ...
-    @property
-    def extra_state_attributes(self): ...
-    phase: Incomplete
-    def _check_event(self, utc_point_in_time, sun_event, before): ...
-    next_rising: Incomplete
-    next_noon: Incomplete
-    next_setting: Incomplete
-    next_dusk: Incomplete
-    def update_events(self, now: Incomplete | None = ...) -> None: ...
-    solar_azimuth: Incomplete
-    def update_sun_position(self, now: Incomplete | None = ...) -> None: ...
+    def extra_state_attributes(self) -> dict[str, Any]: ...
+    def _check_event(self, utc_point_in_time: datetime, sun_event: str, before: Union[str, None]) -> datetime: ...
+    def update_events(self, now: Union[datetime, None] = ...) -> None: ...
+    def update_sun_position(self, now: Union[datetime, None] = ...) -> None: ...

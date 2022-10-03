@@ -1,4 +1,4 @@
-from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_RTSP_TO_WEB_RTC as DATA_RTSP_TO_WEB_RTC, DOMAIN as DOMAIN, SERVICE_RECORD as SERVICE_RECORD, STREAM_TYPE_HLS as STREAM_TYPE_HLS, STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC, StreamType as StreamType
+from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_RTSP_TO_WEB_RTC as DATA_RTSP_TO_WEB_RTC, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, STREAM_TYPE_HLS as STREAM_TYPE_HLS, STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC, StreamType as StreamType
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences
 from _typeshed import Incomplete
@@ -7,7 +7,7 @@ from collections.abc import Awaitable, Callable, Iterable
 from enum import IntEnum
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
-from homeassistant.components.media_player.const import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
+from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS, Stream as Stream, create_stream as create_stream
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -150,7 +150,7 @@ class Camera(Entity):
 class CameraView(HomeAssistantView):
     requires_auth: bool
     component: Incomplete
-    def __init__(self, component: EntityComponent) -> None: ...
+    def __init__(self, component: EntityComponent[Camera]) -> None: ...
     async def get(self, request: web.Request, entity_id: str) -> web.StreamResponse: ...
     async def handle(self, request: web.Request, camera: Camera) -> web.StreamResponse: ...
 

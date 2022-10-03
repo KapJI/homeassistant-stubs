@@ -1,4 +1,5 @@
 from .bluetooth import async_connect_scanner as async_connect_scanner
+from .domain_data import DOMAIN as DOMAIN, DomainData as DomainData
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
@@ -14,30 +15,13 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
-from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import Template as Template
 from typing import Any, NamedTuple, TypeVar, overload
 
-DOMAIN: str
 CONF_NOISE_PSK: str
 _LOGGER: Incomplete
 _R = TypeVar('_R')
-_DomainDataSelfT = TypeVar('_DomainDataSelfT', bound='DomainData')
-STORAGE_VERSION: int
-
-class DomainData:
-    _entry_datas: dict[str, RuntimeEntryData]
-    _stores: dict[str, Store]
-    def get_entry_data(self, entry: ConfigEntry) -> RuntimeEntryData: ...
-    def set_entry_data(self, entry: ConfigEntry, entry_data: RuntimeEntryData) -> None: ...
-    def pop_entry_data(self, entry: ConfigEntry) -> RuntimeEntryData: ...
-    def is_entry_loaded(self, entry: ConfigEntry) -> bool: ...
-    def get_or_create_store(self, hass: HomeAssistant, entry: ConfigEntry) -> Store: ...
-    @classmethod
-    def get(cls, hass: HomeAssistant) -> _DomainDataSelfT: ...
-    def __init__(self, _entry_datas, _stores) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 def _async_setup_device_registry(hass: HomeAssistant, entry: ConfigEntry, device_info: EsphomeDeviceInfo) -> str: ...

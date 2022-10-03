@@ -8,12 +8,12 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from pyoverkiz.models import Device as Device
 
 class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
+    _attr_has_entity_name: bool
     device_url: Incomplete
     executor: Incomplete
     _attr_assumed_state: Incomplete
     _attr_available: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
@@ -23,7 +23,6 @@ class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
 class OverkizDescriptiveEntity(OverkizEntity):
     entity_description: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator, description: EntityDescription) -> None: ...
 
 class OverkizDeviceClass(StrEnum):

@@ -25,8 +25,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class LaCrosseViewSensor(CoordinatorEntity[DataUpdateCoordinator[list[Sensor]]], SensorEntity):
     entity_description: LaCrosseSensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
     _sensor: Incomplete
     def __init__(self, description: LaCrosseSensorEntityDescription, coordinator: DataUpdateCoordinator[list[Sensor]], sensor: Sensor) -> None: ...

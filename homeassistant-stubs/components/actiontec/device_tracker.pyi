@@ -10,7 +10,7 @@ from typing import Final
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 
-def get_scanner(hass: HomeAssistant, config: ConfigType) -> Union[DeviceScanner, None]: ...
+def get_scanner(hass: HomeAssistant, config: ConfigType) -> Union[ActiontecDeviceScanner, None]: ...
 
 class ActiontecDeviceScanner(DeviceScanner):
     host: Incomplete

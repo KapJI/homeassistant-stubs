@@ -13,6 +13,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util import Throttle as Throttle, slugify as slugify
+from homeassistant.util.unit_conversion import SpeedConverter as SpeedConverter
 from smhi.smhi_lib import SmhiForecast as SmhiForecast
 from typing import Any, Final
 

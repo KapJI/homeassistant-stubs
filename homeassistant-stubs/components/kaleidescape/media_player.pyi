@@ -1,9 +1,8 @@
 from .entity import KaleidescapeEntity as KaleidescapeEntity
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature
+from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
@@ -24,7 +23,7 @@ class KaleidescapeMediaPlayer(KaleidescapeEntity, MediaPlayerEntity):
     async def async_media_next_track(self) -> None: ...
     async def async_media_previous_track(self) -> None: ...
     @property
-    def state(self) -> str: ...
+    def state(self) -> MediaPlayerState: ...
     @property
     def available(self) -> bool: ...
     @property

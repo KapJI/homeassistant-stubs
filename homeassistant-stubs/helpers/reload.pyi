@@ -1,4 +1,5 @@
 from . import config_per_platform as config_per_platform
+from .entity import Entity as Entity
 from .entity_component import EntityComponent as EntityComponent
 from .entity_platform import EntityPlatform as EntityPlatform, async_get_platforms as async_get_platforms
 from .service import async_register_admin_service as async_register_admin_service

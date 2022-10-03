@@ -7,6 +7,7 @@ from homeassistant.components.remote import RemoteEntityFeature as RemoteEntityF
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
+from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from pyhap.accessory import Accessory as Accessory
 from typing import Any
 

@@ -26,14 +26,16 @@ class InputButtonStorageCollection(collection.StorageCollection):
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
-class InputButton(ButtonEntity, RestoreEntity):
+class InputButton(collection.CollectionEntity, ButtonEntity, RestoreEntity):
     _attr_should_poll: bool
-    _config: Incomplete
     editable: bool
+    _config: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
     @classmethod
-    def from_yaml(cls, config: ConfigType) -> ButtonEntity: ...
+    def from_storage(cls, config: ConfigType) -> InputButton: ...
+    @classmethod
+    def from_yaml(cls, config: ConfigType) -> InputButton: ...
     @property
     def name(self) -> Union[str, None]: ...
     @property

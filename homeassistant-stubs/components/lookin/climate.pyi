@@ -5,8 +5,7 @@ from .models import LookinData as LookinData
 from _typeshed import Incomplete
 from aiolookin import Climate, MeteoSensor as MeteoSensor
 from aiolookin.models import UDPEvent as UDPEvent
-from homeassistant.components.climate import ClimateEntity as ClimateEntity
-from homeassistant.components.climate.const import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MIDDLE as FAN_MIDDLE, HVACMode as HVACMode, SWING_BOTH as SWING_BOTH, SWING_OFF as SWING_OFF
+from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MIDDLE as FAN_MIDDLE, HVACMode as HVACMode, SWING_BOTH as SWING_BOTH, SWING_OFF as SWING_OFF
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, Platform as Platform, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

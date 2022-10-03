@@ -1,6 +1,6 @@
 from .const import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, DOMAIN as DOMAIN, LOGGER as LOGGER, NOTIFY_SERVICE_SCHEMA as NOTIFY_SERVICE_SCHEMA, SERVICE_NOTIFY as SERVICE_NOTIFY
 from _typeshed import Incomplete
-from collections.abc import Coroutine
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -11,11 +11,15 @@ from homeassistant.loader import async_get_integration as async_get_integration,
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util import slugify as slugify
 from homeassistant.util.yaml import load_yaml as load_yaml
-from typing import Any
+from typing import Any, Protocol
 
 CONF_FIELDS: str
 NOTIFY_SERVICES: str
 NOTIFY_DISCOVERY_DISPATCHER: str
+
+class LegacyNotifyPlatform(Protocol):
+    async def async_get_service(self, hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> BaseNotificationService: ...
+    def get_service(self, hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> BaseNotificationService: ...
 
 def async_setup_legacy(hass: HomeAssistant, config: ConfigType) -> list[Coroutine[Any, Any, None]]: ...
 def check_templates_warn(hass: HomeAssistant, tpl: template.Template) -> None: ...

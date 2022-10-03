@@ -2,9 +2,8 @@ from .const import DOMAIN as DOMAIN
 from homeassistant import config_entries as config_entries, exceptions as exceptions
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.util.network import is_host_valid as is_host_valid
 from typing import Any
-
-def host_valid(host: str) -> bool: ...
 
 class DuneHDConfigFlow(config_entries.ConfigFlow):
     VERSION: int

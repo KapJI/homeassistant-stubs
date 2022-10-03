@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.websocket_api.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
+from homeassistant.components.websocket_api import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.core import Context as Context, State as State
 from homeassistant.helpers.json import json_loads as json_loads
 from sqlalchemy.engine.row import Row as Row
@@ -32,6 +32,7 @@ class StatisticMetaData(TypedDict):
     has_sum: bool
     name: Union[str, None]
     source: str
+    state_unit_of_measurement: Union[str, None]
     statistic_id: str
     unit_of_measurement: Union[str, None]
 

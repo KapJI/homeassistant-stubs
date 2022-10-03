@@ -21,12 +21,12 @@ class KrakenSensor(CoordinatorEntity[DataUpdateCoordinator[Optional[KrakenRespon
     _target_asset: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _device_name: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _received_data_at_least_once: bool
     _available: bool
     _attr_state_class: Incomplete
     _attr_device_info: Incomplete
+    _attr_has_entity_name: bool
     def __init__(self, kraken_data: KrakenData, tracked_asset_pair: str, description: KrakenSensorEntityDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

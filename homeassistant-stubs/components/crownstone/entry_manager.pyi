@@ -1,4 +1,4 @@
-from .const import CONF_USB_PATH as CONF_USB_PATH, CONF_USB_SPHERE as CONF_USB_SPHERE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, SSE_LISTENERS as SSE_LISTENERS, UART_LISTENERS as UART_LISTENERS
+from .const import CONF_USB_PATH as CONF_USB_PATH, CONF_USB_SPHERE as CONF_USB_SPHERE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, PROJECT_NAME as PROJECT_NAME, SSE_LISTENERS as SSE_LISTENERS, UART_LISTENERS as UART_LISTENERS
 from .helpers import get_port as get_port
 from .listeners import setup_sse_listeners as setup_sse_listeners, setup_uart_listeners as setup_uart_listeners
 from _typeshed import Incomplete

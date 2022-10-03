@@ -5,6 +5,7 @@ from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers.selector import TextSelector as TextSelector
 from typing import Any
 
 DATA_SCHEMA: Incomplete

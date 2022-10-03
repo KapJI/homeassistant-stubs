@@ -1,8 +1,8 @@
 from . import HuaweiLteBaseEntity as HuaweiLteBaseEntity, Router as Router
 from .const import CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_TRACK_WIRED_CLIENTS as DEFAULT_TRACK_WIRED_CLIENTS, DOMAIN as DOMAIN, KEY_LAN_HOST_INFO as KEY_LAN_HOST_INFO, KEY_WLAN_HOST_LIST as KEY_WLAN_HOST_LIST, UPDATE_SIGNAL as UPDATE_SIGNAL
 from _typeshed import Incomplete
+from homeassistant.components.device_tracker import SourceType as SourceType
 from homeassistant.components.device_tracker.config_entry import ScannerEntity as ScannerEntity
-from homeassistant.components.device_tracker.const import SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as entity_registry

@@ -34,8 +34,8 @@ STATES_CONTEXT_ID_INDEX: str
 class FAST_PYSQLITE_DATETIME(sqlite.DATETIME):
     def result_processor(self, dialect, coltype): ...
 
-JSON_VARIENT_CAST: Incomplete
-JSONB_VARIENT_CAST: Incomplete
+JSON_VARIANT_CAST: Incomplete
+JSONB_VARIANT_CAST: Incomplete
 DATETIME_TYPE: Incomplete
 DOUBLE_TYPE: Incomplete
 
@@ -147,6 +147,7 @@ class StatisticsMeta(Base):
     id: Incomplete
     statistic_id: Incomplete
     source: Incomplete
+    state_unit_of_measurement: Incomplete
     unit_of_measurement: Incomplete
     has_mean: Incomplete
     has_sum: Incomplete

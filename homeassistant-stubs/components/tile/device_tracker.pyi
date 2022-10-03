@@ -1,9 +1,8 @@
 from . import TileData as TileData
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSeeCallback
+from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSeeCallback, SourceType as SourceType
 from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
-from homeassistant.components.device_tracker.const import SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

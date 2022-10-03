@@ -1,7 +1,7 @@
 import voluptuous as vol
 from . import BinarySensorDeviceClass as BinarySensorDeviceClass, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.device_automation.const import CONF_IS_OFF as CONF_IS_OFF, CONF_IS_ON as CONF_IS_ON
+from homeassistant.components.device_automation import CONF_IS_OFF as CONF_IS_OFF, CONF_IS_ON as CONF_IS_ON
 from homeassistant.const import CONF_CONDITION as CONF_CONDITION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import condition as condition

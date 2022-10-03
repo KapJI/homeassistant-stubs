@@ -2,8 +2,7 @@ from .const import ATTR_LOCKED as ATTR_LOCKED, ATTR_OFFSET as ATTR_OFFSET, ATTR_
 from .deconz_device import DeconzDevice as DeconzDevice
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
 from _typeshed import Incomplete
-from homeassistant.components.climate import ClimateEntity as ClimateEntity, DOMAIN as DOMAIN
-from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, FAN_OFF as FAN_OFF, FAN_ON as FAN_ON, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO
+from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DOMAIN as DOMAIN, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, FAN_OFF as FAN_OFF, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -40,6 +39,8 @@ class DeconzThermostat(DeconzDevice[Thermostat], ClimateEntity):
     @property
     def hvac_mode(self) -> HVACMode: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @property
+    def hvac_action(self) -> Union[str, None]: ...
     @property
     def preset_mode(self) -> Union[str, None]: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

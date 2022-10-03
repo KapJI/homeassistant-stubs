@@ -5,11 +5,10 @@ from homeassistant import config_entries as config_entries, exceptions as except
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_TYPE as CONF_TYPE
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.util.network import is_host_valid as is_host_valid
 from typing import Any
 
 DATA_SCHEMA: Incomplete
-
-def host_valid(host: str) -> bool: ...
 
 class BrotherConfigFlow(config_entries.ConfigFlow):
     VERSION: int

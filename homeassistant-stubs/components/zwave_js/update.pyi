@@ -4,8 +4,7 @@ from .helpers import get_device_info as get_device_info, get_valueless_base_uniq
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
-from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity
-from homeassistant.components.update.const import UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

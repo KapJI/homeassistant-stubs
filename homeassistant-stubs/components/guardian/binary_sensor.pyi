@@ -1,6 +1,6 @@
 from . import GuardianData as GuardianData, PairedSensorEntity as PairedSensorEntity, ValveControllerEntity as ValveControllerEntity, ValveControllerEntityDescription as ValveControllerEntityDescription
 from .const import API_SYSTEM_ONBOARD_SENSOR_STATUS as API_SYSTEM_ONBOARD_SENSOR_STATUS, API_WIFI_STATUS as API_WIFI_STATUS, CONF_UID as CONF_UID, DOMAIN as DOMAIN, SIGNAL_PAIRED_SENSOR_COORDINATOR_ADDED as SIGNAL_PAIRED_SENSOR_COORDINATOR_ADDED
-from .util import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
+from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -5,8 +5,7 @@ from elkm1_lib.const import ThermostatFan, ThermostatMode
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
 from elkm1_lib.thermostats import Thermostat as Thermostat
-from homeassistant.components.climate import ClimateEntity as ClimateEntity
-from homeassistant.components.climate.const import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_ON as FAN_ON, HVACMode as HVACMode
+from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_ON as FAN_ON, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PRECISION_WHOLE as PRECISION_WHOLE
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -1,5 +1,5 @@
 from . import get_device_info as get_device_info
-from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_CLASSES as CONDITION_CLASSES, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, METOFFICE_COORDINATES as METOFFICE_COORDINATES, METOFFICE_DAILY_COORDINATOR as METOFFICE_DAILY_COORDINATOR, METOFFICE_HOURLY_COORDINATOR as METOFFICE_HOURLY_COORDINATOR, METOFFICE_NAME as METOFFICE_NAME, MODE_3HOURLY_LABEL as MODE_3HOURLY_LABEL, MODE_DAILY as MODE_DAILY, MODE_DAILY_LABEL as MODE_DAILY_LABEL
+from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_CLASSES as CONDITION_CLASSES, DOMAIN as DOMAIN, METOFFICE_COORDINATES as METOFFICE_COORDINATES, METOFFICE_DAILY_COORDINATOR as METOFFICE_DAILY_COORDINATOR, METOFFICE_HOURLY_COORDINATOR as METOFFICE_HOURLY_COORDINATOR, METOFFICE_NAME as METOFFICE_NAME, MODE_DAILY as MODE_DAILY
 from .data import MetOfficeData as MetOfficeData
 from _typeshed import Incomplete
 from datapoint.Timestep import Timestep as Timestep
@@ -17,6 +17,7 @@ def _get_weather_condition(metoffice_code: str) -> Union[str, None]: ...
 
 class MetOfficeWeather(CoordinatorEntity[DataUpdateCoordinator[MetOfficeData]], WeatherEntity):
     _attr_attribution: Incomplete
+    _attr_has_entity_name: bool
     _attr_native_temperature_unit: Incomplete
     _attr_native_pressure_unit: Incomplete
     _attr_native_wind_speed_unit: Incomplete

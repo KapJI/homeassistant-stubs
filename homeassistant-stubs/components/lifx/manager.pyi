@@ -1,4 +1,5 @@
-from .const import DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN
+from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator, Light as Light
 from .util import convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -11,12 +12,23 @@ from typing import Any
 SCAN_INTERVAL: Incomplete
 SERVICE_EFFECT_PULSE: str
 SERVICE_EFFECT_COLORLOOP: str
+SERVICE_EFFECT_MOVE: str
 SERVICE_EFFECT_STOP: str
+ATTR_POWER_OFF: str
 ATTR_POWER_ON: str
 ATTR_PERIOD: str
 ATTR_CYCLES: str
 ATTR_SPREAD: str
 ATTR_CHANGE: str
+ATTR_DIRECTION: str
+ATTR_SPEED: str
+EFFECT_MOVE: str
+EFFECT_OFF: str
+EFFECT_MOVE_DEFAULT_SPEED: float
+EFFECT_MOVE_DEFAULT_DIRECTION: str
+EFFECT_MOVE_DIRECTION_RIGHT: str
+EFFECT_MOVE_DIRECTION_LEFT: str
+EFFECT_MOVE_DIRECTIONS: Incomplete
 PULSE_MODE_BLINK: str
 PULSE_MODE_BREATHE: str
 PULSE_MODE_PING: str
@@ -28,6 +40,7 @@ LIFX_EFFECT_PULSE_SCHEMA: Incomplete
 LIFX_EFFECT_COLORLOOP_SCHEMA: Incomplete
 LIFX_EFFECT_STOP_SCHEMA: Incomplete
 SERVICES: Incomplete
+LIFX_EFFECT_MOVE_SCHEMA: Incomplete
 
 class LIFXManager:
     hass: Incomplete

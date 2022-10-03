@@ -3,8 +3,7 @@ from .devolo_multi_level_switch import DevoloMultiLevelSwitchDeviceEntity as Dev
 from _typeshed import Incomplete
 from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
-from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, TEMP_CELSIUS as TEMP_CELSIUS
-from homeassistant.components.climate.const import ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
+from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS
 from homeassistant.core import HomeAssistant as HomeAssistant

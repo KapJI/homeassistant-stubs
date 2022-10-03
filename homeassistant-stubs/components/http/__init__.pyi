@@ -1,7 +1,7 @@
 import ssl
 from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
-from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, KEY_HASS_USER as KEY_HASS_USER
+from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
 from .cors import setup_cors as setup_cors
 from .forwarded import async_setup_forwarded as async_setup_forwarded
 from .request_context import current_request as current_request, setup_request_context as setup_request_context

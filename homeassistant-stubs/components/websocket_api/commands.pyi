@@ -12,7 +12,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result
 from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder, JSON_DUMP as JSON_DUMP
 from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
-from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
+from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integration_descriptions as async_get_integration_descriptions, async_get_integrations as async_get_integrations
 from homeassistant.setup import DATA_SETUP_TIME as DATA_SETUP_TIME, async_get_loaded_integrations as async_get_loaded_integrations
 from homeassistant.util.json import find_paths_unserializable_data as find_paths_unserializable_data, format_unserializable_data as format_unserializable_data
 from typing import Any
@@ -41,3 +41,4 @@ async def handle_fire_event(hass: HomeAssistant, connection: ActiveConnection, m
 async def handle_validate_config(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def handle_supported_brands(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 def handle_supported_features(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+async def handle_integration_descriptions(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...

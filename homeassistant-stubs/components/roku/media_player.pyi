@@ -6,11 +6,10 @@ from .entity import RokuEntity as RokuEntity
 from .helpers import format_channel_name as format_channel_name, roku_exception_handler as roku_exception_handler
 from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, async_process_play_media_url as async_process_play_media_url
-from homeassistant.components.media_player.const import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, MEDIA_TYPE_APP as MEDIA_TYPE_APP, MEDIA_TYPE_CHANNEL as MEDIA_TYPE_CHANNEL, MEDIA_TYPE_MUSIC as MEDIA_TYPE_MUSIC, MEDIA_TYPE_URL as MEDIA_TYPE_URL, MEDIA_TYPE_VIDEO as MEDIA_TYPE_VIDEO
-from homeassistant.components.stream.const import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
+from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_NAME as ATTR_NAME, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING, STATE_STANDBY as STATE_STANDBY
+from homeassistant.const import ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -31,9 +30,9 @@ class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
     @property
     def device_class(self) -> Union[str, None]: ...
     @property
-    def state(self) -> Union[str, None]: ...
+    def state(self) -> Union[MediaPlayerState, None]: ...
     @property
-    def media_content_type(self) -> Union[str, None]: ...
+    def media_content_type(self) -> Union[MediaType, None]: ...
     @property
     def media_image_url(self) -> Union[str, None]: ...
     @property

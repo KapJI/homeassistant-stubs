@@ -14,7 +14,7 @@ from google_nest_sdm.event_media import Media as Media
 from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.components.application_credentials import ClientCredential as ClientCredential, async_import_client_credential as async_import_client_credential
 from homeassistant.components.camera import Image as Image, img_util as img_util
-from homeassistant.components.http.const import KEY_HASS_USER as KEY_HASS_USER
+from homeassistant.components.http import KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, CONF_SENSORS as CONF_SENSORS, CONF_STRUCTURE as CONF_STRUCTURE, Platform as Platform

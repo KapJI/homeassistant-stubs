@@ -1,15 +1,15 @@
-import pyatmo
-from .const import ATTR_CAMERA_LIGHT_MODE as ATTR_CAMERA_LIGHT_MODE, ATTR_PERSON as ATTR_PERSON, ATTR_PERSONS as ATTR_PERSONS, ATTR_PSEUDO as ATTR_PSEUDO, CAMERA_LIGHT_MODES as CAMERA_LIGHT_MODES, DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DATA_HANDLER as DATA_HANDLER, DATA_PERSONS as DATA_PERSONS, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, EVENT_TYPE_OFF as EVENT_TYPE_OFF, EVENT_TYPE_ON as EVENT_TYPE_ON, MANUFACTURER as MANUFACTURER, MODELS as MODELS, SERVICE_SET_CAMERA_LIGHT as SERVICE_SET_CAMERA_LIGHT, SERVICE_SET_PERSONS_HOME as SERVICE_SET_PERSONS_HOME, SERVICE_SET_PERSON_AWAY as SERVICE_SET_PERSON_AWAY, SIGNAL_NAME as SIGNAL_NAME, TYPE_SECURITY as TYPE_SECURITY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_NACAMERA_CONNECTION as WEBHOOK_NACAMERA_CONNECTION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
-from .data_handler import CAMERA_DATA_CLASS_NAME as CAMERA_DATA_CLASS_NAME, NetatmoDataHandler as NetatmoDataHandler
+from .const import ATTR_CAMERA_LIGHT_MODE as ATTR_CAMERA_LIGHT_MODE, ATTR_PERSON as ATTR_PERSON, ATTR_PERSONS as ATTR_PERSONS, CAMERA_LIGHT_MODES as CAMERA_LIGHT_MODES, CONF_URL_SECURITY as CONF_URL_SECURITY, DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, EVENT_TYPE_OFF as EVENT_TYPE_OFF, EVENT_TYPE_ON as EVENT_TYPE_ON, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_CAMERA as NETATMO_CREATE_CAMERA, SERVICE_SET_CAMERA_LIGHT as SERVICE_SET_CAMERA_LIGHT, SERVICE_SET_PERSONS_HOME as SERVICE_SET_PERSONS_HOME, SERVICE_SET_PERSON_AWAY as SERVICE_SET_PERSON_AWAY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_NACAMERA_CONNECTION as WEBHOOK_NACAMERA_CONNECTION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
+from .data_handler import EVENT as EVENT, HOME as HOME, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from pyatmo.event import Event as NaEvent
 from typing import Any
 
 _LOGGER: Incomplete
@@ -21,40 +21,32 @@ class NetatmoCamera(NetatmoBase, Camera):
     _attr_brand: Incomplete
     _attr_has_entity_name: bool
     _attr_supported_features: Incomplete
+    _camera: Incomplete
     _id: Incomplete
     _home_id: Incomplete
     _device_name: Incomplete
     _model: Incomplete
-    _netatmo_type: Incomplete
+    _config_url: Incomplete
     _attr_unique_id: Incomplete
     _quality: Incomplete
-    _vpnurl: Incomplete
-    _localurl: Incomplete
-    _status: Incomplete
-    _sd_status: Incomplete
-    _alim_status: Incomplete
-    _is_local: Incomplete
+    _monitoring: Incomplete
     _light_state: Incomplete
-    def __init__(self, data_handler: NetatmoDataHandler, camera_id: str, camera_type: str, home_id: str, quality: str) -> None: ...
+    def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_is_streaming: bool
     def handle_event(self, event: dict) -> None: ...
-    @property
-    def _data(self) -> pyatmo.AsyncCameraData: ...
     async def async_camera_image(self, width: Union[int, None] = ..., height: Union[int, None] = ...) -> Union[bytes, None]: ...
     @property
-    def available(self) -> bool: ...
-    @property
-    def motion_detection_enabled(self) -> bool: ...
-    @property
-    def is_on(self) -> bool: ...
+    def supported_features(self) -> int: ...
     async def async_turn_off(self) -> None: ...
     async def async_turn_on(self) -> None: ...
     async def stream_source(self) -> str: ...
-    @property
-    def model(self) -> str: ...
+    _attr_is_on: Incomplete
+    _attr_available: Incomplete
+    _attr_motion_detection_enabled: Incomplete
     def async_update_callback(self) -> None: ...
-    def process_events(self, events: dict) -> dict: ...
+    def process_events(self, event_list: list[NaEvent]) -> dict: ...
+    def get_video_url(self, video_id: str) -> str: ...
     def fetch_person_ids(self, persons: list[Union[str, None]]) -> list[str]: ...
     async def _service_set_persons_home(self, **kwargs: Any) -> None: ...
     async def _service_set_person_away(self, **kwargs: Any) -> None: ...

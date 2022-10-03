@@ -6,14 +6,12 @@ from homeassistant.components import frontend as frontend, websocket_api as webs
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.recorder.filters import Filters as Filters, sqlalchemy_filter_from_include_exclude_conf as sqlalchemy_filter_from_include_exclude_conf
-from homeassistant.components.recorder.statistics import list_statistic_ids as list_statistic_ids, statistics_during_period as statistics_during_period
 from homeassistant.components.recorder.util import session_scope as session_scope
 from homeassistant.components.websocket_api import messages as messages
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Literal
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -23,9 +21,7 @@ CONF_ORDER: str
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-def _ws_get_statistics_during_period(hass: HomeAssistant, msg_id: int, start_time: dt, end_time: Union[dt, None] = ..., statistic_ids: Union[list[str], None] = ..., period: Literal['5minute', 'day', 'hour', 'month'] = ...) -> str: ...
 async def ws_get_statistics_during_period(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
-def _ws_get_list_statistic_ids(hass: HomeAssistant, msg_id: int, statistic_type: Union[Literal['mean'], Literal['sum'], None] = ...) -> str: ...
 async def ws_get_list_statistic_ids(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 def _ws_get_significant_states(hass: HomeAssistant, msg_id: int, start_time: dt, end_time: Union[dt, None], entity_ids: Union[list[str], None], filters: Union[Filters, None], use_include_order: Union[bool, None], include_start_time_state: bool, significant_changes_only: bool, minimal_response: bool, no_attributes: bool) -> str: ...
 async def ws_get_history_during_period(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...

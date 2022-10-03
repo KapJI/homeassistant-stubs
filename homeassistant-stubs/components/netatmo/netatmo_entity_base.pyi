@@ -1,5 +1,5 @@
-from .const import DATA_DEVICE_IDS as DATA_DEVICE_IDS, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODELS as MODELS, SIGNAL_NAME as SIGNAL_NAME
-from .data_handler import NetatmoDataHandler as NetatmoDataHandler, PUBLICDATA_DATA_CLASS_NAME as PUBLICDATA_DATA_CLASS_NAME
+from .const import DATA_DEVICE_IDS as DATA_DEVICE_IDS, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DOMAIN as DOMAIN, SIGNAL_NAME as SIGNAL_NAME
+from .data_handler import NetatmoDataHandler as NetatmoDataHandler, PUBLIC as PUBLIC
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION
 from homeassistant.core import callback as callback
@@ -11,7 +11,7 @@ class NetatmoBase(Entity):
     _device_name: str
     _id: str
     _model: str
-    _netatmo_type: str
+    _config_url: str
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_extra_state_attributes: Incomplete

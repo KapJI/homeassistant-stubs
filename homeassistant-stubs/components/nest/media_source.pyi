@@ -9,8 +9,7 @@ from google_nest_sdm.event_media import ClipPreviewSession as ClipPreviewSession
 from google_nest_sdm.google_nest_subscriber import GoogleNestSubscriber as GoogleNestSubscriber
 from google_nest_sdm.transcoder import Transcoder
 from homeassistant.components.ffmpeg import get_ffmpeg_manager as get_ffmpeg_manager
-from homeassistant.components.media_player.const import MEDIA_CLASS_DIRECTORY as MEDIA_CLASS_DIRECTORY, MEDIA_CLASS_IMAGE as MEDIA_CLASS_IMAGE, MEDIA_CLASS_VIDEO as MEDIA_CLASS_VIDEO, MEDIA_TYPE_IMAGE as MEDIA_TYPE_IMAGE, MEDIA_TYPE_VIDEO as MEDIA_TYPE_VIDEO
-from homeassistant.components.media_player.errors import BrowseError as BrowseError
+from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_source.error import Unresolvable as Unresolvable
 from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

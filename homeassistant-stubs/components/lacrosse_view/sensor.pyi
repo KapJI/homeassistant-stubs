@@ -28,7 +28,7 @@ class LaCrosseViewSensor(CoordinatorEntity[DataUpdateCoordinator[list[Sensor]]],
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _sensor: Incomplete
-    def __init__(self, description: LaCrosseSensorEntityDescription, coordinator: DataUpdateCoordinator[list[Sensor]], sensor: Sensor) -> None: ...
+    index: Incomplete
+    def __init__(self, description: LaCrosseSensorEntityDescription, coordinator: DataUpdateCoordinator[list[Sensor]], sensor: Sensor, index: int) -> None: ...
     @property
     def native_value(self) -> Union[float, str]: ...

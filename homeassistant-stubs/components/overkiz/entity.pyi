@@ -14,8 +14,11 @@ class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
     _attr_assumed_state: Incomplete
     _attr_available: Incomplete
     _attr_unique_id: Incomplete
+    _attr_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
+    @property
+    def is_sub_device(self) -> bool: ...
     @property
     def device(self) -> Device: ...
     def generate_device_info(self) -> DeviceInfo: ...
@@ -23,6 +26,7 @@ class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
 class OverkizDescriptiveEntity(OverkizEntity):
     entity_description: Incomplete
     _attr_unique_id: Incomplete
+    _attr_name: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator, description: EntityDescription) -> None: ...
 
 class OverkizDeviceClass(StrEnum):

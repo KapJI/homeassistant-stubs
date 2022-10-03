@@ -147,7 +147,6 @@ class StatisticsMeta(Base):
     id: Incomplete
     statistic_id: Incomplete
     source: Incomplete
-    state_unit_of_measurement: Incomplete
     unit_of_measurement: Incomplete
     has_mean: Incomplete
     has_sum: Incomplete

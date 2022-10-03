@@ -32,7 +32,6 @@ class StatisticMetaData(TypedDict):
     has_sum: bool
     name: Union[str, None]
     source: str
-    state_unit_of_measurement: Union[str, None]
     statistic_id: str
     unit_of_measurement: Union[str, None]
 

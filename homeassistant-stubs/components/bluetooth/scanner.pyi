@@ -5,7 +5,7 @@ from .models import BaseHaScanner as BaseHaScanner, BluetoothScanningMode as Blu
 from .util import adapter_human_name as adapter_human_name, async_reset_adapter as async_reset_adapter
 from _typeshed import Incomplete
 from bleak.backends.device import BLEDevice as BLEDevice
-from bleak.backends.scanner import AdvertisementData as AdvertisementData
+from bleak.backends.scanner import AdvertisementData as AdvertisementData, AdvertisementDataCallback as AdvertisementDataCallback
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
@@ -28,11 +28,12 @@ SCANNER_WATCHDOG_MULTIPLE: Incomplete
 
 class ScannerStartError(HomeAssistantError): ...
 
-def create_bleak_scanner(scanning_mode: BluetoothScanningMode, adapter: Union[str, None]) -> bleak.BleakScanner: ...
+def create_bleak_scanner(detection_callback: AdvertisementDataCallback, scanning_mode: BluetoothScanningMode, adapter: Union[str, None]) -> bleak.BleakScanner: ...
 
 class HaScanner(BaseHaScanner):
+    scanner: bleak.BleakScanner
     hass: Incomplete
-    scanner: Incomplete
+    mode: Incomplete
     adapter: Incomplete
     _start_stop_lock: Incomplete
     _cancel_watchdog: Incomplete
@@ -41,9 +42,10 @@ class HaScanner(BaseHaScanner):
     _callbacks: Incomplete
     name: Incomplete
     source: Incomplete
-    def __init__(self, hass: HomeAssistant, scanner: bleak.BleakScanner, adapter: str, address: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, mode: BluetoothScanningMode, adapter: str, address: str) -> None: ...
     @property
     def discovered_devices(self) -> list[BLEDevice]: ...
+    def async_setup(self) -> None: ...
     async def async_get_device_by_address(self, address: str) -> Union[BLEDevice, None]: ...
     async def async_diagnostics(self) -> dict[str, Any]: ...
     def async_register_callback(self, callback: Callable[[BluetoothServiceInfoBleak], None]) -> CALLBACK_TYPE: ...

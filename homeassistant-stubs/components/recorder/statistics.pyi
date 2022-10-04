@@ -11,6 +11,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as entity_registry
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
+from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DistanceConverter as DistanceConverter, EnergyConverter as EnergyConverter, MassConverter as MassConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, VolumeConverter as VolumeConverter

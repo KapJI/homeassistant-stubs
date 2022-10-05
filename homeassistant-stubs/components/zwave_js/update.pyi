@@ -15,7 +15,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.start import async_at_start as async_at_start
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
-from zwave_js_server.model.firmware import FirmwareUpdateFinished as FirmwareUpdateFinished, FirmwareUpdateInfo as FirmwareUpdateInfo, FirmwareUpdateProgress as FirmwareUpdateProgress
+from zwave_js_server.model.firmware import FirmwareUpdateInfo as FirmwareUpdateInfo, FirmwareUpdateProgress as FirmwareUpdateProgress, FirmwareUpdateResult as FirmwareUpdateResult
 from zwave_js_server.model.node import Node as ZwaveNode
 
 PARALLEL_UPDATES: int
@@ -36,9 +36,8 @@ class ZWaveNodeFirmwareUpdate(UpdateEntity):
     _poll_unsub: Incomplete
     _progress_unsub: Incomplete
     _finished_unsub: Incomplete
-    _num_files_installed: int
     _finished_event: Incomplete
-    _finished_status: Incomplete
+    _result: Incomplete
     _attr_name: str
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete

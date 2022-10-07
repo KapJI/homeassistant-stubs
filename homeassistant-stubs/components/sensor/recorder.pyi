@@ -1,20 +1,18 @@
 import datetime
-from . import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, STATE_CLASSES as STATE_CLASSES, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL as STATE_CLASS_TOTAL, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING, SensorDeviceClass as SensorDeviceClass
+from . import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, STATE_CLASSES as STATE_CLASSES, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL as STATE_CLASS_TOTAL, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.recorder import history as history, is_entity_recorded as is_entity_recorded, statistics as statistics
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT
+from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import entity_sources as entity_sources
-from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DistanceConverter as DistanceConverter, EnergyConverter as EnergyConverter, MassConverter as MassConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, VolumeConverter as VolumeConverter
 from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
 _LOGGER: Incomplete
 DEFAULT_STATISTICS: Incomplete
-UNIT_CONVERTERS: dict[str, type[BaseUnitConverter]]
 SEEN_DIP: str
 WARN_DIP: str
 WARN_NEGATIVE: str
@@ -26,7 +24,7 @@ def _get_sensor_states(hass: HomeAssistant) -> list[State]: ...
 def _time_weighted_average(fstates: list[tuple[float, State]], start: datetime.datetime, end: datetime.datetime) -> float: ...
 def _get_units(fstates: list[tuple[float, State]]) -> set[Union[str, None]]: ...
 def _parse_float(state: str) -> float: ...
-def _normalize_states(hass: HomeAssistant, session: Session, old_metadatas: dict[str, tuple[int, StatisticMetaData]], entity_history: Iterable[State], device_class: Union[str, None], entity_id: str) -> tuple[Union[str, None], Union[str, None], list[tuple[float, State]]]: ...
+def _normalize_states(hass: HomeAssistant, session: Session, old_metadatas: dict[str, tuple[int, StatisticMetaData]], entity_history: Iterable[State], entity_id: str) -> tuple[Union[str, None], Union[str, None], list[tuple[float, State]]]: ...
 def _suggest_report_issue(hass: HomeAssistant, entity_id: str) -> str: ...
 def warn_dip(hass: HomeAssistant, entity_id: str, state: State, previous_fstate: float) -> None: ...
 def warn_negative(hass: HomeAssistant, entity_id: str, state: State) -> None: ...

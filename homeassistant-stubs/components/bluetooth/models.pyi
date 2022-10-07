@@ -23,6 +23,7 @@ class BluetoothServiceInfoBleak(BluetoothServiceInfo):
     advertisement: AdvertisementData
     connectable: bool
     time: float
+    def as_dict(self) -> dict[str, Any]: ...
     def __init__(self, *, device, advertisement, connectable, time, **) -> None: ...
 
 class BluetoothScanningMode(Enum):

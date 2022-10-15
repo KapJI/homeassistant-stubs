@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 

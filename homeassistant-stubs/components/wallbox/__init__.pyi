@@ -5,7 +5,7 @@ from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 from wallbox import Wallbox
 

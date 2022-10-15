@@ -11,9 +11,9 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.util import Throttle as Throttle
 
 class AmcrestSensorEntityDescription(BinarySensorEntityDescription):
-    event_code: Union[str, None]
+    event_codes: Union[set[str], None]
     should_poll: bool
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, event_code, should_poll) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, event_codes, should_poll) -> None: ...
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -21,7 +21,7 @@ _ONLINE_SCAN_INTERVAL: Incomplete
 _AUDIO_DETECTED_KEY: str
 _AUDIO_DETECTED_POLLED_KEY: str
 _AUDIO_DETECTED_NAME: str
-_AUDIO_DETECTED_EVENT_CODE: str
+_AUDIO_DETECTED_EVENT_CODES: Incomplete
 _CROSSLINE_DETECTED_KEY: str
 _CROSSLINE_DETECTED_POLLED_KEY: str
 _CROSSLINE_DETECTED_NAME: str

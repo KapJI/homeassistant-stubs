@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 class WallboxNumberEntityDescription(NumberEntityDescription):

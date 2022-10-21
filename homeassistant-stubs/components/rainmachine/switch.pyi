@@ -1,7 +1,7 @@
 from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity, async_update_programs_and_zones as async_update_programs_and_zones
 from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DATA_PROGRAMS as DATA_PROGRAMS, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
 from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey, RainMachineEntityDescriptionMixinUid as RainMachineEntityDescriptionMixinUid
-from .util import RUN_STATE_MAP as RUN_STATE_MAP
+from .util import RUN_STATE_MAP as RUN_STATE_MAP, key_exists as key_exists
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription

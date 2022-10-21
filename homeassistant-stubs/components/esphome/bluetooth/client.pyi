@@ -9,7 +9,7 @@ from bleak.backends.client import BaseBleakClient, NotifyCallback as NotifyCallb
 from bleak.backends.device import BLEDevice
 from bleak.backends.service import BleakGATTServiceCollection
 from collections.abc import Callable
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, async_get_hass as async_get_hass
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
 from typing import Any, TypeVar
 
 DEFAULT_MTU: int

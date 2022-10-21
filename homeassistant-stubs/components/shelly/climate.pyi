@@ -32,6 +32,7 @@ class BlockSleepingClimate(update_coordinator.CoordinatorEntity, RestoreEntity, 
     last_state: Incomplete
     last_state_attributes: Incomplete
     _preset_modes: Incomplete
+    _last_target_temp: float
     _unique_id: Incomplete
     _channel: Incomplete
     def __init__(self, wrapper: BlockDeviceWrapper, sensor_block: Union[Block, None], device_block: Union[Block, None], entry: Union[entity_registry.RegistryEntry, None] = ...) -> None: ...

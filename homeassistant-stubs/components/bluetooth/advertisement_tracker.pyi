@@ -1,0 +1,16 @@
+from .models import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
+from _typeshed import Incomplete
+from homeassistant.core import callback as callback
+from typing import Any
+
+ADVERTISING_TIMES_NEEDED: int
+
+class AdvertisementTracker:
+    intervals: Incomplete
+    sources: Incomplete
+    _timings: Incomplete
+    def __init__(self) -> None: ...
+    def async_diagnostics(self) -> dict[str, dict[str, Any]]: ...
+    def async_collect(self, service_info: BluetoothServiceInfoBleak) -> None: ...
+    def async_remove_address(self, address: str) -> None: ...
+    def async_remove_source(self, source: str) -> None: ...

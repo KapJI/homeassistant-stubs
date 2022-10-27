@@ -1,6 +1,8 @@
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
+def _async_at_core_state(hass: HomeAssistant, at_start_cb: Callable[[HomeAssistant], Union[Coroutine[Any, Any, None], None]], event_type: str, check_state: Callable[[HomeAssistant], bool]) -> CALLBACK_TYPE: ...
 def async_at_start(hass: HomeAssistant, at_start_cb: Callable[[HomeAssistant], Union[Coroutine[Any, Any, None], None]]) -> CALLBACK_TYPE: ...
+def async_at_started(hass: HomeAssistant, at_start_cb: Callable[[HomeAssistant], Union[Coroutine[Any, Any, None], None]]) -> CALLBACK_TYPE: ...

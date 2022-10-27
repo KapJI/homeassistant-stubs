@@ -6,31 +6,45 @@ from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components.sensor import DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_VOLTAGE as ATTR_VOLTAGE, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, POWER_WATT as POWER_WATT, PRESSURE_HPA as PRESSURE_HPA, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_VOLTAGE as ATTR_VOLTAGE, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, POWER_WATT as POWER_WATT, PRESSURE_HPA as PRESSURE_HPA, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
+from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
+from pydeconz.models.sensor.air_quality import AirQuality
+from pydeconz.models.sensor.consumption import Consumption
+from pydeconz.models.sensor.daylight import Daylight
+from pydeconz.models.sensor.generic_status import GenericStatus
+from pydeconz.models.sensor.humidity import Humidity
+from pydeconz.models.sensor.light_level import LightLevel
+from pydeconz.models.sensor.power import Power
+from pydeconz.models.sensor.pressure import Pressure
+from pydeconz.models.sensor.temperature import Temperature
+from pydeconz.models.sensor.time import Time
+from typing import TypeVar
 
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
 ATTR_CURRENT: str
 ATTR_POWER: str
 ATTR_DAYLIGHT: str
 ATTR_EVENT_ID: str
+T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Power, Pressure, Temperature, Time, PydeconzSensorBase)
 
 class DeconzSensorDescriptionMixin:
     update_key: str
-    value_fn: Callable[[SensorResources], Union[float, int, str, None]]
+    value_fn: Callable[[T], Union[datetime, StateType]]
     def __init__(self, update_key, value_fn) -> None: ...
 
-class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMixin):
-    suffix: str
-    def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, suffix) -> None: ...
+class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMixin[T]):
+    instance_check: Union[type[T], None]
+    name_suffix: str
+    old_unique_id_suffix: str
+    def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
 
-ENTITY_DESCRIPTIONS: Incomplete
-COMMON_SENSOR_DESCRIPTIONS: Incomplete
+ENTITY_DESCRIPTIONS: tuple[DeconzSensorDescription, ...]
 
 def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: DeconzSensorDescription) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -38,11 +52,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
     TYPE: Incomplete
     entity_description: DeconzSensorDescription
+    unique_id_suffix: Incomplete
     _update_key: Incomplete
     _name_suffix: Incomplete
     def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzSensorDescription) -> None: ...
-    @property
-    def unique_id(self) -> str: ...
     @property
     def native_value(self) -> Union[StateType, datetime]: ...
     @property
@@ -51,7 +64,8 @@ class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
 class DeconzBatteryTracker:
     sensor: Incomplete
     gateway: Incomplete
+    description: Incomplete
     async_add_entities: Incomplete
     unsubscribe: Incomplete
-    def __init__(self, sensor_id: str, gateway: DeconzGateway, async_add_entities: AddEntitiesCallback) -> None: ...
+    def __init__(self, sensor_id: str, gateway: DeconzGateway, description: DeconzSensorDescription, async_add_entities: AddEntitiesCallback) -> None: ...
     def async_update_callback(self) -> None: ...

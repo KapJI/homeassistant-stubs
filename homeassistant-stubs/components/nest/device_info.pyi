@@ -1,4 +1,4 @@
-from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
+from .const import CONNECTIVITY_TRAIT_OFFLINE as CONNECTIVITY_TRAIT_OFFLINE, DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from google_nest_sdm.device import Device as Device
@@ -11,6 +11,8 @@ class NestDeviceInfo:
     device_brand: str
     _device: Incomplete
     def __init__(self, device: Device) -> None: ...
+    @property
+    def available(self) -> bool: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     @property

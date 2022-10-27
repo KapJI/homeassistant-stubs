@@ -21,7 +21,7 @@ EXTRA_STATE_ATTRIBUTES: Incomplete
 def _convert_fan_speed_value(value: StateType) -> Union[int, None]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class ValloxFan(ValloxEntity, FanEntity):
+class ValloxFanEntity(ValloxEntity, FanEntity):
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
     _client: Incomplete

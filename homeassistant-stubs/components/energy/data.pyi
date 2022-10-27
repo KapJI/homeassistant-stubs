@@ -44,7 +44,14 @@ class GasSourceType(TypedDict):
     stat_cost: Union[str, None]
     entity_energy_price: Union[str, None]
     number_energy_price: Union[float, None]
-SourceType = Union[GridSourceType, SolarSourceType, BatterySourceType, GasSourceType]
+
+class WaterSourceType(TypedDict):
+    type: Literal['water']
+    stat_energy_from: str
+    stat_cost: Union[str, None]
+    entity_energy_price: Union[str, None]
+    number_energy_price: Union[float, None]
+SourceType = Union[GridSourceType, SolarSourceType, BatterySourceType, GasSourceType, WaterSourceType]
 
 class DeviceConsumption(TypedDict):
     stat_consumption: str
@@ -66,6 +73,7 @@ GRID_SOURCE_SCHEMA: Incomplete
 SOLAR_SOURCE_SCHEMA: Incomplete
 BATTERY_SOURCE_SCHEMA: Incomplete
 GAS_SOURCE_SCHEMA: Incomplete
+WATER_SOURCE_SCHEMA: Incomplete
 
 def check_type_limits(value: list[SourceType]) -> list[SourceType]: ...
 

@@ -1,7 +1,7 @@
 from .const import ATTR_DURATION as ATTR_DURATION, ATTR_INFRARED as ATTR_INFRARED, ATTR_POWER as ATTR_POWER, ATTR_ZONES as ATTR_ZONES, DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, INFRARED_BRIGHTNESS as INFRARED_BRIGHTNESS, _LOGGER as _LOGGER
 from .coordinator import FirmwareEffect as FirmwareEffect, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .entity import LIFXEntity as LIFXEntity
-from .manager import LIFXManager as LIFXManager, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_MOVE as SERVICE_EFFECT_MOVE, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP
+from .manager import LIFXManager as LIFXManager, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_FLAME as SERVICE_EFFECT_FLAME, SERVICE_EFFECT_MORPH as SERVICE_EFFECT_MORPH, SERVICE_EFFECT_MOVE as SERVICE_EFFECT_MOVE, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP
 from .util import convert_16_to_8 as convert_16_to_8, convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk, lifx_features as lifx_features, merge_hsbk as merge_hsbk
 from _typeshed import Incomplete
 from homeassistant import util as util
@@ -36,8 +36,8 @@ class LIFXLight(LIFXEntity, LightEntity):
     entry: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
-    _attr_min_mireds: Incomplete
-    _attr_max_mireds: Incomplete
+    _attr_min_color_temp_kelvin: Incomplete
+    _attr_max_color_temp_kelvin: Incomplete
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect: Incomplete
@@ -45,7 +45,7 @@ class LIFXLight(LIFXEntity, LightEntity):
     @property
     def brightness(self) -> int: ...
     @property
-    def color_temp(self) -> Union[int, None]: ...
+    def color_temp_kelvin(self) -> Union[int, None]: ...
     @property
     def is_on(self) -> bool: ...
     @property
@@ -73,7 +73,13 @@ class LIFXColor(LIFXLight):
     @property
     def hs_color(self) -> Union[tuple[float, float], None]: ...
 
-class LIFXStrip(LIFXColor):
+class LIFXMultiZone(LIFXColor):
     _attr_effect_list: Incomplete
     async def set_color(self, hsbk: list[Union[float, int, None]], kwargs: dict[str, Any], duration: int = ...) -> None: ...
     async def update_color_zones(self) -> None: ...
+
+class LIFXExtendedMultiZone(LIFXMultiZone):
+    async def set_color(self, hsbk: list[Union[float, int, None]], kwargs: dict[str, Any], duration: int = ...) -> None: ...
+
+class LIFXMatrix(LIFXColor):
+    _attr_effect_list: Incomplete

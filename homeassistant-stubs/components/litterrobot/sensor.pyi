@@ -17,7 +17,7 @@ def icon_for_gauge_level(gauge_level: Union[int, None] = ..., offset: int = ...)
 class RobotSensorEntityDescription(SensorEntityDescription):
     icon_fn: Callable[[Any], Union[str, None]]
     should_report: Callable[[_RobotT], bool]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, icon_fn, should_report) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, icon_fn, should_report) -> None: ...
 
 class LitterRobotSensorEntity(LitterRobotEntity[_RobotT], SensorEntity):
     entity_description: RobotSensorEntityDescription[_RobotT]

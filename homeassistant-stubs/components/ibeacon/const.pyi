@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from homeassistant.components.bluetooth import FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS
 from homeassistant.const import Platform as Platform
 
 DOMAIN: str
@@ -14,5 +15,6 @@ UNAVAILABLE_TIMEOUT: int
 UPDATE_INTERVAL: Incomplete
 MAX_IDS: int
 MAX_IDS_PER_UUID: int
+MIN_SEEN_TRANSIENT_NEW: Incomplete
 CONF_IGNORE_ADDRESSES: str
 CONF_IGNORE_UUIDS: str

@@ -4,6 +4,7 @@ import threading
 from . import purge as purge, statistics as statistics
 from .const import DOMAIN as DOMAIN, EXCLUDE_ATTRIBUTES as EXCLUDE_ATTRIBUTES
 from .core import Recorder as Recorder
+from .db_schema import Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData
 from .util import periodic_db_cleanups as periodic_db_cleanups
 from collections.abc import Callable as Callable, Iterable
@@ -59,8 +60,9 @@ class StatisticsTask(RecorderTask):
 class ImportStatisticsTask(RecorderTask):
     metadata: StatisticMetaData
     statistics: Iterable[StatisticData]
+    table: type[Union[Statistics, StatisticsShortTerm]]
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, metadata, statistics) -> None: ...
+    def __init__(self, metadata, statistics, table) -> None: ...
 
 class AdjustStatisticsTask(RecorderTask):
     statistic_id: str

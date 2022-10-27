@@ -1,20 +1,17 @@
-from .const import ANTHEMAV_UDATE_SIGNAL as ANTHEMAV_UDATE_SIGNAL, CONF_MODEL as CONF_MODEL, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from .const import ANTHEMAV_UDATE_SIGNAL as ANTHEMAV_UDATE_SIGNAL, CONF_MODEL as CONF_MODEL, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from _typeshed import Incomplete
 from anthemav.connection import Connection as Connection
 from anthemav.protocol import AVR as AVR
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, PLATFORM_SCHEMA as PLATFORM_SCHEMA
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
+from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 _LOGGER: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AnthemAVR(MediaPlayerEntity):

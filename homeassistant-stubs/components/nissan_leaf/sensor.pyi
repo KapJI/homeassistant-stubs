@@ -7,7 +7,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.util.unit_system import IMPERIAL_SYSTEM as IMPERIAL_SYSTEM, METRIC_SYSTEM as METRIC_SYSTEM
+from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter
+from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
 from pycarwings2.pycarwings2 import Leaf as Leaf
 from voluptuous.validators import Number as Number
 

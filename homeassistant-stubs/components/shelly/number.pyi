@@ -1,4 +1,4 @@
-from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, LOGGER as LOGGER
+from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, LOGGER as LOGGER
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities
 from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
@@ -6,6 +6,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry

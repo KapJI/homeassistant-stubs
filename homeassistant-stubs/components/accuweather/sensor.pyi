@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -20,7 +21,7 @@ class AccuWeatherSensorDescriptionMixin:
 class AccuWeatherSensorDescription(SensorEntityDescription, AccuWeatherSensorDescriptionMixin):
     attr_fn: Callable[[dict[str, Any]], dict[str, StateType]]
     unit_fn: Callable[[bool], Union[str, None]]
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, attr_fn, unit_fn) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, attr_fn, unit_fn) -> None: ...
 
 FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
 SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]

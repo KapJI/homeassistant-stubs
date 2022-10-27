@@ -8,6 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import Any
 
 _LOGGER: Incomplete

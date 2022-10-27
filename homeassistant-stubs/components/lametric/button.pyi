@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import LaMetricDataUpdateCoordinator as LaMetricDataUpdateCoordinator
 from .entity import LaMetricEntity as LaMetricEntity
+from .helpers import lametric_exception_handler as lametric_exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from demetriek import LaMetricDevice as LaMetricDevice

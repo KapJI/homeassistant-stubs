@@ -1,11 +1,14 @@
-from .const import CLIENTID_PREFIX as CLIENTID_PREFIX, DOMAIN as DOMAIN, NICKNAME as NICKNAME
+from .const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_NICKNAME as CONF_NICKNAME, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN, LEGACY_CLIENT_ID as LEGACY_CLIENT_ID, NICKNAME_PREFIX as NICKNAME_PREFIX
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
 from homeassistant.components.media_player import MediaType as MediaType
+from homeassistant.const import CONF_PIN as CONF_PIN
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pybravia import BraviaTV as BraviaTV
+from types import MappingProxyType
 from typing import Any, Final, TypeVar
 from typing_extensions import Concatenate
 
@@ -20,6 +23,8 @@ class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     client: Incomplete
     pin: Incomplete
     use_psk: Incomplete
+    client_id: Incomplete
+    nickname: Incomplete
     ignored_sources: Incomplete
     source: Incomplete
     source_list: Incomplete
@@ -37,7 +42,7 @@ class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     connected: bool
     playing: bool
     skipped_updates: int
-    def __init__(self, hass: HomeAssistant, client: BraviaTV, pin: str, use_psk: bool, ignored_sources: list[str]) -> None: ...
+    def __init__(self, hass: HomeAssistant, client: BraviaTV, config: MappingProxyType[str, Any], ignored_sources: list[str]) -> None: ...
     def _sources_extend(self, sources: list[dict], source_type: str) -> None: ...
     async def _async_update_data(self) -> None: ...
     async def async_update_sources(self) -> None: ...

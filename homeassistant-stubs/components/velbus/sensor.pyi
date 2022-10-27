@@ -1,5 +1,5 @@
-from . import VelbusEntity as VelbusEntity
 from .const import DOMAIN as DOMAIN
+from .entity import VelbusEntity as VelbusEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

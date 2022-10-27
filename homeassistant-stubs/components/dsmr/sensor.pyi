@@ -19,7 +19,7 @@ class DSMRSensorEntityDescriptionMixin:
 class DSMRSensorEntityDescription(SensorEntityDescription, DSMRSensorEntityDescriptionMixin):
     dsmr_versions: Union[set[str], None]
     is_gas: bool
-    def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, dsmr_versions, is_gas) -> None: ...
+    def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, dsmr_versions, is_gas) -> None: ...
 
 SENSORS: tuple[DSMRSensorEntityDescription, ...]
 

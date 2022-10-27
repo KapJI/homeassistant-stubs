@@ -1,5 +1,5 @@
-from . import BlockDeviceWrapper as BlockDeviceWrapper
-from .const import AIOSHELLY_DEVICE_TIMEOUT_SEC as AIOSHELLY_DEVICE_TIMEOUT_SEC, BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, LOGGER as LOGGER, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
+from .const import LOGGER as LOGGER, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
+from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, get_entry_data as get_entry_data
 from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
@@ -7,17 +7,19 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
-from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry, update_coordinator as update_coordinator
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def async_setup_climate_entities(async_add_entities: AddEntitiesCallback, wrapper: BlockDeviceWrapper) -> None: ...
-def async_restore_climate_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, wrapper: BlockDeviceWrapper) -> None: ...
+def async_setup_climate_entities(async_add_entities: AddEntitiesCallback, coordinator: ShellyBlockCoordinator) -> None: ...
+def async_restore_climate_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, coordinator: ShellyBlockCoordinator) -> None: ...
 
-class BlockSleepingClimate(update_coordinator.CoordinatorEntity, RestoreEntity, ClimateEntity):
+class BlockSleepingClimate(CoordinatorEntity[ShellyBlockCoordinator], RestoreEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_icon: str
     _attr_max_temp: Incomplete
@@ -25,7 +27,6 @@ class BlockSleepingClimate(update_coordinator.CoordinatorEntity, RestoreEntity, 
     _attr_supported_features: int
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
-    wrapper: Incomplete
     block: Incomplete
     control_result: Incomplete
     device_block: Incomplete
@@ -35,7 +36,7 @@ class BlockSleepingClimate(update_coordinator.CoordinatorEntity, RestoreEntity, 
     _last_target_temp: float
     _unique_id: Incomplete
     _channel: Incomplete
-    def __init__(self, wrapper: BlockDeviceWrapper, sensor_block: Union[Block, None], device_block: Union[Block, None], entry: Union[entity_registry.RegistryEntry, None] = ...) -> None: ...
+    def __init__(self, coordinator: ShellyBlockCoordinator, sensor_block: Union[Block, None], device_block: Union[Block, None], entry: Union[entity_registry.RegistryEntry, None] = ...) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property

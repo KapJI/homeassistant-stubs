@@ -1,9 +1,9 @@
-from .const import DOMAIN as DOMAIN, INFRARED_BRIGHTNESS_VALUES_MAP as INFRARED_BRIGHTNESS_VALUES_MAP, OVERALL_TIMEOUT as OVERALL_TIMEOUT, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, INFRARED_BRIGHTNESS_VALUES_MAP as INFRARED_BRIGHTNESS_VALUES_MAP, OVERALL_TIMEOUT as OVERALL_TIMEOUT
 from _typeshed import Incomplete
 from aiolifx.aiolifx import Light as Light
 from aiolifx.message import Message as Message
 from collections.abc import Callable as Callable
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, preprocess_turn_on_alternatives as preprocess_turn_on_alternatives
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any

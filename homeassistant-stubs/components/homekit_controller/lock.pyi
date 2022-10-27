@@ -1,10 +1,11 @@
 from . import KNOWN_DEVICES as KNOWN_DEVICES
+from .connection import HKDevice as HKDevice
 from .entity import HomeKitEntity as HomeKitEntity
 from _typeshed import Incomplete
 from aiohomekit.model.services import Service as Service
 from homeassistant.components.lock import LockEntity as LockEntity, STATE_JAMMED as STATE_JAMMED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, STATE_LOCKED as STATE_LOCKED, STATE_UNKNOWN as STATE_UNKNOWN, STATE_UNLOCKED as STATE_UNLOCKED
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, Platform as Platform, STATE_LOCKED as STATE_LOCKED, STATE_UNKNOWN as STATE_UNKNOWN, STATE_UNLOCKED as STATE_UNLOCKED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any

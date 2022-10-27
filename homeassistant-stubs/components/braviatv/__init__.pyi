@@ -1,7 +1,7 @@
-from .const import CONF_IGNORED_SOURCES as CONF_IGNORED_SOURCES, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN
+from .const import CONF_IGNORED_SOURCES as CONF_IGNORED_SOURCES, DOMAIN as DOMAIN
 from .coordinator import BraviaTVCoordinator as BraviaTVCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PIN as CONF_PIN, Platform as Platform
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from typing import Final

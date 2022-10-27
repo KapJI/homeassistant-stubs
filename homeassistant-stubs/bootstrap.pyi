@@ -1,6 +1,6 @@
 from . import config_entries as config_entries, core as core, loader as loader
 from .components import http as http, persistent_notification as persistent_notification
-from .const import REQUIRED_NEXT_PYTHON_HA_RELEASE as REQUIRED_NEXT_PYTHON_HA_RELEASE, REQUIRED_NEXT_PYTHON_VER as REQUIRED_NEXT_PYTHON_VER, SIGNAL_BOOTSTRAP_INTEGRATONS as SIGNAL_BOOTSTRAP_INTEGRATONS
+from .const import REQUIRED_NEXT_PYTHON_HA_RELEASE as REQUIRED_NEXT_PYTHON_HA_RELEASE, REQUIRED_NEXT_PYTHON_VER as REQUIRED_NEXT_PYTHON_VER, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
 from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, issue_registry as issue_registry, recorder as recorder
 from .helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

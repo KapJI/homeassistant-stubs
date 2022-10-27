@@ -1,7 +1,8 @@
 from . import type_cameras as type_cameras, type_covers as type_covers, type_fans as type_fans, type_humidifiers as type_humidifiers, type_lights as type_lights, type_locks as type_locks, type_media_players as type_media_players, type_remotes as type_remotes, type_security_systems as type_security_systems, type_sensors as type_sensors, type_switches as type_switches, type_thermostats as type_thermostats
-from .accessories import HomeAccessory as HomeAccessory, HomeBridge as HomeBridge, HomeDriver as HomeDriver, get_accessory as get_accessory
+from .accessories import HomeAccessory as HomeAccessory, HomeBridge as HomeBridge, HomeDriver as HomeDriver, HomeIIDManager as HomeIIDManager, get_accessory as get_accessory
 from .aidmanager import AccessoryAidStorage as AccessoryAidStorage
 from .const import ATTR_INTEGRATION as ATTR_INTEGRATION, BRIDGE_NAME as BRIDGE_NAME, BRIDGE_SERIAL_NUMBER as BRIDGE_SERIAL_NUMBER, CONFIG_OPTIONS as CONFIG_OPTIONS, CONF_ADVERTISE_IP as CONF_ADVERTISE_IP, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_ENTRY_INDEX as CONF_ENTRY_INDEX, CONF_EXCLUDE_ACCESSORY_MODE as CONF_EXCLUDE_ACCESSORY_MODE, CONF_FILTER as CONF_FILTER, CONF_HOMEKIT_MODE as CONF_HOMEKIT_MODE, CONF_LINKED_BATTERY_CHARGING_SENSOR as CONF_LINKED_BATTERY_CHARGING_SENSOR, CONF_LINKED_BATTERY_SENSOR as CONF_LINKED_BATTERY_SENSOR, CONF_LINKED_DOORBELL_SENSOR as CONF_LINKED_DOORBELL_SENSOR, CONF_LINKED_HUMIDITY_SENSOR as CONF_LINKED_HUMIDITY_SENSOR, CONF_LINKED_MOTION_SENSOR as CONF_LINKED_MOTION_SENSOR, DEFAULT_EXCLUDE_ACCESSORY_MODE as DEFAULT_EXCLUDE_ACCESSORY_MODE, DEFAULT_HOMEKIT_MODE as DEFAULT_HOMEKIT_MODE, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HOMEKIT as HOMEKIT, HOMEKIT_MODES as HOMEKIT_MODES, HOMEKIT_MODE_ACCESSORY as HOMEKIT_MODE_ACCESSORY, HOMEKIT_PAIRING_QR as HOMEKIT_PAIRING_QR, HOMEKIT_PAIRING_QR_SECRET as HOMEKIT_PAIRING_QR_SECRET, MANUFACTURER as MANUFACTURER, PERSIST_LOCK as PERSIST_LOCK, SERVICE_HOMEKIT_RESET_ACCESSORY as SERVICE_HOMEKIT_RESET_ACCESSORY, SERVICE_HOMEKIT_UNPAIR as SERVICE_HOMEKIT_UNPAIR, SHUTDOWN_TIMEOUT as SHUTDOWN_TIMEOUT
+from .iidmanager import AccessoryIIDStorage as AccessoryIIDStorage
 from .type_triggers import DeviceTriggerAccessory as DeviceTriggerAccessory
 from .util import accessory_friendly_name as accessory_friendly_name, async_dismiss_setup_message as async_dismiss_setup_message, async_port_is_available as async_port_is_available, async_show_setup_message as async_show_setup_message, get_persist_fullpath_for_entry_id as get_persist_fullpath_for_entry_id, remove_state_files_for_entry_id as remove_state_files_for_entry_id, state_needs_accessory_mode as state_needs_accessory_mode, validate_entity_config as validate_entity_config
 from _typeshed import Incomplete
@@ -53,7 +54,6 @@ def _async_import_options_from_data_if_missing(hass: HomeAssistant, entry: Confi
 def _async_register_events_and_services(hass: HomeAssistant) -> None: ...
 
 class HomeKit:
-    driver: HomeDriver
     hass: Incomplete
     _name: Incomplete
     _port: Incomplete
@@ -67,11 +67,14 @@ class HomeKit:
     _homekit_mode: Incomplete
     _devices: Incomplete
     aid_storage: Incomplete
+    iid_storage: Incomplete
     status: Incomplete
+    driver: Incomplete
     bridge: Incomplete
-    def __init__(self, hass: HomeAssistant, name: str, port: int, ip_address: Union[str, None], entity_filter: EntityFilter, exclude_accessory_mode: bool, entity_config: dict, homekit_mode: str, advertise_ip: Union[str, None], entry_id: str, entry_title: str, devices: Union[Iterable[str], None] = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, name: str, port: int, ip_address: Union[str, None], entity_filter: EntityFilter, exclude_accessory_mode: bool, entity_config: dict, homekit_mode: str, advertise_ip: Union[str, None], entry_id: str, entry_title: str, devices: Union[list[str], None] = ...) -> None: ...
     def setup(self, async_zeroconf_instance: AsyncZeroconf, uuid: str) -> None: ...
     async def async_reset_accessories(self, entity_ids: Iterable[str]) -> None: ...
+    async def _async_shutdown_accessory(self, accessory: HomeAccessory) -> None: ...
     async def async_reset_accessories_in_accessory_mode(self, entity_ids: Iterable[str]) -> None: ...
     async def async_reset_accessories_in_bridge_mode(self, entity_ids: Iterable[str]) -> None: ...
     async def async_config_changed(self) -> None: ...

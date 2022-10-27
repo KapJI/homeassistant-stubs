@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-class ValloxBinarySensor(ValloxEntity, BinarySensorEntity):
+class ValloxBinarySensorEntity(ValloxEntity, BinarySensorEntity):
     entity_description: ValloxBinarySensorEntityDescription
     _attr_entity_category: Incomplete
     _attr_has_entity_name: bool
@@ -23,6 +23,6 @@ class ValloxMetricKeyMixin:
 class ValloxBinarySensorEntityDescription(BinarySensorEntityDescription, ValloxMetricKeyMixin):
     def __init__(self, metric_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
-SENSORS: tuple[ValloxBinarySensorEntityDescription, ...]
+BINARY_SENSOR_ENTITIES: tuple[ValloxBinarySensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

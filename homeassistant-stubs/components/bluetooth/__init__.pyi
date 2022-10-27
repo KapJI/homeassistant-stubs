@@ -1,4 +1,4 @@
-from .const import SOURCE_LOCAL as SOURCE_LOCAL
+from .const import FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, SOURCE_LOCAL as SOURCE_LOCAL
 from .match import BluetoothCallbackMatcher
 from .models import BaseHaScanner as BaseHaScanner, BluetoothCallback as BluetoothCallback, BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfo as BluetoothServiceInfo, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, HaBleakScannerWrapper, HaBluetoothConnector as HaBluetoothConnector, ProcessAdvertisementCallback
 from bleak.backends.device import BLEDevice

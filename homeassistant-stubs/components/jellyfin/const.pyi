@@ -1,11 +1,14 @@
 from _typeshed import Incomplete
+from homeassistant.components.media_player import MediaClass as MediaClass, MediaType as MediaType
+from homeassistant.const import Platform as Platform
 from typing import Final
 
 DOMAIN: Final[str]
-CLIENT_VERSION: Final[str]
+CLIENT_VERSION: Final[Incomplete]
 COLLECTION_TYPE_MOVIES: Final[str]
 COLLECTION_TYPE_MUSIC: Final[str]
-DATA_CLIENT: Final[str]
+CONF_CLIENT_DEVICE_ID: Final[str]
+DEFAULT_NAME: Final[str]
 ITEM_KEY_COLLECTION_TYPE: Final[str]
 ITEM_KEY_ID: Final[str]
 ITEM_KEY_IMAGE_TAGS: Final[str]
@@ -27,3 +30,7 @@ MEDIA_TYPE_VIDEO: Final[str]
 SUPPORTED_COLLECTION_TYPES: Final[Incomplete]
 USER_APP_NAME: Final[str]
 USER_AGENT: Final[Incomplete]
+CONTENT_TYPE_MAP: Incomplete
+MEDIA_CLASS_MAP: Incomplete
+PLATFORMS: Incomplete
+LOGGER: Incomplete

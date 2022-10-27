@@ -18,7 +18,7 @@ class SenseMESelectEntityDescriptionMixin:
     def __init__(self, value_fn, set_fn) -> None: ...
 
 class SenseMESelectEntityDescription(SelectEntityDescription, SenseMESelectEntityDescriptionMixin):
-    def __init__(self, value_fn, set_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, set_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, options) -> None: ...
 
 def _set_smart_mode(device: SensemeDevice, value: str) -> None: ...
 
@@ -28,7 +28,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
 
 class HASensemeSelect(SensemeEntity, SelectEntity):
     entity_description: SenseMESelectEntityDescription
-    _attr_options: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: SensemeFan, description: SenseMESelectEntityDescription) -> None: ...
     @property

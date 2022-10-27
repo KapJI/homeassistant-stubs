@@ -374,13 +374,26 @@ ATTR_DEVICE_CLASS: Final[str]
 ATTR_TEMPERATURE: Final[str]
 ATTR_PERSONS: Final[str]
 POWER_VOLT_AMPERE: Final[str]
+
+class UnitOfPower(StrEnum):
+    WATT: str
+    KILO_WATT: str
+    BTU_PER_HOUR: str
+
 POWER_WATT: Final[str]
 POWER_KILO_WATT: Final[str]
 POWER_BTU_PER_HOUR: Final[str]
 POWER_VOLT_AMPERE_REACTIVE: Final[str]
-ENERGY_WATT_HOUR: Final[str]
+
+class UnitOfEnergy(StrEnum):
+    GIGA_JOULE: str
+    KILO_WATT_HOUR: str
+    MEGA_WATT_HOUR: str
+    WATT_HOUR: str
+
 ENERGY_KILO_WATT_HOUR: Final[str]
 ENERGY_MEGA_WATT_HOUR: Final[str]
+ENERGY_WATT_HOUR: Final[str]
 ELECTRIC_CURRENT_MILLIAMPERE: Final[str]
 ELECTRIC_CURRENT_AMPERE: Final[str]
 ELECTRIC_POTENTIAL_MILLIVOLT: Final[str]
@@ -389,6 +402,12 @@ DEGREE: Final[str]
 CURRENCY_EURO: Final[str]
 CURRENCY_DOLLAR: Final[str]
 CURRENCY_CENT: Final[str]
+
+class UnitOfTemperature(StrEnum):
+    CELSIUS: str
+    FAHRENHEIT: str
+    KELVIN: str
+
 TEMP_CELSIUS: Final[str]
 TEMP_FAHRENHEIT: Final[str]
 TEMP_KELVIN: Final[str]
@@ -401,6 +420,17 @@ TIME_DAYS: Final[str]
 TIME_WEEKS: Final[str]
 TIME_MONTHS: Final[str]
 TIME_YEARS: Final[str]
+
+class UnitOfLength(StrEnum):
+    MILLIMETERS: str
+    CENTIMETERS: str
+    METERS: str
+    KILOMETERS: str
+    INCHES: str
+    FEET: str
+    YARDS: str
+    MILES: str
+
 LENGTH_MILLIMETERS: Final[str]
 LENGTH_CENTIMETERS: Final[str]
 LENGTH_METERS: Final[str]
@@ -413,6 +443,18 @@ FREQUENCY_HERTZ: Final[str]
 FREQUENCY_KILOHERTZ: Final[str]
 FREQUENCY_MEGAHERTZ: Final[str]
 FREQUENCY_GIGAHERTZ: Final[str]
+
+class UnitOfPressure(StrEnum):
+    PA: str
+    HPA: str
+    KPA: str
+    BAR: str
+    CBAR: str
+    MBAR: str
+    MMHG: str
+    INHG: str
+    PSI: str
+
 PRESSURE_PA: Final[str]
 PRESSURE_HPA: Final[str]
 PRESSURE_KPA: Final[str]
@@ -424,6 +466,15 @@ PRESSURE_INHG: Final[str]
 PRESSURE_PSI: Final[str]
 SOUND_PRESSURE_DB: Final[str]
 SOUND_PRESSURE_WEIGHTED_DBA: Final[str]
+
+class UnitOfVolume(StrEnum):
+    CUBIC_FEET: str
+    CUBIC_METERS: str
+    LITERS: str
+    MILLILITERS: str
+    GALLONS: str
+    FLUID_OUNCES: str
+
 VOLUME_LITERS: Final[str]
 VOLUME_MILLILITERS: Final[str]
 VOLUME_CUBIC_METERS: Final[str]
@@ -433,6 +484,15 @@ VOLUME_FLUID_OUNCE: Final[str]
 VOLUME_FLOW_RATE_CUBIC_METERS_PER_HOUR: Final[str]
 VOLUME_FLOW_RATE_CUBIC_FEET_PER_MINUTE: Final[str]
 AREA_SQUARE_METERS: Final[str]
+
+class UnitOfMass(StrEnum):
+    GRAMS: str
+    KILOGRAMS: str
+    MILLIGRAMS: str
+    MICROGRAMS: str
+    OUNCES: str
+    POUNDS: str
+
 MASS_GRAMS: Final[str]
 MASS_KILOGRAMS: Final[str]
 MASS_MILLIGRAMS: Final[str]
@@ -446,8 +506,16 @@ PERCENTAGE: Final[str]
 REVOLUTIONS_PER_MINUTE: Final[str]
 IRRADIATION_WATTS_PER_SQUARE_METER: Final[str]
 IRRADIATION_BTUS_PER_HOUR_SQUARE_FOOT: Final[str]
-PRECIPITATION_MILLIMETERS_PER_HOUR: Final[str]
+
+class UnitOfVolumetricFlux(StrEnum):
+    INCHES_PER_DAY: str
+    INCHES_PER_HOUR: str
+    MILLIMETERS_PER_DAY: str
+    MILLIMETERS_PER_HOUR: str
+
 PRECIPITATION_INCHES: Final[str]
+PRECIPITATION_MILLIMETERS: Final[str]
+PRECIPITATION_MILLIMETERS_PER_HOUR: Final[str]
 PRECIPITATION_INCHES_PER_HOUR: Final[str]
 CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER: Final[str]
@@ -455,14 +523,22 @@ CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Final[str]
 CONCENTRATION_PARTS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_PARTS_PER_MILLION: Final[str]
 CONCENTRATION_PARTS_PER_BILLION: Final[str]
-SPEED_MILLIMETERS_PER_DAY: Final[str]
+
+class UnitOfSpeed(StrEnum):
+    FEET_PER_SECOND: str
+    METERS_PER_SECOND: str
+    KILOMETERS_PER_HOUR: str
+    KNOTS: str
+    MILES_PER_HOUR: str
+
 SPEED_FEET_PER_SECOND: Final[str]
-SPEED_INCHES_PER_DAY: Final[str]
 SPEED_METERS_PER_SECOND: Final[str]
-SPEED_INCHES_PER_HOUR: Final[str]
 SPEED_KILOMETERS_PER_HOUR: Final[str]
 SPEED_KNOTS: Final[str]
 SPEED_MILES_PER_HOUR: Final[str]
+SPEED_MILLIMETERS_PER_DAY: Final[str]
+SPEED_INCHES_PER_DAY: Final[str]
+SPEED_INCHES_PER_HOUR: Final[str]
 SIGNAL_STRENGTH_DECIBELS: Final[str]
 SIGNAL_STRENGTH_DECIBELS_MILLIWATT: Final[str]
 DATA_BITS: Final[str]
@@ -582,4 +658,4 @@ ENTITY_CATEGORIES: Final[list[str]]
 CAST_APP_ID_HOMEASSISTANT_MEDIA: Final[str]
 CAST_APP_ID_HOMEASSISTANT_LOVELACE: Final[str]
 HASSIO_USER_NAME: str
-SIGNAL_BOOTSTRAP_INTEGRATONS: str
+SIGNAL_BOOTSTRAP_INTEGRATIONS: str

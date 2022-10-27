@@ -1,4 +1,5 @@
-from .const import ADAPTER_ADDRESS as ADAPTER_ADDRESS, ADAPTER_PASSIVE_SCAN as ADAPTER_PASSIVE_SCAN, AdapterDetails as AdapterDetails, NO_RSSI_VALUE as NO_RSSI_VALUE, STALE_ADVERTISEMENT_SECONDS as STALE_ADVERTISEMENT_SECONDS, UNAVAILABLE_TRACK_SECONDS as UNAVAILABLE_TRACK_SECONDS
+from .advertisement_tracker import AdvertisementTracker as AdvertisementTracker
+from .const import ADAPTER_ADDRESS as ADAPTER_ADDRESS, ADAPTER_PASSIVE_SCAN as ADAPTER_PASSIVE_SCAN, AdapterDetails as AdapterDetails, FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, UNAVAILABLE_TRACK_SECONDS as UNAVAILABLE_TRACK_SECONDS
 from .match import ADDRESS as ADDRESS, BluetoothCallbackMatcher as BluetoothCallbackMatcher, BluetoothCallbackMatcherIndex as BluetoothCallbackMatcherIndex, BluetoothCallbackMatcherWithCallback as BluetoothCallbackMatcherWithCallback, CALLBACK as CALLBACK, CONNECTABLE as CONNECTABLE, IntegrationMatcher as IntegrationMatcher, ble_device_matches as ble_device_matches
 from .models import BaseHaScanner as BaseHaScanner, BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from .usage import install_multiple_bleak_catcher as install_multiple_bleak_catcher, uninstall_multiple_bleak_catcher as uninstall_multiple_bleak_catcher
@@ -7,6 +8,7 @@ from _typeshed import Incomplete
 from bleak.backends.device import BLEDevice as BLEDevice
 from bleak.backends.scanner import AdvertisementData as AdvertisementData, AdvertisementDataCallback as AdvertisementDataCallback
 from collections.abc import Callable as Callable, Iterable
+from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import discovery_flow as discovery_flow
@@ -18,22 +20,23 @@ APPLE_MFR_ID: Final[int]
 APPLE_IBEACON_START_BYTE: Final[int]
 APPLE_HOMEKIT_START_BYTE: Final[int]
 APPLE_DEVICE_ID_START_BYTE: Final[int]
+APPLE_HOMEKIT_NOTIFY_START_BYTE: Final[int]
 APPLE_START_BYTES_WANTED: Final[Incomplete]
-RSSI_SWITCH_THRESHOLD: int
+MONOTONIC_TIME: Final[Incomplete]
 _LOGGER: Incomplete
 
-def _prefer_previous_adv(old: BluetoothServiceInfoBleak, new: BluetoothServiceInfoBleak) -> bool: ...
 def _dispatch_bleak_callback(callback: Union[AdvertisementDataCallback, None], filters: dict[str, set[str]], device: BLEDevice, advertisement_data: AdvertisementData) -> None: ...
 
 class BluetoothManager:
     hass: Incomplete
     _integration_matcher: Incomplete
     _cancel_unavailable_tracking: Incomplete
+    _advertisement_tracker: Incomplete
     _unavailable_callbacks: Incomplete
     _connectable_unavailable_callbacks: Incomplete
     _callback_index: Incomplete
     _bleak_callbacks: Incomplete
-    _history: Incomplete
+    _all_history: Incomplete
     _connectable_history: Incomplete
     _non_connectable_scanners: Incomplete
     _connectable_scanners: Incomplete
@@ -48,11 +51,12 @@ class BluetoothManager:
     async def async_get_adapter_from_address(self, address: str) -> Union[str, None]: ...
     async def async_setup(self) -> None: ...
     def async_stop(self, event: Event) -> None: ...
-    async def async_get_devices_by_address(self, address: str, connectable: bool) -> list[BLEDevice]: ...
-    def async_all_discovered_devices(self, connectable: bool) -> Iterable[BLEDevice]: ...
+    def async_get_discovered_devices_and_advertisement_data_by_address(self, address: str, connectable: bool) -> list[tuple[BLEDevice, AdvertisementData]]: ...
+    def _async_all_discovered_addresses(self, connectable: bool) -> Iterable[str]: ...
     def async_discovered_devices(self, connectable: bool) -> list[BLEDevice]: ...
     def async_setup_unavailable_tracking(self) -> None: ...
-    def _async_setup_unavailable_tracking(self, connectable: bool) -> None: ...
+    def _async_check_unavailable(self, now: datetime) -> None: ...
+    def _prefer_previous_adv_from_different_source(self, old: BluetoothServiceInfoBleak, new: BluetoothServiceInfoBleak) -> bool: ...
     def scanner_adv_received(self, service_info: BluetoothServiceInfoBleak) -> None: ...
     def async_track_unavailable(self, callback: Callable[[BluetoothServiceInfoBleak], None], address: str, connectable: bool) -> Callable[[], None]: ...
     def async_register_callback(self, callback: BluetoothCallback, matcher: Union[BluetoothCallbackMatcher, None]) -> Callable[[], None]: ...

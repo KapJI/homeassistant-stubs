@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CONNECTION_ESTABLISHED_KEY as CONNECTION_ESTABLISHED_KEY, DOMAIN as DOMAIN, VALUE_UNAVAILABLE as VALUE_UNAVAILABLE
 from _typeshed import Incomplete
 from aiooncue import OncueDevice as OncueDevice, OncueSensor as OncueSensor
 from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
@@ -14,3 +14,5 @@ class OncueEntity(CoordinatorEntity, Entity):
     def __init__(self, coordinator: DataUpdateCoordinator, device_id: str, device: OncueDevice, sensor: OncueSensor, description: EntityDescription) -> None: ...
     @property
     def _oncue_value(self) -> str: ...
+    @property
+    def available(self) -> bool: ...

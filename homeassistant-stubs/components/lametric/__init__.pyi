@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import LaMetricDataUpdateCoordinator as LaMetricDataUpdateCoordinator
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_NAME as CONF_NAME, Platform as Platform

@@ -4,12 +4,7 @@ from typing import Final
 
 DOMAIN: Final[str]
 LOGGER: Logger
-BLOCK: Final[str]
 DATA_CONFIG_ENTRY: Final[str]
-DEVICE: Final[str]
-REST: Final[str]
-RPC: Final[str]
-RPC_POLL: Final[str]
 CONF_COAP_PORT: Final[str]
 DEFAULT_COAP_PORT: Final[int]
 FIRMWARE_PATTERN: Final[Incomplete]
@@ -19,10 +14,8 @@ RGBW_MODELS: Final[Incomplete]
 MODELS_SUPPORTING_LIGHT_TRANSITION: Final[Incomplete]
 MODELS_SUPPORTING_LIGHT_EFFECTS: Final[Incomplete]
 DUAL_MODE_LIGHT_MODELS: Final[Incomplete]
-POLLING_TIMEOUT_SEC: Final[int]
 REST_SENSORS_UPDATE_INTERVAL: Final[int]
 RPC_SENSORS_POLLING_INTERVAL: Final[int]
-AIOSHELLY_DEVICE_TIMEOUT_SEC: Final[int]
 SLEEP_PERIOD_MULTIPLIER: Final[float]
 CONF_SLEEP_PERIOD: Final[str]
 UPDATE_PERIOD_MULTIPLIER: Final[float]
@@ -52,6 +45,5 @@ KELVIN_MAX_VALUE: Final[int]
 KELVIN_MIN_VALUE_WHITE: Final[int]
 KELVIN_MIN_VALUE_COLOR: Final[int]
 UPTIME_DEVIATION: Final[int]
-MAX_RPC_KEY_INSTANCES: int
 ENTRY_RELOAD_COOLDOWN: int
 SHELLY_GAS_MODELS: Incomplete

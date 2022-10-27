@@ -14,7 +14,7 @@ SENSOR_KIND_TEMPERATURE: str
 SENSOR_KIND_UPTIME: str
 
 class ValveControllerSensorDescription(SensorEntityDescription, ValveControllerEntityDescription):
-    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 PAIRED_SENSOR_DESCRIPTIONS: Incomplete
 VALVE_CONTROLLER_DESCRIPTIONS: Incomplete

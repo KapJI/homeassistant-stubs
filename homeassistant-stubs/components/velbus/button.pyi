@@ -1,5 +1,5 @@
-from . import VelbusEntity as VelbusEntity
 from .const import DOMAIN as DOMAIN
+from .entity import VelbusEntity as VelbusEntity
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

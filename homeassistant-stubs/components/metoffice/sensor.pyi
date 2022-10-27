@@ -4,7 +4,7 @@ from .data import MetOfficeData as MetOfficeData
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, LENGTH_KILOMETERS as LENGTH_KILOMETERS, PERCENTAGE as PERCENTAGE, SPEED_MILES_PER_HOUR as SPEED_MILES_PER_HOUR, TEMP_CELSIUS as TEMP_CELSIUS, UV_INDEX as UV_INDEX
+from homeassistant.const import LENGTH_KILOMETERS as LENGTH_KILOMETERS, PERCENTAGE as PERCENTAGE, SPEED_MILES_PER_HOUR as SPEED_MILES_PER_HOUR, TEMP_CELSIUS as TEMP_CELSIUS, UV_INDEX as UV_INDEX
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
@@ -19,6 +19,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MetOfficeCurrentSensor(CoordinatorEntity[DataUpdateCoordinator[MetOfficeData]], SensorEntity):
+    _attr_attribution: Incomplete
     _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_device_info: Incomplete

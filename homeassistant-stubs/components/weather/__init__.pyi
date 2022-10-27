@@ -8,6 +8,7 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter
+from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import Any, Final, TypedDict
 
 _LOGGER: Incomplete

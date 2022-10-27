@@ -6,14 +6,15 @@ from fitbit.api import FitbitOauth2Client
 from homeassistant.components import configurator as configurator
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.sensor import SensorEntity as SensorEntity
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM
+from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.json import load_json as load_json, save_json as save_json
-from typing import Final
+from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
+from typing import Any, Final
 
 _LOGGER: Final[Incomplete]
 _CONFIGURING: dict[str, str]
@@ -36,14 +37,16 @@ class FitbitAuthCallbackView(HomeAssistantView):
 
 class FitbitSensor(SensorEntity):
     entity_description: FitbitSensorEntityDescription
+    _attr_attribution: Incomplete
     client: Incomplete
     config_path: Incomplete
     is_metric: Incomplete
     clock_format: Incomplete
     extra: Incomplete
+    _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    def __init__(self, client: Fitbit, config_path: str, description: FitbitSensorEntityDescription, is_metric: bool, clock_format: str, extra: Union[dict[str, str], None] = ...) -> None: ...
+    def __init__(self, client: Fitbit, user_profile: dict[str, Any], config_path: str, description: FitbitSensorEntityDescription, is_metric: bool, clock_format: str, extra: Union[dict[str, str], None] = ...) -> None: ...
     @property
     def icon(self) -> Union[str, None]: ...
     @property

@@ -1,5 +1,6 @@
 from . import OpenUvEntity as OpenUvEntity
 from .const import DATA_PROTECTION_WINDOW as DATA_PROTECTION_WINDOW, DOMAIN as DOMAIN, LOGGER as LOGGER, TYPE_PROTECTION_WINDOW as TYPE_PROTECTION_WINDOW
+from .coordinator import OpenUvCoordinator as OpenUvCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -16,7 +17,5 @@ BINARY_SENSOR_DESCRIPTION_PROTECTION_WINDOW: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OpenUvBinarySensor(OpenUvEntity, BinarySensorEntity):
-    async def async_update(self) -> None: ...
-    _attr_available: bool
     _attr_is_on: bool
-    def update_from_latest_data(self) -> None: ...
+    def _update_from_latest_data(self) -> None: ...

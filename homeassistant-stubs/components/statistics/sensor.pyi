@@ -4,8 +4,9 @@ from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, State as State, async_get_hass as async_get_hass, callback as callback, split_entity_id as split_entity_id
+from homeassistant.helpers import issue_registry as issue_registry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
@@ -38,11 +39,13 @@ STAT_MEDIAN: str
 STAT_NOISINESS: str
 STAT_QUANTILES: str
 STAT_STANDARD_DEVIATION: str
+STAT_SUM: str
+STAT_SUM_DIFFERENCES: str
+STAT_SUM_DIFFERENCES_NONNEGATIVE: str
 STAT_TOTAL: str
 STAT_VALUE_MAX: str
 STAT_VALUE_MIN: str
 STAT_VARIANCE: str
-DEPRECATION_WARNING_CHARACTERISTIC: str
 STATS_NUMERIC_SUPPORT: Incomplete
 STATS_BINARY_SUPPORT: Incomplete
 STATS_NOT_A_NUMBER: Incomplete
@@ -56,13 +59,13 @@ CONF_PRECISION: str
 CONF_QUANTILE_INTERVALS: str
 CONF_QUANTILE_METHOD: str
 DEFAULT_NAME: str
-DEFAULT_BUFFER_SIZE: int
 DEFAULT_PRECISION: int
 DEFAULT_QUANTILE_INTERVALS: int
 DEFAULT_QUANTILE_METHOD: str
 ICON: str
 
 def valid_state_characteristic_configuration(config: dict[str, Any]) -> dict[str, Any]: ...
+def valid_boundary_configuration(config: dict[str, Any]) -> dict[str, Any]: ...
 
 _PLATFORM_SCHEMA_BASE: Incomplete
 
@@ -131,6 +134,9 @@ class StatisticsSensor(SensorEntity):
     def _stat_noisiness(self) -> StateType: ...
     def _stat_quantiles(self) -> StateType: ...
     def _stat_standard_deviation(self) -> StateType: ...
+    def _stat_sum(self) -> StateType: ...
+    def _stat_sum_differences(self) -> StateType: ...
+    def _stat_sum_differences_nonnegative(self) -> StateType: ...
     def _stat_total(self) -> StateType: ...
     def _stat_value_max(self) -> StateType: ...
     def _stat_value_min(self) -> StateType: ...

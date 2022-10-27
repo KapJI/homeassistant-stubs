@@ -1,5 +1,5 @@
-from . import VelbusEntity as VelbusEntity
 from .const import DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
+from .entity import VelbusEntity as VelbusEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

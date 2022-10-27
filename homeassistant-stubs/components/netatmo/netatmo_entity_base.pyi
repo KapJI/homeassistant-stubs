@@ -1,11 +1,11 @@
 from .const import DATA_DEVICE_IDS as DATA_DEVICE_IDS, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DOMAIN as DOMAIN, SIGNAL_NAME as SIGNAL_NAME
 from .data_handler import NetatmoDataHandler as NetatmoDataHandler, PUBLIC as PUBLIC
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 
 class NetatmoBase(Entity):
+    _attr_attribution: Incomplete
     data_handler: Incomplete
     _publishers: Incomplete
     _device_name: str

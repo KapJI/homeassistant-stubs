@@ -2,7 +2,8 @@ from .const import ATTR_DARK as ATTR_DARK, ATTR_ON as ATTR_ON
 from .deconz_device import DeconzDevice as DeconzDevice
 from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
 from _typeshed import Incomplete
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, DOMAIN as DOMAIN
+from collections.abc import Callable as Callable
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -26,100 +27,32 @@ ATTR_ORIENTATION: str
 ATTR_TILTANGLE: str
 ATTR_VIBRATIONSTRENGTH: str
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
+T = TypeVar('T', Alarm, CarbonMonoxide, Fire, GenericFlag, OpenClose, Presence, Vibration, Water, PydeconzSensorBase)
 
-def async_update_unique_id(hass: HomeAssistant, unique_id: str, entity_class: DeconzBinarySensor) -> None: ...
+class DeconzBinarySensorDescriptionMixin:
+    update_key: str
+    value_fn: Callable[[T], Union[bool, None]]
+    def __init__(self, update_key, value_fn) -> None: ...
+
+class DeconzBinarySensorDescription(BinarySensorEntityDescription, DeconzBinarySensorDescriptionMixin[T]):
+    instance_check: Union[type[T], None]
+    name_suffix: str
+    old_unique_id_suffix: str
+    def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
+
+ENTITY_DESCRIPTIONS: tuple[DeconzBinarySensorDescription, ...]
+
+def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: DeconzBinarySensorDescription) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzBinarySensor(DeconzDevice[_SensorDeviceT], BinarySensorEntity):
-    old_unique_id_suffix: str
+class DeconzBinarySensor(DeconzDevice[SensorResources], BinarySensorEntity):
     TYPE: Incomplete
-    def __init__(self, device: _SensorDeviceT, gateway: DeconzGateway) -> None: ...
+    entity_description: DeconzBinarySensorDescription
+    unique_id_suffix: Incomplete
+    _update_key: Incomplete
+    _name_suffix: Incomplete
+    def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzBinarySensorDescription) -> None: ...
+    @property
+    def is_on(self) -> Union[bool, None]: ...
     @property
     def extra_state_attributes(self) -> dict[str, Union[bool, float, int, list, None]]: ...
-
-class DeconzAlarmBinarySensor(DeconzBinarySensor[Alarm]):
-    unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzCarbonMonoxideBinarySensor(DeconzBinarySensor[CarbonMonoxide]):
-    unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzFireBinarySensor(DeconzBinarySensor[Fire]):
-    unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzFireInTestModeBinarySensor(DeconzBinarySensor[Fire]):
-    _name_suffix: str
-    unique_id_suffix: str
-    old_unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    _attr_entity_category: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzFlagBinarySensor(DeconzBinarySensor[GenericFlag]):
-    unique_id_suffix: str
-    _update_key: str
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzOpenCloseBinarySensor(DeconzBinarySensor[OpenClose]):
-    unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzPresenceBinarySensor(DeconzBinarySensor[Presence]):
-    unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzVibrationBinarySensor(DeconzBinarySensor[Vibration]):
-    unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzWaterBinarySensor(DeconzBinarySensor[Water]):
-    unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    @property
-    def is_on(self) -> bool: ...
-
-class DeconzTamperedCommonBinarySensor(DeconzBinarySensor[SensorResources]):
-    _name_suffix: str
-    unique_id_suffix: str
-    old_unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    _attr_entity_category: Incomplete
-    @property
-    def is_on(self) -> Union[bool, None]: ...
-
-class DeconzLowBatteryCommonBinarySensor(DeconzBinarySensor[SensorResources]):
-    _name_suffix: str
-    unique_id_suffix: str
-    old_unique_id_suffix: str
-    _update_key: str
-    _attr_device_class: Incomplete
-    _attr_entity_category: Incomplete
-    @property
-    def is_on(self) -> Union[bool, None]: ...
-
-ENTITY_CLASSES: Incomplete

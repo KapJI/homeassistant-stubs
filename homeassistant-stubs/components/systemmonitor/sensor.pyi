@@ -23,7 +23,7 @@ SIGNAL_SYSTEMMONITOR_UPDATE: str
 
 class SysMonitorSensorEntityDescription(SensorEntityDescription):
     mandatory_arg: bool
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, mandatory_arg) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, mandatory_arg) -> None: ...
 
 SENSOR_TYPES: dict[str, SysMonitorSensorEntityDescription]
 

@@ -1,5 +1,4 @@
-from . import BlockDeviceWrapper as BlockDeviceWrapper, RpcDeviceWrapper as RpcDeviceWrapper
-from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, RPC as RPC
+from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, get_entry_data as get_entry_data
 from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
 from .utils import get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids
 from _typeshed import Incomplete
@@ -18,7 +17,7 @@ class BlockShellyCover(ShellyBlockEntity, CoverEntity):
     _attr_device_class: Incomplete
     control_result: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, wrapper: BlockDeviceWrapper, block: Block) -> None: ...
+    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
     @property
     def is_closed(self) -> bool: ...
     @property
@@ -37,7 +36,7 @@ class RpcShellyCover(ShellyRpcEntity, CoverEntity):
     _attr_device_class: Incomplete
     _id: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, wrapper: RpcDeviceWrapper, id_: int) -> None: ...
+    def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
     @property
     def is_closed(self) -> Union[bool, None]: ...
     @property

@@ -8,6 +8,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, Platform a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import Any
 
 DICT_HA_TO_MYS: Incomplete

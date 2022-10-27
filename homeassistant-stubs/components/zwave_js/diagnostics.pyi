@@ -1,5 +1,5 @@
 from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, USER_AGENT as USER_AGENT
-from .helpers import get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry, get_state_key_from_unique_id as get_state_key_from_unique_id, get_value_id_from_unique_id as get_value_id_from_unique_id
+from .helpers import ZwaveValueMatcher as ZwaveValueMatcher, get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry, get_state_key_from_unique_id as get_state_key_from_unique_id, get_value_id_from_unique_id as get_value_id_from_unique_id, value_matches_matcher as value_matches_matcher
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import REDACTED as REDACTED
 from homeassistant.components.diagnostics.util import async_redact_data as async_redact_data
@@ -12,14 +12,6 @@ from typing import Any
 from zwave_js_server.client import Client as Client
 from zwave_js_server.model.node import Node as Node, NodeDataType as NodeDataType
 from zwave_js_server.model.value import ValueDataType as ValueDataType
-
-class ZwaveValueMatcher:
-    property_: Union[str, int, None]
-    command_class: Union[int, None]
-    endpoint: Union[int, None]
-    property_key: Union[str, int, None]
-    def __post_init__(self) -> None: ...
-    def __init__(self, property_, command_class, endpoint, property_key) -> None: ...
 
 KEYS_TO_REDACT: Incomplete
 VALUES_TO_REDACT: Incomplete

@@ -11,7 +11,6 @@ from homeassistant.const import LENGTH as LENGTH, PERCENTAGE as PERCENTAGE, VOLU
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.util.unit_system import UnitSystem as UnitSystem
 
 _LOGGER: Incomplete
 
@@ -19,7 +18,7 @@ class BMWSensorEntityDescription(SensorEntityDescription):
     key_class: Union[str, None]
     unit_type: Union[str, None]
     value: Callable
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, last_reset, native_unit_of_measurement, state_class, key_class, unit_type, value) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, key_class, unit_type, value) -> None: ...
 
 def convert_and_round(state: ValueWithUnit, converter: Callable[[Union[float, None], str], float], precision: int) -> Union[float, None]: ...
 
@@ -31,6 +30,6 @@ class BMWSensor(BMWBaseEntity, SensorEntity):
     entity_description: BMWSensorEntityDescription
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: MyBMWVehicle, description: BMWSensorEntityDescription, unit_system: UnitSystem) -> None: ...
+    def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: MyBMWVehicle, description: BMWSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     def _handle_coordinator_update(self) -> None: ...

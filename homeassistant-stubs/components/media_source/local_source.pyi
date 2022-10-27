@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import Unauthorized as Unauthorized
 from homeassistant.util import raise_if_invalid_filename as raise_if_invalid_filename, raise_if_invalid_path as raise_if_invalid_path
 from pathlib import Path
+from typing import Any
 
 MAX_UPLOAD_SIZE: Incomplete
 LOGGER: Incomplete
@@ -45,4 +46,4 @@ class UploadMediaView(http.HomeAssistantView):
     async def post(self, request: web.Request) -> web.Response: ...
     def _move_file(self, target_dir: Path, uploaded_file: FileField) -> None: ...
 
-async def websocket_remove_media(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+async def websocket_remove_media(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

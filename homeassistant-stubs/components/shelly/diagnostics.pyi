@@ -1,5 +1,4 @@
-from . import BlockDeviceWrapper as BlockDeviceWrapper, RpcDeviceWrapper as RpcDeviceWrapper
-from .const import BLOCK as BLOCK, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, RPC as RPC
+from .coordinator import get_entry_data as get_entry_data
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

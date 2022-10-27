@@ -7,6 +7,7 @@ CONF_CALENDAR_ACCESS: str
 DATA_CALENDARS: str
 DATA_SERVICE: str
 DATA_CONFIG: str
+DATA_STORE: str
 
 class FeatureAccess(Enum):
     read_only: str

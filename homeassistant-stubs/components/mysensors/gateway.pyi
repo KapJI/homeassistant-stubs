@@ -3,10 +3,11 @@ from .handler import HANDLERS as HANDLERS
 from .helpers import discover_mysensors_platform as discover_mysensors_platform, on_unload as on_unload, validate_child as validate_child, validate_node as validate_node
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.mqtt.models import ReceivePayloadType as ReceivePayloadType
+from homeassistant.components.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from mysensors import BaseAsyncGateway as BaseAsyncGateway, Message as Message, Sensor as Sensor
 from typing import Any
 

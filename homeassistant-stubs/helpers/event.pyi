@@ -87,7 +87,7 @@ def async_track_template(hass: HomeAssistant, template: Template, action: Callab
 
 track_template: Incomplete
 
-class _TrackTemplateResultInfo:
+class TrackTemplateResultInfo:
     hass: Incomplete
     _job: Incomplete
     _track_templates: Incomplete
@@ -111,7 +111,7 @@ class _TrackTemplateResultInfo:
     def _refresh(self, event: Union[Event, None], track_templates: Union[Iterable[TrackTemplate], None] = ..., replayed: Union[bool, None] = ...) -> None: ...
 TrackTemplateResultListener = Callable[[Union[Event, None], list[TrackTemplateResult]], None]
 
-def async_track_template_result(hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, raise_on_template_error: bool = ..., strict: bool = ..., has_super_template: bool = ...) -> _TrackTemplateResultInfo: ...
+def async_track_template_result(hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, raise_on_template_error: bool = ..., strict: bool = ..., has_super_template: bool = ...) -> TrackTemplateResultInfo: ...
 def async_track_same_state(hass: HomeAssistant, period: timedelta, action: Callable[[], Union[Coroutine[Any, Any, None], None]], async_check_same_func: Callable[[str, Union[State, None], Union[State, None]], bool], entity_ids: Union[str, Iterable[str]] = ...) -> CALLBACK_TYPE: ...
 
 track_same_state: Incomplete

@@ -7,13 +7,14 @@ from .auth import AuthManager as AuthManager
 from .backports.enum import StrEnum as StrEnum
 from .components.http import ApiConfig as ApiConfig, HomeAssistantHTTP as HomeAssistantHTTP
 from .config_entries import ConfigEntries as ConfigEntries
-from .const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, CONF_UNIT_SYSTEM_IMPERIAL as CONF_UNIT_SYSTEM_IMPERIAL, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, LENGTH_METERS as LENGTH_METERS, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, __version__ as __version__
+from .const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, LENGTH_METERS as LENGTH_METERS, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, __version__ as __version__
 from .exceptions import HomeAssistantError as HomeAssistantError, InvalidEntityFormatError as InvalidEntityFormatError, InvalidStateError as InvalidStateError, MaxLengthExceeded as MaxLengthExceeded, ServiceNotFound as ServiceNotFound, Unauthorized as Unauthorized
+from .helpers.storage import Store as Store
 from .util import location as location
 from .util.async_ import fire_coroutine_threadsafe as fire_coroutine_threadsafe, run_callback_threadsafe as run_callback_threadsafe, shutdown_run_callback_threadsafe as shutdown_run_callback_threadsafe
 from .util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from .util.timeout import TimeoutManager as TimeoutManager
-from .util.unit_system import IMPERIAL_SYSTEM as IMPERIAL_SYSTEM, METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem
+from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Collection, Coroutine, Iterable, Mapping
 from contextvars import ContextVar
@@ -31,6 +32,7 @@ _CallableT = TypeVar('_CallableT', bound=Callable[..., Any])
 CALLBACK_TYPE = Callable[[], None]
 CORE_STORAGE_KEY: str
 CORE_STORAGE_VERSION: int
+CORE_STORAGE_MINOR_VERSION: int
 DOMAIN: str
 BLOCK_LOG_TIMEOUT: int
 SERVICE_CALL_LIMIT: int
@@ -137,7 +139,7 @@ class HomeAssistant:
     def async_run_job(self, target: Coroutine[Any, Any, _R], *args: Any) -> Union[asyncio.Future[_R], None]: ...
     def block_till_done(self) -> None: ...
     async def async_block_till_done(self) -> None: ...
-    async def _await_and_log_pending(self, pending: Iterable[Awaitable[Any]]) -> None: ...
+    async def _await_and_log_pending(self, pending: Collection[Awaitable[Any]]) -> None: ...
     def stop(self) -> None: ...
     async def async_stop(self, exit_code: int = ..., *, force: bool = ...) -> None: ...
 
@@ -265,6 +267,7 @@ class ServiceRegistry:
 
 class Config:
     hass: Incomplete
+    _store: Incomplete
     latitude: int
     longitude: int
     elevation: int
@@ -294,4 +297,9 @@ class Config:
     def _update(self, *, source: ConfigSource, latitude: Union[float, None] = ..., longitude: Union[float, None] = ..., elevation: Union[int, None] = ..., unit_system: Union[str, None] = ..., location_name: Union[str, None] = ..., time_zone: Union[str, None] = ..., external_url: Union[str, dict[Any, Any], None] = ..., internal_url: Union[str, dict[Any, Any], None] = ..., currency: Union[str, None] = ...) -> None: ...
     async def async_update(self, **kwargs: Any) -> None: ...
     async def async_load(self) -> None: ...
-    async def async_store(self) -> None: ...
+    async def _async_store(self) -> None: ...
+    class _ConfigStore(Store[dict[str, Any]]):
+        _original_unit_system: Incomplete
+        def __init__(self, hass: HomeAssistant) -> None: ...
+        async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
+        async def async_save(self, data: dict[str, Any]) -> None: ...

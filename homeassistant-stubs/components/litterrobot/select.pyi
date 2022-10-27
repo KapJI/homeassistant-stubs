@@ -21,7 +21,7 @@ class RequiredKeysMixin:
 
 class RobotSelectEntityDescription(SelectEntityDescription, RequiredKeysMixin[_RobotT, _CastTypeT]):
     entity_category: EntityCategory
-    def __init__(self, current_fn, options_fn, select_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+    def __init__(self, current_fn, options_fn, select_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, options) -> None: ...
 
 LITTER_ROBOT_SELECT: Incomplete
 FEEDER_ROBOT_SELECT: Incomplete

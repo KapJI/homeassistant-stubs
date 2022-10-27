@@ -75,6 +75,9 @@ ATTR_COLOR_TEMP: str
 ATTR_KELVIN: str
 ATTR_MIN_MIREDS: str
 ATTR_MAX_MIREDS: str
+ATTR_COLOR_TEMP_KELVIN: str
+ATTR_MIN_COLOR_TEMP_KELVIN: str
+ATTR_MAX_COLOR_TEMP_KELVIN: str
 ATTR_COLOR_NAME: str
 ATTR_WHITE: str
 ATTR_BRIGHTNESS: str
@@ -141,9 +144,12 @@ class LightEntity(ToggleEntity):
     _attr_brightness: Union[int, None]
     _attr_color_mode: Union[ColorMode, str, None]
     _attr_color_temp: Union[int, None]
+    _attr_color_temp_kelvin: Union[int, None]
     _attr_effect_list: Union[list[str], None]
     _attr_effect: Union[str, None]
     _attr_hs_color: Union[tuple[float, float], None]
+    _attr_max_color_temp_kelvin: Union[int, None]
+    _attr_min_color_temp_kelvin: Union[int, None]
     _attr_max_mireds: int
     _attr_min_mireds: int
     _attr_rgb_color: Union[tuple[int, int, int], None]
@@ -173,9 +179,15 @@ class LightEntity(ToggleEntity):
     @property
     def color_temp(self) -> Union[int, None]: ...
     @property
+    def color_temp_kelvin(self) -> Union[int, None]: ...
+    @property
     def min_mireds(self) -> int: ...
     @property
     def max_mireds(self) -> int: ...
+    @property
+    def min_color_temp_kelvin(self) -> int: ...
+    @property
+    def max_color_temp_kelvin(self) -> int: ...
     @property
     def effect_list(self) -> Union[list[str], None]: ...
     @property

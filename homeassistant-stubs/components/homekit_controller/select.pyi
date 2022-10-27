@@ -1,10 +1,12 @@
 from . import KNOWN_DEVICES as KNOWN_DEVICES
+from .connection import HKDevice as HKDevice
 from .const import DEVICE_CLASS_ECOBEE_MODE as DEVICE_CLASS_ECOBEE_MODE
 from .entity import CharacteristicEntity as CharacteristicEntity
 from _typeshed import Incomplete
 from aiohomekit.model.characteristics import Characteristic as Characteristic
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 

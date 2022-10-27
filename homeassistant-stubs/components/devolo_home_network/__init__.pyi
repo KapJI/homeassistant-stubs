@@ -2,7 +2,7 @@ from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_WIF
 from _typeshed import Incomplete
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client

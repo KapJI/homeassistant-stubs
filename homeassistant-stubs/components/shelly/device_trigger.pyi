@@ -1,5 +1,5 @@
-from . import get_block_device_wrapper as get_block_device_wrapper, get_rpc_device_wrapper as get_rpc_device_wrapper
 from .const import ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, BLOCK_INPUTS_EVENTS_TYPES as BLOCK_INPUTS_EVENTS_TYPES, CONF_SUBTYPE as CONF_SUBTYPE, DOMAIN as DOMAIN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_SUBTYPES as INPUTS_EVENTS_SUBTYPES, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS
+from .coordinator import get_block_coordinator_by_device_id as get_block_coordinator_by_device_id, get_rpc_coordinator_by_device_id as get_rpc_coordinator_by_device_id
 from .utils import get_block_input_triggers as get_block_input_triggers, get_rpc_input_triggers as get_rpc_input_triggers, get_shbtn_input_triggers as get_shbtn_input_triggers
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA

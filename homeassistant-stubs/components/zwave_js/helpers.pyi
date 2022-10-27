@@ -13,7 +13,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
-from zwave_js_server.model.value import Value as ZwaveValue
+from zwave_js_server.model.value import Value as ZwaveValue, ValueDataType as ValueDataType
 
 class ZwaveValueID:
     property_: Union[str, int]
@@ -22,6 +22,15 @@ class ZwaveValueID:
     property_key: Union[str, int, None]
     def __init__(self, property_, command_class, endpoint, property_key) -> None: ...
 
+class ZwaveValueMatcher:
+    property_: Union[str, int, None]
+    command_class: Union[int, None]
+    endpoint: Union[int, None]
+    property_key: Union[str, int, None]
+    def __post_init__(self) -> None: ...
+    def __init__(self, property_, command_class, endpoint, property_key) -> None: ...
+
+def value_matches_matcher(matcher: ZwaveValueMatcher, value_data: ValueDataType) -> bool: ...
 def get_value_id_from_unique_id(unique_id: str) -> Union[str, None]: ...
 def get_state_key_from_unique_id(unique_id: str) -> Union[int, None]: ...
 def get_value_of_zwave_value(value: Union[ZwaveValue, None]) -> Union[Any, None]: ...

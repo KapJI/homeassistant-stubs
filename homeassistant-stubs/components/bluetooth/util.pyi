@@ -1,6 +1,7 @@
 from .const import AdapterDetails as AdapterDetails, DEFAULT_ADAPTER_BY_PLATFORM as DEFAULT_ADAPTER_BY_PLATFORM, DEFAULT_ADDRESS as DEFAULT_ADDRESS, MACOS_DEFAULT_BLUETOOTH_ADAPTER as MACOS_DEFAULT_BLUETOOTH_ADAPTER, UNIX_DEFAULT_BLUETOOTH_ADAPTER as UNIX_DEFAULT_BLUETOOTH_ADAPTER, WINDOWS_DEFAULT_BLUETOOTH_ADAPTER as WINDOWS_DEFAULT_BLUETOOTH_ADAPTER
 from .models import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.core import callback as callback
+from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
 
 async def async_load_history_from_system() -> dict[str, BluetoothServiceInfoBleak]: ...
 async def async_get_bluetooth_adapters() -> dict[str, AdapterDetails]: ...

@@ -1,5 +1,4 @@
 import bleak
-import time
 from .const import DEFAULT_ADDRESS as DEFAULT_ADDRESS, SCANNER_WATCHDOG_INTERVAL as SCANNER_WATCHDOG_INTERVAL, SCANNER_WATCHDOG_TIMEOUT as SCANNER_WATCHDOG_TIMEOUT, SOURCE_LOCAL as SOURCE_LOCAL, START_TIMEOUT as START_TIMEOUT
 from .models import BaseHaScanner as BaseHaScanner, BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from .util import adapter_human_name as adapter_human_name, async_reset_adapter as async_reset_adapter
@@ -11,11 +10,12 @@ from datetime import datetime
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
 from homeassistant.util.package import is_docker_env as is_docker_env
 from typing import Any
 
 OriginalBleakScanner: Incomplete
-MONOTONIC_TIME = time.monotonic
+MONOTONIC_TIME = monotonic_time_coarse
 PASSIVE_SCANNER_ARGS: Incomplete
 _LOGGER: Incomplete
 NEED_RESET_ERRORS: Incomplete

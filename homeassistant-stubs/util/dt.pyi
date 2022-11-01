@@ -1,10 +1,12 @@
 import datetime as dt
+import time
 from _typeshed import Incomplete
 from typing import Any
 
 DATE_STR_FORMAT: str
 UTC: Incomplete
 DEFAULT_TIME_ZONE: dt.tzinfo
+CLOCK_MONOTONIC_COARSE: int
 EPOCHORDINAL: Incomplete
 DATETIME_RE: Incomplete
 STANDARD_DURATION_RE: Incomplete
@@ -32,3 +34,6 @@ def _lower_bound(arr: list[int], cmp: int) -> Union[int, None]: ...
 def find_next_time_expression_time(now: dt.datetime, seconds: list[int], minutes: list[int], hours: list[int]) -> dt.datetime: ...
 def _datetime_exists(dattim: dt.datetime) -> bool: ...
 def _datetime_ambiguous(dattim: dt.datetime) -> bool: ...
+def __monotonic_time_coarse() -> float: ...
+monotonic_time_coarse = time.monotonic
+monotonic_time_coarse = __monotonic_time_coarse

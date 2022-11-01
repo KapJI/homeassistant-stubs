@@ -13,6 +13,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
 from typing import Any, Final
 
 FILTER_UUIDS: Final[str]

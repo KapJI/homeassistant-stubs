@@ -7,6 +7,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components.bluetooth import BaseHaScanner as BaseHaScanner, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, HaBluetoothConnector as HaBluetoothConnector
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
 
 TWO_CHAR: Incomplete
 

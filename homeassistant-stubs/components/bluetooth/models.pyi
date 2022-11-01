@@ -78,6 +78,7 @@ class HaBleakClientWrapper(BleakClient):
     __address: Incomplete
     __disconnected_callback: Incomplete
     __timeout: Incomplete
+    __ble_device: Incomplete
     _backend: Incomplete
     def __init__(self, address_or_ble_device: Union[str, BLEDevice], disconnected_callback: Union[Callable[[BleakClient], None], None] = ..., *args: Any, timeout: float = ..., **kwargs: Any) -> None: ...
     @property

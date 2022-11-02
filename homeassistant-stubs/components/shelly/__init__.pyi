@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client, device_registry as device_registry
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import Final
 
 BLOCK_PLATFORMS: Final[Incomplete]

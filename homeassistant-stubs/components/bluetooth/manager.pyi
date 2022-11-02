@@ -42,6 +42,7 @@ class BluetoothManager:
     _non_connectable_scanners: Incomplete
     _connectable_scanners: Incomplete
     _adapters: Incomplete
+    _sources: Incomplete
     def __init__(self, hass: HomeAssistant, integration_matcher: IntegrationMatcher) -> None: ...
     @property
     def supports_passive_scan(self) -> bool: ...

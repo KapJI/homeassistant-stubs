@@ -3,6 +3,7 @@ from .http import WebSocketAdapter as WebSocketAdapter
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.auth.models import RefreshToken as RefreshToken, User as User
+from homeassistant.components.http import current_request as current_request
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from typing import Any

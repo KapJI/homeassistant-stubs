@@ -12,7 +12,7 @@ from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.network import get_url as get_url
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_ssdp as async_get_ssdp, bind_hass as bind_hass

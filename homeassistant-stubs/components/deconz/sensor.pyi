@@ -34,15 +34,16 @@ ATTR_EVENT_ID: str
 T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Power, Pressure, Temperature, Time, PydeconzSensorBase)
 
 class DeconzSensorDescriptionMixin:
+    supported_fn: Callable[[T], bool]
     update_key: str
     value_fn: Callable[[T], Union[datetime, StateType]]
-    def __init__(self, update_key, value_fn) -> None: ...
+    def __init__(self, supported_fn, update_key, value_fn) -> None: ...
 
 class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMixin[T]):
     instance_check: Union[type[T], None]
     name_suffix: str
     old_unique_id_suffix: str
-    def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
+    def __init__(self, supported_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzSensorDescription, ...]
 

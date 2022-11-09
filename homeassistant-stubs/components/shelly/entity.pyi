@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as device_registry, entity as entity, entity_registry as entity_registry
@@ -128,6 +129,7 @@ class ShellyRpcAttributeEntity(ShellyRpcEntity, entity.Entity):
 class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity, RestoreEntity):
     sensors: Incomplete
     last_state: Incomplete
+    last_unit: Incomplete
     coordinator: Incomplete
     attribute: Incomplete
     block: Incomplete
@@ -143,6 +145,7 @@ class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity, RestoreEnti
 class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity, RestoreEntity):
     entity_description: RpcEntityDescription
     last_state: Incomplete
+    last_unit: Incomplete
     coordinator: Incomplete
     key: Incomplete
     attribute: Incomplete

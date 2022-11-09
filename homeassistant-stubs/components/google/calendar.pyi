@@ -2,7 +2,9 @@ from . import CONF_IGNORE_AVAILABILITY as CONF_IGNORE_AVAILABILITY, CONF_SEARCH 
 from .api import get_feature_access as get_feature_access
 from .const import DATA_SERVICE as DATA_SERVICE, DATA_STORE as DATA_STORE, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TYPES_CONF as EVENT_TYPES_CONF, FeatureAccess as FeatureAccess
 from _typeshed import Incomplete
+from collections.abc import Iterable
 from datetime import datetime
+from gcal_sync.api import GoogleCalendarService as GoogleCalendarService
 from gcal_sync.model import Event
 from gcal_sync.sync import CalendarEventSyncManager
 from gcal_sync.timeline import Timeline
@@ -27,10 +29,23 @@ CREATE_EVENT_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class CalendarUpdateCoordinator(DataUpdateCoordinator[Timeline]):
+class CalendarSyncUpdateCoordinator(DataUpdateCoordinator[Timeline]):
     sync: Incomplete
     def __init__(self, hass: HomeAssistant, sync: CalendarEventSyncManager, name: str) -> None: ...
     async def _async_update_data(self) -> Timeline: ...
+    async def async_get_events(self, start_date: datetime, end_date: datetime) -> Iterable[Event]: ...
+    @property
+    def upcoming(self) -> Union[Iterable[Event], None]: ...
+
+class CalendarQueryUpdateCoordinator(DataUpdateCoordinator[list[Event]]):
+    calendar_service: Incomplete
+    calendar_id: Incomplete
+    _search: Incomplete
+    def __init__(self, hass: HomeAssistant, calendar_service: GoogleCalendarService, name: str, calendar_id: str, search: Union[str, None]) -> None: ...
+    async def async_get_events(self, start_date: datetime, end_date: datetime) -> Iterable[Event]: ...
+    async def _async_update_data(self) -> list[Event]: ...
+    @property
+    def upcoming(self) -> Union[Iterable[Event], None]: ...
 
 class GoogleCalendarEntity(CoordinatorEntity, CalendarEntity):
     _attr_has_entity_name: bool
@@ -44,7 +59,7 @@ class GoogleCalendarEntity(CoordinatorEntity, CalendarEntity):
     entity_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
-    def __init__(self, coordinator: CalendarUpdateCoordinator, calendar_id: str, data: dict[str, Any], entity_id: str, unique_id: Union[str, None], entity_enabled: bool) -> None: ...
+    def __init__(self, coordinator: Union[CalendarSyncUpdateCoordinator, CalendarQueryUpdateCoordinator], calendar_id: str, data: dict[str, Any], entity_id: str, unique_id: Union[str, None], entity_enabled: bool) -> None: ...
     @property
     def should_poll(self) -> bool: ...
     @property

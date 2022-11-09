@@ -1,5 +1,5 @@
 from . import type_cameras as type_cameras, type_covers as type_covers, type_fans as type_fans, type_humidifiers as type_humidifiers, type_lights as type_lights, type_locks as type_locks, type_media_players as type_media_players, type_remotes as type_remotes, type_security_systems as type_security_systems, type_sensors as type_sensors, type_switches as type_switches, type_thermostats as type_thermostats
-from .accessories import HomeAccessory as HomeAccessory, HomeBridge as HomeBridge, HomeDriver as HomeDriver, HomeIIDManager as HomeIIDManager, get_accessory as get_accessory
+from .accessories import HomeAccessory as HomeAccessory, HomeBridge as HomeBridge, HomeDriver as HomeDriver, get_accessory as get_accessory
 from .aidmanager import AccessoryAidStorage as AccessoryAidStorage
 from .const import ATTR_INTEGRATION as ATTR_INTEGRATION, BRIDGE_NAME as BRIDGE_NAME, BRIDGE_SERIAL_NUMBER as BRIDGE_SERIAL_NUMBER, CONFIG_OPTIONS as CONFIG_OPTIONS, CONF_ADVERTISE_IP as CONF_ADVERTISE_IP, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_ENTRY_INDEX as CONF_ENTRY_INDEX, CONF_EXCLUDE_ACCESSORY_MODE as CONF_EXCLUDE_ACCESSORY_MODE, CONF_FILTER as CONF_FILTER, CONF_HOMEKIT_MODE as CONF_HOMEKIT_MODE, CONF_LINKED_BATTERY_CHARGING_SENSOR as CONF_LINKED_BATTERY_CHARGING_SENSOR, CONF_LINKED_BATTERY_SENSOR as CONF_LINKED_BATTERY_SENSOR, CONF_LINKED_DOORBELL_SENSOR as CONF_LINKED_DOORBELL_SENSOR, CONF_LINKED_HUMIDITY_SENSOR as CONF_LINKED_HUMIDITY_SENSOR, CONF_LINKED_MOTION_SENSOR as CONF_LINKED_MOTION_SENSOR, DEFAULT_EXCLUDE_ACCESSORY_MODE as DEFAULT_EXCLUDE_ACCESSORY_MODE, DEFAULT_HOMEKIT_MODE as DEFAULT_HOMEKIT_MODE, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HOMEKIT as HOMEKIT, HOMEKIT_MODES as HOMEKIT_MODES, HOMEKIT_MODE_ACCESSORY as HOMEKIT_MODE_ACCESSORY, HOMEKIT_PAIRING_QR as HOMEKIT_PAIRING_QR, HOMEKIT_PAIRING_QR_SECRET as HOMEKIT_PAIRING_QR_SECRET, MANUFACTURER as MANUFACTURER, PERSIST_LOCK as PERSIST_LOCK, SERVICE_HOMEKIT_RESET_ACCESSORY as SERVICE_HOMEKIT_RESET_ACCESSORY, SERVICE_HOMEKIT_UNPAIR as SERVICE_HOMEKIT_UNPAIR, SHUTDOWN_TIMEOUT as SHUTDOWN_TIMEOUT
 from .iidmanager import AccessoryIIDStorage as AccessoryIIDStorage
@@ -23,6 +23,8 @@ from homeassistant.helpers.reload import async_integration_yaml_config as async_
 from homeassistant.helpers.service import async_extract_referenced_entity_ids as async_extract_referenced_entity_ids, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
+from pyhap.characteristic import Characteristic as Characteristic
+from pyhap.service import Service as Service
 from typing import Any
 from zeroconf.asyncio import AsyncZeroconf as AsyncZeroconf
 
@@ -71,6 +73,7 @@ class HomeKit:
     status: Incomplete
     driver: Incomplete
     bridge: Incomplete
+    _reset_lock: Incomplete
     def __init__(self, hass: HomeAssistant, name: str, port: int, ip_address: Union[str, None], entity_filter: EntityFilter, exclude_accessory_mode: bool, entity_config: dict, homekit_mode: str, advertise_ip: Union[str, None], entry_id: str, entry_title: str, devices: Union[list[str], None] = ...) -> None: ...
     def setup(self, async_zeroconf_instance: AsyncZeroconf, uuid: str) -> None: ...
     async def async_reset_accessories(self, entity_ids: Iterable[str]) -> None: ...

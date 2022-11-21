@@ -11,7 +11,7 @@ class NetatmoBase(Entity):
     _device_name: str
     _id: str
     _model: str
-    _config_url: str
+    _config_url: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_extra_state_attributes: Incomplete

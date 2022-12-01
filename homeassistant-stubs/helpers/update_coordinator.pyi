@@ -6,7 +6,7 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine, Generato
 from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any, TypeVar
 
@@ -25,6 +25,7 @@ class DataUpdateCoordinator:
     update_interval: Incomplete
     config_entry: Incomplete
     data: Incomplete
+    _microsecond: Incomplete
     _listeners: Incomplete
     _job: Incomplete
     _unsub_refresh: Incomplete
@@ -43,7 +44,7 @@ class DataUpdateCoordinator:
     async def _async_update_data(self) -> _T: ...
     async def async_config_entry_first_refresh(self) -> None: ...
     async def async_refresh(self) -> None: ...
-    async def _async_refresh(self, log_failures: bool = ..., raise_on_auth_failed: bool = ..., scheduled: bool = ...) -> None: ...
+    async def _async_refresh(self, log_failures: bool = ..., raise_on_auth_failed: bool = ..., scheduled: bool = ..., raise_on_entry_error: bool = ...) -> None: ...
     def async_set_update_error(self, err: Exception) -> None: ...
     def async_set_updated_data(self, data: _T) -> None: ...
 

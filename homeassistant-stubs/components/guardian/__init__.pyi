@@ -14,8 +14,6 @@ from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity,
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 DATA_PAIRED_SENSOR_MANAGER: str
-SERVICE_NAME_DISABLE_AP: str
-SERVICE_NAME_ENABLE_AP: str
 SERVICE_NAME_PAIR_SENSOR: str
 SERVICE_NAME_UNPAIR_SENSOR: str
 SERVICE_NAME_UPGRADE_FIRMWARE: str

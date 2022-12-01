@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN, WMO_TO_HA_CONDITION_MAP as WMO_TO_HA_CONDIT
 from _typeshed import Incomplete
 from homeassistant.components.weather import Forecast as Forecast, WeatherEntity as WeatherEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import LENGTH_MILLIMETERS as LENGTH_MILLIMETERS, SPEED_KILOMETERS_PER_HOUR as SPEED_KILOMETERS_PER_HOUR, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo

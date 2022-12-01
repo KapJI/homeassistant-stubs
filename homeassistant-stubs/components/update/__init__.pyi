@@ -26,7 +26,7 @@ class UpdateEntity(RestoreEntity):
     _attr_release_summary: Union[str, None]
     _attr_release_url: Union[str, None]
     _attr_state: None
-    _attr_supported_features: int
+    _attr_supported_features: UpdateEntityFeature
     _attr_title: Union[str, None]
     __skipped_version: Union[str, None]
     __in_progress: bool
@@ -49,7 +49,7 @@ class UpdateEntity(RestoreEntity):
     @property
     def release_url(self) -> Union[str, None]: ...
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> UpdateEntityFeature: ...
     @property
     def title(self) -> Union[str, None]: ...
     async def async_skip(self) -> None: ...

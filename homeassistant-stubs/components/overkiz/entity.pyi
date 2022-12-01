@@ -10,6 +10,8 @@ from pyoverkiz.models import Device as Device
 class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     device_url: Incomplete
+    base_device_url: Incomplete
+    index_device_url: Incomplete
     executor: Incomplete
     _attr_assumed_state: Incomplete
     _attr_available: Incomplete

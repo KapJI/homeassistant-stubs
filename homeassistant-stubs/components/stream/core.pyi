@@ -7,6 +7,8 @@ from aiohttp import web
 from av import CodecContext, Packet as Packet
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine, Iterable
+from enum import IntEnum
+from homeassistant.components.camera import DynamicStreamSettings as DynamicStreamSettings
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
@@ -16,14 +18,23 @@ from typing import Any
 _LOGGER: Incomplete
 PROVIDERS: Registry[str, type[StreamOutput]]
 
+class Orientation(IntEnum):
+    NO_TRANSFORM: int
+    MIRROR: int
+    ROTATE_180: int
+    FLIP: int
+    ROTATE_LEFT_AND_FLIP: int
+    ROTATE_LEFT: int
+    ROTATE_RIGHT_AND_FLIP: int
+    ROTATE_RIGHT: int
+
 class StreamSettings:
     ll_hls: bool
     min_segment_duration: float
     part_target_duration: float
     hls_advance_part_limit: int
     hls_part_timeout: float
-    orientation: int
-    def __init__(self, ll_hls, min_segment_duration, part_target_duration, hls_advance_part_limit, hls_part_timeout, orientation) -> None: ...
+    def __init__(self, ll_hls, min_segment_duration, part_target_duration, hls_advance_part_limit, hls_part_timeout) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
     def __gt__(self, other): ...
@@ -86,10 +97,11 @@ class StreamOutput:
     _hass: Incomplete
     idle_timer: Incomplete
     stream_settings: Incomplete
+    dynamic_stream_settings: Incomplete
     _event: Incomplete
     _part_event: Incomplete
     _segments: Incomplete
-    def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, stream_settings: StreamSettings, deque_maxlen: Union[int, None] = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings, deque_maxlen: Union[int, None] = ...) -> None: ...
     @property
     def name(self) -> Union[str, None]: ...
     @property
@@ -125,7 +137,8 @@ class KeyFrameConverter:
     _lock: Incomplete
     _codec_context: Incomplete
     _stream_settings: Incomplete
-    def __init__(self, hass: HomeAssistant, stream_settings: StreamSettings) -> None: ...
+    _dynamic_stream_settings: Incomplete
+    def __init__(self, hass: HomeAssistant, stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings) -> None: ...
     def create_codec_context(self, codec_context: CodecContext) -> None: ...
     @staticmethod
     def transform_image(image: np.ndarray, orientation: int) -> np.ndarray: ...

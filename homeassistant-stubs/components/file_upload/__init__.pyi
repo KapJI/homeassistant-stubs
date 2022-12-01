@@ -12,6 +12,7 @@ from homeassistant.util.ulid import ulid_hex as ulid_hex
 from pathlib import Path
 
 DOMAIN: str
+ONE_MEGABYTE: Incomplete
 MAX_SIZE: Incomplete
 TEMP_DIR_NAME: Incomplete
 

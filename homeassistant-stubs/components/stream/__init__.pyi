@@ -1,11 +1,12 @@
 from .const import ATTR_SETTINGS as ATTR_SETTINGS, CONF_EXTRA_PART_WAIT_TIME as CONF_EXTRA_PART_WAIT_TIME, CONF_RTSP_TRANSPORT as CONF_RTSP_TRANSPORT, CONF_USE_WALLCLOCK_AS_TIMESTAMPS as CONF_USE_WALLCLOCK_AS_TIMESTAMPS, DOMAIN as DOMAIN, FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER, OUTPUT_FORMATS as OUTPUT_FORMATS, RTSP_TRANSPORTS as RTSP_TRANSPORTS, SOURCE_TIMEOUT as SOURCE_TIMEOUT
-from .core import StreamOutput, StreamSettings
+from .core import Orientation as Orientation, StreamOutput, StreamSettings
 from _typeshed import Incomplete
 from collections.abc import Callable, Mapping
+from homeassistant.components.camera import DynamicStreamSettings
 from homeassistant.core import HomeAssistant
 from typing import Any
 
-def create_stream(hass: HomeAssistant, stream_source: str, options: Mapping[str, Union[str, bool, float]], stream_label: Union[str, None] = ...) -> Stream: ...
+def create_stream(hass: HomeAssistant, stream_source: str, options: Mapping[str, Union[str, bool, float]], dynamic_stream_settings: DynamicStreamSettings, stream_label: Union[str, None] = ...) -> Stream: ...
 
 class Stream:
     hass: Incomplete
@@ -13,7 +14,7 @@ class Stream:
     pyav_options: Incomplete
     _stream_settings: Incomplete
     _stream_label: Incomplete
-    keepalive: bool
+    dynamic_stream_settings: Incomplete
     access_token: Incomplete
     _start_stop_lock: Incomplete
     _thread: Incomplete
@@ -25,11 +26,7 @@ class Stream:
     _update_callback: Incomplete
     _logger: Incomplete
     _diagnostics: Incomplete
-    def __init__(self, hass: HomeAssistant, source: str, pyav_options: dict[str, str], stream_settings: StreamSettings, stream_label: Union[str, None] = ...) -> None: ...
-    @property
-    def orientation(self) -> int: ...
-    @orientation.setter
-    def orientation(self, value: int) -> None: ...
+    def __init__(self, hass: HomeAssistant, source: str, pyav_options: dict[str, str], stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings, stream_label: Union[str, None] = ...) -> None: ...
     def endpoint_url(self, fmt: str) -> str: ...
     def outputs(self) -> Mapping[str, StreamOutput]: ...
     def add_provider(self, fmt: str, timeout: int = ...) -> StreamOutput: ...

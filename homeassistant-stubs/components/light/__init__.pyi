@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
@@ -18,7 +18,7 @@ SCAN_INTERVAL: Incomplete
 DATA_PROFILES: str
 ENTITY_ID_FORMAT: Incomplete
 
-class LightEntityFeature(IntEnum):
+class LightEntityFeature(IntFlag):
     EFFECT: int
     FLASH: int
     TRANSITION: int
@@ -156,7 +156,7 @@ class LightEntity(ToggleEntity):
     _attr_rgbw_color: Union[tuple[int, int, int, int], None]
     _attr_rgbww_color: Union[tuple[int, int, int, int, int], None]
     _attr_supported_color_modes: Union[set[ColorMode], set[str], None]
-    _attr_supported_features: int
+    _attr_supported_features: LightEntityFeature
     _attr_xy_color: Union[tuple[float, float], None]
     @property
     def brightness(self) -> Union[int, None]: ...
@@ -202,4 +202,4 @@ class LightEntity(ToggleEntity):
     @property
     def supported_color_modes(self) -> Union[set[ColorMode], set[str], None]: ...
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> LightEntityFeature: ...

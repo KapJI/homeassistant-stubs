@@ -10,17 +10,18 @@ from .components.usb import UsbServiceInfo as UsbServiceInfo
 from .components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from .const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from .core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from .exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
+from .data_entry_flow import FlowResult as FlowResult
+from .exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from .helpers import device_registry as device_registry, entity_registry as entity_registry, storage as storage
 from .helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from .helpers.event import async_call_later as async_call_later
 from .helpers.frame import report as report
 from .helpers.service_info.mqtt import MqttServiceInfo as MqttServiceInfo
 from .helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
-from .setup import async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component
+from .setup import DATA_SETUP_DONE as DATA_SETUP_DONE, async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component
 from .util.decorator import Registry as Registry
 from _typeshed import Incomplete
-from collections.abc import Coroutine, Iterable, Mapping
+from collections.abc import Coroutine, Generator, Iterable, Mapping
 from contextvars import ContextVar
 from enum import Enum
 from typing import Any, TypeVar
@@ -127,6 +128,7 @@ class ConfigEntry:
     def async_on_unload(self, func: CALLBACK_TYPE) -> None: ...
     async def _async_process_on_unload(self) -> None: ...
     def async_start_reauth(self, hass: HomeAssistant, context: Union[dict[str, Any], None] = ..., data: Union[dict[str, Any], None] = ...) -> None: ...
+    def async_get_active_flows(self, hass: HomeAssistant, sources: set[str]) -> Generator[FlowResult, None, None]: ...
     def async_create_task(self, hass: HomeAssistant, target: Coroutine[Any, Any, _R]) -> asyncio.Task[_R]: ...
 
 current_entry: ContextVar[Union[ConfigEntry, None]]
@@ -169,6 +171,7 @@ class ConfigEntries:
     async def async_forward_entry_unload(self, entry: ConfigEntry, domain: Union[Platform, str]) -> bool: ...
     def _async_schedule_save(self) -> None: ...
     def _data_to_save(self) -> dict[str, list[dict[str, Any]]]: ...
+    async def async_wait_component(self, entry: ConfigEntry) -> bool: ...
 
 async def _old_conf_migrator(old_config: dict[str, Any]) -> dict[str, Any]: ...
 
@@ -211,6 +214,15 @@ class OptionsFlowManager(data_entry_flow.FlowManager):
 
 class OptionsFlow(data_entry_flow.FlowHandler):
     handler: str
+
+class OptionsFlowWithConfigEntry(OptionsFlow):
+    _config_entry: Incomplete
+    _options: Incomplete
+    def __init__(self, config_entry: ConfigEntry) -> None: ...
+    @property
+    def config_entry(self) -> ConfigEntry: ...
+    @property
+    def options(self) -> dict[str, Any]: ...
 
 class EntityRegistryDisabledHandler:
     hass: Incomplete

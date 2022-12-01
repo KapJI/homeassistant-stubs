@@ -7,6 +7,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components.climate import HVACMode as HVACMode
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
+from homeassistant.components.text import TextMode as TextMode
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
 from typing import Any, ClassVar, Final
@@ -211,6 +212,11 @@ class SwitchSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
     CONF_INVERT: Incomplete
     CONF_STATE_ADDRESS: Incomplete
+    DEFAULT_NAME: str
+    ENTITY_SCHEMA: Incomplete
+
+class TextSchema(KNXPlatformSchema):
+    PLATFORM: Incomplete
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 

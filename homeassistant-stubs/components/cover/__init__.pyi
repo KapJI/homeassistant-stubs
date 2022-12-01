@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION, SERVICE_STOP_COVER as SERVICE_STOP_COVER, SERVICE_STOP_COVER_TILT as SERVICE_STOP_COVER_TILT, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TOGGLE_COVER_TILT as SERVICE_TOGGLE_COVER_TILT, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
@@ -44,7 +44,7 @@ DEVICE_CLASS_SHADE: Incomplete
 DEVICE_CLASS_SHUTTER: Incomplete
 DEVICE_CLASS_WINDOW: Incomplete
 
-class CoverEntityFeature(IntEnum):
+class CoverEntityFeature(IntFlag):
     OPEN: int
     CLOSE: int
     SET_POSITION: int
@@ -85,6 +85,7 @@ class CoverEntity(Entity):
     _attr_is_closing: Union[bool, None]
     _attr_is_opening: Union[bool, None]
     _attr_state: None
+    _attr_supported_features: Union[CoverEntityFeature, None]
     _cover_is_last_toggle_direction_open: bool
     @property
     def current_cover_position(self) -> Union[int, None]: ...
@@ -97,7 +98,7 @@ class CoverEntity(Entity):
     @property
     def state_attributes(self) -> dict[str, Any]: ...
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> CoverEntityFeature: ...
     @property
     def is_opening(self) -> Union[bool, None]: ...
     @property

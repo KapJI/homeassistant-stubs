@@ -1,5 +1,6 @@
 from . import WebOsClientWrapper as WebOsClientWrapper
 from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_SOUND_OUTPUT as ATTR_SOUND_OUTPUT, CONF_SOURCES as CONF_SOURCES, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, LIVE_TV_APP_ID as LIVE_TV_APP_ID, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
+from .triggers.turn_on import async_get_turn_on_trigger as async_get_turn_on_trigger
 from _typeshed import Incomplete
 from aiowebostv import WebOsClient as WebOsClient
 from collections.abc import Awaitable, Callable as Callable, Coroutine
@@ -13,6 +14,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.trigger import PluggableAction as PluggableAction
 from typing import Any, TypeVar
 from typing_extensions import Concatenate
 
@@ -38,9 +40,10 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _attr_unique_id: Incomplete
     _sources: Incomplete
     _paused: bool
+    _turn_on: Incomplete
     _current_source: Incomplete
     _source_list: Incomplete
-    _supported_features: int
+    _supported_features: Incomplete
     def __init__(self, wrapper: WebOsClientWrapper, name: str, sources: Union[list[str], None], unique_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
@@ -60,7 +63,7 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     def _update_sources(self) -> None: ...
     async def async_update(self) -> None: ...
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> MediaPlayerEntityFeature: ...
     async def async_turn_off(self) -> None: ...
     async def async_turn_on(self) -> None: ...
     async def async_volume_up(self) -> None: ...

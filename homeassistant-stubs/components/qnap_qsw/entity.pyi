@@ -1,6 +1,7 @@
 from .const import MANUFACTURER as MANUFACTURER
 from .coordinator import QswDataCoordinator as QswDataCoordinator, QswFirmwareCoordinator as QswFirmwareCoordinator
 from _typeshed import Incomplete
+from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import callback as callback
@@ -9,11 +10,16 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescrip
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
+class QswEntityType(StrEnum):
+    LACP_PORT: Incomplete
+    PORT: Incomplete
+
 class QswDataEntity(CoordinatorEntity[QswDataCoordinator]):
+    type_id: Incomplete
     product: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: QswDataCoordinator, entry: ConfigEntry) -> None: ...
-    def get_device_value(self, key: str, subkey: str) -> Any: ...
+    def __init__(self, coordinator: QswDataCoordinator, entry: ConfigEntry, type_id: Union[int, None] = ...) -> None: ...
+    def get_device_value(self, key: str, subkey: str, qsw_type: Union[QswEntityType, None] = ...) -> Any: ...
 
 class QswEntityDescriptionMixin:
     subkey: str

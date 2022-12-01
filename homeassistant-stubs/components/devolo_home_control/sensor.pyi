@@ -24,6 +24,7 @@ class DevoloGenericMultiLevelDeviceEntity(DevoloMultiLevelDeviceEntity):
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    _attr_name: Incomplete
     _value: Incomplete
     _attr_entity_registry_enabled_default: bool
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
@@ -33,6 +34,7 @@ class DevoloBatteryEntity(DevoloMultiLevelDeviceEntity):
     _attr_state_class: Incomplete
     _attr_entity_category: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    _attr_name: str
     _value: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
 
@@ -42,6 +44,7 @@ class DevoloConsumptionEntity(DevoloMultiLevelDeviceEntity):
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _value: Incomplete
+    _attr_name: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str, consumption: str) -> None: ...
     @property
     def unique_id(self) -> str: ...

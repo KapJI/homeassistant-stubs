@@ -1,7 +1,10 @@
-from .const import DOMAIN as DOMAIN, ModelType as ModelType
+from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEVICES_FOR_SUBSCRIBE as DEVICES_FOR_SUBSCRIBE, DOMAIN as DOMAIN, ModelType as ModelType
 from collections.abc import Generator, Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
+from pyunifiprotect import ProtectApiClient
 from pyunifiprotect.data import Bootstrap as Bootstrap, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any
 
@@ -13,3 +16,4 @@ def async_get_devices_by_type(bootstrap: Bootstrap, device_type: ModelType) -> d
 def async_get_devices(bootstrap: Bootstrap, model_type: Iterable[ModelType]) -> Generator[ProtectAdoptableDeviceModel, None, None]: ...
 def async_get_light_motion_current(obj: Light) -> str: ...
 def async_dispatch_id(entry: ConfigEntry, dispatch: str) -> str: ...
+def async_create_api_client(hass: HomeAssistant, entry: ConfigEntry) -> ProtectApiClient: ...

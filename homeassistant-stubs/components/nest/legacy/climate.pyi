@@ -26,7 +26,7 @@ class NestThermostat(ClimateEntity):
     structure: Incomplete
     device: Incomplete
     _fan_modes: Incomplete
-    _support_flags: Incomplete
+    _attr_supported_features: Incomplete
     _operation_list: Incomplete
     _has_fan: Incomplete
     _away: Incomplete
@@ -46,8 +46,6 @@ class NestThermostat(ClimateEntity):
     _max_temperature: Incomplete
     def __init__(self, structure, device, temp_unit) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    @property
-    def supported_features(self): ...
     @property
     def unique_id(self): ...
     @property

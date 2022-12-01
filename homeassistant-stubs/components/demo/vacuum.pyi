@@ -27,13 +27,13 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 class DemoVacuum(VacuumEntity):
     _attr_should_poll: bool
     _attr_name: Incomplete
-    _supported_features: Incomplete
+    _attr_supported_features: Incomplete
     _state: bool
     _status: str
     _fan_speed: Incomplete
     _cleaned_area: int
     _battery_level: int
-    def __init__(self, name: str, supported_features: int) -> None: ...
+    def __init__(self, name: str, supported_features: VacuumEntityFeature) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property
@@ -46,8 +46,6 @@ class DemoVacuum(VacuumEntity):
     def battery_level(self) -> int: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
-    @property
-    def supported_features(self) -> int: ...
     def turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...
     def stop(self, **kwargs: Any) -> None: ...
@@ -60,15 +58,13 @@ class DemoVacuum(VacuumEntity):
 
 class StateDemoVacuum(StateVacuumEntity):
     _attr_should_poll: bool
+    _attr_supported_features: Incomplete
     _attr_name: Incomplete
-    _supported_features: Incomplete
     _state: Incomplete
     _fan_speed: Incomplete
     _cleaned_area: int
     _battery_level: int
     def __init__(self, name: str) -> None: ...
-    @property
-    def supported_features(self) -> int: ...
     @property
     def state(self) -> str: ...
     @property

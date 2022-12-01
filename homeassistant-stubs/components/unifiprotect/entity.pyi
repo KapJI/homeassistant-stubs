@@ -1,7 +1,6 @@
-from .const import ATTR_EVENT_SCORE as ATTR_EVENT_SCORE, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
+from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_EVENT_SCORE as ATTR_EVENT_SCORE, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
-from .models import PermRequired as PermRequired, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin
-from .utils import get_nested_attr as get_nested_attr
+from .models import PermRequired as PermRequired, ProtectEventMixin as ProtectEventMixin, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from homeassistant.core import callback as callback
@@ -39,10 +38,11 @@ class ProtectNVREntity(ProtectDeviceEntity):
     _attr_available: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
 
-class EventThumbnailMixin(ProtectDeviceEntity):
+class EventEntityMixin(ProtectDeviceEntity):
+    entity_description: ProtectEventMixin
     _event: Incomplete
     def __init__(self, *args: Any, **kwarg: Any) -> None: ...
-    def _async_get_event(self) -> Union[Event, None]: ...
-    def _async_thumbnail_extra_attrs(self) -> dict[str, Any]: ...
+    def _async_event_extra_attrs(self) -> dict[str, Any]: ...
+    _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...

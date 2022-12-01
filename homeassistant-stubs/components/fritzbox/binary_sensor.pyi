@@ -1,4 +1,4 @@
-from . import FritzBoxEntity as FritzBoxEntity
+from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .const import CONF_COORDINATOR as CONF_COORDINATOR
 from .coordinator import FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
@@ -23,7 +23,7 @@ BINARY_SENSOR_TYPES: Final[tuple[FritzBinarySensorEntityDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FritzboxBinarySensor(FritzBoxEntity, BinarySensorEntity):
+class FritzboxBinarySensor(FritzBoxDeviceEntity, BinarySensorEntity):
     entity_description: FritzBinarySensorEntityDescription
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

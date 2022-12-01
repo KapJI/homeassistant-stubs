@@ -41,6 +41,7 @@ class TibberSensorElPrice(TibberSensor):
     _attr_extra_state_attributes: Incomplete
     _attr_icon: Incomplete
     _attr_name: Incomplete
+    _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
     _model: str
     _device_name: Incomplete

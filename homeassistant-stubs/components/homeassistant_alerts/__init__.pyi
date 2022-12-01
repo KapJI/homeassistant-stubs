@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from homeassistant.components.hassio import get_supervisor_info as get_supervisor_info, is_hassio as is_hassio
 from homeassistant.const import __version__ as __version__
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -24,5 +25,6 @@ class IntegrationAlert:
 
 class AlertUpdateCoordinator(DataUpdateCoordinator[dict[str, IntegrationAlert]]):
     ha_version: Incomplete
+    supervisor: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def _async_update_data(self) -> dict[str, IntegrationAlert]: ...

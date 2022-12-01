@@ -1,10 +1,10 @@
 from _typeshed import Incomplete
-from datetime import datetime
+from datetime import datetime, timedelta
 from homeassistant.components.websocket_api import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.core import Context as Context, State as State
 from homeassistant.helpers.json import json_loads as json_loads
 from sqlalchemy.engine.row import Row as Row
-from typing import Any, TypedDict, overload
+from typing import Any, Literal, TypedDict, overload
 
 _LOGGER: Incomplete
 DB_TIMEZONE: str
@@ -78,3 +78,20 @@ class LazyState(State):
 
 def decode_attributes_from_row(row: Row, attr_cache: dict[str, dict[str, Any]]) -> dict[str, Any]: ...
 def row_to_compressed_state(row: Row, attr_cache: dict[str, dict[str, Any]], start_time: Union[datetime, None] = ...) -> dict[str, Any]: ...
+
+class CalendarStatisticPeriod(TypedDict):
+    period: Literal['hour', 'day', 'week', 'month', 'year']
+    offset: int
+
+class FixedStatisticPeriod(TypedDict):
+    end_time: datetime
+    start_time: datetime
+
+class RollingWindowStatisticPeriod(TypedDict):
+    duration: timedelta
+    offset: timedelta
+
+class StatisticPeriod(TypedDict):
+    calendar: CalendarStatisticPeriod
+    fixed_period: FixedStatisticPeriod
+    rolling_window: RollingWindowStatisticPeriod

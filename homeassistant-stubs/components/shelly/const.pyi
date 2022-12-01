@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from homeassistant.backports.enum import StrEnum as StrEnum
 from logging import Logger
 from typing import Final
 
@@ -47,3 +48,10 @@ KELVIN_MIN_VALUE_COLOR: Final[int]
 UPTIME_DEVIATION: Final[int]
 ENTRY_RELOAD_COOLDOWN: int
 SHELLY_GAS_MODELS: Incomplete
+BLE_MIN_VERSION: Incomplete
+CONF_BLE_SCANNER_MODE: str
+
+class BLEScannerMode(StrEnum):
+    DISABLED: str
+    ACTIVE: str
+    PASSIVE: str

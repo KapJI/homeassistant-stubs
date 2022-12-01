@@ -2,8 +2,7 @@ from . import Trackables as Trackables
 from .const import CLIENT as CLIENT, DOMAIN as DOMAIN, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, TRACKABLES as TRACKABLES, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_POSITION_UPDATED as TRACKER_POSITION_UPDATED
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import SourceType as SourceType
-from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
+from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect

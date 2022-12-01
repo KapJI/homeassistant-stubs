@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from enum import Enum
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from pyunifiprotect.data import NVR, ProtectAdoptableDeviceModel
+from pyunifiprotect.data import Event, NVR, ProtectAdoptableDeviceModel
 from typing import Any, TypeVar, Union
 
 _LOGGER: Incomplete
@@ -22,7 +22,15 @@ class ProtectRequiredKeysMixin(EntityDescription):
     ufp_perm: Union[PermRequired, None]
     def get_ufp_value(self, obj: T) -> Any: ...
     def get_ufp_enabled(self, obj: T) -> bool: ...
+    def has_required(self, obj: T) -> bool: ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm) -> None: ...
+
+class ProtectEventMixin(ProtectRequiredKeysMixin[T]):
+    ufp_event_obj: Union[str, None]
+    ufp_smart_type: Union[str, None]
+    def get_event_obj(self, obj: T) -> Union[Event, None]: ...
+    def get_is_on(self, obj: T) -> bool: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_event_obj, ufp_smart_type) -> None: ...
 
 class ProtectSetableKeysMixin(ProtectRequiredKeysMixin[T]):
     ufp_set_method: Union[str, None]

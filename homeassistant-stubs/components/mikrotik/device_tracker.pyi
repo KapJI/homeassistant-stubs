@@ -1,8 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .hub import Device as Device, MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import SourceType as SourceType
-from homeassistant.components.device_tracker.config_entry import ScannerEntity as ScannerEntity
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as entity_registry

@@ -49,5 +49,5 @@ class LightGroup(GroupEntity, LightEntity):
     _attr_effect: Incomplete
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
-    _attr_supported_features: int
+    _attr_supported_features: Incomplete
     def async_update_group_state(self) -> None: ...

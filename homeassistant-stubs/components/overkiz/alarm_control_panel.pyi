@@ -14,7 +14,7 @@ from pyoverkiz.types import StateType as OverkizStateType
 from typing import Any
 
 class OverkizAlarmDescriptionMixin:
-    supported_features: int
+    supported_features: AlarmControlPanelEntityFeature
     fn_state: Callable[[Callable[[str], OverkizStateType]], str]
     def __init__(self, supported_features, fn_state) -> None: ...
 

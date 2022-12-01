@@ -9,7 +9,8 @@ from bleak.backends.client import BaseBleakClient, NotifyCallback as NotifyCallb
 from bleak.backends.device import BLEDevice
 from bleak.backends.service import BleakGATTServiceCollection
 from collections.abc import Callable
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
+from homeassistant.components.bluetooth import async_scanner_by_source as async_scanner_by_source
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from typing import Any, TypeVar
 
 DEFAULT_MTU: int
@@ -17,6 +18,10 @@ GATT_HEADER_SIZE: int
 DISCONNECT_TIMEOUT: float
 CONNECT_FREE_SLOT_TIMEOUT: float
 GATT_READ_TIMEOUT: float
+CCCD_UUID: str
+CCCD_NOTIFY_BYTES: bytes
+CCCD_INDICATE_BYTES: bytes
+MIN_BLUETOOTH_PROXY_VERSION_HAS_CACHE: int
 DEFAULT_MAX_WRITE_WITHOUT_RESPONSE: Incomplete
 _LOGGER: Incomplete
 _WrapFuncType = TypeVar('_WrapFuncType', bound=Callable[..., Any])
@@ -26,6 +31,7 @@ def verify_connected(func: _WrapFuncType) -> _WrapFuncType: ...
 def api_error_as_bleak_error(func: _WrapFuncType) -> _WrapFuncType: ...
 
 class ESPHomeClient(BaseBleakClient):
+    _hass: Incomplete
     _ble_device: Incomplete
     _address_as_int: Incomplete
     _source: Incomplete
@@ -37,6 +43,8 @@ class ESPHomeClient(BaseBleakClient):
     _cancel_connection_state: Incomplete
     _notify_cancels: Incomplete
     _disconnected_event: Incomplete
+    _connection_version: Incomplete
+    _address_type: Incomplete
     def __init__(self, address_or_ble_device: Union[BLEDevice, str], *args: Any, **kwargs: Any) -> None: ...
     def __str__(self) -> str: ...
     def _unsubscribe_connection_state(self) -> None: ...
@@ -62,3 +70,4 @@ class ESPHomeClient(BaseBleakClient):
     async def write_gatt_descriptor(self, handle: int, data: Union[bytes, bytearray, memoryview]) -> None: ...
     async def start_notify(self, characteristic: BleakGATTCharacteristic, callback: NotifyCallback, **kwargs: Any) -> None: ...
     async def stop_notify(self, char_specifier: Union[BleakGATTCharacteristic, int, str, uuid.UUID]) -> None: ...
+    def __del__(self) -> None: ...

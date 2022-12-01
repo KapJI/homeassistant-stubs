@@ -14,6 +14,7 @@ _LOGGER: Incomplete
 class RuntimeConfig:
     config_dir: str
     skip_pip: bool
+    skip_pip_packages: list[str]
     safe_mode: bool
     verbose: bool
     log_rotate_days: Union[int, None]
@@ -21,7 +22,7 @@ class RuntimeConfig:
     log_no_color: bool
     debug: bool
     open_ui: bool
-    def __init__(self, config_dir, skip_pip, safe_mode, verbose, log_rotate_days, log_file, log_no_color, debug, open_ui) -> None: ...
+    def __init__(self, config_dir, skip_pip, skip_pip_packages, safe_mode, verbose, log_rotate_days, log_file, log_no_color, debug, open_ui) -> None: ...
 
 class HassEventLoopPolicy(asyncio.DefaultEventLoopPolicy):
     debug: Incomplete

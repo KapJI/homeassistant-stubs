@@ -28,6 +28,8 @@ _ALL_LISTENER: str
 _DOMAINS_LISTENER: str
 _ENTITIES_LISTENER: str
 _LOGGER: Incomplete
+RANDOM_MICROSECOND_MIN: int
+RANDOM_MICROSECOND_MAX: int
 _P: Incomplete
 
 class TrackStates:

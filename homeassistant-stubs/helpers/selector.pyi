@@ -1,13 +1,14 @@
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Sequence
+from collections.abc import Callable as Callable, Mapping, Sequence
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.util import decorator as decorator
 from homeassistant.util.yaml import dumper as dumper
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypeVar, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]
+_T = TypeVar('_T', bound=Mapping[str, Any])
 
 def _get_selector_class(config: Any) -> type[Selector]: ...
 def selector(config: Any) -> Selector: ...
@@ -15,16 +16,16 @@ def validate_selector(config: Any) -> dict: ...
 
 class Selector:
     CONFIG_SCHEMA: Callable
-    config: Any
+    config: _T
     selector_type: str
-    def __init__(self, config: Any = ...) -> None: ...
-    def serialize(self) -> Any: ...
+    def __init__(self, config: Union[Mapping[str, Any], None] = ...) -> None: ...
+    def serialize(self) -> dict[str, dict[str, _T]]: ...
 
 SINGLE_ENTITY_SELECTOR_CONFIG_SCHEMA: Incomplete
 
 class SingleEntitySelectorConfig(TypedDict):
     integration: str
-    domain: str
+    domain: Union[str, list[str]]
     device_class: str
 
 SINGLE_DEVICE_SELECTOR_CONFIG_SCHEMA: Incomplete
@@ -37,7 +38,7 @@ class SingleDeviceSelectorConfig(TypedDict):
 
 class ActionSelectorConfig(TypedDict): ...
 
-class ActionSelector(Selector):
+class ActionSelector(Selector[ActionSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[ActionSelectorConfig, None] = ...) -> None: ...
@@ -47,7 +48,7 @@ class AddonSelectorConfig(TypedDict):
     name: str
     slug: str
 
-class AddonSelector(Selector):
+class AddonSelector(Selector[AddonSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[AddonSelectorConfig, None] = ...) -> None: ...
@@ -58,7 +59,7 @@ class AreaSelectorConfig(TypedDict):
     device: SingleDeviceSelectorConfig
     multiple: bool
 
-class AreaSelector(Selector):
+class AreaSelector(Selector[AreaSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[AreaSelectorConfig, None] = ...) -> None: ...
@@ -68,7 +69,7 @@ class AttributeSelectorConfig(TypedDict):
     entity_id: str
     hide_attributes: list[str]
 
-class AttributeSelector(Selector):
+class AttributeSelector(Selector[AttributeSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: AttributeSelectorConfig) -> None: ...
@@ -76,7 +77,7 @@ class AttributeSelector(Selector):
 
 class BooleanSelectorConfig(TypedDict): ...
 
-class BooleanSelector(Selector):
+class BooleanSelector(Selector[BooleanSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[BooleanSelectorConfig, None] = ...) -> None: ...
@@ -84,7 +85,7 @@ class BooleanSelector(Selector):
 
 class ColorRGBSelectorConfig(TypedDict): ...
 
-class ColorRGBSelector(Selector):
+class ColorRGBSelector(Selector[ColorRGBSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[ColorRGBSelectorConfig, None] = ...) -> None: ...
@@ -94,7 +95,7 @@ class ColorTempSelectorConfig(TypedDict):
     max_mireds: int
     min_mireds: int
 
-class ColorTempSelector(Selector):
+class ColorTempSelector(Selector[ColorTempSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[ColorTempSelectorConfig, None] = ...) -> None: ...
@@ -103,7 +104,7 @@ class ColorTempSelector(Selector):
 class ConfigEntrySelectorConfig(TypedDict):
     integration: str
 
-class ConfigEntrySelector(Selector):
+class ConfigEntrySelector(Selector[ConfigEntrySelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[ConfigEntrySelectorConfig, None] = ...) -> None: ...
@@ -111,7 +112,7 @@ class ConfigEntrySelector(Selector):
 
 class DateSelectorConfig(TypedDict): ...
 
-class DateSelector(Selector):
+class DateSelector(Selector[DateSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[DateSelectorConfig, None] = ...) -> None: ...
@@ -119,7 +120,7 @@ class DateSelector(Selector):
 
 class DateTimeSelectorConfig(TypedDict): ...
 
-class DateTimeSelector(Selector):
+class DateTimeSelector(Selector[DateTimeSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[DateTimeSelectorConfig, None] = ...) -> None: ...
@@ -132,7 +133,7 @@ class DeviceSelectorConfig(TypedDict):
     entity: SingleEntitySelectorConfig
     multiple: bool
 
-class DeviceSelector(Selector):
+class DeviceSelector(Selector[DeviceSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[DeviceSelectorConfig, None] = ...) -> None: ...
@@ -141,7 +142,7 @@ class DeviceSelector(Selector):
 class DurationSelectorConfig(TypedDict):
     enable_day: bool
 
-class DurationSelector(Selector):
+class DurationSelector(Selector[DurationSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[DurationSelectorConfig, None] = ...) -> None: ...
@@ -152,7 +153,7 @@ class EntitySelectorConfig(SingleEntitySelectorConfig):
     include_entities: list[str]
     multiple: bool
 
-class EntitySelector(Selector):
+class EntitySelector(Selector[EntitySelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[EntitySelectorConfig, None] = ...) -> None: ...
@@ -161,7 +162,7 @@ class EntitySelector(Selector):
 class IconSelectorConfig(TypedDict):
     placeholder: str
 
-class IconSelector(Selector):
+class IconSelector(Selector[IconSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[IconSelectorConfig, None] = ...) -> None: ...
@@ -171,7 +172,7 @@ class LocationSelectorConfig(TypedDict):
     radius: bool
     icon: str
 
-class LocationSelector(Selector):
+class LocationSelector(Selector[LocationSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     DATA_SCHEMA: Incomplete
@@ -180,7 +181,7 @@ class LocationSelector(Selector):
 
 class MediaSelectorConfig(TypedDict): ...
 
-class MediaSelector(Selector):
+class MediaSelector(Selector[MediaSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     DATA_SCHEMA: Incomplete
@@ -200,7 +201,7 @@ class NumberSelectorMode(StrEnum):
 
 def validate_slider(data: Any) -> Any: ...
 
-class NumberSelector(Selector):
+class NumberSelector(Selector[NumberSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[NumberSelectorConfig, None] = ...) -> None: ...
@@ -208,7 +209,7 @@ class NumberSelector(Selector):
 
 class ObjectSelectorConfig(TypedDict): ...
 
-class ObjectSelector(Selector):
+class ObjectSelector(Selector[ObjectSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[ObjectSelectorConfig, None] = ...) -> None: ...
@@ -230,7 +231,7 @@ class SelectSelectorConfig(TypedDict):
     custom_value: bool
     mode: SelectSelectorMode
 
-class SelectSelector(Selector):
+class SelectSelector(Selector[SelectSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[SelectSelectorConfig, None] = ...) -> None: ...
@@ -243,13 +244,13 @@ class TargetSelectorConfig(TypedDict):
 class StateSelectorConfig(TypedDict):
     entity_id: str
 
-class StateSelector(Selector):
+class StateSelector(Selector[StateSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: StateSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class TargetSelector(Selector):
+class TargetSelector(Selector[TargetSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     TARGET_SELECTION_SCHEMA: Incomplete
@@ -258,7 +259,7 @@ class TargetSelector(Selector):
 
 class TemplateSelectorConfig(TypedDict): ...
 
-class TemplateSelector(Selector):
+class TemplateSelector(Selector[TemplateSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[TemplateSelectorConfig, None] = ...) -> None: ...
@@ -268,6 +269,7 @@ class TextSelectorConfig(TypedDict):
     multiline: bool
     suffix: str
     type: TextSelectorType
+    autocomplete: str
 
 class TextSelectorType(StrEnum):
     COLOR: str
@@ -284,7 +286,7 @@ class TextSelectorType(StrEnum):
     URL: str
     WEEK: str
 
-class TextSelector(Selector):
+class TextSelector(Selector[TextSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[TextSelectorConfig, None] = ...) -> None: ...
@@ -292,7 +294,7 @@ class TextSelector(Selector):
 
 class ThemeSelectorConfig(TypedDict): ...
 
-class ThemeSelector(Selector):
+class ThemeSelector(Selector[ThemeSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[ThemeSelectorConfig, None] = ...) -> None: ...
@@ -300,7 +302,7 @@ class ThemeSelector(Selector):
 
 class TimeSelectorConfig(TypedDict): ...
 
-class TimeSelector(Selector):
+class TimeSelector(Selector[TimeSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[TimeSelectorConfig, None] = ...) -> None: ...
@@ -309,7 +311,7 @@ class TimeSelector(Selector):
 class FileSelectorConfig(TypedDict):
     accept: str
 
-class FileSelector(Selector):
+class FileSelector(Selector[FileSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: Union[FileSelectorConfig, None] = ...) -> None: ...

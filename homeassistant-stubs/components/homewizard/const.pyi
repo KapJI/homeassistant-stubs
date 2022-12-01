@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from homewizard_energy.models import Data, Device, State
+from homewizard_energy.models import Data, Device, State, System
 from typing import TypedDict
 
 DOMAIN: str
@@ -18,3 +18,4 @@ class DeviceResponseEntry(TypedDict):
     device: Device
     data: Data
     state: State
+    system: System

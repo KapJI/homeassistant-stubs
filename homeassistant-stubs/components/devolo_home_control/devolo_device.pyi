@@ -9,10 +9,10 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 _LOGGER: Incomplete
 
 class DevoloDeviceEntity(Entity):
+    _attr_has_entity_name: bool
     _device_instance: Incomplete
     _homecontrol: Incomplete
     _attr_available: Incomplete
-    _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

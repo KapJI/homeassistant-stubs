@@ -1,7 +1,7 @@
-from .const import DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
+from .const import DEVICE_CLASS_DETECTION as DEVICE_CLASS_DETECTION, DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
-from .entity import EventThumbnailMixin as EventThumbnailMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
-from .models import PermRequired as PermRequired, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin
+from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
+from .models import PermRequired as PermRequired, ProtectEventMixin as ProtectEventMixin, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pyunifiprotect.data import Camera, Event as Event, Light as Light, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor
+from pyunifiprotect.data import Camera, Light as Light, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor
 from pyunifiprotect.data.nvr import UOSDisk as UOSDisk
 
 _LOGGER: Incomplete
@@ -18,11 +18,14 @@ _KEY_DOOR: str
 class ProtectBinaryEntityDescription(ProtectRequiredKeysMixin, BinarySensorEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm) -> None: ...
 
+class ProtectBinaryEventEntityDescription(ProtectEventMixin, BinarySensorEntityDescription):
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_event_obj, ufp_smart_type) -> None: ...
+
 MOUNT_DEVICE_CLASS_MAP: Incomplete
 CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 LIGHT_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 SENSE_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
-MOTION_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
+MOTION_SENSORS: tuple[ProtectBinaryEventEntityDescription, ...]
 DOORLOCK_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 VIEWER_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 DISK_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
@@ -45,6 +48,7 @@ class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
     _attr_is_on: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
 
-class ProtectEventBinarySensor(EventThumbnailMixin, ProtectDeviceBinarySensor):
-    device: Camera
-    def _async_get_event(self) -> Union[Event, None]: ...
+class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
+    entity_description: ProtectBinaryEventEntityDescription
+    _attr_is_on: Incomplete
+    def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...

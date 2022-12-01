@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_ZONE_RUN_TIME as CONF_ZONE_RUN_TIME, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
+from .const import CONF_DEFAULT_ZONE_RUN_TIME as CONF_DEFAULT_ZONE_RUN_TIME, CONF_USE_APP_RUN_TIMES as CONF_USE_APP_RUN_TIMES, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf

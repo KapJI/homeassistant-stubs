@@ -1,4 +1,4 @@
-from . import FritzBoxEntity as FritzBoxEntity
+from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity, FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
 from .const import CONF_COORDINATOR as CONF_COORDINATOR
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
@@ -9,7 +9,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FritzboxCover(FritzBoxEntity, CoverEntity):
+class FritzboxCover(FritzBoxDeviceEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     @property

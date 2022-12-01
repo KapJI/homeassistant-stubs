@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_JAMMED as STATE_JAMMED, STATE_LOCKED as STATE_LOCKED, STATE_LOCKING as STATE_LOCKING, STATE_UNLOCKED as STATE_UNLOCKED, STATE_UNLOCKING as STATE_UNLOCKING
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -17,7 +17,7 @@ ENTITY_ID_FORMAT: Incomplete
 MIN_TIME_BETWEEN_SCANS: Incomplete
 LOCK_SERVICE_SCHEMA: Incomplete
 
-class LockEntityFeature(IntEnum):
+class LockEntityFeature(IntFlag):
     OPEN: int
 
 SUPPORT_OPEN: int
@@ -39,6 +39,7 @@ class LockEntity(Entity):
     _attr_is_unlocking: Union[bool, None]
     _attr_is_jammed: Union[bool, None]
     _attr_state: None
+    _attr_supported_features: LockEntityFeature
     @property
     def changed_by(self) -> Union[str, None]: ...
     @property
@@ -61,3 +62,5 @@ class LockEntity(Entity):
     def state_attributes(self) -> dict[str, StateType]: ...
     @property
     def state(self) -> Union[str, None]: ...
+    @property
+    def supported_features(self) -> LockEntityFeature: ...

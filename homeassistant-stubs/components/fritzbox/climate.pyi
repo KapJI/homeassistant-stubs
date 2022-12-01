@@ -1,4 +1,4 @@
-from . import FritzBoxEntity as FritzBoxEntity
+from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity, FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
 from .const import ATTR_STATE_BATTERY_LOW as ATTR_STATE_BATTERY_LOW, ATTR_STATE_HOLIDAY_MODE as ATTR_STATE_HOLIDAY_MODE, ATTR_STATE_SUMMER_MODE as ATTR_STATE_SUMMER_MODE, ATTR_STATE_WINDOW_OPEN as ATTR_STATE_WINDOW_OPEN, CONF_COORDINATOR as CONF_COORDINATOR
 from .model import ClimateExtraAttributes as ClimateExtraAttributes
 from _typeshed import Incomplete
@@ -20,7 +20,7 @@ OFF_REPORT_SET_TEMPERATURE: float
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FritzboxThermostat(FritzBoxEntity, ClimateEntity):
+class FritzboxThermostat(FritzBoxDeviceEntity, ClimateEntity):
     _attr_precision: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete

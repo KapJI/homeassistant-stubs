@@ -2,6 +2,7 @@ from .const import CONF_COAP_PORT as CONF_COAP_PORT, CONF_SLEEP_PERIOD as CONF_S
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyEntryData as ShellyEntryData, ShellyRestCoordinator as ShellyRestCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, ShellyRpcPollingCoordinator as ShellyRpcPollingCoordinator, get_entry_data as get_entry_data
 from .utils import get_block_device_sleep_period as get_block_device_sleep_period, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_rpc_device_sleep_period as get_rpc_device_sleep_period, get_ws_context as get_ws_context
 from _typeshed import Incomplete
+from aioshelly.rpc_device import UpdateType as UpdateType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

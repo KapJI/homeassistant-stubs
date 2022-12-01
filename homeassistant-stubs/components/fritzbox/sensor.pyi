@@ -1,4 +1,4 @@
-from . import FritzBoxEntity as FritzBoxEntity
+from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .const import CONF_COORDINATOR as CONF_COORDINATOR
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
 from collections.abc import Callable as Callable
@@ -35,7 +35,7 @@ SENSOR_TYPES: Final[tuple[FritzSensorEntityDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FritzBoxSensor(FritzBoxEntity, SensorEntity):
+class FritzBoxSensor(FritzBoxDeviceEntity, SensorEntity):
     entity_description: FritzSensorEntityDescription
     @property
     def native_value(self) -> Union[StateType, datetime]: ...

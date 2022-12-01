@@ -27,7 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class ConditionerEntity(LookinCoordinatorEntity, ClimateEntity):
     _attr_current_humidity: Union[float, None]
     _attr_temperature_unit: Incomplete
-    _attr_supported_features: int
+    _attr_supported_features: Incomplete
     _attr_fan_modes: list[str]
     _attr_swing_modes: list[str]
     _attr_hvac_modes: list[HVACMode]

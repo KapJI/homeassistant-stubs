@@ -40,6 +40,7 @@ class Platform(StrEnum):
     SIREN: str
     STT: str
     SWITCH: str
+    TEXT: str
     TTS: str
     VACUUM: str
     UPDATE: str
@@ -98,6 +99,7 @@ CONF_CONDITIONS: Final[str]
 CONF_CONTINUE_ON_ERROR: Final[str]
 CONF_CONTINUE_ON_TIMEOUT: Final[str]
 CONF_COUNT: Final[str]
+CONF_COUNTRY: Final[str]
 CONF_COVERS: Final[str]
 CONF_CURRENCY: Final[str]
 CONF_CUSTOMIZE: Final[str]
@@ -152,6 +154,7 @@ CONF_IF: Final[str]
 CONF_INCLUDE: Final[str]
 CONF_INTERNAL_URL: Final[str]
 CONF_IP_ADDRESS: Final[str]
+CONF_LANGUAGE: Final[str]
 CONF_LATITUDE: Final[str]
 CONF_LEGACY_TEMPLATES: Final[str]
 CONF_LIGHTS: Final[str]
@@ -512,6 +515,10 @@ class UnitOfVolumetricFlux(StrEnum):
     INCHES_PER_HOUR: str
     MILLIMETERS_PER_DAY: str
     MILLIMETERS_PER_HOUR: str
+
+class UnitOfPrecipitationDepth(StrEnum):
+    INCHES: str
+    MILLIMETERS: str
 
 PRECIPITATION_INCHES: Final[str]
 PRECIPITATION_MILLIMETERS: Final[str]

@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -16,7 +16,7 @@ DOMAIN: str
 SCAN_INTERVAL: Incomplete
 ENTITY_ID_FORMAT: Incomplete
 
-class FanEntityFeature(IntEnum):
+class FanEntityFeature(IntFlag):
     SET_SPEED: int
     OSCILLATE: int
     DIRECTION: int
@@ -59,7 +59,7 @@ class FanEntity(ToggleEntity):
     _attr_preset_mode: Union[str, None]
     _attr_preset_modes: Union[list[str], None]
     _attr_speed_count: int
-    _attr_supported_features: int
+    _attr_supported_features: FanEntityFeature
     def set_percentage(self, percentage: int) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_increase_speed(self, percentage_step: Union[int, None] = ...) -> None: ...
@@ -91,7 +91,7 @@ class FanEntity(ToggleEntity):
     @property
     def state_attributes(self) -> dict[str, Union[float, str, None]]: ...
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> FanEntityFeature: ...
     @property
     def preset_mode(self) -> Union[str, None]: ...
     @property

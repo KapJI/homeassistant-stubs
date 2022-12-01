@@ -5,11 +5,17 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyfritzhome import Fritzhome as Fritzhome, FritzhomeDevice as FritzhomeDevice
+from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate
 
-class FritzboxDataUpdateCoordinator(DataUpdateCoordinator):
+class FritzboxCoordinatorData:
+    devices: dict[str, FritzhomeDevice]
+    templates: dict[str, FritzhomeTemplate]
+    def __init__(self, devices, templates) -> None: ...
+
+class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorData]):
     configuration_url: str
     entry: Incomplete
     fritz: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-    def _update_fritz_devices(self) -> dict[str, FritzhomeDevice]: ...
-    async def _async_update_data(self) -> dict[str, FritzhomeDevice]: ...
+    def _update_fritz_devices(self) -> FritzboxCoordinatorData: ...
+    async def _async_update_data(self) -> FritzboxCoordinatorData: ...

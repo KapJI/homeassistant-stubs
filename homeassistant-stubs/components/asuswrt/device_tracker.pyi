@@ -1,8 +1,7 @@
 from .const import DATA_ASUSWRT as DATA_ASUSWRT, DOMAIN as DOMAIN
 from .router import AsusWrtDevInfo as AsusWrtDevInfo, AsusWrtRouter as AsusWrtRouter
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import SourceType as SourceType
-from homeassistant.components.device_tracker.config_entry import ScannerEntity as ScannerEntity
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect

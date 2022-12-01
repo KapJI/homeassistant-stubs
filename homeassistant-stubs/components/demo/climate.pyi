@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-SUPPORT_FLAGS: int
+SUPPORT_FLAGS: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -18,7 +18,7 @@ class DemoClimate(ClimateEntity):
     _attr_should_poll: bool
     _unique_id: Incomplete
     _attr_name: Incomplete
-    _support_flags: Incomplete
+    _attr_supported_features: Incomplete
     _target_temperature: Incomplete
     _target_humidity: Incomplete
     _unit_of_measurement: Incomplete
@@ -41,8 +41,6 @@ class DemoClimate(ClimateEntity):
     def device_info(self) -> DeviceInfo: ...
     @property
     def unique_id(self) -> str: ...
-    @property
-    def supported_features(self) -> int: ...
     @property
     def temperature_unit(self) -> str: ...
     @property

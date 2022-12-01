@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
@@ -26,7 +26,7 @@ STATE_HIGH_DEMAND: str
 STATE_HEAT_PUMP: str
 STATE_GAS: str
 
-class WaterHeaterEntityFeature(IntEnum):
+class WaterHeaterEntityFeature(IntFlag):
     TARGET_TEMPERATURE: int
     OPERATION_MODE: int
     AWAY_MODE: int
@@ -66,7 +66,7 @@ class WaterHeaterEntity(Entity):
     _attr_operation_list: Union[list[str], None]
     _attr_precision: float
     _attr_state: None
-    _attr_supported_features: int
+    _attr_supported_features: WaterHeaterEntityFeature
     _attr_target_temperature_high: Union[float, None]
     _attr_target_temperature_low: Union[float, None]
     _attr_target_temperature: Union[float, None]
@@ -107,6 +107,8 @@ class WaterHeaterEntity(Entity):
     def min_temp(self) -> float: ...
     @property
     def max_temp(self) -> float: ...
+    @property
+    def supported_features(self) -> WaterHeaterEntityFeature: ...
 
 async def async_service_away_mode(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...
 async def async_service_temperature_set(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...

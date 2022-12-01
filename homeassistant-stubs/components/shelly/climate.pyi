@@ -1,6 +1,5 @@
 from .const import LOGGER as LOGGER, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, get_entry_data as get_entry_data
-from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
@@ -24,7 +23,7 @@ class BlockSleepingClimate(CoordinatorEntity[ShellyBlockCoordinator], RestoreEnt
     _attr_icon: str
     _attr_max_temp: Incomplete
     _attr_min_temp: Incomplete
-    _attr_supported_features: int
+    _attr_supported_features: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
     block: Incomplete

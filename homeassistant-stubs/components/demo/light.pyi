@@ -24,7 +24,6 @@ class DemoLight(LightEntity):
     _ct: Incomplete
     _effect: Incomplete
     _effect_list: Incomplete
-    _features: int
     _hs_color: Incomplete
     _attr_name: Incomplete
     _rgbw_color: Incomplete
@@ -58,8 +57,6 @@ class DemoLight(LightEntity):
     def effect(self) -> Union[str, None]: ...
     @property
     def is_on(self) -> bool: ...
-    @property
-    def supported_features(self) -> int: ...
     @property
     def supported_color_modes(self) -> set[ColorMode]: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

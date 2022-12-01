@@ -3,8 +3,7 @@ from .const import ATTR_DIRECTION as ATTR_DIRECTION, DOMAIN as DOMAIN
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
-from homeassistant.components.device_tracker import SourceType as SourceType
-from homeassistant.components.device_tracker.config_entry import TrackerEntity as TrackerEntity
+from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

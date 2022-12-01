@@ -20,22 +20,20 @@ class BaseDemoFan(FanEntity):
     _attr_should_poll: bool
     hass: Incomplete
     _unique_id: Incomplete
-    _supported_features: Incomplete
+    _attr_supported_features: Incomplete
     _percentage: Incomplete
     _preset_modes: Incomplete
     _preset_mode: Incomplete
     _oscillating: Incomplete
     _direction: Incomplete
     _attr_name: Incomplete
-    def __init__(self, hass: HomeAssistant, unique_id: str, name: str, supported_features: int, preset_modes: Union[list[str], None]) -> None: ...
+    def __init__(self, hass: HomeAssistant, unique_id: str, name: str, supported_features: FanEntityFeature, preset_modes: Union[list[str], None]) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property
     def current_direction(self) -> Union[str, None]: ...
     @property
     def oscillating(self) -> Union[bool, None]: ...
-    @property
-    def supported_features(self) -> int: ...
 
 class DemoPercentageFan(BaseDemoFan, FanEntity):
     @property

@@ -26,15 +26,16 @@ ENTITY_ID_FORMAT: Final[Incomplete]
 SCAN_INTERVAL: Final[Incomplete]
 
 class SensorDeviceClass(StrEnum):
+    DATE: str
+    DURATION: str
+    TIMESTAMP: str
     APPARENT_POWER: str
     AQI: str
     BATTERY: str
     CO: str
     CO2: str
     CURRENT: str
-    DATE: str
     DISTANCE: str
-    DURATION: str
     ENERGY: str
     FREQUENCY: str
     GAS: str
@@ -51,6 +52,7 @@ class SensorDeviceClass(StrEnum):
     PM25: str
     POWER_FACTOR: str
     POWER: str
+    PRECIPITATION: str
     PRECIPITATION_INTENSITY: str
     PRESSURE: str
     REACTIVE_POWER: str
@@ -58,7 +60,6 @@ class SensorDeviceClass(StrEnum):
     SPEED: str
     SULPHUR_DIOXIDE: str
     TEMPERATURE: str
-    TIMESTAMP: str
     VOLATILE_ORGANIC_COMPOUNDS: str
     VOLTAGE: str
     VOLUME: str

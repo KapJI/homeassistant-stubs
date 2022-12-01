@@ -1,14 +1,14 @@
 from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_RTSP_TO_WEB_RTC as DATA_RTSP_TO_WEB_RTC, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, STREAM_TYPE_HLS as STREAM_TYPE_HLS, STREAM_TYPE_WEB_RTC as STREAM_TYPE_WEB_RTC, StreamType as StreamType
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
-from .prefs import CameraPreferences as CameraPreferences
+from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable, Iterable
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
-from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS, Stream as Stream, create_stream as create_stream
+from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS, Orientation as Orientation, Stream as Stream, create_stream as create_stream
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
@@ -37,7 +37,7 @@ STATE_RECORDING: Final[str]
 STATE_STREAMING: Final[str]
 STATE_IDLE: Final[str]
 
-class CameraEntityFeature(IntEnum):
+class CameraEntityFeature(IntFlag):
     ON_OFF: int
     STREAM: int
 
@@ -92,7 +92,7 @@ class Camera(Entity):
     _attr_motion_detection_enabled: bool
     _attr_should_poll: bool
     _attr_state: None
-    _attr_supported_features: int
+    _attr_supported_features: CameraEntityFeature
     stream: Incomplete
     stream_options: Incomplete
     content_type: Incomplete
@@ -104,7 +104,7 @@ class Camera(Entity):
     @property
     def entity_picture(self) -> str: ...
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> CameraEntityFeature: ...
     @property
     def is_recording(self) -> bool: ...
     @property

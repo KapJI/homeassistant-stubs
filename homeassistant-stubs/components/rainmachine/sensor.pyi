@@ -1,11 +1,11 @@
 from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
-from .const import DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN
+from .const import DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN
 from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey, RainMachineEntityDescriptionMixinUid as RainMachineEntityDescriptionMixinUid
 from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, RUN_STATE_MAP as RUN_STATE_MAP, RunStates as RunStates, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements, key_exists as key_exists
 from _typeshed import Incomplete
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS, VOLUME_LITERS as VOLUME_LITERS
+from homeassistant.const import VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS, VOLUME_LITERS as VOLUME_LITERS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -19,7 +19,6 @@ TYPE_FLOW_SENSOR_LEAK_CLICKS: str
 TYPE_FLOW_SENSOR_LEAK_VOLUME: str
 TYPE_FLOW_SENSOR_START_INDEX: str
 TYPE_FLOW_SENSOR_WATERING_CLICKS: str
-TYPE_FREEZE_TEMP: str
 TYPE_LAST_LEAK_DETECTED: str
 TYPE_PROGRAM_RUN_COMPLETION_TIME: str
 TYPE_RAIN_SENSOR_RAIN_START: str
@@ -55,11 +54,6 @@ class ProgramTimeRemainingSensor(TimeRemainingSensor):
     def calculate_seconds_remaining(self) -> int: ...
 
 class ProvisionSettingsSensor(RainMachineEntity, SensorEntity):
-    entity_description: RainMachineSensorDataDescription
-    _attr_native_value: Incomplete
-    def update_from_latest_data(self) -> None: ...
-
-class UniversalRestrictionsSensor(RainMachineEntity, SensorEntity):
     entity_description: RainMachineSensorDataDescription
     _attr_native_value: Incomplete
     def update_from_latest_data(self) -> None: ...

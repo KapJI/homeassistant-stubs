@@ -1,3 +1,4 @@
+import voluptuous as vol
 from . import BraviaTVCoordinator as BraviaTVCoordinator
 from .const import ATTR_CID as ATTR_CID, ATTR_MAC as ATTR_MAC, ATTR_MODEL as ATTR_MODEL, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_IGNORED_SOURCES as CONF_IGNORED_SOURCES, CONF_NICKNAME as CONF_NICKNAME, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN, NICKNAME_PREFIX as NICKNAME_PREFIX
 from _typeshed import Incomplete
@@ -33,10 +34,7 @@ class BraviaTVConfigFlow(config_entries.ConfigFlow):
     async def async_step_reauth_confirm(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def gen_instance_ids(self) -> tuple[str, str]: ...
 
-class BraviaTVOptionsFlowHandler(config_entries.OptionsFlow):
-    config_entry: Incomplete
-    ignored_sources: Incomplete
-    source_list: Incomplete
-    def __init__(self, config_entry: ConfigEntry) -> None: ...
+class BraviaTVOptionsFlowHandler(config_entries.OptionsFlowWithConfigEntry):
+    data_schema: vol.Schema
     async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

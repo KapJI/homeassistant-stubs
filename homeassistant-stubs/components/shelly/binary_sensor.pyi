@@ -35,12 +35,12 @@ class BlockBinarySensor(ShellyBlockAttributeEntity, BinarySensorEntity):
 class RestBinarySensor(ShellyRestAttributeEntity, BinarySensorEntity):
     entity_description: RestBinarySensorDescription
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool: ...
 
 class RpcBinarySensor(ShellyRpcAttributeEntity, BinarySensorEntity):
     entity_description: RpcBinarySensorDescription
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool: ...
 
 class BlockSleepingBinarySensor(ShellySleepingBlockAttributeEntity, BinarySensorEntity):
     entity_description: BlockBinarySensorDescription
@@ -50,4 +50,4 @@ class BlockSleepingBinarySensor(ShellySleepingBlockAttributeEntity, BinarySensor
 class RpcSleepingBinarySensor(ShellySleepingRpcAttributeEntity, BinarySensorEntity):
     entity_description: RpcBinarySensorDescription
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool: ...

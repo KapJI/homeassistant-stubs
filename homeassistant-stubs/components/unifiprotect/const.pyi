@@ -3,6 +3,7 @@ from homeassistant.const import Platform as Platform
 
 DOMAIN: str
 ATTR_EVENT_SCORE: str
+ATTR_EVENT_ID: str
 ATTR_WIDTH: str
 ATTR_HEIGHT: str
 ATTR_FPS: str
@@ -15,6 +16,7 @@ CONF_DISABLE_RTSP: str
 CONF_ALL_UPDATES: str
 CONF_OVERRIDE_CHOST: str
 CONF_MAX_MEDIA: str
+CONF_ALLOW_EA: str
 CONFIG_OPTIONS: Incomplete
 DEFAULT_PORT: int
 DEFAULT_ATTRIBUTION: str
@@ -32,3 +34,4 @@ PLATFORMS: Incomplete
 DISPATCH_ADD: str
 DISPATCH_ADOPT: str
 DISPATCH_CHANNELS: str
+DEVICE_CLASS_DETECTION: str

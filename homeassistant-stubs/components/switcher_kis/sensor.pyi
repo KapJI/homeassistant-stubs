@@ -15,8 +15,8 @@ class AttributeDescription:
     name: str
     icon: Union[str, None]
     unit: Union[str, None]
-    device_class: Union[str, None]
-    state_class: Union[str, None]
+    device_class: Union[SensorDeviceClass, None]
+    state_class: Union[SensorStateClass, None]
     default_enabled: bool
     def __init__(self, name, icon, unit, device_class, state_class, default_enabled) -> None: ...
 

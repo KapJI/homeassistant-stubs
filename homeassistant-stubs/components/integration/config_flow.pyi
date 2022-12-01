@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.const import CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, TIME_DAYS as TIME_DAYS, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
 from homeassistant.helpers import selector as selector
-from homeassistant.helpers.schema_config_entry_flow import SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep
+from homeassistant.helpers.schema_config_entry_flow import SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
 from typing import Any
 
 UNIT_PREFIXES: Incomplete
@@ -11,8 +11,8 @@ TIME_UNITS: Incomplete
 INTEGRATION_METHODS: Incomplete
 OPTIONS_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
-CONFIG_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
-OPTIONS_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
+CONFIG_FLOW: Incomplete
+OPTIONS_FLOW: Incomplete
 
 class ConfigFlowHandler(SchemaConfigFlowHandler):
     config_flow: Incomplete

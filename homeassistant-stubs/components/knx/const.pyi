@@ -12,6 +12,9 @@ CONF_KNX_INDIVIDUAL_ADDRESS: Final[str]
 CONF_KNX_CONNECTION_TYPE: Final[str]
 CONF_KNX_AUTOMATIC: Final[str]
 CONF_KNX_ROUTING: Final[str]
+CONF_KNX_ROUTING_BACKBONE_KEY: Final[str]
+CONF_KNX_ROUTING_SYNC_LATENCY_TOLERANCE: Final[str]
+CONF_KNX_ROUTING_SECURE: Final[str]
 CONF_KNX_TUNNELING: Final[str]
 CONF_KNX_TUNNELING_TCP: Final[str]
 CONF_KNX_TUNNELING_TCP_SECURE: Final[str]
@@ -23,6 +26,7 @@ CONF_KNX_ROUTE_BACK: Final[str]
 CONF_KNX_STATE_UPDATER: Final[str]
 CONF_KNX_DEFAULT_STATE_UPDATER: Final[bool]
 CONF_KNX_DEFAULT_RATE_LIMIT: Final[int]
+DEFAULT_ROUTING_IA: Final[str]
 CONST_KNX_STORAGE_KEY: Final[str]
 CONF_KNX_KNXKEY_FILENAME: Final[str]
 CONF_KNX_KNXKEY_PASSWORD: Final[str]
@@ -51,11 +55,13 @@ class KNXConfigEntryData(TypedDict):
     rate_limit: int
     host: str
     port: int
-    user_id: int
-    user_password: str
-    device_authentication: str
+    user_id: Union[int, None]
+    user_password: Union[str, None]
+    device_authentication: Union[str, None]
     knxkeys_filename: str
     knxkeys_password: str
+    backbone_key: Union[str, None]
+    sync_latency_tolerance: Union[int, None]
 
 class ColorTempModes(Enum):
     ABSOLUTE: str

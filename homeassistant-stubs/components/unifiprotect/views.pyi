@@ -5,7 +5,7 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from http import HTTPStatus
-from pyunifiprotect.data import Event as Event
+from pyunifiprotect.data import Camera, Event as Event
 from typing import Any
 
 _LOGGER: Incomplete
@@ -33,4 +33,5 @@ class ThumbnailProxyView(ProtectProxyView):
 class VideoProxyView(ProtectProxyView):
     url: str
     name: str
+    def _async_get_camera(self, data: ProtectData, camera_id: str) -> Union[Camera, None]: ...
     async def get(self, request: web.Request, nvr_id: str, camera_id: str, start: str, end: str) -> web.StreamResponse: ...

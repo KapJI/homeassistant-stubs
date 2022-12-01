@@ -1,5 +1,6 @@
 from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
+from .utils import get_breeze_remote_manager as get_breeze_remote_manager
 from _typeshed import Incomplete
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from aioswitcher.api.remotes import SwitcherBreezeRemote as SwitcherBreezeRemote
@@ -31,7 +32,6 @@ class SwitcherClimateEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], Cl
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: int
     _attr_temperature_unit: Incomplete
-    _attr_supported_features: int
     _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, remote: SwitcherBreezeRemote) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

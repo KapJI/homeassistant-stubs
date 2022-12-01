@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN, DeviceResponseEntry as DeviceResponseEntry,
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homewizard_energy import HomeWizardEnergy
 
@@ -10,4 +11,6 @@ _LOGGER: Incomplete
 class HWEnergyDeviceUpdateCoordinator(DataUpdateCoordinator[DeviceResponseEntry]):
     api: HomeWizardEnergy
     def __init__(self, hass: HomeAssistant, host: str) -> None: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
     async def _async_update_data(self) -> DeviceResponseEntry: ...

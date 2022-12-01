@@ -1,7 +1,7 @@
 from . import Recorder as Recorder
 from .const import DATA_INSTANCE as DATA_INSTANCE, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import RecorderRuns as RecorderRuns, TABLES_TO_CHECK as TABLES_TO_CHECK, TABLE_RECORDER_RUNS as TABLE_RECORDER_RUNS, TABLE_SCHEMA_CHANGES as TABLE_SCHEMA_CHANGES
-from .models import UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
+from .models import StatisticPeriod as StatisticPeriod, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Callable as Callable, Generator
@@ -60,3 +60,7 @@ def async_migration_is_live(hass: HomeAssistant) -> bool: ...
 def second_sunday(year: int, month: int) -> date: ...
 def is_second_sunday(date_time: datetime) -> bool: ...
 def get_instance(hass: HomeAssistant) -> Recorder: ...
+
+PERIOD_SCHEMA: Incomplete
+
+def resolve_period(period_def: StatisticPeriod) -> tuple[Union[datetime, None], Union[datetime, None]]: ...

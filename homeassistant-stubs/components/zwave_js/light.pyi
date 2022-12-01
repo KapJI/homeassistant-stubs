@@ -32,7 +32,6 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     _supported_color_modes: Incomplete
     _target_brightness: Incomplete
     _target_color: Incomplete
-    _attr_supported_features: int
     supports_brightness_transition: Incomplete
     supports_color_transition: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...

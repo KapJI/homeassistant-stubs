@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -34,7 +34,7 @@ DEFAULT_NUM_REPEATS: int
 DEFAULT_DELAY_SECS: float
 DEFAULT_HOLD_SECS: int
 
-class RemoteEntityFeature(IntEnum):
+class RemoteEntityFeature(IntFlag):
     LEARN_COMMAND: int
     DELETE_COMMAND: int
     ACTIVITY: int
@@ -56,9 +56,9 @@ class RemoteEntity(ToggleEntity):
     entity_description: RemoteEntityDescription
     _attr_activity_list: Union[list[str], None]
     _attr_current_activity: Union[str, None]
-    _attr_supported_features: int
+    _attr_supported_features: RemoteEntityFeature
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> RemoteEntityFeature: ...
     @property
     def current_activity(self) -> Union[str, None]: ...
     @property

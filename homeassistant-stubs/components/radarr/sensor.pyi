@@ -5,12 +5,13 @@ from _typeshed import Incomplete
 from aiopyarr import Diskspace as Diskspace, RootFolder as RootFolder
 from collections.abc import Callable as Callable
 from datetime import datetime
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST, CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, DATA_BYTES as DATA_BYTES, DATA_GIGABYTES as DATA_GIGABYTES, DATA_KILOBYTES as DATA_KILOBYTES, DATA_MEGABYTES as DATA_MEGABYTES
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import DATA_BYTES as DATA_BYTES, DATA_GIGABYTES as DATA_GIGABYTES, DATA_KILOBYTES as DATA_KILOBYTES, DATA_MEGABYTES as DATA_MEGABYTES
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 

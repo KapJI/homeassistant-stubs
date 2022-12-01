@@ -1,3 +1,4 @@
+from .core import Orientation as Orientation
 from _typeshed import Incomplete
 from collections.abc import Generator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -21,4 +22,4 @@ ROTATE_LEFT_FLIP: Incomplete
 ROTATE_RIGHT_FLIP: Incomplete
 TRANSFORM_MATRIX_TOP: Incomplete
 
-def transform_init(init: bytes, orientation: int) -> bytes: ...
+def transform_init(init: bytes, orientation: Orientation) -> bytes: ...

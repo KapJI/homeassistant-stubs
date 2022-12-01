@@ -19,7 +19,43 @@ MIN_TIME_BETWEEN_SCANS: Incomplete
 _LOGGER: Incomplete
 
 class NumberDeviceClass(StrEnum):
+    APPARENT_POWER: str
+    AQI: str
+    BATTERY: str
+    CO: str
+    CO2: str
+    CURRENT: str
+    DISTANCE: str
+    ENERGY: str
+    FREQUENCY: str
+    GAS: str
+    HUMIDITY: str
+    ILLUMINANCE: str
+    MOISTURE: str
+    MONETARY: str
+    NITROGEN_DIOXIDE: str
+    NITROGEN_MONOXIDE: str
+    NITROUS_OXIDE: str
+    OZONE: str
+    PM1: str
+    PM10: str
+    PM25: str
+    POWER_FACTOR: str
+    POWER: str
+    PRECIPITATION: str
+    PRECIPITATION_INTENSITY: str
+    PRESSURE: str
+    REACTIVE_POWER: str
+    SIGNAL_STRENGTH: str
+    SPEED: str
+    SULPHUR_DIOXIDE: str
     TEMPERATURE: str
+    VOLATILE_ORGANIC_COMPOUNDS: str
+    VOLTAGE: str
+    VOLUME: str
+    WATER: str
+    WEIGHT: str
+    WIND_SPEED: str
 
 DEVICE_CLASSES_SCHEMA: Final[Incomplete]
 

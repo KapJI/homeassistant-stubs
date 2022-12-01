@@ -1,5 +1,5 @@
 from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
-from .const import DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_CURRENT as DATA_RESTRICTIONS_CURRENT, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DOMAIN as DOMAIN
+from .const import DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_CURRENT as DATA_RESTRICTIONS_CURRENT, DOMAIN as DOMAIN
 from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey
 from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements, key_exists as key_exists
 from _typeshed import Incomplete
@@ -11,8 +11,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 TYPE_FLOW_SENSOR: str
 TYPE_FREEZE: str
-TYPE_FREEZE_PROTECTION: str
-TYPE_HOT_DAYS: str
 TYPE_HOURLY: str
 TYPE_MONTH: str
 TYPE_RAINDELAY: str
@@ -32,11 +30,6 @@ class CurrentRestrictionsBinarySensor(RainMachineEntity, BinarySensorEntity):
     def update_from_latest_data(self) -> None: ...
 
 class ProvisionSettingsBinarySensor(RainMachineEntity, BinarySensorEntity):
-    entity_description: RainMachineBinarySensorDescription
-    _attr_is_on: Incomplete
-    def update_from_latest_data(self) -> None: ...
-
-class UniversalRestrictionsBinarySensor(RainMachineEntity, BinarySensorEntity):
     entity_description: RainMachineBinarySensorDescription
     _attr_is_on: Incomplete
     def update_from_latest_data(self) -> None: ...

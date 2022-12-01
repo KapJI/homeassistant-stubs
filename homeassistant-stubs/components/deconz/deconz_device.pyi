@@ -1,4 +1,5 @@
 from .gateway import DeconzGateway as DeconzGateway
+from .util import serial_from_unique_id as serial_from_unique_id
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_ZIGBEE as CONNECTION_ZIGBEE

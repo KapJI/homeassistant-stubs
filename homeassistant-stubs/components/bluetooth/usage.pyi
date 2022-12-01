@@ -1,4 +1,4 @@
-from .models import HaBleakClientWrapper as HaBleakClientWrapper, HaBleakScannerWrapper as HaBleakScannerWrapper
+from .wrappers import HaBleakClientWrapper as HaBleakClientWrapper, HaBleakScannerWrapper as HaBleakScannerWrapper
 from _typeshed import Incomplete
 from bleak.backends.service import BleakGATTServiceCollection as BleakGATTServiceCollection
 

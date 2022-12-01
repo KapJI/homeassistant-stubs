@@ -1,9 +1,9 @@
-from enum import IntEnum
+from enum import IntFlag
 from typing import Final
 
 DOMAIN: Final[str]
 
-class UpdateEntityFeature(IntEnum):
+class UpdateEntityFeature(IntFlag):
     INSTALL: int
     SPECIFIC_VERSION: int
     PROGRESS: int

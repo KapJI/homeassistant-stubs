@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.backports.enum import StrEnum as StrEnum
 
 CONTENT_AUTH_EXPIRY_TIME: Incomplete
@@ -149,7 +149,7 @@ REPEAT_MODE_OFF: str
 REPEAT_MODE_ONE: str
 REPEAT_MODES: Incomplete
 
-class MediaPlayerEntityFeature(IntEnum):
+class MediaPlayerEntityFeature(IntFlag):
     PAUSE: int
     SEEK: int
     VOLUME_SET: int

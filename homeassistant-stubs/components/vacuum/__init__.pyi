@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from enum import IntEnum
+from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -38,7 +38,7 @@ STATE_ERROR: str
 STATES: Incomplete
 DEFAULT_NAME: str
 
-class VacuumEntityFeature(IntEnum):
+class VacuumEntityFeature(IntFlag):
     TURN_ON: int
     TURN_OFF: int
     PAUSE: int
@@ -79,9 +79,9 @@ class _BaseVacuum(Entity):
     _attr_battery_level: Union[int, None]
     _attr_fan_speed: Union[str, None]
     _attr_fan_speed_list: list[str]
-    _attr_supported_features: int
+    _attr_supported_features: VacuumEntityFeature
     @property
-    def supported_features(self) -> int: ...
+    def supported_features(self) -> VacuumEntityFeature: ...
     @property
     def battery_level(self) -> Union[int, None]: ...
     @property
@@ -112,6 +112,7 @@ class VacuumEntityDescription(ToggleEntityDescription):
 
 class VacuumEntity(_BaseVacuum, ToggleEntity):
     entity_description: VacuumEntityDescription
+    _attr_status: Union[str, None]
     @property
     def status(self) -> Union[str, None]: ...
     @property
@@ -132,6 +133,7 @@ class StateVacuumEntityDescription(EntityDescription):
 
 class StateVacuumEntity(_BaseVacuum):
     entity_description: StateVacuumEntityDescription
+    _attr_state: Union[str, None]
     @property
     def state(self) -> Union[str, None]: ...
     @property

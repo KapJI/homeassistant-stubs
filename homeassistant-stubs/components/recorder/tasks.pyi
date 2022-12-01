@@ -54,8 +54,9 @@ class PerodicCleanupTask(RecorderTask):
 
 class StatisticsTask(RecorderTask):
     start: datetime
+    fire_events: bool
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, start) -> None: ...
+    def __init__(self, start, fire_events) -> None: ...
 
 class ImportStatisticsTask(RecorderTask):
     metadata: StatisticMetaData

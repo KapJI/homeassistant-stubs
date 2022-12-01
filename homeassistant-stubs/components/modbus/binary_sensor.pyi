@@ -36,7 +36,6 @@ class SlaveSensor(CoordinatorEntity, RestoreEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
     _attr_available: bool
     _result_inx: Incomplete
-    _result_bit: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[Any], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_is_on: Incomplete
     async def async_added_to_hass(self) -> None: ...

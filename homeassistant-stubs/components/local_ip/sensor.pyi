@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, SENSOR as SENSOR
+from .const import SENSOR as SENSOR
 from _typeshed import Incomplete
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.components.sensor import SensorEntity as SensorEntity

@@ -1,4 +1,4 @@
-from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, CONF_URL_WEATHER as CONF_URL_WEATHER, CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, NETATMO_CREATE_BATTERY as NETATMO_CREATE_BATTERY, NETATMO_CREATE_ROOM_SENSOR as NETATMO_CREATE_ROOM_SENSOR, NETATMO_CREATE_SENSOR as NETATMO_CREATE_SENSOR, NETATMO_CREATE_WEATHER_SENSOR as NETATMO_CREATE_WEATHER_SENSOR, SIGNAL_NAME as SIGNAL_NAME
+from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, CONF_URL_PUBLIC_WEATHER as CONF_URL_PUBLIC_WEATHER, CONF_URL_WEATHER as CONF_URL_WEATHER, CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, NETATMO_CREATE_BATTERY as NETATMO_CREATE_BATTERY, NETATMO_CREATE_ROOM_SENSOR as NETATMO_CREATE_ROOM_SENSOR, NETATMO_CREATE_SENSOR as NETATMO_CREATE_SENSOR, NETATMO_CREATE_WEATHER_SENSOR as NETATMO_CREATE_WEATHER_SENSOR, SIGNAL_NAME as SIGNAL_NAME
 from .data_handler import HOME as HOME, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, NetatmoRoom as NetatmoRoom, PUBLIC as PUBLIC
 from .helper import NetatmoArea as NetatmoArea
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
@@ -101,6 +101,7 @@ class NetatmoPublicSensor(NetatmoBase, SensorEntity):
     _device_name: Incomplete
     _attr_name: Incomplete
     _show_on_map: Incomplete
+    _config_url: Incomplete
     _attr_unique_id: Incomplete
     _model: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler, area: NetatmoArea, description: NetatmoSensorEntityDescription) -> None: ...

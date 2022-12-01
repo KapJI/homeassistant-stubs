@@ -3,28 +3,28 @@ from . import DOMAIN as DOMAIN
 from .binary_sensor import CONF_ALL as CONF_ALL
 from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Mapping
+from collections.abc import Callable as Callable, Coroutine, Mapping
 from homeassistant.const import CONF_ENTITIES as CONF_ENTITIES
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er, selector as selector
-from homeassistant.helpers.schema_config_entry_flow import SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler, entity_selector_without_own_entities as entity_selector_without_own_entities
+from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler, entity_selector_without_own_entities as entity_selector_without_own_entities
 from typing import Any
 
-def basic_group_options_schema(domain: str, handler: Union[SchemaConfigFlowHandler, SchemaOptionsFlowHandler], options: dict[str, Any]) -> vol.Schema: ...
+async def basic_group_options_schema(domain: str, handler: SchemaCommonFlowHandler) -> vol.Schema: ...
 def basic_group_config_schema(domain: str) -> vol.Schema: ...
-def binary_sensor_options_schema(handler: Union[SchemaConfigFlowHandler, SchemaOptionsFlowHandler], options: dict[str, Any]) -> vol.Schema: ...
+async def binary_sensor_options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
 
 BINARY_SENSOR_CONFIG_SCHEMA: Incomplete
 
-def light_switch_options_schema(domain: str, handler: Union[SchemaConfigFlowHandler, SchemaOptionsFlowHandler], options: dict[str, Any]) -> vol.Schema: ...
+async def light_switch_options_schema(domain: str, handler: SchemaCommonFlowHandler) -> vol.Schema: ...
 
 GROUP_TYPES: Incomplete
 
-def choose_options_step(options: dict[str, Any]) -> str: ...
-def set_group_type(group_type: str) -> Callable[[dict[str, Any]], dict[str, Any]]: ...
+async def choose_options_step(options: dict[str, Any]) -> str: ...
+def set_group_type(group_type: str) -> Callable[[SchemaCommonFlowHandler, dict[str, Any]], Coroutine[Any, Any, dict[str, Any]]]: ...
 
-CONFIG_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
-OPTIONS_FLOW: dict[str, Union[SchemaFlowFormStep, SchemaFlowMenuStep]]
+CONFIG_FLOW: Incomplete
+OPTIONS_FLOW: Incomplete
 
 class GroupConfigFlowHandler(SchemaConfigFlowHandler):
     config_flow: Incomplete

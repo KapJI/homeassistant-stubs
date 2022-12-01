@@ -6,6 +6,8 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
+RE_API_KEY: Incomplete
+
 class ForecastSolarFlowHandler(ConfigFlow):
     VERSION: int
     @staticmethod

@@ -1,6 +1,6 @@
 from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from aioesphomeapi import NumberInfo, NumberMode as EsphomeNumberMode, NumberState
-from homeassistant.components.number import NumberEntity as NumberEntity, NumberMode as NumberMode
+from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -10,6 +10,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 NUMBER_MODES: EsphomeEnumMapper[EsphomeNumberMode, NumberMode]
 
 class EsphomeNumber(EsphomeEntity[NumberInfo, NumberState], NumberEntity):
+    @property
+    def device_class(self) -> Union[NumberDeviceClass, None]: ...
     @property
     def native_min_value(self) -> float: ...
     @property

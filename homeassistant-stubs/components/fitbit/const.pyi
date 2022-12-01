@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, LENGTH_FEET as LENGTH_FEET, MASS_KILOGRAMS as MASS_KILOGRAMS, MASS_MILLIGRAMS as MASS_MILLIGRAMS, PERCENTAGE as PERCENTAGE, TIME_MILLISECONDS as TIME_MILLISECONDS, TIME_MINUTES as TIME_MINUTES
 from typing import Final
 

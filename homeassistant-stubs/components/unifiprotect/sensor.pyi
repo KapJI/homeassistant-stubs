@@ -1,4 +1,4 @@
-from .const import DEVICE_CLASS_DETECTION as DEVICE_CLASS_DETECTION, DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
+from .const import DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
 from .models import PermRequired as PermRequired, ProtectEventMixin as ProtectEventMixin, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin, T as T
@@ -17,6 +17,8 @@ from typing import Any
 
 _LOGGER: Incomplete
 OBJECT_TYPE_NONE: str
+DEVICE_CLASS_DETECTION: str
+DEVICE_CLASS_LICENSE_PLATE: str
 
 class ProtectSensorEntityDescription(ProtectRequiredKeysMixin[T], SensorEntityDescription):
     precision: Union[int, None]

@@ -1,4 +1,4 @@
-from .const import DEVICE_CLASS_DETECTION as DEVICE_CLASS_DETECTION, DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
+from .const import DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
 from .models import PermRequired as PermRequired, ProtectEventMixin as ProtectEventMixin, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin
@@ -51,4 +51,6 @@ class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
 class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     entity_description: ProtectBinaryEventEntityDescription
     _attr_is_on: Incomplete
+    _event: Incomplete
+    _attr_extra_state_attributes: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...

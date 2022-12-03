@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from collections.abc import Mapping
 from homeassistant.components import dhcp as dhcp, zeroconf as zeroconf
-from homeassistant.config_entries import ConfigFlow as ConfigFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
@@ -19,6 +19,7 @@ class EsphomeFlowHandler(ConfigFlow):
     _password: Incomplete
     _noise_psk: Incomplete
     _device_info: Incomplete
+    _reauth_entry: Incomplete
     def __init__(self) -> None: ...
     async def _async_step_user_base(self, user_input: Union[dict[str, Any], None] = ..., error: Union[str, None] = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...

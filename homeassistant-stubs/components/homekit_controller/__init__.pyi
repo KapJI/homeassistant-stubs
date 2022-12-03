@@ -1,6 +1,6 @@
 from .config_flow import normalize_hkid as normalize_hkid
 from .connection import HKDevice as HKDevice
-from .const import KNOWN_DEVICES as KNOWN_DEVICES, TRIGGERS as TRIGGERS
+from .const import KNOWN_DEVICES as KNOWN_DEVICES
 from .utils import async_get_controller as async_get_controller
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

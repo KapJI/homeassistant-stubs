@@ -25,13 +25,13 @@ MOUNT_DEVICE_CLASS_MAP: Incomplete
 CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 LIGHT_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 SENSE_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
-MOTION_SENSORS: tuple[ProtectBinaryEventEntityDescription, ...]
+EVENT_SENSORS: tuple[ProtectBinaryEventEntityDescription, ...]
 DOORLOCK_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 VIEWER_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 DISK_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def _async_motion_entities(data: ProtectData, ufp_device: Union[ProtectAdoptableDeviceModel, None] = ...) -> list[ProtectDeviceEntity]: ...
+def _async_event_entities(data: ProtectData, ufp_device: Union[ProtectAdoptableDeviceModel, None] = ...) -> list[ProtectDeviceEntity]: ...
 def _async_nvr_entities(data: ProtectData) -> list[ProtectDeviceEntity]: ...
 
 class ProtectDeviceBinarySensor(ProtectDeviceEntity, BinarySensorEntity):

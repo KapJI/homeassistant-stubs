@@ -40,14 +40,14 @@ SENSE_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 DOORLOCK_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 NVR_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 NVR_DISABLED_SENSORS: tuple[ProtectSensorEntityDescription, ...]
-MOTION_SENSORS: tuple[ProtectSensorEventEntityDescription, ...]
+EVENT_SENSORS: tuple[ProtectSensorEventEntityDescription, ...]
 LIGHT_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 MOTION_TRIP_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 CHIME_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 VIEWER_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def _async_motion_entities(data: ProtectData, ufp_device: Union[Camera, None] = ...) -> list[ProtectDeviceEntity]: ...
+def _async_event_entities(data: ProtectData, ufp_device: Union[Camera, None] = ...) -> list[ProtectDeviceEntity]: ...
 def _async_nvr_entities(data: ProtectData) -> list[ProtectDeviceEntity]: ...
 
 class ProtectDeviceSensor(ProtectDeviceEntity, SensorEntity):

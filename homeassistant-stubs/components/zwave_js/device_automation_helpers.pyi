@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import DOMAIN as DOMAIN
+from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

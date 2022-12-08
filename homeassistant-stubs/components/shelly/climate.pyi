@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
@@ -12,6 +12,8 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
+from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -32,7 +34,7 @@ class BlockSleepingClimate(CoordinatorEntity[ShellyBlockCoordinator], RestoreEnt
     last_state: Incomplete
     last_state_attributes: Incomplete
     _preset_modes: Incomplete
-    _last_target_temp: float
+    _last_target_temp: Incomplete
     _unique_id: Incomplete
     _channel: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, sensor_block: Union[Block, None], device_block: Union[Block, None], entry: Union[entity_registry.RegistryEntry, None] = ...) -> None: ...

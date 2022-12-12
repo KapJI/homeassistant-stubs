@@ -66,4 +66,6 @@ class ProtectEventSensor(EventEntityMixin, SensorEntity):
     entity_description: ProtectSensorEventEntityDescription
     def __init__(self, data: ProtectData, device: ProtectAdoptableDeviceModel, description: ProtectSensorEventEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    _event: Incomplete
+    _attr_extra_state_attributes: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...

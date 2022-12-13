@@ -32,6 +32,7 @@ def create_bleak_scanner(detection_callback: AdvertisementDataCallback, scanning
 
 class HaScanner(BaseHaScanner):
     scanner: bleak.BleakScanner
+    mac_address: Incomplete
     mode: Incomplete
     adapter: Incomplete
     _start_stop_lock: Incomplete

@@ -117,7 +117,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 dev = ["coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six", "sphinx", "sphinx-notfound-page", "zope.interface"]
 docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
 tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six", "zope.interface"]
-tests-no-zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six"]
+tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six"]
 
 [[package]]
 name = "awesomeversion"
@@ -224,7 +224,7 @@ optional = false
 python-versions = ">=3.5.0"
 
 [package.extras]
-unicode-backport = ["unicodedata2"]
+unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "ciso8601"
@@ -436,7 +436,7 @@ bleak = ">=0.19.0"
 
 [[package]]
 name = "homeassistant"
-version = "2022.12.7"
+version = "2022.12.8"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
@@ -877,7 +877,7 @@ urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
-use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
+use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "rfc3986"
@@ -1041,7 +1041,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "22c537a28c41605767f59b14f3101c5f6d8bba2bd1572652116ee0391816355e"
+content-hash = "6e842eb26cef9945e40690727041fb61d751b0a85ef3bae996b42ac7848e347a"
 
 [metadata.files]
 aiohttp = [
@@ -1464,8 +1464,8 @@ home-assistant-bluetooth = [
     {file = "home_assistant_bluetooth-1.8.1.tar.gz", hash = "sha256:7c7ed94ab9488ee0a354b4eae8fe037d70a1d269dabe7c16e42e97a8ead23b61"},
 ]
 homeassistant = [
-    {file = "homeassistant-2022.12.7-py3-none-any.whl", hash = "sha256:4746c5afafd6e247f192d78c49cc6855e335c8c36e228c49cf780ec4448e5b43"},
-    {file = "homeassistant-2022.12.7.tar.gz", hash = "sha256:8b0ce0289ad8c8c59bd0bbc34fc3b0508b8b917199c74f17be2e3a73829a7c98"},
+    {file = "homeassistant-2022.12.8-py3-none-any.whl", hash = "sha256:16d0c9db27506c7f26a672719acb622b014c7fe309085389c4fac9edb99d1f3f"},
+    {file = "homeassistant-2022.12.8.tar.gz", hash = "sha256:9a5937db7771408de014f08960d3ae16f01c2ee19183002ce76d2353522582e7"},
 ]
 httpcore = [
     {file = "httpcore-0.15.0-py3-none-any.whl", hash = "sha256:1105b8b73c025f23ff7c36468e4432226cbb959176eab66864b8e31c4ee27fa6"},

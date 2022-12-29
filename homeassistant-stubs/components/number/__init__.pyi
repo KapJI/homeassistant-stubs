@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_MODE as ATTR_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import ATTR_MODE as ATTR_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
@@ -21,16 +21,20 @@ _LOGGER: Incomplete
 class NumberDeviceClass(StrEnum):
     APPARENT_POWER: str
     AQI: str
+    ATMOSPHERIC_PRESSURE: str
     BATTERY: str
     CO: str
     CO2: str
     CURRENT: str
+    DATA_RATE: str
+    DATA_SIZE: str
     DISTANCE: str
     ENERGY: str
     FREQUENCY: str
     GAS: str
     HUMIDITY: str
     ILLUMINANCE: str
+    IRRADIANCE: str
     MOISTURE: str
     MONETARY: str
     NITROGEN_DIOXIDE: str
@@ -47,6 +51,7 @@ class NumberDeviceClass(StrEnum):
     PRESSURE: str
     REACTIVE_POWER: str
     SIGNAL_STRENGTH: str
+    SOUND_PRESSURE: str
     SPEED: str
     SULPHUR_DIOXIDE: str
     TEMPERATURE: str
@@ -72,6 +77,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class NumberEntityDescription(EntityDescription):
+    device_class: Union[NumberDeviceClass, None]
     max_value: None
     min_value: None
     native_max_value: Union[float, None]
@@ -81,13 +87,14 @@ class NumberEntityDescription(EntityDescription):
     step: None
     unit_of_measurement: None
     def __post_init__(self) -> None: ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step) -> None: ...
 
 def ceil_decimal(value: float, precision: float = ...) -> float: ...
 def floor_decimal(value: float, precision: float = ...) -> float: ...
 
 class NumberEntity(Entity):
     entity_description: NumberEntityDescription
+    _attr_device_class: Union[NumberDeviceClass, None]
     _attr_max_value: None
     _attr_min_value: None
     _attr_mode: NumberMode
@@ -106,6 +113,8 @@ class NumberEntity(Entity):
     async def async_internal_added_to_hass(self) -> None: ...
     @property
     def capability_attributes(self) -> dict[str, Any]: ...
+    @property
+    def device_class(self) -> Union[NumberDeviceClass, None]: ...
     @property
     def native_min_value(self) -> float: ...
     @property

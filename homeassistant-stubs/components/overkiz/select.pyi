@@ -1,6 +1,6 @@
 from . import HomeAssistantOverkizData as HomeAssistantOverkizData
 from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES
-from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity, OverkizDeviceClass as OverkizDeviceClass
+from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
@@ -14,7 +14,7 @@ class OverkizSelectDescriptionMixin:
     def __init__(self, select_option) -> None: ...
 
 class OverkizSelectDescription(SelectEntityDescription, OverkizSelectDescriptionMixin):
-    def __init__(self, select_option, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, options) -> None: ...
+    def __init__(self, select_option, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 
 def _select_option_open_closed_pedestrian(option: str, execute_command: Callable[..., Awaitable[None]]) -> Awaitable[None]: ...
 def _select_option_memorized_simple_volume(option: str, execute_command: Callable[..., Awaitable[None]]) -> Awaitable[None]: ...

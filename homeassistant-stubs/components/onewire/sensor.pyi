@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, PRESSURE_CBAR as PRESSURE_CBAR, PRESSURE_MBAR as PRESSURE_MBAR, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -14,7 +14,7 @@ from typing import Any
 
 class OneWireSensorEntityDescription(OneWireEntityDescription, SensorEntityDescription):
     override_key: Union[Callable[[str, Mapping[str, Any]], str], None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, read_mode, override_key) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options, read_mode, override_key) -> None: ...
 
 def _get_sensor_precision_family_28(device_id: str, options: Mapping[str, Any]) -> str: ...
 

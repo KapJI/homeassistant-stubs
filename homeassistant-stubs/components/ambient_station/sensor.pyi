@@ -3,7 +3,7 @@ from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DOMAIN as DOMAIN, TYPE_SOLA
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_NAME as ATTR_NAME, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, IRRADIATION_WATTS_PER_SQUARE_METER as IRRADIATION_WATTS_PER_SQUARE_METER, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, PRECIPITATION_INCHES as PRECIPITATION_INCHES, PRESSURE_INHG as PRESSURE_INHG, SPEED_MILES_PER_HOUR as SPEED_MILES_PER_HOUR, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.const import ATTR_NAME as ATTR_NAME, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfIrradiance as UnitOfIrradiance, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

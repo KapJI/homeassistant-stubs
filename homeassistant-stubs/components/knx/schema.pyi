@@ -125,6 +125,7 @@ class ExposeSchema(KNXPlatformSchema):
     CONF_KNX_EXPOSE_TYPE: Incomplete
     CONF_KNX_EXPOSE_ATTRIBUTE: str
     CONF_KNX_EXPOSE_BINARY: str
+    CONF_KNX_EXPOSE_COOLDOWN: str
     CONF_KNX_EXPOSE_DEFAULT: str
     EXPOSE_TIME_TYPES: Final[Incomplete]
     EXPOSE_TIME_SCHEMA: Incomplete

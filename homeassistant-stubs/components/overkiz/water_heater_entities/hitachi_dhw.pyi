@@ -1,7 +1,7 @@
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.water_heater import STATE_HIGH_DEMAND as STATE_HIGH_DEMAND, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from typing import Any
 
 OVERKIZ_TO_OPERATION_MODE: dict[str, str]

@@ -14,7 +14,7 @@ SENSOR_KIND_LEAK_DETECTED: str
 SENSOR_KIND_MOVED: str
 
 class ValveControllerBinarySensorDescription(BinarySensorEntityDescription, ValveControllerEntityDescription):
-    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 PAIRED_SENSOR_DESCRIPTIONS: Incomplete
 VALVE_CONTROLLER_DESCRIPTIONS: Incomplete

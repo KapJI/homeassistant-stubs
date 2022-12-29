@@ -4,7 +4,7 @@ from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, async_ha
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_SWING_MODE as ATTR_SWING_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform

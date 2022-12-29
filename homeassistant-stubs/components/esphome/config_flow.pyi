@@ -1,4 +1,4 @@
-from . import CONF_NOISE_PSK as CONF_NOISE_PSK, DOMAIN as DOMAIN, DomainData as DomainData
+from . import CONF_NOISE_PSK as CONF_NOISE_PSK, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from collections.abc import Mapping
@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers.device_registry import format_mac as format_mac
 from typing import Any
 
 ERROR_REQUIRES_ENCRYPTION_KEY: str

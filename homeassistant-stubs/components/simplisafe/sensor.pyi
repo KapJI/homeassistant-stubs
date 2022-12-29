@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from simplipy.device.sensor.v3 import SensorV3 as SensorV3

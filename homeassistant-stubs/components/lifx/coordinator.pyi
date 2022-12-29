@@ -24,7 +24,7 @@ class FirmwareEffect(IntEnum):
     MORPH: int
     FLAME: int
 
-class LIFXUpdateCoordinator(DataUpdateCoordinator):
+class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
     connection: Incomplete
     device: Incomplete
     lock: Incomplete

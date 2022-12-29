@@ -45,7 +45,7 @@ class HostInfo(TypedDict):
     ip: str
     status: bool
 
-class FritzBoxTools(update_coordinator.DataUpdateCoordinator):
+class FritzBoxTools(update_coordinator.DataUpdateCoordinator[None]):
     _devices: Incomplete
     _options: Incomplete
     _unique_id: Incomplete

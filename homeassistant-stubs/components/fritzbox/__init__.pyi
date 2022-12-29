@@ -4,7 +4,7 @@ from .coordinator import FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoor
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription

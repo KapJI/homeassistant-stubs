@@ -1,4 +1,4 @@
-from .const import DEVICE_CLASS_WLED_LIVE_OVERRIDE as DEVICE_CLASS_WLED_LIVE_OVERRIDE, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
 from .helpers import wled_exception_handler as wled_exception_handler
 from .models import WLEDEntity as WLEDEntity
@@ -14,10 +14,10 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WLEDLiveOverrideSelect(WLEDEntity, SelectEntity):
-    _attr_device_class: Incomplete
     _attr_entity_category: Incomplete
     _attr_icon: str
     _attr_name: str
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     _attr_options: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...

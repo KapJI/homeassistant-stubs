@@ -13,6 +13,7 @@ from typing import Any
 ADDON_SETUP_TIMEOUT: int
 ADDON_SETUP_TIMEOUT_ROUNDS: int
 DEFAULT_URL: str
+DEFAULT_TITLE: str
 ON_SUPERVISOR_SCHEMA: Incomplete
 
 def get_manual_schema(user_input: dict[str, Any]) -> vol.Schema: ...

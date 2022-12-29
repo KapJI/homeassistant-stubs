@@ -1,4 +1,4 @@
-from .const import DEVICE_CLASS_CHARGE_MODE as DEVICE_CLASS_CHARGE_MODE, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
 from .renault_hub import RenaultHub as RenaultHub
 from collections.abc import Callable as Callable
@@ -15,7 +15,7 @@ class RenaultSelectRequiredKeysMixin:
     def __init__(self, data_key, icon_lambda) -> None: ...
 
 class RenaultSelectEntityDescription(SelectEntityDescription, RenaultDataEntityDescription, RenaultSelectRequiredKeysMixin):
-    def __init__(self, data_key, icon_lambda, coordinator, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, options) -> None: ...
+    def __init__(self, data_key, icon_lambda, coordinator, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

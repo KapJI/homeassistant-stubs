@@ -22,6 +22,10 @@ TYPE_BATT9: str
 TYPE_BATTIN: str
 TYPE_BATTOUT: str
 TYPE_BATT_CO2: str
+TYPE_BATT_LEAK1: str
+TYPE_BATT_LEAK2: str
+TYPE_BATT_LEAK3: str
+TYPE_BATT_LEAK4: str
 TYPE_BATT_LIGHTNING: str
 TYPE_BATT_SM1: str
 TYPE_BATT_SM10: str
@@ -33,6 +37,10 @@ TYPE_BATT_SM6: str
 TYPE_BATT_SM7: str
 TYPE_BATT_SM8: str
 TYPE_BATT_SM9: str
+TYPE_LEAK1: str
+TYPE_LEAK2: str
+TYPE_LEAK3: str
+TYPE_LEAK4: str
 TYPE_PM25IN_BATT: str
 TYPE_PM25_BATT: str
 TYPE_RELAY1: str
@@ -51,7 +59,7 @@ class AmbientBinarySensorDescriptionMixin:
     def __init__(self, on_state) -> None: ...
 
 class AmbientBinarySensorDescription(BinarySensorEntityDescription, AmbientBinarySensorDescriptionMixin):
-    def __init__(self, on_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+    def __init__(self, on_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

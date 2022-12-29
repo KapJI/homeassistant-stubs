@@ -68,6 +68,7 @@ async def async_setup_entity_legacy(hass: HomeAssistant, config: ConfigType, asy
 class MqttVacuum(MqttEntity, VacuumEntity):
     _entity_id_format: Incomplete
     _attributes_extra_blocked: Incomplete
+    _command_topic: Union[str, None]
     _encoding: Union[str, None]
     _qos: bool
     _retain: bool
@@ -88,7 +89,6 @@ class MqttVacuum(MqttEntity, VacuumEntity):
     def config_schema() -> vol.Schema: ...
     _attr_supported_features: Incomplete
     _attr_fan_speed_list: Incomplete
-    _command_topic: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_status: str
     _sub_state: Incomplete

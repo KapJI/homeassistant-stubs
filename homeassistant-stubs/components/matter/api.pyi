@@ -1,5 +1,5 @@
 from .adapter import MatterAdapter as MatterAdapter
-from .const import DOMAIN as DOMAIN
+from .helpers import get_matter as get_matter
 from collections.abc import Callable as Callable
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection

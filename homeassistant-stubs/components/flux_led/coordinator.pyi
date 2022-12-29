@@ -10,7 +10,7 @@ from typing import Final
 _LOGGER: Incomplete
 REQUEST_REFRESH_DELAY: Final[float]
 
-class FluxLedUpdateCoordinator(DataUpdateCoordinator):
+class FluxLedUpdateCoordinator(DataUpdateCoordinator[None]):
     device: Incomplete
     title: Incomplete
     entry: Incomplete

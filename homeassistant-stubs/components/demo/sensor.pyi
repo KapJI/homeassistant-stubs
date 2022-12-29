@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, ENERGY_MEGA_WATT_HOUR as ENERGY_MEGA_WATT_HOUR, PERCENTAGE as PERCENTAGE, POWER_WATT as POWER_WATT, TEMP_CELSIUS as TEMP_CELSIUS, VOLUME_CUBIC_FEET as VOLUME_CUBIC_FEET, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -21,9 +21,11 @@ class DemoSensor(SensorEntity):
     _attr_native_value: Incomplete
     _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
+    _attr_options: Incomplete
+    _attr_translation_key: Incomplete
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def __init__(self, unique_id: str, name: str, state: StateType, device_class: SensorDeviceClass, state_class: Union[SensorStateClass, None], unit_of_measurement: Union[str, None], battery: StateType) -> None: ...
+    def __init__(self, unique_id: str, name: str, state: StateType, device_class: SensorDeviceClass, state_class: Union[SensorStateClass, None], unit_of_measurement: Union[str, None], battery: StateType, options: Union[list[str], None] = ..., translation_key: Union[str, None] = ...) -> None: ...
 
 class DemoSumSensor(RestoreSensor):
     _attr_should_poll: bool

@@ -1,8 +1,7 @@
-from canary.model import Location as Location
+from canary.model import Location as Location, Reading as Reading
 from collections.abc import ValuesView
-from typing import Optional, TypedDict
+from typing import TypedDict
 
 class CanaryData(TypedDict):
     locations: dict[str, Location]
-    readings: dict[str, ValuesView]
-SensorTypeItem = tuple[str, Optional[str], Optional[str], Optional[str], list[str]]
+    readings: dict[str, ValuesView[Reading]]

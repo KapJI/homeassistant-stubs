@@ -7,7 +7,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator, Iterable
 from contextvars import ContextVar
 from datetime import datetime, timedelta
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_PERSONS as ATTR_PERSONS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, LENGTH_METERS as LENGTH_METERS, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_PERSONS as ATTR_PERSONS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass

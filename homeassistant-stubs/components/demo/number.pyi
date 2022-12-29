@@ -2,7 +2,7 @@ from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

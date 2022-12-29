@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolumetricFlux as UnitOfVolumetricFlux, VOLUME_CUBIC_FEET as VOLUME_CUBIC_FEET, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS, VOLUME_FLUID_OUNCE as VOLUME_FLUID_OUNCE, VOLUME_GALLONS as VOLUME_GALLONS, VOLUME_LITERS as VOLUME_LITERS, VOLUME_MILLILITERS as VOLUME_MILLILITERS
+from homeassistant.const import UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 _MM_TO_M: float
@@ -14,6 +14,7 @@ _HRS_TO_SECS: Incomplete
 _DAYS_TO_SECS: Incomplete
 _POUND_TO_G: float
 _OUNCE_TO_G: Incomplete
+_STONE_TO_G: Incomplete
 _STANDARD_GRAVITY: float
 _MERCURY_DENSITY: float
 _L_TO_CUBIC_METER: float

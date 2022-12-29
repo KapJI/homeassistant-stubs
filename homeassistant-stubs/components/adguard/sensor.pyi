@@ -5,7 +5,7 @@ from adguardhome import AdGuardHome as AdGuardHome
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE, TIME_MILLISECONDS as TIME_MILLISECONDS
+from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -19,7 +19,7 @@ class AdGuardHomeEntityDescriptionMixin:
     def __init__(self, value_fn) -> None: ...
 
 class AdGuardHomeEntityDescription(SensorEntityDescription, AdGuardHomeEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options) -> None: ...
 
 SENSORS: tuple[AdGuardHomeEntityDescription, ...]
 

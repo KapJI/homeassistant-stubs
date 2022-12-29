@@ -4,7 +4,7 @@ from .coordinator import OpenUvCoordinator as OpenUvCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import TIME_MINUTES as TIME_MINUTES, UV_INDEX as UV_INDEX
+from homeassistant.const import UV_INDEX as UV_INDEX, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import as_local as as_local, parse_datetime as parse_datetime

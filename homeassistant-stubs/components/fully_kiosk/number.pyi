@@ -4,7 +4,7 @@ from .entity import FullyKioskEntity as FullyKioskEntity
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import TIME_SECONDS as TIME_SECONDS
+from homeassistant.const import UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

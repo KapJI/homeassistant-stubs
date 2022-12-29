@@ -2,6 +2,7 @@ from .const import CONF_ALLOW_EA as CONF_ALLOW_EA, DEFAULT_SCAN_INTERVAL as DEFA
 from .data import ProtectData as ProtectData, async_ufp_instance_for_config_entry_ids as async_ufp_instance_for_config_entry_ids
 from .discovery import async_start_discovery as async_start_discovery
 from .migrate import async_migrate_data as async_migrate_data
+from .repairs import async_create_repairs as async_create_repairs
 from .services import async_cleanup_services as async_cleanup_services, async_setup_services as async_setup_services
 from .utils import _async_unifi_mac_from_hass as _async_unifi_mac_from_hass, async_create_api_client as async_create_api_client, async_get_devices as async_get_devices
 from .views import ThumbnailProxyView as ThumbnailProxyView, VideoProxyView as VideoProxyView

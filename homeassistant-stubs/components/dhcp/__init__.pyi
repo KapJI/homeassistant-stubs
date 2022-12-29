@@ -1,7 +1,7 @@
 import abc
 import re
 from _typeshed import Incomplete
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Iterable
 from homeassistant import config_entries as config_entries
 from homeassistant.components.device_tracker import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
@@ -38,7 +38,7 @@ class DhcpServiceInfo(BaseServiceInfo):
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
-class WatcherBase(metaclass=abc.ABCMeta):
+class WatcherBase(ABC, metaclass=abc.ABCMeta):
     hass: Incomplete
     _integration_matchers: Incomplete
     _address_data: Incomplete

@@ -1,17 +1,17 @@
 from .const import DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .coordinator import CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
-from .model import SensorTypeItem as SensorTypeItem
 from _typeshed import Incomplete
 from canary.model import Device as Device, Location as Location
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, Optional
 
+SensorTypeItem = tuple[str, Optional[str], Optional[str], Optional[SensorDeviceClass], list[str]]
 SENSOR_VALUE_PRECISION: Final[int]
 ATTR_AIR_QUALITY: Final[str]
 CANARY_PRO: Final[str]

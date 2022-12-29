@@ -2,10 +2,10 @@ import abc
 import logging
 from . import BluetoothCallbackMatcher as BluetoothCallbackMatcher, BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_address_present as async_address_present, async_last_service_info as async_last_service_info, async_register_callback as async_register_callback, async_track_unavailable as async_track_unavailable
 from _typeshed import Incomplete
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 
-class BasePassiveBluetoothCoordinator(metaclass=abc.ABCMeta):
+class BasePassiveBluetoothCoordinator(ABC, metaclass=abc.ABCMeta):
     hass: Incomplete
     logger: Incomplete
     address: Incomplete

@@ -1,7 +1,7 @@
 from .const import CONF_DEVICE_PASSWORD as CONF_DEVICE_PASSWORD, CONF_PHONE_ID as CONF_PHONE_ID, DATA_DEVICE as DATA_DEVICE, DATA_DISCOVERY as DATA_DISCOVERY, DOMAIN as DOMAIN, MAX_UPDATE_INTERVAL_SEC as MAX_UPDATE_INTERVAL_SEC, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from .utils import async_start_bridge as async_start_bridge, async_stop_bridge as async_stop_bridge
 from _typeshed import Incomplete
-from aioswitcher.device import SwitcherBase as SwitcherBase
+from aioswitcher.device import SwitcherBase
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -16,11 +16,11 @@ CCONFIG_SCHEMA: Incomplete
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class SwitcherDataUpdateCoordinator(update_coordinator.DataUpdateCoordinator):
+class SwitcherDataUpdateCoordinator(update_coordinator.DataUpdateCoordinator[SwitcherBase]):
     entry: Incomplete
     data: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: SwitcherBase) -> None: ...
-    async def _async_update_data(self) -> None: ...
+    async def _async_update_data(self) -> SwitcherBase: ...
     @property
     def model(self) -> str: ...
     @property

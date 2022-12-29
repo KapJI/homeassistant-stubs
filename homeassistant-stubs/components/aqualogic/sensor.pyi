@@ -1,7 +1,7 @@
 from . import AquaLogicProcessor as AquaLogicProcessor, DOMAIN as DOMAIN, UPDATE_TOPIC as UPDATE_TOPIC
 from _typeshed import Incomplete
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, PERCENTAGE as PERCENTAGE, POWER_WATT as POWER_WATT, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, PERCENTAGE as PERCENTAGE, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -10,7 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 class AquaLogicSensorEntityDescription(SensorEntityDescription):
     unit_metric: Union[str, None]
     unit_imperial: Union[str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, unit_metric, unit_imperial) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options, unit_metric, unit_imperial) -> None: ...
 
 SENSOR_TYPES: tuple[AquaLogicSensorEntityDescription, ...]
 SENSOR_KEYS: list[str]

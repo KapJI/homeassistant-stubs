@@ -7,7 +7,7 @@ from kasa import SmartDevice as SmartDevice
 _LOGGER: Incomplete
 REQUEST_REFRESH_DELAY: float
 
-class TPLinkDataUpdateCoordinator(DataUpdateCoordinator):
+class TPLinkDataUpdateCoordinator(DataUpdateCoordinator[None]):
     device: Incomplete
     update_children: bool
     def __init__(self, hass: HomeAssistant, device: SmartDevice) -> None: ...

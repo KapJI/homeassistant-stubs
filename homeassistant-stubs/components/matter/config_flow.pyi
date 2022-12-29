@@ -7,6 +7,7 @@ from homeassistant.components.hassio import AddonError as AddonError, AddonInfo 
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from typing import Any
 
@@ -43,3 +44,5 @@ class ConfigFlow(config_entries.ConfigFlow):
     async def async_step_on_supervisor(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_finish_addon_setup(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def _async_create_entry_or_abort(self) -> FlowResult: ...
+
+class FailedConnect(HomeAssistantError): ...

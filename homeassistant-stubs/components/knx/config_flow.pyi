@@ -12,7 +12,6 @@ from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import Any, Final
 from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
-from xknx.secure.keyring import XMLInterface as XMLInterface
 
 CONF_KNX_GATEWAY: Final[str]
 CONF_MAX_RATE_LIMIT: Final[int]
@@ -30,7 +29,6 @@ class KNXCommonFlow(ABC, FlowHandler, metaclass=abc.ABCMeta):
     _found_gateways: Incomplete
     _found_tunnels: Incomplete
     _selected_tunnel: Incomplete
-    _tunnel_endpoints: Incomplete
     _gatewayscanner: Incomplete
     _async_scan_gen: Incomplete
     def __init__(self, initial_data: KNXConfigEntryData) -> None: ...
@@ -42,7 +40,6 @@ class KNXCommonFlow(ABC, FlowHandler, metaclass=abc.ABCMeta):
     async def async_step_secure_tunnel_manual(self, user_input: Union[dict, None] = ...) -> FlowResult: ...
     async def async_step_secure_routing_manual(self, user_input: Union[dict, None] = ...) -> FlowResult: ...
     async def async_step_secure_knxkeys(self, user_input: Union[dict, None] = ...) -> FlowResult: ...
-    async def async_step_knxkeys_tunnel_select(self, user_input: Union[dict, None] = ...) -> FlowResult: ...
     async def async_step_routing(self, user_input: Union[dict, None] = ...) -> FlowResult: ...
 
 class KNXConfigFlow(KNXCommonFlow, ConfigFlow):

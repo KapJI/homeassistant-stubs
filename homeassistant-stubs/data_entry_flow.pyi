@@ -43,27 +43,27 @@ class AbortFlow(FlowError):
     def __init__(self, reason: str, description_placeholders: Union[Mapping[str, str], None] = ...) -> None: ...
 
 class FlowResult(TypedDict):
-    context: dict[str, Any]
-    data_schema: Union[vol.Schema, None]
-    data: Mapping[str, Any]
-    description_placeholders: Union[Mapping[str, Union[str, None]], None]
-    description: Union[str, None]
-    errors: Union[dict[str, str], None]
-    extra: str
+    version: int
+    type: FlowResultType
     flow_id: str
     handler: str
-    last_step: Union[bool, None]
-    menu_options: Union[list[str], dict[str, str]]
-    options: Mapping[str, Any]
-    progress_action: str
-    reason: str
-    required: bool
-    result: Any
-    step_id: str
     title: str
-    type: FlowResultType
+    data: Mapping[str, Any]
+    step_id: str
+    data_schema: Union[vol.Schema, None]
+    extra: str
+    required: bool
+    errors: Union[dict[str, str], None]
+    description: Union[str, None]
+    description_placeholders: Union[Mapping[str, Union[str, None]], None]
+    progress_action: str
     url: str
-    version: int
+    reason: str
+    context: dict[str, Any]
+    result: Any
+    last_step: Union[bool, None]
+    options: Mapping[str, Any]
+    menu_options: Union[list[str], dict[str, str]]
 
 def _async_flow_handler_to_flow_result(flows: Iterable[FlowHandler], include_uninitialized: bool) -> list[FlowResult]: ...
 
@@ -76,7 +76,7 @@ class FlowManager(abc.ABC, metaclass=abc.ABCMeta):
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_wait_init_flow_finish(self, handler: str) -> None: ...
     @abc.abstractmethod
-    async def async_create_flow(self, handler_key: str, *, context: Union[dict[str, Any], None] = ..., data: Union[dict[str, Any], None] = ...) -> FlowHandler: ...
+    async def async_create_flow(self, handler_key: Any, *, context: Union[dict[str, Any], None] = ..., data: Union[dict[str, Any], None] = ...) -> FlowHandler: ...
     @abc.abstractmethod
     async def async_finish_flow(self, flow: FlowHandler, result: FlowResult) -> FlowResult: ...
     async def async_post_init(self, flow: FlowHandler, result: FlowResult) -> None: ...
@@ -92,10 +92,10 @@ class FlowManager(abc.ABC, metaclass=abc.ABCMeta):
     def async_abort(self, flow_id: str) -> None: ...
     def _async_add_flow_progress(self, flow: FlowHandler) -> None: ...
     def _async_remove_flow_progress(self, flow_id: str) -> None: ...
-    async def _async_handle_step(self, flow: FlowHandler, step_id: str, user_input: Union[dict, BaseServiceInfo, None], step_done: Union[asyncio.Future, None] = ...) -> FlowResult: ...
+    async def _async_handle_step(self, flow: Any, step_id: str, user_input: Union[dict, BaseServiceInfo, None], step_done: Union[asyncio.Future, None] = ...) -> FlowResult: ...
 
 class FlowHandler:
-    cur_step: Union[FlowResult, None]
+    cur_step: Union[dict[str, Any], None]
     flow_id: str
     hass: HomeAssistant
     handler: str
@@ -109,7 +109,7 @@ class FlowHandler:
     def show_advanced_options(self) -> bool: ...
     def add_suggested_values_to_schema(self, data_schema: vol.Schema, suggested_values: Mapping[str, Any]) -> vol.Schema: ...
     def async_show_form(self, *, step_id: str, data_schema: Union[vol.Schema, None] = ..., errors: Union[dict[str, str], None] = ..., description_placeholders: Union[Mapping[str, Union[str, None]], None] = ..., last_step: Union[bool, None] = ...) -> FlowResult: ...
-    def async_create_entry(self, *, title: Union[str, None] = ..., data: Mapping[str, Any], description: Union[str, None] = ..., description_placeholders: Union[Mapping[str, str], None] = ...) -> FlowResult: ...
+    def async_create_entry(self, *, title: str, data: Mapping[str, Any], description: Union[str, None] = ..., description_placeholders: Union[Mapping[str, str], None] = ...) -> FlowResult: ...
     def async_abort(self, *, reason: str, description_placeholders: Union[Mapping[str, str], None] = ...) -> FlowResult: ...
     def async_external_step(self, *, step_id: str, url: str, description_placeholders: Union[Mapping[str, str], None] = ...) -> FlowResult: ...
     def async_external_step_done(self, *, next_step_id: str) -> FlowResult: ...

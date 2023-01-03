@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, TYPE_TO_PLATFORM as
 from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordinator, LookinPushCoordinator as LookinPushCoordinator
 from .models import LookinData as LookinData
 from _typeshed import Incomplete
-from aiolookin import Climate as Climate, LookInHttpProtocol, LookinUDPSubscriptions, Remote as Remote
+from aiolookin import Climate as Climate, LookInHttpProtocol, LookinUDPSubscriptions, MeteoSensor as MeteoSensor, Remote as Remote
 from aiolookin.models import UDPEvent as UDPEvent
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState

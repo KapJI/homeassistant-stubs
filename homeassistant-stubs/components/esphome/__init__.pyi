@@ -11,7 +11,6 @@ from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as C
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
-from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -26,8 +25,6 @@ _LOGGER: Incomplete
 _R = TypeVar('_R')
 STABLE_BLE_VERSION_STR: str
 STABLE_BLE_VERSION: Incomplete
-PROJECT_URLS: Incomplete
-DEFAULT_URL: Incomplete
 
 def _async_check_firmware_version(hass: HomeAssistant, device_info: EsphomeDeviceInfo) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

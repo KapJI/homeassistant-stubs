@@ -3,11 +3,11 @@ from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordina
 from .entity import LookinCoordinatorEntity as LookinCoordinatorEntity
 from .models import LookinData as LookinData
 from _typeshed import Incomplete
-from aiolookin import Climate, MeteoSensor as MeteoSensor, Remote as Remote
+from aiolookin import Climate, MeteoSensor as MeteoSensor
 from aiolookin.models import UDPEvent as UDPEvent
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MIDDLE as FAN_MIDDLE, HVACMode as HVACMode, SWING_BOTH as SWING_BOTH, SWING_OFF as SWING_OFF
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, Platform as Platform, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Final
@@ -34,7 +34,7 @@ class ConditionerEntity(LookinCoordinatorEntity, ClimateEntity):
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: Incomplete
-    def __init__(self, uuid: str, device: Climate, lookin_data: LookinData, coordinator: LookinDataUpdateCoordinator[Remote]) -> None: ...
+    def __init__(self, uuid: str, device: Climate, lookin_data: LookinData, coordinator: LookinDataUpdateCoordinator) -> None: ...
     @property
     def _climate(self) -> Climate: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

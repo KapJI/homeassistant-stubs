@@ -73,14 +73,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class CoverEntityDescription(EntityDescription):
-    device_class: Union[CoverDeviceClass, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    device_class: Union[CoverDeviceClass, str, None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 class CoverEntity(Entity):
     entity_description: CoverEntityDescription
     _attr_current_cover_position: Union[int, None]
     _attr_current_cover_tilt_position: Union[int, None]
-    _attr_device_class: Union[CoverDeviceClass, None]
+    _attr_device_class: Union[CoverDeviceClass, str, None]
     _attr_is_closed: Union[bool, None]
     _attr_is_closing: Union[bool, None]
     _attr_is_opening: Union[bool, None]
@@ -92,7 +92,7 @@ class CoverEntity(Entity):
     @property
     def current_cover_tilt_position(self) -> Union[int, None]: ...
     @property
-    def device_class(self) -> Union[CoverDeviceClass, None]: ...
+    def device_class(self) -> Union[CoverDeviceClass, str, None]: ...
     @property
     def state(self) -> Union[str, None]: ...
     @property

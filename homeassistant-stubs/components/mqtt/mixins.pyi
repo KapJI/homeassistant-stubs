@@ -9,7 +9,7 @@ from .models import MqttValueTemplate as MqttValueTemplate, PublishPayloadType a
 from .subscription import EntitySubscription as EntitySubscription, async_prepare_subscribe_topics as async_prepare_subscribe_topics, async_subscribe_topics as async_subscribe_topics, async_unsubscribe_topics as async_unsubscribe_topics
 from .util import get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from collections.abc import Callable as Callable, Coroutine
 from functools import partial
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -17,7 +17,7 @@ from homeassistant.const import ATTR_CONFIGURATION_URL as ATTR_CONFIGURATION_URL
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA, Entity as Entity, async_generate_entity_id as async_generate_entity_id
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA, Entity as Entity, EntityCategory as EntityCategory, async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
@@ -107,7 +107,7 @@ def stop_discovery_updates(hass: HomeAssistant, discovery_data: DiscoveryInfoTyp
 async def async_remove_discovery_payload(hass: HomeAssistant, discovery_data: DiscoveryInfoType) -> None: ...
 async def async_clear_discovery_topic_if_entity_removed(hass: HomeAssistant, discovery_data: DiscoveryInfoType, event: Event) -> None: ...
 
-class MqttDiscoveryDeviceUpdate(ABC, metaclass=abc.ABCMeta):
+class MqttDiscoveryDeviceUpdate(metaclass=abc.ABCMeta):
     hass: Incomplete
     log_name: Incomplete
     _discovery_data: Incomplete
@@ -154,7 +154,7 @@ class MqttEntity(MqttAttributes, MqttAvailability, MqttDiscoveryUpdate, MqttEnti
     _entity_id_format: str
     hass: Incomplete
     _config: Incomplete
-    _attr_unique_id: Incomplete
+    _unique_id: Incomplete
     _sub_state: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
     def _init_entity_id(self) -> None: ...
@@ -166,16 +166,21 @@ class MqttEntity(MqttAttributes, MqttAvailability, MqttDiscoveryUpdate, MqttEnti
     @staticmethod
     @abstractmethod
     def config_schema() -> vol.Schema: ...
-    _attr_entity_category: Incomplete
-    _attr_entity_registry_enabled_default: Incomplete
-    _attr_icon: Incomplete
-    _attr_name: Incomplete
-    def _setup_common_attributes_from_config(self, config: ConfigType) -> None: ...
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @abstractmethod
     def _prepare_subscribe_topics(self) -> None: ...
     @abstractmethod
     async def _subscribe_topics(self) -> None: ...
+    @property
+    def entity_registry_enabled_default(self) -> bool: ...
+    @property
+    def entity_category(self) -> Union[EntityCategory, None]: ...
+    @property
+    def icon(self) -> Union[str, None]: ...
+    @property
+    def name(self) -> Union[str, None]: ...
+    @property
+    def unique_id(self) -> Union[str, None]: ...
 
 def update_device(hass: HomeAssistant, config_entry: ConfigEntry, config: ConfigType) -> Union[str, None]: ...
 def async_removed_from_device(hass: HomeAssistant, event: Event, mqtt_device_id: str, config_entry_id: str) -> bool: ...

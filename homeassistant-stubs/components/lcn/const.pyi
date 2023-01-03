@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import Platform as Platform
+from homeassistant.const import DEGREE as DEGREE, ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, PERCENTAGE as PERCENTAGE, Platform as Platform, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT, TEMP_KELVIN as TEMP_KELVIN
 
 PLATFORMS: Incomplete
 DOMAIN: str

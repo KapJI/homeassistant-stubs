@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_FILE_PATH as CONF_FILE_PATH, UnitOfInformation as UnitOfInformation
+from homeassistant.const import CONF_FILE_PATH as CONF_FILE_PATH, DATA_BYTES as DATA_BYTES, DATA_MEGABYTES as DATA_MEGABYTES
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory

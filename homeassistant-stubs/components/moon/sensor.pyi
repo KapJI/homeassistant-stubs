@@ -1,6 +1,6 @@
 from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -16,8 +16,8 @@ STATE_LAST_QUARTER: str
 STATE_NEW_MOON: str
 STATE_WANING_CRESCENT: str
 STATE_WANING_GIBBOUS: str
-STATE_WAXING_CRESCENT: str
 STATE_WAXING_GIBBOUS: str
+STATE_WAXING_CRESCENT: str
 MOON_ICONS: Incomplete
 PLATFORM_SCHEMA: Incomplete
 
@@ -25,11 +25,9 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MoonSensorEntity(SensorEntity):
+    _attr_device_class: str
     _attr_has_entity_name: bool
     _attr_name: str
-    _attr_device_class: Incomplete
-    _attr_options: Incomplete
-    _attr_translation_key: str
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, entry: ConfigEntry) -> None: ...

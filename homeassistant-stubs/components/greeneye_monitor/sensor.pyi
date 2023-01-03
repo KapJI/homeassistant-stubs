@@ -2,7 +2,7 @@ import greeneye
 from .const import CONF_CHANNELS as CONF_CHANNELS, CONF_COUNTED_QUANTITY as CONF_COUNTED_QUANTITY, CONF_COUNTED_QUANTITY_PER_PULSE as CONF_COUNTED_QUANTITY_PER_PULSE, CONF_MONITORS as CONF_MONITORS, CONF_NET_METERING as CONF_NET_METERING, CONF_NUMBER as CONF_NUMBER, CONF_PULSE_COUNTERS as CONF_PULSE_COUNTERS, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, CONF_TEMPERATURE_SENSORS as CONF_TEMPERATURE_SENSORS, CONF_TIME_UNIT as CONF_TIME_UNIT, CONF_VOLTAGE_SENSORS as CONF_VOLTAGE_SENSORS, DATA_GREENEYE_MONITOR as DATA_GREENEYE_MONITOR
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPower as UnitOfPower, UnitOfTime as UnitOfTime
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, POWER_WATT as POWER_WATT, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -10,6 +10,7 @@ from typing import Any
 
 DATA_PULSES: str
 DATA_WATT_SECONDS: str
+UNIT_WATTS = POWER_WATT
 COUNTER_ICON: str
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...

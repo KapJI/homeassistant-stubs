@@ -234,7 +234,6 @@ CONF_UNIT_SYSTEM: Final[str]
 CONF_UNTIL: Final[str]
 CONF_URL: Final[str]
 CONF_USERNAME: Final[str]
-CONF_UUID: Final[str]
 CONF_VALUE_TEMPLATE: Final[str]
 CONF_VARIABLES: Final[str]
 CONF_VERIFY_SSL: Final[str]
@@ -377,10 +376,6 @@ ATTR_SUPPORTED_FEATURES: Final[str]
 ATTR_DEVICE_CLASS: Final[str]
 ATTR_TEMPERATURE: Final[str]
 ATTR_PERSONS: Final[str]
-
-class UnitOfApparentPower(StrEnum):
-    VOLT_AMPERE: str
-
 POWER_VOLT_AMPERE: Final[str]
 
 class UnitOfPower(StrEnum):
@@ -402,18 +397,8 @@ class UnitOfEnergy(StrEnum):
 ENERGY_KILO_WATT_HOUR: Final[str]
 ENERGY_MEGA_WATT_HOUR: Final[str]
 ENERGY_WATT_HOUR: Final[str]
-
-class UnitOfElectricCurrent(StrEnum):
-    MILLIAMPERE: str
-    AMPERE: str
-
 ELECTRIC_CURRENT_MILLIAMPERE: Final[str]
 ELECTRIC_CURRENT_AMPERE: Final[str]
-
-class UnitOfElectricPotential(StrEnum):
-    MILLIVOLT: str
-    VOLT: str
-
 ELECTRIC_POTENTIAL_MILLIVOLT: Final[str]
 ELECTRIC_POTENTIAL_VOLT: Final[str]
 DEGREE: Final[str]
@@ -429,18 +414,6 @@ class UnitOfTemperature(StrEnum):
 TEMP_CELSIUS: Final[str]
 TEMP_FAHRENHEIT: Final[str]
 TEMP_KELVIN: Final[str]
-
-class UnitOfTime(StrEnum):
-    MICROSECONDS: str
-    MILLISECONDS: str
-    SECONDS: str
-    MINUTES: str
-    HOURS: str
-    DAYS: str
-    WEEKS: str
-    MONTHS: str
-    YEARS: str
-
 TIME_MICROSECONDS: Final[str]
 TIME_MILLISECONDS: Final[str]
 TIME_SECONDS: Final[str]
@@ -469,13 +442,6 @@ LENGTH_INCHES: Final[str]
 LENGTH_FEET: Final[str]
 LENGTH_YARD: Final[str]
 LENGTH_MILES: Final[str]
-
-class UnitOfFrequency(StrEnum):
-    HERTZ: str
-    KILOHERTZ: str
-    MEGAHERTZ: str
-    GIGAHERTZ: str
-
 FREQUENCY_HERTZ: Final[str]
 FREQUENCY_KILOHERTZ: Final[str]
 FREQUENCY_MEGAHERTZ: Final[str]
@@ -501,17 +467,11 @@ PRESSURE_MBAR: Final[str]
 PRESSURE_MMHG: Final[str]
 PRESSURE_INHG: Final[str]
 PRESSURE_PSI: Final[str]
-
-class UnitOfSoundPressure(StrEnum):
-    DECIBEL: str
-    WEIGHTED_DECIBEL_A: str
-
 SOUND_PRESSURE_DB: Final[str]
 SOUND_PRESSURE_WEIGHTED_DBA: Final[str]
 
 class UnitOfVolume(StrEnum):
     CUBIC_FEET: str
-    CENTUM_CUBIC_FEET: str
     CUBIC_METERS: str
     LITERS: str
     MILLILITERS: str
@@ -524,11 +484,6 @@ VOLUME_CUBIC_METERS: Final[str]
 VOLUME_CUBIC_FEET: Final[str]
 VOLUME_GALLONS: Final[str]
 VOLUME_FLUID_OUNCE: Final[str]
-
-class UnitOfVolumeFlowRate(StrEnum):
-    CUBIC_METERS_PER_HOUR: str
-    CUBIC_FEET_PER_MINUTE: str
-
 VOLUME_FLOW_RATE_CUBIC_METERS_PER_HOUR: Final[str]
 VOLUME_FLOW_RATE_CUBIC_FEET_PER_MINUTE: Final[str]
 AREA_SQUARE_METERS: Final[str]
@@ -540,7 +495,6 @@ class UnitOfMass(StrEnum):
     MICROGRAMS: str
     OUNCES: str
     POUNDS: str
-    STONES: str
 
 MASS_GRAMS: Final[str]
 MASS_KILOGRAMS: Final[str]
@@ -553,11 +507,6 @@ LIGHT_LUX: Final[str]
 UV_INDEX: Final[str]
 PERCENTAGE: Final[str]
 REVOLUTIONS_PER_MINUTE: Final[str]
-
-class UnitOfIrradiance(StrEnum):
-    WATTS_PER_SQUARE_METER: str
-    BTUS_PER_HOUR_SQUARE_FOOT: str
-
 IRRADIATION_WATTS_PER_SQUARE_METER: Final[str]
 IRRADIATION_BTUS_PER_HOUR_SQUARE_FOOT: Final[str]
 
@@ -570,7 +519,6 @@ class UnitOfVolumetricFlux(StrEnum):
 class UnitOfPrecipitationDepth(StrEnum):
     INCHES: str
     MILLIMETERS: str
-    CENTIMETERS: str
 
 PRECIPITATION_INCHES: Final[str]
 PRECIPITATION_MILLIMETERS: Final[str]
@@ -600,30 +548,6 @@ SPEED_INCHES_PER_DAY: Final[str]
 SPEED_INCHES_PER_HOUR: Final[str]
 SIGNAL_STRENGTH_DECIBELS: Final[str]
 SIGNAL_STRENGTH_DECIBELS_MILLIWATT: Final[str]
-
-class UnitOfInformation(StrEnum):
-    BITS: str
-    KILOBITS: str
-    MEGABITS: str
-    GIGABITS: str
-    BYTES: str
-    KILOBYTES: str
-    MEGABYTES: str
-    GIGABYTES: str
-    TERABYTES: str
-    PETABYTES: str
-    EXABYTES: str
-    ZETTABYTES: str
-    YOTTABYTES: str
-    KIBIBYTES: str
-    MEBIBYTES: str
-    GIBIBYTES: str
-    TEBIBYTES: str
-    PEBIBYTES: str
-    EXBIBYTES: str
-    ZEBIBYTES: str
-    YOBIBYTES: str
-
 DATA_BITS: Final[str]
 DATA_KILOBITS: Final[str]
 DATA_MEGABITS: Final[str]
@@ -645,20 +569,6 @@ DATA_PEBIBYTES: Final[str]
 DATA_EXBIBYTES: Final[str]
 DATA_ZEBIBYTES: Final[str]
 DATA_YOBIBYTES: Final[str]
-
-class UnitOfDataRate(StrEnum):
-    BITS_PER_SECOND: str
-    KILOBITS_PER_SECOND: str
-    MEGABITS_PER_SECOND: str
-    GIGABITS_PER_SECOND: str
-    BYTES_PER_SECOND: str
-    KILOBYTES_PER_SECOND: str
-    MEGABYTES_PER_SECOND: str
-    GIGABYTES_PER_SECOND: str
-    KIBIBYTES_PER_SECOND: str
-    MEBIBYTES_PER_SECOND: str
-    GIBIBYTES_PER_SECOND: str
-
 DATA_RATE_BITS_PER_SECOND: Final[str]
 DATA_RATE_KILOBITS_PER_SECOND: Final[str]
 DATA_RATE_MEGABITS_PER_SECOND: Final[str]

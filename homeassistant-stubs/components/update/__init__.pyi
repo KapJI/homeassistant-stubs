@@ -12,15 +12,15 @@ class UpdateDeviceClass(StrEnum):
 DEVICE_CLASSES_SCHEMA: Incomplete
 
 class UpdateEntityDescription(EntityDescription):
-    device_class: Union[UpdateDeviceClass, None]
+    device_class: Union[UpdateDeviceClass, str, None]
     entity_category: Union[EntityCategory, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 class UpdateEntity(RestoreEntity):
     entity_description: UpdateEntityDescription
     _attr_auto_update: bool
     _attr_installed_version: Union[str, None]
-    _attr_device_class: Union[UpdateDeviceClass, None]
+    _attr_device_class: Union[UpdateDeviceClass, str, None]
     _attr_in_progress: Union[bool, int]
     _attr_latest_version: Union[str, None]
     _attr_release_summary: Union[str, None]
@@ -35,7 +35,7 @@ class UpdateEntity(RestoreEntity):
     @property
     def installed_version(self) -> Union[str, None]: ...
     @property
-    def device_class(self) -> Union[UpdateDeviceClass, None]: ...
+    def device_class(self) -> Union[UpdateDeviceClass, str, None]: ...
     @property
     def entity_category(self) -> Union[EntityCategory, None]: ...
     @property

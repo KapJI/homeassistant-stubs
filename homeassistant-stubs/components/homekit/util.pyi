@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components import binary_sensor as binary_sensor, media_player as media_player, persistent_notification as persistent_notification, sensor as sensor
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.components.remote import RemoteEntityFeature as RemoteEntityFeature
-from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, TEMP_CELSIUS as TEMP_CELSIUS
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter

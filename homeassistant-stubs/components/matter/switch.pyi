@@ -1,5 +1,6 @@
+from .adapter import MatterAdapter as MatterAdapter
+from .const import DOMAIN as DOMAIN
 from .entity import MatterEntity as MatterEntity, MatterEntityDescriptionBaseClass as MatterEntityDescriptionBaseClass
-from .helpers import get_matter as get_matter
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -19,7 +20,7 @@ class MatterSwitch(MatterEntity, SwitchEntity):
     def _update_from_device(self) -> None: ...
 
 class MatterSwitchEntityDescription(SwitchEntityDescription, MatterEntityDescriptionBaseClass):
-    def __init__(self, entity_cls, subscribe_attributes, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, entity_cls, subscribe_attributes, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 MatterSwitchEntityDescriptionFactory: Incomplete
 DEVICE_ENTITY: dict[type[device_types.DeviceType], Union[MatterEntityDescriptionBaseClass, list[MatterEntityDescriptionBaseClass]]]

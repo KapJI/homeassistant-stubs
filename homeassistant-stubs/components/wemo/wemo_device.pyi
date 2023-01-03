@@ -10,7 +10,7 @@ from pywemo import WeMoDevice as WeMoDevice
 
 _LOGGER: Incomplete
 
-class DeviceCoordinator(DataUpdateCoordinator[None]):
+class DeviceCoordinator(DataUpdateCoordinator):
     hass: Incomplete
     wemo: Incomplete
     device_id: Incomplete

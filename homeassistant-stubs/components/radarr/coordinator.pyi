@@ -1,7 +1,7 @@
 import abc
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from aiopyarr import Health, RootFolder, SystemStatus
 from aiopyarr.models.host_configuration import PyArrHostConfiguration as PyArrHostConfiguration
 from aiopyarr.radarr_client import RadarrClient as RadarrClient
@@ -13,7 +13,7 @@ from typing import TypeVar, Union
 
 T = TypeVar('T', bound=Union[SystemStatus, list[RootFolder], list[Health], int])
 
-class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.ABCMeta):
+class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
     config_entry: ConfigEntry
     api_client: Incomplete
     host_configuration: Incomplete

@@ -1,5 +1,6 @@
 from . import KNOWN_DEVICES as KNOWN_DEVICES
 from .connection import HKDevice as HKDevice
+from .const import DEVICE_CLASS_ECOBEE_MODE as DEVICE_CLASS_ECOBEE_MODE
 from .entity import CharacteristicEntity as CharacteristicEntity
 from _typeshed import Incomplete
 from aiohomekit.model.characteristics import Characteristic as Characteristic
@@ -14,7 +15,7 @@ _ECOBEE_MODE_TO_NUMBERS: Incomplete
 
 class EcobeeModeSelect(CharacteristicEntity, SelectEntity):
     _attr_options: Incomplete
-    _attr_translation_key: str
+    _attr_device_class: Incomplete
     @property
     def name(self) -> str: ...
     def get_characteristic_types(self) -> list[str]: ...

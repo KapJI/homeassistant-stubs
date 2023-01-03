@@ -10,6 +10,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
+VALLOX_CONNECTION_EXCEPTIONS: Incomplete
 
 async def validate_host(hass: HomeAssistant, host: str) -> None: ...
 

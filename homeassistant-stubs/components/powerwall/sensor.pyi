@@ -1,11 +1,11 @@
 from .const import DOMAIN as DOMAIN, POWERWALL_COORDINATOR as POWERWALL_COORDINATOR
 from .entity import PowerWallEntity as PowerWallEntity
-from .models import PowerwallRuntimeData as PowerwallRuntimeData
+from .models import PowerwallData as PowerwallData, PowerwallRuntimeData as PowerwallRuntimeData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower
+from homeassistant.const import ELECTRIC_CURRENT_AMPERE as ELECTRIC_CURRENT_AMPERE, ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, ENERGY_KILO_WATT_HOUR as ENERGY_KILO_WATT_HOUR, FREQUENCY_HERTZ as FREQUENCY_HERTZ, PERCENTAGE as PERCENTAGE, POWER_KILO_WATT as POWER_KILO_WATT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from tesla_powerwall import Meter as Meter, MeterType as MeterType
@@ -18,7 +18,7 @@ class PowerwallRequiredKeysMixin:
     def __init__(self, value_fn) -> None: ...
 
 class PowerwallSensorEntityDescription(SensorEntityDescription, PowerwallRequiredKeysMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 def _get_meter_power(meter: Meter) -> float: ...
 def _get_meter_frequency(meter: Meter) -> float: ...

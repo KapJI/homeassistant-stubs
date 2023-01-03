@@ -8,7 +8,7 @@ from laundrify_aio import LaundrifyAPI as LaundrifyAPI
 
 _LOGGER: Incomplete
 
-class LaundrifyUpdateCoordinator(DataUpdateCoordinator[dict[str, LaundrifyDevice]]):
+class LaundrifyUpdateCoordinator(DataUpdateCoordinator):
     laundrify_api: Incomplete
     def __init__(self, hass: HomeAssistant, laundrify_api: LaundrifyAPI, poll_interval: int) -> None: ...
     async def _async_update_data(self) -> dict[str, LaundrifyDevice]: ...

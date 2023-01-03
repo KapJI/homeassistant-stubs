@@ -1,15 +1,13 @@
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
 from typing import TypeVar, overload
 
-_R = TypeVar('_R', int, float, datetime)
-_P: Incomplete
+T = TypeVar('T', int, float, datetime)
 
 
 @overload
-def ignore_variance(func: Callable[_P, int], ignored_variance: int) -> Callable[_P, int]: ...
+def ignore_variance(func: Callable[..., int], ignored_variance: int) -> Callable[..., int]: ...
 @overload
-def ignore_variance(func: Callable[_P, float], ignored_variance: float) -> Callable[_P, float]: ...
+def ignore_variance(func: Callable[..., float], ignored_variance: float) -> Callable[..., float]: ...
 @overload
-def ignore_variance(func: Callable[_P, datetime], ignored_variance: timedelta) -> Callable[_P, datetime]: ...
+def ignore_variance(func: Callable[..., datetime], ignored_variance: timedelta) -> Callable[..., datetime]: ...

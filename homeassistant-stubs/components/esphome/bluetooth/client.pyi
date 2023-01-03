@@ -10,7 +10,6 @@ from bleak.backends.device import BLEDevice
 from bleak.backends.service import BleakGATTServiceCollection
 from collections.abc import Callable
 from homeassistant.components.bluetooth import async_scanner_by_source as async_scanner_by_source
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from typing import Any, TypeVar
 
@@ -46,8 +45,7 @@ class ESPHomeClient(BaseBleakClient):
     _disconnected_event: Incomplete
     _connection_version: Incomplete
     _address_type: Incomplete
-    _source_name: Incomplete
-    def __init__(self, address_or_ble_device: Union[BLEDevice, str], *args: Any, config_entry: ConfigEntry, **kwargs: Any) -> None: ...
+    def __init__(self, address_or_ble_device: Union[BLEDevice, str], *args: Any, **kwargs: Any) -> None: ...
     def __str__(self) -> str: ...
     def _unsubscribe_connection_state(self) -> None: ...
     services: Incomplete

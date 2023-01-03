@@ -6,7 +6,7 @@ from .models import MqttCommandTemplate as MqttCommandTemplate
 from .util import valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from homeassistant.components import button as button
-from homeassistant.components.button import ButtonEntity as ButtonEntity
+from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -29,8 +29,9 @@ class MqttButton(MqttEntity, ButtonEntity):
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _command_template: Incomplete
-    _attr_device_class: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
+    @property
+    def device_class(self) -> Union[ButtonDeviceClass, None]: ...
     async def async_press(self) -> None: ...

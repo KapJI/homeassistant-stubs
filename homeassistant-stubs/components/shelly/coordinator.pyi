@@ -5,7 +5,6 @@ from _typeshed import Incomplete
 from aioshelly.block_device import BlockDevice as BlockDevice
 from aioshelly.rpc_device import RpcDevice as RpcDevice, UpdateType
 from collections.abc import Callable as Callable
-from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -24,7 +23,7 @@ class ShellyEntryData:
 
 def get_entry_data(hass: HomeAssistant) -> dict[str, ShellyEntryData]: ...
 
-class ShellyBlockCoordinator(DataUpdateCoordinator[None]):
+class ShellyBlockCoordinator(DataUpdateCoordinator):
     device_id: Incomplete
     hass: Incomplete
     entry: Incomplete
@@ -56,7 +55,7 @@ class ShellyRestCoordinator(DataUpdateCoordinator):
     @property
     def mac(self) -> str: ...
 
-class ShellyRpcCoordinator(DataUpdateCoordinator[None]):
+class ShellyRpcCoordinator(DataUpdateCoordinator):
     device_id: Incomplete
     entry: Incomplete
     device: Incomplete
@@ -100,4 +99,3 @@ class ShellyRpcPollingCoordinator(DataUpdateCoordinator):
 
 def get_block_coordinator_by_device_id(hass: HomeAssistant, device_id: str) -> Union[ShellyBlockCoordinator, None]: ...
 def get_rpc_coordinator_by_device_id(hass: HomeAssistant, device_id: str) -> Union[ShellyRpcCoordinator, None]: ...
-async def async_reconnect_soon(hass: HomeAssistant, entry: config_entries.ConfigEntry) -> None: ...

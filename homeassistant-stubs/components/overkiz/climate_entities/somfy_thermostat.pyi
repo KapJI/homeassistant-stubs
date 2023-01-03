@@ -2,7 +2,7 @@ from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoord
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS
 from pyoverkiz.enums import OverkizCommandParam
 from typing import Any
 

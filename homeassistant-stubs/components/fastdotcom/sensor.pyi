@@ -1,7 +1,7 @@
 from . import DATA_UPDATED as DATA_UPDATED
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
-from homeassistant.const import UnitOfDataRate as UnitOfDataRate
+from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.const import DATA_RATE_MEGABITS_PER_SECOND as DATA_RATE_MEGABITS_PER_SECOND
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -9,13 +9,14 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
+ICON: str
+
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
 class SpeedtestSensor(RestoreEntity, SensorEntity):
     _attr_name: str
-    _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    _attr_icon: str
+    _attr_icon: Incomplete
     _attr_should_poll: bool
     _attr_native_value: Incomplete
     _speedtest_data: Incomplete

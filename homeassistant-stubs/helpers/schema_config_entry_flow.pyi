@@ -3,7 +3,7 @@ import voluptuous as vol
 from . import selector as selector
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from collections.abc import Callable as Callable, Coroutine, Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
@@ -43,7 +43,7 @@ class SchemaCommonFlowHandler:
     async def _show_next_step(self, next_step_id: str, error: Union[SchemaFlowError, None] = ..., user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def _async_menu_step(self, step_id: str, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
 
-class SchemaConfigFlowHandler(config_entries.ConfigFlow, ABC, metaclass=abc.ABCMeta):
+class SchemaConfigFlowHandler(config_entries.ConfigFlow, metaclass=abc.ABCMeta):
     config_flow: Mapping[str, SchemaFlowStep]
     options_flow: Union[Mapping[str, SchemaFlowStep], None]
     VERSION: int

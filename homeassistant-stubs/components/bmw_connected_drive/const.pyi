@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfVolume as UnitOfVolume
+from homeassistant.const import LENGTH_KILOMETERS as LENGTH_KILOMETERS, LENGTH_MILES as LENGTH_MILES, VOLUME_GALLONS as VOLUME_GALLONS, VOLUME_LITERS as VOLUME_LITERS
 
 DOMAIN: str
 ATTRIBUTION: str

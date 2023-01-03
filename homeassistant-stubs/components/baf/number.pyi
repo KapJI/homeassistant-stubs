@@ -6,7 +6,7 @@ from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
-from homeassistant.const import UnitOfTime as UnitOfTime
+from homeassistant.const import TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -17,7 +17,7 @@ class BAFNumberDescriptionMixin:
     def __init__(self, value_fn, mode) -> None: ...
 
 class BAFNumberDescription(NumberEntityDescription, BAFNumberDescriptionMixin):
-    def __init__(self, value_fn, mode, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step) -> None: ...
+    def __init__(self, value_fn, mode, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step) -> None: ...
 
 AUTO_COMFORT_NUMBER_DESCRIPTIONS: Incomplete
 FAN_NUMBER_DESCRIPTIONS: Incomplete

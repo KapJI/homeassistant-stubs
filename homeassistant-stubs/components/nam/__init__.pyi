@@ -9,7 +9,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from nettigo_air_monitor import NAMSensors, NettigoAirMonitor
+from nettigo_air_monitor import NAMSensors as NAMSensors, NettigoAirMonitor
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
@@ -17,7 +17,7 @@ PLATFORMS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class NAMDataUpdateCoordinator(DataUpdateCoordinator[NAMSensors]):
+class NAMDataUpdateCoordinator(DataUpdateCoordinator):
     _unique_id: Incomplete
     nam: Incomplete
     def __init__(self, hass: HomeAssistant, nam: NettigoAirMonitor, unique_id: Union[str, None]) -> None: ...

@@ -70,9 +70,8 @@ class EntityDescription:
     icon: Union[str, None]
     has_entity_name: bool
     name: Union[str, None]
-    translation_key: Union[str, None]
     unit_of_measurement: Union[str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 class Entity(ABC):
     entity_id: str
@@ -107,7 +106,6 @@ class Entity(ABC):
     _attr_should_poll: bool
     _attr_state: StateType
     _attr_supported_features: Union[int, None]
-    _attr_translation_key: Union[str, None]
     _attr_unique_id: Union[str, None]
     _attr_unit_of_measurement: Union[str, None]
     @property
@@ -158,8 +156,6 @@ class Entity(ABC):
     @property
     def entity_category(self) -> Union[EntityCategory, None]: ...
     @property
-    def translation_key(self) -> Union[str, None]: ...
-    @property
     def enabled(self) -> bool: ...
     def async_set_context(self, context: Context) -> None: ...
     async def async_update_ha_state(self, force_refresh: bool = ...) -> None: ...
@@ -188,7 +184,7 @@ class Entity(ABC):
     def _suggest_report_issue(self) -> str: ...
 
 class ToggleEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
 
 class ToggleEntity(Entity):
     entity_description: ToggleEntityDescription

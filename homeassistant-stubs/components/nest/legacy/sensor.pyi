@@ -2,7 +2,7 @@ from . import NestSensorDevice as NestSensorDevice
 from .const import DATA_NEST as DATA_NEST, DATA_NEST_CONFIG as DATA_NEST_CONFIG
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
-from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, CONF_SENSORS as CONF_SENSORS, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, CONF_SENSORS as CONF_SENSORS, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 
 SENSOR_TYPES: Incomplete
 TEMP_SENSOR_TYPES: Incomplete

@@ -1,11 +1,10 @@
 from . import models as models
-from .base_scanner import BaseHaScanner as BaseHaScanner
-from .manager import BluetoothManager as BluetoothManager
+from .models import HaBluetoothConnector as HaBluetoothConnector
 from _typeshed import Incomplete
 from bleak import BleakClient
 from bleak.backends.client import BaseBleakClient as BaseBleakClient
 from bleak.backends.device import BLEDevice
-from bleak.backends.scanner import AdvertisementData as AdvertisementData, AdvertisementDataCallback as AdvertisementDataCallback, BaseBleakScanner
+from bleak.backends.scanner import AdvertisementDataCallback as AdvertisementDataCallback, BaseBleakScanner
 from collections.abc import Callable as Callable
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
 from homeassistant.helpers.frame import report as report
@@ -16,10 +15,8 @@ _LOGGER: Incomplete
 
 class _HaWrappedBleakBackend:
     device: BLEDevice
-    scanner: BaseHaScanner
     client: type[BaseBleakClient]
-    source: Union[str, None]
-    def __init__(self, device, scanner, client, source) -> None: ...
+    def __init__(self, device, client) -> None: ...
 
 class HaBleakScannerWrapper(BaseBleakScanner):
     _detection_cancel: Incomplete
@@ -39,13 +36,10 @@ class HaBleakScannerWrapper(BaseBleakScanner):
     def _setup_detection_callback(self) -> None: ...
     def __del__(self) -> None: ...
 
-def _rssi_sorter_with_connection_failure_penalty(scanner_device_advertisement_data: tuple[BaseHaScanner, BLEDevice, AdvertisementData], connection_failure_count: dict[BaseHaScanner, int], rssi_diff: int) -> float: ...
-
 class HaBleakClientWrapper(BleakClient):
     __address: Incomplete
     __disconnected_callback: Incomplete
     __timeout: Incomplete
-    __connect_failures: Incomplete
     _backend: Incomplete
     def __init__(self, address_or_ble_device: Union[str, BLEDevice], disconnected_callback: Union[Callable[[BleakClient], None], None] = ..., *args: Any, timeout: float = ..., **kwargs: Any) -> None: ...
     @property
@@ -53,6 +47,6 @@ class HaBleakClientWrapper(BleakClient):
     async def clear_cache(self) -> bool: ...
     def set_disconnected_callback(self, callback: Union[Callable[[BleakClient], None], None], **kwargs: Any) -> None: ...
     async def connect(self, **kwargs: Any) -> bool: ...
-    def _async_get_backend_for_ble_device(self, manager: BluetoothManager, scanner: BaseHaScanner, ble_device: BLEDevice) -> Union[_HaWrappedBleakBackend, None]: ...
-    def _async_get_best_available_backend_and_device(self, manager: BluetoothManager) -> _HaWrappedBleakBackend: ...
+    def _async_get_backend_for_ble_device(self, ble_device: BLEDevice) -> Union[_HaWrappedBleakBackend, None]: ...
+    def _async_get_best_available_backend_and_device(self) -> _HaWrappedBleakBackend: ...
     async def disconnect(self) -> bool: ...

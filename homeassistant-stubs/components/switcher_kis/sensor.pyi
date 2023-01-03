@@ -3,7 +3,7 @@ from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfPower as UnitOfPower
+from homeassistant.const import ELECTRIC_CURRENT_AMPERE as ELECTRIC_CURRENT_AMPERE, POWER_WATT as POWER_WATT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import device_registry as device_registry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect

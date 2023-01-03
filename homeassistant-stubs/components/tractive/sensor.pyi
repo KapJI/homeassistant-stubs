@@ -4,7 +4,7 @@ from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, PERCENTAGE as PERCENTAGE, TIME_MINUTES as TIME_MINUTES
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
@@ -16,7 +16,7 @@ class TractiveRequiredKeysMixin:
     def __init__(self, entity_class) -> None: ...
 
 class TractiveSensorEntityDescription(SensorEntityDescription, TractiveRequiredKeysMixin):
-    def __init__(self, entity_class, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options) -> None: ...
+    def __init__(self, entity_class, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
 
 class TractiveSensor(TractiveEntity, SensorEntity):
     _attr_has_entity_name: bool

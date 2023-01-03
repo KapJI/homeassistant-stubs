@@ -4,7 +4,7 @@ from . import disconnect_client as disconnect_client
 from .addon import get_addon_manager as get_addon_manager
 from .const import ADDON_SLUG as ADDON_SLUG, CONF_ADDON_DEVICE as CONF_ADDON_DEVICE, CONF_ADDON_EMULATE_HARDWARE as CONF_ADDON_EMULATE_HARDWARE, CONF_ADDON_LOG_LEVEL as CONF_ADDON_LOG_LEVEL, CONF_ADDON_NETWORK_KEY as CONF_ADDON_NETWORK_KEY, CONF_ADDON_S0_LEGACY_KEY as CONF_ADDON_S0_LEGACY_KEY, CONF_ADDON_S2_ACCESS_CONTROL_KEY as CONF_ADDON_S2_ACCESS_CONTROL_KEY, CONF_ADDON_S2_AUTHENTICATED_KEY as CONF_ADDON_S2_AUTHENTICATED_KEY, CONF_ADDON_S2_UNAUTHENTICATED_KEY as CONF_ADDON_S2_UNAUTHENTICATED_KEY, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_S0_LEGACY_KEY as CONF_S0_LEGACY_KEY, CONF_S2_ACCESS_CONTROL_KEY as CONF_S2_ACCESS_CONTROL_KEY, CONF_S2_AUTHENTICATED_KEY as CONF_S2_AUTHENTICATED_KEY, CONF_S2_UNAUTHENTICATED_KEY as CONF_S2_UNAUTHENTICATED_KEY, CONF_USB_PATH as CONF_USB_PATH, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from homeassistant import config_entries as config_entries, exceptions as exceptions
 from homeassistant.components import usb as usb
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, HassioServiceInfo as HassioServiceInfo, is_hassio as is_hassio
@@ -35,7 +35,7 @@ async def async_get_version_info(hass: HomeAssistant, ws_address: str) -> Versio
 def get_usb_ports() -> dict[str, str]: ...
 async def async_get_usb_ports(hass: HomeAssistant) -> dict[str, str]: ...
 
-class BaseZwaveJSFlow(FlowHandler, ABC, metaclass=abc.ABCMeta):
+class BaseZwaveJSFlow(FlowHandler, metaclass=abc.ABCMeta):
     s0_legacy_key: Incomplete
     s2_access_control_key: Incomplete
     s2_authenticated_key: Incomplete

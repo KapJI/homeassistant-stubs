@@ -7,27 +7,26 @@ from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from synology_dsm.api.surveillance_station.camera import SynoCamera
-from typing import Any, TypeVar
+from synology_dsm.api.surveillance_station.camera import SynoCamera as SynoCamera
+from typing import Any
 
 _LOGGER: Incomplete
-_DataT = TypeVar('_DataT')
 
-class SynologyDSMUpdateCoordinator(DataUpdateCoordinator[_DataT]):
+class SynologyDSMUpdateCoordinator(DataUpdateCoordinator):
     api: Incomplete
     entry: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: SynoApi, update_interval: timedelta) -> None: ...
 
-class SynologyDSMSwitchUpdateCoordinator(SynologyDSMUpdateCoordinator[dict[str, dict[str, Any]]]):
+class SynologyDSMSwitchUpdateCoordinator(SynologyDSMUpdateCoordinator):
     version: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: SynoApi) -> None: ...
     async def async_setup(self) -> None: ...
     async def _async_update_data(self) -> dict[str, dict[str, Any]]: ...
 
-class SynologyDSMCentralUpdateCoordinator(SynologyDSMUpdateCoordinator[None]):
+class SynologyDSMCentralUpdateCoordinator(SynologyDSMUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: SynoApi) -> None: ...
     async def _async_update_data(self) -> None: ...
 
-class SynologyDSMCameraUpdateCoordinator(SynologyDSMUpdateCoordinator[dict[str, dict[str, SynoCamera]]]):
+class SynologyDSMCameraUpdateCoordinator(SynologyDSMUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: SynoApi) -> None: ...
     async def _async_update_data(self) -> dict[str, dict[str, SynoCamera]]: ...

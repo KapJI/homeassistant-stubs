@@ -4,7 +4,7 @@ from .device_trigger import CONF_BOTH_BUTTONS as CONF_BOTH_BUTTONS, CONF_BOTTOM_
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.logbook import LOGBOOK_ENTRY_MESSAGE as LOGBOOK_ENTRY_MESSAGE, LOGBOOK_ENTRY_NAME as LOGBOOK_ENTRY_NAME
-from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_EVENT as CONF_EVENT, CONF_ID as CONF_ID
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_EVENT as CONF_EVENT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 
 ACTIONS: Incomplete

@@ -2,7 +2,7 @@ from . import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinat
 from .const import DOMAIN as DOMAIN
 from .entity import UptimeRobotEntity as UptimeRobotEntity
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory

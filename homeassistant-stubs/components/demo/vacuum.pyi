@@ -26,7 +26,6 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class DemoVacuum(VacuumEntity):
     _attr_should_poll: bool
-    _attr_translation_key: str
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _state: bool
@@ -60,7 +59,6 @@ class DemoVacuum(VacuumEntity):
 class StateDemoVacuum(StateVacuumEntity):
     _attr_should_poll: bool
     _attr_supported_features: Incomplete
-    _attr_translation_key: str
     _attr_name: Incomplete
     _state: Incomplete
     _fan_speed: Incomplete

@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from dsmr_parser.objects import DSMRObject as DSMRObject
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, UnitOfVolume as UnitOfVolume
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, VOLUME_CUBIC_METERS as VOLUME_CUBIC_METERS
 from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -19,7 +19,7 @@ class DSMRSensorEntityDescriptionMixin:
 class DSMRSensorEntityDescription(SensorEntityDescription, DSMRSensorEntityDescriptionMixin):
     dsmr_versions: Union[set[str], None]
     is_gas: bool
-    def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options, dsmr_versions, is_gas) -> None: ...
+    def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, dsmr_versions, is_gas) -> None: ...
 
 SENSORS: tuple[DSMRSensorEntityDescription, ...]
 
@@ -34,10 +34,8 @@ class DSMREntity(SensorEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, entity_description: DSMRSensorEntityDescription, entry: ConfigEntry) -> None: ...
-    def update_data(self, telegram: Union[dict[str, DSMRObject], None]) -> None: ...
+    def update_data(self, telegram: dict[str, DSMRObject]) -> None: ...
     def get_dsmr_object_attr(self, attribute: str) -> Union[str, None]: ...
-    @property
-    def available(self) -> bool: ...
     @property
     def native_value(self) -> StateType: ...
     @property

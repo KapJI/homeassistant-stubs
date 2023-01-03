@@ -1,7 +1,7 @@
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
-from homeassistant.const import UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS
 
 PRESET_COMFORT1: str
 PRESET_COMFORT2: str

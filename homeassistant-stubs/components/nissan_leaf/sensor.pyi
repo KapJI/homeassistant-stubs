@@ -2,7 +2,7 @@ from . import LeafDataStore as LeafDataStore, LeafEntity as LeafEntity
 from .const import DATA_BATTERY as DATA_BATTERY, DATA_CHARGING as DATA_CHARGING, DATA_LEAF as DATA_LEAF, DATA_RANGE_AC as DATA_RANGE_AC, DATA_RANGE_AC_OFF as DATA_RANGE_AC_OFF
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOfLength
+from homeassistant.const import LENGTH_KILOMETERS as LENGTH_KILOMETERS, LENGTH_MILES as LENGTH_MILES, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level

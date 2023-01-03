@@ -7,7 +7,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pytautulli import PyTautulli as PyTautulli, PyTautulliApiActivity as PyTautulliApiActivity, PyTautulliApiHomeStats as PyTautulliApiHomeStats, PyTautulliApiUser as PyTautulliApiUser
 from pytautulli.models.host_configuration import PyTautulliHostConfiguration as PyTautulliHostConfiguration
 
-class TautulliDataUpdateCoordinator(DataUpdateCoordinator[None]):
+class TautulliDataUpdateCoordinator(DataUpdateCoordinator):
     config_entry: ConfigEntry
     host_configuration: Incomplete
     api_client: Incomplete

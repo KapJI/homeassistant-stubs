@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, CONF_EXCLUDE as CONF_EXCLUDE, CONF_HOST as CONF_HOST, CONF_INCLUDE as CONF_INCLUDE, CONF_PASSWORD as CONF_PASSWORD, CONF_PREFIX as CONF_PREFIX, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_USERNAME as CONF_USERNAME, CONF_ZONE as CONF_ZONE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, CONF_EXCLUDE as CONF_EXCLUDE, CONF_HOST as CONF_HOST, CONF_INCLUDE as CONF_INCLUDE, CONF_PASSWORD as CONF_PASSWORD, CONF_PREFIX as CONF_PREFIX, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_USERNAME as CONF_USERNAME, CONF_ZONE as CONF_ZONE, Platform as Platform, TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC

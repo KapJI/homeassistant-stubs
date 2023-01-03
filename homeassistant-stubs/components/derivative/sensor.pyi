@@ -4,7 +4,7 @@ from datetime import timedelta
 from decimal import Decimal
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTime as UnitOfTime
+from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, TIME_DAYS as TIME_DAYS, TIME_HOURS as TIME_HOURS, TIME_MINUTES as TIME_MINUTES, TIME_SECONDS as TIME_SECONDS
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
@@ -37,7 +37,7 @@ class DerivativeSensor(RestoreEntity, SensorEntity):
     _unit_prefix: Incomplete
     _unit_time: Incomplete
     _time_window: Incomplete
-    def __init__(self, *, name: Union[str, None], round_digits: int, source_entity: str, time_window: timedelta, unit_of_measurement: Union[str, None], unit_prefix: Union[str, None], unit_time: UnitOfTime, unique_id: Union[str, None]) -> None: ...
+    def __init__(self, *, name: Union[str, None], round_digits: int, source_entity: str, time_window: timedelta, unit_of_measurement: Union[str, None], unit_prefix: Union[str, None], unit_time: str, unique_id: Union[str, None]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def native_value(self) -> Union[float, int, Decimal]: ...

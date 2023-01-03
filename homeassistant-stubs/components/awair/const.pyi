@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SOUND_PRESSURE_WEIGHTED_DBA as SOUND_PRESSURE_WEIGHTED_DBA, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfTemperature as UnitOfTemperature
 from python_awair.air_data import AirData as AirData
 from python_awair.devices import AwairBaseDevice as AwairBaseDevice
 
@@ -27,7 +27,7 @@ class AwairRequiredKeysMixin:
     def __init__(self, unique_id_tag) -> None: ...
 
 class AwairSensorEntityDescription(SensorEntityDescription, AwairRequiredKeysMixin):
-    def __init__(self, unique_id_tag, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, unique_id_tag, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options) -> None: ...
 
 SENSOR_TYPE_SCORE: Incomplete
 SENSOR_TYPES: tuple[AwairSensorEntityDescription, ...]

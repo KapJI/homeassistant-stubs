@@ -4,7 +4,7 @@ from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordina
 from .models import LookinData as LookinData
 from _typeshed import Incomplete
 from abc import abstractmethod
-from aiolookin import Climate as Climate, Remote
+from aiolookin import Climate as Climate, MeteoSensor, Remote
 from aiolookin.models import Device as Device, UDPEvent as UDPEvent
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -20,7 +20,7 @@ class LookinDeviceMixIn:
     _lookin_udp_subs: Incomplete
     def _set_lookin_device_attrs(self, lookin_data: LookinData) -> None: ...
 
-class LookinDeviceCoordinatorEntity(LookinDeviceMixIn, CoordinatorEntity[LookinDataUpdateCoordinator]):
+class LookinDeviceCoordinatorEntity(LookinDeviceMixIn, CoordinatorEntity[LookinDataUpdateCoordinator[MeteoSensor]]):
     _attr_should_poll: bool
     _attr_device_info: Incomplete
     def __init__(self, lookin_data: LookinData) -> None: ...
@@ -32,23 +32,23 @@ class LookinEntityMixIn:
     _function_names: Incomplete
     def _set_lookin_entity_attrs(self, uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
 
-class LookinCoordinatorEntity(LookinDeviceMixIn, LookinEntityMixIn, CoordinatorEntity[LookinDataUpdateCoordinator]):
+class LookinCoordinatorEntity(LookinDeviceMixIn, LookinEntityMixIn, CoordinatorEntity[LookinDataUpdateCoordinator[Remote]]):
     _attr_should_poll: bool
     _attr_assumed_state: bool
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
-    def __init__(self, coordinator: LookinDataUpdateCoordinator, uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
-    async def _async_send_command(self, command: str) -> None: ...
+    def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
+    async def _async_send_command(self, command: str, signal: str = ...) -> None: ...
 
 class LookinPowerEntity(LookinCoordinatorEntity):
     _power_on_command: Incomplete
     _power_off_command: Incomplete
-    def __init__(self, coordinator: LookinDataUpdateCoordinator, uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
+    def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
 
 class LookinPowerPushRemoteEntity(LookinPowerEntity, metaclass=abc.ABCMeta):
     _attr_name: Incomplete
-    def __init__(self, coordinator: LookinDataUpdateCoordinator, uuid: str, device: Remote, lookin_data: LookinData) -> None: ...
+    def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Remote, lookin_data: LookinData) -> None: ...
     @property
     def _remote(self) -> Remote: ...
     @abstractmethod

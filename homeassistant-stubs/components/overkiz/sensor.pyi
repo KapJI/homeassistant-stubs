@@ -1,12 +1,12 @@
 from . import HomeAssistantOverkizData as HomeAssistantOverkizData
 from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES, OVERKIZ_STATE_TO_TRANSLATION as OVERKIZ_STATE_TO_TRANSLATION
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
-from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity, OverkizDeviceClass as OverkizDeviceClass, OverkizEntity as OverkizEntity
+from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity, OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, ENERGY_WATT_HOUR as ENERGY_WATT_HOUR, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, POWER_WATT as POWER_WATT, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, TEMP_CELSIUS as TEMP_CELSIUS, TIME_SECONDS as TIME_SECONDS, VOLUME_FLOW_RATE_CUBIC_METERS_PER_HOUR as VOLUME_FLOW_RATE_CUBIC_METERS_PER_HOUR, VOLUME_LITERS as VOLUME_LITERS
+from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,7 +15,7 @@ from pyoverkiz.types import StateType as OverkizStateType
 
 class OverkizSensorDescription(SensorEntityDescription):
     native_value: Union[Callable[[OverkizStateType], StateType], None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, native_value) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options, native_value) -> None: ...
 
 SENSOR_DESCRIPTIONS: list[OverkizSensorDescription]
 SUPPORTED_STATES: Incomplete

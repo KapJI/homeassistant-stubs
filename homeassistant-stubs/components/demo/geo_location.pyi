@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.components.geo_location import GeolocationEvent as GeolocationEvent
-from homeassistant.const import LENGTH_KILOMETERS as LENGTH_KILOMETERS
+from homeassistant.const import UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import track_time_interval as track_time_interval

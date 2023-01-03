@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, LENGTH_FEET as LENGTH_FEET, MASS_KILOGRAMS as MASS_KILOGRAMS, MASS_MILLIGRAMS as MASS_MILLIGRAMS, PERCENTAGE as PERCENTAGE, TIME_MILLISECONDS as TIME_MILLISECONDS, TIME_MINUTES as TIME_MINUTES
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 from typing import Final
 
 ATTR_ACCESS_TOKEN: Final[str]
@@ -25,12 +25,9 @@ FITBIT_DEFAULT_RESOURCES: Final[list[str]]
 DEFAULT_CONFIG: Final[dict[str, str]]
 DEFAULT_CLOCK_FORMAT: Final[str]
 
-class FitbitRequiredKeysMixin:
+class FitbitSensorEntityDescription(SensorEntityDescription):
     unit_type: Union[str, None]
-    def __init__(self, unit_type) -> None: ...
-
-class FitbitSensorEntityDescription(SensorEntityDescription, FitbitRequiredKeysMixin):
-    def __init__(self, unit_type, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options, unit_type) -> None: ...
 
 FITBIT_RESOURCES_LIST: Final[tuple[FitbitSensorEntityDescription, ...]]
 FITBIT_RESOURCE_BATTERY: Incomplete

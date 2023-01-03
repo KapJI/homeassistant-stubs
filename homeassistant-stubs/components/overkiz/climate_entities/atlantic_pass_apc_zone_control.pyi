@@ -1,7 +1,7 @@
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, HVACMode as HVACMode
-from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 
 OVERKIZ_TO_HVAC_MODE: dict[str, str]
 HVAC_MODE_TO_OVERKIZ: Incomplete

@@ -5,7 +5,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as A
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import make_entity_service_schema as make_entity_service_schema
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
@@ -47,13 +47,24 @@ class FaceInformation(TypedDict):
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
+class ImageProcessingEntityDescription(EntityDescription):
+    device_class: Union[ImageProcessingDeviceClass, None]
+    camera_entity: Union[str, None]
+    confidence: Union[float, None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, camera_entity, confidence) -> None: ...
+
 class ImageProcessingEntity(Entity):
-    _attr_device_class: Union[ImageProcessingDeviceClass, str, None]
+    entity_description: ImageProcessingEntityDescription
+    _attr_device_class: Union[ImageProcessingDeviceClass, None]
+    _attr_camera_entity: Union[str, None]
+    _attr_confidence: Union[float, None]
     timeout: Incomplete
     @property
     def camera_entity(self) -> Union[str, None]: ...
     @property
     def confidence(self) -> Union[float, None]: ...
+    @property
+    def device_class(self) -> Union[ImageProcessingDeviceClass, None]: ...
     def process_image(self, image: bytes) -> None: ...
     async def async_process_image(self, image: bytes) -> None: ...
     async def async_update(self) -> None: ...

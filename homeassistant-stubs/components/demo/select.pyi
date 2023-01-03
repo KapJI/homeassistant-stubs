@@ -17,8 +17,8 @@ class DemoSelect(SelectEntity):
     _attr_name: Incomplete
     _attr_current_option: Incomplete
     _attr_icon: Incomplete
-    _attr_device_class: Incomplete
     _attr_options: Incomplete
+    _attr_translation_key: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, name: str, icon: str, device_class: Union[str, None], current_option: Union[str, None], options: list[str]) -> None: ...
+    def __init__(self, unique_id: str, name: str, icon: str, current_option: Union[str, None], options: list[str], translation_key: str) -> None: ...
     async def async_select_option(self, option: str) -> None: ...

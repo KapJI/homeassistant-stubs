@@ -6,7 +6,7 @@ from datetime import datetime
 from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DATA_GIGABYTES as DATA_GIGABYTES, DATA_RATE_KILOBITS_PER_SECOND as DATA_RATE_KILOBITS_PER_SECOND, DATA_RATE_KILOBYTES_PER_SECOND as DATA_RATE_KILOBYTES_PER_SECOND, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS
+from homeassistant.const import SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -39,7 +39,7 @@ class FritzRequireKeysMixin:
 
 class FritzSensorEntityDescription(SensorEntityDescription, FritzRequireKeysMixin):
     is_suitable: Callable[[ConnectionInfo], bool]
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, is_suitable) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options, is_suitable) -> None: ...
 
 SENSOR_TYPES: tuple[FritzSensorEntityDescription, ...]
 

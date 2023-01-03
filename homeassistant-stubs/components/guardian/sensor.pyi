@@ -3,7 +3,7 @@ from .const import API_SYSTEM_DIAGNOSTICS as API_SYSTEM_DIAGNOSTICS, API_SYSTEM_
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT, TIME_MINUTES as TIME_MINUTES
+from homeassistant.const import UnitOfElectricPotential as UnitOfElectricPotential, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory as EntityCategory
@@ -14,7 +14,7 @@ SENSOR_KIND_TEMPERATURE: str
 SENSOR_KIND_UPTIME: str
 
 class ValveControllerSensorDescription(SensorEntityDescription, ValveControllerEntityDescription):
-    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class) -> None: ...
+    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options) -> None: ...
 
 PAIRED_SENSOR_DESCRIPTIONS: Incomplete
 VALVE_CONTROLLER_DESCRIPTIONS: Incomplete

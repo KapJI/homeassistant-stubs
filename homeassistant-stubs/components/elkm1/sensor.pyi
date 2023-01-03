@@ -10,7 +10,7 @@ from elkm1_lib.settings import Setting as Setting
 from elkm1_lib.zones import Zone as Zone
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ELECTRIC_POTENTIAL_VOLT as ELECTRIC_POTENTIAL_VOLT
+from homeassistant.const import UnitOfElectricPotential as UnitOfElectricPotential
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform

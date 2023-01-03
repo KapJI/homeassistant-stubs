@@ -1,5 +1,5 @@
 from aioairzone.common import TemperatureUnit
-from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS, TEMP_FAHRENHEIT as TEMP_FAHRENHEIT
+from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from typing import Final
 
 DOMAIN: Final[str]

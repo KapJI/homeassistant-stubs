@@ -13,7 +13,7 @@ class QswBinarySensorEntityDescription(BinarySensorEntityDescription, QswEntityD
     attributes: Union[dict[str, list[str]], None]
     qsw_type: Union[QswEntityType, None]
     sep_key: str
-    def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, attributes, qsw_type, sep_key) -> None: ...
+    def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, attributes, qsw_type, sep_key) -> None: ...
 
 BINARY_SENSOR_TYPES: Final[tuple[QswBinarySensorEntityDescription, ...]]
 LACP_PORT_BINARY_SENSOR_TYPES: Final[tuple[QswBinarySensorEntityDescription, ...]]

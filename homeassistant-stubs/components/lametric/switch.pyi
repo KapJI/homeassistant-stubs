@@ -19,7 +19,7 @@ class LaMetricEntityDescriptionMixin:
 
 class LaMetricSwitchEntityDescription(SwitchEntityDescription, LaMetricEntityDescriptionMixin):
     available_fn: Callable[[Device], bool]
-    def __init__(self, is_on_fn, set_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, available_fn) -> None: ...
+    def __init__(self, is_on_fn, set_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, available_fn) -> None: ...
 
 SWITCHES: Incomplete
 

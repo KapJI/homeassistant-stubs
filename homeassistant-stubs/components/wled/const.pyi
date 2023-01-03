@@ -1,5 +1,4 @@
 from _typeshed import Incomplete
-from typing import Final
 
 DOMAIN: str
 LOGGER: Incomplete
@@ -16,4 +15,3 @@ ATTR_SOFTWARE_VERSION: str
 ATTR_SPEED: str
 ATTR_TARGET_BRIGHTNESS: str
 ATTR_UDP_PORT: str
-DEVICE_CLASS_WLED_LIVE_OVERRIDE: Final[str]

@@ -40,7 +40,6 @@ class DiffuserBatterySensor(DiffuserEntity, SensorEntity):
     def native_value(self) -> int: ...
 
 class DiffuserWifiSensor(DiffuserEntity, SensorEntity):
-    _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_entity_category: Incomplete
     def __init__(self, diffuser: Diffuser, coordinator: RitualsDataUpdateCoordinator) -> None: ...

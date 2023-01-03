@@ -2,26 +2,28 @@ from .const import CONF_CITY as CONF_CITY, CONF_COUNTRY as CONF_COUNTRY, CONF_GE
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from datetime import timedelta
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_PASSWORD as CONF_PASSWORD, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, CONF_STATE as CONF_STATE, Platform as Platform
+from homeassistant.components import automation as automation
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, CONF_STATE as CONF_STATE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
-from homeassistant.helpers import aiohttp_client as aiohttp_client, entity_registry as entity_registry
+from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
+DOMAIN_AIRVISUAL_PRO: str
 PLATFORMS: Incomplete
 DEFAULT_ATTRIBUTION: str
 DEFAULT_NODE_PRO_UPDATE_INTERVAL: Incomplete
 CONFIG_SCHEMA: Incomplete
 
-def async_get_geography_id(geography_dict: Mapping[str, Any]) -> str: ...
 def async_get_cloud_api_update_interval(hass: HomeAssistant, api_key: str, num_consumers: int) -> timedelta: ...
 def async_get_cloud_coordinators_by_api_key(hass: HomeAssistant, api_key: str) -> list[DataUpdateCoordinator]: ...
+def async_get_geography_id(geography_dict: Mapping[str, Any]) -> str: ...
 def async_sync_geo_coordinator_update_intervals(hass: HomeAssistant, api_key: str) -> None: ...
 def _standardize_geography_config_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-def _standardize_node_pro_config_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

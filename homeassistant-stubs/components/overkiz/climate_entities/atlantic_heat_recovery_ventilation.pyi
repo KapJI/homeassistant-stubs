@@ -2,7 +2,7 @@ from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoord
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, HVACMode as HVACMode
-from homeassistant.const import TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 
 FAN_BOOST: str
 FAN_KITCHEN: str

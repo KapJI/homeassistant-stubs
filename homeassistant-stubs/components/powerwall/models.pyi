@@ -22,7 +22,7 @@ class PowerwallData:
     def __init__(self, charge, site_master, meters, grid_services_active, grid_status, backup_reserve) -> None: ...
 
 class PowerwallRuntimeData(TypedDict):
-    coordinator: Union[DataUpdateCoordinator, None]
+    coordinator: Union[DataUpdateCoordinator[PowerwallData], None]
     base_info: PowerwallBaseInfo
     api_changed: bool
     http_session: Session

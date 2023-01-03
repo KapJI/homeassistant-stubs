@@ -2,7 +2,7 @@ from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoord
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from typing import Any
 
 PRESET_AUTO: str
@@ -10,6 +10,7 @@ PRESET_COMFORT1: str
 PRESET_COMFORT2: str
 PRESET_FROST_PROTECTION: str
 PRESET_PROG: str
+PRESET_EXTERNAL: str
 OVERKIZ_TO_PRESET_MODE: dict[str, str]
 PRESET_MODE_TO_OVERKIZ: Incomplete
 OVERKIZ_TO_HVAC_MODE: dict[str, str]

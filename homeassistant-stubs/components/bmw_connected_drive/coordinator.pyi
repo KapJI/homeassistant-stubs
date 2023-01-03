@@ -10,7 +10,7 @@ DEFAULT_SCAN_INTERVAL_SECONDS: int
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 
-class BMWDataUpdateCoordinator(DataUpdateCoordinator):
+class BMWDataUpdateCoordinator(DataUpdateCoordinator[None]):
     account: MyBMWAccount
     read_only: Incomplete
     _entry: Incomplete

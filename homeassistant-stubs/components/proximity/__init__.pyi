@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_DEVICES as CONF_DEVICES, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_ZONE as CONF_ZONE, LENGTH_FEET as LENGTH_FEET, LENGTH_KILOMETERS as LENGTH_KILOMETERS, LENGTH_METERS as LENGTH_METERS, LENGTH_MILES as LENGTH_MILES, LENGTH_YARD as LENGTH_YARD
+from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_DEVICES as CONF_DEVICES, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_ZONE as CONF_ZONE, UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import track_state_change as track_state_change

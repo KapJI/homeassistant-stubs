@@ -32,7 +32,7 @@ class BlockEntityDescription(EntityDescription):
     available: Union[Callable[[Block], bool], None]
     removal_condition: Union[Callable[[dict, Block], bool], None]
     extra_state_attributes: Union[Callable[[Block], Union[dict, None]], None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
 class RpcEntityRequiredKeysMixin:
     sub_key: str
@@ -45,12 +45,12 @@ class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     extra_state_attributes: Union[Callable[[dict, dict], Union[dict, None]], None]
     use_polling_coordinator: bool
     supported: Callable
-    def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
+    def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
 class RestEntityDescription(EntityDescription):
     value: Union[Callable[[dict, Any], Any], None]
     extra_state_attributes: Union[Callable[[dict], Union[dict, None]], None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement, value, extra_state_attributes) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
 
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     block: Incomplete
@@ -114,6 +114,8 @@ class ShellyRpcAttributeEntity(ShellyRpcEntity, entity.Entity):
     _attr_name: Incomplete
     _last_value: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
+    @property
+    def sub_status(self) -> Any: ...
     @property
     def attribute_value(self) -> StateType: ...
     @property

@@ -71,15 +71,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class MediaPlayerEntityDescription(EntityDescription):
-    device_class: Union[MediaPlayerDeviceClass, str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+    device_class: Union[MediaPlayerDeviceClass, None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class MediaPlayerEntity(Entity):
     entity_description: MediaPlayerEntityDescription
     _access_token: Union[str, None]
     _attr_app_id: Union[str, None]
     _attr_app_name: Union[str, None]
-    _attr_device_class: Union[MediaPlayerDeviceClass, str, None]
+    _attr_device_class: Union[MediaPlayerDeviceClass, None]
     _attr_group_members: Union[list[str], None]
     _attr_is_volume_muted: Union[bool, None]
     _attr_media_album_artist: Union[str, None]
@@ -110,7 +110,7 @@ class MediaPlayerEntity(Entity):
     _attr_supported_features: MediaPlayerEntityFeature
     _attr_volume_level: Union[float, None]
     @property
-    def device_class(self) -> Union[MediaPlayerDeviceClass, str, None]: ...
+    def device_class(self) -> Union[MediaPlayerDeviceClass, None]: ...
     @property
     def state(self) -> Union[MediaPlayerState, None]: ...
     @property

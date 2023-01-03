@@ -12,7 +12,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 _LOGGER: Incomplete
-STORAGE_KEY = DOMAIN
+STORAGE_KEY: str
 STORAGE_VERSION: int
 VALID_SIZES: Incomplete
 MAX_SIZE: Incomplete

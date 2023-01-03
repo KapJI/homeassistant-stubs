@@ -1,5 +1,6 @@
 from . import SynoApi as SynoApi
 from .const import CONF_SNAPSHOT_QUALITY as CONF_SNAPSHOT_QUALITY, DEFAULT_SNAPSHOT_QUALITY as DEFAULT_SNAPSHOT_QUALITY, DOMAIN as DOMAIN, SIGNAL_CAMERA_SOURCE_CHANGED as SIGNAL_CAMERA_SOURCE_CHANGED
+from .coordinator import SynologyDSMCameraUpdateCoordinator as SynologyDSMCameraUpdateCoordinator
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
 from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
@@ -9,22 +10,20 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from synology_dsm.api.surveillance_station import SynoCamera as SynoCamera
 
 _LOGGER: Incomplete
 
 class SynologyDSMCameraEntityDescription(CameraEntityDescription, SynologyDSMEntityDescription):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, unit_of_measurement) -> None: ...
+    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SynoDSMCamera(SynologyDSMBaseEntity, Camera):
+class SynoDSMCamera(SynologyDSMBaseEntity[SynologyDSMCameraUpdateCoordinator], Camera):
     _attr_supported_features: Incomplete
-    coordinator: DataUpdateCoordinator[dict[str, dict[str, SynoCamera]]]
     entity_description: SynologyDSMCameraEntityDescription
     snapshot_quality: Incomplete
-    def __init__(self, api: SynoApi, coordinator: DataUpdateCoordinator[dict[str, dict[str, SynoCamera]]], camera_id: str) -> None: ...
+    def __init__(self, api: SynoApi, coordinator: SynologyDSMCameraUpdateCoordinator, camera_id: str) -> None: ...
     @property
     def camera_data(self) -> SynoCamera: ...
     @property

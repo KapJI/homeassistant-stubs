@@ -1,7 +1,7 @@
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_HEAT_PUMP as STATE_HEAT_PUMP, STATE_OFF as STATE_OFF, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, TEMP_CELSIUS as TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from typing import Any
 
 class AtlanticPassAPCDHW(OverkizEntity, WaterHeaterEntity):

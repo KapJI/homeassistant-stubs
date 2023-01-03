@@ -35,6 +35,7 @@ async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntiti
 class MqttBinarySensor(MqttEntity, BinarySensorEntity, RestoreEntity):
     _entity_id_format: Incomplete
     _expired: Union[bool, None]
+    _expire_after: Union[int, None]
     _expiration_trigger: Incomplete
     _delay_listener: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...

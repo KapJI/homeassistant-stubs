@@ -1,6 +1,6 @@
 from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from aioesphomeapi import CoverInfo, CoverState
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, DEVICE_CLASSES as DEVICE_CLASSES
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +12,7 @@ class EsphomeCover(EsphomeEntity[CoverInfo, CoverState], CoverEntity):
     @property
     def supported_features(self) -> CoverEntityFeature: ...
     @property
-    def device_class(self) -> Union[str, None]: ...
+    def device_class(self) -> Union[CoverDeviceClass, None]: ...
     @property
     def assumed_state(self) -> bool: ...
     @property

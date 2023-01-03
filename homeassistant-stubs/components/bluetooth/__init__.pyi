@@ -2,6 +2,5 @@ from .api import async_address_present as async_address_present, async_ble_devic
 from .base_scanner import BaseHaRemoteScanner as BaseHaRemoteScanner, BaseHaScanner as BaseHaScanner
 from .const import FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, SOURCE_LOCAL as SOURCE_LOCAL
 from .match import BluetoothCallbackMatcher as BluetoothCallbackMatcher
-from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode
-from .wrappers import HaBluetoothConnector as HaBluetoothConnector
+from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode, HaBluetoothConnector as HaBluetoothConnector
 from home_assistant_bluetooth import BluetoothServiceInfo as BluetoothServiceInfo, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak

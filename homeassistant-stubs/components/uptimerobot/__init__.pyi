@@ -7,16 +7,15 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pyuptimerobot import UptimeRobot, UptimeRobotMonitor as UptimeRobotMonitor
+from pyuptimerobot import UptimeRobot, UptimeRobotMonitor
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class UptimeRobotDataUpdateCoordinator(DataUpdateCoordinator):
-    data: list[UptimeRobotMonitor]
+class UptimeRobotDataUpdateCoordinator(DataUpdateCoordinator[list[UptimeRobotMonitor]]):
     config_entry: ConfigEntry
     _config_entry_id: Incomplete
     _device_registry: Incomplete
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry_id: str, dev_reg: dr.DeviceRegistry, api: UptimeRobot) -> None: ...
-    async def _async_update_data(self) -> Union[list[UptimeRobotMonitor], None]: ...
+    async def _async_update_data(self) -> list[UptimeRobotMonitor]: ...

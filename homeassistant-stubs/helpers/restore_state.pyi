@@ -6,7 +6,7 @@ from .json import JSONEncoder as JSONEncoder
 from .singleton import singleton as singleton
 from .storage import Store as Store
 from _typeshed import Incomplete
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from datetime import datetime
 from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
@@ -21,7 +21,7 @@ STATE_DUMP_INTERVAL: Incomplete
 STATE_EXPIRATION: Incomplete
 _StoredStateSelfT = TypeVar('_StoredStateSelfT', bound='StoredState')
 
-class ExtraStoredData(metaclass=abc.ABCMeta):
+class ExtraStoredData(ABC, metaclass=abc.ABCMeta):
     @abstractmethod
     def as_dict(self) -> dict[str, Any]: ...
 

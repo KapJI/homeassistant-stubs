@@ -8,7 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from surepy import SurepyEntity as SurepyEntity
+from surepy import SurepyEntity
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
@@ -19,7 +19,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class SurePetcareDataCoordinator(DataUpdateCoordinator):
+class SurePetcareDataCoordinator(DataUpdateCoordinator[dict[int, SurepyEntity]]):
     surepy: Incomplete
     lock_states_callbacks: Incomplete
     def __init__(self, entry: ConfigEntry, hass: HomeAssistant) -> None: ...

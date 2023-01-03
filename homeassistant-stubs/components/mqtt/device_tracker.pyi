@@ -1,7 +1,7 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from .debug_info import log_messages as log_messages
 from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
@@ -19,6 +19,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 CONF_PAYLOAD_HOME: str
 CONF_PAYLOAD_NOT_HOME: str
 CONF_SOURCE_TYPE: str
+DEFAULT_PAYLOAD_RESET: str
 DEFAULT_SOURCE_TYPE: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete

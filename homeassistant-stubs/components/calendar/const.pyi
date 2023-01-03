@@ -5,6 +5,7 @@ CONF_EVENT: str
 class CalendarEntityFeature(IntEnum):
     CREATE_EVENT: int
     DELETE_EVENT: int
+    UPDATE_EVENT: int
 
 EVENT_UID: str
 EVENT_START: str

@@ -2,17 +2,17 @@ from .const import ENTITY_DESC_KEY_BATTERY as ENTITY_DESC_KEY_BATTERY, ENTITY_DE
 from .helpers import ZwaveValueID as ZwaveValueID
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UV_INDEX as UV_INDEX, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from typing import Any
 from zwave_js_server.const.command_class.meter import MeterScaleType as MeterScaleType
 from zwave_js_server.const.command_class.multilevel_sensor import MultilevelSensorScaleType as MultilevelSensorScaleType, MultilevelSensorType
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import ConfigurationValue as ZwaveConfigurationValue, Value as ZwaveValue
 
-METER_DEVICE_CLASS_MAP: dict[str, set[MeterScaleType]]
-MULTILEVEL_SENSOR_DEVICE_CLASS_MAP: dict[str, set[MultilevelSensorType]]
-METER_UNIT_MAP: dict[str, set[MeterScaleType]]
-MULTILEVEL_SENSOR_UNIT_MAP: dict[str, set[MultilevelSensorScaleType]]
+METER_DEVICE_CLASS_MAP: dict[str, list[MeterScaleType]]
+MULTILEVEL_SENSOR_DEVICE_CLASS_MAP: dict[str, list[MultilevelSensorType]]
+METER_UNIT_MAP: dict[str, list[MeterScaleType]]
+MULTILEVEL_SENSOR_UNIT_MAP: dict[str, list[MultilevelSensorScaleType]]
 _LOGGER: Incomplete
 
 class BaseDiscoverySchemaDataTemplate:
@@ -40,7 +40,7 @@ class NumericSensorDataTemplateData:
 
 class NumericSensorDataTemplate(BaseDiscoverySchemaDataTemplate):
     @staticmethod
-    def find_key_from_matching_set(enum_value: Union[MultilevelSensorType, MultilevelSensorScaleType, MeterScaleType], set_map: Mapping[str, Union[set[MultilevelSensorType], set[MultilevelSensorScaleType], set[MeterScaleType]]]) -> Union[str, None]: ...
+    def find_key_from_matching_set(enum_value: Union[MultilevelSensorType, MultilevelSensorScaleType, MeterScaleType], set_map: Mapping[str, Union[list[MultilevelSensorType], list[MultilevelSensorScaleType], list[MeterScaleType]]]) -> Union[str, None]: ...
     def resolve_data(self, value: ZwaveValue) -> NumericSensorDataTemplateData: ...
 
 class TiltValueMix:

@@ -7,6 +7,7 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -19,8 +20,10 @@ from zwave_js_server.model.node import Node as ZwaveNode
 
 PARALLEL_UPDATES: int
 STATUS_ICON: dict[NodeStatus, str]
-ENTITY_DESCRIPTION_KEY_MAP: dict[str, SensorEntityDescription]
+ENTITY_DESCRIPTION_KEY_DEVICE_CLASS_MAP: dict[tuple[str, str], SensorEntityDescription]
+ENTITY_DESCRIPTION_KEY_MAP: Incomplete
 
+def get_entity_description(data: NumericSensorDataTemplateData) -> SensorEntityDescription: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveSensorBase(ZWaveBaseEntity, SensorEntity):
@@ -37,6 +40,7 @@ class ZWaveStringSensor(ZwaveSensorBase):
     def native_unit_of_measurement(self) -> Union[str, None]: ...
 
 class ZWaveNumericSensor(ZwaveSensorBase):
+    entity_description: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def on_value_update(self) -> None: ...
     @property

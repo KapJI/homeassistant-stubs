@@ -6,7 +6,7 @@ from .models import MqttCommandTemplate as MqttCommandTemplate
 from .util import valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from homeassistant.components import button as button
-from homeassistant.components.button import ButtonEntity as ButtonEntity
+from homeassistant.components.button import ButtonEntity as ButtonEntity, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant

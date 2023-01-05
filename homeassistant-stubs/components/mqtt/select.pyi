@@ -35,10 +35,10 @@ class MqttSelect(MqttEntity, SelectEntity, RestoreEntity):
     _command_template: Callable[[PublishPayloadType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     _optimistic: bool
+    _attr_current_option: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
-    _attr_current_option: Incomplete
     _attr_options: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _sub_state: Incomplete

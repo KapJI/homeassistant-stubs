@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_LAST_UPDATE_SENSOR_ADD as CONF_LAST_UPDATE_SENSOR_ADD, CONF_SENSOR_INDICES as CONF_SENSOR_INDICES, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_SENSOR_INDICES as CONF_SENSOR_INDICES, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from aiopurpleair import API
 from aiopurpleair.endpoints.sensors import NearbySensorResult as NearbySensorResult
@@ -7,9 +7,10 @@ from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.helpers import aiohttp_client as aiohttp_client, device_registry as dr
+from homeassistant.helpers import aiohttp_client as aiohttp_client
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from typing import Any
 
@@ -26,8 +27,6 @@ def async_get_nearby_sensors_options(nearby_sensor_results: list[NearbySensorRes
 def async_get_nearby_sensors_schema(options: list[SelectOptionDict]) -> vol.Schema: ...
 def async_get_remove_sensor_options(hass: HomeAssistant, config_entry: ConfigEntry) -> list[SelectOptionDict]: ...
 def async_get_remove_sensor_schema(sensors: list[SelectOptionDict]) -> vol.Schema: ...
-def async_get_sensor_index(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: dr.DeviceEntry) -> int: ...
-def async_remove_sensor_by_device_id(hass: HomeAssistant, config_entry: ConfigEntry, device_id: str, *, remove_device: bool = ...) -> dict[str, Any]: ...
 
 class ValidationResult:
     data: Any

@@ -1,6 +1,4 @@
-import homeassistant.helpers.device_registry as dr
-from .config_flow import async_remove_sensor_by_device_id as async_remove_sensor_by_device_id
-from .const import CONF_LAST_UPDATE_SENSOR_ADD as CONF_LAST_UPDATE_SENSOR_ADD, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .coordinator import PurpleAirDataUpdateCoordinator as PurpleAirDataUpdateCoordinator
 from _typeshed import Incomplete
 from aiopurpleair.models.sensors import SensorModel as SensorModel
@@ -14,7 +12,6 @@ PLATFORMS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_handle_entry_update(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class PurpleAirEntity(CoordinatorEntity[PurpleAirDataUpdateCoordinator]):

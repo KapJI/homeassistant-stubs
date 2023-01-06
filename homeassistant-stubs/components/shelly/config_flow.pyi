@@ -13,6 +13,7 @@ from typing import Any, Final
 
 HOST_SCHEMA: Final[Incomplete]
 BLE_SCANNER_OPTIONS: Incomplete
+INTERNAL_WIFI_AP_IP: str
 
 async def validate_input(hass: HomeAssistant, host: str, info: dict[str, Any], data: dict[str, Any]) -> dict[str, Any]: ...
 

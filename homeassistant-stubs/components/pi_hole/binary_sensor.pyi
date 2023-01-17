@@ -1,5 +1,5 @@
 from . import PiHoleEntity as PiHoleEntity
-from .const import BINARY_SENSOR_TYPES as BINARY_SENSOR_TYPES, BINARY_SENSOR_TYPES_STATISTICS_ONLY as BINARY_SENSOR_TYPES_STATISTICS_ONLY, CONF_STATISTICS_ONLY as CONF_STATISTICS_ONLY, DATA_KEY_API as DATA_KEY_API, DATA_KEY_COORDINATOR as DATA_KEY_COORDINATOR, PiHoleBinarySensorEntityDescription as PiHoleBinarySensorEntityDescription
+from .const import BINARY_SENSOR_TYPES as BINARY_SENSOR_TYPES, DATA_KEY_API as DATA_KEY_API, DATA_KEY_COORDINATOR as DATA_KEY_COORDINATOR, PiHoleBinarySensorEntityDescription as PiHoleBinarySensorEntityDescription
 from _typeshed import Incomplete
 from hole import Hole as Hole
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity

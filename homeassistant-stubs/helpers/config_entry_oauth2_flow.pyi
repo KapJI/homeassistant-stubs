@@ -21,6 +21,8 @@ AUTH_CALLBACK_PATH: str
 HEADER_FRONTEND_BASE: str
 MY_AUTH_CALLBACK_PATH: str
 CLOCK_OUT_OF_SYNC_MAX_SEC: int
+OAUTH_AUTHORIZE_URL_TIMEOUT_SEC: int
+OAUTH_TOKEN_TIMEOUT_SEC: int
 
 class AbstractOAuth2Implementation(ABC, metaclass=abc.ABCMeta):
     @property

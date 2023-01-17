@@ -36,4 +36,3 @@ class PiHoleBinarySensorEntityDescription(BinarySensorEntityDescription, Require
     def __init__(self, state_value, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, extra_value) -> None: ...
 
 BINARY_SENSOR_TYPES: tuple[PiHoleBinarySensorEntityDescription, ...]
-BINARY_SENSOR_TYPES_STATISTICS_ONLY: tuple[PiHoleBinarySensorEntityDescription, ...]

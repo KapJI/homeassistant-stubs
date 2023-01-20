@@ -1,5 +1,6 @@
 import abc
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, ID_TYPE_DEVICE_ID as ID_TYPE_DEVICE_ID
+from .helpers import get_device_id as get_device_id, get_operational_instance_id as get_operational_instance_id
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable
@@ -32,9 +33,8 @@ class MatterEntity(Entity, metaclass=abc.ABCMeta):
     _unsubscribes: Incomplete
     _attributes_map: Incomplete
     _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, matter_client: MatterClient, node_device: AbstractMatterNodeDevice, device_type_instance: MatterDeviceTypeInstance, entity_description: MatterEntityDescriptionBaseClass) -> None: ...
-    @property
-    def device_info(self) -> Union[DeviceInfo, None]: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     def _on_matter_event(self, event: EventType, data: Any = ...) -> None: ...

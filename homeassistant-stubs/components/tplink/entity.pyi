@@ -5,8 +5,7 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from kasa import SmartDevice as SmartDevice
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _T = TypeVar('_T', bound='CoordinatedTPLinkEntity')
 _P: Incomplete

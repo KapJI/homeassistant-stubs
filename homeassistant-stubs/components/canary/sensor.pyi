@@ -9,9 +9,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final, Optional
+from typing import Final
 
-SensorTypeItem = tuple[str, Optional[str], Optional[str], Optional[SensorDeviceClass], list[str]]
+SensorTypeItem: Incomplete
 SENSOR_VALUE_PRECISION: Final[int]
 ATTR_AIR_QUALITY: Final[str]
 CANARY_PRO: Final[str]

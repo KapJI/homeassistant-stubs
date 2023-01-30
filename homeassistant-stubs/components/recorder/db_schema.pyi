@@ -26,8 +26,8 @@ TABLE_STATISTICS_RUNS: str
 TABLE_STATISTICS_SHORT_TERM: str
 ALL_TABLES: Incomplete
 TABLES_TO_CHECK: Incomplete
-LAST_UPDATED_INDEX: str
-ENTITY_ID_LAST_UPDATED_INDEX: str
+LAST_UPDATED_INDEX_TS: str
+ENTITY_ID_LAST_UPDATED_INDEX_TS: str
 EVENTS_CONTEXT_ID_INDEX: str
 STATES_CONTEXT_ID_INDEX: str
 
@@ -38,6 +38,7 @@ JSON_VARIANT_CAST: Incomplete
 JSONB_VARIANT_CAST: Incomplete
 DATETIME_TYPE: Incomplete
 DOUBLE_TYPE: Incomplete
+TIMESTAMP_TYPE = DOUBLE_TYPE
 
 class JSONLiteral(JSON):
     def literal_processor(self, dialect: str) -> Callable[[Any], str]: ...
@@ -54,12 +55,15 @@ class Events(Base):
     origin: Incomplete
     origin_idx: Incomplete
     time_fired: Incomplete
+    time_fired_ts: Incomplete
     context_id: Incomplete
     context_user_id: Incomplete
     context_parent_id: Incomplete
     data_id: Incomplete
     event_data_rel: Incomplete
     def __repr__(self) -> str: ...
+    @property
+    def _time_fired_isotime(self) -> str: ...
     @staticmethod
     def from_event(event: Event) -> Events: ...
     def to_native(self, validate_entity_id: bool = ...) -> Union[Event, None]: ...
@@ -88,7 +92,9 @@ class States(Base):
     attributes: Incomplete
     event_id: Incomplete
     last_changed: Incomplete
+    last_changed_ts: Incomplete
     last_updated: Incomplete
+    last_updated_ts: Incomplete
     old_state_id: Incomplete
     attributes_id: Incomplete
     context_id: Incomplete
@@ -98,6 +104,8 @@ class States(Base):
     old_state: Incomplete
     state_attributes: Incomplete
     def __repr__(self) -> str: ...
+    @property
+    def _last_updated_isotime(self) -> str: ...
     @staticmethod
     def from_event(event: Event) -> States: ...
     def to_native(self, validate_entity_id: bool = ...) -> Union[State, None]: ...

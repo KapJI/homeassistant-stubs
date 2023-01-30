@@ -12,12 +12,11 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
-from typing import Optional
 
 MAX_CONCURRENCY: int
 WEMO_MODEL_DISPATCH: Incomplete
 _LOGGER: Incomplete
-HostPortTuple = tuple[str, Optional[int]]
+HostPortTuple: Incomplete
 
 def coerce_host_port(value: str) -> HostPortTuple: ...
 

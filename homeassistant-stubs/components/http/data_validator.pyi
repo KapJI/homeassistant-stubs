@@ -3,8 +3,7 @@ from .view import HomeAssistantView as HomeAssistantView
 from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Awaitable, Callable as Callable, Coroutine
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _HassViewT = TypeVar('_HassViewT', bound=HomeAssistantView)
 _P: Incomplete

@@ -1,6 +1,6 @@
 import voluptuous as vol
 from . import DeviceAutomationType as DeviceAutomationType, async_get_device_automation_platform as async_get_device_automation_platform
-from .exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
+from .helpers import async_validate_device_automation_config as async_validate_device_automation_config
 from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import condition as condition

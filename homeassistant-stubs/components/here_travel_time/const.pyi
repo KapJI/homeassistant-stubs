@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: str
 DEFAULT_SCAN_INTERVAL: int
@@ -32,10 +33,10 @@ ICON_PEDESTRIAN: str
 ICON_PUBLIC: str
 ICON_TRUCK: str
 ICONS: Incomplete
-ATTR_DURATION: str
-ATTR_DISTANCE: str
-ATTR_ORIGIN: str
-ATTR_DESTINATION: str
-ATTR_DURATION_IN_TRAFFIC: str
-ATTR_ORIGIN_NAME: str
-ATTR_DESTINATION_NAME: str
+ATTR_DURATION: Final[str]
+ATTR_DISTANCE: Final[str]
+ATTR_ORIGIN: Final[str]
+ATTR_DESTINATION: Final[str]
+ATTR_DURATION_IN_TRAFFIC: Final[str]
+ATTR_ORIGIN_NAME: Final[str]
+ATTR_DESTINATION_NAME: Final[str]

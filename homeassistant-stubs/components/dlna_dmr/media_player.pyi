@@ -13,8 +13,7 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_MAC as CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 PARALLEL_UPDATES: int
 _DlnaDmrEntityT = TypeVar('_DlnaDmrEntityT', bound='DlnaDmrEntity')

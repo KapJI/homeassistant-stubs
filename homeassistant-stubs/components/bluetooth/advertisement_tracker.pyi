@@ -4,6 +4,7 @@ from homeassistant.core import callback as callback
 from typing import Any
 
 ADVERTISING_TIMES_NEEDED: int
+TRACKER_BUFFERING_WOBBLE_SECONDS: int
 
 class AdvertisementTracker:
     intervals: Incomplete

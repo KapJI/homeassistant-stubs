@@ -17,10 +17,11 @@ class SensiboSelectDescriptionMixin:
     data_key: str
     value_fn: Callable[[SensiboDevice], Union[str, None]]
     options_fn: Callable[[SensiboDevice], Union[list[str], None]]
-    def __init__(self, data_key, value_fn, options_fn) -> None: ...
+    transformation: Callable[[SensiboDevice], Union[dict, None]]
+    def __init__(self, data_key, value_fn, options_fn, transformation) -> None: ...
 
 class SensiboSelectEntityDescription(SelectEntityDescription, SensiboSelectDescriptionMixin):
-    def __init__(self, data_key, value_fn, options_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    def __init__(self, data_key, value_fn, options_fn, transformation, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 
 DEVICE_SELECT_TYPES: Incomplete
 

@@ -9,10 +9,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import IntegrationError as IntegrationError
 from homeassistant.helpers import device_registry as device_registry
-from typing import Any, Optional
+from typing import Any
 
 LOGGER: Incomplete
-FlowInput = Optional[Mapping[str, Any]]
+FlowInput: Incomplete
 
 class ConnectError(IntegrationError): ...
 

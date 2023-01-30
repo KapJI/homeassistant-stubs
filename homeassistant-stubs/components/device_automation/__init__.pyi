@@ -14,10 +14,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from homeassistant.requirements import async_get_integration_with_requirements as async_get_integration_with_requirements
-from types import ModuleType
-from typing import Any, Literal, NamedTuple, Union, overload
+from typing import Any, Literal, NamedTuple, TypeAlias, overload
 
-DeviceAutomationPlatformType = Union[ModuleType, DeviceAutomationTriggerProtocol, DeviceAutomationConditionProtocol, DeviceAutomationActionProtocol]
+DeviceAutomationPlatformType: TypeAlias
 DOMAIN: str
 DEVICE_TRIGGER_BASE_SCHEMA: vol.Schema
 

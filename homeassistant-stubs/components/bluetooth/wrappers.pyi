@@ -1,11 +1,11 @@
 from . import models as models
-from .base_scanner import BaseHaScanner as BaseHaScanner
+from .base_scanner import BaseHaScanner as BaseHaScanner, BluetoothScannerDevice as BluetoothScannerDevice
 from .manager import BluetoothManager as BluetoothManager
 from _typeshed import Incomplete
 from bleak import BleakClient
 from bleak.backends.client import BaseBleakClient as BaseBleakClient
 from bleak.backends.device import BLEDevice
-from bleak.backends.scanner import AdvertisementData as AdvertisementData, AdvertisementDataCallback as AdvertisementDataCallback, BaseBleakScanner
+from bleak.backends.scanner import AdvertisementDataCallback as AdvertisementDataCallback, BaseBleakScanner
 from collections.abc import Callable as Callable
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
 from homeassistant.helpers.frame import report as report
@@ -39,7 +39,7 @@ class HaBleakScannerWrapper(BaseBleakScanner):
     def _setup_detection_callback(self) -> None: ...
     def __del__(self) -> None: ...
 
-def _rssi_sorter_with_connection_failure_penalty(scanner_device_advertisement_data: tuple[BaseHaScanner, BLEDevice, AdvertisementData], connection_failure_count: dict[BaseHaScanner, int], rssi_diff: int) -> float: ...
+def _rssi_sorter_with_connection_failure_penalty(device: BluetoothScannerDevice, connection_failure_count: dict[BaseHaScanner, int], rssi_diff: int) -> float: ...
 
 class HaBleakClientWrapper(BleakClient):
     __address: Incomplete

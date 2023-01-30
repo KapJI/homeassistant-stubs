@@ -10,6 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
 from typing import Any, Final, TypedDict
+from typing_extensions import Required
 
 _LOGGER: Incomplete
 ATTR_CONDITION_CLASS: str
@@ -71,7 +72,7 @@ def round_temperature(temperature: Union[float, None], precision: float) -> Unio
 
 class Forecast(TypedDict):
     condition: Union[str, None]
-    datetime: str
+    datetime: Required[str]
     precipitation_probability: Union[int, None]
     native_precipitation: Union[float, None]
     precipitation: None

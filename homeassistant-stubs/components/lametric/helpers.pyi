@@ -5,8 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _LaMetricEntityT = TypeVar('_LaMetricEntityT', bound=LaMetricEntity)
 _P: Incomplete

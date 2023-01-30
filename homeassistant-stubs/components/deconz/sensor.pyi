@@ -44,7 +44,7 @@ class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMi
     instance_check: Union[type[T], None]
     name_suffix: str
     old_unique_id_suffix: str
-    def __init__(self, supported_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
+    def __init__(self, supported_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_precision, native_unit_of_measurement, options, state_class, suggested_unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzSensorDescription, ...]
 

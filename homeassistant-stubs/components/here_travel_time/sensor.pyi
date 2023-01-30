@@ -18,7 +18,7 @@ SCAN_INTERVAL: Incomplete
 def sensor_descriptions(travel_mode: str) -> tuple[SensorEntityDescription, ...]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class HERETravelTimeSensor(CoordinatorEntity, RestoreSensor):
+class HERETravelTimeSensor(CoordinatorEntity[HERERoutingDataUpdateCoordinator | HERETransitDataUpdateCoordinator], RestoreSensor):
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

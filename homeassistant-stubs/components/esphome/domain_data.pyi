@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from bleak.backends.service import BleakGATTServiceCollection as BleakGATTServiceCollection
 from collections.abc import MutableMapping
@@ -8,7 +9,6 @@ from homeassistant.helpers.storage import Store as Store
 from typing import TypeVar
 
 STORAGE_VERSION: int
-DOMAIN: str
 MAX_CACHED_SERVICES: int
 _DomainDataSelfT = TypeVar('_DomainDataSelfT', bound='DomainData')
 

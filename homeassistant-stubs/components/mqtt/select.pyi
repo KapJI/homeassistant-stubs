@@ -20,7 +20,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 _LOGGER: Incomplete
 CONF_OPTIONS: str
 DEFAULT_NAME: str
-DEFAULT_OPTIMISTIC: bool
 MQTT_SELECT_ATTRIBUTES_BLOCKED: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
 PLATFORM_SCHEMA: Incomplete

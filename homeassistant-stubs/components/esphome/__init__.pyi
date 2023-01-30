@@ -1,10 +1,11 @@
 from .bluetooth import async_connect_scanner as async_connect_scanner
-from .domain_data import DOMAIN as DOMAIN, DomainData as DomainData
+from .const import DOMAIN as DOMAIN
+from .dashboard import async_get_dashboard as async_get_dashboard
+from .domain_data import DomainData as DomainData
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
 from collections.abc import Callable as Callable
-from homeassistant import const as const
 from homeassistant.components import tag as tag, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -21,6 +22,7 @@ from homeassistant.helpers.service import async_set_service_schema as async_set_
 from homeassistant.helpers.template import Template as Template
 from typing import Any, NamedTuple, TypeVar, overload
 
+CONF_DEVICE_NAME: str
 CONF_NOISE_PSK: str
 _LOGGER: Incomplete
 _R = TypeVar('_R')
@@ -30,6 +32,7 @@ PROJECT_URLS: Incomplete
 DEFAULT_URL: Incomplete
 
 def _async_check_firmware_version(hass: HomeAssistant, device_info: EsphomeDeviceInfo) -> None: ...
+def _async_check_using_api_password(hass: HomeAssistant, device_info: EsphomeDeviceInfo, has_password: bool) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 def _async_setup_device_registry(hass: HomeAssistant, entry: ConfigEntry, device_info: EsphomeDeviceInfo) -> str: ...
 
@@ -74,6 +77,7 @@ class EsphomeEntity(Entity):
     _component_key: Incomplete
     _key: Incomplete
     _state_type: Incomplete
+    _attr_has_entity_name: bool
     def __init__(self, entry_data: RuntimeEntryData, component_key: str, key: int, state_type: type[_StateT]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _on_state_update(self) -> None: ...

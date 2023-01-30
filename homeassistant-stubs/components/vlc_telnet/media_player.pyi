@@ -12,8 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 MAX_VOLUME: int
 _VlcDeviceT = TypeVar('_VlcDeviceT', bound='VlcDevice')

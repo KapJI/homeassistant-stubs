@@ -1,6 +1,6 @@
 from . import trigger as trigger
 from .const import DOMAIN as DOMAIN
-from .helpers import async_get_client_wrapper_by_device_entry as async_get_client_wrapper_by_device_entry, async_get_device_entry_by_device_id as async_get_device_entry_by_device_id
+from .helpers import async_get_client_by_device_entry as async_get_client_by_device_entry, async_get_device_entry_by_device_id as async_get_device_entry_by_device_id
 from .triggers.turn_on import async_get_turn_on_trigger as async_get_turn_on_trigger
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA

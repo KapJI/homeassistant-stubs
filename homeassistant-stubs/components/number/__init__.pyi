@@ -1,4 +1,4 @@
-from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE
+from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, NumberDeviceClass as NumberDeviceClass, SERVICE_SET_VALUE as SERVICE_SET_VALUE, UNIT_CONVERTERS as UNIT_CONVERTERS
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.backports.enum import StrEnum as StrEnum
@@ -10,66 +10,18 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, TemperatureConverter as TemperatureConverter
 from typing import Any, Final
 
 SCAN_INTERVAL: Incomplete
 ENTITY_ID_FORMAT: Incomplete
 MIN_TIME_BETWEEN_SCANS: Incomplete
 _LOGGER: Incomplete
-
-class NumberDeviceClass(StrEnum):
-    APPARENT_POWER: str
-    AQI: str
-    ATMOSPHERIC_PRESSURE: str
-    BATTERY: str
-    CO: str
-    CO2: str
-    CURRENT: str
-    DATA_RATE: str
-    DATA_SIZE: str
-    DISTANCE: str
-    ENERGY: str
-    FREQUENCY: str
-    GAS: str
-    HUMIDITY: str
-    ILLUMINANCE: str
-    IRRADIANCE: str
-    MOISTURE: str
-    MONETARY: str
-    NITROGEN_DIOXIDE: str
-    NITROGEN_MONOXIDE: str
-    NITROUS_OXIDE: str
-    OZONE: str
-    PM1: str
-    PM10: str
-    PM25: str
-    POWER_FACTOR: str
-    POWER: str
-    PRECIPITATION: str
-    PRECIPITATION_INTENSITY: str
-    PRESSURE: str
-    REACTIVE_POWER: str
-    SIGNAL_STRENGTH: str
-    SOUND_PRESSURE: str
-    SPEED: str
-    SULPHUR_DIOXIDE: str
-    TEMPERATURE: str
-    VOLATILE_ORGANIC_COMPOUNDS: str
-    VOLTAGE: str
-    VOLUME: str
-    WATER: str
-    WEIGHT: str
-    WIND_SPEED: str
-
 DEVICE_CLASSES_SCHEMA: Final[Incomplete]
 
 class NumberMode(StrEnum):
     AUTO: str
     BOX: str
     SLIDER: str
-
-UNIT_CONVERTERS: dict[str, type[BaseUnitConverter]]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_set_value(entity: NumberEntity, service_call: ServiceCall) -> None: ...

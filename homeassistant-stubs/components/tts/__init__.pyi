@@ -14,10 +14,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from homeassistant.util.network import normalize_url as normalize_url
 from homeassistant.util.yaml import load_yaml as load_yaml
-from typing import Any, Optional, TypedDict
+from typing import Any, TypedDict
 
 _LOGGER: Incomplete
-TtsAudioType = tuple[Optional[str], Optional[bytes]]
+TtsAudioType: Incomplete
 ATTR_CACHE: str
 ATTR_LANGUAGE: str
 ATTR_MESSAGE: str

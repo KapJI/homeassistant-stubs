@@ -1,12 +1,12 @@
 from . import AbodeAutomation as AbodeAutomation, AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from abodepy.devices.switch import AbodeSwitch as AbodeSW
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from jaraco.abode.devices.switch import Switch as AbodeSW
 from typing import Any
 
 DEVICE_TYPES: Incomplete

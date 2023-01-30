@@ -17,7 +17,6 @@ SERVICE_CHARGE_SET_SCHEDULES_SCHEMA: Incomplete
 SERVICE_AC_CANCEL: str
 SERVICE_AC_START: str
 SERVICE_CHARGE_SET_SCHEDULES: str
-SERVICE_CHARGE_START: str
 SERVICES: Incomplete
 
 def setup_services(hass: HomeAssistant) -> None: ...

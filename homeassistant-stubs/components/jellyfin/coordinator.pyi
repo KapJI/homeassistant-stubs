@@ -6,9 +6,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from jellyfin_apiclient_python import JellyfinClient as JellyfinClient
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
-JellyfinDataT = TypeVar('JellyfinDataT', bound=Union[dict[str, dict[str, Any]], dict[str, Any]])
+JellyfinDataT = TypeVar('JellyfinDataT', bound=dict[str, dict[str, Any]] | dict[str, Any])
 
 class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[JellyfinDataT], ABC, metaclass=abc.ABCMeta):
     config_entry: ConfigEntry

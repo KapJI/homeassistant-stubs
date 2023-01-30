@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 
 DOMAIN: str
-ATTR_UNIQUE_ID: str
+ATTR_CONFIG_ENTRY_ID: str
 CONF_MANUFACTURER: str
 CONF_TRACK_WIRED_CLIENTS: str
 CONF_UNAUTHENTICATED_MODE: str

@@ -2,7 +2,7 @@ from .const import ATTR_MESSAGE as ATTR_MESSAGE, CONTEXT_DOMAIN as CONTEXT_DOMAI
 from .helpers import is_sensor_continuous as is_sensor_continuous
 from .models import EventAsRow as EventAsRow, LazyEventPartialState as LazyEventPartialState, async_event_to_row as async_event_to_row
 from .queries import statement_for_request as statement_for_request
-from .queries.common import PSUEDO_EVENT_STATE_CHANGED as PSUEDO_EVENT_STATE_CHANGED
+from .queries.common import PSEUDO_EVENT_STATE_CHANGED as PSEUDO_EVENT_STATE_CHANGED
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator
 from datetime import datetime as dt

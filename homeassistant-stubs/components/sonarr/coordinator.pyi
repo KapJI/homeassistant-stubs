@@ -7,9 +7,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import TypeVar, Union
+from typing import TypeVar
 
-SonarrDataT = TypeVar('SonarrDataT', bound=Union[list[SonarrCalendar], list[Command], list[Diskspace], SonarrQueue, list[SonarrSeries], SystemStatus, SonarrWantedMissing])
+SonarrDataT = TypeVar('SonarrDataT', bound=list[SonarrCalendar] | list[Command] | list[Diskspace] | SonarrQueue | list[SonarrSeries] | SystemStatus | SonarrWantedMissing)
 
 class SonarrDataUpdateCoordinator(DataUpdateCoordinator[SonarrDataT]):
     config_entry: ConfigEntry

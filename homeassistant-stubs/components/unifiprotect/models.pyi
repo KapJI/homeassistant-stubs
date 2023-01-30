@@ -4,10 +4,10 @@ from collections.abc import Callable as Callable, Coroutine
 from enum import Enum
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from pyunifiprotect.data import Event, NVR, ProtectAdoptableDeviceModel
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 _LOGGER: Incomplete
-T = TypeVar('T', bound=Union[ProtectAdoptableDeviceModel, NVR])
+T = TypeVar('T', bound=ProtectAdoptableDeviceModel | NVR)
 
 class PermRequired(int, Enum):
     NO_WRITE: int

@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
-class GoalZeroDataUpdateCoordinator(DataUpdateCoordinator):
+class GoalZeroDataUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: ConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, api: Yeti) -> None: ...

@@ -15,7 +15,7 @@ from homeassistant.helpers import template as template
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, TemplateVarsType as TemplateVarsType
-from typing import Any, TypedDict, Union
+from typing import Any, TypedDict
 
 class PayloadSentinel(StrEnum):
     NONE: str
@@ -23,7 +23,7 @@ class PayloadSentinel(StrEnum):
 
 _LOGGER: Incomplete
 ATTR_THIS: str
-PublishPayloadType = Union[str, bytes, int, float, None]
+PublishPayloadType: Incomplete
 
 class PublishMessage:
     topic: str

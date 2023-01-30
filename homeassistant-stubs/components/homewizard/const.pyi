@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from homewizard_energy.models import Data, Device, State, System
-from typing import TypedDict
+from homewizard_energy.features import Features as Features
+from homewizard_energy.models import Data as Data, Device as Device, State as State, System as System
 
 DOMAIN: str
 PLATFORMS: Incomplete
@@ -14,8 +14,10 @@ CONF_PRODUCT_TYPE: str
 CONF_SERIAL: str
 UPDATE_INTERVAL: Incomplete
 
-class DeviceResponseEntry(TypedDict):
+class DeviceResponseEntry:
     device: Device
     data: Data
-    state: State
-    system: System
+    features: Features
+    state: Union[State, None]
+    system: Union[System, None]
+    def __init__(self, device, data, features, state, system) -> None: ...

@@ -1,4 +1,5 @@
 import asyncio
+from .dashboard import async_get_dashboard as async_get_dashboard
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, UserService
 from collections.abc import Callable as Callable
@@ -11,7 +12,7 @@ from typing import Any
 
 SAVE_DELAY: int
 _LOGGER: Incomplete
-INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], str]
+INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], Platform]
 
 class RuntimeEntryData:
     entry_id: str
@@ -27,7 +28,7 @@ class RuntimeEntryData:
     cleanup_callbacks: list[Callable[[], None]]
     disconnect_callbacks: list[Callable[[], None]]
     state_subscriptions: dict[tuple[type[EntityState], int], Callable[[], None]]
-    loaded_platforms: set[str]
+    loaded_platforms: set[Platform]
     platform_load_lock: asyncio.Lock
     _storage_contents: Union[dict[str, Any], None]
     ble_connections_free: int
@@ -35,10 +36,12 @@ class RuntimeEntryData:
     _ble_connection_free_futures: list[asyncio.Future[int]]
     @property
     def name(self) -> str: ...
+    @property
+    def friendly_name(self) -> str: ...
     def async_update_ble_connection_limits(self, free: int, limit: int) -> None: ...
     async def wait_for_ble_connections_free(self) -> int: ...
     def async_remove_entity(self, hass: HomeAssistant, component_key: str, key: int) -> None: ...
-    async def _ensure_platforms_loaded(self, hass: HomeAssistant, entry: ConfigEntry, platforms: set[str]) -> None: ...
+    async def _ensure_platforms_loaded(self, hass: HomeAssistant, entry: ConfigEntry, platforms: set[Platform]) -> None: ...
     async def async_update_static_infos(self, hass: HomeAssistant, entry: ConfigEntry, infos: list[EntityInfo]) -> None: ...
     def async_subscribe_state_update(self, state_type: type[EntityState], state_key: int, entity_callback: Callable[[], None]) -> Callable[[], None]: ...
     def async_update_state(self, state: EntityState) -> None: ...

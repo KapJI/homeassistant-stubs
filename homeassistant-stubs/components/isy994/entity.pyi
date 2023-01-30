@@ -1,36 +1,36 @@
-from . import _async_isy_to_configuration_url as _async_isy_to_configuration_url
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty
-from pyisy.nodes import Node as Node
+from pyisy.nodes import Group as Group, Node as Node, NodeChangedEvent as NodeChangedEvent
 from pyisy.programs import Program as Program
+from pyisy.variables import Variable as Variable
 from typing import Any
 
 class ISYEntity(Entity):
-    _name: Union[str, None]
+    _attr_has_entity_name: bool
     _attr_should_poll: bool
-    _node: Incomplete
+    _node: Union[Node, Program, Variable]
+    _attr_name: Incomplete
+    _attr_device_info: Incomplete
+    _attr_unique_id: Incomplete
     _attrs: Incomplete
     _change_handler: Incomplete
     _control_handler: Incomplete
-    def __init__(self, node: Node) -> None: ...
+    def __init__(self, node: Union[Node, Group, Variable, Program], device_info: Union[DeviceInfo, None] = ...) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def async_on_update(self, event: NodeProperty) -> None: ...
     def async_on_control(self, event: NodeProperty) -> None: ...
-    @property
-    def device_info(self) -> Union[DeviceInfo, None]: ...
-    @property
-    def unique_id(self) -> Union[str, None]: ...
-    @property
-    def old_unique_id(self) -> Union[str, None]: ...
-    @property
-    def name(self) -> str: ...
 
 class ISYNodeEntity(ISYEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
+    def __init__(self, node: Union[Node, Group, Variable, Program], device_info: Union[DeviceInfo, None] = ...) -> None: ...
+    @property
+    def available(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict: ...
     async def async_send_node_command(self, command: str) -> None: ...
@@ -40,8 +40,26 @@ class ISYNodeEntity(ISYEntity):
     async def async_rename_node(self, name: str) -> None: ...
 
 class ISYProgramEntity(ISYEntity):
-    _name: Incomplete
-    _actions: Incomplete
-    def __init__(self, name: str, status: Union[Any, None], actions: Program = ...) -> None: ...
+    _actions: Program
+    _status: Program
+    _attr_name: Incomplete
+    def __init__(self, name: str, status: Program, actions: Program = ...) -> None: ...
     @property
     def extra_state_attributes(self) -> dict: ...
+
+class ISYAuxControlEntity(Entity):
+    _attr_should_poll: bool
+    _node: Incomplete
+    _control: Incomplete
+    _attr_name: Incomplete
+    entity_description: Incomplete
+    _attr_has_entity_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    _change_handler: Incomplete
+    _availability_handler: Incomplete
+    def __init__(self, node: Node, control: str, unique_id: str, description: EntityDescription, device_info: Union[DeviceInfo, None]) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    def async_on_update(self, event: Union[NodeProperty, NodeChangedEvent], key: str) -> None: ...
+    @property
+    def available(self) -> bool: ...

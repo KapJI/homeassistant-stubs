@@ -1,6 +1,7 @@
-from .const import CONNECTED_STATIONS as CONNECTED_STATIONS, CONNECTED_WIFI_CLIENTS as CONNECTED_WIFI_CLIENTS, DOMAIN as DOMAIN, MAC_ADDRESS as MAC_ADDRESS, WIFI_APTYPE as WIFI_APTYPE, WIFI_BANDS as WIFI_BANDS
+from .const import CONNECTED_WIFI_CLIENTS as CONNECTED_WIFI_CLIENTS, DOMAIN as DOMAIN, WIFI_APTYPE as WIFI_APTYPE, WIFI_BANDS as WIFI_BANDS
 from _typeshed import Incomplete
 from devolo_plc_api.device import Device as Device
+from devolo_plc_api.device_api import ConnectedStationInfo
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_UNKNOWN as STATE_UNKNOWN, UnitOfFrequency as UnitOfFrequency
@@ -11,10 +12,10 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DevoloScannerEntity(CoordinatorEntity, ScannerEntity):
+class DevoloScannerEntity(CoordinatorEntity[DataUpdateCoordinator[list[ConnectedStationInfo]]], ScannerEntity):
     _device: Incomplete
     _mac: Incomplete
-    def __init__(self, coordinator: DataUpdateCoordinator, device: Device, mac: str) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator[list[ConnectedStationInfo]], device: Device, mac: str) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...
     @property

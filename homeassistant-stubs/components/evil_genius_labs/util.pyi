@@ -1,8 +1,7 @@
 from . import EvilGeniusEntity as EvilGeniusEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _EvilGeniusEntityT = TypeVar('_EvilGeniusEntityT', bound=EvilGeniusEntity)
 _R = TypeVar('_R')

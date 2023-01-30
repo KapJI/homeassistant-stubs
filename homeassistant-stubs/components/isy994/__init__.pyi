@@ -1,14 +1,18 @@
 import homeassistant.helpers.device_registry as dr
-from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_TLS_VER as CONF_TLS_VER, CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_RESTORE_LIGHT_STATE as DEFAULT_RESTORE_LIGHT_STATE, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, ISY994_ISY as ISY994_ISY, ISY994_NODES as ISY994_NODES, ISY994_PROGRAMS as ISY994_PROGRAMS, ISY994_VARIABLES as ISY994_VARIABLES, MANUFACTURER as MANUFACTURER, PLATFORMS as PLATFORMS, PROGRAM_PLATFORMS as PROGRAM_PLATFORMS, SENSOR_AUX as SENSOR_AUX, _LOGGER as _LOGGER
+from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_NETWORK as CONF_NETWORK, CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_TLS_VER as CONF_TLS_VER, CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_RESTORE_LIGHT_STATE as DEFAULT_RESTORE_LIGHT_STATE, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, ISY_CONF_FIRMWARE as ISY_CONF_FIRMWARE, ISY_CONF_MODEL as ISY_CONF_MODEL, ISY_CONF_NAME as ISY_CONF_NAME, ISY_CONF_NETWORKING as ISY_CONF_NETWORKING, MANUFACTURER as MANUFACTURER, PLATFORMS as PLATFORMS, SCHEME_HTTP as SCHEME_HTTP, SCHEME_HTTPS as SCHEME_HTTPS, _LOGGER as _LOGGER
 from .helpers import _categorize_nodes as _categorize_nodes, _categorize_programs as _categorize_programs, _categorize_variables as _categorize_variables
+from .models import IsyData as IsyData
 from .services import async_setup_services as async_setup_services, async_unload_services as async_unload_services
-from .util import unique_ids_for_config_entry_id as unique_ids_for_config_entry_id
+from .util import _async_cleanup_registry_entries as _async_cleanup_registry_entries
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, CONF_VARIABLES as CONF_VARIABLES, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from pyisy import ISY
 
@@ -19,7 +23,7 @@ def _async_find_matching_config_entry(hass: HomeAssistant) -> Union[config_entri
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry) -> bool: ...
 async def _async_update_listener(hass: HomeAssistant, entry: config_entries.ConfigEntry) -> None: ...
 def _async_import_options_from_data_if_missing(hass: HomeAssistant, entry: config_entries.ConfigEntry) -> None: ...
-def _async_isy_to_configuration_url(isy: ISY) -> str: ...
 def _async_get_or_create_isy_device_in_registry(hass: HomeAssistant, entry: config_entries.ConfigEntry, isy: ISY) -> None: ...
+def _create_service_device_info(isy: ISY, name: str, unique_id: str) -> DeviceInfo: ...
 async def async_unload_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry) -> bool: ...
 async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...

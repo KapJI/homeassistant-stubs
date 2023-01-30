@@ -1,13 +1,14 @@
-from .const import ATTRIBUTION as ATTRIBUTION, CONF_POLLING as CONF_POLLING, DEFAULT_CACHEDB as DEFAULT_CACHEDB, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import ATTRIBUTION as ATTRIBUTION, CONF_POLLING as CONF_POLLING, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from abodepy import Abode, AbodeAutomation as AbodeAuto
-from abodepy.devices import AbodeDevice as AbodeDev
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DATE as ATTR_DATE, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TIME as ATTR_TIME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import entity as entity
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send
+from jaraco.abode.automation import Automation as AbodeAuto
+from jaraco.abode.client import Client as Abode
+from jaraco.abode.devices.base import Device as AbodeDev
 
 SERVICE_SETTINGS: str
 SERVICE_CAPTURE_IMAGE: str

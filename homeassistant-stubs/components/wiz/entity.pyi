@@ -8,9 +8,9 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, ToggleEntity as ToggleEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pywizlight.bulblibrary import BulbType as BulbType
-from typing import Any, Optional
+from typing import Any
 
-class WizEntity(CoordinatorEntity[DataUpdateCoordinator[Optional[float]]], Entity, metaclass=abc.ABCMeta):
+class WizEntity(CoordinatorEntity[DataUpdateCoordinator[float | None]], Entity, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
     _device: Incomplete
     _attr_unique_id: Incomplete

@@ -6,11 +6,10 @@ from collections.abc import Mapping
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from ipaddress import IPv4Address, IPv4Network, IPv6Address, IPv6Network
-from typing import Any, Union
+from typing import Any
 
-IPAddress = Union[IPv4Address, IPv6Address]
-IPNetwork = Union[IPv4Network, IPv6Network]
+IPAddress: Incomplete
+IPNetwork: Incomplete
 CONF_TRUSTED_NETWORKS: str
 CONF_TRUSTED_USERS: str
 CONF_GROUP: str

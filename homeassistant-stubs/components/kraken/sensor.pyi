@@ -9,13 +9,12 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Optional
 
 _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class KrakenSensor(CoordinatorEntity[DataUpdateCoordinator[Optional[KrakenResponse]]], SensorEntity):
+class KrakenSensor(CoordinatorEntity[DataUpdateCoordinator[KrakenResponse | None]], SensorEntity):
     entity_description: KrakenSensorEntityDescription
     tracked_asset_pair_wsname: Incomplete
     _target_asset: Incomplete

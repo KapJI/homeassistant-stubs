@@ -1,5 +1,5 @@
 from .client_wrapper import get_artwork_url as get_artwork_url
-from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, MEDIA_CLASS_MAP as MEDIA_CLASS_MAP, MEDIA_TYPE_NONE as MEDIA_TYPE_NONE
+from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, MEDIA_CLASS_MAP as MEDIA_CLASS_MAP, MEDIA_TYPE_NONE as MEDIA_TYPE_NONE, SUPPORTED_COLLECTION_TYPES as SUPPORTED_COLLECTION_TYPES
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_player.browse_media import BrowseMedia as BrowseMedia
@@ -8,7 +8,6 @@ from jellyfin_apiclient_python import JellyfinClient as JellyfinClient
 from typing import Any
 
 CONTAINER_TYPES_SPECIFIC_MEDIA_CLASS: dict[str, str]
-JF_SUPPORTED_LIBRARY_TYPES: Incomplete
 PLAYABLE_MEDIA_TYPES: Incomplete
 
 async def item_payload(hass: HomeAssistant, client: JellyfinClient, user_id: str, item: dict[str, Any]) -> BrowseMedia: ...

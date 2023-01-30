@@ -9,9 +9,9 @@ from pydeconz.models.group import Group as PydeconzGroup
 from pydeconz.models.light import LightBase as PydeconzLightBase
 from pydeconz.models.scene import Scene as PydeconzScene
 from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
-from typing import TypeVar, Union
+from typing import TypeVar
 
-_DeviceT = TypeVar('_DeviceT', bound=Union[PydeconzGroup, PydeconzLightBase, PydeconzSensorBase, PydeconzScene])
+_DeviceT = TypeVar('_DeviceT', bound=PydeconzGroup | PydeconzLightBase | PydeconzSensorBase | PydeconzScene)
 
 class DeconzBase:
     unique_id_suffix: Union[str, None]

@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import singleton as singleton, storage as storage
-from typing import Literal, TypedDict, Union
+from typing import Literal, TypedDict
 
 STORAGE_VERSION: int
 STORAGE_KEY = DOMAIN
@@ -51,7 +51,8 @@ class WaterSourceType(TypedDict):
     stat_cost: Union[str, None]
     entity_energy_price: Union[str, None]
     number_energy_price: Union[float, None]
-SourceType = Union[GridSourceType, SolarSourceType, BatterySourceType, GasSourceType, WaterSourceType]
+
+SourceType: Incomplete
 
 class DeviceConsumption(TypedDict):
     stat_consumption: str

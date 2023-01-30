@@ -7,11 +7,11 @@ from collections.abc import Iterator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from io import StringIO
 from pathlib import Path
-from typing import Any, TextIO, TypeVar, Union, overload
+from typing import Any, TextIO, TypeVar, overload
 from yaml import SafeLoader as FastestAvailableSafeLoader
 
 HAS_C_LOADER: bool
-JSON_TYPE = Union[list, dict, str]
+JSON_TYPE: Incomplete
 _DictT = TypeVar('_DictT', bound=dict)
 _LOGGER: Incomplete
 
@@ -36,7 +36,8 @@ class SafeLineLoader(yaml.SafeLoader):
     def compose_node(self, parent: yaml.nodes.Node, index: int) -> yaml.nodes.Node: ...
     def get_name(self) -> str: ...
     def get_stream_name(self) -> str: ...
-LoaderType = Union[SafeLineLoader, SafeLoader]
+
+LoaderType: Incomplete
 
 def load_yaml(fname: str, secrets: Union[Secrets, None] = ...) -> JSON_TYPE: ...
 def parse_yaml(content: Union[str, TextIO, StringIO], secrets: Union[Secrets, None] = ...) -> JSON_TYPE: ...

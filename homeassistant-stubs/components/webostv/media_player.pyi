@@ -1,4 +1,4 @@
-from . import WebOsClientWrapper as WebOsClientWrapper
+from . import update_client_key as update_client_key
 from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_SOUND_OUTPUT as ATTR_SOUND_OUTPUT, CONF_SOURCES as CONF_SOURCES, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, LIVE_TV_APP_ID as LIVE_TV_APP_ID, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
 from .triggers.turn_on import async_get_turn_on_trigger as async_get_turn_on_trigger
 from _typeshed import Incomplete
@@ -16,8 +16,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _LOGGER: Incomplete
 SUPPORT_WEBOSTV: Incomplete
@@ -26,7 +25,7 @@ MIN_TIME_BETWEEN_SCANS: Incomplete
 MIN_TIME_BETWEEN_FORCED_SCANS: Incomplete
 SCAN_INTERVAL: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 _T = TypeVar('_T', bound='LgWebOSMediaPlayerEntity')
 _P: Incomplete
 
@@ -34,7 +33,7 @@ def cmd(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concat
 
 class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
-    _wrapper: Incomplete
+    _entry: Incomplete
     _client: Incomplete
     _attr_assumed_state: bool
     _attr_name: Incomplete
@@ -45,7 +44,7 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _current_source: Incomplete
     _source_list: Incomplete
     _supported_features: Incomplete
-    def __init__(self, wrapper: WebOsClientWrapper, name: str, sources: Union[list[str], None], unique_id: str) -> None: ...
+    def __init__(self, entry: ConfigEntry, client: WebOsClient) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_signal_handler(self, data: dict[str, Any]) -> None: ...

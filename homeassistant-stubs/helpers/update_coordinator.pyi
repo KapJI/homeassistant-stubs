@@ -1,23 +1,29 @@
+import abc
 import logging
 from . import entity as entity, event as event
 from .debounce import Debouncer as Debouncer
 from _typeshed import Incomplete
+from abc import abstractmethod
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Generator
 from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any, TypeVar
+from typing import Any, Protocol, TypeVar
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
 _T = TypeVar('_T')
+_BaseDataUpdateCoordinatorT = TypeVar('_BaseDataUpdateCoordinatorT', bound='BaseDataUpdateCoordinatorProtocol')
 _DataUpdateCoordinatorT = TypeVar('_DataUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]')
 
 class UpdateFailed(Exception): ...
 
-class DataUpdateCoordinator:
+class BaseDataUpdateCoordinatorProtocol(Protocol):
+    def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = ...) -> Callable[[], None]: ...
+
+class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol):
     hass: Incomplete
     logger: Incomplete
     name: Incomplete
@@ -48,14 +54,19 @@ class DataUpdateCoordinator:
     def async_set_update_error(self, err: Exception) -> None: ...
     def async_set_updated_data(self, data: _T) -> None: ...
 
-class CoordinatorEntity(entity.Entity):
+class BaseCoordinatorEntity(entity.Entity, metaclass=abc.ABCMeta):
     coordinator: Incomplete
     coordinator_context: Incomplete
-    def __init__(self, coordinator: _DataUpdateCoordinatorT, context: Any = ...) -> None: ...
+    def __init__(self, coordinator: _BaseDataUpdateCoordinatorT, context: Any = ...) -> None: ...
     @property
     def should_poll(self) -> bool: ...
-    @property
-    def available(self) -> bool: ...
     async def async_added_to_hass(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
+    @abstractmethod
+    async def async_update(self) -> None: ...
+
+class CoordinatorEntity(BaseCoordinatorEntity[_DataUpdateCoordinatorT]):
+    def __init__(self, coordinator: _DataUpdateCoordinatorT, context: Any = ...) -> None: ...
+    @property
+    def available(self) -> bool: ...
     async def async_update(self) -> None: ...

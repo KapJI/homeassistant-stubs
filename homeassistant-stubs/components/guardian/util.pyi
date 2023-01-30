@@ -28,7 +28,6 @@ class GuardianDataUpdateCoordinator(DataUpdateCoordinator[dict]):
     _api_coro: Incomplete
     _api_lock: Incomplete
     _client: Incomplete
-    _signal_handler_unsubs: Incomplete
     signal_reboot_requested: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry, client: Client, api_name: str, api_coro: Callable[..., Awaitable], api_lock: asyncio.Lock, valve_controller_uid: str) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

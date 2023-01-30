@@ -11,10 +11,8 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EVENT_CORE_CON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util import dt as dt_util
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from typing import Any, Union
-from typing_extensions import Concatenate
+from typing import Any, Concatenate
 
 TRACK_STATE_CHANGE_CALLBACKS: str
 TRACK_STATE_CHANGE_LISTENER: str
@@ -111,7 +109,8 @@ class TrackTemplateResultInfo:
     @staticmethod
     def _super_template_as_boolean(result: Union[bool, str, TemplateError]) -> bool: ...
     def _refresh(self, event: Union[Event, None], track_templates: Union[Iterable[TrackTemplate], None] = ..., replayed: Union[bool, None] = ...) -> None: ...
-TrackTemplateResultListener = Callable[[Union[Event, None], list[TrackTemplateResult]], None]
+
+TrackTemplateResultListener: Incomplete
 
 def async_track_template_result(hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, raise_on_template_error: bool = ..., strict: bool = ..., has_super_template: bool = ...) -> TrackTemplateResultInfo: ...
 def async_track_same_state(hass: HomeAssistant, period: timedelta, action: Callable[[], Union[Coroutine[Any, Any, None], None]], async_check_same_func: Callable[[str, Union[State, None], Union[State, None]], bool], entity_ids: Union[str, Iterable[str]] = ...) -> CALLBACK_TYPE: ...
@@ -159,7 +158,7 @@ track_sunrise: Incomplete
 def async_track_sunset(hass: HomeAssistant, action: Callable[[], None], offset: Union[timedelta, None] = ...) -> CALLBACK_TYPE: ...
 
 track_sunset: Incomplete
-time_tracker_utcnow = dt_util.utcnow
+time_tracker_utcnow: Incomplete
 time_tracker_timestamp = time.time
 
 def async_track_utc_time_change(hass: HomeAssistant, action: Callable[[datetime], Union[Coroutine[Any, Any, None], None]], hour: Union[Any, None] = ..., minute: Union[Any, None] = ..., second: Union[Any, None] = ..., local: bool = ...) -> CALLBACK_TYPE: ...

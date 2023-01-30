@@ -1,19 +1,23 @@
-from .. import mysensors as mysensors
-from .const import ATTR_GATEWAY_ID as ATTR_GATEWAY_ID, DevId as DevId, DiscoveryInfo as DiscoveryInfo, GatewayId as GatewayId
+from . import setup_mysensors_platform as setup_mysensors_platform
+from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
+from .device import MySensorsEntity as MySensorsEntity
 from .helpers import on_unload as on_unload
-from _typeshed import Incomplete
-from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSeeCallback
+from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.util import slugify as slugify
-from typing import Any
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: AsyncSeeCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsDeviceScanner(mysensors.device.MySensorsDevice):
-    async_see: Incomplete
-    hass: Incomplete
-    def __init__(self, hass: HomeAssistant, async_see: AsyncSeeCallback, *args: Any) -> None: ...
-    def _async_update_callback(self) -> None: ...
+class MySensorsDeviceTracker(MySensorsEntity, TrackerEntity):
+    _latitude: Union[float, None]
+    _longitude: Union[float, None]
+    @property
+    def latitude(self) -> Union[float, None]: ...
+    @property
+    def longitude(self) -> Union[float, None]: ...
+    @property
+    def source_type(self) -> SourceType: ...
+    def _async_update(self) -> None: ...

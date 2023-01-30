@@ -14,7 +14,7 @@ PLATFORMS: Incomplete
 
 class NanoleafEntryData:
     device: Nanoleaf
-    coordinator: DataUpdateCoordinator
+    coordinator: DataUpdateCoordinator[None]
     event_listener: asyncio.Task
     def __init__(self, device, coordinator, event_listener) -> None: ...
 

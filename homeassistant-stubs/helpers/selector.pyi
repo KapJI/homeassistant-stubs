@@ -6,6 +6,7 @@ from homeassistant.core import split_entity_id as split_entity_id, valid_entity_
 from homeassistant.util import decorator as decorator
 from homeassistant.util.yaml import dumper as dumper
 from typing import Any, Literal, TypeVar, TypedDict
+from typing_extensions import Required
 
 SELECTORS: decorator.Registry[str, type[Selector]]
 _T = TypeVar('_T', bound=Mapping[str, Any])
@@ -66,7 +67,7 @@ class AreaSelector(Selector[AreaSelectorConfig]):
     def __call__(self, data: Any) -> Union[str, list[str]]: ...
 
 class AttributeSelectorConfig(TypedDict):
-    entity_id: str
+    entity_id: Required[str]
     hide_attributes: list[str]
 
 class AttributeSelector(Selector[AttributeSelectorConfig]):
@@ -226,10 +227,11 @@ class SelectSelectorMode(StrEnum):
     DROPDOWN: str
 
 class SelectSelectorConfig(TypedDict):
-    options: Union[Sequence[SelectOptionDict], Sequence[str]]
+    options: Required[Union[Sequence[SelectOptionDict], Sequence[str]]]
     multiple: bool
     custom_value: bool
     mode: SelectSelectorMode
+    translation_key: str
 
 class SelectSelector(Selector[SelectSelectorConfig]):
     selector_type: str
@@ -242,7 +244,7 @@ class TargetSelectorConfig(TypedDict):
     device: SingleDeviceSelectorConfig
 
 class StateSelectorConfig(TypedDict):
-    entity_id: str
+    entity_id: Required[str]
 
 class StateSelector(Selector[StateSelectorConfig]):
     selector_type: str

@@ -38,7 +38,7 @@ async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntiti
 
 class MqttSensor(MqttEntity, RestoreSensor):
     _entity_id_format: Incomplete
-    _attr_last_reset: Incomplete
+    _attr_last_reset: Union[datetime, None]
     _attributes_extra_blocked: Incomplete
     _expire_after: Union[int, None]
     _expired: Union[bool, None]

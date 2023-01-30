@@ -21,7 +21,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Final, Optional
+from typing import Any, Final
 
 _LOGGER: Incomplete
 SERVICE_ENABLE_MOTION: Final[str]
@@ -72,7 +72,8 @@ async def async_get_stream_source(hass: HomeAssistant, entity_id: str) -> Union[
 async def async_get_mjpeg_stream(hass: HomeAssistant, request: web.Request, entity_id: str) -> Union[web.StreamResponse, None]: ...
 async def async_get_still_stream(request: web.Request, image_cb: Callable[[], Awaitable[Union[bytes, None]]], content_type: str, interval: float) -> web.StreamResponse: ...
 def _get_camera_from_entity_id(hass: HomeAssistant, entity_id: str) -> Camera: ...
-RtspToWebRtcProviderType = Callable[[str, str, str], Awaitable[Optional[str]]]
+
+RtspToWebRtcProviderType: Incomplete
 
 def async_register_rtsp_to_web_rtc_provider(hass: HomeAssistant, domain: str, provider: RtspToWebRtcProviderType) -> Callable[[], None]: ...
 async def _async_refresh_providers(hass: HomeAssistant) -> None: ...

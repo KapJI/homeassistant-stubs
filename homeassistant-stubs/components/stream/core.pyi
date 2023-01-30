@@ -123,7 +123,6 @@ class StreamOutput:
 
 class StreamView(HomeAssistantView):
     requires_auth: bool
-    platform: Incomplete
     async def get(self, request: web.Request, token: str, sequence: str = ..., part_num: str = ...) -> web.StreamResponse: ...
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.StreamResponse: ...
 

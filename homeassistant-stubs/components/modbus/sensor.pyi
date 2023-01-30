@@ -5,7 +5,7 @@ from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorEntity as SensorEntity
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -30,11 +30,12 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreEntity, SensorEntity):
     _attr_available: bool
     async def async_update(self, now: Union[datetime, None] = ...) -> None: ...
 
-class SlaveSensor(CoordinatorEntity, RestoreEntity, SensorEntity):
+class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreEntity, SensorEntity):
     _idx: Incomplete
     _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _attr_available: bool
-    def __init__(self, coordinator: DataUpdateCoordinator[Any], idx: int, entry: dict[str, Any]) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator[Union[list[int], None]], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

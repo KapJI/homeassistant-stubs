@@ -1,6 +1,6 @@
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from requests import Session
-from tesla_powerwall import DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregates as MetersAggregates, PowerwallStatus as PowerwallStatus, SiteInfo as SiteInfo, SiteMaster as SiteMaster
+from tesla_powerwall import DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregates as MetersAggregates, Powerwall, PowerwallStatus as PowerwallStatus, SiteInfo as SiteInfo, SiteMaster as SiteMaster
 from typing import TypedDict
 
 class PowerwallBaseInfo:
@@ -23,6 +23,7 @@ class PowerwallData:
 
 class PowerwallRuntimeData(TypedDict):
     coordinator: Union[DataUpdateCoordinator[PowerwallData], None]
+    api_instance: Powerwall
     base_info: PowerwallBaseInfo
     api_changed: bool
     http_session: Session

@@ -1,10 +1,11 @@
-from .const import DOMAIN as DOMAIN, ISY994_ISY as ISY994_ISY, _LOGGER as _LOGGER
-from .util import unique_ids_for_config_entry_id as unique_ids_for_config_entry_id
+from .const import CONF_NETWORK as CONF_NETWORK, DOMAIN as DOMAIN, ISY_CONF_NAME as ISY_CONF_NAME, ISY_CONF_NETWORKING as ISY_CONF_NETWORKING, _LOGGER as _LOGGER
+from .util import _async_cleanup_registry_entries as _async_cleanup_registry_entries
 from _typeshed import Incomplete
-from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.service import entity_service_call as entity_service_call
 from typing import Any
 
@@ -49,3 +50,4 @@ SERVICE_RUN_NETWORK_RESOURCE_SCHEMA: Incomplete
 def async_setup_services(hass: HomeAssistant) -> None: ...
 def async_unload_services(hass: HomeAssistant) -> None: ...
 def async_setup_light_services(hass: HomeAssistant) -> None: ...
+def async_log_deprecated_service_call(hass: HomeAssistant, call: ServiceCall, alternate_service: str, alternate_target: Union[str, None], breaks_in_ha_version: str) -> None: ...

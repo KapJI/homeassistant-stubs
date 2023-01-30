@@ -1,14 +1,13 @@
 from . import ATTR_BRIGHTNESS_PCT as ATTR_BRIGHTNESS_PCT, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_SUPPORTED_COLOR_MODES as ATTR_SUPPORTED_COLOR_MODES, DOMAIN as DOMAIN, brightness_supported as brightness_supported, color_supported as color_supported
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_TURN_ON as SERVICE_TURN_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State
-from homeassistant.helpers import intent as intent
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers import area_registry as area_registry, intent as intent
 
+_LOGGER: Incomplete
 INTENT_SET: str
 
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
-def _test_supports_color(state: State) -> None: ...
-def _test_supports_brightness(state: State) -> None: ...
 
 class SetIntentHandler(intent.IntentHandler):
     intent_type: Incomplete

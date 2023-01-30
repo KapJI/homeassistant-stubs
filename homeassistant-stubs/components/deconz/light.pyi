@@ -13,13 +13,13 @@ from pydeconz.interfaces.lights import LightHandler as LightHandler
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.group import Group
 from pydeconz.models.light.light import Light, LightAlert, LightEffect
-from typing import Any, TypeVar, TypedDict, Union
+from typing import Any, TypeVar, TypedDict
 
 DECONZ_GROUP: str
 EFFECT_TO_DECONZ: Incomplete
 FLASH_TO_DECONZ: Incomplete
 DECONZ_TO_COLOR_MODE: Incomplete
-_LightDeviceT = TypeVar('_LightDeviceT', bound=Union[Group, Light])
+_LightDeviceT = TypeVar('_LightDeviceT', bound=Group | Light)
 
 class SetStateAttributes(TypedDict):
     alert: LightAlert

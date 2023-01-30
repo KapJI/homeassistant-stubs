@@ -14,9 +14,9 @@ from typing import Any
 
 _LOGGER: Incomplete
 ALLOWED_CONDITION_BASED_SERVICE_KEYS: Incomplete
-LOGGED_CONDITION_BASED_SERVICE_WARNINGS: Incomplete
+LOGGED_CONDITION_BASED_SERVICE_WARNINGS: set[str]
 ALLOWED_CHECK_CONTROL_MESSAGE_KEYS: Incomplete
-LOGGED_CHECK_CONTROL_MESSAGE_WARNINGS: Incomplete
+LOGGED_CHECK_CONTROL_MESSAGE_WARNINGS: set[str]
 
 def _condition_based_services(vehicle: MyBMWVehicle, unit_system: UnitSystem) -> dict[str, Any]: ...
 def _check_control_messages(vehicle: MyBMWVehicle) -> dict[str, Any]: ...

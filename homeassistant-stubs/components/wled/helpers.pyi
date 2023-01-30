@@ -2,8 +2,7 @@ from .models import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _WLEDEntityT = TypeVar('_WLEDEntityT', bound=WLEDEntity)
 _P: Incomplete

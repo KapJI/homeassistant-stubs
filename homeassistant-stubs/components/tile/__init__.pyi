@@ -17,7 +17,7 @@ DEFAULT_UPDATE_INTERVAL: Incomplete
 CONF_SHOW_INACTIVE: str
 
 class TileData:
-    coordinators: dict[str, DataUpdateCoordinator]
+    coordinators: dict[str, DataUpdateCoordinator[None]]
     tiles: dict[str, Tile]
     def __init__(self, coordinators, tiles) -> None: ...
 

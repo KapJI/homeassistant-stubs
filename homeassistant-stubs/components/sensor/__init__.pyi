@@ -1,113 +1,33 @@
 import asyncio
-from .const import CONF_STATE_CLASS as CONF_STATE_CLASS
-from _typeshed import Incomplete
+from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, CONF_STATE_CLASS as CONF_STATE_CLASS, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from collections.abc import Mapping
 from datetime import date, datetime
 from decimal import Decimal
-from homeassistant.backports.enum import StrEnum as StrEnum
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, DEVICE_CLASS_AQI as DEVICE_CLASS_AQI, DEVICE_CLASS_BATTERY as DEVICE_CLASS_BATTERY, DEVICE_CLASS_CO as DEVICE_CLASS_CO, DEVICE_CLASS_CO2 as DEVICE_CLASS_CO2, DEVICE_CLASS_CURRENT as DEVICE_CLASS_CURRENT, DEVICE_CLASS_DATE as DEVICE_CLASS_DATE, DEVICE_CLASS_ENERGY as DEVICE_CLASS_ENERGY, DEVICE_CLASS_FREQUENCY as DEVICE_CLASS_FREQUENCY, DEVICE_CLASS_GAS as DEVICE_CLASS_GAS, DEVICE_CLASS_HUMIDITY as DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_ILLUMINANCE as DEVICE_CLASS_ILLUMINANCE, DEVICE_CLASS_MONETARY as DEVICE_CLASS_MONETARY, DEVICE_CLASS_NITROGEN_DIOXIDE as DEVICE_CLASS_NITROGEN_DIOXIDE, DEVICE_CLASS_NITROGEN_MONOXIDE as DEVICE_CLASS_NITROGEN_MONOXIDE, DEVICE_CLASS_NITROUS_OXIDE as DEVICE_CLASS_NITROUS_OXIDE, DEVICE_CLASS_OZONE as DEVICE_CLASS_OZONE, DEVICE_CLASS_PM1 as DEVICE_CLASS_PM1, DEVICE_CLASS_PM10 as DEVICE_CLASS_PM10, DEVICE_CLASS_PM25 as DEVICE_CLASS_PM25, DEVICE_CLASS_POWER as DEVICE_CLASS_POWER, DEVICE_CLASS_POWER_FACTOR as DEVICE_CLASS_POWER_FACTOR, DEVICE_CLASS_PRESSURE as DEVICE_CLASS_PRESSURE, DEVICE_CLASS_SIGNAL_STRENGTH as DEVICE_CLASS_SIGNAL_STRENGTH, DEVICE_CLASS_SULPHUR_DIOXIDE as DEVICE_CLASS_SULPHUR_DIOXIDE, DEVICE_CLASS_TEMPERATURE as DEVICE_CLASS_TEMPERATURE, DEVICE_CLASS_TIMESTAMP as DEVICE_CLASS_TIMESTAMP, DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS as DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS, DEVICE_CLASS_VOLTAGE as DEVICE_CLASS_VOLTAGE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, POWER_VOLT_AMPERE_REACTIVE as POWER_VOLT_AMPERE_REACTIVE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfApparentPower as UnitOfApparentPower, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfInformation as UnitOfInformation, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumetricFlux as UnitOfVolumetricFlux
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
-from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
-from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, VolumeConverter as VolumeConverter
-from typing import Any, Final
-
-_LOGGER: Final[Incomplete]
-ATTR_LAST_RESET: Final[str]
-ATTR_STATE_CLASS: Final[str]
-ATTR_OPTIONS: Final[str]
-DOMAIN: Final[str]
-ENTITY_ID_FORMAT: Final[Incomplete]
-SCAN_INTERVAL: Final[Incomplete]
-
-class SensorDeviceClass(StrEnum):
-    DATE: str
-    DURATION: str
-    ENUM: str
-    TIMESTAMP: str
-    APPARENT_POWER: str
-    AQI: str
-    ATMOSPHERIC_PRESSURE: str
-    BATTERY: str
-    CO: str
-    CO2: str
-    CURRENT: str
-    DATA_RATE: str
-    DATA_SIZE: str
-    DISTANCE: str
-    ENERGY: str
-    FREQUENCY: str
-    GAS: str
-    HUMIDITY: str
-    ILLUMINANCE: str
-    IRRADIANCE: str
-    MOISTURE: str
-    MONETARY: str
-    NITROGEN_DIOXIDE: str
-    NITROGEN_MONOXIDE: str
-    NITROUS_OXIDE: str
-    OZONE: str
-    PM1: str
-    PM10: str
-    PM25: str
-    POWER_FACTOR: str
-    POWER: str
-    PRECIPITATION: str
-    PRECIPITATION_INTENSITY: str
-    PRESSURE: str
-    REACTIVE_POWER: str
-    SIGNAL_STRENGTH: str
-    SOUND_PRESSURE: str
-    SPEED: str
-    SULPHUR_DIOXIDE: str
-    TEMPERATURE: str
-    VOLATILE_ORGANIC_COMPOUNDS: str
-    VOLTAGE: str
-    VOLUME: str
-    WATER: str
-    WEIGHT: str
-    WIND_SPEED: str
-
-DEVICE_CLASSES_SCHEMA: Final[Incomplete]
-DEVICE_CLASSES: Final[list[str]]
-
-class SensorStateClass(StrEnum):
-    MEASUREMENT: str
-    TOTAL: str
-    TOTAL_INCREASING: str
-
-STATE_CLASSES_SCHEMA: Final[Incomplete]
-STATE_CLASS_MEASUREMENT: Final[str]
-STATE_CLASS_TOTAL: Final[str]
-STATE_CLASS_TOTAL_INCREASING: Final[str]
-STATE_CLASSES: Final[list[str]]
-UNIT_CONVERTERS: dict[Union[SensorDeviceClass, str, None], type[BaseUnitConverter]]
-DEVICE_CLASS_UNITS: dict[SensorDeviceClass, set[Union[type[StrEnum], str, None]]]
-
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+from homeassistant.helpers.entity import Entity, EntityDescription
+from homeassistant.helpers.entity_platform import EntityPlatform
+from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
+from homeassistant.helpers.typing import StateType, UndefinedType
+from typing import Any
 
 class SensorEntityDescription(EntityDescription):
     device_class: Union[SensorDeviceClass, None]
-    suggested_unit_of_measurement: Union[str, None]
     last_reset: Union[datetime, None]
+    native_precision: Union[int, None]
     native_unit_of_measurement: Union[str, None]
-    state_class: Union[SensorStateClass, str, None]
     options: Union[list[str], None]
+    state_class: Union[SensorStateClass, str, None]
+    suggested_unit_of_measurement: Union[str, None]
     unit_of_measurement: None
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, suggested_unit_of_measurement, last_reset, native_unit_of_measurement, state_class, options) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_precision, native_unit_of_measurement, options, state_class, suggested_unit_of_measurement) -> None: ...
 
 class SensorEntity(Entity):
     entity_description: SensorEntityDescription
     _attr_device_class: Union[SensorDeviceClass, None]
     _attr_last_reset: Union[datetime, None]
+    _attr_native_precision: Union[int, None]
     _attr_native_unit_of_measurement: Union[str, None]
     _attr_native_value: Union[StateType, date, datetime, Decimal]
     _attr_options: Union[list[str], None]
@@ -115,9 +35,12 @@ class SensorEntity(Entity):
     _attr_state: None
     _attr_suggested_unit_of_measurement: Union[str, None]
     _attr_unit_of_measurement: None
+    _invalid_numeric_value_reported: bool
+    _invalid_state_class_reported: bool
     _invalid_unit_of_measurement_reported: bool
     _last_reset_reported: bool
-    _sensor_option_unit_of_measurement: Union[str, None]
+    _sensor_option_precision: Union[int, None]
+    _sensor_option_unit_of_measurement: Union[str, None, UndefinedType]
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: Union[asyncio.Semaphore, None]) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
     @property
@@ -136,6 +59,10 @@ class SensorEntity(Entity):
     @property
     def native_value(self) -> Union[StateType, date, datetime, Decimal]: ...
     @property
+    def native_precision(self) -> Union[int, None]: ...
+    @property
+    def precision(self) -> Union[int, None]: ...
+    @property
     def native_unit_of_measurement(self) -> Union[str, None]: ...
     @property
     def suggested_unit_of_measurement(self) -> Union[str, None]: ...
@@ -144,7 +71,8 @@ class SensorEntity(Entity):
     @property
     def state(self) -> Any: ...
     def __repr__(self) -> str: ...
-    def _custom_unit_or_none(self, primary_key: str, secondary_key: str) -> Union[str, None]: ...
+    def _custom_precision_or_none(self) -> Union[int, None]: ...
+    def _custom_unit_or_undef(self, primary_key: str, secondary_key: str) -> Union[str, None, UndefinedType]: ...
     def async_registry_entry_updated(self) -> None: ...
 
 class SensorExtraStoredData(ExtraStoredData):

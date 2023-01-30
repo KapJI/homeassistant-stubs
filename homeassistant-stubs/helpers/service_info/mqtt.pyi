@@ -1,8 +1,8 @@
 import datetime as dt
+from _typeshed import Incomplete
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
-from typing import Union
 
-ReceivePayloadType = Union[str, bytes]
+ReceivePayloadType: Incomplete
 
 class MqttServiceInfo(BaseServiceInfo):
     topic: str

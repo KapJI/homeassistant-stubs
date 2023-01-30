@@ -1,5 +1,5 @@
 from .const import ACTUATOR as ACTUATOR, DOMAIN as DOMAIN, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, ICON_OCCUPIED as ICON_OCCUPIED
-from .coordinator import SleepIQData as SleepIQData
+from .coordinator import SleepIQData as SleepIQData, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator
 from .entity import SleepIQBedEntity as SleepIQBedEntity
 from _typeshed import Incomplete
 from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSleeper
@@ -8,7 +8,6 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
 class SleepIQNumberEntityDescriptionMixin:
@@ -32,13 +31,13 @@ NUMBER_DESCRIPTIONS: dict[str, SleepIQNumberEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SleepIQNumberEntity(SleepIQBedEntity, NumberEntity):
+class SleepIQNumberEntity(SleepIQBedEntity[SleepIQDataUpdateCoordinator], NumberEntity):
     entity_description: SleepIQNumberEntityDescription
     _attr_icon: str
     device: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: DataUpdateCoordinator, bed: SleepIQBed, device: Any, description: SleepIQNumberEntityDescription) -> None: ...
+    def __init__(self, coordinator: SleepIQDataUpdateCoordinator, bed: SleepIQBed, device: Any, description: SleepIQNumberEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...

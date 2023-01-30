@@ -14,11 +14,11 @@ from homeassistant.helpers.config_entry_oauth2_flow import OAuth2AuthorizeCallba
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from multidict import MultiDictProxy
-from typing import Any, Optional
+from typing import Any
 
 DOMAIN: str
 StoreResultType = Callable[[str, Credentials], str]
-RetrieveResultType = Callable[[str, str], Optional[Credentials]]
+RetrieveResultType: Incomplete
 
 def create_auth_code(hass: HomeAssistant, client_id: str, credential: Credentials) -> str: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

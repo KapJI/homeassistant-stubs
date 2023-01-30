@@ -1,14 +1,14 @@
 from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from abodepy.devices import AbodeDevice as AbodeDev
-from abodepy.devices.camera import AbodeCamera as AbodeCam
 from homeassistant.components.camera import Camera as Camera
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util import Throttle as Throttle
+from jaraco.abode.devices.base import Device as AbodeDev
+from jaraco.abode.devices.camera import Camera as AbodeCam
 from typing import Any
 
 MIN_TIME_BETWEEN_UPDATES: Incomplete

@@ -8,10 +8,10 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import device_registry as device_registry, entity as entity, entity_registry as entity_registry
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
+from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry, async_entries_for_config_entry as async_entries_for_config_entry
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -80,7 +80,7 @@ class ShellyRpcEntity(CoordinatorEntity[ShellyRpcCoordinator]):
     def _update_callback(self) -> None: ...
     async def call_rpc(self, method: str, params: Any) -> Any: ...
 
-class ShellyBlockAttributeEntity(ShellyBlockEntity, entity.Entity):
+class ShellyBlockAttributeEntity(ShellyBlockEntity, Entity):
     entity_description: BlockEntityDescription
     attribute: Incomplete
     _attr_unique_id: Incomplete
@@ -107,7 +107,7 @@ class ShellyRestAttributeEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     @property
     def attribute_value(self) -> StateType: ...
 
-class ShellyRpcAttributeEntity(ShellyRpcEntity, entity.Entity):
+class ShellyRpcAttributeEntity(ShellyRpcEntity, Entity):
     entity_description: RpcEntityDescription
     attribute: Incomplete
     _attr_unique_id: Incomplete

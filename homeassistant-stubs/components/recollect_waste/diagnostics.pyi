@@ -1,5 +1,6 @@
 from .const import CONF_PLACE_ID as CONF_PLACE_ID, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from aiorecollect.client import PickupEvent as PickupEvent
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_UNIQUE_ID as CONF_UNIQUE_ID

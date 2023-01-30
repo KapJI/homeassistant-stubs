@@ -9,10 +9,10 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from pyunifiprotect import ProtectApiClient as ProtectApiClient
 from pyunifiprotect.data import Bootstrap as Bootstrap, ModelType, NVR, ProtectAdoptableDeviceModel, WSSubscriptionMessage as WSSubscriptionMessage
-from typing import Any, Union
+from typing import Any
 
 _LOGGER: Incomplete
-ProtectDeviceType = Union[ProtectAdoptableDeviceModel, NVR]
+ProtectDeviceType: Incomplete
 
 def async_last_update_was_successful(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 

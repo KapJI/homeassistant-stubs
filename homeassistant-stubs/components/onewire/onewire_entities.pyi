@@ -13,6 +13,7 @@ _LOGGER: Incomplete
 
 class OneWireEntity(Entity):
     entity_description: OneWireEntityDescription
+    _last_update_success: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_name: Incomplete

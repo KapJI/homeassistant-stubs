@@ -1,11 +1,12 @@
-from .const import HA_FAN_TO_ISY as HA_FAN_TO_ISY, HA_HVAC_TO_ISY as HA_HVAC_TO_ISY, ISY994_NODES as ISY994_NODES, ISY_HVAC_MODES as ISY_HVAC_MODES, UOM_FAN_MODES as UOM_FAN_MODES, UOM_HVAC_ACTIONS as UOM_HVAC_ACTIONS, UOM_HVAC_MODE_GENERIC as UOM_HVAC_MODE_GENERIC, UOM_HVAC_MODE_INSTEON as UOM_HVAC_MODE_INSTEON, UOM_ISYV4_NONE as UOM_ISYV4_NONE, UOM_ISY_CELSIUS as UOM_ISY_CELSIUS, UOM_ISY_FAHRENHEIT as UOM_ISY_FAHRENHEIT, UOM_TO_STATES as UOM_TO_STATES, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, HA_FAN_TO_ISY as HA_FAN_TO_ISY, HA_HVAC_TO_ISY as HA_HVAC_TO_ISY, ISY_HVAC_MODES as ISY_HVAC_MODES, UOM_FAN_MODES as UOM_FAN_MODES, UOM_HVAC_ACTIONS as UOM_HVAC_ACTIONS, UOM_HVAC_MODE_GENERIC as UOM_HVAC_MODE_GENERIC, UOM_HVAC_MODE_INSTEON as UOM_HVAC_MODE_INSTEON, UOM_ISYV4_NONE as UOM_ISYV4_NONE, UOM_ISY_CELSIUS as UOM_ISY_CELSIUS, UOM_ISY_FAHRENHEIT as UOM_ISY_FAHRENHEIT, UOM_TO_STATES as UOM_TO_STATES, _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity
-from .helpers import convert_isy_value_to_hass as convert_isy_value_to_hass, migrate_old_unique_ids as migrate_old_unique_ids
+from .helpers import convert_isy_value_to_hass as convert_isy_value_to_hass
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_OFF as FAN_OFF, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyisy.nodes import Node as Node
 from typing import Any
@@ -24,7 +25,7 @@ class ISYThermostatEntity(ISYNodeEntity, ClimateEntity):
     _current_humidity: int
     _target_temp_low: int
     _target_temp_high: int
-    def __init__(self, node: Node) -> None: ...
+    def __init__(self, node: Node, device_info: Union[DeviceInfo, None] = ...) -> None: ...
     @property
     def temperature_unit(self) -> str: ...
     @property

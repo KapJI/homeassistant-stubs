@@ -1,4 +1,4 @@
-from .const import CONF_POLLING as CONF_POLLING, DEFAULT_CACHEDB as DEFAULT_CACHEDB, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_POLLING as CONF_POLLING, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
@@ -12,7 +12,6 @@ class AbodeFlowHandler(config_entries.ConfigFlow):
     VERSION: int
     data_schema: Incomplete
     mfa_data_schema: Incomplete
-    _cache: Incomplete
     _mfa_code: Incomplete
     _password: Incomplete
     _polling: bool

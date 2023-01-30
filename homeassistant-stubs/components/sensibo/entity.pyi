@@ -7,8 +7,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _T = TypeVar('_T', bound='SensiboDeviceBaseEntity')
 _P: Incomplete

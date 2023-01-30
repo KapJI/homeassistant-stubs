@@ -16,6 +16,7 @@ ATTR_CONNECTION_STATE: str
 ATTR_IS_DEAD: str
 ATTR_IS_LOST: str
 ATTR_LAST_LOST_TIMESTAMP: str
+ATTR_LAST_TIMESTAMP: str
 ATTR_RING_STATE: str
 ATTR_TILE_NAME: str
 ATTR_VOIP_STATE: str
@@ -24,14 +25,14 @@ DEFAULT_ICON: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: AsyncSeeCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> bool: ...
 
-class TileDeviceTracker(CoordinatorEntity, TrackerEntity):
+class TileDeviceTracker(CoordinatorEntity[DataUpdateCoordinator[None]], TrackerEntity):
     _attr_icon: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _entry: Incomplete
     _tile: Incomplete
-    def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator, tile: Tile) -> None: ...
+    def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator[None], tile: Tile) -> None: ...
     @property
     def available(self) -> bool: ...
     @property

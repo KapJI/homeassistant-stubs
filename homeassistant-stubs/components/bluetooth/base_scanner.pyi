@@ -1,7 +1,7 @@
 import abc
 import datetime
 from . import models as models
-from .const import CONNECTABLE_FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as CONNECTABLE_FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, SCANNER_WATCHDOG_INTERVAL as SCANNER_WATCHDOG_INTERVAL, SCANNER_WATCHDOG_TIMEOUT as SCANNER_WATCHDOG_TIMEOUT
+from .const import CONNECTABLE_FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as CONNECTABLE_FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, SCANNER_WATCHDOG_INTERVAL as SCANNER_WATCHDOG_INTERVAL, SCANNER_WATCHDOG_TIMEOUT as SCANNER_WATCHDOG_TIMEOUT
 from .models import HaBluetoothConnector as HaBluetoothConnector
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
@@ -17,6 +17,12 @@ from typing import Any, Final
 
 MONOTONIC_TIME: Final[Incomplete]
 _LOGGER: Incomplete
+
+class BluetoothScannerDevice:
+    scanner: BaseHaScanner
+    ble_device: BLEDevice
+    advertisement: AdvertisementData
+    def __init__(self, scanner, ble_device, advertisement) -> None: ...
 
 class BaseHaScanner(ABC, metaclass=abc.ABCMeta):
     __slots__: Incomplete
@@ -54,7 +60,7 @@ class BaseHaRemoteScanner(BaseHaScanner):
     _details: Incomplete
     _expire_seconds: Incomplete
     _storage: Incomplete
-    def __init__(self, hass: HomeAssistant, scanner_id: str, name: str, new_info_callback: Callable[[BluetoothServiceInfoBleak], None], connector: HaBluetoothConnector, connectable: bool) -> None: ...
+    def __init__(self, hass: HomeAssistant, scanner_id: str, name: str, new_info_callback: Callable[[BluetoothServiceInfoBleak], None], connector: Union[HaBluetoothConnector, None], connectable: bool) -> None: ...
     def async_setup(self) -> CALLBACK_TYPE: ...
     def _save_history(self, event: Union[Event, None] = ...) -> None: ...
     def _async_expire_devices(self, _datetime: datetime.datetime) -> None: ...

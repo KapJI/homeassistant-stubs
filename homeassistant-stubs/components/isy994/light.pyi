@@ -1,11 +1,12 @@
-from .const import CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, ISY994_NODES as ISY994_NODES, UOM_PERCENTAGE as UOM_PERCENTAGE, _LOGGER as _LOGGER
+from .const import CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, DOMAIN as DOMAIN, UOM_PERCENTAGE as UOM_PERCENTAGE, _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity
-from .helpers import migrate_old_unique_ids as migrate_old_unique_ids
-from .services import async_setup_light_services as async_setup_light_services
+from .services import SERVICE_SET_ON_LEVEL as SERVICE_SET_ON_LEVEL, async_log_deprecated_service_call as async_log_deprecated_service_call, async_setup_light_services as async_setup_light_services
 from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import Platform as Platform
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pyisy.helpers import NodeProperty as NodeProperty
@@ -21,7 +22,7 @@ class ISYLightEntity(ISYNodeEntity, LightEntity, RestoreEntity):
     _attr_supported_color_modes: Incomplete
     _last_brightness: Incomplete
     _restore_light_state: Incomplete
-    def __init__(self, node: Node, restore_light_state: bool) -> None: ...
+    def __init__(self, node: Node, restore_light_state: bool, device_info: Union[DeviceInfo, None] = ...) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property

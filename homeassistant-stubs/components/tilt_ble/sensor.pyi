@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
 from tilt_ble import DeviceKey as DeviceKey, SensorUpdate as SensorUpdate
-from typing import Optional, Union
 
 SENSOR_DESCRIPTIONS: Incomplete
 
@@ -16,6 +15,6 @@ def _device_key_to_bluetooth_entity_key(device_key: DeviceKey) -> PassiveBluetoo
 def sensor_update_to_bluetooth_data_update(sensor_update: SensorUpdate) -> PassiveBluetoothDataUpdate: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class TiltBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[Optional[Union[float, int]]]], SensorEntity):
+class TiltBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[float | int | None]], SensorEntity):
     @property
     def native_value(self) -> Union[int, float, None]: ...

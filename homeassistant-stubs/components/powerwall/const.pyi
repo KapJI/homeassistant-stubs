@@ -3,6 +3,7 @@ from typing import Final
 DOMAIN: str
 POWERWALL_BASE_INFO: Final[str]
 POWERWALL_COORDINATOR: Final[str]
+POWERWALL_API: Final[str]
 POWERWALL_API_CHANGED: Final[str]
 POWERWALL_HTTP_SESSION: Final[str]
 UPDATE_INTERVAL: int

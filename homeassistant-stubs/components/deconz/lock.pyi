@@ -8,11 +8,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.light.lock import Lock
 from pydeconz.models.sensor.door_lock import DoorLock
-from typing import Any, Union
+from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzLock(DeconzDevice[Union[DoorLock, Lock]], LockEntity):
+class DeconzLock(DeconzDevice[DoorLock | Lock], LockEntity):
     TYPE: Incomplete
     @property
     def is_locked(self) -> bool: ...

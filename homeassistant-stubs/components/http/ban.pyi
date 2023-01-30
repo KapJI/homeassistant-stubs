@@ -9,8 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import yaml as yaml
 from ipaddress import IPv4Address, IPv6Address
-from typing import Any, Final, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, Final, TypeVar
 
 _HassViewT = TypeVar('_HassViewT', bound=HomeAssistantView)
 _P: Incomplete

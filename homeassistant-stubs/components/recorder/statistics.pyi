@@ -14,7 +14,7 @@ from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
-from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DistanceConverter as DistanceConverter, EnergyConverter as EnergyConverter, MassConverter as MassConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, VolumeConverter as VolumeConverter
+from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DistanceConverter as DistanceConverter, EnergyConverter as EnergyConverter, MassConverter as MassConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter
 from sqlalchemy.engine import Engine as Engine
 from sqlalchemy.engine.row import Row as Row
 from sqlalchemy.orm.session import Session as Session

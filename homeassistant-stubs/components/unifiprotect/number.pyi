@@ -13,9 +13,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyunifiprotect.data import Camera as Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
 
 class NumberKeysMixin:
-    ufp_max: int
-    ufp_min: int
-    ufp_step: int
+    ufp_max: Union[int, float]
+    ufp_min: Union[int, float]
+    ufp_step: Union[int, float]
     def __init__(self, ufp_max, ufp_min, ufp_step) -> None: ...
 
 class ProtectNumberEntityDescription(ProtectSetableKeysMixin[T], NumberEntityDescription, NumberKeysMixin):
@@ -25,6 +25,7 @@ def _get_pir_duration(obj: Light) -> int: ...
 async def _set_pir_duration(obj: Light, value: float) -> None: ...
 def _get_auto_close(obj: Doorlock) -> int: ...
 async def _set_auto_close(obj: Doorlock, value: float) -> None: ...
+def _get_chime_duration(obj: Camera) -> int: ...
 
 CAMERA_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 LIGHT_NUMBERS: tuple[ProtectNumberEntityDescription, ...]

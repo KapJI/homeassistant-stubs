@@ -1,8 +1,8 @@
+from _typeshed import Incomplete
 from collections.abc import Mapping
-from typing import Union
 
-ValueType = Union[Mapping[str, bool], bool, None]
+ValueType: Incomplete
 SubCategoryDict = Mapping[str, ValueType]
-SubCategoryType = Union[SubCategoryDict, bool, None]
-CategoryType = Union[Mapping[str, SubCategoryType], Mapping[str, ValueType], bool, None]
+SubCategoryType: Incomplete
+CategoryType: Incomplete
 PolicyType = Mapping[str, CategoryType]

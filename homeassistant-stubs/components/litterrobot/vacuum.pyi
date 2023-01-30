@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotEntity as LitterRobotEntity, async_update_unique_id as async_update_unique_id
+from .entity import LitterRobotEntity as LitterRobotEntity
 from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
 from datetime import time

@@ -3,13 +3,12 @@ from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
-from types import MappingProxyType
-from typing import Any, Optional, Union
+from typing import Any
 
 PLATFORM: str
 DATA_FUNCTIONS: str
-CheckTypeFunc = Callable[[HomeAssistant, str, Union[dict, MappingProxyType], str, Union[dict, MappingProxyType]], Optional[bool]]
-ExtraCheckTypeFunc = Callable[[HomeAssistant, str, Union[dict, MappingProxyType], Any, str, Union[dict, MappingProxyType], Any], Optional[bool]]
+CheckTypeFunc: Incomplete
+ExtraCheckTypeFunc: Incomplete
 
 async def create_checker(hass: HomeAssistant, _domain: str, extra_significant_check: Union[ExtraCheckTypeFunc, None] = ...) -> SignificantlyChangedChecker: ...
 async def _initialize(hass: HomeAssistant) -> None: ...

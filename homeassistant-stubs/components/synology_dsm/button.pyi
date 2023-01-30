@@ -2,7 +2,7 @@ from . import SynoApi as SynoApi
 from .const import DOMAIN as DOMAIN
 from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,7 +13,7 @@ from typing import Any, Final
 LOGGER: Incomplete
 
 class SynologyDSMbuttonDescriptionMixin:
-    press_action: Callable[[SynoApi], Any]
+    press_action: Callable[[SynoApi], Callable[[], Coroutine[Any, Any, None]]]
     def __init__(self, press_action) -> None: ...
 
 class SynologyDSMbuttonDescription(ButtonEntityDescription, SynologyDSMbuttonDescriptionMixin):

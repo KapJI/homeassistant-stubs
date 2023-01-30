@@ -77,7 +77,7 @@ class SimpliSafe:
     async def async_init(self) -> None: ...
     async def async_update(self) -> None: ...
 
-class SimpliSafeEntity(CoordinatorEntity):
+class SimpliSafeEntity(CoordinatorEntity[DataUpdateCoordinator[None]]):
     _attr_has_entity_name: bool
     _error_count: int
     _attr_extra_state_attributes: Incomplete

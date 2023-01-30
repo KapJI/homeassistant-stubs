@@ -19,8 +19,7 @@ from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as 
 from homeassistant.core import Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, SERVICE_CALL_LIMIT as SERVICE_CALL_LIMIT, callback as callback
 from homeassistant.util import slugify as slugify
 from homeassistant.util.dt import utcnow as utcnow
-from types import MappingProxyType
-from typing import Any, TypedDict, Union
+from typing import Any, TypedDict
 
 SCRIPT_MODE_PARALLEL: str
 SCRIPT_MODE_QUEUED: str
@@ -111,7 +110,8 @@ class _QueuedScriptRun(_ScriptRun):
 
 async def _async_stop_scripts_after_shutdown(hass, point_in_time) -> None: ...
 async def _async_stop_scripts_at_shutdown(hass, event) -> None: ...
-_VarsType = Union[dict[str, Any], MappingProxyType]
+
+_VarsType: Incomplete
 
 def _referenced_extract_ids(data: Any, key: str, found: set[str]) -> None: ...
 

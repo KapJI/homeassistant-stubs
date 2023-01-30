@@ -12,8 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, T
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
 from homeassistant.util.yaml import load_yaml as load_yaml
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
-from typing import Any, TypeVar, TypedDict
-from typing_extensions import TypeGuard
+from typing import Any, TypeGuard, TypeVar, TypedDict
 
 _EntityT = TypeVar('_EntityT', bound=Entity)
 CONF_SERVICE_ENTITY_ID: str

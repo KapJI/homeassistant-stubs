@@ -54,7 +54,7 @@ class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
     async def async_set_matrix_effect(self, effect: str, palette: Union[list[tuple[int, int, int, int]], None] = ..., speed: float = ..., power_on: bool = ...) -> None: ...
     def async_get_active_effect(self) -> int: ...
 
-class LIFXSensorUpdateCoordinator(DataUpdateCoordinator):
+class LIFXSensorUpdateCoordinator(DataUpdateCoordinator[None]):
     parent: Incomplete
     device: Incomplete
     _update_rssi: bool

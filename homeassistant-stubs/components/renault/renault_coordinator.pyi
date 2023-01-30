@@ -5,9 +5,10 @@ from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from renault_api.kamereon.models import KamereonVehicleDataAttributes
-from typing import Optional, TypeVar
+from typing import TypeVar
 
-T = TypeVar('T', bound=Optional[KamereonVehicleDataAttributes])
+T = TypeVar('T', bound=KamereonVehicleDataAttributes | None)
+_PARALLEL_SEMAPHORE: Incomplete
 
 class RenaultDataUpdateCoordinator(DataUpdateCoordinator[T]):
     access_denied: bool

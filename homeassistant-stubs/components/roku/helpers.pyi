@@ -2,8 +2,7 @@ from .entity import RokuEntity as RokuEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, TypeVar
-from typing_extensions import Concatenate
+from typing import Any, Concatenate, TypeVar
 
 _RokuEntityT = TypeVar('_RokuEntityT', bound=RokuEntity)
 _P: Incomplete

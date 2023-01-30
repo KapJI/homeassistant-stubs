@@ -3,7 +3,7 @@ from .const import ATTR_TOPIC as ATTR_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_ME
 from .models import AsyncMessageCallbackType as AsyncMessageCallbackType, MessageCallbackType as MessageCallbackType, PublishMessage as PublishMessage, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
 from .util import get_file_path as get_file_path, get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled
 from _typeshed import Incomplete
-from collections.abc import Coroutine, Iterable
+from collections.abc import Callable, Coroutine, Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
@@ -13,12 +13,12 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.logging import catch_log_exception as catch_log_exception
-from typing import Any, Callable, Union
+from typing import Any, Union
 
 _LOGGER: Incomplete
 DISCOVERY_COOLDOWN: int
 TIMEOUT_ACK: int
-SubscribePayloadType = Union[str, bytes]
+SubscribePayloadType: Incomplete
 
 def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: Union[int, None] = ..., retain: Union[bool, None] = ..., encoding: Union[str, None] = ...) -> None: ...
 async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: Union[int, None] = ..., retain: Union[bool, None] = ..., encoding: Union[str, None] = ...) -> None: ...

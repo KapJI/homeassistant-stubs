@@ -1,14 +1,15 @@
 from .const import BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, CONF_COAP_PORT as CONF_COAP_PORT, DEFAULT_COAP_PORT as DEFAULT_COAP_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, WebSocketResponse as WebSocketResponse
-from aioshelly.block_device import Block as Block, BlockDevice as BlockDevice, COAP
+from aioshelly.block_device import Block as Block, BlockDevice, COAP
 from aioshelly.rpc_device import RpcDevice as RpcDevice, WsServer
 from datetime import datetime
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry, singleton as singleton
+from homeassistant.helpers import singleton as singleton
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.helpers.typing import EventType as EventType
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
@@ -16,6 +17,7 @@ from typing import Any
 def async_remove_shelly_entity(hass: HomeAssistant, domain: str, unique_id: str) -> None: ...
 def get_block_device_name(device: BlockDevice) -> str: ...
 def get_rpc_device_name(device: RpcDevice) -> str: ...
+def get_device_name(device: Union[BlockDevice, RpcDevice]) -> str: ...
 def get_number_of_channels(device: BlockDevice, block: Block) -> int: ...
 def get_block_entity_name(device: BlockDevice, block: Union[Block, None], description: Union[str, None] = ...) -> str: ...
 def get_block_channel_name(device: BlockDevice, block: Union[Block, None]) -> str: ...

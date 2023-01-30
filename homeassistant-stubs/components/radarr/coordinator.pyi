@@ -9,9 +9,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import TypeVar, Union
+from typing import TypeVar
 
-T = TypeVar('T', bound=Union[SystemStatus, list[RootFolder], list[Health], int])
+T = TypeVar('T', bound=SystemStatus | list[RootFolder] | list[Health] | int)
 
 class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.ABCMeta):
     config_entry: ConfigEntry

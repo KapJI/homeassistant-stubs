@@ -1,5 +1,5 @@
 import datetime
-from .const import CONF_EVENT as CONF_EVENT, CalendarEntityFeature as CalendarEntityFeature, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END as EVENT_END, EVENT_RECURRENCE_ID as EVENT_RECURRENCE_ID, EVENT_RECURRENCE_RANGE as EVENT_RECURRENCE_RANGE, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_UID as EVENT_UID
+from .const import CONF_EVENT as CONF_EVENT, CalendarEntityFeature as CalendarEntityFeature, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END as EVENT_END, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_RECURRENCE_ID as EVENT_RECURRENCE_ID, EVENT_RECURRENCE_RANGE as EVENT_RECURRENCE_RANGE, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TIME_FIELDS as EVENT_TIME_FIELDS, EVENT_TYPES as EVENT_TYPES, EVENT_UID as EVENT_UID
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable, Iterable
@@ -8,7 +8,7 @@ from homeassistant.components.websocket_api import ERR_NOT_FOUND as ERR_NOT_FOUN
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, time_period_str as time_period_str
 from homeassistant.helpers.entity import Entity as Entity
@@ -23,6 +23,8 @@ DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
 SCAN_INTERVAL: Incomplete
 VALID_FREQS: Incomplete
+CREATE_EVENT_SERVICE: str
+CREATE_EVENT_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -87,3 +89,5 @@ def _is_sorted(*keys: Any) -> Callable[[dict[str, Any]], dict[str, Any]]: ...
 async def handle_calendar_event_create(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def handle_calendar_event_delete(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def handle_calendar_event_update(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+def _validate_timespan(values: dict[str, Any]) -> tuple[Union[datetime.datetime, datetime.date], Union[datetime.datetime, datetime.date]]: ...
+async def async_create_event(entity: CalendarEntity, call: ServiceCall) -> None: ...

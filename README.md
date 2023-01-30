@@ -34,6 +34,6 @@ But many of the Home Assistant components are currently not type checked.
 
 ## How it works
 
-- `update_stubs.py` script extracts list of strictly typed modules from Home Assistant `setup.cfg`.
+- `update_stubs.py` script extracts list of strictly typed modules from Home Assistant configs.
 - Then it runs `stubgen` which is shipped with `mypy` to generate typing stubs.
 - New versions are generated and published automatically every 12 hours.

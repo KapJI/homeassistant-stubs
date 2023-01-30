@@ -22,10 +22,12 @@ class ESPHomeUpdateEntity(CoordinatorEntity[ESPHomeDashboard], UpdateEntity):
     _attr_supported_features: Incomplete
     _attr_title: str
     _attr_name: str
-    _device_info: ESPHomeDeviceInfo
+    _entry_data: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, entry_data: RuntimeEntryData, coordinator: ESPHomeDashboard) -> None: ...
+    @property
+    def _device_info(self) -> ESPHomeDeviceInfo: ...
     @property
     def available(self) -> bool: ...
     @property

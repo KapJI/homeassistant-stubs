@@ -34,7 +34,7 @@ flake8-bugbear = "^23.1.20"
 flake8-comprehensions = "^3.10.1"
 flake8-simplify = "^0.19.3"
 flake8-use-fstring = "^1.4"
-isort = "^5.11.4"
+isort = "^5.12.0"
 # mypy = "^0.991"
 # This version includes https://github.com/python/mypy/pull/14557
 # Waiting for the next release

@@ -262,9 +262,9 @@ def get_old_typed_paths(homeassistant_root: Path) -> list[Path]:
     with cfg_path.open() as fp:
         matched_lines = [line for line in fp.readlines() if line.startswith("[mypy-")]
     if not matched_lines:
-        raise Exception("can't find mypy config in setup.cfg")
+        raise ValueError("can't find mypy config in setup.cfg")
     if len(matched_lines) > 2:
-        raise Exception("too many mypy entries in setup.cfg, update the script")
+        raise ValueError("too many mypy entries in setup.cfg, update the script")
     mypy_config = matched_lines[0][len("[mypy-") : -len("]\n")]
     typed_paths: list[Path] = []
     mypy_entries = mypy_config.split(",")

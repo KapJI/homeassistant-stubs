@@ -21,6 +21,10 @@ packages = [
     { include = "homeassistant-stubs" },
 ]
 
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/KapJI/homeassistant-stubs/issues"
+"Release Notes" = "https://github.com/KapJI/homeassistant-stubs/releases"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 homeassistant = "2023.2.0b8"
@@ -53,7 +57,7 @@ profile = "black"
 multi_line_output = 3
 
 [tool.pylint.format]
-max-line-length = "88"
+max-line-length = 88
 
 [tool.pylint.basic]
 good-names = ["ex", "fp", "i"]

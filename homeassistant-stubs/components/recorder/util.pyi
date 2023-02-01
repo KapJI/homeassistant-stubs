@@ -1,12 +1,12 @@
 from . import Recorder as Recorder
-from .const import DATA_INSTANCE as DATA_INSTANCE, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
+from .const import DATA_INSTANCE as DATA_INSTANCE, DOMAIN as DOMAIN, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import RecorderRuns as RecorderRuns, TABLES_TO_CHECK as TABLES_TO_CHECK, TABLE_RECORDER_RUNS as TABLE_RECORDER_RUNS, TABLE_SCHEMA_CHANGES as TABLE_SCHEMA_CHANGES
 from .models import StatisticPeriod as StatisticPeriod, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Callable as Callable, Generator
 from datetime import date, datetime
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from sqlalchemy.engine.cursor import CursorFetchStrategy as CursorFetchStrategy
 from sqlalchemy.engine.row import Row as Row
 from sqlalchemy.orm.query import Query as Query
@@ -22,6 +22,13 @@ QUERY_RETRY_WAIT: float
 SQLITE3_POSTFIXES: Incomplete
 DEFAULT_YIELD_STATES_ROWS: int
 MIN_VERSION_MARIA_DB: Incomplete
+RECOMMENDED_MIN_VERSION_MARIA_DB: Incomplete
+MARIA_DB_106: Incomplete
+RECOMMENDED_MIN_VERSION_MARIA_DB_106: Incomplete
+MARIA_DB_107: Incomplete
+RECOMMENDED_MIN_VERSION_MARIA_DB_107: Incomplete
+MARIA_DB_108: Incomplete
+RECOMMENDED_MIN_VERSION_MARIA_DB_108: Incomplete
 MIN_VERSION_MYSQL: Incomplete
 MIN_VERSION_PGSQL: Incomplete
 MIN_VERSION_SQLITE: Incomplete
@@ -49,6 +56,7 @@ def _fail_unsupported_version(server_version: str, dialect_name: str, minimum_ve
 def _extract_version_from_server_response(server_response: str) -> Union[AwesomeVersion, None]: ...
 def _datetime_or_none(value: str) -> Union[datetime, None]: ...
 def build_mysqldb_conv() -> dict: ...
+def _async_create_mariadb_range_index_regression_issue(hass: HomeAssistant, version: AwesomeVersion) -> None: ...
 def setup_connection_for_dialect(instance: Recorder, dialect_name: str, dbapi_connection: Any, first_connection: bool) -> Union[AwesomeVersion, None]: ...
 def end_incomplete_runs(session: Session, start_time: datetime) -> None: ...
 def retryable_database_job(description: str) -> Callable[[Callable[Concatenate[_RecorderT, _P], bool]], Callable[Concatenate[_RecorderT, _P], bool]]: ...

@@ -1,6 +1,4 @@
 from _typeshed import Incomplete
-from homeassistant.components.bluetooth import FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS
 
 DOMAIN: str
 SCAN_INTERVAL: Incomplete
-OLD_ADVERTISEMENT_CUTOFF: Incomplete

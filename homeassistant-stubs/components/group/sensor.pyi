@@ -43,7 +43,6 @@ CALC_TYPES: dict[str, Callable[[list[tuple[str, float, State]]], tuple[dict[str,
 class SensorGroup(GroupEntity, SensorEntity):
     _attr_available: bool
     _attr_should_poll: bool
-    _attr_icon: str
     _entity_ids: Incomplete
     _sensor_type: Incomplete
     _attr_state_class: Incomplete
@@ -67,6 +66,8 @@ class SensorGroup(GroupEntity, SensorEntity):
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
     def device_class(self) -> Union[SensorDeviceClass, None]: ...
+    @property
+    def icon(self) -> Union[str, None]: ...
     @property
     def state_class(self) -> Union[SensorStateClass, str, None]: ...
     @property

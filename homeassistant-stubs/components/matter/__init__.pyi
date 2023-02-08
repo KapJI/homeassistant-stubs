@@ -4,7 +4,7 @@ from .addon import get_addon_manager as get_addon_manager
 from .api import async_register_api as async_register_api
 from .const import CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .device_platform import DEVICE_PLATFORM as DEVICE_PLATFORM
-from .helpers import MatterEntryData as MatterEntryData, get_matter as get_matter
+from .helpers import MatterEntryData as MatterEntryData, get_matter as get_matter, get_node_from_device_entry as get_node_from_device_entry
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP

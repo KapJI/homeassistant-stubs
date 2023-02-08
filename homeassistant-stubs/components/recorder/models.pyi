@@ -1,4 +1,6 @@
+from .const import SupportedDialect as SupportedDialect
 from _typeshed import Incomplete
+from awesomeversion import AwesomeVersion as AwesomeVersion
 from datetime import datetime, timedelta
 from homeassistant.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.core import Context as Context, State as State
@@ -126,3 +128,13 @@ class StatisticPeriod(TypedDict):
     calendar: CalendarStatisticPeriod
     fixed_period: FixedStatisticPeriod
     rolling_window: RollingWindowStatisticPeriod
+
+class DatabaseEngine:
+    dialect: SupportedDialect
+    optimizer: DatabaseOptimizer
+    version: Union[AwesomeVersion, None]
+    def __init__(self, dialect, optimizer, version) -> None: ...
+
+class DatabaseOptimizer:
+    slow_range_in_select: bool
+    def __init__(self, slow_range_in_select) -> None: ...

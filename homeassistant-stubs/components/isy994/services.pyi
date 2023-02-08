@@ -1,4 +1,4 @@
-from .const import CONF_NETWORK as CONF_NETWORK, DOMAIN as DOMAIN, ISY_CONF_NAME as ISY_CONF_NAME, ISY_CONF_NETWORKING as ISY_CONF_NETWORKING, _LOGGER as _LOGGER
+from .const import CONF_NETWORK as CONF_NETWORK, DOMAIN as DOMAIN, ISY_CONF_NAME as ISY_CONF_NAME, _LOGGER as _LOGGER
 from .util import _async_cleanup_registry_entries as _async_cleanup_registry_entries
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD

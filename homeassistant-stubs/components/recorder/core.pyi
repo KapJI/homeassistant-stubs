@@ -4,14 +4,13 @@ from . import migration as migration, statistics as statistics
 from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG as MAX_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import Base as Base, EventData as EventData, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, Statistics as Statistics, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
-from .models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
+from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
 from .queries import find_shared_attributes_id as find_shared_attributes_id, find_shared_data_id as find_shared_data_id
 from .run_history import RunHistory as RunHistory
 from .tasks import AdjustStatisticsTask as AdjustStatisticsTask, ChangeStatisticsUnitTask as ChangeStatisticsUnitTask, ClearStatisticsTask as ClearStatisticsTask, CommitTask as CommitTask, DatabaseLockTask as DatabaseLockTask, EventTask as EventTask, ImportStatisticsTask as ImportStatisticsTask, KeepAliveTask as KeepAliveTask, PerodicCleanupTask as PerodicCleanupTask, PurgeTask as PurgeTask, RecorderTask as RecorderTask, StatisticsTask as StatisticsTask, StopTask as StopTask, SynchronizeTask as SynchronizeTask, UpdateStatisticsMetadataTask as UpdateStatisticsMetadataTask, WaitTask as WaitTask
 from .util import build_mysqldb_conv as build_mysqldb_conv, dburl_to_path as dburl_to_path, end_incomplete_runs as end_incomplete_runs, is_second_sunday as is_second_sunday, move_away_broken_database as move_away_broken_database, session_scope as session_scope, setup_connection_for_dialect as setup_connection_for_dialect, validate_or_move_away_sqlite_database as validate_or_move_away_sqlite_database, write_lock_db_sqlite as write_lock_db_sqlite
 from _typeshed import Incomplete
-from awesomeversion import AwesomeVersion as AwesomeVersion
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
 from homeassistant.components import persistent_notification as persistent_notification
@@ -53,7 +52,7 @@ class Recorder(threading.Thread):
     db_url: Incomplete
     db_max_retries: Incomplete
     db_retry_wait: Incomplete
-    engine_version: Incomplete
+    database_engine: Incomplete
     async_db_connected: Incomplete
     async_db_ready: Incomplete
     async_recorder_ready: Incomplete

@@ -4,11 +4,10 @@ from .const import CONF_SLAVE_COUNT as CONF_SLAVE_COUNT
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorEntity as SensorEntity
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, RestoreSensor as RestoreSensor, SensorEntity as SensorEntity
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
@@ -18,7 +17,7 @@ PARALLEL_UPDATES: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 
-class ModbusRegisterSensor(BaseStructPlatform, RestoreEntity, SensorEntity):
+class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     _coordinator: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
@@ -30,7 +29,7 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreEntity, SensorEntity):
     _attr_available: bool
     async def async_update(self, now: Union[datetime, None] = ...) -> None: ...
 
-class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreEntity, SensorEntity):
+class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreSensor, SensorEntity):
     _idx: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

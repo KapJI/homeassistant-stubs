@@ -2,8 +2,9 @@ from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
+from enum import Enum
 from homeassistant.components.recorder import get_instance as get_instance, history as history
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -11,7 +12,7 @@ from homeassistant.helpers.event import async_track_point_in_utc_time as async_t
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
-from typing import Any, Literal
+from typing import Any, Literal, TypeVar
 
 _LOGGER: Incomplete
 STAT_AGE_COVERAGE_RATIO: str
@@ -49,8 +50,8 @@ STATS_NUMERIC_SUPPORT: Incomplete
 STATS_BINARY_SUPPORT: Incomplete
 STATS_NOT_A_NUMBER: Incomplete
 STATS_DATETIME: Incomplete
-STAT_NUMERIC_RETAIN_UNIT: Incomplete
-STAT_BINARY_PERCENTAGE: Incomplete
+STATS_NUMERIC_RETAIN_UNIT: Incomplete
+STATS_BINARY_PERCENTAGE: Incomplete
 CONF_STATE_CHARACTERISTIC: str
 CONF_SAMPLES_MAX_BUFFER_SIZE: str
 CONF_MAX_AGE: str
@@ -110,6 +111,7 @@ class StatisticsSensor(SensorEntity):
     async def _initialize_from_database(self) -> None: ...
     def _update_attributes(self) -> None: ...
     def _update_value(self) -> None: ...
+    def _callable_characteristic_fn(self, characteristic: str) -> Callable[[], Union[StateType, datetime]]: ...
     def _stat_average_linear(self) -> StateType: ...
     def _stat_average_step(self) -> StateType: ...
     def _stat_average_timeless(self) -> StateType: ...
@@ -144,3 +146,6 @@ class StatisticsSensor(SensorEntity):
     def _stat_binary_datetime_newest(self) -> Union[datetime, None]: ...
     def _stat_binary_datetime_oldest(self) -> Union[datetime, None]: ...
     def _stat_binary_mean(self) -> StateType: ...
+_EnumT = TypeVar('_EnumT', bound=Enum)
+
+def try_parse_enum(cls, value: Any) -> Union[_EnumT, None]: ...

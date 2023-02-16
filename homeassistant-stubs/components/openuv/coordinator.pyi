@@ -1,7 +1,7 @@
 from .const import LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.debounce import Debouncer as Debouncer

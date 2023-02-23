@@ -1,32 +1,10 @@
-from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, NumberDeviceClass as NumberDeviceClass, SERVICE_SET_VALUE as SERVICE_SET_VALUE, UNIT_CONVERTERS as UNIT_CONVERTERS
-from _typeshed import Incomplete
-from collections.abc import Callable as Callable
-from homeassistant.backports.enum import StrEnum as StrEnum
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_MODE as ATTR_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, NumberDeviceClass as NumberDeviceClass, NumberMode as NumberMode
+from collections.abc import Callable
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Final
-
-SCAN_INTERVAL: Incomplete
-ENTITY_ID_FORMAT: Incomplete
-MIN_TIME_BETWEEN_SCANS: Incomplete
-_LOGGER: Incomplete
-DEVICE_CLASSES_SCHEMA: Final[Incomplete]
-
-class NumberMode(StrEnum):
-    AUTO: str
-    BOX: str
-    SLIDER: str
-
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-async def async_set_value(entity: NumberEntity, service_call: ServiceCall) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+from homeassistant.helpers.entity import Entity, EntityDescription
+from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
+from typing import Any
+from typing_extensions import Self
 
 class NumberEntityDescription(EntityDescription):
     device_class: Union[NumberDeviceClass, None]
@@ -40,9 +18,6 @@ class NumberEntityDescription(EntityDescription):
     unit_of_measurement: None
     def __post_init__(self) -> None: ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step) -> None: ...
-
-def ceil_decimal(value: float, precision: float = ...) -> float: ...
-def floor_decimal(value: float, precision: float = ...) -> float: ...
 
 class NumberEntity(Entity):
     entity_description: NumberEntityDescription
@@ -108,7 +83,7 @@ class NumberExtraStoredData(ExtraStoredData):
     native_value: Union[float, None]
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
-    def from_dict(cls, restored: dict[str, Any]) -> Union[NumberExtraStoredData, None]: ...
+    def from_dict(cls, restored: dict[str, Any]) -> Union[Self, None]: ...
     def __init__(self, native_max_value, native_min_value, native_step, native_unit_of_measurement, native_value) -> None: ...
 
 class RestoreNumber(NumberEntity, RestoreEntity):

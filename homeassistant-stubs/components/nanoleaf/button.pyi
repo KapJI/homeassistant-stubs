@@ -5,8 +5,8 @@ from _typeshed import Incomplete
 from aionanoleaf import Nanoleaf as Nanoleaf
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 

@@ -15,6 +15,7 @@ _T = TypeVar('_T')
 INTENT_TURN_OFF: str
 INTENT_TURN_ON: str
 INTENT_TOGGLE: str
+INTENT_GET_STATE: str
 SLOT_SCHEMA: Incomplete
 DATA_KEY: str
 SPEECH_TYPE_PLAIN: str
@@ -48,6 +49,7 @@ class IntentHandler:
 
 class ServiceIntentHandler(IntentHandler):
     slot_schema: Incomplete
+    service_timeout: float
     intent_type: Incomplete
     domain: Incomplete
     service: Incomplete
@@ -110,6 +112,8 @@ class IntentResponse:
     intent_targets: Incomplete
     success_results: Incomplete
     failed_results: Incomplete
+    matched_states: Incomplete
+    unmatched_states: Incomplete
     response_type: Incomplete
     def __init__(self, language: str, intent: Union[Intent, None] = ...) -> None: ...
     def async_set_speech(self, speech: str, speech_type: str = ..., extra_data: Union[Any, None] = ...) -> None: ...
@@ -118,4 +122,5 @@ class IntentResponse:
     def async_set_error(self, code: IntentResponseErrorCode, message: str) -> None: ...
     def async_set_targets(self, intent_targets: list[IntentResponseTarget]) -> None: ...
     def async_set_results(self, success_results: list[IntentResponseTarget], failed_results: Union[list[IntentResponseTarget], None] = ...) -> None: ...
+    def async_set_states(self, matched_states: list[State], unmatched_states: Union[list[State], None] = ...) -> None: ...
     def as_dict(self) -> dict[str, Any]: ...

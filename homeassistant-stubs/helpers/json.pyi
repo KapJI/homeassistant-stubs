@@ -1,10 +1,12 @@
 import json
-import orjson
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
+from homeassistant.core import Event as Event, State as State
+from homeassistant.util.file import write_utf8_file as write_utf8_file, write_utf8_file_atomic as write_utf8_file_atomic
+from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, JSON_ENCODE_EXCEPTIONS as JSON_ENCODE_EXCEPTIONS, SerializationError as SerializationError, format_unserializable_data as format_unserializable_data, json_loads as json_loads
 from typing import Any, Final
 
-JSON_ENCODE_EXCEPTIONS: Incomplete
-JSON_DECODE_EXCEPTIONS: Incomplete
+_LOGGER: Incomplete
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o: Any) -> Any: ...
@@ -18,5 +20,9 @@ def json_bytes(data: Any) -> bytes: ...
 def json_bytes_strip_null(data: Any) -> bytes: ...
 def json_dumps(data: Any) -> str: ...
 def json_dumps_sorted(data: Any) -> str: ...
-json_loads = orjson.loads
+
 JSON_DUMP: Final[Incomplete]
+
+def _orjson_default_encoder(data: Any) -> str: ...
+def save_json(filename: str, data: Union[list, dict], private: bool = ..., *, encoder: Union[type[json.JSONEncoder], None] = ..., atomic_writes: bool = ...) -> None: ...
+def find_paths_unserializable_data(bad_data: Any, *, dump: Callable[[Any], str] = ...) -> dict[str, Any]: ...

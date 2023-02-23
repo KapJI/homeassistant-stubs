@@ -1,7 +1,7 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
 from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttAvailability as MqttAvailability, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
 from .models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
@@ -22,6 +22,7 @@ _LOGGER: Incomplete
 CONF_EXPIRE_AFTER: str
 CONF_LAST_RESET_TOPIC: str
 CONF_LAST_RESET_VALUE_TEMPLATE: str
+CONF_SUGGESTED_DISPLAY_PRECISION: str
 MQTT_SENSOR_ATTRIBUTES_BLOCKED: Incomplete
 DEFAULT_NAME: str
 DEFAULT_FORCE_UPDATE: bool
@@ -53,6 +54,7 @@ class MqttSensor(MqttEntity, RestoreSensor):
     def config_schema() -> vol.Schema: ...
     _attr_device_class: Incomplete
     _attr_force_update: Incomplete
+    _attr_suggested_display_precision: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...

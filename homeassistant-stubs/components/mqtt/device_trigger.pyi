@@ -1,7 +1,7 @@
 from . import debug_info as debug_info
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, CONF_ENCODING as CONF_ENCODING, CONF_PAYLOAD as CONF_PAYLOAD, CONF_QOS as CONF_QOS, CONF_TOPIC as CONF_TOPIC, DOMAIN as DOMAIN
-from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload, MQTT_DISCOVERY_DONE as MQTT_DISCOVERY_DONE
+from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload
 from .mixins import MQTT_ENTITY_DEVICE_INFO_SCHEMA as MQTT_ENTITY_DEVICE_INFO_SCHEMA, MqttDiscoveryDeviceUpdate as MqttDiscoveryDeviceUpdate, send_discovery_done as send_discovery_done, update_device as update_device
 from .util import get_mqtt_data as get_mqtt_data
 from _typeshed import Incomplete
@@ -11,7 +11,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_PLATFORM as CONF_PLATFORM, CONF_TYPE as CONF_TYPE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
@@ -49,7 +48,7 @@ class Trigger:
     type: str
     value_template: Union[str, None]
     trigger_instances: list[TriggerInstance]
-    async def add_trigger(self, action: TriggerActionType, trigger_info: TriggerInfo) -> Callable: ...
+    async def add_trigger(self, action: TriggerActionType, trigger_info: TriggerInfo) -> Callable[[], None]: ...
     async def update_trigger(self, config: ConfigType) -> None: ...
     def detach_trigger(self) -> None: ...
     def __init__(self, device_id, discovery_data, hass, payload, qos, subtype, topic, type, value_template, trigger_instances) -> None: ...

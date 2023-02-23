@@ -4,9 +4,9 @@ from .helpers import convert_isy_value_to_hass as convert_isy_value_to_hass
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyisy.helpers import EventListener as EventListener, NodeProperty
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent

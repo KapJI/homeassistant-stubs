@@ -3,9 +3,9 @@ from .hub import NeatoHub as NeatoHub
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pybotvac.robot import Robot as Robot
 from typing import Any

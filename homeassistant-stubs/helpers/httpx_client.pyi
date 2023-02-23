@@ -6,6 +6,7 @@ from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOME
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
+from typing_extensions import Self
 
 DATA_ASYNC_CLIENT: str
 DATA_ASYNC_CLIENT_NOVERIFY: str
@@ -15,7 +16,7 @@ USER_AGENT: str
 def get_async_client(hass: HomeAssistant, verify_ssl: bool = ...) -> httpx.AsyncClient: ...
 
 class HassHttpXAsyncClient(httpx.AsyncClient):
-    async def __aenter__(self) -> HassHttpXAsyncClient: ...
+    async def __aenter__(self) -> Self: ...
     async def __aexit__(self, *args: Any) -> None: ...
 
 def create_async_httpx_client(hass: HomeAssistant, verify_ssl: bool = ..., auto_cleanup: bool = ..., **kwargs: Any) -> httpx.AsyncClient: ...

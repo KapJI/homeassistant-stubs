@@ -5,19 +5,18 @@ from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONF_NAME as CONF_NAME, PERCENTAGE as PERCENTAGE, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 PARALLEL_UPDATES: int
 
 class AirlySensorEntityDescription(SensorEntityDescription):
-    value: Callable
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_precision, native_unit_of_measurement, options, state_class, suggested_unit_of_measurement, value) -> None: ...
+    attrs: Callable[[dict[str, Any]], dict[str, Any]]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attrs) -> None: ...
 
 SENSOR_TYPES: tuple[AirlySensorEntityDescription, ...]
 
@@ -29,9 +28,7 @@ class AirlySensor(CoordinatorEntity[AirlyDataUpdateCoordinator], SensorEntity):
     entity_description: AirlySensorEntityDescription
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    _attrs: Incomplete
+    _attr_native_value: Incomplete
+    _attr_extra_state_attributes: Incomplete
     def __init__(self, coordinator: AirlyDataUpdateCoordinator, name: str, description: AirlySensorEntityDescription) -> None: ...
-    @property
-    def native_value(self) -> StateType: ...
-    @property
-    def extra_state_attributes(self) -> dict[str, Any]: ...
+    def _handle_coordinator_update(self) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.requirements import RequirementsNotFound as RequirementsNotFound, async_clear_install_history as async_clear_install_history, async_get_integration_with_requirements as async_get_integration_with_requirements
 from typing import NamedTuple
+from typing_extensions import Self
 
 class CheckConfigError(NamedTuple):
     message: str
@@ -16,7 +17,7 @@ class CheckConfigError(NamedTuple):
 class HomeAssistantConfig(OrderedDict):
     errors: Incomplete
     def __init__(self) -> None: ...
-    def add_error(self, message: str, domain: Union[str, None] = ..., config: Union[ConfigType, None] = ...) -> HomeAssistantConfig: ...
+    def add_error(self, message: str, domain: Union[str, None] = ..., config: Union[ConfigType, None] = ...) -> Self: ...
     @property
     def error_str(self) -> str: ...
 

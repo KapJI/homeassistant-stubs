@@ -22,7 +22,7 @@ class AccuWeatherSensorDescription(SensorEntityDescription, AccuWeatherSensorDes
     attr_fn: Callable[[dict[str, Any]], dict[str, StateType]]
     metric_unit: Union[str, None]
     us_customary_unit: Union[str, None]
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_precision, native_unit_of_measurement, options, state_class, suggested_unit_of_measurement, attr_fn, metric_unit, us_customary_unit) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attr_fn, metric_unit, us_customary_unit) -> None: ...
 
 FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
 SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]

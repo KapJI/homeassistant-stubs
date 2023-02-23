@@ -3,10 +3,9 @@ from .entity import BlockEntityDescription as BlockEntityDescription, ShellySlee
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any, Final
@@ -25,6 +24,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class BlockSleepingNumber(ShellySleepingBlockAttributeEntity, NumberEntity):
     entity_description: BlockNumberDescription
     @property
-    def native_value(self) -> float: ...
+    def native_value(self) -> Union[float, None]: ...
     async def async_set_native_value(self, value: float) -> None: ...
     async def _set_state_full_path(self, path: str, params: Any) -> Any: ...

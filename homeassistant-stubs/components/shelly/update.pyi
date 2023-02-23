@@ -1,16 +1,15 @@
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD
-from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, get_entry_data as get_entry_data
-from .entity import RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
-from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_device_name as get_block_device_name, get_device_entry_gen as get_device_entry_gen, get_rpc_device_name as get_rpc_device_name
+from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator
+from .entity import RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingRpcAttributeEntity as ShellySleepingRpcAttributeEntity, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
+from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util import slugify as slugify
 from typing import Any, Final
 
 LOGGER: Incomplete
@@ -61,3 +60,10 @@ class RpcUpdateEntity(ShellyRpcAttributeEntity, UpdateEntity):
     @property
     def in_progress(self) -> bool: ...
     async def async_install(self, version: Union[str, None], backup: bool, **kwargs: Any) -> None: ...
+
+class RpcSleepingUpdateEntity(ShellySleepingRpcAttributeEntity, UpdateEntity):
+    entity_description: RpcUpdateDescription
+    @property
+    def installed_version(self) -> Union[str, None]: ...
+    @property
+    def latest_version(self) -> Union[str, None]: ...

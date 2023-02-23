@@ -9,6 +9,7 @@ from homeassistant.helpers.integration_platform import async_process_integration
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing_extensions import Self
 
 DOMAIN: str
 _LOGGER: Incomplete
@@ -33,9 +34,9 @@ class InputButton(collection.CollectionEntity, ButtonEntity, RestoreEntity):
     _attr_unique_id: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
     @classmethod
-    def from_storage(cls, config: ConfigType) -> InputButton: ...
+    def from_storage(cls, config: ConfigType) -> Self: ...
     @classmethod
-    def from_yaml(cls, config: ConfigType) -> InputButton: ...
+    def from_yaml(cls, config: ConfigType) -> Self: ...
     @property
     def name(self) -> Union[str, None]: ...
     @property

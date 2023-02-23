@@ -4,8 +4,8 @@ from .entity import LIFXSensorEntity as LIFXSensorEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 SCAN_INTERVAL: Incomplete
@@ -16,7 +16,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class LIFXRssiSensor(LIFXSensorEntity, SensorEntity):
     _attr_has_entity_name: bool
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: LIFXSensorUpdateCoordinator, description: SensorEntityDescription) -> None: ...

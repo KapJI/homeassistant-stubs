@@ -1,5 +1,5 @@
 import asyncio
-from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, CONF_STATE_CLASS as CONF_STATE_CLASS, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
+from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from collections.abc import Mapping
 from datetime import date, datetime
 from decimal import Decimal
@@ -11,40 +11,43 @@ from homeassistant.helpers.entity_platform import EntityPlatform
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from homeassistant.helpers.typing import StateType, UndefinedType
 from typing import Any
+from typing_extensions import Self
 
 class SensorEntityDescription(EntityDescription):
     device_class: Union[SensorDeviceClass, None]
     last_reset: Union[datetime, None]
-    native_precision: Union[int, None]
     native_unit_of_measurement: Union[str, None]
     options: Union[list[str], None]
     state_class: Union[SensorStateClass, str, None]
+    suggested_display_precision: Union[int, None]
     suggested_unit_of_measurement: Union[str, None]
     unit_of_measurement: None
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_precision, native_unit_of_measurement, options, state_class, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 class SensorEntity(Entity):
     entity_description: SensorEntityDescription
     _attr_device_class: Union[SensorDeviceClass, None]
     _attr_last_reset: Union[datetime, None]
-    _attr_native_precision: Union[int, None]
     _attr_native_unit_of_measurement: Union[str, None]
     _attr_native_value: Union[StateType, date, datetime, Decimal]
     _attr_options: Union[list[str], None]
     _attr_state_class: Union[SensorStateClass, str, None]
     _attr_state: None
+    _attr_suggested_display_precision: Union[int, None]
     _attr_suggested_unit_of_measurement: Union[str, None]
     _attr_unit_of_measurement: None
     _invalid_numeric_value_reported: bool
     _invalid_state_class_reported: bool
     _invalid_unit_of_measurement_reported: bool
     _last_reset_reported: bool
-    _sensor_option_precision: Union[int, None]
+    _sensor_option_display_precision: Union[int, None]
     _sensor_option_unit_of_measurement: Union[str, None, UndefinedType]
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: Union[asyncio.Semaphore, None]) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
     @property
     def device_class(self) -> Union[SensorDeviceClass, None]: ...
+    @property
+    def _numeric_state_expected(self) -> bool: ...
     @property
     def options(self) -> Union[list[str], None]: ...
     @property
@@ -59,9 +62,7 @@ class SensorEntity(Entity):
     @property
     def native_value(self) -> Union[StateType, date, datetime, Decimal]: ...
     @property
-    def native_precision(self) -> Union[int, None]: ...
-    @property
-    def precision(self) -> Union[int, None]: ...
+    def suggested_display_precision(self) -> Union[int, None]: ...
     @property
     def native_unit_of_measurement(self) -> Union[str, None]: ...
     @property
@@ -71,16 +72,18 @@ class SensorEntity(Entity):
     @property
     def state(self) -> Any: ...
     def __repr__(self) -> str: ...
-    def _custom_precision_or_none(self) -> Union[int, None]: ...
+    def _suggested_precision_or_none(self) -> Union[int, None]: ...
+    def _update_suggested_precision(self) -> None: ...
     def _custom_unit_or_undef(self, primary_key: str, secondary_key: str) -> Union[str, None, UndefinedType]: ...
     def async_registry_entry_updated(self) -> None: ...
+    def _async_read_entity_options(self) -> None: ...
 
 class SensorExtraStoredData(ExtraStoredData):
     native_value: Union[StateType, date, datetime, Decimal]
     native_unit_of_measurement: Union[str, None]
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
-    def from_dict(cls, restored: dict[str, Any]) -> Union[SensorExtraStoredData, None]: ...
+    def from_dict(cls, restored: dict[str, Any]) -> Union[Self, None]: ...
     def __init__(self, native_value, native_unit_of_measurement) -> None: ...
 
 class RestoreSensor(SensorEntity, RestoreEntity):

@@ -1,8 +1,9 @@
-from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature
+from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature
 from _typeshed import Incomplete
 from homeassistant.backports.enum import StrEnum
+from homeassistant.const import EntityCategory
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.entity import EntityCategory, EntityDescription
+from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.restore_state import RestoreEntity
 from typing import Any
 

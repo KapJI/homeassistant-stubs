@@ -1,23 +1,21 @@
 from . import Recorder as Recorder
-from .const import MAX_ROWS_TO_PURGE as MAX_ROWS_TO_PURGE
+from .const import SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS
 from .db_schema import Events as Events, StateAttributes as StateAttributes, States as States
 from .models import DatabaseEngine as DatabaseEngine
 from .queries import attributes_ids_exist_in_states as attributes_ids_exist_in_states, attributes_ids_exist_in_states_with_fast_in_distinct as attributes_ids_exist_in_states_with_fast_in_distinct, data_ids_exist_in_events as data_ids_exist_in_events, data_ids_exist_in_events_with_fast_in_distinct as data_ids_exist_in_events_with_fast_in_distinct, delete_event_data_rows as delete_event_data_rows, delete_event_rows as delete_event_rows, delete_recorder_runs_rows as delete_recorder_runs_rows, delete_states_attributes_rows as delete_states_attributes_rows, delete_states_rows as delete_states_rows, delete_statistics_runs_rows as delete_statistics_runs_rows, delete_statistics_short_term_rows as delete_statistics_short_term_rows, disconnect_states_rows as disconnect_states_rows, find_events_to_purge as find_events_to_purge, find_latest_statistics_runs_run_id as find_latest_statistics_runs_run_id, find_legacy_event_state_and_attributes_and_data_ids_to_purge as find_legacy_event_state_and_attributes_and_data_ids_to_purge, find_legacy_row as find_legacy_row, find_short_term_statistics_to_purge as find_short_term_statistics_to_purge, find_states_to_purge as find_states_to_purge, find_statistics_runs_to_purge as find_statistics_runs_to_purge
 from .repack import repack_database as repack_database
-from .util import retryable_database_job as retryable_database_job, session_scope as session_scope
+from .util import chunked as chunked, retryable_database_job as retryable_database_job, session_scope as session_scope
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
 from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED
+from sqlalchemy.engine.row import Row as Row
 from sqlalchemy.orm.session import Session as Session
-from typing import Any
 
 _LOGGER: Incomplete
 DEFAULT_STATES_BATCHES_PER_PURGE: int
 DEFAULT_EVENTS_BATCHES_PER_PURGE: int
 
-def take(take_num: int, iterable: Iterable) -> list[Any]: ...
-def chunked(iterable: Iterable, chunked_num: int) -> Iterable[Any]: ...
 def purge_old_data(instance: Recorder, purge_before: datetime, repack: bool, apply_filter: bool = ..., events_batch_size: int = ..., states_batch_size: int = ...) -> bool: ...
 def _purging_legacy_format(session: Session) -> bool: ...
 def _purge_legacy_format(instance: Recorder, session: Session, purge_before: datetime) -> bool: ...

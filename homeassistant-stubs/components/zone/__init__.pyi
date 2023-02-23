@@ -9,6 +9,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.location import distance as distance
 from typing import Any
+from typing_extensions import Self
 
 _LOGGER: Incomplete
 DEFAULT_PASSIVE: bool
@@ -50,9 +51,9 @@ class Zone(collection.CollectionEntity):
     _persons_in_zone: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
     @classmethod
-    def from_storage(cls, config: ConfigType) -> Zone: ...
+    def from_storage(cls, config: ConfigType) -> Self: ...
     @classmethod
-    def from_yaml(cls, config: ConfigType) -> Zone: ...
+    def from_yaml(cls, config: ConfigType) -> Self: ...
     @property
     def state(self) -> int: ...
     @property

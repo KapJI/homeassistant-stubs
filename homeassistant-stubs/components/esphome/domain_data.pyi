@@ -6,11 +6,10 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
 from homeassistant.helpers.storage import Store as Store
-from typing import TypeVar
+from typing_extensions import Self
 
 STORAGE_VERSION: int
 MAX_CACHED_SERVICES: int
-_DomainDataSelfT = TypeVar('_DomainDataSelfT', bound='DomainData')
 
 class DomainData:
     _entry_datas: dict[str, RuntimeEntryData]
@@ -29,5 +28,5 @@ class DomainData:
     def is_entry_loaded(self, entry: ConfigEntry) -> bool: ...
     def get_or_create_store(self, hass: HomeAssistant, entry: ConfigEntry) -> Store: ...
     @classmethod
-    def get(cls, hass: HomeAssistant) -> _DomainDataSelfT: ...
+    def get(cls, hass: HomeAssistant) -> Self: ...
     def __init__(self, _entry_datas, _stores, _gatt_services_cache, _gatt_mtu_cache) -> None: ...

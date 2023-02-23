@@ -8,11 +8,10 @@ from abc import abstractmethod
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import EFFECT_RANDOM as EFFECT_RANDOM
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberMode as NumberMode
-from homeassistant.const import CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 

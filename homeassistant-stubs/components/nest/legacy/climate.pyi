@@ -1,9 +1,12 @@
 from .const import DATA_NEST as DATA_NEST, DOMAIN as DOMAIN, SIGNAL_NEST_UPDATE as SIGNAL_NEST_UPDATE
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode, PLATFORM_SCHEMA as PLATFORM_SCHEMA, PRESET_AWAY as PRESET_AWAY, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, UnitOfTemperature as UnitOfTemperature
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 _LOGGER: Incomplete
 NEST_MODE_HEAT_COOL: str
@@ -17,8 +20,7 @@ ACTION_NEST_TO_HASS: Incomplete
 PRESET_AWAY_AND_ECO: str
 PRESET_MODES: Incomplete
 
-def setup_platform(hass, config, add_entities, discovery_info: Incomplete | None = ...) -> None: ...
-async def async_setup_legacy_entry(hass, entry, async_add_entities) -> None: ...
+async def async_setup_legacy_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NestThermostat(ClimateEntity):
     _attr_should_poll: bool

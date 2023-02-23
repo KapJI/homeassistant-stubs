@@ -1,6 +1,6 @@
 from .bluetooth import async_connect_scanner as async_connect_scanner
 from .const import ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLEScannerMode as BLEScannerMode, BLE_MIN_VERSION as BLE_MIN_VERSION, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, LOGGER as LOGGER, MODELS_SUPPORTING_LIGHT_EFFECTS as MODELS_SUPPORTING_LIGHT_EFFECTS, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, RPC_SENSORS_POLLING_INTERVAL as RPC_SENSORS_POLLING_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, SLEEP_PERIOD_MULTIPLIER as SLEEP_PERIOD_MULTIPLIER, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
-from .utils import device_update_info as device_update_info, get_device_name as get_device_name, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period
+from .utils import device_update_info as device_update_info, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period
 from _typeshed import Incomplete
 from aioshelly.block_device import BlockDevice
 from aioshelly.rpc_device import RpcDevice, UpdateType
@@ -48,6 +48,7 @@ class ShellyBlockCoordinator(ShellyCoordinatorBase[BlockDevice]):
     _last_mode: Incomplete
     _last_effect: Incomplete
     _last_input_events_count: Incomplete
+    _last_target_temp: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: BlockDevice) -> None: ...
     def _async_device_updates_handler(self) -> None: ...
     async def _async_update_data(self) -> None: ...

@@ -5,9 +5,8 @@ from .helpers import homewizard_exception_handler as homewizard_exception_handle
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

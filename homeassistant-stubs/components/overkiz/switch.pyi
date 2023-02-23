@@ -5,9 +5,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyoverkiz.types import StateType as OverkizStateType
 from typing import Any

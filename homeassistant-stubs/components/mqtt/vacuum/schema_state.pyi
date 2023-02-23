@@ -14,8 +14,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.json import json_dumps as json_dumps, json_loads as json_loads
+from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
 SERVICE_TO_STRING: dict[VacuumEntityFeature, str]

@@ -8,7 +8,7 @@ from homeassistant.helpers.location import find_coordinates as find_coordinates
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import dt as dt
 from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter
-from typing import Any, Optional
+from typing import Any
 
 BACKOFF_MULTIPLIER: float
 _LOGGER: Incomplete
@@ -21,7 +21,7 @@ class HERERoutingDataUpdateCoordinator(DataUpdateCoordinator[HERETravelTimeData]
     async def _async_update_data(self) -> HERETravelTimeData: ...
     def _parse_routing_response(self, response: dict[str, Any]) -> HERETravelTimeData: ...
 
-class HERETransitDataUpdateCoordinator(DataUpdateCoordinator[Optional[HERETravelTimeData]]):
+class HERETransitDataUpdateCoordinator(DataUpdateCoordinator[HERETravelTimeData | None]):
     _api: Incomplete
     config: Incomplete
     def __init__(self, hass: HomeAssistant, api_key: str, config: HERETravelTimeConfig) -> None: ...

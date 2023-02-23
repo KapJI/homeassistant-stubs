@@ -3,9 +3,9 @@ from _typeshed import Incomplete
 from dsmr_parser.objects import DSMRObject as DSMRObject
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
 from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import EventType as EventType, StateType as StateType
 from homeassistant.util import Throttle as Throttle
@@ -19,7 +19,7 @@ class DSMRSensorEntityDescriptionMixin:
 class DSMRSensorEntityDescription(SensorEntityDescription, DSMRSensorEntityDescriptionMixin):
     dsmr_versions: Union[set[str], None]
     is_gas: bool
-    def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_precision, native_unit_of_measurement, options, state_class, suggested_unit_of_measurement, dsmr_versions, is_gas) -> None: ...
+    def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, dsmr_versions, is_gas) -> None: ...
 
 SENSORS: tuple[DSMRSensorEntityDescription, ...]
 

@@ -29,6 +29,7 @@ SERVICE_CREATE_EVENT: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CalendarSyncUpdateCoordinator(DataUpdateCoordinator[Timeline]):
+    config_entry: ConfigEntry
     sync: Incomplete
     def __init__(self, hass: HomeAssistant, sync: CalendarEventSyncManager, name: str) -> None: ...
     async def _async_update_data(self) -> Timeline: ...
@@ -37,6 +38,7 @@ class CalendarSyncUpdateCoordinator(DataUpdateCoordinator[Timeline]):
     def upcoming(self) -> Union[Iterable[Event], None]: ...
 
 class CalendarQueryUpdateCoordinator(DataUpdateCoordinator[list[Event]]):
+    config_entry: ConfigEntry
     calendar_service: Incomplete
     calendar_id: Incomplete
     _search: Incomplete

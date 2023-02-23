@@ -3,6 +3,7 @@ from .legacy import BaseNotificationService as BaseNotificationService, async_re
 from _typeshed import Incomplete
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 ATTR_TITLE_DEFAULT: str

@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from matter_server.common.models import device_types
+from matter_server.client.models import device_types
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

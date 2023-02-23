@@ -8,12 +8,11 @@ from collections.abc import Callable as Callable
 from enum import Enum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.util.dt import utcnow as utcnow
 from pyunifiprotect.api import ProtectApiClient as ProtectApiClient
 from pyunifiprotect.data import Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor, Viewer

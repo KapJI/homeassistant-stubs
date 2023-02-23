@@ -3,8 +3,8 @@ from .gateway import get_gateway_from_config_entry as get_gateway_from_config_en
 from _typeshed import Incomplete
 from homeassistant.components.select import DOMAIN as DOMAIN, SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor.presence import Presence

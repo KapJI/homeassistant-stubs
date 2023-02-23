@@ -10,9 +10,10 @@ from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
+from homeassistant.helpers.json import save_json as save_json
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.util.json import load_json as load_json, save_json as save_json
+from homeassistant.util.json import load_json as load_json
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import Any, Final
 

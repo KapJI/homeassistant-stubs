@@ -3,11 +3,11 @@ from .const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MA
 from _typeshed import Incomplete
 from homeassistant.components import zone as zone
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, EntityCategory as EntityCategory, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityCategory as EntityCategory
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import StateType as StateType

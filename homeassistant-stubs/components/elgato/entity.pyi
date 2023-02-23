@@ -1,11 +1,12 @@
 from .const import DOMAIN as DOMAIN
+from .coordinator import ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
 from _typeshed import Incomplete
-from elgato import Elgato as Elgato, Info as Info
+from homeassistant.const import CONF_MAC as CONF_MAC
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-class ElgatoEntity(Entity):
+class ElgatoEntity(CoordinatorEntity[ElgatoDataUpdateCoordinator]):
     _attr_has_entity_name: bool
-    client: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, client: Elgato, info: Info, mac: Union[str, None]) -> None: ...
+    def __init__(self, coordinator: ElgatoDataUpdateCoordinator) -> None: ...

@@ -8,13 +8,13 @@ from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, Devic
 from collections.abc import Callable as Callable
 from homeassistant.components import tag as tag, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityCategory as EntityCategory
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue

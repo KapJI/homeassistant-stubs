@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
+from typing_extensions import Self
 
 DOMAIN: str
 SCAN_INTERVAL: Incomplete
@@ -124,7 +125,7 @@ class Profile:
     SCHEMA: Incomplete
     def __post_init__(self) -> None: ...
     @classmethod
-    def from_csv_row(cls, csv_row: list[str]) -> Profile: ...
+    def from_csv_row(cls, csv_row: list[str]) -> Self: ...
     def __init__(self, name, color_x, color_y, brightness, transition) -> None: ...
 
 class Profiles:

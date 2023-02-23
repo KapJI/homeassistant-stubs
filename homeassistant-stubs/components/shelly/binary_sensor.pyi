@@ -4,9 +4,8 @@ from .utils import get_device_entry_gen as get_device_entry_gen, is_block_moment
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_ON as STATE_ON
+from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Final
@@ -45,9 +44,9 @@ class RpcBinarySensor(ShellyRpcAttributeEntity, BinarySensorEntity):
 class BlockSleepingBinarySensor(ShellySleepingBlockAttributeEntity, BinarySensorEntity):
     entity_description: BlockBinarySensorDescription
     @property
-    def is_on(self) -> bool: ...
+    def is_on(self) -> Union[bool, None]: ...
 
 class RpcSleepingBinarySensor(ShellySleepingRpcAttributeEntity, BinarySensorEntity):
     entity_description: RpcBinarySensorDescription
     @property
-    def is_on(self) -> bool: ...
+    def is_on(self) -> Union[bool, None]: ...

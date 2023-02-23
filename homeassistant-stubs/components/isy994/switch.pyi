@@ -4,10 +4,10 @@ from .models import IsyData as IsyData
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityCategory as EntityCategory, EntityDescription as EntityDescription
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyisy.helpers import EventListener as EventListener
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent

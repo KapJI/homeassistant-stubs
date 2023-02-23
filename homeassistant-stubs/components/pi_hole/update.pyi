@@ -5,9 +5,8 @@ from collections.abc import Callable as Callable
 from hole import Hole as Hole
 from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 

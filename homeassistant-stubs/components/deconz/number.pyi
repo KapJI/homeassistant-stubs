@@ -5,8 +5,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.number import DOMAIN as DOMAIN, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.gateway import DeconzSession as DeconzSession
 from pydeconz.interfaces.sensors import SensorResources

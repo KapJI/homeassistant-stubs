@@ -6,13 +6,13 @@ from .util import get_mqtt_data as get_mqtt_data
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_PLATFORM as CONF_PLATFORM
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResultType as FlowResultType
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.json import json_loads as json_loads
 from homeassistant.helpers.service_info.mqtt import MqttServiceInfo as MqttServiceInfo
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_mqtt as async_get_mqtt
+from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
 _LOGGER: Incomplete

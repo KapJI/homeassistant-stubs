@@ -25,6 +25,7 @@ from collections.abc import Coroutine, Generator, Iterable, Mapping
 from contextvars import ContextVar
 from enum import Enum
 from typing import Any, TypeVar
+from typing_extensions import Self
 
 _LOGGER: Incomplete
 SOURCE_BLUETOOTH: str
@@ -47,7 +48,6 @@ STORAGE_KEY: str
 STORAGE_VERSION: int
 PATH_CONFIG: str
 SAVE_DELAY: int
-_ConfigEntryStateSelfT = TypeVar('_ConfigEntryStateSelfT', bound='ConfigEntryState')
 _R = TypeVar('_R')
 
 class ConfigEntryState(Enum):
@@ -59,7 +59,7 @@ class ConfigEntryState(Enum):
     FAILED_UNLOAD: Incomplete
     SETUP_IN_PROGRESS: Incomplete
     _recoverable: bool
-    def __new__(cls, value: str, recoverable: bool) -> _ConfigEntryStateSelfT: ...
+    def __new__(cls, value: str, recoverable: bool) -> Self: ...
     @property
     def recoverable(self) -> bool: ...
 
@@ -114,7 +114,8 @@ class ConfigEntry:
     _async_cancel_retry_setup: Incomplete
     _on_unload: Incomplete
     reload_lock: Incomplete
-    _pending_tasks: Incomplete
+    _tasks: Incomplete
+    _background_tasks: Incomplete
     def __init__(self, version: int, domain: str, title: str, data: Mapping[str, Any], source: str, pref_disable_new_entities: Union[bool, None] = ..., pref_disable_polling: Union[bool, None] = ..., options: Union[Mapping[str, Any], None] = ..., unique_id: Union[str, None] = ..., entry_id: Union[str, None] = ..., state: ConfigEntryState = ..., disabled_by: Union[ConfigEntryDisabler, None] = ...) -> None: ...
     async def async_setup(self, hass: HomeAssistant, *, integration: Union[loader.Integration, None] = ..., tries: int = ...) -> None: ...
     async def async_shutdown(self) -> None: ...
@@ -130,6 +131,7 @@ class ConfigEntry:
     def async_start_reauth(self, hass: HomeAssistant, context: Union[dict[str, Any], None] = ..., data: Union[dict[str, Any], None] = ...) -> None: ...
     def async_get_active_flows(self, hass: HomeAssistant, sources: set[str]) -> Generator[FlowResult, None, None]: ...
     def async_create_task(self, hass: HomeAssistant, target: Coroutine[Any, Any, _R]) -> asyncio.Task[_R]: ...
+    def async_create_background_task(self, hass: HomeAssistant, target: Coroutine[Any, Any, _R], name: str) -> asyncio.Task[_R]: ...
 
 current_entry: ContextVar[Union[ConfigEntry, None]]
 

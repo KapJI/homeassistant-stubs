@@ -9,9 +9,8 @@ from abc import ABC
 from collections.abc import Coroutine, Iterable, Mapping, MutableMapping
 from datetime import datetime, timedelta
 from enum import Enum
-from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
 from homeassistant.loader import bind_hass as bind_hass
@@ -25,6 +24,7 @@ SOURCE_CONFIG_ENTRY: str
 SOURCE_PLATFORM_CONFIG: str
 FLOAT_PRECISION: Incomplete
 
+def async_setup(hass: HomeAssistant) -> None: ...
 def entity_sources(hass: HomeAssistant) -> dict[str, dict[str, str]]: ...
 def generate_entity_id(entity_id_format: str, name: Union[str, None], current_ids: Union[list[str], None] = ..., hass: Union[HomeAssistant, None] = ...) -> str: ...
 def async_generate_entity_id(entity_id_format: str, name: Union[str, None], current_ids: Union[Iterable[str], None] = ..., hass: Union[HomeAssistant, None] = ...) -> str: ...
@@ -48,10 +48,6 @@ class DeviceInfo(TypedDict):
     sw_version: Union[str, None]
     hw_version: Union[str, None]
     via_device: tuple[str, str]
-
-class EntityCategory(StrEnum):
-    CONFIG: str
-    DIAGNOSTIC: str
 
 ENTITY_CATEGORIES_SCHEMA: Final[Incomplete]
 

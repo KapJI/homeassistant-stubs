@@ -1,13 +1,14 @@
 import datetime
-from . import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, STATE_CLASSES as STATE_CLASSES, STATE_CLASS_MEASUREMENT as STATE_CLASS_MEASUREMENT, STATE_CLASS_TOTAL as STATE_CLASS_TOTAL, STATE_CLASS_TOTAL_INCREASING as STATE_CLASS_TOTAL_INCREASING
+from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, SensorStateClass as SensorStateClass
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from homeassistant.components.recorder import history as history, is_entity_recorded as is_entity_recorded, statistics as statistics
+from homeassistant.components.recorder import get_instance as get_instance, history as history, statistics as statistics
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfIrradiance as UnitOfIrradiance, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import entity_sources as entity_sources
+from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
@@ -33,6 +34,7 @@ def warn_negative(hass: HomeAssistant, entity_id: str, state: State) -> None: ..
 def reset_detected(hass: HomeAssistant, entity_id: str, fstate: float, previous_fstate: Union[float, None], state: State) -> bool: ...
 def _wanted_statistics(sensor_states: list[State]) -> dict[str, set[str]]: ...
 def _last_reset_as_utc_isoformat(last_reset_s: Any, entity_id: str) -> Union[str, None]: ...
+def _timestamp_to_isoformat_or_none(timestamp: Union[float, None]) -> Union[str, None]: ...
 def compile_statistics(hass: HomeAssistant, start: datetime.datetime, end: datetime.datetime) -> statistics.PlatformCompiledStatistics: ...
 def _compile_statistics(hass: HomeAssistant, session: Session, start: datetime.datetime, end: datetime.datetime) -> statistics.PlatformCompiledStatistics: ...
 def list_statistic_ids(hass: HomeAssistant, statistic_ids: Union[list[str], tuple[str], None] = ..., statistic_type: Union[str, None] = ...) -> dict: ...

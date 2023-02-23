@@ -6,9 +6,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType

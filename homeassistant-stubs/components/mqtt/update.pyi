@@ -4,20 +4,19 @@ from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RO_SCHEMA as MQTT_RO_
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON
 from .debug_info import log_messages as log_messages
 from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
-from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
+from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
 from .util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from homeassistant.components import update as update
 from homeassistant.components.update import DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
+from typing import Any, TypedDict
 
 _LOGGER: Incomplete
 DEFAULT_NAME: str
@@ -30,6 +29,14 @@ CONF_RELEASE_URL: str
 CONF_TITLE: str
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
+
+class _MqttUpdatePayloadType(TypedDict):
+    installed_version: str
+    latest_version: str
+    title: str
+    release_summary: str
+    release_url: str
+    entity_picture: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None] = ...) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
+from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any
 from xknx import XKNX as XKNX
 from xknx.devices import Sensor as XknxSensor

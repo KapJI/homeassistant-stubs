@@ -14,9 +14,10 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_BRIGHTNESS as CONF_BRIGHTNESS, CONF_COLOR_TEMP as CONF_COLOR_TEMP, CONF_EFFECT as CONF_EFFECT, CONF_HS as CONF_HS, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_RGB as CONF_RGB, CONF_XY as CONF_XY, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.json import json_dumps as json_dumps, json_loads as json_loads
+from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
 _LOGGER: Incomplete
@@ -45,7 +46,6 @@ CONF_WHITE_VALUE: str
 def valid_color_configuration(config: ConfigType) -> ConfigType: ...
 
 _PLATFORM_SCHEMA_BASE: Incomplete
-PLATFORM_SCHEMA_JSON: Incomplete
 DISCOVERY_SCHEMA_JSON: Incomplete
 PLATFORM_SCHEMA_MODERN_JSON: Incomplete
 

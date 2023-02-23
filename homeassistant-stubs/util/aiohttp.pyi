@@ -1,7 +1,7 @@
+from .json import json_loads as json_loads
 from _typeshed import Incomplete
 from aiohttp import web as web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
-from homeassistant.helpers.json import json_loads as json_loads
 from multidict import MultiDict
 from typing import Any
 

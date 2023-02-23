@@ -10,7 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 class AquaLogicSensorEntityDescription(SensorEntityDescription):
     unit_metric: Union[str, None]
     unit_imperial: Union[str, None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_precision, native_unit_of_measurement, options, state_class, suggested_unit_of_measurement, unit_metric, unit_imperial) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, unit_metric, unit_imperial) -> None: ...
 
 SENSOR_TYPES: tuple[AquaLogicSensorEntityDescription, ...]
 SENSOR_KEYS: list[str]

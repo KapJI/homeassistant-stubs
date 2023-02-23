@@ -5,8 +5,8 @@ from .util import lifx_features as lifx_features
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 THEME_NAMES: Incomplete
@@ -18,7 +18,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class LIFXInfraredBrightnessSelectEntity(LIFXSensorEntity, SelectEntity):
     _attr_has_entity_name: bool
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_current_option: Incomplete
     def __init__(self, coordinator: LIFXSensorUpdateCoordinator, description: SelectEntityDescription) -> None: ...
@@ -29,7 +28,6 @@ class LIFXInfraredBrightnessSelectEntity(LIFXSensorEntity, SelectEntity):
 class LIFXThemeSelectEntity(LIFXSensorEntity, SelectEntity):
     _attr_has_entity_name: bool
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_current_option: Incomplete
     def __init__(self, coordinator: LIFXSensorUpdateCoordinator, description: SelectEntityDescription) -> None: ...

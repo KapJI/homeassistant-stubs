@@ -1,6 +1,6 @@
 import aiohttp
 from .frame import warn_use as warn_use
-from .json import json_dumps as json_dumps, json_loads as json_loads
+from .json import json_dumps as json_dumps
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
@@ -9,6 +9,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.json import json_loads as json_loads
 from typing import Any
 
 DATA_CONNECTOR: str

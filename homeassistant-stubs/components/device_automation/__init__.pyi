@@ -14,16 +14,17 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from homeassistant.requirements import async_get_integration_with_requirements as async_get_integration_with_requirements
-from typing import Any, Literal, NamedTuple, TypeAlias, overload
+from typing import Any, Literal, TypeAlias, overload
 
 DeviceAutomationPlatformType: TypeAlias
 DOMAIN: str
 DEVICE_TRIGGER_BASE_SCHEMA: vol.Schema
 
-class DeviceAutomationDetails(NamedTuple):
+class DeviceAutomationDetails:
     section: str
     get_automations_func: str
     get_capabilities_func: str
+    def __init__(self, section, get_automations_func, get_capabilities_func) -> None: ...
 
 class DeviceAutomationType(Enum):
     TRIGGER: Incomplete

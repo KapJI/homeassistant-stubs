@@ -1,7 +1,7 @@
 from . import entity_registry as entity_registry, storage as storage
 from .debounce import Debouncer as Debouncer
 from .frame import report as report
-from .json import JSON_DUMP as JSON_DUMP
+from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections import UserDict
@@ -12,7 +12,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTA
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, RequiredParameterMissing as RequiredParameterMissing
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util.json import find_paths_unserializable_data as find_paths_unserializable_data, format_unserializable_data as format_unserializable_data
+from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any, TypeVar
 
 _LOGGER: Incomplete

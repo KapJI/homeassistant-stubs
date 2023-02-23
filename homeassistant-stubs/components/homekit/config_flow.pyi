@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import device_registry as device_registry, entity_registry as entity_registry
 from homeassistant.helpers.entityfilter import CONF_EXCLUDE_DOMAINS as CONF_EXCLUDE_DOMAINS, CONF_EXCLUDE_ENTITIES as CONF_EXCLUDE_ENTITIES, CONF_INCLUDE_DOMAINS as CONF_INCLUDE_DOMAINS, CONF_INCLUDE_ENTITIES as CONF_INCLUDE_ENTITIES
-from homeassistant.loader import async_get_integration as async_get_integration
+from homeassistant.loader import async_get_integrations as async_get_integrations
 from typing import Any
 
 CONF_CAMERA_AUDIO: str

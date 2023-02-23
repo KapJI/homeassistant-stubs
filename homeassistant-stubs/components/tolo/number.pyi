@@ -4,9 +4,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import UnitOfTime as UnitOfTime
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from tololib import ToloClient as ToloClient
 from tololib.message_info import SettingsInfo as SettingsInfo

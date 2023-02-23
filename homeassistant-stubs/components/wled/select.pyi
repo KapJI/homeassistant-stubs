@@ -5,8 +5,8 @@ from .models import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 PARALLEL_UPDATES: int

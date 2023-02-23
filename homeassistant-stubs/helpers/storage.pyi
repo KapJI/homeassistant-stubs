@@ -3,6 +3,7 @@ from collections.abc import Callable as Callable, Mapping, Sequence
 from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import MAX_LOAD_CONCURRENTLY as MAX_LOAD_CONCURRENTLY, bind_hass as bind_hass
+from homeassistant.util.file import WriteError as WriteError
 from json import JSONEncoder
 from typing import Any, TypeVar
 

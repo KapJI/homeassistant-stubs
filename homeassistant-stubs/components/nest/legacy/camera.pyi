@@ -1,14 +1,16 @@
 from .const import DATA_NEST as DATA_NEST, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 
 _LOGGER: Incomplete
 NEST_BRAND: str
 
-def setup_platform(hass, config, add_entities, discovery_info: Incomplete | None = ...) -> None: ...
-async def async_setup_legacy_entry(hass, entry, async_add_entities) -> None: ...
+async def async_setup_legacy_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NestCamera(Camera):
     _attr_should_poll: bool

@@ -8,6 +8,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+FAN_QUIET: str
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 _CLIMATE_MODES: EsphomeEnumMapper[ClimateMode, HVACMode]

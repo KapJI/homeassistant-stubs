@@ -1,8 +1,7 @@
 from .unit_conversion import DistanceConverter as DistanceConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, VolumeConverter as VolumeConverter
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import ACCUMULATED_PRECIPITATION as ACCUMULATED_PRECIPITATION, LENGTH as LENGTH, MASS as MASS, PRESSURE as PRESSURE, TEMPERATURE as TEMPERATURE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, VOLUME as VOLUME, WIND_SPEED as WIND_SPEED
-from homeassistant.helpers.frame import report as report
+from homeassistant.const import ACCUMULATED_PRECIPITATION as ACCUMULATED_PRECIPITATION, LENGTH as LENGTH, MASS as MASS, PRESSURE as PRESSURE, TEMPERATURE as TEMPERATURE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumetricFlux as UnitOfVolumetricFlux, VOLUME as VOLUME, WIND_SPEED as WIND_SPEED
 from typing import Final
 
 _CONF_UNIT_SYSTEM_IMPERIAL: Final[str]
@@ -28,10 +27,6 @@ class UnitSystem:
     wind_speed_unit: Incomplete
     _conversions: Incomplete
     def __init__(self, name: str, *, accumulated_precipitation: UnitOfPrecipitationDepth, conversions: dict[tuple[Union[SensorDeviceClass, str, None], Union[str, None]], str], length: UnitOfLength, mass: UnitOfMass, pressure: UnitOfPressure, temperature: UnitOfTemperature, volume: UnitOfVolume, wind_speed: UnitOfSpeed) -> None: ...
-    @property
-    def name(self) -> str: ...
-    @property
-    def is_metric(self) -> bool: ...
     def temperature(self, temperature: float, from_unit: str) -> float: ...
     def length(self, length: Union[float, None], from_unit: str) -> float: ...
     def accumulated_precipitation(self, precip: Union[float, None], from_unit: str) -> float: ...

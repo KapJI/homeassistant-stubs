@@ -3,9 +3,10 @@ from . import websocket_api as websocket_api
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
+from homeassistant.components.thread import async_add_dataset as async_add_dataset
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Concatenate, TypeVar

@@ -1,20 +1,19 @@
 from . import storage as storage
 from .device_registry import EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED
-from .entity import EntityCategory as EntityCategory
 from .frame import report as report
-from .json import JSON_DUMP as JSON_DUMP
+from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections import UserDict
 from collections.abc import Callable as Callable, Iterable, Mapping, ValuesView
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_RESTORED as ATTR_RESTORED, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, MAX_LENGTH_STATE_DOMAIN as MAX_LENGTH_STATE_DOMAIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_RESTORED as ATTR_RESTORED, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EntityCategory as EntityCategory, MAX_LENGTH_STATE_DOMAIN as MAX_LENGTH_STATE_DOMAIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import MaxLengthExceeded as MaxLengthExceeded
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify
-from homeassistant.util.json import find_paths_unserializable_data as find_paths_unserializable_data, format_unserializable_data as format_unserializable_data
+from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any, TypeVar
 
 T = TypeVar('T')
@@ -25,6 +24,8 @@ _LOGGER: Incomplete
 STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
 STORAGE_KEY: str
+ENTITY_CATEGORY_VALUE_TO_INDEX: dict[Union[EntityCategory, None], int]
+ENTITY_CATEGORY_INDEX_TO_VALUE: Incomplete
 ENTITY_DESCRIBING_ATTRIBUTES: Incomplete
 
 class RegistryEntryDisabler(StrEnum):
@@ -38,6 +39,7 @@ class RegistryEntryHider(StrEnum):
     INTEGRATION: str
     USER: str
 EntityOptionsType = Mapping[str, Mapping[str, Any]]
+DISLAY_DICT_OPTIONAL: Incomplete
 
 class RegistryEntry:
     entity_id: str
@@ -64,18 +66,23 @@ class RegistryEntry:
     supported_features: int
     translation_key: Union[str, None]
     unit_of_measurement: Union[str, None]
-    _json_repr: Union[str, None]
+    _partial_repr: Union[str, None, UndefinedType]
+    _display_repr: Union[str, None, UndefinedType]
     def _domain_default(self) -> str: ...
     @property
     def disabled(self) -> bool: ...
     @property
     def hidden(self) -> bool: ...
     @property
+    def _as_display_dict(self) -> Union[dict[str, Any], None]: ...
+    @property
+    def display_json_repr(self) -> Union[str, None]: ...
+    @property
     def as_partial_dict(self) -> dict[str, Any]: ...
     @property
     def partial_json_repr(self) -> Union[str, None]: ...
     def write_unavailable_state(self, hass: HomeAssistant) -> None: ...
-    def __init__(self, entity_id, unique_id, platform, aliases, area_id, capabilities, config_entry_id, device_class, device_id, domain, disabled_by, entity_category, hidden_by, icon, id, has_entity_name, name, options, original_device_class, original_icon, original_name, supported_features, translation_key, unit_of_measurement, json_repr) -> None: ...
+    def __init__(self, entity_id, unique_id, platform, aliases, area_id, capabilities, config_entry_id, device_class, device_id, domain, disabled_by, entity_category, hidden_by, icon, id, has_entity_name, name, options, original_device_class, original_icon, original_name, supported_features, translation_key, unit_of_measurement, partial_repr, display_repr) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
     def __gt__(self, other): ...
@@ -111,7 +118,7 @@ class EntityRegistry:
     def _async_update_entity(self, entity_id: str, *, aliases: Union[set[str], UndefinedType] = ..., area_id: Union[str, None, UndefinedType] = ..., capabilities: Union[Mapping[str, Any], None, UndefinedType] = ..., config_entry_id: Union[str, None, UndefinedType] = ..., device_class: Union[str, None, UndefinedType] = ..., device_id: Union[str, None, UndefinedType] = ..., disabled_by: Union[RegistryEntryDisabler, None, UndefinedType] = ..., entity_category: Union[EntityCategory, None, UndefinedType] = ..., hidden_by: Union[RegistryEntryHider, None, UndefinedType] = ..., icon: Union[str, None, UndefinedType] = ..., has_entity_name: Union[bool, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., new_entity_id: Union[str, UndefinedType] = ..., new_unique_id: Union[str, UndefinedType] = ..., options: Union[EntityOptionsType, UndefinedType] = ..., original_device_class: Union[str, None, UndefinedType] = ..., original_icon: Union[str, None, UndefinedType] = ..., original_name: Union[str, None, UndefinedType] = ..., platform: Union[str, None, UndefinedType] = ..., supported_features: Union[int, UndefinedType] = ..., translation_key: Union[str, None, UndefinedType] = ..., unit_of_measurement: Union[str, None, UndefinedType] = ...) -> RegistryEntry: ...
     def async_update_entity(self, entity_id: str, *, aliases: Union[set[str], UndefinedType] = ..., area_id: Union[str, None, UndefinedType] = ..., capabilities: Union[Mapping[str, Any], None, UndefinedType] = ..., config_entry_id: Union[str, None, UndefinedType] = ..., device_class: Union[str, None, UndefinedType] = ..., device_id: Union[str, None, UndefinedType] = ..., disabled_by: Union[RegistryEntryDisabler, None, UndefinedType] = ..., entity_category: Union[EntityCategory, None, UndefinedType] = ..., hidden_by: Union[RegistryEntryHider, None, UndefinedType] = ..., icon: Union[str, None, UndefinedType] = ..., has_entity_name: Union[bool, UndefinedType] = ..., name: Union[str, None, UndefinedType] = ..., new_entity_id: Union[str, UndefinedType] = ..., new_unique_id: Union[str, UndefinedType] = ..., original_device_class: Union[str, None, UndefinedType] = ..., original_icon: Union[str, None, UndefinedType] = ..., original_name: Union[str, None, UndefinedType] = ..., supported_features: Union[int, UndefinedType] = ..., translation_key: Union[str, None, UndefinedType] = ..., unit_of_measurement: Union[str, None, UndefinedType] = ...) -> RegistryEntry: ...
     def async_update_entity_platform(self, entity_id: str, new_platform: str, *, new_config_entry_id: Union[str, UndefinedType] = ..., new_unique_id: Union[str, UndefinedType] = ..., new_device_id: Union[str, None, UndefinedType] = ...) -> RegistryEntry: ...
-    def async_update_entity_options(self, entity_id: str, domain: str, options: dict[str, Any]) -> RegistryEntry: ...
+    def async_update_entity_options(self, entity_id: str, domain: str, options: Union[Mapping[str, Any], None]) -> RegistryEntry: ...
     async def async_load(self) -> None: ...
     def async_schedule_save(self) -> None: ...
     def _data_to_save(self) -> dict[str, Any]: ...

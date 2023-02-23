@@ -6,9 +6,8 @@ from _typeshed import Incomplete
 from flux_led.aio import AIOWifiLedBulb as AIOWifiLedBulb
 from homeassistant import config_entries as config_entries
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.const import CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any

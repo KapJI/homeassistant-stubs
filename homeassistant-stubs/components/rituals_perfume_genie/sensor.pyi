@@ -4,9 +4,8 @@ from .entity import DiffuserEntity as DiffuserEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyrituals import Diffuser as Diffuser
 

@@ -11,7 +11,8 @@ from datetime import datetime
 from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, TypeVar
+from typing import Any
+from typing_extensions import Self
 
 DATA_RESTORE_STATE_TASK: str
 _LOGGER: Incomplete
@@ -19,7 +20,6 @@ STORAGE_KEY: str
 STORAGE_VERSION: int
 STATE_DUMP_INTERVAL: Incomplete
 STATE_EXPIRATION: Incomplete
-_StoredStateSelfT = TypeVar('_StoredStateSelfT', bound='StoredState')
 
 class ExtraStoredData(ABC, metaclass=abc.ABCMeta):
     @abstractmethod
@@ -37,7 +37,7 @@ class StoredState:
     def __init__(self, state: State, extra_data: Union[ExtraStoredData, None], last_seen: datetime) -> None: ...
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
-    def from_dict(cls, json_dict: dict) -> _StoredStateSelfT: ...
+    def from_dict(cls, json_dict: dict) -> Self: ...
 
 class RestoreStateData:
     @staticmethod

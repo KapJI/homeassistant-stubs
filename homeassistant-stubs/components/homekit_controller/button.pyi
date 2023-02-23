@@ -1,14 +1,16 @@
 from . import KNOWN_DEVICES as KNOWN_DEVICES
 from .connection import HKDevice as HKDevice
 from .entity import CharacteristicEntity as CharacteristicEntity
+from _typeshed import Incomplete
 from aiohomekit.model.characteristics import Characteristic as Characteristic
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityCategory as EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+
+_LOGGER: Incomplete
 
 class HomeKitButtonEntityDescription(ButtonEntityDescription):
     write_value: Union[int, str, None]
@@ -27,6 +29,13 @@ class HomeKitButton(CharacteristicEntity, ButtonEntity):
     async def async_press(self) -> None: ...
 
 class HomeKitEcobeeClearHoldButton(CharacteristicEntity, ButtonEntity):
+    def get_characteristic_types(self) -> list[str]: ...
+    @property
+    def name(self) -> str: ...
+    async def async_press(self) -> None: ...
+
+class HomeKitProvisionPreferredThreadCredentials(CharacteristicEntity, ButtonEntity):
+    _attr_entity_category: Incomplete
     def get_characteristic_types(self) -> list[str]: ...
     @property
     def name(self) -> str: ...

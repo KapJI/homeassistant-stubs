@@ -21,6 +21,7 @@ CONF_KNX_TUNNELING_TCP_SECURE: Final[str]
 CONF_KNX_LOCAL_IP: Final[str]
 CONF_KNX_MCAST_GRP: Final[str]
 CONF_KNX_MCAST_PORT: Final[str]
+CONF_KNX_TUNNEL_ENDPOINT_IA: Final[str]
 CONF_KNX_RATE_LIMIT: Final[str]
 CONF_KNX_ROUTE_BACK: Final[str]
 CONF_KNX_STATE_UPDATER: Final[str]
@@ -55,6 +56,7 @@ class KNXConfigEntryData(TypedDict):
     rate_limit: int
     host: str
     port: int
+    tunnel_endpoint_ia: Union[str, None]
     user_id: Union[int, None]
     user_password: Union[str, None]
     device_authentication: Union[str, None]

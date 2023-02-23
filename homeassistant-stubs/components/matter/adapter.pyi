@@ -7,8 +7,8 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from matter_server.client import MatterClient as MatterClient
-from matter_server.common.models.node import MatterNode as MatterNode
-from matter_server.common.models.node_device import AbstractMatterNodeDevice as AbstractMatterNodeDevice
+from matter_server.client.models.node import MatterNode as MatterNode
+from matter_server.client.models.node_device import AbstractMatterNodeDevice as AbstractMatterNodeDevice
 
 class MatterAdapter:
     matter_client: Incomplete

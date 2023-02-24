@@ -1,42 +1,28 @@
 from .const import LOGGER as LOGGER
-from .entity import MatterEntity as MatterEntity, MatterEntityDescriptionBaseClass as MatterEntityDescriptionBaseClass
+from .entity import MatterEntity as MatterEntity
 from .helpers import get_matter as get_matter
+from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from .util import convert_to_hass_hs as convert_to_hass_hs, convert_to_hass_xy as convert_to_hass_xy, convert_to_matter_hs as convert_to_matter_hs, convert_to_matter_xy as convert_to_matter_xy, renormalize as renormalize
 from _typeshed import Incomplete
-from enum import Enum
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from matter_server.client.models import device_types
 from typing import Any
 
-class MatterColorMode(Enum):
-    HS: int
-    XY: int
-    COLOR_TEMP: int
-
 COLOR_MODE_MAP: Incomplete
-
-class MatterColorControlFeatures(Enum):
-    HS: int
-    EHUE: int
-    COLOR_LOOP: int
-    XY: int
-    COLOR_TEMP: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MatterLight(MatterEntity, LightEntity):
-    entity_description: MatterLightEntityDescription
-    def _supports_feature(self, feature_map: int, feature: MatterColorControlFeatures) -> bool: ...
-    def _supports_color_mode(self, color_feature: MatterColorControlFeatures) -> bool: ...
-    def _supports_hs_color(self) -> bool: ...
-    def _supports_xy_color(self) -> bool: ...
-    def _supports_color_temperature(self) -> bool: ...
-    def _supports_brightness(self) -> bool: ...
-    def _supports_color(self) -> bool: ...
+    entity_description: LightEntityDescription
+    @property
+    def supports_color(self) -> bool: ...
+    @property
+    def supports_color_temperature(self) -> bool: ...
+    @property
+    def supports_brightness(self) -> bool: ...
     async def _set_xy_color(self, xy_color: tuple[float, float]) -> None: ...
     async def _set_hs_color(self, hs_color: tuple[float, float]) -> None: ...
     async def _set_color_temp(self, color_temp: int) -> None: ...
@@ -58,8 +44,4 @@ class MatterLight(MatterEntity, LightEntity):
     _attr_brightness: Incomplete
     def _update_from_device(self) -> None: ...
 
-class MatterLightEntityDescription(LightEntityDescription, MatterEntityDescriptionBaseClass):
-    def __init__(self, entity_cls, subscribe_attributes, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-
-MatterLightEntityDescriptionFactory: Incomplete
-DEVICE_ENTITY: dict[type[device_types.DeviceType], Union[MatterEntityDescriptionBaseClass, list[MatterEntityDescriptionBaseClass]]]
+DISCOVERY_SCHEMAS: Incomplete

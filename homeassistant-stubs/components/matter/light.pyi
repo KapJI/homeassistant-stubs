@@ -4,6 +4,7 @@ from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from .util import convert_to_hass_hs as convert_to_hass_hs, convert_to_hass_xy as convert_to_hass_xy, convert_to_matter_hs as convert_to_matter_hs, convert_to_matter_xy as convert_to_matter_xy, renormalize as renormalize
 from _typeshed import Incomplete
+from enum import IntFlag
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
@@ -43,5 +44,12 @@ class MatterLight(MatterEntity, LightEntity):
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     def _update_from_device(self) -> None: ...
+
+class ColorCapabilities(IntFlag):
+    kHueSaturationSupported: int
+    kEnhancedHueSupported: int
+    kColorLoopSupported: int
+    kXYAttributesSupported: int
+    kColorTemperatureSupported: int
 
 DISCOVERY_SCHEMAS: Incomplete

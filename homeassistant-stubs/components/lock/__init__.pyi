@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.service import remove_entity_service_fields as remove_entity_service_fields
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from typing import Any
 

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DEFAULT_CHANNEL as DEFAULT_CHANNEL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.components.thread import async_get_preferred_dataset as async_get_preferred_dataset

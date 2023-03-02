@@ -2,7 +2,7 @@ from .const import CONF_ROUND_DIGITS as CONF_ROUND_DIGITS, CONF_TIME_WINDOW as C
 from _typeshed import Incomplete
 from datetime import timedelta
 from decimal import Decimal
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTime as UnitOfTime
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
@@ -25,7 +25,6 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 class DerivativeSensor(RestoreEntity, SensorEntity):
     _attr_icon: Incomplete
     _attr_should_poll: bool
-    _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
     _sensor_source_id: Incomplete
     _round_digits: Incomplete

@@ -11,7 +11,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import Throttle as Throttle
 from typing import Any
 
@@ -86,6 +86,7 @@ class TibberRtDataCoordinator(DataUpdateCoordinator):
     def get_live_measurement(self) -> Any: ...
 
 class TibberDataCoordinator(DataUpdateCoordinator[None]):
+    config_entry: ConfigEntry
     _tibber_connection: Incomplete
     def __init__(self, hass: HomeAssistant, tibber_connection: tibber.Tibber) -> None: ...
     async def _async_update_data(self) -> None: ...

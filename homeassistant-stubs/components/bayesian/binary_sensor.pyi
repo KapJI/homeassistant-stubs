@@ -1,7 +1,7 @@
 from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .const import ATTR_OBSERVATIONS as ATTR_OBSERVATIONS, ATTR_OCCURRED_OBSERVATION_ENTITIES as ATTR_OCCURRED_OBSERVATION_ENTITIES, ATTR_PROBABILITY as ATTR_PROBABILITY, ATTR_PROBABILITY_THRESHOLD as ATTR_PROBABILITY_THRESHOLD, CONF_OBSERVATIONS as CONF_OBSERVATIONS, CONF_PRIOR as CONF_PRIOR, CONF_PROBABILITY_THRESHOLD as CONF_PROBABILITY_THRESHOLD, CONF_P_GIVEN_F as CONF_P_GIVEN_F, CONF_P_GIVEN_T as CONF_P_GIVEN_T, CONF_TEMPLATE as CONF_TEMPLATE, CONF_TO_STATE as CONF_TO_STATE, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PROBABILITY_THRESHOLD as DEFAULT_PROBABILITY_THRESHOLD
 from .helpers import Observation as Observation
-from .repairs import raise_mirrored_entries as raise_mirrored_entries, raise_no_prob_given_false as raise_no_prob_given_false
+from .issues import raise_mirrored_entries as raise_mirrored_entries, raise_no_prob_given_false as raise_no_prob_given_false
 from _typeshed import Incomplete
 from collections import OrderedDict
 from collections.abc import Callable as Callable

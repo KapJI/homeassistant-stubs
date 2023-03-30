@@ -5,6 +5,7 @@ from collections.abc import Callable as Callable
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.ssl import get_default_context as get_default_context, get_default_no_verify_context as get_default_no_verify_context
 from typing import Any
 from typing_extensions import Self
 

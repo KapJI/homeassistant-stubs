@@ -1,8 +1,20 @@
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
+from homeassistant.components.recorder.filters import Filters as Filters
+from homeassistant.components.recorder.models import bytes_to_ulid_or_none as bytes_to_ulid_or_none, bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, ulid_to_bytes_or_none as ulid_to_bytes_or_none, uuid_hex_to_bytes_or_none as uuid_hex_to_bytes_or_none
 from homeassistant.const import ATTR_ICON as ATTR_ICON, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED
 from homeassistant.core import Context as Context, Event as Event, State as State, callback as callback
+from homeassistant.helpers.entityfilter import EntityFilter as EntityFilter
+from homeassistant.util.json import json_loads as json_loads
+from homeassistant.util.ulid import ulid_to_bytes as ulid_to_bytes
 from sqlalchemy.engine.row import Row as Row
 from typing import Any
+
+class LogbookConfig:
+    external_events: dict[str, tuple[str, Callable[[LazyEventPartialState], dict[str, Any]]]]
+    sqlalchemy_filter: Union[Filters, None]
+    entity_filter: Union[EntityFilter, None]
+    def __init__(self, external_events, sqlalchemy_filter, entity_filter) -> None: ...
 
 class LazyEventPartialState:
     __slots__: Incomplete
@@ -12,16 +24,22 @@ class LazyEventPartialState:
     event_type: Incomplete
     entity_id: Incomplete
     state: Incomplete
-    context_id: Incomplete
-    context_user_id: Incomplete
-    context_parent_id: Incomplete
+    context_id_bin: Incomplete
+    context_user_id_bin: Incomplete
+    context_parent_id_bin: Incomplete
     data: Incomplete
     def __init__(self, row: Union[Row, EventAsRow], event_data_cache: dict[str, dict[str, Any]]) -> None: ...
+    @property
+    def context_id(self) -> Union[str, None]: ...
+    @property
+    def context_user_id(self) -> Union[str, None]: ...
+    @property
+    def context_parent_id(self) -> Union[str, None]: ...
 
 class EventAsRow:
     data: dict[str, Any]
     context: Context
-    context_id: str
+    context_id_bin: bytes
     time_fired_ts: float
     state_id: int
     event_data: Union[str, None]
@@ -29,12 +47,12 @@ class EventAsRow:
     event_id: None
     entity_id: Union[str, None]
     icon: Union[str, None]
-    context_user_id: Union[str, None]
-    context_parent_id: Union[str, None]
+    context_user_id_bin: Union[bytes, None]
+    context_parent_id_bin: Union[bytes, None]
     event_type: Union[str, None]
     state: Union[str, None]
     shared_data: Union[str, None]
     context_only: None
-    def __init__(self, data, context, context_id, time_fired_ts, state_id, event_data, old_format_icon, event_id, entity_id, icon, context_user_id, context_parent_id, event_type, state, shared_data, context_only) -> None: ...
+    def __init__(self, data, context, context_id_bin, time_fired_ts, state_id, event_data, old_format_icon, event_id, entity_id, icon, context_user_id_bin, context_parent_id_bin, event_type, state, shared_data, context_only) -> None: ...
 
 def async_event_to_row(event: Event) -> EventAsRow: ...

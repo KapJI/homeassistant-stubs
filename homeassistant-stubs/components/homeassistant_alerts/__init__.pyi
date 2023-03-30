@@ -1,13 +1,15 @@
 from _typeshed import Incomplete
 from homeassistant.components.hassio import get_supervisor_info as get_supervisor_info, is_hassio as is_hassio
-from homeassistant.const import __version__ as __version__
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, __version__ as __version__
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
+COMPONENT_LOADED_COOLDOWN: int
 DOMAIN: str
 UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete

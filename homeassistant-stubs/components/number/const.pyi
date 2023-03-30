@@ -29,6 +29,7 @@ class NumberDeviceClass(StrEnum):
     DATA_SIZE: str
     DISTANCE: str
     ENERGY: str
+    ENERGY_STORAGE: str
     FREQUENCY: str
     GAS: str
     HUMIDITY: str
@@ -57,6 +58,7 @@ class NumberDeviceClass(StrEnum):
     VOLATILE_ORGANIC_COMPOUNDS: str
     VOLTAGE: str
     VOLUME: str
+    VOLUME_STORAGE: str
     WATER: str
     WEIGHT: str
     WIND_SPEED: str

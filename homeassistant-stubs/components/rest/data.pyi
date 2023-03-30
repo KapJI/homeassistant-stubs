@@ -2,7 +2,7 @@ import httpx
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import template as template
-from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
 
 DEFAULT_TIMEOUT: int
 _LOGGER: Incomplete
@@ -11,6 +11,7 @@ class RestData:
     _hass: Incomplete
     _method: Incomplete
     _resource: Incomplete
+    _encoding: Incomplete
     _auth: Incomplete
     _headers: Incomplete
     _params: Incomplete
@@ -21,6 +22,6 @@ class RestData:
     data: Incomplete
     last_exception: Incomplete
     headers: Incomplete
-    def __init__(self, hass: HomeAssistant, method: str, resource: str, auth: Union[httpx.DigestAuth, tuple[str, str], None], headers: Union[dict[str, str], None], params: Union[dict[str, str], None], data: Union[str, None], verify_ssl: bool, timeout: int = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, method: str, resource: str, encoding: str, auth: Union[httpx.DigestAuth, tuple[str, str], None], headers: Union[dict[str, str], None], params: Union[dict[str, str], None], data: Union[str, None], verify_ssl: bool, timeout: int = ...) -> None: ...
     def set_url(self, url: str) -> None: ...
     async def async_update(self, log_errors: bool = ...) -> None: ...

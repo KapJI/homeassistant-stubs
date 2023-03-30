@@ -1,6 +1,6 @@
 from .const import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, DOMAIN as DOMAIN, LOGGER as LOGGER, NOTIFY_SERVICE_SCHEMA as NOTIFY_SERVICE_SCHEMA, SERVICE_NOTIFY as SERVICE_NOTIFY
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Coroutine
+from collections.abc import Callable as Callable, Coroutine, Mapping
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -32,7 +32,7 @@ class BaseNotificationService:
     hass: HomeAssistant
     registered_targets: dict[str, Any]
     @property
-    def targets(self) -> Union[dict[str, Any], None]: ...
+    def targets(self) -> Union[Mapping[str, Any], None]: ...
     def send_message(self, message: str, **kwargs: Any) -> None: ...
     async def async_send_message(self, message: str, **kwargs: Any) -> None: ...
     async def _async_notify_message_service(self, service: ServiceCall) -> None: ...

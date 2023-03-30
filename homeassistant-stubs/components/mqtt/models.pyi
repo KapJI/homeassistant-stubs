@@ -15,6 +15,7 @@ from homeassistant.helpers import template as template
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, TemplateVarsType as TemplateVarsType
+from paho.mqtt.client import MQTTMessage as MQTTMessage
 from typing import Any, TypedDict
 
 class PayloadSentinel(StrEnum):
@@ -86,7 +87,7 @@ class MqttValueTemplate:
 class EntityTopicState:
     subscribe_calls: Incomplete
     def __init__(self) -> None: ...
-    def process_write_state_requests(self) -> None: ...
+    def process_write_state_requests(self, msg: MQTTMessage) -> None: ...
     def write_state_request(self, entity: Entity) -> None: ...
 
 class MqttData:

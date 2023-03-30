@@ -14,6 +14,7 @@ from homeassistant.exceptions import MaxLengthExceeded as MaxLengthExceeded
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
+from types import MappingProxyType
 from typing import Any, TypeVar
 
 T = TypeVar('T')
@@ -41,6 +42,13 @@ class RegistryEntryHider(StrEnum):
 EntityOptionsType = Mapping[str, Mapping[str, Any]]
 DISLAY_DICT_OPTIONAL: Incomplete
 
+class _EntityOptions(UserDict[str, MappingProxyType]):
+    data: Incomplete
+    def __init__(self, data: Union[Mapping[str, Mapping], None]) -> None: ...
+    def __setitem__(self, key: str, entry: Mapping) -> None: ...
+    def __delitem__(self, key: str) -> None: ...
+    def as_dict(self) -> dict[str, dict]: ...
+
 class RegistryEntry:
     entity_id: str
     unique_id: str
@@ -59,7 +67,7 @@ class RegistryEntry:
     id: str
     has_entity_name: bool
     name: Union[str, None]
-    options: EntityOptionsType
+    options: _EntityOptions
     original_device_class: Union[str, None]
     original_icon: Union[str, None]
     original_name: Union[str, None]

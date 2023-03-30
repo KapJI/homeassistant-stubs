@@ -4,13 +4,11 @@ from .helpers import async_validate_device_automation_config as async_validate_d
 from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import condition as condition
+from homeassistant.helpers.condition import ConditionProtocol as ConditionProtocol, trace_condition_function as trace_condition_function
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Protocol
 
-class DeviceAutomationConditionProtocol(Protocol):
-    CONDITION_SCHEMA: vol.Schema
-    async def async_validate_condition_config(self, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
-    def async_condition_from_config(self, hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...
+class DeviceAutomationConditionProtocol(ConditionProtocol, Protocol):
     async def async_get_condition_capabilities(self, hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
     async def async_get_conditions(self, hass: HomeAssistant, device_id: str) -> list[dict[str, Any]]: ...
 

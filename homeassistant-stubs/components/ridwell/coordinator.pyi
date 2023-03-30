@@ -10,11 +10,11 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 UPDATE_INTERVAL: Incomplete
 
-class RidwellDataUpdateCoordinator(DataUpdateCoordinator[dict[str, RidwellPickupEvent]]):
+class RidwellDataUpdateCoordinator(DataUpdateCoordinator[dict[str, list[RidwellPickupEvent]]]):
     config_entry: ConfigEntry
     accounts: Incomplete
     dashboard_url: str
     user_id: str
     def __init__(self, hass: HomeAssistant, *, name: str) -> None: ...
-    async def _async_update_data(self) -> dict[str, RidwellPickupEvent]: ...
+    async def _async_update_data(self) -> dict[str, list[RidwellPickupEvent]]: ...
     async def async_initialize(self) -> None: ...

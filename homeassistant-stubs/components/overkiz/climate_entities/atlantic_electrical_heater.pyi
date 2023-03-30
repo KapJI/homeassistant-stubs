@@ -1,3 +1,4 @@
+from ..const import DOMAIN as DOMAIN
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
@@ -16,6 +17,7 @@ class AtlanticElectricalHeater(OverkizEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
+    _attr_translation_key: Incomplete
     @property
     def hvac_mode(self) -> HVACMode: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

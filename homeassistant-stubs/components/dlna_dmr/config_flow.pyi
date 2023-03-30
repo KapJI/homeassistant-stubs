@@ -8,7 +8,6 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_HOST as C
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import IntegrationError as IntegrationError
-from homeassistant.helpers import device_registry as device_registry
 from typing import Any
 
 LOGGER: Incomplete

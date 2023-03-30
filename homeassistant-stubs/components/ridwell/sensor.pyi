@@ -20,7 +20,8 @@ SENSOR_DESCRIPTION: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RidwellSensor(RidwellEntity, SensorEntity):
-    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    entity_description: Incomplete
     def __init__(self, coordinator: RidwellDataUpdateCoordinator, account: RidwellAccount, description: SensorEntityDescription) -> None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any]: ...

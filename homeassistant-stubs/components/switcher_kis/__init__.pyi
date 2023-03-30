@@ -5,7 +5,7 @@ from aioswitcher.device import SwitcherBase
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import device_registry as device_registry, update_coordinator as update_coordinator
+from homeassistant.helpers import update_coordinator as update_coordinator
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.typing import ConfigType as ConfigType
 

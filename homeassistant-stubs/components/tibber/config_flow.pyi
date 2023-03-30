@@ -7,6 +7,9 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from typing import Any
 
 DATA_SCHEMA: Incomplete
+ERR_TIMEOUT: str
+ERR_CLIENT: str
+ERR_TOKEN: str
 
 class TibberConfigFlow(config_entries.ConfigFlow):
     VERSION: int

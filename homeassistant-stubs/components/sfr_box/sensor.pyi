@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from sfrbox_api.models import DslInfo, SystemInfo
+from sfrbox_api.models import DslInfo, SystemInfo, WanInfo
 from typing import TypeVar
 
 _T = TypeVar('_T')
@@ -24,6 +24,7 @@ class SFRBoxSensorEntityDescription(SensorEntityDescription, SFRBoxSensorMixin[_
 
 DSL_SENSOR_TYPES: tuple[SFRBoxSensorEntityDescription[DslInfo], ...]
 SYSTEM_SENSOR_TYPES: tuple[SFRBoxSensorEntityDescription[SystemInfo], ...]
+WAN_SENSOR_TYPES: tuple[SFRBoxSensorEntityDescription[WanInfo], ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

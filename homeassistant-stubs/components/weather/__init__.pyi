@@ -1,13 +1,12 @@
+from .const import ATTR_WEATHER_HUMIDITY as ATTR_WEATHER_HUMIDITY, ATTR_WEATHER_OZONE as ATTR_WEATHER_OZONE, ATTR_WEATHER_PRECIPITATION_UNIT as ATTR_WEATHER_PRECIPITATION_UNIT, ATTR_WEATHER_PRESSURE as ATTR_WEATHER_PRESSURE, ATTR_WEATHER_PRESSURE_UNIT as ATTR_WEATHER_PRESSURE_UNIT, ATTR_WEATHER_TEMPERATURE as ATTR_WEATHER_TEMPERATURE, ATTR_WEATHER_TEMPERATURE_UNIT as ATTR_WEATHER_TEMPERATURE_UNIT, ATTR_WEATHER_VISIBILITY as ATTR_WEATHER_VISIBILITY, ATTR_WEATHER_VISIBILITY_UNIT as ATTR_WEATHER_VISIBILITY_UNIT, ATTR_WEATHER_WIND_BEARING as ATTR_WEATHER_WIND_BEARING, ATTR_WEATHER_WIND_SPEED as ATTR_WEATHER_WIND_SPEED, ATTR_WEATHER_WIND_SPEED_UNIT as ATTR_WEATHER_WIND_SPEED_UNIT, DOMAIN as DOMAIN, UNIT_CONVERSIONS as UNIT_CONVERSIONS, VALID_UNITS as VALID_UNITS
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfLength as UnitOfLength, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
 from typing import Any, Final, TypedDict
 from typing_extensions import Required
@@ -44,29 +43,9 @@ ATTR_FORECAST_TIME: Final[str]
 ATTR_FORECAST_WIND_BEARING: Final[str]
 ATTR_FORECAST_NATIVE_WIND_SPEED: Final[str]
 ATTR_FORECAST_WIND_SPEED: Final[str]
-ATTR_WEATHER_HUMIDITY: str
-ATTR_WEATHER_OZONE: str
-ATTR_WEATHER_PRESSURE: str
-ATTR_WEATHER_PRESSURE_UNIT: str
-ATTR_WEATHER_TEMPERATURE: str
-ATTR_WEATHER_TEMPERATURE_UNIT: str
-ATTR_WEATHER_VISIBILITY: str
-ATTR_WEATHER_VISIBILITY_UNIT: str
-ATTR_WEATHER_WIND_BEARING: str
-ATTR_WEATHER_WIND_SPEED: str
-ATTR_WEATHER_WIND_SPEED_UNIT: str
-ATTR_WEATHER_PRECIPITATION_UNIT: str
-DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
 SCAN_INTERVAL: Incomplete
 ROUNDING_PRECISION: int
-VALID_UNITS_PRESSURE: set[str]
-VALID_UNITS_TEMPERATURE: set[str]
-VALID_UNITS_PRECIPITATION: set[str]
-VALID_UNITS_VISIBILITY: set[str]
-VALID_UNITS_WIND_SPEED: set[str]
-UNIT_CONVERSIONS: dict[str, Callable[[float, str, str], float]]
-VALID_UNITS: dict[str, set[str]]
 
 def round_temperature(temperature: Union[float, None], precision: float) -> Union[float, None]: ...
 

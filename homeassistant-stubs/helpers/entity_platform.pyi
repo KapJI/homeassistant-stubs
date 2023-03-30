@@ -1,6 +1,6 @@
 import asyncio
 import voluptuous as vol
-from . import service as service
+from . import service as service, translation as translation
 from .device_registry import DeviceRegistry as DeviceRegistry
 from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
@@ -46,6 +46,7 @@ class EntityPlatform:
     entity_namespace: Incomplete
     config_entry: Incomplete
     entities: Incomplete
+    entity_translations: Incomplete
     _tasks: Incomplete
     _setup_complete: bool
     _async_unsub_polling: Incomplete

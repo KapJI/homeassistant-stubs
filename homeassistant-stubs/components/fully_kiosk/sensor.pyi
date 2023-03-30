@@ -8,12 +8,12 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
+from homeassistant.helpers.typing import StateType as StateType
 
 def round_storage(value: int) -> float: ...
 
 class FullySensorEntityDescription(SensorEntityDescription):
-    state_fn: Union[Callable, None]
+    state_fn: Union[Callable[[int], float], None]
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, state_fn) -> None: ...
 
 SENSORS: tuple[FullySensorEntityDescription, ...]
@@ -25,4 +25,4 @@ class FullySensor(FullyKioskEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator, sensor: FullySensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Any: ...
+    def native_value(self) -> StateType: ...

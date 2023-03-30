@@ -11,6 +11,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import Throttle as Throttle
 from typing import Any
@@ -58,7 +59,7 @@ class TibberDataSensor(TibberSensor, CoordinatorEntity['TibberDataCoordinator'])
     _device_name: Incomplete
     def __init__(self, tibber_home: tibber.TibberHome, coordinator: TibberDataCoordinator, entity_description: SensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Any: ...
+    def native_value(self) -> StateType: ...
 
 class TibberSensorRT(TibberSensor, CoordinatorEntity['TibberRtDataCoordinator']):
     entity_description: Incomplete

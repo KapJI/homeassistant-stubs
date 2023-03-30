@@ -1,4 +1,4 @@
-from .common import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo, FritzBoxBaseEntity as FritzBoxBaseEntity
+from .common import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo, FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -9,8 +9,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any
 
 _LOGGER: Incomplete
 
@@ -32,11 +32,7 @@ def _retrieve_link_noise_margin_received_state(status: FritzStatus, last_value: 
 def _retrieve_link_attenuation_sent_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_link_attenuation_received_state(status: FritzStatus, last_value: str) -> float: ...
 
-class FritzRequireKeysMixin:
-    value_fn: Callable[[FritzStatus, Any], Any]
-    def __init__(self, value_fn) -> None: ...
-
-class FritzSensorEntityDescription(SensorEntityDescription, FritzRequireKeysMixin):
+class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescription):
     is_suitable: Callable[[ConnectionInfo], bool]
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, is_suitable) -> None: ...
 
@@ -44,12 +40,7 @@ SENSOR_TYPES: tuple[FritzSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FritzBoxSensor(FritzBoxBaseEntity, SensorEntity):
+class FritzBoxSensor(FritzBoxBaseCoordinatorEntity, SensorEntity):
     entity_description: FritzSensorEntityDescription
-    _last_device_value: Incomplete
-    _attr_available: bool
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
-    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, description: FritzSensorEntityDescription) -> None: ...
-    _attr_native_value: Incomplete
-    def update(self) -> None: ...
+    @property
+    def native_value(self) -> StateType: ...

@@ -4,8 +4,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_PORT as CONF_PORT, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
-from homeassistant.helpers import device_registry as device_registry
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from velbusaio.controller import Velbus
 

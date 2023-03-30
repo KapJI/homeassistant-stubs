@@ -3,15 +3,13 @@ from .coordinator import RidwellDataUpdateCoordinator as RidwellDataUpdateCoordi
 from _typeshed import Incomplete
 from aioridwell.model import RidwellAccount as RidwellAccount, RidwellPickupEvent as RidwellPickupEvent
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class RidwellEntity(CoordinatorEntity[RidwellDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _account: Incomplete
     _attr_device_info: Incomplete
-    _attr_unique_id: Incomplete
-    entity_description: Incomplete
-    def __init__(self, coordinator: RidwellDataUpdateCoordinator, account: RidwellAccount, description: EntityDescription) -> None: ...
+    def __init__(self, coordinator: RidwellDataUpdateCoordinator, account: RidwellAccount) -> None: ...
     @property
     def next_pickup_event(self) -> RidwellPickupEvent: ...

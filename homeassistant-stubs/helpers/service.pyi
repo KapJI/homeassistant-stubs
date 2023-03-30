@@ -2,6 +2,7 @@ import voluptuous as vol
 from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, template as template
 from .entity import Entity as Entity
 from .entity_platform import EntityPlatform as EntityPlatform
+from .selector import TargetSelector as TargetSelector
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Iterable
@@ -12,12 +13,22 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, T
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
 from homeassistant.util.yaml import load_yaml as load_yaml
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
+from types import ModuleType
 from typing import Any, TypeGuard, TypeVar, TypedDict
 
 _EntityT = TypeVar('_EntityT', bound=Entity)
 CONF_SERVICE_ENTITY_ID: str
 _LOGGER: Incomplete
 SERVICE_DESCRIPTION_CACHE: str
+
+def _base_components() -> dict[str, ModuleType]: ...
+def _validate_option_or_feature(option_or_feature: str, label: str) -> Any: ...
+def validate_attribute_option(attribute_option: str) -> Any: ...
+def validate_supported_feature(supported_feature: str) -> Any: ...
+
+_FIELD_SCHEMA: Incomplete
+_SERVICE_SCHEMA: Incomplete
+_SERVICES_SCHEMA: Incomplete
 
 class ServiceParams(TypedDict):
     domain: str

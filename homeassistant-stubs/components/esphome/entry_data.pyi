@@ -10,6 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.storage import Store as Store
 from typing import Any
 
+_SENTINEL: Incomplete
 SAVE_DELAY: int
 _LOGGER: Incomplete
 INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], Platform]

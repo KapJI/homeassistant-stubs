@@ -31,7 +31,6 @@ UPDATE_DELAY: float
 
 class DiscoveryInfo(TypedDict):
     devices: list[DevId]
-    name: str
     gateway_id: GatewayId
 
 SERVICE_SEND_IR_CODE: Final[str]
@@ -44,7 +43,6 @@ CLIMATE_TYPES: dict[SensorType, set[ValueType]]
 COVER_TYPES: dict[SensorType, set[ValueType]]
 DEVICE_TRACKER_TYPES: dict[SensorType, set[ValueType]]
 LIGHT_TYPES: dict[SensorType, set[ValueType]]
-NOTIFY_TYPES: dict[SensorType, set[ValueType]]
 REMOTE_TYPES: dict[SensorType, set[ValueType]]
 SENSOR_TYPES: dict[SensorType, set[ValueType]]
 SWITCH_TYPES: dict[SensorType, set[ValueType]]
@@ -52,4 +50,4 @@ TEXT_TYPES: dict[SensorType, set[ValueType]]
 PLATFORM_TYPES: dict[Platform, dict[SensorType, set[ValueType]]]
 FLAT_PLATFORM_TYPES: dict[tuple[str, SensorType], set[ValueType]]
 TYPE_TO_PLATFORMS: dict[SensorType, list[Platform]]
-PLATFORMS_WITH_ENTRY_SUPPORT: Incomplete
+PLATFORMS: Incomplete

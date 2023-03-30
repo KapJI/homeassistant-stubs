@@ -45,7 +45,6 @@ STATUS: str
 OPTED_IN: str
 SECURITY_CLASSES: str
 CLIENT_SIDE_AUTH: str
-DRY_RUN: str
 INCLUSION_STRATEGY: str
 INCLUSION_STRATEGY_NOT_SMART_START: dict[int, Literal[InclusionStrategy.DEFAULT, InclusionStrategy.SECURITY_S0, InclusionStrategy.SECURITY_S2, InclusionStrategy.INSECURE]]
 PIN: str

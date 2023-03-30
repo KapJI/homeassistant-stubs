@@ -1,3 +1,4 @@
+from ..const import DOMAIN as DOMAIN
 from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
@@ -8,8 +9,6 @@ from typing import Any
 
 PRESET_FREEZE: str
 PRESET_NIGHT: str
-STATE_DEROGATION_ACTIVE: str
-STATE_DEROGATION_INACTIVE: str
 OVERKIZ_TO_HVAC_MODES: dict[str, HVACMode]
 HVAC_MODES_TO_OVERKIZ: Incomplete
 OVERKIZ_TO_PRESET_MODES: dict[OverkizCommandParam, str]
@@ -22,6 +21,7 @@ class SomfyThermostat(OverkizEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
+    _attr_translation_key: Incomplete
     _attr_min_temp: float
     _attr_max_temp: float
     temperature_device: Incomplete

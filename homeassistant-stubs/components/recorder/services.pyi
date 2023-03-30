@@ -4,7 +4,7 @@ from .tasks import PurgeEntitiesTask as PurgeEntitiesTask, PurgeTask as PurgeTas
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.entityfilter import generate_filter as generate_filter
-from homeassistant.helpers.service import async_extract_entity_ids as async_extract_entity_ids
+from homeassistant.helpers.service import async_extract_entity_ids as async_extract_entity_ids, async_register_admin_service as async_register_admin_service
 
 SERVICE_PURGE: str
 SERVICE_PURGE_ENTITIES: str

@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .media_source import generate_media_source_id as generate_media_source_id, media_source_id_to_kwargs as media_source_id_to_kwargs
 from _typeshed import Incomplete
 from aiohttp import web
+from collections.abc import Mapping
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, MediaType as MediaType, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, PLATFORM_FORMAT as PLATFORM_FORMAT
@@ -90,7 +91,7 @@ class Provider:
     @property
     def supported_options(self) -> Union[list[str], None]: ...
     @property
-    def default_options(self) -> Union[dict[str, Any], None]: ...
+    def default_options(self) -> Union[Mapping[str, Any], None]: ...
     def get_tts_audio(self, message: str, language: str, options: Union[dict[str, Any], None] = ...) -> TtsAudioType: ...
     async def async_get_tts_audio(self, message: str, language: str, options: Union[dict[str, Any], None] = ...) -> TtsAudioType: ...
 

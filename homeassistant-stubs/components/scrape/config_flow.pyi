@@ -1,6 +1,6 @@
 import voluptuous as vol
 from . import COMBINED_SCHEMA as COMBINED_SCHEMA
-from .const import CONF_INDEX as CONF_INDEX, CONF_SELECT as CONF_SELECT, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN
+from .const import CONF_ENCODING as CONF_ENCODING, CONF_INDEX as CONF_INDEX, CONF_SELECT as CONF_SELECT, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.rest import create_rest_data_from_config as create_rest_data_from_config

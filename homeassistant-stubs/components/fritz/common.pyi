@@ -2,13 +2,15 @@ from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DI
 from _typeshed import Incomplete
 from collections.abc import Callable, ValuesView
 from datetime import datetime
+from fritzconnection.lib.fritzstatus import FritzStatus
 from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er, update_coordinator as update_coordinator
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.typing import StateType as StateType
 from types import MappingProxyType
 from typing import Any, TypedDict
 
@@ -45,7 +47,7 @@ class HostInfo(TypedDict):
     ip: str
     status: bool
 
-class FritzBoxTools(update_coordinator.DataUpdateCoordinator[None]):
+class FritzBoxTools(update_coordinator.DataUpdateCoordinator[dict[str, bool | StateType]]):
     _devices: Incomplete
     _options: Incomplete
     _unique_id: Incomplete
@@ -66,10 +68,12 @@ class FritzBoxTools(update_coordinator.DataUpdateCoordinator[None]):
     _latest_firmware: Incomplete
     _update_available: bool
     _release_url: Incomplete
+    _entity_update_functions: Incomplete
     def __init__(self, hass: HomeAssistant, password: str, username: str = ..., host: str = ..., port: int = ...) -> None: ...
     async def async_setup(self, options: Union[MappingProxyType[str, Any], None] = ...) -> None: ...
     def setup(self) -> None: ...
-    async def _async_update_data(self) -> None: ...
+    def register_entity_updates(self, key: str, update_fn: Callable[[FritzStatus, StateType], Any]) -> Callable[[], None]: ...
+    async def _async_update_data(self) -> dict[str, Union[bool, StateType]]: ...
     @property
     def unique_id(self) -> str: ...
     @property
@@ -187,6 +191,24 @@ class FritzBoxBaseEntity:
     def __init__(self, avm_wrapper: AvmWrapper, device_name: str) -> None: ...
     @property
     def mac_address(self) -> str: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
+
+class FritzRequireKeysMixin:
+    value_fn: Callable[[FritzStatus, Any], Any]
+    def __init__(self, value_fn) -> None: ...
+
+class FritzEntityDescription(EntityDescription, FritzRequireKeysMixin):
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+
+class FritzBoxBaseCoordinatorEntity(update_coordinator.CoordinatorEntity):
+    coordinator: AvmWrapper
+    entity_description: FritzEntityDescription
+    _attr_has_entity_name: bool
+    _device_name: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, avm_wrapper: AvmWrapper, device_name: str, description: FritzEntityDescription) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
 

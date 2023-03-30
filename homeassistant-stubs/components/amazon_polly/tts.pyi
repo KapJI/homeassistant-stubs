@@ -5,7 +5,7 @@ from homeassistant.components.tts import Provider as Provider, TtsAudioType as T
 from homeassistant.const import ATTR_CREDENTIALS as ATTR_CREDENTIALS, CONF_PROFILE_NAME as CONF_PROFILE_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Final
+from typing import Any, Final
 
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
@@ -28,4 +28,4 @@ class AmazonPollyProvider(Provider):
     def default_options(self) -> dict[str, str]: ...
     @property
     def supported_options(self) -> list[str]: ...
-    def get_tts_audio(self, message: str, language: Union[str, None] = ..., options: Union[dict[str, str], None] = ...) -> TtsAudioType: ...
+    def get_tts_audio(self, message: str, language: str, options: Union[dict[str, Any], None] = ...) -> TtsAudioType: ...

@@ -4,6 +4,7 @@ from .types import EnergyPlatform as EnergyPlatform, GetSolarForecastType as Get
 from .validate import async_validate as async_validate
 from _typeshed import Incomplete
 from homeassistant.components import recorder as recorder, websocket_api as websocket_api
+from homeassistant.components.recorder.statistics import StatisticsRow as StatisticsRow
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms

@@ -8,29 +8,34 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from pylitterbot import Robot as Robot
+from pylitterbot.robot.litterrobot4 import BrightnessLevel
 from typing import Any, TypeVar
 
-_CastTypeT = TypeVar('_CastTypeT', int, float)
+_CastTypeT = TypeVar('_CastTypeT', int, float, str)
+BRIGHTNESS_LEVEL_ICON_MAP: dict[Union[BrightnessLevel, None], str]
 
 class RequiredKeysMixin:
-    current_fn: Callable[[_RobotT], _CastTypeT]
+    current_fn: Callable[[_RobotT], Union[_CastTypeT, None]]
     options_fn: Callable[[_RobotT], list[_CastTypeT]]
     select_fn: Callable[[_RobotT, str], Coroutine[Any, Any, bool]]
     def __init__(self, current_fn, options_fn, select_fn) -> None: ...
 
 class RobotSelectEntityDescription(SelectEntityDescription, RequiredKeysMixin[_RobotT, _CastTypeT]):
     entity_category: EntityCategory
-    def __init__(self, current_fn, options_fn, select_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    icon_fn: Union[Callable[[_RobotT], str], None]
+    def __init__(self, current_fn, options_fn, select_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options, icon_fn) -> None: ...
 
-LITTER_ROBOT_SELECT: Incomplete
-FEEDER_ROBOT_SELECT: Incomplete
+ROBOT_SELECT_MAP: dict[type[Robot], RobotSelectEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class LitterRobotSelect(LitterRobotEntity[_RobotT], SelectEntity):
+class LitterRobotSelectEntity(LitterRobotEntity[_RobotT], SelectEntity):
     entity_description: RobotSelectEntityDescription[_RobotT, _CastTypeT]
     _attr_options: Incomplete
     def __init__(self, robot: _RobotT, hub: LitterRobotHub, description: RobotSelectEntityDescription[_RobotT, _CastTypeT]) -> None: ...
+    @property
+    def icon(self) -> Union[str, None]: ...
     @property
     def current_option(self) -> Union[str, None]: ...
     async def async_select_option(self, option: str) -> None: ...

@@ -1,6 +1,6 @@
 from .. import mysensors as mysensors
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, SensorType as SensorType
-from .device import MySensorsDevice as MySensorsDevice
+from .device import MySensorsEntity as MySensorsEntity
 from .helpers import on_unload as on_unload
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ColorMode as ColorMode, LightEntity as LightEntity

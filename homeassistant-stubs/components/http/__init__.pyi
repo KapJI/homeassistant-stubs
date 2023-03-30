@@ -1,3 +1,4 @@
+import asyncio
 import ssl
 from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
@@ -10,8 +11,14 @@ from .static import CACHE_HEADERS as CACHE_HEADERS, CachingStaticResource as Cac
 from .view import HomeAssistantView as HomeAssistantView
 from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite
 from _typeshed import Incomplete
-from aiohttp.typedefs import StrOrURL as StrOrURL
+from aiohttp import web
+from aiohttp.abc import AbstractStreamWriter as AbstractStreamWriter
+from aiohttp.http_parser import RawRequestMessage as RawRequestMessage
+from aiohttp.streams import StreamReader as StreamReader
+from aiohttp.typedefs import JSONDecoder as JSONDecoder, StrOrURL as StrOrURL
 from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
+from aiohttp.web_log import AccessLogger
+from aiohttp.web_protocol import RequestHandler as RequestHandler
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
@@ -21,6 +28,7 @@ from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableE
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.setup import async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
+from homeassistant.util.json import json_loads as json_loads
 from ipaddress import IPv4Network, IPv6Network
 from typing import Any, Final, TypedDict
 
@@ -75,6 +83,15 @@ class ApiConfig:
     def __init__(self, local_ip: str, host: str, port: int, use_ssl: bool) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+
+class HomeAssistantAccessLogger(AccessLogger):
+    def log(self, request: web.BaseRequest, response: web.StreamResponse, time: float) -> None: ...
+
+class HomeAssistantRequest(web.Request):
+    async def json(self, *, loads: JSONDecoder = ...) -> Any: ...
+
+class HomeAssistantApplication(web.Application):
+    def _make_request(self, message: RawRequestMessage, payload: StreamReader, protocol: RequestHandler, writer: AbstractStreamWriter, task: asyncio.Task[None], _cls: type[web.Request] = ...) -> web.Request: ...
 
 class HomeAssistantHTTP:
     app: Incomplete

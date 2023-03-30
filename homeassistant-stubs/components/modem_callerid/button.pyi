@@ -4,10 +4,10 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import entity_platform as entity_platform
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from phone_modem import PhoneModem as PhoneModem
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: entity_platform.AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PhoneModemButton(ButtonEntity):
     _attr_icon: str

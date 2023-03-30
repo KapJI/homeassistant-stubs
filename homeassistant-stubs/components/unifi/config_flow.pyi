@@ -1,0 +1,46 @@
+from .const import CONF_ALLOW_BANDWIDTH_SENSORS as CONF_ALLOW_BANDWIDTH_SENSORS, CONF_ALLOW_UPTIME_SENSORS as CONF_ALLOW_UPTIME_SENSORS, CONF_BLOCK_CLIENT as CONF_BLOCK_CLIENT, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_DPI_RESTRICTIONS as CONF_DPI_RESTRICTIONS, CONF_IGNORE_WIRED_BUG as CONF_IGNORE_WIRED_BUG, CONF_SITE_ID as CONF_SITE_ID, CONF_SSID_FILTER as CONF_SSID_FILTER, CONF_TRACK_CLIENTS as CONF_TRACK_CLIENTS, CONF_TRACK_DEVICES as CONF_TRACK_DEVICES, CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_DPI_RESTRICTIONS as DEFAULT_DPI_RESTRICTIONS
+from .controller import UniFiController as UniFiController, get_unifi_controller as get_unifi_controller
+from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
+from _typeshed import Incomplete
+from collections.abc import Mapping
+from homeassistant import config_entries as config_entries
+from homeassistant.components import ssdp as ssdp
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers.device_registry import format_mac as format_mac
+from typing import Any
+
+DEFAULT_PORT: int
+DEFAULT_SITE_ID: str
+DEFAULT_VERIFY_SSL: bool
+MODEL_PORTS: Incomplete
+
+class UnifiFlowHandler(config_entries.ConfigFlow):
+    VERSION: int
+    @staticmethod
+    def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> UnifiOptionsFlowHandler: ...
+    config: Incomplete
+    site_ids: Incomplete
+    site_names: Incomplete
+    reauth_config_entry: Incomplete
+    reauth_schema: Incomplete
+    def __init__(self) -> None: ...
+    async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_site(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> FlowResult: ...
+    async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> FlowResult: ...
+
+class UnifiOptionsFlowHandler(config_entries.OptionsFlow):
+    controller: UniFiController
+    config_entry: Incomplete
+    options: Incomplete
+    def __init__(self, config_entry: config_entries.ConfigEntry) -> None: ...
+    async def async_step_init(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_simple_options(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_device_tracker(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_client_control(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def async_step_statistics_sensors(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    async def _update_options(self) -> FlowResult: ...
+
+async def _async_discover_unifi(hass: HomeAssistant) -> Union[str, None]: ...

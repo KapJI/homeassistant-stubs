@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping, Sequence
+from enum import IntFlag
 from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
@@ -22,20 +23,25 @@ class Selector:
     def __init__(self, config: Union[Mapping[str, Any], None] = ...) -> None: ...
     def serialize(self) -> dict[str, dict[str, _T]]: ...
 
-SINGLE_ENTITY_SELECTOR_CONFIG_SCHEMA: Incomplete
+def _entity_features() -> dict[str, type[IntFlag]]: ...
+def _validate_supported_feature(supported_feature: Union[int, str]) -> int: ...
 
-class SingleEntitySelectorConfig(TypedDict):
+ENTITY_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
+
+class EntityFilterSelectorConfig(TypedDict):
     integration: str
     domain: Union[str, list[str]]
-    device_class: str
+    device_class: Union[str, list[str]]
+    supported_features: list[str]
 
-SINGLE_DEVICE_SELECTOR_CONFIG_SCHEMA: Incomplete
+DEVICE_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
 
-class SingleDeviceSelectorConfig(TypedDict):
+class DeviceFilterSelectorConfig(TypedDict):
     integration: str
     manufacturer: str
     model: str
-    entity: SingleEntitySelectorConfig
+    entity: Union[EntityFilterSelectorConfig, list[EntityFilterSelectorConfig]]
+    filter: Union[DeviceFilterSelectorConfig, list[DeviceFilterSelectorConfig]]
 
 class ActionSelectorConfig(TypedDict): ...
 
@@ -56,8 +62,8 @@ class AddonSelector(Selector[AddonSelectorConfig]):
     def __call__(self, data: Any) -> str: ...
 
 class AreaSelectorConfig(TypedDict):
-    entity: SingleEntitySelectorConfig
-    device: SingleDeviceSelectorConfig
+    entity: Union[EntityFilterSelectorConfig, list[EntityFilterSelectorConfig]]
+    device: Union[DeviceFilterSelectorConfig, list[DeviceFilterSelectorConfig]]
     multiple: bool
 
 class AreaSelector(Selector[AreaSelectorConfig]):
@@ -111,6 +117,17 @@ class ConfigEntrySelector(Selector[ConfigEntrySelectorConfig]):
     def __init__(self, config: Union[ConfigEntrySelectorConfig, None] = ...) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
+class ConstantSelectorConfig(TypedDict):
+    label: str
+    translation_key: str
+    value: Union[str, int, bool]
+
+class ConstantSelector(Selector[ConstantSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: Union[ConstantSelectorConfig, None] = ...) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
 class DateSelectorConfig(TypedDict): ...
 
 class DateSelector(Selector[DateSelectorConfig]):
@@ -131,7 +148,7 @@ class DeviceSelectorConfig(TypedDict):
     integration: str
     manufacturer: str
     model: str
-    entity: SingleEntitySelectorConfig
+    entity: Union[EntityFilterSelectorConfig, list[EntityFilterSelectorConfig]]
     multiple: bool
 
 class DeviceSelector(Selector[DeviceSelectorConfig]):
@@ -149,7 +166,7 @@ class DurationSelector(Selector[DurationSelectorConfig]):
     def __init__(self, config: Union[DurationSelectorConfig, None] = ...) -> None: ...
     def __call__(self, data: Any) -> dict[str, float]: ...
 
-class EntitySelectorConfig(SingleEntitySelectorConfig):
+class EntitySelectorConfig(EntityFilterSelectorConfig):
     exclude_entities: list[str]
     include_entities: list[str]
     multiple: bool
@@ -240,8 +257,8 @@ class SelectSelector(Selector[SelectSelectorConfig]):
     def __call__(self, data: Any) -> Any: ...
 
 class TargetSelectorConfig(TypedDict):
-    entity: SingleEntitySelectorConfig
-    device: SingleDeviceSelectorConfig
+    entity: Union[EntityFilterSelectorConfig, list[EntityFilterSelectorConfig]]
+    device: Union[DeviceFilterSelectorConfig, list[DeviceFilterSelectorConfig]]
 
 class StateSelectorConfig(TypedDict):
     entity_id: Required[str]

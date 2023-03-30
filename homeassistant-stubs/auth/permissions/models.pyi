@@ -1,8 +1,8 @@
-from homeassistant.helpers import device_registry as dev_reg, entity_registry as ent_reg
+from homeassistant.helpers import device_registry as dr, entity_registry as er
 
 class PermissionLookup:
-    entity_registry: ent_reg.EntityRegistry
-    device_registry: dev_reg.DeviceRegistry
+    entity_registry: er.EntityRegistry
+    device_registry: dr.DeviceRegistry
     def __init__(self, entity_registry, device_registry) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...

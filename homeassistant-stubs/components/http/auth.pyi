@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from aiohttp.web import Application as Application, Request as Request, StreamResponse as StreamResponse
 from collections.abc import Callable as Callable
 from datetime import timedelta
+from homeassistant.auth import jwt_wrapper as jwt_wrapper
 from homeassistant.auth.const import GROUP_ID_READ_ONLY as GROUP_ID_READ_ONLY
 from homeassistant.auth.models import User as User
 from homeassistant.components import websocket_api as websocket_api

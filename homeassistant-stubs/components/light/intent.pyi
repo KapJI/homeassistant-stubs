@@ -2,7 +2,7 @@ from . import ATTR_BRIGHTNESS_PCT as ATTR_BRIGHTNESS_PCT, ATTR_RGB_COLOR as ATTR
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import area_registry as area_registry, intent as intent
+from homeassistant.helpers import intent as intent
 
 _LOGGER: Incomplete
 INTENT_SET: str

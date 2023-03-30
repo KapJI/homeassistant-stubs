@@ -1,5 +1,5 @@
 from .const import ALWAYS_CONTINUOUS_DOMAINS as ALWAYS_CONTINUOUS_DOMAINS, AUTOMATION_EVENTS as AUTOMATION_EVENTS, BUILT_IN_EVENTS as BUILT_IN_EVENTS, DOMAIN as DOMAIN
-from .models import LazyEventPartialState as LazyEventPartialState
+from .models import LogbookConfig as LogbookConfig
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED

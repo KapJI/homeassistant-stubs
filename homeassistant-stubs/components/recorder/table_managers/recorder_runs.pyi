@@ -1,5 +1,5 @@
-from .db_schema import RecorderRuns as RecorderRuns
-from .models import process_timestamp as process_timestamp
+from ..db_schema import RecorderRuns as RecorderRuns
+from ..models import process_timestamp as process_timestamp
 from _typeshed import Incomplete
 from datetime import datetime
 from sqlalchemy.orm.session import Session as Session
@@ -11,7 +11,7 @@ class _RecorderRunsHistory:
     runs_by_timestamp: dict[int, RecorderRuns]
     def __init__(self, run_timestamps, runs_by_timestamp) -> None: ...
 
-class RunHistory:
+class RecorderRunsManager:
     _recording_start: Incomplete
     _current_run_info: Incomplete
     _run_history: Incomplete

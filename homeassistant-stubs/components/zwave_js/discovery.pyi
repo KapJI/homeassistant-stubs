@@ -1,7 +1,7 @@
 from .const import LOGGER as LOGGER
 from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, ConfigurableFanValueMappingDataTemplate as ConfigurableFanValueMappingDataTemplate, CoverTiltDataTemplate as CoverTiltDataTemplate, DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate, FanValueMapping as FanValueMapping, FixedFanValueMappingDataTemplate as FixedFanValueMappingDataTemplate, NumericSensorDataTemplate as NumericSensorDataTemplate
 from .helpers import ZwaveValueID as ZwaveValueID
-from _typeshed import Incomplete
+from _typeshed import DataclassInstance as DataclassInstance, Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
 from homeassistant.backports.enum import StrEnum as StrEnum

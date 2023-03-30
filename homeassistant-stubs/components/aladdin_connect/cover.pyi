@@ -3,26 +3,23 @@ from .model import DoorDevice as DoorDevice
 from AIOAladdinConnect import AladdinConnectClient as AladdinConnectClient
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPENING as STATE_OPENING
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Final
+from typing import Any
 
-_LOGGER: Final[Incomplete]
-PLATFORM_SCHEMA: Final[Incomplete]
 SCAN_INTERVAL: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AladdinDevice(CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _acc: Incomplete
+    _entry_id: Incomplete
     _device_id: Incomplete
     _number: Incomplete
     _name: Incomplete
@@ -36,6 +33,7 @@ class AladdinDevice(CoverEntity):
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    _attr_available: bool
     async def async_update(self) -> None: ...
     @property
     def is_closed(self) -> Union[bool, None]: ...

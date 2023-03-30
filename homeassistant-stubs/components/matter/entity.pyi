@@ -7,13 +7,17 @@ from abc import abstractmethod
 from chip.clusters.Objects import ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from collections.abc import Callable as Callable
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
 from matter_server.client import MatterClient as MatterClient
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from matter_server.common.models import EventType
 from typing import Any
 
 LOGGER: Incomplete
+
+class MatterEntityDescription(EntityDescription):
+    measurement_to_ha: Union[Callable[[Any], Any], None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, measurement_to_ha) -> None: ...
 
 class MatterEntity(Entity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool

@@ -22,6 +22,7 @@ ATTR_LAST: str
 ATTR_LAST_ENTITY_ID: str
 ATTR_RANGE: str
 ATTR_SUM: str
+ATTR_PRODUCT: str
 SENSOR_TYPES: Incomplete
 SENSOR_TYPE_TO_ATTR: Incomplete
 PARALLEL_UPDATES: int
@@ -37,6 +38,7 @@ def calc_median(sensor_values: list[tuple[str, float, State]]) -> tuple[dict[str
 def calc_last(sensor_values: list[tuple[str, float, State]]) -> tuple[dict[str, Union[str, None]], Union[float, None]]: ...
 def calc_range(sensor_values: list[tuple[str, float, State]]) -> tuple[dict[str, Union[str, None]], float]: ...
 def calc_sum(sensor_values: list[tuple[str, float, State]]) -> tuple[dict[str, Union[str, None]], float]: ...
+def calc_product(sensor_values: list[tuple[str, float, State]]) -> tuple[dict[str, Union[str, None]], float]: ...
 
 CALC_TYPES: dict[str, Callable[[list[tuple[str, float, State]]], tuple[dict[str, Union[str, None]], Union[float, None]]]]
 

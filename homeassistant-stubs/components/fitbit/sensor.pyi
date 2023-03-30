@@ -13,7 +13,7 @@ from homeassistant.helpers.icon import icon_for_battery_level as icon_for_batter
 from homeassistant.helpers.json import save_json as save_json
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.util.json import load_json as load_json
+from homeassistant.util.json import load_json_object as load_json_object
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import Any, Final
 

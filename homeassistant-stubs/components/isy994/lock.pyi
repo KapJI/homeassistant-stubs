@@ -1,16 +1,19 @@
-from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
+from .services import SERVICE_DELETE_USER_CODE_SCHEMA as SERVICE_DELETE_USER_CODE_SCHEMA, SERVICE_DELETE_ZWAVE_LOCK_USER_CODE as SERVICE_DELETE_ZWAVE_LOCK_USER_CODE, SERVICE_SET_USER_CODE_SCHEMA as SERVICE_SET_USER_CODE_SCHEMA, SERVICE_SET_ZWAVE_LOCK_USER_CODE as SERVICE_SET_ZWAVE_LOCK_USER_CODE
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from typing import Any
 
 VALUE_TO_STATE: Incomplete
 
+def async_setup_lock_services(hass: HomeAssistant) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ISYLockEntity(ISYNodeEntity, LockEntity):
@@ -18,6 +21,8 @@ class ISYLockEntity(ISYNodeEntity, LockEntity):
     def is_locked(self) -> Union[bool, None]: ...
     async def async_lock(self, **kwargs: Any) -> None: ...
     async def async_unlock(self, **kwargs: Any) -> None: ...
+    async def async_set_zwave_lock_user_code(self, user_num: int, code: int) -> None: ...
+    async def async_delete_zwave_lock_user_code(self, user_num: int) -> None: ...
 
 class ISYLockProgramEntity(ISYProgramEntity, LockEntity):
     @property

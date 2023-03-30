@@ -11,8 +11,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.util.dt import utcnow as utcnow
 from pyunifiprotect.api import ProtectApiClient as ProtectApiClient
 from pyunifiprotect.data import Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor, Viewer
@@ -57,7 +57,7 @@ SENSE_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 DOORLOCK_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 VIEWER_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: entity_platform.AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     device: Union[Camera, Light, Viewer]

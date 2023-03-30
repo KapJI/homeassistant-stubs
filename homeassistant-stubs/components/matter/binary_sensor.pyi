@@ -1,4 +1,4 @@
-from .entity import MatterEntity as MatterEntity
+from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
@@ -12,7 +12,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
+class MatterBinarySensorEntityDescription(BinarySensorEntityDescription, MatterEntityDescription):
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, measurement_to_ha) -> None: ...
+
 class MatterBinarySensor(MatterEntity, BinarySensorEntity):
+    entity_description: MatterBinarySensorEntityDescription
     _attr_is_on: Incomplete
     def _update_from_device(self) -> None: ...
 

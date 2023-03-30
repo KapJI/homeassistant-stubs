@@ -1,5 +1,5 @@
 from .const import ALL_DOMAIN_EXCLUDE_ATTRS as ALL_DOMAIN_EXCLUDE_ATTRS, SupportedDialect as SupportedDialect
-from .models import StatisticData as StatisticData, StatisticDataTimestamp as StatisticDataTimestamp, StatisticMetaData as StatisticMetaData, datetime_to_timestamp_or_none as datetime_to_timestamp_or_none, process_timestamp as process_timestamp
+from .models import StatisticData as StatisticData, StatisticDataTimestamp as StatisticDataTimestamp, StatisticMetaData as StatisticMetaData, bytes_to_ulid_or_none as bytes_to_ulid_or_none, bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, datetime_to_timestamp_or_none as datetime_to_timestamp_or_none, process_timestamp as process_timestamp, ulid_to_bytes_or_none as ulid_to_bytes_or_none, uuid_hex_to_bytes_or_none as uuid_hex_to_bytes_or_none
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
@@ -11,7 +11,6 @@ from sqlalchemy import ColumnElement as ColumnElement, JSON
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.interfaces import Dialect as Dialect
 from sqlalchemy.orm import DeclarativeBase, Mapped as Mapped
-from sqlalchemy.orm.query import RowReturningQuery as RowReturningQuery
 from typing import Any
 from typing_extensions import Self
 
@@ -21,8 +20,10 @@ SCHEMA_VERSION: int
 _LOGGER: Incomplete
 TABLE_EVENTS: str
 TABLE_EVENT_DATA: str
+TABLE_EVENT_TYPES: str
 TABLE_STATES: str
 TABLE_STATE_ATTRIBUTES: str
+TABLE_STATES_META: str
 TABLE_RECORDER_RUNS: str
 TABLE_SCHEMA_CHANGES: str
 TABLE_STATISTICS: str
@@ -35,9 +36,14 @@ PSQL_DIALECT: Incomplete
 ALL_TABLES: Incomplete
 TABLES_TO_CHECK: Incomplete
 LAST_UPDATED_INDEX_TS: str
-ENTITY_ID_LAST_UPDATED_INDEX_TS: str
-EVENTS_CONTEXT_ID_INDEX: str
-STATES_CONTEXT_ID_INDEX: str
+METADATA_ID_LAST_UPDATED_INDEX_TS: str
+EVENTS_CONTEXT_ID_BIN_INDEX: str
+STATES_CONTEXT_ID_BIN_INDEX: str
+LEGACY_STATES_EVENT_ID_INDEX: str
+CONTEXT_ID_BIN_MAX_LENGTH: int
+MYSQL_COLLATE: str
+MYSQL_DEFAULT_CHARSET: str
+MYSQL_ENGINE: str
 _DEFAULT_TABLE_ARGS: Incomplete
 
 class FAST_PYSQLITE_DATETIME(sqlite.DATETIME):
@@ -47,6 +53,7 @@ JSON_VARIANT_CAST: Incomplete
 JSONB_VARIANT_CAST: Incomplete
 DATETIME_TYPE: Incomplete
 DOUBLE_TYPE: Incomplete
+DOUBLE_PRECISION_TYPE_SQL: str
 TIMESTAMP_TYPE = DOUBLE_TYPE
 
 class JSONLiteral(JSON):
@@ -69,7 +76,12 @@ class Events(Base):
     context_user_id: Mapped[Union[str, None]]
     context_parent_id: Mapped[Union[str, None]]
     data_id: Mapped[Union[int, None]]
+    context_id_bin: Mapped[Union[bytes, None]]
+    context_user_id_bin: Mapped[Union[bytes, None]]
+    context_parent_id_bin: Mapped[Union[bytes, None]]
+    event_type_id: Mapped[Union[int, None]]
     event_data_rel: Mapped[Union[EventData, None]]
+    event_type_rel: Mapped[Union[EventTypes, None]]
     def __repr__(self) -> str: ...
     @property
     def _time_fired_isotime(self) -> Union[str, None]: ...
@@ -89,6 +101,13 @@ class EventData(Base):
     @staticmethod
     def hash_shared_data_bytes(shared_data_bytes: bytes) -> int: ...
     def to_native(self) -> dict[str, Any]: ...
+
+class EventTypes(Base):
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    event_type_id: Mapped[int]
+    event_type: Mapped[Union[str, None]]
+    def __repr__(self) -> str: ...
 
 class States(Base):
     __table_args__: Incomplete
@@ -110,6 +129,11 @@ class States(Base):
     origin_idx: Mapped[Union[int, None]]
     old_state: Mapped[Union[States, None]]
     state_attributes: Mapped[Union[StateAttributes, None]]
+    context_id_bin: Mapped[Union[bytes, None]]
+    context_user_id_bin: Mapped[Union[bytes, None]]
+    context_parent_id_bin: Mapped[Union[bytes, None]]
+    metadata_id: Mapped[Union[int, None]]
+    states_meta_rel: Mapped[Union[StatesMeta, None]]
     def __repr__(self) -> str: ...
     @property
     def _last_updated_isotime(self) -> Union[str, None]: ...
@@ -129,6 +153,13 @@ class StateAttributes(Base):
     @staticmethod
     def hash_shared_attrs_bytes(shared_attrs_bytes: bytes) -> int: ...
     def to_native(self) -> dict[str, Any]: ...
+
+class StatesMeta(Base):
+    __table_args__: Incomplete
+    __tablename__: Incomplete
+    metadata_id: Mapped[int]
+    entity_id: Mapped[Union[str, None]]
+    def __repr__(self) -> str: ...
 
 class StatisticsBase:
     id: Mapped[int]
@@ -182,7 +213,6 @@ class RecorderRuns(Base):
     closed_incorrect: Mapped[bool]
     created: Mapped[datetime]
     def __repr__(self) -> str: ...
-    def entity_ids(self, point_in_time: Union[datetime, None] = ...) -> list[str]: ...
     def to_native(self, validate_entity_id: bool = ...) -> Self: ...
 
 class SchemaChanges(Base):

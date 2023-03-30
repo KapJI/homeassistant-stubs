@@ -1,19 +1,22 @@
 import abc
 import asyncio
 import threading
-from . import purge as purge, statistics as statistics
-from .const import DOMAIN as DOMAIN, EXCLUDE_ATTRIBUTES as EXCLUDE_ATTRIBUTES
+from . import entity_registry as entity_registry, purge as purge, statistics as statistics
+from .const import DOMAIN as DOMAIN
 from .core import Recorder as Recorder
 from .db_schema import Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData
 from .util import periodic_db_cleanups as periodic_db_cleanups
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
 from homeassistant.core import Event as Event
 from homeassistant.helpers.typing import UndefinedType as UndefinedType
 from typing import Any
 
-class RecorderTask(abc.ABC, metaclass=abc.ABCMeta):
+_LOGGER: Incomplete
+
+class RecorderTask(metaclass=abc.ABCMeta):
     commit_before: bool
     @abc.abstractmethod
     def run(self, instance: Recorder) -> None: ...
@@ -37,6 +40,12 @@ class UpdateStatisticsMetadataTask(RecorderTask):
     def run(self, instance: Recorder) -> None: ...
     def __init__(self, statistic_id, new_statistic_id, new_unit_of_measurement) -> None: ...
 
+class UpdateStatesMetadataTask(RecorderTask):
+    entity_id: str
+    new_entity_id: str
+    def run(self, instance: Recorder) -> None: ...
+    def __init__(self, entity_id, new_entity_id) -> None: ...
+
 class PurgeTask(RecorderTask):
     purge_before: datetime
     repack: bool
@@ -46,8 +55,9 @@ class PurgeTask(RecorderTask):
 
 class PurgeEntitiesTask(RecorderTask):
     entity_filter: Callable[[str], bool]
+    purge_before: datetime
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, entity_filter) -> None: ...
+    def __init__(self, entity_filter, purge_before) -> None: ...
 
 class PerodicCleanupTask(RecorderTask):
     def run(self, instance: Recorder) -> None: ...
@@ -57,6 +67,9 @@ class StatisticsTask(RecorderTask):
     fire_events: bool
     def run(self, instance: Recorder) -> None: ...
     def __init__(self, start, fire_events) -> None: ...
+
+class CompileMissingStatisticsTask(RecorderTask):
+    def run(self, instance: Recorder) -> None: ...
 
 class ImportStatisticsTask(RecorderTask):
     metadata: StatisticMetaData
@@ -125,4 +138,26 @@ class StatisticsTimestampMigrationCleanupTask(RecorderTask):
 
 class AdjustLRUSizeTask(RecorderTask):
     commit_before: bool
+    def run(self, instance: Recorder) -> None: ...
+
+class StatesContextIDMigrationTask(RecorderTask):
+    commit_before: bool
+    def run(self, instance: Recorder) -> None: ...
+
+class EventsContextIDMigrationTask(RecorderTask):
+    commit_before: bool
+    def run(self, instance: Recorder) -> None: ...
+
+class EventTypeIDMigrationTask(RecorderTask):
+    commit_before: bool
+    def run(self, instance: Recorder) -> None: ...
+
+class EntityIDMigrationTask(RecorderTask):
+    commit_before: bool
+    def run(self, instance: Recorder) -> None: ...
+
+class EntityIDPostMigrationTask(RecorderTask):
+    def run(self, instance: Recorder) -> None: ...
+
+class EventIdMigrationTask(RecorderTask):
     def run(self, instance: Recorder) -> None: ...

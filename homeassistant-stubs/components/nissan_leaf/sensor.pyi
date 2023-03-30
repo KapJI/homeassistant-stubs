@@ -6,10 +6,9 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOf
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
-from voluptuous.validators import Number as Number
 
 _LOGGER: Incomplete
 
@@ -23,7 +22,7 @@ class LeafBatterySensor(LeafEntity, SensorEntity):
     @property
     def name(self) -> str: ...
     @property
-    def native_value(self) -> Union[Number, None]: ...
+    def native_value(self) -> StateType: ...
     @property
     def icon(self) -> str: ...
 

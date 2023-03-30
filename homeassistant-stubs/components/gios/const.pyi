@@ -8,8 +8,6 @@ DOMAIN: Final[str]
 MANUFACTURER: Final[str]
 URL: str
 API_TIMEOUT: Final[int]
-ATTR_INDEX: Final[str]
-ATTR_STATION: Final[str]
 ATTR_C6H6: Final[str]
 ATTR_CO: Final[str]
 ATTR_NO2: Final[str]

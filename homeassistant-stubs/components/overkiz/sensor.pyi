@@ -1,5 +1,5 @@
 from . import HomeAssistantOverkizData as HomeAssistantOverkizData
-from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES, OVERKIZ_STATE_TO_TRANSLATION as OVERKIZ_STATE_TO_TRANSLATION
+from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES, OVERKIZ_STATE_TO_TRANSLATION as OVERKIZ_STATE_TO_TRANSLATION, OVERKIZ_UNIT_TO_HA as OVERKIZ_UNIT_TO_HA
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity, OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
@@ -26,6 +26,8 @@ class OverkizStateSensor(OverkizDescriptiveEntity, SensorEntity):
     entity_description: OverkizSensorDescription
     @property
     def native_value(self) -> StateType: ...
+    @property
+    def native_unit_of_measurement(self) -> Union[str, None]: ...
 
 class OverkizHomeKitSetupCodeSensor(OverkizEntity, SensorEntity):
     _attr_icon: str

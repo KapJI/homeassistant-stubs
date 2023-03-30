@@ -12,7 +12,7 @@ from homeassistant.helpers.reload import async_setup_reload_service as async_set
 from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any, Literal
+from typing import Any
 
 _LOGGER: Incomplete
 STAT_AGE_COVERAGE_RATIO: str
@@ -95,7 +95,7 @@ class StatisticsSensor(SensorEntity):
     @property
     def device_class(self) -> Union[SensorDeviceClass, None]: ...
     @property
-    def state_class(self) -> Union[Literal[SensorStateClass.MEASUREMENT], None]: ...
+    def state_class(self) -> Union[SensorStateClass, None]: ...
     @property
     def native_value(self) -> Union[StateType, datetime]: ...
     @property

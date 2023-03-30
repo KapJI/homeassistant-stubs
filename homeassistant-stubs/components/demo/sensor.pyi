@@ -17,6 +17,7 @@ class DemoSensor(SensorEntity):
     _attr_should_poll: bool
     _attr_device_class: Incomplete
     _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_native_unit_of_measurement: Incomplete
     _attr_native_value: Incomplete
     _attr_state_class: Incomplete
@@ -25,7 +26,7 @@ class DemoSensor(SensorEntity):
     _attr_translation_key: Incomplete
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def __init__(self, unique_id: str, name: str, state: StateType, device_class: SensorDeviceClass, state_class: Union[SensorStateClass, None], unit_of_measurement: Union[str, None], battery: StateType, options: Union[list[str], None] = ..., translation_key: Union[str, None] = ...) -> None: ...
+    def __init__(self, unique_id: str, name: Union[str, None], state: StateType, device_class: SensorDeviceClass, state_class: Union[SensorStateClass, None], unit_of_measurement: Union[str, None], battery: StateType, options: Union[list[str], None] = ..., translation_key: Union[str, None] = ...) -> None: ...
 
 class DemoSumSensor(RestoreSensor):
     _attr_should_poll: bool

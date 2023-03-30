@@ -4,7 +4,6 @@ from .const import CHAR_NAME as CHAR_NAME, CHAR_PROGRAMMABLE_SWITCH_EVENT as CHA
 from .util import cleanup_name_for_homekit as cleanup_name_for_homekit
 from _typeshed import Incomplete
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context
-from homeassistant.helpers import entity_registry as entity_registry
 from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers
 from typing import Any
 

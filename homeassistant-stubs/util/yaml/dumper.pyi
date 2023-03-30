@@ -1,5 +1,5 @@
 import yaml
-from .objects import Input as Input, NodeListClass as NodeListClass
+from .objects import Input as Input, NodeDictClass as NodeDictClass, NodeListClass as NodeListClass
 from _typeshed import Incomplete
 from typing import Any
 

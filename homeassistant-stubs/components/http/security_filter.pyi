@@ -6,5 +6,6 @@ from typing import Final
 
 _LOGGER: Incomplete
 FILTERS: Final[Incomplete]
+UNSAFE_URL_BYTES: Incomplete
 
 def setup_security_filter(app: Application) -> None: ...

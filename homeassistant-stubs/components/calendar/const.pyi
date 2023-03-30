@@ -1,9 +1,9 @@
 from _typeshed import Incomplete
-from enum import IntEnum
+from enum import IntFlag
 
 CONF_EVENT: str
 
-class CalendarEntityFeature(IntEnum):
+class CalendarEntityFeature(IntFlag):
     CREATE_EVENT: int
     DELETE_EVENT: int
     UPDATE_EVENT: int

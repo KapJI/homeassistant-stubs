@@ -1,7 +1,7 @@
 import asyncio
-from .const import LOGBOOK_ENTITIES_FILTER as LOGBOOK_ENTITIES_FILTER
+from .const import DOMAIN as DOMAIN
 from .helpers import async_determine_event_types as async_determine_event_types, async_filter_entities as async_filter_entities, async_subscribe_events as async_subscribe_events
-from .models import async_event_to_row as async_event_to_row
+from .models import LogbookConfig as LogbookConfig, async_event_to_row as async_event_to_row
 from .processor import EventProcessor as EventProcessor
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

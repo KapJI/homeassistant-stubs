@@ -1,8 +1,11 @@
-from .. import recorder as recorder
-from .db_schema import RecorderRuns as RecorderRuns, StateAttributes as StateAttributes, States as States
-from .filters import Filters as Filters
-from .models import LazyState as LazyState, LazyStatePreSchema31 as LazyStatePreSchema31, process_datetime_to_timestamp as process_datetime_to_timestamp, process_timestamp as process_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat, row_to_compressed_state as row_to_compressed_state, row_to_compressed_state_pre_schema_31 as row_to_compressed_state_pre_schema_31
-from .util import execute_stmt_lambda_element as execute_stmt_lambda_element, session_scope as session_scope
+from ... import recorder as recorder
+from ..db_schema import RecorderRuns as RecorderRuns, StateAttributes as StateAttributes, States as States
+from ..filters import Filters as Filters
+from ..models import LazyState as LazyState, process_datetime_to_timestamp as process_datetime_to_timestamp, process_timestamp as process_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat, row_to_compressed_state as row_to_compressed_state
+from ..models.legacy import LazyStatePreSchema31 as LazyStatePreSchema31, row_to_compressed_state_pre_schema_31 as row_to_compressed_state_pre_schema_31
+from ..util import execute_stmt_lambda_element as execute_stmt_lambda_element, session_scope as session_scope
+from .common import _schema_version as _schema_version
+from .const import IGNORE_DOMAINS_ENTITY_ID_LIKE as IGNORE_DOMAINS_ENTITY_ID_LIKE, LAST_CHANGED_KEY as LAST_CHANGED_KEY, NEED_ATTRIBUTE_DOMAINS as NEED_ATTRIBUTE_DOMAINS, SIGNIFICANT_DOMAINS as SIGNIFICANT_DOMAINS, SIGNIFICANT_DOMAINS_ENTITY_ID_LIKE as SIGNIFICANT_DOMAINS_ENTITY_ID_LIKE, STATE_KEY as STATE_KEY
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, MutableMapping
 from datetime import datetime
@@ -16,13 +19,6 @@ from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElem
 from typing import Any
 
 _LOGGER: Incomplete
-STATE_KEY: str
-LAST_CHANGED_KEY: str
-SIGNIFICANT_DOMAINS: Incomplete
-SIGNIFICANT_DOMAINS_ENTITY_ID_LIKE: Incomplete
-IGNORE_DOMAINS: Incomplete
-IGNORE_DOMAINS_ENTITY_ID_LIKE: Incomplete
-NEED_ATTRIBUTE_DOMAINS: Incomplete
 _BASE_STATES: Incomplete
 _BASE_STATES_NO_LAST_CHANGED: Incomplete
 _QUERY_STATE_NO_ATTR: Incomplete
@@ -40,8 +36,7 @@ _QUERY_STATES_NO_LAST_CHANGED: Incomplete
 _FIELD_MAP: Incomplete
 _FIELD_MAP_PRE_SCHEMA_31: Incomplete
 
-def _schema_version(hass: HomeAssistant) -> int: ...
-def lambda_stmt_and_join_attributes(schema_version: int, no_attributes: bool, include_last_changed: bool = ...) -> tuple[StatementLambdaElement, bool]: ...
+def _lambda_stmt_and_join_attributes(schema_version: int, no_attributes: bool, include_last_changed: bool = ...) -> tuple[StatementLambdaElement, bool]: ...
 def get_significant_states(hass: HomeAssistant, start_time: datetime, end_time: Union[datetime, None] = ..., entity_ids: Union[list[str], None] = ..., filters: Union[Filters, None] = ..., include_start_time_state: bool = ..., significant_changes_only: bool = ..., minimal_response: bool = ..., no_attributes: bool = ..., compressed_state_format: bool = ...) -> MutableMapping[str, list[Union[State, dict[str, Any]]]]: ...
 def _ignore_domains_filter(query: Query) -> Query: ...
 def _significant_states_stmt(schema_version: int, start_time: datetime, end_time: Union[datetime, None], entity_ids: Union[list[str], None], filters: Union[Filters, None], significant_changes_only: bool, no_attributes: bool) -> StatementLambdaElement: ...

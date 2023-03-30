@@ -1,5 +1,5 @@
 import abc
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, USER_APP_NAME as USER_APP_NAME
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -16,8 +16,10 @@ class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[JellyfinDataT], ABC, m
     server_id: Incomplete
     server_name: Incomplete
     server_version: Incomplete
+    client_device_id: Incomplete
     user_id: Incomplete
-    def __init__(self, hass: HomeAssistant, api_client: JellyfinClient, system_info: dict[str, Any], user_id: str) -> None: ...
+    session_ids: Incomplete
+    def __init__(self, hass: HomeAssistant, api_client: JellyfinClient, system_info: dict[str, Any], client_device_id: str, user_id: str) -> None: ...
     async def _async_update_data(self) -> JellyfinDataT: ...
     @abstractmethod
     async def _fetch_data(self) -> JellyfinDataT: ...

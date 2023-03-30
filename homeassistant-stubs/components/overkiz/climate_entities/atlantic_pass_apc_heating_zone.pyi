@@ -1,3 +1,4 @@
+from ..const import DOMAIN as DOMAIN
 from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
@@ -19,6 +20,7 @@ class AtlanticPassAPCHeatingZone(OverkizEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
+    _attr_translation_key: Incomplete
     temperature_device: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property

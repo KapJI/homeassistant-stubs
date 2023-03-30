@@ -3,10 +3,11 @@ from .const import LOGGER as LOGGER, SILABS_MULTIPROTOCOL_ADDON_SLUG as SILABS_M
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant import config_entries as config_entries
-from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, is_hassio as is_hassio
+from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, hostname_from_addon_slug as hostname_from_addon_slug, is_hassio as is_hassio
 from homeassistant.components.zha.radio_manager import ZhaMultiPANMigrationHelper as ZhaMultiPANMigrationHelper
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowHandler as FlowHandler, FlowManager as FlowManager, FlowResult as FlowResult
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.singleton import singleton as singleton
 from typing import Any
 
@@ -26,7 +27,8 @@ class SerialPortSettings:
     flow_control: bool
     def __init__(self, device, baudrate, flow_control) -> None: ...
 
-def get_zigbee_socket(hass: HomeAssistant, addon_info: AddonInfo) -> str: ...
+def get_zigbee_socket() -> str: ...
+def is_multiprotocol_url(url: str) -> bool: ...
 
 class BaseMultiPanFlow(FlowHandler, ABC, metaclass=abc.ABCMeta):
     install_task: Incomplete
@@ -73,3 +75,6 @@ class OptionsFlowHandler(BaseMultiPanFlow, config_entries.OptionsFlow, metaclass
     async def async_step_addon_installed(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_show_revert_guide(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
     async def async_step_addon_installed_other_device(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+
+async def check_multi_pan_addon(hass: HomeAssistant) -> None: ...
+async def multi_pan_addon_using_device(hass: HomeAssistant, device_path: str) -> bool: ...

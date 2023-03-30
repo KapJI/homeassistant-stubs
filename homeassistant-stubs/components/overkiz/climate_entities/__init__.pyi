@@ -5,6 +5,7 @@ from .atlantic_heat_recovery_ventilation import AtlanticHeatRecoveryVentilation 
 from .atlantic_pass_apc_heating_zone import AtlanticPassAPCHeatingZone as AtlanticPassAPCHeatingZone
 from .atlantic_pass_apc_zone_control import AtlanticPassAPCZoneControl as AtlanticPassAPCZoneControl
 from .somfy_thermostat import SomfyThermostat as SomfyThermostat
+from .valve_heating_temperature_interface import ValveHeatingTemperatureInterface as ValveHeatingTemperatureInterface
 from _typeshed import Incomplete
 
 WIDGET_TO_CLIMATE_ENTITY: Incomplete

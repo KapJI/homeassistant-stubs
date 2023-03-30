@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from python_awair.air_data import AirData as AirData
 from python_awair.devices import AwairBaseDevice as AwairBaseDevice
+from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -26,7 +27,7 @@ class AwairSensor(CoordinatorEntity[AwairDataUpdateCoordinator], SensorEntity):
     @property
     def native_value(self) -> Union[float, None]: ...
     @property
-    def extra_state_attributes(self) -> dict: ...
+    def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     @property

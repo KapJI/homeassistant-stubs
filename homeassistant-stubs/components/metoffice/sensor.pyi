@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UV_INDEX as UV_INDEX, UnitOfLength as UnitOfLength, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
@@ -28,7 +29,7 @@ class MetOfficeCurrentSensor(CoordinatorEntity[DataUpdateCoordinator[MetOfficeDa
     _attr_entity_registry_enabled_default: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[MetOfficeData], hass_data: dict[str, Any], use_3hourly: bool, description: SensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[Any, None]: ...
+    def native_value(self) -> StateType: ...
     @property
     def icon(self) -> Union[str, None]: ...
     @property

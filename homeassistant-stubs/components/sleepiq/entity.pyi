@@ -5,7 +5,6 @@ from _typeshed import Incomplete
 from abc import abstractmethod
 from asyncsleepiq import SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSleeper
 from homeassistant.core import callback as callback
-from homeassistant.helpers import device_registry as device_registry
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import TypeVar

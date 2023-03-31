@@ -7,6 +7,8 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEGREE as DEGREE
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 
@@ -28,6 +30,7 @@ class SunSensor(SensorEntity):
     entity_id: Incomplete
     _attr_unique_id: Incomplete
     sun: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, sun: Sun, entity_description: SunSensorEntityDescription, entry_id: str) -> None: ...
     @property
     def native_value(self) -> Union[StateType, datetime]: ...

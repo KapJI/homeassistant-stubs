@@ -15,5 +15,6 @@ class DevoloEntity(CoordinatorEntity[DataUpdateCoordinator[_DataT]]):
     device: Incomplete
     entry: Incomplete
     _attr_device_info: Incomplete
+    _attr_translation_key: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator[_DataT], device: Device) -> None: ...

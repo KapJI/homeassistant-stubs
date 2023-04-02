@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.components.switch import DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_HEADERS as CONF_HEADERS, CONF_METHOD as CONF_METHOD, CONF_PARAMS as CONF_PARAMS, CONF_PASSWORD as CONF_PASSWORD, CONF_RESOURCE as CONF_RESOURCE, CONF_TIMEOUT as CONF_TIMEOUT, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers import template as template
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

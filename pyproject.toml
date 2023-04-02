@@ -29,7 +29,7 @@ packages = [
 python = "^3.10"
 homeassistant = "2023.4.0b4"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 awesomeversion = ">=21.11.0"
 black = "^23.3"
 codespell = "^2.2.4"
@@ -39,10 +39,7 @@ flake8-comprehensions = "^3.11.1"
 flake8-simplify = "^0.20.0"
 flake8-use-fstring = "^1.4"
 isort = "^5.12.0"
-# mypy = "^0.991"
-# This version includes https://github.com/python/mypy/pull/14557
-# Waiting for the next release
-mypy = { git = "https://github.com/python/mypy.git", rev = "cf2e404" }
+mypy = "^1.1.1"
 pre-commit = "^3.2.1"
 pylint = "^2.17.1"
 types-requests = "^2.28.11"

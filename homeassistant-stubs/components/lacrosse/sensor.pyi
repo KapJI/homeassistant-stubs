@@ -24,20 +24,20 @@ DEFAULT_EXPIRE_AFTER: int
 TYPES: Incomplete
 SENSOR_SCHEMA: Incomplete
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class LaCrosseSensor(SensorEntity):
-    _temperature: Union[float, None]
-    _humidity: Union[int, None]
-    _low_battery: Union[bool, None]
-    _new_battery: Union[bool, None]
+    _temperature: float | None
+    _humidity: int | None
+    _low_battery: bool | None
+    _new_battery: bool | None
     hass: Incomplete
     entity_id: Incomplete
     _config: Incomplete
     _expire_after: Incomplete
     _expiration_trigger: Incomplete
     _attr_name: Incomplete
-    def __init__(self, hass: HomeAssistant, lacrosse: pylacrosse.LaCrosse, device_id: str, name: str, expire_after: Union[int, None], config: ConfigType) -> None: ...
+    def __init__(self, hass: HomeAssistant, lacrosse: pylacrosse.LaCrosse, device_id: str, name: str, expire_after: int | None, config: ConfigType) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     def _callback_lacrosse(self, lacrosse_sensor: pylacrosse.LaCrosseSensor, user_data: None) -> None: ...
@@ -48,18 +48,18 @@ class LaCrosseTemperature(LaCrosseSensor):
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     @property
-    def native_value(self) -> Union[float, None]: ...
+    def native_value(self) -> float | None: ...
 
 class LaCrosseHumidity(LaCrosseSensor):
-    _attr_native_unit_of_measurement: Incomplete
+    _attr_native_unit_of_measurement = PERCENTAGE
     _attr_state_class: Incomplete
     _attr_icon: str
     @property
-    def native_value(self) -> Union[int, None]: ...
+    def native_value(self) -> int | None: ...
 
 class LaCrosseBattery(LaCrosseSensor):
     @property
-    def native_value(self) -> Union[str, None]: ...
+    def native_value(self) -> str | None: ...
     @property
     def icon(self) -> str: ...
 

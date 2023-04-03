@@ -11,10 +11,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 class PiHoleUpdateEntityDescription(UpdateEntityDescription):
-    installed_version: Callable[[dict], Union[str, None]]
-    latest_version: Callable[[dict], Union[str, None]]
-    release_base_url: Union[str, None]
-    title: Union[str, None]
+    installed_version: Callable[[dict], str | None]
+    latest_version: Callable[[dict], str | None]
+    release_base_url: str | None
+    title: str | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, installed_version, latest_version, release_base_url, title) -> None: ...
 
 UPDATE_ENTITY_TYPES: tuple[PiHoleUpdateEntityDescription, ...]
@@ -28,8 +28,8 @@ class PiHoleUpdateEntity(PiHoleEntity, UpdateEntity):
     _attr_title: Incomplete
     def __init__(self, api: Hole, coordinator: DataUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleUpdateEntityDescription) -> None: ...
     @property
-    def installed_version(self) -> Union[str, None]: ...
+    def installed_version(self) -> str | None: ...
     @property
-    def latest_version(self) -> Union[str, None]: ...
+    def latest_version(self) -> str | None: ...
     @property
-    def release_url(self) -> Union[str, None]: ...
+    def release_url(self) -> str | None: ...

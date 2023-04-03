@@ -7,9 +7,9 @@ class TcpSensorConfig(TypedDict):
     port: str
     timeout: int
     payload: str
-    unit_of_measurement: Union[str, None]
-    value_template: Union[Template, None]
-    value_on: Union[str, None]
+    unit_of_measurement: str | None
+    value_template: Template | None
+    value_on: str | None
     buffer_size: int
     ssl: bool
     verify_ssl: bool

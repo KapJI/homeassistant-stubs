@@ -78,12 +78,12 @@ _PLATFORM_SCHEMA_BASE: Incomplete
 DISCOVERY_SCHEMA_BASIC: Incomplete
 PLATFORM_SCHEMA_MODERN_BASIC: Incomplete
 
-async def async_setup_entity_basic(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+async def async_setup_entity_basic(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttLight(MqttEntity, LightEntity, RestoreEntity):
-    _entity_id_format: Incomplete
-    _attributes_extra_blocked: Incomplete
-    _topic: dict[str, Union[str, None]]
+    _entity_id_format = ENTITY_ID_FORMAT
+    _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
+    _topic: dict[str, str | None]
     _payload: dict[str, str]
     _command_templates: dict[str, Callable[[PublishPayloadType, TemplateVarsType], PublishPayloadType]]
     _value_templates: dict[str, Callable[[ReceivePayloadType, ReceivePayloadType], ReceivePayloadType]]
@@ -97,7 +97,7 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _optimistic_rgbw_color: bool
     _optimistic_rgbww_color: bool
     _optimistic_xy_color: bool
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_min_mireds: Incomplete

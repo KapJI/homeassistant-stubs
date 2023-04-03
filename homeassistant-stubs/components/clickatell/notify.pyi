@@ -9,7 +9,7 @@ _LOGGER: Incomplete
 DEFAULT_NAME: str
 BASE_API_URL: str
 
-def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> ClickatellNotificationService: ...
+def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> ClickatellNotificationService: ...
 
 class ClickatellNotificationService(BaseNotificationService):
     api_key: Incomplete

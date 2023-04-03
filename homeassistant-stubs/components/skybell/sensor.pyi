@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 
 class SkybellSensorEntityDescriptionMixIn:
-    value_fn: Callable[[SkybellDevice], Union[StateType, datetime]]
+    value_fn: Callable[[SkybellDevice], StateType | datetime]
     def __init__(self, value_fn) -> None: ...
 
 class SkybellSensorEntityDescription(SensorEntityDescription, SkybellSensorEntityDescriptionMixIn):
@@ -23,4 +23,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SkybellSensor(SkybellEntity, SensorEntity):
     entity_description: SkybellSensorEntityDescription
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...

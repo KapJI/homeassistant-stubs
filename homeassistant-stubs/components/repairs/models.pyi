@@ -4,7 +4,7 @@ from typing import Protocol
 
 class RepairsFlow(data_entry_flow.FlowHandler):
     issue_id: str
-    data: Union[dict[str, Union[str, int, float, None]], None]
+    data: dict[str, str | int | float | None] | None
 
 class RepairsProtocol(Protocol):
-    async def async_create_fix_flow(self, hass: HomeAssistant, issue_id: str, data: Union[dict[str, Union[str, int, float, None]], None]) -> RepairsFlow: ...
+    async def async_create_fix_flow(self, hass: HomeAssistant, issue_id: str, data: dict[str, str | int | float | None] | None) -> RepairsFlow: ...

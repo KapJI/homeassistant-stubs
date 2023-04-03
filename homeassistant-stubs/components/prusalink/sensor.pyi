@@ -16,7 +16,7 @@ from typing import TypeVar
 T = TypeVar('T', PrinterInfo, JobInfo)
 
 class PrusaLinkSensorEntityDescriptionMixin:
-    value_fn: Callable[[T], Union[datetime, StateType]]
+    value_fn: Callable[[T], datetime | StateType]
     def __init__(self, value_fn) -> None: ...
 
 class PrusaLinkSensorEntityDescription(SensorEntityDescription, PrusaLinkSensorEntityDescriptionMixin[T]):
@@ -32,6 +32,6 @@ class PrusaLinkSensorEntity(PrusaLinkEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PrusaLinkUpdateCoordinator, description: PrusaLinkSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[datetime, StateType]: ...
+    def native_value(self) -> datetime | StateType: ...
     @property
     def available(self) -> bool: ...

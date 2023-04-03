@@ -6,7 +6,7 @@ class UnsupportedDialect(Exception): ...
 class DatabaseEngine:
     dialect: SupportedDialect
     optimizer: DatabaseOptimizer
-    version: Union[AwesomeVersion, None]
+    version: AwesomeVersion | None
     def __init__(self, dialect, optimizer, version) -> None: ...
 
 class DatabaseOptimizer:

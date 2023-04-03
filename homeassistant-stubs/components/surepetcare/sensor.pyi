@@ -14,7 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SureBattery(SurePetcareEntity, SensorEntity):
     _attr_device_class: Incomplete
     _attr_entity_category: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
+    _attr_native_unit_of_measurement = PERCENTAGE
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...

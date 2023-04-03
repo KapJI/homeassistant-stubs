@@ -10,7 +10,7 @@ from phone_modem import PhoneModem as PhoneModem
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ModemCalleridSensor(SensorEntity):
-    _attr_icon: Incomplete
+    _attr_icon = ICON
     _attr_should_poll: bool
     api: Incomplete
     _attr_name: Incomplete

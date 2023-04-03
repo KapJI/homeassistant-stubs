@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class HuaweiLteBaseBinarySensor(HuaweiLteBaseEntityWithDevice, BinarySensorEntity):
     key: str
     item: str
-    _raw_state: Union[str, None]
+    _raw_state: str | None
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     @property
@@ -42,7 +42,7 @@ class HuaweiLteMobileConnectionBinarySensor(HuaweiLteBaseBinarySensor):
     @property
     def entity_registry_enabled_default(self) -> bool: ...
     @property
-    def extra_state_attributes(self) -> Union[dict[str, Any], None]: ...
+    def extra_state_attributes(self) -> dict[str, Any] | None: ...
     def __init__(self, router) -> None: ...
 
 class HuaweiLteBaseWifiStatusBinarySensor(HuaweiLteBaseBinarySensor):

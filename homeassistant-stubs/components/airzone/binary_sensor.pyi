@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any, Final
 
 class AirzoneBinarySensorEntityDescription(BinarySensorEntityDescription):
-    attributes: Union[dict[str, str], None]
+    attributes: dict[str, str] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, attributes) -> None: ...
 
 SYSTEM_BINARY_SENSOR_TYPES: Final[tuple[AirzoneBinarySensorEntityDescription, ...]]

@@ -29,7 +29,7 @@ class TriggerInstance:
     action: TriggerActionType
     trigger_info: TriggerInfo
     trigger: Trigger
-    remove: Union[CALLBACK_TYPE, None]
+    remove: CALLBACK_TYPE | None
     async def async_attach_trigger(self) -> None: ...
     def __init__(self, action, trigger_info, trigger, remove) -> None: ...
     def __lt__(self, other): ...
@@ -39,14 +39,14 @@ class TriggerInstance:
 
 class Trigger:
     device_id: str
-    discovery_data: Union[DiscoveryInfoType, None]
+    discovery_data: DiscoveryInfoType | None
     hass: HomeAssistant
-    payload: Union[str, None]
-    qos: Union[int, None]
+    payload: str | None
+    qos: int | None
     subtype: str
-    topic: Union[str, None]
+    topic: str | None
     type: str
-    value_template: Union[str, None]
+    value_template: str | None
     trigger_instances: list[TriggerInstance]
     async def add_trigger(self, action: TriggerActionType, trigger_info: TriggerInfo) -> Callable[[], None]: ...
     async def update_trigger(self, config: ConfigType) -> None: ...

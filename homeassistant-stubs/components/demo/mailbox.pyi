@@ -8,7 +8,7 @@ from typing import Any
 _LOGGER: Incomplete
 MAILBOX_NAME: str
 
-async def async_get_handler(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Mailbox: ...
+async def async_get_handler(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> Mailbox: ...
 
 class DemoMailbox(Mailbox):
     _messages: Incomplete

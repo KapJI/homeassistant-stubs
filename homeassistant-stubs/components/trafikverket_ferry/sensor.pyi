@@ -23,8 +23,8 @@ ICON: str
 SCAN_INTERVAL: Incomplete
 
 class TrafikverketRequiredKeysMixin:
-    value_fn: Callable[[dict[str, Any]], Union[StateType, datetime]]
-    info_fn: Union[Callable[[dict[str, Any]], Union[StateType, list]], None]
+    value_fn: Callable[[dict[str, Any]], StateType | datetime]
+    info_fn: Callable[[dict[str, Any]], StateType | list] | None
     def __init__(self, value_fn, info_fn) -> None: ...
 
 class TrafikverketSensorEntityDescription(SensorEntityDescription, TrafikverketRequiredKeysMixin):
@@ -36,7 +36,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class FerrySensor(CoordinatorEntity[TVDataUpdateCoordinator], SensorEntity):
     entity_description: TrafikverketSensorEntityDescription
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

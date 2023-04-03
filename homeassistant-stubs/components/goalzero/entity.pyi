@@ -7,7 +7,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescrip
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class GoalZeroEntity(CoordinatorEntity[GoalZeroDataUpdateCoordinator]):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_unique_id: Incomplete

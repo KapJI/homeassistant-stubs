@@ -4,6 +4,6 @@ from .coordinator import SynologyDSMCameraUpdateCoordinator as SynologyDSMCamera
 class SynologyDSMData:
     api: SynoApi
     coordinator_central: SynologyDSMCentralUpdateCoordinator
-    coordinator_cameras: Union[SynologyDSMCameraUpdateCoordinator, None]
-    coordinator_switches: Union[SynologyDSMSwitchUpdateCoordinator, None]
+    coordinator_cameras: SynologyDSMCameraUpdateCoordinator | None
+    coordinator_switches: SynologyDSMSwitchUpdateCoordinator | None
     def __init__(self, api, coordinator_central, coordinator_cameras, coordinator_switches) -> None: ...

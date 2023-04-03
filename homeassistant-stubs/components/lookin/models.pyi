@@ -6,7 +6,7 @@ class LookinData:
     host: str
     lookin_udp_subs: LookinUDPSubscriptions
     lookin_device: Device
-    meteo_coordinator: Union[LookinDataUpdateCoordinator[MeteoSensor], None]
+    meteo_coordinator: LookinDataUpdateCoordinator[MeteoSensor] | None
     devices: list[dict[str, Any]]
     lookin_protocol: LookInHttpProtocol
     device_coordinators: dict[str, LookinDataUpdateCoordinator[Remote]]

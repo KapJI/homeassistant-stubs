@@ -78,7 +78,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class AmcrestDevice:
     api: AmcrestChecker
-    authentication: Union[aiohttp.BasicAuth, None]
+    authentication: aiohttp.BasicAuth | None
     ffmpeg_arguments: list[str]
     stream_source: str
     resolution: int

@@ -10,6 +10,6 @@ INTENT_SET: str
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
 
 class SetIntentHandler(intent.IntentHandler):
-    intent_type: Incomplete
+    intent_type = INTENT_SET
     slot_schema: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

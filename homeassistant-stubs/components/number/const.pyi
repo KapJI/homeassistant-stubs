@@ -69,5 +69,5 @@ class NumberMode(StrEnum):
     SLIDER: str
 
 DEVICE_CLASSES_SCHEMA: Final[Incomplete]
-DEVICE_CLASS_UNITS: dict[NumberDeviceClass, set[Union[type[StrEnum], str, None]]]
+DEVICE_CLASS_UNITS: dict[NumberDeviceClass, set[type[StrEnum] | str | None]]
 UNIT_CONVERTERS: dict[str, type[BaseUnitConverter]]

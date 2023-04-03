@@ -7,7 +7,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
 
 class UptimeRobotEntity(CoordinatorEntity[UptimeRobotDataUpdateCoordinator]):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     entity_description: Incomplete
     _monitor: Incomplete
     _attr_device_info: Incomplete

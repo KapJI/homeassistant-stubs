@@ -7,7 +7,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 SOUND_MODE_LIST: Incomplete
@@ -18,7 +18,7 @@ NETFLIX_PLAYER_SUPPORT: Incomplete
 
 class AbstractDemoPlayer(MediaPlayerEntity):
     _attr_should_poll: bool
-    _attr_sound_mode_list: Incomplete
+    _attr_sound_mode_list = SOUND_MODE_LIST
     _attr_name: Incomplete
     _attr_state: Incomplete
     _attr_volume_level: float
@@ -26,7 +26,7 @@ class AbstractDemoPlayer(MediaPlayerEntity):
     _attr_shuffle: bool
     _attr_sound_mode: Incomplete
     _attr_device_class: Incomplete
-    def __init__(self, name: str, device_class: Union[MediaPlayerDeviceClass, None] = ...) -> None: ...
+    def __init__(self, name: str, device_class: MediaPlayerDeviceClass | None = ...) -> None: ...
     def turn_on(self) -> None: ...
     def turn_off(self) -> None: ...
     def mute_volume(self, mute: bool) -> None: ...
@@ -42,7 +42,7 @@ class AbstractDemoPlayer(MediaPlayerEntity):
 class DemoYoutubePlayer(AbstractDemoPlayer):
     _attr_app_name: str
     _attr_media_content_type: Incomplete
-    _attr_supported_features: Incomplete
+    _attr_supported_features = YOUTUBE_PLAYER_SUPPORT
     _attr_media_content_id: Incomplete
     _attr_media_title: Incomplete
     _attr_media_duration: Incomplete
@@ -52,10 +52,10 @@ class DemoYoutubePlayer(AbstractDemoPlayer):
     @property
     def media_image_url(self) -> str: ...
     @property
-    def media_position(self) -> Union[int, None]: ...
+    def media_position(self) -> int | None: ...
     @property
-    def media_position_updated_at(self) -> Union[datetime, None]: ...
-    def play_media(self, media_type: Union[MediaType, str], media_id: str, **kwargs: Any) -> None: ...
+    def media_position_updated_at(self) -> datetime | None: ...
+    def play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
     def media_pause(self) -> None: ...
 
 class DemoMusicPlayer(AbstractDemoPlayer):
@@ -64,7 +64,7 @@ class DemoMusicPlayer(AbstractDemoPlayer):
     _attr_media_content_type: Incomplete
     _attr_media_duration: int
     _attr_media_image_url: str
-    _attr_supported_features: Incomplete
+    _attr_supported_features = MUSIC_PLAYER_SUPPORT
     tracks: Incomplete
     _cur_track: int
     _attr_group_members: Incomplete
@@ -93,7 +93,7 @@ class DemoTVShowPlayer(AbstractDemoPlayer):
     _attr_media_season: str
     _attr_media_series_title: str
     _attr_source_list: Incomplete
-    _attr_supported_features: Incomplete
+    _attr_supported_features = NETFLIX_PLAYER_SUPPORT
     _cur_episode: int
     _episode_count: int
     _attr_source: str

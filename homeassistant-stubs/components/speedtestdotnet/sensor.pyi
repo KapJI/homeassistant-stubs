@@ -24,9 +24,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class SpeedtestSensor(CoordinatorEntity[SpeedTestDataCoordinator], RestoreEntity, SensorEntity):
     entity_description: SpeedtestSensorEntityDescription
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
-    _attr_icon: Incomplete
+    _attr_icon = ICON
     _attr_unique_id: Incomplete
     _state: Incomplete
     _attrs: Incomplete

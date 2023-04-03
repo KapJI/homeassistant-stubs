@@ -17,7 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class AladdinDevice(CoverEntity):
     _attr_device_class: Incomplete
-    _attr_supported_features: Incomplete
+    _attr_supported_features = SUPPORTED_FEATURES
     _acc: Incomplete
     _entry_id: Incomplete
     _device_id: Incomplete
@@ -36,7 +36,7 @@ class AladdinDevice(CoverEntity):
     _attr_available: bool
     async def async_update(self) -> None: ...
     @property
-    def is_closed(self) -> Union[bool, None]: ...
+    def is_closed(self) -> bool | None: ...
     @property
     def is_closing(self) -> bool: ...
     @property

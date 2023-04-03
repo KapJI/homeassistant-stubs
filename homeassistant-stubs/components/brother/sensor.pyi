@@ -19,7 +19,7 @@ UNIT_PAGES: str
 _LOGGER: Incomplete
 
 class BrotherSensorRequiredKeysMixin:
-    value: Callable[[BrotherSensors], Union[StateType, datetime]]
+    value: Callable[[BrotherSensors], StateType | datetime]
     def __init__(self, value) -> None: ...
 
 class BrotherSensorEntityDescription(SensorEntityDescription, BrotherSensorRequiredKeysMixin):

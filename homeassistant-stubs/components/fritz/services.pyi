@@ -9,7 +9,7 @@ from homeassistant.helpers.service import async_extract_config_entry_ids as asyn
 
 _LOGGER: Incomplete
 SERVICE_SCHEMA_SET_GUEST_WIFI_PW: Incomplete
-SERVICE_LIST: list[tuple[str, Union[vol.Schema, None]]]
+SERVICE_LIST: list[tuple[str, vol.Schema | None]]
 
 async def async_setup_services(hass: HomeAssistant) -> None: ...
 async def _async_get_configured_avm_device(hass: HomeAssistant, service_call: ServiceCall) -> list: ...

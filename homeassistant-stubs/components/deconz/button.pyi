@@ -23,7 +23,7 @@ ENTITY_DESCRIPTIONS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzSceneButton(DeconzSceneMixin, ButtonEntity):
-    TYPE: Incomplete
+    TYPE = DOMAIN
     entity_description: Incomplete
     _attr_name: Incomplete
     def __init__(self, device: PydeconzScene, gateway: DeconzGateway, description: DeconzButtonDescription) -> None: ...
@@ -35,5 +35,5 @@ class DeconzPresenceResetButton(DeconzDevice[Presence], ButtonEntity):
     unique_id_suffix: str
     _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
-    TYPE: Incomplete
+    TYPE = DOMAIN
     async def async_press(self) -> None: ...

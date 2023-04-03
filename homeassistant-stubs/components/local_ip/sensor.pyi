@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class IPSensor(SensorEntity):
-    _attr_unique_id: Incomplete
+    _attr_unique_id = SENSOR
     _attr_icon: str
     _attr_name: Incomplete
     def __init__(self, name: str) -> None: ...

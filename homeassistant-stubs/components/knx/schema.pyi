@@ -13,18 +13,18 @@ from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATE
 from typing import Any, ClassVar, Final
 from xknx.dpt import DPTBase
 
-def dpt_subclass_validator(dpt_base_class: type[DPTBase]) -> Callable[[Any], Union[str, int]]: ...
+def dpt_subclass_validator(dpt_base_class: type[DPTBase]) -> Callable[[Any], str | int]: ...
 
 numeric_type_validator: Incomplete
 sensor_type_validator: Incomplete
 string_type_validator: Incomplete
 
-def ga_validator(value: Any) -> Union[str, int]: ...
+def ga_validator(value: Any) -> str | int: ...
 
 ga_list_validator: Incomplete
 ia_validator: Incomplete
 
-def ip_v4_validator(value: Any, multicast: Union[bool, None] = ...) -> str: ...
+def ip_v4_validator(value: Any, multicast: bool | None = ...) -> str: ...
 def number_limit_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
 def _max_payload_value(payload_length: int) -> int: ...
 def button_payload_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
@@ -37,19 +37,19 @@ class EventSchema:
     SCHEMA: Incomplete
 
 class KNXPlatformSchema(ABC):
-    PLATFORM: ClassVar[Union[Platform, str]]
+    PLATFORM: ClassVar[Platform | str]
     ENTITY_SCHEMA: ClassVar[vol.Schema]
     @classmethod
     def platform_node(cls) -> dict[vol.Optional, vol.All]: ...
 
 class BinarySensorSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    CONF_STATE_ADDRESS: Incomplete
-    CONF_SYNC_STATE: Incomplete
-    CONF_INVERT: Incomplete
+    CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
+    CONF_SYNC_STATE = CONF_SYNC_STATE
+    CONF_INVERT = CONF_INVERT
     CONF_IGNORE_INTERNAL_STATE: str
     CONF_CONTEXT_TIMEOUT: str
-    CONF_RESET_AFTER: Incomplete
+    CONF_RESET_AFTER = CONF_RESET_AFTER
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
@@ -121,8 +121,8 @@ class CoverSchema(KNXPlatformSchema):
     ENTITY_SCHEMA: Incomplete
 
 class ExposeSchema(KNXPlatformSchema):
-    PLATFORM: Incomplete
-    CONF_KNX_EXPOSE_TYPE: Incomplete
+    PLATFORM = CONF_KNX_EXPOSE
+    CONF_KNX_EXPOSE_TYPE = CONF_TYPE
     CONF_KNX_EXPOSE_ATTRIBUTE: str
     CONF_KNX_EXPOSE_BINARY: str
     CONF_KNX_EXPOSE_COOLDOWN: str
@@ -134,7 +134,7 @@ class ExposeSchema(KNXPlatformSchema):
 
 class FanSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    CONF_STATE_ADDRESS: Incomplete
+    CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
     CONF_OSCILLATION_ADDRESS: str
     CONF_OSCILLATION_STATE_ADDRESS: str
     CONF_MAX_STEP: str
@@ -143,7 +143,7 @@ class FanSchema(KNXPlatformSchema):
 
 class LightSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    CONF_STATE_ADDRESS: Incomplete
+    CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
     CONF_BRIGHTNESS_ADDRESS: str
     CONF_BRIGHTNESS_STATE_ADDRESS: str
     CONF_COLOR_ADDRESS: str
@@ -204,15 +204,15 @@ class SelectSchema(KNXPlatformSchema):
 class SensorSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
     CONF_ALWAYS_CALLBACK: str
-    CONF_STATE_ADDRESS: Incomplete
-    CONF_SYNC_STATE: Incomplete
+    CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
+    CONF_SYNC_STATE = CONF_SYNC_STATE
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class SwitchSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    CONF_INVERT: Incomplete
-    CONF_STATE_ADDRESS: Incomplete
+    CONF_INVERT = CONF_INVERT
+    CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
@@ -223,7 +223,7 @@ class TextSchema(KNXPlatformSchema):
 
 class WeatherSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    CONF_SYNC_STATE: Incomplete
+    CONF_SYNC_STATE = CONF_SYNC_STATE
     CONF_KNX_TEMPERATURE_ADDRESS: str
     CONF_KNX_BRIGHTNESS_SOUTH_ADDRESS: str
     CONF_KNX_BRIGHTNESS_EAST_ADDRESS: str

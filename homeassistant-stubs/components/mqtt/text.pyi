@@ -33,17 +33,17 @@ DISCOVERY_SCHEMA: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttTextEntity(MqttEntity, TextEntity):
-    _attributes_extra_blocked: Incomplete
+    _attributes_extra_blocked = MQTT_TEXT_ATTRIBUTES_BLOCKED
     _entity_id_format: Incomplete
-    _compiled_pattern: Union[re.Pattern[Any], None]
+    _compiled_pattern: re.Pattern[Any] | None
     _optimistic: bool
     _command_template: Callable[[PublishPayloadType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     _attr_native_value: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None] = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_native_max: Incomplete

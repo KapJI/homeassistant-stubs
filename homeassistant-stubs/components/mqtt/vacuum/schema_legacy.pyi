@@ -63,19 +63,19 @@ PLATFORM_SCHEMA_LEGACY: Incomplete
 DISCOVERY_SCHEMA_LEGACY: Incomplete
 _COMMANDS: Incomplete
 
-async def async_setup_entity_legacy(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+async def async_setup_entity_legacy(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttVacuum(MqttEntity, VacuumEntity):
-    _entity_id_format: Incomplete
-    _attributes_extra_blocked: Incomplete
-    _command_topic: Union[str, None]
-    _encoding: Union[str, None]
+    _entity_id_format = ENTITY_ID_FORMAT
+    _attributes_extra_blocked = MQTT_LEGACY_VACUUM_ATTRIBUTES_BLOCKED
+    _command_topic: str | None
+    _encoding: str | None
     _qos: bool
     _retain: bool
     _payloads: dict[str, str]
-    _send_command_topic: Union[str, None]
-    _set_fan_speed_topic: Union[str, None]
-    _state_topics: dict[str, Union[str, None]]
+    _send_command_topic: str | None
+    _set_fan_speed_topic: str | None
+    _state_topics: dict[str, str | None]
     _templates: dict[str, Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType]]
     _attr_battery_level: int
     _attr_is_on: bool
@@ -84,7 +84,7 @@ class MqttVacuum(MqttEntity, VacuumEntity):
     _cleaning: bool
     _docked: bool
     _error: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_supported_features: Incomplete
@@ -105,4 +105,4 @@ class MqttVacuum(MqttEntity, VacuumEntity):
     async def async_start_pause(self, **kwargs: Any) -> None: ...
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
-    async def async_send_command(self, command: str, params: Union[dict[str, Any], list[Any], None] = ..., **kwargs: Any) -> None: ...
+    async def async_send_command(self, command: str, params: dict[str, Any] | list[Any] | None = ..., **kwargs: Any) -> None: ...

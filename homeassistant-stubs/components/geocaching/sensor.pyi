@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class GeocachingRequiredKeysMixin:
-    value_fn: Callable[[GeocachingStatus], Union[str, int, None]]
+    value_fn: Callable[[GeocachingStatus], str | int | None]
     def __init__(self, value_fn) -> None: ...
 
 class GeocachingSensorEntityDescription(SensorEntityDescription, GeocachingRequiredKeysMixin):
@@ -29,4 +29,4 @@ class GeocachingSensor(CoordinatorEntity[GeocachingDataUpdateCoordinator], Senso
     _attr_device_info: Incomplete
     def __init__(self, coordinator: GeocachingDataUpdateCoordinator, description: GeocachingSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[str, int, None]: ...
+    def native_value(self) -> str | int | None: ...

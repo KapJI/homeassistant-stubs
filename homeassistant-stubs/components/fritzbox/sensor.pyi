@@ -15,7 +15,7 @@ from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final
 
 class FritzEntityDescriptionMixinSensor(FritzEntityDescriptionMixinBase):
-    native_value: Callable[[FritzhomeDevice], Union[StateType, datetime]]
+    native_value: Callable[[FritzhomeDevice], StateType | datetime]
     def __init__(self, suitable, native_value) -> None: ...
 
 class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescriptionMixinSensor):
@@ -36,4 +36,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class FritzBoxSensor(FritzBoxDeviceEntity, SensorEntity):
     entity_description: FritzSensorEntityDescription
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...

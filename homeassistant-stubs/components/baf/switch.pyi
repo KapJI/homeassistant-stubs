@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 class BAFSwitchDescriptionMixin:
-    value_fn: Callable[[Device], Union[bool, None]]
+    value_fn: Callable[[Device], bool | None]
     def __init__(self, value_fn) -> None: ...
 
 class BAFSwitchDescription(SwitchEntityDescription, BAFSwitchDescriptionMixin):

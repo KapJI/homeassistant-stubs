@@ -23,7 +23,7 @@ SENSOR_TYPES: tuple[AirlySensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirlySensor(CoordinatorEntity[AirlyDataUpdateCoordinator], SensorEntity):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     entity_description: AirlySensorEntityDescription
     _attr_device_info: Incomplete

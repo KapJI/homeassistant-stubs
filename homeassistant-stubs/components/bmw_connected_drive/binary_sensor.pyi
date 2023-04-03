@@ -27,7 +27,7 @@ class BMWRequiredKeysMixin:
     def __init__(self, value_fn) -> None: ...
 
 class BMWBinarySensorEntityDescription(BinarySensorEntityDescription, BMWRequiredKeysMixin):
-    attr_fn: Union[Callable[[MyBMWVehicle, UnitSystem], dict[str, Any]], None]
+    attr_fn: Callable[[MyBMWVehicle, UnitSystem], dict[str, Any]] | None
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, attr_fn) -> None: ...
 
 SENSOR_TYPES: tuple[BMWBinarySensorEntityDescription, ...]

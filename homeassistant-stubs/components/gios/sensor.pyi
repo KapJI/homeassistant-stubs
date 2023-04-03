@@ -20,7 +20,7 @@ class GiosSensorRequiredKeysMixin:
     def __init__(self, value) -> None: ...
 
 class GiosSensorEntityDescription(SensorEntityDescription, GiosSensorRequiredKeysMixin):
-    subkey: Union[str, None]
+    subkey: str | None
     def __init__(self, value, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, subkey) -> None: ...
 
 SENSOR_TYPES: tuple[GiosSensorEntityDescription, ...]
@@ -28,7 +28,7 @@ SENSOR_TYPES: tuple[GiosSensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class GiosSensor(CoordinatorEntity[GiosDataUpdateCoordinator], SensorEntity):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     entity_description: GiosSensorEntityDescription
     _attr_device_info: Incomplete

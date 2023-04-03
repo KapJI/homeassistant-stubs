@@ -15,7 +15,7 @@ _KEY_TEMP: str
 UNIT_MAPPINGS: Incomplete
 
 class SteamistSensorEntityDescriptionMixin:
-    value_fn: Callable[[SteamistStatus], Union[int, None]]
+    value_fn: Callable[[SteamistStatus], int | None]
     def __init__(self, value_fn) -> None: ...
 
 class SteamistSensorEntityDescription(SensorEntityDescription, SteamistSensorEntityDescriptionMixin):
@@ -30,4 +30,4 @@ class SteamistSensorEntity(SteamistEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: SteamistDataUpdateCoordinator, entry: ConfigEntry, description: SteamistSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[int, None]: ...
+    def native_value(self) -> int | None: ...

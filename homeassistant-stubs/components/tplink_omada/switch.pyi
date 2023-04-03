@@ -18,7 +18,7 @@ def get_port_base_name(port: OmadaSwitchPortDetails) -> str: ...
 class OmadaNetworkSwitchPortPoEControl(OmadaDeviceEntity[OmadaSwitchPortDetails], SwitchEntity):
     _attr_has_entity_name: bool
     _attr_entity_category: Incomplete
-    _attr_icon: Incomplete
+    _attr_icon = POE_SWITCH_ICON
     port_id: Incomplete
     port_details: Incomplete
     omada_client: Incomplete

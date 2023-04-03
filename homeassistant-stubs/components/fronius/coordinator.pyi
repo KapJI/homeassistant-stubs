@@ -30,7 +30,7 @@ class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[st
 class FroniusInverterUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
-    valid_descriptions: Incomplete
+    valid_descriptions = INVERTER_ENTITY_DESCRIPTIONS
     SILENT_RETRIES: int
     inverter_info: Incomplete
     def __init__(self, *args: Any, inverter_info: FroniusDeviceInfo, **kwargs: Any) -> None: ...
@@ -39,29 +39,29 @@ class FroniusInverterUpdateCoordinator(FroniusCoordinatorBase):
 class FroniusLoggerUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
-    valid_descriptions: Incomplete
+    valid_descriptions = LOGGER_ENTITY_DESCRIPTIONS
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusMeterUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
-    valid_descriptions: Incomplete
+    valid_descriptions = METER_ENTITY_DESCRIPTIONS
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusOhmpilotUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
-    valid_descriptions: Incomplete
+    valid_descriptions = OHMPILOT_ENTITY_DESCRIPTIONS
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusPowerFlowUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
-    valid_descriptions: Incomplete
+    valid_descriptions = POWER_FLOW_ENTITY_DESCRIPTIONS
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusStorageUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
-    valid_descriptions: Incomplete
+    valid_descriptions = STORAGE_ENTITY_DESCRIPTIONS
     async def _update_method(self) -> dict[SolarNetId, Any]: ...

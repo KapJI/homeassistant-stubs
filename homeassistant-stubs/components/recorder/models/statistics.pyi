@@ -19,18 +19,18 @@ class StatisticMixIn(TypedDict):
     mean: float
 
 class StatisticData(StatisticDataBase, StatisticMixIn):
-    last_reset: Union[datetime, None]
+    last_reset: datetime | None
 
 class StatisticDataTimestamp(StatisticDataTimestampBase, StatisticMixIn):
-    last_reset_ts: Union[float, None]
+    last_reset_ts: float | None
 
 class StatisticMetaData(TypedDict):
     has_mean: bool
     has_sum: bool
-    name: Union[str, None]
+    name: str | None
     source: str
     statistic_id: str
-    unit_of_measurement: Union[str, None]
+    unit_of_measurement: str | None
 
 class CalendarStatisticPeriod(TypedDict):
     period: Literal['hour', 'day', 'week', 'month', 'year']

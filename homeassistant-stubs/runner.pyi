@@ -18,8 +18,8 @@ class RuntimeConfig:
     skip_pip_packages: list[str]
     safe_mode: bool
     verbose: bool
-    log_rotate_days: Union[int, None]
-    log_file: Union[str, None]
+    log_rotate_days: int | None
+    log_file: str | None
     log_no_color: bool
     debug: bool
     open_ui: bool

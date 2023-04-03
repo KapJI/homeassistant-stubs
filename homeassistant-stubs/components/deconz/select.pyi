@@ -20,9 +20,9 @@ class DeconzPresenceDeviceModeSelect(DeconzDevice[Presence], SelectEntity):
     _update_key: str
     _attr_entity_category: Incomplete
     _attr_options: Incomplete
-    TYPE: Incomplete
+    TYPE = DOMAIN
     @property
-    def current_option(self) -> Union[str, None]: ...
+    def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...
 
 class DeconzPresenceSensitivitySelect(DeconzDevice[Presence], SelectEntity):
@@ -31,9 +31,9 @@ class DeconzPresenceSensitivitySelect(DeconzDevice[Presence], SelectEntity):
     _update_key: str
     _attr_entity_category: Incomplete
     _attr_options: Incomplete
-    TYPE: Incomplete
+    TYPE = DOMAIN
     @property
-    def current_option(self) -> Union[str, None]: ...
+    def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...
 
 class DeconzPresenceTriggerDistanceSelect(DeconzDevice[Presence], SelectEntity):
@@ -42,7 +42,7 @@ class DeconzPresenceTriggerDistanceSelect(DeconzDevice[Presence], SelectEntity):
     _update_key: str
     _attr_entity_category: Incomplete
     _attr_options: Incomplete
-    TYPE: Incomplete
+    TYPE = DOMAIN
     @property
-    def current_option(self) -> Union[str, None]: ...
+    def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...

@@ -16,7 +16,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 _LOGGER: Incomplete
 
 class CrownstoneEntryManager:
-    uart: Union[CrownstoneUart, None]
+    uart: CrownstoneUart | None
     cloud: CrownstoneCloud
     sse: CrownstoneSSEAsync
     hass: Incomplete

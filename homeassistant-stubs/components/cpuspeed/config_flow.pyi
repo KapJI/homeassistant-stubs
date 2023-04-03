@@ -5,5 +5,5 @@ from typing import Any
 
 class CPUSpeedFlowHandler(ConfigFlow):
     VERSION: int
-    _imported_name: Union[str, None]
-    async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    _imported_name: str | None
+    async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

@@ -9,7 +9,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[HuaweiLteSmsNotificationService, None]: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> HuaweiLteSmsNotificationService | None: ...
 
 class HuaweiLteSmsNotificationService(BaseNotificationService):
     router: Router

@@ -15,7 +15,7 @@ class ValueID:
     command_class: str
     endpoint: str
     property_: str
-    property_key: Union[str, None]
+    property_key: str | None
     @staticmethod
     def from_unique_id(unique_id: str) -> ValueID: ...
     @staticmethod

@@ -20,9 +20,9 @@ class LIFXButton(LIFXSensorEntity, ButtonEntity):
     def __init__(self, coordinator: LIFXSensorUpdateCoordinator) -> None: ...
 
 class LIFXRestartButton(LIFXButton):
-    entity_description: Incomplete
+    entity_description = RESTART_BUTTON_DESCRIPTION
     async def async_press(self) -> None: ...
 
 class LIFXIdentifyButton(LIFXButton):
-    entity_description: Incomplete
+    entity_description = IDENTIFY_BUTTON_DESCRIPTION
     async def async_press(self) -> None: ...

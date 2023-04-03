@@ -9,7 +9,7 @@ TOKEN_TYPE_SYSTEM: str
 TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN: str
 
 class Group:
-    name: Union[str, None]
+    name: str | None
     policy: perm_mdl.PolicyType
     id: str
     system_generated: bool
@@ -20,7 +20,7 @@ class Group:
     def __ge__(self, other): ...
 
 class User:
-    name: Union[str, None]
+    name: str | None
     perm_lookup: perm_mdl.PermissionLookup
     id: str
     is_owner: bool
@@ -30,7 +30,7 @@ class User:
     groups: list[Group]
     credentials: list[Credentials]
     refresh_tokens: dict[str, RefreshToken]
-    _permissions: Union[perm_mdl.PolicyPermissions, None]
+    _permissions: perm_mdl.PolicyPermissions | None
     @property
     def permissions(self) -> perm_mdl.AbstractPermissions: ...
     @property
@@ -44,19 +44,19 @@ class User:
 
 class RefreshToken:
     user: User
-    client_id: Union[str, None]
+    client_id: str | None
     access_token_expiration: timedelta
-    client_name: Union[str, None]
-    client_icon: Union[str, None]
+    client_name: str | None
+    client_icon: str | None
     token_type: str
     id: str
     created_at: datetime
     token: str
     jwt_key: str
-    last_used_at: Union[datetime, None]
-    last_used_ip: Union[str, None]
-    credential: Union[Credentials, None]
-    version: Union[str, None]
+    last_used_at: datetime | None
+    last_used_ip: str | None
+    credential: Credentials | None
+    version: str | None
     def __init__(self, user, client_id, access_token_expiration, client_name, client_icon, token_type, id, created_at, token, jwt_key, last_used_at, last_used_ip, credential, version) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
@@ -65,7 +65,7 @@ class RefreshToken:
 
 class Credentials:
     auth_provider_type: str
-    auth_provider_id: Union[str, None]
+    auth_provider_id: str | None
     data: dict
     id: str
     is_new: bool
@@ -76,5 +76,5 @@ class Credentials:
     def __ge__(self, other): ...
 
 class UserMeta(NamedTuple):
-    name: Union[str, None]
+    name: str | None
     is_active: bool

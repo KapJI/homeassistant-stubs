@@ -11,14 +11,14 @@ class MockStreamReader:
     async def read(self, byte_count: int = ...) -> bytes: ...
 
 class MockRequest:
-    mock_source: Union[str, None]
+    mock_source: str | None
     method: Incomplete
     url: Incomplete
     status: Incomplete
     headers: Incomplete
     query_string: Incomplete
     _content: Incomplete
-    def __init__(self, content: bytes, mock_source: str, method: str = ..., status: int = ..., headers: Union[dict[str, str], None] = ..., query_string: Union[str, None] = ..., url: str = ...) -> None: ...
+    def __init__(self, content: bytes, mock_source: str, method: str = ..., status: int = ..., headers: dict[str, str] | None = ..., query_string: str | None = ..., url: str = ...) -> None: ...
     @property
     def query(self) -> MultiDict[str]: ...
     @property

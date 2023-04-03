@@ -4,18 +4,18 @@ from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BEL
 from homeassistant.helpers.template import Template as Template
 
 class Observation:
-    entity_id: Union[str, None]
+    entity_id: str | None
     platform: str
     prob_given_true: float
     prob_given_false: float
-    to_state: Union[str, None]
-    above: Union[float, None]
-    below: Union[float, None]
-    value_template: Union[Template, None]
-    observed: Union[bool, None]
+    to_state: str | None
+    above: float | None
+    below: float | None
+    value_template: Template | None
+    observed: bool | None
     id: uuid.UUID
-    def to_dict(self) -> dict[str, Union[str, float, bool, None]]: ...
+    def to_dict(self) -> dict[str, str | float | bool | None]: ...
     def is_mirror(self, other: Observation) -> bool: ...
     @property
-    def template(self) -> Union[str, None]: ...
+    def template(self) -> str | None: ...
     def __init__(self, entity_id, platform, prob_given_true, prob_given_false, to_state, above, below, value_template, observed, id) -> None: ...

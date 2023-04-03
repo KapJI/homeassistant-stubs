@@ -19,7 +19,7 @@ class ValveHeatingTemperatureInterface(OverkizEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
-    _attr_translation_key: Incomplete
+    _attr_translation_key = DOMAIN
     temperature_device: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
@@ -29,7 +29,7 @@ class ValveHeatingTemperatureInterface(OverkizEntity, ClimateEntity):
     @property
     def target_temperature(self) -> float: ...
     @property
-    def current_temperature(self) -> Union[float, None]: ...
+    def current_temperature(self) -> float | None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property

@@ -13,8 +13,8 @@ from pysensibo.model import SensiboDevice as SensiboDevice
 PARALLEL_UPDATES: int
 
 class DeviceBaseEntityDescriptionMixin:
-    value_version: Callable[[SensiboDevice], Union[str, None]]
-    value_available: Callable[[SensiboDevice], Union[str, None]]
+    value_version: Callable[[SensiboDevice], str | None]
+    value_available: Callable[[SensiboDevice], str | None]
     def __init__(self, value_version, value_available) -> None: ...
 
 class SensiboDeviceUpdateEntityDescription(UpdateEntityDescription, DeviceBaseEntityDescriptionMixin):
@@ -30,6 +30,6 @@ class SensiboDeviceUpdate(SensiboDeviceBaseEntity, UpdateEntity):
     _attr_title: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceUpdateEntityDescription) -> None: ...
     @property
-    def installed_version(self) -> Union[str, None]: ...
+    def installed_version(self) -> str | None: ...
     @property
-    def latest_version(self) -> Union[str, None]: ...
+    def latest_version(self) -> str | None: ...

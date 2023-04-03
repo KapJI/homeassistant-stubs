@@ -9,7 +9,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class SpeedtestSensor(RestoreEntity, SensorEntity):
     _attr_name: str

@@ -14,7 +14,7 @@ from homeassistant.util.dt import utcnow as utcnow
 from wled import Device as WLEDDevice
 
 class WLEDSensorEntityDescriptionMixin:
-    value_fn: Callable[[WLEDDevice], Union[datetime, StateType]]
+    value_fn: Callable[[WLEDDevice], datetime | StateType]
     def __init__(self, value_fn) -> None: ...
 
 class WLEDSensorEntityDescription(SensorEntityDescription, WLEDSensorEntityDescriptionMixin):
@@ -30,4 +30,4 @@ class WLEDSensorEntity(WLEDEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, description: WLEDSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[datetime, StateType]: ...
+    def native_value(self) -> datetime | StateType: ...

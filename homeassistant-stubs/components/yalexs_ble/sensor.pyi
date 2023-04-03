@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
 class YaleXSBLERequiredKeysMixin:
-    value_fn: Callable[[LockState, LockInfo, ConnectionInfo], Union[int, float, None]]
+    value_fn: Callable[[LockState, LockInfo, ConnectionInfo], int | float | None]
     def __init__(self, value_fn) -> None: ...
 
 class YaleXSBLESensorEntityDescription(SensorEntityDescription, YaleXSBLERequiredKeysMixin):

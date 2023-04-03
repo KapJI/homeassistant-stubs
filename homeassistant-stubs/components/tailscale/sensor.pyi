@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from tailscale import Device as TailscaleDevice
 
 class TailscaleSensorEntityDescriptionMixin:
-    value_fn: Callable[[TailscaleDevice], Union[datetime, str, None]]
+    value_fn: Callable[[TailscaleDevice], datetime | str | None]
     def __init__(self, value_fn) -> None: ...
 
 class TailscaleSensorEntityDescription(SensorEntityDescription, TailscaleSensorEntityDescriptionMixin):
@@ -23,4 +23,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class TailscaleSensorEntity(TailscaleEntity, SensorEntity):
     entity_description: TailscaleSensorEntityDescription
     @property
-    def native_value(self) -> Union[datetime, str, None]: ...
+    def native_value(self) -> datetime | str | None: ...

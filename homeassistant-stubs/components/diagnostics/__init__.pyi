@@ -10,8 +10,8 @@ from homeassistant.helpers.device_registry import DeviceEntry
 from typing import Any, Protocol
 
 class DiagnosticsPlatformData:
-    config_entry_diagnostics: Union[Callable[[HomeAssistant, ConfigEntry], Coroutine[Any, Any, Mapping[str, Any]]], None]
-    device_diagnostics: Union[Callable[[HomeAssistant, ConfigEntry, DeviceEntry], Coroutine[Any, Any, Mapping[str, Any]]], None]
+    config_entry_diagnostics: Callable[[HomeAssistant, ConfigEntry], Coroutine[Any, Any, Mapping[str, Any]]] | None
+    device_diagnostics: Callable[[HomeAssistant, ConfigEntry, DeviceEntry], Coroutine[Any, Any, Mapping[str, Any]]] | None
     def __init__(self, config_entry_diagnostics, device_diagnostics) -> None: ...
 
 class DiagnosticsData:
@@ -26,4 +26,4 @@ class DownloadDiagnosticsView(http.HomeAssistantView):
     url: str
     extra_urls: Incomplete
     name: str
-    async def get(self, request: web.Request, d_type: str, d_id: str, sub_type: Union[str, None] = ..., sub_id: Union[str, None] = ...) -> web.Response: ...
+    async def get(self, request: web.Request, d_type: str, d_id: str, sub_type: str | None = ..., sub_id: str | None = ...) -> web.Response: ...

@@ -14,7 +14,7 @@ SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 
 class RokuDataUpdateCoordinator(DataUpdateCoordinator[Device]):
-    last_full_update: Union[datetime, None]
+    last_full_update: datetime | None
     roku: Roku
     full_update_interval: Incomplete
     def __init__(self, hass: HomeAssistant, *, host: str) -> None: ...

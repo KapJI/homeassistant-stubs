@@ -24,12 +24,12 @@ class UnifiDescription:
     allowed_fn: Callable[[UniFiController, str], bool]
     api_handler_fn: Callable[[aiounifi.Controller], HandlerT]
     available_fn: Callable[[UniFiController, str], bool]
-    device_info_fn: Callable[[aiounifi.Controller, str], Union[DeviceInfo, None]]
-    event_is_on: Union[tuple[EventKey, ...], None]
-    event_to_subscribe: Union[tuple[EventKey, ...], None]
-    name_fn: Callable[[ApiItemT], Union[str, None]]
+    device_info_fn: Callable[[aiounifi.Controller, str], DeviceInfo | None]
+    event_is_on: tuple[EventKey, ...] | None
+    event_to_subscribe: tuple[EventKey, ...] | None
+    name_fn: Callable[[ApiItemT], str | None]
     object_fn: Callable[[aiounifi.Controller, str], ApiItemT]
-    supported_fn: Callable[[UniFiController, str], Union[bool, None]]
+    supported_fn: Callable[[UniFiController, str], bool | None]
     unique_id_fn: Callable[[UniFiController, str], str]
     def __init__(self, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, supported_fn, unique_id_fn) -> None: ...
 

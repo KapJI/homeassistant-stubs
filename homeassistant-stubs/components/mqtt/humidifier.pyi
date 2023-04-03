@@ -48,11 +48,11 @@ PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttHumidifier(MqttEntity, HumidifierEntity):
     _entity_id_format: Incomplete
-    _attributes_extra_blocked: Incomplete
+    _attributes_extra_blocked = MQTT_HUMIDIFIER_ATTRIBUTES_BLOCKED
     _command_templates: dict[str, Callable[[PublishPayloadType], PublishPayloadType]]
     _value_templates: dict[str, Callable[[ReceivePayloadType], ReceivePayloadType]]
     _optimistic: bool
@@ -61,7 +61,7 @@ class MqttHumidifier(MqttEntity, HumidifierEntity):
     _payload: dict[str, str]
     _topic: dict[str, Any]
     _attr_mode: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_device_class: Incomplete

@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 class BAFNumberDescriptionMixin:
-    value_fn: Callable[[Device], Union[int, None]]
+    value_fn: Callable[[Device], int | None]
     mode: NumberMode
     def __init__(self, value_fn, mode) -> None: ...
 

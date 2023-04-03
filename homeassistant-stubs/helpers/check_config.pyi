@@ -11,13 +11,13 @@ from typing_extensions import Self
 
 class CheckConfigError(NamedTuple):
     message: str
-    domain: Union[str, None]
-    config: Union[ConfigType, None]
+    domain: str | None
+    config: ConfigType | None
 
 class HomeAssistantConfig(OrderedDict):
     errors: Incomplete
     def __init__(self) -> None: ...
-    def add_error(self, message: str, domain: Union[str, None] = ..., config: Union[ConfigType, None] = ...) -> Self: ...
+    def add_error(self, message: str, domain: str | None = ..., config: ConfigType | None = ...) -> Self: ...
     @property
     def error_str(self) -> str: ...
 

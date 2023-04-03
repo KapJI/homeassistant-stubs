@@ -26,16 +26,16 @@ PLATFORM_SCHEMA: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttSelect(MqttEntity, SelectEntity, RestoreEntity):
     _entity_id_format: Incomplete
-    _attributes_extra_blocked: Incomplete
+    _attributes_extra_blocked = MQTT_SELECT_ATTRIBUTES_BLOCKED
     _command_template: Callable[[PublishPayloadType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     _optimistic: bool
     _attr_current_option: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_options: Incomplete

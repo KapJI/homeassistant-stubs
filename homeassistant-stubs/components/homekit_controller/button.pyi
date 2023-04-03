@@ -13,7 +13,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 _LOGGER: Incomplete
 
 class HomeKitButtonEntityDescription(ButtonEntityDescription):
-    write_value: Union[int, str, None]
+    write_value: int | str | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, write_value) -> None: ...
 
 BUTTON_ENTITIES: dict[str, HomeKitButtonEntityDescription]

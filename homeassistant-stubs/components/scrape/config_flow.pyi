@@ -34,6 +34,6 @@ CONFIG_FLOW: Incomplete
 OPTIONS_FLOW: Incomplete
 
 class ScrapeConfigFlowHandler(SchemaConfigFlowHandler):
-    config_flow: Incomplete
-    options_flow: Incomplete
+    config_flow = CONFIG_FLOW
+    options_flow = OPTIONS_FLOW
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

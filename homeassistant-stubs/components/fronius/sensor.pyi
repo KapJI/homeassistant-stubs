@@ -17,7 +17,7 @@ ENERGY_VOLT_AMPERE_REACTIVE_HOUR: Final[str]
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FroniusSensorEntityDescription(SensorEntityDescription):
-    default_value: Union[StateType, None]
+    default_value: StateType | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, default_value) -> None: ...
 
 INVERTER_ENTITY_DESCRIPTIONS: list[FroniusSensorEntityDescription]
@@ -39,38 +39,38 @@ class _FroniusSensorEntity(CoordinatorEntity['FroniusCoordinatorBase'], SensorEn
     def _handle_coordinator_update(self) -> None: ...
 
 class InverterSensor(_FroniusSensorEntity):
-    entity_descriptions: Incomplete
+    entity_descriptions = INVERTER_ENTITY_DESCRIPTIONS
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FroniusInverterUpdateCoordinator, key: str, solar_net_id: str) -> None: ...
 
 class LoggerSensor(_FroniusSensorEntity):
-    entity_descriptions: Incomplete
+    entity_descriptions = LOGGER_ENTITY_DESCRIPTIONS
     _attr_device_info: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FroniusLoggerUpdateCoordinator, key: str, solar_net_id: str) -> None: ...
 
 class MeterSensor(_FroniusSensorEntity):
-    entity_descriptions: Incomplete
+    entity_descriptions = METER_ENTITY_DESCRIPTIONS
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FroniusMeterUpdateCoordinator, key: str, solar_net_id: str) -> None: ...
 
 class OhmpilotSensor(_FroniusSensorEntity):
-    entity_descriptions: Incomplete
+    entity_descriptions = OHMPILOT_ENTITY_DESCRIPTIONS
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FroniusOhmpilotUpdateCoordinator, key: str, solar_net_id: str) -> None: ...
 
 class PowerFlowSensor(_FroniusSensorEntity):
-    entity_descriptions: Incomplete
+    entity_descriptions = POWER_FLOW_ENTITY_DESCRIPTIONS
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FroniusPowerFlowUpdateCoordinator, key: str, solar_net_id: str) -> None: ...
 
 class StorageSensor(_FroniusSensorEntity):
-    entity_descriptions: Incomplete
+    entity_descriptions = STORAGE_ENTITY_DESCRIPTIONS
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: FroniusStorageUpdateCoordinator, key: str, solar_net_id: str) -> None: ...

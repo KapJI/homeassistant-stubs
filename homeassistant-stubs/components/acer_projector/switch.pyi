@@ -9,10 +9,10 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class AcerSwitch(SwitchEntity):
-    _attr_icon: Incomplete
+    _attr_icon = ICON
     ser: Incomplete
     _serial_port: Incomplete
     _attr_name: Incomplete

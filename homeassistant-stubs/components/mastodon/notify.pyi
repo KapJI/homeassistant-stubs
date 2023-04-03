@@ -7,7 +7,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from mastodon import Mastodon
 from typing import Any
 
-def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[MastodonNotificationService, None]: ...
+def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> MastodonNotificationService | None: ...
 
 class MastodonNotificationService(BaseNotificationService):
     _api: Incomplete

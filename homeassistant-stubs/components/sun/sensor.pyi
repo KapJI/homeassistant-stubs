@@ -15,7 +15,7 @@ from homeassistant.helpers.typing import StateType as StateType
 ENTITY_ID_SENSOR_FORMAT: Incomplete
 
 class SunEntityDescriptionMixin:
-    value_fn: Callable[[Sun], Union[StateType, datetime]]
+    value_fn: Callable[[Sun], StateType | datetime]
     def __init__(self, value_fn) -> None: ...
 
 class SunSensorEntityDescription(SensorEntityDescription, SunEntityDescriptionMixin):
@@ -33,4 +33,4 @@ class SunSensor(SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, sun: Sun, entity_description: SunSensorEntityDescription, entry_id: str) -> None: ...
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...

@@ -14,7 +14,7 @@ from typing import Final
 PARALLEL_UPDATES: int
 
 class HomeWizardEntityDescriptionMixin:
-    value_fn: Callable[[Data], Union[float, int, str, None]]
+    value_fn: Callable[[Data], float | int | str | None]
     def __init__(self, value_fn) -> None: ...
 
 class HomeWizardSensorEntityDescription(SensorEntityDescription, HomeWizardEntityDescriptionMixin):
@@ -30,6 +30,6 @@ class HomeWizardSensorEntity(HomeWizardEntity, SensorEntity):
     _attr_entity_registry_enabled_default: bool
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator, entry: ConfigEntry, description: HomeWizardSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[float, int, str, None]: ...
+    def native_value(self) -> float | int | str | None: ...
     @property
     def available(self) -> bool: ...

@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class DiffuserRoomSize(DiffuserEntity, SelectEntity):
     _attr_icon: str
-    _attr_unit_of_measurement: Incomplete
+    _attr_unit_of_measurement = AREA_SQUARE_METERS
     _attr_options: Incomplete
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: Incomplete

@@ -37,10 +37,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class NetatmoThermostat(NetatmoBase, ClimateEntity):
     _attr_hvac_mode: Incomplete
-    _attr_max_temp: Incomplete
-    _attr_preset_modes: Incomplete
-    _attr_supported_features: Incomplete
-    _attr_target_temperature_step: Incomplete
+    _attr_max_temp = DEFAULT_MAX_TEMP
+    _attr_preset_modes = SUPPORT_PRESET
+    _attr_supported_features = SUPPORT_FLAGS
+    _attr_target_temperature_step = PRECISION_HALVES
     _attr_temperature_unit: Incomplete
     _room: Incomplete
     _id: Incomplete

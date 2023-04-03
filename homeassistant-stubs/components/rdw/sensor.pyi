@@ -12,7 +12,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from vehicle import Vehicle
 
 class RDWSensorEntityDescriptionMixin:
-    value_fn: Callable[[Vehicle], Union[date, str, float, None]]
+    value_fn: Callable[[Vehicle], date | str | float | None]
     def __init__(self, value_fn) -> None: ...
 
 class RDWSensorEntityDescription(SensorEntityDescription, RDWSensorEntityDescriptionMixin):
@@ -29,4 +29,4 @@ class RDWSensorEntity(CoordinatorEntity[DataUpdateCoordinator[Vehicle]], SensorE
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: DataUpdateCoordinator[Vehicle], license_plate: str, description: RDWSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[date, str, float, None]: ...
+    def native_value(self) -> date | str | float | None: ...

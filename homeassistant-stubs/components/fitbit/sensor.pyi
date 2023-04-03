@@ -22,13 +22,13 @@ _CONFIGURING: dict[str, str]
 SCAN_INTERVAL: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 
-def request_app_setup(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, config_path: str, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+def request_app_setup(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, config_path: str, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 def request_oauth_completion(hass: HomeAssistant) -> None: ...
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class FitbitAuthCallbackView(HomeAssistantView):
     requires_auth: bool
-    url: Incomplete
+    url = FITBIT_AUTH_CALLBACK_PATH
     name: str
     config: Incomplete
     add_entities: Incomplete
@@ -38,7 +38,7 @@ class FitbitAuthCallbackView(HomeAssistantView):
 
 class FitbitSensor(SensorEntity):
     entity_description: FitbitSensorEntityDescription
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     client: Incomplete
     config_path: Incomplete
     is_metric: Incomplete
@@ -47,10 +47,10 @@ class FitbitSensor(SensorEntity):
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    def __init__(self, client: Fitbit, user_profile: dict[str, Any], config_path: str, description: FitbitSensorEntityDescription, is_metric: bool, clock_format: str, extra: Union[dict[str, str], None] = ...) -> None: ...
+    def __init__(self, client: Fitbit, user_profile: dict[str, Any], config_path: str, description: FitbitSensorEntityDescription, is_metric: bool, clock_format: str, extra: dict[str, str] | None = ...) -> None: ...
     @property
-    def icon(self) -> Union[str, None]: ...
+    def icon(self) -> str | None: ...
     @property
-    def extra_state_attributes(self) -> dict[str, Union[str, None]]: ...
+    def extra_state_attributes(self) -> dict[str, str | None]: ...
     _attr_native_value: Incomplete
     def update(self) -> None: ...

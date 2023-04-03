@@ -11,7 +11,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Final
 
 class PECOSensorEntityDescriptionMixin:
-    value_fn: Callable[[PECOCoordinatorData], Union[int, str]]
+    value_fn: Callable[[PECOCoordinatorData], int | str]
     attribute_fn: Callable[[PECOCoordinatorData], dict[str, str]]
     def __init__(self, value_fn, attribute_fn) -> None: ...
 
@@ -29,6 +29,6 @@ class PecoSensor(CoordinatorEntity[DataUpdateCoordinator[PECOCoordinatorData]], 
     _attr_unique_id: Incomplete
     def __init__(self, description: PECOSensorEntityDescription, county: str, coordinator: DataUpdateCoordinator[PECOCoordinatorData]) -> None: ...
     @property
-    def native_value(self) -> Union[int, str]: ...
+    def native_value(self) -> int | str: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...

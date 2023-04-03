@@ -11,19 +11,19 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pylitterbot import Robot as Robot
 from typing import Any
 
-def icon_for_gauge_level(gauge_level: Union[int, None] = ..., offset: int = ...) -> str: ...
+def icon_for_gauge_level(gauge_level: int | None = ..., offset: int = ...) -> str: ...
 
 class RobotSensorEntityDescription(SensorEntityDescription):
-    icon_fn: Callable[[Any], Union[str, None]]
+    icon_fn: Callable[[Any], str | None]
     should_report: Callable[[_RobotT], bool]
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, icon_fn, should_report) -> None: ...
 
 class LitterRobotSensorEntity(LitterRobotEntity[_RobotT], SensorEntity):
     entity_description: RobotSensorEntityDescription[_RobotT]
     @property
-    def native_value(self) -> Union[float, datetime, str, None]: ...
+    def native_value(self) -> float | datetime | str | None: ...
     @property
-    def icon(self) -> Union[str, None]: ...
+    def icon(self) -> str | None: ...
 
 ROBOT_SENSOR_MAP: dict[type[Robot], list[RobotSensorEntityDescription]]
 

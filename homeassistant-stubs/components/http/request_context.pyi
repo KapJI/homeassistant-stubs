@@ -3,6 +3,6 @@ from collections.abc import Callable as Callable
 from contextvars import ContextVar
 from homeassistant.core import callback as callback
 
-current_request: ContextVar[Union[Request, None]]
+current_request: ContextVar[Request | None]
 
-def setup_request_context(app: Application, context: ContextVar[Union[Request, None]]) -> None: ...
+def setup_request_context(app: Application, context: ContextVar[Request | None]) -> None: ...

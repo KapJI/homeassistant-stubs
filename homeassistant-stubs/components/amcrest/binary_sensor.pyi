@@ -11,7 +11,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.util import Throttle as Throttle
 
 class AmcrestSensorEntityDescription(BinarySensorEntityDescription):
-    event_codes: Union[set[str], None]
+    event_codes: set[str] | None
     should_poll: bool
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_codes, should_poll) -> None: ...
 
@@ -37,7 +37,7 @@ _EXCLUSIVE_OPTIONS: Incomplete
 _UPDATE_MSG: str
 
 def check_binary_sensors(value: list[str]) -> list[str]: ...
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class AmcrestBinarySensor(BinarySensorEntity):
     _signal_name: Incomplete

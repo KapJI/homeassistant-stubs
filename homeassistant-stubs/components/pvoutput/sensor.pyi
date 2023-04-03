@@ -12,7 +12,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from pvo import Status as Status, System as System
 
 class PVOutputSensorEntityDescriptionMixin:
-    value_fn: Callable[[Status], Union[int, float, None]]
+    value_fn: Callable[[Status], int | float | None]
     def __init__(self, value_fn) -> None: ...
 
 class PVOutputSensorEntityDescription(SensorEntityDescription, PVOutputSensorEntityDescriptionMixin):
@@ -29,4 +29,4 @@ class PVOutputSensorEntity(CoordinatorEntity[PVOutputDataUpdateCoordinator], Sen
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: PVOutputDataUpdateCoordinator, description: PVOutputSensorEntityDescription, system_id: str, system: System) -> None: ...
     @property
-    def native_value(self) -> Union[int, float, None]: ...
+    def native_value(self) -> int | float | None: ...

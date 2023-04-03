@@ -9,14 +9,14 @@ from homeassistant.util.dt import as_local as as_local, utcnow as utcnow
 ZODIAC_BY_DATE: Incomplete
 ZODIAC_ICONS: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class ZodiacSensor(SensorEntity):
     _attr_name: str
     _attr_device_class: Incomplete
     _attr_options: Incomplete
     _attr_translation_key: str
-    _attr_unique_id: Incomplete
+    _attr_unique_id = DOMAIN
     _attr_native_value: Incomplete
     _attr_icon: Incomplete
     _attr_extra_state_attributes: Incomplete

@@ -18,7 +18,7 @@ class SynologyDSMEntityDescription(EntityDescription, SynologyDSMRequiredKeysMix
 class SynologyDSMBaseEntity(CoordinatorEntity[_CoordinatorT]):
     entity_description: SynologyDSMEntityDescription
     unique_id: str
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _api: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
@@ -35,4 +35,4 @@ class SynologyDSMDeviceEntity(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoor
     _device_type: Incomplete
     _attr_name: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMEntityDescription, device_id: Union[str, None] = ...) -> None: ...
+    def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMEntityDescription, device_id: str | None = ...) -> None: ...

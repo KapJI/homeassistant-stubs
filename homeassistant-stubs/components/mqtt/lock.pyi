@@ -43,18 +43,18 @@ DISCOVERY_SCHEMA: Incomplete
 STATE_CONFIG_KEYS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttLock(MqttEntity, LockEntity):
     _entity_id_format: Incomplete
-    _attributes_extra_blocked: Incomplete
-    _compiled_pattern: Union[re.Pattern[Any], None]
+    _attributes_extra_blocked = MQTT_LOCK_ATTRIBUTES_BLOCKED
+    _compiled_pattern: re.Pattern[Any] | None
     _optimistic: bool
     _valid_states: list[str]
     _command_template: Callable[[PublishPayloadType, TemplateVarsType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     _attr_is_locked: bool
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_code_format: Incomplete

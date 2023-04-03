@@ -21,7 +21,7 @@ def async_client_uptime_value_fn(controller: UniFiController, client: Client) ->
 def async_client_device_info_fn(api: aiounifi.Controller, obj_id: str) -> DeviceInfo: ...
 
 class UnifiSensorEntityDescriptionMixin:
-    value_fn: Callable[[UniFiController, ApiItemT], Union[datetime, float, str, None]]
+    value_fn: Callable[[UniFiController, ApiItemT], datetime | float | str | None]
     def __init__(self, value_fn) -> None: ...
 
 class UnifiSensorEntityDescription(SensorEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiSensorEntityDescriptionMixin[HandlerT, ApiItemT]):

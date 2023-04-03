@@ -22,18 +22,18 @@ WATER_PRICE_UNITS: Incomplete
 WATER_UNIT_ERROR: str
 WATER_PRICE_UNIT_ERROR: str
 
-def _get_placeholders(hass: HomeAssistant, issue_type: str) -> Union[dict[str, str], None]: ...
+def _get_placeholders(hass: HomeAssistant, issue_type: str) -> dict[str, str] | None: ...
 
 class ValidationIssue:
     type: str
-    affected_entities: set[tuple[str, Union[float, str, None]]]
-    translation_placeholders: Union[dict[str, str], None]
+    affected_entities: set[tuple[str, float | str | None]]
+    translation_placeholders: dict[str, str] | None
     def __init__(self, type, affected_entities, translation_placeholders) -> None: ...
 
 class ValidationIssues:
     issues: dict[str, ValidationIssue]
     def __init__(self) -> None: ...
-    def add_issue(self, hass: HomeAssistant, issue_type: str, affected_entity: str, detail: Union[float, str, None] = ...) -> None: ...
+    def add_issue(self, hass: HomeAssistant, issue_type: str, affected_entity: str, detail: float | str | None = ...) -> None: ...
 
 class EnergyPreferencesValidation:
     energy_sources: list[ValidationIssues]

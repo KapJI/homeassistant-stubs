@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from tailscale import Device as TailscaleDevice
 
 class TailscaleBinarySensorEntityDescriptionMixin:
-    is_on_fn: Callable[[TailscaleDevice], Union[bool, None]]
+    is_on_fn: Callable[[TailscaleDevice], bool | None]
     def __init__(self, is_on_fn) -> None: ...
 
 class TailscaleBinarySensorEntityDescription(BinarySensorEntityDescription, TailscaleBinarySensorEntityDescriptionMixin):
@@ -22,4 +22,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class TailscaleBinarySensorEntity(TailscaleEntity, BinarySensorEntity):
     entity_description: TailscaleBinarySensorEntityDescription
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool | None: ...

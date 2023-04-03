@@ -5,7 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 
 class NetatmoBase(Entity):
-    _attr_attribution: Incomplete
+    _attr_attribution = DEFAULT_ATTRIBUTION
     data_handler: Incomplete
     _publishers: Incomplete
     _device_name: str

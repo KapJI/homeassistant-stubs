@@ -10,7 +10,7 @@ from typing import Any
 
 class SystemStatus:
     ha_psutil: ha_psutil
-    remove_periodic_timer: Union[CALLBACK_TYPE, None]
+    remove_periodic_timer: CALLBACK_TYPE | None
     subscribers: set[tuple[websocket_api.ActiveConnection, int]]
     def __init__(self, ha_psutil, remove_periodic_timer, subscribers) -> None: ...
 

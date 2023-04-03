@@ -12,15 +12,15 @@ async def async_get_manager(hass: HomeAssistant) -> EnergyManager: ...
 
 class FlowFromGridSourceType(TypedDict):
     stat_energy_from: str
-    stat_cost: Union[str, None]
-    entity_energy_price: Union[str, None]
-    number_energy_price: Union[float, None]
+    stat_cost: str | None
+    entity_energy_price: str | None
+    number_energy_price: float | None
 
 class FlowToGridSourceType(TypedDict):
     stat_energy_to: str
-    stat_compensation: Union[str, None]
-    entity_energy_price: Union[str, None]
-    number_energy_price: Union[float, None]
+    stat_compensation: str | None
+    entity_energy_price: str | None
+    number_energy_price: float | None
 
 class GridSourceType(TypedDict):
     type: Literal['grid']
@@ -31,7 +31,7 @@ class GridSourceType(TypedDict):
 class SolarSourceType(TypedDict):
     type: Literal['solar']
     stat_energy_from: str
-    config_entry_solar_forecast: Union[list[str], None]
+    config_entry_solar_forecast: list[str] | None
 
 class BatterySourceType(TypedDict):
     type: Literal['battery']
@@ -41,16 +41,16 @@ class BatterySourceType(TypedDict):
 class GasSourceType(TypedDict):
     type: Literal['gas']
     stat_energy_from: str
-    stat_cost: Union[str, None]
-    entity_energy_price: Union[str, None]
-    number_energy_price: Union[float, None]
+    stat_cost: str | None
+    entity_energy_price: str | None
+    number_energy_price: float | None
 
 class WaterSourceType(TypedDict):
     type: Literal['water']
     stat_energy_from: str
-    stat_cost: Union[str, None]
-    entity_energy_price: Union[str, None]
-    number_energy_price: Union[float, None]
+    stat_cost: str | None
+    entity_energy_price: str | None
+    number_energy_price: float | None
 
 SourceType: Incomplete
 

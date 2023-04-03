@@ -6,7 +6,7 @@ from typing import Any
 
 EVENT_NOTIFY: str
 
-def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> BaseNotificationService: ...
+def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> BaseNotificationService: ...
 
 class DemoNotificationService(BaseNotificationService):
     hass: Incomplete

@@ -30,13 +30,13 @@ class SensorBase(SensorEntity):
 class TemperatureSensor(SensorBase):
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     @property
     def native_value(self) -> float: ...
 
 class HumiditySensor(SensorBase):
     _attr_device_class: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
-    _attr_name: str
+    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_translation_key: str
     @property
     def native_value(self) -> int: ...

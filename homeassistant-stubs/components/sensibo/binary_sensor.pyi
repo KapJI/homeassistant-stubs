@@ -13,11 +13,11 @@ from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as Sensi
 PARALLEL_UPDATES: int
 
 class MotionBaseEntityDescriptionMixin:
-    value_fn: Callable[[MotionSensor], Union[bool, None]]
+    value_fn: Callable[[MotionSensor], bool | None]
     def __init__(self, value_fn) -> None: ...
 
 class DeviceBaseEntityDescriptionMixin:
-    value_fn: Callable[[SensiboDevice], Union[bool, None]]
+    value_fn: Callable[[SensiboDevice], bool | None]
     def __init__(self, value_fn) -> None: ...
 
 class SensiboMotionBinarySensorEntityDescription(BinarySensorEntityDescription, MotionBaseEntityDescriptionMixin):
@@ -40,11 +40,11 @@ class SensiboMotionSensor(SensiboMotionBaseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, sensor_id: str, sensor_data: MotionSensor, entity_description: SensiboMotionBinarySensorEntityDescription) -> None: ...
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool | None: ...
 
 class SensiboDeviceSensor(SensiboDeviceBaseEntity, BinarySensorEntity):
     entity_description: SensiboDeviceBinarySensorEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceBinarySensorEntityDescription) -> None: ...
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool | None: ...

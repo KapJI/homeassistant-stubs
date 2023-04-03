@@ -64,117 +64,117 @@ EVENT_ORIGIN_TO_IDX: Incomplete
 
 class Events(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_EVENTS
     event_id: Mapped[int]
-    event_type: Mapped[Union[str, None]]
-    event_data: Mapped[Union[str, None]]
-    origin: Mapped[Union[str, None]]
-    origin_idx: Mapped[Union[int, None]]
-    time_fired: Mapped[Union[datetime, None]]
-    time_fired_ts: Mapped[Union[float, None]]
-    context_id: Mapped[Union[str, None]]
-    context_user_id: Mapped[Union[str, None]]
-    context_parent_id: Mapped[Union[str, None]]
-    data_id: Mapped[Union[int, None]]
-    context_id_bin: Mapped[Union[bytes, None]]
-    context_user_id_bin: Mapped[Union[bytes, None]]
-    context_parent_id_bin: Mapped[Union[bytes, None]]
-    event_type_id: Mapped[Union[int, None]]
-    event_data_rel: Mapped[Union[EventData, None]]
-    event_type_rel: Mapped[Union[EventTypes, None]]
+    event_type: Mapped[str | None]
+    event_data: Mapped[str | None]
+    origin: Mapped[str | None]
+    origin_idx: Mapped[int | None]
+    time_fired: Mapped[datetime | None]
+    time_fired_ts: Mapped[float | None]
+    context_id: Mapped[str | None]
+    context_user_id: Mapped[str | None]
+    context_parent_id: Mapped[str | None]
+    data_id: Mapped[int | None]
+    context_id_bin: Mapped[bytes | None]
+    context_user_id_bin: Mapped[bytes | None]
+    context_parent_id_bin: Mapped[bytes | None]
+    event_type_id: Mapped[int | None]
+    event_data_rel: Mapped[EventData | None]
+    event_type_rel: Mapped[EventTypes | None]
     def __repr__(self) -> str: ...
     @property
-    def _time_fired_isotime(self) -> Union[str, None]: ...
+    def _time_fired_isotime(self) -> str | None: ...
     @staticmethod
     def from_event(event: Event) -> Events: ...
-    def to_native(self, validate_entity_id: bool = ...) -> Union[Event, None]: ...
+    def to_native(self, validate_entity_id: bool = ...) -> Event | None: ...
 
 class EventData(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_EVENT_DATA
     data_id: Mapped[int]
-    hash: Mapped[Union[int, None]]
-    shared_data: Mapped[Union[str, None]]
+    hash: Mapped[int | None]
+    shared_data: Mapped[str | None]
     def __repr__(self) -> str: ...
     @staticmethod
-    def shared_data_bytes_from_event(event: Event, dialect: Union[SupportedDialect, None]) -> bytes: ...
+    def shared_data_bytes_from_event(event: Event, dialect: SupportedDialect | None) -> bytes: ...
     @staticmethod
     def hash_shared_data_bytes(shared_data_bytes: bytes) -> int: ...
     def to_native(self) -> dict[str, Any]: ...
 
 class EventTypes(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_EVENT_TYPES
     event_type_id: Mapped[int]
-    event_type: Mapped[Union[str, None]]
+    event_type: Mapped[str | None]
     def __repr__(self) -> str: ...
 
 class States(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_STATES
     state_id: Mapped[int]
-    entity_id: Mapped[Union[str, None]]
-    state: Mapped[Union[str, None]]
-    attributes: Mapped[Union[str, None]]
-    event_id: Mapped[Union[int, None]]
-    last_changed: Mapped[Union[datetime, None]]
-    last_changed_ts: Mapped[Union[float, None]]
-    last_updated: Mapped[Union[datetime, None]]
-    last_updated_ts: Mapped[Union[float, None]]
-    old_state_id: Mapped[Union[int, None]]
-    attributes_id: Mapped[Union[int, None]]
-    context_id: Mapped[Union[str, None]]
-    context_user_id: Mapped[Union[str, None]]
-    context_parent_id: Mapped[Union[str, None]]
-    origin_idx: Mapped[Union[int, None]]
-    old_state: Mapped[Union[States, None]]
-    state_attributes: Mapped[Union[StateAttributes, None]]
-    context_id_bin: Mapped[Union[bytes, None]]
-    context_user_id_bin: Mapped[Union[bytes, None]]
-    context_parent_id_bin: Mapped[Union[bytes, None]]
-    metadata_id: Mapped[Union[int, None]]
-    states_meta_rel: Mapped[Union[StatesMeta, None]]
+    entity_id: Mapped[str | None]
+    state: Mapped[str | None]
+    attributes: Mapped[str | None]
+    event_id: Mapped[int | None]
+    last_changed: Mapped[datetime | None]
+    last_changed_ts: Mapped[float | None]
+    last_updated: Mapped[datetime | None]
+    last_updated_ts: Mapped[float | None]
+    old_state_id: Mapped[int | None]
+    attributes_id: Mapped[int | None]
+    context_id: Mapped[str | None]
+    context_user_id: Mapped[str | None]
+    context_parent_id: Mapped[str | None]
+    origin_idx: Mapped[int | None]
+    old_state: Mapped[States | None]
+    state_attributes: Mapped[StateAttributes | None]
+    context_id_bin: Mapped[bytes | None]
+    context_user_id_bin: Mapped[bytes | None]
+    context_parent_id_bin: Mapped[bytes | None]
+    metadata_id: Mapped[int | None]
+    states_meta_rel: Mapped[StatesMeta | None]
     def __repr__(self) -> str: ...
     @property
-    def _last_updated_isotime(self) -> Union[str, None]: ...
+    def _last_updated_isotime(self) -> str | None: ...
     @staticmethod
     def from_event(event: Event) -> States: ...
-    def to_native(self, validate_entity_id: bool = ...) -> Union[State, None]: ...
+    def to_native(self, validate_entity_id: bool = ...) -> State | None: ...
 
 class StateAttributes(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_STATE_ATTRIBUTES
     attributes_id: Mapped[int]
-    hash: Mapped[Union[int, None]]
-    shared_attrs: Mapped[Union[str, None]]
+    hash: Mapped[int | None]
+    shared_attrs: Mapped[str | None]
     def __repr__(self) -> str: ...
     @staticmethod
-    def shared_attrs_bytes_from_event(event: Event, entity_sources: dict[str, dict[str, str]], exclude_attrs_by_domain: dict[str, set[str]], dialect: Union[SupportedDialect, None]) -> bytes: ...
+    def shared_attrs_bytes_from_event(event: Event, entity_sources: dict[str, dict[str, str]], exclude_attrs_by_domain: dict[str, set[str]], dialect: SupportedDialect | None) -> bytes: ...
     @staticmethod
     def hash_shared_attrs_bytes(shared_attrs_bytes: bytes) -> int: ...
     def to_native(self) -> dict[str, Any]: ...
 
 class StatesMeta(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_STATES_META
     metadata_id: Mapped[int]
-    entity_id: Mapped[Union[str, None]]
+    entity_id: Mapped[str | None]
     def __repr__(self) -> str: ...
 
 class StatisticsBase:
     id: Mapped[int]
-    created: Mapped[Union[datetime, None]]
-    created_ts: Mapped[Union[float, None]]
-    metadata_id: Mapped[Union[int, None]]
-    start: Mapped[Union[datetime, None]]
-    start_ts: Mapped[Union[float, None]]
-    mean: Mapped[Union[float, None]]
-    min: Mapped[Union[float, None]]
-    max: Mapped[Union[float, None]]
-    last_reset: Mapped[Union[datetime, None]]
-    last_reset_ts: Mapped[Union[float, None]]
-    state: Mapped[Union[float, None]]
-    sum: Mapped[Union[float, None]]
+    created: Mapped[datetime | None]
+    created_ts: Mapped[float | None]
+    metadata_id: Mapped[int | None]
+    start: Mapped[datetime | None]
+    start_ts: Mapped[float | None]
+    mean: Mapped[float | None]
+    min: Mapped[float | None]
+    max: Mapped[float | None]
+    last_reset: Mapped[datetime | None]
+    last_reset_ts: Mapped[float | None]
+    state: Mapped[float | None]
+    sum: Mapped[float | None]
     duration: timedelta
     @classmethod
     def from_stats(cls, metadata_id: int, stats: StatisticData) -> Self: ...
@@ -184,46 +184,46 @@ class StatisticsBase:
 class Statistics(Base, StatisticsBase):
     duration: Incomplete
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_STATISTICS
 
 class StatisticsShortTerm(Base, StatisticsBase):
     duration: Incomplete
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_STATISTICS_SHORT_TERM
 
 class StatisticsMeta(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_STATISTICS_META
     id: Mapped[int]
-    statistic_id: Mapped[Union[str, None]]
-    source: Mapped[Union[str, None]]
-    unit_of_measurement: Mapped[Union[str, None]]
-    has_mean: Mapped[Union[bool, None]]
-    has_sum: Mapped[Union[bool, None]]
-    name: Mapped[Union[str, None]]
+    statistic_id: Mapped[str | None]
+    source: Mapped[str | None]
+    unit_of_measurement: Mapped[str | None]
+    has_mean: Mapped[bool | None]
+    has_sum: Mapped[bool | None]
+    name: Mapped[str | None]
     @staticmethod
     def from_meta(meta: StatisticMetaData) -> StatisticsMeta: ...
 
 class RecorderRuns(Base):
     __table_args__: Incomplete
-    __tablename__: Incomplete
+    __tablename__ = TABLE_RECORDER_RUNS
     run_id: Mapped[int]
     start: Mapped[datetime]
-    end: Mapped[Union[datetime, None]]
+    end: Mapped[datetime | None]
     closed_incorrect: Mapped[bool]
     created: Mapped[datetime]
     def __repr__(self) -> str: ...
     def to_native(self, validate_entity_id: bool = ...) -> Self: ...
 
 class SchemaChanges(Base):
-    __tablename__: Incomplete
+    __tablename__ = TABLE_SCHEMA_CHANGES
     change_id: Mapped[int]
-    schema_version: Mapped[Union[int, None]]
+    schema_version: Mapped[int | None]
     changed: Mapped[datetime]
     def __repr__(self) -> str: ...
 
 class StatisticsRuns(Base):
-    __tablename__: Incomplete
+    __tablename__ = TABLE_STATISTICS_RUNS
     run_id: Mapped[int]
     start: Mapped[datetime]
     def __repr__(self) -> str: ...

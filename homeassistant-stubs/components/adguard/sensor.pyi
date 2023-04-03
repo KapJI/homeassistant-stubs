@@ -15,7 +15,7 @@ SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
 
 class AdGuardHomeEntityDescriptionMixin:
-    value_fn: Callable[[AdGuardHome], Coroutine[Any, Any, Union[int, float]]]
+    value_fn: Callable[[AdGuardHome], Coroutine[Any, Any, int | float]]
     def __init__(self, value_fn) -> None: ...
 
 class AdGuardHomeEntityDescription(SensorEntityDescription, AdGuardHomeEntityDescriptionMixin):

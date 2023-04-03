@@ -22,7 +22,7 @@ class DeconzNumberDescriptionMixin:
     name_suffix: str
     set_fn: Callable[[DeconzSession, str, int], Coroutine[Any, Any, dict[str, Any]]]
     update_key: str
-    value_fn: Callable[[T], Union[float, None]]
+    value_fn: Callable[[T], float | None]
     def __init__(self, instance_check, name_suffix, set_fn, update_key, value_fn) -> None: ...
 
 class DeconzNumberDescription(NumberEntityDescription, DeconzNumberDescriptionMixin[T]):
@@ -34,12 +34,12 @@ def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: Dec
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzNumber(DeconzDevice[SensorResources], NumberEntity):
-    TYPE: Incomplete
+    TYPE = DOMAIN
     entity_description: DeconzNumberDescription
     unique_id_suffix: Incomplete
     _name_suffix: Incomplete
     _update_key: Incomplete
     def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzNumberDescription) -> None: ...
     @property
-    def native_value(self) -> Union[float, None]: ...
+    def native_value(self) -> float | None: ...
     async def async_set_native_value(self, value: float) -> None: ...

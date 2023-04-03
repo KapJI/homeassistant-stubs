@@ -11,7 +11,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from vehicle import Vehicle
 
 class RDWBinarySensorEntityDescriptionMixin:
-    is_on_fn: Callable[[Vehicle], Union[bool, None]]
+    is_on_fn: Callable[[Vehicle], bool | None]
     def __init__(self, is_on_fn) -> None: ...
 
 class RDWBinarySensorEntityDescription(BinarySensorEntityDescription, RDWBinarySensorEntityDescriptionMixin):

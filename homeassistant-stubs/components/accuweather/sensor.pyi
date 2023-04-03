@@ -20,8 +20,8 @@ class AccuWeatherSensorDescriptionMixin:
 
 class AccuWeatherSensorDescription(SensorEntityDescription, AccuWeatherSensorDescriptionMixin):
     attr_fn: Callable[[dict[str, Any]], dict[str, StateType]]
-    metric_unit: Union[str, None]
-    us_customary_unit: Union[str, None]
+    metric_unit: str | None
+    us_customary_unit: str | None
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attr_fn, metric_unit, us_customary_unit) -> None: ...
 
 FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
@@ -30,7 +30,7 @@ SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AccuWeatherSensor(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], SensorEntity):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     entity_description: AccuWeatherSensorDescription
     _sensor_data: Incomplete
@@ -40,14 +40,14 @@ class AccuWeatherSensor(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], Sen
     _unit_system: Incomplete
     _attr_device_info: Incomplete
     forecast_day: Incomplete
-    def __init__(self, coordinator: AccuWeatherDataUpdateCoordinator, description: AccuWeatherSensorDescription, forecast_day: Union[int, None] = ...) -> None: ...
+    def __init__(self, coordinator: AccuWeatherDataUpdateCoordinator, description: AccuWeatherSensorDescription, forecast_day: int | None = ...) -> None: ...
     @property
     def native_value(self) -> StateType: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     def _handle_coordinator_update(self) -> None: ...
 
-def _get_sensor_data(sensors: dict[str, Any], kind: str, forecast_day: Union[int, None] = ...) -> Any: ...
+def _get_sensor_data(sensors: dict[str, Any], kind: str, forecast_day: int | None = ...) -> Any: ...
 
 class AccuWeatherForecastSensor(AccuWeatherSensor):
     @property

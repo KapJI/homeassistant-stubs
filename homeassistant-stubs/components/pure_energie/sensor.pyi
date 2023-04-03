@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class PureEnergieSensorEntityDescriptionMixin:
-    value_fn: Callable[[PureEnergieData], Union[int, float]]
+    value_fn: Callable[[PureEnergieData], int | float]
     def __init__(self, value_fn) -> None: ...
 
 class PureEnergieSensorEntityDescription(SensorEntityDescription, PureEnergieSensorEntityDescriptionMixin):
@@ -28,4 +28,4 @@ class PureEnergieSensorEntity(CoordinatorEntity[PureEnergieDataUpdateCoordinator
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: PureEnergieDataUpdateCoordinator, description: PureEnergieSensorEntityDescription, entry: ConfigEntry) -> None: ...
     @property
-    def native_value(self) -> Union[int, float]: ...
+    def native_value(self) -> int | float: ...

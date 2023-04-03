@@ -11,7 +11,7 @@ from velbusaio.channels import Button as VelbusaioButton, ButtonCounter as Velbu
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class VelbusButton(VelbusEntity, ButtonEntity):
-    _channel: Union[VelbusaioButton, VelbusaioButtonCounter]
+    _channel: VelbusaioButton | VelbusaioButtonCounter
     _attr_entity_registry_enabled_default: bool
     _attr_entity_category: Incomplete
     async def async_press(self) -> None: ...

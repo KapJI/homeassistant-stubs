@@ -12,7 +12,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 LOGGER: Incomplete
 
 def _lookin_device_to_device_info(lookin_device: Device, host: str) -> DeviceInfo: ...
-def _lookin_controlled_device_to_device_info(lookin_device: Device, uuid: str, device: Union[Climate, Remote], host: str) -> DeviceInfo: ...
+def _lookin_controlled_device_to_device_info(lookin_device: Device, uuid: str, device: Climate | Remote, host: str) -> DeviceInfo: ...
 
 class LookinDeviceMixIn:
     _lookin_device: Incomplete
@@ -30,7 +30,7 @@ class LookinEntityMixIn:
     _uuid: Incomplete
     _meteo_coordinator: Incomplete
     _function_names: Incomplete
-    def _set_lookin_entity_attrs(self, uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
+    def _set_lookin_entity_attrs(self, uuid: str, device: Remote | Climate, lookin_data: LookinData) -> None: ...
 
 class LookinCoordinatorEntity(LookinDeviceMixIn, LookinEntityMixIn, CoordinatorEntity[LookinDataUpdateCoordinator[Remote]]):
     _attr_should_poll: bool
@@ -38,13 +38,13 @@ class LookinCoordinatorEntity(LookinDeviceMixIn, LookinEntityMixIn, CoordinatorE
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
-    def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
+    def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Remote | Climate, lookin_data: LookinData) -> None: ...
     async def _async_send_command(self, command: str, signal: str = ...) -> None: ...
 
 class LookinPowerEntity(LookinCoordinatorEntity):
     _power_on_command: Incomplete
     _power_off_command: Incomplete
-    def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Union[Remote, Climate], lookin_data: LookinData) -> None: ...
+    def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Remote | Climate, lookin_data: LookinData) -> None: ...
 
 class LookinPowerPushRemoteEntity(LookinPowerEntity, metaclass=abc.ABCMeta):
     _attr_name: Incomplete

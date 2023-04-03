@@ -25,12 +25,12 @@ def async_restore_rpc_attribute_entities(hass: HomeAssistant, config_entry: Conf
 def async_setup_entry_rest(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[str, RestEntityDescription], sensor_class: Callable) -> None: ...
 
 class BlockEntityDescription(EntityDescription):
-    icon_fn: Union[Callable[[dict], str], None]
-    unit_fn: Union[Callable[[dict], str], None]
+    icon_fn: Callable[[dict], str] | None
+    unit_fn: Callable[[dict], str] | None
     value: Callable[[Any], Any]
-    available: Union[Callable[[Block], bool], None]
-    removal_condition: Union[Callable[[dict, Block], bool], None]
-    extra_state_attributes: Union[Callable[[Block], Union[dict, None]], None]
+    available: Callable[[Block], bool] | None
+    removal_condition: Callable[[dict, Block], bool] | None
+    extra_state_attributes: Callable[[Block], dict | None] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
 class RpcEntityRequiredKeysMixin:
@@ -38,17 +38,17 @@ class RpcEntityRequiredKeysMixin:
     def __init__(self, sub_key) -> None: ...
 
 class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
-    value: Union[Callable[[Any, Any], Any], None]
-    available: Union[Callable[[dict], bool], None]
-    removal_condition: Union[Callable[[dict, dict, str], bool], None]
-    extra_state_attributes: Union[Callable[[dict, dict], Union[dict, None]], None]
+    value: Callable[[Any, Any], Any] | None
+    available: Callable[[dict], bool] | None
+    removal_condition: Callable[[dict, dict, str], bool] | None
+    extra_state_attributes: Callable[[dict, dict], dict | None] | None
     use_polling_coordinator: bool
     supported: Callable
     def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
 class RestEntityDescription(EntityDescription):
-    value: Union[Callable[[dict, Any], Any], None]
-    extra_state_attributes: Union[Callable[[dict], Union[dict, None]], None]
+    value: Callable[[dict, Any], Any] | None
+    extra_state_attributes: Callable[[dict], dict | None] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
 
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
@@ -90,7 +90,7 @@ class ShellyBlockAttributeEntity(ShellyBlockEntity, Entity):
     @property
     def available(self) -> bool: ...
     @property
-    def extra_state_attributes(self) -> Union[dict[str, Any], None]: ...
+    def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class ShellyRestAttributeEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     entity_description: RestEntityDescription
@@ -131,7 +131,7 @@ class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity, RestoreEnti
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
-    def __init__(self, coordinator: ShellyBlockCoordinator, block: Union[Block, None], attribute: str, description: BlockEntityDescription, entry: Union[RegistryEntry, None] = ..., sensors: Union[Mapping[tuple[str, str], BlockEntityDescription], None] = ...) -> None: ...
+    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockEntityDescription, entry: RegistryEntry | None = ..., sensors: Mapping[tuple[str, str], BlockEntityDescription] | None = ...) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _update_callback(self) -> None: ...
 
@@ -146,5 +146,5 @@ class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity, RestoreEntity):
     _attr_unique_id: Incomplete
     _last_value: Incomplete
     _attr_name: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription, entry: Union[RegistryEntry, None] = ...) -> None: ...
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription, entry: RegistryEntry | None = ...) -> None: ...
     async def async_added_to_hass(self) -> None: ...

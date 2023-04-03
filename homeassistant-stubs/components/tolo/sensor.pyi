@@ -10,8 +10,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from tololib.message_info import SettingsInfo as SettingsInfo, StatusInfo as StatusInfo
 
 class ToloSensorEntityDescriptionBase:
-    getter: Callable[[StatusInfo], Union[int, None]]
-    availability_checker: Union[Callable[[SettingsInfo, StatusInfo], bool], None]
+    getter: Callable[[StatusInfo], int | None]
+    availability_checker: Callable[[SettingsInfo, StatusInfo], bool] | None
     def __init__(self, getter, availability_checker) -> None: ...
 
 class ToloSensorEntityDescription(SensorEntityDescription, ToloSensorEntityDescriptionBase):
@@ -29,4 +29,4 @@ class ToloSensorEntity(ToloSaunaCoordinatorEntity, SensorEntity):
     @property
     def available(self) -> bool: ...
     @property
-    def native_value(self) -> Union[int, None]: ...
+    def native_value(self) -> int | None: ...

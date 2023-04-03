@@ -1,1 +1,1 @@
-DHCP: list[dict[str, Union[str, bool]]]
+DHCP: list[dict[str, str | bool]]

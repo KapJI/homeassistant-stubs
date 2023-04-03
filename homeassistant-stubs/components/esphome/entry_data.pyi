@@ -24,14 +24,14 @@ class RuntimeEntryData:
     old_info: dict[str, dict[int, EntityInfo]]
     services: dict[int, UserService]
     available: bool
-    device_info: Union[DeviceInfo, None]
+    device_info: DeviceInfo | None
     api_version: APIVersion
     cleanup_callbacks: list[Callable[[], None]]
     disconnect_callbacks: list[Callable[[], None]]
     state_subscriptions: dict[tuple[type[EntityState], int], Callable[[], None]]
     loaded_platforms: set[Platform]
     platform_load_lock: asyncio.Lock
-    _storage_contents: Union[dict[str, Any], None]
+    _storage_contents: dict[str, Any] | None
     ble_connections_free: int
     ble_connections_limit: int
     _ble_connection_free_futures: list[asyncio.Future[int]]

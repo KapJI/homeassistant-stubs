@@ -21,7 +21,7 @@ CONF_TRACKED_ASSET_PAIRS: str
 DOMAIN: str
 
 class KrakenRequiredKeysMixin:
-    value_fn: Callable[[DataUpdateCoordinator[KrakenResponse], str], Union[float, int]]
+    value_fn: Callable[[DataUpdateCoordinator[KrakenResponse], str], float | int]
     def __init__(self, value_fn) -> None: ...
 
 class KrakenSensorEntityDescription(SensorEntityDescription, KrakenRequiredKeysMixin):

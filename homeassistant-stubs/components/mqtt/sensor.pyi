@@ -35,18 +35,18 @@ PLATFORM_SCHEMA: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttSensor(MqttEntity, RestoreSensor):
-    _entity_id_format: Incomplete
-    _attr_last_reset: Union[datetime, None]
-    _attributes_extra_blocked: Incomplete
-    _expire_after: Union[int, None]
-    _expired: Union[bool, None]
+    _entity_id_format = ENTITY_ID_FORMAT
+    _attr_last_reset: datetime | None
+    _attributes_extra_blocked = MQTT_SENSOR_ATTRIBUTES_BLOCKED
+    _expire_after: int | None
+    _expired: bool | None
     _template: Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType]
     _last_reset_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     _expiration_trigger: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     _attr_native_value: Incomplete
     async def mqtt_async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

@@ -34,7 +34,7 @@ class UnifiSwitchEntityDescriptionMixin:
     def __init__(self, control_fn, is_on_fn) -> None: ...
 
 class UnifiSwitchEntityDescription(SwitchEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiSwitchEntityDescriptionMixin[HandlerT, ApiItemT]):
-    custom_subscribe: Union[Callable[[aiounifi.Controller], SubscriptionT], None]
+    custom_subscribe: Callable[[aiounifi.Controller], SubscriptionT] | None
     only_event_for_state_change: bool
     def __init__(self, control_fn, is_on_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, custom_subscribe, only_event_for_state_change) -> None: ...
 

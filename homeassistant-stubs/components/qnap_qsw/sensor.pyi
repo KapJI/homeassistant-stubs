@@ -10,8 +10,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Final
 
 class QswSensorEntityDescription(SensorEntityDescription, QswEntityDescription):
-    attributes: Union[dict[str, list[str]], None]
-    qsw_type: Union[QswEntityType, None]
+    attributes: dict[str, list[str]] | None
+    qsw_type: QswEntityType | None
     sep_key: str
     def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attributes, qsw_type, sep_key) -> None: ...
 
@@ -25,6 +25,6 @@ class QswSensor(QswSensorEntity, SensorEntity):
     entity_description: QswSensorEntityDescription
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: QswDataCoordinator, description: QswSensorEntityDescription, entry: ConfigEntry, type_id: Union[int, None] = ...) -> None: ...
+    def __init__(self, coordinator: QswDataCoordinator, description: QswSensorEntityDescription, entry: ConfigEntry, type_id: int | None = ...) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...

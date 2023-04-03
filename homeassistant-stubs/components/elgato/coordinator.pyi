@@ -8,7 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 class ElgatoData:
-    battery: Union[BatteryInfo, None]
+    battery: BatteryInfo | None
     info: Info
     settings: Settings
     state: State
@@ -16,7 +16,7 @@ class ElgatoData:
 
 class ElgatoDataUpdateCoordinator(DataUpdateCoordinator[ElgatoData]):
     config_entry: ConfigEntry
-    has_battery: Union[bool, None]
+    has_battery: bool | None
     client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> ElgatoData: ...

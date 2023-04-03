@@ -9,7 +9,7 @@ from typing import Any
 from xknx import XKNX as XKNX
 from xknx.devices import Notification as XknxNotification
 
-async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[KNXNotificationService, None]: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> KNXNotificationService | None: ...
 
 class KNXNotificationService(BaseNotificationService):
     devices: Incomplete

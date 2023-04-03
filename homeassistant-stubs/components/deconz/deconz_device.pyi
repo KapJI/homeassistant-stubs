@@ -14,22 +14,22 @@ from typing import TypeVar
 _DeviceT = TypeVar('_DeviceT', bound=PydeconzGroup | PydeconzLightBase | PydeconzSensorBase | PydeconzScene)
 
 class DeconzBase:
-    unique_id_suffix: Union[str, None]
+    unique_id_suffix: str | None
     _device: Incomplete
     gateway: Incomplete
     def __init__(self, device: _DeviceT, gateway: DeconzGateway) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property
-    def serial(self) -> Union[str, None]: ...
+    def serial(self) -> str | None: ...
     @property
-    def device_info(self) -> Union[DeviceInfo, None]: ...
+    def device_info(self) -> DeviceInfo | None: ...
 
 class DeconzDevice(DeconzBase[_DeviceT], Entity):
     _attr_should_poll: bool
-    _name_suffix: Union[str, None]
-    _update_key: Union[str, None]
-    _update_keys: Union[set[str], None]
+    _name_suffix: str | None
+    _update_key: str | None
+    _update_keys: set[str] | None
     TYPE: str
     _attr_name: Incomplete
     def __init__(self, device: _DeviceT, gateway: DeconzGateway) -> None: ...

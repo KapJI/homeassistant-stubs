@@ -15,7 +15,7 @@ ATTRIBUTION: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OpenexchangeratesSensor(CoordinatorEntity[OpenexchangeratesCoordinator], SensorEntity):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_device_info: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     _attr_name: Incomplete
@@ -23,6 +23,6 @@ class OpenexchangeratesSensor(CoordinatorEntity[OpenexchangeratesCoordinator], S
     _attr_native_unit_of_measurement: Incomplete
     _attr_unique_id: Incomplete
     _quote: Incomplete
-    def __init__(self, config_entry: ConfigEntry, coordinator: OpenexchangeratesCoordinator, name: Union[str, None], quote: str, enabled: bool) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, coordinator: OpenexchangeratesCoordinator, name: str | None, quote: str, enabled: bool) -> None: ...
     @property
     def native_value(self) -> float: ...

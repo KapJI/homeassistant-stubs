@@ -25,72 +25,72 @@ _CUBIC_FOOT_TO_CUBIC_METER: Incomplete
 
 class BaseUnitConverter:
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Union[str, None]
-    VALID_UNITS: set[Union[str, None]]
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    NORMALIZED_UNIT: str | None
+    VALID_UNITS: set[str | None]
+    _UNIT_CONVERSION: dict[str | None, float]
     @classmethod
-    def convert(cls, value: float, from_unit: Union[str, None], to_unit: Union[str, None]) -> float: ...
+    def convert(cls, value: float, from_unit: str | None, to_unit: str | None) -> float: ...
     @classmethod
-    def get_unit_ratio(cls, from_unit: Union[str, None], to_unit: Union[str, None]) -> float: ...
+    def get_unit_ratio(cls, from_unit: str | None, to_unit: str | None) -> float: ...
 
 class DataRateConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class DistanceConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class ElectricCurrentConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class ElectricPotentialConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class EnergyConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class InformationConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class MassConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class PowerConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class PressureConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class SpeedConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class TemperatureConverter(BaseUnitConverter):
@@ -99,7 +99,7 @@ class TemperatureConverter(BaseUnitConverter):
     VALID_UNITS: Incomplete
     _UNIT_CONVERSION: Incomplete
     @classmethod
-    def convert(cls, value: float, from_unit: Union[str, None], to_unit: Union[str, None]) -> float: ...
+    def convert(cls, value: float, from_unit: str | None, to_unit: str | None) -> float: ...
     @classmethod
     def convert_interval(cls, interval: float, from_unit: str, to_unit: str) -> float: ...
     @classmethod
@@ -114,11 +114,11 @@ class TemperatureConverter(BaseUnitConverter):
 class UnitlessRatioConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class VolumeConverter(BaseUnitConverter):
     UNIT_CLASS: str
     NORMALIZED_UNIT: Incomplete
-    _UNIT_CONVERSION: dict[Union[str, None], float]
+    _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete

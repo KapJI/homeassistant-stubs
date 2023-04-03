@@ -12,10 +12,10 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 class AttributeDescription:
     name: str
-    icon: Union[str, None]
-    unit: Union[str, None]
-    device_class: Union[SensorDeviceClass, None]
-    state_class: Union[SensorStateClass, None]
+    icon: str | None
+    unit: str | None
+    device_class: SensorDeviceClass | None
+    state_class: SensorStateClass | None
     default_enabled: bool
     def __init__(self, name, icon, unit, device_class, state_class, default_enabled) -> None: ...
 

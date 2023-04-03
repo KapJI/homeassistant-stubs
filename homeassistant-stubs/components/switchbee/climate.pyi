@@ -12,9 +12,9 @@ from switchbee.device import SwitchBeeThermostat
 from typing import Any
 
 FAN_SB_TO_HASS: Incomplete
-FAN_HASS_TO_SB: dict[Union[str, None], str]
+FAN_HASS_TO_SB: dict[str | None, str]
 HVAC_MODE_SB_TO_HASS: Incomplete
-HVAC_MODE_HASS_TO_SB: dict[Union[HVACMode, str, None], str]
+HVAC_MODE_HASS_TO_SB: dict[HVACMode | str | None, str]
 HVAC_ACTION_SB_TO_HASS: Incomplete
 HVAC_UNIT_SB_TO_HASS: Incomplete
 SUPPORTED_FAN_MODES: Incomplete
@@ -23,7 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SwitchBeeClimateEntity(SwitchBeeDeviceEntity[SwitchBeeThermostat], ClimateEntity):
     _attr_supported_features: Incomplete
-    _attr_fan_modes: Incomplete
+    _attr_fan_modes = SUPPORTED_FAN_MODES
     _attr_target_temperature_step: int
     _attr_max_temp: Incomplete
     _attr_min_temp: Incomplete
@@ -39,4 +39,4 @@ class SwitchBeeClimateEntity(SwitchBeeDeviceEntity[SwitchBeeThermostat], Climate
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
-    async def _operate(self, power: Union[str, None] = ..., mode: Union[str, None] = ..., fan: Union[str, None] = ..., target_temperature: Union[int, None] = ...) -> None: ...
+    async def _operate(self, power: str | None = ..., mode: str | None = ..., fan: str | None = ..., target_temperature: int | None = ...) -> None: ...

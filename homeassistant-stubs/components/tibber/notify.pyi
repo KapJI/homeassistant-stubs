@@ -7,7 +7,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> TibberNotificationService: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> TibberNotificationService: ...
 
 class TibberNotificationService(BaseNotificationService):
     _notify: Incomplete

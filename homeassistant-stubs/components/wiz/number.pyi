@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pywizlight import wizlight as wizlight
 
 class WizNumberEntityDescriptionMixin:
-    value_fn: Callable[[wizlight], Union[int, None]]
+    value_fn: Callable[[wizlight], int | None]
     set_value_fn: Callable[[wizlight, int], Coroutine[None, None, None]]
     required_feature: str
     def __init__(self, value_fn, set_value_fn, required_feature) -> None: ...

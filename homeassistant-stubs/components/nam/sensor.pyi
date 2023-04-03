@@ -17,7 +17,7 @@ PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
 class NAMSensorRequiredKeysMixin:
-    value: Callable[[NAMSensors], Union[StateType, datetime]]
+    value: Callable[[NAMSensors], StateType | datetime]
     def __init__(self, value) -> None: ...
 
 class NAMSensorEntityDescription(SensorEntityDescription, NAMSensorRequiredKeysMixin):
@@ -36,4 +36,4 @@ class NAMSensor(CoordinatorEntity[NAMDataUpdateCoordinator], SensorEntity):
     @property
     def available(self) -> bool: ...
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...

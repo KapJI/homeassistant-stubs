@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 CONCENTRATION_PARTICLES_PER_100_MILLILITERS: Incomplete
 
 class PurpleAirSensorEntityDescriptionMixin:
-    value_fn: Callable[[SensorModel], Union[float, str, None]]
+    value_fn: Callable[[SensorModel], float | str | None]
     def __init__(self, value_fn) -> None: ...
 
 class PurpleAirSensorEntityDescription(SensorEntityDescription, PurpleAirSensorEntityDescriptionMixin):
@@ -28,4 +28,4 @@ class PurpleAirSensorEntity(PurpleAirEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PurpleAirDataUpdateCoordinator, entry: ConfigEntry, sensor_index: int, description: PurpleAirSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[float, str, None]: ...
+    def native_value(self) -> float | str | None: ...

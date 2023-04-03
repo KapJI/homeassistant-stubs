@@ -11,9 +11,9 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client
 from typing import NamedTuple
 
 class EventListenAddr(NamedTuple):
-    host: Union[str, None]
+    host: str | None
     port: int
-    callback_url: Union[str, None]
+    callback_url: str | None
 
 class DlnaDmrData:
     lock: asyncio.Lock
@@ -21,7 +21,7 @@ class DlnaDmrData:
     upnp_factory: UpnpFactory
     event_notifiers: dict[EventListenAddr, AiohttpNotifyServer]
     event_notifier_refs: defaultdict[EventListenAddr, int]
-    stop_listener_remove: Union[CALLBACK_TYPE, None]
+    stop_listener_remove: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_cleanup_event_notifiers(self, event: Event) -> None: ...
     async def async_get_event_notifier(self, listen_addr: EventListenAddr, hass: HomeAssistant) -> UpnpEventHandler: ...

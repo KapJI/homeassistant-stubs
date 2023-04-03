@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 class LaMetricEntityDescriptionMixin:
-    value_fn: Callable[[Device], Union[int, None]]
+    value_fn: Callable[[Device], int | None]
     def __init__(self, value_fn) -> None: ...
 
 class LaMetricSensorEntityDescription(SensorEntityDescription, LaMetricEntityDescriptionMixin):
@@ -26,4 +26,4 @@ class LaMetricSensorEntity(LaMetricEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LaMetricDataUpdateCoordinator, description: LaMetricSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[int, None]: ...
+    def native_value(self) -> int | None: ...

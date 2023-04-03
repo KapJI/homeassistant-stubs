@@ -6,5 +6,5 @@ from typing import Any
 
 class WhoisFlowHandler(ConfigFlow):
     VERSION: int
-    imported_name: Union[str, None]
-    async def async_step_user(self, user_input: Union[dict[str, Any], None] = ...) -> FlowResult: ...
+    imported_name: str | None
+    async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

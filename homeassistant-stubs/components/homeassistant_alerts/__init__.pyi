@@ -20,7 +20,7 @@ class IntegrationAlert:
     alert_id: str
     integration: str
     filename: str
-    date_updated: Union[str, None]
+    date_updated: str | None
     @property
     def issue_id(self) -> str: ...
     def __init__(self, alert_id, integration, filename, date_updated) -> None: ...

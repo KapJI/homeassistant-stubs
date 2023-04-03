@@ -17,7 +17,7 @@ class ValloxSensorEntity(ValloxEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...
 
 class ValloxProfileSensor(ValloxSensorEntity):
     @property
@@ -25,20 +25,20 @@ class ValloxProfileSensor(ValloxSensorEntity):
 
 class ValloxFanSpeedSensor(ValloxSensorEntity):
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...
 
 class ValloxFilterRemainingSensor(ValloxSensorEntity):
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...
 
 class ValloxCellStateSensor(ValloxSensorEntity):
     @property
     def native_value(self) -> StateType: ...
 
 class ValloxSensorEntityDescription(SensorEntityDescription):
-    metric_key: Union[str, None]
+    metric_key: str | None
     entity_type: type[ValloxSensorEntity]
-    round_ndigits: Union[int, None]
+    round_ndigits: int | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, metric_key, entity_type, round_ndigits) -> None: ...
 
 SENSOR_ENTITIES: tuple[ValloxSensorEntityDescription, ...]

@@ -17,7 +17,7 @@ POLL_DELAY_UPGRADE: int
 
 class FirmwareUpdateStatus(NamedTuple):
     device: OmadaListDevice
-    firmware: Union[OmadaFirmwareUpdate, None]
+    firmware: OmadaFirmwareUpdate | None
 
 class OmadaFirmwareUpdateCoodinator(OmadaCoordinator[FirmwareUpdateStatus]):
     def __init__(self, hass: HomeAssistant, omada_client: OmadaSiteClient) -> None: ...
@@ -35,8 +35,8 @@ class OmadaDeviceUpdate(OmadaDeviceEntity[FirmwareUpdateStatus], UpdateEntity):
     _omada_client: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: OmadaFirmwareUpdateCoodinator, device: OmadaListDevice) -> None: ...
-    def release_notes(self) -> Union[str, None]: ...
-    async def async_install(self, version: Union[str, None], backup: bool, **kwargs: Any) -> None: ...
+    def release_notes(self) -> str | None: ...
+    async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
     _attr_in_progress: Incomplete

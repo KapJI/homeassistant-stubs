@@ -13,7 +13,7 @@ UPDATE_INTERVAL: int
 _LOGGER: Incomplete
 
 class WallboxSensorEntityDescription(SensorEntityDescription):
-    precision: Union[int, None]
+    precision: int | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, precision) -> None: ...
 
 SENSOR_TYPES: dict[str, WallboxSensorEntityDescription]
@@ -28,4 +28,4 @@ class WallboxSensor(WallboxEntity, SensorEntity):
     @property
     def native_value(self) -> StateType: ...
     @property
-    def native_unit_of_measurement(self) -> Union[str, None]: ...
+    def native_unit_of_measurement(self) -> str | None: ...

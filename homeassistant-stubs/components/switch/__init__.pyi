@@ -30,11 +30,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class SwitchEntityDescription(ToggleEntityDescription):
-    device_class: Union[SwitchDeviceClass, None]
+    device_class: SwitchDeviceClass | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class SwitchEntity(ToggleEntity):
     entity_description: SwitchEntityDescription
-    _attr_device_class: Union[SwitchDeviceClass, None]
+    _attr_device_class: SwitchDeviceClass | None
     @property
-    def device_class(self) -> Union[SwitchDeviceClass, None]: ...
+    def device_class(self) -> SwitchDeviceClass | None: ...

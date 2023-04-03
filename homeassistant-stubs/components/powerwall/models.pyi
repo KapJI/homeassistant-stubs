@@ -4,7 +4,7 @@ from tesla_powerwall import DeviceType as DeviceType, GridStatus as GridStatus, 
 from typing import TypedDict
 
 class PowerwallBaseInfo:
-    gateway_din: Union[None, str]
+    gateway_din: None | str
     site_info: SiteInfo
     status: PowerwallStatus
     device_type: DeviceType
@@ -18,11 +18,11 @@ class PowerwallData:
     meters: MetersAggregates
     grid_services_active: bool
     grid_status: GridStatus
-    backup_reserve: Union[float, None]
+    backup_reserve: float | None
     def __init__(self, charge, site_master, meters, grid_services_active, grid_status, backup_reserve) -> None: ...
 
 class PowerwallRuntimeData(TypedDict):
-    coordinator: Union[DataUpdateCoordinator[PowerwallData], None]
+    coordinator: DataUpdateCoordinator[PowerwallData] | None
     api_instance: Powerwall
     base_info: PowerwallBaseInfo
     api_changed: bool

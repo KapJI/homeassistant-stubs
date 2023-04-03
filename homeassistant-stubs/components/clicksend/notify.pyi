@@ -11,7 +11,7 @@ DEFAULT_SENDER: str
 TIMEOUT: int
 HEADERS: Incomplete
 
-def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[ClicksendNotificationService, None]: ...
+def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> ClicksendNotificationService | None: ...
 
 class ClicksendNotificationService(BaseNotificationService):
     username: Incomplete

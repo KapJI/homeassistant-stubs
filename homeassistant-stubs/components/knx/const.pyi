@@ -48,7 +48,7 @@ ATTR_SOURCE: Final[str]
 class KNXConfigEntryData(TypedDict):
     connection_type: str
     individual_address: str
-    local_ip: Union[str, None]
+    local_ip: str | None
     multicast_group: str
     multicast_port: int
     route_back: bool
@@ -56,14 +56,14 @@ class KNXConfigEntryData(TypedDict):
     rate_limit: int
     host: str
     port: int
-    tunnel_endpoint_ia: Union[str, None]
-    user_id: Union[int, None]
-    user_password: Union[str, None]
-    device_authentication: Union[str, None]
+    tunnel_endpoint_ia: str | None
+    user_id: int | None
+    user_password: str | None
+    device_authentication: str | None
     knxkeys_filename: str
     knxkeys_password: str
-    backbone_key: Union[str, None]
-    sync_latency_tolerance: Union[int, None]
+    backbone_key: str | None
+    sync_latency_tolerance: int | None
 
 class ColorTempModes(Enum):
     ABSOLUTE: str

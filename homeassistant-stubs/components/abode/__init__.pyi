@@ -44,7 +44,7 @@ async def setup_hass_events(hass: HomeAssistant) -> None: ...
 def setup_abode_events(hass: HomeAssistant) -> None: ...
 
 class AbodeEntity(entity.Entity):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     _data: Incomplete
     _attr_should_poll: Incomplete

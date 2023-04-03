@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyoverkiz.types import StateType as OverkizStateType
 
 class OverkizButtonDescription(ButtonEntityDescription):
-    press_args: Union[OverkizStateType, None]
+    press_args: OverkizStateType | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, press_args) -> None: ...
 
 BUTTON_DESCRIPTIONS: list[OverkizButtonDescription]

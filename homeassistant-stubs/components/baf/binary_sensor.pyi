@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 class BAFBinarySensorDescriptionMixin:
-    value_fn: Callable[[Device], Union[bool, None]]
+    value_fn: Callable[[Device], bool | None]
     def __init__(self, value_fn) -> None: ...
 
 class BAFBinarySensorDescription(BinarySensorEntityDescription, BAFBinarySensorDescriptionMixin):

@@ -25,7 +25,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class BMWBaseEntity(CoordinatorEntity[BMWDataUpdateCoordinator]):
     coordinator: BMWDataUpdateCoordinator
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     vehicle: Incomplete
     _attrs: Incomplete

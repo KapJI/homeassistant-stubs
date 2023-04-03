@@ -19,7 +19,7 @@ class SleepIQEntity(Entity):
     def __init__(self, bed: SleepIQBed) -> None: ...
 
 class SleepIQBedEntity(CoordinatorEntity[_SleepIQCoordinatorT], metaclass=abc.ABCMeta):
-    _attr_icon: Incomplete
+    _attr_icon = ICON_OCCUPIED
     bed: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: _SleepIQCoordinatorT, bed: SleepIQBed) -> None: ...
@@ -28,7 +28,7 @@ class SleepIQBedEntity(CoordinatorEntity[_SleepIQCoordinatorT], metaclass=abc.AB
     def _async_update_attrs(self) -> None: ...
 
 class SleepIQSleeperEntity(SleepIQBedEntity[_SleepIQCoordinatorT], metaclass=abc.ABCMeta):
-    _attr_icon: Incomplete
+    _attr_icon = ICON_OCCUPIED
     sleeper: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

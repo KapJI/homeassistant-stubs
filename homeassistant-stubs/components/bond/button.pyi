@@ -12,8 +12,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 STEP_SIZE: int
 
 class BondButtonEntityDescriptionMixin:
-    mutually_exclusive: Union[Action, None]
-    argument: Union[int, None]
+    mutually_exclusive: Action | None
+    argument: int | None
     def __init__(self, mutually_exclusive, argument) -> None: ...
 
 class BondButtonEntityDescription(ButtonEntityDescription, BondButtonEntityDescriptionMixin):

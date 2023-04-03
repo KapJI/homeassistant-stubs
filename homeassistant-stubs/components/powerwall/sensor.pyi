@@ -32,7 +32,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class PowerWallChargeSensor(PowerWallEntity, SensorEntity):
     _attr_name: str
     _attr_state_class: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
+    _attr_native_unit_of_measurement = PERCENTAGE
     _attr_device_class: Incomplete
     @property
     def unique_id(self) -> str: ...
@@ -51,12 +51,12 @@ class PowerWallEnergySensor(PowerWallEntity, SensorEntity):
 class PowerWallBackupReserveSensor(PowerWallEntity, SensorEntity):
     _attr_name: str
     _attr_state_class: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
+    _attr_native_unit_of_measurement = PERCENTAGE
     _attr_device_class: Incomplete
     @property
     def unique_id(self) -> str: ...
     @property
-    def native_value(self) -> Union[int, None]: ...
+    def native_value(self) -> int | None: ...
 
 class PowerWallEnergyDirectionSensor(PowerWallEntity, SensorEntity):
     _attr_state_class: Incomplete

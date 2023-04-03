@@ -20,11 +20,11 @@ class AtlanticPassAPCHeatingZone(OverkizEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
-    _attr_translation_key: Incomplete
+    _attr_translation_key = DOMAIN
     temperature_device: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
-    def current_temperature(self) -> Union[float, None]: ...
+    def current_temperature(self) -> float | None: ...
     @property
     def hvac_mode(self) -> str: ...
     @property

@@ -9,7 +9,7 @@ from typing import Final
 
 PLATFORM_SCHEMA: Final[Incomplete]
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class TcpBinarySensor(TcpEntity, BinarySensorEntity):
     @property

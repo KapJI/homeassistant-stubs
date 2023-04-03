@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from rokuecp.models import Device as RokuDevice
 
 class RokuSensorEntityDescriptionMixin:
-    value_fn: Callable[[RokuDevice], Union[str, None]]
+    value_fn: Callable[[RokuDevice], str | None]
     def __init__(self, value_fn) -> None: ...
 
 class RokuSensorEntityDescription(SensorEntityDescription, RokuSensorEntityDescriptionMixin):
@@ -23,4 +23,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class RokuSensorEntity(RokuEntity, SensorEntity):
     entity_description: RokuSensorEntityDescription
     @property
-    def native_value(self) -> Union[str, None]: ...
+    def native_value(self) -> str | None: ...

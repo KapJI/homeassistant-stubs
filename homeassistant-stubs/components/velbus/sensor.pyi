@@ -10,7 +10,7 @@ from velbusaio.channels import ButtonCounter as ButtonCounter, LightSensor as Li
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class VelbusSensor(VelbusEntity, SensorEntity):
-    _channel: Union[ButtonCounter, Temperature, LightSensor, SensorNumber]
+    _channel: ButtonCounter | Temperature | LightSensor | SensorNumber
     _is_counter: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
@@ -18,6 +18,6 @@ class VelbusSensor(VelbusEntity, SensorEntity):
     _attr_icon: str
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    def __init__(self, channel: Union[ButtonCounter, Temperature, LightSensor, SensorNumber], counter: bool = ...) -> None: ...
+    def __init__(self, channel: ButtonCounter | Temperature | LightSensor | SensorNumber, counter: bool = ...) -> None: ...
     @property
-    def native_value(self) -> Union[float, int, None]: ...
+    def native_value(self) -> float | int | None: ...

@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from pytautulli import PyTautulliApiActivity as PyTautulliApiActivity, PyTautulliApiHomeStats as PyTautulliApiHomeStats, PyTautulliApiSession as PyTautulliApiSession, PyTautulliApiUser as PyTautulliApiUser
 
-def get_top_stats(home_stats: PyTautulliApiHomeStats, activity: PyTautulliApiActivity, key: str) -> Union[str, None]: ...
+def get_top_stats(home_stats: PyTautulliApiHomeStats, activity: PyTautulliApiActivity, key: str) -> str | None: ...
 
 class TautulliSensorEntityMixin:
     value_fn: Callable[[PyTautulliApiHomeStats, PyTautulliApiActivity, str], StateType]
@@ -32,7 +32,7 @@ class TautulliSessionSensorEntityDescription(SensorEntityDescription, TautulliSe
 
 SESSION_SENSOR_TYPES: tuple[TautulliSessionSensorEntityDescription, ...]
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TautulliSensor(TautulliEntity, SensorEntity):

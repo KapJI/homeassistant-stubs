@@ -73,7 +73,7 @@ class MqttCommandTemplate:
     _template_state: Incomplete
     _command_template: Incomplete
     _entity: Incomplete
-    def __init__(self, command_template: Union[template.Template, None], *, hass: Union[HomeAssistant, None] = ..., entity: Union[Entity, None] = ...) -> None: ...
+    def __init__(self, command_template: template.Template | None, *, hass: HomeAssistant | None = ..., entity: Entity | None = ...) -> None: ...
     def async_render(self, value: PublishPayloadType = ..., variables: TemplateVarsType = ...) -> PublishPayloadType: ...
 
 class MqttValueTemplate:
@@ -81,8 +81,8 @@ class MqttValueTemplate:
     _value_template: Incomplete
     _config_attributes: Incomplete
     _entity: Incomplete
-    def __init__(self, value_template: Union[template.Template, None], *, hass: Union[HomeAssistant, None] = ..., entity: Union[Entity, None] = ..., config_attributes: TemplateVarsType = ...) -> None: ...
-    def async_render_with_possible_json_value(self, payload: ReceivePayloadType, default: Union[ReceivePayloadType, PayloadSentinel] = ..., variables: TemplateVarsType = ...) -> ReceivePayloadType: ...
+    def __init__(self, value_template: template.Template | None, *, hass: HomeAssistant | None = ..., entity: Entity | None = ..., config_attributes: TemplateVarsType = ...) -> None: ...
+    def async_render_with_possible_json_value(self, payload: ReceivePayloadType, default: ReceivePayloadType | PayloadSentinel = ..., variables: TemplateVarsType = ...) -> ReceivePayloadType: ...
 
 class EntityTopicState:
     subscribe_calls: Incomplete
@@ -91,8 +91,8 @@ class EntityTopicState:
     def write_state_request(self, entity: Entity) -> None: ...
 
 class MqttData:
-    client: Union[MQTT, None]
-    config: Union[ConfigType, None]
+    client: MQTT | None
+    config: ConfigType | None
     debug_info_entities: dict[str, EntityDebugInfo]
     debug_info_triggers: dict[tuple[str, str], TriggerDebugInfo]
     device_triggers: dict[str, Trigger]

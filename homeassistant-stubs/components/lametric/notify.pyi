@@ -9,7 +9,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[LaMetricNotificationService, None]: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> LaMetricNotificationService | None: ...
 
 class LaMetricNotificationService(BaseNotificationService):
     lametric: Incomplete

@@ -10,7 +10,7 @@ from typing import Any
 PLATFORM_SCHEMA = BASE_PLATFORM_SCHEMA
 _LOGGER: Incomplete
 
-async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Union[SimplePushNotificationService, None]: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> SimplePushNotificationService | None: ...
 
 class SimplePushNotificationService(BaseNotificationService):
     _device_key: Incomplete

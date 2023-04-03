@@ -16,7 +16,7 @@ from typing import Any
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class ModbusBinarySensor(BasePlatform, RestoreEntity, BinarySensorEntity):
     _count: Incomplete
@@ -29,7 +29,7 @@ class ModbusBinarySensor(BasePlatform, RestoreEntity, BinarySensorEntity):
     _call_active: bool
     _lazy_errors: Incomplete
     _attr_available: bool
-    async def async_update(self, now: Union[datetime, None] = ...) -> None: ...
+    async def async_update(self, now: datetime | None = ...) -> None: ...
 
 class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreEntity, BinarySensorEntity):
     _attr_name: Incomplete
@@ -37,7 +37,7 @@ class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], Re
     _attr_unique_id: Incomplete
     _attr_available: bool
     _result_inx: Incomplete
-    def __init__(self, coordinator: DataUpdateCoordinator[Union[list[int], None]], idx: int, entry: dict[str, Any]) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator[list[int] | None], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_is_on: Incomplete
     async def async_added_to_hass(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

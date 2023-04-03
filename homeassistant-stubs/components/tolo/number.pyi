@@ -12,8 +12,8 @@ from tololib.message_info import SettingsInfo as SettingsInfo
 from typing import Any
 
 class ToloNumberEntityDescriptionBase:
-    getter: Callable[[SettingsInfo], Union[int, None]]
-    setter: Callable[[ToloClient, Union[int, None]], Any]
+    getter: Callable[[SettingsInfo], int | None]
+    setter: Callable[[ToloClient, int | None], Any]
     def __init__(self, getter, setter) -> None: ...
 
 class ToloNumberEntityDescription(NumberEntityDescription, ToloNumberEntityDescriptionBase):

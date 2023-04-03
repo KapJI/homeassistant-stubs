@@ -13,7 +13,7 @@ from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final
 
 class FritzEntityDescriptionMixinBinarySensor(FritzEntityDescriptionMixinBase):
-    is_on: Callable[[FritzhomeDevice], Union[bool, None]]
+    is_on: Callable[[FritzhomeDevice], bool | None]
     def __init__(self, suitable, is_on) -> None: ...
 
 class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescriptionMixinBinarySensor):
@@ -29,4 +29,4 @@ class FritzboxBinarySensor(FritzBoxDeviceEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FritzboxDataUpdateCoordinator, ain: str, entity_description: FritzBinarySensorEntityDescription) -> None: ...
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool | None: ...

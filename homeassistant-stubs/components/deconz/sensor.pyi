@@ -36,11 +36,11 @@ T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, Lig
 class DeconzSensorDescriptionMixin:
     supported_fn: Callable[[T], bool]
     update_key: str
-    value_fn: Callable[[T], Union[datetime, StateType]]
+    value_fn: Callable[[T], datetime | StateType]
     def __init__(self, supported_fn, update_key, value_fn) -> None: ...
 
 class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMixin[T]):
-    instance_check: Union[type[T], None]
+    instance_check: type[T] | None
     name_suffix: str
     old_unique_id_suffix: str
     def __init__(self, supported_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
@@ -51,16 +51,16 @@ def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: Dec
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
-    TYPE: Incomplete
+    TYPE = DOMAIN
     entity_description: DeconzSensorDescription
     unique_id_suffix: Incomplete
     _update_key: Incomplete
     _name_suffix: Incomplete
     def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzSensorDescription) -> None: ...
     @property
-    def native_value(self) -> Union[StateType, datetime]: ...
+    def native_value(self) -> StateType | datetime: ...
     @property
-    def extra_state_attributes(self) -> dict[str, Union[bool, float, int, str, None]]: ...
+    def extra_state_attributes(self) -> dict[str, bool | float | int | str | None]: ...
 
 class DeconzBatteryTracker:
     sensor: Incomplete

@@ -9,12 +9,12 @@ from typing import Any
 
 SUPPORT_FLAGS_HEATER: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: Union[DiscoveryInfoType, None] = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DemoWaterHeater(WaterHeaterEntity):
     _attr_should_poll: bool
-    _attr_supported_features: Incomplete
+    _attr_supported_features = SUPPORT_FLAGS_HEATER
     _attr_name: Incomplete
     _attr_target_temperature: Incomplete
     _attr_temperature_unit: Incomplete

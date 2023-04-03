@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 class BAFSensorDescriptionMixin:
-    value_fn: Callable[[Device], Union[int, float, str, None]]
+    value_fn: Callable[[Device], int | float | str | None]
     def __init__(self, value_fn) -> None: ...
 
 class BAFSensorDescription(SensorEntityDescription, BAFSensorDescriptionMixin):

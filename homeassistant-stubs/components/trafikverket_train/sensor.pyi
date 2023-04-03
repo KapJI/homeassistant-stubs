@@ -31,7 +31,7 @@ def next_departuredate(departure: list[str]) -> date: ...
 def _to_iso_format(traintime: datetime) -> str: ...
 
 class TrainSensor(SensorEntity):
-    _attr_icon: Incomplete
+    _attr_icon = ICON
     _attr_device_class: Incomplete
     _attr_has_entity_name: bool
     _train_api: Incomplete
@@ -41,7 +41,7 @@ class TrainSensor(SensorEntity):
     _time: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, train_api: TrafikverketTrain, name: str, from_station: StationInfo, to_station: StationInfo, weekday: list, departuretime: Union[time, None], entry_id: str) -> None: ...
+    def __init__(self, train_api: TrafikverketTrain, name: str, from_station: StationInfo, to_station: StationInfo, weekday: list, departuretime: time | None, entry_id: str) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete

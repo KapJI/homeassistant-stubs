@@ -7,7 +7,7 @@ from home_assistant_bluetooth import BluetoothServiceInfoBleak
 from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
 from typing import Final
 
-MANAGER: Union[BluetoothManager, None]
+MANAGER: BluetoothManager | None
 MONOTONIC_TIME: Final[Incomplete]
 
 class HaBluetoothConnector:

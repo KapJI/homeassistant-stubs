@@ -12,9 +12,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyunifiprotect.data import Camera as Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
 
 class NumberKeysMixin:
-    ufp_max: Union[int, float]
-    ufp_min: Union[int, float]
-    ufp_step: Union[int, float]
+    ufp_max: int | float
+    ufp_min: int | float
+    ufp_step: int | float
     def __init__(self, ufp_max, ufp_min, ufp_step) -> None: ...
 
 class ProtectNumberEntityDescription(ProtectSetableKeysMixin[T], NumberEntityDescription, NumberKeysMixin):
@@ -35,12 +35,12 @@ CHIME_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ProtectNumbers(ProtectDeviceEntity, NumberEntity):
-    device: Union[Camera, Light]
+    device: Camera | Light
     entity_description: ProtectNumberEntityDescription
     _attr_native_max_value: Incomplete
     _attr_native_min_value: Incomplete
     _attr_native_step: Incomplete
-    def __init__(self, data: ProtectData, device: Union[Camera, Light], description: ProtectNumberEntityDescription) -> None: ...
+    def __init__(self, data: ProtectData, device: Camera | Light, description: ProtectNumberEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...

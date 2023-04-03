@@ -13,12 +13,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SaunaClimate(ToloSaunaCoordinatorEntity, ClimateEntity):
     _attr_fan_modes: Incomplete
     _attr_hvac_modes: Incomplete
-    _attr_max_humidity: Incomplete
-    _attr_max_temp: Incomplete
-    _attr_min_humidity: Incomplete
-    _attr_min_temp: Incomplete
+    _attr_max_humidity = DEFAULT_MAX_HUMIDITY
+    _attr_max_temp = DEFAULT_MAX_TEMP
+    _attr_min_humidity = DEFAULT_MIN_HUMIDITY
+    _attr_min_temp = DEFAULT_MIN_TEMP
     _attr_name: str
-    _attr_precision: Incomplete
+    _attr_precision = PRECISION_WHOLE
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: int
     _attr_temperature_unit: Incomplete
@@ -35,7 +35,7 @@ class SaunaClimate(ToloSaunaCoordinatorEntity, ClimateEntity):
     @property
     def hvac_mode(self) -> HVACMode: ...
     @property
-    def hvac_action(self) -> Union[HVACAction, None]: ...
+    def hvac_action(self) -> HVACAction | None: ...
     @property
     def fan_mode(self) -> str: ...
     def set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

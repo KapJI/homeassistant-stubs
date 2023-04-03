@@ -15,7 +15,7 @@ from typing import TypeVar
 _T = TypeVar('_T')
 
 class SFRBoxBinarySensorMixin:
-    value_fn: Callable[[_T], Union[bool, None]]
+    value_fn: Callable[[_T], bool | None]
     def __init__(self, value_fn) -> None: ...
 
 class SFRBoxBinarySensorEntityDescription(BinarySensorEntityDescription, SFRBoxBinarySensorMixin[_T]):
@@ -34,4 +34,4 @@ class SFRBoxBinarySensor(CoordinatorEntity[SFRDataUpdateCoordinator[_T]], Binary
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SFRDataUpdateCoordinator[_T], description: SFRBoxBinarySensorEntityDescription, system_info: SystemInfo) -> None: ...
     @property
-    def is_on(self) -> Union[bool, None]: ...
+    def is_on(self) -> bool | None: ...

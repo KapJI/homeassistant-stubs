@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 class ElgatoEntityDescriptionMixin:
-    value_fn: Callable[[ElgatoData], Union[float, int, None]]
+    value_fn: Callable[[ElgatoData], float | int | None]
     def __init__(self, value_fn) -> None: ...
 
 class ElgatoSensorEntityDescription(SensorEntityDescription, ElgatoEntityDescriptionMixin):
@@ -26,4 +26,4 @@ class ElgatoSensorEntity(ElgatoEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ElgatoDataUpdateCoordinator, description: ElgatoSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> Union[float, int, None]: ...
+    def native_value(self) -> float | int | None: ...

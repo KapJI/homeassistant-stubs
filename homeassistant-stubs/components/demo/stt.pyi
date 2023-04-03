@@ -6,7 +6,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 
 SUPPORT_LANGUAGES: Incomplete
 
-async def async_get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> Provider: ...
+async def async_get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> Provider: ...
 
 class DemoProvider(Provider):
     @property

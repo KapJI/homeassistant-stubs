@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SENZClimate(CoordinatorEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
-    _attr_precision: Incomplete
+    _attr_precision = PRECISION_TENTHS
     _attr_hvac_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_max_temp: int

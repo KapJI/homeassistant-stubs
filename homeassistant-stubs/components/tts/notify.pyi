@@ -10,7 +10,7 @@ CONF_MEDIA_PLAYER: str
 CONF_TTS_SERVICE: str
 _LOGGER: Incomplete
 
-async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Union[DiscoveryInfoType, None] = ...) -> TTSNotificationService: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> TTSNotificationService: ...
 
 class TTSNotificationService(BaseNotificationService):
     _media_player: Incomplete

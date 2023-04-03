@@ -20,7 +20,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MetOfficeCurrentSensor(CoordinatorEntity[DataUpdateCoordinator[MetOfficeData]], SensorEntity):
-    _attr_attribution: Incomplete
+    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_device_info: Incomplete
@@ -31,6 +31,6 @@ class MetOfficeCurrentSensor(CoordinatorEntity[DataUpdateCoordinator[MetOfficeDa
     @property
     def native_value(self) -> StateType: ...
     @property
-    def icon(self) -> Union[str, None]: ...
+    def icon(self) -> str | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...

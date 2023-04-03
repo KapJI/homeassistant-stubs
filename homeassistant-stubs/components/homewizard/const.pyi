@@ -18,6 +18,6 @@ class DeviceResponseEntry:
     device: Device
     data: Data
     features: Features
-    state: Union[State, None]
-    system: Union[System, None]
+    state: State | None
+    system: System | None
     def __init__(self, device, data, features, state, system) -> None: ...

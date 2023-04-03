@@ -40,17 +40,17 @@ _PLATFORM_SCHEMA_BASE: Incomplete
 DISCOVERY_SCHEMA_TEMPLATE: Incomplete
 PLATFORM_SCHEMA_MODERN_TEMPLATE: Incomplete
 
-async def async_setup_entity_template(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+async def async_setup_entity_template(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
-    _entity_id_format: Incomplete
-    _attributes_extra_blocked: Incomplete
+    _entity_id_format = ENTITY_ID_FORMAT
+    _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
     _optimistic: bool
     _command_templates: dict[str, Callable[[PublishPayloadType, TemplateVarsType], PublishPayloadType]]
     _value_templates: dict[str, Callable[[ReceivePayloadType], ReceivePayloadType]]
-    _fixed_color_mode: Union[ColorMode, str, None]
-    _topics: dict[str, Union[str, None]]
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: Union[DiscoveryInfoType, None]) -> None: ...
+    _fixed_color_mode: ColorMode | str | None
+    _topics: dict[str, str | None]
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_max_mireds: Incomplete

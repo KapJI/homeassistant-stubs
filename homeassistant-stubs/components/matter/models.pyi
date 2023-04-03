@@ -22,12 +22,12 @@ class MatterDiscoverySchema:
     entity_description: EntityDescription
     entity_class: type
     required_attributes: tuple[type[ClusterAttributeDescriptor], ...]
-    device_type: Union[tuple[Union[type[DeviceType], DeviceType], ...], None]
-    not_device_type: Union[tuple[Union[type[DeviceType], DeviceType], ...], None]
-    vendor_id: Union[tuple[int, ...], None]
-    product_name: Union[tuple[str, ...], None]
-    endpoint_id: Union[tuple[int, ...], None]
-    absent_attributes: Union[tuple[type[ClusterAttributeDescriptor], ...], None]
-    optional_attributes: Union[tuple[type[ClusterAttributeDescriptor], ...], None]
+    device_type: tuple[type[DeviceType] | DeviceType, ...] | None
+    not_device_type: tuple[type[DeviceType] | DeviceType, ...] | None
+    vendor_id: tuple[int, ...] | None
+    product_name: tuple[str, ...] | None
+    endpoint_id: tuple[int, ...] | None
+    absent_attributes: tuple[type[ClusterAttributeDescriptor], ...] | None
+    optional_attributes: tuple[type[ClusterAttributeDescriptor], ...] | None
     allow_multi: bool
     def __init__(self, platform, entity_description, entity_class, required_attributes, device_type, not_device_type, vendor_id, product_name, endpoint_id, absent_attributes, optional_attributes, allow_multi) -> None: ...

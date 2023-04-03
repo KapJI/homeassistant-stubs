@@ -12,8 +12,8 @@ from typing import Any
 
 class LogbookConfig:
     external_events: dict[str, tuple[str, Callable[[LazyEventPartialState], dict[str, Any]]]]
-    sqlalchemy_filter: Union[Filters, None]
-    entity_filter: Union[EntityFilter, None]
+    sqlalchemy_filter: Filters | None
+    entity_filter: EntityFilter | None
     def __init__(self, external_events, sqlalchemy_filter, entity_filter) -> None: ...
 
 class LazyEventPartialState:
@@ -28,13 +28,13 @@ class LazyEventPartialState:
     context_user_id_bin: Incomplete
     context_parent_id_bin: Incomplete
     data: Incomplete
-    def __init__(self, row: Union[Row, EventAsRow], event_data_cache: dict[str, dict[str, Any]]) -> None: ...
+    def __init__(self, row: Row | EventAsRow, event_data_cache: dict[str, dict[str, Any]]) -> None: ...
     @property
-    def context_id(self) -> Union[str, None]: ...
+    def context_id(self) -> str | None: ...
     @property
-    def context_user_id(self) -> Union[str, None]: ...
+    def context_user_id(self) -> str | None: ...
     @property
-    def context_parent_id(self) -> Union[str, None]: ...
+    def context_parent_id(self) -> str | None: ...
 
 class EventAsRow:
     data: dict[str, Any]
@@ -42,16 +42,16 @@ class EventAsRow:
     context_id_bin: bytes
     time_fired_ts: float
     state_id: int
-    event_data: Union[str, None]
+    event_data: str | None
     old_format_icon: None
     event_id: None
-    entity_id: Union[str, None]
-    icon: Union[str, None]
-    context_user_id_bin: Union[bytes, None]
-    context_parent_id_bin: Union[bytes, None]
-    event_type: Union[str, None]
-    state: Union[str, None]
-    shared_data: Union[str, None]
+    entity_id: str | None
+    icon: str | None
+    context_user_id_bin: bytes | None
+    context_parent_id_bin: bytes | None
+    event_type: str | None
+    state: str | None
+    shared_data: str | None
     context_only: None
     def __init__(self, data, context, context_id_bin, time_fired_ts, state_id, event_data, old_format_icon, event_id, entity_id, icon, context_user_id_bin, context_parent_id_bin, event_type, state, shared_data, context_only) -> None: ...
 

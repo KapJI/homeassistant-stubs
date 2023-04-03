@@ -9,7 +9,7 @@ from pyisy.variables import Variable as Variable
 
 class IsyData:
     root: ISY
-    nodes: dict[Platform, list[Union[Node, Group]]]
+    nodes: dict[Platform, list[Node | Group]]
     root_nodes: dict[Platform, list[Node]]
     variables: dict[Platform, list[Variable]]
     programs: dict[Platform, list[tuple[str, Program, Program]]]
@@ -19,6 +19,6 @@ class IsyData:
     def __init__(self) -> None: ...
     @property
     def uuid(self) -> str: ...
-    def uid_base(self, node: Union[Node, Group, Variable, Program, NetworkCommand]) -> str: ...
+    def uid_base(self, node: Node | Group | Variable | Program | NetworkCommand) -> str: ...
     @property
     def unique_ids(self) -> set[tuple[Platform, str]]: ...

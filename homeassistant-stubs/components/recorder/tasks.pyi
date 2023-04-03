@@ -35,8 +35,8 @@ class ClearStatisticsTask(RecorderTask):
 
 class UpdateStatisticsMetadataTask(RecorderTask):
     statistic_id: str
-    new_statistic_id: Union[str, None, UndefinedType]
-    new_unit_of_measurement: Union[str, None, UndefinedType]
+    new_statistic_id: str | None | UndefinedType
+    new_unit_of_measurement: str | None | UndefinedType
     def run(self, instance: Recorder) -> None: ...
     def __init__(self, statistic_id, new_statistic_id, new_unit_of_measurement) -> None: ...
 
@@ -74,7 +74,7 @@ class CompileMissingStatisticsTask(RecorderTask):
 class ImportStatisticsTask(RecorderTask):
     metadata: StatisticMetaData
     statistics: Iterable[StatisticData]
-    table: type[Union[Statistics, StatisticsShortTerm]]
+    table: type[Statistics | StatisticsShortTerm]
     def run(self, instance: Recorder) -> None: ...
     def __init__(self, metadata, statistics, table) -> None: ...
 

@@ -26,6 +26,7 @@ SENSOR_TYPES: tuple[SunSensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SunSensor(SensorEntity):
+    _attr_has_entity_name: bool
     entity_description: SunSensorEntityDescription
     entity_id: Incomplete
     _attr_unique_id: Incomplete

@@ -1,6 +1,5 @@
-from . import OTBRData as OTBRData
 from .const import DEFAULT_CHANNEL as DEFAULT_CHANNEL, DOMAIN as DOMAIN
-from .util import get_allowed_channel as get_allowed_channel
+from .util import OTBRData as OTBRData, get_allowed_channel as get_allowed_channel, update_issues as update_issues
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.thread import async_add_dataset as async_add_dataset, async_get_dataset as async_get_dataset
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

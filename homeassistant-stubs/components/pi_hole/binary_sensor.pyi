@@ -25,7 +25,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class PiHoleBinarySensor(PiHoleEntity, BinarySensorEntity):
     entity_description: PiHoleBinarySensorEntityDescription
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     def __init__(self, api: Hole, coordinator: DataUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleBinarySensorEntityDescription) -> None: ...
     @property

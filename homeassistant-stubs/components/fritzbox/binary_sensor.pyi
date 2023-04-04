@@ -2,7 +2,6 @@ from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .const import CONF_COORDINATOR as CONF_COORDINATOR
 from .coordinator import FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -25,8 +24,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class FritzboxBinarySensor(FritzBoxDeviceEntity, BinarySensorEntity):
     entity_description: FritzBinarySensorEntityDescription
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: FritzboxDataUpdateCoordinator, ain: str, entity_description: FritzBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool | None: ...

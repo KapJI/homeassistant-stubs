@@ -18,9 +18,10 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class FritzBoxEntity(CoordinatorEntity[FritzboxDataUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
     ain: Incomplete
+    _attr_has_entity_name: bool
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
+    _attr_name: Incomplete
     def __init__(self, coordinator: FritzboxDataUpdateCoordinator, ain: str, entity_description: EntityDescription | None = ...) -> None: ...
     @property
     @abstractmethod

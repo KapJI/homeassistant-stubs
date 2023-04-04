@@ -26,8 +26,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class FritzButton(ButtonEntity):
     entity_description: FritzButtonDescription
+    _attr_has_entity_name: bool
     avm_wrapper: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, description: FritzButtonDescription) -> None: ...

@@ -23,7 +23,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SynoDSMSurveillanceHomeModeToggle(SynologyDSMBaseEntity[SynologyDSMSwitchUpdateCoordinator], SwitchEntity):
     entity_description: SynologyDSMSwitchEntityDescription
     _version: Incomplete
-    _attr_name: Incomplete
     def __init__(self, api: SynoApi, version: str, coordinator: SynologyDSMSwitchUpdateCoordinator, description: SynologyDSMSwitchEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

@@ -18,8 +18,8 @@ def _get_nut_device_info(data: PyNUTData) -> DeviceInfo: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NUTSensor(CoordinatorEntity[DataUpdateCoordinator[dict[str, str]]], SensorEntity):
+    _attr_has_entity_name: bool
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[dict[str, str]], sensor_description: SensorEntityDescription, data: PyNUTData, unique_id: str) -> None: ...

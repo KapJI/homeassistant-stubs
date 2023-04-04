@@ -13,15 +13,15 @@ _LOGGER: Incomplete
 
 class OneWireEntity(Entity):
     entity_description: OneWireEntityDescription
+    _attr_has_entity_name: bool
     _last_update_success: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _attr_name: Incomplete
     _device_file: Incomplete
     _state: Incomplete
     _value_raw: Incomplete
     _owproxy: Incomplete
-    def __init__(self, description: OneWireEntityDescription, device_id: str, device_info: DeviceInfo, device_file: str, name: str, owproxy: protocol._Proxy) -> None: ...
+    def __init__(self, description: OneWireEntityDescription, device_id: str, device_info: DeviceInfo, device_file: str, owproxy: protocol._Proxy) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     def _read_value(self) -> str: ...

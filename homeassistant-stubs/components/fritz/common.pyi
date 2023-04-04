@@ -206,7 +206,6 @@ class FritzBoxBaseCoordinatorEntity(update_coordinator.CoordinatorEntity):
     entity_description: FritzEntityDescription
     _attr_has_entity_name: bool
     _device_name: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_name: str, description: FritzEntityDescription) -> None: ...
     @property

@@ -10,7 +10,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class PrusaLinkJobPreviewEntity(PrusaLinkEntity, Camera):
     last_path: str
     last_image: bytes
-    _attr_name: str
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: JobUpdateCoordinator) -> None: ...
     @property

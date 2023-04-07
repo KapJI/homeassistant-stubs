@@ -1,4 +1,7 @@
+from _typeshed import Incomplete
 from homeassistant.util.ulid import bytes_to_ulid as bytes_to_ulid, ulid_to_bytes as ulid_to_bytes
+
+_LOGGER: Incomplete
 
 def ulid_to_bytes_or_none(ulid: str | None) -> bytes | None: ...
 def bytes_to_ulid_or_none(_bytes: bytes | None) -> str | None: ...

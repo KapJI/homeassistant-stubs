@@ -4,6 +4,7 @@ from bleak.backends.service import BleakGATTServiceCollection as BleakGATTServic
 
 ORIGINAL_BLEAK_SCANNER: Incomplete
 ORIGINAL_BLEAK_CLIENT: Incomplete
+ORIGINAL_BLEAK_RETRY_CONNECTOR_CLIENT_WITH_SERVICE_CACHE: Incomplete
 ORIGINAL_BLEAK_RETRY_CONNECTOR_CLIENT: Incomplete
 
 def install_multiple_bleak_catcher() -> None: ...

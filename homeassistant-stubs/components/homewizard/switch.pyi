@@ -13,7 +13,7 @@ from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
 from typing import Any
 
 class HomeWizardEntityDescriptionMixin:
-    create_fn: Callable[[DeviceResponseEntry], bool]
+    create_fn: Callable[[HWEnergyDeviceUpdateCoordinator], bool]
     available_fn: Callable[[DeviceResponseEntry], bool]
     is_on_fn: Callable[[DeviceResponseEntry], bool | None]
     set_fn: Callable[[HomeWizardEnergy, bool], Awaitable[Any]]

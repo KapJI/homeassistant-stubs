@@ -4,6 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
+from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from pyunifiprotect import ProtectApiClient
 from pyunifiprotect.data import Bootstrap as Bootstrap, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any

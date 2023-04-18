@@ -10,6 +10,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession, async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util.network import is_ip_address as is_ip_address

@@ -12,6 +12,7 @@ _LOGGER: Incomplete
 class HWEnergyDeviceUpdateCoordinator(DataUpdateCoordinator[DeviceResponseEntry]):
     api: HomeWizardEnergy
     api_disabled: bool
+    _unsupported_error: bool
     entry: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, host: str) -> None: ...
     data: Incomplete

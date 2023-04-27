@@ -6,7 +6,7 @@ from .const import DOMAIN as DOMAIN
 from .core import Recorder as Recorder
 from .db_schema import Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData
-from .util import periodic_db_cleanups as periodic_db_cleanups
+from .util import periodic_db_cleanups as periodic_db_cleanups, session_scope as session_scope
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
@@ -161,3 +161,8 @@ class EntityIDPostMigrationTask(RecorderTask):
 
 class EventIdMigrationTask(RecorderTask):
     def run(self, instance: Recorder) -> None: ...
+
+class RefreshEventTypesTask(RecorderTask):
+    event_types: list[str]
+    def run(self, instance: Recorder) -> None: ...
+    def __init__(self, event_types) -> None: ...

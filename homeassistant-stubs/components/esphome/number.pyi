@@ -1,4 +1,5 @@
-from . import EsphomeEntity as EsphomeEntity, EsphomeEnumMapper as EsphomeEnumMapper, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from aioesphomeapi import NumberInfo, NumberMode as EsphomeNumberMode, NumberState
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

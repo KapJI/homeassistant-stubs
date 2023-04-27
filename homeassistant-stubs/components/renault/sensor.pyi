@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
-from .renault_coordinator import T as T
-from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
+from .coordinator import T as T
+from .entity import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
 from .renault_hub import RenaultHub as RenaultHub
 from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from collections.abc import Callable as Callable

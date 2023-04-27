@@ -9,6 +9,8 @@ from homeassistant.util.json import json_loads_object as json_loads_object
 from pathlib import Path
 from typing import Any, Protocol
 
+BUF_SIZE: Incomplete
+
 class Backup:
     slug: str
     name: str

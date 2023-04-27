@@ -11,10 +11,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SleepIQSelectEntity(SleepIQBedEntity[SleepIQDataUpdateCoordinator], SelectEntity):
-    _attr_options: Incomplete
     preset: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
+    _attr_options: Incomplete
     def __init__(self, coordinator: SleepIQDataUpdateCoordinator, bed: SleepIQBed, preset: SleepIQPreset) -> None: ...
     _attr_current_option: Incomplete
     def _async_update_attrs(self) -> None: ...

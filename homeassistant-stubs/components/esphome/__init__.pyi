@@ -3,8 +3,10 @@ from .const import DOMAIN as DOMAIN
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entry_data import RuntimeEntryData as RuntimeEntryData
+from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
+from .voice_assistant import VoiceAssistantUDPServer as VoiceAssistantUDPServer
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient, APIIntEnum, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
+from aioesphomeapi import APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService, VoiceAssistantEventType as VoiceAssistantEventType
 from collections.abc import Callable as Callable
 from homeassistant.components import tag as tag, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -20,7 +22,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.template import Template as Template
-from typing import Any, NamedTuple, TypeVar, overload
+from typing import Any, NamedTuple, TypeVar
 
 CONF_DEVICE_NAME: str
 CONF_NOISE_PSK: str
@@ -55,18 +57,6 @@ _StateT = TypeVar('_StateT', bound=EntityState)
 
 async def platform_async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback, *, component_key: str, info_type: type[_InfoT], entity_type: type[_EntityT], state_type: type[_StateT]) -> None: ...
 def esphome_state_property(func: Callable[[_EntityT], _R]) -> Callable[[_EntityT], _R | None]: ...
-_EnumT = TypeVar('_EnumT', bound=APIIntEnum)
-_ValT = TypeVar('_ValT')
-
-class EsphomeEnumMapper:
-    _mapping: Incomplete
-    _inverse: Incomplete
-    def __init__(self, mapping: dict[_EnumT, _ValT]) -> None: ...
-    @overload
-    def from_esphome(self, value: _EnumT) -> _ValT: ...
-    @overload
-    def from_esphome(self, value: _EnumT | None) -> _ValT | None: ...
-    def from_hass(self, value: _ValT) -> _EnumT: ...
 
 ICON_SCHEMA: Incomplete
 ENTITY_CATEGORIES: EsphomeEnumMapper[EsphomeEntityCategory, EntityCategory | None]
@@ -110,3 +100,16 @@ class EsphomeEntity(Entity):
     def entity_registry_enabled_default(self) -> bool: ...
     @property
     def entity_category(self) -> EntityCategory | None: ...
+
+class EsphomeAssistEntity(Entity):
+    _attr_has_entity_name: bool
+    _attr_should_poll: bool
+    _entry_data: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, entry_data: RuntimeEntryData) -> None: ...
+    @property
+    def _device_info(self) -> EsphomeDeviceInfo: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
+    def _update(self) -> None: ...
+    async def async_added_to_hass(self) -> None: ...

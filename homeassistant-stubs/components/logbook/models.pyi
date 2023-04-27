@@ -41,18 +41,15 @@ class EventAsRow:
     context: Context
     context_id_bin: bytes
     time_fired_ts: float
-    state_id: int
+    row_id: int
     event_data: str | None
-    old_format_icon: None
-    event_id: None
     entity_id: str | None
     icon: str | None
     context_user_id_bin: bytes | None
     context_parent_id_bin: bytes | None
     event_type: str | None
     state: str | None
-    shared_data: str | None
     context_only: None
-    def __init__(self, data, context, context_id_bin, time_fired_ts, state_id, event_data, old_format_icon, event_id, entity_id, icon, context_user_id_bin, context_parent_id_bin, event_type, state, shared_data, context_only) -> None: ...
+    def __init__(self, data, context, context_id_bin, time_fired_ts, row_id, event_data, entity_id, icon, context_user_id_bin, context_parent_id_bin, event_type, state, context_only) -> None: ...
 
 def async_event_to_row(event: Event) -> EventAsRow: ...

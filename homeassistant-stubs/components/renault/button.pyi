@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .renault_entities import RenaultEntity as RenaultEntity
+from .entity import RenaultEntity as RenaultEntity
 from .renault_hub import RenaultHub as RenaultHub
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription

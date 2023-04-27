@@ -1,6 +1,6 @@
-from .const import CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN, TARGET_ANY as TARGET_ANY, _LOGGER as _LOGGER
+from .const import CONF_SERIAL as CONF_SERIAL, DEFAULT_ATTEMPTS as DEFAULT_ATTEMPTS, DOMAIN as DOMAIN, OVERALL_TIMEOUT as OVERALL_TIMEOUT, TARGET_ANY as TARGET_ANY, _LOGGER as _LOGGER
 from .discovery import async_discover_devices as async_discover_devices
-from .util import async_entry_is_legacy as async_entry_is_legacy, async_execute_lifx as async_execute_lifx, async_get_legacy_entry as async_get_legacy_entry, formatted_serial as formatted_serial, lifx_features as lifx_features, mac_matches_serial_number as mac_matches_serial_number
+from .util import async_entry_is_legacy as async_entry_is_legacy, async_get_legacy_entry as async_get_legacy_entry, async_multi_execute_lifx_with_retries as async_multi_execute_lifx_with_retries, formatted_serial as formatted_serial, lifx_features as lifx_features, mac_matches_serial_number as mac_matches_serial_number
 from _typeshed import Incomplete
 from aiolifx.aiolifx import Light as Light
 from homeassistant import config_entries as config_entries

@@ -1,8 +1,16 @@
 import ssl
 from _typeshed import Incomplete
+from homeassistant.backports.enum import StrEnum as StrEnum
 
-def create_no_verify_ssl_context() -> ssl.SSLContext: ...
-def client_context() -> ssl.SSLContext: ...
+class SSLCipherList(StrEnum):
+    PYTHON_DEFAULT: str
+    INTERMEDIATE: str
+    MODERN: str
+
+SSL_CIPHER_LISTS: Incomplete
+
+def create_no_verify_ssl_context(ssl_cipher_list: SSLCipherList = ...) -> ssl.SSLContext: ...
+def client_context(ssl_cipher_list: SSLCipherList = ...) -> ssl.SSLContext: ...
 
 _DEFAULT_SSL_CONTEXT: Incomplete
 _DEFAULT_NO_VERIFY_SSL_CONTEXT: Incomplete

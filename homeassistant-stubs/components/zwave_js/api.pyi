@@ -1,7 +1,7 @@
 import homeassistant.helpers.device_registry as dr
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
 from .const import CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, USER_AGENT as USER_AGENT
-from .helpers import async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, get_device_id as get_device_id, update_data_collection_preference as update_data_collection_preference
+from .helpers import async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, async_update_data_collection_preference as async_update_data_collection_preference, get_device_id as get_device_id
 from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Callable as Callable

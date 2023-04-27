@@ -1,7 +1,7 @@
 import asyncio
 import paho.mqtt.client as mqtt
-from .const import ATTR_TOPIC as ATTR_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, MQTT_CONNECTED as MQTT_CONNECTED, MQTT_DISCONNECTED as MQTT_DISCONNECTED, PROTOCOL_31 as PROTOCOL_31, PROTOCOL_5 as PROTOCOL_5, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
-from .models import AsyncMessageCallbackType as AsyncMessageCallbackType, MessageCallbackType as MessageCallbackType, PublishMessage as PublishMessage, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
+from .const import CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_HEADERS as DEFAULT_WS_HEADERS, DEFAULT_WS_PATH as DEFAULT_WS_PATH, MQTT_CONNECTED as MQTT_CONNECTED, MQTT_DISCONNECTED as MQTT_DISCONNECTED, PROTOCOL_31 as PROTOCOL_31, PROTOCOL_5 as PROTOCOL_5, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
+from .models import AsyncMessageCallbackType as AsyncMessageCallbackType, MessageCallbackType as MessageCallbackType, MqttData as MqttData, PublishMessage as PublishMessage, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .util import get_file_path as get_file_path, get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Iterable
@@ -66,7 +66,7 @@ class EnsureJobAfterCooldown:
 class MQTT:
     _mqttc: mqtt.Client
     _last_subscribe: float
-    _mqtt_data: Incomplete
+    _mqtt_data: MqttData
     hass: Incomplete
     config_entry: Incomplete
     conf: Incomplete
@@ -82,6 +82,7 @@ class MQTT:
     _max_qos: Incomplete
     _pending_subscriptions: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, conf: ConfigType) -> None: ...
+    def start(self, mqtt_data: MqttData) -> None: ...
     @property
     def subscriptions(self) -> list[Subscription]: ...
     def cleanup(self) -> None: ...

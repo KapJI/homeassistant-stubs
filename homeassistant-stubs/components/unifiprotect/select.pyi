@@ -1,4 +1,4 @@
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_MESSAGE as ATTR_MESSAGE, DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN, TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
+from .const import DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN, TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
 from .data import ProtectData as ProtectData
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity, async_all_device_entities as async_all_device_entities
 from .models import PermRequired as PermRequired, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
@@ -8,12 +8,10 @@ from collections.abc import Callable as Callable
 from enum import Enum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
-from homeassistant.util.dt import utcnow as utcnow
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyunifiprotect.api import ProtectApiClient as ProtectApiClient
 from pyunifiprotect.data import Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor, Viewer
 from typing import Any, Final
@@ -32,8 +30,6 @@ LIGHT_MODE_TO_SETTINGS: Incomplete
 MOTION_MODE_TO_LIGHT_MODE: Incomplete
 DEVICE_RECORDING_MODES: Incomplete
 DEVICE_CLASS_LCD_MESSAGE: Final[str]
-SERVICE_SET_DOORBELL_MESSAGE: str
-SET_DOORBELL_LCD_MESSAGE_SCHEMA: Incomplete
 
 class ProtectSelectEntityDescription(ProtectSetableKeysMixin[T], SelectEntityDescription):
     ufp_options: list[dict[str, Any]] | None
@@ -72,4 +68,3 @@ class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     @property
     def current_option(self) -> str: ...
     async def async_select_option(self, option: str) -> None: ...
-    async def async_set_doorbell_message(self, message: str, duration: str) -> None: ...

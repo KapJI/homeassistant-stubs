@@ -4,12 +4,12 @@ from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STATE_VALUE_TEMPLATE as CONF_STATE_VALUE_TEMPLATE, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
 from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
-from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .models import MessageCallbackType as MessageCallbackType, MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
 from .util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import fan as fan
-from homeassistant.components.fan import ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PRESET_MODE as ATTR_PRESET_MODE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
+from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PRESET_MODE as ATTR_PRESET_MODE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_STATE as CONF_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -19,6 +19,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
 
+CONF_DIRECTION_STATE_TOPIC: str
+CONF_DIRECTION_COMMAND_TOPIC: str
+CONF_DIRECTION_VALUE_TEMPLATE: str
+CONF_DIRECTION_COMMAND_TEMPLATE: str
 CONF_PERCENTAGE_STATE_TOPIC: str
 CONF_PERCENTAGE_COMMAND_TOPIC: str
 CONF_PERCENTAGE_VALUE_TEMPLATE: str
@@ -69,6 +73,7 @@ class MqttFan(MqttEntity, FanEntity):
     _feature_preset_mode: bool
     _topic: dict[str, Any]
     _optimistic: bool
+    _optimistic_direction: bool
     _optimistic_oscillation: bool
     _optimistic_percentage: bool
     _optimistic_preset_mode: bool
@@ -85,6 +90,7 @@ class MqttFan(MqttEntity, FanEntity):
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_is_on: bool
     _attr_oscillating: bool
+    _attr_current_direction: Incomplete
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
@@ -97,3 +103,4 @@ class MqttFan(MqttEntity, FanEntity):
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     async def async_oscillate(self, oscillating: bool) -> None: ...
+    async def async_set_direction(self, direction: str) -> None: ...

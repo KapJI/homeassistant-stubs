@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
+from .entity import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
 from .renault_hub import RenaultHub as RenaultHub
 from collections.abc import Callable as Callable
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription

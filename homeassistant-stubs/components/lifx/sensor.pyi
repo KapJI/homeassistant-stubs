@@ -1,6 +1,6 @@
 from .const import ATTR_RSSI as ATTR_RSSI, DOMAIN as DOMAIN
-from .coordinator import LIFXSensorUpdateCoordinator as LIFXSensorUpdateCoordinator, LIFXUpdateCoordinator as LIFXUpdateCoordinator
-from .entity import LIFXSensorEntity as LIFXSensorEntity
+from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
+from .entity import LIFXEntity as LIFXEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,12 +13,12 @@ RSSI_SENSOR: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class LIFXRssiSensor(LIFXSensorEntity, SensorEntity):
+class LIFXRssiSensor(LIFXEntity, SensorEntity):
     _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    def __init__(self, coordinator: LIFXSensorUpdateCoordinator, description: SensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: LIFXUpdateCoordinator, description: SensorEntityDescription) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...

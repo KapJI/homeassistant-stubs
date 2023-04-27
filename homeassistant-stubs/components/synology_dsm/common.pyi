@@ -6,6 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from synology_dsm.api.dsm.network import SynoDSMNetwork as SynoDSMNetwork
+from synology_dsm.api.photos import SynoPhotos as SynoPhotos
 
 LOGGER: Incomplete
 
@@ -18,6 +19,7 @@ class SynoApi:
     network: Incomplete
     security: Incomplete
     storage: Incomplete
+    photos: Incomplete
     surveillance_station: Incomplete
     system: Incomplete
     upgrade: Incomplete
@@ -26,6 +28,7 @@ class SynoApi:
     _with_information: bool
     _with_security: bool
     _with_storage: bool
+    _with_photos: bool
     _with_surveillance_station: bool
     _with_system: bool
     _with_upgrade: bool

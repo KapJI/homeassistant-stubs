@@ -91,8 +91,8 @@ class EntityTopicState:
     def write_state_request(self, entity: Entity) -> None: ...
 
 class MqttData:
-    client: MQTT | None
-    config: ConfigType | None
+    client: MQTT
+    config: ConfigType
     debug_info_entities: dict[str, EntityDebugInfo]
     debug_info_triggers: dict[tuple[str, str], TriggerDebugInfo]
     device_triggers: dict[str, Trigger]

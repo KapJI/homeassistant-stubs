@@ -1,12 +1,12 @@
 from .entity import Entity as Entity
 from .event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result
 from .script import Script as Script, _VarsType as _VarsType
-from .template import Template as Template, TemplateStateFromEntityId as TemplateStateFromEntityId, result_as_boolean as result_as_boolean
+from .template import Template as Template, TemplateStateFromEntityId as TemplateStateFromEntityId, render_complex as render_complex, result_as_boolean as result_as_boolean
 from .typing import ConfigType as ConfigType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA, SensorEntity as SensorEntity
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Context as Context, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from typing import Any
@@ -15,6 +15,7 @@ _LOGGER: Incomplete
 CONF_AVAILABILITY: str
 CONF_ATTRIBUTES: str
 CONF_PICTURE: str
+CONF_TO_ATTRIBUTE: Incomplete
 TEMPLATE_ENTITY_BASE_SCHEMA: Incomplete
 TEMPLATE_SENSOR_BASE_SCHEMA: Incomplete
 
@@ -63,3 +64,35 @@ class TemplateSensor(TemplateEntity, SensorEntity):
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
     def __init__(self, hass: HomeAssistant, *, config: dict[str, Any], fallback_name: str | None, unique_id: str | None) -> None: ...
+
+class TriggerBaseEntity(Entity):
+    domain: str
+    extra_template_keys: tuple | None
+    extra_template_keys_complex: tuple | None
+    _unique_id: str | None
+    hass: Incomplete
+    _config: Incomplete
+    _static_rendered: Incomplete
+    _to_render_simple: Incomplete
+    _to_render_complex: Incomplete
+    _rendered: Incomplete
+    _parse_result: Incomplete
+    def __init__(self, hass: HomeAssistant, config: dict) -> None: ...
+    @property
+    def name(self) -> str | None: ...
+    @property
+    def unique_id(self) -> str | None: ...
+    @property
+    def device_class(self): ...
+    @property
+    def icon(self) -> str | None: ...
+    @property
+    def entity_picture(self) -> str | None: ...
+    @property
+    def available(self) -> bool: ...
+    @property
+    def extra_state_attributes(self) -> dict[str, Any] | None: ...
+    async def async_added_to_hass(self) -> None: ...
+    def _set_unique_id(self, unique_id: str | None) -> None: ...
+    def restore_attributes(self, last_state: State) -> None: ...
+    def _render_templates(self, variables: dict[str, Any]) -> None: ...

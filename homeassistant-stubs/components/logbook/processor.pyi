@@ -8,8 +8,8 @@ from collections.abc import Callable as Callable, Generator, Sequence
 from datetime import datetime as dt
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.filters import Filters as Filters
-from homeassistant.components.recorder.models import bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, extract_metadata_ids as extract_metadata_ids, process_datetime_to_timestamp as process_datetime_to_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat
-from homeassistant.components.recorder.util import session_scope as session_scope
+from homeassistant.components.recorder.models import bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, extract_event_type_ids as extract_event_type_ids, extract_metadata_ids as extract_metadata_ids, process_datetime_to_timestamp as process_datetime_to_timestamp, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat
+from homeassistant.components.recorder.util import execute_stmt_lambda_element as execute_stmt_lambda_element, session_scope as session_scope
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_NAME as ATTR_NAME, ATTR_SERVICE as ATTR_SERVICE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY
 from homeassistant.core import HomeAssistant as HomeAssistant, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er
@@ -17,14 +17,17 @@ from sqlalchemy.engine import Result as Result
 from sqlalchemy.engine.row import Row as Row
 from typing import Any
 
+_LOGGER: Incomplete
+
 class LogbookRun:
-    context_lookup: ContextLookup
+    context_lookup: dict[bytes | None, Row | EventAsRow | None]
     external_events: dict[str, tuple[str, Callable[[LazyEventPartialState], dict[str, Any]]]]
     event_cache: EventCache
     entity_name_cache: EntityNameCache
     include_entity_name: bool
     format_time: Callable[[Row | EventAsRow], Any]
-    def __init__(self, context_lookup, external_events, event_cache, entity_name_cache, include_entity_name, format_time) -> None: ...
+    memoize_new_contexts: bool
+    def __init__(self, context_lookup, external_events, event_cache, entity_name_cache, include_entity_name, format_time, memoize_new_contexts) -> None: ...
 
 class EventProcessor:
     hass: Incomplete
@@ -45,15 +48,6 @@ class EventProcessor:
 
 def _humanify(rows: Generator[EventAsRow, None, None] | Sequence[Row] | Result, ent_reg: er.EntityRegistry, logbook_run: LogbookRun, context_augmenter: ContextAugmenter) -> Generator[dict[str, Any], None, None]: ...
 
-class ContextLookup:
-    hass: Incomplete
-    _memorize_new: bool
-    _lookup: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
-    def memorize(self, row: Row | EventAsRow) -> bytes | None: ...
-    def clear(self) -> None: ...
-    def get(self, context_id_bin: bytes) -> Row | EventAsRow | None: ...
-
 class ContextAugmenter:
     context_lookup: Incomplete
     entity_name_cache: Incomplete
@@ -61,8 +55,8 @@ class ContextAugmenter:
     event_cache: Incomplete
     include_entity_name: Incomplete
     def __init__(self, logbook_run: LogbookRun) -> None: ...
-    def _get_context_row(self, context_id: bytes | None, row: Row | EventAsRow) -> Row | EventAsRow | None: ...
-    def augment(self, data: dict[str, Any], row: Row | EventAsRow, context_id: bytes | None) -> None: ...
+    def _get_context_row(self, context_id_bin: bytes | None, row: Row | EventAsRow) -> Row | EventAsRow | None: ...
+    def augment(self, data: dict[str, Any], row: Row | EventAsRow, context_id_bin: bytes | None) -> None: ...
 
 def _rows_match(row: Row | EventAsRow, other_row: Row | EventAsRow) -> bool: ...
 def _row_time_fired_isoformat(row: Row | EventAsRow) -> str: ...

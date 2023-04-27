@@ -1,8 +1,7 @@
 from ..const import ALWAYS_CONTINUOUS_DOMAINS as ALWAYS_CONTINUOUS_DOMAINS, CONDITIONALLY_CONTINUOUS_DOMAINS as CONDITIONALLY_CONTINUOUS_DOMAINS
 from _typeshed import Incomplete
-from homeassistant.components.recorder.db_schema import EVENTS_CONTEXT_ID_BIN_INDEX as EVENTS_CONTEXT_ID_BIN_INDEX, EventData as EventData, EventTypes as EventTypes, Events as Events, OLD_FORMAT_ATTRS_JSON as OLD_FORMAT_ATTRS_JSON, OLD_STATE as OLD_STATE, SHARED_ATTRS_JSON as SHARED_ATTRS_JSON, STATES_CONTEXT_ID_BIN_INDEX as STATES_CONTEXT_ID_BIN_INDEX, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta
+from homeassistant.components.recorder.db_schema import EVENTS_CONTEXT_ID_BIN_INDEX as EVENTS_CONTEXT_ID_BIN_INDEX, EventData as EventData, EventTypes as EventTypes, Events as Events, OLD_FORMAT_ATTRS_JSON as OLD_FORMAT_ATTRS_JSON, OLD_STATE as OLD_STATE, SHARED_ATTRS_JSON as SHARED_ATTRS_JSON, SHARED_DATA_OR_LEGACY_EVENT_DATA as SHARED_DATA_OR_LEGACY_EVENT_DATA, STATES_CONTEXT_ID_BIN_INDEX as STATES_CONTEXT_ID_BIN_INDEX, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta
 from homeassistant.components.recorder.filters import like_domain_matchers as like_domain_matchers
-from homeassistant.components.recorder.queries import select_event_type_ids as select_event_type_ids
 from sqlalchemy.sql.elements import BooleanClauseList as BooleanClauseList, ColumnElement as ColumnElement
 from sqlalchemy.sql.selectable import Select as Select
 from typing import Final
@@ -11,6 +10,7 @@ CONDITIONALLY_CONTINUOUS_ENTITY_ID_LIKE: Incomplete
 ALWAYS_CONTINUOUS_ENTITY_ID_LIKE: Incomplete
 UNIT_OF_MEASUREMENT_JSON: str
 UNIT_OF_MEASUREMENT_JSON_LIKE: Incomplete
+ICON_OR_OLD_FORMAT_ICON_JSON: Incomplete
 PSEUDO_EVENT_STATE_CHANGED: Final[Incomplete]
 EVENT_COLUMNS: Incomplete
 STATE_COLUMNS: Incomplete
@@ -21,10 +21,10 @@ EVENT_ROWS_NO_STATES: Incomplete
 CONTEXT_ONLY: Incomplete
 NOT_CONTEXT_ONLY: Incomplete
 
-def select_events_context_id_subquery(start_day: float, end_day: float, event_types: tuple[str, ...]) -> Select: ...
+def select_events_context_id_subquery(start_day: float, end_day: float, event_type_ids: tuple[int, ...]) -> Select: ...
 def select_events_context_only() -> Select: ...
 def select_states_context_only() -> Select: ...
-def select_events_without_states(start_day: float, end_day: float, event_types: tuple[str, ...]) -> Select: ...
+def select_events_without_states(start_day: float, end_day: float, event_type_ids: tuple[int, ...]) -> Select: ...
 def select_states() -> Select: ...
 def apply_states_filters(sel: Select, start_day: float, end_day: float) -> Select: ...
 def _missing_state_matcher() -> ColumnElement[bool]: ...

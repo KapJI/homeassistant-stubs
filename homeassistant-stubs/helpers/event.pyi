@@ -131,7 +131,7 @@ def async_call_later(hass: HomeAssistant, delay: float | timedelta, action: Hass
 
 call_later: Incomplete
 
-def async_track_time_interval(hass: HomeAssistant, action: Callable[[datetime], Coroutine[Any, Any, None] | None], interval: timedelta, *, name: str | None = ...) -> CALLBACK_TYPE: ...
+def async_track_time_interval(hass: HomeAssistant, action: Callable[[datetime], Coroutine[Any, Any, None] | None], interval: timedelta, *, name: str | None = ..., cancel_on_shutdown: bool | None = ...) -> CALLBACK_TYPE: ...
 
 track_time_interval: Incomplete
 

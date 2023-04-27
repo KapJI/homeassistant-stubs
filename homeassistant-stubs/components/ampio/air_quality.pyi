@@ -1,4 +1,4 @@
-from .const import ATTRIBUTION as ATTRIBUTION, CONF_STATION_ID as CONF_STATION_ID, SCAN_INTERVAL as SCAN_INTERVAL
+from .const import CONF_STATION_ID as CONF_STATION_ID, SCAN_INTERVAL as SCAN_INTERVAL
 from _typeshed import Incomplete
 from asmog import AmpioSmog
 from homeassistant.components.air_quality import AirQualityEntity as AirQualityEntity
@@ -16,6 +16,7 @@ PLATFORM_SCHEMA: Final[Incomplete]
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class AmpioSmogQuality(AirQualityEntity):
+    _attr_attribution: str
     _ampio: Incomplete
     _station_id: Incomplete
     _name: Incomplete
@@ -28,8 +29,6 @@ class AmpioSmogQuality(AirQualityEntity):
     def particulate_matter_2_5(self) -> str | None: ...
     @property
     def particulate_matter_10(self) -> str | None: ...
-    @property
-    def attribution(self) -> str: ...
     async def async_update(self) -> None: ...
 
 class AmpioSmogMapData:

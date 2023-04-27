@@ -13,7 +13,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
-from homeassistant.requirements import async_get_integration_with_requirements as async_get_integration_with_requirements
+from homeassistant.requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
 from typing import Any, Literal, TypeAlias, overload
 
 DeviceAutomationPlatformType: TypeAlias

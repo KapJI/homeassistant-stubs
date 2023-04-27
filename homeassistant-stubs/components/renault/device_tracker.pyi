@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .renault_entities import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
+from .entity import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDescription as RenaultDataEntityDescription
 from .renault_hub import RenaultHub as RenaultHub
 from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

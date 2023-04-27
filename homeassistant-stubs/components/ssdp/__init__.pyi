@@ -54,27 +54,18 @@ ATTR_HA_MATCHING_DOMAINS: str
 PRIMARY_MATCH_KEYS: Incomplete
 _LOGGER: Incomplete
 
-class _HaServiceDescription:
-    x_homeassistant_matching_domains: set[str]
-    def __init__(self, x_homeassistant_matching_domains) -> None: ...
-
-class _SsdpServiceDescription:
+class SsdpServiceInfo(BaseServiceInfo):
     ssdp_usn: str
     ssdp_st: str
+    upnp: Mapping[str, Any]
     ssdp_location: str | None
     ssdp_nt: str | None
     ssdp_udn: str | None
     ssdp_ext: str | None
     ssdp_server: str | None
     ssdp_headers: Mapping[str, Any]
-    def __init__(self, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers) -> None: ...
-
-class _UpnpServiceDescription:
-    upnp: Mapping[str, Any]
-    def __init__(self, upnp) -> None: ...
-
-class SsdpServiceInfo(_HaServiceDescription, _SsdpServiceDescription, _UpnpServiceDescription, BaseServiceInfo):
-    def __init__(self, upnp, ssdp_usn, ssdp_st, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
+    x_homeassistant_matching_domains: set[str]
+    def __init__(self, ssdp_usn, ssdp_st, upnp, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
 
 SsdpChange: Incomplete
 SsdpCallback = Callable[[SsdpServiceInfo, SsdpChange], Awaitable]

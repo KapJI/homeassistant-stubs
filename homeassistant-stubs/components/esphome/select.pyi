@@ -1,5 +1,8 @@
-from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from . import EsphomeAssistEntity as EsphomeAssistEntity, EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from .domain_data import DomainData as DomainData
+from .entry_data import RuntimeEntryData as RuntimeEntryData
 from aioesphomeapi import SelectInfo, SelectState
+from homeassistant.components.assist_pipeline.select import AssistPipelineSelect as AssistPipelineSelect
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,3 +16,6 @@ class EsphomeSelect(EsphomeEntity[SelectInfo, SelectState], SelectEntity):
     @property
     def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...
+
+class EsphomeAssistPipelineSelect(EsphomeAssistEntity, AssistPipelineSelect):
+    def __init__(self, hass: HomeAssistant, entry_data: RuntimeEntryData) -> None: ...

@@ -1,10 +1,8 @@
-from .frame import report as report
 from .storage import Store as Store
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Container, Iterable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import slugify as slugify
 from typing import Any
 
@@ -51,5 +49,4 @@ class AreaRegistry:
 
 def async_get(hass: HomeAssistant) -> AreaRegistry: ...
 async def async_load(hass: HomeAssistant) -> None: ...
-async def async_get_registry(hass: HomeAssistant) -> AreaRegistry: ...
 def normalize_area_name(area_name: str) -> str: ...

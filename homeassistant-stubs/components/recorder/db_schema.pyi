@@ -3,14 +3,15 @@ from .models import StatisticData as StatisticData, StatisticDataTimestamp as St
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
-from homeassistant.const import MAX_LENGTH_EVENT_CONTEXT_ID as MAX_LENGTH_EVENT_CONTEXT_ID, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_EVENT_ORIGIN as MAX_LENGTH_EVENT_ORIGIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
+from homeassistant.const import MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import Context as Context, Event as Event, EventOrigin as EventOrigin, State as State, split_entity_id as split_entity_id
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP, json_bytes as json_bytes, json_bytes_strip_null as json_bytes_strip_null
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads, json_loads_object as json_loads_object
-from sqlalchemy import ColumnElement as ColumnElement, JSON
+from sqlalchemy import CHAR, ColumnElement as ColumnElement, DateTime, JSON, LargeBinary
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.interfaces import Dialect as Dialect
 from sqlalchemy.orm import DeclarativeBase, Mapped as Mapped
+from sqlalchemy.types import TypeDecorator as TypeDecorator
 from typing import Any
 from typing_extensions import Self
 
@@ -48,14 +49,28 @@ MYSQL_DEFAULT_CHARSET: str
 MYSQL_ENGINE: str
 _DEFAULT_TABLE_ARGS: Incomplete
 
+class UnusedDateTime(DateTime): ...
+class Unused(CHAR): ...
+
+def compile_char_zero(type_: TypeDecorator, compiler: Any, **kw: Any) -> str: ...
+def compile_char_one(type_: TypeDecorator, compiler: Any, **kw: Any) -> str: ...
+
 class FAST_PYSQLITE_DATETIME(sqlite.DATETIME):
     def result_processor(self, dialect, coltype): ...
 
+class NativeLargeBinary(LargeBinary):
+    def result_processor(self, dialect, coltype) -> None: ...
+
+UINT_32_TYPE: Incomplete
 JSON_VARIANT_CAST: Incomplete
 JSONB_VARIANT_CAST: Incomplete
 DATETIME_TYPE: Incomplete
 DOUBLE_TYPE: Incomplete
+UNUSED_LEGACY_COLUMN: Incomplete
+UNUSED_LEGACY_DATETIME_COLUMN: Incomplete
+UNUSED_LEGACY_INTEGER_COLUMN: Incomplete
 DOUBLE_PRECISION_TYPE_SQL: str
+CONTEXT_BINARY_TYPE: Incomplete
 TIMESTAMP_TYPE = DOUBLE_TYPE
 
 class JSONLiteral(JSON):
@@ -238,3 +253,5 @@ ENTITY_ID_IN_EVENT: ColumnElement
 OLD_ENTITY_ID_IN_EVENT: ColumnElement
 DEVICE_ID_IN_EVENT: ColumnElement
 OLD_STATE: Incomplete
+SHARED_ATTR_OR_LEGACY_ATTRIBUTES: Incomplete
+SHARED_DATA_OR_LEGACY_EVENT_DATA: Incomplete

@@ -50,7 +50,8 @@ class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):
     property_key: set[str | int | None] | None
     property_key_name: set[str | None] | None
     type: set[str] | None
-    def __init__(self, command_class, endpoint, property, property_name, property_key, property_key_name, type) -> None: ...
+    any_available_states: set[tuple[int, str]] | None
+    def __init__(self, command_class, endpoint, property, property_name, property_key, property_key_name, type, any_available_states) -> None: ...
 
 class ZWaveDiscoverySchema:
     platform: Platform

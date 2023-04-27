@@ -72,6 +72,14 @@ class AreaSelector(Selector[AreaSelectorConfig]):
     def __init__(self, config: AreaSelectorConfig | None = ...) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
+class AssistPipelineSelectorConfig(TypedDict): ...
+
+class AssistPipelineSelector(Selector[AssistPipelineSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: AssistPipelineSelectorConfig) -> None: ...
+    def __call__(self, data: Any) -> str: ...
+
 class AttributeSelectorConfig(TypedDict):
     entity_id: Required[str]
     hide_attributes: list[str]
@@ -184,6 +192,17 @@ class IconSelector(Selector[IconSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: IconSelectorConfig | None = ...) -> None: ...
+    def __call__(self, data: Any) -> str: ...
+
+class LanguageSelectorConfig(TypedDict):
+    languages: list[str]
+    native_name: bool
+    no_sort: bool
+
+class LanguageSelector(Selector[LanguageSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: LanguageSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
 class LocationSelectorConfig(TypedDict):

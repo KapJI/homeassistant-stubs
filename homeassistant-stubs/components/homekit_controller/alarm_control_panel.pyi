@@ -10,17 +10,15 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-ICON: str
 CURRENT_STATE_MAP: Incomplete
 TARGET_STATE_MAP: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HomeKitAlarmControlPanelEntity(HomeKitEntity, AlarmControlPanelEntity):
+    _attr_icon: str
     _attr_supported_features: Incomplete
     def get_characteristic_types(self) -> list[str]: ...
-    @property
-    def icon(self) -> str: ...
     @property
     def state(self) -> str: ...
     async def async_alarm_disarm(self, code: str | None = ...) -> None: ...

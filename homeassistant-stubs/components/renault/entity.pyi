@@ -1,4 +1,4 @@
-from .renault_coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator, T as T
+from .coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator, T as T
 from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from _typeshed import Incomplete
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription

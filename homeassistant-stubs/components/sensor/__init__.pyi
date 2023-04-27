@@ -37,7 +37,6 @@ class SensorEntity(Entity):
     _attr_suggested_display_precision: int | None
     _attr_suggested_unit_of_measurement: str | None
     _attr_unit_of_measurement: None
-    _invalid_numeric_value_reported: bool
     _invalid_state_class_reported: bool
     _invalid_unit_of_measurement_reported: bool
     _last_reset_reported: bool

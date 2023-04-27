@@ -14,6 +14,8 @@ from homeassistant.helpers.template_entity import TemplateEntity as TemplateEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
+_LOGGER: Incomplete
+
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class RestBinarySensor(RestEntity, TemplateEntity, BinarySensorEntity):

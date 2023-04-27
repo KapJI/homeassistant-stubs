@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .renault_coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator
+from .coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from datetime import datetime, timedelta

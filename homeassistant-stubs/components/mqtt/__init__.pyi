@@ -1,9 +1,9 @@
 from . import debug_info as debug_info, discovery as discovery
 from .client import MQTT as MQTT, async_publish as async_publish, async_subscribe as async_subscribe, publish as publish, subscribe as subscribe
-from .config_integration import CONFIG_SCHEMA_ENTRY as CONFIG_SCHEMA_ENTRY, DEFAULT_VALUES as DEFAULT_VALUES, PLATFORM_CONFIG_SCHEMA_BASE as PLATFORM_CONFIG_SCHEMA_BASE
-from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TOPIC as CONF_TOPIC, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DATA_MQTT as DATA_MQTT, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_RETAIN as DEFAULT_RETAIN, DOMAIN as DOMAIN, MQTT_CONNECTED as MQTT_CONNECTED, MQTT_DISCONNECTED as MQTT_DISCONNECTED, PLATFORMS as PLATFORMS, RELOADABLE_PLATFORMS as RELOADABLE_PLATFORMS
-from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled, valid_publish_topic as valid_publish_topic, valid_qos_schema as valid_qos_schema, valid_subscribe_topic as valid_subscribe_topic
+from .config_integration import PLATFORM_CONFIG_SCHEMA_BASE as PLATFORM_CONFIG_SCHEMA_BASE
+from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TOPIC as CONF_TOPIC, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DATA_MQTT as DATA_MQTT, DATA_MQTT_AVAILABLE as DATA_MQTT_AVAILABLE, DEFAULT_DISCOVERY as DEFAULT_DISCOVERY, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_PREFIX as DEFAULT_PREFIX, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_RETAIN as DEFAULT_RETAIN, DOMAIN as DOMAIN, MQTT_CONNECTED as MQTT_CONNECTED, MQTT_DISCONNECTED as MQTT_DISCONNECTED, PLATFORMS as PLATFORMS, RELOADABLE_PLATFORMS as RELOADABLE_PLATFORMS
+from .models import MqttCommandTemplate as MqttCommandTemplate, MqttData as MqttData, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, async_wait_for_mqtt_client as async_wait_for_mqtt_client, get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled, valid_publish_topic as valid_publish_topic, valid_qos_schema as valid_qos_schema, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.components import websocket_api as websocket_api
@@ -23,7 +23,6 @@ from typing import Any
 _LOGGER: Incomplete
 SERVICE_PUBLISH: str
 SERVICE_DUMP: str
-MANDATORY_DEFAULT_VALUES: Incomplete
 ATTR_TOPIC_TEMPLATE: str
 ATTR_PAYLOAD_TEMPLATE: str
 MAX_RECONNECT_WAIT: int
@@ -34,13 +33,7 @@ CONFIG_ENTRY_CONFIG_KEYS: Incomplete
 CONFIG_SCHEMA: Incomplete
 MQTT_PUBLISH_SCHEMA: Incomplete
 
-async def _async_setup_discovery(hass: HomeAssistant, conf: ConfigType, config_entry: ConfigEntry) -> None: ...
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-def _filter_entry_config(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-async def _async_auto_mend_config(hass: HomeAssistant, entry: ConfigEntry, yaml_config: dict[str, Any]) -> None: ...
-def _merge_extended_config(entry: ConfigEntry, conf: ConfigType) -> dict[str, Any]: ...
 async def _async_config_entry_updated(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-async def async_fetch_config(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, Any] | None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_reload_manual_mqtt_items(hass: HomeAssistant) -> None: ...
 def websocket_mqtt_info(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

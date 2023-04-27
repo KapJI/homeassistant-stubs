@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

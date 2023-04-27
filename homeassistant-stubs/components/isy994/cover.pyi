@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, UOM_8_BIT_RANGE as UOM_8_BIT_RANGE, UOM_BARRIER as UOM_BARRIER, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, UOM_8_BIT_RANGE as UOM_8_BIT_RANGE, _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature

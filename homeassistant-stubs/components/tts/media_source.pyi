@@ -1,10 +1,12 @@
-from . import SpeechManager as SpeechManager
-from .const import DOMAIN as DOMAIN
+from . import SpeechManager as SpeechManager, TextToSpeechEntity as TextToSpeechEntity
+from .const import DATA_TTS_MANAGER as DATA_TTS_MANAGER, DOMAIN as DOMAIN
+from .helper import get_engine_instance as get_engine_instance
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.network import get_url as get_url
 from typing import TypedDict
 
@@ -26,4 +28,4 @@ class TTSMediaSource(MediaSource):
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
-    def _provider_item(self, provider_domain: str, params: str | None = ...) -> BrowseMediaSource: ...
+    def _engine_item(self, engine: str, params: str | None = ...) -> BrowseMediaSource: ...

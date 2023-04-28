@@ -18,7 +18,7 @@ class EsphomeBinarySensor(EsphomeEntity[BinarySensorInfo, BinarySensorState], Bi
     @property
     def available(self) -> bool: ...
 
-class EsphomeCallActiveBinarySensor(EsphomeAssistEntity, BinarySensorEntity):
+class EsphomeAssistInProgressBinarySensor(EsphomeAssistEntity, BinarySensorEntity):
     entity_description: Incomplete
     @property
     def is_on(self) -> bool | None: ...

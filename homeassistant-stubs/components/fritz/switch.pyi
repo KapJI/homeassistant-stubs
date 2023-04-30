@@ -2,7 +2,7 @@ from .common import AvmWrapper as AvmWrapper, FritzBoxBaseEntity as FritzBoxBase
 from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK, WIFI_STANDARD as WIFI_STANDARD
 from _typeshed import Incomplete
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
-from homeassistant.components.switch import SwitchEntity as SwitchEntity
+from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
 from typing import Any
 
@@ -21,6 +22,23 @@ async def _async_wifi_entities_list(avm_wrapper: AvmWrapper, device_friendly_nam
 async def _async_profile_entities_list(avm_wrapper: AvmWrapper, data_fritz: FritzData) -> list[FritzBoxProfileSwitch]: ...
 async def async_all_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str, data_fritz: FritzData, local_ip: str) -> list[Entity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class FritzBoxBaseCoordinatorSwitch(CoordinatorEntity, SwitchEntity):
+    coordinator: AvmWrapper
+    entity_description: SwitchEntityDescription
+    _attr_has_entity_name: bool
+    _device_name: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, avm_wrapper: AvmWrapper, device_name: str, description: SwitchEntityDescription) -> None: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
+    @property
+    def data(self) -> dict[str, Any]: ...
+    @property
+    def available(self) -> bool: ...
+    async def _async_handle_turn_on_off(self, turn_on: bool) -> None: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class FritzBoxBaseSwitch(FritzBoxBaseEntity):
     _attr_is_on: bool | None
@@ -63,17 +81,17 @@ class FritzBoxPortSwitch(FritzBoxBaseSwitch, SwitchEntity):
     async def _async_fetch_update(self) -> None: ...
     async def _async_switch_on_off_executor(self, turn_on: bool) -> bool: ...
 
-class FritzBoxDeflectionSwitch(FritzBoxBaseSwitch, SwitchEntity):
-    _avm_wrapper: Incomplete
-    dict_of_deflection: Incomplete
-    _attributes: Incomplete
-    id: Incomplete
+class FritzBoxDeflectionSwitch(FritzBoxBaseCoordinatorSwitch):
     _attr_entity_category: Incomplete
-    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, dict_of_deflection: Any) -> None: ...
-    _is_available: bool
-    _attr_is_on: Incomplete
-    async def _async_fetch_update(self) -> None: ...
-    async def _async_switch_on_off_executor(self, turn_on: bool) -> None: ...
+    deflection_id: Incomplete
+    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, deflection_id: int) -> None: ...
+    @property
+    def data(self) -> dict[str, Any]: ...
+    @property
+    def extra_state_attributes(self) -> dict[str, str]: ...
+    @property
+    def is_on(self) -> bool | None: ...
+    async def _async_handle_turn_on_off(self, turn_on: bool) -> None: ...
 
 class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
     _attr_icon: str

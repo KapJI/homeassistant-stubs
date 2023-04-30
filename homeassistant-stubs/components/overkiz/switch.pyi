@@ -1,11 +1,11 @@
 from . import HomeAssistantOverkizData as HomeAssistantOverkizData
-from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES
+from .const import DOMAIN as DOMAIN
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyoverkiz.types import StateType as OverkizStateType

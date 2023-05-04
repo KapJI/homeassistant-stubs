@@ -17,7 +17,9 @@ from github.Repository import Repository
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
 BLACKLISTED_VERSIONS = [
-    "2021.10.0b8",  # doesn't exist on PyPI
+    # Doesn't exist on PyPI
+    "2021.10.0b8",
+    "2023.5.0b9",
 ]
 
 

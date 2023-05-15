@@ -1,7 +1,7 @@
 from .const import ATTR_REMAINING as ATTR_REMAINING, DEFAULT_ATTEMPTS as DEFAULT_ATTEMPTS, DOMAIN as DOMAIN, IDENTIFY_WAVEFORM as IDENTIFY_WAVEFORM, MAX_ATTEMPTS_PER_UPDATE_REQUEST_MESSAGE as MAX_ATTEMPTS_PER_UPDATE_REQUEST_MESSAGE, MAX_UPDATE_TIME as MAX_UPDATE_TIME, MESSAGE_RETRIES as MESSAGE_RETRIES, MESSAGE_TIMEOUT as MESSAGE_TIMEOUT, OVERALL_TIMEOUT as OVERALL_TIMEOUT, TARGET_ANY as TARGET_ANY, UNAVAILABLE_GRACE as UNAVAILABLE_GRACE, _LOGGER as _LOGGER
 from .util import async_execute_lifx as async_execute_lifx, async_multi_execute_lifx_with_retries as async_multi_execute_lifx_with_retries, get_real_mac_addr as get_real_mac_addr, infrared_brightness_option_to_value as infrared_brightness_option_to_value, infrared_brightness_value_to_option as infrared_brightness_value_to_option, lifx_features as lifx_features
 from _typeshed import Incomplete
-from aiolifx.aiolifx import Light as Light
+from aiolifx.aiolifx import Light as Light, Message as Message
 from aiolifx.connection import LIFXConnection as LIFXConnection
 from collections.abc import Callable as Callable
 from enum import IntEnum
@@ -15,6 +15,7 @@ from typing import Any
 LIGHT_UPDATE_INTERVAL: int
 REQUEST_REFRESH_DELAY: float
 LIFX_IDENTIFY_DELAY: float
+ZONES_PER_COLOR_UPDATE_REQUEST: int
 RSSI_DBM_FW: Incomplete
 
 class FirmwareEffect(IntEnum):

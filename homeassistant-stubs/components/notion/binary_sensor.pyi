@@ -5,12 +5,12 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Literal
 
 class NotionBinarySensorDescriptionMixin:
-    on_state: Literal['alarm', 'critical', 'leak', 'not_missing', 'open']
+    on_state: Literal['alarm', 'leak', 'low', 'not_missing', 'open']
     def __init__(self, on_state) -> None: ...
 
 class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionBinarySensorDescriptionMixin, NotionEntityDescriptionMixin):
@@ -22,5 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class NotionBinarySensor(NotionEntity, BinarySensorEntity):
     entity_description: NotionBinarySensorDescription
-    _attr_is_on: Incomplete
-    def _async_update_from_latest_data(self) -> None: ...
+    @property
+    def is_on(self) -> bool | None: ...

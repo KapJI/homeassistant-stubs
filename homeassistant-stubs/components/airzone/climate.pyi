@@ -2,7 +2,7 @@ from .const import API_TEMPERATURE_STEP as API_TEMPERATURE_STEP, DOMAIN as DOMAI
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
-from aioairzone.common import OperationMode
+from aioairzone.common import OperationAction, OperationMode
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
@@ -11,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Final
 
-HVAC_ACTION_LIB_TO_HASS: Final[dict[OperationMode, HVACAction]]
+HVAC_ACTION_LIB_TO_HASS: Final[dict[OperationAction, HVACAction]]
 HVAC_MODE_LIB_TO_HASS: Final[dict[OperationMode, HVACMode]]
 HVAC_MODE_HASS_TO_LIB: Final[dict[HVACMode, OperationMode]]
 
@@ -34,7 +34,7 @@ class AirzoneClimate(AirzoneZoneEntity, ClimateEntity):
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete
-    _attr_hvac_mode: Incomplete
     _attr_hvac_action: Incomplete
+    _attr_hvac_mode: Incomplete
     _attr_target_temperature: Incomplete
     def _async_update_attrs(self) -> None: ...

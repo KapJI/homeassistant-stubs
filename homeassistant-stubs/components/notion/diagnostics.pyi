@@ -12,6 +12,7 @@ CONF_DEVICE_KEY: str
 CONF_HARDWARE_ID: str
 CONF_LAST_BRIDGE_HARDWARE_ID: str
 CONF_TITLE: str
+CONF_USER_ID: str
 TO_REDACT: Incomplete
 
 async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, Any]: ...

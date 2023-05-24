@@ -1,5 +1,5 @@
 from . import DOMAIN as DOMAIN
-from .const import CONF_ALLOWED_REGIONS as CONF_ALLOWED_REGIONS, CONF_READ_ONLY as CONF_READ_ONLY, CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN
+from .const import CONF_ALLOWED_REGIONS as CONF_ALLOWED_REGIONS, CONF_GCID as CONF_GCID, CONF_READ_ONLY as CONF_READ_ONLY, CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries, core as core, exceptions as exceptions

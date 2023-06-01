@@ -9,6 +9,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Any
 
 class AirzoneEntity(CoordinatorEntity[AirzoneUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
+    @property
+    def available(self) -> bool: ...
     @abstractmethod
     def get_airzone_value(self, key: str) -> Any: ...
 

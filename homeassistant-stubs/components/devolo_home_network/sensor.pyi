@@ -1,5 +1,5 @@
 from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_WIFI_CLIENTS as CONNECTED_WIFI_CLIENTS, DOMAIN as DOMAIN, NEIGHBORING_WIFI_NETWORKS as NEIGHBORING_WIFI_NETWORKS
-from .entity import DevoloEntity as DevoloEntity
+from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from collections.abc import Callable as Callable
 from devolo_plc_api.device import Device as Device
 from devolo_plc_api.device_api import ConnectedStationInfo, NeighborAPInfo
@@ -25,7 +25,7 @@ SENSOR_TYPES: dict[str, DevoloSensorEntityDescription[Any]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DevoloSensorEntity(DevoloEntity[_DataT], SensorEntity):
+class DevoloSensorEntity(DevoloCoordinatorEntity[_DataT], SensorEntity):
     entity_description: DevoloSensorEntityDescription[_DataT]
     def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator[_DataT], description: DevoloSensorEntityDescription[_DataT], device: Device) -> None: ...
     @property

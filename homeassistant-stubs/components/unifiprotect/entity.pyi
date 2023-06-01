@@ -2,7 +2,7 @@ from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_EVENT_SCORE as ATTR_EVEN
 from .data import ProtectData as ProtectData
 from .models import PermRequired as PermRequired, ProtectEventMixin as ProtectEventMixin, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin
 from _typeshed import Incomplete
-from collections.abc import Sequence
+from collections.abc import Callable as Callable, Sequence
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
 from pyunifiprotect.data import Event as Event, ModelType, NVR as NVR, ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
@@ -17,6 +17,7 @@ class ProtectDeviceEntity(Entity):
     device: ProtectAdoptableDeviceModel
     _attr_should_poll: bool
     data: Incomplete
+    _async_get_ufp_enabled: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     entity_description: Incomplete

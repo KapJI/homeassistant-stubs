@@ -53,6 +53,7 @@ ATTR_UPNP_PRESENTATION_URL: str
 ATTR_HA_MATCHING_DOMAINS: str
 PRIMARY_MATCH_KEYS: Incomplete
 _LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 class SsdpServiceInfo(BaseServiceInfo):
     ssdp_usn: str

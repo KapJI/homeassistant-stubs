@@ -15,6 +15,7 @@ STORAGE_VERSION: int
 TAGS: str
 CREATE_FIELDS: Incomplete
 UPDATE_FIELDS: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 class TagIDExistsError(HomeAssistantError):
     item_id: Incomplete

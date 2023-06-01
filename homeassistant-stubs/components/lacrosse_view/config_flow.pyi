@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
@@ -10,6 +10,7 @@ from lacrosse_view import Location as Location
 from typing import Any
 
 STEP_USER_DATA_SCHEMA: Incomplete
+_LOGGER: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> list[Location]: ...
 

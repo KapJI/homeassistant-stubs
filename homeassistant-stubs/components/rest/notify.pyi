@@ -1,10 +1,11 @@
+import httpx
 from _typeshed import Incomplete
 from homeassistant.components.notify import ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, ATTR_TITLE_DEFAULT as ATTR_TITLE_DEFAULT, BaseNotificationService as BaseNotificationService, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.const import CONF_AUTHENTICATION as CONF_AUTHENTICATION, CONF_HEADERS as CONF_HEADERS, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_PARAMS as CONF_PARAMS, CONF_PASSWORD as CONF_PASSWORD, CONF_RESOURCE as CONF_RESOURCE, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, HTTP_BASIC_AUTHENTICATION as HTTP_BASIC_AUTHENTICATION, HTTP_DIGEST_AUTHENTICATION as HTTP_DIGEST_AUTHENTICATION
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from requests.auth import AuthBase
 from typing import Any
 
 CONF_DATA: str
@@ -17,7 +18,7 @@ DEFAULT_METHOD: str
 DEFAULT_VERIFY_SSL: bool
 _LOGGER: Incomplete
 
-def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> RestNotificationService: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> RestNotificationService: ...
 
 class RestNotificationService(BaseNotificationService):
     _resource: Incomplete
@@ -32,5 +33,5 @@ class RestNotificationService(BaseNotificationService):
     _data_template: Incomplete
     _auth: Incomplete
     _verify_ssl: Incomplete
-    def __init__(self, hass: HomeAssistant, resource: str, method: str, headers: dict[str, str] | None, params: dict[str, str] | None, message_param_name: str, title_param_name: str | None, target_param_name: str | None, data: dict[str, Any] | None, data_template: dict[str, Any] | None, auth: AuthBase | None, verify_ssl: bool) -> None: ...
-    def send_message(self, message: str = ..., **kwargs: Any) -> None: ...
+    def __init__(self, hass: HomeAssistant, resource: str, method: str, headers: dict[str, str] | None, params: dict[str, str] | None, message_param_name: str, title_param_name: str | None, target_param_name: str | None, data: dict[str, Any] | None, data_template: dict[str, Any] | None, auth: httpx.Auth | None, verify_ssl: bool) -> None: ...
+    async def async_send_message(self, message: str = ..., **kwargs: Any) -> None: ...

@@ -3,9 +3,9 @@ from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
 from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttAvailability as MqttAvailability, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttAvailability as MqttAvailability, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from .util import get_mqtt_data as get_mqtt_data, valid_subscribe_topic as valid_subscribe_topic
+from .util import get_mqtt_data as get_mqtt_data
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -26,12 +26,8 @@ CONF_SUGGESTED_DISPLAY_PRECISION: str
 MQTT_SENSOR_ATTRIBUTES_BLOCKED: Incomplete
 DEFAULT_NAME: str
 DEFAULT_FORCE_UPDATE: bool
-
-def validate_options(conf: ConfigType) -> ConfigType: ...
-
 _PLATFORM_SCHEMA_BASE: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
-PLATFORM_SCHEMA: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

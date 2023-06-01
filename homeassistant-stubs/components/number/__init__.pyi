@@ -10,14 +10,15 @@ class NumberEntityDescription(EntityDescription):
     device_class: NumberDeviceClass | None
     max_value: None
     min_value: None
+    mode: NumberMode | None
     native_max_value: float | None
     native_min_value: float | None
-    native_unit_of_measurement: str | None
     native_step: float | None
+    native_unit_of_measurement: str | None
     step: None
     unit_of_measurement: None
     def __post_init__(self) -> None: ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 class NumberEntity(Entity):
     entity_description: NumberEntityDescription
@@ -32,8 +33,8 @@ class NumberEntity(Entity):
     _attr_native_max_value: float
     _attr_native_min_value: float
     _attr_native_step: float
-    _attr_native_value: float | None
     _attr_native_unit_of_measurement: str | None
+    _attr_native_value: float | None
     _deprecated_number_entity_reported: bool
     _number_option_unit_of_measurement: str | None
     def __init_subclass__(cls, **kwargs: Any) -> None: ...

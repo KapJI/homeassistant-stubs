@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DEGREE as DEGREE
+from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
@@ -27,6 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SunSensor(SensorEntity):
     _attr_has_entity_name: bool
+    _attr_entity_category: Incomplete
     entity_description: SunSensorEntityDescription
     entity_id: Incomplete
     _attr_unique_id: Incomplete

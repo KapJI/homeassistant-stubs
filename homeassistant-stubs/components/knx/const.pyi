@@ -1,8 +1,10 @@
 from _typeshed import Incomplete
+from collections.abc import Awaitable, Callable
 from enum import Enum
 from homeassistant.components.climate import HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
 from homeassistant.const import Platform as Platform
 from typing import Final, TypedDict
+from xknx.telegram import Telegram
 
 DOMAIN: Final[str]
 KNX_ADDRESS: Final[str]
@@ -28,6 +30,9 @@ CONF_KNX_STATE_UPDATER: Final[str]
 CONF_KNX_DEFAULT_STATE_UPDATER: Final[bool]
 CONF_KNX_DEFAULT_RATE_LIMIT: Final[int]
 DEFAULT_ROUTING_IA: Final[str]
+CONF_KNX_TELEGRAM_LOG_SIZE: Final[str]
+TELEGRAM_LOG_DEFAULT: Final[int]
+TELEGRAM_LOG_MAX: Final[int]
 CONST_KNX_STORAGE_KEY: Final[str]
 CONF_KNX_KNXKEY_FILENAME: Final[str]
 CONF_KNX_KNXKEY_PASSWORD: Final[str]
@@ -44,6 +49,8 @@ DATA_KNX_CONFIG: Final[str]
 DATA_HASS_CONFIG: Final[str]
 ATTR_COUNTER: Final[str]
 ATTR_SOURCE: Final[str]
+AsyncMessageCallbackType = Callable[[Telegram], Awaitable[None]]
+MessageCallbackType = Callable[[Telegram], None]
 
 class KNXConfigEntryData(TypedDict):
     connection_type: str
@@ -52,8 +59,6 @@ class KNXConfigEntryData(TypedDict):
     multicast_group: str
     multicast_port: int
     route_back: bool
-    state_updater: bool
-    rate_limit: int
     host: str
     port: int
     tunnel_endpoint_ia: str | None
@@ -64,6 +69,20 @@ class KNXConfigEntryData(TypedDict):
     knxkeys_password: str
     backbone_key: str | None
     sync_latency_tolerance: int | None
+    state_updater: bool
+    rate_limit: int
+    telegram_log_size: int
+
+class KNXBusMonitorMessage(TypedDict):
+    destination_address: str
+    destination_text: str | None
+    payload: str
+    type: str
+    value: str | None
+    source_address: str
+    source_text: str | None
+    direction: str
+    timestamp: str
 
 class ColorTempModes(Enum):
     ABSOLUTE: str

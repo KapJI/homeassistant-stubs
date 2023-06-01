@@ -1,51 +1,41 @@
 from .bridge import SamsungTVBridge as SamsungTVBridge, SamsungTVWSBridge as SamsungTVWSBridge
-from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_ON_ACTION as CONF_ON_ACTION, CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .entity import SamsungTVEntity as SamsungTVEntity
 from .triggers.turn_on import async_get_turn_on_trigger as async_get_turn_on_trigger
 from _typeshed import Incomplete
 from async_upnp_client.client import UpnpDevice as UpnpDevice, UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from collections.abc import Sequence
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_REAUTH as SOURCE_REAUTH
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import entity_component as entity_component
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.script import Script as Script
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
 from typing import Any
 
 SOURCES: Incomplete
 SUPPORT_SAMSUNGTV: Incomplete
-SCAN_INTERVAL_PLUS_OFF_TIME: Incomplete
 APP_LIST_DELAY: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SamsungTVDevice(MediaPlayerEntity):
+class SamsungTVDevice(SamsungTVEntity, MediaPlayerEntity):
     _attr_source_list: list[str]
     _config_entry: Incomplete
     _host: Incomplete
-    _mac: Incomplete
     _ssdp_rendering_control_location: Incomplete
     _turn_on: Incomplete
-    _on_script: Incomplete
     _playing: bool
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
     _attr_is_volume_muted: bool
     _attr_device_class: Incomplete
     _app_list: Incomplete
     _app_list_event: Incomplete
     _attr_supported_features: Incomplete
-    _attr_device_info: Incomplete
-    _end_of_power_off: Incomplete
-    _bridge: Incomplete
     _auth_failed: bool
     _dmr_device: Incomplete
     _upnp_server: Incomplete
-    def __init__(self, bridge: SamsungTVBridge, config_entry: ConfigEntry, on_script: Script | None) -> None: ...
+    def __init__(self, bridge: SamsungTVBridge, config_entry: ConfigEntry) -> None: ...
     @property
     def supported_features(self) -> MediaPlayerEntityFeature: ...
     def _update_sources(self) -> None: ...
@@ -63,7 +53,6 @@ class SamsungTVDevice(MediaPlayerEntity):
     def _on_upnp_event(self, service: UpnpService, state_variables: Sequence[UpnpStateVariable]) -> None: ...
     async def _async_launch_app(self, app_id: str) -> None: ...
     async def _async_send_keys(self, keys: list[str]) -> None: ...
-    def _power_off_in_progress(self) -> bool: ...
     @property
     def available(self) -> bool: ...
     async def async_added_to_hass(self) -> None: ...

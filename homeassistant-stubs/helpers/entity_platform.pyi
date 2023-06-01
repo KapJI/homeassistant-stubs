@@ -5,6 +5,7 @@ from .device_registry import DeviceRegistry as DeviceRegistry
 from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
 from .event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
+from .issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Iterable
@@ -53,6 +54,7 @@ class EntityPlatform:
     _async_cancel_retry_setup: Incomplete
     _process_updates: Incomplete
     parallel_updates: Incomplete
+    _update_in_sequence: bool
     parallel_updates_created: Incomplete
     def __init__(self, *, hass: HomeAssistant, logger: Logger, domain: str, platform_name: str, platform: EntityPlatformModule | None, scan_interval: timedelta, entity_namespace: str | None) -> None: ...
     def __repr__(self) -> str: ...

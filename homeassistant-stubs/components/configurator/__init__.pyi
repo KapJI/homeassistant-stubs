@@ -25,6 +25,7 @@ SERVICE_CONFIGURE: str
 STATE_CONFIGURE: str
 STATE_CONFIGURED: str
 ConfiguratorCallback = Callable[[list[dict[str, str]]], None]
+CONFIG_SCHEMA: Incomplete
 
 def async_request_config(hass: HomeAssistant, name: str, callback: ConfiguratorCallback | None = ..., description: str | None = ..., description_image: str | None = ..., submit_caption: str | None = ..., fields: list[dict[str, str]] | None = ..., link_name: str | None = ..., link_url: str | None = ..., entity_picture: str | None = ...) -> str: ...
 def request_config(hass: HomeAssistant, *args: Any, **kwargs: Any) -> str: ...

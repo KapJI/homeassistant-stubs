@@ -15,6 +15,7 @@ DOMAIN: str
 ONE_MEGABYTE: Incomplete
 MAX_SIZE: Incomplete
 TEMP_DIR_NAME: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 def process_uploaded_file(hass: HomeAssistant, file_id: str) -> Iterator[Path]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

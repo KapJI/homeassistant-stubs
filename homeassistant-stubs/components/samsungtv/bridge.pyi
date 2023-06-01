@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_METHOD as CONF_METHOD, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TIMEOUT as CONF_TIMEOUT, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
+from homeassistant.helpers import entity_component as entity_component
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from samsungctl import Remote
@@ -14,6 +15,7 @@ from samsungtvws.encrypted.command import SamsungTVEncryptedCommand
 from samsungtvws.encrypted.remote import SamsungTVEncryptedWSAsyncRemote
 from typing import Any, TypeVar
 
+SCAN_INTERVAL_PLUS_OFF_TIME: Incomplete
 KEY_PRESS_TIMEOUT: float
 ENCRYPTED_MODEL_USES_POWER_OFF: Incomplete
 ENCRYPTED_MODEL_USES_POWER: Incomplete
@@ -37,6 +39,7 @@ class SamsungTVBridge(ABC, metaclass=abc.ABCMeta):
     _reauth_callback: Incomplete
     _update_config_entry: Incomplete
     _app_list_callback: Incomplete
+    _end_of_power_off: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: int | None = ...) -> None: ...
     def register_reauth_callback(self, func: CALLBACK_TYPE) -> None: ...
     def register_update_config_entry_callback(self, func: Callable[[Mapping[str, Any]], None]) -> None: ...
@@ -50,6 +53,8 @@ class SamsungTVBridge(ABC, metaclass=abc.ABCMeta):
     async def async_is_on(self) -> bool: ...
     @abstractmethod
     async def async_send_keys(self, keys: list[str]) -> None: ...
+    @property
+    def power_off_in_progress(self) -> bool: ...
     async def async_power_off(self) -> None: ...
     @abstractmethod
     async def _async_send_power_off(self) -> None: ...

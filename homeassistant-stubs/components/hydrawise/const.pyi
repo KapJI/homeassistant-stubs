@@ -1,0 +1,11 @@
+from _typeshed import Incomplete
+
+LOGGER: Incomplete
+ALLOWED_WATERING_TIME: Incomplete
+CONF_WATERING_TIME: str
+NOTIFICATION_ID: str
+NOTIFICATION_TITLE: str
+DOMAIN: str
+DEFAULT_WATERING_TIME: int
+SCAN_INTERVAL: Incomplete
+SIGNAL_UPDATE_HYDRAWISE: str

@@ -4,7 +4,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import integration_platform as integration_platform
 from homeassistant.helpers.json import save_json as save_json
-from homeassistant.util import dt as dt
 from homeassistant.util.json import json_loads_object as json_loads_object
 from pathlib import Path
 from typing import Any, Protocol

@@ -59,9 +59,9 @@ CONF_VIBRATION: str
 CONF_NO_VIBRATION: str
 CONF_OPENED: str
 CONF_NOT_OPENED: str
+ENTITY_TRIGGERS: Incomplete
 TURNED_ON: Incomplete
 TURNED_OFF: Incomplete
-ENTITY_TRIGGERS: Incomplete
 TRIGGER_SCHEMA: Incomplete
 
 async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: TriggerActionType, trigger_info: TriggerInfo) -> CALLBACK_TYPE: ...

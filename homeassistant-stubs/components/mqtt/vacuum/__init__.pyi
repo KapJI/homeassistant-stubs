@@ -1,4 +1,4 @@
-from ..mixins import async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
+from ..mixins import async_setup_entry_helper as async_setup_entry_helper
 from .schema import CONF_SCHEMA as CONF_SCHEMA, LEGACY as LEGACY, MQTT_VACUUM_SCHEMA as MQTT_VACUUM_SCHEMA, STATE as STATE
 from .schema_legacy import DISCOVERY_SCHEMA_LEGACY as DISCOVERY_SCHEMA_LEGACY, PLATFORM_SCHEMA_LEGACY_MODERN as PLATFORM_SCHEMA_LEGACY_MODERN, async_setup_entity_legacy as async_setup_entity_legacy
 from .schema_state import DISCOVERY_SCHEMA_STATE as DISCOVERY_SCHEMA_STATE, PLATFORM_SCHEMA_STATE_MODERN as PLATFORM_SCHEMA_STATE_MODERN, async_setup_entity_state as async_setup_entity_state
@@ -13,7 +13,6 @@ def validate_mqtt_vacuum_discovery(config_value: ConfigType) -> ConfigType: ...
 def validate_mqtt_vacuum_modern(config_value: ConfigType) -> ConfigType: ...
 
 DISCOVERY_SCHEMA: Incomplete
-PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

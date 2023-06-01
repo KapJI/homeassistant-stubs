@@ -23,6 +23,11 @@ class ZwaveSelectEntity(ZWaveBaseEntity, SelectEntity):
     def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...
 
+class ZWaveConfigParameterSelectEntity(ZwaveSelectEntity):
+    _attr_entity_category: Incomplete
+    _attr_name: Incomplete
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+
 class ZwaveDefaultToneSelectEntity(ZWaveBaseEntity, SelectEntity):
     _attr_entity_category: Incomplete
     _tones_value: Incomplete

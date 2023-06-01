@@ -6,7 +6,6 @@ from homeassistant.const import UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.location import find_coordinates as find_coordinates
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from homeassistant.util import dt as dt
 from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter
 from typing import Any
 

@@ -1,8 +1,8 @@
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_DEVICES as CONF_DEVICES, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_ZONE as CONF_ZONE, UnitOfLength as UnitOfLength
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.event import track_state_change as track_state_change
+from homeassistant.helpers.event import async_track_state_change as async_track_state_change
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.location import distance as distance
 from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter
@@ -23,8 +23,8 @@ UNITS: Incomplete
 ZONE_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 
-def setup_proximity_component(hass: HomeAssistant, name: str, config: ConfigType) -> bool: ...
-def setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+def async_setup_proximity_component(hass: HomeAssistant, name: str, config: ConfigType) -> bool: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class Proximity(Entity):
     hass: Incomplete
@@ -46,4 +46,4 @@ class Proximity(Entity):
     def unit_of_measurement(self) -> str: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...
-    def check_proximity_state_change(self, entity: str, old_state: State | None, new_state: State | None) -> None: ...
+    def async_check_proximity_state_change(self, entity: str, old_state: State | None, new_state: State | None) -> None: ...

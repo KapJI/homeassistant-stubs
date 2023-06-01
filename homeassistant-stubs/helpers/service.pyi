@@ -20,6 +20,7 @@ _EntityT = TypeVar('_EntityT', bound=Entity)
 CONF_SERVICE_ENTITY_ID: str
 _LOGGER: Incomplete
 SERVICE_DESCRIPTION_CACHE: str
+ALL_SERVICE_DESCRIPTIONS_CACHE: str
 
 def _base_components() -> dict[str, ModuleType]: ...
 def _validate_option_or_feature(option_or_feature: str, label: str) -> Any: ...

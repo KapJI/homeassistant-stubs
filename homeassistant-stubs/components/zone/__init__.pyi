@@ -27,6 +27,7 @@ CONFIG_SCHEMA: Incomplete
 RELOAD_SERVICE_SCHEMA: Incomplete
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
+ENTITY_ID_SORTER: Incomplete
 
 def async_active_zone(hass: HomeAssistant, latitude: float, longitude: float, radius: int = ...) -> State | None: ...
 def in_zone(zone: State, latitude: float, longitude: float, radius: float = ...) -> bool: ...

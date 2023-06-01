@@ -3,7 +3,7 @@ from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_QOS as CONF_QOS, CONF_TOPIC as CONF_TOPIC
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
 from .models import ReceiveMessage as ReceiveMessage
 from .util import valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
@@ -21,7 +21,6 @@ DEFAULT_NAME: str
 MQTT_CAMERA_ATTRIBUTES_BLOCKED: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
-PLATFORM_SCHEMA: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

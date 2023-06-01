@@ -14,13 +14,12 @@ from collections.abc import Callable as Callable, Coroutine
 from functools import partial
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CONFIGURATION_URL as ATTR_CONFIGURATION_URL, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_DEVICE as CONF_DEVICE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ICON as CONF_ICON, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA, Entity as Entity, async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.event import async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
+from homeassistant.helpers.event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.json import json_loads as json_loads
 from typing import Any, Protocol
@@ -57,8 +56,6 @@ def validate_device_has_at_least_one_identifier(value: ConfigType) -> ConfigType
 
 MQTT_ENTITY_DEVICE_INFO_SCHEMA: Incomplete
 MQTT_ENTITY_COMMON_SCHEMA: Incomplete
-
-def warn_for_legacy_schema(domain: str) -> Callable[[ConfigType], ConfigType]: ...
 
 class SetupEntity(Protocol):
     async def __call__(self, hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...

@@ -1,4 +1,5 @@
+from _typeshed import Incomplete
+
 DOMAIN: str
 ACCOUNT_HASH: str
-COORDINATORS: str
-DEVICES: str
+UPDATE_INTERVAL: Incomplete

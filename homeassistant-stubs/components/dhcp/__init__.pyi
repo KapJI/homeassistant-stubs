@@ -1,5 +1,6 @@
 import abc
 import re
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Iterable
@@ -19,6 +20,7 @@ from homeassistant.util.network import is_invalid as is_invalid, is_link_local a
 from scapy.packet import Packet as Packet
 from typing import Any, Final
 
+CONFIG_SCHEMA: Incomplete
 FILTER: str
 REQUESTED_ADDR: str
 MESSAGE_TYPE: str

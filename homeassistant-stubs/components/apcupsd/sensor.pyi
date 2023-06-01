@@ -9,7 +9,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 _LOGGER: Incomplete
 SENSORS: dict[str, SensorEntityDescription]
-SPECIFIC_UNITS: Incomplete
 INFERRED_UNITS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

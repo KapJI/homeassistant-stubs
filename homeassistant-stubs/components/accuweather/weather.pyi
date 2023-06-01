@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
-from typing import Any
 
 PARALLEL_UPDATES: int
 
@@ -41,5 +40,3 @@ class AccuWeatherEntity(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], Wea
     def native_visibility(self) -> float: ...
     @property
     def forecast(self) -> list[Forecast] | None: ...
-    @staticmethod
-    def _calc_precipitation(day: dict[str, Any]) -> float: ...

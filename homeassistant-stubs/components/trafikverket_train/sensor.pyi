@@ -9,7 +9,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util import dt as dt
 from pytrafikverket import TrafikverketTrain as TrafikverketTrain
 from pytrafikverket.trafikverket_train import StationInfo as StationInfo, TrainStop as TrainStop
 

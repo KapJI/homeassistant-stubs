@@ -1,3 +1,4 @@
+from .const import NEVER_TIME as NEVER_TIME, POLLING_FALLBACK_SECONDS as POLLING_FALLBACK_SECONDS
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from datetime import timedelta
@@ -7,8 +8,6 @@ from typing import TypeVar
 
 _LOGGER: Incomplete
 _DataT = TypeVar('_DataT')
-NEVER_TIME: Incomplete
-ACTIVE_UPDATES_INTERVAL: int
 
 class LookinPushCoordinator:
     last_update: Incomplete

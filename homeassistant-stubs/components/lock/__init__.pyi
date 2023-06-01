@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_JAMMED as STATE_JAMMED, STATE_LOCKED as STATE_LOCKED, STATE_LOCKING as STATE_LOCKING, STATE_UNLOCKED as STATE_UNLOCKED, STATE_UNLOCKING as STATE_UNLOCKING
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -13,6 +13,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 ATTR_CHANGED_BY: str
+CONF_DEFAULT_CODE: str
 DOMAIN: str
 SCAN_INTERVAL: Incomplete
 ENTITY_ID_FORMAT: Incomplete
@@ -45,6 +46,7 @@ class LockEntity(Entity):
     _attr_is_jammed: bool | None
     _attr_state: None
     _attr_supported_features: LockEntityFeature
+    _lock_option_default_code: str
     __code_format_cmp: re.Pattern[str] | None
     @property
     def changed_by(self) -> str | None: ...
@@ -72,3 +74,6 @@ class LockEntity(Entity):
     def state(self) -> str | None: ...
     @property
     def supported_features(self) -> LockEntityFeature: ...
+    async def async_internal_added_to_hass(self) -> None: ...
+    def async_registry_entry_updated(self) -> None: ...
+    def _async_read_entity_options(self) -> None: ...

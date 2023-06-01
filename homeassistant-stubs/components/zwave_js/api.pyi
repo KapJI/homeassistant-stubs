@@ -33,6 +33,7 @@ COMMAND_CLASS_ID: str
 TYPE: str
 PROPERTY: str
 PROPERTY_KEY: str
+ENDPOINT: str
 VALUE: str
 CONFIG: str
 LEVEL: str

@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
+from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as ZwaveValue
@@ -24,6 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class ZwaveFan(ZWaveBaseEntity, FanEntity):
     _attr_supported_features: Incomplete
     _target_value: Incomplete
+    _use_optimistic_state: bool
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_turn_on(self, percentage: int | None = ..., preset_mode: str | None = ..., **kwargs: Any) -> None: ...
@@ -34,8 +35,6 @@ class ZwaveFan(ZWaveBaseEntity, FanEntity):
     def percentage(self) -> int | None: ...
     @property
     def percentage_step(self) -> float: ...
-    @property
-    def speed_count(self) -> int: ...
 
 class ValueMappingZwaveFan(ZwaveFan):
     data_template: Incomplete

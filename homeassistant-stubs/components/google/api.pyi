@@ -8,7 +8,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_time_interval as async_track_time_interval
-from homeassistant.util import dt as dt
 from oauth2client.client import Credentials as Credentials, DeviceFlowInfo as DeviceFlowInfo, OAuth2WebServerFlow
 from typing import Any
 

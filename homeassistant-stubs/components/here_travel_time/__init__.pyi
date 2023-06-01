@@ -5,7 +5,6 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_MODE as CONF_MODE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.util import dt as dt
 
 PLATFORMS: Incomplete
 

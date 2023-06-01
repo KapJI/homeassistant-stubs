@@ -32,6 +32,7 @@ PHASE_TWILIGHT: str
 PHASE_SMALL_DAY: str
 PHASE_DAY: str
 _PHASE_UPDATES: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

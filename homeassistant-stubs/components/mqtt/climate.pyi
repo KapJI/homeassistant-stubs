@@ -1,12 +1,14 @@
+import abc
 import voluptuous as vol
 from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
 from .util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
+from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
 from homeassistant.components import climate as climate
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MAX_TEMP as DEFAULT_MAX_TEMP, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE, SWING_OFF as SWING_OFF, SWING_ON as SWING_ON
@@ -95,29 +97,41 @@ def valid_humidity_state_configuration(config: ConfigType) -> ConfigType: ...
 
 _PLATFORM_SCHEMA_BASE: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
-PLATFORM_SCHEMA: Incomplete
 _DISCOVERY_SCHEMA_BASE: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
-class MqttClimate(MqttEntity, ClimateEntity):
-    _entity_id_format: Incomplete
-    _attributes_extra_blocked = MQTT_CLIMATE_ATTRIBUTES_BLOCKED
+class MqttTemperatureControlEntity(MqttEntity, ABC, metaclass=abc.ABCMeta):
+    _optimistic: bool
+    _topic: dict[str, Any]
     _command_templates: dict[str, Callable[[PublishPayloadType], PublishPayloadType]]
     _value_templates: dict[str, Callable[[ReceivePayloadType], ReceivePayloadType]]
+    _attr_target_temperature_low: Incomplete
+    _attr_target_temperature_high: Incomplete
     _feature_preset_mode: bool
-    _optimistic: bool
-    _optimistic_preset_mode: bool
-    _topic: dict[str, Any]
+    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
+    def add_subscription(self, topics: dict[str, dict[str, Any]], topic: str, msg_callback: Callable[[ReceiveMessage], None]) -> None: ...
+    def render_template(self, msg: ReceiveMessage, template_name: str) -> ReceivePayloadType: ...
+    def handle_climate_attribute_received(self, msg: ReceiveMessage, template_name: str, attr: str) -> None: ...
+    _sub_state: Incomplete
+    def prepare_subscribe_topics(self, topics: dict[str, dict[str, Any]]) -> None: ...
+    async def _subscribe_topics(self) -> None: ...
+    async def _publish(self, topic: str, payload: PublishPayloadType) -> None: ...
+    async def _set_climate_attribute(self, temp: float | None, cmnd_topic: str, cmnd_template: str, state_topic: str, attr: str) -> bool: ...
+    @abstractmethod
+    async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    async def async_set_temperature(self, **kwargs: Any) -> None: ...
+
+class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
+    _entity_id_format: Incomplete
+    _attributes_extra_blocked = MQTT_CLIMATE_ATTRIBUTES_BLOCKED
     _attr_fan_mode: Incomplete
     _attr_hvac_action: Incomplete
     _attr_hvac_mode: Incomplete
     _attr_is_aux_heat: Incomplete
     _attr_swing_mode: Incomplete
-    _attr_target_temperature_low: Incomplete
-    _attr_target_temperature_high: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
@@ -131,17 +145,20 @@ class MqttClimate(MqttEntity, ClimateEntity):
     _attr_swing_modes: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
+    _topic: Incomplete
+    _optimistic: Incomplete
     _attr_target_temperature: Incomplete
+    _attr_target_temperature_low: Incomplete
+    _attr_target_temperature_high: Incomplete
+    _feature_preset_mode: Incomplete
     _attr_preset_modes: Incomplete
     _attr_preset_mode: Incomplete
+    _optimistic_preset_mode: Incomplete
+    _value_templates: Incomplete
+    _command_templates: Incomplete
     _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
-    _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
-    async def _subscribe_topics(self) -> None: ...
-    async def _publish(self, topic: str, payload: PublishPayloadType) -> None: ...
-    async def _set_climate_attribute(self, temp: float | None, cmnd_topic: str, cmnd_template: str, state_topic: str, attr: str) -> bool: ...
-    async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_humidity(self, humidity: int) -> None: ...
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...

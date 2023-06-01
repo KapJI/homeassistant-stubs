@@ -16,6 +16,11 @@ PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
+class ZwaveBooleanNodeButton(ZWaveBaseEntity, ButtonEntity):
+    _attr_name: Incomplete
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    async def async_press(self) -> None: ...
+
 class ZWaveNodePingButton(ButtonEntity):
     _attr_should_poll: bool
     _attr_entity_category: Incomplete

@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, SWITCH_GUEST_WIFI as SWITCH_GUEST_WIFI, SWITCH_LEDS as SWITCH_LEDS
-from .entity import DevoloEntity as DevoloEntity
+from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from collections.abc import Awaitable, Callable as Callable
 from devolo_plc_api.device import Device as Device
 from devolo_plc_api.device_api import WifiGuestAccessGet
@@ -7,6 +7,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any, TypeVar
@@ -26,7 +27,7 @@ SWITCH_TYPES: dict[str, DevoloSwitchEntityDescription[Any]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DevoloSwitchEntity(DevoloEntity[_DataT], SwitchEntity):
+class DevoloSwitchEntity(DevoloCoordinatorEntity[_DataT], SwitchEntity):
     entity_description: DevoloSwitchEntityDescription[_DataT]
     def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator[_DataT], description: DevoloSwitchEntityDescription[_DataT], device: Device) -> None: ...
     @property

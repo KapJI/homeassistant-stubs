@@ -6,11 +6,9 @@ from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_NAME as CONF_NAME, CONF_WEEKDAY as CONF_WEEKDAY, WEEKDAYS as WEEKDAYS
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
 from typing import Any
 
-ERROR_INVALID_AUTH: str
-ERROR_INVALID_STATION: str
-ERROR_MULTIPLE_STATION: str
 DATA_SCHEMA: Incomplete
 DATA_SCHEMA_REAUTH: Incomplete
 

@@ -1,7 +1,7 @@
 import voluptuous as vol
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate
 from .util import valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
@@ -17,7 +17,6 @@ CONF_PAYLOAD_PRESS: str
 DEFAULT_NAME: str
 DEFAULT_PAYLOAD_PRESS: str
 PLATFORM_SCHEMA_MODERN: Incomplete
-PLATFORM_SCHEMA: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

@@ -18,6 +18,7 @@ from typing import Any, Literal, TypeAlias, overload
 
 DeviceAutomationPlatformType: TypeAlias
 DOMAIN: str
+CONFIG_SCHEMA: Incomplete
 DEVICE_TRIGGER_BASE_SCHEMA: vol.Schema
 
 class DeviceAutomationDetails:

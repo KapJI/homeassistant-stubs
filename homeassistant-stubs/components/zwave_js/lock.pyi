@@ -5,6 +5,7 @@ from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_LOCKED as STATE_LOCKED, STATE_UNLOCKED as STATE_UNLOCKED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

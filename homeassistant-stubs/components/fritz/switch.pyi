@@ -23,8 +23,7 @@ async def _async_profile_entities_list(avm_wrapper: AvmWrapper, data_fritz: Frit
 async def async_all_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str, data_fritz: FritzData, local_ip: str) -> list[Entity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class FritzBoxBaseCoordinatorSwitch(CoordinatorEntity, SwitchEntity):
-    coordinator: AvmWrapper
+class FritzBoxBaseCoordinatorSwitch(CoordinatorEntity[AvmWrapper], SwitchEntity):
     entity_description: SwitchEntityDescription
     _attr_has_entity_name: bool
     _device_name: Incomplete

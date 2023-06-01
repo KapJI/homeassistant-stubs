@@ -19,6 +19,7 @@ from typing import Any
 DOMAIN: str
 StoreResultType = Callable[[str, Credentials], str]
 RetrieveResultType: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 def create_auth_code(hass: HomeAssistant, client_id: str, credential: Credentials) -> str: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

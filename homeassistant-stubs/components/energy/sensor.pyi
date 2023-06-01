@@ -43,6 +43,7 @@ class SensorManager:
 
 class EnergyCostSensor(SensorEntity):
     _attr_entity_registry_visible_default: bool
+    _attr_should_poll: bool
     _wrong_state_class_reported: bool
     _wrong_unit_reported: bool
     _adapter: Incomplete

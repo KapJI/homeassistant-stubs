@@ -205,8 +205,7 @@ class FritzRequireKeysMixin:
 class FritzEntityDescription(EntityDescription, FritzRequireKeysMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class FritzBoxBaseCoordinatorEntity(update_coordinator.CoordinatorEntity):
-    coordinator: AvmWrapper
+class FritzBoxBaseCoordinatorEntity(update_coordinator.CoordinatorEntity[AvmWrapper]):
     entity_description: FritzEntityDescription
     _attr_has_entity_name: bool
     _device_name: Incomplete

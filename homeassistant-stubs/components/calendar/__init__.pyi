@@ -15,7 +15,6 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util import dt as dt
 from typing import Any
 
 _LOGGER: Incomplete

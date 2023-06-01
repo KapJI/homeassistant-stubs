@@ -2,7 +2,7 @@ import datetime as dt
 import logging
 from .auth import AuthPhase as AuthPhase, auth_required_message as auth_required_message
 from .connection import ActiveConnection as ActiveConnection
-from .const import CANCELLATION_ERRORS as CANCELLATION_ERRORS, DATA_CONNECTIONS as DATA_CONNECTIONS, FEATURE_COALESCE_MESSAGES as FEATURE_COALESCE_MESSAGES, MAX_PENDING_MSG as MAX_PENDING_MSG, PENDING_MSG_PEAK as PENDING_MSG_PEAK, PENDING_MSG_PEAK_TIME as PENDING_MSG_PEAK_TIME, SIGNAL_WEBSOCKET_CONNECTED as SIGNAL_WEBSOCKET_CONNECTED, SIGNAL_WEBSOCKET_DISCONNECTED as SIGNAL_WEBSOCKET_DISCONNECTED, URL as URL
+from .const import CANCELLATION_ERRORS as CANCELLATION_ERRORS, DATA_CONNECTIONS as DATA_CONNECTIONS, MAX_PENDING_MSG as MAX_PENDING_MSG, PENDING_MSG_PEAK as PENDING_MSG_PEAK, PENDING_MSG_PEAK_TIME as PENDING_MSG_PEAK_TIME, SIGNAL_WEBSOCKET_CONNECTED as SIGNAL_WEBSOCKET_CONNECTED, SIGNAL_WEBSOCKET_DISCONNECTED as SIGNAL_WEBSOCKET_DISCONNECTED, URL as URL
 from .error import Disconnect as Disconnect
 from .messages import message_to_json as message_to_json
 from .util import describe_request as describe_request
@@ -32,13 +32,14 @@ class WebSocketHandler:
     hass: Incomplete
     request: Incomplete
     wsock: Incomplete
-    _to_write: Incomplete
     _handle_task: Incomplete
     _writer_task: Incomplete
     _closing: bool
     _logger: Incomplete
     _peak_checker_unsub: Incomplete
     connection: Incomplete
+    _message_queue: Incomplete
+    _ready_future: Incomplete
     def __init__(self, hass: HomeAssistant, request: web.Request) -> None: ...
     @property
     def description(self) -> str: ...

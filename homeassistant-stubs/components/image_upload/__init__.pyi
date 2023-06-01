@@ -18,6 +18,7 @@ VALID_SIZES: Incomplete
 MAX_SIZE: Incomplete
 CREATE_FIELDS: Incomplete
 UPDATE_FIELDS: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 

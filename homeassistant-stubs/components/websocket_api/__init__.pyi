@@ -12,6 +12,7 @@ from typing import Final
 
 DOMAIN: Final[Incomplete]
 DEPENDENCIES: Final[tuple[str]]
+CONFIG_SCHEMA: Incomplete
 
 def async_register_command(hass: HomeAssistant, command_or_handler: str | const.WebSocketCommandHandler, handler: const.WebSocketCommandHandler | None = ..., schema: vol.Schema | None = ...) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

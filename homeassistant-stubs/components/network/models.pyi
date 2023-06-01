@@ -12,7 +12,7 @@ class IPv4ConfiguredAddress(TypedDict):
 
 class Adapter(TypedDict):
     name: str
-    index: int
+    index: int | None
     enabled: bool
     auto: bool
     default: bool

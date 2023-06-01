@@ -13,6 +13,7 @@ COMPONENT_LOADED_COOLDOWN: int
 DOMAIN: str
 UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 

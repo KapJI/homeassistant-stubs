@@ -4,9 +4,9 @@ from datetime import date
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_WEEKDAY as CONF_WEEKDAY, WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from homeassistant.util import dt as dt
 from pytrafikverket.trafikverket_ferry import FerryStop as FerryStop
 from typing import Any
 

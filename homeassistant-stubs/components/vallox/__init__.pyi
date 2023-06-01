@@ -2,11 +2,11 @@ import voluptuous as vol
 from .const import DEFAULT_FAN_SPEED_AWAY as DEFAULT_FAN_SPEED_AWAY, DEFAULT_FAN_SPEED_BOOST as DEFAULT_FAN_SPEED_BOOST, DEFAULT_FAN_SPEED_HOME as DEFAULT_FAN_SPEED_HOME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, STATE_SCAN_INTERVAL as STATE_SCAN_INTERVAL
 from _typeshed import Incomplete
 from datetime import date
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
-from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any, NamedTuple
 from uuid import UUID
@@ -42,7 +42,6 @@ class ValloxState:
 
 class ValloxDataUpdateCoordinator(DataUpdateCoordinator[ValloxState]): ...
 
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 

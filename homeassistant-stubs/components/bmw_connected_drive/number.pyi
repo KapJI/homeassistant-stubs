@@ -21,8 +21,7 @@ class BMWRequiredKeysMixin:
 class BMWNumberEntityDescription(NumberEntityDescription, BMWRequiredKeysMixin):
     is_available: Callable[[MyBMWVehicle], bool]
     dynamic_options: Callable[[MyBMWVehicle], list[str]] | None
-    mode: NumberMode
-    def __init__(self, value_fn, remote_service, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step, is_available, dynamic_options, mode) -> None: ...
+    def __init__(self, value_fn, remote_service, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, is_available, dynamic_options) -> None: ...
 
 NUMBER_TYPES: list[BMWNumberEntityDescription]
 
@@ -31,7 +30,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class BMWNumber(BMWBaseEntity, NumberEntity):
     entity_description: BMWNumberEntityDescription
     _attr_unique_id: Incomplete
-    _attr_mode: Incomplete
     def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: MyBMWVehicle, description: BMWNumberEntityDescription) -> None: ...
     @property
     def native_value(self) -> float | None: ...

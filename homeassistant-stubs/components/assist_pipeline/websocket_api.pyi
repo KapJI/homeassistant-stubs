@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from .error import PipelineNotFound as PipelineNotFound
 from .pipeline import PipelineData as PipelineData, PipelineError as PipelineError, PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineInput as PipelineInput, PipelineRun as PipelineRun, PipelineStage as PipelineStage, async_get_pipeline as async_get_pipeline
 from .vad import VoiceCommandSegmenter as VoiceCommandSegmenter
 from _typeshed import Incomplete

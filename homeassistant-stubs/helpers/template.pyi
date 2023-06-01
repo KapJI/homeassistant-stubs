@@ -7,7 +7,7 @@ from collections.abc import Callable as Callable, Generator, Iterable, MutableMa
 from contextvars import ContextVar
 from datetime import datetime, timedelta
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_PERSONS as ATTR_PERSONS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength
-from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
+from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_domain as valid_domain, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import convert as convert
@@ -22,7 +22,6 @@ from typing import Any, Literal, NoReturn, TypeVar, overload
 _LOGGER: Incomplete
 _SENTINEL: Incomplete
 DATE_STR_FORMAT: str
-_RENDER_INFO: str
 _ENVIRONMENT: str
 _ENVIRONMENT_LIMITED: str
 _ENVIRONMENT_STRICT: str
@@ -38,6 +37,7 @@ _R = TypeVar('_R')
 _P: Incomplete
 ALL_STATES_RATE_LIMIT: Incomplete
 DOMAIN_STATES_RATE_LIMIT: Incomplete
+_render_info: ContextVar[RenderInfo | None]
 template_cv: ContextVar[tuple[str, str] | None]
 CACHED_TEMPLATE_STATES: int
 EVAL_CACHE_SIZE: int
@@ -75,6 +75,7 @@ def _false(arg: str) -> bool: ...
 _cached_literal_eval: Incomplete
 
 class RenderInfo:
+    __slots__: Incomplete
     template: Incomplete
     filter_lifecycle: Incomplete
     filter: Incomplete

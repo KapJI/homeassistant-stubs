@@ -9,8 +9,6 @@ from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-ERROR_INVALID_AUTH: str
-ERROR_INVALID_ROUTE: str
 DATA_SCHEMA: Incomplete
 DATA_SCHEMA_REAUTH: Incomplete
 

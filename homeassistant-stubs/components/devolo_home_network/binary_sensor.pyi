@@ -1,5 +1,5 @@
 from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_TO_ROUTER as CONNECTED_TO_ROUTER, DOMAIN as DOMAIN
-from .entity import DevoloEntity as DevoloEntity
+from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from devolo_plc_api import Device as Device
@@ -24,7 +24,7 @@ SENSOR_TYPES: dict[str, DevoloBinarySensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DevoloBinarySensorEntity(DevoloEntity[LogicalNetwork], BinarySensorEntity):
+class DevoloBinarySensorEntity(DevoloCoordinatorEntity[LogicalNetwork], BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator[LogicalNetwork], description: DevoloBinarySensorEntityDescription, device: Device) -> None: ...
     @property

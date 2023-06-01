@@ -1,3 +1,4 @@
+from . import get_device_tuple_from_identifiers as get_device_tuple_from_identifiers
 from RFXtrx import RFXtrxDevice as RFXtrxDevice
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 

@@ -1,32 +1,49 @@
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from datetime import datetime
+from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
-from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.helpers.entity import async_generate_entity_id as async_generate_entity_id
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.helpers import singleton as singleton
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util import slugify as slugify
-from typing import Any
+from homeassistant.util.uuid import random_uuid_hex as random_uuid_hex
+from typing import Any, Final, TypedDict
 
-ATTR_CREATED_AT: str
-ATTR_MESSAGE: str
-ATTR_NOTIFICATION_ID: str
-ATTR_TITLE: str
-ATTR_STATUS: str
 DOMAIN: str
-ENTITY_ID_FORMAT: Incomplete
-EVENT_PERSISTENT_NOTIFICATIONS_UPDATED: str
-SCHEMA_SERVICE_NOTIFICATION: Incomplete
-DEFAULT_OBJECT_ID: str
-_LOGGER: Incomplete
-STATE: str
+ATTR_CREATED_AT: Final[str]
+ATTR_MESSAGE: Final[str]
+ATTR_NOTIFICATION_ID: Final[str]
+ATTR_TITLE: Final[str]
+ATTR_STATUS: Final[str]
 STATUS_UNREAD: str
 STATUS_READ: str
+EVENT_PERSISTENT_NOTIFICATIONS_UPDATED: str
+
+class Notification(TypedDict):
+    created_at: datetime
+    message: str
+    notification_id: str
+    title: str | None
+    status: str
+
+class UpdateType(StrEnum):
+    CURRENT: str
+    ADDED: str
+    REMOVED: str
+    UPDATED: str
+
+SIGNAL_PERSISTENT_NOTIFICATIONS_UPDATED: str
+SCHEMA_SERVICE_NOTIFICATION: Incomplete
+_LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 def create(hass: HomeAssistant, message: str, title: str | None = ..., notification_id: str | None = ...) -> None: ...
 def dismiss(hass: HomeAssistant, notification_id: str) -> None: ...
-def async_create(hass: HomeAssistant, message: str, title: str | None = ..., notification_id: str | None = ..., *, context: Context | None = ...) -> None: ...
-def async_dismiss(hass: HomeAssistant, notification_id: str, *, context: Context | None = ...) -> None: ...
+def async_create(hass: HomeAssistant, message: str, title: str | None = ..., notification_id: str | None = ...) -> None: ...
+def _async_get_or_create_notifications(hass: HomeAssistant) -> dict[str, Notification]: ...
+def async_dismiss(hass: HomeAssistant, notification_id: str) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def websocket_get_notifications(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: Mapping[str, Any]) -> None: ...
+def websocket_subscribe_notifications(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: Mapping[str, Any]) -> None: ...

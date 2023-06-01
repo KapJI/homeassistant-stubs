@@ -8,7 +8,6 @@ from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.util import dt as dt
 
 class ValloxSensorEntity(ValloxEntity, SensorEntity):
     entity_description: ValloxSensorEntityDescription

@@ -13,6 +13,10 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import as_utc as as_utc
 
+WIND_DIRECTIONS: Incomplete
+PRECIPITATION_AMOUNTNAME: Incomplete
+PRECIPITATION_TYPE: Incomplete
+
 class TrafikverketRequiredKeysMixin:
     api_key: str
     def __init__(self, api_key) -> None: ...

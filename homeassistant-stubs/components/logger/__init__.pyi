@@ -1,7 +1,7 @@
 import logging
 import re
 from . import websocket_api as websocket_api
-from .const import ATTR_LEVEL as ATTR_LEVEL, DEFAULT_LOGSEVERITY as DEFAULT_LOGSEVERITY, DOMAIN as DOMAIN, LOGGER_DEFAULT as LOGGER_DEFAULT, LOGGER_FILTERS as LOGGER_FILTERS, LOGGER_LOGS as LOGGER_LOGS, LOGSEVERITY as LOGSEVERITY, SERVICE_SET_DEFAULT_LEVEL as SERVICE_SET_DEFAULT_LEVEL, SERVICE_SET_LEVEL as SERVICE_SET_LEVEL
+from .const import ATTR_LEVEL as ATTR_LEVEL, DEFAULT_LOGSEVERITY as DEFAULT_LOGSEVERITY, DOMAIN as DOMAIN, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, LOGGER_DEFAULT as LOGGER_DEFAULT, LOGGER_FILTERS as LOGGER_FILTERS, LOGGER_LOGS as LOGGER_LOGS, LOGSEVERITY as LOGSEVERITY, SERVICE_SET_DEFAULT_LEVEL as SERVICE_SET_DEFAULT_LEVEL, SERVICE_SET_LEVEL as SERVICE_SET_LEVEL
 from .helpers import LoggerDomainConfig as LoggerDomainConfig, LoggerSettings as LoggerSettings, set_default_log_level as set_default_log_level, set_log_levels as set_log_levels
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback

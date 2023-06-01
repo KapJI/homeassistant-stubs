@@ -9,6 +9,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from matter_server.client import MatterClient as MatterClient
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint, MatterNode as MatterNode
 
+def get_clean_name(name: str | None) -> str | None: ...
+
 class MatterAdapter:
     matter_client: Incomplete
     hass: Incomplete

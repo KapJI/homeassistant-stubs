@@ -3,6 +3,7 @@ from collections.abc import Iterable
 from homeassistant.const import MATCH_ALL as MATCH_ALL
 
 SEPARATOR_RE: Incomplete
+SAME_LANGUAGES: Incomplete
 
 def preferred_regions(language: str, country: str | None = ..., code: str | None = ...) -> Iterable[str]: ...
 def is_region(language: str, region: str | None) -> bool: ...

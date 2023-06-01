@@ -2,7 +2,6 @@ from _typeshed import Incomplete
 from homeassistant.components.mailbox import CONTENT_TYPE_MPEG as CONTENT_TYPE_MPEG, Mailbox as Mailbox, StreamError as StreamError
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.util import dt as dt
 from typing import Any
 
 _LOGGER: Incomplete

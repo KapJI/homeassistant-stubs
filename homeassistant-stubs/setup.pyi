@@ -3,6 +3,7 @@ from .config import async_notify_setup_error as async_notify_setup_error
 from .const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PLATFORM_FORMAT as PLATFORM_FORMAT, Platform as Platform
 from .core import CALLBACK_TYPE as CALLBACK_TYPE
 from .exceptions import DependencyError as DependencyError, HomeAssistantError as HomeAssistantError
+from .helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from .helpers.typing import ConfigType as ConfigType
 from .util import ensure_unique_string as ensure_unique_string
 from _typeshed import Incomplete

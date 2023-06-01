@@ -1,5 +1,5 @@
 from . import util as util
-from .const import IPV4_BROADCAST_ADDR as IPV4_BROADCAST_ADDR, LOOPBACK_TARGET_IP as LOOPBACK_TARGET_IP, MDNS_TARGET_IP as MDNS_TARGET_IP, PUBLIC_TARGET_IP as PUBLIC_TARGET_IP
+from .const import DOMAIN as DOMAIN, IPV4_BROADCAST_ADDR as IPV4_BROADCAST_ADDR, LOOPBACK_TARGET_IP as LOOPBACK_TARGET_IP, MDNS_TARGET_IP as MDNS_TARGET_IP, PUBLIC_TARGET_IP as PUBLIC_TARGET_IP
 from .models import Adapter as Adapter
 from .network import Network as Network, async_get_network as async_get_network
 from _typeshed import Incomplete
@@ -10,6 +10,7 @@ from homeassistant.loader import bind_hass as bind_hass
 from ipaddress import IPv4Address, IPv6Address
 
 _LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_get_adapters(hass: HomeAssistant) -> list[Adapter]: ...
 async def async_get_source_ip(hass: HomeAssistant, target_ip: str | UndefinedType = ...) -> str: ...

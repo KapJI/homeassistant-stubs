@@ -3,7 +3,7 @@ from .. import subscription as subscription
 from ..config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN
 from ..debug_info import log_messages as log_messages
-from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, warn_for_legacy_schema as warn_for_legacy_schema
+from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity
 from ..models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
 from ..util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic
 from .const import MQTT_VACUUM_ATTRIBUTES_BLOCKED as MQTT_VACUUM_ATTRIBUTES_BLOCKED
@@ -59,7 +59,6 @@ DEFAULT_RETAIN: bool
 DEFAULT_SERVICE_STRINGS: Incomplete
 MQTT_LEGACY_VACUUM_ATTRIBUTES_BLOCKED: Incomplete
 PLATFORM_SCHEMA_LEGACY_MODERN: Incomplete
-PLATFORM_SCHEMA_LEGACY: Incomplete
 DISCOVERY_SCHEMA_LEGACY: Incomplete
 _COMMANDS: Incomplete
 

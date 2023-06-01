@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -8,6 +8,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from lacrosse_view import Sensor
+
+_LOGGER: Incomplete
 
 class LaCrosseSensorEntityDescriptionMixin:
     value_fn: Callable[[Sensor, str], float | int | str | None]

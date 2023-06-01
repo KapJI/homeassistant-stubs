@@ -3,7 +3,8 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from esphome_dashboard_api import ConfiguredDevice
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, SOURCE_REAUTH as SOURCE_REAUTH
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 

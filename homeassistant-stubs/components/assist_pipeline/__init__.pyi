@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from .error import PipelineNotFound as PipelineNotFound
 from .pipeline import Pipeline as Pipeline, PipelineEvent as PipelineEvent, PipelineEventCallback, PipelineEventType as PipelineEventType, async_create_default_pipeline as async_create_default_pipeline, async_get_pipelines as async_get_pipelines
 from collections.abc import AsyncIterable
 from homeassistant.components import stt

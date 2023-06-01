@@ -1,11 +1,11 @@
 import voluptuous as vol
 from . import subscription as subscription
-from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
+from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, warn_for_legacy_schema as warn_for_legacy_schema
+from .mixins import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from .util import get_mqtt_data as get_mqtt_data
+from .util import get_mqtt_data as get_mqtt_data, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import device_tracker as device_tracker
@@ -21,9 +21,12 @@ CONF_PAYLOAD_NOT_HOME: str
 CONF_SOURCE_TYPE: str
 DEFAULT_PAYLOAD_RESET: str
 DEFAULT_SOURCE_TYPE: Incomplete
+
+def valid_config(config: ConfigType) -> ConfigType: ...
+
+PLATFORM_SCHEMA_MODERN_BASE: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
-PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...

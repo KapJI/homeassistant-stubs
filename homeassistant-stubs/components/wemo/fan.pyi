@@ -9,7 +9,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from pywemo import Humidifier as Humidifier
+from pywemo import FanMode, Humidifier as Humidifier
 from typing import Any
 
 SCAN_INTERVAL: Incomplete
@@ -28,7 +28,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class WemoHumidifier(WemoBinaryStateEntity, FanEntity):
     _attr_supported_features: Incomplete
     wemo: Humidifier
-    _last_fan_on_mode: Incomplete
+    _last_fan_on_mode: FanMode
     def __init__(self, coordinator: DeviceCoordinator) -> None: ...
     @property
     def icon(self) -> str: ...

@@ -4,6 +4,7 @@ from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,6 +23,11 @@ class ZWaveSwitch(ZWaveBaseEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
+class ZWaveIndicatorSwitch(ZWaveSwitch):
+    _target_value: Incomplete
+    _attr_name: Incomplete
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+
 class ZWaveBarrierEventSignalingSwitch(ZWaveBaseEntity, SwitchEntity):
     _state: Incomplete
     _attr_name: Incomplete
@@ -32,3 +38,10 @@ class ZWaveBarrierEventSignalingSwitch(ZWaveBaseEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def _update_state(self) -> None: ...
+
+class ZWaveConfigParameterSwitch(ZWaveSwitch):
+    _attr_entity_category: Incomplete
+    _attr_name: Incomplete
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...

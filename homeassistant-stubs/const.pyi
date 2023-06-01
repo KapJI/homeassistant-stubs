@@ -22,6 +22,8 @@ class Platform(StrEnum):
     CAMERA: str
     CLIMATE: str
     COVER: str
+    DATE: str
+    DATETIME: str
     DEVICE_TRACKER: str
     FAN: str
     GEO_LOCATION: str
@@ -41,6 +43,7 @@ class Platform(StrEnum):
     STT: str
     SWITCH: str
     TEXT: str
+    TIME: str
     TTS: str
     VACUUM: str
     UPDATE: str
@@ -762,6 +765,9 @@ CAST_APP_ID_HOMEASSISTANT_MEDIA: Final[str]
 CAST_APP_ID_HOMEASSISTANT_LOVELACE: Final[str]
 HASSIO_USER_NAME: str
 SIGNAL_BOOTSTRAP_INTEGRATIONS: str
+FORMAT_DATE: Final[str]
+FORMAT_TIME: Final[str]
+FORMAT_DATETIME: Final[Incomplete]
 
 class EntityCategory(StrEnum):
     CONFIG: str

@@ -12,11 +12,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 class BAFNumberDescriptionMixin:
     value_fn: Callable[[Device], int | None]
-    mode: NumberMode
-    def __init__(self, value_fn, mode) -> None: ...
+    def __init__(self, value_fn) -> None: ...
 
 class BAFNumberDescription(NumberEntityDescription, BAFNumberDescriptionMixin):
-    def __init__(self, value_fn, mode, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, native_max_value, native_min_value, native_unit_of_measurement, native_step, step) -> None: ...
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 AUTO_COMFORT_NUMBER_DESCRIPTIONS: Incomplete
 FAN_NUMBER_DESCRIPTIONS: Incomplete
@@ -27,7 +26,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
 class BAFNumber(BAFEntity, NumberEntity):
     entity_description: BAFNumberDescription
     _attr_unique_id: Incomplete
-    _attr_mode: Incomplete
     def __init__(self, device: Device, description: BAFNumberDescription) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...

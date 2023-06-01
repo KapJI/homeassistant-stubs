@@ -7,7 +7,7 @@ from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import LENGTH as LENGTH, PERCENTAGE as PERCENTAGE, VOLUME as VOLUME
+from homeassistant.const import LENGTH as LENGTH, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, VOLUME as VOLUME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType

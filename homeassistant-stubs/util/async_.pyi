@@ -1,5 +1,6 @@
 import concurrent.futures
 from _typeshed import Incomplete
+from asyncio import Future
 from asyncio.events import AbstractEventLoop
 from collections.abc import Callable as Callable
 from typing import Any, TypeVar
@@ -10,6 +11,7 @@ _T = TypeVar('_T')
 _R = TypeVar('_R')
 _P: Incomplete
 
+def cancelling(task: Future[Any]) -> bool: ...
 def run_callback_threadsafe(loop: AbstractEventLoop, callback: Callable[..., _T], *args: Any) -> concurrent.futures.Future[_T]: ...
 def check_loop(func: Callable[..., Any], strict: bool = ..., advise_msg: str | None = ...) -> None: ...
 def protect_loop(func: Callable[_P, _R], strict: bool = ...) -> Callable[_P, _R]: ...

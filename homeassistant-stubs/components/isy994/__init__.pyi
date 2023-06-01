@@ -1,6 +1,6 @@
 import homeassistant.helpers.device_registry as dr
-from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_NETWORK as CONF_NETWORK, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_TLS_VER as CONF_TLS_VER, CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, ISY_CONF_FIRMWARE as ISY_CONF_FIRMWARE, ISY_CONF_MODEL as ISY_CONF_MODEL, ISY_CONF_NAME as ISY_CONF_NAME, MANUFACTURER as MANUFACTURER, PLATFORMS as PLATFORMS, SCHEME_HTTP as SCHEME_HTTP, SCHEME_HTTPS as SCHEME_HTTPS, _LOGGER as _LOGGER
-from .helpers import _categorize_nodes as _categorize_nodes, _categorize_programs as _categorize_programs, _categorize_variables as _categorize_variables
+from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_NETWORK as CONF_NETWORK, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_TLS_VER as CONF_TLS_VER, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DOMAIN as DOMAIN, ISY_CONF_FIRMWARE as ISY_CONF_FIRMWARE, ISY_CONF_MODEL as ISY_CONF_MODEL, ISY_CONF_NAME as ISY_CONF_NAME, MANUFACTURER as MANUFACTURER, PLATFORMS as PLATFORMS, SCHEME_HTTP as SCHEME_HTTP, SCHEME_HTTPS as SCHEME_HTTPS, _LOGGER as _LOGGER
+from .helpers import _categorize_nodes as _categorize_nodes, _categorize_programs as _categorize_programs
 from .models import IsyData as IsyData
 from .services import async_setup_services as async_setup_services, async_unload_services as async_unload_services
 from .util import _async_cleanup_registry_entries as _async_cleanup_registry_entries

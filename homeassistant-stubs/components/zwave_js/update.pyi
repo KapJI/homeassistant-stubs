@@ -20,6 +20,7 @@ from zwave_js_server.model.node.firmware import NodeFirmwareUpdateInfo, NodeFirm
 PARALLEL_UPDATES: int
 UPDATE_DELAY_STRING: str
 UPDATE_DELAY_INTERVAL: int
+ATTR_LATEST_VERSION_FIRMWARE: str
 
 class ZWaveNodeFirmwareUpdateExtraStoredData(ExtraStoredData):
     latest_version_firmware: NodeFirmwareUpdateInfo | None

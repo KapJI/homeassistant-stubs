@@ -13,6 +13,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 ProtectDeviceType: Incomplete
+SMART_EVENTS: Incomplete
 
 def async_last_update_was_successful(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 

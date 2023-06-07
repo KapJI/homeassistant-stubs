@@ -17,8 +17,6 @@ ATTR_MESSAGE: Final[str]
 ATTR_NOTIFICATION_ID: Final[str]
 ATTR_TITLE: Final[str]
 ATTR_STATUS: Final[str]
-STATUS_UNREAD: str
-STATUS_READ: str
 EVENT_PERSISTENT_NOTIFICATIONS_UPDATED: str
 
 class Notification(TypedDict):
@@ -26,7 +24,6 @@ class Notification(TypedDict):
     message: str
     notification_id: str
     title: str | None
-    status: str
 
 class UpdateType(StrEnum):
     CURRENT: str

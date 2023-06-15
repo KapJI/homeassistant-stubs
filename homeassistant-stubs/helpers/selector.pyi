@@ -40,8 +40,6 @@ class DeviceFilterSelectorConfig(TypedDict):
     integration: str
     manufacturer: str
     model: str
-    entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
-    filter: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
 
 class ActionSelectorConfig(TypedDict): ...
 
@@ -160,12 +158,10 @@ class DateTimeSelector(Selector[DateTimeSelectorConfig]):
     def __init__(self, config: DateTimeSelectorConfig | None = ...) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class DeviceSelectorConfig(TypedDict):
-    integration: str
-    manufacturer: str
-    model: str
+class DeviceSelectorConfig(DeviceFilterSelectorConfig):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     multiple: bool
+    filter: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
 
 class DeviceSelector(Selector[DeviceSelectorConfig]):
     selector_type: str
@@ -186,6 +182,7 @@ class EntitySelectorConfig(EntityFilterSelectorConfig):
     exclude_entities: list[str]
     include_entities: list[str]
     multiple: bool
+    filter: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
 
 class EntitySelector(Selector[EntitySelectorConfig]):
     selector_type: str

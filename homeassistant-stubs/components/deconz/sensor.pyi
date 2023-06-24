@@ -24,7 +24,7 @@ from pydeconz.models.sensor.power import Power
 from pydeconz.models.sensor.pressure import Pressure
 from pydeconz.models.sensor.temperature import Temperature
 from pydeconz.models.sensor.time import Time
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
 ATTR_CURRENT: str
@@ -33,7 +33,7 @@ ATTR_DAYLIGHT: str
 ATTR_EVENT_ID: str
 T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Power, Pressure, Temperature, Time, PydeconzSensorBase)
 
-class DeconzSensorDescriptionMixin:
+class DeconzSensorDescriptionMixin(Generic[T]):
     supported_fn: Callable[[T], bool]
     update_key: str
     value_fn: Callable[[T], datetime | StateType]

@@ -8,7 +8,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def get_account_info(self, email: str, password: str) -> dict: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

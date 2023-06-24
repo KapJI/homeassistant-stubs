@@ -11,6 +11,6 @@ ERR_TIMEOUT: str
 ERR_CLIENT: str
 ERR_TOKEN: str
 
-class TibberConfigFlow(config_entries.ConfigFlow):
+class TibberConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

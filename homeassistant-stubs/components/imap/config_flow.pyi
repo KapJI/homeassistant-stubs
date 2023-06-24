@@ -23,7 +23,7 @@ OPTIONS_SCHEMA_ADVANCED: Incomplete
 
 async def validate_input(hass: HomeAssistant, user_input: dict[str, Any]) -> dict[str, str]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: config_entries.ConfigEntry | None
     async def async_step_import(self, user_input: dict[str, Any]) -> FlowResult: ...

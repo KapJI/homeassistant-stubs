@@ -8,7 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.selector import TextSelector as TextSelector
 from typing import Any
 
-class PureEnergieFlowHandler(ConfigFlow):
+class PureEnergieFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovered_host: str
     discovered_device: Device

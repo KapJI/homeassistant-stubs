@@ -36,7 +36,7 @@ class ValidationResult:
 async def async_validate_api_key(hass: HomeAssistant, api_key: str) -> ValidationResult: ...
 async def async_validate_coordinates(hass: HomeAssistant, api_key: str, latitude: float, longitude: float, distance: float) -> ValidationResult: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _flow_data: Incomplete
     _reauth_entry: Incomplete

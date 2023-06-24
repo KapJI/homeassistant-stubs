@@ -10,7 +10,7 @@ from typing import Any
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     username: str
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> FlowResult: ...

@@ -11,7 +11,7 @@ from typing import Any
 
 DISCOVER_TIMEOUT: int
 
-class SensemeFlowHandler(config_entries.ConfigFlow):
+class SensemeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_devices: Incomplete
     _discovered_device: Incomplete

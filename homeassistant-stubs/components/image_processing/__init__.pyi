@@ -36,7 +36,7 @@ SOURCE_SCHEMA: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 
-class FaceInformation(TypedDict):
+class FaceInformation(TypedDict, total=False):
     confidence: float
     name: str
     age: float

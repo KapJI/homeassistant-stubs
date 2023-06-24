@@ -14,7 +14,7 @@ REAUTH_SCHEMA: Incomplete
 
 async def async_validate_credentials(hass: HomeAssistant, username: str, password: str) -> dict[str, Any]: ...
 
-class NotionFlowHandler(config_entries.ConfigFlow):
+class NotionFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: Incomplete
     def __init__(self) -> None: ...

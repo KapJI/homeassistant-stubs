@@ -10,12 +10,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pylitterbot import Robot as Robot
 from pylitterbot.robot.litterrobot4 import BrightnessLevel
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 _CastTypeT = TypeVar('_CastTypeT', int, float, str)
 BRIGHTNESS_LEVEL_ICON_MAP: dict[BrightnessLevel | None, str]
 
-class RequiredKeysMixin:
+class RequiredKeysMixin(Generic[_RobotT, _CastTypeT]):
     current_fn: Callable[[_RobotT], _CastTypeT | None]
     options_fn: Callable[[_RobotT], list[_CastTypeT]]
     select_fn: Callable[[_RobotT, str], Coroutine[Any, Any, bool]]
@@ -30,7 +30,7 @@ ROBOT_SELECT_MAP: dict[type[Robot], RobotSelectEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class LitterRobotSelectEntity(LitterRobotEntity[_RobotT], SelectEntity):
+class LitterRobotSelectEntity(LitterRobotEntity[_RobotT], SelectEntity, Generic[_RobotT, _CastTypeT]):
     entity_description: RobotSelectEntityDescription[_RobotT, _CastTypeT]
     _attr_options: Incomplete
     def __init__(self, robot: _RobotT, hub: LitterRobotHub, description: RobotSelectEntityDescription[_RobotT, _CastTypeT]) -> None: ...

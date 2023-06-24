@@ -9,7 +9,7 @@ from typing import Any
 
 async def validate_input(hass: HomeAssistant, *, tailnet: str, api_key: str) -> None: ...
 
-class TailscaleFlowHandler(ConfigFlow):
+class TailscaleFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     reauth_entry: ConfigEntry | None
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

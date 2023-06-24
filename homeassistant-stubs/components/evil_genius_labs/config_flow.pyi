@@ -11,7 +11,7 @@ _LOGGER: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
 

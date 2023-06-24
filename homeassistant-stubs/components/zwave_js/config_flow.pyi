@@ -65,7 +65,7 @@ class BaseZwaveJSFlow(FlowHandler, ABC, metaclass=abc.ABCMeta):
     async def _async_install_addon(self) -> None: ...
     async def _async_get_addon_discovery_info(self) -> dict: ...
 
-class ConfigFlow(BaseZwaveJSFlow, config_entries.ConfigFlow):
+class ConfigFlow(BaseZwaveJSFlow, config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     use_addon: bool
     _title: Incomplete

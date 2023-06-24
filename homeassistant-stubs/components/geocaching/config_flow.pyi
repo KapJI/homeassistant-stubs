@@ -6,7 +6,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.config_entry_oauth2_flow import AbstractOAuth2FlowHandler as AbstractOAuth2FlowHandler
 from typing import Any
 
-class GeocachingFlowHandler(AbstractOAuth2FlowHandler):
+class GeocachingFlowHandler(AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     VERSION: int
     @property

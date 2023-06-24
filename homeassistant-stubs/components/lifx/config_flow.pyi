@@ -12,7 +12,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_devices: Incomplete
     _discovered_device: Incomplete

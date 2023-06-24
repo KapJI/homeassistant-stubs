@@ -20,7 +20,7 @@ from pydeconz.models.sensor.open_close import OpenClose
 from pydeconz.models.sensor.presence import Presence
 from pydeconz.models.sensor.vibration import Vibration
 from pydeconz.models.sensor.water import Water
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 _SensorDeviceT = TypeVar('_SensorDeviceT', bound=PydeconzSensorBase)
 ATTR_ORIENTATION: str
@@ -29,7 +29,7 @@ ATTR_VIBRATIONSTRENGTH: str
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
 T = TypeVar('T', Alarm, CarbonMonoxide, Fire, GenericFlag, OpenClose, Presence, Vibration, Water, PydeconzSensorBase)
 
-class DeconzBinarySensorDescriptionMixin:
+class DeconzBinarySensorDescriptionMixin(Generic[T]):
     update_key: str
     value_fn: Callable[[T], bool | None]
     def __init__(self, update_key, value_fn) -> None: ...

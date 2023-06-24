@@ -12,11 +12,11 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
-from typing import Any, Final, TypeVar
+from typing import Any, Final, Generic, TypeVar
 
 _ShellyCoordinatorT = TypeVar('_ShellyCoordinatorT', bound=ShellyBlockCoordinator | ShellyRpcCoordinator)
 
-class ShellyButtonDescriptionMixin:
+class ShellyButtonDescriptionMixin(Generic[_ShellyCoordinatorT]):
     press_action: Callable[[_ShellyCoordinatorT], Coroutine[Any, Any, None]]
     def __init__(self, press_action) -> None: ...
 

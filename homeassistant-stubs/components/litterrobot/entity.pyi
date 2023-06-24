@@ -4,11 +4,11 @@ from _typeshed import Incomplete
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pylitterbot import Robot
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 _RobotT = TypeVar('_RobotT', bound=Robot)
 
-class LitterRobotEntity(CoordinatorEntity[DataUpdateCoordinator[bool]]):
+class LitterRobotEntity(CoordinatorEntity[DataUpdateCoordinator[bool]], Generic[_RobotT]):
     _attr_has_entity_name: bool
     robot: Incomplete
     hub: Incomplete

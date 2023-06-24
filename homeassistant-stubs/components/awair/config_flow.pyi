@@ -10,7 +10,7 @@ from python_awair import AwairLocalDevice as AwairLocalDevice
 from python_awair.user import AwairUser as AwairUser
 from typing import Any
 
-class AwairFlowHandler(ConfigFlow):
+class AwairFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _device: AwairLocalDevice
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> FlowResult: ...

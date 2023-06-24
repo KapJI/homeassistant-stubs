@@ -20,7 +20,7 @@ from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as Unit
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Collection, Coroutine, Iterable, Mapping
 from contextvars import ContextVar
-from typing import Any, NamedTuple, TypeVar, overload
+from typing import Any, Generic, NamedTuple, TypeVar, overload
 from typing_extensions import Self
 
 STAGE_1_SHUTDOWN_TIMEOUT: int
@@ -72,7 +72,7 @@ class HassJobType(enum.Enum):
     Callback: int
     Executor: int
 
-class HassJob:
+class HassJob(Generic[_P, _R_co]):
     __slots__: Incomplete
     target: Incomplete
     name: Incomplete

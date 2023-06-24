@@ -13,7 +13,7 @@ from typing import Any
 DATA_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
-class FlowHandler(ConfigFlow):
+class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _host: str
     _name: str

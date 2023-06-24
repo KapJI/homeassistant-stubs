@@ -59,7 +59,7 @@ SAVE_DELAY: Final[int]
 HTTP_SCHEMA: Final[Incomplete]
 CONFIG_SCHEMA: Final[Incomplete]
 
-class ConfData(TypedDict):
+class ConfData(TypedDict, total=False):
     server_host: list[str]
     server_port: int
     base_url: str

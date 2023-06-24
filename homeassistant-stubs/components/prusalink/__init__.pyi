@@ -10,7 +10,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyprusalink import JobInfo, PrinterInfo, PrusaLink
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
@@ -19,7 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 T = TypeVar('T', PrinterInfo, JobInfo)
 
-class PrusaLinkUpdateCoordinator(DataUpdateCoordinator, ABC, metaclass=abc.ABCMeta):
+class PrusaLinkUpdateCoordinator(DataUpdateCoordinator, ABC, Generic[T], metaclass=abc.ABCMeta):
     config_entry: ConfigEntry
     expect_change_until: float
     api: Incomplete

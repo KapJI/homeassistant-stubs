@@ -8,7 +8,7 @@ from typing import Any
 
 CONF_MFA: str
 
-class AbodeFlowHandler(config_entries.ConfigFlow):
+class AbodeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     data_schema: Incomplete
     mfa_data_schema: Incomplete

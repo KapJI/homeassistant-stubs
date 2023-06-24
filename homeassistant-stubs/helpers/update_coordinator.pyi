@@ -11,7 +11,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any, Protocol, TypeVar
+from typing import Any, Generic, Protocol, TypeVar
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
@@ -24,7 +24,7 @@ class UpdateFailed(Exception): ...
 class BaseDataUpdateCoordinatorProtocol(Protocol):
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = ...) -> Callable[[], None]: ...
 
-class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol):
+class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_T]):
     hass: Incomplete
     logger: Incomplete
     name: Incomplete
@@ -61,7 +61,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol):
     def async_set_update_error(self, err: Exception) -> None: ...
     def async_set_updated_data(self, data: _T) -> None: ...
 
-class BaseCoordinatorEntity(entity.Entity, metaclass=abc.ABCMeta):
+class BaseCoordinatorEntity(entity.Entity, Generic[_BaseDataUpdateCoordinatorT], metaclass=abc.ABCMeta):
     coordinator: Incomplete
     coordinator_context: Incomplete
     def __init__(self, coordinator: _BaseDataUpdateCoordinatorT, context: Any = ...) -> None: ...

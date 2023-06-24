@@ -6,7 +6,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
 
-class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler):
+class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=NEATO_DOMAIN):
     DOMAIN = NEATO_DOMAIN
     @property
     def logger(self) -> logging.Logger: ...

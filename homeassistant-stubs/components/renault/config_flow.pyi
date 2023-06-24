@@ -7,7 +7,7 @@ from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-class RenaultFlowHandler(config_entries.ConfigFlow):
+class RenaultFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _original_data: Incomplete
     renault_config: Incomplete

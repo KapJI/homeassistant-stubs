@@ -19,7 +19,7 @@ STEP_REAUTH_DATA_SCHEMA: Incomplete
 async def vlc_connect(vlc: Client) -> None: ...
 async def validate_input(hass: core.HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 
-class VLCTelnetConfigFlow(ConfigFlow):
+class VLCTelnetConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     entry: ConfigEntry | None
     hassio_discovery: dict[str, Any] | None

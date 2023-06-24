@@ -5,7 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-class SensorCommunityFlowHandler(config_entries.ConfigFlow):
+class SensorCommunityFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     def _show_form(self, errors: dict[str, str] | None = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

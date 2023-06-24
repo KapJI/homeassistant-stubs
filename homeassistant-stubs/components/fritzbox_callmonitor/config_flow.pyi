@@ -18,7 +18,7 @@ class ConnectResult(StrEnum):
     NO_DEVIES_FOUND: str
     SUCCESS: str
 
-class FritzBoxCallMonitorConfigFlow(config_entries.ConfigFlow):
+class FritzBoxCallMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _host: str
     _port: int

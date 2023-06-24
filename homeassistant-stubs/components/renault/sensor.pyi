@@ -12,9 +12,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import as_utc as as_utc, parse_datetime as parse_datetime
-from typing import Any
+from typing import Any, Generic
 
-class RenaultSensorRequiredKeysMixin:
+class RenaultSensorRequiredKeysMixin(Generic[T]):
     data_key: str
     entity_class: type[RenaultSensor[T]]
     def __init__(self, data_key, entity_class) -> None: ...

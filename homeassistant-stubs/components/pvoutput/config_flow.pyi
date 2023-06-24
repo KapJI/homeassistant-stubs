@@ -9,7 +9,7 @@ from typing import Any
 
 async def validate_input(hass: HomeAssistant, *, api_key: str, system_id: int) -> None: ...
 
-class PVOutputFlowHandler(ConfigFlow):
+class PVOutputFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     imported_name: str | None
     reauth_entry: ConfigEntry | None

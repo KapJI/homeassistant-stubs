@@ -12,7 +12,7 @@ _LOGGER: Incomplete
 
 def validate_path(hass: HomeAssistant, path: str) -> str: ...
 
-class FilesizeConfigFlow(ConfigFlow):
+class FilesizeConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
 

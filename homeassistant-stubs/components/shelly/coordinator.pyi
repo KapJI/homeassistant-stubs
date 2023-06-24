@@ -11,7 +11,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, H
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 _DeviceT = TypeVar('_DeviceT', bound='BlockDevice|RpcDevice')
 
@@ -25,7 +25,7 @@ class ShellyEntryData:
 
 def get_entry_data(hass: HomeAssistant) -> dict[str, ShellyEntryData]: ...
 
-class ShellyCoordinatorBase(DataUpdateCoordinator[None]):
+class ShellyCoordinatorBase(DataUpdateCoordinator[None], Generic[_DeviceT]):
     entry: Incomplete
     device: Incomplete
     device_id: Incomplete

@@ -10,7 +10,7 @@ from typing import Any
 
 STEP_USER_DATA_SCHEMA: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def _validate_input(self, data: dict[str, Any]) -> tuple[dict[str, str], UptimeRobotAccount | None]: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

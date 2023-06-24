@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.mqtt import MqttServiceInfo as MqttServiceInfo
 from typing import Any
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_device_info: Incomplete
     def __init__(self) -> None: ...

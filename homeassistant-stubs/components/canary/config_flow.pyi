@@ -10,7 +10,7 @@ _LOGGER: Final[Incomplete]
 
 def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> bool: ...
 
-class CanaryConfigFlow(ConfigFlow):
+class CanaryConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...

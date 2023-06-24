@@ -10,11 +10,11 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 _DataT = TypeVar('_DataT', bound=LogicalNetwork | list[ConnectedStationInfo] | list[NeighborAPInfo])
 
-class DevoloSensorRequiredKeysMixin:
+class DevoloSensorRequiredKeysMixin(Generic[_DataT]):
     value_func: Callable[[_DataT], int]
     def __init__(self, value_func) -> None: ...
 

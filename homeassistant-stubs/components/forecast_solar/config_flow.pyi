@@ -8,7 +8,7 @@ from typing import Any
 
 RE_API_KEY: Incomplete
 
-class ForecastSolarFlowHandler(ConfigFlow):
+class ForecastSolarFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> ForecastSolarOptionFlowHandler: ...

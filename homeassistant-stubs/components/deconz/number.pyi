@@ -13,11 +13,11 @@ from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
 from pydeconz.models.sensor.presence import Presence
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 T = TypeVar('T', Presence, PydeconzSensorBase)
 
-class DeconzNumberDescriptionMixin:
+class DeconzNumberDescriptionMixin(Generic[T]):
     instance_check: type[T]
     name_suffix: str
     set_fn: Callable[[DeconzSession, str, int], Coroutine[Any, Any, dict[str, Any]]]

@@ -13,7 +13,7 @@ _LOGGER: Incomplete
 
 async def async_try_connect(ip_address: str) -> Device: ...
 
-class BAFFlowHandler(config_entries.ConfigFlow):
+class BAFFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovery: Incomplete
     def __init__(self) -> None: ...

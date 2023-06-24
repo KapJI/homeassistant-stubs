@@ -12,7 +12,7 @@ from urllib.parse import ParseResult as ParseResult
 
 _LOGGER: Incomplete
 
-class FritzBoxToolsFlowHandler(ConfigFlow):
+class FritzBoxToolsFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...

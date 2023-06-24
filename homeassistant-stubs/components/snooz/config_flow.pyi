@@ -14,7 +14,7 @@ class DiscoveredSnooz:
     device: SnoozAdvertisementData
     def __init__(self, info, device) -> None: ...
 
-class SnoozConfigFlow(ConfigFlow):
+class SnoozConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovery: Incomplete
     _discovered_devices: Incomplete

@@ -15,7 +15,7 @@ from typing import Any, Final
 
 CONF_DEVICE: Final[str]
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_devices: Incomplete
     _discovered_device: Incomplete

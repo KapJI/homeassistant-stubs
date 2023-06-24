@@ -15,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
+from typing import Any, Generic
 
 CLIENT_BLOCKED: Incomplete
 CLIENT_UNBLOCKED: Incomplete
@@ -28,7 +28,7 @@ async def async_dpi_group_control_fn(api: aiounifi.Controller, obj_id: str, targ
 async def async_outlet_control_fn(api: aiounifi.Controller, obj_id: str, target: bool) -> None: ...
 async def async_poe_port_control_fn(api: aiounifi.Controller, obj_id: str, target: bool) -> None: ...
 
-class UnifiSwitchEntityDescriptionMixin:
+class UnifiSwitchEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
     control_fn: Callable[[aiounifi.Controller, str, bool], Coroutine[Any, Any, None]]
     is_on_fn: Callable[[UniFiController, ApiItemT], bool]
     def __init__(self, control_fn, is_on_fn) -> None: ...

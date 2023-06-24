@@ -12,7 +12,7 @@ from typing import Any
 DATA_SCHEMA: Incomplete
 AUTH_SCHEMA: Incomplete
 
-class SFRBoxFlowHandler(ConfigFlow):
+class SFRBoxFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _box: SFRBox
     _config: dict[str, Any]

@@ -5,6 +5,6 @@ from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 
-class AnovaConfligFlow(config_entries.ConfigFlow):
+class AnovaConfligFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, str] | None = ...) -> FlowResult: ...

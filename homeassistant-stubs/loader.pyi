@@ -31,20 +31,20 @@ _UNDEF: Incomplete
 MAX_LOAD_CONCURRENTLY: int
 MOVED_ZEROCONF_PROPS: Incomplete
 
-class DHCPMatcherRequired(TypedDict):
+class DHCPMatcherRequired(TypedDict, total=True):
     domain: str
 
-class DHCPMatcherOptional(TypedDict):
+class DHCPMatcherOptional(TypedDict, total=False):
     macaddress: str
     hostname: str
     registered_devices: bool
 
 class DHCPMatcher(DHCPMatcherRequired, DHCPMatcherOptional): ...
 
-class BluetoothMatcherRequired(TypedDict):
+class BluetoothMatcherRequired(TypedDict, total=True):
     domain: str
 
-class BluetoothMatcherOptional(TypedDict):
+class BluetoothMatcherOptional(TypedDict, total=False):
     local_name: str
     service_uuid: str
     service_data_uuid: str
@@ -54,10 +54,10 @@ class BluetoothMatcherOptional(TypedDict):
 
 class BluetoothMatcher(BluetoothMatcherRequired, BluetoothMatcherOptional): ...
 
-class USBMatcherRequired(TypedDict):
+class USBMatcherRequired(TypedDict, total=True):
     domain: str
 
-class USBMatcherOptional(TypedDict):
+class USBMatcherOptional(TypedDict, total=False):
     vid: str
     pid: str
     serial_number: str
@@ -71,7 +71,7 @@ class HomeKitDiscoveredIntegration:
     always_discover: bool
     def __init__(self, domain, always_discover) -> None: ...
 
-class Manifest(TypedDict):
+class Manifest(TypedDict, total=False):
     name: str
     disabled: str
     domain: str

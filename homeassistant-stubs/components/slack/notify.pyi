@@ -16,7 +16,7 @@ DATA_FILE_SCHEMA: Incomplete
 DATA_TEXT_ONLY_SCHEMA: Incomplete
 DATA_SCHEMA: Incomplete
 
-class AuthDictT(TypedDict):
+class AuthDictT(TypedDict, total=False):
     auth: BasicAuth
 
 class FormDataT(TypedDict):
@@ -26,7 +26,7 @@ class FormDataT(TypedDict):
     title: str
     token: str
 
-class MessageT(TypedDict):
+class MessageT(TypedDict, total=False):
     link_names: bool
     text: str
     username: str

@@ -10,7 +10,7 @@ from typing import Any
 
 LOGGER: Incomplete
 
-class LookinFlowHandler(config_entries.ConfigFlow):
+class LookinFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     _host: Incomplete
     _name: Incomplete
     def __init__(self) -> None: ...

@@ -22,6 +22,7 @@ class ConfEntry(NamedTuple):
 class RunEntry(NamedTuple):
     attr: Incomplete
     func: Incomplete
+
 PYMODBUS_CALL: Incomplete
 
 async def async_modbus_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

@@ -11,7 +11,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-class DevoloHomeControlFlowHandler(config_entries.ConfigFlow):
+class DevoloHomeControlFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     data_schema: Incomplete
     _reauth_entry: Incomplete

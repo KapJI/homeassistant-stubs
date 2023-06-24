@@ -9,11 +9,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, Generic
 
 PARALLEL_UPDATES: int
 
-class NextDnsSwitchRequiredKeysMixin:
+class NextDnsSwitchRequiredKeysMixin(Generic[CoordinatorDataT]):
     state: Callable[[CoordinatorDataT], bool]
     def __init__(self, state) -> None: ...
 

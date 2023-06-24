@@ -17,7 +17,7 @@ class DiscoveryData(NamedTuple):
     product_type: str
     serial: str
 
-class HomeWizardConfigFlow(ConfigFlow):
+class HomeWizardConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovery: DiscoveryData
     entry: ConfigEntry | None

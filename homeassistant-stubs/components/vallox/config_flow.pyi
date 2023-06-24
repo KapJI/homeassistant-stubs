@@ -13,7 +13,7 @@ STEP_USER_DATA_SCHEMA: Incomplete
 
 async def validate_host(hass: HomeAssistant, host: str) -> None: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
 

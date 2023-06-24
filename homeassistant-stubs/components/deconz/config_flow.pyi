@@ -19,7 +19,7 @@ CONF_MANUAL_INPUT: str
 
 def get_master_gateway(hass: HomeAssistant) -> DeconzGateway: ...
 
-class DeconzFlowHandler(ConfigFlow):
+class DeconzFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _hassio_discovery: dict[str, Any]
     bridges: list[DiscoveredBridge]

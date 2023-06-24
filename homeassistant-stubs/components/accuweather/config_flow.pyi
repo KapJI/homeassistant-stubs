@@ -12,7 +12,7 @@ from typing import Any
 OPTIONS_SCHEMA: Incomplete
 OPTIONS_FLOW: Incomplete
 
-class AccuWeatherFlowHandler(config_entries.ConfigFlow):
+class AccuWeatherFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     @staticmethod

@@ -6,5 +6,5 @@ from typing import Any
 
 def validate_input(entry: dict[str, str]) -> dict[str, str] | None: ...
 
-class SimplePushFlowHandler(config_entries.ConfigFlow):
+class SimplePushFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

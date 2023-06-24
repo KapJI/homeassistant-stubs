@@ -40,7 +40,7 @@ class UnexpectedStateError(HomeAssistantError): ...
 
 def generate_config_title(structures: Iterable[Structure]) -> str | None: ...
 
-class NestFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler):
+class NestFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     VERSION: int
     _data: Incomplete

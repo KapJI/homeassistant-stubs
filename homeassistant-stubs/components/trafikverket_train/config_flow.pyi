@@ -12,7 +12,7 @@ from typing import Any
 DATA_SCHEMA: Incomplete
 DATA_SCHEMA_REAUTH: Incomplete
 
-class TVTrainConfigFlow(config_entries.ConfigFlow):
+class TVTrainConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     entry: config_entries.ConfigEntry | None
     async def validate_input(self, api_key: str, train_from: str, train_to: str) -> None: ...

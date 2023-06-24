@@ -54,7 +54,7 @@ DEVICE_CLASS_RECEIVER: Incomplete
 MEDIA_PLAYER_PLAY_MEDIA_SCHEMA: Incomplete
 ATTR_TO_PROPERTY: Incomplete
 
-class _CacheImage(TypedDict):
+class _CacheImage(TypedDict, total=False):
     lock: Required[asyncio.Lock]
     content: tuple[bytes | None, str | None]
 

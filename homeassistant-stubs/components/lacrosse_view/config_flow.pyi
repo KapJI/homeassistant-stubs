@@ -14,7 +14,7 @@ _LOGGER: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> list[Location]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     data: Incomplete
     locations: Incomplete

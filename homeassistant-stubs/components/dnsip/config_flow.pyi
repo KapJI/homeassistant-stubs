@@ -11,7 +11,7 @@ DATA_SCHEMA_ADV: Incomplete
 
 async def async_validate_hostname(hostname: str, resolver_ipv4: str, resolver_ipv6: str) -> dict[str, bool]: ...
 
-class DnsIPConfigFlow(config_entries.ConfigFlow):
+class DnsIPConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> DnsIPOptionsFlowHandler: ...

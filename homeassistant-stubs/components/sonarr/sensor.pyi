@@ -9,9 +9,9 @@ from homeassistant.const import UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, Generic
 
-class SonarrSensorEntityDescriptionMixIn:
+class SonarrSensorEntityDescriptionMixIn(Generic[SonarrDataT]):
     attributes_fn: Callable[[SonarrDataT], dict[str, str]]
     value_fn: Callable[[SonarrDataT], StateType]
     def __init__(self, attributes_fn, value_fn) -> None: ...

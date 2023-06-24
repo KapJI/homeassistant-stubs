@@ -5,7 +5,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 
-class AmbientStationFlowHandler(config_entries.ConfigFlow):
+class AmbientStationFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     data_schema: Incomplete
     def __init__(self) -> None: ...

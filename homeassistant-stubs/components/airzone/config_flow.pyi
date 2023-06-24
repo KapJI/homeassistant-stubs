@@ -14,7 +14,7 @@ SYSTEM_ID_SCHEMA: Incomplete
 
 def short_mac(addr: str) -> str: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     _discovered_ip: str | None
     _discovered_mac: str | None
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

@@ -10,7 +10,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 
 _LOGGER: Incomplete
 
-class OTBRConfigFlow(ConfigFlow):
+class OTBRConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def _connect_and_set_dataset(self, otbr_url: str) -> None: ...
     async def async_step_user(self, user_input: dict[str, str] | None = ...) -> FlowResult: ...

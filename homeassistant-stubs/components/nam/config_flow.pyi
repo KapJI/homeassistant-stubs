@@ -21,7 +21,7 @@ AUTH_SCHEMA: Incomplete
 async def async_get_config(hass: HomeAssistant, host: str) -> NamConfig: ...
 async def async_check_credentials(hass: HomeAssistant, host: str, data: dict[str, Any]) -> None: ...
 
-class NAMFlowHandler(config_entries.ConfigFlow):
+class NAMFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     host: Incomplete
     entry: Incomplete

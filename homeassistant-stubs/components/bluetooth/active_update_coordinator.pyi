@@ -6,13 +6,13 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 POLL_DEFAULT_COOLDOWN: int
 POLL_DEFAULT_IMMEDIATE: bool
 _T = TypeVar('_T')
 
-class ActiveBluetoothDataUpdateCoordinator(PassiveBluetoothDataUpdateCoordinator):
+class ActiveBluetoothDataUpdateCoordinator(PassiveBluetoothDataUpdateCoordinator, Generic[_T]):
     data: Incomplete
     _needs_poll_method: Incomplete
     _poll_method: Incomplete

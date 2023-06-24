@@ -15,7 +15,7 @@ FlowInput: Incomplete
 
 class ConnectError(IntegrationError): ...
 
-class DlnaDmrFlowHandler(config_entries.ConfigFlow):
+class DlnaDmrFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discoveries: Incomplete
     _location: Incomplete

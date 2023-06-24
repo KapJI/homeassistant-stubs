@@ -42,7 +42,7 @@ class AbortFlow(FlowError):
     description_placeholders: Incomplete
     def __init__(self, reason: str, description_placeholders: Mapping[str, str] | None = ...) -> None: ...
 
-class FlowResult(TypedDict):
+class FlowResult(TypedDict, total=False):
     context: dict[str, Any]
     data_schema: vol.Schema | None
     data: Mapping[str, Any]

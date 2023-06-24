@@ -49,7 +49,7 @@ ROUNDING_PRECISION: int
 
 def round_temperature(temperature: float | None, precision: float) -> float | None: ...
 
-class Forecast(TypedDict):
+class Forecast(TypedDict, total=False):
     condition: str | None
     datetime: Required[str]
     precipitation_probability: int | None

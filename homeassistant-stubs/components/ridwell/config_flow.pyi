@@ -11,7 +11,7 @@ from typing import Any
 STEP_REAUTH_CONFIRM_DATA_SCHEMA: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _password: Incomplete
     _username: Incomplete

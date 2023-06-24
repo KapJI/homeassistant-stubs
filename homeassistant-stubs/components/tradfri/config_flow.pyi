@@ -13,7 +13,7 @@ class AuthError(Exception):
     code: Incomplete
     def __init__(self, code: str) -> None: ...
 
-class FlowHandler(config_entries.ConfigFlow):
+class FlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _host: Incomplete
     def __init__(self) -> None: ...

@@ -10,7 +10,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     _discovered_mac: str | None
     _discovered_url: str | None
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

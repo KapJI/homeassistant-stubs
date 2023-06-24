@@ -16,7 +16,7 @@ DATA_SCHEMA: Incomplete
 def _strip_uuid(udn: str) -> str: ...
 def _entry_is_complete(entry: config_entries.ConfigEntry, ssdp_rendering_control_location: str | None, ssdp_main_tv_agent_location: str | None) -> bool: ...
 
-class SamsungTVConfigFlow(config_entries.ConfigFlow):
+class SamsungTVConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: Incomplete
     _host: str

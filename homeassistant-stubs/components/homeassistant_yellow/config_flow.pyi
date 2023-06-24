@@ -11,7 +11,7 @@ from typing import Any
 _LOGGER: Incomplete
 STEP_HW_SETTINGS_SCHEMA: Incomplete
 
-class HomeAssistantYellowConfigFlow(ConfigFlow):
+class HomeAssistantYellowConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> HomeAssistantYellowOptionsFlow: ...

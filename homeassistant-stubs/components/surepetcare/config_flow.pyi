@@ -13,7 +13,7 @@ USER_DATA_SCHEMA: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _username: Incomplete
     def __init__(self) -> None: ...

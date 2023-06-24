@@ -11,7 +11,7 @@ from typing import Any
 STEP_REAUTH_SCHEMA: Incomplete
 STEP_USER_SCHEMA: Incomplete
 
-class TileFlowHandler(config_entries.ConfigFlow):
+class TileFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _password: Incomplete
     _username: Incomplete

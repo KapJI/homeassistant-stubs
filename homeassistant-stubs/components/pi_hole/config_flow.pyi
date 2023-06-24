@@ -9,7 +9,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class PiHoleFlowHandler(config_entries.ConfigFlow):
+class PiHoleFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _config: Incomplete
     def __init__(self) -> None: ...

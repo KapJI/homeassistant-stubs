@@ -24,7 +24,7 @@ class DSMRConnection:
 
 async def _validate_dsmr_connection(hass: core.HomeAssistant, data: dict[str, Any], protocol: str) -> dict[str, str | None]: ...
 
-class DSMRFlowHandler(config_entries.ConfigFlow):
+class DSMRFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _dsmr_version: str | None
     @staticmethod

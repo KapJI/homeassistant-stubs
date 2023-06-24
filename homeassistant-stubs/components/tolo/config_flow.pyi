@@ -9,7 +9,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class ToloSaunaConfigFlow(ConfigFlow):
+class ToloSaunaConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_host: str | None
     @staticmethod

@@ -12,16 +12,16 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, Generic
 
 def get_space(data: list[Diskspace], name: str) -> str: ...
 def get_modified_description(description: RadarrSensorEntityDescription[T], mount: RootFolder) -> tuple[RadarrSensorEntityDescription[T], str]: ...
 
-class RadarrSensorEntityDescriptionMixIn:
+class RadarrSensorEntityDescriptionMixIn(Generic[T]):
     value_fn: Callable[[T, str], str | int | datetime]
     def __init__(self, value_fn) -> None: ...
 
-class RadarrSensorEntityDescription(SensorEntityDescription, RadarrSensorEntityDescriptionMixIn[T]):
+class RadarrSensorEntityDescription(SensorEntityDescription, RadarrSensorEntityDescriptionMixIn[T], Generic[T]):
     description_fn: Callable[[RadarrSensorEntityDescription[T], RootFolder], tuple[RadarrSensorEntityDescription[T], str] | None] | None
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, description_fn) -> None: ...
 

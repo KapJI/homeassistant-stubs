@@ -10,7 +10,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class GoalZeroFlowHandler(config_entries.ConfigFlow):
+class GoalZeroFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     ip_address: Incomplete
     def __init__(self) -> None: ...

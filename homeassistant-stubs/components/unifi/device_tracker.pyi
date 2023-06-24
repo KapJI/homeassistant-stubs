@@ -12,7 +12,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
+from typing import Any, Generic
 
 LOGGER: Incomplete
 CLIENT_TRACKER: str
@@ -29,7 +29,7 @@ def async_client_allowed_fn(controller: UniFiController, obj_id: str) -> bool: .
 def async_client_is_connected_fn(controller: UniFiController, obj_id: str) -> bool: ...
 def async_device_heartbeat_timedelta_fn(controller: UniFiController, obj_id: str) -> timedelta: ...
 
-class UnifiEntityTrackerDescriptionMixin:
+class UnifiEntityTrackerDescriptionMixin(Generic[HandlerT, ApiItemT]):
     heartbeat_timedelta_fn: Callable[[UniFiController, str], timedelta]
     ip_address_fn: Callable[[aiounifi.Controller, str], str]
     is_connected_fn: Callable[[UniFiController, str], bool]

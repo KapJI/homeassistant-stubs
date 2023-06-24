@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from bleak.backends.scanner import AdvertisementData as AdvertisementData
 from homeassistant.core import callback as callback
 from homeassistant.loader import BluetoothMatcher as BluetoothMatcher, BluetoothMatcherOptional as BluetoothMatcherOptional
-from typing import Final, TypeVar, TypedDict
+from typing import Final, Generic, TypeVar, TypedDict
 
 MAX_REMEMBER_ADDRESSES: Final[int]
 CALLBACK: Final[str]
@@ -18,7 +18,7 @@ MANUFACTURER_ID: Final[str]
 MANUFACTURER_DATA_START: Final[str]
 LOCAL_NAME_MIN_MATCH_LENGTH: int
 
-class BluetoothCallbackMatcherOptional(TypedDict):
+class BluetoothCallbackMatcherOptional(TypedDict, total=False):
     address: str
 
 class BluetoothCallbackMatcher(BluetoothMatcherOptional, BluetoothCallbackMatcherOptional): ...
@@ -47,7 +47,7 @@ class IntegrationMatcher:
     def match_domains(self, service_info: BluetoothServiceInfoBleak) -> set[str]: ...
 _T = TypeVar('_T', BluetoothMatcher, BluetoothCallbackMatcherWithCallback)
 
-class BluetoothMatcherIndexBase:
+class BluetoothMatcherIndexBase(Generic[_T]):
     local_name: Incomplete
     service_uuid: Incomplete
     service_data_uuid: Incomplete

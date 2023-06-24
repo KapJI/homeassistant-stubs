@@ -10,7 +10,7 @@ from typing import Any
 
 DATA_SCHEMA: Incomplete
 
-class BrotherConfigFlow(config_entries.ConfigFlow):
+class BrotherConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     brother: Incomplete
     host: Incomplete

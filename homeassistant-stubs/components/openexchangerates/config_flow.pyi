@@ -12,7 +12,7 @@ from typing import Any
 def get_data_schema(currencies: dict[str, str], existing_data: Mapping[str, str]) -> vol.Schema: ...
 async def validate_input(hass: HomeAssistant, data: dict[str, str]) -> dict[str, str]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     currencies: Incomplete
     _reauth_entry: Incomplete

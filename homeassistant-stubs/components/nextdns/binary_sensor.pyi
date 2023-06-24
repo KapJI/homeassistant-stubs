@@ -8,10 +8,11 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import Generic
 
 PARALLEL_UPDATES: int
 
-class NextDnsBinarySensorRequiredKeysMixin:
+class NextDnsBinarySensorRequiredKeysMixin(Generic[CoordinatorDataT]):
     state: Callable[[CoordinatorDataT, str], bool]
     def __init__(self, state) -> None: ...
 

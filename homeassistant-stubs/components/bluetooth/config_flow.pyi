@@ -12,7 +12,7 @@ from typing import Any
 OPTIONS_SCHEMA: Incomplete
 OPTIONS_FLOW: Incomplete
 
-class BluetoothConfigFlow(ConfigFlow):
+class BluetoothConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _adapter: Incomplete
     _details: Incomplete

@@ -21,7 +21,7 @@ FLASH_TO_DECONZ: Incomplete
 DECONZ_TO_COLOR_MODE: Incomplete
 _LightDeviceT = TypeVar('_LightDeviceT', bound=Group | Light)
 
-class SetStateAttributes(TypedDict):
+class SetStateAttributes(TypedDict, total=False):
     alert: LightAlert
     brightness: int
     color_temperature: int

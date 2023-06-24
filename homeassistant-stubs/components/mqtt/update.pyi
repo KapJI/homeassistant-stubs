@@ -30,7 +30,7 @@ CONF_TITLE: str
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
-class _MqttUpdatePayloadType(TypedDict):
+class _MqttUpdatePayloadType(TypedDict, total=False):
     installed_version: str
     latest_version: str
     title: str

@@ -17,7 +17,7 @@ def _login_and_fetch_site_info(power_wall: Powerwall, password: str) -> tuple[Si
 def _powerwall_is_reachable(ip_address: str, password: str) -> bool: ...
 async def validate_input(hass: core.HomeAssistant, data: dict[str, str]) -> dict[str, str]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     ip_address: Incomplete
     title: Incomplete

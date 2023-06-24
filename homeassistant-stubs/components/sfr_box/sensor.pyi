@@ -11,11 +11,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from sfrbox_api.models import DslInfo, SystemInfo, WanInfo
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 _T = TypeVar('_T')
 
-class SFRBoxSensorMixin:
+class SFRBoxSensorMixin(Generic[_T]):
     value_fn: Callable[[_T], StateType]
     def __init__(self, value_fn) -> None: ...
 

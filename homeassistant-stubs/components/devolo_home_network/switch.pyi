@@ -10,11 +10,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 _DataT = TypeVar('_DataT', bound=WifiGuestAccessGet | bool)
 
-class DevoloSwitchRequiredKeysMixin:
+class DevoloSwitchRequiredKeysMixin(Generic[_DataT]):
     is_on_func: Callable[[_DataT], bool]
     turn_on_func: Callable[[Device], Awaitable[bool]]
     turn_off_func: Callable[[Device], Awaitable[bool]]

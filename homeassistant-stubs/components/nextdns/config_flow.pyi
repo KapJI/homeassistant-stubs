@@ -6,7 +6,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-class NextDnsFlowHandler(config_entries.ConfigFlow):
+class NextDnsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     nextdns: Incomplete
     api_key: Incomplete

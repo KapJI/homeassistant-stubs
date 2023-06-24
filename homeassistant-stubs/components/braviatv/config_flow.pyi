@@ -11,7 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_create_clientsession as a
 from homeassistant.util.network import is_host_valid as is_host_valid
 from typing import Any
 
-class BraviaTVConfigFlow(config_entries.ConfigFlow):
+class BraviaTVConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     client: Incomplete
     device_config: Incomplete

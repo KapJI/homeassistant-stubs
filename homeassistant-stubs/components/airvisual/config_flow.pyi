@@ -18,7 +18,7 @@ PICK_INTEGRATION_TYPE_SCHEMA: Incomplete
 OPTIONS_SCHEMA: Incomplete
 OPTIONS_FLOW: Incomplete
 
-class AirVisualFlowHandler(config_entries.ConfigFlow):
+class AirVisualFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _entry_data_for_reauth: Incomplete
     _geo_id: Incomplete

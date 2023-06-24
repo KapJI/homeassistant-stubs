@@ -18,7 +18,7 @@ INTERNAL_WIFI_AP_IP: str
 
 async def validate_input(hass: HomeAssistant, host: str, info: dict[str, Any], data: dict[str, Any]) -> dict[str, Any]: ...
 
-class ShellyConfigFlow(ConfigFlow):
+class ShellyConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     host: str
     info: dict[str, Any]

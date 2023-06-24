@@ -11,7 +11,7 @@ CONF_INT: str
 CONF_SELECT: str
 CONF_MULTISELECT: str
 
-class DemoConfigFlow(config_entries.ConfigFlow):
+class DemoConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> OptionsFlowHandler: ...

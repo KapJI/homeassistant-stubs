@@ -6,7 +6,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-class SkybellFlowHandler(config_entries.ConfigFlow):
+class SkybellFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     reauth_email: str
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> FlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, str] | None = ...) -> FlowResult: ...

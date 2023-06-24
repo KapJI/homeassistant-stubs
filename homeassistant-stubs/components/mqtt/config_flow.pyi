@@ -37,7 +37,7 @@ CA_CERT_UPLOAD_SELECTOR: Incomplete
 CERT_UPLOAD_SELECTOR: Incomplete
 KEY_UPLOAD_SELECTOR: Incomplete
 
-class FlowHandler(ConfigFlow):
+class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _hassio_discovery: dict[str, Any] | None
     @staticmethod

@@ -9,7 +9,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-class MikrotikFlowHandler(config_entries.ConfigFlow):
+class MikrotikFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: config_entries.ConfigEntry | None
     @staticmethod

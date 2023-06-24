@@ -24,7 +24,7 @@ class HubInfo(NamedTuple):
 
 async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> HubInfo: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _omada_opts: Incomplete
     _sites: Incomplete

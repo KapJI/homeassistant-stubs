@@ -20,7 +20,7 @@ STEP_USER_DATA_SCHEMA: Incomplete
 
 def get_unique_id(data: dict[str, Any]) -> str: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _client: Incomplete
     _data: Incomplete

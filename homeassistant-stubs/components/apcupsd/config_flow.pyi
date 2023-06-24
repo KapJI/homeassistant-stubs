@@ -9,6 +9,6 @@ from typing import Any
 _PORT_SELECTOR: Incomplete
 _SCHEMA: Incomplete
 
-class ConfigFlowHandler(ConfigFlow):
+class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

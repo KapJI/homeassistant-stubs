@@ -12,7 +12,7 @@ from typing import Any
 DATA_SCHEMA: Incomplete
 DATA_SCHEMA_REAUTH: Incomplete
 
-class TVFerryConfigFlow(config_entries.ConfigFlow):
+class TVFerryConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     entry: config_entries.ConfigEntry | None
     async def validate_input(self, api_key: str, ferry_from: str, ferry_to: str) -> None: ...

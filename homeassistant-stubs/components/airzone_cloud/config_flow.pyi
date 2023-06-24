@@ -7,7 +7,7 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from typing import Any
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     airzone: AirzoneCloudApi
     async def async_step_inst_pick(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

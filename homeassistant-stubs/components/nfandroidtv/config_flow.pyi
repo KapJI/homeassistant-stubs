@@ -7,6 +7,6 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class NFAndroidTVFlowHandler(config_entries.ConfigFlow):
+class NFAndroidTVFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     async def _async_try_connect(self, host: str) -> str | None: ...

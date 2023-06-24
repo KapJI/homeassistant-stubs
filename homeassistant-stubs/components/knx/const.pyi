@@ -52,7 +52,7 @@ ATTR_SOURCE: Final[str]
 AsyncMessageCallbackType = Callable[[Telegram], Awaitable[None]]
 MessageCallbackType = Callable[[Telegram], None]
 
-class KNXConfigEntryData(TypedDict):
+class KNXConfigEntryData(TypedDict, total=False):
     connection_type: str
     individual_address: str
     local_ip: str | None

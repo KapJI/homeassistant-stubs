@@ -7,7 +7,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.util import slugify as slugify
 from typing import Any
 
-class VelbusConfigFlow(config_entries.ConfigFlow):
+class VelbusConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _errors: Incomplete
     _device: str

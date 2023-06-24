@@ -10,7 +10,7 @@ from typing import Any
 
 DATA_SCHEMA: Incomplete
 
-class SensiboConfigFlow(config_entries.ConfigFlow):
+class SensiboConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     entry: config_entries.ConfigEntry | None
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> FlowResult: ...

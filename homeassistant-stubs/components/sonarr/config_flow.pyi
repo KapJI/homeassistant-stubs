@@ -13,7 +13,7 @@ _LOGGER: Incomplete
 
 async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None: ...
 
-class SonarrConfigFlow(ConfigFlow):
+class SonarrConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     entry: Incomplete
     def __init__(self) -> None: ...

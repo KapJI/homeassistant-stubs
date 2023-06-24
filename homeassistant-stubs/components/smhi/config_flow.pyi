@@ -9,6 +9,6 @@ from typing import Any
 
 async def async_check_location(hass: HomeAssistant, longitude: float, latitude: float) -> bool: ...
 
-class SmhiFlowHandler(config_entries.ConfigFlow):
+class SmhiFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

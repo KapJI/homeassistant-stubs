@@ -12,7 +12,7 @@ DATA_SCHEMA: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 
-class OneWireFlowHandler(ConfigFlow):
+class OneWireFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     onewire_config: Incomplete
     def __init__(self) -> None: ...

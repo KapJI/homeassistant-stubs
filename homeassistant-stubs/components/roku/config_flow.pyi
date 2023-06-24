@@ -15,7 +15,7 @@ _LOGGER: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]: ...
 
-class RokuConfigFlow(ConfigFlow):
+class RokuConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovery_info: dict[str, Any]
     def __init__(self) -> None: ...

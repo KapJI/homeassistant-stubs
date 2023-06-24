@@ -7,7 +7,7 @@ from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.util.network import is_host_valid as is_host_valid
 from typing import Any
 
-class JvcProjectorConfigFlow(ConfigFlow):
+class JvcProjectorConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: ConfigEntry | None
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

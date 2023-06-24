@@ -8,7 +8,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from typing import Any
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _config_entry: ConfigEntry | None
     _default_user: None | str

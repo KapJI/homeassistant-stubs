@@ -8,8 +8,9 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pylitterbot import Robot
+from typing import Generic
 
-class RequiredKeysMixin:
+class RequiredKeysMixin(Generic[_RobotT]):
     is_on_fn: Callable[[_RobotT], bool]
     def __init__(self, is_on_fn) -> None: ...
 

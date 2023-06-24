@@ -25,10 +25,10 @@ QUERY_STATISTICS_SUMMARY_SUM: Incomplete
 STATISTIC_UNIT_TO_UNIT_CONVERTER: dict[str | None, type[BaseUnitConverter]]
 _LOGGER: Incomplete
 
-class BaseStatisticsRow(TypedDict):
+class BaseStatisticsRow(TypedDict, total=False):
     start: float
 
-class StatisticsRow(BaseStatisticsRow):
+class StatisticsRow(BaseStatisticsRow, total=False):
     end: float
     last_reset: float | None
     state: float | None

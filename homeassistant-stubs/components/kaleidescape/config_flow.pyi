@@ -9,7 +9,7 @@ from typing import Any
 ERROR_CANNOT_CONNECT: str
 ERROR_UNSUPPORTED: str
 
-class KaleidescapeConfigFlow(ConfigFlow):
+class KaleidescapeConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovered_device: KaleidescapeDeviceInfo
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

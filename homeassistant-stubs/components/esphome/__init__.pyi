@@ -22,7 +22,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.template import Template as Template
-from typing import Any, NamedTuple, TypeVar
+from typing import Any, Generic, NamedTuple, TypeVar
 
 CONF_DEVICE_NAME: str
 CONF_NOISE_PSK: str
@@ -61,7 +61,7 @@ def esphome_state_property(func: Callable[[_EntityT], _R]) -> Callable[[_EntityT
 ICON_SCHEMA: Incomplete
 ENTITY_CATEGORIES: EsphomeEnumMapper[EsphomeEntityCategory, EntityCategory | None]
 
-class EsphomeEntity(Entity):
+class EsphomeEntity(Entity, Generic[_InfoT, _StateT]):
     _attr_should_poll: bool
     _entry_data: Incomplete
     _component_key: Incomplete

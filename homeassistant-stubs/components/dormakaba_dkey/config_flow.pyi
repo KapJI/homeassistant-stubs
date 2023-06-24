@@ -10,7 +10,7 @@ from typing import Any
 _LOGGER: Incomplete
 STEP_ASSOCIATE_SCHEMA: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: config_entries.ConfigEntry | None
     _lock: Incomplete

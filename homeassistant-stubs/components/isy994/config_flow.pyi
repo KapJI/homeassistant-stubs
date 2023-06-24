@@ -15,7 +15,7 @@ _LOGGER: Incomplete
 def _data_schema(schema_input: dict[str, str]) -> vol.Schema: ...
 async def validate_input(hass: core.HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovered_conf: Incomplete
     _existing_entry: Incomplete

@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_NAME 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 class PassiveBluetoothEntityKey:
     key: str
@@ -16,14 +16,14 @@ class PassiveBluetoothEntityKey:
     def __init__(self, key, device_id) -> None: ...
 _T = TypeVar('_T')
 
-class PassiveBluetoothDataUpdate:
+class PassiveBluetoothDataUpdate(Generic[_T]):
     devices: dict[str | None, DeviceInfo]
     entity_descriptions: Mapping[PassiveBluetoothEntityKey, EntityDescription]
     entity_names: Mapping[PassiveBluetoothEntityKey, str | None]
     entity_data: Mapping[PassiveBluetoothEntityKey, _T]
     def __init__(self, devices, entity_descriptions, entity_names, entity_data) -> None: ...
 
-class PassiveBluetoothProcessorCoordinator(BasePassiveBluetoothCoordinator):
+class PassiveBluetoothProcessorCoordinator(BasePassiveBluetoothCoordinator, Generic[_T]):
     _processors: Incomplete
     _update_method: Incomplete
     last_update_success: bool
@@ -35,7 +35,7 @@ class PassiveBluetoothProcessorCoordinator(BasePassiveBluetoothCoordinator):
     def _async_handle_bluetooth_event(self, service_info: BluetoothServiceInfoBleak, change: BluetoothChange) -> None: ...
 _PassiveBluetoothDataProcessorT = TypeVar('_PassiveBluetoothDataProcessorT', bound='PassiveBluetoothDataProcessor[Any]')
 
-class PassiveBluetoothDataProcessor:
+class PassiveBluetoothDataProcessor(Generic[_T]):
     coordinator: PassiveBluetoothProcessorCoordinator
     _listeners: Incomplete
     _entity_key_listeners: Incomplete
@@ -55,7 +55,7 @@ class PassiveBluetoothDataProcessor:
     def async_update_listeners(self, data: PassiveBluetoothDataUpdate[_T] | None) -> None: ...
     def async_handle_update(self, update: _T) -> None: ...
 
-class PassiveBluetoothProcessorEntity(Entity):
+class PassiveBluetoothProcessorEntity(Entity, Generic[_PassiveBluetoothDataProcessorT]):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     entity_description: Incomplete

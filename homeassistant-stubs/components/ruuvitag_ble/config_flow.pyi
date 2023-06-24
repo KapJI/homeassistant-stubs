@@ -6,7 +6,7 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-class RuuvitagConfigFlow(ConfigFlow):
+class RuuvitagConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovery_info: Incomplete
     _discovered_device: Incomplete

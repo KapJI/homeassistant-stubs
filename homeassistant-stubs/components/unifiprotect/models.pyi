@@ -4,7 +4,7 @@ from collections.abc import Callable as Callable, Coroutine
 from enum import Enum
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from pyunifiprotect.data import Event, NVR, ProtectAdoptableDeviceModel
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 _LOGGER: Incomplete
 T = TypeVar('T', bound=ProtectAdoptableDeviceModel | NVR)
@@ -14,7 +14,7 @@ class PermRequired(int, Enum):
     WRITE: int
     DELETE: int
 
-class ProtectRequiredKeysMixin(EntityDescription):
+class ProtectRequiredKeysMixin(EntityDescription, Generic[T]):
     ufp_required_field: str | None
     ufp_value: str | None
     ufp_value_fn: Callable[[T], Any] | None

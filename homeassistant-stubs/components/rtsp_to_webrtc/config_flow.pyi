@@ -11,7 +11,7 @@ from typing import Any
 _LOGGER: Incomplete
 DATA_SCHEMA: Incomplete
 
-class RTSPToWebRTCConfigFlow(config_entries.ConfigFlow):
+class RTSPToWebRTCConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     _hassio_discovery: dict[str, Any]
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     async def _test_connection(self, url: str) -> str | None: ...

@@ -8,7 +8,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class UpCloudConfigFlow(config_entries.ConfigFlow):
+class UpCloudConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     username: str
     password: str

@@ -8,9 +8,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
+from typing import Any, Generic
 
-class RequiredKeysMixin:
+class RequiredKeysMixin(Generic[_RobotT]):
     icons: tuple[str, str]
     set_fn: Callable[[_RobotT, bool], Coroutine[Any, Any, bool]]
     def __init__(self, icons, set_fn) -> None: ...

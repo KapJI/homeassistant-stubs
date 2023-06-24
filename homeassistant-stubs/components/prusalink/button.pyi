@@ -7,15 +7,15 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyprusalink import JobInfo, PrinterInfo, PrusaLink as PrusaLink
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 T = TypeVar('T', PrinterInfo, JobInfo)
 
-class PrusaLinkButtonEntityDescriptionMixin:
+class PrusaLinkButtonEntityDescriptionMixin(Generic[T]):
     press_fn: Callable[[PrusaLink], Coroutine[Any, Any, None]]
     def __init__(self, press_fn) -> None: ...
 
-class PrusaLinkButtonEntityDescription(ButtonEntityDescription, PrusaLinkButtonEntityDescriptionMixin[T]):
+class PrusaLinkButtonEntityDescription(ButtonEntityDescription, PrusaLinkButtonEntityDescriptionMixin[T], Generic[T]):
     available_fn: Callable[[T], bool]
     def __init__(self, press_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, available_fn) -> None: ...
 

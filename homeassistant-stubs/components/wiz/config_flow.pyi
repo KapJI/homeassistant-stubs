@@ -13,7 +13,7 @@ from typing import Any
 _LOGGER: Incomplete
 CONF_DEVICE: str
 
-class WizConfigFlow(ConfigFlow):
+class WizConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_device: DiscoveredBulb
     _name: str

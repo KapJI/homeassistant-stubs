@@ -5,7 +5,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as Core
 from homeassistant.loader import MAX_LOAD_CONCURRENTLY as MAX_LOAD_CONCURRENTLY, bind_hass as bind_hass
 from homeassistant.util.file import WriteError as WriteError
 from json import JSONEncoder
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 STORAGE_DIR: str
 _LOGGER: Incomplete
@@ -14,7 +14,7 @@ _T = TypeVar('_T', bound=Mapping[str, Any] | Sequence[Any])
 
 async def async_migrator(hass: HomeAssistant, old_path: str, store: Store, *, old_conf_load_func: Callable | None = ..., old_conf_migrate_func: Callable | None = ...) -> Any: ...
 
-class Store:
+class Store(Generic[_T]):
     version: Incomplete
     minor_version: Incomplete
     key: Incomplete

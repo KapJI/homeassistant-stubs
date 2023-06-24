@@ -11,15 +11,15 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.variance import ignore_variance as ignore_variance
 from pyprusalink import JobInfo, PrinterInfo
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 T = TypeVar('T', PrinterInfo, JobInfo)
 
-class PrusaLinkSensorEntityDescriptionMixin:
+class PrusaLinkSensorEntityDescriptionMixin(Generic[T]):
     value_fn: Callable[[T], datetime | StateType]
     def __init__(self, value_fn) -> None: ...
 
-class PrusaLinkSensorEntityDescription(SensorEntityDescription, PrusaLinkSensorEntityDescriptionMixin[T]):
+class PrusaLinkSensorEntityDescription(SensorEntityDescription, PrusaLinkSensorEntityDescriptionMixin[T], Generic[T]):
     available_fn: Callable[[T], bool]
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, available_fn) -> None: ...
 

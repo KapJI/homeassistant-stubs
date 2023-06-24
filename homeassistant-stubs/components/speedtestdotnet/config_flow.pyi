@@ -5,7 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
-class SpeedTestFlowHandler(config_entries.ConfigFlow):
+class SpeedTestFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> SpeedTestOptionsFlowHandler: ...

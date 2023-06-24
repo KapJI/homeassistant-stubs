@@ -1,10 +1,10 @@
 from ..core import Recorder as Recorder
 from _typeshed import Incomplete
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 _DataT = TypeVar('_DataT')
 
-class BaseTableManager:
+class BaseTableManager(Generic[_DataT]):
     active: bool
     recorder: Incomplete
     _pending: Incomplete

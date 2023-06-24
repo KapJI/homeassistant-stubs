@@ -15,7 +15,7 @@ _LOGGER: Incomplete
 CONFIG_FILE: Final[str]
 USER_SCHEMA: Final[Incomplete]
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     reauth_entry: config_entries.ConfigEntry | None
     nanoleaf: Nanoleaf
     discovery_conf: JsonObjectType

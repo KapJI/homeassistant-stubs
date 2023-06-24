@@ -8,7 +8,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovery_info: Incomplete
     _discovered_devices: Incomplete

@@ -18,7 +18,7 @@ class SimpliSafeOAuthValues(NamedTuple):
 
 def async_get_simplisafe_oauth_values() -> SimpliSafeOAuthValues: ...
 
-class SimpliSafeFlowHandler(config_entries.ConfigFlow):
+class SimpliSafeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _oauth_values: Incomplete
     _reauth: bool

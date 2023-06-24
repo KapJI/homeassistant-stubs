@@ -8,11 +8,11 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
+from typing import Any, Generic
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class RequiredKeysMixin:
+class RequiredKeysMixin(Generic[_RobotT]):
     press_fn: Callable[[_RobotT], Coroutine[Any, Any, bool]]
     def __init__(self, press_fn) -> None: ...
 

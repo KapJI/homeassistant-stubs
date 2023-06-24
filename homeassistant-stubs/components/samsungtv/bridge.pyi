@@ -13,7 +13,7 @@ from samsungtvws.async_remote import SamsungTVWSAsyncRemote
 from samsungtvws.command import SamsungTVCommand
 from samsungtvws.encrypted.command import SamsungTVEncryptedCommand
 from samsungtvws.encrypted.remote import SamsungTVEncryptedWSAsyncRemote
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 SCAN_INTERVAL_PLUS_OFF_TIME: Incomplete
 KEY_PRESS_TIMEOUT: float
@@ -80,7 +80,7 @@ class SamsungTVLegacyBridge(SamsungTVBridge):
     async def async_close_remote(self) -> None: ...
     def _close_remote(self) -> None: ...
 
-class SamsungTVWSBaseBridge(SamsungTVBridge, metaclass=abc.ABCMeta):
+class SamsungTVWSBaseBridge(SamsungTVBridge, Generic[_RemoteT, _CommandT], metaclass=abc.ABCMeta):
     _remote: Incomplete
     _remote_lock: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: int | None = ...) -> None: ...

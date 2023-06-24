@@ -10,7 +10,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class SleepIQFlowHandler(ConfigFlow):
+class SleepIQFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: Incomplete
     def __init__(self) -> None: ...

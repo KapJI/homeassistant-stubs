@@ -14,7 +14,7 @@ RESULT_NO_DEVICES_FOUND: str
 RESULT_NOT_SUPPORTED: str
 RESULT_SUCCESS: str
 
-class FritzboxConfigFlow(ConfigFlow):
+class FritzboxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _entry: Incomplete
     _host: Incomplete

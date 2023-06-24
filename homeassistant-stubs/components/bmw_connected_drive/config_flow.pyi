@@ -12,7 +12,7 @@ DATA_SCHEMA: Incomplete
 
 async def validate_input(hass: core.HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 
-class BMWConfigFlow(config_entries.ConfigFlow):
+class BMWConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: config_entries.ConfigEntry | None
     async def async_step_user(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

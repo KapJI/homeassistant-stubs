@@ -6,7 +6,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
-class AdGuardHomeFlowHandler(ConfigFlow):
+class AdGuardHomeFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _hassio_discovery: dict[str, Any] | None
     async def _show_setup_form(self, errors: dict[str, str] | None = ...) -> FlowResult: ...

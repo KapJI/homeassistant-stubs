@@ -15,7 +15,7 @@ from typing import Any
 def get_client_controller(client: Client) -> Controller: ...
 async def async_get_controller(hass: HomeAssistant, ip_address: str, password: str, port: int, ssl: bool) -> Controller | None: ...
 
-class RainMachineFlowHandler(config_entries.ConfigFlow):
+class RainMachineFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovered_ip_address: str | None
     @staticmethod

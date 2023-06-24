@@ -15,7 +15,7 @@ _LOGGER: Incomplete
 
 async def async_validate_lock_or_error(local_name: str, device: BLEDevice, key: str, slot: int) -> dict[str, str]: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovery_info: Incomplete
     _discovered_devices: Incomplete

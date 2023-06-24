@@ -10,7 +10,7 @@ from typing import Any
 DATA_SCHEMA: Incomplete
 DATA_SCHEMA_AUTH: Incomplete
 
-class YaleConfigFlow(ConfigFlow):
+class YaleConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     entry: ConfigEntry | None
     @staticmethod

@@ -10,7 +10,7 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 LOGGER: Incomplete
 _DataT = TypeVar('_DataT', bound=Device)
@@ -18,7 +18,7 @@ _HandlerT = TypeVar('_HandlerT', bound=Devices)
 
 async def async_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 
-class UnifiUpdateEntityDescriptionMixin:
+class UnifiUpdateEntityDescriptionMixin(Generic[_HandlerT, _DataT]):
     control_fn: Callable[[aiounifi.Controller, str], Coroutine[Any, Any, None]]
     state_fn: Callable[[aiounifi.Controller, _DataT], bool]
     def __init__(self, control_fn, state_fn) -> None: ...

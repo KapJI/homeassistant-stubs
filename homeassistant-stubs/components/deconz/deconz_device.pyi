@@ -9,11 +9,11 @@ from pydeconz.models.group import Group as PydeconzGroup
 from pydeconz.models.light import LightBase as PydeconzLightBase
 from pydeconz.models.scene import Scene as PydeconzScene
 from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 _DeviceT = TypeVar('_DeviceT', bound=PydeconzGroup | PydeconzLightBase | PydeconzSensorBase | PydeconzScene)
 
-class DeconzBase:
+class DeconzBase(Generic[_DeviceT]):
     unique_id_suffix: str | None
     _device: Incomplete
     gateway: Incomplete

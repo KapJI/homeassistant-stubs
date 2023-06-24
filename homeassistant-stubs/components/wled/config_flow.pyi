@@ -9,7 +9,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from typing import Any
 from wled import Device as Device
 
-class WLEDFlowHandler(ConfigFlow):
+class WLEDFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovered_host: str
     discovered_device: Device

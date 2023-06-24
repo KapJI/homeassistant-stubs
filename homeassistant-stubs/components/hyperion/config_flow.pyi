@@ -12,7 +12,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class HyperionConfigFlow(ConfigFlow):
+class HyperionConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _data: Incomplete
     _request_token_task: Incomplete

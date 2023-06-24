@@ -11,7 +11,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class NetatmoFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler):
+class NetatmoFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     @staticmethod
     def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> config_entries.OptionsFlow: ...

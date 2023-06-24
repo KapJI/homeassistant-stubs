@@ -12,7 +12,7 @@ STEP_USER_DATA_SCHEMA: Incomplete
 
 def _generate_client_device_id() -> str: ...
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     client_device_id: Incomplete
     def __init__(self) -> None: ...

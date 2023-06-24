@@ -10,13 +10,13 @@ from homeassistant.components.ssdp import SsdpServiceInfo as SsdpServiceInfo
 from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
 _R = TypeVar('_R', bound='Awaitable[bool] | bool')
 DiscoveryFunctionType = Callable[[HomeAssistant], _R]
 _LOGGER: Incomplete
 
-class DiscoveryFlowHandler(config_entries.ConfigFlow):
+class DiscoveryFlowHandler(config_entries.ConfigFlow, Generic[_R]):
     VERSION: int
     _domain: Incomplete
     _title: Incomplete

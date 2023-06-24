@@ -11,7 +11,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class ConfigFlow(config_entries.ConfigFlow):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     config_schema: Incomplete
     def __init__(self) -> None: ...

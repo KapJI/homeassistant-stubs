@@ -8,6 +8,7 @@ _LOGGER: Incomplete
 class ENTRY(NamedTuple):
     struct_id: Incomplete
     register_count: Incomplete
+
 DEFAULT_STRUCT_FORMAT: Incomplete
 
 def struct_validator(config: dict[str, Any]) -> dict[str, Any]: ...

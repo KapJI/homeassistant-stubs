@@ -2,7 +2,7 @@ import abc
 import voluptuous as vol
 from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, PAYLOAD_NONE as PAYLOAD_NONE
+from .const import CONF_ACTION_TEMPLATE as CONF_ACTION_TEMPLATE, CONF_ACTION_TOPIC as CONF_ACTION_TOPIC, CONF_CURRENT_HUMIDITY_TEMPLATE as CONF_CURRENT_HUMIDITY_TEMPLATE, CONF_CURRENT_HUMIDITY_TOPIC as CONF_CURRENT_HUMIDITY_TOPIC, CONF_CURRENT_TEMP_TEMPLATE as CONF_CURRENT_TEMP_TEMPLATE, CONF_CURRENT_TEMP_TOPIC as CONF_CURRENT_TEMP_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_MODE_COMMAND_TEMPLATE as CONF_MODE_COMMAND_TEMPLATE, CONF_MODE_COMMAND_TOPIC as CONF_MODE_COMMAND_TOPIC, CONF_MODE_LIST as CONF_MODE_LIST, CONF_MODE_STATE_TEMPLATE as CONF_MODE_STATE_TEMPLATE, CONF_MODE_STATE_TOPIC as CONF_MODE_STATE_TOPIC, CONF_PRECISION as CONF_PRECISION, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_TEMP_COMMAND_TEMPLATE as CONF_TEMP_COMMAND_TEMPLATE, CONF_TEMP_COMMAND_TOPIC as CONF_TEMP_COMMAND_TOPIC, CONF_TEMP_INITIAL as CONF_TEMP_INITIAL, CONF_TEMP_MAX as CONF_TEMP_MAX, CONF_TEMP_MIN as CONF_TEMP_MIN, CONF_TEMP_STATE_TEMPLATE as CONF_TEMP_STATE_TEMPLATE, CONF_TEMP_STATE_TOPIC as CONF_TEMP_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
 from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
@@ -11,67 +11,46 @@ from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
 from homeassistant.components import climate as climate
-from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MAX_TEMP as DEFAULT_MAX_TEMP, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE, SWING_OFF as SWING_OFF, SWING_ON as SWING_ON
+from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE, SWING_OFF as SWING_OFF, SWING_ON as SWING_ON
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 
 _LOGGER: Incomplete
 DEFAULT_NAME: str
-CONF_ACTION_TEMPLATE: str
-CONF_ACTION_TOPIC: str
 CONF_AUX_COMMAND_TOPIC: str
 CONF_AUX_STATE_TEMPLATE: str
 CONF_AUX_STATE_TOPIC: str
-CONF_AWAY_MODE_COMMAND_TOPIC: str
-CONF_AWAY_MODE_STATE_TEMPLATE: str
-CONF_AWAY_MODE_STATE_TOPIC: str
-CONF_CURRENT_HUMIDITY_TEMPLATE: str
-CONF_CURRENT_HUMIDITY_TOPIC: str
-CONF_CURRENT_TEMP_TEMPLATE: str
-CONF_CURRENT_TEMP_TOPIC: str
 CONF_FAN_MODE_COMMAND_TEMPLATE: str
 CONF_FAN_MODE_COMMAND_TOPIC: str
 CONF_FAN_MODE_LIST: str
 CONF_FAN_MODE_STATE_TEMPLATE: str
 CONF_FAN_MODE_STATE_TOPIC: str
-CONF_HOLD_COMMAND_TEMPLATE: str
-CONF_HOLD_COMMAND_TOPIC: str
-CONF_HOLD_STATE_TEMPLATE: str
-CONF_HOLD_STATE_TOPIC: str
-CONF_HOLD_LIST: str
 CONF_HUMIDITY_COMMAND_TEMPLATE: str
 CONF_HUMIDITY_COMMAND_TOPIC: str
 CONF_HUMIDITY_STATE_TEMPLATE: str
 CONF_HUMIDITY_STATE_TOPIC: str
 CONF_HUMIDITY_MAX: str
 CONF_HUMIDITY_MIN: str
-CONF_MODE_COMMAND_TEMPLATE: str
-CONF_MODE_COMMAND_TOPIC: str
-CONF_MODE_LIST: str
-CONF_MODE_STATE_TEMPLATE: str
-CONF_MODE_STATE_TOPIC: str
-CONF_POWER_COMMAND_TOPIC: str
 CONF_POWER_STATE_TEMPLATE: str
 CONF_POWER_STATE_TOPIC: str
-CONF_PRECISION: str
+CONF_POWER_COMMAND_TOPIC: str
+CONF_POWER_COMMAND_TEMPLATE: str
 CONF_PRESET_MODE_STATE_TOPIC: str
 CONF_PRESET_MODE_COMMAND_TOPIC: str
 CONF_PRESET_MODE_VALUE_TEMPLATE: str
 CONF_PRESET_MODE_COMMAND_TEMPLATE: str
 CONF_PRESET_MODES_LIST: str
-CONF_SEND_IF_OFF: str
 CONF_SWING_MODE_COMMAND_TEMPLATE: str
 CONF_SWING_MODE_COMMAND_TOPIC: str
 CONF_SWING_MODE_LIST: str
 CONF_SWING_MODE_STATE_TEMPLATE: str
 CONF_SWING_MODE_STATE_TOPIC: str
-CONF_TEMP_COMMAND_TEMPLATE: str
-CONF_TEMP_COMMAND_TOPIC: str
 CONF_TEMP_HIGH_COMMAND_TEMPLATE: str
 CONF_TEMP_HIGH_COMMAND_TOPIC: str
 CONF_TEMP_HIGH_STATE_TEMPLATE: str
@@ -80,12 +59,8 @@ CONF_TEMP_LOW_COMMAND_TEMPLATE: str
 CONF_TEMP_LOW_COMMAND_TOPIC: str
 CONF_TEMP_LOW_STATE_TEMPLATE: str
 CONF_TEMP_LOW_STATE_TOPIC: str
-CONF_TEMP_STATE_TEMPLATE: str
-CONF_TEMP_STATE_TOPIC: str
-CONF_TEMP_INITIAL: str
-CONF_TEMP_MAX: str
-CONF_TEMP_MIN: str
 CONF_TEMP_STEP: str
+DEFAULT_INITIAL_TEMPERATURE: float
 MQTT_CLIMATE_ATTRIBUTES_BLOCKED: Incomplete
 VALUE_TEMPLATE_KEYS: Incomplete
 COMMAND_TEMPLATE_KEYS: Incomplete
@@ -104,12 +79,12 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttTemperatureControlEntity(MqttEntity, ABC, metaclass=abc.ABCMeta):
+    _attr_target_temperature_low: float | None
+    _attr_target_temperature_high: float | None
     _optimistic: bool
     _topic: dict[str, Any]
     _command_templates: dict[str, Callable[[PublishPayloadType], PublishPayloadType]]
     _value_templates: dict[str, Callable[[ReceivePayloadType], ReceivePayloadType]]
-    _attr_target_temperature_low: Incomplete
-    _attr_target_temperature_high: Incomplete
     _feature_preset_mode: bool
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     def add_subscription(self, topics: dict[str, dict[str, Any]], topic: str, msg_callback: Callable[[ReceiveMessage], None]) -> None: ...
@@ -121,7 +96,6 @@ class MqttTemperatureControlEntity(MqttEntity, ABC, metaclass=abc.ABCMeta):
     async def _publish(self, topic: str, payload: PublishPayloadType) -> None: ...
     async def _set_climate_attribute(self, temp: float | None, cmnd_topic: str, cmnd_template: str, state_topic: str, attr: str) -> bool: ...
     @abstractmethod
-    async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
 
 class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
@@ -136,6 +110,7 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_hvac_modes: Incomplete
+    _attr_temperature_unit: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_min_humidity: Incomplete
@@ -144,7 +119,6 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _attr_fan_modes: Incomplete
     _attr_swing_modes: Incomplete
     _attr_target_temperature_step: Incomplete
-    _attr_temperature_unit: Incomplete
     _topic: Incomplete
     _optimistic: Incomplete
     _attr_target_temperature: Incomplete
@@ -159,6 +133,7 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
+    async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_humidity(self, humidity: int) -> None: ...
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
@@ -167,3 +142,5 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     async def _set_aux_heat(self, state: bool) -> None: ...
     async def async_turn_aux_heat_on(self) -> None: ...
     async def async_turn_aux_heat_off(self) -> None: ...
+    async def async_turn_on(self) -> None: ...
+    async def async_turn_off(self) -> None: ...

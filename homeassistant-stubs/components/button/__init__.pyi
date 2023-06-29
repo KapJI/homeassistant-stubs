@@ -16,6 +16,7 @@ MIN_TIME_BETWEEN_SCANS: Incomplete
 _LOGGER: Incomplete
 
 class ButtonDeviceClass(StrEnum):
+    IDENTIFY: str
     RESTART: str
     UPDATE: str
 
@@ -35,6 +36,7 @@ class ButtonEntity(RestoreEntity):
     _attr_device_class: ButtonDeviceClass | None
     _attr_state: None
     __last_pressed: datetime | None
+    def _default_to_device_class_name(self) -> bool: ...
     @property
     def device_class(self) -> ButtonDeviceClass | None: ...
     @property

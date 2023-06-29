@@ -15,6 +15,7 @@ class BAFFan(BAFEntity, FanEntity):
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _attr_speed_count = SPEED_COUNT
+    _attr_name: Incomplete
     _attr_is_on: Incomplete
     _attr_current_direction: Incomplete
     _attr_percentage: Incomplete

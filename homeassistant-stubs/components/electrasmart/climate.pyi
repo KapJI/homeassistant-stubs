@@ -31,9 +31,10 @@ class ElectraClimateEntity(ClimateEntity):
     _attr_min_temp = MIN_TEMP
     _attr_temperature_unit: Incomplete
     _attr_hvac_modes = ELECTRA_MODES
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _api: Incomplete
     _electra_ac_device: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_supported_features: Incomplete
     _attr_swing_modes: Incomplete

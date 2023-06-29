@@ -20,6 +20,7 @@ class BAFLight(BAFEntity, LightEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class BAFFanLight(BAFLight):
+    _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     def __init__(self, device: Device) -> None: ...

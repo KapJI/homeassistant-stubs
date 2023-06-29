@@ -3,12 +3,14 @@ from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components import hassio as hassio
 from homeassistant.components.api import ATTR_INSTALLATION_TYPE as ATTR_INSTALLATION_TYPE
+from homeassistant.config_entries import SOURCE_IGNORE as SOURCE_IGNORE
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
-from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integrations as async_get_integrations
+from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integrations as async_get_integrations
 from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations
 from typing import Any
 
@@ -39,3 +41,4 @@ class Analytics:
     async def load(self) -> None: ...
     async def save_preferences(self, preferences: dict) -> None: ...
     async def send_analytics(self, _: datetime | None = ...) -> None: ...
+    def _async_should_report_integration(self, integration: Integration, yaml_domains: set[str], entity_registry_platforms: set[str]) -> bool: ...

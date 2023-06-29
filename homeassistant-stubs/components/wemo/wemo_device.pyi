@@ -9,8 +9,22 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pywemo import WeMoDevice as WeMoDevice
 
 _LOGGER: Incomplete
+ErrorStringKey: Incomplete
+OptionsFieldKey: Incomplete
+
+class OptionsValidationError(Exception):
+    field_key: Incomplete
+    error_key: Incomplete
+    def __init__(self, field_key: OptionsFieldKey, error_key: ErrorStringKey, message: str) -> None: ...
+
+class Options:
+    enable_subscription: bool
+    enable_long_press: bool
+    def __post_init__(self) -> None: ...
+    def __init__(self, enable_subscription, enable_long_press) -> None: ...
 
 class DeviceCoordinator(DataUpdateCoordinator[None]):
+    options: Options | None
     hass: Incomplete
     wemo: Incomplete
     device_id: Incomplete
@@ -19,6 +33,9 @@ class DeviceCoordinator(DataUpdateCoordinator[None]):
     update_lock: Incomplete
     def __init__(self, hass: HomeAssistant, wemo: WeMoDevice, device_id: str) -> None: ...
     def subscription_callback(self, _device: WeMoDevice, event_type: str, params: str) -> None: ...
+    async def _async_set_enable_subscription(self, enable_subscription: bool) -> None: ...
+    async def _async_set_enable_long_press(self, enable_long_press: bool) -> None: ...
+    async def async_set_options(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
     last_exception: Incomplete
     last_update_success: bool
     async def _async_subscription_callback(self, updated: bool) -> None: ...

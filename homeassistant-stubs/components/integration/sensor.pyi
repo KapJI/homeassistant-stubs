@@ -5,6 +5,7 @@ from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, 
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTime as UnitOfTime
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -45,7 +46,8 @@ class IntegrationSensor(RestoreSensor):
     _attr_icon: str
     _source_entity: Incomplete
     _last_valid_state: Incomplete
-    def __init__(self, *, integration_method: str, name: str | None, round_digits: int, source_entity: str, unique_id: str | None, unit_prefix: str | None, unit_time: UnitOfTime) -> None: ...
+    _attr_device_info: Incomplete
+    def __init__(self, *, integration_method: str, name: str | None, round_digits: int, source_entity: str, unique_id: str | None, unit_prefix: str | None, unit_time: UnitOfTime, device_info: DeviceInfo | None = ...) -> None: ...
     def _unit(self, source_unit: str) -> str: ...
     _attr_native_value: Incomplete
     _attr_available: bool

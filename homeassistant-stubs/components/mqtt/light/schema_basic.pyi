@@ -59,10 +59,6 @@ CONF_XY_STATE_TOPIC: str
 CONF_XY_VALUE_TEMPLATE: str
 CONF_WHITE_COMMAND_TOPIC: str
 CONF_WHITE_SCALE: str
-CONF_WHITE_VALUE_COMMAND_TOPIC: str
-CONF_WHITE_VALUE_SCALE: str
-CONF_WHITE_VALUE_STATE_TOPIC: str
-CONF_WHITE_VALUE_TEMPLATE: str
 CONF_ON_COMMAND_TYPE: str
 MQTT_LIGHT_ATTRIBUTES_BLOCKED: Incomplete
 DEFAULT_BRIGHTNESS_SCALE: int
@@ -74,9 +70,8 @@ DEFAULT_ON_COMMAND_TYPE: str
 VALUES_ON_COMMAND_TYPE: Incomplete
 COMMAND_TEMPLATE_KEYS: Incomplete
 VALUE_TEMPLATE_KEYS: Incomplete
-_PLATFORM_SCHEMA_BASE: Incomplete
-DISCOVERY_SCHEMA_BASIC: Incomplete
 PLATFORM_SCHEMA_MODERN_BASIC: Incomplete
+DISCOVERY_SCHEMA_BASIC: Incomplete
 
 async def async_setup_entity_basic(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 

@@ -5,6 +5,7 @@ from bimmer_connected.vehicle import MyBMWVehicle
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LOCATION as ATTR_LOCATION, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 

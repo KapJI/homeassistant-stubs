@@ -103,6 +103,7 @@ class DeviceRegistryItems(UserDict[str, _EntryTypeT]):
 class DeviceRegistry:
     devices: DeviceRegistryItems[DeviceEntry]
     deleted_devices: DeviceRegistryItems[DeletedDeviceEntry]
+    _device_data: dict[str, DeviceEntry]
     hass: Incomplete
     _store: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...

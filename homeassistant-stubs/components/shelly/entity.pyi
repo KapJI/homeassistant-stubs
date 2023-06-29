@@ -11,7 +11,6 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry, async_entries_for_config_entry as async_entries_for_config_entry
-from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
@@ -25,6 +24,7 @@ def async_restore_rpc_attribute_entities(hass: HomeAssistant, config_entry: Conf
 def async_setup_entry_rest(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[str, RestEntityDescription], sensor_class: Callable) -> None: ...
 
 class BlockEntityDescription(EntityDescription):
+    name: str
     icon_fn: Callable[[dict], str] | None
     unit_fn: Callable[[dict], str] | None
     value: Callable[[Any], Any]
@@ -38,6 +38,7 @@ class RpcEntityRequiredKeysMixin:
     def __init__(self, sub_key) -> None: ...
 
 class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
+    name: str
     value: Callable[[Any, Any], Any] | None
     available: Callable[[dict], bool] | None
     removal_condition: Callable[[dict, dict, str], bool] | None
@@ -47,6 +48,7 @@ class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
 class RestEntityDescription(EntityDescription):
+    name: str
     value: Callable[[dict, Any], Any] | None
     extra_state_attributes: Callable[[dict], dict | None] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
@@ -120,7 +122,7 @@ class ShellyRpcAttributeEntity(ShellyRpcEntity, Entity):
     @property
     def available(self) -> bool: ...
 
-class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity, RestoreEntity):
+class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity):
     sensors: Incomplete
     last_state: Incomplete
     coordinator: Incomplete
@@ -132,10 +134,9 @@ class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity, RestoreEnti
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockEntityDescription, entry: RegistryEntry | None = ..., sensors: Mapping[tuple[str, str], BlockEntityDescription] | None = ...) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
     def _update_callback(self) -> None: ...
 
-class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity, RestoreEntity):
+class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity):
     entity_description: RpcEntityDescription
     last_state: Incomplete
     coordinator: Incomplete
@@ -147,4 +148,3 @@ class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity, RestoreEntity):
     _last_value: Incomplete
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription, entry: RegistryEntry | None = ...) -> None: ...
-    async def async_added_to_hass(self) -> None: ...

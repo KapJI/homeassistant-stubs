@@ -8,6 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfElectricCurrent as UnitOfElectricCurrent
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 

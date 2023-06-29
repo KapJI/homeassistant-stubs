@@ -1,8 +1,9 @@
-from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
-from aioesphomeapi import CoverInfo, CoverState
+from .entity import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from _typeshed import Incomplete
+from aioesphomeapi import CoverInfo, CoverState, EntityInfo as EntityInfo
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any
@@ -10,12 +11,10 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EsphomeCover(EsphomeEntity[CoverInfo, CoverState], CoverEntity):
-    @property
-    def supported_features(self) -> CoverEntityFeature: ...
-    @property
-    def device_class(self) -> CoverDeviceClass | None: ...
-    @property
-    def assumed_state(self) -> bool: ...
+    _attr_supported_features: Incomplete
+    _attr_device_class: Incomplete
+    _attr_assumed_state: Incomplete
+    def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     def is_closed(self) -> bool | None: ...
     @property

@@ -14,7 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class HWEnergyNumberEntity(HomeWizardEntity, NumberEntity):
     _attr_entity_category: Incomplete
     _attr_icon: str
-    _attr_name: str
+    _attr_translation_key: str
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator, entry: ConfigEntry) -> None: ...

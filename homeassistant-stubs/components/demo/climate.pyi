@@ -4,21 +4,19 @@ from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
 SUPPORT_FLAGS: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DemoClimate(ClimateEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_translation_key: str
     _unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _target_temperature: Incomplete
     _target_humidity: Incomplete
@@ -37,9 +35,8 @@ class DemoClimate(ClimateEntity):
     _swing_modes: Incomplete
     _target_temperature_high: Incomplete
     _target_temperature_low: Incomplete
-    def __init__(self, unique_id: str, name: str, target_temperature: float | None, unit_of_measurement: str, preset: str | None, current_temperature: float, fan_mode: str | None, target_humidity: int | None, current_humidity: int | None, swing_mode: str | None, hvac_mode: HVACMode, hvac_action: HVACAction | None, aux: bool | None, target_temp_high: float | None, target_temp_low: float | None, hvac_modes: list[HVACMode], preset_modes: list[str] | None = ...) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
+    _attr_device_info: Incomplete
+    def __init__(self, unique_id: str, device_name: str, target_temperature: float | None, unit_of_measurement: str, preset: str | None, current_temperature: float, fan_mode: str | None, target_humidity: int | None, current_humidity: int | None, swing_mode: str | None, hvac_mode: HVACMode, hvac_action: HVACAction | None, aux: bool | None, target_temp_high: float | None, target_temp_low: float | None, hvac_modes: list[HVACMode], preset_modes: list[str] | None = ...) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property

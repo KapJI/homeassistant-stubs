@@ -7,17 +7,16 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_utc_time_change as async_track_utc_time_change
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DemoCover(CoverEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_should_poll: bool
     hass: Incomplete
     _unique_id: Incomplete
-    _attr_name: Incomplete
     _position: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
@@ -31,9 +30,8 @@ class DemoCover(CoverEntity):
     _is_opening: bool
     _is_closing: bool
     _closed: bool
-    def __init__(self, hass: HomeAssistant, unique_id: str, name: str, position: int | None = ..., tilt_position: int | None = ..., device_class: CoverDeviceClass | None = ..., supported_features: CoverEntityFeature | None = ...) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
+    _attr_device_info: Incomplete
+    def __init__(self, hass: HomeAssistant, unique_id: str, device_name: str, position: int | None = ..., tilt_position: int | None = ..., device_class: CoverDeviceClass | None = ..., supported_features: CoverEntityFeature | None = ...) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property

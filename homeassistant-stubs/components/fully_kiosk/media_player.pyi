@@ -12,6 +12,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FullyMediaPlayer(FullyKioskEntity, MediaPlayerEntity):
+    _attr_name: Incomplete
     _attr_supported_features = MEDIA_SUPPORT_FULLYKIOSK
     _attr_assumed_state: bool
     _attr_unique_id: Incomplete

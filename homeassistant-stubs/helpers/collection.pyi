@@ -13,7 +13,8 @@ from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import slugify as slugify
-from typing import Any, Generic, TypeVar, TypedDict
+from typing import Any, Generic, TypedDict
+from typing_extensions import TypeVar
 
 STORAGE_VERSION: int
 SAVE_DELAY: int
@@ -23,6 +24,7 @@ CHANGE_REMOVED: str
 _ItemT = TypeVar('_ItemT')
 _StoreT = TypeVar('_StoreT', bound='SerializedStorageCollection')
 _StorageCollectionT = TypeVar('_StorageCollectionT', bound='StorageCollection')
+_EntityT = TypeVar('_EntityT', bound=Entity, default=Entity)
 
 class CollectionChangeSet:
     change_type: str
@@ -115,7 +117,7 @@ class IDLessCollection(YamlCollection):
     counter: int
     async def async_load(self, data: list[dict]) -> None: ...
 
-def sync_entity_lifecycle(hass: HomeAssistant, domain: str, platform: str, entity_component: EntityComponent, collection: StorageCollection | YamlCollection, entity_class: type[CollectionEntity]) -> None: ...
+def sync_entity_lifecycle(hass: HomeAssistant, domain: str, platform: str, entity_component: EntityComponent[_EntityT], collection: StorageCollection | YamlCollection, entity_class: type[CollectionEntity]) -> None: ...
 
 class StorageCollectionWebsocket(Generic[_StorageCollectionT]):
     storage_collection: Incomplete

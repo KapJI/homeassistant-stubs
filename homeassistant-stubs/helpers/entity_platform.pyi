@@ -6,7 +6,7 @@ from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
 from .event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
 from .issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Iterable
 from contextvars import ContextVar
@@ -15,6 +15,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady, RequiredParameterMissing as RequiredParameterMissing
+from homeassistant.generated import languages as languages
 from homeassistant.setup import async_start_setup as async_start_setup
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from logging import Logger
@@ -47,7 +48,10 @@ class EntityPlatform:
     entity_namespace: Incomplete
     config_entry: Incomplete
     entities: Incomplete
-    entity_translations: Incomplete
+    component_translations: Incomplete
+    platform_translations: Incomplete
+    object_id_component_translations: Incomplete
+    object_id_platform_translations: Incomplete
     _tasks: Incomplete
     _setup_complete: bool
     _async_unsub_polling: Incomplete

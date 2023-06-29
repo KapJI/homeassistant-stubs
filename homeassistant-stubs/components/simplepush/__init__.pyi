@@ -7,6 +7,7 @@ from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 PLATFORMS: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

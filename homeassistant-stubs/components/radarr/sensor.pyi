@@ -10,8 +10,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, Generic
 
 def get_space(data: list[Diskspace], name: str) -> str: ...
@@ -29,7 +27,6 @@ SENSOR_TYPES: dict[str, RadarrSensorEntityDescription[Any]]
 BYTE_SIZES: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RadarrSensor(RadarrEntity[T], SensorEntity):

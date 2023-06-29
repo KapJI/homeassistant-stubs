@@ -2,19 +2,17 @@ from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.text import TextEntity as TextEntity, TextMode as TextMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DemoText(TextEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_native_value: Incomplete
     _attr_icon: Incomplete
     _attr_mode: Incomplete
@@ -22,5 +20,5 @@ class DemoText(TextEntity):
     _attr_native_min: Incomplete
     _attr_pattern: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, name: str, icon: str | None, native_value: str | None, mode: TextMode = ..., native_max: int | None = ..., native_min: int | None = ..., pattern: str | None = ...) -> None: ...
+    def __init__(self, unique_id: str, device_name: str, icon: str | None, native_value: str | None, mode: TextMode = ..., native_max: int | None = ..., native_min: int | None = ..., pattern: str | None = ...) -> None: ...
     async def async_set_value(self, value: str) -> None: ...

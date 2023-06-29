@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as ST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
+from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Final
 
 class BlockBinarySensorDescription(BlockEntityDescription, BinarySensorEntityDescription):
@@ -41,12 +42,16 @@ class RpcBinarySensor(ShellyRpcAttributeEntity, BinarySensorEntity):
     @property
     def is_on(self) -> bool: ...
 
-class BlockSleepingBinarySensor(ShellySleepingBlockAttributeEntity, BinarySensorEntity):
+class BlockSleepingBinarySensor(ShellySleepingBlockAttributeEntity, BinarySensorEntity, RestoreEntity):
     entity_description: BlockBinarySensorDescription
+    last_state: Incomplete
+    async def async_added_to_hass(self) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
 
-class RpcSleepingBinarySensor(ShellySleepingRpcAttributeEntity, BinarySensorEntity):
+class RpcSleepingBinarySensor(ShellySleepingRpcAttributeEntity, BinarySensorEntity, RestoreEntity):
     entity_description: RpcBinarySensorDescription
+    last_state: Incomplete
+    async def async_added_to_hass(self) -> None: ...
     @property
     def is_on(self) -> bool | None: ...

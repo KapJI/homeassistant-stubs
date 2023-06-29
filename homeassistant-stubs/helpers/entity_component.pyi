@@ -8,16 +8,17 @@ from collections.abc import Callable as Callable, Iterable
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from types import ModuleType
-from typing import Any, Generic, TypeVar
+from typing import Any, Generic
+from typing_extensions import TypeVar
 
 DEFAULT_SCAN_INTERVAL: Incomplete
 DATA_INSTANCES: str
-_EntityT = TypeVar('_EntityT', bound=entity.Entity)
+_EntityT = TypeVar('_EntityT', bound=entity.Entity, default=entity.Entity)
 
 async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None: ...
 
@@ -40,7 +41,7 @@ class EntityComponent(Generic[_EntityT]):
     async def async_setup_entry(self, config_entry: ConfigEntry) -> bool: ...
     async def async_unload_entry(self, config_entry: ConfigEntry) -> bool: ...
     async def async_extract_from_service(self, service_call: ServiceCall, expand_group: bool = ...) -> list[_EntityT]: ...
-    def async_register_entity_service(self, name: str, schema: dict[str | vol.Marker, Any] | vol.Schema, func: str | Callable[..., Any], required_features: list[int] | None = ...) -> None: ...
+    def async_register_entity_service(self, name: str, schema: dict[str | vol.Marker, Any] | vol.Schema, func: str | Callable[..., Any], required_features: list[int] | None = ..., supports_response: SupportsResponse = ...) -> None: ...
     async def async_setup_platform(self, platform_type: str, platform_config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
     async def _async_reset(self) -> None: ...
     async def async_remove_entity(self, entity_id: str) -> None: ...

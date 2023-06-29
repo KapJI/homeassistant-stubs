@@ -73,19 +73,9 @@ class KNXConfigEntryData(TypedDict, total=False):
     rate_limit: int
     telegram_log_size: int
 
-class KNXBusMonitorMessage(TypedDict):
-    destination_address: str
-    destination_text: str | None
-    payload: str
-    type: str
-    value: str | None
-    source_address: str
-    source_text: str | None
-    direction: str
-    timestamp: str
-
 class ColorTempModes(Enum):
     ABSOLUTE: str
+    ABSOLUTE_FLOAT: str
     RELATIVE: str
 
 SUPPORTED_PLATFORMS: Final[Incomplete]

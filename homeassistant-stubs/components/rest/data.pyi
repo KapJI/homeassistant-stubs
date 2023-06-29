@@ -1,8 +1,10 @@
 import httpx
+from .const import XML_MIME_TYPES as XML_MIME_TYPES
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import template as template
 from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
+from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList
 
 DEFAULT_TIMEOUT: int
@@ -28,4 +30,5 @@ class RestData:
     @property
     def url(self) -> str: ...
     def set_url(self, url: str) -> None: ...
+    def data_without_xml(self) -> str | None: ...
     async def async_update(self, log_errors: bool = ...) -> None: ...

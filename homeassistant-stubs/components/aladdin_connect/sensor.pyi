@@ -22,18 +22,14 @@ SENSORS: tuple[AccSensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AladdinConnectSensor(SensorEntity):
-    _device: AladdinConnectSensor
     entity_description: AccSensorEntityDescription
+    _attr_has_entity_name: bool
     _device_id: Incomplete
     _number: Incomplete
-    _name: Incomplete
-    _model: Incomplete
     _acc: Incomplete
     _attr_unique_id: Incomplete
-    _attr_has_entity_name: bool
+    _attr_device_info: Incomplete
     _attr_entity_registry_enabled_default: bool
     def __init__(self, acc: AladdinConnectClient, device: DoorDevice, description: AccSensorEntityDescription) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo | None: ...
     @property
     def native_value(self) -> float | None: ...

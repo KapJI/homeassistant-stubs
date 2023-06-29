@@ -3,4 +3,5 @@ from .base_scanner import BaseHaRemoteScanner as BaseHaRemoteScanner, BaseHaScan
 from .const import FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, SOURCE_LOCAL as SOURCE_LOCAL
 from .match import BluetoothCallbackMatcher as BluetoothCallbackMatcher
 from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode, HaBluetoothConnector as HaBluetoothConnector
+from .scanner import MONOTONIC_TIME as MONOTONIC_TIME
 from home_assistant_bluetooth import BluetoothServiceInfo as BluetoothServiceInfo, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak

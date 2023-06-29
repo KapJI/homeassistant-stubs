@@ -7,7 +7,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemp
 from typing import Any
 
 PRESET_DRYING: str
-OVERKIZ_TO_HVAC_MODE: dict[str, str]
+OVERKIZ_TO_HVAC_MODE: dict[str, HVACMode]
 HVAC_MODE_TO_OVERKIZ: Incomplete
 OVERKIZ_TO_PRESET_MODE: dict[str, str]
 PRESET_MODE_TO_OVERKIZ: Incomplete
@@ -22,8 +22,8 @@ class AtlanticElectricalTowelDryer(OverkizEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
-    def hvac_mode(self) -> str: ...
-    async def async_set_hvac_mode(self, hvac_mode: str) -> None: ...
+    def hvac_mode(self) -> HVACMode: ...
+    async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property
     def target_temperature(self) -> None: ...
     @property

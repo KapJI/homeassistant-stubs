@@ -14,6 +14,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EfergySensor(EfergyEntity, SensorEntity):
+    _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

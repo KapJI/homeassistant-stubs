@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from flux_led.aio import AIOWifiLedBulb as AIOWifiLedBulb
 from homeassistant import config_entries as config_entries
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
@@ -19,7 +19,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
 class FluxButton(FluxBaseEntity, ButtonEntity):
     _attr_entity_category: Incomplete
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry, description: ButtonEntityDescription) -> None: ...
     async def async_press(self) -> None: ...

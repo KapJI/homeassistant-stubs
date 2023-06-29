@@ -28,6 +28,7 @@ class Platform(StrEnum):
     FAN: str
     GEO_LOCATION: str
     HUMIDIFIER: str
+    IMAGE: str
     IMAGE_PROCESSING: str
     LIGHT: str
     LOCK: str
@@ -198,8 +199,9 @@ CONF_RECIPIENT: Final[str]
 CONF_REGION: Final[str]
 CONF_REPEAT: Final[str]
 CONF_RESOURCE: Final[str]
-CONF_RESOURCES: Final[str]
 CONF_RESOURCE_TEMPLATE: Final[str]
+CONF_RESOURCES: Final[str]
+CONF_RESPONSE_VARIABLE: Final[str]
 CONF_RGB: Final[str]
 CONF_ROOM: Final[str]
 CONF_SCAN_INTERVAL: Final[str]

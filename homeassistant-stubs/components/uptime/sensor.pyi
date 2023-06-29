@@ -12,6 +12,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class UptimeSensor(SensorEntity):
     _attr_device_class: Incomplete
     _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_native_value: Incomplete
     _attr_unique_id: Incomplete

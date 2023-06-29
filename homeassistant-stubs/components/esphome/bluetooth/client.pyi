@@ -22,9 +22,6 @@ GATT_READ_TIMEOUT: float
 CCCD_UUID: str
 CCCD_NOTIFY_BYTES: bytes
 CCCD_INDICATE_BYTES: bytes
-MIN_BLUETOOTH_PROXY_VERSION_HAS_CACHE: int
-MIN_BLUETOOTH_PROXY_HAS_PAIRING: int
-MIN_BLUETOOTH_PROXY_HAS_CLEAR_CACHE: int
 DEFAULT_MAX_WRITE_WITHOUT_RESPONSE: Incomplete
 _LOGGER: Incomplete
 _WrapFuncType = TypeVar('_WrapFuncType', bound=Callable[..., Any])
@@ -46,7 +43,8 @@ class ESPHomeClient(BaseBleakClient):
     _cancel_connection_state: Incomplete
     _notify_cancels: Incomplete
     _disconnected_event: Incomplete
-    _connection_version: Incomplete
+    _device_info: Incomplete
+    _feature_flags: Incomplete
     _address_type: Incomplete
     _source_name: Incomplete
     def __init__(self, address_or_ble_device: BLEDevice | str, *args: Any, config_entry: ConfigEntry, **kwargs: Any) -> None: ...

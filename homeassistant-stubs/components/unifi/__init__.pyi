@@ -14,6 +14,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 SAVE_DELAY: int
 STORAGE_KEY: str
 STORAGE_VERSION: int
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...

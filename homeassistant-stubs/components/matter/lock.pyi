@@ -7,7 +7,7 @@ from chip.clusters import Objects as clusters
 from enum import IntFlag
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform
+from homeassistant.const import ATTR_CODE as ATTR_CODE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any

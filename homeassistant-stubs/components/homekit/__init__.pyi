@@ -12,7 +12,6 @@ from homeassistant.components import device_automation as device_automation, net
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.components.device_automation.trigger import async_validate_trigger_config as async_validate_trigger_config
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
-from homeassistant.components.network import MDNS_TARGET_IP as MDNS_TARGET_IP
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_DEVICES as CONF_DEVICES, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_RELOAD as SERVICE_RELOAD
@@ -64,7 +63,7 @@ class HomeKit:
     _filter: Incomplete
     _config: Incomplete
     _exclude_accessory_mode: Incomplete
-    _advertise_ip: Incomplete
+    _advertise_ips: Incomplete
     _entry_id: Incomplete
     _entry_title: Incomplete
     _homekit_mode: Incomplete
@@ -75,7 +74,7 @@ class HomeKit:
     driver: Incomplete
     bridge: Incomplete
     _reset_lock: Incomplete
-    def __init__(self, hass: HomeAssistant, name: str, port: int, ip_address: str | None, entity_filter: EntityFilter, exclude_accessory_mode: bool, entity_config: dict, homekit_mode: str, advertise_ip: str | None, entry_id: str, entry_title: str, devices: list[str] | None = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, name: str, port: int, ip_address: str | None, entity_filter: EntityFilter, exclude_accessory_mode: bool, entity_config: dict, homekit_mode: str, advertise_ips: list[str], entry_id: str, entry_title: str, devices: list[str] | None = ...) -> None: ...
     def setup(self, async_zeroconf_instance: AsyncZeroconf, uuid: str) -> None: ...
     async def async_reset_accessories(self, entity_ids: Iterable[str]) -> None: ...
     async def _async_shutdown_accessory(self, accessory: HomeAccessory) -> None: ...

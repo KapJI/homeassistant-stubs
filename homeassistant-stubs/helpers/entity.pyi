@@ -3,20 +3,22 @@ from . import entity_registry as er
 from .device_registry import DeviceEntryType as DeviceEntryType
 from .entity_platform import EntityPlatform as EntityPlatform
 from .event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
-from .typing import StateType as StateType
+from .typing import StateType as StateType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import ABC
 from collections.abc import Coroutine, Iterable, Mapping, MutableMapping
 from datetime import datetime, timedelta
 from enum import Enum
+from homeassistant.backports.functools import cached_property as cached_property
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
-from typing import Any, Final, Literal, TypedDict
+from typing import Any, Final, Literal, TypeVar, TypedDict
 
+_T = TypeVar('_T')
 _LOGGER: Incomplete
 SLOW_UPDATE_WARNING: int
 DATA_ENTITY_SOURCE: str
@@ -65,7 +67,7 @@ class EntityDescription:
     force_update: bool
     icon: str | None
     has_entity_name: bool
-    name: str | None
+    name: str | UndefinedType | None
     translation_key: str | None
     unit_of_measurement: str | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
@@ -73,11 +75,13 @@ class EntityDescription:
 class Entity(ABC):
     entity_id: str
     hass: HomeAssistant
-    platform: EntityPlatform | None
+    platform: EntityPlatform
     entity_description: EntityDescription
     _slow_reported: bool
     _disabled_reported: bool
     _async_update_ha_state_reported: bool
+    _implicit_device_name_reported: bool
+    _no_platform_reported: bool
     _update_staged: bool
     parallel_updates: asyncio.Semaphore | None
     registry_entry: er.RegistryEntry | None
@@ -112,10 +116,21 @@ class Entity(ABC):
     def should_poll(self) -> bool: ...
     @property
     def unique_id(self) -> str | None: ...
+    def _report_implicit_device_name(self) -> None: ...
+    @property
+    def use_device_name(self) -> bool: ...
     @property
     def has_entity_name(self) -> bool: ...
+    def _device_class_name_helper(self, component_translations: dict[str, Any]) -> str | None: ...
+    def _object_id_device_class_name(self) -> str | None: ...
+    def _device_class_name(self) -> str | None: ...
+    def _default_to_device_class_name(self) -> bool: ...
+    def _name_translation_key(self) -> str | None: ...
+    def _name_internal(self, device_class_name: str | None, platform_translations: dict[str, Any]) -> str | UndefinedType | None: ...
     @property
-    def name(self) -> str | None: ...
+    def suggested_object_id(self) -> str | None: ...
+    @property
+    def name(self) -> str | UndefinedType | None: ...
     @property
     def state(self) -> StateType: ...
     @property
@@ -183,9 +198,10 @@ class Entity(ABC):
     async def async_internal_will_remove_from_hass(self) -> None: ...
     async def _async_registry_updated(self, event: Event) -> None: ...
     def _async_unsubscribe_device_updates(self) -> None: ...
+    def _async_device_registry_updated(self, event: Event) -> None: ...
     def _async_subscribe_device_updates(self) -> None: ...
     def __repr__(self) -> str: ...
-    async def async_request_call(self, coro: Coroutine[Any, Any, Any]) -> None: ...
+    async def async_request_call(self, coro: Coroutine[Any, Any, _T]) -> _T: ...
     def _suggest_report_issue(self) -> str: ...
 
 class ToggleEntityDescription(EntityDescription):

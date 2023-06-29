@@ -1,33 +1,16 @@
 from _typeshed import Incomplete
 from collections.abc import AsyncIterable
-from homeassistant.components.stt import AudioBitRates as AudioBitRates, AudioChannels as AudioChannels, AudioCodecs as AudioCodecs, AudioFormats as AudioFormats, AudioSampleRates as AudioSampleRates, Provider as Provider, SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult, SpeechResultState as SpeechResultState, SpeechToTextEntity as SpeechToTextEntity
+from homeassistant.components.stt import AudioBitRates as AudioBitRates, AudioChannels as AudioChannels, AudioCodecs as AudioCodecs, AudioFormats as AudioFormats, AudioSampleRates as AudioSampleRates, SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult, SpeechResultState as SpeechResultState, SpeechToTextEntity as SpeechToTextEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 SUPPORT_LANGUAGES: Incomplete
 
-async def async_get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> Provider: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DemoProviderEntity(SpeechToTextEntity):
     _attr_name: str
-    @property
-    def supported_languages(self) -> list[str]: ...
-    @property
-    def supported_formats(self) -> list[AudioFormats]: ...
-    @property
-    def supported_codecs(self) -> list[AudioCodecs]: ...
-    @property
-    def supported_bit_rates(self) -> list[AudioBitRates]: ...
-    @property
-    def supported_sample_rates(self) -> list[AudioSampleRates]: ...
-    @property
-    def supported_channels(self) -> list[AudioChannels]: ...
-    async def async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...
-
-class DemoProvider(Provider):
     @property
     def supported_languages(self) -> list[str]: ...
     @property

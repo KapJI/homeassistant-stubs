@@ -1,3 +1,4 @@
+import voluptuous as vol
 from .entity import Entity as Entity
 from .event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result
 from .script import Script as Script, _VarsType as _VarsType
@@ -18,6 +19,9 @@ CONF_ATTRIBUTES: str
 CONF_PICTURE: str
 CONF_TO_ATTRIBUTE: Incomplete
 TEMPLATE_ENTITY_BASE_SCHEMA: Incomplete
+
+def make_template_entity_base_schema(default_name: str) -> vol.Schema: ...
+
 TEMPLATE_SENSOR_BASE_SCHEMA: Incomplete
 
 class _TemplateAttribute:

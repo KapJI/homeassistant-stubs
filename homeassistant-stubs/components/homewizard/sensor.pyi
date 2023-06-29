@@ -14,11 +14,13 @@ from typing import Final
 PARALLEL_UPDATES: int
 
 class HomeWizardEntityDescriptionMixin:
+    has_fn: Callable[[Data], bool]
     value_fn: Callable[[Data], float | int | str | None]
-    def __init__(self, value_fn) -> None: ...
+    def __init__(self, has_fn, value_fn) -> None: ...
 
 class HomeWizardSensorEntityDescription(SensorEntityDescription, HomeWizardEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    enabled_fn: Callable[[Data], bool]
+    def __init__(self, has_fn, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, enabled_fn) -> None: ...
 
 SENSORS: Final[tuple[HomeWizardSensorEntityDescription, ...]]
 

@@ -22,9 +22,9 @@ class FluxConfigSelect(FluxEntity, SelectEntity):
     _attr_entity_category: Incomplete
 
 class FluxPowerStateSelect(FluxConfigAtStartSelect, SelectEntity):
+    _attr_translation_key: str
     _attr_icon: str
     _attr_options: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
     _attr_current_option: Incomplete
@@ -33,6 +33,7 @@ class FluxPowerStateSelect(FluxConfigAtStartSelect, SelectEntity):
 
 class FluxICTypeSelect(FluxConfigSelect):
     _attr_icon: str
+    _attr_translation_key: str
     @property
     def options(self) -> list[str]: ...
     @property
@@ -41,6 +42,7 @@ class FluxICTypeSelect(FluxConfigSelect):
 
 class FluxWiringsSelect(FluxConfigSelect):
     _attr_icon: str
+    _attr_translation_key: str
     @property
     def options(self) -> list[str]: ...
     @property
@@ -48,6 +50,7 @@ class FluxWiringsSelect(FluxConfigSelect):
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxOperatingModesSelect(FluxConfigSelect):
+    _attr_translation_key: str
     @property
     def options(self) -> list[str]: ...
     @property
@@ -55,16 +58,17 @@ class FluxOperatingModesSelect(FluxConfigSelect):
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxRemoteConfigSelect(FluxConfigSelect):
+    _attr_translation_key: str
     _name_to_state: Incomplete
     _attr_options: Incomplete
-    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, name: str, key: str) -> None: ...
+    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, key: str) -> None: ...
     @property
     def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxWhiteChannelSelect(FluxConfigAtStartSelect):
+    _attr_translation_key: str
     _attr_options: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
     @property

@@ -41,7 +41,6 @@ CONF_FLASH_TIME_LONG: str
 CONF_FLASH_TIME_SHORT: str
 CONF_MAX_MIREDS: str
 CONF_MIN_MIREDS: str
-CONF_WHITE_VALUE: str
 
 def valid_color_configuration(config: ConfigType) -> ConfigType: ...
 

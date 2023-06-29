@@ -19,10 +19,10 @@ def sensor_descriptions(travel_mode: str) -> tuple[SensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HERETravelTimeSensor(CoordinatorEntity[HERERoutingDataUpdateCoordinator | HERETransitDataUpdateCoordinator], RestoreSensor):
+    _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _attr_has_entity_name: bool
     def __init__(self, unique_id_prefix: str, name: str, sensor_description: SensorEntityDescription, coordinator: HERERoutingDataUpdateCoordinator | HERETransitDataUpdateCoordinator) -> None: ...
     _attr_native_value: Incomplete
     async def _async_restore_state(self) -> None: ...

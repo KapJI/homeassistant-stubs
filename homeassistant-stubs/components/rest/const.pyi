@@ -19,3 +19,4 @@ COORDINATOR: str
 REST: str
 REST_DATA: str
 METHODS: Incomplete
+XML_MIME_TYPES: Incomplete

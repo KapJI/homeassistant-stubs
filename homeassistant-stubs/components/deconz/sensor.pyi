@@ -20,6 +20,7 @@ from pydeconz.models.sensor.daylight import Daylight
 from pydeconz.models.sensor.generic_status import GenericStatus
 from pydeconz.models.sensor.humidity import Humidity
 from pydeconz.models.sensor.light_level import LightLevel
+from pydeconz.models.sensor.moisture import Moisture
 from pydeconz.models.sensor.power import Power
 from pydeconz.models.sensor.pressure import Pressure
 from pydeconz.models.sensor.temperature import Temperature
@@ -31,7 +32,7 @@ ATTR_CURRENT: str
 ATTR_POWER: str
 ATTR_DAYLIGHT: str
 ATTR_EVENT_ID: str
-T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Power, Pressure, Temperature, Time, PydeconzSensorBase)
+T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Moisture, Power, Pressure, Temperature, Time, PydeconzSensorBase)
 
 class DeconzSensorDescriptionMixin(Generic[T]):
     supported_fn: Callable[[T], bool]

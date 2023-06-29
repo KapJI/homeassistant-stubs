@@ -11,6 +11,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 
 PLATFORMS: list[str]
 DISCOVERY_INTERVAL: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

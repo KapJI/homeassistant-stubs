@@ -1,21 +1,20 @@
-from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
-from aioesphomeapi import LockEntityState, LockInfo
+from .entity import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from _typeshed import Incomplete
+from aioesphomeapi import EntityInfo as EntityInfo, LockEntityState, LockInfo
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EsphomeLock(EsphomeEntity[LockInfo, LockEntityState], LockEntity):
-    @property
-    def assumed_state(self) -> bool: ...
-    @property
-    def supported_features(self) -> LockEntityFeature: ...
-    @property
-    def code_format(self) -> str | None: ...
+    _attr_assumed_state: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_code_format: Incomplete
+    def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     def is_locked(self) -> bool | None: ...
     @property

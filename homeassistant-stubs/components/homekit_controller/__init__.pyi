@@ -1,6 +1,6 @@
 from .config_flow import normalize_hkid as normalize_hkid
 from .connection import HKDevice as HKDevice
-from .const import KNOWN_DEVICES as KNOWN_DEVICES
+from .const import DOMAIN as DOMAIN, KNOWN_DEVICES as KNOWN_DEVICES
 from .utils import async_get_controller as async_get_controller
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,6 +11,7 @@ from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

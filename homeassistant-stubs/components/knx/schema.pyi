@@ -221,6 +221,11 @@ class TextSchema(KNXPlatformSchema):
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
+class TimeSchema(KNXPlatformSchema):
+    PLATFORM: Incomplete
+    DEFAULT_NAME: str
+    ENTITY_SCHEMA: Incomplete
+
 class WeatherSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
     CONF_SYNC_STATE = CONF_SYNC_STATE

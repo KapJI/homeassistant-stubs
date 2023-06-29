@@ -14,7 +14,7 @@ PRESET_PROG: str
 PRESET_EXTERNAL: str
 OVERKIZ_TO_PRESET_MODE: dict[str, str]
 PRESET_MODE_TO_OVERKIZ: Incomplete
-OVERKIZ_TO_HVAC_MODE: dict[str, str]
+OVERKIZ_TO_HVAC_MODE: dict[str, HVACMode]
 HVAC_MODE_TO_OVERKIZ: Incomplete
 TEMPERATURE_SENSOR_DEVICE_INDEX: int
 
@@ -27,7 +27,7 @@ class AtlanticElectricalHeaterWithAdjustableTemperatureSetpoint(OverkizEntity, C
     temperature_device: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
-    def hvac_mode(self) -> str: ...
+    def hvac_mode(self) -> HVACMode: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property
     def preset_mode(self) -> str | None: ...

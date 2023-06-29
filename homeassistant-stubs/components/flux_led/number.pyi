@@ -8,7 +8,7 @@ from abc import abstractmethod
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import EFFECT_RANDOM as EFFECT_RANDOM
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberMode as NumberMode
-from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
@@ -26,6 +26,7 @@ class FluxSpeedNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], N
     _attr_native_step: int
     _attr_mode: Incomplete
     _attr_icon: str
+    _attr_translation_key: str
     @property
     def native_value(self) -> float: ...
     async def async_set_native_value(self, value: float) -> None: ...
@@ -37,7 +38,7 @@ class FluxConfigNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], 
     _attr_mode: Incomplete
     _debouncer: Incomplete
     _pending_value: Incomplete
-    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, name: str, key: str | None) -> None: ...
+    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, key: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...
     @abstractmethod
@@ -45,6 +46,7 @@ class FluxConfigNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], 
     def _pixels_and_segments_fit_in_music_mode(self) -> bool: ...
 
 class FluxPixelsPerSegmentNumber(FluxConfigNumber):
+    _attr_translation_key: str
     _attr_icon: str
     @property
     def native_max_value(self) -> int: ...
@@ -53,6 +55,7 @@ class FluxPixelsPerSegmentNumber(FluxConfigNumber):
     async def _async_set_native_value(self) -> None: ...
 
 class FluxSegmentsNumber(FluxConfigNumber):
+    _attr_translation_key: str
     _attr_icon: str
     @property
     def native_max_value(self) -> int: ...
@@ -65,6 +68,7 @@ class FluxMusicNumber(FluxConfigNumber, metaclass=abc.ABCMeta):
     def available(self) -> bool: ...
 
 class FluxMusicPixelsPerSegmentNumber(FluxMusicNumber):
+    _attr_translation_key: str
     _attr_icon: str
     @property
     def native_max_value(self) -> int: ...
@@ -73,6 +77,7 @@ class FluxMusicPixelsPerSegmentNumber(FluxMusicNumber):
     async def _async_set_native_value(self) -> None: ...
 
 class FluxMusicSegmentsNumber(FluxMusicNumber):
+    _attr_translation_key: str
     _attr_icon: str
     @property
     def native_max_value(self) -> int: ...

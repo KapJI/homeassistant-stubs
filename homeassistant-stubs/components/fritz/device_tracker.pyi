@@ -8,8 +8,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 _LOGGER: Incomplete
-YAML_DEFAULT_HOST: str
-YAML_DEFAULT_USERNAME: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _async_add_entities(avm_wrapper: AvmWrapper, async_add_entities: AddEntitiesCallback, data_fritz: FritzData) -> None: ...

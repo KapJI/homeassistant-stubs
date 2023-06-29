@@ -88,6 +88,7 @@ class BinarySensorEntity(Entity):
     _attr_device_class: BinarySensorDeviceClass | None
     _attr_is_on: bool | None
     _attr_state: None
+    def _default_to_device_class_name(self) -> bool: ...
     @property
     def device_class(self) -> BinarySensorDeviceClass | None: ...
     @property

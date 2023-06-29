@@ -15,14 +15,15 @@ from homeassistant.util.yaml.input import UndefinedSubstitution as UndefinedSubs
 from typing import Any
 
 PACKAGE_MERGE_HINT: str
-_CONDITION_SCHEMA: Incomplete
+_MINIMAL_PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA: Incomplete
 
-async def _async_validate_config_item(hass: HomeAssistant, config: ConfigType, warn_on_errors: bool) -> AutomationConfig: ...
+async def _async_validate_config_item(hass: HomeAssistant, config: ConfigType, raise_on_errors: bool, warn_on_errors: bool) -> AutomationConfig: ...
 
 class AutomationConfig(dict):
     raw_config: dict[str, Any] | None
     raw_blueprint_inputs: dict[str, Any] | None
+    validation_failed: bool
 
 async def _try_async_validate_config_item(hass: HomeAssistant, config: dict[str, Any]) -> AutomationConfig | None: ...
 async def async_validate_config_item(hass: HomeAssistant, config_key: str, config: dict[str, Any]) -> AutomationConfig | None: ...

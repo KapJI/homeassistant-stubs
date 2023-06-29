@@ -11,6 +11,9 @@ class TelegramDict(TypedDict):
     destination: str
     destination_name: str
     direction: str
+    dpt_main: int | None
+    dpt_sub: int | None
+    dpt_name: str | None
     payload: int | tuple[int, ...] | None
     source: str
     source_name: str

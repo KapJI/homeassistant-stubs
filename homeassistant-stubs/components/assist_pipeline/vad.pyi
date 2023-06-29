@@ -1,6 +1,14 @@
 import webrtcvad
+from homeassistant.backports.enum import StrEnum as StrEnum
 
 _SAMPLE_RATE: int
+
+class VadSensitivity(StrEnum):
+    DEFAULT: str
+    RELAXED: str
+    AGGRESSIVE: str
+    @staticmethod
+    def to_seconds(sensitivity: VadSensitivity | str) -> float: ...
 
 class VoiceCommandSegmenter:
     vad_mode: int

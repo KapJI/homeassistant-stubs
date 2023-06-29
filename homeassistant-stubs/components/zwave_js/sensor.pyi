@@ -13,7 +13,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED
 from zwave_js_server.const import NodeStatus
 from zwave_js_server.model.controller import Controller
 from zwave_js_server.model.controller.statistics import ControllerStatisticsDataType as ControllerStatisticsDataType

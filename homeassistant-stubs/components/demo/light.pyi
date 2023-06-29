@@ -5,7 +5,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
 LIGHT_COLORS: Incomplete
@@ -14,10 +13,11 @@ LIGHT_TEMPS: Incomplete
 SUPPORT_DEMO: Incomplete
 SUPPORT_DEMO_HS_WHITE: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DemoLight(LightEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_should_poll: bool
     _available: bool
     _brightness: Incomplete
@@ -25,16 +25,14 @@ class DemoLight(LightEntity):
     _effect: Incomplete
     _effect_list: Incomplete
     _hs_color: Incomplete
-    _attr_name: Incomplete
     _rgbw_color: Incomplete
     _rgbww_color: Incomplete
     _state: Incomplete
     _unique_id: Incomplete
     _color_mode: Incomplete
     _color_modes: Incomplete
-    def __init__(self, unique_id: str, name: str, state: bool, available: bool = ..., brightness: int = ..., ct: int | None = ..., effect_list: list[str] | None = ..., effect: str | None = ..., hs_color: tuple[int, int] | None = ..., rgbw_color: tuple[int, int, int, int] | None = ..., rgbww_color: tuple[int, int, int, int, int] | None = ..., supported_color_modes: set[ColorMode] | None = ...) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
+    _attr_device_info: Incomplete
+    def __init__(self, unique_id: str, device_name: str, state: bool, available: bool = ..., brightness: int = ..., ct: int | None = ..., effect_list: list[str] | None = ..., effect: str | None = ..., hs_color: tuple[int, int] | None = ..., rgbw_color: tuple[int, int, int, int] | None = ..., rgbww_color: tuple[int, int, int, int, int] | None = ..., supported_color_modes: set[ColorMode] | None = ...) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property

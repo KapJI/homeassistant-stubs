@@ -12,7 +12,7 @@ _LOGGER: Incomplete
 STORAGE_SEMAPHORE: str
 _T = TypeVar('_T', bound=Mapping[str, Any] | Sequence[Any])
 
-async def async_migrator(hass: HomeAssistant, old_path: str, store: Store, *, old_conf_load_func: Callable | None = ..., old_conf_migrate_func: Callable | None = ...) -> Any: ...
+async def async_migrator(hass: HomeAssistant, old_path: str, store: Store[_T], *, old_conf_load_func: Callable | None = ..., old_conf_migrate_func: Callable | None = ...) -> _T | None: ...
 
 class Store(Generic[_T]):
     version: Incomplete

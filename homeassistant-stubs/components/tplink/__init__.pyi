@@ -13,6 +13,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from kasa import SmartDevice as SmartDevice
 
 DISCOVERY_INTERVAL: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 def async_trigger_discovery(hass: HomeAssistant, discovered_devices: dict[str, SmartDevice]) -> None: ...
 async def async_discover_devices(hass: HomeAssistant) -> dict[str, SmartDevice]: ...

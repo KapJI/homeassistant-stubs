@@ -1,4 +1,5 @@
 from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEVICES_FOR_SUBSCRIBE as DEVICES_FOR_SUBSCRIBE, DOMAIN as DOMAIN, ModelType as ModelType
+from _typeshed import Incomplete
 from collections.abc import Generator, Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
@@ -8,6 +9,8 @@ from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from pyunifiprotect import ProtectApiClient
 from pyunifiprotect.data import Bootstrap as Bootstrap, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any
+
+_SENTINEL: Incomplete
 
 def get_nested_attr(obj: Any, attr: str) -> Any: ...
 def _async_unifi_mac_from_hass(mac: str) -> str: ...

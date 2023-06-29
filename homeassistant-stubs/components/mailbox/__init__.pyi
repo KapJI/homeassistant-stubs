@@ -17,6 +17,7 @@ EVENT: Final[str]
 CONTENT_TYPE_MPEG: Final[str]
 CONTENT_TYPE_NONE: Final[str]
 SCAN_INTERVAL: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 

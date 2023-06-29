@@ -15,6 +15,7 @@ from typing import Any
 def _async_device_info(device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> DeviceInfo: ...
 
 class FluxBaseEntity(Entity):
+    _attr_has_entity_name: bool
     _attr_should_poll: bool
     _device: Incomplete
     entry: Incomplete
@@ -22,12 +23,12 @@ class FluxBaseEntity(Entity):
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
 
 class FluxEntity(CoordinatorEntity[FluxLedUpdateCoordinator]):
+    _attr_has_entity_name: bool
     _device: Incomplete
     _responding: bool
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, name: str, key: str | None) -> None: ...
+    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, key: str | None) -> None: ...
     async def _async_ensure_device_on(self) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...

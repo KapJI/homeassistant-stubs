@@ -19,6 +19,7 @@ PLATFORMS_BY_TYPE: Final[Incomplete]
 DISCOVERY_INTERVAL: Final[Incomplete]
 REQUEST_REFRESH_DELAY: Final[float]
 NAME_TO_WHITE_CHANNEL_TYPE: Final[Incomplete]
+CONFIG_SCHEMA: Incomplete
 
 def async_wifi_bulb_for_host(host: str, discovery: FluxLEDDiscovery | None) -> AIOWifiLedBulb: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

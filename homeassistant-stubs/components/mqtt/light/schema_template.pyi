@@ -33,12 +33,10 @@ CONF_GREEN_TEMPLATE: str
 CONF_MAX_MIREDS: str
 CONF_MIN_MIREDS: str
 CONF_RED_TEMPLATE: str
-CONF_WHITE_VALUE_TEMPLATE: str
 COMMAND_TEMPLATES: Incomplete
 VALUE_TEMPLATES: Incomplete
-_PLATFORM_SCHEMA_BASE: Incomplete
-DISCOVERY_SCHEMA_TEMPLATE: Incomplete
 PLATFORM_SCHEMA_MODERN_TEMPLATE: Incomplete
+DISCOVERY_SCHEMA_TEMPLATE: Incomplete
 
 async def async_setup_entity_template(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 

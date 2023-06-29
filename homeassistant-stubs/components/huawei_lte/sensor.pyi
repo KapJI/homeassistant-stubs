@@ -27,6 +27,7 @@ class HuaweiSensorGroup:
     def __init__(self, descriptions, include, exclude) -> None: ...
 
 class HuaweiSensorEntityDescription(SensorEntityDescription):
+    name: str
     format_fn: Callable[[str], tuple[StateType, str | None]]
     icon_fn: Callable[[StateType], str] | None
     device_class_fn: Callable[[StateType], SensorDeviceClass | None] | None

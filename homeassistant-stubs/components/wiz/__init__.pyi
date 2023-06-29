@@ -16,6 +16,7 @@ from pywizlight import PilotParser as PilotParser
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
 REQUEST_REFRESH_DELAY: float
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, hass_config: ConfigType) -> bool: ...
 async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...

@@ -10,6 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any, Final
 
 LOGGER: Incomplete
@@ -61,8 +62,10 @@ class RpcUpdateEntity(ShellyRpcAttributeEntity, UpdateEntity):
     def in_progress(self) -> bool: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
 
-class RpcSleepingUpdateEntity(ShellySleepingRpcAttributeEntity, UpdateEntity):
+class RpcSleepingUpdateEntity(ShellySleepingRpcAttributeEntity, UpdateEntity, RestoreEntity):
     entity_description: RpcUpdateDescription
+    last_state: Incomplete
+    async def async_added_to_hass(self) -> None: ...
     @property
     def installed_version(self) -> str | None: ...
     @property

@@ -10,7 +10,6 @@ from homeassistant.const import CONF_FORCE_UPDATE as CONF_FORCE_UPDATE, CONF_RES
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.template_entity import TemplateSensor as TemplateSensor
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator

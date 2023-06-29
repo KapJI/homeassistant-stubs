@@ -7,7 +7,6 @@ from homeassistant.components.media_source import BrowseMediaSource as BrowseMed
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.network import get_url as get_url
 from typing import TypedDict
 
 async def async_get_media_source(hass: HomeAssistant) -> TTSMediaSource: ...

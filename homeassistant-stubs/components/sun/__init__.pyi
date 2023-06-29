@@ -41,6 +41,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class Sun(Entity):
     _attr_name: str
     entity_id = ENTITY_ID
+    _no_platform_reported: bool
     location: Location
     elevation: Elevation
     next_rising: datetime

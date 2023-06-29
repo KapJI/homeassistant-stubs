@@ -6,11 +6,11 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 
 class BAFEntity(Entity):
     _attr_should_poll: bool
+    _attr_has_entity_name: bool
     _device: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, device: Device, name: str) -> None: ...
+    def __init__(self, device: Device) -> None: ...
     _attr_available: Incomplete
     def _async_update_attrs(self) -> None: ...
     def _async_update_from_device(self, device: Device) -> None: ...

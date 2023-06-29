@@ -18,15 +18,13 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class AladdinDevice(CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features = SUPPORTED_FEATURES
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _acc: Incomplete
-    _entry_id: Incomplete
     _device_id: Incomplete
     _number: Incomplete
-    _name: Incomplete
     _serial: Incomplete
-    _model: Incomplete
     _attr_device_info: Incomplete
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     def __init__(self, acc: AladdinConnectClient, device: DoorDevice, entry: ConfigEntry) -> None: ...
     async def async_added_to_hass(self) -> None: ...

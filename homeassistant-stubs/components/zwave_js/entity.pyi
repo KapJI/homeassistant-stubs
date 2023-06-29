@@ -8,6 +8,7 @@ from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as ZwaveValue

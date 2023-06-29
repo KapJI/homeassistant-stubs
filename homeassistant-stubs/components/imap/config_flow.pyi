@@ -7,9 +7,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
-from homeassistant.exceptions import TemplateError as TemplateError
-from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
-from homeassistant.helpers.template import Template as Template
+from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector, TemplateSelectorConfig as TemplateSelectorConfig
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList
 from typing import Any
 

@@ -1,8 +1,8 @@
 from .const import ATTR_BLOCKS as ATTR_BLOCKS, ATTR_BLOCKS_TEMPLATE as ATTR_BLOCKS_TEMPLATE, ATTR_FILE as ATTR_FILE, ATTR_PASSWORD as ATTR_PASSWORD, ATTR_PATH as ATTR_PATH, ATTR_URL as ATTR_URL, ATTR_USERNAME as ATTR_USERNAME, CONF_DEFAULT_CHANNEL as CONF_DEFAULT_CHANNEL, DATA_CLIENT as DATA_CLIENT, SLACK_DATA as SLACK_DATA
 from _typeshed import Incomplete
 from aiohttp import BasicAuth
-from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, BaseNotificationService as BaseNotificationService, PLATFORM_SCHEMA as PLATFORM_SCHEMA
-from homeassistant.const import ATTR_ICON as ATTR_ICON, CONF_API_KEY as CONF_API_KEY, CONF_ICON as CONF_ICON, CONF_PATH as CONF_PATH, CONF_USERNAME as CONF_USERNAME
+from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, BaseNotificationService as BaseNotificationService
+from homeassistant.const import ATTR_ICON as ATTR_ICON, CONF_PATH as CONF_PATH
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client, template as template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType

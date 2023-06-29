@@ -27,6 +27,7 @@ CONNECT_TIMEOUT: int
 DATA_CLIENT_LISTEN_TASK: str
 DATA_DRIVER_EVENTS: str
 DATA_START_CLIENT_TASK: str
+CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

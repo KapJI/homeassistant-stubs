@@ -20,6 +20,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class RfxtrxBinarySensor(RfxtrxEntity, BinarySensorEntity):
     _attr_force_update: bool
+    _attr_name: Incomplete
     entity_description: Incomplete
     _data_bits: Incomplete
     _off_delay: Incomplete

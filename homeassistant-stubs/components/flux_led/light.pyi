@@ -5,7 +5,6 @@ from .util import _effect_brightness as _effect_brightness, _flux_color_mode_to_
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_WHITE as ATTR_WHITE, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -31,6 +30,7 @@ SET_ZONES_DICT: Final[Incomplete]
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FluxLight(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], LightEntity):
+    _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _attr_min_mireds: Incomplete
     _attr_max_mireds: Incomplete
@@ -39,7 +39,7 @@ class FluxLight(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], Li
     _custom_effect_colors: Incomplete
     _custom_effect_speed_pct: Incomplete
     _custom_effect_transition: Incomplete
-    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, name: str, custom_effect_colors: list[tuple[int, int, int]], custom_effect_speed_pct: int, custom_effect_transition: str) -> None: ...
+    def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, custom_effect_colors: list[tuple[int, int, int]], custom_effect_speed_pct: int, custom_effect_transition: str) -> None: ...
     @property
     def brightness(self) -> int: ...
     @property

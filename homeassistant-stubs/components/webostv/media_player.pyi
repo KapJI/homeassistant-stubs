@@ -33,10 +33,12 @@ def cmd(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concat
 
 class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _entry: Incomplete
     _client: Incomplete
     _attr_assumed_state: bool
-    _attr_name: Incomplete
+    _device_name: Incomplete
     _attr_unique_id: Incomplete
     _sources: Incomplete
     _paused: bool

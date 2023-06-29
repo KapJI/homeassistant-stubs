@@ -1,12 +1,12 @@
 from . import CONF_DEVICE_NAME as CONF_DEVICE_NAME, CONF_NOISE_PSK as CONF_NOISE_PSK
-from .const import DOMAIN as DOMAIN
+from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS as DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS, DOMAIN as DOMAIN
 from .dashboard import async_get_dashboard as async_get_dashboard, async_set_dashboard_info as async_set_dashboard_info
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from collections.abc import Mapping
 from homeassistant.components import dhcp as dhcp, zeroconf as zeroconf
 from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
@@ -46,3 +46,10 @@ class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     async def fetch_device_info(self) -> str | None: ...
     async def try_login(self) -> str | None: ...
     async def _retrieve_encryption_key_from_dashboard(self) -> bool: ...
+    @staticmethod
+    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
+
+class OptionsFlowHandler(OptionsFlow):
+    config_entry: Incomplete
+    def __init__(self, config_entry: ConfigEntry) -> None: ...
+    async def async_step_init(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

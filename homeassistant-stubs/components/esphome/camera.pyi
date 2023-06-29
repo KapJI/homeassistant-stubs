@@ -1,4 +1,4 @@
-from . import EsphomeEntity as EsphomeEntity, platform_async_setup_entry as platform_async_setup_entry
+from .entity import EsphomeEntity as EsphomeEntity, platform_async_setup_entry as platform_async_setup_entry
 from _typeshed import Incomplete
 from aioesphomeapi import CameraInfo, CameraState
 from aiohttp import web as web

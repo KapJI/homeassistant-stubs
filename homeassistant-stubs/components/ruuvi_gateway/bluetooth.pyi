@@ -2,7 +2,7 @@ from .coordinator import RuuviGatewayUpdateCoordinator as RuuviGatewayUpdateCoor
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from home_assistant_bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
-from homeassistant.components.bluetooth import BaseHaRemoteScanner as BaseHaRemoteScanner, FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, async_get_advertisement_callback as async_get_advertisement_callback, async_register_scanner as async_register_scanner
+from homeassistant.components.bluetooth import BaseHaRemoteScanner as BaseHaRemoteScanner, FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS as FALLBACK_MAXIMUM_STALE_ADVERTISEMENT_SECONDS, MONOTONIC_TIME as MONOTONIC_TIME, async_get_advertisement_callback as async_get_advertisement_callback, async_register_scanner as async_register_scanner
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 

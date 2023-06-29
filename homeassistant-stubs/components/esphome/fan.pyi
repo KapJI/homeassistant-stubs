@@ -1,10 +1,10 @@
-from . import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from .entity import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
-from aioesphomeapi import FanDirection, FanInfo, FanState
+from aioesphomeapi import EntityInfo as EntityInfo, FanDirection, FanInfo, FanState
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
@@ -34,5 +34,5 @@ class EsphomeFan(EsphomeEntity[FanInfo, FanState], FanEntity):
     def oscillating(self) -> bool | None: ...
     @property
     def current_direction(self) -> str | None: ...
-    @property
-    def supported_features(self) -> FanEntityFeature: ...
+    _attr_supported_features: Incomplete
+    def _on_static_info_update(self, static_info: EntityInfo) -> None: ...

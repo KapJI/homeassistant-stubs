@@ -1,11 +1,10 @@
 from .const import DOMAIN as DOMAIN
-from .entry_data import RuntimeEntryData as RuntimeEntryData
+from .entry_data import ESPHomeStorage as ESPHomeStorage, RuntimeEntryData as RuntimeEntryData
 from bleak.backends.service import BleakGATTServiceCollection as BleakGATTServiceCollection
 from collections.abc import MutableMapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.json import JSONEncoder as JSONEncoder
-from homeassistant.helpers.storage import Store as Store
 from typing_extensions import Self
 
 STORAGE_VERSION: int
@@ -13,7 +12,7 @@ MAX_CACHED_SERVICES: int
 
 class DomainData:
     _entry_datas: dict[str, RuntimeEntryData]
-    _stores: dict[str, Store]
+    _stores: dict[str, ESPHomeStorage]
     _gatt_services_cache: MutableMapping[int, BleakGATTServiceCollection]
     _gatt_mtu_cache: MutableMapping[int, int]
     def get_gatt_services_cache(self, address: int) -> BleakGATTServiceCollection | None: ...
@@ -26,7 +25,7 @@ class DomainData:
     def set_entry_data(self, entry: ConfigEntry, entry_data: RuntimeEntryData) -> None: ...
     def pop_entry_data(self, entry: ConfigEntry) -> RuntimeEntryData: ...
     def is_entry_loaded(self, entry: ConfigEntry) -> bool: ...
-    def get_or_create_store(self, hass: HomeAssistant, entry: ConfigEntry) -> Store: ...
+    def get_or_create_store(self, hass: HomeAssistant, entry: ConfigEntry) -> ESPHomeStorage: ...
     @classmethod
     def get(cls, hass: HomeAssistant) -> Self: ...
     def __init__(self, _entry_datas, _stores, _gatt_services_cache, _gatt_mtu_cache) -> None: ...

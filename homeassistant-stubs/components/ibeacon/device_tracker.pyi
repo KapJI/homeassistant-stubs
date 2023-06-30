@@ -14,6 +14,7 @@ from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class IBeaconTrackerEntity(IBeaconEntity, BaseTrackerEntity):
+    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _active: bool
     def __init__(self, coordinator: IBeaconCoordinator, identifier: str, device_unique_id: str, ibeacon_advertisement: iBeaconAdvertisement) -> None: ...

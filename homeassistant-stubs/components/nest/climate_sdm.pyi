@@ -34,6 +34,7 @@ class ThermostatEntity(ClimateEntity):
     _attr_max_temp = MAX_TEMP
     _attr_has_entity_name: bool
     _attr_should_poll: bool
+    _attr_name: Incomplete
     _device: Incomplete
     _device_info: Incomplete
     def __init__(self, device: Device) -> None: ...

@@ -25,6 +25,7 @@ SEARCH_SCHEMA: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
+    _attr_name: Incomplete
     _attr_supported_features: Incomplete
     def _media_playback_trackable(self) -> bool: ...
     @property

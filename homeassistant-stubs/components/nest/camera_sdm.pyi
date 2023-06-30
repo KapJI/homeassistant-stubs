@@ -24,6 +24,7 @@ async def async_setup_sdm_entry(hass: HomeAssistant, entry: ConfigEntry, async_a
 
 class NestCamera(Camera):
     _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _device: Incomplete
     _device_info: Incomplete
     _stream: Incomplete

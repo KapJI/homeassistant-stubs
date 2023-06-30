@@ -17,6 +17,7 @@ def _async_pilot_builder(**kwargs: Any) -> PilotBuilder: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WizBulbEntity(WizToggleEntity, LightEntity):
+    _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
     _attr_min_mireds: Incomplete

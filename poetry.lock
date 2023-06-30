@@ -829,14 +829,14 @@ files = [
 
 [[package]]
 name = "homeassistant"
-version = "2023.7.0b1"
+version = "2023.7.0b2"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
 python-versions = ">=3.10.0"
 files = [
-    {file = "homeassistant-2023.7.0b1-py3-none-any.whl", hash = "sha256:dade9eaf0224867912a599397eff591ee03822c052b60096a3ed6806f32dc33f"},
-    {file = "homeassistant-2023.7.0b1.tar.gz", hash = "sha256:6c6e47f80659a0d1a55aa864dfb9b09dbe0a54c3d30f37c34df0a53d530af5f4"},
+    {file = "homeassistant-2023.7.0b2-py3-none-any.whl", hash = "sha256:0db04a66471ed23238b4334904df47550e84325b0f4d6ad859f49e5007100586"},
+    {file = "homeassistant-2023.7.0b2.tar.gz", hash = "sha256:a51f0ac725b2cab6258bdb2d52682e842e72ca23474374fb78e4b8d78974ee33"},
 ]
 
 [package.dependencies]
@@ -2067,4 +2067,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "d2864852180b8d50e9deaed281d420b5a6ba92e71c9235ca8c62376ac0d8c6bc"
+content-hash = "e1ce145e56871e9f0951ad068d5d1f8650a9c2e64c6c6b3eb89618d4146f2edb"

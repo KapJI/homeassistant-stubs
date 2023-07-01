@@ -1,5 +1,6 @@
 from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from homeassistant.components.cover import CoverEntity as CoverEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,6 +12,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class AbodeCover(AbodeDevice, CoverEntity):
     _device: AbodeCV
+    _attr_name: Incomplete
     @property
     def is_closed(self) -> bool: ...
     def close_cover(self, **kwargs: Any) -> None: ...

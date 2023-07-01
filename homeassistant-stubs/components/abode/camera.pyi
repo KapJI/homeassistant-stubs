@@ -17,6 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class AbodeCamera(AbodeDevice, Camera):
     _device: AbodeCam
+    _attr_name: Incomplete
     _event: Incomplete
     _response: Incomplete
     def __init__(self, data: AbodeSystem, device: AbodeDev, event: Event) -> None: ...

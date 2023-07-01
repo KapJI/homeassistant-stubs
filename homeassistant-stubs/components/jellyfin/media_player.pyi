@@ -27,8 +27,8 @@ class JellyfinMediaPlayer(JellyfinEntity, MediaPlayerEntity):
     now_playing: Incomplete
     play_state: Incomplete
     _attr_device_info: Incomplete
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _attr_has_entity_name: bool
     def __init__(self, coordinator: JellyfinDataUpdateCoordinator, session_id: str, session_data: dict[str, Any]) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_state: Incomplete

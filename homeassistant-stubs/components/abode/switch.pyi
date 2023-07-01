@@ -16,6 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class AbodeSwitch(AbodeDevice, SwitchEntity):
     _device: AbodeSW
+    _attr_name: Incomplete
     def turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...
     @property

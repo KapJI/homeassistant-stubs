@@ -15,6 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class AbodeAlarm(AbodeDevice, alarm.AlarmControlPanelEntity):
     _attr_icon = ICON
+    _attr_name: Incomplete
     _attr_code_arm_required: bool
     _attr_supported_features: Incomplete
     _device: AbodeAl

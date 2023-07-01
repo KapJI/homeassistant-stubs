@@ -14,6 +14,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElgatoLight(ElgatoEntity, LightEntity):
+    _attr_name: Incomplete
     _attr_min_mireds: int
     _attr_max_mireds: int
     _attr_supported_color_modes: Incomplete

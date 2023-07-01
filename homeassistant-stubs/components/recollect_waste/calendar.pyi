@@ -15,6 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ReCollectWasteCalendar(ReCollectWasteEntity, CalendarEntity):
     _attr_icon: str
+    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _event: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[list[PickupEvent]], entry: ConfigEntry) -> None: ...

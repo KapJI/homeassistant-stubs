@@ -12,6 +12,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloSwitch(DevoloDeviceEntity, SwitchEntity):
+    _attr_name: Incomplete
     _binary_switch_property: Incomplete
     _attr_is_on: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...

@@ -43,6 +43,7 @@ def _find_valid_target_temp(target: int, valid_targets: list[int]) -> int: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
+    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete

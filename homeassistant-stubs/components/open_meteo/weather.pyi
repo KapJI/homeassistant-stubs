@@ -14,6 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class OpenMeteoWeatherEntity(CoordinatorEntity[DataUpdateCoordinator[OpenMeteoForecast]], WeatherEntity):
     _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_native_precipitation_unit: Incomplete
     _attr_native_temperature_unit: Incomplete
     _attr_native_wind_speed_unit: Incomplete

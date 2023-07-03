@@ -1,4 +1,4 @@
-from .const import CONF_GCID as CONF_GCID, CONF_READ_ONLY as CONF_READ_ONLY, CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN, DOMAIN as DOMAIN
+from .const import CONF_GCID as CONF_GCID, CONF_READ_ONLY as CONF_READ_ONLY, CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN, DOMAIN as DOMAIN, SCAN_INTERVALS as SCAN_INTERVALS
 from _typeshed import Incomplete
 from bimmer_connected.account import MyBMWAccount
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,8 +7,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
-DEFAULT_SCAN_INTERVAL_SECONDS: int
-SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 
 class BMWDataUpdateCoordinator(DataUpdateCoordinator[None]):

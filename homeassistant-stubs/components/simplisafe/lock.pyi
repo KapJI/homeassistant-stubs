@@ -19,7 +19,8 @@ WEBSOCKET_EVENTS_TO_LISTEN_FOR: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SimpliSafeLock(SimpliSafeEntity, LockEntity):
-    _device: Incomplete
+    _attr_name: Incomplete
+    _device: Lock
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, lock: Lock) -> None: ...
     _attr_is_locked: bool
     async def async_lock(self, **kwargs: Any) -> None: ...

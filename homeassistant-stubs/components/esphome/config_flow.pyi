@@ -17,6 +17,7 @@ ERROR_REQUIRES_ENCRYPTION_KEY: str
 ERROR_INVALID_ENCRYPTION_KEY: str
 ESPHOME_URL: str
 _LOGGER: Incomplete
+ZERO_NOISE_PSK: str
 
 class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int

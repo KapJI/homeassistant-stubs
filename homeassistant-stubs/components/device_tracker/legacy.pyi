@@ -72,6 +72,7 @@ class DeviceTracker:
     async def async_setup_tracked_device(self) -> None: ...
 
 class Device(RestoreEntity):
+    _no_platform_reported: bool
     host_name: str | None
     location_name: str | None
     gps: GPSType | None

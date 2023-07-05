@@ -27,6 +27,7 @@ def async_setup_proximity_component(hass: HomeAssistant, name: str, config: Conf
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class Proximity(Entity):
+    _no_platform_reported: bool
     hass: Incomplete
     friendly_name: Incomplete
     dist_to: Incomplete

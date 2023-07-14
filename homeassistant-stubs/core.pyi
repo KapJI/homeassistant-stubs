@@ -1,6 +1,7 @@
 import asyncio
 import datetime
 import enum
+import threading
 import voluptuous as vol
 from . import block_async_io as block_async_io, loader as loader, util as util
 from .auth import AuthManager as AuthManager
@@ -21,7 +22,6 @@ from .util.ulid import ulid as ulid, ulid_at_time as ulid_at_time
 from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Collection, Coroutine, Iterable, Mapping
-from contextvars import ContextVar
 from typing import Any, Generic, NamedTuple, TypeVar, overload
 from typing_extensions import Self
 
@@ -54,7 +54,6 @@ SOURCE_YAML: Incomplete
 TIMEOUT_EVENT_START: int
 MAX_EXPECTED_ENTITY_IDS: int
 _LOGGER: Incomplete
-_cv_hass: ContextVar[HomeAssistant]
 
 def split_entity_id(entity_id: str) -> tuple[str, str]: ...
 
@@ -67,6 +66,12 @@ def valid_domain(domain: str) -> bool: ...
 def valid_entity_id(entity_id: str) -> bool: ...
 def callback(func: _CallableT) -> _CallableT: ...
 def is_callback(func: Callable[..., Any]) -> bool: ...
+
+class _Hass(threading.local):
+    hass: HomeAssistant | None
+
+_hass: Incomplete
+
 def async_get_hass() -> HomeAssistant: ...
 
 class HassJobType(enum.Enum):

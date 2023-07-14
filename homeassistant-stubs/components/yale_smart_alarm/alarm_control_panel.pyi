@@ -15,6 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class YaleAlarmDevice(YaleAlarmEntity, AlarmControlPanelEntity):
     _attr_code_arm_required: bool
     _attr_supported_features: Incomplete
+    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator) -> None: ...
     async def async_alarm_disarm(self, code: str | None = ...) -> None: ...

@@ -1,6 +1,6 @@
 from . import CONF_DEVICE_NAME as CONF_DEVICE_NAME, CONF_NOISE_PSK as CONF_NOISE_PSK
 from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS as DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS, DOMAIN as DOMAIN
-from .dashboard import async_get_dashboard as async_get_dashboard, async_set_dashboard_info as async_set_dashboard_info
+from .dashboard import async_get_or_create_dashboard_manager as async_get_or_create_dashboard_manager, async_set_dashboard_info as async_set_dashboard_info
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from collections.abc import Mapping

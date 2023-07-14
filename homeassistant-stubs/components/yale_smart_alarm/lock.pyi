@@ -13,6 +13,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class YaleDoorlock(YaleEntity, LockEntity):
+    _attr_name: Incomplete
     _attr_code_format: Incomplete
     lock_name: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator, data: dict, code_format: int) -> None: ...

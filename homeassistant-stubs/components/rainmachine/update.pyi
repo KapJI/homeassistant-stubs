@@ -25,6 +25,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RainMachineUpdateEntity(RainMachineEntity, UpdateEntity):
     _attr_device_class: Incomplete
+    _attr_name: Incomplete
     _attr_supported_features: Incomplete
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     _attr_installed_version: Incomplete

@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .entity import YALEXSBLEEntity as YALEXSBLEEntity
 from .models import YaleXSBLEData as YaleXSBLEData
+from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -12,6 +13,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class YaleXSBLELock(YALEXSBLEEntity, LockEntity):
     _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_is_locked: bool
     _attr_is_locking: bool
     _attr_is_unlocking: bool

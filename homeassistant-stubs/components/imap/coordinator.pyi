@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from aioimaplib import IMAP4_SSL
 from collections.abc import Mapping
 from datetime import datetime, timedelta
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, TemplateError as TemplateError
@@ -17,6 +17,7 @@ from typing import Any
 _LOGGER: Incomplete
 BACKOFF_TIME: int
 EVENT_IMAP: str
+MAX_ERRORS: int
 MAX_EVENT_DATA_BYTES: int
 
 async def connect_to_server(data: Mapping[str, Any]) -> IMAP4_SSL: ...
@@ -39,6 +40,7 @@ class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
     config_entry: ConfigEntry
     custom_event_template: Template | None
     imap_client: Incomplete
+    auth_errors: int
     _last_message_id: Incomplete
     def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ConfigEntry, update_interval: timedelta | None) -> None: ...
     async def async_start(self) -> None: ...
@@ -50,6 +52,7 @@ class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
 
 class ImapPollingDataUpdateCoordinator(ImapDataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ConfigEntry) -> None: ...
+    auth_errors: int
     async def _async_update_data(self) -> int | None: ...
 
 class ImapPushDataUpdateCoordinator(ImapDataUpdateCoordinator):
@@ -57,5 +60,6 @@ class ImapPushDataUpdateCoordinator(ImapDataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> int | None: ...
     async def async_start(self) -> None: ...
+    auth_errors: int
     async def _async_wait_push_loop(self) -> None: ...
     async def shutdown(self, *_: Any) -> None: ...

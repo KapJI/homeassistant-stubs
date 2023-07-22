@@ -24,6 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SimpliSafeAlarm(SimpliSafeEntity, AlarmControlPanelEntity):
     _attr_supported_features: Incomplete
+    _attr_name: Incomplete
     _attr_code_format: Incomplete
     _last_event: Incomplete
     def __init__(self, simplisafe: SimpliSafe, system: SystemType) -> None: ...

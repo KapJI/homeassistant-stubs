@@ -17,6 +17,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, N
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from typing import Any, Final, Literal, TypeVar, TypedDict
+from yarl import URL
 
 _T = TypeVar('_T')
 _LOGGER: Incomplete
@@ -36,7 +37,7 @@ def get_supported_features(hass: HomeAssistant, entity_id: str) -> int: ...
 def get_unit_of_measurement(hass: HomeAssistant, entity_id: str) -> str | None: ...
 
 class DeviceInfo(TypedDict, total=False):
-    configuration_url: str | None
+    configuration_url: str | URL | None
     connections: set[tuple[str, str]]
     default_manufacturer: str
     default_model: str

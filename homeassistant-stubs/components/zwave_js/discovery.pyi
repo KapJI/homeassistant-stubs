@@ -4,7 +4,7 @@ from .helpers import ZwaveValueID as ZwaveValueID
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Generator
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry

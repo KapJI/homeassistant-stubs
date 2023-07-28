@@ -10,7 +10,6 @@ from vallox_websocket_api import Vallox as Vallox
 
 class ValloxNumberEntity(ValloxEntity, NumberEntity):
     entity_description: ValloxNumberEntityDescription
-    _attr_has_entity_name: bool
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     _client: Incomplete

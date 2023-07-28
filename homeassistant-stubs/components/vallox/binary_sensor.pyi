@@ -10,7 +10,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 class ValloxBinarySensorEntity(ValloxEntity, BinarySensorEntity):
     entity_description: ValloxBinarySensorEntityDescription
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxBinarySensorEntityDescription) -> None: ...
     @property

@@ -12,8 +12,7 @@ from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.interfaces import Dialect as Dialect
 from sqlalchemy.orm import DeclarativeBase, Mapped as Mapped
 from sqlalchemy.types import TypeDecorator as TypeDecorator
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 class Base(DeclarativeBase): ...
 

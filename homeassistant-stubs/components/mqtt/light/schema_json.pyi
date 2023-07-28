@@ -51,6 +51,7 @@ PLATFORM_SCHEMA_MODERN_JSON: Incomplete
 async def async_setup_entity_json(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
+    _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
     _flash_times: dict[str, int | None]

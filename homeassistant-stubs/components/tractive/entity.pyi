@@ -4,6 +4,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 from typing import Any
 
 class TractiveEntity(Entity):
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     _user_id: Incomplete
     _tracker_id: Incomplete

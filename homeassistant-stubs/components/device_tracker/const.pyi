@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from typing import Final
 
 LOGGER: Final[Incomplete]

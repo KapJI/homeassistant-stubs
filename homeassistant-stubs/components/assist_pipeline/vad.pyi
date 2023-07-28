@@ -1,5 +1,5 @@
 import webrtcvad
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 
 _SAMPLE_RATE: int
 

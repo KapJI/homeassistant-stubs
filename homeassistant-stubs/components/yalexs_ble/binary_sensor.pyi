@@ -12,6 +12,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
 
 class YaleXSBLEDoorSensor(YALEXSBLEEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
-    _attr_has_entity_name: bool
     _attr_is_on: Incomplete
     def _async_update_state(self, new_state: LockState, lock_info: LockInfo, connection_info: ConnectionInfo) -> None: ...

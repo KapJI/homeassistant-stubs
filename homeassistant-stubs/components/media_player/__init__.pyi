@@ -9,7 +9,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
 from collections.abc import Callable as Callable
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.websocket_api import ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED, ERR_UNKNOWN_ERROR as ERR_UNKNOWN_ERROR
@@ -23,8 +23,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Final, TypedDict
-from typing_extensions import Required
+from typing import Any, Final, Required, TypedDict
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Incomplete

@@ -5,6 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEGREE as DEGREE, PERCENTAGE as PERCENTAGE, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from lacrosse_view import Sensor

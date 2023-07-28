@@ -14,7 +14,6 @@ HEV_CYCLE_STATE_SENSOR: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LIFXHevCycleBinarySensorEntity(LIFXEntity, BinarySensorEntity):
-    _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LIFXUpdateCoordinator, description: BinarySensorEntityDescription) -> None: ...

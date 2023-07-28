@@ -11,7 +11,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ToloFlowInBinarySensor(ToloSaunaCoordinatorEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _attr_device_class: Incomplete
     _attr_icon: str
     _attr_unique_id: Incomplete
@@ -21,7 +21,7 @@ class ToloFlowInBinarySensor(ToloSaunaCoordinatorEntity, BinarySensorEntity):
 
 class ToloFlowOutBinarySensor(ToloSaunaCoordinatorEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _attr_device_class: Incomplete
     _attr_icon: str
     _attr_unique_id: Incomplete

@@ -5,7 +5,7 @@ from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections import UserDict
 from collections.abc import Callable as Callable, Iterable, Mapping, ValuesView
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_RESTORED as ATTR_RESTORED, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory, MAX_LENGTH_STATE_DOMAIN as MAX_LENGTH_STATE_DOMAIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
@@ -13,7 +13,8 @@ from homeassistant.exceptions import MaxLengthExceeded as MaxLengthExceeded
 from homeassistant.util import slugify as slugify
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
-from typing import Any, TypeVar
+from typing import Any, Literal, TypeVar, TypedDict
+from typing_extensions import NotRequired
 
 T = TypeVar('T')
 DATA_REGISTRY: str
@@ -39,6 +40,18 @@ class RegistryEntryDisabler(StrEnum):
 class RegistryEntryHider(StrEnum):
     INTEGRATION: str
     USER: str
+
+class _EventEntityRegistryUpdatedData_CreateRemove(TypedDict):
+    action: Literal['create', 'remove']
+    entity_id: str
+
+class _EventEntityRegistryUpdatedData_Update(TypedDict):
+    action: Literal['update']
+    entity_id: str
+    changes: dict[str, Any]
+    old_entity_id: NotRequired[str]
+
+EventEntityRegistryUpdatedData: Incomplete
 EntityOptionsType = Mapping[str, Mapping[str, Any]]
 ReadOnlyEntityOptionsType = ReadOnlyDict[str, Mapping[str, Any]]
 DISLAY_DICT_OPTIONAL: Incomplete

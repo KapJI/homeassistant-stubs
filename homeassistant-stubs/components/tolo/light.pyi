@@ -11,7 +11,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ToloLight(ToloSaunaCoordinatorEntity, LightEntity):
     _attr_color_mode: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _attr_supported_color_modes: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry) -> None: ...

@@ -1,13 +1,11 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping, Sequence
-from enum import IntFlag
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import IntFlag, StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.util import decorator as decorator
 from homeassistant.util.yaml import dumper as dumper
-from typing import Any, Generic, Literal, TypeVar, TypedDict
-from typing_extensions import Required
+from typing import Any, Generic, Literal, Required, TypeVar, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]
 _T = TypeVar('_T', bound=Mapping[str, Any])
@@ -24,7 +22,8 @@ class Selector(Generic[_T]):
     def serialize(self) -> dict[str, dict[str, _T]]: ...
 
 def _entity_features() -> dict[str, type[IntFlag]]: ...
-def _validate_supported_feature(supported_feature: int | str) -> int: ...
+def _validate_supported_feature(supported_feature: str) -> int: ...
+def _validate_supported_features(supported_features: int | list[str]) -> int: ...
 
 ENTITY_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
 
@@ -122,6 +121,14 @@ class ColorTempSelector(Selector[ColorTempSelectorConfig]):
     def __init__(self, config: ColorTempSelectorConfig | None = ...) -> None: ...
     def __call__(self, data: Any) -> int: ...
 
+class ConditionSelectorConfig(TypedDict): ...
+
+class ConditionSelector(Selector[ConditionSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: ConditionSelectorConfig | None = ...) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
 class ConfigEntrySelectorConfig(TypedDict, total=False):
     integration: str
 
@@ -145,7 +152,7 @@ class ConstantSelector(Selector[ConstantSelectorConfig]):
 class ConversationAgentSelectorConfig(TypedDict, total=False):
     language: str
 
-class COnversationAgentSelector(Selector[ConversationAgentSelectorConfig]):
+class ConversationAgentSelector(Selector[ConversationAgentSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ConversationAgentSelectorConfig) -> None: ...
@@ -319,6 +326,7 @@ class TemplateSelector(Selector[TemplateSelectorConfig]):
 
 class TextSelectorConfig(TypedDict, total=False):
     multiline: bool
+    prefix: str
     suffix: str
     type: TextSelectorType
     autocomplete: str

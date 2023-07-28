@@ -120,6 +120,16 @@ class CoverSchema(KNXPlatformSchema):
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
+class DateSchema(KNXPlatformSchema):
+    PLATFORM: Incomplete
+    DEFAULT_NAME: str
+    ENTITY_SCHEMA: Incomplete
+
+class DateTimeSchema(KNXPlatformSchema):
+    PLATFORM: Incomplete
+    DEFAULT_NAME: str
+    ENTITY_SCHEMA: Incomplete
+
 class ExposeSchema(KNXPlatformSchema):
     PLATFORM = CONF_KNX_EXPOSE
     CONF_KNX_EXPOSE_TYPE = CONF_TYPE

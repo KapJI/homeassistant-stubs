@@ -1,4 +1,5 @@
 import asyncio
+from .bluetooth.device import ESPHomeBluetoothDevice as ESPHomeBluetoothDevice
 from .dashboard import async_get_dashboard as async_get_dashboard
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, UserService
@@ -25,6 +26,7 @@ class ESPHomeStorage(Store[StoreData]): ...
 
 class RuntimeEntryData:
     entry_id: str
+    title: str
     client: APIClient
     store: ESPHomeStorage
     state: dict[type[EntityState], dict[int, EntityState]]
@@ -34,6 +36,7 @@ class RuntimeEntryData:
     available: bool
     expected_disconnect: bool
     device_info: DeviceInfo | None
+    bluetooth_device: ESPHomeBluetoothDevice | None
     api_version: APIVersion
     cleanup_callbacks: list[Callable[[], None]]
     disconnect_callbacks: list[Callable[[], None]]
@@ -42,9 +45,6 @@ class RuntimeEntryData:
     platform_load_lock: asyncio.Lock
     _storage_contents: StoreData | None
     _pending_storage: Callable[[], StoreData] | None
-    ble_connections_free: int
-    ble_connections_limit: int
-    _ble_connection_free_futures: list[asyncio.Future[int]]
     assist_pipeline_update_callbacks: list[Callable[[], None]]
     assist_pipeline_state: bool
     entity_info_callbacks: dict[type[EntityInfo], list[Callable[[list[EntityInfo]], None]]]
@@ -62,8 +62,6 @@ class RuntimeEntryData:
     def async_register_static_info_callback(self, entity_info_type: type[EntityInfo], callback_: Callable[[list[EntityInfo]], None]) -> CALLBACK_TYPE: ...
     def async_register_key_static_info_remove_callback(self, static_info: EntityInfo, callback_: Callable[[], Coroutine[Any, Any, None]]) -> CALLBACK_TYPE: ...
     def async_register_key_static_info_updated_callback(self, static_info: EntityInfo, callback_: Callable[[EntityInfo], None]) -> CALLBACK_TYPE: ...
-    def async_update_ble_connection_limits(self, free: int, limit: int) -> None: ...
-    async def wait_for_ble_connections_free(self) -> int: ...
     def async_set_assist_pipeline_state(self, state: bool) -> None: ...
     def async_subscribe_assist_pipeline_update(self, update_callback: Callable[[], None]) -> Callable[[], None]: ...
     async def async_remove_entities(self, static_infos: Iterable[EntityInfo]) -> None: ...
@@ -77,4 +75,4 @@ class RuntimeEntryData:
     async def async_save_to_store(self) -> None: ...
     async def async_cleanup(self) -> None: ...
     async def async_update_listener(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-    def __init__(self, entry_id, client, store, state, stale_state, info, services, available, expected_disconnect, device_info, api_version, cleanup_callbacks, disconnect_callbacks, state_subscriptions, loaded_platforms, platform_load_lock, _storage_contents, _pending_storage, ble_connections_free, ble_connections_limit, _ble_connection_free_futures, assist_pipeline_update_callbacks, assist_pipeline_state, entity_info_callbacks, entity_info_key_remove_callbacks, entity_info_key_updated_callbacks, original_options) -> None: ...
+    def __init__(self, entry_id, title, client, store, state, stale_state, info, services, available, expected_disconnect, device_info, bluetooth_device, api_version, cleanup_callbacks, disconnect_callbacks, state_subscriptions, loaded_platforms, platform_load_lock, _storage_contents, _pending_storage, assist_pipeline_update_callbacks, assist_pipeline_state, entity_info_callbacks, entity_info_key_remove_callbacks, entity_info_key_updated_callbacks, original_options) -> None: ...

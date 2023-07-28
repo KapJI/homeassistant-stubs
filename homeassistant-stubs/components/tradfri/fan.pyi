@@ -18,6 +18,7 @@ def _from_fan_speed(fan_speed: int) -> int: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TradfriAirPurifierFan(TradfriBaseEntity, FanEntity):
+    _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _device_control: Incomplete
     _device_data: Incomplete

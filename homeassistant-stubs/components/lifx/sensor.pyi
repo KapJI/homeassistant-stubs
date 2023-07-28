@@ -14,7 +14,6 @@ RSSI_SENSOR: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LIFXRssiSensor(LIFXEntity, SensorEntity):
-    _attr_has_entity_name: bool
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, WASTE_TYPE_TO_DESCRIPTION as WASTE_TYPE_TO_DESCRIPTION
+from .const import DOMAIN as DOMAIN
 from .entity import TwenteMilieuEntity as TwenteMilieuEntity
 from _typeshed import Incomplete
 from datetime import date

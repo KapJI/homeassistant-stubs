@@ -9,8 +9,7 @@ from homeassistant.helpers.integration_platform import async_process_integration
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 _LOGGER: Incomplete
 DOMAIN: str

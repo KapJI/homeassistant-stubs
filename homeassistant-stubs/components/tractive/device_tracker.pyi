@@ -12,7 +12,6 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TractiveDeviceTracker(TractiveEntity, TrackerEntity):
-    _attr_has_entity_name: bool
     _attr_icon: str
     _attr_translation_key: str
     _battery_level: Incomplete

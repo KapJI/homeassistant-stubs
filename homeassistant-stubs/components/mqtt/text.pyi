@@ -37,6 +37,7 @@ async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntiti
 
 class MqttTextEntity(MqttEntity, TextEntity):
     _attributes_extra_blocked = MQTT_TEXT_ATTRIBUTES_BLOCKED
+    _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     _compiled_pattern: re.Pattern[Any] | None
     _optimistic: bool

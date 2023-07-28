@@ -41,6 +41,7 @@ DISCOVERY_SCHEMA_TEMPLATE: Incomplete
 async def async_setup_entity_template(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
+    _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
     _optimistic: bool

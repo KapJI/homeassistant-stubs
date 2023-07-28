@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_SENSOR_INDICES as CONF_SENSOR_INDICES, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_SENSOR_INDICES as CONF_SENSOR_INDICES, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from aiopurpleair import API
 from aiopurpleair.endpoints.sensors import NearbySensorResult as NearbySensorResult
@@ -7,11 +7,12 @@ from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
+from homeassistant.helpers.typing import EventType as EventType
 from typing import Any
 
 CONF_DISTANCE: str
@@ -53,7 +54,10 @@ class PurpleAirOptionsFlowHandler(config_entries.OptionsFlow):
     _flow_data: Incomplete
     config_entry: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
+    @property
+    def settings_schema(self) -> vol.Schema: ...
     async def async_step_add_sensor(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     async def async_step_choose_sensor(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     async def async_step_remove_sensor(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
+    async def async_step_settings(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...

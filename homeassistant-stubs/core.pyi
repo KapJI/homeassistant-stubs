@@ -5,7 +5,6 @@ import threading
 import voluptuous as vol
 from . import block_async_io as block_async_io, loader as loader, util as util
 from .auth import AuthManager as AuthManager
-from .backports.enum import StrEnum as StrEnum
 from .components.http import ApiConfig as ApiConfig, HomeAssistantHTTP as HomeAssistantHTTP
 from .config_entries import ConfigEntries as ConfigEntries
 from .const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_CONTEXT as COMPRESSED_STATE_CONTEXT, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, LENGTH_METERS as LENGTH_METERS, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, __version__ as __version__
@@ -22,8 +21,7 @@ from .util.ulid import ulid as ulid, ulid_at_time as ulid_at_time
 from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Collection, Coroutine, Iterable, Mapping
-from typing import Any, Generic, NamedTuple, TypeVar, overload
-from typing_extensions import Self
+from typing import Any, Generic, Self, TypeVar, overload
 
 STAGE_1_SHUTDOWN_TIMEOUT: int
 STAGE_2_SHUTDOWN_TIMEOUT: int
@@ -42,7 +40,7 @@ DOMAIN: str
 BLOCK_LOG_TIMEOUT: int
 ServiceResponse: Incomplete
 
-class ConfigSource(StrEnum):
+class ConfigSource(enum.StrEnum):
     DEFAULT: str
     DISCOVERED: str
     STORAGE: str
@@ -190,12 +188,10 @@ class Event:
     def as_dict(self) -> ReadOnlyDict[str, Any]: ...
     def __repr__(self) -> str: ...
 
-class _FilterableJob(NamedTuple):
-    job: HassJob[[Event], Coroutine[Any, Any, None] | None]
-    event_filter: Callable[[Event], bool] | None
-    run_immediately: bool
+_FilterableJobType: Incomplete
 
 class EventBus:
+    __slots__: Incomplete
     _listeners: Incomplete
     _match_all_listeners: Incomplete
     _hass: Incomplete
@@ -207,10 +203,10 @@ class EventBus:
     def async_fire(self, event_type: str, event_data: dict[str, Any] | None = ..., origin: EventOrigin = ..., context: Context | None = ..., time_fired: datetime.datetime | None = ...) -> None: ...
     def listen(self, event_type: str, listener: Callable[[Event], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...
     def async_listen(self, event_type: str, listener: Callable[[Event], Coroutine[Any, Any, None] | None], event_filter: Callable[[Event], bool] | None = ..., run_immediately: bool = ...) -> CALLBACK_TYPE: ...
-    def _async_listen_filterable_job(self, event_type: str, filterable_job: _FilterableJob) -> CALLBACK_TYPE: ...
+    def _async_listen_filterable_job(self, event_type: str, filterable_job: _FilterableJobType) -> CALLBACK_TYPE: ...
     def listen_once(self, event_type: str, listener: Callable[[Event], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...
     def async_listen_once(self, event_type: str, listener: Callable[[Event], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...
-    def _async_remove_listener(self, event_type: str, filterable_job: _FilterableJob) -> None: ...
+    def _async_remove_listener(self, event_type: str, filterable_job: _FilterableJobType) -> None: ...
 
 class State:
     __slots__: Incomplete
@@ -236,6 +232,7 @@ class State:
     def __repr__(self) -> str: ...
 
 class StateMachine:
+    __slots__: Incomplete
     _states: Incomplete
     _reservations: Incomplete
     _bus: Incomplete
@@ -255,7 +252,7 @@ class StateMachine:
     def async_available(self, entity_id: str) -> bool: ...
     def async_set(self, entity_id: str, new_state: str, attributes: Mapping[str, Any] | None = ..., force_update: bool = ..., context: Context | None = ...) -> None: ...
 
-class SupportsResponse(StrEnum):
+class SupportsResponse(enum.StrEnum):
     NONE: str
     OPTIONAL: str
     ONLY: str
@@ -278,6 +275,7 @@ class ServiceCall:
     def __repr__(self) -> str: ...
 
 class ServiceRegistry:
+    __slots__: Incomplete
     _services: Incomplete
     _hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
@@ -292,7 +290,7 @@ class ServiceRegistry:
     def async_remove(self, domain: str, service: str) -> None: ...
     def call(self, domain: str, service: str, service_data: dict[str, Any] | None = ..., blocking: bool = ..., context: Context | None = ..., target: dict[str, Any] | None = ..., return_response: bool = ...) -> ServiceResponse: ...
     async def async_call(self, domain: str, service: str, service_data: dict[str, Any] | None = ..., blocking: bool = ..., context: Context | None = ..., target: dict[str, Any] | None = ..., return_response: bool = ...) -> ServiceResponse: ...
-    def _run_service_in_background(self, coro_or_task: Coroutine[Any, Any, Any] | asyncio.Task[Any], service_call: ServiceCall) -> None: ...
+    async def _run_service_call_catch_exceptions(self, coro_or_task: Coroutine[Any, Any, Any] | asyncio.Task[Any], service_call: ServiceCall) -> None: ...
     async def _execute_service(self, handler: Service, service_call: ServiceCall) -> ServiceResponse: ...
 
 class Config:

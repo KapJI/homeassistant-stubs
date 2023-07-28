@@ -5,6 +5,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 
 class CrownstoneBaseEntity(Entity):
     _attr_should_poll: bool
+    _attr_has_entity_name: bool
     device: Incomplete
     def __init__(self, device: Crownstone) -> None: ...
     @property

@@ -2,7 +2,7 @@ from .const import LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Iterable
 from datetime import timedelta
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send

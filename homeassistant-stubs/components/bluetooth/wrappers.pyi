@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from bleak import BleakClient
 from bleak.backends.client import BaseBleakClient as BaseBleakClient
 from bleak.backends.device import BLEDevice
-from bleak.backends.scanner import AdvertisementDataCallback as AdvertisementDataCallback, BaseBleakScanner
+from bleak.backends.scanner import AdvertisementData as AdvertisementData, AdvertisementDataCallback as AdvertisementDataCallback, BaseBleakScanner
 from collections.abc import Callable as Callable
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
 from homeassistant.helpers.frame import report as report
@@ -25,6 +25,7 @@ class HaBleakScannerWrapper(BaseBleakScanner):
     _detection_cancel: Incomplete
     _mapped_filters: Incomplete
     _advertisement_data_callback: Incomplete
+    _background_tasks: Incomplete
     def __init__(self, *args: Any, detection_callback: AdvertisementDataCallback | None = ..., service_uuids: list[str] | None = ..., **kwargs: Any) -> None: ...
     @classmethod
     async def discover(cls, timeout: float = ..., **kwargs: Any) -> list[BLEDevice]: ...

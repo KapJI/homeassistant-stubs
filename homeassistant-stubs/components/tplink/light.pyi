@@ -29,6 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
     _attr_supported_features: Incomplete
+    _attr_name: Incomplete
     device: SmartBulb
     _attr_unique_id: Incomplete
     def __init__(self, device: SmartBulb, coordinator: TPLinkDataUpdateCoordinator) -> None: ...

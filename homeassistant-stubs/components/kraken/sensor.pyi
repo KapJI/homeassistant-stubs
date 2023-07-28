@@ -1,7 +1,8 @@
 from . import KrakenData as KrakenData
-from .const import CONF_TRACKED_ASSET_PAIRS as CONF_TRACKED_ASSET_PAIRS, DISPATCH_CONFIG_UPDATED as DISPATCH_CONFIG_UPDATED, DOMAIN as DOMAIN, KrakenResponse as KrakenResponse, KrakenSensorEntityDescription as KrakenSensorEntityDescription, SENSOR_TYPES as SENSOR_TYPES
+from .const import CONF_TRACKED_ASSET_PAIRS as CONF_TRACKED_ASSET_PAIRS, DISPATCH_CONFIG_UPDATED as DISPATCH_CONFIG_UPDATED, DOMAIN as DOMAIN, KrakenResponse as KrakenResponse
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from collections.abc import Callable as Callable
+from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -10,6 +11,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 
 _LOGGER: Incomplete
+
+class KrakenRequiredKeysMixin:
+    value_fn: Callable[[DataUpdateCoordinator[KrakenResponse], str], float | int]
+    def __init__(self, value_fn) -> None: ...
+
+class KrakenSensorEntityDescription(SensorEntityDescription, KrakenRequiredKeysMixin):
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+
+SENSOR_TYPES: tuple[KrakenSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

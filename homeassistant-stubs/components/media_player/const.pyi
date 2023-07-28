@@ -1,6 +1,5 @@
 from _typeshed import Incomplete
-from enum import IntFlag
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import IntFlag, StrEnum
 
 CONTENT_AUTH_EXPIRY_TIME: Incomplete
 ATTR_APP_ID: str
@@ -169,6 +168,8 @@ class MediaPlayerEntityFeature(IntFlag):
     BROWSE_MEDIA: int
     REPEAT_SET: int
     GROUPING: int
+    MEDIA_ANNOUNCE: int
+    MEDIA_ENQUEUE: int
 
 SUPPORT_PAUSE: int
 SUPPORT_SEEK: int

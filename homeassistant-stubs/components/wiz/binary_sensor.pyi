@@ -16,7 +16,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WizOccupancyEntity(WizEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
-    _attr_name: str
     _attr_unique_id: Incomplete
     def __init__(self, wiz_data: WizData, name: str) -> None: ...
     _attr_is_on: Incomplete

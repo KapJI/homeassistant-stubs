@@ -29,13 +29,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class LIFXLight(LIFXEntity, LightEntity):
     _attr_supported_features: Incomplete
+    _attr_name: Incomplete
     mac_addr: Incomplete
     manager: Incomplete
     effects_conductor: Incomplete
     postponed_update: Incomplete
     entry: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     _attr_color_mode: Incomplete

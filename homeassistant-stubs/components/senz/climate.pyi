@@ -20,8 +20,9 @@ class SENZClimate(CoordinatorEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_max_temp: int
     _attr_min_temp: int
-    _thermostat: Incomplete
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _thermostat: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, thermostat: Thermostat, coordinator: SENZDataUpdateCoordinator) -> None: ...

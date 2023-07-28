@@ -3,8 +3,7 @@ import enum
 from .async_ import run_callback_threadsafe as run_callback_threadsafe
 from _typeshed import Incomplete
 from types import TracebackType
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 ZONE_GLOBAL: str
 

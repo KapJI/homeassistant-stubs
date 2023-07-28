@@ -8,6 +8,8 @@ from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
 
 class UptimeRobotEntity(CoordinatorEntity[UptimeRobotDataUpdateCoordinator]):
     _attr_attribution = ATTRIBUTION
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     entity_description: Incomplete
     _monitor: Incomplete
     _attr_device_info: Incomplete

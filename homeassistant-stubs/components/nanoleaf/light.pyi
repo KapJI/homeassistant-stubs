@@ -18,8 +18,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class NanoleafLight(NanoleafEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
-    _attr_unique_id: Incomplete
     _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _attr_min_mireds: Incomplete
     _attr_max_mireds: Incomplete
     def __init__(self, nanoleaf: Nanoleaf, coordinator: DataUpdateCoordinator[None]) -> None: ...

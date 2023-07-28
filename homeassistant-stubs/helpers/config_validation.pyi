@@ -4,7 +4,7 @@ from . import template as template_helper
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable
 from datetime import date as date_sys, datetime as datetime_sys, time as time_sys, timedelta
-from enum import Enum
+from enum import Enum, StrEnum
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ABOVE as CONF_ABOVE, CONF_ALIAS as CONF_ALIAS, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BELOW as CONF_BELOW, CONF_CHOOSE as CONF_CHOOSE, CONF_CONDITION as CONF_CONDITION, CONF_CONDITIONS as CONF_CONDITIONS, CONF_CONTINUE_ON_ERROR as CONF_CONTINUE_ON_ERROR, CONF_CONTINUE_ON_TIMEOUT as CONF_CONTINUE_ON_TIMEOUT, CONF_COUNT as CONF_COUNT, CONF_DEFAULT as CONF_DEFAULT, CONF_DELAY as CONF_DELAY, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ELSE as CONF_ELSE, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_ERROR as CONF_ERROR, CONF_EVENT as CONF_EVENT, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_EVENT_DATA_TEMPLATE as CONF_EVENT_DATA_TEMPLATE, CONF_FOR as CONF_FOR, CONF_FOR_EACH as CONF_FOR_EACH, CONF_ID as CONF_ID, CONF_IF as CONF_IF, CONF_MATCH as CONF_MATCH, CONF_PARALLEL as CONF_PARALLEL, CONF_PLATFORM as CONF_PLATFORM, CONF_REPEAT as CONF_REPEAT, CONF_RESPONSE_VARIABLE as CONF_RESPONSE_VARIABLE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_SCENE as CONF_SCENE, CONF_SEQUENCE as CONF_SEQUENCE, CONF_SERVICE as CONF_SERVICE, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_STATE as CONF_STATE, CONF_STOP as CONF_STOP, CONF_TARGET as CONF_TARGET, CONF_THEN as CONF_THEN, CONF_TIMEOUT as CONF_TIMEOUT, CONF_UNTIL as CONF_UNTIL, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_VARIABLES as CONF_VARIABLES, CONF_WAIT_FOR_TRIGGER as CONF_WAIT_FOR_TRIGGER, CONF_WAIT_TEMPLATE as CONF_WAIT_TEMPLATE, CONF_WHILE as CONF_WHILE, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET, UnitOfTemperature as UnitOfTemperature, WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
@@ -15,6 +15,14 @@ from homeassistant.util import raise_if_invalid_path as raise_if_invalid_path
 from typing import Any, TypeVar, overload
 
 TIME_PERIOD_ERROR: str
+
+class UrlProtocolSchema(StrEnum):
+    HTTP: str
+    HTTPS: str
+    HOMEASSISTANT: str
+
+EXTERNAL_URL_PROTOCOL_SCHEMA_LIST: Incomplete
+CONFIGURATION_URL_PROTOCOL_SCHEMA_LIST: Incomplete
 byte: Incomplete
 small_float: Incomplete
 positive_int: Incomplete
@@ -96,7 +104,8 @@ def time_zone(value: str) -> str: ...
 weekdays: Incomplete
 
 def socket_timeout(value: Any | None) -> object: ...
-def url(value: Any) -> str: ...
+def url(value: Any, _schema_list: frozenset[UrlProtocolSchema] = ...) -> str: ...
+def configuration_url(value: Any) -> str: ...
 def url_no_path(value: Any) -> str: ...
 def x10_address(value: str) -> str: ...
 def uuid4_hex(value: Any) -> str: ...

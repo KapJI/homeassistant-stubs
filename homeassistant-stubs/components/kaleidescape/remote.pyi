@@ -13,6 +13,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 VALID_COMMANDS: Incomplete
 
 class KaleidescapeRemote(KaleidescapeEntity, RemoteEntity):
+    _attr_name: Incomplete
     @property
     def is_on(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

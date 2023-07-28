@@ -34,6 +34,7 @@ _LOGGER: Incomplete
 def _dispatch_bleak_callback(callback: AdvertisementDataCallback | None, filters: dict[str, set[str]], device: BLEDevice, advertisement_data: AdvertisementData) -> None: ...
 
 class BluetoothManager:
+    __slots__: Incomplete
     hass: Incomplete
     _integration_matcher: Incomplete
     _cancel_unavailable_tracking: Incomplete

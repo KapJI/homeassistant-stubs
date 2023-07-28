@@ -34,6 +34,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttSensor(MqttEntity, RestoreSensor):
+    _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attr_last_reset: datetime | None
     _attributes_extra_blocked = MQTT_SENSOR_ATTRIBUTES_BLOCKED

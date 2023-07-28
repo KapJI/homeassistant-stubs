@@ -15,6 +15,7 @@ _P: Incomplete
 def async_handle_api_call(function: Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]: ...
 
 class SensiboBaseEntity(CoordinatorEntity[SensiboDataUpdateCoordinator]):
+    _attr_has_entity_name: bool
     _device_id: Incomplete
     _client: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str) -> None: ...
@@ -22,12 +23,10 @@ class SensiboBaseEntity(CoordinatorEntity[SensiboDataUpdateCoordinator]):
     def device_data(self) -> SensiboDevice: ...
 
 class SensiboDeviceBaseEntity(SensiboBaseEntity):
-    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str) -> None: ...
 
 class SensiboMotionBaseEntity(SensiboBaseEntity):
-    _attr_has_entity_name: bool
     _sensor_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, sensor_id: str, sensor_data: MotionSensor) -> None: ...

@@ -11,8 +11,7 @@ from datetime import datetime
 from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 DATA_RESTORE_STATE: str
 _LOGGER: Incomplete

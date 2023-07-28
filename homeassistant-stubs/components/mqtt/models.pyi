@@ -8,7 +8,7 @@ from .tag import MQTTTagScanner as MQTTTagScanner
 from _typeshed import Incomplete
 from collections import deque
 from collections.abc import Callable, Coroutine
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import template as template
@@ -92,7 +92,7 @@ class EntityTopicState:
 
 class MqttData:
     client: MQTT
-    config: ConfigType
+    config: list[ConfigType]
     debug_info_entities: dict[str, EntityDebugInfo]
     debug_info_triggers: dict[tuple[str, str], TriggerDebugInfo]
     device_triggers: dict[str, Trigger]
@@ -108,5 +108,4 @@ class MqttData:
     state_write_requests: EntityTopicState
     subscriptions_to_restore: list[Subscription]
     tags: dict[str, dict[str, MQTTTagScanner]]
-    updated_config: ConfigType
-    def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, last_discovery, reload_dispatchers, reload_handlers, state_write_requests, subscriptions_to_restore, tags, updated_config) -> None: ...
+    def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, last_discovery, reload_dispatchers, reload_handlers, state_write_requests, subscriptions_to_restore, tags) -> None: ...

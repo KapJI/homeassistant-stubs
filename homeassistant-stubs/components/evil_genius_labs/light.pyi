@@ -15,14 +15,13 @@ FIB_NO_EFFECT: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EvilGeniusLight(EvilGeniusEntity, LightEntity):
+    _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     _attr_unique_id: Incomplete
     _attr_effect_list: Incomplete
     def __init__(self, coordinator: EvilGeniusUpdateCoordinator) -> None: ...
-    @property
-    def name(self) -> str: ...
     @property
     def is_on(self) -> bool: ...
     @property

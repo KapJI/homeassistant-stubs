@@ -1,4 +1,4 @@
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 
 DOMAIN: str
 REDACTED: str

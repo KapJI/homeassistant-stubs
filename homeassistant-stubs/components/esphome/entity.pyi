@@ -7,6 +7,7 @@ from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -25,6 +26,7 @@ ENTITY_CATEGORIES: EsphomeEnumMapper[EsphomeEntityCategory, EntityCategory | Non
 
 class EsphomeEntity(Entity, Generic[_InfoT, _StateT]):
     _attr_should_poll: bool
+    _attr_has_entity_name: bool
     _static_info: _InfoT
     _state: _StateT
     _has_state: bool
@@ -32,10 +34,10 @@ class EsphomeEntity(Entity, Generic[_InfoT, _StateT]):
     _key: Incomplete
     _state_type: Incomplete
     _device_info: Incomplete
-    _attr_has_entity_name: Incomplete
+    entity_id: Incomplete
     _attr_device_info: Incomplete
     _entry_id: Incomplete
-    def __init__(self, entry_data: RuntimeEntryData, entity_info: EntityInfo, state_type: type[_StateT]) -> None: ...
+    def __init__(self, entry_data: RuntimeEntryData, domain: str, entity_info: EntityInfo, state_type: type[_StateT]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_unique_id: Incomplete
     _attr_entity_registry_enabled_default: Incomplete

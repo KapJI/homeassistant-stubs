@@ -4,12 +4,12 @@ from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.start import async_at_started as async_at_started
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, EventType as EventType, StateType as StateType
 from homeassistant.util.decorator import Registry as Registry
 
 _LOGGER: Incomplete
@@ -61,7 +61,7 @@ class SensorFilter(SensorEntity):
     _attr_state_class: Incomplete
     _attr_extra_state_attributes: Incomplete
     def __init__(self, name: str | None, unique_id: str | None, entity_id: str, filters: list[Filter]) -> None: ...
-    def _update_filter_sensor_state_event(self, event: Event) -> None: ...
+    def _update_filter_sensor_state_event(self, event: EventType[EventStateChangedData]) -> None: ...
     _attr_available: bool
     def _update_filter_sensor_state(self, new_state: State | None, update_ha: bool = ...) -> None: ...
     async def async_added_to_hass(self) -> None: ...

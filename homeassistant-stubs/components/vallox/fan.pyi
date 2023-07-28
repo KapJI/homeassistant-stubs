@@ -21,7 +21,6 @@ def _convert_to_int(value: StateType) -> int | None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ValloxFanEntity(ValloxEntity, FanEntity):
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _client: Incomplete

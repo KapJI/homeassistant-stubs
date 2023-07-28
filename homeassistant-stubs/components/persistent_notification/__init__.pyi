@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from datetime import datetime
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import singleton as singleton

@@ -3,7 +3,7 @@ from .base import FritzBoxPhonebook as FritzBoxPhonebook
 from .const import ATTR_PREFIXES as ATTR_PREFIXES, CONF_PHONEBOOK as CONF_PHONEBOOK, CONF_PREFIXES as CONF_PREFIXES, DOMAIN as DOMAIN, FRITZBOX_PHONEBOOK as FRITZBOX_PHONEBOOK, FritzState as FritzState, ICON_PHONE as ICON_PHONE, MANUFACTURER as MANUFACTURER, SERIAL_NUMBER as SERIAL_NUMBER
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP

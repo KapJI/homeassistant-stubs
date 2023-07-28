@@ -7,7 +7,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, 
 from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import EventType as EventType, StateType as StateType
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util import Throttle as Throttle
 
 UNIT_CONVERSION: Incomplete

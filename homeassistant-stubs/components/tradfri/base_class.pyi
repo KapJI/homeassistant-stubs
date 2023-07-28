@@ -14,11 +14,11 @@ from typing import Any
 def handle_error(func: Callable[[Command | list[Command]], Any]) -> Callable[[Command | list[Command]], Coroutine[Any, Any, None]]: ...
 
 class TradfriBaseEntity(CoordinatorEntity[TradfriDeviceDataUpdateCoordinator], metaclass=abc.ABCMeta):
+    _attr_has_entity_name: bool
     _gateway_id: Incomplete
     _device: Incomplete
     _device_id: Incomplete
     _api: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, gateway_id: str, api: Callable[[Command | list[Command]], Any]) -> None: ...
     @abstractmethod

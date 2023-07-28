@@ -6,6 +6,7 @@ from aioesphomeapi import DeviceInfo as ESPHomeDeviceInfo, EntityInfo as EntityI
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -13,6 +14,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Any
 
 KEY_UPDATE_LOCK: str
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -36,5 +38,6 @@ class ESPHomeUpdateEntity(CoordinatorEntity[ESPHomeDashboard], UpdateEntity):
     def latest_version(self) -> str | None: ...
     @property
     def release_url(self) -> str | None: ...
+    def _async_static_info_updated(self, _: list[EntityInfo]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

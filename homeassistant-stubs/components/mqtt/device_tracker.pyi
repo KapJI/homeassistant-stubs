@@ -32,6 +32,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttDeviceTracker(MqttEntity, TrackerEntity):
+    _default_name: Incomplete
     _entity_id_format: Incomplete
     _value_template: Callable[..., ReceivePayloadType]
     _location_name: Incomplete

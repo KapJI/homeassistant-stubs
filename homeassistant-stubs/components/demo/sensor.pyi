@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.typing import StateType as StateType
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -25,7 +24,7 @@ class DemoSensor(SensorEntity):
     _attr_translation_key: Incomplete
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def __init__(self, unique_id: str, device_name: str | None, state: StateType, device_class: SensorDeviceClass, state_class: SensorStateClass | None, unit_of_measurement: str | None, battery: StateType, options: list[str] | None = ..., translation_key: str | None = ...) -> None: ...
+    def __init__(self, unique_id: str, device_name: str | None, state: float | int | str | None, device_class: SensorDeviceClass, state_class: SensorStateClass | None, unit_of_measurement: str | None, battery: int | None, options: list[str] | None = ..., translation_key: str | None = ...) -> None: ...
 
 class DemoSumSensor(RestoreSensor):
     _attr_should_poll: bool
@@ -38,6 +37,6 @@ class DemoSumSensor(RestoreSensor):
     _five_minute_increase: Incomplete
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def __init__(self, unique_id: str, device_name: str, five_minute_increase: float, device_class: SensorDeviceClass, state_class: SensorStateClass | None, unit_of_measurement: str | None, battery: StateType, suggested_entity_id: str) -> None: ...
+    def __init__(self, unique_id: str, device_name: str, five_minute_increase: float, device_class: SensorDeviceClass, state_class: SensorStateClass | None, unit_of_measurement: str | None, battery: int | None, suggested_entity_id: str) -> None: ...
     def _async_bump_sum(self, now: datetime) -> None: ...
     async def async_added_to_hass(self) -> None: ...

@@ -65,6 +65,7 @@ _COMMANDS: Incomplete
 async def async_setup_entity_legacy(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttVacuum(MqttEntity, VacuumEntity):
+    _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_LEGACY_VACUUM_ATTRIBUTES_BLOCKED
     _command_topic: str | None

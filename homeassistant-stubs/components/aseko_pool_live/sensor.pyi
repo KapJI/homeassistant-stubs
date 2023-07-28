@@ -1,5 +1,5 @@
-from . import AsekoDataUpdateCoordinator as AsekoDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import AsekoDataUpdateCoordinator as AsekoDataUpdateCoordinator
 from .entity import AsekoEntity as AsekoEntity
 from _typeshed import Incomplete
 from aioaseko import Unit as Unit, Variable as Variable
@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class VariableSensorEntity(AsekoEntity, SensorEntity):
-    attr_state_class: Incomplete
+    _attr_state_class: Incomplete
     _variable: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.const import Platform as Platform
 from typing import Literal
 

@@ -7,6 +7,7 @@ ADVERTISING_TIMES_NEEDED: int
 TRACKER_BUFFERING_WOBBLE_SECONDS: int
 
 class AdvertisementTracker:
+    __slots__: Incomplete
     intervals: Incomplete
     sources: Incomplete
     _timings: Incomplete

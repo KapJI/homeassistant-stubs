@@ -27,6 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttCamera(MqttEntity, Camera):
+    _default_name = DEFAULT_NAME
     _entity_id_format: str
     _attributes_extra_blocked: frozenset[str]
     _last_image: Incomplete

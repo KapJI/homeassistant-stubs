@@ -1,6 +1,6 @@
 from . import DATA_UPDATED as DATA_UPDATED
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfDataRate as UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -15,6 +15,7 @@ class SpeedtestSensor(RestoreEntity, SensorEntity):
     _attr_name: str
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    _attr_state_class: Incomplete
     _attr_icon: str
     _attr_should_poll: bool
     _speedtest_data: Incomplete

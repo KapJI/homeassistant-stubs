@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_RESTORED as ATTR_RESTORED, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP
 

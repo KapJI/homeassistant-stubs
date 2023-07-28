@@ -7,10 +7,9 @@ from datetime import datetime
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import singleton as singleton
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
-from homeassistant.helpers.typing import EventType as EventType
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
 

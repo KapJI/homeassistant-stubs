@@ -1,5 +1,5 @@
-from .const import DATA_ASUSWRT as DATA_ASUSWRT, DOMAIN as DOMAIN, SENSORS_BYTES as SENSORS_BYTES, SENSORS_CONNECTED_DEVICE as SENSORS_CONNECTED_DEVICE, SENSORS_LOAD_AVG as SENSORS_LOAD_AVG, SENSORS_RATES as SENSORS_RATES, SENSORS_TEMPERATURES as SENSORS_TEMPERATURES
-from .router import AsusWrtRouter as AsusWrtRouter, KEY_COORDINATOR as KEY_COORDINATOR, KEY_SENSORS as KEY_SENSORS
+from .const import DATA_ASUSWRT as DATA_ASUSWRT, DOMAIN as DOMAIN, KEY_COORDINATOR as KEY_COORDINATOR, KEY_SENSORS as KEY_SENSORS, SENSORS_BYTES as SENSORS_BYTES, SENSORS_CONNECTED_DEVICE as SENSORS_CONNECTED_DEVICE, SENSORS_LOAD_AVG as SENSORS_LOAD_AVG, SENSORS_RATES as SENSORS_RATES, SENSORS_TEMPERATURES as SENSORS_TEMPERATURES
+from .router import AsusWrtRouter as AsusWrtRouter
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.util import slugify as slugify
 
 class AsusWrtSensorEntityDescription(SensorEntityDescription):
     factor: int | None
@@ -18,8 +19,8 @@ CONNECTION_SENSORS: tuple[AsusWrtSensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AsusWrtSensor(CoordinatorEntity, SensorEntity):
-    entity_description: Incomplete
-    _attr_name: Incomplete
+    entity_description: AsusWrtSensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete

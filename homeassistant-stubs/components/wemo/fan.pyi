@@ -1,3 +1,4 @@
+from . import async_wemo_dispatcher_connect as async_wemo_dispatcher_connect
 from .const import SERVICE_RESET_FILTER_LIFE as SERVICE_RESET_FILTER_LIFE, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity
 from .wemo_device import DeviceCoordinator as DeviceCoordinator
@@ -6,7 +7,6 @@ from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeatur
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from pywemo import FanMode, Humidifier as Humidifier
@@ -23,7 +23,7 @@ ATTR_WATER_LEVEL: str
 SPEED_RANGE: Incomplete
 SET_HUMIDITY_SCHEMA: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, _config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WemoHumidifier(WemoBinaryStateEntity, FanEntity):
     _attr_supported_features: Incomplete

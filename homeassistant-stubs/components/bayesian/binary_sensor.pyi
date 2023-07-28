@@ -7,14 +7,14 @@ from collections import OrderedDict
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, CONF_STATE as CONF_STATE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConditionError as ConditionError, TemplateError as TemplateError
 from homeassistant.helpers import condition as condition
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, TrackTemplateResultInfo as TrackTemplateResultInfo, async_track_state_change_event as async_track_state_change_event, async_track_template_result as async_track_template_result
+from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, TrackTemplateResultInfo as TrackTemplateResultInfo, async_track_state_change_event as async_track_state_change_event, async_track_template_result as async_track_template_result
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.template import Template as Template, result_as_boolean as result_as_boolean
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, EventType as EventType
 from typing import Any
 from uuid import UUID
 

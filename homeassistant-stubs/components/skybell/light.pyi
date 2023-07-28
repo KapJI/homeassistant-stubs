@@ -12,6 +12,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SkybellLight(SkybellEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
+    _attr_name: Incomplete
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property

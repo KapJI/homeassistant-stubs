@@ -1,5 +1,5 @@
-from .backports.enum import StrEnum as StrEnum
 from _typeshed import Incomplete
+from enum import StrEnum
 from typing import Final
 
 APPLICATION_NAME: Final[str]
@@ -25,6 +25,7 @@ class Platform(StrEnum):
     DATE: str
     DATETIME: str
     DEVICE_TRACKER: str
+    EVENT: str
     FAN: str
     GEO_LOCATION: str
     HUMIDIFIER: str
@@ -726,6 +727,7 @@ SERVER_PORT: Final[int]
 URL_ROOT: Final[str]
 URL_API: Final[str]
 URL_API_STREAM: Final[str]
+URL_API_CORE_STATE: Final[str]
 URL_API_CONFIG: Final[str]
 URL_API_STATES: Final[str]
 URL_API_STATES_ENTITY: Final[str]

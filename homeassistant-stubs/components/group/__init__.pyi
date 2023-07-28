@@ -6,14 +6,14 @@ from collections.abc import Collection, Iterable
 from contextvars import ContextVar
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component, async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.reload import async_reload_integration_platforms as async_reload_integration_platforms
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Protocol
 
@@ -32,6 +32,7 @@ SERVICE_SET: str
 SERVICE_REMOVE: str
 PLATFORMS: Incomplete
 REG_KEY: Incomplete
+ENTITY_PREFIX: Incomplete
 _LOGGER: Incomplete
 current_domain: ContextVar[str]
 
@@ -114,7 +115,7 @@ class Group(Entity):
     def async_update_group_state(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
-    async def _async_state_changed_listener(self, event: Event) -> None: ...
+    async def _async_state_changed_listener(self, event: EventType[EventStateChangedData]) -> None: ...
     def _reset_tracked_state(self) -> None: ...
     def _see_state(self, new_state: State) -> None: ...
     def _async_update_group_state(self, tr_state: State | None = ...) -> None: ...

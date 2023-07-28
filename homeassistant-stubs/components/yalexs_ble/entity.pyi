@@ -7,6 +7,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Ent
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
 class YALEXSBLEEntity(Entity):
+    _attr_has_entity_name: bool
     _attr_should_poll: bool
     _data: Incomplete
     _device: Incomplete

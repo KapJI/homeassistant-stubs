@@ -55,6 +55,7 @@ class ValloxServiceHandler:
     async def async_handle(self, call: ServiceCall) -> None: ...
 
 class ValloxEntity(CoordinatorEntity[ValloxDataUpdateCoordinator]):
+    _attr_has_entity_name: bool
     _device_uuid: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator) -> None: ...

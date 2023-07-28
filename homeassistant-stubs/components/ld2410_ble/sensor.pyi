@@ -24,6 +24,7 @@ SENSOR_DESCRIPTIONS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LD2410BLESensor(CoordinatorEntity[LD2410BLECoordinator], SensorEntity):
+    _attr_has_entity_name: bool
     _coordinator: Incomplete
     _device: Incomplete
     _key: Incomplete

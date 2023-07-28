@@ -2,8 +2,8 @@ import voluptuous as vol
 from .base import FritzBoxPhonebook as FritzBoxPhonebook
 from .const import CONF_PHONEBOOK as CONF_PHONEBOOK, CONF_PREFIXES as CONF_PREFIXES, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PHONEBOOK as DEFAULT_PHONEBOOK, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_ATTR_NAME as FRITZ_ATTR_NAME, FRITZ_ATTR_SERIAL_NUMBER as FRITZ_ATTR_SERIAL_NUMBER, SERIAL_NUMBER as SERIAL_NUMBER
 from _typeshed import Incomplete
+from enum import StrEnum
 from homeassistant import config_entries as config_entries
-from homeassistant.backports.enum import StrEnum as StrEnum
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult

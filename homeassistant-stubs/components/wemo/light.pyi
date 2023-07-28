@@ -1,3 +1,4 @@
+from . import async_wemo_dispatcher_connect as async_wemo_dispatcher_connect
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity, WemoEntity as WemoEntity
 from .wemo_device import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
@@ -5,7 +6,6 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_ZIGBEE as CONNECTION_ZIGBEE
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pywemo import BridgeLight as BridgeLight, Dimmer as Dimmer

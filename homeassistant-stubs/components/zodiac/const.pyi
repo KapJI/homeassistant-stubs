@@ -1,4 +1,5 @@
 DOMAIN: str
+DEFAULT_NAME: str
 SIGN_ARIES: str
 SIGN_TAURUS: str
 SIGN_GEMINI: str

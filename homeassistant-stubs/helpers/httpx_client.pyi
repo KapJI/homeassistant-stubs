@@ -6,11 +6,13 @@ from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOME
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList, client_context as client_context, create_no_verify_ssl_context as create_no_verify_ssl_context
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
+KEEP_ALIVE_TIMEOUT: int
 DATA_ASYNC_CLIENT: str
 DATA_ASYNC_CLIENT_NOVERIFY: str
+DEFAULT_LIMITS: Incomplete
+limits: Incomplete
 SERVER_SOFTWARE: Incomplete
 USER_AGENT: str
 

@@ -4,7 +4,6 @@ from .utils import get_rpc_entity_name as get_rpc_entity_name
 from collections.abc import Callable as Callable
 from homeassistant.components.logbook import LOGBOOK_ENTRY_MESSAGE as LOGBOOK_ENTRY_MESSAGE, LOGBOOK_ENTRY_NAME as LOGBOOK_ENTRY_NAME
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.typing import EventType as EventType
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 
-def async_describe_events(hass: HomeAssistant, async_describe_event: Callable[[str, str, Callable[[EventType], dict]], None]) -> None: ...
+def async_describe_events(hass: HomeAssistant, async_describe_event: Callable[[str, str, Callable[[Event], dict]], None]) -> None: ...

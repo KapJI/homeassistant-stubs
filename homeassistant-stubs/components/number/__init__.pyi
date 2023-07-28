@@ -3,8 +3,7 @@ from collections.abc import Callable
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 class NumberEntityDescription(EntityDescription):
     device_class: NumberDeviceClass | None

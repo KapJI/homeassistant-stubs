@@ -11,8 +11,7 @@ from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.entity_platform import EntityPlatform
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from homeassistant.helpers.typing import StateType, UndefinedType
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 class SensorEntityDescription(EntityDescription):
     device_class: SensorDeviceClass | None

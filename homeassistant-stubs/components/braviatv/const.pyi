@@ -1,4 +1,4 @@
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from typing import Final
 
 ATTR_CID: Final[str]

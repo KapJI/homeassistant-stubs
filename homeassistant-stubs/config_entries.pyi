@@ -1,6 +1,5 @@
 import asyncio
 from . import data_entry_flow as data_entry_flow, loader as loader
-from .backports.enum import StrEnum as StrEnum
 from .components import persistent_notification as persistent_notification
 from .components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from .components.dhcp import DhcpServiceInfo as DhcpServiceInfo
@@ -24,9 +23,8 @@ from .util.decorator import Registry as Registry
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine, Generator, Iterable, Mapping
 from contextvars import ContextVar
-from enum import Enum
-from typing import Any, TypeVar
-from typing_extensions import Self
+from enum import Enum, StrEnum
+from typing import Any, Self, TypeVar
 
 _LOGGER: Incomplete
 SOURCE_BLUETOOTH: str
@@ -124,7 +122,7 @@ class ConfigEntry:
     def async_cancel_retry_setup(self) -> None: ...
     async def async_unload(self, hass: HomeAssistant, *, integration: loader.Integration | None = ...) -> bool: ...
     async def async_remove(self, hass: HomeAssistant) -> None: ...
-    def async_set_state(self, hass: HomeAssistant, state: ConfigEntryState, reason: str | None) -> None: ...
+    def _async_set_state(self, hass: HomeAssistant, state: ConfigEntryState, reason: str | None) -> None: ...
     async def async_migrate(self, hass: HomeAssistant) -> bool: ...
     def add_update_listener(self, listener: UpdateListenerType) -> CALLBACK_TYPE: ...
     def as_dict(self) -> dict[str, Any]: ...

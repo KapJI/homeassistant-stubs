@@ -7,6 +7,7 @@ from homeassistant.core import ServiceResponse as ServiceResponse
 from typing import Any
 
 class TraceElement:
+    __slots__: Incomplete
     _child_key: Incomplete
     _child_run_id: Incomplete
     _error: Incomplete

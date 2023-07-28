@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .error import IntentRecognitionError as IntentRecognitionError, PipelineError as PipelineError, PipelineNotFound as PipelineNotFound, SpeechToTextError as SpeechToTextError, TextToSpeechError as TextToSpeechError
 from _typeshed import Incomplete
 from collections.abc import AsyncIterable, Callable, Iterable
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.components import conversation as conversation, media_source as media_source, stt as stt, tts as tts, websocket_api as websocket_api
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

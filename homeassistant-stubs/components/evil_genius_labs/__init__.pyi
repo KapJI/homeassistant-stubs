@@ -26,5 +26,6 @@ class EvilGeniusUpdateCoordinator(DataUpdateCoordinator[dict]):
     async def _async_update_data(self) -> dict: ...
 
 class EvilGeniusEntity(CoordinatorEntity[EvilGeniusUpdateCoordinator]):
+    _attr_has_entity_name: bool
     @property
     def device_info(self) -> DeviceInfo: ...

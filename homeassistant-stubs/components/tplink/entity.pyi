@@ -13,8 +13,8 @@ _P: Incomplete
 def async_refresh_after(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator]):
+    _attr_has_entity_name: bool
     device: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
     @property

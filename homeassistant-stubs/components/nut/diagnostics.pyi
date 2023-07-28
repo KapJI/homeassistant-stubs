@@ -1,5 +1,5 @@
 from . import PyNUTData as PyNUTData
-from .const import DOMAIN as DOMAIN, PYNUT_DATA as PYNUT_DATA, PYNUT_UNIQUE_ID as PYNUT_UNIQUE_ID
+from .const import DOMAIN as DOMAIN, PYNUT_DATA as PYNUT_DATA, PYNUT_UNIQUE_ID as PYNUT_UNIQUE_ID, USER_AVAILABLE_COMMANDS as USER_AVAILABLE_COMMANDS
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

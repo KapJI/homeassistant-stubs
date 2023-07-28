@@ -22,6 +22,7 @@ SENSORS: tuple[PureEnergieSensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PureEnergieSensorEntity(CoordinatorEntity[PureEnergieDataUpdateCoordinator], SensorEntity):
+    _attr_has_entity_name: bool
     entity_description: PureEnergieSensorEntityDescription
     entity_id: Incomplete
     _attr_unique_id: Incomplete

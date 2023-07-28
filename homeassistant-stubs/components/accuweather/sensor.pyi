@@ -7,18 +7,17 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_PARTS_PER_CUBIC_METER as CONCENTRATION_PARTS_PER_CUBIC_METER, PERCENTAGE as PERCENTAGE, UV_INDEX as UV_INDEX, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 PARALLEL_UPDATES: int
 
 class AccuWeatherSensorDescriptionMixin:
-    value_fn: Callable[[dict[str, Any]], StateType]
+    value_fn: Callable[[dict[str, Any]], str | int | float | None]
     def __init__(self, value_fn) -> None: ...
 
 class AccuWeatherSensorDescription(SensorEntityDescription, AccuWeatherSensorDescriptionMixin):
-    attr_fn: Callable[[dict[str, Any]], dict[str, StateType]]
+    attr_fn: Callable[[dict[str, Any]], dict[str, Any]]
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attr_fn) -> None: ...
 
 FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
@@ -37,7 +36,7 @@ class AccuWeatherSensor(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], Sen
     forecast_day: Incomplete
     def __init__(self, coordinator: AccuWeatherDataUpdateCoordinator, description: AccuWeatherSensorDescription, forecast_day: int | None = ...) -> None: ...
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> str | int | float | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     def _handle_coordinator_update(self) -> None: ...

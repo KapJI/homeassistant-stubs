@@ -2,7 +2,7 @@ from .const import CONF_KNX_CONNECTION_TYPE as CONF_KNX_CONNECTION_TYPE, CONF_KN
 from .device import KNXInterfaceDevice as KNXInterfaceDevice
 from .expose import KNXExposeSensor as KNXExposeSensor, KNXExposeTime as KNXExposeTime, create_knx_exposure as create_knx_exposure
 from .project import KNXProject as KNXProject
-from .schema import BinarySensorSchema as BinarySensorSchema, ButtonSchema as ButtonSchema, ClimateSchema as ClimateSchema, CoverSchema as CoverSchema, EventSchema as EventSchema, ExposeSchema as ExposeSchema, FanSchema as FanSchema, LightSchema as LightSchema, NotifySchema as NotifySchema, NumberSchema as NumberSchema, SceneSchema as SceneSchema, SelectSchema as SelectSchema, SensorSchema as SensorSchema, SwitchSchema as SwitchSchema, TextSchema as TextSchema, TimeSchema as TimeSchema, WeatherSchema as WeatherSchema, ga_validator as ga_validator, sensor_type_validator as sensor_type_validator
+from .schema import BinarySensorSchema as BinarySensorSchema, ButtonSchema as ButtonSchema, ClimateSchema as ClimateSchema, CoverSchema as CoverSchema, DateSchema as DateSchema, DateTimeSchema as DateTimeSchema, EventSchema as EventSchema, ExposeSchema as ExposeSchema, FanSchema as FanSchema, LightSchema as LightSchema, NotifySchema as NotifySchema, NumberSchema as NumberSchema, SceneSchema as SceneSchema, SelectSchema as SelectSchema, SensorSchema as SensorSchema, SwitchSchema as SwitchSchema, TextSchema as TextSchema, TimeSchema as TimeSchema, WeatherSchema as WeatherSchema, ga_validator as ga_validator, sensor_type_validator as sensor_type_validator
 from .telegrams import Telegrams as Telegrams
 from .websocket import register_panel as register_panel
 from _typeshed import Incomplete

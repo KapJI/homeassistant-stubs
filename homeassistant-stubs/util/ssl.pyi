@@ -1,6 +1,6 @@
 import ssl
 from _typeshed import Incomplete
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 
 class SSLCipherList(StrEnum):
     PYTHON_DEFAULT: str

@@ -25,5 +25,6 @@ class ToloSaunaUpdateCoordinator(DataUpdateCoordinator[ToloSaunaData]):
     def _get_tolo_sauna_data(self) -> ToloSaunaData: ...
 
 class ToloSaunaCoordinatorEntity(CoordinatorEntity[ToloSaunaUpdateCoordinator]):
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry) -> None: ...

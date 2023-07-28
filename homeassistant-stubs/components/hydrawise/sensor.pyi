@@ -7,7 +7,7 @@ from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_COND
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from hydrawiser.core import Hydrawiser as Hydrawiser
+from pydrawise.legacy import LegacyHydrawise as LegacyHydrawise
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 SENSOR_KEYS: list[str]

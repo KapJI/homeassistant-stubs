@@ -5,11 +5,13 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, SERVICE_MEDIA_NEXT_TRACK as SERVICE_MEDIA_NEXT_TRACK, SERVICE_MEDIA_PAUSE as SERVICE_MEDIA_PAUSE, SERVICE_MEDIA_PLAY as SERVICE_MEDIA_PLAY, SERVICE_MEDIA_PREVIOUS_TRACK as SERVICE_MEDIA_PREVIOUS_TRACK, SERVICE_MEDIA_SEEK as SERVICE_MEDIA_SEEK, SERVICE_MEDIA_STOP as SERVICE_MEDIA_STOP, SERVICE_SHUFFLE_SET as SERVICE_SHUFFLE_SET, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_MUTE as SERVICE_VOLUME_MUTE, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, EventType as EventType
 from typing import Any
 
+KEY_ANNOUNCE: str
 KEY_CLEAR_PLAYLIST: str
+KEY_ENQUEUE: str
 KEY_ON_OFF: str
 KEY_PAUSE_PLAY_STOP: str
 KEY_PLAY_MEDIA: str
@@ -30,7 +32,7 @@ class MediaPlayerGroup(MediaPlayerEntity):
     _entities: Incomplete
     _features: Incomplete
     def __init__(self, unique_id: str | None, name: str, entities: list[str]) -> None: ...
-    def async_on_state_change(self, event: EventType) -> None: ...
+    def async_on_state_change(self, event: EventType[EventStateChangedData]) -> None: ...
     def async_update_supported_features(self, entity_id: str, new_state: State | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

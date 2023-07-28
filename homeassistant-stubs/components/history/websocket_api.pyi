@@ -10,8 +10,9 @@ from homeassistant.components.websocket_api import messages as messages
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
 from homeassistant.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, is_callback as is_callback, valid_entity_id as valid_entity_id
-from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP
+from homeassistant.helpers.typing import EventType as EventType
 from typing import Any
 
 _LOGGER: Incomplete

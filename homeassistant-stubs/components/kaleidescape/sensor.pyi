@@ -23,7 +23,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class KaleidescapeSensor(KaleidescapeEntity, SensorEntity):
     entity_description: KaleidescapeSensorEntityDescription
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, device: KaleidescapeDevice, entity_description: KaleidescapeSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...

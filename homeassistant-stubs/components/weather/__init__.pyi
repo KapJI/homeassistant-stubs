@@ -1,15 +1,15 @@
-from .const import ATTR_WEATHER_APPARENT_TEMPERATURE as ATTR_WEATHER_APPARENT_TEMPERATURE, ATTR_WEATHER_CLOUD_COVERAGE as ATTR_WEATHER_CLOUD_COVERAGE, ATTR_WEATHER_DEW_POINT as ATTR_WEATHER_DEW_POINT, ATTR_WEATHER_HUMIDITY as ATTR_WEATHER_HUMIDITY, ATTR_WEATHER_OZONE as ATTR_WEATHER_OZONE, ATTR_WEATHER_PRECIPITATION_UNIT as ATTR_WEATHER_PRECIPITATION_UNIT, ATTR_WEATHER_PRESSURE as ATTR_WEATHER_PRESSURE, ATTR_WEATHER_PRESSURE_UNIT as ATTR_WEATHER_PRESSURE_UNIT, ATTR_WEATHER_TEMPERATURE as ATTR_WEATHER_TEMPERATURE, ATTR_WEATHER_TEMPERATURE_UNIT as ATTR_WEATHER_TEMPERATURE_UNIT, ATTR_WEATHER_VISIBILITY as ATTR_WEATHER_VISIBILITY, ATTR_WEATHER_VISIBILITY_UNIT as ATTR_WEATHER_VISIBILITY_UNIT, ATTR_WEATHER_WIND_BEARING as ATTR_WEATHER_WIND_BEARING, ATTR_WEATHER_WIND_GUST_SPEED as ATTR_WEATHER_WIND_GUST_SPEED, ATTR_WEATHER_WIND_SPEED as ATTR_WEATHER_WIND_SPEED, ATTR_WEATHER_WIND_SPEED_UNIT as ATTR_WEATHER_WIND_SPEED_UNIT, DOMAIN as DOMAIN, UNIT_CONVERSIONS as UNIT_CONVERSIONS, VALID_UNITS as VALID_UNITS
+from .const import ATTR_WEATHER_APPARENT_TEMPERATURE as ATTR_WEATHER_APPARENT_TEMPERATURE, ATTR_WEATHER_CLOUD_COVERAGE as ATTR_WEATHER_CLOUD_COVERAGE, ATTR_WEATHER_DEW_POINT as ATTR_WEATHER_DEW_POINT, ATTR_WEATHER_HUMIDITY as ATTR_WEATHER_HUMIDITY, ATTR_WEATHER_OZONE as ATTR_WEATHER_OZONE, ATTR_WEATHER_PRECIPITATION_UNIT as ATTR_WEATHER_PRECIPITATION_UNIT, ATTR_WEATHER_PRESSURE as ATTR_WEATHER_PRESSURE, ATTR_WEATHER_PRESSURE_UNIT as ATTR_WEATHER_PRESSURE_UNIT, ATTR_WEATHER_TEMPERATURE as ATTR_WEATHER_TEMPERATURE, ATTR_WEATHER_TEMPERATURE_UNIT as ATTR_WEATHER_TEMPERATURE_UNIT, ATTR_WEATHER_UV_INDEX as ATTR_WEATHER_UV_INDEX, ATTR_WEATHER_VISIBILITY as ATTR_WEATHER_VISIBILITY, ATTR_WEATHER_VISIBILITY_UNIT as ATTR_WEATHER_VISIBILITY_UNIT, ATTR_WEATHER_WIND_BEARING as ATTR_WEATHER_WIND_BEARING, ATTR_WEATHER_WIND_GUST_SPEED as ATTR_WEATHER_WIND_GUST_SPEED, ATTR_WEATHER_WIND_SPEED as ATTR_WEATHER_WIND_SPEED, ATTR_WEATHER_WIND_SPEED_UNIT as ATTR_WEATHER_WIND_SPEED_UNIT, DOMAIN as DOMAIN, UNIT_CONVERSIONS as UNIT_CONVERSIONS, VALID_UNITS as VALID_UNITS, WeatherEntityFeature as WeatherEntityFeature
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable, Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
-from typing import Any, Final, TypedDict
-from typing_extensions import Required
+from typing import Any, Final, Literal, Required, TypedDict
 
 _LOGGER: Incomplete
 ATTR_CONDITION_CLASS: str
@@ -29,6 +29,7 @@ ATTR_CONDITION_SUNNY: str
 ATTR_CONDITION_WINDY: str
 ATTR_CONDITION_WINDY_VARIANT: str
 ATTR_FORECAST: str
+ATTR_FORECAST_IS_DAYTIME: Final[str]
 ATTR_FORECAST_CONDITION: Final[str]
 ATTR_FORECAST_HUMIDITY: Final[str]
 ATTR_FORECAST_NATIVE_PRECIPITATION: Final[str]
@@ -51,6 +52,7 @@ ATTR_FORECAST_WIND_SPEED: Final[str]
 ATTR_FORECAST_NATIVE_DEW_POINT: Final[str]
 ATTR_FORECAST_DEW_POINT: Final[str]
 ATTR_FORECAST_CLOUD_COVERAGE: Final[str]
+ATTR_FORECAST_UV_INDEX: Final[str]
 ENTITY_ID_FORMAT: Incomplete
 SCAN_INTERVAL: Incomplete
 ROUNDING_PRECISION: int
@@ -77,6 +79,8 @@ class Forecast(TypedDict, total=False):
     native_wind_speed: float | None
     wind_speed: None
     native_dew_point: float | None
+    uv_index: float | None
+    is_daytime: bool | None
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -92,6 +96,7 @@ class WeatherEntity(Entity):
     _attr_humidity: float | None
     _attr_ozone: float | None
     _attr_cloud_coverage: int | None
+    _attr_uv_index: float | None
     _attr_precision: float
     _attr_pressure: None
     _attr_pressure_unit: None
@@ -116,6 +121,7 @@ class WeatherEntity(Entity):
     _attr_native_wind_speed: float | None
     _attr_native_wind_speed_unit: str | None
     _attr_native_dew_point: float | None
+    _forecast_listeners: dict[Literal['daily', 'hourly', 'twice_daily'], list[Callable[[list[dict[str, Any]] | None], None]]]
     _weather_option_temperature_unit: str | None
     _weather_option_pressure_unit: str | None
     _weather_option_visibility_unit: str | None
@@ -174,6 +180,8 @@ class WeatherEntity(Entity):
     @property
     def cloud_coverage(self) -> float | None: ...
     @property
+    def uv_index(self) -> float | None: ...
+    @property
     def visibility(self) -> float | None: ...
     @property
     def native_visibility(self) -> float | None: ...
@@ -187,6 +195,9 @@ class WeatherEntity(Entity):
     def _visibility_unit(self) -> str: ...
     @property
     def forecast(self) -> list[Forecast] | None: ...
+    async def async_forecast_daily(self) -> list[Forecast] | None: ...
+    async def async_forecast_twice_daily(self) -> list[Forecast] | None: ...
+    async def async_forecast_hourly(self) -> list[Forecast] | None: ...
     @property
     def native_precipitation_unit(self) -> str | None: ...
     @property
@@ -199,8 +210,11 @@ class WeatherEntity(Entity):
     def precision(self) -> float: ...
     @property
     def state_attributes(self) -> dict[str, Any]: ...
+    def _convert_forecast(self, native_forecast_list: list[Forecast]) -> list[dict[str, Any]]: ...
     @property
     def state(self) -> str | None: ...
     @property
     def condition(self) -> str | None: ...
     def async_registry_entry_updated(self) -> None: ...
+    def async_subscribe_forecast(self, forecast_type: Literal['daily', 'hourly', 'twice_daily'], forecast_listener: Callable[[list[dict[str, Any]] | None], None]) -> CALLBACK_TYPE: ...
+    async def async_update_listeners(self, forecast_types: Iterable[Literal['daily', 'hourly', 'twice_daily']] | None) -> None: ...

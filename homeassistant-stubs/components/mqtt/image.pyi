@@ -39,6 +39,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttImage(MqttEntity, ImageEntity):
+    _default_name = DEFAULT_NAME
     _entity_id_format: str
     _last_image: bytes | None
     _client: httpx.AsyncClient

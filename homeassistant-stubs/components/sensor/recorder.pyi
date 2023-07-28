@@ -1,7 +1,7 @@
 import datetime
 from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, SensorStateClass as SensorStateClass
 from _typeshed import Incomplete
-from collections.abc import Iterable
+from collections.abc import Callable as Callable, Iterable
 from homeassistant.components.recorder import get_instance as get_instance, history as history, statistics as statistics
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfIrradiance as UnitOfIrradiance, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfVolume as UnitOfVolume

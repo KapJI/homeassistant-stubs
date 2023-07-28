@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from logging import Logger
 from typing import Final
 
@@ -55,3 +55,7 @@ class BLEScannerMode(StrEnum):
     DISABLED: str
     ACTIVE: str
     PASSIVE: str
+
+MAX_PUSH_UPDATE_FAILURES: int
+PUSH_UPDATE_ISSUE_ID: str
+NOT_CALIBRATED_ISSUE_ID: str

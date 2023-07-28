@@ -12,7 +12,6 @@ from vallox_websocket_api import Vallox as Vallox
 class ValloxSwitchEntity(ValloxEntity, SwitchEntity):
     entity_description: ValloxSwitchEntityDescription
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _client: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxSwitchEntityDescription, client: Vallox) -> None: ...

@@ -12,7 +12,6 @@ from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, L
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class YaleXSBLELock(YALEXSBLEEntity, LockEntity):
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_is_locked: bool
     _attr_is_locking: bool

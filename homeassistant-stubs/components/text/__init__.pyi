@@ -1,6 +1,6 @@
 import re
 from .const import DOMAIN as DOMAIN
-from homeassistant.backports.enum import StrEnum
+from enum import StrEnum
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from typing import Any

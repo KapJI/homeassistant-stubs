@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE

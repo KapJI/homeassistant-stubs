@@ -10,8 +10,7 @@ from collections.abc import Callable as Callable, Generator, Iterator, Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant
 from io import BytesIO
 from threading import Event
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 _LOGGER: Incomplete
 NEGATIVE_INF: Incomplete

@@ -8,6 +8,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from pyisy.nodes import Node as Node
 from typing import Any
 

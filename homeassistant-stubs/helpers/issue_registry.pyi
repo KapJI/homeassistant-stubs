@@ -1,7 +1,7 @@
 from .storage import Store as Store
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from typing import Any

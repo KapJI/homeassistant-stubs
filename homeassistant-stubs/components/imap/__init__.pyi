@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CONF_ENABLE_PUSH as CONF_ENABLE_PUSH, DOMAIN as DOMAIN
 from .coordinator import ImapPollingDataUpdateCoordinator as ImapPollingDataUpdateCoordinator, ImapPushDataUpdateCoordinator as ImapPushDataUpdateCoordinator, connect_to_server as connect_to_server
 from .errors import InvalidAuth as InvalidAuth, InvalidFolder as InvalidFolder
 from aioimaplib import IMAP4_SSL as IMAP4_SSL

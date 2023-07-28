@@ -4,7 +4,8 @@ from .util import resolve_db_url as resolve_db_url
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.recorder import CONF_DB_URL as CONF_DB_URL, get_instance as get_instance
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import selector as selector
@@ -13,6 +14,7 @@ from sqlalchemy.orm import Session as Session
 from typing import Any
 
 _LOGGER: Incomplete
+NONE_SENTINEL: str
 OPTIONS_SCHEMA: vol.Schema
 CONFIG_SCHEMA: vol.Schema
 

@@ -5,6 +5,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class LIFXEntity(CoordinatorEntity[LIFXUpdateCoordinator]):
+    _attr_has_entity_name: bool
     bulb: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: LIFXUpdateCoordinator) -> None: ...

@@ -1,4 +1,5 @@
 from .const import CONF_FROM as CONF_FROM, CONF_TO as CONF_TO, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .coordinator import TVDataUpdateCoordinator as TVDataUpdateCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.core import HomeAssistant as HomeAssistant

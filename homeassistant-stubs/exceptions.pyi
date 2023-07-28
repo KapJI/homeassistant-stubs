@@ -66,10 +66,6 @@ class MaxLengthExceeded(HomeAssistantError):
     max_length: Incomplete
     def __init__(self, value: str, property_name: str, max_length: int) -> None: ...
 
-class RequiredParameterMissing(HomeAssistantError):
-    parameter_names: Incomplete
-    def __init__(self, parameter_names: list[str]) -> None: ...
-
 class DependencyError(HomeAssistantError):
     failed_dependencies: Incomplete
     def __init__(self, failed_dependencies: list[str]) -> None: ...

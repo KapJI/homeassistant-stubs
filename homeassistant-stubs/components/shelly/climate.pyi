@@ -1,4 +1,4 @@
-from .const import LOGGER as LOGGER, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, NOT_CALIBRATED_ISSUE_ID as NOT_CALIBRATED_ISSUE_ID, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, get_entry_data as get_entry_data
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block

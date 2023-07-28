@@ -76,6 +76,7 @@ DISCOVERY_SCHEMA_BASIC: Incomplete
 async def async_setup_entity_basic(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttLight(MqttEntity, LightEntity, RestoreEntity):
+    _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
     _topic: dict[str, str | None]

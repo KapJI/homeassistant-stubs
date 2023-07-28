@@ -21,10 +21,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 def catch_vlc_errors(func: Callable[Concatenate[_VlcDeviceT, _P], Awaitable[None]]) -> Callable[Concatenate[_VlcDeviceT, _P], Coroutine[Any, Any, None]]: ...
 
 class VlcDevice(MediaPlayerEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_media_content_type: Incomplete
     _attr_supported_features: Incomplete
     _config_entry: Incomplete
-    _name: Incomplete
     _volume: Incomplete
     _muted: Incomplete
     _media_position_updated_at: Incomplete
@@ -42,8 +43,6 @@ class VlcDevice(MediaPlayerEntity):
     _attr_state: Incomplete
     _attr_media_album_name: Incomplete
     async def async_update(self) -> None: ...
-    @property
-    def name(self) -> str: ...
     @property
     def available(self) -> bool: ...
     @property

@@ -1,5 +1,5 @@
-from . import AsekoDataUpdateCoordinator as AsekoDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import AsekoDataUpdateCoordinator as AsekoDataUpdateCoordinator
 from _typeshed import Incomplete
 from aioaseko import Unit as Unit
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo

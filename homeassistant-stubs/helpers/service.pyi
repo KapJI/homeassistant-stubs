@@ -1,5 +1,5 @@
 import voluptuous as vol
-from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, template as template
+from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, template as template, translation as translation
 from .entity import Entity as Entity
 from .entity_platform import EntityPlatform as EntityPlatform
 from .selector import TargetSelector as TargetSelector

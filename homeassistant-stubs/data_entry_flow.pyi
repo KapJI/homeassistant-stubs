@@ -1,13 +1,12 @@
 import abc
 import voluptuous as vol
-from .backports.enum import StrEnum as StrEnum
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers.frame import report as report
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, Mapping
-from typing import Any, TypedDict
-from typing_extensions import Required
+from enum import StrEnum
+from typing import Any, Required, TypedDict
 
 _LOGGER: Incomplete
 

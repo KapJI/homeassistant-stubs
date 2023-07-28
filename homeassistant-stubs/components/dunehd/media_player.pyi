@@ -14,6 +14,8 @@ DUNEHD_PLAYER_SUPPORT: Final[MediaPlayerEntityFeature]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DuneHDPlayerEntity(MediaPlayerEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _player: Incomplete
     _name: Incomplete
     _media_title: Incomplete
@@ -23,8 +25,6 @@ class DuneHDPlayerEntity(MediaPlayerEntity):
     def update(self) -> None: ...
     @property
     def state(self) -> MediaPlayerState: ...
-    @property
-    def name(self) -> str: ...
     @property
     def available(self) -> bool: ...
     @property

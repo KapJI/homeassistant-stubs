@@ -16,6 +16,7 @@ MessageHandler: Incomplete
 BinaryHandler: Incomplete
 
 class ActiveConnection:
+    __slots__: Incomplete
     logger: Incomplete
     hass: Incomplete
     send_message: Incomplete
@@ -27,7 +28,7 @@ class ActiveConnection:
     supported_features: Incomplete
     handlers: Incomplete
     binary_handlers: Incomplete
-    def __init__(self, logger: WebSocketAdapter, hass: HomeAssistant, send_message: Callable[[str | dict[str, Any] | Callable[[], str]], None], user: User, refresh_token: RefreshToken) -> None: ...
+    def __init__(self, logger: WebSocketAdapter, hass: HomeAssistant, send_message: Callable[[str | dict[str, Any]], None], user: User, refresh_token: RefreshToken) -> None: ...
     def __repr__(self) -> str: ...
     def set_supported_features(self, features: dict[str, float]) -> None: ...
     def get_description(self, request: web.Request | None) -> str: ...

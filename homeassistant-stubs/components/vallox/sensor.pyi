@@ -12,7 +12,6 @@ from homeassistant.helpers.typing import StateType as StateType
 class ValloxSensorEntity(ValloxEntity, SensorEntity):
     entity_description: ValloxSensorEntityDescription
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxSensorEntityDescription) -> None: ...
     @property

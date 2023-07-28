@@ -12,7 +12,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ToloLampModeSelect(ToloSaunaCoordinatorEntity, SelectEntity):
     _attr_entity_category: Incomplete
     _attr_icon: str
-    _attr_name: str
     _attr_options: Incomplete
     _attr_translation_key: str
     _attr_unique_id: Incomplete

@@ -19,8 +19,8 @@ def hass_to_crownstone_state(value: int) -> int: ...
 
 class CrownstoneEntity(CrownstoneBaseEntity, LightEntity):
     _attr_icon: str
-    usb: Incomplete
     _attr_name: Incomplete
+    usb: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, crownstone_data: Crownstone, usb: CrownstoneUart | None = ...) -> None: ...
     @property

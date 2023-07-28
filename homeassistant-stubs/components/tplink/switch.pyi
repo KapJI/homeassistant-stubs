@@ -17,8 +17,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class SmartPlugLedSwitch(CoordinatedTPLinkEntity, SwitchEntity):
     device: SmartPlug
+    _attr_translation_key: str
     _attr_entity_category: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: SmartPlug, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
     @property
@@ -31,5 +31,13 @@ class SmartPlugLedSwitch(CoordinatedTPLinkEntity, SwitchEntity):
 class SmartPlugSwitch(CoordinatedTPLinkEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class SmartPlugSwitchChild(SmartPlugSwitch):
+    _plug: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_name: Incomplete
+    def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator, plug: SmartDevice) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

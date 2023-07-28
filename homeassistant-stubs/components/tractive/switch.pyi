@@ -24,7 +24,6 @@ SWITCH_TYPES: tuple[TractiveSwitchEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TractiveSwitch(TractiveEntity, SwitchEntity):
-    _attr_has_entity_name: bool
     entity_description: TractiveSwitchEntityDescription
     _attr_unique_id: Incomplete
     _attr_available: bool

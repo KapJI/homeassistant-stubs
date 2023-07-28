@@ -1,7 +1,7 @@
 import aiounifi
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER
 from .controller import UniFiController as UniFiController
-from .entity import HandlerT as HandlerT, SubscriptionT as SubscriptionT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn
+from .entity import HandlerT as HandlerT, SubscriptionT as SubscriptionT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent
 from aiounifi.models.api import ApiItemT
@@ -27,6 +27,7 @@ async def async_block_client_control_fn(api: aiounifi.Controller, obj_id: str, t
 async def async_dpi_group_control_fn(api: aiounifi.Controller, obj_id: str, target: bool) -> None: ...
 async def async_outlet_control_fn(api: aiounifi.Controller, obj_id: str, target: bool) -> None: ...
 async def async_poe_port_control_fn(api: aiounifi.Controller, obj_id: str, target: bool) -> None: ...
+async def async_wlan_control_fn(api: aiounifi.Controller, obj_id: str, target: bool) -> None: ...
 
 class UnifiSwitchEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
     control_fn: Callable[[aiounifi.Controller, str, bool], Coroutine[Any, Any, None]]
@@ -36,7 +37,7 @@ class UnifiSwitchEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
 class UnifiSwitchEntityDescription(SwitchEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiSwitchEntityDescriptionMixin[HandlerT, ApiItemT]):
     custom_subscribe: Callable[[aiounifi.Controller], SubscriptionT] | None
     only_event_for_state_change: bool
-    def __init__(self, control_fn, is_on_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, custom_subscribe, only_event_for_state_change) -> None: ...
+    def __init__(self, control_fn, is_on_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, custom_subscribe, only_event_for_state_change) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiSwitchEntityDescription, ...]
 

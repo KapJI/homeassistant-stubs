@@ -1,5 +1,4 @@
-from enum import IntFlag
-from homeassistant.backports.enum import StrEnum as StrEnum
+from enum import IntFlag, StrEnum
 from typing import Final
 
 DOMAIN: Final[str]

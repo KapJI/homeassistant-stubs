@@ -19,6 +19,7 @@ from aiohttp.typedefs import JSONDecoder as JSONDecoder, StrOrURL as StrOrURL
 from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
 from aiohttp.web_log import AccessLogger
 from aiohttp.web_protocol import RequestHandler as RequestHandler
+from aiohttp.web_urldispatcher import AbstractResource as AbstractResource, UrlDispatcher, UrlMappingMatchInfo as UrlMappingMatchInfo
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
@@ -117,3 +118,9 @@ class HomeAssistantHTTP:
     async def stop(self) -> None: ...
 
 async def start_http_server_and_save_config(hass: HomeAssistant, conf: dict, server: HomeAssistantHTTP) -> None: ...
+
+class FastUrlDispatcher(UrlDispatcher):
+    _resource_index: Incomplete
+    def __init__(self) -> None: ...
+    def register_resource(self, resource: AbstractResource) -> None: ...
+    async def resolve(self, request: web.Request) -> UrlMappingMatchInfo: ...

@@ -41,7 +41,7 @@ class SQLSensor(ManualTriggerEntity, SensorEntity):
     _use_database_executor: Incomplete
     _lambda_stmt: Incomplete
     _attr_name: Incomplete
-    _attr_has_entity_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, trigger_entity_config: ConfigType, sessmaker: scoped_session, query: str, column: str, unit: str | None, value_template: Template | None, yaml: bool, state_class: SensorStateClass | None, use_database_executor: bool) -> None: ...
     async def async_added_to_hass(self) -> None: ...

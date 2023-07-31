@@ -20,7 +20,6 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ScrapeSensor(CoordinatorEntity[ScrapeCoordinator], ManualTriggerEntity, SensorEntity):
-    _attr_name: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     _select: Incomplete

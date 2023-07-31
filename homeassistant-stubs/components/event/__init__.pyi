@@ -48,6 +48,3 @@ class EventEntity(RestoreEntity):
     @property
     def extra_restore_state_data(self) -> EventExtraStoredData: ...
     async def async_get_last_event_data(self) -> EventExtraStoredData | None: ...
-
-# Names in __all__ with no definition:
-#   EventEntityFeature

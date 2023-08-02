@@ -102,10 +102,11 @@ class MqttData:
     discovery_registry_hooks: dict[tuple[str, str], CALLBACK_TYPE]
     discovery_unsubscribe: list[CALLBACK_TYPE]
     integration_unsubscribe: dict[str, CALLBACK_TYPE]
+    issues: dict[str, set[str]]
     last_discovery: float
     reload_dispatchers: list[CALLBACK_TYPE]
     reload_handlers: dict[str, Callable[[], Coroutine[Any, Any, None]]]
     state_write_requests: EntityTopicState
     subscriptions_to_restore: list[Subscription]
     tags: dict[str, dict[str, MQTTTagScanner]]
-    def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, last_discovery, reload_dispatchers, reload_handlers, state_write_requests, subscriptions_to_restore, tags) -> None: ...
+    def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, issues, last_discovery, reload_dispatchers, reload_handlers, state_write_requests, subscriptions_to_restore, tags) -> None: ...

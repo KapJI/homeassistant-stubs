@@ -151,10 +151,12 @@ class MqttEntity(MqttAttributes, MqttAvailability, MqttDiscoveryUpdate, MqttEnti
     _attr_should_poll: bool
     _default_name: str | None
     _entity_id_format: str
+    _issue_key: str | None
     hass: Incomplete
     _config: Incomplete
     _attr_unique_id: Incomplete
     _sub_state: Incomplete
+    _discovery: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     def _init_entity_id(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
@@ -167,6 +169,7 @@ class MqttEntity(MqttAttributes, MqttAvailability, MqttDiscoveryUpdate, MqttEnti
     def config_schema() -> vol.Schema: ...
     _attr_name: Incomplete
     def _set_entity_name(self, config: ConfigType) -> None: ...
+    def collect_issues(self) -> None: ...
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     _attr_icon: Incomplete

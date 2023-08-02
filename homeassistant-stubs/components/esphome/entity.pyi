@@ -33,10 +33,10 @@ class EsphomeEntity(Entity, Generic[_InfoT, _StateT]):
     _key: Incomplete
     _state_type: Incomplete
     _device_info: Incomplete
-    entity_id: Incomplete
     _attr_device_info: Incomplete
     _entry_id: Incomplete
-    _attr_has_entity_name: Incomplete
+    _attr_has_entity_name: bool
+    entity_id: Incomplete
     def __init__(self, entry_data: RuntimeEntryData, domain: str, entity_info: EntityInfo, state_type: type[_StateT]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_unique_id: Incomplete

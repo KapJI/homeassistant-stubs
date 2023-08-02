@@ -68,7 +68,7 @@ def _validate_configuration_url(value: Any) -> str | None: ...
 class DeviceEntry:
     area_id: str | None
     config_entries: set[str]
-    configuration_url: str | URL | None
+    configuration_url: str | None
     connections: set[tuple[str, str]]
     disabled_by: DeviceEntryDisabler | None
     entry_type: DeviceEntryType | None

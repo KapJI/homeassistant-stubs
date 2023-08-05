@@ -16,7 +16,7 @@ def async_wlan_qr_code_image_fn(controller: UniFiController, wlan: Wlan) -> byte
 
 class UnifiImageEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
     image_fn: Callable[[UniFiController, ApiItemT], bytes]
-    value_fn: Callable[[ApiItemT], str]
+    value_fn: Callable[[ApiItemT], str | None]
     def __init__(self, image_fn, value_fn) -> None: ...
 
 class UnifiImageEntityDescription(ImageEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiImageEntityDescriptionMixin[HandlerT, ApiItemT]):
@@ -30,7 +30,7 @@ class UnifiImageEntity(UnifiEntity[HandlerT, ApiItemT], ImageEntity):
     entity_description: UnifiImageEntityDescription[HandlerT, ApiItemT]
     _attr_content_type: str
     current_image: bytes | None
-    previous_value: str
+    previous_value: str | None
     def __init__(self, obj_id: str, controller: UniFiController, description: UnifiEntityDescription[HandlerT, ApiItemT]) -> None: ...
     def image(self) -> bytes | None: ...
     _attr_image_last_updated: Incomplete

@@ -8,11 +8,11 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from renault_api.kamereon import models as models
 from renault_api.renault_vehicle import RenaultVehicle as RenaultVehicle
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 LOGGER: Incomplete
 _T = TypeVar('_T')
-_P: Incomplete
+_P = ParamSpec('_P')
 
 def with_error_wrapping(func: Callable[Concatenate[RenaultVehicleProxy, _P], Awaitable[_T]]) -> Callable[Concatenate[RenaultVehicleProxy, _P], Coroutine[Any, Any, _T]]: ...
 
@@ -22,6 +22,7 @@ class RenaultCoordinatorDescription:
     update_method: Callable[[RenaultVehicle], Callable[[], Awaitable[models.KamereonVehicleDataAttributes]]]
     requires_electricity: bool
     def __init__(self, endpoint, key, update_method, requires_electricity) -> None: ...
+    def __mypy-replace(*, endpoint, key, update_method, requires_electricity) -> None: ...
 
 class RenaultVehicleProxy:
     hass: Incomplete

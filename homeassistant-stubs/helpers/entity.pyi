@@ -72,6 +72,7 @@ class EntityDescription:
     translation_key: str | None
     unit_of_measurement: str | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class Entity(ABC):
     entity_id: str
@@ -208,6 +209,7 @@ class Entity(ABC):
 
 class ToggleEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class ToggleEntity(Entity):
     entity_description: ToggleEntityDescription

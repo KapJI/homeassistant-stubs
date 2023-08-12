@@ -32,10 +32,12 @@ class BlockEntityDescription(EntityDescription):
     removal_condition: Callable[[dict, Block], bool] | None
     extra_state_attributes: Callable[[Block], dict | None] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
 class RpcEntityRequiredKeysMixin:
     sub_key: str
     def __init__(self, sub_key) -> None: ...
+    def __mypy-replace(*, sub_key) -> None: ...
 
 class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     name: str
@@ -46,12 +48,14 @@ class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     use_polling_coordinator: bool
     supported: Callable
     def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
+    def __mypy-replace(*, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
 class RestEntityDescription(EntityDescription):
     name: str
     value: Callable[[dict, Any], Any] | None
     extra_state_attributes: Callable[[dict], dict | None] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
 
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     block: Incomplete

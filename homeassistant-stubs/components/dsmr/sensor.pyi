@@ -15,11 +15,13 @@ UNIT_CONVERSION: Incomplete
 class DSMRSensorEntityDescriptionMixin:
     obis_reference: str
     def __init__(self, obis_reference) -> None: ...
+    def __mypy-replace(*, obis_reference) -> None: ...
 
 class DSMRSensorEntityDescription(SensorEntityDescription, DSMRSensorEntityDescriptionMixin):
     dsmr_versions: set[str] | None
     is_gas: bool
     def __init__(self, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, dsmr_versions, is_gas) -> None: ...
+    def __mypy-replace(*, obis_reference, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, dsmr_versions, is_gas) -> None: ...
 
 SENSORS: tuple[DSMRSensorEntityDescription, ...]
 

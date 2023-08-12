@@ -21,7 +21,7 @@ from .util.ulid import ulid as ulid, ulid_at_time as ulid_at_time
 from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Collection, Coroutine, Iterable, Mapping
-from typing import Any, Generic, Self, TypeVar, overload
+from typing import Any, Generic, ParamSpec, Self, TypeVar, overload
 
 STAGE_1_SHUTDOWN_TIMEOUT: int
 STAGE_2_SHUTDOWN_TIMEOUT: int
@@ -29,7 +29,7 @@ STAGE_3_SHUTDOWN_TIMEOUT: int
 _T = TypeVar('_T')
 _R = TypeVar('_R')
 _R_co = TypeVar('_R_co', covariant=True)
-_P: Incomplete
+_P = ParamSpec('_P')
 _UNDEF: dict[Any, Any]
 _CallableT = TypeVar('_CallableT', bound=Callable[..., Any])
 CALLBACK_TYPE = Callable[[], None]

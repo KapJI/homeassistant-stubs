@@ -13,6 +13,7 @@ from typing import Any
 class MySensorsBinarySensorDescription(BinarySensorEntityDescription):
     is_on: Callable[[int, dict[int, str]], bool]
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_on) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_on) -> None: ...
 
 SENSORS: dict[str, MySensorsBinarySensorDescription]
 

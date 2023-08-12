@@ -20,6 +20,7 @@ class TrainData:
     other_info: str | None
     deviation: str | None
     def __init__(self, departure_time, departure_state, cancelled, delayed_time, planned_time, estimated_time, actual_time, other_info, deviation) -> None: ...
+    def __mypy-replace(*, departure_time, departure_state, cancelled, delayed_time, planned_time, estimated_time, actual_time, other_info, deviation) -> None: ...
 
 _LOGGER: Incomplete
 TIME_BETWEEN_UPDATES: Incomplete

@@ -14,6 +14,7 @@ class DynamicStreamSettings:
     preload_stream: bool
     orientation: Orientation
     def __init__(self, preload_stream, orientation) -> None: ...
+    def __mypy-replace(*, preload_stream, orientation) -> None: ...
 
 class CameraPreferences:
     _hass: Incomplete

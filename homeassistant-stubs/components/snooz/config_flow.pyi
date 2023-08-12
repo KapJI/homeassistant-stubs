@@ -13,6 +13,7 @@ class DiscoveredSnooz:
     info: BluetoothServiceInfo
     device: SnoozAdvertisementData
     def __init__(self, info, device) -> None: ...
+    def __mypy-replace(*, info, device) -> None: ...
 
 class SnoozConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

@@ -11,7 +11,9 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult, UnknownHandl
 from typing import Any
 
 class SchemaFlowError(Exception): ...
-class SchemaFlowStep: ...
+
+class SchemaFlowStep:
+    def __mypy-replace() -> None: ...
 
 class SchemaFlowFormStep(SchemaFlowStep):
     schema: vol.Schema | Callable[[SchemaCommonFlowHandler], Coroutine[Any, Any, vol.Schema | None]] | None
@@ -19,10 +21,12 @@ class SchemaFlowFormStep(SchemaFlowStep):
     next_step: Callable[[dict[str, Any]], Coroutine[Any, Any, str | None]] | str | None
     suggested_values: Callable[[SchemaCommonFlowHandler], Coroutine[Any, Any, dict[str, Any]]] | None | UndefinedType
     def __init__(self, schema, validate_user_input, next_step, suggested_values) -> None: ...
+    def __mypy-replace(*, schema, validate_user_input, next_step, suggested_values) -> None: ...
 
 class SchemaFlowMenuStep(SchemaFlowStep):
     options: list[str] | dict[str, str]
     def __init__(self, options) -> None: ...
+    def __mypy-replace(*, options) -> None: ...
 
 class SchemaCommonFlowHandler:
     _flow: Incomplete

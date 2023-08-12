@@ -5,10 +5,10 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import MultiprotocolAddonManager as MultiprotocolAddonManager, get_addon_manager as get_addon_manager, is_multiprotocol_url as is_multiprotocol_url, multi_pan_addon_using_device as multi_pan_addon_using_device
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 _R = TypeVar('_R')
-_P: Incomplete
+_P = ParamSpec('_P')
 INFO_URL_SKY_CONNECT: str
 INFO_URL_YELLOW: str
 INSECURE_NETWORK_KEYS: Incomplete
@@ -30,6 +30,7 @@ class OTBRData:
     async def set_channel(self, channel: int, delay: float = ...) -> None: ...
     async def get_extended_address(self) -> bytes: ...
     def __init__(self, url, api, entry_id) -> None: ...
+    def __mypy-replace(*, url, api, entry_id) -> None: ...
 
 async def get_allowed_channel(hass: HomeAssistant, otbr_url: str) -> int | None: ...
 async def _warn_on_channel_collision(hass: HomeAssistant, otbrdata: OTBRData, dataset_tlvs: bytes) -> None: ...

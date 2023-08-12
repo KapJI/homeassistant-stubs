@@ -20,6 +20,7 @@ class BMWButtonEntityDescription(ButtonEntityDescription):
     account_function: Callable[[BMWDataUpdateCoordinator], Coroutine] | None
     is_available: Callable[[MyBMWVehicle], bool]
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, enabled_when_read_only, remote_function, account_function, is_available) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, enabled_when_read_only, remote_function, account_function, is_available) -> None: ...
 
 BUTTON_TYPES: tuple[BMWButtonEntityDescription, ...]
 

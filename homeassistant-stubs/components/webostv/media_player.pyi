@@ -16,7 +16,7 @@ from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 _LOGGER: Incomplete
 SUPPORT_WEBOSTV: Incomplete
@@ -27,7 +27,7 @@ SCAN_INTERVAL: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 _T = TypeVar('_T', bound='LgWebOSMediaPlayerEntity')
-_P: Incomplete
+_P = ParamSpec('_P')
 
 def cmd(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 

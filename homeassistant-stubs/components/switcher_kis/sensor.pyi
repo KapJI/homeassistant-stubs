@@ -18,6 +18,7 @@ class AttributeDescription:
     state_class: SensorStateClass | None
     default_enabled: bool
     def __init__(self, name, icon, unit, device_class, state_class, default_enabled) -> None: ...
+    def __mypy-replace(*, name, icon, unit, device_class, state_class, default_enabled) -> None: ...
 
 POWER_SENSORS: Incomplete
 TIME_SENSORS: Incomplete

@@ -13,6 +13,7 @@ from typing import Any, Final
 class AirzoneBinarySensorEntityDescription(BinarySensorEntityDescription):
     attributes: dict[str, str] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, attributes) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, attributes) -> None: ...
 
 AIDOO_BINARY_SENSOR_TYPES: Final[tuple[AirzoneBinarySensorEntityDescription, ...]]
 ZONE_BINARY_SENSOR_TYPES: Final[tuple[AirzoneBinarySensorEntityDescription, ...]]

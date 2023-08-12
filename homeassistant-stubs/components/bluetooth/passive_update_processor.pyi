@@ -14,6 +14,7 @@ class PassiveBluetoothEntityKey:
     key: str
     device_id: str | None
     def __init__(self, key, device_id) -> None: ...
+    def __mypy-replace(*, key, device_id) -> None: ...
 _T = TypeVar('_T')
 
 class PassiveBluetoothDataUpdate(Generic[_T]):
@@ -22,6 +23,7 @@ class PassiveBluetoothDataUpdate(Generic[_T]):
     entity_names: Mapping[PassiveBluetoothEntityKey, str | None]
     entity_data: Mapping[PassiveBluetoothEntityKey, _T]
     def __init__(self, devices, entity_descriptions, entity_names, entity_data) -> None: ...
+    def __mypy-replace(*, devices, entity_descriptions, entity_names, entity_data) -> None: ...
 
 class PassiveBluetoothProcessorCoordinator(BasePassiveBluetoothCoordinator, Generic[_T]):
     _processors: Incomplete

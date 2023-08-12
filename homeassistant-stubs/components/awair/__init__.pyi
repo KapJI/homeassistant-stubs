@@ -21,6 +21,7 @@ class AwairResult:
     device: AwairBaseDevice
     air_data: AirData
     def __init__(self, device, air_data) -> None: ...
+    def __mypy-replace(*, device, air_data) -> None: ...
 
 class AwairDataUpdateCoordinator(DataUpdateCoordinator[dict[str, AwairResult]]):
     _config_entry: Incomplete

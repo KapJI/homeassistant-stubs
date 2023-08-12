@@ -42,6 +42,7 @@ class ESPHomeClientData:
     scanner: ESPHomeScanner | None
     disconnect_callbacks: list[Callable[[], None]]
     def __init__(self, bluetooth_device, cache, client, device_info, api_version, title, scanner, disconnect_callbacks) -> None: ...
+    def __mypy-replace(*, bluetooth_device, cache, client, device_info, api_version, title, scanner, disconnect_callbacks) -> None: ...
 
 class ESPHomeClient(BaseBleakClient):
     _disconnect_callbacks: Incomplete

@@ -106,6 +106,7 @@ class IntentResponseTarget:
     type: IntentResponseTargetType
     id: str | None
     def __init__(self, name, type, id) -> None: ...
+    def __mypy-replace(*, name, type, id) -> None: ...
 
 class IntentResponse:
     language: Incomplete

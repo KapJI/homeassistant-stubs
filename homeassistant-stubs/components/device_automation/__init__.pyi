@@ -27,6 +27,7 @@ class DeviceAutomationDetails:
     get_automations_func: str
     get_capabilities_func: str
     def __init__(self, section, get_automations_func, get_capabilities_func) -> None: ...
+    def __mypy-replace(*, section, get_automations_func, get_capabilities_func) -> None: ...
 
 class DeviceAutomationType(Enum):
     TRIGGER: Incomplete

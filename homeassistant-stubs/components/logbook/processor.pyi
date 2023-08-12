@@ -28,6 +28,7 @@ class LogbookRun:
     format_time: Callable[[Row | EventAsRow], Any]
     memoize_new_contexts: bool
     def __init__(self, context_lookup, external_events, event_cache, entity_name_cache, include_entity_name, format_time, memoize_new_contexts) -> None: ...
+    def __mypy-replace(*, context_lookup, external_events, event_cache, entity_name_cache, include_entity_name, format_time, memoize_new_contexts) -> None: ...
 
 class EventProcessor:
     hass: Incomplete

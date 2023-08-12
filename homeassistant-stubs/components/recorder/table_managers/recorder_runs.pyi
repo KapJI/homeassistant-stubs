@@ -10,6 +10,7 @@ class _RecorderRunsHistory:
     run_timestamps: list[int]
     runs_by_timestamp: dict[int, RecorderRuns]
     def __init__(self, run_timestamps, runs_by_timestamp) -> None: ...
+    def __mypy-replace(*, run_timestamps, runs_by_timestamp) -> None: ...
 
 class RecorderRunsManager:
     _recording_start: Incomplete

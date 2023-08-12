@@ -25,6 +25,7 @@ class QswDataEntity(CoordinatorEntity[QswDataCoordinator]):
 class QswEntityDescriptionMixin:
     subkey: str
     def __init__(self, subkey) -> None: ...
+    def __mypy-replace(*, subkey) -> None: ...
 
 class QswEntityDescription(EntityDescription, QswEntityDescriptionMixin):
     attributes: dict[str, list[str]] | None

@@ -13,6 +13,7 @@ class ElgatoData:
     settings: Settings
     state: State
     def __init__(self, battery, info, settings, state) -> None: ...
+    def __mypy-replace(*, battery, info, settings, state) -> None: ...
 
 class ElgatoDataUpdateCoordinator(DataUpdateCoordinator[ElgatoData]):
     config_entry: ConfigEntry

@@ -7,10 +7,10 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 _T = TypeVar('_T', bound='SensiboDeviceBaseEntity')
-_P: Incomplete
+_P = ParamSpec('_P')
 
 def async_handle_api_call(function: Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]: ...
 

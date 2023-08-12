@@ -7,7 +7,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from ld2410_ble import LD2410BLE as LD2410BLE, LD2410BLEState as LD2410BLEState
 
 _LOGGER: Incomplete
-NEVER_TIME: Incomplete
+NEVER_TIME: float
 DEBOUNCE_SECONDS: float
 
 class LD2410BLECoordinator(DataUpdateCoordinator[None]):

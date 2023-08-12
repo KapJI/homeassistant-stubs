@@ -11,6 +11,7 @@ class PowerwallBaseInfo:
     serial_numbers: list[str]
     url: str
     def __init__(self, gateway_din, site_info, status, device_type, serial_numbers, url) -> None: ...
+    def __mypy-replace(*, gateway_din, site_info, status, device_type, serial_numbers, url) -> None: ...
 
 class PowerwallData:
     charge: float
@@ -20,6 +21,7 @@ class PowerwallData:
     grid_status: GridStatus
     backup_reserve: float | None
     def __init__(self, charge, site_master, meters, grid_services_active, grid_status, backup_reserve) -> None: ...
+    def __mypy-replace(*, charge, site_master, meters, grid_services_active, grid_status, backup_reserve) -> None: ...
 
 class PowerwallRuntimeData(TypedDict):
     coordinator: DataUpdateCoordinator[PowerwallData] | None

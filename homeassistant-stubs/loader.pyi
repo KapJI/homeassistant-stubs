@@ -70,6 +70,7 @@ class HomeKitDiscoveredIntegration:
     domain: str
     always_discover: bool
     def __init__(self, domain, always_discover) -> None: ...
+    def __mypy-replace(*, domain, always_discover) -> None: ...
 
 class Manifest(TypedDict, total=False):
     name: str

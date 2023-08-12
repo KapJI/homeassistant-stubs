@@ -9,10 +9,10 @@ from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pybravia import BraviaClient as BraviaClient
 from types import MappingProxyType
-from typing import Any, Concatenate, Final, TypeVar
+from typing import Any, Concatenate, Final, ParamSpec, TypeVar
 
 _BraviaTVCoordinatorT = TypeVar('_BraviaTVCoordinatorT', bound='BraviaTVCoordinator')
-_P: Incomplete
+_P = ParamSpec('_P')
 _LOGGER: Incomplete
 SCAN_INTERVAL: Final[Incomplete]
 

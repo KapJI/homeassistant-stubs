@@ -80,6 +80,7 @@ class _State:
     last_updated: datetime
     state: str | float | int
     def __init__(self, last_updated, state) -> None: ...
+    def __mypy-replace(*, last_updated, state) -> None: ...
 
 class Filter:
     states: Incomplete

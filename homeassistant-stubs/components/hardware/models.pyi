@@ -7,6 +7,7 @@ class BoardInfo:
     model: str | None
     revision: str | None
     def __init__(self, hassio_board_id, manufacturer, model, revision) -> None: ...
+    def __mypy-replace(*, hassio_board_id, manufacturer, model, revision) -> None: ...
 
 class USBInfo:
     vid: str
@@ -15,6 +16,7 @@ class USBInfo:
     manufacturer: str | None
     description: str | None
     def __init__(self, vid, pid, serial_number, manufacturer, description) -> None: ...
+    def __mypy-replace(*, vid, pid, serial_number, manufacturer, description) -> None: ...
 
 class HardwareInfo:
     name: str | None
@@ -23,6 +25,7 @@ class HardwareInfo:
     dongle: USBInfo | None
     url: str | None
     def __init__(self, name, board, config_entries, dongle, url) -> None: ...
+    def __mypy-replace(*, name, board, config_entries, dongle, url) -> None: ...
 
 class HardwareProtocol(Protocol):
     def async_info(self, hass: HomeAssistant) -> list[HardwareInfo]: ...

@@ -185,7 +185,7 @@ def create_github_release(version: str, gh_repo: Repository) -> None:
         tag=version,
         name=version,
         target_commitish="main",
-        message=f"Generated for `homeassitant {version}`.",
+        message=f"Generated for `homeassistant {version}`.",
         prerelease=AwesomeVersion(version).modifier is not None,
     )
 

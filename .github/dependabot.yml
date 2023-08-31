@@ -6,6 +6,7 @@ updates:
       interval: daily
     ignore:
       - dependency-name: "homeassistant"
+      - dependency-name: "mypy"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:

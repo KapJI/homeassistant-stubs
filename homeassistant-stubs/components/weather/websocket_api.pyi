@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.json import JsonValueType as JsonValueType
 from typing import Any
 
 FORECAST_TYPE_TO_FLAG: Incomplete

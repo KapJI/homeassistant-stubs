@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pdunehd import DuneHDPlayer as DuneHDPlayer
 from typing import Final
@@ -17,20 +17,16 @@ class DuneHDPlayerEntity(MediaPlayerEntity):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _player: Incomplete
-    _name: Incomplete
     _media_title: Incomplete
     _state: Incomplete
-    _unique_id: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, player: DuneHDPlayer, name: str, unique_id: str) -> None: ...
     def update(self) -> None: ...
     @property
     def state(self) -> MediaPlayerState: ...
     @property
     def available(self) -> bool: ...
-    @property
-    def unique_id(self) -> str: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
     @property
     def volume_level(self) -> float: ...
     @property

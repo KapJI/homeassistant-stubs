@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from sfrbox_api.models import DslInfo, FtthInfo, SystemInfo as SystemInfo, WanInfo
@@ -18,11 +18,9 @@ _T = TypeVar('_T')
 class SFRBoxBinarySensorMixin(Generic[_T]):
     value_fn: Callable[[_T], bool | None]
     def __init__(self, value_fn) -> None: ...
-    def __mypy-replace(*, value_fn) -> None: ...
 
 class SFRBoxBinarySensorEntityDescription(BinarySensorEntityDescription, SFRBoxBinarySensorMixin[_T]):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 DSL_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[DslInfo], ...]
 FTTH_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[FtthInfo], ...]

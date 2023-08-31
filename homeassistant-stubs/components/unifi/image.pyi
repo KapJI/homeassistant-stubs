@@ -1,5 +1,5 @@
 from .controller import UniFiController as UniFiController
-from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_wlan_device_info_fn as async_wlan_device_info_fn
+from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
 from aiounifi.models.api import ApiItemT
@@ -18,11 +18,9 @@ class UnifiImageEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
     image_fn: Callable[[UniFiController, ApiItemT], bytes]
     value_fn: Callable[[ApiItemT], str | None]
     def __init__(self, image_fn, value_fn) -> None: ...
-    def __mypy-replace(*, image_fn, value_fn) -> None: ...
 
 class UnifiImageEntityDescription(ImageEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiImageEntityDescriptionMixin[HandlerT, ApiItemT]):
     def __init__(self, image_fn, value_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, image_fn, value_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiImageEntityDescription, ...]
 

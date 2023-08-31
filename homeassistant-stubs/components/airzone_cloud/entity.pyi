@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -17,6 +17,12 @@ class AirzoneAidooEntity(AirzoneEntity):
     aidoo_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, aidoo_id: str, aidoo_data: dict[str, Any]) -> None: ...
+    def get_airzone_value(self, key: str) -> Any: ...
+
+class AirzoneSystemEntity(AirzoneEntity):
+    system_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, system_id: str, system_data: dict[str, Any]) -> None: ...
     def get_airzone_value(self, key: str) -> Any: ...
 
 class AirzoneWebServerEntity(AirzoneEntity):

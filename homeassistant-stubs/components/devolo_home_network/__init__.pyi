@@ -1,7 +1,7 @@
-from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_WIFI_CLIENTS as CONNECTED_WIFI_CLIENTS, DOMAIN as DOMAIN, LONG_UPDATE_INTERVAL as LONG_UPDATE_INTERVAL, NEIGHBORING_WIFI_NETWORKS as NEIGHBORING_WIFI_NETWORKS, SHORT_UPDATE_INTERVAL as SHORT_UPDATE_INTERVAL, SWITCH_GUEST_WIFI as SWITCH_GUEST_WIFI, SWITCH_LEDS as SWITCH_LEDS
+from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_WIFI_CLIENTS as CONNECTED_WIFI_CLIENTS, DOMAIN as DOMAIN, LONG_UPDATE_INTERVAL as LONG_UPDATE_INTERVAL, NEIGHBORING_WIFI_NETWORKS as NEIGHBORING_WIFI_NETWORKS, REGULAR_FIRMWARE as REGULAR_FIRMWARE, SHORT_UPDATE_INTERVAL as SHORT_UPDATE_INTERVAL, SWITCH_GUEST_WIFI as SWITCH_GUEST_WIFI, SWITCH_LEDS as SWITCH_LEDS
 from _typeshed import Incomplete
 from devolo_plc_api import Device
-from devolo_plc_api.device_api import ConnectedStationInfo as ConnectedStationInfo, NeighborAPInfo as NeighborAPInfo, WifiGuestAccessGet as WifiGuestAccessGet
+from devolo_plc_api.device_api import ConnectedStationInfo as ConnectedStationInfo, NeighborAPInfo as NeighborAPInfo, UpdateFirmwareCheck as UpdateFirmwareCheck, WifiGuestAccessGet as WifiGuestAccessGet
 from devolo_plc_api.plcnet_api import LogicalNetwork as LogicalNetwork
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -5,9 +5,9 @@ from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.web_request import FileField
 from homeassistant.components import http as http, websocket_api as websocket_api
+from homeassistant.components.http import require_admin as require_admin
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import Unauthorized as Unauthorized
 from homeassistant.util import raise_if_invalid_filename as raise_if_invalid_filename, raise_if_invalid_path as raise_if_invalid_path
 from pathlib import Path
 from typing import Any

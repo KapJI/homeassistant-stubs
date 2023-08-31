@@ -1,6 +1,6 @@
 import asyncio
 from . import device_registry as dr, entity_registry as er
-from .device_registry import DeviceEntryType as DeviceEntryType, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
+from .device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from .entity_platform import EntityPlatform as EntityPlatform
 from .event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from .typing import EventType as EventType, StateType as StateType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
@@ -16,8 +16,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Contex
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
-from typing import Any, Final, Literal, TypeVar, TypedDict
-from yarl import URL
+from typing import Any, Final, Literal, TypeVar
 
 _T = TypeVar('_T')
 _LOGGER: Incomplete
@@ -35,22 +34,6 @@ def get_capability(hass: HomeAssistant, entity_id: str, capability: str) -> Any 
 def get_device_class(hass: HomeAssistant, entity_id: str) -> str | None: ...
 def get_supported_features(hass: HomeAssistant, entity_id: str) -> int: ...
 def get_unit_of_measurement(hass: HomeAssistant, entity_id: str) -> str | None: ...
-
-class DeviceInfo(TypedDict, total=False):
-    configuration_url: str | URL | None
-    connections: set[tuple[str, str]]
-    default_manufacturer: str
-    default_model: str
-    default_name: str
-    entry_type: DeviceEntryType | None
-    identifiers: set[tuple[str, str]]
-    manufacturer: str | None
-    model: str | None
-    name: str | None
-    suggested_area: str | None
-    sw_version: str | None
-    hw_version: str | None
-    via_device: tuple[str, str]
 
 ENTITY_CATEGORIES_SCHEMA: Final[Incomplete]
 
@@ -72,7 +55,6 @@ class EntityDescription:
     translation_key: str | None
     unit_of_measurement: str | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class Entity(ABC):
     entity_id: str
@@ -182,6 +164,7 @@ class Entity(ABC):
     def async_write_ha_state(self) -> None: ...
     def _stringify_state(self, available: bool) -> str: ...
     def _friendly_name_internal(self) -> str | None: ...
+    def _async_generate_attributes(self) -> tuple[str, dict[str, Any]]: ...
     def _async_write_ha_state(self) -> None: ...
     def schedule_update_ha_state(self, force_refresh: bool = ...) -> None: ...
     def async_schedule_update_ha_state(self, force_refresh: bool = ...) -> None: ...
@@ -209,7 +192,6 @@ class Entity(ABC):
 
 class ToggleEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class ToggleEntity(Entity):
     entity_description: ToggleEntityDescription

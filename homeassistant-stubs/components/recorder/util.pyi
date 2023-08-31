@@ -14,10 +14,10 @@ from sqlalchemy.orm.query import Query as Query
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
 from sqlite3.dbapi2 import Cursor as SQLiteCursor
-from typing import Any, NoReturn, ParamSpec, TypeVar
+from typing import Any, NoReturn, TypeVar
 
 _RecorderT = TypeVar('_RecorderT', bound='Recorder')
-_P = ParamSpec('_P')
+_P: Incomplete
 _LOGGER: Incomplete
 RETRIES: int
 QUERY_RETRY_WAIT: float

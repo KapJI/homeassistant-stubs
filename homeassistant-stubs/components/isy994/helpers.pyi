@@ -2,7 +2,7 @@ from .const import DEFAULT_PROGRAM_STRING as DEFAULT_PROGRAM_STRING, DOMAIN as D
 from .models import IsyData as IsyData
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, Platform as Platform
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from pyisy.nodes import Group as Group, Node as Node, Nodes as Nodes
 from pyisy.programs import Programs as Programs
 

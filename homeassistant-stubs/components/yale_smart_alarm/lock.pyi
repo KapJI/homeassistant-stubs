@@ -4,7 +4,7 @@ from .entity import YaleEntity as YaleEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_CODE as ATTR_CODE, CONF_CODE as CONF_CODE
+from homeassistant.const import ATTR_CODE as ATTR_CODE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

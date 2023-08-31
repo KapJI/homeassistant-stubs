@@ -8,8 +8,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntry
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_FILENAME as CONF_FILENAME, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PORT as CONF_PORT, CONF_URL as CONF_URL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 DATA_PAIRED_SENSOR_MANAGER: str
@@ -28,7 +29,6 @@ class GuardianData:
     valve_controller_coordinators: dict[str, GuardianDataUpdateCoordinator]
     paired_sensor_manager: PairedSensorManager
     def __init__(self, entry, client, valve_controller_coordinators, paired_sensor_manager) -> None: ...
-    def __mypy-replace(*, entry, client, valve_controller_coordinators, paired_sensor_manager) -> None: ...
 
 def async_get_entry_id_for_service_call(hass: HomeAssistant, call: ServiceCall) -> str: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -65,11 +65,9 @@ class PairedSensorEntity(GuardianEntity):
 class ValveControllerEntityDescriptionMixin:
     api_category: str
     def __init__(self, api_category) -> None: ...
-    def __mypy-replace(*, api_category) -> None: ...
 
 class ValveControllerEntityDescription(EntityDescription, ValveControllerEntityDescriptionMixin):
     def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class ValveControllerEntity(GuardianEntity):
     _diagnostics_coordinator: Incomplete

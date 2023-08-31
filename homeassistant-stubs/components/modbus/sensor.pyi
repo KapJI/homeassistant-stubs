@@ -5,7 +5,7 @@ from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, RestoreSensor as RestoreSensor, SensorEntity as SensorEntity
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -22,6 +22,7 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     _coordinator: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
+    _attr_device_class: Incomplete
     def __init__(self, hub: ModbusHub, entry: dict[str, Any], slave_count: int) -> None: ...
     async def async_setup_slaves(self, hass: HomeAssistant, slave_count: int, entry: dict[str, Any]) -> list[SlaveSensor]: ...
     _attr_native_value: Incomplete
@@ -34,6 +35,8 @@ class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], Re
     _idx: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
+    _attr_state_class: Incomplete
     _attr_available: bool
     def __init__(self, coordinator: DataUpdateCoordinator[list[int] | None], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_native_value: Incomplete

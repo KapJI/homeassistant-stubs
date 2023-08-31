@@ -11,7 +11,7 @@ from homeassistant.components.stream import CONF_EXTRA_PART_WAIT_TIME as CONF_EX
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.util.dt import utcnow as utcnow
@@ -30,8 +30,12 @@ class NestCamera(Camera):
     _stream: Incomplete
     _create_stream_url_lock: Incomplete
     _stream_refresh_unsub: Incomplete
-    _attr_is_streaming: Incomplete
+    _attr_is_streaming: bool
+    _attr_supported_features: Incomplete
+    _rtsp_live_stream_trait: Incomplete
     def __init__(self, device: Device) -> None: ...
+    @property
+    def use_stream_for_stills(self) -> bool: ...
     @property
     def unique_id(self) -> str: ...
     @property
@@ -40,8 +44,6 @@ class NestCamera(Camera):
     def brand(self) -> str | None: ...
     @property
     def model(self) -> str | None: ...
-    @property
-    def supported_features(self) -> CameraEntityFeature: ...
     @property
     def frontend_stream_type(self) -> StreamType | None: ...
     @property

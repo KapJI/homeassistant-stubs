@@ -2,8 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import RidwellDataUpdateCoordinator as RidwellDataUpdateCoordinator
 from _typeshed import Incomplete
 from aioridwell.model import RidwellAccount as RidwellAccount, RidwellPickupEvent as RidwellPickupEvent
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class RidwellEntity(CoordinatorEntity[RidwellDataUpdateCoordinator]):

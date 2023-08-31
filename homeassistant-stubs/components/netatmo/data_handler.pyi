@@ -27,7 +27,6 @@ class NetatmoDevice:
     parent_id: str
     signal_name: str
     def __init__(self, data_handler, device, parent_id, signal_name) -> None: ...
-    def __mypy-replace(*, data_handler, device, parent_id, signal_name) -> None: ...
 
 class NetatmoHome:
     data_handler: NetatmoDataHandler
@@ -35,7 +34,6 @@ class NetatmoHome:
     parent_id: str
     signal_name: str
     def __init__(self, data_handler, home, parent_id, signal_name) -> None: ...
-    def __mypy-replace(*, data_handler, home, parent_id, signal_name) -> None: ...
 
 class NetatmoRoom:
     data_handler: NetatmoDataHandler
@@ -43,7 +41,6 @@ class NetatmoRoom:
     parent_id: str
     signal_name: str
     def __init__(self, data_handler, room, parent_id, signal_name) -> None: ...
-    def __mypy-replace(*, data_handler, room, parent_id, signal_name) -> None: ...
 
 class NetatmoPublisher:
     name: str
@@ -53,7 +50,6 @@ class NetatmoPublisher:
     method: str
     kwargs: dict
     def __init__(self, name, interval, next_scan, subscriptions, method, kwargs) -> None: ...
-    def __mypy-replace(*, name, interval, next_scan, subscriptions, method, kwargs) -> None: ...
 
 class NetatmoDataHandler:
     account: pyatmo.AsyncAccount

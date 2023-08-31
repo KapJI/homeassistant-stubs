@@ -4,7 +4,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from abc import abstractmethod
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from surepy.entities import SurepyEntity as SurepyEntity
 

@@ -1,10 +1,11 @@
 from .const import CONF_NETWORK as CONF_NETWORK, DOMAIN as DOMAIN
+from .models import IsyData as IsyData
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyisy import ISY as ISY
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty

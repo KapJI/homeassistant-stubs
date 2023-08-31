@@ -67,7 +67,6 @@ class SsdpServiceInfo(BaseServiceInfo):
     ssdp_headers: Mapping[str, Any]
     x_homeassistant_matching_domains: set[str]
     def __init__(self, ssdp_usn, ssdp_st, upnp, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
-    def __mypy-replace(*, ssdp_usn, ssdp_st, upnp, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
 
 SsdpChange: Incomplete
 SsdpCallback = Callable[[SsdpServiceInfo, SsdpChange], Awaitable]

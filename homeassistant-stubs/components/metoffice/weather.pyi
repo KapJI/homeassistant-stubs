@@ -1,5 +1,5 @@
 from . import get_device_info as get_device_info
-from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_CLASSES as CONDITION_CLASSES, DOMAIN as DOMAIN, METOFFICE_COORDINATES as METOFFICE_COORDINATES, METOFFICE_DAILY_COORDINATOR as METOFFICE_DAILY_COORDINATOR, METOFFICE_HOURLY_COORDINATOR as METOFFICE_HOURLY_COORDINATOR, METOFFICE_NAME as METOFFICE_NAME, MODE_DAILY as MODE_DAILY
+from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_MAP as CONDITION_MAP, DOMAIN as DOMAIN, METOFFICE_COORDINATES as METOFFICE_COORDINATES, METOFFICE_DAILY_COORDINATOR as METOFFICE_DAILY_COORDINATOR, METOFFICE_HOURLY_COORDINATOR as METOFFICE_HOURLY_COORDINATOR, METOFFICE_NAME as METOFFICE_NAME, MODE_DAILY as MODE_DAILY
 from .data import MetOfficeData as MetOfficeData
 from _typeshed import Incomplete
 from datapoint.Timestep import Timestep as Timestep
@@ -13,7 +13,6 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _build_forecast_data(timestep: Timestep) -> Forecast: ...
-def _get_weather_condition(metoffice_code: str) -> str | None: ...
 
 class MetOfficeWeather(CoordinatorEntity[DataUpdateCoordinator[MetOfficeData]], WeatherEntity):
     _attr_attribution = ATTRIBUTION

@@ -6,8 +6,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platfo
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from nextdns import AnalyticsDnssec, AnalyticsEncryption, AnalyticsIpVersions, AnalyticsProtocols, AnalyticsStatus, ConnectionStatus, NextDns, Settings
 from nextdns.model import NextDnsData
@@ -47,7 +46,7 @@ class NextDnsConnectionUpdateCoordinator(NextDnsUpdateCoordinator[ConnectionStat
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-COORDINATORS: Incomplete
+COORDINATORS: list[tuple[str, type[NextDnsUpdateCoordinator], timedelta]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

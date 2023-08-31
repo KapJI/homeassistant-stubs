@@ -3,7 +3,7 @@ from .controller import OmadaSiteController as OmadaSiteController
 from .coordinator import OmadaCoordinator as OmadaCoordinator
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity
 from _typeshed import Incomplete
-from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -30,7 +30,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class OmadaDeviceUpdate(OmadaDeviceEntity[FirmwareUpdateStatus], UpdateEntity):
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
-    _attr_name: str
+    _attr_device_class: Incomplete
     _mac: Incomplete
     _omada_client: Incomplete
     _attr_unique_id: Incomplete

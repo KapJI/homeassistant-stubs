@@ -15,14 +15,12 @@ class ToloNumberEntityDescriptionBase:
     getter: Callable[[SettingsInfo], int | None]
     setter: Callable[[ToloClient, int | None], Any]
     def __init__(self, getter, setter) -> None: ...
-    def __mypy-replace(*, getter, setter) -> None: ...
 
 class ToloNumberEntityDescription(NumberEntityDescription, ToloNumberEntityDescriptionBase):
     entity_category: Incomplete
     native_min_value: int
     native_step: int
     def __init__(self, getter, setter, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
-    def __mypy-replace(*, getter, setter, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 NUMBERS: Incomplete
 

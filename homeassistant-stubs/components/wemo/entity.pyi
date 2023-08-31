@@ -1,7 +1,7 @@
 from .wemo_device import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
 from collections.abc import Generator
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 _LOGGER: Incomplete

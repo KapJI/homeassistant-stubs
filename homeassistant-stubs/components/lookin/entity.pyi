@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from abc import abstractmethod
 from aiolookin import Climate as Climate, MeteoSensor, Remote
 from aiolookin.models import Device as Device, UDPEvent as UDPEvent
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 LOGGER: Incomplete

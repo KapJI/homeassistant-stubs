@@ -5,7 +5,8 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platfo
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 from pyefergy import Efergy
 
 PLATFORMS: Incomplete

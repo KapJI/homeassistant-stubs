@@ -1,10 +1,11 @@
 from ..helpers.frame import MissingIntegrationFrame as MissingIntegrationFrame, get_integration_frame as get_integration_frame
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from typing import Any, ParamSpec, TypeVar
+from typing import Any, TypeVar
 
 _ObjectT = TypeVar('_ObjectT', bound=object)
 _R = TypeVar('_R')
-_P = ParamSpec('_P')
+_P: Incomplete
 
 def deprecated_substitute(substitute_name: str) -> Callable[[Callable[[_ObjectT], Any]], Callable[[_ObjectT], Any]]: ...
 def get_deprecated(config: dict[str, Any], new_name: str, old_name: str, default: Any | None = ...) -> Any | None: ...

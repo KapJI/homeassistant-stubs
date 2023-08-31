@@ -20,7 +20,6 @@ class _HaWrappedBleakBackend:
     client: type[BaseBleakClient]
     source: str | None
     def __init__(self, device, scanner, client, source) -> None: ...
-    def __mypy-replace(*, device, scanner, client, source) -> None: ...
 
 class HaBleakScannerWrapper(BaseBleakScanner):
     _detection_cancel: Incomplete

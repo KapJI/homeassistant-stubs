@@ -5,8 +5,8 @@ from collections.abc import Callable as Callable, Sequence
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from hyperion import client as client
 from types import MappingProxyType
@@ -30,12 +30,13 @@ ICON_EFFECT: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HyperionLight(LightEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_color_mode: Incomplete
     _attr_should_poll: bool
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
     _unique_id: Incomplete
-    _name: Incomplete
     _device_id: Incomplete
     _instance_name: Incomplete
     _options: Incomplete
@@ -48,11 +49,8 @@ class HyperionLight(LightEntity):
     _client_callbacks: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, options: MappingProxyType[str, Any], hyperion_client: client.HyperionClient) -> None: ...
     def _compute_unique_id(self, server_id: str, instance_num: int) -> str: ...
-    def _compute_name(self, instance_name: str) -> str: ...
     @property
     def entity_registry_enabled_default(self) -> bool: ...
-    @property
-    def name(self) -> str: ...
     @property
     def brightness(self) -> int: ...
     @property

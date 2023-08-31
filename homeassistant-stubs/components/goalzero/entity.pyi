@@ -3,7 +3,8 @@ from .coordinator import GoalZeroDataUpdateCoordinator as GoalZeroDataUpdateCoor
 from _typeshed import Incomplete
 from goalzero import Yeti as Yeti
 from homeassistant.const import ATTR_MODEL as ATTR_MODEL, CONF_NAME as CONF_NAME
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class GoalZeroEntity(CoordinatorEntity[GoalZeroDataUpdateCoordinator]):

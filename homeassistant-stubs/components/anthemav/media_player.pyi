@@ -1,4 +1,4 @@
-from .const import ANTHEMAV_UDATE_SIGNAL as ANTHEMAV_UDATE_SIGNAL, CONF_MODEL as CONF_MODEL, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from .const import ANTHEMAV_UPDATE_SIGNAL as ANTHEMAV_UPDATE_SIGNAL, CONF_MODEL as CONF_MODEL, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from _typeshed import Incomplete
 from anthemav.connection import Connection as Connection
 from anthemav.protocol import AVR as AVR
@@ -6,8 +6,8 @@ from homeassistant.components.media_player import MediaPlayerDeviceClass as Medi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 _LOGGER: Incomplete

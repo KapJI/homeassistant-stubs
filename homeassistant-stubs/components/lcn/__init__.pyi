@@ -9,7 +9,8 @@ from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_RESOURCE as CONF_RESOURCE, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as dr
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete

@@ -1,4 +1,4 @@
-from .entity import DeviceInfo as DeviceInfo
+from .device_registry import DeviceInfo as DeviceInfo
 from homeassistant import const as const
 from sensor_state_data import SensorDeviceInfo as SensorDeviceInfo
 

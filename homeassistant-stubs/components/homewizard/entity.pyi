@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class HomeWizardEntity(CoordinatorEntity[HWEnergyDeviceUpdateCoordinator]):

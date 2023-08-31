@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant import core as core
+from homeassistant import core as core, loader as loader
 from homeassistant.config import get_default_config_dir as get_default_config_dir
 from homeassistant.config_entries import ConfigEntries as ConfigEntries
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

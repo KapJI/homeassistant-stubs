@@ -16,11 +16,9 @@ _METER_DIRECTION_IMPORT: str
 class PowerwallRequiredKeysMixin:
     value_fn: Callable[[Meter], float]
     def __init__(self, value_fn) -> None: ...
-    def __mypy-replace(*, value_fn) -> None: ...
 
 class PowerwallSensorEntityDescription(SensorEntityDescription, PowerwallRequiredKeysMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
-    def __mypy-replace(*, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 def _get_meter_power(meter: Meter) -> float: ...
 def _get_meter_frequency(meter: Meter) -> float: ...
@@ -32,7 +30,7 @@ POWERWALL_INSTANT_SENSORS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PowerWallChargeSensor(PowerWallEntity, SensorEntity):
-    _attr_name: str
+    _attr_translation_key: str
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_device_class: Incomplete
@@ -44,14 +42,14 @@ class PowerWallChargeSensor(PowerWallEntity, SensorEntity):
 class PowerWallEnergySensor(PowerWallEntity, SensorEntity):
     entity_description: PowerwallSensorEntityDescription
     _meter: Incomplete
-    _attr_name: Incomplete
+    _attr_translation_key: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType, description: PowerwallSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> float: ...
 
 class PowerWallBackupReserveSensor(PowerWallEntity, SensorEntity):
-    _attr_name: str
+    _attr_translation_key: str
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_device_class: Incomplete
@@ -65,7 +63,7 @@ class PowerWallEnergyDirectionSensor(PowerWallEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     _attr_device_class: Incomplete
     _meter: Incomplete
-    _attr_name: Incomplete
+    _attr_translation_key: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType, meter_direction: str) -> None: ...
     @property

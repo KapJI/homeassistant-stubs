@@ -9,8 +9,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
@@ -23,8 +23,9 @@ HA_TO_DEVICE_FAN: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SwitcherClimateEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], ClimateEntity):
-    _remote: Incomplete
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _remote: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_min_temp: Incomplete

@@ -1,4 +1,4 @@
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from typing import Final, NamedTuple, TypedDict
 
 DOMAIN: Final[str]

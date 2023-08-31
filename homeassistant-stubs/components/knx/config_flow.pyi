@@ -1,15 +1,14 @@
 import abc
 from .const import CONF_KNX_AUTOMATIC as CONF_KNX_AUTOMATIC, CONF_KNX_CONNECTION_TYPE as CONF_KNX_CONNECTION_TYPE, CONF_KNX_DEFAULT_RATE_LIMIT as CONF_KNX_DEFAULT_RATE_LIMIT, CONF_KNX_DEFAULT_STATE_UPDATER as CONF_KNX_DEFAULT_STATE_UPDATER, CONF_KNX_INDIVIDUAL_ADDRESS as CONF_KNX_INDIVIDUAL_ADDRESS, CONF_KNX_KNXKEY_PASSWORD as CONF_KNX_KNXKEY_PASSWORD, CONF_KNX_LOCAL_IP as CONF_KNX_LOCAL_IP, CONF_KNX_MCAST_GRP as CONF_KNX_MCAST_GRP, CONF_KNX_MCAST_PORT as CONF_KNX_MCAST_PORT, CONF_KNX_RATE_LIMIT as CONF_KNX_RATE_LIMIT, CONF_KNX_ROUTE_BACK as CONF_KNX_ROUTE_BACK, CONF_KNX_ROUTING as CONF_KNX_ROUTING, CONF_KNX_ROUTING_BACKBONE_KEY as CONF_KNX_ROUTING_BACKBONE_KEY, CONF_KNX_ROUTING_SECURE as CONF_KNX_ROUTING_SECURE, CONF_KNX_ROUTING_SYNC_LATENCY_TOLERANCE as CONF_KNX_ROUTING_SYNC_LATENCY_TOLERANCE, CONF_KNX_SECURE_DEVICE_AUTHENTICATION as CONF_KNX_SECURE_DEVICE_AUTHENTICATION, CONF_KNX_SECURE_USER_ID as CONF_KNX_SECURE_USER_ID, CONF_KNX_SECURE_USER_PASSWORD as CONF_KNX_SECURE_USER_PASSWORD, CONF_KNX_STATE_UPDATER as CONF_KNX_STATE_UPDATER, CONF_KNX_TELEGRAM_LOG_SIZE as CONF_KNX_TELEGRAM_LOG_SIZE, CONF_KNX_TUNNELING as CONF_KNX_TUNNELING, CONF_KNX_TUNNELING_TCP as CONF_KNX_TUNNELING_TCP, CONF_KNX_TUNNELING_TCP_SECURE as CONF_KNX_TUNNELING_TCP_SECURE, CONF_KNX_TUNNEL_ENDPOINT_IA as CONF_KNX_TUNNEL_ENDPOINT_IA, DEFAULT_ROUTING_IA as DEFAULT_ROUTING_IA, DOMAIN as DOMAIN, KNXConfigEntryData as KNXConfigEntryData, TELEGRAM_LOG_DEFAULT as TELEGRAM_LOG_DEFAULT, TELEGRAM_LOG_MAX as TELEGRAM_LOG_MAX
+from .helpers.keyring import DEFAULT_KNX_KEYRING_FILENAME as DEFAULT_KNX_KEYRING_FILENAME, save_uploaded_knxkeys_file as save_uploaded_knxkeys_file
 from .schema import ia_validator as ia_validator, ip_v4_validator as ip_v4_validator
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowHandler as FlowHandler, FlowResult as FlowResult
 from homeassistant.helpers import selector as selector
-from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import Any, Final
 from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
@@ -19,7 +18,6 @@ CONF_KNX_GATEWAY: Final[str]
 CONF_MAX_RATE_LIMIT: Final[int]
 DEFAULT_ENTRY_DATA: Incomplete
 CONF_KEYRING_FILE: Final[str]
-DEFAULT_KNX_KEYRING_FILENAME: Final[str]
 CONF_KNX_TUNNELING_TYPE: Final[str]
 CONF_KNX_TUNNELING_TYPE_LABELS: Final[Incomplete]
 OPTION_MANUAL_TUNNEL: Final[str]
@@ -53,7 +51,6 @@ class KNXCommonFlow(ABC, FlowHandler, metaclass=abc.ABCMeta):
     async def async_step_secure_knxkeys(self, user_input: dict[str, Any] | None = ...) -> FlowResult: ...
     async def async_step_knxkeys_tunnel_select(self, user_input: dict | None = ...) -> FlowResult: ...
     async def async_step_routing(self, user_input: dict | None = ...) -> FlowResult: ...
-    async def _save_uploaded_knxkeys_file(self, uploaded_file_id: str, password: str) -> dict[str, str]: ...
 
 class KNXConfigFlow(KNXCommonFlow, ConfigFlow, domain=DOMAIN):
     VERSION: int

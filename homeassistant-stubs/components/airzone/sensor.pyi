@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
-from .entity import AirzoneEntity as AirzoneEntity, AirzoneWebServerEntity as AirzoneWebServerEntity, AirzoneZoneEntity as AirzoneZoneEntity
+from .entity import AirzoneEntity as AirzoneEntity, AirzoneHotWaterEntity as AirzoneHotWaterEntity, AirzoneWebServerEntity as AirzoneWebServerEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Final
 
+HOT_WATER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 WEBSERVER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 ZONE_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 
@@ -18,6 +19,13 @@ class AirzoneSensor(AirzoneEntity, SensorEntity):
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...
+
+class AirzoneHotWaterSensor(AirzoneHotWaterEntity, AirzoneSensor):
+    _attr_has_entity_name: bool
+    _attr_unique_id: Incomplete
+    entity_description: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, description: SensorEntityDescription, entry: ConfigEntry) -> None: ...
 
 class AirzoneWebServerSensor(AirzoneWebServerEntity, AirzoneSensor):
     _attr_name: Incomplete

@@ -4,8 +4,9 @@ from .coordinator import IBeaconCoordinator as IBeaconCoordinator, signal_seen a
 from _typeshed import Incomplete
 from abc import abstractmethod
 from homeassistant.core import callback as callback
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
 
 class IBeaconEntity(Entity, metaclass=abc.ABCMeta):

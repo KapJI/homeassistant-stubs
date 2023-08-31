@@ -10,8 +10,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
@@ -19,11 +19,9 @@ class SwitcherThermostatButtonDescriptionMixin:
     press_fn: Callable[[SwitcherType2Api, SwitcherBreezeRemote], SwitcherBaseResponse]
     supported: Callable[[SwitcherBreezeRemote], bool]
     def __init__(self, press_fn, supported) -> None: ...
-    def __mypy-replace(*, press_fn, supported) -> None: ...
 
 class SwitcherThermostatButtonEntityDescription(ButtonEntityDescription, SwitcherThermostatButtonDescriptionMixin):
     def __init__(self, press_fn, supported, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, press_fn, supported, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 THERMOSTAT_BUTTONS: Incomplete
 
@@ -31,8 +29,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class SwitcherThermostatButtonEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], ButtonEntity):
     entity_description: SwitcherThermostatButtonEntityDescription
+    _attr_has_entity_name: bool
     _remote: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, description: SwitcherThermostatButtonEntityDescription, remote: SwitcherBreezeRemote) -> None: ...

@@ -4,8 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CONFIGURATION_URL as ATTR_CONFIGURATION_URL, ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_NAME as CONF_NAME, CONF_PARAMS as CONF_PARAMS, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import CONNECTION_UPNP as CONNECTION_UPNP
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_UPNP as CONNECTION_UPNP, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pywemo import WeMoDevice as WeMoDevice
 from pywemo.subscribe import SubscriptionRegistry as SubscriptionRegistry
@@ -24,8 +23,6 @@ class Options:
     enable_long_press: bool
     def __post_init__(self) -> None: ...
     def __init__(self, enable_subscription, enable_long_press) -> None: ...
-    def __mypy-replace(*, enable_subscription, enable_long_press) -> None: ...
-    def __mypy-post_init(self) -> None: ...
 
 class DeviceCoordinator(DataUpdateCoordinator[None]):
     options: Options | None

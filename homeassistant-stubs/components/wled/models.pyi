@@ -1,7 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class WLEDEntity(CoordinatorEntity[WLEDDataUpdateCoordinator]):

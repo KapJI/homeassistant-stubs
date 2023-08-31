@@ -9,7 +9,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
@@ -26,6 +25,7 @@ FAN_INV_MODES: Incomplete
 MAX_FAN_DURATION: int
 MIN_TEMP: int
 MAX_TEMP: int
+MIN_TEMP_RANGE: float
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -37,17 +37,15 @@ class ThermostatEntity(ClimateEntity):
     _attr_name: Incomplete
     _device: Incomplete
     _device_info: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    _attr_temperature_unit: Incomplete
+    _attr_hvac_modes: Incomplete
     def __init__(self, device: Device) -> None: ...
-    @property
-    def unique_id(self) -> str | None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
     @property
     def available(self) -> bool: ...
     _attr_supported_features: Incomplete
     async def async_added_to_hass(self) -> None: ...
-    @property
-    def temperature_unit(self) -> str: ...
     @property
     def current_temperature(self) -> float | None: ...
     @property
@@ -60,10 +58,6 @@ class ThermostatEntity(ClimateEntity):
     def _target_temperature_trait(self) -> ThermostatHeatCoolTrait | None: ...
     @property
     def hvac_mode(self) -> HVACMode: ...
-    @property
-    def hvac_modes(self) -> list[HVACMode]: ...
-    @property
-    def _get_device_hvac_modes(self) -> set[str]: ...
     @property
     def hvac_action(self) -> HVACAction | None: ...
     @property

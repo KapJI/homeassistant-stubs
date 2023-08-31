@@ -9,7 +9,7 @@ from homeassistant.components.media_player import MediaPlayerEntity as MediaPlay
 from homeassistant.components.media_player.browse_media import BrowseMedia as BrowseMedia
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from typing import Any

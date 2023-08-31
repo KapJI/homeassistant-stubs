@@ -13,8 +13,7 @@ from homeassistant.exceptions import MaxLengthExceeded as MaxLengthExceeded
 from homeassistant.util import slugify as slugify
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
-from typing import Any, Literal, TypeVar, TypedDict
-from typing_extensions import NotRequired
+from typing import Any, Literal, NotRequired, TypeVar, TypedDict
 
 T = TypeVar('T')
 DATA_REGISTRY: str

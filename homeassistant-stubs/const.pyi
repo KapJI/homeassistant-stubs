@@ -31,6 +31,7 @@ class Platform(StrEnum):
     HUMIDIFIER: str
     IMAGE: str
     IMAGE_PROCESSING: str
+    LAWN_MOWER: str
     LIGHT: str
     LOCK: str
     MAILBOX: str
@@ -49,6 +50,7 @@ class Platform(StrEnum):
     TTS: str
     VACUUM: str
     UPDATE: str
+    WAKE_WORD: str
     WATER_HEATER: str
     WEATHER: str
 

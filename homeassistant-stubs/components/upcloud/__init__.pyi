@@ -6,9 +6,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_USERNAME as CONF_USERNAME, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PROBLEM as STATE_PROBLEM
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
@@ -36,7 +35,6 @@ class UpCloudDataUpdateCoordinator(DataUpdateCoordinator[dict[str, upcloud_api.S
 class UpCloudHassData:
     coordinators: dict[str, UpCloudDataUpdateCoordinator]
     def __init__(self, coordinators) -> None: ...
-    def __mypy-replace(*, coordinators) -> None: ...
 
 def _config_entry_update_signal_name(config_entry: ConfigEntry) -> str: ...
 async def _async_signal_options_update(hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...

@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entity import VelbusEntity as VelbusEntity
+from .entity import VelbusEntity as VelbusEntity, api_call as api_call
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

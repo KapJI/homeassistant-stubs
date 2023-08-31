@@ -1,6 +1,5 @@
 from . import entity_registry as entity_registry, storage as storage
 from .debounce import Debouncer as Debouncer
-from .entity import DeviceInfo as DeviceInfo
 from .frame import report as report
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
@@ -40,6 +39,23 @@ class DeviceEntryDisabler(StrEnum):
 DISABLED_CONFIG_ENTRY: Incomplete
 DISABLED_INTEGRATION: Incomplete
 DISABLED_USER: Incomplete
+
+class DeviceInfo(TypedDict, total=False):
+    configuration_url: str | URL | None
+    connections: set[tuple[str, str]]
+    default_manufacturer: str
+    default_model: str
+    default_name: str
+    entry_type: DeviceEntryType | None
+    identifiers: set[tuple[str, str]]
+    manufacturer: str | None
+    model: str | None
+    name: str | None
+    suggested_area: str | None
+    sw_version: str | None
+    hw_version: str | None
+    via_device: tuple[str, str]
+
 DEVICE_INFO_TYPES: Incomplete
 DEVICE_INFO_KEYS: Incomplete
 
@@ -62,7 +78,7 @@ class DeviceInfoError(HomeAssistantError):
     domain: Incomplete
     def __init__(self, domain: str, device_info: DeviceInfo, message: str) -> None: ...
 
-def _validate_device_info(config_entry: ConfigEntry | None, device_info: DeviceInfo) -> str: ...
+def _validate_device_info(config_entry: ConfigEntry, device_info: DeviceInfo) -> str: ...
 def _validate_configuration_url(value: Any) -> str | None: ...
 
 class DeviceEntry:

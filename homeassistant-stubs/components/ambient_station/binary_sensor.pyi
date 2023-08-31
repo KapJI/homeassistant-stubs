@@ -1,5 +1,5 @@
-from . import AmbientWeatherEntity as AmbientWeatherEntity
 from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DOMAIN as DOMAIN
+from .entity import AmbientWeatherEntity as AmbientWeatherEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -56,11 +56,9 @@ TYPE_RELAY9: str
 class AmbientBinarySensorDescriptionMixin:
     on_state: Literal[0, 1]
     def __init__(self, on_state) -> None: ...
-    def __mypy-replace(*, on_state) -> None: ...
 
 class AmbientBinarySensorDescription(BinarySensorEntityDescription, AmbientBinarySensorDescriptionMixin):
     def __init__(self, on_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, on_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

@@ -2,7 +2,8 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from .executor import OverkizExecutor as OverkizExecutor
 from _typeshed import Incomplete
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyoverkiz.models import Device as Device
 

@@ -2,8 +2,7 @@ from .const import CONF_PLACE_ID as CONF_PLACE_ID, CONF_SERVICE_ID as CONF_SERVI
 from _typeshed import Incomplete
 from aiorecollect.client import PickupEvent
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 
 class ReCollectWasteEntity(CoordinatorEntity[DataUpdateCoordinator[list[PickupEvent]]]):

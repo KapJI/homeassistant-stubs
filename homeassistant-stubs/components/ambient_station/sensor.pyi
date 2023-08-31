@@ -1,5 +1,6 @@
-from . import AmbientStation as AmbientStation, AmbientWeatherEntity as AmbientWeatherEntity
+from . import AmbientStation as AmbientStation
 from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DOMAIN as DOMAIN, TYPE_SOLARRADIATION as TYPE_SOLARRADIATION, TYPE_SOLARRADIATION_LX as TYPE_SOLARRADIATION_LX
+from .entity import AmbientWeatherEntity as AmbientWeatherEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

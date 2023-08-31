@@ -16,8 +16,7 @@ OFF_GRID_STATUSES: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PowerwallOffGridEnabledEntity(PowerWallEntity, SwitchEntity):
-    _attr_name: str
-    _attr_has_entity_name: bool
+    _attr_translation_key: str
     _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
     _attr_unique_id: Incomplete

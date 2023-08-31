@@ -2,10 +2,12 @@ from .const import CONNECTION_ESTABLISHED_KEY as CONNECTION_ESTABLISHED_KEY, DOM
 from _typeshed import Incomplete
 from aiooncue import OncueDevice, OncueSensor as OncueSensor
 from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 
 class OncueEntity(CoordinatorEntity[DataUpdateCoordinator[dict[str, OncueDevice]]], Entity):
+    _attr_has_entity_name: bool
     entity_description: Incomplete
     _device_id: Incomplete
     _attr_unique_id: Incomplete

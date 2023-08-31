@@ -23,7 +23,6 @@ class NUTDeviceInfo:
     model: str | None
     firmware: str | None
     def __init__(self, manufacturer, model, firmware) -> None: ...
-    def __mypy-replace(*, manufacturer, model, firmware) -> None: ...
 
 class PyNUTData:
     _host: Incomplete

@@ -3,7 +3,8 @@ from .models import YaleXSBLEData as YaleXSBLEData
 from _typeshed import Incomplete
 from homeassistant.components import bluetooth as bluetooth
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
 class YALEXSBLEEntity(Entity):

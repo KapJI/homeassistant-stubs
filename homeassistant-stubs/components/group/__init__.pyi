@@ -2,7 +2,7 @@ import abc
 from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS
 from _typeshed import Incomplete
 from abc import abstractmethod
-from collections.abc import Collection, Iterable
+from collections.abc import Callable as Callable, Collection, Iterable, Mapping
 from contextvars import ContextVar
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
@@ -68,10 +68,13 @@ async def _async_process_config(hass: HomeAssistant, config: ConfigType) -> None
 
 class GroupEntity(Entity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool
+    _entity_ids: list[str]
+    def async_start_preview(self, preview_callback: Callable[[str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...
     async def async_added_to_hass(self) -> None: ...
     def async_defer_or_update_ha_state(self) -> None: ...
     @abstractmethod
     def async_update_group_state(self) -> None: ...
+    def async_update_supported_features(self, entity_id: str, new_state: State | None) -> None: ...
 
 class Group(Entity):
     _attr_should_poll: bool

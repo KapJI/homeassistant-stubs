@@ -1,9 +1,10 @@
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
-from typing import ParamSpec, TypeVar, overload
+from typing import TypeVar, overload
 
 _R = TypeVar('_R', int, float, datetime)
-_P = ParamSpec('_P')
+_P: Incomplete
 
 
 @overload

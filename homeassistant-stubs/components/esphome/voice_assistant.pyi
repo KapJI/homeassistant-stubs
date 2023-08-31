@@ -4,10 +4,10 @@ from .entry_data import RuntimeEntryData as RuntimeEntryData
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import VoiceAssistantEventType
-from collections.abc import AsyncIterable, Callable as Callable, MutableSequence, Sequence
+from collections.abc import AsyncIterable, Callable as Callable
 from homeassistant.components import stt as stt, tts as tts
-from homeassistant.components.assist_pipeline import PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineNotFound as PipelineNotFound, async_pipeline_from_audio_stream as async_pipeline_from_audio_stream
-from homeassistant.components.assist_pipeline.vad import VadSensitivity as VadSensitivity, VoiceCommandSegmenter as VoiceCommandSegmenter
+from homeassistant.components.assist_pipeline import PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineNotFound as PipelineNotFound, PipelineStage as PipelineStage, async_pipeline_from_audio_stream as async_pipeline_from_audio_stream
+from homeassistant.components.assist_pipeline.error import WakeWordDetectionError as WakeWordDetectionError
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 
@@ -23,6 +23,7 @@ class VoiceAssistantUDPServer(asyncio.DatagramProtocol):
     remote_addr: tuple[str, int] | None
     context: Incomplete
     hass: Incomplete
+    entry_data: Incomplete
     device_info: Incomplete
     queue: Incomplete
     handle_event: Incomplete
@@ -38,8 +39,5 @@ class VoiceAssistantUDPServer(asyncio.DatagramProtocol):
     def close(self) -> None: ...
     async def _iterate_packets(self) -> AsyncIterable[bytes]: ...
     def _event_callback(self, event: PipelineEvent) -> None: ...
-    async def _wait_for_speech(self, segmenter: VoiceCommandSegmenter, chunk_buffer: MutableSequence[bytes]) -> bool: ...
-    async def _segment_audio(self, segmenter: VoiceCommandSegmenter, chunk_buffer: Sequence[bytes]) -> AsyncIterable[bytes]: ...
-    async def _iterate_packets_with_vad(self, pipeline_timeout: float, silence_seconds: float) -> Callable[[], AsyncIterable[bytes]] | None: ...
-    async def run_pipeline(self, device_id: str, conversation_id: str | None, use_vad: bool = ..., pipeline_timeout: float = ...) -> None: ...
+    async def run_pipeline(self, device_id: str, conversation_id: str | None, flags: int = ..., pipeline_timeout: float = ...) -> None: ...
     async def _send_tts(self, media_id: str) -> None: ...

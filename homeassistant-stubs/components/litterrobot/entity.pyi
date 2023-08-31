@@ -1,7 +1,8 @@
 from .const import DOMAIN as DOMAIN
 from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pylitterbot import Robot
 from typing import Generic, TypeVar

@@ -38,7 +38,6 @@ class ValloxSensorEntityDescription(SensorEntityDescription):
     entity_type: type[ValloxSensorEntity]
     round_ndigits: int | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, metric_key, entity_type, round_ndigits) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, metric_key, entity_type, round_ndigits) -> None: ...
 
 SENSOR_ENTITIES: tuple[ValloxSensorEntityDescription, ...]
 

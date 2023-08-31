@@ -7,8 +7,8 @@ from collections.abc import Callable as Callable, Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry, async_entries_for_config_entry as async_entries_for_config_entry
 from homeassistant.helpers.typing import StateType as StateType
@@ -32,12 +32,10 @@ class BlockEntityDescription(EntityDescription):
     removal_condition: Callable[[dict, Block], bool] | None
     extra_state_attributes: Callable[[Block], dict | None] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
 class RpcEntityRequiredKeysMixin:
     sub_key: str
     def __init__(self, sub_key) -> None: ...
-    def __mypy-replace(*, sub_key) -> None: ...
 
 class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     name: str
@@ -48,14 +46,12 @@ class RpcEntityDescription(EntityDescription, RpcEntityRequiredKeysMixin):
     use_polling_coordinator: bool
     supported: Callable
     def __init__(self, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
-    def __mypy-replace(*, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
 class RestEntityDescription(EntityDescription):
     name: str
     value: Callable[[dict, Any], Any] | None
     extra_state_attributes: Callable[[dict], dict | None] | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
 
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     block: Incomplete

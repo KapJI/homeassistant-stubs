@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 from kaleidescape import Device as KaleidescapeDevice
 
 _LOGGER: Incomplete

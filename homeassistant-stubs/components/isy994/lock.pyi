@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
+from .models import IsyData as IsyData
 from .services import SERVICE_DELETE_USER_CODE_SCHEMA as SERVICE_DELETE_USER_CODE_SCHEMA, SERVICE_DELETE_ZWAVE_LOCK_USER_CODE as SERVICE_DELETE_ZWAVE_LOCK_USER_CODE, SERVICE_SET_USER_CODE_SCHEMA as SERVICE_SET_USER_CODE_SCHEMA, SERVICE_SET_ZWAVE_LOCK_USER_CODE as SERVICE_SET_ZWAVE_LOCK_USER_CODE
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity
@@ -7,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from typing import Any
 

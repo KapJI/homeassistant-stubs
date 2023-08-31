@@ -8,8 +8,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er, update_coordinator as update_coordinator
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.typing import StateType as StateType
 from types import MappingProxyType
 from typing import Any, TypedDict
@@ -33,7 +34,6 @@ class Device:
     ssid: str | None
     wan_access: bool | None
     def __init__(self, connected, connected_to, connection_type, ip_address, name, ssid, wan_access) -> None: ...
-    def __mypy-replace(*, connected, connected_to, connection_type, ip_address, name, ssid, wan_access) -> None: ...
 
 class Interface(TypedDict):
     device: str
@@ -136,7 +136,6 @@ class FritzData:
     tracked: dict
     profile_switches: dict
     def __init__(self, tracked, profile_switches) -> None: ...
-    def __mypy-replace(*, tracked, profile_switches) -> None: ...
 
 class FritzDeviceBase(update_coordinator.CoordinatorEntity[AvmWrapper]):
     _avm_wrapper: Incomplete
@@ -205,11 +204,9 @@ class FritzBoxBaseEntity:
 class FritzRequireKeysMixin:
     value_fn: Callable[[FritzStatus, Any], Any]
     def __init__(self, value_fn) -> None: ...
-    def __mypy-replace(*, value_fn) -> None: ...
 
 class FritzEntityDescription(EntityDescription, FritzRequireKeysMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class FritzBoxBaseCoordinatorEntity(update_coordinator.CoordinatorEntity[AvmWrapper]):
     entity_description: FritzEntityDescription
@@ -226,4 +223,3 @@ class ConnectionInfo:
     wan_enabled: bool
     ipv6_active: bool
     def __init__(self, connection, mesh_role, wan_enabled, ipv6_active) -> None: ...
-    def __mypy-replace(*, connection, mesh_role, wan_enabled, ipv6_active) -> None: ...

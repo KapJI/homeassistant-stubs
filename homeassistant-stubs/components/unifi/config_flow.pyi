@@ -2,6 +2,7 @@ from .const import CONF_ALLOW_BANDWIDTH_SENSORS as CONF_ALLOW_BANDWIDTH_SENSORS,
 from .controller import UniFiController as UniFiController, get_unifi_controller as get_unifi_controller
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
 from _typeshed import Incomplete
+from aiounifi.interfaces.sites import Sites as Sites
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp
@@ -18,11 +19,10 @@ MODEL_PORTS: Incomplete
 
 class UnifiFlowHandler(config_entries.ConfigFlow, domain=UNIFI_DOMAIN):
     VERSION: int
+    sites: Sites
     @staticmethod
     def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> UnifiOptionsFlowHandler: ...
     config: Incomplete
-    site_ids: Incomplete
-    site_names: Incomplete
     reauth_config_entry: Incomplete
     reauth_schema: Incomplete
     def __init__(self) -> None: ...

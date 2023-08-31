@@ -5,7 +5,7 @@ from datetime import date
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any, NamedTuple
@@ -39,7 +39,6 @@ class ValloxState:
     def uuid(self) -> UUID | None: ...
     def get_next_filter_change_date(self) -> date | None: ...
     def __init__(self, metric_cache, profile) -> None: ...
-    def __mypy-replace(*, metric_cache, profile) -> None: ...
 
 class ValloxDataUpdateCoordinator(DataUpdateCoordinator[ValloxState]): ...
 

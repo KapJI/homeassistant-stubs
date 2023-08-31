@@ -13,6 +13,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class VariableSensorEntity(AsekoEntity, SensorEntity):
     _attr_state_class: Incomplete
     _variable: Incomplete
+    _attr_translation_key: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete

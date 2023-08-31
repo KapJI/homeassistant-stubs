@@ -1,13 +1,14 @@
 from .const import CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, UOM_8_BIT_RANGE as UOM_8_BIT_RANGE
 from .entity import ISYAuxControlEntity as ISYAuxControlEntity
 from .helpers import convert_isy_value_to_hass as convert_isy_value_to_hass
+from .models import IsyData as IsyData
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode, RestoreNumber as RestoreNumber
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_VARIABLES as CONF_VARIABLES, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty

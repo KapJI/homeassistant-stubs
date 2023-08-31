@@ -9,7 +9,6 @@ from typing import Any
 
 MAX_EXECUTOR_WORKERS: int
 TASK_CANCELATION_TIMEOUT: int
-ALPINE_RELEASE_FILE: str
 _LOGGER: Incomplete
 
 class RuntimeConfig:
@@ -24,7 +23,6 @@ class RuntimeConfig:
     debug: bool
     open_ui: bool
     def __init__(self, config_dir, skip_pip, skip_pip_packages, safe_mode, verbose, log_rotate_days, log_file, log_no_color, debug, open_ui) -> None: ...
-    def __mypy-replace(*, config_dir, skip_pip, skip_pip_packages, safe_mode, verbose, log_rotate_days, log_file, log_no_color, debug, open_ui) -> None: ...
 
 def can_use_pidfd() -> bool: ...
 

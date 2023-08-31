@@ -1,8 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import LaMetricDataUpdateCoordinator as LaMetricDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class LaMetricEntity(CoordinatorEntity[LaMetricDataUpdateCoordinator]):

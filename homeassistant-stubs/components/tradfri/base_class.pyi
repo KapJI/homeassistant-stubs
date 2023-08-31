@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device

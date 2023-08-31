@@ -1,4 +1,5 @@
-from .const import ACTION as ACTION, ALERTS as ALERTS, ERRORS as ERRORS, MODE as MODE, NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEATO_MAP_DATA as NEATO_MAP_DATA, NEATO_PERSISTENT_MAPS as NEATO_PERSISTENT_MAPS, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
+from .const import ACTION as ACTION, ALERTS as ALERTS, ERRORS as ERRORS, MODE as MODE, NEATO_LOGIN as NEATO_LOGIN, NEATO_MAP_DATA as NEATO_MAP_DATA, NEATO_PERSISTENT_MAPS as NEATO_PERSISTENT_MAPS, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
+from .entity import NeatoEntity as NeatoEntity
 from .hub import NeatoHub as NeatoHub
 from _typeshed import Incomplete
 from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
@@ -6,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pybotvac import Robot as Robot
 from typing import Any
@@ -29,13 +30,12 @@ ATTR_ZONE: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NeatoConnectedVacuum(StateVacuumEntity):
+class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
     _attr_icon: str
     _attr_supported_features: Incomplete
-    robot: Incomplete
+    _attr_name: Incomplete
     _attr_available: Incomplete
     _mapdata: Incomplete
-    _attr_name: Incomplete
     _robot_has_map: Incomplete
     _robot_maps: Incomplete
     _robot_serial: Incomplete

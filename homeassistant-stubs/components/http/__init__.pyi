@@ -4,7 +4,9 @@ from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
 from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
 from .cors import setup_cors as setup_cors
+from .decorators import require_admin as require_admin
 from .forwarded import async_setup_forwarded as async_setup_forwarded
+from .headers import setup_headers as setup_headers
 from .request_context import current_request as current_request, setup_request_context as setup_request_context
 from .security_filter import setup_security_filter as setup_security_filter
 from .static import CACHE_HEADERS as CACHE_HEADERS, CachingStaticResource as CachingStaticResource
@@ -42,6 +44,7 @@ CONF_SSL_PEER_CERTIFICATE: Final[str]
 CONF_SSL_KEY: Final[str]
 CONF_CORS_ORIGINS: Final[str]
 CONF_USE_X_FORWARDED_FOR: Final[str]
+CONF_USE_X_FRAME_OPTIONS: Final[str]
 CONF_TRUSTED_PROXIES: Final[str]
 CONF_LOGIN_ATTEMPTS_THRESHOLD: Final[str]
 CONF_IP_BAN_ENABLED: Final[str]
@@ -69,6 +72,7 @@ class ConfData(TypedDict, total=False):
     ssl_key: str
     cors_allowed_origins: list[str]
     use_x_forwarded_for: bool
+    use_x_frame_options: bool
     trusted_proxies: list[IPv4Network | IPv6Network]
     login_attempts_threshold: int
     ip_ban_enabled: bool
@@ -108,7 +112,7 @@ class HomeAssistantHTTP:
     site: Incomplete
     context: Incomplete
     def __init__(self, hass: HomeAssistant, ssl_certificate: str | None, ssl_peer_certificate: str | None, ssl_key: str | None, server_host: list[str] | None, server_port: int, trusted_proxies: list[IPv4Network | IPv6Network], ssl_profile: str) -> None: ...
-    async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool) -> None: ...
+    async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool, use_x_frame_options: bool) -> None: ...
     def register_view(self, view: HomeAssistantView | type[HomeAssistantView]) -> None: ...
     def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection] = ...) -> None: ...
     def register_static_path(self, url_path: str, path: str, cache_headers: bool = ...) -> None: ...

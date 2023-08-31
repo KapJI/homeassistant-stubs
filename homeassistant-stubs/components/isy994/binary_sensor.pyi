@@ -1,11 +1,12 @@
 from .const import BINARY_SENSOR_DEVICE_TYPES_ISY as BINARY_SENSOR_DEVICE_TYPES_ISY, BINARY_SENSOR_DEVICE_TYPES_ZWAVE as BINARY_SENSOR_DEVICE_TYPES_ZWAVE, DOMAIN as DOMAIN, SUBNODE_CLIMATE_COOL as SUBNODE_CLIMATE_COOL, SUBNODE_CLIMATE_HEAT as SUBNODE_CLIMATE_HEAT, SUBNODE_DUSK_DAWN as SUBNODE_DUSK_DAWN, SUBNODE_HEARTBEAT as SUBNODE_HEARTBEAT, SUBNODE_LOW_BATTERY as SUBNODE_LOW_BATTERY, SUBNODE_MOTION_DISABLED as SUBNODE_MOTION_DISABLED, SUBNODE_NEGATIVE as SUBNODE_NEGATIVE, SUBNODE_TAMPER as SUBNODE_TAMPER, TYPE_CATEGORY_CLIMATE as TYPE_CATEGORY_CLIMATE, TYPE_INSTEON_MOTION as TYPE_INSTEON_MOTION, _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
+from .models import IsyData as IsyData
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity

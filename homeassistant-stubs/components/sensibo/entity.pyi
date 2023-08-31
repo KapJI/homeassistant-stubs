@@ -3,14 +3,13 @@ from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordi
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate, TypeVar
 
 _T = TypeVar('_T', bound='SensiboDeviceBaseEntity')
-_P = ParamSpec('_P')
+_P: Incomplete
 
 def async_handle_api_call(function: Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]: ...
 

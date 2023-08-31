@@ -1,7 +1,7 @@
 import abc
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from py_dormakaba_dkey import DKEYLock as DKEYLock
 from py_dormakaba_dkey.commands import Notifications as Notifications

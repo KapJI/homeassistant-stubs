@@ -69,6 +69,13 @@ class PendingDiscovered(TypedDict):
     pending: deque[MQTTDiscoveryPayload]
     unsub: CALLBACK_TYPE
 
+class MqttOriginInfo(TypedDict, total=False):
+    name: str
+    manufacturer: str
+    sw_version: str
+    hw_version: str
+    support_url: str
+
 class MqttCommandTemplate:
     _template_state: Incomplete
     _command_template: Incomplete
@@ -110,4 +117,3 @@ class MqttData:
     subscriptions_to_restore: list[Subscription]
     tags: dict[str, dict[str, MQTTTagScanner]]
     def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, issues, last_discovery, reload_dispatchers, reload_handlers, state_write_requests, subscriptions_to_restore, tags) -> None: ...
-    def __mypy-replace(*, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, issues, last_discovery, reload_dispatchers, reload_handlers, state_write_requests, subscriptions_to_restore, tags) -> None: ...

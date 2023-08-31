@@ -2,7 +2,7 @@ import homeassistant.components.alarm_control_panel as alarm
 import voluptuous as vol
 from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_SUPPORTED_FEATURES as CONF_SUPPORTED_FEATURES
 from .debug_info import log_messages as log_messages
 from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
@@ -16,6 +16,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 _LOGGER: Incomplete
+_SUPPORTED_FEATURES: Incomplete
 CONF_CODE_ARM_REQUIRED: str
 CONF_CODE_DISARM_REQUIRED: str
 CONF_CODE_TRIGGER_REQUIRED: str
@@ -60,8 +61,6 @@ class MqttAlarm(MqttEntity, alarm.AlarmControlPanelEntity):
     async def _subscribe_topics(self) -> None: ...
     @property
     def state(self) -> str | None: ...
-    @property
-    def supported_features(self) -> AlarmControlPanelEntityFeature: ...
     @property
     def code_format(self) -> alarm.CodeFormat | None: ...
     @property

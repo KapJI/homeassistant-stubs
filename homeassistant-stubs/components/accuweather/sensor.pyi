@@ -15,12 +15,11 @@ PARALLEL_UPDATES: int
 class AccuWeatherSensorDescriptionMixin:
     value_fn: Callable[[dict[str, Any]], str | int | float | None]
     def __init__(self, value_fn) -> None: ...
-    def __mypy-replace(*, value_fn) -> None: ...
 
 class AccuWeatherSensorDescription(SensorEntityDescription, AccuWeatherSensorDescriptionMixin):
     attr_fn: Callable[[dict[str, Any]], dict[str, Any]]
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attr_fn) -> None: ...
-    def __mypy-replace(*, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attr_fn) -> None: ...
+    day: int | None
+    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attr_fn, day) -> None: ...
 
 FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
 SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
@@ -31,12 +30,11 @@ class AccuWeatherSensor(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], Sen
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     entity_description: AccuWeatherSensorDescription
+    forecast_day: Incomplete
     _sensor_data: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    forecast_day: Incomplete
-    def __init__(self, coordinator: AccuWeatherDataUpdateCoordinator, description: AccuWeatherSensorDescription, forecast_day: int | None = ...) -> None: ...
+    def __init__(self, coordinator: AccuWeatherDataUpdateCoordinator, description: AccuWeatherSensorDescription) -> None: ...
     @property
     def native_value(self) -> str | int | float | None: ...
     @property

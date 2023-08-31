@@ -9,13 +9,13 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, ParamSpec, TypeVar
+from typing import Any, TypeVar
 
 _LOGGER: Incomplete
 DOMAIN: str
 SCAN_INTERVAL: Incomplete
 ENTITY_ID_FORMAT: Incomplete
-_P = ParamSpec('_P')
+_P: Incomplete
 _R = TypeVar('_R')
 
 class CoverDeviceClass(StrEnum):
@@ -74,7 +74,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class CoverEntityDescription(EntityDescription):
     device_class: CoverDeviceClass | None
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class CoverEntity(Entity):
     entity_description: CoverEntityDescription

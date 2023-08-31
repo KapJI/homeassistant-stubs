@@ -14,7 +14,6 @@ from zwave_js_server.model.endpoint import Endpoint as Endpoint
 from zwave_js_server.model.node import Node as ZwaveNode
 
 _LOGGER: Incomplete
-SET_VALUE_FAILED_EXC: Incomplete
 
 def parameter_name_does_not_need_bitmask(val: dict[str, int | str | list[str]]) -> dict[str, int | str | list[str]]: ...
 def broadcast_command(val: dict[str, Any]) -> dict[str, Any]: ...

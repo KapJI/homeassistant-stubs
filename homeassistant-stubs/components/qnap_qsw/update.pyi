@@ -16,7 +16,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class QswUpdate(QswFirmwareEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     entity_description: UpdateEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_installed_version: Incomplete
     def __init__(self, coordinator: QswFirmwareCoordinator, description: UpdateEntityDescription, entry: ConfigEntry) -> None: ...

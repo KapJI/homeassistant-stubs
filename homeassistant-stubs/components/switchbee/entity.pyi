@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import SwitchBeeCoordinator as SwitchBeeCoordinator
 from _typeshed import Incomplete
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from switchbee.device import SwitchBeeBaseDevice
 from typing import Generic, TypeVar

@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aionanoleaf import Nanoleaf as Nanoleaf
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 
 class NanoleafEntity(CoordinatorEntity[DataUpdateCoordinator[None]]):

@@ -33,6 +33,8 @@ ATTR_TARGET_TEMPERATURE: str
 ATTR_HORIZONTAL_SWING_MODE: str
 ATTR_LIGHT: str
 BOOST_INCLUSIVE: str
+AVAILABLE_FAN_MODES: Incomplete
+AVAILABLE_SWING_MODES: Incomplete
 PARALLEL_UPDATES: int
 FIELD_TO_FLAG: Incomplete
 SENSIBO_TO_HA: Incomplete
@@ -48,6 +50,7 @@ class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete
     _attr_precision: Incomplete
+    _attr_translation_key: str
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str) -> None: ...
     def get_features(self) -> ClimateEntityFeature: ...
     @property

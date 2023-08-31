@@ -4,7 +4,8 @@ from devolo_plc_api.device import Device as Device
 from devolo_plc_api.device_api import ConnectedStationInfo, NeighborAPInfo, WifiGuestAccessGet
 from devolo_plc_api.plcnet_api import LogicalNetwork
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import TypeVar
 

@@ -5,6 +5,7 @@ from homeassistant.const import ATTR_DATE as ATTR_DATE, ATTR_DEVICE_ID as ATTR_D
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import entity as entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send
 from jaraco.abode.automation import Automation as AbodeAuto
 from jaraco.abode.client import Client as Abode
@@ -64,7 +65,7 @@ class AbodeDevice(AbodeEntity):
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...
     @property
-    def device_info(self) -> entity.DeviceInfo: ...
+    def device_info(self) -> DeviceInfo: ...
     def _update_callback(self, device: AbodeDev) -> None: ...
 
 class AbodeAutomation(AbodeEntity):

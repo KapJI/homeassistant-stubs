@@ -13,7 +13,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJo
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from typing import Any, Concatenate, ParamSpec, TypeVar, TypedDict
+from typing import Any, Concatenate, TypeVar, TypedDict
 
 TRACK_STATE_CHANGE_CALLBACKS: str
 TRACK_STATE_CHANGE_LISTENER: str
@@ -32,28 +32,25 @@ _LOGGER: Incomplete
 RANDOM_MICROSECOND_MIN: int
 RANDOM_MICROSECOND_MAX: int
 _TypedDictT = TypeVar('_TypedDictT', bound=Mapping[str, Any])
-_P = ParamSpec('_P')
+_P: Incomplete
 
 class TrackStates:
     all_states: bool
     entities: set[str]
     domains: set[str]
     def __init__(self, all_states, entities, domains) -> None: ...
-    def __mypy-replace(*, all_states, entities, domains) -> None: ...
 
 class TrackTemplate:
     template: Template
     variables: TemplateVarsType
     rate_limit: timedelta | None
     def __init__(self, template, variables, rate_limit) -> None: ...
-    def __mypy-replace(*, template, variables, rate_limit) -> None: ...
 
 class TrackTemplateResult:
     template: Template
     last_result: Any
     result: Any
     def __init__(self, template, last_result, result) -> None: ...
-    def __mypy-replace(*, template, last_result, result) -> None: ...
 
 class EventStateChangedData(TypedDict):
     entity_id: str
@@ -148,6 +145,7 @@ def async_track_point_in_utc_time(hass: HomeAssistant, action: HassJob[[datetime
 
 track_point_in_utc_time: Incomplete
 
+def async_call_at(hass: HomeAssistant, action: HassJob[[datetime], Coroutine[Any, Any, None] | None] | Callable[[datetime], Coroutine[Any, Any, None] | None], loop_time: float) -> CALLBACK_TYPE: ...
 def async_call_later(hass: HomeAssistant, delay: float | timedelta, action: HassJob[[datetime], Coroutine[Any, Any, None] | None] | Callable[[datetime], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...
 
 call_later: Incomplete

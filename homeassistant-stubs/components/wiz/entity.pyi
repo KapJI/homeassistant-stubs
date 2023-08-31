@@ -4,8 +4,8 @@ from _typeshed import Incomplete
 from abc import abstractmethod
 from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL as ATTR_MODEL
 from homeassistant.core import callback as callback
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, ToggleEntity as ToggleEntity
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity, ToggleEntity as ToggleEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from pywizlight.bulblibrary import BulbType as BulbType
 from typing import Any

@@ -33,14 +33,12 @@ class DeconzBinarySensorDescriptionMixin(Generic[T]):
     update_key: str
     value_fn: Callable[[T], bool | None]
     def __init__(self, update_key, value_fn) -> None: ...
-    def __mypy-replace(*, update_key, value_fn) -> None: ...
 
 class DeconzBinarySensorDescription(BinarySensorEntityDescription, DeconzBinarySensorDescriptionMixin[T]):
     instance_check: type[T] | None
     name_suffix: str
     old_unique_id_suffix: str
     def __init__(self, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
-    def __mypy-replace(*, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzBinarySensorDescription, ...]
 

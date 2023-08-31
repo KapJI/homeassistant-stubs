@@ -13,6 +13,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BAFLight(BAFEntity, LightEntity):
+    _attr_name: Incomplete
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     def _async_update_attrs(self) -> None: ...
@@ -20,10 +21,8 @@ class BAFLight(BAFEntity, LightEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class BAFFanLight(BAFLight):
-    _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
-    def __init__(self, device: Device) -> None: ...
 
 class BAFStandaloneLight(BAFLight):
     _attr_supported_color_modes: Incomplete

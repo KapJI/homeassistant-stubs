@@ -3,7 +3,7 @@ from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .discovery import async_discover_devices as async_discover_devices, async_trigger_discovery as async_trigger_discovery
 from .manager import LIFXManager as LIFXManager
 from .migration import async_migrate_entities_devices as async_migrate_entities_devices, async_migrate_legacy_entries as async_migrate_legacy_entries
-from .util import async_entry_is_legacy as async_entry_is_legacy, async_get_legacy_entry as async_get_legacy_entry
+from .util import async_entry_is_legacy as async_entry_is_legacy, async_get_legacy_entry as async_get_legacy_entry, formatted_serial as formatted_serial
 from _typeshed import Incomplete
 from aiolifx.aiolifx import Light as Light
 from collections.abc import Iterable

@@ -3,7 +3,8 @@ from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
-from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.data_entry_flow import FlowResult as FlowResult, FlowResultType as FlowResultType
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from typing import Any
 
 class LiteJetOptionsFlow(config_entries.OptionsFlow):

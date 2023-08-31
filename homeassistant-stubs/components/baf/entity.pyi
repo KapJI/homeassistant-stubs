@@ -1,8 +1,8 @@
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from homeassistant.core import callback as callback
-from homeassistant.helpers.device_registry import format_mac as format_mac
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, format_mac as format_mac
+from homeassistant.helpers.entity import Entity as Entity
 
 class BAFEntity(Entity):
     _attr_should_poll: bool

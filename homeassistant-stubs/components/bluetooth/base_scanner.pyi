@@ -23,7 +23,6 @@ class BluetoothScannerDevice:
     ble_device: BLEDevice
     advertisement: AdvertisementData
     def __init__(self, scanner, ble_device, advertisement) -> None: ...
-    def __mypy-replace(*, scanner, ble_device, advertisement) -> None: ...
 
 class BaseHaScanner(ABC, metaclass=abc.ABCMeta):
     __slots__: Incomplete

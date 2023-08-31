@@ -5,8 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_LOCATION as ATTR_LOCATION, ATTR_NAME as ATTR_NAME, CONF_API_KEY as CONF_API_KEY, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
+from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from typing import Any
 
 PLATFORMS: Incomplete
@@ -30,16 +29,3 @@ class AmbientStation:
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, websocket: Websocket) -> None: ...
     async def ws_connect(self) -> None: ...
     async def ws_disconnect(self) -> None: ...
-
-class AmbientWeatherEntity(Entity):
-    _attr_has_entity_name: bool
-    _attr_should_poll: bool
-    _ambient: Incomplete
-    _attr_device_info: Incomplete
-    _attr_unique_id: Incomplete
-    _mac_address: Incomplete
-    entity_description: Incomplete
-    def __init__(self, ambient: AmbientStation, mac_address: str, station_name: str, description: EntityDescription) -> None: ...
-    _attr_available: Incomplete
-    async def async_added_to_hass(self) -> None: ...
-    def update_from_latest_data(self) -> None: ...

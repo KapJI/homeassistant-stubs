@@ -15,7 +15,6 @@ class HaBluetoothConnector:
     source: str
     can_connect: Callable[[], bool]
     def __init__(self, client, source, can_connect) -> None: ...
-    def __mypy-replace(*, client, source, can_connect) -> None: ...
 
 class BluetoothScanningMode(Enum):
     PASSIVE: str

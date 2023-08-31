@@ -12,7 +12,7 @@ CONNECTED_GRID_STATUSES: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PowerWallRunningSensor(PowerWallEntity, BinarySensorEntity):
-    _attr_name: str
+    _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
     def unique_id(self) -> str: ...
@@ -20,7 +20,7 @@ class PowerWallRunningSensor(PowerWallEntity, BinarySensorEntity):
     def is_on(self) -> bool: ...
 
 class PowerWallConnectedSensor(PowerWallEntity, BinarySensorEntity):
-    _attr_name: str
+    _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
     def unique_id(self) -> str: ...
@@ -28,7 +28,7 @@ class PowerWallConnectedSensor(PowerWallEntity, BinarySensorEntity):
     def is_on(self) -> bool: ...
 
 class PowerWallGridServicesActiveSensor(PowerWallEntity, BinarySensorEntity):
-    _attr_name: str
+    _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
     def unique_id(self) -> str: ...
@@ -36,7 +36,7 @@ class PowerWallGridServicesActiveSensor(PowerWallEntity, BinarySensorEntity):
     def is_on(self) -> bool: ...
 
 class PowerWallGridStatusSensor(PowerWallEntity, BinarySensorEntity):
-    _attr_name: str
+    _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
     def unique_id(self) -> str: ...
@@ -44,7 +44,6 @@ class PowerWallGridStatusSensor(PowerWallEntity, BinarySensorEntity):
     def is_on(self) -> bool: ...
 
 class PowerWallChargingStatusSensor(PowerWallEntity, BinarySensorEntity):
-    _attr_name: str
     _attr_device_class: Incomplete
     @property
     def available(self) -> bool: ...

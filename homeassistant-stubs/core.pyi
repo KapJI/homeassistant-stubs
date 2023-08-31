@@ -21,7 +21,7 @@ from .util.ulid import ulid as ulid, ulid_at_time as ulid_at_time
 from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Collection, Coroutine, Iterable, Mapping
-from typing import Any, Generic, ParamSpec, Self, TypeVar, overload
+from typing import Any, Generic, Self, TypeVar, overload
 
 STAGE_1_SHUTDOWN_TIMEOUT: int
 STAGE_2_SHUTDOWN_TIMEOUT: int
@@ -29,7 +29,7 @@ STAGE_3_SHUTDOWN_TIMEOUT: int
 _T = TypeVar('_T')
 _R = TypeVar('_R')
 _R_co = TypeVar('_R_co', covariant=True)
-_P = ParamSpec('_P')
+_P: Incomplete
 _UNDEF: dict[Any, Any]
 _CallableT = TypeVar('_CallableT', bound=Callable[..., Any])
 CALLBACK_TYPE = Callable[[], None]
@@ -103,7 +103,7 @@ class HomeAssistant:
     auth: AuthManager
     http: HomeAssistantHTTP
     config_entries: ConfigEntries
-    def __new__(cls) -> HomeAssistant: ...
+    def __new__(cls, config_dir: str) -> HomeAssistant: ...
     loop: Incomplete
     _tasks: Incomplete
     _background_tasks: Incomplete
@@ -119,7 +119,7 @@ class HomeAssistant:
     _stopped: Incomplete
     timeout: Incomplete
     _stop_future: Incomplete
-    def __init__(self) -> None: ...
+    def __init__(self, config_dir: str) -> None: ...
     @property
     def is_running(self) -> bool: ...
     @property
@@ -318,7 +318,7 @@ class Config:
     media_dirs: Incomplete
     safe_mode: bool
     legacy_templates: bool
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_dir: str) -> None: ...
     def distance(self, lat: float, lon: float) -> float | None: ...
     def path(self, *path: str) -> str: ...
     def is_allowed_external_url(self, url: str) -> bool: ...

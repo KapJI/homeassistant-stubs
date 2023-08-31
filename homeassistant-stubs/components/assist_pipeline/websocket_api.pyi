@@ -1,7 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .error import PipelineNotFound as PipelineNotFound
-from .pipeline import PipelineData as PipelineData, PipelineError as PipelineError, PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineInput as PipelineInput, PipelineRun as PipelineRun, PipelineStage as PipelineStage, async_get_pipeline as async_get_pipeline
-from .vad import VoiceCommandSegmenter as VoiceCommandSegmenter
+from .pipeline import PipelineData as PipelineData, PipelineError as PipelineError, PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineInput as PipelineInput, PipelineRun as PipelineRun, PipelineStage as PipelineStage, WakeWordSettings as WakeWordSettings, async_get_pipeline as async_get_pipeline
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import conversation as conversation, stt as stt, tts as tts, websocket_api as websocket_api
@@ -10,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from typing import Any
 
 DEFAULT_TIMEOUT: int
+DEFAULT_WAKE_WORD_TIMEOUT: int
 _LOGGER: Incomplete
 
 def async_register_websocket_api(hass: HomeAssistant) -> None: ...

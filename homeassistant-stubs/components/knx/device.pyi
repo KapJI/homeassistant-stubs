@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from xknx import XKNX as XKNX
 from xknx.core import XknxConnectionState
 from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor

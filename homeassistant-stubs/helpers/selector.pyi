@@ -289,6 +289,7 @@ class SelectSelectorConfig(TypedDict, total=False):
     custom_value: bool
     mode: SelectSelectorMode
     translation_key: str
+    sort: bool
 
 class SelectSelector(Selector[SelectSelectorConfig]):
     selector_type: str

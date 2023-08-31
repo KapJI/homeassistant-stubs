@@ -1,11 +1,13 @@
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 
+LOGGER: Incomplete
 PLATFORMS: Incomplete
 DEFAULT_NAME: str
 DOMAIN: str
-CLIENT: str
+MANUFACTURER: str
 CONF_ALTITUDE: str
+CONF_CONTRIBUTING_USER: str
 ATTR_ICAO24: str
 ATTR_CALLSIGN: str
 ATTR_ALTITUDE: str

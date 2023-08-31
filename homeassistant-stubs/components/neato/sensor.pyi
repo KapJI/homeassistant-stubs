@@ -1,11 +1,11 @@
-from .const import NEATO_DOMAIN as NEATO_DOMAIN, NEATO_LOGIN as NEATO_LOGIN, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
+from .const import NEATO_LOGIN as NEATO_LOGIN, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
+from .entity import NeatoEntity as NeatoEntity
 from .hub import NeatoHub as NeatoHub
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pybotvac.robot import Robot as Robot
 
@@ -15,16 +15,12 @@ BATTERY: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NeatoSensor(SensorEntity):
-    robot: Incomplete
+class NeatoSensor(NeatoEntity, SensorEntity):
     _available: bool
-    _robot_name: Incomplete
     _robot_serial: Incomplete
     _state: Incomplete
     def __init__(self, neato: NeatoHub, robot: Robot) -> None: ...
     def update(self) -> None: ...
-    @property
-    def name(self) -> str: ...
     @property
     def unique_id(self) -> str: ...
     @property
@@ -37,5 +33,3 @@ class NeatoSensor(SensorEntity):
     def native_value(self) -> str | None: ...
     @property
     def native_unit_of_measurement(self) -> str: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...

@@ -8,6 +8,7 @@ from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pysnooz.commands import SnoozCommandData as SnoozCommandData
@@ -16,13 +17,15 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SnoozFan(FanEntity, RestoreEntity):
-    _device: Incomplete
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _device: Incomplete
     _attr_unique_id: Incomplete
     _attr_supported_features: Incomplete
     _attr_should_poll: bool
     _is_on: Incomplete
     _percentage: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, data: SnoozConfigurationData) -> None: ...
     def _async_write_state_changed(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...

@@ -7,7 +7,8 @@ from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from datetime import datetime
 from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import async_call_later as async_call_later
 
 _LOGGER: Incomplete

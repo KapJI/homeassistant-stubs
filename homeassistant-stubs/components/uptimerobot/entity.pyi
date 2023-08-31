@@ -1,8 +1,8 @@
 from . import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from .const import ATTRIBUTION as ATTRIBUTION, ATTR_TARGET as ATTR_TARGET, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
 

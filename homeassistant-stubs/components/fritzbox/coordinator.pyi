@@ -11,7 +11,6 @@ class FritzboxCoordinatorData:
     devices: dict[str, FritzhomeDevice]
     templates: dict[str, FritzhomeTemplate]
     def __init__(self, devices, templates) -> None: ...
-    def __mypy-replace(*, devices, templates) -> None: ...
 
 class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorData]):
     configuration_url: str

@@ -9,7 +9,7 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components import assist_pipeline as assist_pipeline, conversation as conversation, websocket_api as websocket_api
 from homeassistant.components.homeassistant import exposed_entities as exposed_entities
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, require_admin as require_admin
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.const import CLOUD_NEVER_EXPOSED_ENTITIES as CLOUD_NEVER_EXPOSED_ENTITIES
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -17,14 +17,14 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.util.location import async_detect_location_info as async_detect_location_info
 from http import HTTPStatus
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate, TypeVar
 
 _LOGGER: Incomplete
 _CLOUD_ERRORS: dict[type[Exception], tuple[HTTPStatus, str]]
 
 async def async_setup(hass: HomeAssistant) -> None: ...
 _HassViewT = TypeVar('_HassViewT', bound=HomeAssistantView)
-_P = ParamSpec('_P')
+_P: Incomplete
 
 def _handle_cloud_errors(handler: Callable[Concatenate[_HassViewT, web.Request, _P], Awaitable[web.Response]]) -> Callable[Concatenate[_HassViewT, web.Request, _P], Coroutine[Any, Any, web.Response]]: ...
 def _ws_handle_cloud_errors(handler: Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], Coroutine[None, None, None]]) -> Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], Coroutine[None, None, None]]: ...

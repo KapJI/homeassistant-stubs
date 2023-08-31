@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import Final
 
 class QswSensorEntityDescription(SensorEntityDescription, QswEntityDescription):
@@ -14,7 +15,6 @@ class QswSensorEntityDescription(SensorEntityDescription, QswEntityDescription):
     qsw_type: QswEntityType | None
     sep_key: str
     def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attributes, qsw_type, sep_key) -> None: ...
-    def __mypy-replace(*, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attributes, qsw_type, sep_key) -> None: ...
 
 SENSOR_TYPES: Final[tuple[QswSensorEntityDescription, ...]]
 LACP_PORT_SENSOR_TYPES: Final[tuple[QswSensorEntityDescription, ...]]
@@ -24,6 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class QswSensor(QswSensorEntity, SensorEntity):
     entity_description: QswSensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: QswDataCoordinator, description: QswSensorEntityDescription, entry: ConfigEntry, type_id: int | None = ...) -> None: ...

@@ -6,8 +6,8 @@ from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import callback as callback
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -25,7 +25,6 @@ class QswDataEntity(CoordinatorEntity[QswDataCoordinator]):
 class QswEntityDescriptionMixin:
     subkey: str
     def __init__(self, subkey) -> None: ...
-    def __mypy-replace(*, subkey) -> None: ...
 
 class QswEntityDescription(EntityDescription, QswEntityDescriptionMixin):
     attributes: dict[str, list[str]] | None
@@ -37,6 +36,7 @@ class QswSensorEntity(QswDataEntity):
     def _async_update_attrs(self) -> None: ...
 
 class QswFirmwareEntity(CoordinatorEntity[QswFirmwareCoordinator]):
+    _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, coordinator: QswFirmwareCoordinator, entry: ConfigEntry) -> None: ...
     def get_device_value(self, key: str, subkey: str) -> Any: ...

@@ -2,7 +2,8 @@ from .const import DATA_DEVICE_IDS as DATA_DEVICE_IDS, DEFAULT_ATTRIBUTION as DE
 from .data_handler import NetatmoDataHandler as NetatmoDataHandler, PUBLIC as PUBLIC
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 
 class NetatmoBase(Entity):
     _attr_attribution = DEFAULT_ATTRIBUTION

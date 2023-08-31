@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import OmadaCoordinator as OmadaCoordinator
 from _typeshed import Incomplete
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from tplink_omada_client.devices import OmadaDevice as OmadaDevice
 from typing import Generic, TypeVar

@@ -9,7 +9,7 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_IP_ADDRES
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, UpdateFailed as UpdateFailed
 from homeassistant.util.dt import as_timestamp as as_timestamp, utcnow as utcnow
 from homeassistant.util.network import is_ip_address as is_ip_address
@@ -61,7 +61,6 @@ class RainMachineData:
     controller: Controller
     coordinators: dict[str, RainMachineDataUpdateCoordinator]
     def __init__(self, controller, coordinators) -> None: ...
-    def __mypy-replace(*, controller, coordinators) -> None: ...
 
 def async_get_entry_for_service_call(hass: HomeAssistant, call: ServiceCall) -> ConfigEntry: ...
 async def async_update_programs_and_zones(hass: HomeAssistant, entry: ConfigEntry) -> None: ...

@@ -14,7 +14,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED
-from zwave_js_server.const import NodeStatus
+from zwave_js_server.const import ControllerStatus, NodeStatus
 from zwave_js_server.model.controller import Controller
 from zwave_js_server.model.controller.statistics import ControllerStatisticsDataType as ControllerStatisticsDataType
 from zwave_js_server.model.driver import Driver as Driver
@@ -22,7 +22,8 @@ from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.node.statistics import NodeStatisticsDataType as NodeStatisticsDataType
 
 PARALLEL_UPDATES: int
-STATUS_ICON: dict[NodeStatus, str]
+CONTROLLER_STATUS_ICON: dict[ControllerStatus, str]
+NODE_STATUS_ICON: dict[NodeStatus, str]
 ENTITY_DESCRIPTION_KEY_DEVICE_CLASS_MAP: dict[tuple[str, str], SensorEntityDescription]
 ENTITY_DESCRIPTION_KEY_MAP: Incomplete
 ENTITY_DESCRIPTION_CONTROLLER_STATISTICS_LIST: Incomplete
@@ -85,6 +86,24 @@ class ZWaveNodeStatusSensor(SensorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, node: ZwaveNode) -> None: ...
+    async def async_poll_value(self, _: bool) -> None: ...
+    _attr_native_value: Incomplete
+    def _status_changed(self, _: dict) -> None: ...
+    @property
+    def icon(self) -> str | None: ...
+    async def async_added_to_hass(self) -> None: ...
+
+class ZWaveControllerStatusSensor(SensorEntity):
+    _attr_should_poll: bool
+    _attr_entity_category: Incomplete
+    _attr_has_entity_name: bool
+    config_entry: Incomplete
+    controller: Incomplete
+    _attr_name: str
+    _base_unique_id: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, config_entry: ConfigEntry, driver: Driver) -> None: ...
     async def async_poll_value(self, _: bool) -> None: ...
     _attr_native_value: Incomplete
     def _status_changed(self, _: dict) -> None: ...

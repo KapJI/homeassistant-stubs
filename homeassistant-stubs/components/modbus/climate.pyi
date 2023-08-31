@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
 from .base_platform import BaseStructPlatform as BaseStructPlatform
-from .const import CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_WRITE_REGISTER as CALL_TYPE_WRITE_REGISTER, CALL_TYPE_WRITE_REGISTERS as CALL_TYPE_WRITE_REGISTERS, CONF_CLIMATES as CONF_CLIMATES, CONF_HVAC_MODE_AUTO as CONF_HVAC_MODE_AUTO, CONF_HVAC_MODE_COOL as CONF_HVAC_MODE_COOL, CONF_HVAC_MODE_DRY as CONF_HVAC_MODE_DRY, CONF_HVAC_MODE_FAN_ONLY as CONF_HVAC_MODE_FAN_ONLY, CONF_HVAC_MODE_HEAT as CONF_HVAC_MODE_HEAT, CONF_HVAC_MODE_HEAT_COOL as CONF_HVAC_MODE_HEAT_COOL, CONF_HVAC_MODE_OFF as CONF_HVAC_MODE_OFF, CONF_HVAC_MODE_REGISTER as CONF_HVAC_MODE_REGISTER, CONF_HVAC_MODE_VALUES as CONF_HVAC_MODE_VALUES, CONF_HVAC_ONOFF_REGISTER as CONF_HVAC_ONOFF_REGISTER, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_STEP as CONF_STEP, CONF_TARGET_TEMP as CONF_TARGET_TEMP, CONF_WRITE_REGISTERS as CONF_WRITE_REGISTERS, DataType as DataType
+from .const import CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_WRITE_REGISTER as CALL_TYPE_WRITE_REGISTER, CALL_TYPE_WRITE_REGISTERS as CALL_TYPE_WRITE_REGISTERS, CONF_CLIMATES as CONF_CLIMATES, CONF_HVAC_MODE_AUTO as CONF_HVAC_MODE_AUTO, CONF_HVAC_MODE_COOL as CONF_HVAC_MODE_COOL, CONF_HVAC_MODE_DRY as CONF_HVAC_MODE_DRY, CONF_HVAC_MODE_FAN_ONLY as CONF_HVAC_MODE_FAN_ONLY, CONF_HVAC_MODE_HEAT as CONF_HVAC_MODE_HEAT, CONF_HVAC_MODE_HEAT_COOL as CONF_HVAC_MODE_HEAT_COOL, CONF_HVAC_MODE_OFF as CONF_HVAC_MODE_OFF, CONF_HVAC_MODE_REGISTER as CONF_HVAC_MODE_REGISTER, CONF_HVAC_MODE_VALUES as CONF_HVAC_MODE_VALUES, CONF_HVAC_ONOFF_REGISTER as CONF_HVAC_ONOFF_REGISTER, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_STEP as CONF_STEP, CONF_TARGET_TEMP as CONF_TARGET_TEMP, CONF_TARGET_TEMP_WRITE_REGISTERS as CONF_TARGET_TEMP_WRITE_REGISTERS, CONF_WRITE_REGISTERS as CONF_WRITE_REGISTERS, DataType as DataType
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from datetime import datetime
@@ -19,6 +19,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 class ModbusThermostat(BaseStructPlatform, RestoreEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _target_temperature_register: Incomplete
+    _target_temperature_write_registers: Incomplete
     _unit: Incomplete
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete
@@ -31,9 +32,9 @@ class ModbusThermostat(BaseStructPlatform, RestoreEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_hvac_mode: Incomplete
     _hvac_mode_mapping: Incomplete
-    _hvac_mode_write_type: Incomplete
+    _hvac_mode_write_registers: Incomplete
     _hvac_onoff_register: Incomplete
-    _hvac_onoff_write_type: Incomplete
+    _hvac_onoff_write_registers: Incomplete
     def __init__(self, hub: ModbusHub, config: dict[str, Any]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

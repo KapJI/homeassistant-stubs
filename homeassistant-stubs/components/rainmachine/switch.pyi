@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate, TypeVar
 
 ATTR_AREA: str
 ATTR_CS_ON: str
@@ -40,21 +40,18 @@ SPRINKLER_TYPE_MAP: Incomplete
 SUN_EXPOSURE_MAP: Incomplete
 VEGETATION_MAP: Incomplete
 _T = TypeVar('_T', bound='RainMachineBaseSwitch')
-_P = ParamSpec('_P')
+_P: Incomplete
 
 def raise_on_request_error(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription):
     def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class RainMachineActivitySwitchDescription(RainMachineSwitchDescription, RainMachineEntityDescriptionMixinUid):
     def __init__(self, uid, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, uid, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class RainMachineRestrictionSwitchDescription(RainMachineSwitchDescription, RainMachineEntityDescriptionMixinDataKey):
     def __init__(self, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 TYPE_RESTRICTIONS_FREEZE_PROTECT_ENABLED: str
 TYPE_RESTRICTIONS_HOT_DAYS_EXTRA_WATERING: str

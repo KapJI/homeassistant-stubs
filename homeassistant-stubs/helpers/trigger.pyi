@@ -35,7 +35,6 @@ class PluggableActionsEntry:
     plugs: set[PluggableAction]
     actions: dict[object, tuple[HassJob[[dict[str, Any], Context | None], Coroutine[Any, Any, None]], dict[str, Any]]]
     def __init__(self, plugs, actions) -> None: ...
-    def __mypy-replace(*, plugs, actions) -> None: ...
 
 class PluggableAction:
     _entry: PluggableActionsEntry | None

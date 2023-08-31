@@ -8,6 +8,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 CONDITION_CLASSES: dict[str, list[str]]
+CONDITION_MAP: Incomplete
 WEATHER_UPDATE_INTERVAL: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

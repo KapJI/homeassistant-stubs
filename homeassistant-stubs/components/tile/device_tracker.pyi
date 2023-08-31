@@ -5,6 +5,7 @@ from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSee
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
@@ -27,8 +28,9 @@ async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see
 
 class TileDeviceTracker(CoordinatorEntity[DataUpdateCoordinator[None]], TrackerEntity):
     _attr_icon = DEFAULT_ICON
-    _attr_extra_state_attributes: Incomplete
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     _entry: Incomplete
     _tile: Incomplete
@@ -37,6 +39,8 @@ class TileDeviceTracker(CoordinatorEntity[DataUpdateCoordinator[None]], TrackerE
     def available(self) -> bool: ...
     @property
     def location_accuracy(self) -> int: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
     @property
     def latitude(self) -> float | None: ...
     @property

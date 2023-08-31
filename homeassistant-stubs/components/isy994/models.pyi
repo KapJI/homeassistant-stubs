@@ -1,6 +1,6 @@
 from .const import CONF_NETWORK as CONF_NETWORK, NODE_AUX_PROP_PLATFORMS as NODE_AUX_PROP_PLATFORMS, NODE_PLATFORMS as NODE_PLATFORMS, PROGRAM_PLATFORMS as PROGRAM_PLATFORMS, ROOT_NODE_PLATFORMS as ROOT_NODE_PLATFORMS, VARIABLE_PLATFORMS as VARIABLE_PLATFORMS
 from homeassistant.const import Platform as Platform
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from pyisy import ISY as ISY
 from pyisy.networking import NetworkCommand
 from pyisy.nodes import Group as Group, Node as Node
@@ -22,4 +22,3 @@ class IsyData:
     def uid_base(self, node: Node | Group | Variable | Program | NetworkCommand) -> str: ...
     @property
     def unique_ids(self) -> set[tuple[Platform, str]]: ...
-    def __mypy-replace(*, root, nodes, root_nodes, variables, programs, net_resources, devices, aux_properties) -> None: ...

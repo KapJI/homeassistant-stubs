@@ -7,7 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
-class YaleDataUpdateCoordinator(DataUpdateCoordinator):
+class YaleDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     entry: Incomplete
     yale: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...

@@ -8,8 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
@@ -20,12 +19,10 @@ _ShellyCoordinatorT = TypeVar('_ShellyCoordinatorT', bound=ShellyBlockCoordinato
 class ShellyButtonDescriptionMixin(Generic[_ShellyCoordinatorT]):
     press_action: Callable[[_ShellyCoordinatorT], Coroutine[Any, Any, None]]
     def __init__(self, press_action) -> None: ...
-    def __mypy-replace(*, press_action) -> None: ...
 
 class ShellyButtonDescription(ButtonEntityDescription, ShellyButtonDescriptionMixin[_ShellyCoordinatorT]):
     supported: Callable[[_ShellyCoordinatorT], bool]
     def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, supported) -> None: ...
-    def __mypy-replace(*, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, supported) -> None: ...
 
 BUTTONS: Final[list[ShellyButtonDescription[Any]]]
 

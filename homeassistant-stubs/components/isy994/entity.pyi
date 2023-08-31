@@ -3,7 +3,8 @@ from _typeshed import Incomplete
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity, EntityDescription as EntityDescription
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty
 from pyisy.nodes import Group as Group, Node as Node, NodeChangedEvent as NodeChangedEvent
 from pyisy.programs import Program as Program

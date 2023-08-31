@@ -2,8 +2,8 @@ from .const import DATA_ADGUARD_VERSION as DATA_ADGUARD_VERSION, DOMAIN as DOMAI
 from _typeshed import Incomplete
 from adguardhome import AdGuardHome as AdGuardHome
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASSIO as SOURCE_HASSIO
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo, Entity as Entity
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 
 class AdGuardHomeEntity(Entity):
     _attr_has_entity_name: bool

@@ -3,7 +3,7 @@ from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -19,6 +19,12 @@ class AirzoneSystemEntity(AirzoneEntity):
     def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry, system_data: dict[str, Any]) -> None: ...
     @property
     def available(self) -> bool: ...
+    def get_airzone_value(self, key: str) -> Any: ...
+
+class AirzoneHotWaterEntity(AirzoneEntity):
+    _attr_device_info: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry) -> None: ...
     def get_airzone_value(self, key: str) -> Any: ...
 
 class AirzoneWebServerEntity(AirzoneEntity):

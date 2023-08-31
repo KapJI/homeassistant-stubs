@@ -12,7 +12,7 @@ Add it to dev dependencies of your project.
 I recommend to use [Poetry](https://python-poetry.org/) for managing dependencies:
 
 ```shell
-poetry add --dev homeassistant-stubs
+poetry add --group dev homeassistant-stubs
 ```
 
 Please note that only stubs from strictly typed modules are added in this package.

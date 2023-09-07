@@ -22,8 +22,8 @@ TEMPLATE_SENSOR_BASE_SCHEMA: Incomplete
 
 class TriggerBaseEntity(Entity):
     domain: str
-    extra_template_keys: tuple | None
-    extra_template_keys_complex: tuple | None
+    extra_template_keys: tuple[str, ...] | None
+    extra_template_keys_complex: tuple[str, ...] | None
     _unique_id: str | None
     hass: Incomplete
     _config: Incomplete

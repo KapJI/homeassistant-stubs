@@ -39,6 +39,10 @@ class AlexaUnsupportedThermostatModeError(AlexaError):
     namespace: str
     error_type: str
 
+class AlexaUnsupportedThermostatTargetStateError(AlexaError):
+    namespace: str
+    error_type: str
+
 class AlexaTempRangeError(AlexaError):
     namespace: str
     error_type: str

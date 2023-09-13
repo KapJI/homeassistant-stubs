@@ -3,12 +3,11 @@ from _typeshed import Incomplete
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow
 from homeassistant.core import HomeAssistant as HomeAssistant
-from zwave_js_server.model.node import Node as Node
 
 class DeviceConfigFileChangedFlow(RepairsFlow):
-    node: Incomplete
     device_name: Incomplete
-    def __init__(self, node: Node, device_name: str) -> None: ...
+    device_id: Incomplete
+    def __init__(self, data: dict[str, str]) -> None: ...
     async def async_step_init(self, user_input: dict[str, str] | None = ...) -> data_entry_flow.FlowResult: ...
     async def async_step_confirm(self, user_input: dict[str, str] | None = ...) -> data_entry_flow.FlowResult: ...
 

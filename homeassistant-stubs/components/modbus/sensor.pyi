@@ -8,6 +8,7 @@ from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
@@ -27,6 +28,7 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     async def async_setup_slaves(self, hass: HomeAssistant, slave_count: int, entry: dict[str, Any]) -> list[SlaveSensor]: ...
     _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
+    _cancel_call: Incomplete
     _lazy_errors: Incomplete
     _attr_available: bool
     async def async_update(self, now: datetime | None = ...) -> None: ...

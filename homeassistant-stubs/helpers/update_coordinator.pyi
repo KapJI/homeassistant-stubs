@@ -33,7 +33,6 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     _shutdown_requested: bool
     config_entry: Incomplete
     always_update: Incomplete
-    _next_refresh: Incomplete
     data: Incomplete
     _microsecond: Incomplete
     _listeners: Incomplete

@@ -16,7 +16,6 @@ from homeassistant.helpers.event import EventStateChangedData as EventStateChang
 from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType
 from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as async_get_dhcp
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from homeassistant.util.network import is_invalid as is_invalid, is_link_local as is_link_local, is_loopback as is_loopback
 from scapy.packet import Packet as Packet
 from typing import Any, Final
 

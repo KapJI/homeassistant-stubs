@@ -16,7 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class WLEDMasterLight(WLEDEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_icon: str
-    _attr_name: str
+    _attr_translation_key: str
     _attr_supported_features: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_unique_id: Incomplete

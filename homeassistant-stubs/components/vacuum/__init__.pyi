@@ -77,6 +77,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class _BaseVacuum(Entity):
+    _entity_component_unrecorded_attributes: Incomplete
     _attr_battery_icon: str
     _attr_battery_level: int | None
     _attr_fan_speed: str | None

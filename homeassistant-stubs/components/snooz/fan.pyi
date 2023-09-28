@@ -19,12 +19,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SnoozFan(FanEntity, RestoreEntity):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
-    _device: Incomplete
-    _attr_unique_id: Incomplete
     _attr_supported_features: Incomplete
     _attr_should_poll: bool
-    _is_on: Incomplete
-    _percentage: Incomplete
+    _is_on: bool | None
+    _percentage: int | None
+    _device: Incomplete
+    _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, data: SnoozConfigurationData) -> None: ...
     def _async_write_state_changed(self) -> None: ...

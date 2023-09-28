@@ -36,5 +36,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class InvalidAuth(HomeAssistantError): ...
 
 class WallboxEntity(CoordinatorEntity[WallboxCoordinator]):
+    _attr_has_entity_name: bool
     @property
     def device_info(self) -> DeviceInfo: ...

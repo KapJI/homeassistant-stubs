@@ -58,6 +58,7 @@ class WaterHeaterEntityEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class WaterHeaterEntity(Entity):
+    _entity_component_unrecorded_attributes: Incomplete
     entity_description: WaterHeaterEntityEntityDescription
     _attr_current_operation: str | None
     _attr_current_temperature: float | None

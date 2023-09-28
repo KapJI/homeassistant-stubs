@@ -1,6 +1,6 @@
 from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, SensorType as SensorType
-from .device import MySensorsEntity as MySensorsEntity
+from .device import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,7 +12,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsSwitch(MySensorsEntity, SwitchEntity):
+class MySensorsSwitch(MySensorsChildEntity, SwitchEntity):
     @property
     def is_on(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

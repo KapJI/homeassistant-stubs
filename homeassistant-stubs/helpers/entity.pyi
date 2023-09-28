@@ -7,27 +7,25 @@ from .typing import EventType as EventType, StateType as StateType, UNDEFINED as
 from _typeshed import Incomplete
 from abc import ABC
 from collections.abc import Coroutine, Iterable, Mapping, MutableMapping
-from datetime import datetime, timedelta
+from datetime import timedelta
 from enum import Enum
 from homeassistant.backports.functools import cached_property as cached_property
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, InvalidStateError as InvalidStateError, NoEntitySpecifiedError as NoEntitySpecifiedError
-from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.loader import IntegrationNotLoaded as IntegrationNotLoaded, async_get_loaded_integration as async_get_loaded_integration, bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
-from typing import Any, Final, Literal, TypeVar
+from typing import Any, Final, Literal, NotRequired, TypeVar, TypedDict
 
 _T = TypeVar('_T')
 _LOGGER: Incomplete
 SLOW_UPDATE_WARNING: int
 DATA_ENTITY_SOURCE: str
-SOURCE_CONFIG_ENTRY: str
-SOURCE_PLATFORM_CONFIG: str
 FLOAT_PRECISION: Incomplete
 
 def async_setup(hass: HomeAssistant) -> None: ...
-def entity_sources(hass: HomeAssistant) -> dict[str, dict[str, str]]: ...
+def entity_sources(hass: HomeAssistant) -> dict[str, EntityInfo]: ...
 def generate_entity_id(entity_id_format: str, name: str | None, current_ids: list[str] | None = ..., hass: HomeAssistant | None = ...) -> str: ...
 def async_generate_entity_id(entity_id_format: str, name: str | None, current_ids: Iterable[str] | None = ..., hass: HomeAssistant | None = ...) -> str: ...
 def get_capability(hass: HomeAssistant, entity_id: str, capability: str) -> Any | None: ...
@@ -36,6 +34,14 @@ def get_supported_features(hass: HomeAssistant, entity_id: str) -> int: ...
 def get_unit_of_measurement(hass: HomeAssistant, entity_id: str) -> str | None: ...
 
 ENTITY_CATEGORIES_SCHEMA: Final[Incomplete]
+
+class EntityInfo(TypedDict):
+    domain: str
+    custom_component: bool
+    config_entry: NotRequired[str]
+
+class StateInfo(TypedDict):
+    unrecorded_attributes: frozenset[str]
 
 class EntityPlatformState(Enum):
     NOT_ADDED: Incomplete
@@ -73,8 +79,12 @@ class Entity(ABC):
     _on_remove: list[CALLBACK_TYPE] | None
     _unsub_device_updates: CALLBACK_TYPE | None
     _context: Context | None
-    _context_set: datetime | None
+    _context_set: float | None
     _platform_state: Incomplete
+    _entity_component_unrecorded_attributes: frozenset[str]
+    _unrecorded_attributes: frozenset[str]
+    __combined_unrecorded_attributes: frozenset[str]
+    _state_info: StateInfo
     _attr_assumed_state: bool
     _attr_attribution: str | None
     _attr_available: bool
@@ -97,6 +107,7 @@ class Entity(ABC):
     _attr_translation_key: str | None
     _attr_unique_id: str | None
     _attr_unit_of_measurement: str | None
+    def __init_subclass__(cls, **kwargs: Any) -> None: ...
     @property
     def should_poll(self) -> bool: ...
     @property

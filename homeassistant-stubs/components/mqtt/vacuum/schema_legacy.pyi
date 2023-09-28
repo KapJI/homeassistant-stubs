@@ -3,9 +3,9 @@ from .. import subscription as subscription
 from ..config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN
 from ..debug_info import log_messages as log_messages
-from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity
+from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, write_state_on_attr_change as write_state_on_attr_change
 from ..models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from ..util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic
+from ..util import valid_publish_topic as valid_publish_topic
 from .const import MQTT_VACUUM_ATTRIBUTES_BLOCKED as MQTT_VACUUM_ATTRIBUTES_BLOCKED
 from .schema import MQTT_VACUUM_SCHEMA as MQTT_VACUUM_SCHEMA, services_to_strings as services_to_strings, strings_to_services as strings_to_services
 from _typeshed import Incomplete
@@ -65,11 +65,17 @@ _COMMANDS: Incomplete
 async def async_setup_entity_legacy(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttVacuum(MqttEntity, VacuumEntity):
+    _attr_battery_level: int
+    _attr_is_on: bool
+    _attributes_extra_blocked = MQTT_LEGACY_VACUUM_ATTRIBUTES_BLOCKED
+    _charging: bool
+    _cleaning: bool
+    _command_topic: str | None
+    _docked: bool
     _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
-    _attributes_extra_blocked = MQTT_LEGACY_VACUUM_ATTRIBUTES_BLOCKED
-    _command_topic: str | None
     _encoding: str | None
+    _error: str | None
     _qos: bool
     _retain: bool
     _payloads: dict[str, str]
@@ -77,20 +83,13 @@ class MqttVacuum(MqttEntity, VacuumEntity):
     _set_fan_speed_topic: str | None
     _state_topics: dict[str, str | None]
     _templates: dict[str, Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType]]
-    _attr_battery_level: int
-    _attr_is_on: bool
-    _attr_fan_speed: str
-    _charging: bool
-    _cleaning: bool
-    _docked: bool
-    _error: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_supported_features: Incomplete
     _attr_fan_speed_list: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_status: str
+    _attr_fan_speed: Incomplete
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...

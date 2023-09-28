@@ -29,11 +29,11 @@ class DevoloGenericMultiLevelDeviceEntity(DevoloMultiLevelDeviceEntity):
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
 
 class DevoloBatteryEntity(DevoloMultiLevelDeviceEntity):
+    _attr_entity_category: Incomplete
+    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_name: str
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
-    _attr_entity_category: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
-    _attr_name: str
     _value: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
 

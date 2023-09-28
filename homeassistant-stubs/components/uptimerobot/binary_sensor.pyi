@@ -1,5 +1,5 @@
-from . import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from .entity import UptimeRobotEntity as UptimeRobotEntity
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

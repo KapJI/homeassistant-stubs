@@ -18,7 +18,7 @@ OPERATION_LIST: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsHVAC(mysensors.device.MySensorsEntity, ClimateEntity):
+class MySensorsHVAC(mysensors.device.MySensorsChildEntity, ClimateEntity):
     _attr_hvac_modes = OPERATION_LIST
     @property
     def supported_features(self) -> ClimateEntityFeature: ...

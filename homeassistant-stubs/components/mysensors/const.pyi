@@ -4,6 +4,7 @@ from typing import Final, TypedDict
 
 ATTR_DEVICES: Final[str]
 ATTR_GATEWAY_ID: Final[str]
+ATTR_NODE_ID: Final[str]
 CONF_BAUD_RATE: Final[str]
 CONF_DEVICE: Final[str]
 CONF_PERSISTENCE_FILE: Final[str]
@@ -20,11 +21,13 @@ CONF_GATEWAY_TYPE_MQTT: ConfGatewayType
 DOMAIN: Final[str]
 MYSENSORS_GATEWAY_START_TASK: str
 MYSENSORS_GATEWAYS: Final[str]
+MYSENSORS_DISCOVERED_NODES: Final[str]
 PLATFORM: Final[str]
 SCHEMA: Final[str]
 CHILD_CALLBACK: str
 NODE_CALLBACK: str
 MYSENSORS_DISCOVERY: str
+MYSENSORS_NODE_DISCOVERY: str
 MYSENSORS_ON_UNLOAD: str
 TYPE: Final[str]
 UPDATE_DELAY: float
@@ -32,6 +35,10 @@ UPDATE_DELAY: float
 class DiscoveryInfo(TypedDict):
     devices: list[DevId]
     gateway_id: GatewayId
+
+class NodeDiscoveryInfo(TypedDict):
+    gateway_id: GatewayId
+    node_id: int
 
 SERVICE_SEND_IR_CODE: Final[str]
 SensorType = str

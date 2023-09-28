@@ -1,5 +1,5 @@
 from . import Sun as Sun
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SIGNAL_EVENTS_CHANGED as SIGNAL_EVENTS_CHANGED, SIGNAL_POSITION_CHANGED as SIGNAL_POSITION_CHANGED
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 
@@ -15,10 +16,11 @@ ENTITY_ID_SENSOR_FORMAT: Incomplete
 
 class SunEntityDescriptionMixin:
     value_fn: Callable[[Sun], StateType | datetime]
-    def __init__(self, value_fn) -> None: ...
+    signal: str
+    def __init__(self, value_fn, signal) -> None: ...
 
 class SunSensorEntityDescription(SensorEntityDescription, SunEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, signal, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 SENSOR_TYPES: tuple[SunSensorEntityDescription, ...]
 
@@ -26,6 +28,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SunSensor(SensorEntity):
     _attr_has_entity_name: bool
+    _attr_should_poll: bool
     _attr_entity_category: Incomplete
     entity_description: SunSensorEntityDescription
     entity_id: Incomplete
@@ -35,3 +38,4 @@ class SunSensor(SensorEntity):
     def __init__(self, sun: Sun, entity_description: SunSensorEntityDescription, entry_id: str) -> None: ...
     @property
     def native_value(self) -> StateType | datetime: ...
+    async def async_added_to_hass(self) -> None: ...

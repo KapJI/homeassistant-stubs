@@ -11,7 +11,7 @@ from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component, async_process_integration_platforms as async_process_integration_platforms
+from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.reload import async_reload_integration_platforms as async_reload_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType
 from homeassistant.loader import bind_hass as bind_hass
@@ -67,6 +67,7 @@ async def _process_group_platform(hass: HomeAssistant, domain: str, platform: Gr
 async def _async_process_config(hass: HomeAssistant, config: ConfigType) -> None: ...
 
 class GroupEntity(Entity, metaclass=abc.ABCMeta):
+    _unrecorded_attributes: Incomplete
     _attr_should_poll: bool
     _entity_ids: list[str]
     def async_start_preview(self, preview_callback: Callable[[str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...
@@ -77,6 +78,7 @@ class GroupEntity(Entity, metaclass=abc.ABCMeta):
     def async_update_supported_features(self, entity_id: str, new_state: State | None) -> None: ...
 
 class Group(Entity):
+    _unrecorded_attributes: Incomplete
     _attr_should_poll: bool
     tracking: tuple[str, ...]
     trackable: tuple[str, ...]

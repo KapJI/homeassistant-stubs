@@ -30,7 +30,7 @@ class Router:
     connection: Connection
     url: str
     data: dict[str, Any]
-    subscriptions: dict[str, set[str]]
+    subscriptions: dict[str, list[str]]
     inflight_gets: set[str]
     client: Client
     suspended: bool

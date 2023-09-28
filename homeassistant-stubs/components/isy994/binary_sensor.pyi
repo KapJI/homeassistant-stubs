@@ -8,7 +8,7 @@ from homeassistant.const import Platform as Platform, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
+from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pyisy.helpers import NodeProperty as NodeProperty
 from pyisy.nodes import Group as Group, Node
@@ -20,12 +20,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 def _detect_device_type_and_class(node: Group | Node) -> tuple[BinarySensorDeviceClass | None, str | None]: ...
 
 class ISYBinarySensorEntity(ISYNodeEntity, BinarySensorEntity):
-    _device_class: Incomplete
+    _attr_device_class: Incomplete
     def __init__(self, node: Node, force_device_class: BinarySensorDeviceClass | None = ..., unknown_state: bool | None = ..., device_info: DeviceInfo | None = ...) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
-    @property
-    def device_class(self) -> BinarySensorDeviceClass | None: ...
 
 class ISYInsteonBinarySensorEntity(ISYBinarySensorEntity):
     _negative_node: Incomplete
@@ -44,6 +42,7 @@ class ISYInsteonBinarySensorEntity(ISYBinarySensorEntity):
     def is_on(self) -> bool | None: ...
 
 class ISYBinarySensorHeartbeat(ISYNodeEntity, BinarySensorEntity, RestoreEntity):
+    _attr_device_class: Incomplete
     _parent_device: Incomplete
     _heartbeat_timer: Incomplete
     _computed_state: Incomplete
@@ -55,8 +54,6 @@ class ISYBinarySensorHeartbeat(ISYNodeEntity, BinarySensorEntity, RestoreEntity)
     def async_on_update(self, event: object) -> None: ...
     @property
     def is_on(self) -> bool: ...
-    @property
-    def device_class(self) -> BinarySensorDeviceClass: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
 

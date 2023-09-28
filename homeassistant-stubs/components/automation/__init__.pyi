@@ -14,7 +14,6 @@ from homeassistant.exceptions import ConditionError as ConditionError, Condition
 from homeassistant.helpers import condition as condition
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_MAX, CONF_MAX as CONF_MAX, CONF_MAX_EXCEEDED as CONF_MAX_EXCEEDED, Script as Script, script_stack_cv as script_stack_cv
@@ -59,6 +58,7 @@ def blueprint_in_automation(hass: HomeAssistant, entity_id: str) -> str | None: 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class BaseAutomationEntity(ToggleEntity, ABC, metaclass=abc.ABCMeta):
+    _entity_component_unrecorded_attributes: Incomplete
     raw_config: ConfigType | None
     @property
     def capability_attributes(self) -> dict[str, Any] | None: ...

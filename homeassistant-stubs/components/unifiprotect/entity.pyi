@@ -42,6 +42,7 @@ class ProtectNVREntity(ProtectDeviceEntity):
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
 
 class EventEntityMixin(ProtectDeviceEntity):
+    _unrecorded_attributes: Incomplete
     entity_description: ProtectEventMixin
     _event: Incomplete
     def __init__(self, *args: Any, **kwarg: Any) -> None: ...

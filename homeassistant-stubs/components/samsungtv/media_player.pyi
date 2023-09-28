@@ -22,13 +22,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SamsungTVDevice(SamsungTVEntity, MediaPlayerEntity):
     _attr_source_list: list[str]
+    _attr_device_class: Incomplete
     _config_entry: Incomplete
     _host: Incomplete
     _ssdp_rendering_control_location: Incomplete
     _turn_on: Incomplete
     _playing: bool
     _attr_is_volume_muted: bool
-    _attr_device_class: Incomplete
     _app_list: Incomplete
     _app_list_event: Incomplete
     _attr_supported_features: Incomplete

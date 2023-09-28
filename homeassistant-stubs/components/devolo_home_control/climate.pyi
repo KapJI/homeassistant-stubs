@@ -13,14 +13,14 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloClimateDeviceEntity(DevoloMultiLevelSwitchDeviceEntity, ClimateEntity):
+    _attr_supported_features: Incomplete
+    _attr_target_temperature_step = PRECISION_HALVES
+    _attr_temperature_unit: Incomplete
+    _attr_precision = PRECISION_TENTHS
     _attr_hvac_mode: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
-    _attr_precision: Incomplete
-    _attr_supported_features: Incomplete
-    _attr_target_temperature_step: Incomplete
-    _attr_temperature_unit: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
     @property
     def current_temperature(self) -> float | None: ...

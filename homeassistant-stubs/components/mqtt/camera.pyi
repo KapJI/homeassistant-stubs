@@ -30,7 +30,7 @@ class MqttCamera(MqttEntity, Camera):
     _default_name = DEFAULT_NAME
     _entity_id_format: str
     _attributes_extra_blocked: frozenset[str]
-    _last_image: Incomplete
+    _last_image: bytes | None
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...

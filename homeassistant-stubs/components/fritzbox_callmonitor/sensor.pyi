@@ -4,7 +4,7 @@ from .const import ATTR_PREFIXES as ATTR_PREFIXES, CONF_PHONEBOOK as CONF_PHONEB
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import StrEnum
-from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
@@ -24,6 +24,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class FritzBoxCallSensor(SensorEntity):
     _attr_icon = ICON_PHONE
+    _attr_translation_key = DOMAIN
+    _attr_device_class: Incomplete
+    _attr_options: Incomplete
     _fritzbox_phonebook: Incomplete
     _prefixes: Incomplete
     _host: Incomplete

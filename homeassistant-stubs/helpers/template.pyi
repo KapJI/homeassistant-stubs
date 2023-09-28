@@ -162,7 +162,6 @@ class DomainStates:
     def __repr__(self) -> str: ...
 
 class TemplateStateBase(State):
-    __slots__: Incomplete
     _state: State
     __setitem__ = _readonly
     __delitem__ = _readonly

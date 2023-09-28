@@ -16,8 +16,7 @@ class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     device: Incomplete
     _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
     @property
     def is_on(self) -> bool: ...

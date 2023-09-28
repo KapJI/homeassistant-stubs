@@ -139,6 +139,7 @@ class LightEntityDescription(ToggleEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class LightEntity(ToggleEntity):
+    _entity_component_unrecorded_attributes: Incomplete
     entity_description: LightEntityDescription
     _attr_brightness: int | None
     _attr_color_mode: ColorMode | str | None

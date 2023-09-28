@@ -28,7 +28,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class DevoloUpdateEntity(DevoloCoordinatorEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     entity_description: DevoloUpdateEntityDescription
-    _attr_translation_key: Incomplete
     _in_progress_old_version: Incomplete
     def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator, description: DevoloUpdateEntityDescription, device: Device) -> None: ...
     @property

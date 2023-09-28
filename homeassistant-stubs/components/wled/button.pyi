@@ -14,7 +14,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class WLEDRestartButton(WLEDEntity, ButtonEntity):
     _attr_device_class: Incomplete
     _attr_entity_category: Incomplete
-    _attr_name: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     async def async_press(self) -> None: ...

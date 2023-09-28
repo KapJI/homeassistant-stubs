@@ -42,6 +42,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class ImageEntity(Entity):
+    _entity_component_unrecorded_attributes: Incomplete
     _attr_content_type: str
     _attr_image_last_updated: datetime | None
     _attr_image_url: str | None | UndefinedType

@@ -17,7 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class WLEDNightlightSwitch(WLEDEntity, SwitchEntity):
     _attr_icon: str
     _attr_entity_category: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
@@ -30,7 +30,7 @@ class WLEDNightlightSwitch(WLEDEntity, SwitchEntity):
 class WLEDSyncSendSwitch(WLEDEntity, SwitchEntity):
     _attr_icon: str
     _attr_entity_category: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
@@ -43,7 +43,7 @@ class WLEDSyncSendSwitch(WLEDEntity, SwitchEntity):
 class WLEDSyncReceiveSwitch(WLEDEntity, SwitchEntity):
     _attr_icon: str
     _attr_entity_category: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property

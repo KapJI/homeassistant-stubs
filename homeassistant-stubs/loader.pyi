@@ -2,7 +2,7 @@ import pathlib
 import voluptuous as vol
 from . import generated as generated
 from .config_entries import ConfigEntry as ConfigEntry
-from .core import HomeAssistant as HomeAssistant
+from .core import HomeAssistant as HomeAssistant, callback as callback
 from .generated.application_credentials import APPLICATION_CREDENTIALS as APPLICATION_CREDENTIALS
 from .generated.bluetooth import BLUETOOTH as BLUETOOTH
 from .generated.dhcp import DHCP as DHCP
@@ -191,12 +191,17 @@ class Integration:
     def __repr__(self) -> str: ...
 
 def _resolve_integrations_from_root(hass: HomeAssistant, root_module: ModuleType, domains: list[str]) -> dict[str, Integration]: ...
+def async_get_loaded_integration(hass: HomeAssistant, domain: str) -> Integration: ...
 async def async_get_integration(hass: HomeAssistant, domain: str) -> Integration: ...
 async def async_get_integrations(hass: HomeAssistant, domains: Iterable[str]) -> dict[str, Integration | Exception]: ...
 
 class LoaderError(Exception): ...
 
 class IntegrationNotFound(LoaderError):
+    domain: Incomplete
+    def __init__(self, domain: str) -> None: ...
+
+class IntegrationNotLoaded(LoaderError):
     domain: Incomplete
     def __init__(self, domain: str) -> None: ...
 

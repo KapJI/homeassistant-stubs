@@ -3,9 +3,9 @@ from .. import subscription as subscription
 from ..config import DEFAULT_QOS as DEFAULT_QOS, DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from ..debug_info import log_messages as log_messages
-from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity
+from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, write_state_on_attr_change as write_state_on_attr_change
 from ..models import ReceiveMessage as ReceiveMessage
-from ..util import get_mqtt_data as get_mqtt_data, valid_subscribe_topic as valid_subscribe_topic
+from ..util import valid_subscribe_topic as valid_subscribe_topic
 from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from .schema_basic import CONF_BRIGHTNESS_SCALE as CONF_BRIGHTNESS_SCALE, CONF_WHITE_SCALE as CONF_WHITE_SCALE, MQTT_LIGHT_ATTRIBUTES_BLOCKED as MQTT_LIGHT_ATTRIBUTES_BLOCKED
 from _typeshed import Incomplete
@@ -54,16 +54,16 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
+    _fixed_color_mode: ColorMode | str | None
     _flash_times: dict[str, int | None]
     _topic: dict[str, str | None]
     _optimistic: bool
-    _fixed_color_mode: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_max_mireds: Incomplete
     _attr_min_mireds: Incomplete
     _attr_effect_list: Incomplete
+    _attr_assumed_state: Incomplete
     _attr_supported_features: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
@@ -81,8 +81,6 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
-    @property
-    def assumed_state(self) -> bool: ...
     @property
     def color_mode(self) -> ColorMode | str | None: ...
     def _set_flash_and_transition(self, message: dict[str, Any], **kwargs: Any) -> None: ...

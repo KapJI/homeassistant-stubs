@@ -8,7 +8,6 @@ from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.util.network import is_ipv4_address as is_ipv4_address, is_link_local as is_link_local
 from typing import Any
 
 _LOGGER: Incomplete

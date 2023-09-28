@@ -36,22 +36,18 @@ class ThresholdSensor(BinarySensorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _entity_id: Incomplete
-    _name: Incomplete
+    _attr_name: Incomplete
     _threshold_lower: Incomplete
     _threshold_upper: Incomplete
     threshold_type: Incomplete
     _hysteresis: Incomplete
-    _device_class: Incomplete
+    _attr_device_class: Incomplete
     _state_position: Incomplete
     _state: Incomplete
     sensor_value: Incomplete
     def __init__(self, hass: HomeAssistant, entity_id: str, name: str, lower: float | None, upper: float | None, hysteresis: float, device_class: BinarySensorDeviceClass | None, unique_id: str | None, device_info: DeviceInfo | None = ...) -> None: ...
     @property
-    def name(self) -> str: ...
-    @property
     def is_on(self) -> bool | None: ...
-    @property
-    def device_class(self) -> BinarySensorDeviceClass | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     def _update_state(self) -> None: ...

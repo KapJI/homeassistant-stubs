@@ -1,5 +1,6 @@
 from . import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .const import DOMAIN as DOMAIN
+from .models import ELKM1Data as ELKM1Data
 from _typeshed import Incomplete
 from elkm1_lib.const import ThermostatFan, ThermostatMode
 from elkm1_lib.elements import Element as Element

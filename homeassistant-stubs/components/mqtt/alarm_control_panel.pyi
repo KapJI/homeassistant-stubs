@@ -4,9 +4,9 @@ from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_SUPPORTED_FEATURES as CONF_SUPPORTED_FEATURES
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, write_state_on_attr_change as write_state_on_attr_change
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
-from .util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
+from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -49,22 +49,17 @@ class MqttAlarm(MqttEntity, alarm.AlarmControlPanelEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     _attributes_extra_blocked = MQTT_ALARM_ATTRIBUTES_BLOCKED
-    _state: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _value_template: Incomplete
     _command_template: Incomplete
+    _attr_code_format: Incomplete
+    _attr_code_arm_required: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
+    _attr_state: Incomplete
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
-    @property
-    def state(self) -> str | None: ...
-    @property
-    def code_format(self) -> alarm.CodeFormat | None: ...
-    @property
-    def code_arm_required(self) -> bool: ...
     async def async_alarm_disarm(self, code: str | None = ...) -> None: ...
     async def async_alarm_arm_home(self, code: str | None = ...) -> None: ...
     async def async_alarm_arm_away(self, code: str | None = ...) -> None: ...

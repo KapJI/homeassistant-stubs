@@ -19,6 +19,7 @@ class NanoleafLight(NanoleafEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_name: Incomplete
+    _attr_icon: str
     _attr_unique_id: Incomplete
     _attr_min_mireds: Incomplete
     _attr_max_mireds: Incomplete
@@ -31,8 +32,6 @@ class NanoleafLight(NanoleafEntity, LightEntity):
     def effect(self) -> str | None: ...
     @property
     def effect_list(self) -> list[str]: ...
-    @property
-    def icon(self) -> str: ...
     @property
     def is_on(self) -> bool: ...
     @property

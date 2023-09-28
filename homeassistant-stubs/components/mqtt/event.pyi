@@ -3,9 +3,8 @@ from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
 from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, write_state_on_attr_change as write_state_on_attr_change
 from .models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from .util import get_mqtt_data as get_mqtt_data
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import event as event
@@ -35,7 +34,6 @@ class MqttEvent(MqttEntity, EventEntity):
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_EVENT_ATTRIBUTES_BLOCKED
     _template: Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType]
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_device_class: Incomplete

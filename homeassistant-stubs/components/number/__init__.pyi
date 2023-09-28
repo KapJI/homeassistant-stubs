@@ -1,4 +1,5 @@
 from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, NumberDeviceClass as NumberDeviceClass, NumberMode as NumberMode
+from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity, EntityDescription
@@ -19,6 +20,7 @@ class NumberEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 class NumberEntity(Entity):
+    _entity_component_unrecorded_attributes: Incomplete
     entity_description: NumberEntityDescription
     _attr_device_class: NumberDeviceClass | None
     _attr_max_value: None

@@ -26,6 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 def async_create_preview_media_player(name: str, validated_config: dict[str, Any]) -> MediaPlayerGroup: ...
 
 class MediaPlayerGroup(MediaPlayerEntity):
+    _unrecorded_attributes: Incomplete
     _attr_available: bool
     _attr_should_poll: bool
     _name: Incomplete

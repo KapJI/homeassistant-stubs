@@ -14,7 +14,7 @@ from bluetooth_adapters import AdapterDetails as AdapterDetails, BluetoothAdapte
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
 from homeassistant import config_entries as config_entries
-from homeassistant.components.logger import EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
+from homeassistant.const import EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
@@ -40,6 +40,7 @@ class BluetoothManager:
     _cancel_unavailable_tracking: Incomplete
     _cancel_logging_listener: Incomplete
     _advertisement_tracker: Incomplete
+    _fallback_intervals: Incomplete
     _unavailable_callbacks: Incomplete
     _connectable_unavailable_callbacks: Incomplete
     _callback_index: Incomplete
@@ -87,3 +88,6 @@ class BluetoothManager:
     def async_register_bleak_callback(self, callback: AdvertisementDataCallback, filters: dict[str, set[str]]) -> CALLBACK_TYPE: ...
     def async_release_connection_slot(self, device: BLEDevice) -> None: ...
     def async_allocate_connection_slot(self, device: BLEDevice) -> bool: ...
+    def async_get_learned_advertising_interval(self, address: str) -> float | None: ...
+    def async_get_fallback_availability_interval(self, address: str) -> float | None: ...
+    def async_set_fallback_availability_interval(self, address: str, interval: float) -> None: ...

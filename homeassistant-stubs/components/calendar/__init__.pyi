@@ -74,6 +74,7 @@ def extract_offset(summary: str, offset_prefix: str) -> tuple[str, datetime.time
 def is_offset_reached(start: datetime.datetime, offset_time: datetime.timedelta) -> bool: ...
 
 class CalendarEntity(Entity):
+    _entity_component_unrecorded_attributes: Incomplete
     _alarm_unsubs: list[CALLBACK_TYPE]
     @property
     def event(self) -> CalendarEvent | None: ...

@@ -1,6 +1,8 @@
-from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
+from enum import StrEnum
+from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET
 from typing import Final
 
+DOMAIN: Final[str]
 ATTR_ACCESS_TOKEN: Final[str]
 ATTR_REFRESH_TOKEN: Final[str]
 ATTR_LAST_SAVED_AT: Final[str]
@@ -22,5 +24,10 @@ FITBIT_CONFIG_FILE: Final[str]
 FITBIT_DEFAULT_RESOURCES: Final[list[str]]
 DEFAULT_CONFIG: Final[dict[str, str]]
 DEFAULT_CLOCK_FORMAT: Final[str]
-FITBIT_MEASUREMENTS: Final[dict[str, dict[str, str]]]
 BATTERY_LEVELS: Final[dict[str, int]]
+
+class FitbitUnitSystem(StrEnum):
+    LEGACY_DEFAULT: str
+    METRIC: str
+    EN_US: str
+    EN_GB: str

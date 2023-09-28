@@ -5,7 +5,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -42,6 +41,8 @@ class InputSelectStorageCollection(collection.DictStorageCollection):
     async def _update_data(self, item: dict[str, Any], update_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class InputSelect(collection.CollectionEntity, SelectEntity, RestoreEntity):
+    _entity_component_unrecorded_attributes: Incomplete
+    _unrecorded_attributes: Incomplete
     _attr_should_poll: bool
     editable: bool
     _attr_current_option: Incomplete

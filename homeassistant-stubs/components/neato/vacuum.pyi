@@ -41,7 +41,6 @@ class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
     _robot_serial: Incomplete
     _attr_unique_id: Incomplete
     _status_state: Incomplete
-    _clean_state: Incomplete
     _state: Incomplete
     _clean_time_start: Incomplete
     _clean_time_stop: Incomplete
@@ -56,10 +55,9 @@ class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
     _robot_boundaries: Incomplete
     _robot_stats: Incomplete
     def __init__(self, neato: NeatoHub, robot: Robot, mapdata: dict[str, Any] | None, persistent_maps: dict[str, Any] | None) -> None: ...
+    _attr_state: Incomplete
     _attr_battery_level: Incomplete
     def update(self) -> None: ...
-    @property
-    def state(self) -> str | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property

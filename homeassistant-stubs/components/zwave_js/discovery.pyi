@@ -54,7 +54,8 @@ class ZWaveValueDiscoverySchema(DataclassMustHaveAtLeastOne):
     readable: bool | None
     writeable: bool | None
     any_available_states: set[tuple[int, str]] | None
-    def __init__(self, command_class, endpoint, property, property_name, property_key, not_property_key, type, readable, writeable, any_available_states) -> None: ...
+    value: Any | None
+    def __init__(self, command_class, endpoint, property, property_name, property_key, not_property_key, type, readable, writeable, any_available_states, value) -> None: ...
 
 class ZWaveDiscoverySchema:
     platform: Platform

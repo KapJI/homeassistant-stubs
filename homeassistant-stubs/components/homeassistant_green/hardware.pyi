@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 BOARD_NAME: str
+DOCUMENTATION_URL: str
 MANUFACTURER: str
 MODEL: str
 

@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import platform
 import shutil
 import subprocess
 import sys
 from pathlib import Path
+from urllib.request import urlopen
 
 from awesomeversion.awesomeversion import AwesomeVersion
 from awesomeversion.strategy import AwesomeVersionStrategy
@@ -16,11 +18,6 @@ from github import Github
 from github.Repository import Repository
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
-BLACKLISTED_VERSIONS = [
-    # Doesn't exist on PyPI
-    "2021.10.0b8",
-    "2023.5.0b9",
-]
 
 
 def main() -> int:
@@ -40,10 +37,11 @@ def main() -> int:
     # Find which versions are missing
     current_versions = set(get_available_versions(repo_root))
     homeassistant_versions = get_available_versions(homeassistant_root)
+    available_pypi_versions = set(get_pypi_versions())
     missing_versions = [
         version
         for version in homeassistant_versions
-        if version not in current_versions and version not in BLACKLISTED_VERSIONS
+        if version not in current_versions and version in available_pypi_versions
     ]
     for version in missing_versions:
         print(f"Missing version: {version}")
@@ -59,6 +57,14 @@ def main() -> int:
             args.dry_run,
         )
     return 0
+
+
+def get_pypi_versions() -> list[str]:
+    """Get list of available versions on PyPI."""
+    url = "https://pypi.org/pypi/homeassistant/json"
+    with urlopen(url) as response:
+        data = json.loads(response.read())
+    return list(data["releases"].keys())
 
 
 def get_available_versions(git_root: Path) -> list[str]:

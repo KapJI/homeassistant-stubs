@@ -3,9 +3,8 @@ from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STATE_VALUE_TEMPLATE as CONF_STATE_VALUE_TEMPLATE, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, write_state_on_attr_change as write_state_on_attr_change
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from .util import get_mqtt_data as get_mqtt_data
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import siren as siren
@@ -51,18 +50,16 @@ class MqttSiren(MqttEntity, SirenEntity):
     _state_on: str
     _state_off: str
     _optimistic: bool
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_available_tones: Incomplete
     _attr_supported_features: Incomplete
+    _attr_assumed_state: Incomplete
     _attr_is_on: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
-    @property
-    def assumed_state(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     async def _async_publish(self, topic: str, template: str, value: Any, variables: dict[str, Any] | None = ...) -> None: ...

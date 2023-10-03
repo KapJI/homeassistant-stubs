@@ -25,7 +25,6 @@ async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntiti
 class MqttButton(MqttEntity, ButtonEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _command_template: Incomplete

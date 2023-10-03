@@ -52,6 +52,7 @@ class FanEntityDescription(ToggleEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class FanEntity(ToggleEntity):
+    _entity_component_unrecorded_attributes: Incomplete
     entity_description: FanEntityDescription
     _attr_current_direction: str | None
     _attr_oscillating: bool | None

@@ -13,9 +13,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WallboxSwitch(WallboxEntity, SwitchEntity):
     entity_description: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: WallboxCoordinator, entry: ConfigEntry, description: SwitchEntityDescription) -> None: ...
+    def __init__(self, coordinator: WallboxCoordinator, description: SwitchEntityDescription) -> None: ...
     @property
     def available(self) -> bool: ...
     @property

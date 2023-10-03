@@ -15,7 +15,6 @@ class WLEDUpdateEntity(WLEDEntity, UpdateEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_title: str
-    _attr_name: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property

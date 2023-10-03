@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SIGNAL_EVENTS_CHANGED as SIGNAL_EVENTS_CHANGED, SIGNAL_POSITION_CHANGED as SIGNAL_POSITION_CHANGED
 from _typeshed import Incomplete
 from astral.location import Elevation as Elevation, Location as Location
 from datetime import datetime
@@ -6,8 +6,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, Platform as Platform, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
+from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
 from homeassistant.helpers.sun import get_astral_location as get_astral_location, get_location_astral_event_next as get_location_astral_event_next
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
@@ -39,6 +39,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class Sun(Entity):
+    _unrecorded_attributes: Incomplete
     _attr_name: str
     entity_id = ENTITY_ID
     _no_platform_reported: bool
@@ -56,6 +57,7 @@ class Sun(Entity):
     _next_change: datetime
     hass: Incomplete
     phase: Incomplete
+    _state_info: Incomplete
     _config_listener: Incomplete
     _update_events_listener: Incomplete
     _update_sun_position_listener: Incomplete

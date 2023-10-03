@@ -51,11 +51,13 @@ class ProtectDeviceSensor(ProtectDeviceEntity, SensorEntity):
     entity_description: ProtectSensorEntityDescription
     _attr_native_value: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
+    def _async_updated_event(self, device: ProtectModelWithId) -> None: ...
 
 class ProtectNVRSensor(ProtectNVREntity, SensorEntity):
     entity_description: ProtectSensorEntityDescription
     _attr_native_value: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
+    def _async_updated_event(self, device: ProtectModelWithId) -> None: ...
 
 class ProtectEventSensor(EventEntityMixin, SensorEntity):
     entity_description: ProtectSensorEventEntityDescription

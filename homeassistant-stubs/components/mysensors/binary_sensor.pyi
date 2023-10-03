@@ -18,7 +18,7 @@ SENSORS: dict[str, MySensorsBinarySensorDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsBinarySensor(mysensors.device.MySensorsEntity, BinarySensorEntity):
+class MySensorsBinarySensor(mysensors.device.MySensorsChildEntity, BinarySensorEntity):
     entity_description: MySensorsBinarySensorDescription
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @property

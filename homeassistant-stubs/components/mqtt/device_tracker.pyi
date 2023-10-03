@@ -3,9 +3,9 @@ from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from .debug_info import log_messages as log_messages
-from .mixins import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
+from .mixins import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, write_state_on_attr_change as write_state_on_attr_change
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from .util import get_mqtt_data as get_mqtt_data, valid_subscribe_topic as valid_subscribe_topic
+from .util import valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import device_tracker as device_tracker
@@ -34,9 +34,8 @@ async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntiti
 class MqttDeviceTracker(MqttEntity, TrackerEntity):
     _default_name: Incomplete
     _entity_id_format: Incomplete
+    _location_name: str | None
     _value_template: Callable[..., ReceivePayloadType]
-    _location_name: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     def _setup_from_config(self, config: ConfigType) -> None: ...

@@ -1,6 +1,6 @@
 from .. import mysensors as mysensors
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
-from .device import MySensorsEntity as MySensorsEntity
+from .device import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from homeassistant.components.text import TextEntity as TextEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsText(MySensorsEntity, TextEntity):
+class MySensorsText(MySensorsChildEntity, TextEntity):
     _attr_native_max: int
     @property
     def native_value(self) -> str | None: ...

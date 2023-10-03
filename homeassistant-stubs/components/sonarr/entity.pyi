@@ -10,6 +10,5 @@ class SonarrEntity(CoordinatorEntity[SonarrDataUpdateCoordinator[SonarrDataT]]):
     coordinator: Incomplete
     entity_description: Incomplete
     _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, coordinator: SonarrDataUpdateCoordinator[SonarrDataT], description: EntityDescription) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...

@@ -85,6 +85,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class Camera(Entity):
+    _entity_component_unrecorded_attributes: Incomplete
     _attr_brand: str | None
     _attr_frame_interval: float
     _attr_frontend_stream_type: StreamType | None

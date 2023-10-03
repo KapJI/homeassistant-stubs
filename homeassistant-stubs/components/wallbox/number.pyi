@@ -17,7 +17,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class WallboxNumber(WallboxEntity, NumberEntity):
     entity_description: WallboxNumberEntityDescription
     _coordinator: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _is_bidirectional: Incomplete
     def __init__(self, coordinator: WallboxCoordinator, entry: ConfigEntry, description: WallboxNumberEntityDescription) -> None: ...

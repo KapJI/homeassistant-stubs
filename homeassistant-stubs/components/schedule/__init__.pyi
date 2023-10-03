@@ -7,7 +7,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.helpers.collection import CollectionEntity as CollectionEntity, DictStorageCollection as DictStorageCollection, DictStorageCollectionWebsocket as DictStorageCollectionWebsocket, IDManager as IDManager, SerializedStorageCollection as SerializedStorageCollection, YamlCollection as YamlCollection, sync_entity_lifecycle as sync_entity_lifecycle
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
-from homeassistant.helpers.integration_platform import async_process_integration_platform_for_component as async_process_integration_platform_for_component
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -39,6 +38,7 @@ class ScheduleStorageCollection(DictStorageCollection):
     async def _async_load_data(self) -> SerializedStorageCollection | None: ...
 
 class Schedule(CollectionEntity):
+    _entity_component_unrecorded_attributes: Incomplete
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _attr_state: Literal['on', 'off']

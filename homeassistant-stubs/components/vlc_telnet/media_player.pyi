@@ -2,7 +2,6 @@ from .const import DATA_AVAILABLE as DATA_AVAILABLE, DATA_VLC as DATA_VLC, DEFAU
 from _typeshed import Incomplete
 from aiovlc.client import Client as Client
 from collections.abc import Awaitable, Callable as Callable, Coroutine
-from datetime import datetime
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASSIO as SOURCE_HASSIO
@@ -24,41 +23,26 @@ class VlcDevice(MediaPlayerEntity):
     _attr_name: Incomplete
     _attr_media_content_type: Incomplete
     _attr_supported_features: Incomplete
-    _config_entry: Incomplete
-    _volume: Incomplete
-    _muted: Incomplete
-    _media_position_updated_at: Incomplete
-    _media_position: Incomplete
-    _media_duration: Incomplete
-    _vlc: Incomplete
-    _available: Incomplete
     _volume_bkp: float
-    _media_artist: Incomplete
-    _media_title: Incomplete
+    volume_level: int
+    _config_entry: Incomplete
+    _vlc: Incomplete
+    _attr_available: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _using_addon: Incomplete
     def __init__(self, config_entry: ConfigEntry, vlc: Client, name: str, available: bool) -> None: ...
     _attr_state: Incomplete
+    _attr_volume_level: Incomplete
+    _attr_media_duration: Incomplete
+    _attr_media_position_updated_at: Incomplete
+    _attr_media_position: Incomplete
     _attr_media_album_name: Incomplete
+    _attr_media_artist: Incomplete
+    _attr_media_title: Incomplete
     async def async_update(self) -> None: ...
-    @property
-    def available(self) -> bool: ...
-    @property
-    def volume_level(self) -> float | None: ...
-    @property
-    def is_volume_muted(self) -> bool | None: ...
-    @property
-    def media_duration(self) -> int | None: ...
-    @property
-    def media_position(self) -> int | None: ...
-    @property
-    def media_position_updated_at(self) -> datetime | None: ...
-    @property
-    def media_title(self) -> str | None: ...
-    @property
-    def media_artist(self) -> str | None: ...
     async def async_media_seek(self, position: float) -> None: ...
+    _attr_is_volume_muted: Incomplete
     async def async_mute_volume(self, mute: bool) -> None: ...
     async def async_set_volume_level(self, volume: float) -> None: ...
     async def async_media_play(self) -> None: ...

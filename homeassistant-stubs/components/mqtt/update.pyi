@@ -3,9 +3,9 @@ from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, write_state_on_attr_change as write_state_on_attr_change
 from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
-from .util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
+from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components import update as update
 from homeassistant.components.update import DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
@@ -44,17 +44,15 @@ async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntiti
 class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
-    _config: Incomplete
-    _attr_device_class: Incomplete
-    _attr_release_summary: Incomplete
-    _attr_release_url: Incomplete
-    _attr_title: Incomplete
-    _entity_picture: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
+    _entity_picture: str | None
     @property
     def entity_picture(self) -> str | None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
+    _attr_device_class: Incomplete
+    _attr_release_summary: Incomplete
+    _attr_release_url: Incomplete
+    _attr_title: Incomplete
     _templates: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_installed_version: Incomplete

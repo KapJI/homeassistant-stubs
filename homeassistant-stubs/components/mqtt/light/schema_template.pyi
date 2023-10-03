@@ -3,9 +3,8 @@ from .. import subscription as subscription
 from ..config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
 from ..debug_info import log_messages as log_messages
-from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity
+from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, write_state_on_attr_change as write_state_on_attr_change
 from ..models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from ..util import get_mqtt_data as get_mqtt_data
 from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from .schema_basic import MQTT_LIGHT_ATTRIBUTES_BLOCKED as MQTT_LIGHT_ATTRIBUTES_BLOCKED
 from _typeshed import Incomplete
@@ -49,12 +48,12 @@ class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     _value_templates: dict[str, Callable[[ReceivePayloadType], ReceivePayloadType]]
     _fixed_color_mode: ColorMode | str | None
     _topics: dict[str, str | None]
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_max_mireds: Incomplete
     _attr_min_mireds: Incomplete
     _attr_effect_list: Incomplete
+    _attr_assumed_state: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     _attr_supported_features: Incomplete
@@ -68,7 +67,5 @@ class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
-    @property
-    def assumed_state(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

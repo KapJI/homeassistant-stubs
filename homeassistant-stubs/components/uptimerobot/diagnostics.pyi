@@ -1,5 +1,5 @@
-from . import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any

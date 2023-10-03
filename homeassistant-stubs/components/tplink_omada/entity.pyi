@@ -10,6 +10,5 @@ T = TypeVar('T')
 
 class OmadaDeviceEntity(CoordinatorEntity[OmadaCoordinator[T]], Generic[T]):
     device: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, coordinator: OmadaCoordinator[T], device: OmadaDevice) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...

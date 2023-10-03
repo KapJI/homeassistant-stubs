@@ -18,6 +18,7 @@ def _build_resources(translation_strings: dict[str, dict[str, Any]], components:
 async def _async_get_component_strings(hass: HomeAssistant, language: str, components: set[str], integrations: dict[str, Integration]) -> dict[str, Any]: ...
 
 class _TranslationCache:
+    __slots__: Incomplete
     hass: Incomplete
     loaded: Incomplete
     cache: Incomplete

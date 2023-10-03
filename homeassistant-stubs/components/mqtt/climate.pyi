@@ -4,9 +4,9 @@ from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_ACTION_TEMPLATE as CONF_ACTION_TEMPLATE, CONF_ACTION_TOPIC as CONF_ACTION_TOPIC, CONF_CURRENT_HUMIDITY_TEMPLATE as CONF_CURRENT_HUMIDITY_TEMPLATE, CONF_CURRENT_HUMIDITY_TOPIC as CONF_CURRENT_HUMIDITY_TOPIC, CONF_CURRENT_TEMP_TEMPLATE as CONF_CURRENT_TEMP_TEMPLATE, CONF_CURRENT_TEMP_TOPIC as CONF_CURRENT_TEMP_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_MODE_COMMAND_TEMPLATE as CONF_MODE_COMMAND_TEMPLATE, CONF_MODE_COMMAND_TOPIC as CONF_MODE_COMMAND_TOPIC, CONF_MODE_LIST as CONF_MODE_LIST, CONF_MODE_STATE_TEMPLATE as CONF_MODE_STATE_TEMPLATE, CONF_MODE_STATE_TOPIC as CONF_MODE_STATE_TOPIC, CONF_POWER_COMMAND_TEMPLATE as CONF_POWER_COMMAND_TEMPLATE, CONF_POWER_COMMAND_TOPIC as CONF_POWER_COMMAND_TOPIC, CONF_PRECISION as CONF_PRECISION, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_TEMP_COMMAND_TEMPLATE as CONF_TEMP_COMMAND_TEMPLATE, CONF_TEMP_COMMAND_TOPIC as CONF_TEMP_COMMAND_TOPIC, CONF_TEMP_INITIAL as CONF_TEMP_INITIAL, CONF_TEMP_MAX as CONF_TEMP_MAX, CONF_TEMP_MIN as CONF_TEMP_MIN, CONF_TEMP_STATE_TEMPLATE as CONF_TEMP_STATE_TEMPLATE, CONF_TEMP_STATE_TOPIC as CONF_TEMP_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, DOMAIN as DOMAIN, PAYLOAD_NONE as PAYLOAD_NONE
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, write_state_on_attr_change as write_state_on_attr_change
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
-from .util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
+from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
@@ -81,12 +81,11 @@ async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntiti
 class MqttTemperatureControlEntity(MqttEntity, ABC, metaclass=abc.ABCMeta):
     _attr_target_temperature_low: float | None
     _attr_target_temperature_high: float | None
+    _feature_preset_mode: bool
     _optimistic: bool
     _topic: dict[str, Any]
     _command_templates: dict[str, Callable[[PublishPayloadType], PublishPayloadType]]
     _value_templates: dict[str, Callable[[ReceivePayloadType], ReceivePayloadType]]
-    _feature_preset_mode: bool
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     def add_subscription(self, topics: dict[str, dict[str, Any]], topic: str, msg_callback: Callable[[ReceiveMessage], None]) -> None: ...
     def render_template(self, msg: ReceiveMessage, template_name: str) -> ReceivePayloadType: ...
     def handle_climate_attribute_received(self, msg: ReceiveMessage, template_name: str, attr: str) -> None: ...
@@ -99,15 +98,13 @@ class MqttTemperatureControlEntity(MqttEntity, ABC, metaclass=abc.ABCMeta):
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
 
 class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
+    _attr_fan_mode: str | None
+    _attr_hvac_mode: HVACMode | None
+    _attr_is_aux_heat: bool | None
+    _attr_swing_mode: str | None
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     _attributes_extra_blocked = MQTT_CLIMATE_ATTRIBUTES_BLOCKED
-    _attr_fan_mode: Incomplete
-    _attr_hvac_action: Incomplete
-    _attr_hvac_mode: Incomplete
-    _attr_is_aux_heat: Incomplete
-    _attr_swing_mode: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_hvac_modes: Incomplete
@@ -134,6 +131,7 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     async def mqtt_async_added_to_hass(self) -> None: ...
+    _attr_hvac_action: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_humidity(self, humidity: int) -> None: ...

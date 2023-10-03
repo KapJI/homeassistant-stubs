@@ -22,9 +22,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WallboxSensor(WallboxEntity, SensorEntity):
     entity_description: WallboxSensorEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: WallboxCoordinator, entry: ConfigEntry, description: WallboxSensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: WallboxCoordinator, description: WallboxSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
     @property

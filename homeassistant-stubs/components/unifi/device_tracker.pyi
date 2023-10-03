@@ -31,7 +31,7 @@ def async_device_heartbeat_timedelta_fn(controller: UniFiController, obj_id: str
 
 class UnifiEntityTrackerDescriptionMixin(Generic[HandlerT, ApiItemT]):
     heartbeat_timedelta_fn: Callable[[UniFiController, str], timedelta]
-    ip_address_fn: Callable[[aiounifi.Controller, str], str]
+    ip_address_fn: Callable[[aiounifi.Controller, str], str | None]
     is_connected_fn: Callable[[UniFiController, str], bool]
     hostname_fn: Callable[[aiounifi.Controller, str], str | None]
     def __init__(self, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn) -> None: ...
@@ -54,7 +54,7 @@ class UnifiScannerEntity(UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
     @property
     def hostname(self) -> str | None: ...
     @property
-    def ip_address(self) -> str: ...
+    def ip_address(self) -> str | None: ...
     @property
     def mac_address(self) -> str: ...
     @property

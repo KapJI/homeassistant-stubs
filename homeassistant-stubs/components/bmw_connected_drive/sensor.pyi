@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from bimmer_connected.models import ValueWithUnit as ValueWithUnit
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
 from collections.abc import Callable as Callable
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import LENGTH as LENGTH, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, VOLUME as VOLUME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

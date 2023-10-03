@@ -1,5 +1,6 @@
 from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .const import DOMAIN as DOMAIN
+from .models import ELKM1Data as ELKM1Data
 from elkm1_lib.outputs import Output as Output
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

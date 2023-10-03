@@ -1,5 +1,5 @@
-from . import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from .const import API_ATTR_OK as API_ATTR_OK, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .coordinator import UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from .entity import UptimeRobotEntity as UptimeRobotEntity
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

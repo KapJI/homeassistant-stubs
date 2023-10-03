@@ -5,7 +5,7 @@ from .client import async_publish as async_publish
 from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOVERY_TOPIC as ATTR_DISCOVERY_TOPIC, CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_CONFIGURATION_URL as CONF_CONFIGURATION_URL, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_DEPRECATED_VIA_HUB as CONF_DEPRECATED_VIA_HUB, CONF_ENCODING as CONF_ENCODING, CONF_HW_VERSION as CONF_HW_VERSION, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_OBJECT_ID as CONF_OBJECT_ID, CONF_ORIGIN as CONF_ORIGIN, CONF_QOS as CONF_QOS, CONF_SUGGESTED_AREA as CONF_SUGGESTED_AREA, CONF_SW_VERSION as CONF_SW_VERSION, CONF_TOPIC as CONF_TOPIC, CONF_VIA_DEVICE as CONF_VIA_DEVICE, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_PAYLOAD_AVAILABLE as DEFAULT_PAYLOAD_AVAILABLE, DEFAULT_PAYLOAD_NOT_AVAILABLE as DEFAULT_PAYLOAD_NOT_AVAILABLE, DOMAIN as DOMAIN, MQTT_CONNECTED as MQTT_CONNECTED, MQTT_DISCONNECTED as MQTT_DISCONNECTED
 from .debug_info import log_message as log_message, log_messages as log_messages
 from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload, MQTT_DISCOVERY_DONE as MQTT_DISCOVERY_DONE, MQTT_DISCOVERY_NEW as MQTT_DISCOVERY_NEW, MQTT_DISCOVERY_UPDATED as MQTT_DISCOVERY_UPDATED, MQTT_ORIGIN_INFO_SCHEMA as MQTT_ORIGIN_INFO_SCHEMA, clear_discovery_hash as clear_discovery_hash, set_discovery_hash as set_discovery_hash
-from .models import MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
 from .subscription import EntitySubscription as EntitySubscription, async_prepare_subscribe_topics as async_prepare_subscribe_topics, async_subscribe_topics as async_subscribe_topics, async_unsubscribe_topics as async_unsubscribe_topics
 from .util import get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
@@ -54,6 +54,7 @@ class SetupEntity(Protocol):
 def async_handle_schema_error(discovery_payload: MQTTDiscoveryPayload, err: vol.MultipleInvalid) -> None: ...
 async def async_setup_entry_helper(hass: HomeAssistant, domain: str, async_setup: partial[Coroutine[Any, Any, None]], discovery_schema: vol.Schema) -> None: ...
 def init_entity_id_from_config(hass: HomeAssistant, entity: Entity, config: ConfigType, entity_id_format: str) -> None: ...
+def write_state_on_attr_change(entity: Entity, attributes: set[str]) -> Callable[[MessageCallbackType], MessageCallbackType]: ...
 
 class MqttAttributes(Entity):
     _attributes_extra_blocked: frozenset[str]

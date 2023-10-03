@@ -19,7 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class HyperionCamera(Camera):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
-    _unique_id: Incomplete
+    _attr_unique_id: Incomplete
     _device_id: Incomplete
     _instance_name: Incomplete
     _client: Incomplete
@@ -27,9 +27,8 @@ class HyperionCamera(Camera):
     _image: Incomplete
     _image_stream_clients: int
     _client_callbacks: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, hyperion_client: client.HyperionClient) -> None: ...
-    @property
-    def unique_id(self) -> str: ...
     @property
     def is_on(self) -> bool: ...
     @property
@@ -44,7 +43,5 @@ class HyperionCamera(Camera):
     async def handle_async_mjpeg_stream(self, request: web.Request) -> web.StreamResponse | None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
 
 CAMERA_TYPES: Incomplete

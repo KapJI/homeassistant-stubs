@@ -22,8 +22,8 @@ TEMPLATE_SENSOR_BASE_SCHEMA: Incomplete
 
 class TriggerBaseEntity(Entity):
     domain: str
-    extra_template_keys: tuple | None
-    extra_template_keys_complex: tuple | None
+    extra_template_keys: tuple[str, ...] | None
+    extra_template_keys_complex: tuple[str, ...] | None
     _unique_id: str | None
     hass: Incomplete
     _config: Incomplete
@@ -32,13 +32,12 @@ class TriggerBaseEntity(Entity):
     _to_render_complex: Incomplete
     _rendered: Incomplete
     _parse_result: Incomplete
+    _attr_device_class: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
     @property
     def name(self) -> str | None: ...
     @property
     def unique_id(self) -> str | None: ...
-    @property
-    def device_class(self): ...
     @property
     def icon(self) -> str | None: ...
     @property

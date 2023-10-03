@@ -1,4 +1,4 @@
-from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD
+from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, OTA_BEGIN as OTA_BEGIN, OTA_ERROR as OTA_ERROR, OTA_PROGRESS as OTA_PROGRESS, OTA_SUCCESS as OTA_SUCCESS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingRpcAttributeEntity as ShellySleepingRpcAttributeEntity, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
 from .utils import get_device_entry_gen as get_device_entry_gen
@@ -7,7 +7,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components.update import ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -52,14 +52,15 @@ class RestUpdateEntity(ShellyRestAttributeEntity, UpdateEntity):
 class RpcUpdateEntity(ShellyRpcAttributeEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     entity_description: RpcUpdateDescription
-    _in_progress_old_version: Incomplete
+    _ota_in_progress: bool
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    _attr_in_progress: int
+    def _ota_progress_callback(self, event: dict[str, Any]) -> None: ...
     @property
     def installed_version(self) -> str | None: ...
     @property
     def latest_version(self) -> str | None: ...
-    @property
-    def in_progress(self) -> bool: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
 
 class RpcSleepingUpdateEntity(ShellySleepingRpcAttributeEntity, UpdateEntity, RestoreEntity):

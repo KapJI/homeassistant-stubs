@@ -3,12 +3,12 @@ from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC
 from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper
+from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entry_helper as async_setup_entry_helper, write_state_on_attr_change as write_state_on_attr_change
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
-from .util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
+from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components import cover as cover
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -70,45 +70,34 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 async def _async_setup_entity(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None = ...) -> None: ...
 
 class MqttCover(MqttEntity, CoverEntity):
+    _attr_is_closed: bool | None
+    _attributes_extra_blocked: frozenset[str]
     _default_name = DEFAULT_NAME
     _entity_id_format: str
-    _attributes_extra_blocked: frozenset[str]
-    _position: Incomplete
-    _state: Incomplete
-    _optimistic: Incomplete
-    _tilt_value: Incomplete
-    _tilt_optimistic: Incomplete
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
+    _optimistic: bool
+    _tilt_optimistic: bool
     @staticmethod
     def config_schema() -> vol.Schema: ...
+    _attr_assumed_state: Incomplete
     _value_template: Incomplete
     _set_position_template: Incomplete
     _get_position_template: Incomplete
     _set_tilt_template: Incomplete
     _tilt_status_template: Incomplete
+    _attr_device_class: Incomplete
+    _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
+    _attr_is_opening: Incomplete
+    _attr_is_closing: Incomplete
+    def _update_state(self, state: str) -> None: ...
+    _attr_current_cover_position: Incomplete
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
-    @property
-    def assumed_state(self) -> bool: ...
-    @property
-    def is_closed(self) -> bool | None: ...
-    @property
-    def is_opening(self) -> bool: ...
-    @property
-    def is_closing(self) -> bool: ...
-    @property
-    def current_cover_position(self) -> int | None: ...
-    @property
-    def current_cover_tilt_position(self) -> int | None: ...
-    @property
-    def device_class(self) -> CoverDeviceClass | None: ...
-    @property
-    def supported_features(self) -> CoverEntityFeature: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
+    _attr_current_cover_tilt_position: Incomplete
     async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
     async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...

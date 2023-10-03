@@ -1,6 +1,6 @@
 from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
-from .device import MySensorsEntity as MySensorsEntity
+from .device import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_COMMAND as ATTR_COMMAND, RemoteEntity as RemoteEntity, RemoteEntityFeature as RemoteEntityFeature
@@ -13,7 +13,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsRemote(MySensorsEntity, RemoteEntity):
+class MySensorsRemote(MySensorsChildEntity, RemoteEntity):
     _current_command: str | None
     @property
     def is_on(self) -> bool | None: ...

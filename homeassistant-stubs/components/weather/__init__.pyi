@@ -110,6 +110,7 @@ class PostInit(metaclass=PostInitMeta):
     def __post_init__(self, *args: Any, **kwargs: Any) -> None: ...
 
 class WeatherEntity(Entity, PostInit):
+    _entity_component_unrecorded_attributes: Incomplete
     entity_description: WeatherEntityDescription
     _attr_condition: str | None
     _attr_forecast: list[Forecast] | None

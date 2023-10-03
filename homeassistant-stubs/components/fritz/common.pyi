@@ -202,7 +202,7 @@ class FritzBoxBaseEntity:
     def device_info(self) -> DeviceInfo: ...
 
 class FritzRequireKeysMixin:
-    value_fn: Callable[[FritzStatus, Any], Any]
+    value_fn: Callable[[FritzStatus, Any], Any] | None
     def __init__(self, value_fn) -> None: ...
 
 class FritzEntityDescription(EntityDescription, FritzRequireKeysMixin):

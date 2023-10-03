@@ -1,5 +1,6 @@
 from . import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .const import DOMAIN as DOMAIN
+from .models import ELKM1Data as ELKM1Data
 from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
@@ -17,7 +18,7 @@ class ElkLight(ElkEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     _element: Light
     _brightness: Incomplete
-    def __init__(self, element: Element, elk: Elk, elk_data: dict[str, Any]) -> None: ...
+    def __init__(self, element: Element, elk: Elk, elk_data: ELKM1Data) -> None: ...
     @property
     def brightness(self) -> int: ...
     @property

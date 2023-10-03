@@ -1,4 +1,5 @@
 from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from datetime import datetime
 from enum import StrEnum
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
@@ -25,6 +26,7 @@ class EventExtraStoredData(ExtraStoredData):
     def __init__(self, last_event_type, last_event_attributes) -> None: ...
 
 class EventEntity(RestoreEntity):
+    _entity_component_unrecorded_attributes: Incomplete
     entity_description: EventEntityDescription
     _attr_device_class: EventDeviceClass | None
     _attr_event_types: list[str]

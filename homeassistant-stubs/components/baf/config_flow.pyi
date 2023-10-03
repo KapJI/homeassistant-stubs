@@ -6,7 +6,6 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS
 from homeassistant.data_entry_flow import FlowResult as FlowResult
-from homeassistant.util.network import is_ipv6_address as is_ipv6_address
 from typing import Any
 
 _LOGGER: Incomplete

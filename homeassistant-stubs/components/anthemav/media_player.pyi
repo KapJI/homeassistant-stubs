@@ -4,7 +4,7 @@ from anthemav.connection import Connection as Connection
 from anthemav.protocol import AVR as AVR
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_MAC as CONF_MAC
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect

@@ -46,11 +46,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
     _attr_name: Incomplete
+    _attr_precision = PRECISION_TENTHS
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete
-    _attr_precision: Incomplete
-    _attr_translation_key: str
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str) -> None: ...
     def get_features(self) -> ClimateEntityFeature: ...
     @property

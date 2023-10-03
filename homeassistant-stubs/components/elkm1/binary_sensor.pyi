@@ -1,5 +1,6 @@
 from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity
 from .const import DOMAIN as DOMAIN
+from .models import ELKM1Data as ELKM1Data
 from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.zones import Zone as Zone

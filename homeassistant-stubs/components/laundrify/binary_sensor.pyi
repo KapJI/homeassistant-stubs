@@ -20,9 +20,8 @@ class LaundrifyPowerPlug(CoordinatorEntity[LaundrifyUpdateCoordinator], BinarySe
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _device: Incomplete
+    _attr_device_info: Incomplete
     def __init__(self, coordinator: LaundrifyUpdateCoordinator, device: LaundrifyDevice) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
     @property
     def available(self) -> bool: ...
     @property

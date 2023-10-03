@@ -71,6 +71,7 @@ class MQTT:
     _last_subscribe: float
     _mqtt_data: MqttData
     hass: Incomplete
+    loop: Incomplete
     config_entry: Incomplete
     conf: Incomplete
     _simple_subscriptions: Incomplete

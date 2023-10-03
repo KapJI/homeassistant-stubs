@@ -23,7 +23,7 @@ class ElectricKiwiHOPSensorEntityDescription(SensorEntityDescription, ElectricKi
 
 def _check_and_move_time(hop: Hop, time: str) -> datetime: ...
 
-HOP_SENSOR_TYPE: tuple[ElectricKiwiHOPSensorEntityDescription, ...]
+HOP_SENSOR_TYPES: tuple[ElectricKiwiHOPSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

@@ -3,9 +3,9 @@ from .. import subscription as subscription
 from ..config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STATE_VALUE_TEMPLATE as CONF_STATE_VALUE_TEMPLATE, PAYLOAD_NONE as PAYLOAD_NONE
 from ..debug_info import log_messages as log_messages
-from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity
+from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, write_state_on_attr_change as write_state_on_attr_change
 from ..models import MessageCallbackType as MessageCallbackType, MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType, TemplateVarsType as TemplateVarsType
-from ..util import get_mqtt_data as get_mqtt_data, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
+from ..util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -93,12 +93,12 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _optimistic_rgbw_color: bool
     _optimistic_rgbww_color: bool
     _optimistic_xy_color: bool
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_min_mireds: Incomplete
     _attr_max_mireds: Incomplete
     _attr_effect_list: Incomplete
+    _attr_assumed_state: Incomplete
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
@@ -116,7 +116,5 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _sub_state: Incomplete
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
-    @property
-    def assumed_state(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

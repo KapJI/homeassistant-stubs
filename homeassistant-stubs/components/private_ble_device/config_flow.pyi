@@ -8,6 +8,8 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 _LOGGER: Incomplete
 CONF_IRK: str
 
+def _parse_irk(irk: str) -> bytes | None: ...
+
 class BLEDeviceTrackerConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, str] | None = ...) -> FlowResult: ...

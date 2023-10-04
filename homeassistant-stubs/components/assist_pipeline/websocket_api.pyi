@@ -8,7 +8,7 @@ from homeassistant.const import MATCH_ALL as MATCH_ALL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
-DEFAULT_TIMEOUT: int
+DEFAULT_TIMEOUT: Incomplete
 DEFAULT_WAKE_WORD_TIMEOUT: int
 _LOGGER: Incomplete
 

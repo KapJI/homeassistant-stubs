@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pybotvac.robot import Robot as Robot
 from typing import Any
+from urllib3.response import HTTPResponse as HTTPResponse
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete

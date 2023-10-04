@@ -130,7 +130,7 @@ class PipelineRun:
     stt_provider: stt.SpeechToTextEntity | stt.Provider
     tts_engine: str
     tts_options: dict | None
-    wake_word_entity_id: str
+    wake_word_entity_id: str | None
     wake_word_entity: wake_word.WakeWordDetectionEntity
     abort_wake_word_detection: bool
     debug_recording_thread: Thread | None
@@ -138,6 +138,7 @@ class PipelineRun:
     audio_processor: AudioProcessor | None
     audio_processor_buffer: AudioBuffer
     def __post_init__(self) -> None: ...
+    def __eq__(self, other: Any) -> bool: ...
     def process_event(self, event: PipelineEvent) -> None: ...
     def start(self, device_id: str | None) -> None: ...
     async def end(self) -> None: ...

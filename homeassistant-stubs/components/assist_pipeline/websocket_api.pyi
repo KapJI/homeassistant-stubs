@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DEFAULT_PIPELINE_TIMEOUT as DEFAULT_PIPELINE_TIMEOUT, DEFAULT_WAKE_WORD_TIMEOUT as DEFAULT_WAKE_WORD_TIMEOUT, DOMAIN as DOMAIN
 from .error import PipelineNotFound as PipelineNotFound
 from .pipeline import AudioSettings as AudioSettings, PipelineData as PipelineData, PipelineError as PipelineError, PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineInput as PipelineInput, PipelineRun as PipelineRun, PipelineStage as PipelineStage, WakeWordSettings as WakeWordSettings, async_get_pipeline as async_get_pipeline
 from _typeshed import Incomplete
@@ -8,8 +8,6 @@ from homeassistant.const import MATCH_ALL as MATCH_ALL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
-DEFAULT_TIMEOUT: Incomplete
-DEFAULT_WAKE_WORD_TIMEOUT: int
 _LOGGER: Incomplete
 
 def async_register_websocket_api(hass: HomeAssistant) -> None: ...

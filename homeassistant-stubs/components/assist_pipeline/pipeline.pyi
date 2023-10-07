@@ -1,4 +1,4 @@
-from .const import DATA_CONFIG as DATA_CONFIG, DOMAIN as DOMAIN
+from .const import CONF_DEBUG_RECORDING_DIR as CONF_DEBUG_RECORDING_DIR, DATA_CONFIG as DATA_CONFIG, DATA_LAST_WAKE_UP as DATA_LAST_WAKE_UP, DEFAULT_WAKE_WORD_COOLDOWN as DEFAULT_WAKE_WORD_COOLDOWN, DOMAIN as DOMAIN
 from .error import IntentRecognitionError as IntentRecognitionError, PipelineError as PipelineError, PipelineNotFound as PipelineNotFound, SpeechToTextError as SpeechToTextError, TextToSpeechError as TextToSpeechError, WakeWordDetectionAborted as WakeWordDetectionAborted, WakeWordDetectionError as WakeWordDetectionError, WakeWordTimeoutError as WakeWordTimeoutError
 from .vad import AudioBuffer as AudioBuffer, VoiceActivityTimeout as VoiceActivityTimeout, VoiceCommandSegmenter as VoiceCommandSegmenter, chunk_samples as chunk_samples
 from _typeshed import Incomplete
@@ -94,7 +94,8 @@ class InvalidPipelineStagesError(PipelineRunValidationError):
 class WakeWordSettings:
     timeout: float | None
     audio_seconds_to_buffer: float
-    def __init__(self, timeout, audio_seconds_to_buffer) -> None: ...
+    cooldown_seconds: float
+    def __init__(self, timeout, audio_seconds_to_buffer, cooldown_seconds) -> None: ...
 
 class AudioSettings:
     noise_suppression_level: int

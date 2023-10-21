@@ -75,7 +75,7 @@ def is_offset_reached(start: datetime.datetime, offset_time: datetime.timedelta)
 
 class CalendarEntity(Entity):
     _entity_component_unrecorded_attributes: Incomplete
-    _alarm_unsubs: list[CALLBACK_TYPE]
+    _alarm_unsubs: list[CALLBACK_TYPE] | None
     @property
     def event(self) -> CalendarEvent | None: ...
     @property

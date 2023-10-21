@@ -12,11 +12,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class VelbusSensor(VelbusEntity, SensorEntity):
     _channel: ButtonCounter | Temperature | LightSensor | SensorNumber
     _is_counter: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_class: Incomplete
     _attr_icon: str
+    _attr_name: Incomplete
     _attr_state_class: Incomplete
+    _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, channel: ButtonCounter | Temperature | LightSensor | SensorNumber, counter: bool = ...) -> None: ...
     @property

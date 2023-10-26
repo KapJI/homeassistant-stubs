@@ -4,7 +4,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTA
 from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
+from homeassistant.util.async_ import gather_with_limited_concurrency as gather_with_limited_concurrency
 from typing import Any, NamedTuple
 
 FLOW_INIT_LIMIT: int

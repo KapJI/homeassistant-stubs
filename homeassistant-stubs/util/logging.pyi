@@ -1,15 +1,9 @@
 import logging.handlers
-from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
 from typing import Any, TypeVar, overload
 
 _T = TypeVar('_T')
-
-class HideSensitiveDataFilter(logging.Filter):
-    text: Incomplete
-    def __init__(self, text: str) -> None: ...
-    def filter(self, record: logging.LogRecord) -> bool: ...
 
 class HomeAssistantQueueHandler(logging.handlers.QueueHandler):
     listener: logging.handlers.QueueListener | None

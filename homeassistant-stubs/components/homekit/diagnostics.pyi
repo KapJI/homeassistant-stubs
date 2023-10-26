@@ -1,6 +1,6 @@
-from . import HomeKit as HomeKit
 from .accessories import HomeAccessory as HomeAccessory, HomeBridge as HomeBridge
-from .const import DOMAIN as DOMAIN, HOMEKIT as HOMEKIT
+from .const import DOMAIN as DOMAIN
+from .models import HomeKitEntryData as HomeKitEntryData
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

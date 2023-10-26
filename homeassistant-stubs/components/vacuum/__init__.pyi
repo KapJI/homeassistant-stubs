@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.loader import async_get_issue_tracker as async_get_issue_tracker, async_suggest_report_issue as async_suggest_report_issue, bind_hass as bind_hass
 from typing import Any
 
 _LOGGER: Incomplete

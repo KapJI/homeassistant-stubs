@@ -10,12 +10,10 @@ from .schema_basic import MQTT_LIGHT_ATTRIBUTES_BLOCKED as MQTT_LIGHT_ATTRIBUTES
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_STATE_TEMPLATE as CONF_STATE_TEMPLATE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.core import callback as callback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, TemplateVarsType as TemplateVarsType
+from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -36,8 +34,6 @@ COMMAND_TEMPLATES: Incomplete
 VALUE_TEMPLATES: Incomplete
 PLATFORM_SCHEMA_MODERN_TEMPLATE: Incomplete
 DISCOVERY_SCHEMA_TEMPLATE: Incomplete
-
-async def async_setup_entity_template(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     _default_name = DEFAULT_NAME

@@ -8,7 +8,7 @@ from homeassistant.components import onboarding as onboarding, websocket_api as 
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml
-from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED
+from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_PANELS_UPDATED as EVENT_PANELS_UPDATED, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import service as service
 from homeassistant.helpers.json import json_dumps_sorted as json_dumps_sorted
@@ -30,7 +30,6 @@ CONF_EXTRA_MODULE_URL: str
 CONF_EXTRA_JS_URL_ES5: str
 CONF_FRONTEND_REPO: str
 CONF_JS_VERSION: str
-EVENT_PANELS_UPDATED: str
 DEFAULT_THEME_COLOR: str
 DATA_PANELS: str
 DATA_JS_VERSION: str

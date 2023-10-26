@@ -3,27 +3,30 @@ from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_MAP as CONDITION_MAP, D
 from .data import MetOfficeData as MetOfficeData
 from _typeshed import Incomplete
 from datapoint.Timestep import Timestep as Timestep
-from homeassistant.components.weather import ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_PRECIPITATION_PROBABILITY as ATTR_FORECAST_PRECIPITATION_PROBABILITY, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, Forecast as Forecast, WeatherEntity as WeatherEntity
+from homeassistant.components.weather import ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_PRECIPITATION_PROBABILITY as ATTR_FORECAST_PRECIPITATION_PROBABILITY, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, CoordinatorWeatherEntity as CoordinatorWeatherEntity, Forecast as Forecast, WeatherEntityFeature as WeatherEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _build_forecast_data(timestep: Timestep) -> Forecast: ...
+def _calculate_unique_id(coordinates: str, use_3hourly: bool) -> str: ...
 
-class MetOfficeWeather(CoordinatorEntity[DataUpdateCoordinator[MetOfficeData]], WeatherEntity):
+class MetOfficeWeather(CoordinatorWeatherEntity[TimestampDataUpdateCoordinator[MetOfficeData], TimestampDataUpdateCoordinator[MetOfficeData], TimestampDataUpdateCoordinator[MetOfficeData], TimestampDataUpdateCoordinator[MetOfficeData]]):
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     _attr_native_temperature_unit: Incomplete
     _attr_native_pressure_unit: Incomplete
     _attr_native_wind_speed_unit: Incomplete
+    _attr_supported_features: Incomplete
+    _hourly: Incomplete
     _attr_device_info: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: DataUpdateCoordinator[MetOfficeData], hass_data: dict[str, Any], use_3hourly: bool) -> None: ...
+    def __init__(self, coordinator_daily: TimestampDataUpdateCoordinator[MetOfficeData], coordinator_hourly: TimestampDataUpdateCoordinator[MetOfficeData], hass_data: dict[str, Any], use_3hourly: bool) -> None: ...
     @property
     def condition(self) -> str | None: ...
     @property
@@ -38,3 +41,5 @@ class MetOfficeWeather(CoordinatorEntity[DataUpdateCoordinator[MetOfficeData]], 
     def wind_bearing(self) -> str | None: ...
     @property
     def forecast(self) -> list[Forecast] | None: ...
+    def _async_forecast_daily(self) -> list[Forecast] | None: ...
+    def _async_forecast_hourly(self) -> list[Forecast] | None: ...

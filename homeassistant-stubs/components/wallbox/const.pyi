@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 from enum import StrEnum
 
 DOMAIN: str
+UPDATE_INTERVAL: int
 BIDIRECTIONAL_MODEL_PREFIXES: Incomplete
 CODE_KEY: str
 CONF_STATION: str

@@ -1,5 +1,5 @@
 import abc
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DEFAULT_MAX_RECORDS as DEFAULT_MAX_RECORDS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from aiopyarr import Health, RootFolder, SystemStatus
@@ -32,4 +32,7 @@ class HealthDataUpdateCoordinator(RadarrDataUpdateCoordinator[list[Health]]):
     async def _fetch_data(self) -> list[Health]: ...
 
 class MoviesDataUpdateCoordinator(RadarrDataUpdateCoordinator[int]):
+    async def _fetch_data(self) -> int: ...
+
+class QueueDataUpdateCoordinator(RadarrDataUpdateCoordinator):
     async def _fetch_data(self) -> int: ...

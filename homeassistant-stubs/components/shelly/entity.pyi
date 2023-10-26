@@ -56,7 +56,6 @@ class RestEntityDescription(EntityDescription):
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     block: Incomplete
     _attr_name: Incomplete
-    _attr_should_poll: bool
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
@@ -66,7 +65,6 @@ class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
 
 class ShellyRpcEntity(CoordinatorEntity[ShellyRpcCoordinator]):
     key: Incomplete
-    _attr_should_poll: bool
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
@@ -125,12 +123,12 @@ class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity):
     attribute: Incomplete
     block: Incomplete
     entity_description: Incomplete
-    _attr_should_poll: bool
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockEntityDescription, entry: RegistryEntry | None = ..., sensors: Mapping[tuple[str, str], BlockEntityDescription] | None = ...) -> None: ...
     def _update_callback(self) -> None: ...
+    async def async_update(self) -> None: ...
 
 class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity):
     entity_description: RpcEntityDescription
@@ -138,9 +136,9 @@ class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity):
     coordinator: Incomplete
     key: Incomplete
     attribute: Incomplete
-    _attr_should_poll: bool
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _last_value: Incomplete
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription, entry: RegistryEntry | None = ...) -> None: ...
+    async def async_update(self) -> None: ...

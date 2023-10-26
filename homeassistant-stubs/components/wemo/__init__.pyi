@@ -11,7 +11,7 @@ from homeassistant.const import CONF_DISCOVERY as CONF_DISCOVERY, EVENT_HOMEASSI
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
+from homeassistant.util.async_ import gather_with_limited_concurrency as gather_with_limited_concurrency
 from typing import Any
 
 MAX_CONCURRENCY: int

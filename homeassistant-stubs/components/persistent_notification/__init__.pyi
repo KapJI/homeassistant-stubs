@@ -17,7 +17,6 @@ ATTR_MESSAGE: Final[str]
 ATTR_NOTIFICATION_ID: Final[str]
 ATTR_TITLE: Final[str]
 ATTR_STATUS: Final[str]
-EVENT_PERSISTENT_NOTIFICATIONS_UPDATED: str
 
 class Notification(TypedDict):
     created_at: datetime

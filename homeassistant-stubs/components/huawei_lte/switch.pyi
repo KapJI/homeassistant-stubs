@@ -27,7 +27,7 @@ class HuaweiLteBaseSwitch(HuaweiLteBaseEntityWithDevice, SwitchEntity):
     def __init__(self, router) -> None: ...
 
 class HuaweiLteMobileDataSwitch(HuaweiLteBaseSwitch):
-    _attr_name: str
+    _attr_translation_key: str
     key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
@@ -42,7 +42,7 @@ class HuaweiLteMobileDataSwitch(HuaweiLteBaseSwitch):
     def __init__(self, router) -> None: ...
 
 class HuaweiLteWifiGuestNetworkSwitch(HuaweiLteBaseSwitch):
-    _attr_name: str
+    _attr_translation_key: str
     key: Incomplete
     item: str
     def __post_init__(self) -> None: ...

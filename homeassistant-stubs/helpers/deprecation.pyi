@@ -1,6 +1,9 @@
-from ..helpers.frame import MissingIntegrationFrame as MissingIntegrationFrame, get_integration_frame as get_integration_frame
+from .frame import MissingIntegrationFrame as MissingIntegrationFrame, get_integration_frame as get_integration_frame
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from typing import Any, TypeVar
 
 _ObjectT = TypeVar('_ObjectT', bound=object)

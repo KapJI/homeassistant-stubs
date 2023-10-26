@@ -1,5 +1,6 @@
 import asyncio
 import datetime as dt
+import voluptuous as vol
 from .client import MQTT as MQTT, Subscription as Subscription
 from .debug_info import TimestampedPublishMessage as TimestampedPublishMessage
 from .device_trigger import Trigger as Trigger
@@ -32,10 +33,6 @@ class PublishMessage:
     qos: int
     retain: bool
     def __init__(self, topic, payload, qos, retain) -> None: ...
-    def __lt__(self, other): ...
-    def __le__(self, other): ...
-    def __gt__(self, other): ...
-    def __ge__(self, other): ...
 
 class ReceiveMessage:
     topic: str
@@ -45,10 +42,6 @@ class ReceiveMessage:
     subscribed_topic: str
     timestamp: dt.datetime
     def __init__(self, topic, payload, qos, retain, subscribed_topic, timestamp) -> None: ...
-    def __lt__(self, other): ...
-    def __le__(self, other): ...
-    def __gt__(self, other): ...
-    def __ge__(self, other): ...
 AsyncMessageCallbackType = Callable[[ReceiveMessage], Coroutine[Any, Any, None]]
 MessageCallbackType = Callable[[ReceiveMessage], None]
 
@@ -112,8 +105,9 @@ class MqttData:
     issues: dict[str, set[str]]
     last_discovery: float
     reload_dispatchers: list[CALLBACK_TYPE]
-    reload_handlers: dict[str, Callable[[], Coroutine[Any, Any, None]]]
+    reload_handlers: dict[str, CALLBACK_TYPE]
+    reload_schema: dict[str, vol.Schema]
     state_write_requests: EntityTopicState
     subscriptions_to_restore: list[Subscription]
     tags: dict[str, dict[str, MQTTTagScanner]]
-    def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, issues, last_discovery, reload_dispatchers, reload_handlers, state_write_requests, subscriptions_to_restore, tags) -> None: ...
+    def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, issues, last_discovery, reload_dispatchers, reload_handlers, reload_schema, state_write_requests, subscriptions_to_restore, tags) -> None: ...

@@ -1,7 +1,8 @@
-from .const import DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, UNIT_CONVERTERS as UNIT_CONVERTERS
+from .const import DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, NON_NUMERIC_DEVICE_CLASSES as NON_NUMERIC_DEVICE_CLASSES, SensorDeviceClass as SensorDeviceClass, UNIT_CONVERTERS as UNIT_CONVERTERS
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
 def async_setup(hass: HomeAssistant) -> None: ...
 def ws_device_class_units(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+def ws_numeric_device_classes(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

@@ -13,7 +13,7 @@ PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class WLEDMasterLight(WLEDEntity, LightEntity):
+class WLEDMainLight(WLEDEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_icon: str
     _attr_translation_key: str

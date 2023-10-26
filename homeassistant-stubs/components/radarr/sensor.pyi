@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from aiopyarr import Diskspace as Diskspace, RootFolder as RootFolder
 from collections.abc import Callable as Callable
 from datetime import datetime
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant

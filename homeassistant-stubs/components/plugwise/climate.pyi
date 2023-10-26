@@ -22,7 +22,6 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     _attr_unique_id: Incomplete
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
-    _attr_hvac_modes: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: Incomplete
@@ -37,6 +36,8 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     def target_temperature_low(self) -> float: ...
     @property
     def hvac_mode(self) -> HVACMode: ...
+    @property
+    def hvac_modes(self) -> list[HVACMode]: ...
     @property
     def hvac_action(self) -> HVACAction | None: ...
     @property

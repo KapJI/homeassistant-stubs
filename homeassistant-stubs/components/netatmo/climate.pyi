@@ -1,8 +1,8 @@
-from .const import ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATTR_SCHEDULE_NAME as ATTR_SCHEDULE_NAME, ATTR_SELECTED_SCHEDULE as ATTR_SELECTED_SCHEDULE, CONF_URL_ENERGY as CONF_URL_ENERGY, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_CANCEL_SET_POINT as EVENT_TYPE_CANCEL_SET_POINT, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, EVENT_TYPE_SET_POINT as EVENT_TYPE_SET_POINT, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, NETATMO_CREATE_CLIMATE as NETATMO_CREATE_CLIMATE, SERVICE_SET_SCHEDULE as SERVICE_SET_SCHEDULE
+from .const import ATTR_END_DATETIME as ATTR_END_DATETIME, ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATTR_SCHEDULE_NAME as ATTR_SCHEDULE_NAME, ATTR_SELECTED_SCHEDULE as ATTR_SELECTED_SCHEDULE, CONF_URL_ENERGY as CONF_URL_ENERGY, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_CANCEL_SET_POINT as EVENT_TYPE_CANCEL_SET_POINT, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, EVENT_TYPE_SET_POINT as EVENT_TYPE_SET_POINT, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, NETATMO_CREATE_CLIMATE as NETATMO_CREATE_CLIMATE, SERVICE_SET_PRESET_MODE_WITH_END_DATETIME as SERVICE_SET_PRESET_MODE_WITH_END_DATETIME, SERVICE_SET_SCHEDULE as SERVICE_SET_SCHEDULE
 from .data_handler import HOME as HOME, NetatmoRoom as NetatmoRoom, SIGNAL_NAME as SIGNAL_NAME
 from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from _typeshed import Incomplete
-from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, PRESET_HOME as PRESET_HOME
+from homeassistant.components.climate import ATTR_PRESET_MODE as ATTR_PRESET_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, PRESET_HOME as PRESET_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, STATE_OFF as STATE_OFF, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -18,6 +18,7 @@ PRESET_SCHEDULE: str
 PRESET_MANUAL: str
 SUPPORT_FLAGS: Incomplete
 SUPPORT_PRESET: Incomplete
+THERM_MODES: Incomplete
 STATE_NETATMO_SCHEDULE: str
 STATE_NETATMO_HG: str
 STATE_NETATMO_MAX: str
@@ -74,5 +75,6 @@ class NetatmoThermostat(NetatmoBase, ClimateEntity):
     _attr_current_temperature: Incomplete
     def async_update_callback(self) -> None: ...
     async def _async_service_set_schedule(self, **kwargs: Any) -> None: ...
+    async def _async_service_set_preset_mode_with_end_datetime(self, **kwargs: Any) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...

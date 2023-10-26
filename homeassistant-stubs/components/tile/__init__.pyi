@@ -7,7 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry, async_migrate_entries as async_migrate_entries
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from homeassistant.util.async_ import gather_with_concurrency as gather_with_concurrency
+from homeassistant.util.async_ import gather_with_limited_concurrency as gather_with_limited_concurrency
 from pytile.tile import Tile as Tile
 
 PLATFORMS: Incomplete

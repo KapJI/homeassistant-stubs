@@ -15,14 +15,15 @@ class RuntimeConfig:
     config_dir: str
     skip_pip: bool
     skip_pip_packages: list[str]
-    safe_mode: bool
+    recovery_mode: bool
     verbose: bool
     log_rotate_days: int | None
     log_file: str | None
     log_no_color: bool
     debug: bool
     open_ui: bool
-    def __init__(self, config_dir, skip_pip, skip_pip_packages, safe_mode, verbose, log_rotate_days, log_file, log_no_color, debug, open_ui) -> None: ...
+    safe_mode: bool
+    def __init__(self, config_dir, skip_pip, skip_pip_packages, recovery_mode, verbose, log_rotate_days, log_file, log_no_color, debug, open_ui, safe_mode) -> None: ...
 
 def can_use_pidfd() -> bool: ...
 

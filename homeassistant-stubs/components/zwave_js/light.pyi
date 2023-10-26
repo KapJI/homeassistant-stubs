@@ -31,6 +31,7 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     _cold_white: Incomplete
     _supported_color_modes: Incomplete
     _target_brightness: Incomplete
+    _attr_name: Incomplete
     _target_color: Incomplete
     supports_brightness_transition: Incomplete
     supports_color_transition: Incomplete

@@ -28,7 +28,7 @@ class HuaweiLteBaseBinarySensor(HuaweiLteBaseEntityWithDevice, BinarySensorEntit
 CONNECTION_STATE_ATTRIBUTES: Incomplete
 
 class HuaweiLteMobileConnectionBinarySensor(HuaweiLteBaseBinarySensor):
-    _attr_name: str
+    _attr_translation_key: str
     _attr_entity_registry_enabled_default: bool
     key: Incomplete
     item: str
@@ -52,28 +52,28 @@ class HuaweiLteBaseWifiStatusBinarySensor(HuaweiLteBaseBinarySensor):
     def icon(self) -> str: ...
 
 class HuaweiLteWifiStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
-    _attr_name: str
+    _attr_translation_key: str
     key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     def __init__(self, router) -> None: ...
 
 class HuaweiLteWifi24ghzStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
-    _attr_name: str
+    _attr_translation_key: str
     key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     def __init__(self, router) -> None: ...
 
 class HuaweiLteWifi5ghzStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
-    _attr_name: str
+    _attr_translation_key: str
     key: Incomplete
     item: str
     def __post_init__(self) -> None: ...
     def __init__(self, router) -> None: ...
 
 class HuaweiLteSmsStorageFullBinarySensor(HuaweiLteBaseBinarySensor):
-    _attr_name: str
+    _attr_translation_key: str
     key: Incomplete
     item: str
     def __post_init__(self) -> None: ...

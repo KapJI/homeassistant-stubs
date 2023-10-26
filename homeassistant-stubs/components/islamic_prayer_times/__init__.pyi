@@ -3,7 +3,7 @@ from .coordinator import IslamicPrayerDataUpdateCoordinator as IslamicPrayerData
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 
 PLATFORMS: Incomplete
 CONFIG_SCHEMA: Incomplete

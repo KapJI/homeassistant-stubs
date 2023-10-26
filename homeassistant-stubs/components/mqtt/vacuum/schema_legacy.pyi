@@ -11,13 +11,11 @@ from .schema import MQTT_VACUUM_SCHEMA as MQTT_VACUUM_SCHEMA, services_to_string
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, VacuumEntity as VacuumEntity, VacuumEntityFeature as VacuumEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.core import callback as callback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.json import json_dumps as json_dumps
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 SERVICE_TO_STRING: Incomplete
@@ -61,8 +59,6 @@ MQTT_LEGACY_VACUUM_ATTRIBUTES_BLOCKED: Incomplete
 PLATFORM_SCHEMA_LEGACY_MODERN: Incomplete
 DISCOVERY_SCHEMA_LEGACY: Incomplete
 _COMMANDS: Incomplete
-
-async def async_setup_entity_legacy(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
 
 class MqttVacuum(MqttEntity, VacuumEntity):
     _attr_battery_level: int

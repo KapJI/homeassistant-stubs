@@ -27,7 +27,6 @@ RPC_EVENT: Final[Incomplete]
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ShellyBlockEvent(ShellyBlockEntity, EventEntity):
-    _attr_should_poll: bool
     entity_description: ShellyBlockEventDescription
     channel: Incomplete
     _attr_unique_id: Incomplete
@@ -37,7 +36,6 @@ class ShellyBlockEvent(ShellyBlockEntity, EventEntity):
     def _async_handle_event(self, event: dict[str, Any]) -> None: ...
 
 class ShellyRpcEvent(CoordinatorEntity[ShellyRpcCoordinator], EventEntity):
-    _attr_should_poll: bool
     entity_description: ShellyRpcEventDescription
     input_index: Incomplete
     _attr_device_info: Incomplete

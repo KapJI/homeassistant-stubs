@@ -10,7 +10,7 @@ from typing import Any
 
 DEFAULT_DEBOUNCER_COOLDOWN_SECONDS: Incomplete
 
-class OpenUvCoordinator(DataUpdateCoordinator):
+class OpenUvCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: ConfigEntry
     update_method: Callable[[], Awaitable[dict[str, Any]]]
     _entry: Incomplete

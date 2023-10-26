@@ -7,6 +7,7 @@ from _typeshed import Incomplete
 from hass_nabucasa.client import CloudClient as Interface
 from homeassistant.components import google_assistant as google_assistant, persistent_notification as persistent_notification, webhook as webhook
 from homeassistant.core import Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.aiohttp_client import SERVER_SOFTWARE as SERVER_SOFTWARE
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.aiohttp import MockRequest as MockRequest, serialize_response as serialize_response
@@ -39,6 +40,8 @@ class CloudClient(Interface):
     def cloudhooks(self) -> dict[str, dict[str, str | bool]]: ...
     @property
     def remote_autostart(self) -> bool: ...
+    @property
+    def client_name(self) -> str: ...
     @property
     def relayer_region(self) -> str | None: ...
     async def get_alexa_config(self) -> alexa_config.CloudAlexaConfig: ...

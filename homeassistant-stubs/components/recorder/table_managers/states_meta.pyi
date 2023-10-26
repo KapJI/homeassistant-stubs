@@ -1,5 +1,4 @@
 from . import BaseLRUTableManager as BaseLRUTableManager
-from ..const import SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS
 from ..core import Recorder as Recorder
 from ..db_schema import StatesMeta as StatesMeta
 from ..queries import find_all_states_metadata_ids as find_all_states_metadata_ids, find_states_metadata_ids as find_states_metadata_ids

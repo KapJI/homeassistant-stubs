@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from ipaddress import IPv4Address, IPv6Address
 
+IPV6_IPV4_LOOPBACK: Incomplete
 LOOPBACK_NETWORKS: Incomplete
 PRIVATE_NETWORKS: Incomplete
 LINK_LOCAL_NETWORKS: Incomplete

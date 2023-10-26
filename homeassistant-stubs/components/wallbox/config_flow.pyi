@@ -1,5 +1,5 @@
-from . import InvalidAuth as InvalidAuth, WallboxCoordinator as WallboxCoordinator
 from .const import CONF_STATION as CONF_STATION, DOMAIN as DOMAIN
+from .coordinator import InvalidAuth as InvalidAuth, WallboxCoordinator as WallboxCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries, core as core

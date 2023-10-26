@@ -1,5 +1,5 @@
 from . import Recorder as Recorder
-from .const import DATA_INSTANCE as DATA_INSTANCE, DOMAIN as DOMAIN, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
+from .const import DATA_INSTANCE as DATA_INSTANCE, DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS, DOMAIN as DOMAIN, SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS, SQLITE_MODERN_MAX_BIND_VARS as SQLITE_MODERN_MAX_BIND_VARS, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import RecorderRuns as RecorderRuns, TABLES_TO_CHECK as TABLES_TO_CHECK, TABLE_RECORDER_RUNS as TABLE_RECORDER_RUNS, TABLE_SCHEMA_CHANGES as TABLE_SCHEMA_CHANGES
 from .models import DatabaseEngine as DatabaseEngine, DatabaseOptimizer as DatabaseOptimizer, StatisticPeriod as StatisticPeriod, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
 from _typeshed import Incomplete
@@ -41,6 +41,7 @@ MARIADB_WITH_FIXED_IN_QUERIES_108: Incomplete
 MIN_VERSION_MYSQL: Incomplete
 MIN_VERSION_PGSQL: Incomplete
 MIN_VERSION_SQLITE: Incomplete
+MIN_VERSION_SQLITE_MODERN_BIND_VARS: Incomplete
 MAX_RESTART_TIME: Incomplete
 RETRYABLE_MYSQL_ERRORS: Incomplete
 FIRST_POSSIBLE_SUNDAY: int

@@ -3,10 +3,10 @@ from .helpers import ZwaveValueID as ZwaveValueID
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UV_INDEX as UV_INDEX, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
-from typing import Any
-from zwave_js_server.const.command_class.energy_production import EnergyProductionParameter, EnergyProductionScaleType as EnergyProductionScaleType
-from zwave_js_server.const.command_class.meter import MeterScaleType as MeterScaleType
-from zwave_js_server.const.command_class.multilevel_sensor import MultilevelSensorScaleType as MultilevelSensorScaleType, MultilevelSensorType
+from typing import Any, TypeVar
+from zwave_js_server.const.command_class.energy_production import EnergyProductionParameter, EnergyProductionScaleType
+from zwave_js_server.const.command_class.meter import MeterScaleType
+from zwave_js_server.const.command_class.multilevel_sensor import MultilevelSensorScaleType, MultilevelSensorType
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import ConfigurationValue as ZwaveConfigurationValue, Value as ZwaveValue
 
@@ -40,10 +40,11 @@ class NumericSensorDataTemplateData:
     entity_description_key: str | None
     unit_of_measurement: str | None
     def __init__(self, entity_description_key, unit_of_measurement) -> None: ...
+T = TypeVar('T', MultilevelSensorType, MultilevelSensorScaleType, MeterScaleType, EnergyProductionParameter, EnergyProductionScaleType)
 
 class NumericSensorDataTemplate(BaseDiscoverySchemaDataTemplate):
     @staticmethod
-    def find_key_from_matching_set(enum_value: MultilevelSensorType | MultilevelSensorScaleType | MeterScaleType | EnergyProductionParameter | EnergyProductionScaleType, set_map: Mapping[str, list[MultilevelSensorType] | list[MultilevelSensorScaleType] | list[MeterScaleType] | list[EnergyProductionScaleType] | list[EnergyProductionParameter]]) -> str | None: ...
+    def find_key_from_matching_set(enum_value: T, set_map: Mapping[str, list[T]]) -> str | None: ...
     def resolve_data(self, value: ZwaveValue) -> NumericSensorDataTemplateData: ...
 
 class TiltValueMix:

@@ -24,7 +24,7 @@ from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as Unit
 from _typeshed import Incomplete
 from collections import UserDict
 from collections.abc import Callable, Collection, Coroutine, Iterable, KeysView, Mapping, ValuesView
-from typing import Any, Generic, Self, TypeVar, overload
+from typing import Any, Generic, Literal, Self, TypeVar, overload
 
 STAGE_1_SHUTDOWN_TIMEOUT: int
 STAGE_2_SHUTDOWN_TIMEOUT: int
@@ -75,6 +75,7 @@ class _Hass(threading.local):
 _hass: Incomplete
 
 def async_get_hass() -> HomeAssistant: ...
+def get_release_channel() -> Literal['beta', 'dev', 'nightly', 'stable']: ...
 
 class HassJobType(enum.Enum):
     Coroutinefunction: int
@@ -329,8 +330,9 @@ class Config:
     allowlist_external_dirs: Incomplete
     allowlist_external_urls: Incomplete
     media_dirs: Incomplete
-    safe_mode: bool
+    recovery_mode: bool
     legacy_templates: bool
+    safe_mode: bool
     def __init__(self, hass: HomeAssistant, config_dir: str) -> None: ...
     def distance(self, lat: float, lon: float) -> float | None: ...
     def path(self, *path: str) -> str: ...

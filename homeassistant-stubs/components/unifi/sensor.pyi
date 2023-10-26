@@ -8,13 +8,15 @@ from aiounifi.models.device import Device
 from aiounifi.models.wlan import Wlan
 from collections.abc import Callable as Callable
 from datetime import datetime
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, UnitOfTemperature as UnitOfTemperature
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, UnitOfTemperature as UnitOfTemperature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation, UnitOfPower as UnitOfPower
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate as UnitOfDataRate, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Generic
 
+def async_bandwidth_sensor_allowed_fn(controller: UniFiController, obj_id: str) -> bool: ...
+def async_uptime_sensor_allowed_fn(controller: UniFiController, obj_id: str) -> bool: ...
 def async_client_rx_value_fn(controller: UniFiController, client: Client) -> float: ...
 def async_client_tx_value_fn(controller: UniFiController, client: Client) -> float: ...
 def async_client_uptime_value_fn(controller: UniFiController, client: Client) -> datetime: ...

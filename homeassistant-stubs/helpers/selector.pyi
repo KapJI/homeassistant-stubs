@@ -3,6 +3,7 @@ from collections.abc import Callable as Callable, Mapping, Sequence
 from enum import IntFlag, StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
+from homeassistant.generated.countries import COUNTRIES as COUNTRIES
 from homeassistant.util import decorator as decorator
 from homeassistant.util.yaml import dumper as dumper
 from typing import Any, Generic, Literal, Required, TypeVar, TypedDict
@@ -157,6 +158,16 @@ class ConversationAgentSelector(Selector[ConversationAgentSelectorConfig]):
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ConversationAgentSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str: ...
+
+class CountrySelectorConfig(TypedDict, total=False):
+    countries: list[str]
+    no_sort: bool
+
+class CountrySelector(Selector[CountrySelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: CountrySelectorConfig | None = ...) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
 
 class DateSelectorConfig(TypedDict): ...
 

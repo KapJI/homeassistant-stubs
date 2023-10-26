@@ -1,5 +1,4 @@
 from . import BaseLRUTableManager as BaseLRUTableManager
-from ..const import SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS
 from ..core import Recorder as Recorder
 from ..db_schema import EventData as EventData
 from ..queries import get_shared_event_datas as get_shared_event_datas

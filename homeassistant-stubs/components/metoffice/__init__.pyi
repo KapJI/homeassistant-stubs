@@ -5,9 +5,9 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete

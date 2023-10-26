@@ -1,5 +1,6 @@
-from . import WallboxCoordinator as WallboxCoordinator, WallboxEntity as WallboxEntity
 from .const import CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_PAUSE_RESUME_KEY as CHARGER_PAUSE_RESUME_KEY, CHARGER_SERIAL_NUMBER_KEY as CHARGER_SERIAL_NUMBER_KEY, CHARGER_STATUS_DESCRIPTION_KEY as CHARGER_STATUS_DESCRIPTION_KEY, ChargerStatus as ChargerStatus, DOMAIN as DOMAIN
+from .coordinator import WallboxCoordinator as WallboxCoordinator
+from .entity import WallboxEntity as WallboxEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

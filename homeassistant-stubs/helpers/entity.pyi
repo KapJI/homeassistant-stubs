@@ -14,7 +14,7 @@ from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, InvalidStateError as InvalidStateError, NoEntitySpecifiedError as NoEntitySpecifiedError
-from homeassistant.loader import IntegrationNotLoaded as IntegrationNotLoaded, async_get_loaded_integration as async_get_loaded_integration, bind_hass as bind_hass
+from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue, bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from typing import Any, Final, Literal, NotRequired, TypeVar, TypedDict
 
@@ -70,7 +70,6 @@ class Entity(ABC):
     _slow_reported: bool
     _disabled_reported: bool
     _async_update_ha_state_reported: bool
-    _implicit_device_name_reported: bool
     _no_platform_reported: bool
     _update_staged: bool
     parallel_updates: asyncio.Semaphore | None
@@ -112,7 +111,6 @@ class Entity(ABC):
     def should_poll(self) -> bool: ...
     @property
     def unique_id(self) -> str | None: ...
-    def _report_implicit_device_name(self) -> None: ...
     @property
     def use_device_name(self) -> bool: ...
     @property

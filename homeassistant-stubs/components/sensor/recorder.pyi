@@ -8,6 +8,7 @@ from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASURE
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import entity_sources as entity_sources
+from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from sqlalchemy.orm.session import Session as Session
 from typing import Any

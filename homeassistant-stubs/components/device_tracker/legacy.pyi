@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Sequence
 from datetime import datetime, timedelta
 from homeassistant import util as util
+from homeassistant.backports.functools import cached_property as cached_property
 from homeassistant.components import zone as zone
 from homeassistant.config import async_log_exception as async_log_exception, load_yaml_config_file as load_yaml_config_file
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_ICON as ATTR_ICON, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ICON as CONF_ICON, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
@@ -41,7 +42,6 @@ class DeviceTrackerPlatform:
     name: str
     platform: ModuleType
     config: dict
-    @property
     def type(self) -> str | None: ...
     async def async_setup_legacy(self, hass: HomeAssistant, tracker: DeviceTracker, discovery_info: dict[str, Any] | None = ...) -> None: ...
     def __init__(self, name, platform, config) -> None: ...

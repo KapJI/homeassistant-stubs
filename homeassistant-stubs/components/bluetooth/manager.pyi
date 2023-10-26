@@ -41,6 +41,7 @@ class BluetoothManager:
     _cancel_logging_listener: Incomplete
     _advertisement_tracker: Incomplete
     _fallback_intervals: Incomplete
+    _intervals: Incomplete
     _unavailable_callbacks: Incomplete
     _connectable_unavailable_callbacks: Incomplete
     _callback_index: Incomplete

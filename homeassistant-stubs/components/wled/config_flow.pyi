@@ -1,4 +1,4 @@
-from .const import CONF_KEEP_MASTER_LIGHT as CONF_KEEP_MASTER_LIGHT, DEFAULT_KEEP_MASTER_LIGHT as DEFAULT_KEEP_MASTER_LIGHT, DOMAIN as DOMAIN
+from .const import CONF_KEEP_MAIN_LIGHT as CONF_KEEP_MAIN_LIGHT, DEFAULT_KEEP_MAIN_LIGHT as DEFAULT_KEEP_MAIN_LIGHT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components import onboarding as onboarding, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, OptionsFlow as OptionsFlow

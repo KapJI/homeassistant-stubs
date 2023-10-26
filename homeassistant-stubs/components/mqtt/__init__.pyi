@@ -15,9 +15,11 @@ from homeassistant.helpers import template as template
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
+from homeassistant.helpers.issue_registry import async_delete_issue as async_delete_issue
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.loader import async_get_integration as async_get_integration
 from typing import Any, TypeVar
 
 _LOGGER: Incomplete
@@ -36,6 +38,8 @@ CONFIG_SCHEMA: Incomplete
 MQTT_PUBLISH_SCHEMA: Incomplete
 
 async def _async_config_entry_updated(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+def _async_remove_mqtt_issues(hass: HomeAssistant, mqtt_data: MqttData) -> None: ...
+async def async_check_config_schema(hass: HomeAssistant, config_yaml: ConfigType) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 def websocket_mqtt_info(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def websocket_subscribe(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

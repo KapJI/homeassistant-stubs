@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET
 from typing import Final
@@ -31,3 +32,18 @@ class FitbitUnitSystem(StrEnum):
     METRIC: str
     EN_US: str
     EN_GB: str
+
+CONF_SCOPE: Final[str]
+
+class FitbitScope(StrEnum):
+    ACTIVITY: str
+    HEART_RATE: str
+    NUTRITION: str
+    PROFILE: str
+    DEVICE: str
+    SLEEP: str
+    WEIGHT: str
+
+OAUTH2_AUTHORIZE: str
+OAUTH2_TOKEN: str
+OAUTH_SCOPES: Incomplete

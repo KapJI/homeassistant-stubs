@@ -5,14 +5,12 @@ from homeassistant.const import UnitOfPressure as UnitOfPressure, UnitOfSpeed as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 CONDITION_CLASSES: dict[str, list[str]]
 CONDITION_MAP: Incomplete
 WEATHER_UPDATE_INTERVAL: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
 class DemoWeather(WeatherEntity):
     _attr_attribution: str

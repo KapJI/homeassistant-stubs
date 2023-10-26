@@ -14,7 +14,6 @@ from sqlalchemy.orm import Session as Session
 from typing import Any
 
 _LOGGER: Incomplete
-NONE_SENTINEL: str
 OPTIONS_SCHEMA: vol.Schema
 CONFIG_SCHEMA: vol.Schema
 

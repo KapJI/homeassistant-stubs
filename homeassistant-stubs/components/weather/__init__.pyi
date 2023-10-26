@@ -14,6 +14,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
+from homeassistant.loader import async_get_issue_tracker as async_get_issue_tracker, async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
@@ -134,6 +135,7 @@ class WeatherEntity(Entity, PostInit):
     _attr_native_wind_speed_unit: str | None
     _attr_native_dew_point: float | None
     _forecast_listeners: dict[Literal['daily', 'hourly', 'twice_daily'], list[Callable[[list[JsonValueType] | None], None]]]
+    __weather_reported_legacy_forecast: bool
     __weather_legacy_forecast: bool
     _weather_option_temperature_unit: str | None
     _weather_option_pressure_unit: str | None
@@ -143,6 +145,7 @@ class WeatherEntity(Entity, PostInit):
     def __post_init__(self, *args: Any, **kwargs: Any) -> None: ...
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
+    def _report_legacy_forecast(self, hass: HomeAssistant) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
     @property
     def native_apparent_temperature(self) -> float | None: ...

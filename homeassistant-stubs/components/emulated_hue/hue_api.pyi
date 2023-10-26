@@ -49,6 +49,8 @@ HUE_API_USERNAME: str
 UNAUTHORIZED_USER: Incomplete
 DIMMABLE_SUPPORT_FEATURES: Incomplete
 
+def _remote_is_allowed(address: str) -> bool: ...
+
 class HueUnauthorizedUser(HomeAssistantView):
     url: str
     name: str

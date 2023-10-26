@@ -19,6 +19,7 @@ DECONZ_GROUP: str
 EFFECT_TO_DECONZ: Incomplete
 FLASH_TO_DECONZ: Incomplete
 DECONZ_TO_COLOR_MODE: Incomplete
+TS0601_EFFECTS: Incomplete
 _LightDeviceT = TypeVar('_LightDeviceT', bound=Group | Light)
 
 class SetStateAttributes(TypedDict, total=False):

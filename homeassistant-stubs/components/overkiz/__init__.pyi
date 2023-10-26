@@ -3,7 +3,7 @@ from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordi
 from collections import defaultdict
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from pyoverkiz.models import Device as Device, Scenario as Scenario
@@ -16,3 +16,4 @@ class HomeAssistantOverkizData:
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def _async_migrate_entries(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...

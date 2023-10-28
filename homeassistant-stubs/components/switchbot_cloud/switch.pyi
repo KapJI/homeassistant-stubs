@@ -7,11 +7,10 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from switchbot_api import Device as Device, Remote, SwitchBotAPI as SwitchBotAPI
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SwitchBotCloudSwitch(SwitchBotCloudEntity, SwitchEntity):
     _attr_device_class: Incomplete

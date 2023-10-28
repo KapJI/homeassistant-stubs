@@ -5,9 +5,9 @@ from .update_coordinator import BasePassiveBluetoothCoordinator as BasePassiveBl
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
-from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_NAME as ATTR_NAME, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory
+from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_NAME as ATTR_NAME, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval

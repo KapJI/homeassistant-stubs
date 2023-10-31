@@ -1,11 +1,11 @@
-from .const import ALLOWED_WATERING_TIME as ALLOWED_WATERING_TIME, CONF_WATERING_TIME as CONF_WATERING_TIME, DEFAULT_WATERING_TIME as DEFAULT_WATERING_TIME, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import ALLOWED_WATERING_TIME as ALLOWED_WATERING_TIME, CONF_WATERING_TIME as CONF_WATERING_TIME, DEFAULT_WATERING_TIME as DEFAULT_WATERING_TIME, DOMAIN as DOMAIN
 from .coordinator import HydrawiseDataUpdateCoordinator as HydrawiseDataUpdateCoordinator
 from .entity import HydrawiseEntity as HydrawiseEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
@@ -22,4 +22,4 @@ class HydrawiseSwitch(HydrawiseEntity, SwitchEntity):
     def turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
-    def _handle_coordinator_update(self) -> None: ...
+    def _update_attrs(self) -> None: ...

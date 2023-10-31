@@ -1,5 +1,5 @@
 from . import WithingsData as WithingsData
-from .const import DOMAIN as DOMAIN, SCORE_POINTS as SCORE_POINTS, UOM_BEATS_PER_MINUTE as UOM_BEATS_PER_MINUTE, UOM_BREATHS_PER_MINUTE as UOM_BREATHS_PER_MINUTE, UOM_FREQUENCY as UOM_FREQUENCY, UOM_MMHG as UOM_MMHG
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SCORE_POINTS as SCORE_POINTS, UOM_BEATS_PER_MINUTE as UOM_BEATS_PER_MINUTE, UOM_BREATHS_PER_MINUTE as UOM_BREATHS_PER_MINUTE, UOM_FREQUENCY as UOM_FREQUENCY, UOM_MMHG as UOM_MMHG
 from .coordinator import WithingsActivityDataUpdateCoordinator as WithingsActivityDataUpdateCoordinator, WithingsDataUpdateCoordinator as WithingsDataUpdateCoordinator, WithingsGoalsDataUpdateCoordinator as WithingsGoalsDataUpdateCoordinator, WithingsMeasurementDataUpdateCoordinator as WithingsMeasurementDataUpdateCoordinator, WithingsSleepDataUpdateCoordinator as WithingsSleepDataUpdateCoordinator, WithingsWorkoutDataUpdateCoordinator as WithingsWorkoutDataUpdateCoordinator
 from .entity import WithingsEntity as WithingsEntity
 from _typeshed import Incomplete

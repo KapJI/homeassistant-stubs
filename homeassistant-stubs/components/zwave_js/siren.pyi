@@ -17,6 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class ZwaveSirenEntity(ZWaveBaseEntity, SirenEntity):
     _attr_available_tones: Incomplete
     _attr_supported_features: Incomplete
+    _attr_name: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_on(self) -> bool | None: ...

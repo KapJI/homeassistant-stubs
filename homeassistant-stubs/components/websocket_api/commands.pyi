@@ -1,6 +1,7 @@
 from . import const as const, decorators as decorators, messages as messages
 from .connection import ActiveConnection as ActiveConnection
 from .messages import construct_event_message as construct_event_message, construct_result_message as construct_result_message
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.auth.models import User as User
 from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
@@ -20,6 +21,7 @@ from homeassistant.util.json import format_unserializable_data as format_unseria
 from typing import Any
 
 ALL_SERVICE_DESCRIPTIONS_JSON_CACHE: str
+_LOGGER: Incomplete
 
 def async_register_commands(hass: HomeAssistant, async_reg: Callable[[HomeAssistant, const.WebSocketCommandHandler], None]) -> None: ...
 def pong_message(iden: int) -> dict[str, Any]: ...

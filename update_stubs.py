@@ -14,7 +14,7 @@ from urllib.request import urlopen
 
 from awesomeversion.awesomeversion import AwesomeVersion
 from awesomeversion.strategy import AwesomeVersionStrategy
-from github import Github
+from github import Auth, Github
 from github.Repository import Repository
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
@@ -95,7 +95,8 @@ def get_available_versions(git_root: Path) -> list[str]:
 def get_github_repo(token_name: str) -> Repository:
     """Return Github repository to use its APIs."""
     github_token = os.environ.get(token_name)
-    github = Github(github_token)
+    assert github_token is not None, f"{token_name} is not set"
+    github = Github(auth=Auth.Token(github_token))
     return github.get_repo("KapJI/homeassistant-stubs")
 
 

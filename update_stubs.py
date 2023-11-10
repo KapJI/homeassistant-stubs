@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import platform
 import shutil
 import subprocess
 import sys
@@ -35,7 +34,11 @@ def main() -> int:
     homeassistant_root = repo_root / "homeassistant_core"
 
     # Find which versions are missing
-    current_versions = set(get_available_versions(repo_root))
+    available_versions = get_available_versions(repo_root)
+    # For dry run, re-generate the last version
+    if args.dry_run:
+        available_versions = available_versions[:-1]
+    current_versions = set(available_versions)
     homeassistant_versions = get_available_versions(homeassistant_root)
     available_pypi_versions = set(get_pypi_versions())
     missing_versions = [
@@ -304,28 +307,6 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
     if new_stubs_folder.is_dir():
         shutil.rmtree(new_stubs_folder)
     stubs_folder.rename(new_stubs_folder)
-    stubs_fixup(new_stubs_folder)
-
-
-def stubs_fixup(stubs_folder: Path) -> None:
-    """Fix invalid syntax in generated files."""
-    print("Fixing stubs...")
-    command_args: list[str] = [
-        "find",
-        str(stubs_folder),
-        "-name",
-        "'*.pyi'",
-        "-print0",
-        "|",
-        "xargs",
-        "-0",
-        "sed",
-        "-i",
-    ]
-    if platform.system() == "Darwin":
-        command_args.append("''")
-    command_args.append("'s/, \\*\\*)/, **kwargs)/g'")
-    subprocess.run(" ".join(command_args), shell=True, check=True)
 
 
 if __name__ == "__main__":

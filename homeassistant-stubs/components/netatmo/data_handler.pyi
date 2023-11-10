@@ -1,6 +1,7 @@
 import pyatmo
 from .const import AUTH as AUTH, DATA_PERSONS as DATA_PERSONS, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_BATTERY as NETATMO_CREATE_BATTERY, NETATMO_CREATE_CAMERA as NETATMO_CREATE_CAMERA, NETATMO_CREATE_CAMERA_LIGHT as NETATMO_CREATE_CAMERA_LIGHT, NETATMO_CREATE_CLIMATE as NETATMO_CREATE_CLIMATE, NETATMO_CREATE_COVER as NETATMO_CREATE_COVER, NETATMO_CREATE_LIGHT as NETATMO_CREATE_LIGHT, NETATMO_CREATE_ROOM_SENSOR as NETATMO_CREATE_ROOM_SENSOR, NETATMO_CREATE_SELECT as NETATMO_CREATE_SELECT, NETATMO_CREATE_SENSOR as NETATMO_CREATE_SENSOR, NETATMO_CREATE_SWITCH as NETATMO_CREATE_SWITCH, NETATMO_CREATE_WEATHER_SENSOR as NETATMO_CREATE_WEATHER_SENSOR, PLATFORMS as PLATFORMS, WEBHOOK_ACTIVATION as WEBHOOK_ACTIVATION, WEBHOOK_DEACTIVATION as WEBHOOK_DEACTIVATION, WEBHOOK_NACAMERA_CONNECTION as WEBHOOK_NACAMERA_CONNECTION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
@@ -21,6 +22,7 @@ BATCH_SIZE: int
 DEFAULT_INTERVALS: Incomplete
 SCAN_INTERVAL: int
 
+@dataclass
 class NetatmoDevice:
     data_handler: NetatmoDataHandler
     device: pyatmo.modules.Module
@@ -28,6 +30,7 @@ class NetatmoDevice:
     signal_name: str
     def __init__(self, data_handler, device, parent_id, signal_name) -> None: ...
 
+@dataclass
 class NetatmoHome:
     data_handler: NetatmoDataHandler
     home: pyatmo.Home
@@ -35,6 +38,7 @@ class NetatmoHome:
     signal_name: str
     def __init__(self, data_handler, home, parent_id, signal_name) -> None: ...
 
+@dataclass
 class NetatmoRoom:
     data_handler: NetatmoDataHandler
     room: pyatmo.Room
@@ -42,6 +46,7 @@ class NetatmoRoom:
     signal_name: str
     def __init__(self, data_handler, room, parent_id, signal_name) -> None: ...
 
+@dataclass
 class NetatmoPublisher:
     name: str
     interval: int

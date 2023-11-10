@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Callable
+from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
@@ -10,6 +11,7 @@ _LOGGER: Incomplete
 _REPORTED_INTEGRATIONS: set[str]
 _CallableT = TypeVar('_CallableT', bound=Callable)
 
+@dataclass(kw_only=True)
 class IntegrationFrame:
     custom_integration: bool
     frame: FrameSummary

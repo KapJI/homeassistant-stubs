@@ -7,6 +7,7 @@ from aiounifi.models.client import Client
 from aiounifi.models.device import Device
 from aiounifi.models.wlan import Wlan
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, UnitOfTemperature as UnitOfTemperature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -25,10 +26,12 @@ def async_device_uptime_value_fn(controller: UniFiController, device: Device) ->
 def async_device_outlet_power_supported_fn(controller: UniFiController, obj_id: str) -> bool: ...
 def async_device_outlet_supported_fn(controller: UniFiController, obj_id: str) -> bool: ...
 
+@dataclass
 class UnifiSensorEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
     value_fn: Callable[[UniFiController, ApiItemT], datetime | float | str | None]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class UnifiSensorEntityDescription(SensorEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiSensorEntityDescriptionMixin[HandlerT, ApiItemT]):
     def __init__(self, value_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

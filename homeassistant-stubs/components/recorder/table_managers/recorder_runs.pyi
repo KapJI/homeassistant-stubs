@@ -1,11 +1,13 @@
 from ..db_schema import RecorderRuns as RecorderRuns
 from ..models import process_timestamp as process_timestamp
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime
 from sqlalchemy.orm.session import Session as Session
 
 def _find_recorder_run_for_start_time(run_history: _RecorderRunsHistory, start: datetime) -> RecorderRuns | None: ...
 
+@dataclass(frozen=True)
 class _RecorderRunsHistory:
     run_timestamps: list[int]
     runs_by_timestamp: dict[int, RecorderRuns]

@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from datetime import time
 from typing import TypedDict
 
@@ -11,6 +12,7 @@ class HERETravelTimeData(TypedDict):
     origin_name: str | None
     destination_name: str | None
 
+@dataclass
 class HERETravelTimeConfig:
     destination_latitude: float | None
     destination_longitude: float | None

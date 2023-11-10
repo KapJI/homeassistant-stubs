@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from aionotion.bridge.models import Bridge as Bridge, BridgeAllResponse
 from aionotion.sensor.models import Listener as Listener, ListenerAllResponse, ListenerKind, Sensor as Sensor, SensorAllResponse
 from aionotion.user.models import UserPreferences as UserPreferences, UserPreferencesResponse
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -26,13 +27,14 @@ TASK_TYPE_TO_LISTENER_MAP: dict[str, ListenerKind]
 
 def is_uuid(value: str) -> bool: ...
 
+@dataclass
 class NotionData:
     hass: HomeAssistant
     entry: ConfigEntry
-    bridges: dict[int, Bridge]
-    listeners: dict[str, Listener]
-    sensors: dict[str, Sensor]
-    user_preferences: UserPreferences | None
+    bridges: dict[int, Bridge] = ...
+    listeners: dict[str, Listener] = ...
+    sensors: dict[str, Sensor] = ...
+    user_preferences: UserPreferences | None = ...
     def update_data_from_response(self, response: BridgeAllResponse | ListenerAllResponse | SensorAllResponse | UserPreferencesResponse) -> None: ...
     def asdict(self) -> dict[str, Any]: ...
     def __init__(self, hass, entry, bridges, listeners, sensors, user_preferences) -> None: ...

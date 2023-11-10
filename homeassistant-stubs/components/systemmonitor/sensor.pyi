@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TYPE as CONF_TYPE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
@@ -21,8 +22,9 @@ SENSOR_TYPE_DEVICE_CLASS: int
 SENSOR_TYPE_MANDATORY_ARG: int
 SIGNAL_SYSTEMMONITOR_UPDATE: str
 
+@dataclass
 class SysMonitorSensorEntityDescription(SensorEntityDescription):
-    mandatory_arg: bool
+    mandatory_arg: bool = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, mandatory_arg) -> None: ...
 
 SENSOR_TYPES: dict[str, SysMonitorSensorEntityDescription]
@@ -33,6 +35,7 @@ IO_COUNTER: Incomplete
 IF_ADDRS_FAMILY: Incomplete
 CPU_SENSOR_PREFIXES: Incomplete
 
+@dataclass
 class SensorData:
     argument: Any
     state: str | datetime | None

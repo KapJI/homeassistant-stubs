@@ -6,7 +6,6 @@ _LOGGER: Incomplete
 DB_TIMEZONE: str
 EMPTY_JSON_OBJECT: str
 
-
 @overload
 def process_timestamp(ts: None) -> None: ...
 @overload

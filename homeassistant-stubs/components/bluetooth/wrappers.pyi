@@ -7,6 +7,7 @@ from bleak.backends.client import BaseBleakClient as BaseBleakClient
 from bleak.backends.device import BLEDevice
 from bleak.backends.scanner import AdvertisementData as AdvertisementData, AdvertisementDataCallback as AdvertisementDataCallback, BaseBleakScanner
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
 from homeassistant.helpers.frame import report as report
 from typing import Any, Final
@@ -14,6 +15,7 @@ from typing import Any, Final
 FILTER_UUIDS: Final[str]
 _LOGGER: Incomplete
 
+@dataclass(slots=True)
 class _HaWrappedBleakBackend:
     device: BLEDevice
     scanner: BaseHaScanner

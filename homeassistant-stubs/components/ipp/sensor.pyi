@@ -2,6 +2,7 @@ from .const import ATTR_COMMAND_SET as ATTR_COMMAND_SET, ATTR_INFO as ATTR_INFO,
 from .coordinator import IPPDataUpdateCoordinator as IPPDataUpdateCoordinator
 from .entity import IPPEntity as IPPEntity
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,12 +14,14 @@ from homeassistant.util.dt import utcnow as utcnow
 from pyipp import Marker as Marker, Printer as Printer
 from typing import Any
 
+@dataclass
 class IPPSensorEntityDescriptionMixin:
     value_fn: Callable[[Printer], StateType | datetime]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class IPPSensorEntityDescription(SensorEntityDescription, IPPSensorEntityDescriptionMixin):
-    attributes_fn: Callable[[Printer], dict[Any, StateType]]
+    attributes_fn: Callable[[Printer], dict[Any, StateType]] = ...
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attributes_fn) -> None: ...
 
 def _get_marker_attributes_fn(marker_index: int, attributes_fn: Callable[[Marker], dict[Any, StateType]]) -> Callable[[Printer], dict[Any, StateType]]: ...

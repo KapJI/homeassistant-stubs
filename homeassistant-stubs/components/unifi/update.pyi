@@ -6,6 +6,7 @@ from aiounifi.interfaces.api_handlers import ItemEvent
 from aiounifi.interfaces.devices import Devices
 from aiounifi.models.device import Device
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -18,11 +19,13 @@ _HandlerT = TypeVar('_HandlerT', bound=Devices)
 
 async def async_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 
+@dataclass
 class UnifiUpdateEntityDescriptionMixin(Generic[_HandlerT, _DataT]):
     control_fn: Callable[[aiounifi.Controller, str], Coroutine[Any, Any, None]]
     state_fn: Callable[[aiounifi.Controller, _DataT], bool]
     def __init__(self, control_fn, state_fn) -> None: ...
 
+@dataclass
 class UnifiUpdateEntityDescription(UpdateEntityDescription, UnifiEntityDescription[_HandlerT, _DataT], UnifiUpdateEntityDescriptionMixin[_HandlerT, _DataT]):
     def __init__(self, control_fn, state_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

@@ -2,6 +2,7 @@ from . import PiHoleEntity as PiHoleEntity
 from .const import DATA_KEY_API as DATA_KEY_API, DATA_KEY_COORDINATOR as DATA_KEY_COORDINATOR
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from hole import Hole as Hole
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,12 +12,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
+@dataclass
 class RequiredPiHoleBinaryDescription:
     state_value: Callable[[Hole], bool]
     def __init__(self, state_value) -> None: ...
 
+@dataclass
 class PiHoleBinarySensorEntityDescription(BinarySensorEntityDescription, RequiredPiHoleBinaryDescription):
-    extra_value: Callable[[Hole], dict[str, Any] | None]
+    extra_value: Callable[[Hole], dict[str, Any] | None] = ...
     def __init__(self, state_value, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, extra_value) -> None: ...
 
 BINARY_SENSOR_TYPES: tuple[PiHoleBinarySensorEntityDescription, ...]

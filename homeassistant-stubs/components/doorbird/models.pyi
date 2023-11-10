@@ -1,6 +1,8 @@
 from .device import ConfiguredDoorBird as ConfiguredDoorBird
+from dataclasses import dataclass
 from typing import Any
 
+@dataclass
 class DoorBirdData:
     door_station: ConfiguredDoorBird
     door_station_info: dict[str, Any]

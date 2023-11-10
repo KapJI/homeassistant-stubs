@@ -4,6 +4,7 @@ from .models import BondData as BondData
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from _typeshed import Incomplete
 from bond_async import Action, BPUPSubscriptions as BPUPSubscriptions
+from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,13 +12,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 STEP_SIZE: int
 
+@dataclass
 class BondButtonEntityDescriptionMixin:
     mutually_exclusive: Action | None
     argument: int | None
     def __init__(self, mutually_exclusive, argument) -> None: ...
 
+@dataclass
 class BondButtonEntityDescription(ButtonEntityDescription, BondButtonEntityDescriptionMixin):
-    name: str | None
+    name: str | None = ...
     def __init__(self, mutually_exclusive, argument, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 STOP_BUTTON: Incomplete

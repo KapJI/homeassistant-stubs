@@ -1,5 +1,6 @@
 from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
@@ -12,11 +13,13 @@ class EventDeviceClass(StrEnum):
     BUTTON: str
     MOTION: str
 
+@dataclass
 class EventEntityDescription(EntityDescription):
-    device_class: EventDeviceClass | None
-    event_types: list[str] | None
+    device_class: EventDeviceClass | None = ...
+    event_types: list[str] | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types) -> None: ...
 
+@dataclass
 class EventExtraStoredData(ExtraStoredData):
     last_event_type: str | None
     last_event_attributes: dict[str, Any] | None

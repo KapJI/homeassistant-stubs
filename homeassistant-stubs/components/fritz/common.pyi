@@ -1,6 +1,7 @@
 from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles, SERVICE_CLEANUP as SERVICE_CLEANUP, SERVICE_REBOOT as SERVICE_REBOOT, SERVICE_RECONNECT as SERVICE_RECONNECT, SERVICE_SET_GUEST_WIFI_PW as SERVICE_SET_GUEST_WIFI_PW
 from _typeshed import Incomplete
 from collections.abc import Callable, ValuesView
+from dataclasses import dataclass
 from datetime import datetime
 from fritzconnection.lib.fritzstatus import FritzStatus
 from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
@@ -25,6 +26,7 @@ def _ha_is_stopping(activity: str) -> None: ...
 class ClassSetupMissing(Exception):
     def __init__(self) -> None: ...
 
+@dataclass
 class Device:
     connected: bool
     connected_to: str
@@ -32,7 +34,7 @@ class Device:
     ip_address: str
     name: str
     ssid: str | None
-    wan_access: bool | None
+    wan_access: bool | None = ...
     def __init__(self, connected, connected_to, connection_type, ip_address, name, ssid, wan_access) -> None: ...
 
 class Interface(TypedDict):
@@ -132,9 +134,10 @@ class AvmWrapper(FritzBoxTools):
     async def async_add_port_mapping(self, con_type: str, port_mapping: Any) -> dict[str, Any]: ...
     async def async_set_allow_wan_access(self, ip_address: str, turn_on: bool) -> dict[str, Any]: ...
 
+@dataclass
 class FritzData:
-    tracked: dict
-    profile_switches: dict
+    tracked: dict = ...
+    profile_switches: dict = ...
     def __init__(self, tracked, profile_switches) -> None: ...
 
 class FritzDeviceBase(update_coordinator.CoordinatorEntity[AvmWrapper]):
@@ -201,10 +204,12 @@ class FritzBoxBaseEntity:
     @property
     def device_info(self) -> DeviceInfo: ...
 
+@dataclass
 class FritzRequireKeysMixin:
     value_fn: Callable[[FritzStatus, Any], Any] | None
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class FritzEntityDescription(EntityDescription, FritzRequireKeysMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
@@ -217,6 +222,7 @@ class FritzBoxBaseCoordinatorEntity(update_coordinator.CoordinatorEntity[AvmWrap
     @property
     def device_info(self) -> DeviceInfo: ...
 
+@dataclass
 class ConnectionInfo:
     connection: str
     mesh_role: MeshRoles

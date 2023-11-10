@@ -6,6 +6,7 @@ from .exceptions import DeviceNotFound as DeviceNotFound, EntityNotFound as Enti
 from .trigger import DeviceAutomationTriggerProtocol as DeviceAutomationTriggerProtocol
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable, Mapping
+from dataclasses import dataclass
 from enum import Enum
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
@@ -22,6 +23,7 @@ DOMAIN: str
 CONFIG_SCHEMA: Incomplete
 DEVICE_TRIGGER_BASE_SCHEMA: vol.Schema
 
+@dataclass
 class DeviceAutomationDetails:
     section: str
     get_automations_func: str

@@ -7,13 +7,14 @@ from .template import RenderInfo as RenderInfo, Template as Template, result_as_
 from .typing import EventType as EventType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine, Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from typing import Any, Concatenate, TypeVar, TypedDict
+from typing import Any, Concatenate, ParamSpec, TypeVar, TypedDict
 
 TRACK_STATE_CHANGE_CALLBACKS: str
 TRACK_STATE_CHANGE_LISTENER: str
@@ -32,20 +33,23 @@ _LOGGER: Incomplete
 RANDOM_MICROSECOND_MIN: int
 RANDOM_MICROSECOND_MAX: int
 _TypedDictT = TypeVar('_TypedDictT', bound=Mapping[str, Any])
-_P: Incomplete
+_P = ParamSpec('_P')
 
+@dataclass(slots=True)
 class TrackStates:
     all_states: bool
     entities: set[str]
     domains: set[str]
     def __init__(self, all_states, entities, domains) -> None: ...
 
+@dataclass(slots=True)
 class TrackTemplate:
     template: Template
     variables: TemplateVarsType
-    rate_limit: timedelta | None
+    rate_limit: timedelta | None = ...
     def __init__(self, template, variables, rate_limit) -> None: ...
 
+@dataclass(slots=True)
 class TrackTemplateResult:
     template: Template
     last_result: Any

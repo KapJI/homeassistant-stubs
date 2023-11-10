@@ -2,6 +2,7 @@ import datetime
 from . import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_OFFSET as CONF_OFFSET, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -17,11 +18,13 @@ EVENT_END: str
 UPDATE_INTERVAL: Incomplete
 TRIGGER_SCHEMA: Incomplete
 
+@dataclass
 class QueuedCalendarEvent:
     trigger_time: datetime.datetime
     event: CalendarEvent
     def __init__(self, trigger_time, event) -> None: ...
 
+@dataclass
 class Timespan:
     start: datetime.datetime
     end: datetime.datetime

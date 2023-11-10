@@ -4,6 +4,7 @@ from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as
 from .models import PermRequired as PermRequired, ProtectEventMixin as ProtectEventMixin, ProtectRequiredKeysMixin as ProtectRequiredKeysMixin, T as T
 from .utils import async_get_light_motion_current as async_get_light_motion_current
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -17,11 +18,13 @@ from typing import Any
 _LOGGER: Incomplete
 OBJECT_TYPE_NONE: str
 
+@dataclass
 class ProtectSensorEntityDescription(ProtectRequiredKeysMixin[T], SensorEntityDescription):
-    precision: int | None
+    precision: int | None = ...
     def get_ufp_value(self, obj: T) -> Any: ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, precision) -> None: ...
 
+@dataclass
 class ProtectSensorEventEntityDescription(ProtectEventMixin[T], SensorEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_event_obj) -> None: ...
 

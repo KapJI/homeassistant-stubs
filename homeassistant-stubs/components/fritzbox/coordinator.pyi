@@ -1,5 +1,6 @@
 from .const import CONF_CONNECTIONS as CONF_CONNECTIONS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -7,6 +8,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pyfritzhome import Fritzhome as Fritzhome, FritzhomeDevice as FritzhomeDevice
 from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate
 
+@dataclass
 class FritzboxCoordinatorData:
     devices: dict[str, FritzhomeDevice]
     templates: dict[str, FritzhomeTemplate]

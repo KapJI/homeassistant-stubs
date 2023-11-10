@@ -2,6 +2,7 @@ from .const import MANUFACTURER as MANUFACTURER
 from .coordinator import QswDataCoordinator as QswDataCoordinator, QswFirmwareCoordinator as QswFirmwareCoordinator
 from _typeshed import Incomplete
 from aioqsw.const import QSD_LACP_PORTS, QSD_PORTS
+from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
@@ -22,6 +23,7 @@ class QswDataEntity(CoordinatorEntity[QswDataCoordinator]):
     def __init__(self, coordinator: QswDataCoordinator, entry: ConfigEntry, type_id: int | None = ...) -> None: ...
     def get_device_value(self, key: str, subkey: str, qsw_type: QswEntityType | None = ...) -> Any: ...
 
+@dataclass
 class QswEntityDescriptionMixin:
     subkey: str
     def __init__(self, subkey) -> None: ...

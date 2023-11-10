@@ -4,6 +4,7 @@ from .knx_entity import KnxEntity as KnxEntity
 from .schema import SensorSchema as SensorSchema
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -19,12 +20,13 @@ from xknx.devices import Sensor as XknxSensor
 
 SCAN_INTERVAL: Incomplete
 
+@dataclass
 class KNXSystemEntityDescription(SensorEntityDescription):
-    always_available: bool
-    entity_category: EntityCategory
-    has_entity_name: bool
-    should_poll: bool
-    value_fn: Callable[[KNXModule], StateType | datetime]
+    always_available: bool = ...
+    entity_category: EntityCategory = ...
+    has_entity_name: bool = ...
+    should_poll: bool = ...
+    value_fn: Callable[[KNXModule], StateType | datetime] = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, always_available, should_poll, value_fn) -> None: ...
 
 SYSTEM_ENTITY_DESCRIPTIONS: Incomplete

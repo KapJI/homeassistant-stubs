@@ -4,6 +4,7 @@ from .entity import SteamistEntity as SteamistEntity
 from _typeshed import Incomplete
 from aiosteamist import SteamistStatus as SteamistStatus
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
@@ -14,10 +15,12 @@ _KEY_MINUTES_REMAIN: str
 _KEY_TEMP: str
 UNIT_MAPPINGS: Incomplete
 
+@dataclass
 class SteamistSensorEntityDescriptionMixin:
     value_fn: Callable[[SteamistStatus], int | None]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class SteamistSensorEntityDescription(SensorEntityDescription, SteamistSensorEntityDescriptionMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

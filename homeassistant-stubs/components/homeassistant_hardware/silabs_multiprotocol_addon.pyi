@@ -1,5 +1,6 @@
 import abc
 import asyncio
+import dataclasses
 from .const import LOGGER as LOGGER, SILABS_FLASHER_ADDON_SLUG as SILABS_FLASHER_ADDON_SLUG, SILABS_MULTIPROTOCOL_ADDON_SLUG as SILABS_MULTIPROTOCOL_ADDON_SLUG
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
@@ -61,6 +62,7 @@ class MultipanProtocol(Protocol):
 
 def get_flasher_addon_manager(hass: HomeAssistant) -> WaitingAddonManager: ...
 
+@dataclasses.dataclass
 class SerialPortSettings:
     device: str
     baudrate: str

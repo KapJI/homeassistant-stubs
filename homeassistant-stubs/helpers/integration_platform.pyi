@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
 from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
@@ -9,6 +10,7 @@ from typing import Any
 _LOGGER: Incomplete
 DATA_INTEGRATION_PLATFORMS: str
 
+@dataclass(slots=True, frozen=True)
 class IntegrationPlatform:
     platform_name: str
     process_platform: Callable[[HomeAssistant, str, Any], Awaitable[None]]

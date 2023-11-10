@@ -4,6 +4,7 @@ from .models import BAFData as BAFData
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
@@ -11,10 +12,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+@dataclass
 class BAFSwitchDescriptionMixin:
     value_fn: Callable[[Device], bool | None]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class BAFSwitchDescription(SwitchEntityDescription, BAFSwitchDescriptionMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

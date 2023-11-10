@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .entity import ISYAuxControlEntity as ISYAuxControlEntity, ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
 from .models import IsyData as IsyData
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
@@ -13,8 +14,9 @@ from pyisy.helpers import EventListener as EventListener
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
 from typing import Any
 
+@dataclass
 class ISYSwitchEntityDescription(SwitchEntityDescription):
-    name: str
+    name: str = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

@@ -3,6 +3,7 @@ from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordi
 from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, SensiboMotionBaseEntity as SensiboMotionBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -12,17 +13,21 @@ from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as Sensi
 
 PARALLEL_UPDATES: int
 
+@dataclass
 class MotionBaseEntityDescriptionMixin:
     value_fn: Callable[[MotionSensor], bool | None]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class DeviceBaseEntityDescriptionMixin:
     value_fn: Callable[[SensiboDevice], bool | None]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class SensiboMotionBinarySensorEntityDescription(BinarySensorEntityDescription, MotionBaseEntityDescriptionMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
+@dataclass
 class SensiboDeviceBinarySensorEntityDescription(BinarySensorEntityDescription, DeviceBaseEntityDescriptionMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

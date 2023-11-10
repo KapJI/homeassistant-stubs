@@ -3,6 +3,7 @@ from .entity import WizEntity as WizEntity
 from .models import WizData as WizData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -10,12 +11,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pywizlight import wizlight as wizlight
 
+@dataclass
 class WizNumberEntityDescriptionMixin:
     value_fn: Callable[[wizlight], int | None]
     set_value_fn: Callable[[wizlight, int], Coroutine[None, None, None]]
     required_feature: str
     def __init__(self, value_fn, set_value_fn, required_feature) -> None: ...
 
+@dataclass
 class WizNumberEntityDescription(NumberEntityDescription, WizNumberEntityDescriptionMixin):
     def __init__(self, value_fn, set_value_fn, required_feature, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 

@@ -2,6 +2,7 @@ import asyncio
 from .const import DOMAIN as DOMAIN, NANOLEAF_EVENT as NANOLEAF_EVENT, TOUCH_GESTURE_TRIGGER_MAP as TOUCH_GESTURE_TRIGGER_MAP, TOUCH_MODELS as TOUCH_MODELS
 from _typeshed import Incomplete
 from aionanoleaf import EffectsEvent as EffectsEvent, Nanoleaf, StateEvent as StateEvent, TouchEvent as TouchEvent
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_TOKEN as CONF_TOKEN, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -12,6 +13,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
 
+@dataclass
 class NanoleafEntryData:
     device: Nanoleaf
     coordinator: DataUpdateCoordinator[None]

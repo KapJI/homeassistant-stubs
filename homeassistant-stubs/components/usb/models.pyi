@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+
+@dataclass
 class USBDevice:
     device: str
     vid: str

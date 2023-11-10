@@ -24,7 +24,7 @@ from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as Unit
 from _typeshed import Incomplete
 from collections import UserDict
 from collections.abc import Callable, Collection, Coroutine, Iterable, KeysView, Mapping, ValuesView
-from typing import Any, Generic, Literal, Self, TypeVar, overload
+from typing import Any, Generic, Literal, ParamSpec, Self, TypeVar, overload
 
 STAGE_1_SHUTDOWN_TIMEOUT: int
 STAGE_2_SHUTDOWN_TIMEOUT: int
@@ -32,7 +32,7 @@ STAGE_3_SHUTDOWN_TIMEOUT: int
 _T = TypeVar('_T')
 _R = TypeVar('_R')
 _R_co = TypeVar('_R_co', covariant=True)
-_P: Incomplete
+_P = ParamSpec('_P')
 _UNDEF: dict[Any, Any]
 _CallableT = TypeVar('_CallableT', bound=Callable[..., Any])
 CALLBACK_TYPE = Callable[[], None]

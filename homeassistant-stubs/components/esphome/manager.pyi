@@ -60,7 +60,7 @@ class ServiceMetadata(NamedTuple):
     validator: Any
     example: str
     selector: dict[str, Any]
-    description: str | None
+    description: str | None = ...
 
 ARG_TYPE_METADATA: Incomplete
 

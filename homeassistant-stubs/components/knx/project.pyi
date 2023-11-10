@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -12,6 +13,7 @@ _LOGGER: Incomplete
 STORAGE_VERSION: Final[int]
 STORAGE_KEY: Final[Incomplete]
 
+@dataclass
 class GroupAddressInfo:
     address: str
     name: str

@@ -1,3 +1,4 @@
+import dataclasses
 import datetime
 from .const import CONF_EVENT as CONF_EVENT, CalendarEntityFeature as CalendarEntityFeature, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_DURATION as EVENT_DURATION, EVENT_END as EVENT_END, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_LOCATION as EVENT_LOCATION, EVENT_RECURRENCE_ID as EVENT_RECURRENCE_ID, EVENT_RECURRENCE_RANGE as EVENT_RECURRENCE_RANGE, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TIME_FIELDS as EVENT_TIME_FIELDS, EVENT_TYPES as EVENT_TYPES, EVENT_UID as EVENT_UID, LIST_EVENT_FIELDS as LIST_EVENT_FIELDS
 from _typeshed import Incomplete
@@ -46,15 +47,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 def get_date(date: dict[str, Any]) -> datetime.datetime: ...
 
+@dataclasses.dataclass
 class CalendarEvent:
     start: datetime.date | datetime.datetime
     end: datetime.date | datetime.datetime
     summary: str
-    description: str | None
-    location: str | None
-    uid: str | None
-    recurrence_id: str | None
-    rrule: str | None
+    description: str | None = ...
+    location: str | None = ...
+    uid: str | None = ...
+    recurrence_id: str | None = ...
+    rrule: str | None = ...
     @property
     def start_datetime_local(self) -> datetime.datetime: ...
     @property

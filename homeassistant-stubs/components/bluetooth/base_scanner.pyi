@@ -8,6 +8,7 @@ from abc import ABC, abstractmethod
 from bleak.backends.device import BLEDevice
 from bleak.backends.scanner import AdvertisementData
 from collections.abc import Callable as Callable, Generator
+from dataclasses import dataclass
 from home_assistant_bluetooth import BluetoothServiceInfoBleak
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant
@@ -18,6 +19,7 @@ from typing import Any, Final
 MONOTONIC_TIME: Final[Incomplete]
 _LOGGER: Incomplete
 
+@dataclass(slots=True)
 class BluetoothScannerDevice:
     scanner: BaseHaScanner
     ble_device: BLEDevice

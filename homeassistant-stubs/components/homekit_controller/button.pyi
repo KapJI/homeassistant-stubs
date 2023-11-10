@@ -3,6 +3,7 @@ from .connection import HKDevice as HKDevice
 from .entity import CharacteristicEntity as CharacteristicEntity
 from _typeshed import Incomplete
 from aiohomekit.model.characteristics import Characteristic as Characteristic
+from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
@@ -12,8 +13,9 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete
 
+@dataclass
 class HomeKitButtonEntityDescription(ButtonEntityDescription):
-    write_value: int | str | None
+    write_value: int | str | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, write_value) -> None: ...
 
 BUTTON_ENTITIES: dict[str, HomeKitButtonEntityDescription]

@@ -4,6 +4,7 @@ from .coordinator import SynologyDSMSwitchUpdateCoordinator as SynologyDSMSwitch
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
 from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,6 +14,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
+@dataclass
 class SynologyDSMSwitchEntityDescription(SwitchEntityDescription, SynologyDSMEntityDescription):
     def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

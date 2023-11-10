@@ -2,6 +2,7 @@ import asyncio
 from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from datetime import date, datetime
 from decimal import Decimal
 from homeassistant.core import HomeAssistant
@@ -13,15 +14,16 @@ from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from homeassistant.helpers.typing import StateType, UndefinedType
 from typing import Any, Self
 
+@dataclass
 class SensorEntityDescription(EntityDescription):
-    device_class: SensorDeviceClass | None
-    last_reset: datetime | None
-    native_unit_of_measurement: str | None
-    options: list[str] | None
-    state_class: SensorStateClass | str | None
-    suggested_display_precision: int | None
-    suggested_unit_of_measurement: str | None
-    unit_of_measurement: None
+    device_class: SensorDeviceClass | None = ...
+    last_reset: datetime | None = ...
+    native_unit_of_measurement: str | None = ...
+    options: list[str] | None = ...
+    state_class: SensorStateClass | str | None = ...
+    suggested_display_precision: int | None = ...
+    suggested_unit_of_measurement: str | None = ...
+    unit_of_measurement: None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 class SensorEntity(Entity):
@@ -81,6 +83,7 @@ class SensorEntity(Entity):
     def async_registry_entry_updated(self) -> None: ...
     def _async_read_entity_options(self) -> None: ...
 
+@dataclass
 class SensorExtraStoredData(ExtraStoredData):
     native_value: StateType | date | datetime | Decimal
     native_unit_of_measurement: str | None

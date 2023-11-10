@@ -3,6 +3,7 @@ from .const import API_VALVE_STATUS as API_VALVE_STATUS, API_WIFI_STATUS as API_
 from _typeshed import Incomplete
 from aioguardian import Client as Client
 from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -20,11 +21,13 @@ ATTR_TRAVEL_COUNT: str
 SWITCH_KIND_ONBOARD_AP: str
 SWITCH_KIND_VALVE: str
 
+@dataclass
 class SwitchDescriptionMixin:
     off_action: Callable[[Client], Awaitable]
     on_action: Callable[[Client], Awaitable]
     def __init__(self, off_action, on_action) -> None: ...
 
+@dataclass
 class ValveControllerSwitchDescription(SwitchEntityDescription, ValveControllerEntityDescription, SwitchDescriptionMixin):
     def __init__(self, off_action, on_action, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

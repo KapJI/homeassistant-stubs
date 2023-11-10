@@ -1,5 +1,6 @@
 from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
@@ -76,6 +77,7 @@ class FilterState:
     def __str__(self) -> str: ...
     def __repr__(self) -> str: ...
 
+@dataclass
 class _State:
     last_updated: datetime
     state: str | float | int

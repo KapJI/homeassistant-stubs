@@ -3,6 +3,7 @@ import voluptuous as vol
 from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry
 from _typeshed import Incomplete
 from collections.abc import Collection, Iterable
+from dataclasses import dataclass
 from enum import Enum
 from homeassistant.components.homeassistant.exposed_entities import async_should_expose as async_should_expose
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
@@ -102,10 +103,11 @@ class IntentResponseTargetType(str, Enum):
     DEVICE_CLASS: str
     CUSTOM: str
 
+@dataclass(slots=True)
 class IntentResponseTarget:
     name: str
     type: IntentResponseTargetType
-    id: str | None
+    id: str | None = ...
     def __init__(self, name, type, id) -> None: ...
 
 class IntentResponse:

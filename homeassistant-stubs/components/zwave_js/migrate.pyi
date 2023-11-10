@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .helpers import get_unique_id as get_unique_id
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
@@ -11,11 +12,12 @@ from zwave_js_server.model.value import Value as ZwaveValue
 
 _LOGGER: Incomplete
 
+@dataclass
 class ValueID:
     command_class: str
     endpoint: str
     property_: str
-    property_key: str | None
+    property_key: str | None = ...
     @staticmethod
     def from_unique_id(unique_id: str) -> ValueID: ...
     @staticmethod

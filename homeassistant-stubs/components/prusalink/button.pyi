@@ -1,6 +1,7 @@
 from . import DOMAIN as DOMAIN, PrusaLinkEntity as PrusaLinkEntity, PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,12 +12,14 @@ from typing import Any, Generic, TypeVar
 
 T = TypeVar('T', PrinterInfo, JobInfo)
 
+@dataclass
 class PrusaLinkButtonEntityDescriptionMixin(Generic[T]):
     press_fn: Callable[[PrusaLink], Coroutine[Any, Any, None]]
     def __init__(self, press_fn) -> None: ...
 
+@dataclass
 class PrusaLinkButtonEntityDescription(ButtonEntityDescription, PrusaLinkButtonEntityDescriptionMixin[T], Generic[T]):
-    available_fn: Callable[[T], bool]
+    available_fn: Callable[[T], bool] = ...
     def __init__(self, press_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, available_fn) -> None: ...
 
 BUTTONS: dict[str, tuple[PrusaLinkButtonEntityDescription, ...]]

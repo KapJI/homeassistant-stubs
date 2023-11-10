@@ -8,6 +8,7 @@ from aiounifi.interfaces.api_handlers import APIHandler, CallbackType, ItemEvent
 from aiounifi.models.api import ApiItemT
 from aiounifi.models.event import Event as Event, EventKey as EventKey
 from collections.abc import Callable
+from dataclasses import dataclass
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -23,6 +24,7 @@ def async_device_device_info_fn(controller: UniFiController, obj_id: str) -> Dev
 def async_wlan_device_info_fn(controller: UniFiController, obj_id: str) -> DeviceInfo: ...
 def async_client_device_info_fn(controller: UniFiController, obj_id: str) -> DeviceInfo: ...
 
+@dataclass
 class UnifiDescription(Generic[HandlerT, ApiItemT]):
     allowed_fn: Callable[[UniFiController, str], bool]
     api_handler_fn: Callable[[aiounifi.Controller], HandlerT]
@@ -37,6 +39,7 @@ class UnifiDescription(Generic[HandlerT, ApiItemT]):
     unique_id_fn: Callable[[UniFiController, str], str]
     def __init__(self, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn) -> None: ...
 
+@dataclass
 class UnifiEntityDescription(EntityDescription, UnifiDescription[HandlerT, ApiItemT]):
     def __init__(self, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

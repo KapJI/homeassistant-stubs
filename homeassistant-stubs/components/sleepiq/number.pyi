@@ -4,12 +4,14 @@ from .entity import SleepIQBedEntity as SleepIQBedEntity
 from _typeshed import Incomplete
 from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSleeper
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+@dataclass
 class SleepIQNumberEntityDescriptionMixin:
     value_fn: Callable[[Any], float]
     set_value_fn: Callable[[Any, int], Coroutine[None, None, None]]
@@ -17,6 +19,7 @@ class SleepIQNumberEntityDescriptionMixin:
     get_unique_id_fn: Callable[[SleepIQBed, Any], str]
     def __init__(self, value_fn, set_value_fn, get_name_fn, get_unique_id_fn) -> None: ...
 
+@dataclass
 class SleepIQNumberEntityDescription(NumberEntityDescription, SleepIQNumberEntityDescriptionMixin):
     def __init__(self, value_fn, set_value_fn, get_name_fn, get_unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 

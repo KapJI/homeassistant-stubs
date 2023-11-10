@@ -1,9 +1,11 @@
 import datetime as dt
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 
 ReceivePayloadType: Incomplete
 
+@dataclass(slots=True)
 class MqttServiceInfo(BaseServiceInfo):
     topic: str
     payload: ReceivePayloadType

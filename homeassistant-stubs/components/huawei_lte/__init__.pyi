@@ -2,6 +2,7 @@ from .const import ADMIN_SERVICES as ADMIN_SERVICES, ALL_KEYS as ALL_KEYS, ATTR_
 from .utils import get_device_macs as get_device_macs
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
@@ -24,17 +25,18 @@ CONFIG_SCHEMA: Incomplete
 SERVICE_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 
+@dataclass
 class Router:
     hass: HomeAssistant
     config_entry: ConfigEntry
     connection: Connection
     url: str
-    data: dict[str, Any]
-    subscriptions: dict[str, list[str]]
-    inflight_gets: set[str]
-    client: Client
-    suspended: bool
-    notify_last_attempt: float
+    data: dict[str, Any] = ...
+    subscriptions: dict[str, list[str]] = ...
+    inflight_gets: set[str] = ...
+    client: Client = ...
+    suspended: bool = ...
+    notify_last_attempt: float = ...
     def __post_init__(self) -> None: ...
     @property
     def device_name(self) -> str: ...
@@ -57,12 +59,13 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...
 
+@dataclass
 class HuaweiLteBaseEntity(Entity):
     router: Router
-    _available: bool
-    _unsub_handlers: list[Callable]
-    _attr_has_entity_name: bool
-    _attr_should_poll: bool
+    _available: bool = ...
+    _unsub_handlers: list[Callable] = ...
+    _attr_has_entity_name: bool = ...
+    _attr_should_poll = ...
     @property
     def _device_unique_id(self) -> str: ...
     @property

@@ -3,6 +3,7 @@ from .entity import DormakabaDkeyEntity as DormakabaDkeyEntity
 from .models import DormakabaDkeyData as DormakabaDkeyData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -11,10 +12,12 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from py_dormakaba_dkey import DKEYLock as DKEYLock
 from py_dormakaba_dkey.commands import Notifications as Notifications
 
+@dataclass
 class DormakabaDkeyBinarySensorDescriptionMixin:
     is_on: Callable[[Notifications], bool]
     def __init__(self, is_on) -> None: ...
 
+@dataclass
 class DormakabaDkeyBinarySensorDescription(BinarySensorEntityDescription, DormakabaDkeyBinarySensorDescriptionMixin):
     def __init__(self, is_on, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

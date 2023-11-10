@@ -1,3 +1,4 @@
+import dataclasses
 from .const import DATA_EXPOSED_ENTITIES as DATA_EXPOSED_ENTITIES, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
@@ -21,11 +22,13 @@ DEFAULT_EXPOSED_BINARY_SENSOR_DEVICE_CLASSES: Incomplete
 DEFAULT_EXPOSED_SENSOR_DEVICE_CLASSES: Incomplete
 DEFAULT_EXPOSED_ASSISTANT: Incomplete
 
+@dataclasses.dataclass(frozen=True)
 class AssistantPreferences:
     expose_new: bool
     def to_json(self) -> dict[str, Any]: ...
     def __init__(self, expose_new) -> None: ...
 
+@dataclasses.dataclass(frozen=True)
 class ExposedEntity:
     assistants: dict[str, dict[str, Any]]
     def to_json(self) -> dict[str, Any]: ...

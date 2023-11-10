@@ -1,6 +1,7 @@
 import re
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
@@ -10,11 +11,12 @@ class TextMode(StrEnum):
     PASSWORD: str
     TEXT: str
 
+@dataclass
 class TextEntityDescription(EntityDescription):
-    native_min: int
-    native_max: int
-    mode: TextMode
-    pattern: str | None
+    native_min: int = ...
+    native_max: int = ...
+    mode: TextMode = ...
+    pattern: str | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, native_min, native_max, mode, pattern) -> None: ...
 
 class TextEntity(Entity):
@@ -50,6 +52,7 @@ class TextEntity(Entity):
     def set_value(self, value: str) -> None: ...
     async def async_set_value(self, value: str) -> None: ...
 
+@dataclass
 class TextExtraStoredData(ExtraStoredData):
     native_value: str | None
     native_min: int

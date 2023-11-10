@@ -1,14 +1,17 @@
 from .coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator, T as T
 from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+@dataclass
 class RenaultDataRequiredKeysMixin:
     coordinator: str
     def __init__(self, coordinator) -> None: ...
 
+@dataclass
 class RenaultDataEntityDescription(EntityDescription, RenaultDataRequiredKeysMixin):
     def __init__(self, coordinator, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

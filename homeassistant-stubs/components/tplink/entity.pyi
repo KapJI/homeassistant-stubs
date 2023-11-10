@@ -5,10 +5,10 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from kasa import SmartDevice as SmartDevice
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 _T = TypeVar('_T', bound='CoordinatedTPLinkEntity')
-_P: Incomplete
+_P = ParamSpec('_P')
 
 def async_refresh_after(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 

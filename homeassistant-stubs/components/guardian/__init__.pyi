@@ -4,6 +4,7 @@ from .util import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
 from _typeshed import Incomplete
 from aioguardian import Client
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_FILENAME as CONF_FILENAME, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PORT as CONF_PORT, CONF_URL as CONF_URL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -23,6 +24,7 @@ SERVICE_PAIR_UNPAIR_SENSOR_SCHEMA: Incomplete
 SERVICE_UPGRADE_FIRMWARE_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 
+@dataclass
 class GuardianData:
     entry: ConfigEntry
     client: Client
@@ -62,10 +64,12 @@ class PairedSensorEntity(GuardianEntity):
     _attr_unique_id: Incomplete
     def __init__(self, entry: ConfigEntry, coordinator: GuardianDataUpdateCoordinator, description: EntityDescription) -> None: ...
 
+@dataclass
 class ValveControllerEntityDescriptionMixin:
     api_category: str
     def __init__(self, api_category) -> None: ...
 
+@dataclass
 class ValveControllerEntityDescription(EntityDescription, ValveControllerEntityDescriptionMixin):
     def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

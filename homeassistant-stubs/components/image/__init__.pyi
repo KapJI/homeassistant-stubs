@@ -2,6 +2,7 @@ import httpx
 from .const import DOMAIN as DOMAIN, IMAGE_TIMEOUT as IMAGE_TIMEOUT
 from _typeshed import Incomplete
 from aiohttp import web
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -25,9 +26,11 @@ TOKEN_CHANGE_INTERVAL: Final[Incomplete]
 _RND: Final[Incomplete]
 GET_IMAGE_TIMEOUT: Final[int]
 
+@dataclass
 class ImageEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
+@dataclass
 class Image:
     content_type: str
     content: bytes

@@ -5,6 +5,7 @@ from .models import LogbookConfig as LogbookConfig, async_event_to_row as async_
 from .processor import EventProcessor as EventProcessor
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime as dt
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.recorder import get_instance as get_instance
@@ -21,12 +22,13 @@ BIG_QUERY_HOURS: int
 BIG_QUERY_RECENT_HOURS: int
 _LOGGER: Incomplete
 
+@dataclass(slots=True)
 class LogbookLiveStream:
     stream_queue: asyncio.Queue[Event]
     subscriptions: list[CALLBACK_TYPE]
-    end_time_unsub: CALLBACK_TYPE | None
-    task: asyncio.Task | None
-    wait_sync_task: asyncio.Task | None
+    end_time_unsub: CALLBACK_TYPE | None = ...
+    task: asyncio.Task | None = ...
+    wait_sync_task: asyncio.Task | None = ...
     def __init__(self, stream_queue, subscriptions, end_time_unsub, task, wait_sync_task) -> None: ...
 
 def async_setup(hass: HomeAssistant) -> None: ...

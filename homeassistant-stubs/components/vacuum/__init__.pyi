@@ -1,6 +1,7 @@
 import asyncio
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED
@@ -110,6 +111,7 @@ class _BaseVacuum(Entity):
     def send_command(self, command: str, params: dict[str, Any] | list[Any] | None = ..., **kwargs: Any) -> None: ...
     async def async_send_command(self, command: str, params: dict[str, Any] | list[Any] | None = ..., **kwargs: Any) -> None: ...
 
+@dataclass
 class VacuumEntityDescription(ToggleEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
@@ -130,6 +132,7 @@ class VacuumEntity(_BaseVacuum, ToggleEntity):
     def start_pause(self, **kwargs: Any) -> None: ...
     async def async_start_pause(self, **kwargs: Any) -> None: ...
 
+@dataclass
 class StateVacuumEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

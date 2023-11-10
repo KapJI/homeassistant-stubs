@@ -9,6 +9,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
@@ -69,8 +70,9 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
+@dataclass
 class MediaPlayerEntityDescription(EntityDescription):
-    device_class: MediaPlayerDeviceClass | None
+    device_class: MediaPlayerDeviceClass | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class MediaPlayerEntity(Entity):

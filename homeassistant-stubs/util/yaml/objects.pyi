@@ -1,9 +1,11 @@
 import yaml
+from dataclasses import dataclass
 
 class NodeListClass(list): ...
 class NodeStrClass(str): ...
 class NodeDictClass(dict): ...
 
+@dataclass(slots=True, frozen=True)
 class Input:
     name: str
     @classmethod

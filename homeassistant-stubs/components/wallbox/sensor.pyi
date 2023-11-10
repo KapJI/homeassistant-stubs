@@ -2,6 +2,7 @@ from .const import CHARGER_ADDED_DISCHARGED_ENERGY_KEY as CHARGER_ADDED_DISCHARG
 from .coordinator import WallboxCoordinator as WallboxCoordinator
 from .entity import WallboxEntity as WallboxEntity
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfPower as UnitOfPower
@@ -13,8 +14,9 @@ CHARGER_STATION: str
 UPDATE_INTERVAL: int
 _LOGGER: Incomplete
 
+@dataclass
 class WallboxSensorEntityDescription(SensorEntityDescription):
-    precision: int | None
+    precision: int | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, precision) -> None: ...
 
 SENSOR_TYPES: dict[str, WallboxSensorEntityDescription]

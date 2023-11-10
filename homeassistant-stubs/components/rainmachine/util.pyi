@@ -1,6 +1,7 @@
 from .const import LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Iterable
+from dataclasses import dataclass
 from datetime import timedelta
 from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -19,12 +20,13 @@ class RunStates(StrEnum):
 
 RUN_STATE_MAP: Incomplete
 
+@dataclass
 class EntityDomainReplacementStrategy:
     old_domain: str
     old_unique_id: str
     replacement_entity_id: str
     breaks_in_ha_version: str
-    remove_old_entity: bool
+    remove_old_entity: bool = ...
     def __init__(self, old_domain, old_unique_id, replacement_entity_id, breaks_in_ha_version, remove_old_entity) -> None: ...
 
 def async_finish_entity_domain_replacements(hass: HomeAssistant, entry: ConfigEntry, entity_replacement_strategies: Iterable[EntityDomainReplacementStrategy]) -> None: ...

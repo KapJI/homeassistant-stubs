@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse, SwitcherType2Api
 from aioswitcher.api.remotes import SwitcherBreezeRemote as SwitcherBreezeRemote
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -15,11 +16,13 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+@dataclass
 class SwitcherThermostatButtonDescriptionMixin:
     press_fn: Callable[[SwitcherType2Api, SwitcherBreezeRemote], SwitcherBaseResponse]
     supported: Callable[[SwitcherBreezeRemote], bool]
     def __init__(self, press_fn, supported) -> None: ...
 
+@dataclass
 class SwitcherThermostatButtonEntityDescription(ButtonEntityDescription, SwitcherThermostatButtonDescriptionMixin):
     def __init__(self, press_fn, supported, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

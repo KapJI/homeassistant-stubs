@@ -11,6 +11,7 @@ from .switch import SWITCH_KEYS as SWITCH_KEYS
 from _typeshed import Incomplete
 from amcrest import ApiWrapper
 from collections.abc import AsyncIterator, Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.auth.models import User as User
 from homeassistant.auth.permissions.const import POLICY_CONTROL as POLICY_CONTROL
@@ -76,6 +77,7 @@ def _monitor_events(hass: HomeAssistant, name: str, api: AmcrestChecker, event_c
 def _start_event_monitor(hass: HomeAssistant, name: str, api: AmcrestChecker, event_codes: set[str]) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
+@dataclass
 class AmcrestDevice:
     api: AmcrestChecker
     authentication: aiohttp.BasicAuth | None
@@ -83,5 +85,5 @@ class AmcrestDevice:
     stream_source: str
     resolution: int
     control_light: bool
-    channel: int
+    channel: int = ...
     def __init__(self, api, authentication, ffmpeg_arguments, stream_source, resolution, control_light, channel) -> None: ...

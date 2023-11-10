@@ -4,6 +4,7 @@ from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_ent
 from .util import serial_from_unique_id as serial_from_unique_id
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -34,16 +35,18 @@ ATTR_DAYLIGHT: str
 ATTR_EVENT_ID: str
 T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Moisture, Power, Pressure, Temperature, Time, PydeconzSensorBase)
 
+@dataclass
 class DeconzSensorDescriptionMixin(Generic[T]):
     supported_fn: Callable[[T], bool]
     update_key: str
     value_fn: Callable[[T], datetime | StateType]
     def __init__(self, supported_fn, update_key, value_fn) -> None: ...
 
+@dataclass
 class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMixin[T]):
-    instance_check: type[T] | None
-    name_suffix: str
-    old_unique_id_suffix: str
+    instance_check: type[T] | None = ...
+    name_suffix: str = ...
+    old_unique_id_suffix: str = ...
     def __init__(self, supported_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzSensorDescription, ...]

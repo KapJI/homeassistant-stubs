@@ -3,6 +3,7 @@ from .device_info import NestDeviceInfo as NestDeviceInfo, async_nest_devices_by
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, MEDIA_SOURCE_EVENT_TITLE_MAP as MEDIA_SOURCE_EVENT_TITLE_MAP
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from google_nest_sdm.device import Device as Device
 from google_nest_sdm.event import ImageEventBase as ImageEventBase
 from google_nest_sdm.event_media import ClipPreviewSession as ClipPreviewSession, EventMediaStore, ImageSession as ImageSession
@@ -56,9 +57,10 @@ class NestEventMediaStore(EventMediaStore):
 async def async_get_media_source(hass: HomeAssistant) -> MediaSource: ...
 def async_get_media_source_devices(hass: HomeAssistant) -> Mapping[str, Device]: ...
 
+@dataclass
 class MediaId:
     device_id: str
-    event_token: str | None
+    event_token: str | None = ...
     @property
     def identifier(self) -> str: ...
     def __init__(self, device_id, event_token) -> None: ...

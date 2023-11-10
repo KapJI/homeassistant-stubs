@@ -3,6 +3,7 @@ from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoor
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -11,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from plugwise.constants import SwitchType as SwitchType
 from typing import Any
 
+@dataclass
 class PlugwiseSwitchEntityDescription(SwitchEntityDescription):
     key: SwitchType
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...

@@ -2,6 +2,7 @@ from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .const import CONF_COORDINATOR as CONF_COORDINATOR
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.climate import PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -14,12 +15,14 @@ from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final
 
+@dataclass
 class FritzEntityDescriptionMixinSensor(FritzEntityDescriptionMixinBase):
     native_value: Callable[[FritzhomeDevice], StateType | datetime]
     def __init__(self, suitable, native_value) -> None: ...
 
+@dataclass
 class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescriptionMixinSensor):
-    entity_category_fn: Callable[[FritzhomeDevice], EntityCategory | None] | None
+    entity_category_fn: Callable[[FritzhomeDevice], EntityCategory | None] | None = ...
     def __init__(self, suitable, native_value, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, entity_category_fn) -> None: ...
 
 def suitable_eco_temperature(device: FritzhomeDevice) -> bool: ...

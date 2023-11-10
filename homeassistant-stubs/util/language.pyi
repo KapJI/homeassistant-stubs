@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Iterable
+from dataclasses import dataclass
 from homeassistant.const import MATCH_ALL as MATCH_ALL
 
 SEPARATOR_RE: Incomplete
@@ -9,10 +10,11 @@ def preferred_regions(language: str, country: str | None = ..., code: str | None
 def is_region(language: str, region: str | None) -> bool: ...
 def is_language_match(lang_1: str, lang_2: str) -> bool: ...
 
+@dataclass
 class Dialect:
     language: str
     region: str | None
-    code: str | None
+    code: str | None = ...
     def __post_init__(self) -> None: ...
     def score(self, dialect: Dialect, country: str | None = ...) -> tuple[float, float]: ...
     @staticmethod

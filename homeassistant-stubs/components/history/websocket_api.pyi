@@ -3,6 +3,7 @@ from .const import EVENT_COALESCE_TIME as EVENT_COALESCE_TIME, MAX_PENDING_HISTO
 from .helpers import entities_may_have_state_changes_after as entities_may_have_state_changes_after
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, MutableMapping
+from dataclasses import dataclass
 from datetime import datetime as dt
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.recorder import get_instance as get_instance, history as history
@@ -17,12 +18,13 @@ from typing import Any
 
 _LOGGER: Incomplete
 
+@dataclass(slots=True)
 class HistoryLiveStream:
     stream_queue: asyncio.Queue[Event]
     subscriptions: list[CALLBACK_TYPE]
-    end_time_unsub: CALLBACK_TYPE | None
-    task: asyncio.Task | None
-    wait_sync_task: asyncio.Task | None
+    end_time_unsub: CALLBACK_TYPE | None = ...
+    task: asyncio.Task | None = ...
+    wait_sync_task: asyncio.Task | None = ...
     def __init__(self, stream_queue, subscriptions, end_time_unsub, task, wait_sync_task) -> None: ...
 
 def async_setup(hass: HomeAssistant) -> None: ...

@@ -2,6 +2,7 @@ import re
 from .models import HaAsyncServiceBrowser as HaAsyncServiceBrowser, HaAsyncZeroconf as HaAsyncZeroconf, HaZeroconf as HaZeroconf
 from .usage import install_multiple_zeroconf_catcher as install_multiple_zeroconf_catcher
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, __version__ as __version__
@@ -36,6 +37,7 @@ ATTR_PROPERTIES: Final[str]
 ATTR_PROPERTIES_ID: Final[str]
 CONFIG_SCHEMA: Incomplete
 
+@dataclass(slots=True)
 class ZeroconfServiceInfo(BaseServiceInfo):
     ip_address: IPv4Address | IPv6Address
     ip_addresses: list[IPv4Address | IPv6Address]

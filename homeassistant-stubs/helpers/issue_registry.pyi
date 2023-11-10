@@ -1,3 +1,4 @@
+import dataclasses
 from .storage import Store as Store
 from _typeshed import Incomplete
 from datetime import datetime
@@ -18,6 +19,7 @@ class IssueSeverity(StrEnum):
     ERROR: str
     WARNING: str
 
+@dataclasses.dataclass(slots=True, frozen=True)
 class IssueEntry:
     active: bool
     breaks_in_ha_version: str | None

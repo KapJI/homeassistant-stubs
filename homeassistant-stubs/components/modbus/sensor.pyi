@@ -39,6 +39,7 @@ class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], Re
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
+    _attr_device_class: Incomplete
     _attr_available: bool
     def __init__(self, coordinator: DataUpdateCoordinator[list[int] | None], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_native_value: Incomplete

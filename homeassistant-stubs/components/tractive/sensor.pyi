@@ -3,6 +3,7 @@ from .const import ATTR_ACTIVITY_LABEL as ATTR_ACTIVITY_LABEL, ATTR_CALORIES as 
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
@@ -11,13 +12,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
 
+@dataclass
 class TractiveRequiredKeysMixin:
     signal_prefix: str
     def __init__(self, signal_prefix) -> None: ...
 
+@dataclass
 class TractiveSensorEntityDescription(SensorEntityDescription, TractiveRequiredKeysMixin):
-    hardware_sensor: bool
-    value_fn: Callable[[StateType], StateType]
+    hardware_sensor: bool = ...
+    value_fn: Callable[[StateType], StateType] = ...
     def __init__(self, signal_prefix, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, hardware_sensor, value_fn) -> None: ...
 
 class TractiveSensor(TractiveEntity, SensorEntity):

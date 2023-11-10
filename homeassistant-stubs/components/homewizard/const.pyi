@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.const import Platform as Platform
 from homewizard_energy.models import Data as Data, Device as Device, State as State, System as System
 
@@ -13,9 +14,10 @@ CONF_PRODUCT_TYPE: str
 CONF_SERIAL: str
 UPDATE_INTERVAL: Incomplete
 
+@dataclass
 class DeviceResponseEntry:
     device: Device
     data: Data
-    state: State | None
-    system: System | None
+    state: State | None = ...
+    system: System | None = ...
     def __init__(self, device, data, state, system) -> None: ...

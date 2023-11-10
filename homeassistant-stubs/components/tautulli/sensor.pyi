@@ -3,6 +3,7 @@ from .const import ATTR_TOP_USER as ATTR_TOP_USER, DOMAIN as DOMAIN
 from .coordinator import TautulliDataUpdateCoordinator as TautulliDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfInformation as UnitOfInformation
@@ -14,19 +15,23 @@ from pytautulli import PyTautulliApiActivity as PyTautulliApiActivity, PyTautull
 
 def get_top_stats(home_stats: PyTautulliApiHomeStats, activity: PyTautulliApiActivity, key: str) -> str | None: ...
 
+@dataclass
 class TautulliSensorEntityMixin:
     value_fn: Callable[[PyTautulliApiHomeStats, PyTautulliApiActivity, str], StateType]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class TautulliSensorEntityDescription(SensorEntityDescription, TautulliSensorEntityMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 SENSOR_TYPES: tuple[TautulliSensorEntityDescription, ...]
 
+@dataclass
 class TautulliSessionSensorEntityMixin:
     value_fn: Callable[[PyTautulliApiSession], StateType]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class TautulliSessionSensorEntityDescription(SensorEntityDescription, TautulliSessionSensorEntityMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

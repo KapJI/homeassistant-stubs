@@ -1,6 +1,7 @@
 from .core import Context as Context
 from _typeshed import Incomplete
 from collections.abc import Generator, Sequence
+from dataclasses import dataclass
 
 class HomeAssistantError(Exception): ...
 class InvalidEntityFormatError(HomeAssistantError): ...
@@ -9,6 +10,7 @@ class NoEntitySpecifiedError(HomeAssistantError): ...
 class TemplateError(HomeAssistantError):
     def __init__(self, exception: Exception | str) -> None: ...
 
+@dataclass(slots=True)
 class ConditionError(HomeAssistantError):
     type: str
     @staticmethod
@@ -17,11 +19,13 @@ class ConditionError(HomeAssistantError):
     def __str__(self) -> str: ...
     def __init__(self, type) -> None: ...
 
+@dataclass(slots=True)
 class ConditionErrorMessage(ConditionError):
     message: str
     def output(self, indent: int) -> Generator[str, None, None]: ...
     def __init__(self, type, message) -> None: ...
 
+@dataclass(slots=True)
 class ConditionErrorIndex(ConditionError):
     index: int
     total: int
@@ -29,6 +33,7 @@ class ConditionErrorIndex(ConditionError):
     def output(self, indent: int) -> Generator[str, None, None]: ...
     def __init__(self, type, index, total, error) -> None: ...
 
+@dataclass(slots=True)
 class ConditionErrorContainer(ConditionError):
     errors: Sequence[ConditionError]
     def output(self, indent: int) -> Generator[str, None, None]: ...

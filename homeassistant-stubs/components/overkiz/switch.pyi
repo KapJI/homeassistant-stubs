@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
@@ -11,15 +12,17 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyoverkiz.types import StateType as OverkizStateType
 from typing import Any
 
+@dataclass
 class OverkizSwitchDescriptionMixin:
     turn_on: str
     turn_off: str
     def __init__(self, turn_on, turn_off) -> None: ...
 
+@dataclass
 class OverkizSwitchDescription(SwitchEntityDescription, OverkizSwitchDescriptionMixin):
-    is_on: Callable[[Callable[[str], OverkizStateType]], bool] | None
-    turn_on_args: OverkizStateType | list[OverkizStateType] | None
-    turn_off_args: OverkizStateType | list[OverkizStateType] | None
+    is_on: Callable[[Callable[[str], OverkizStateType]], bool] | None = ...
+    turn_on_args: OverkizStateType | list[OverkizStateType] | None = ...
+    turn_off_args: OverkizStateType | list[OverkizStateType] | None = ...
     def __init__(self, turn_on, turn_off, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_on, turn_on_args, turn_off_args) -> None: ...
 
 SWITCH_DESCRIPTIONS: list[OverkizSwitchDescription]

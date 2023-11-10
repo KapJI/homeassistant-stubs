@@ -8,6 +8,7 @@ from .typing import ConfigType as ConfigType
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Awaitable, Callable, Iterable
+from dataclasses import dataclass
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -26,6 +27,7 @@ _StoreT = TypeVar('_StoreT', bound='SerializedStorageCollection')
 _StorageCollectionT = TypeVar('_StorageCollectionT', bound='StorageCollection')
 _EntityT = TypeVar('_EntityT', bound=Entity, default=Entity)
 
+@dataclass(slots=True)
 class CollectionChangeSet:
     change_type: str
     item_id: str

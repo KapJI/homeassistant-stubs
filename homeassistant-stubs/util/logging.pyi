@@ -1,3 +1,4 @@
+import logging
 import logging.handlers
 from collections.abc import Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback

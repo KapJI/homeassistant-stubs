@@ -3,6 +3,7 @@ from .const import DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from brother import BrotherSensors as BrotherSensors
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -18,10 +19,12 @@ ATTR_REMAINING_PAGES: str
 UNIT_PAGES: str
 _LOGGER: Incomplete
 
+@dataclass
 class BrotherSensorRequiredKeysMixin:
     value: Callable[[BrotherSensors], StateType | datetime]
     def __init__(self, value) -> None: ...
 
+@dataclass
 class BrotherSensorEntityDescription(SensorEntityDescription, BrotherSensorRequiredKeysMixin):
     def __init__(self, value, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

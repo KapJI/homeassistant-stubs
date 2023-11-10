@@ -12,6 +12,7 @@ from .typing import ConfigType as ConfigType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator, Mapping, Sequence
 from contextvars import ContextVar
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant import exceptions as exceptions
 from homeassistant.components import scene as scene
@@ -130,6 +131,7 @@ class _IfData(TypedDict):
     if_then: Script
     if_else: Script | None
 
+@dataclass
 class ScriptRunResult:
     service_response: ServiceResponse
     variables: dict
@@ -166,6 +168,8 @@ class Script:
     def __init__(self, hass: HomeAssistant, sequence: Sequence[dict[str, Any]], name: str, domain: str, *, change_listener: Callable[..., Any] | None = ..., copy_variables: bool = ..., log_exceptions: bool = ..., logger: logging.Logger | None = ..., max_exceeded: str = ..., max_runs: int = ..., running_description: str | None = ..., script_mode: str = ..., top_level: bool = ..., variables: ScriptVariables | None = ...) -> None: ...
     @property
     def change_listener(self) -> Callable[..., Any] | None: ...
+    @change_listener.setter
+    def change_listener(self, change_listener: Callable[..., Any]) -> None: ...
     _logger: Incomplete
     def _set_logger(self, logger: logging.Logger | None = ...) -> None: ...
     def update_logger(self, logger: logging.Logger | None = ...) -> None: ...

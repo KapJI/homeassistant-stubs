@@ -17,7 +17,7 @@ from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from jinja2.sandbox import ImmutableSandboxedEnvironment
 from types import CodeType
-from typing import Any, Literal, NoReturn, TypeVar, overload
+from typing import Any, Literal, NoReturn, ParamSpec, TypeVar, overload
 
 _LOGGER: Incomplete
 _SENTINEL: Incomplete
@@ -34,7 +34,7 @@ _ZONE_DOMAIN_PREFIX: str
 _COLLECTABLE_STATE_ATTRIBUTES: Incomplete
 _T = TypeVar('_T')
 _R = TypeVar('_R')
-_P: Incomplete
+_P = ParamSpec('_P')
 ALL_STATES_RATE_LIMIT: Incomplete
 DOMAIN_STATES_RATE_LIMIT: Incomplete
 _render_info: ContextVar[RenderInfo | None]
@@ -315,6 +315,8 @@ class HassLoader(jinja2.BaseLoader):
     def __init__(self, sources: dict[str, str]) -> None: ...
     @property
     def sources(self) -> dict[str, str]: ...
+    @sources.setter
+    def sources(self, value: dict[str, str]) -> None: ...
     def get_source(self, environment: jinja2.Environment, template: str) -> tuple[str, str | None, Callable[[], bool] | None]: ...
 
 class TemplateEnvironment(ImmutableSandboxedEnvironment):

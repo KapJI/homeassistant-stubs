@@ -2,6 +2,7 @@ from .const import API_KEY_FIRMWARE_UPDATE_SERVICE as API_KEY_FIRMWARE_UPDATE_SE
 from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.components.update import ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -22,6 +23,7 @@ UPDATE_DELAY_STRING: str
 UPDATE_DELAY_INTERVAL: int
 ATTR_LATEST_VERSION_FIRMWARE: str
 
+@dataclass
 class ZWaveNodeFirmwareUpdateExtraStoredData(ExtraStoredData):
     latest_version_firmware: NodeFirmwareUpdateInfo | None
     def as_dict(self) -> dict[str, Any]: ...

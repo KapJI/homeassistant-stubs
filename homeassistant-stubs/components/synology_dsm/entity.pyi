@@ -2,6 +2,7 @@ from .common import SynoApi as SynoApi
 from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import SynologyDSMCentralUpdateCoordinator as SynologyDSMCentralUpdateCoordinator, SynologyDSMUpdateCoordinator as SynologyDSMUpdateCoordinator
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -9,10 +10,12 @@ from typing import Any, TypeVar
 
 _CoordinatorT = TypeVar('_CoordinatorT', bound=SynologyDSMUpdateCoordinator[Any])
 
+@dataclass
 class SynologyDSMRequiredKeysMixin:
     api_key: str
     def __init__(self, api_key) -> None: ...
 
+@dataclass
 class SynologyDSMEntityDescription(EntityDescription, SynologyDSMRequiredKeysMixin):
     def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

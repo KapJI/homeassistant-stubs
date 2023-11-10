@@ -4,6 +4,7 @@ from .coordinator import SynologyDSMCameraUpdateCoordinator as SynologyDSMCamera
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
 from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.camera import Camera as Camera, CameraEntityDescription as CameraEntityDescription, CameraEntityFeature as CameraEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -14,6 +15,7 @@ from synology_dsm.api.surveillance_station import SynoCamera as SynoCamera
 
 _LOGGER: Incomplete
 
+@dataclass
 class SynologyDSMCameraEntityDescription(CameraEntityDescription, SynologyDSMEntityDescription):
     def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

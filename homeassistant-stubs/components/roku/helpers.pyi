@@ -2,10 +2,10 @@ from .entity import RokuEntity as RokuEntity
 from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import TypeVar
+from typing import ParamSpec, TypeVar
 
 _RokuEntityT = TypeVar('_RokuEntityT', bound=RokuEntity)
-_P: Incomplete
+_P = ParamSpec('_P')
 _FuncType: Incomplete
 _ReturnFuncType: Incomplete
 

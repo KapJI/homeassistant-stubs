@@ -17,14 +17,14 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.util.location import async_detect_location_info as async_detect_location_info
 from http import HTTPStatus
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 _LOGGER: Incomplete
 _CLOUD_ERRORS: dict[type[Exception], tuple[HTTPStatus, str]]
 
 async def async_setup(hass: HomeAssistant) -> None: ...
 _HassViewT = TypeVar('_HassViewT', bound=HomeAssistantView)
-_P: Incomplete
+_P = ParamSpec('_P')
 
 def _handle_cloud_errors(handler: Callable[Concatenate[_HassViewT, web.Request, _P], Awaitable[web.Response]]) -> Callable[Concatenate[_HassViewT, web.Request, _P], Coroutine[Any, Any, web.Response]]: ...
 def _ws_handle_cloud_errors(handler: Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], Coroutine[None, None, None]]) -> Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], Coroutine[None, None, None]]: ...

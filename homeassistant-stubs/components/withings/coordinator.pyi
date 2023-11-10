@@ -18,6 +18,7 @@ class WithingsDataUpdateCoordinator(DataUpdateCoordinator[_T], metaclass=abc.ABC
     _default_update_interval: timedelta | None
     _last_valid_update: datetime | None
     webhooks_connected: bool
+    coordinator_name: str
     _client: Incomplete
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...
@@ -29,6 +30,7 @@ class WithingsDataUpdateCoordinator(DataUpdateCoordinator[_T], metaclass=abc.ABC
     async def _internal_update_data(self) -> _T: ...
 
 class WithingsMeasurementDataUpdateCoordinator(WithingsDataUpdateCoordinator[dict[MeasurementType, float]]):
+    coordinator_name: str
     notification_categories: Incomplete
     _previous_data: Incomplete
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...
@@ -36,11 +38,13 @@ class WithingsMeasurementDataUpdateCoordinator(WithingsDataUpdateCoordinator[dic
     async def _internal_update_data(self) -> dict[MeasurementType, float]: ...
 
 class WithingsSleepDataUpdateCoordinator(WithingsDataUpdateCoordinator[SleepSummary | None]):
+    coordinator_name: str
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...
     async def _internal_update_data(self) -> SleepSummary | None: ...
 
 class WithingsBedPresenceDataUpdateCoordinator(WithingsDataUpdateCoordinator[None]):
+    coordinator_name: str
     in_bed: bool | None
     _default_update_interval: Incomplete
     notification_categories: Incomplete
@@ -49,11 +53,13 @@ class WithingsBedPresenceDataUpdateCoordinator(WithingsDataUpdateCoordinator[Non
     async def _internal_update_data(self) -> None: ...
 
 class WithingsGoalsDataUpdateCoordinator(WithingsDataUpdateCoordinator[Goals]):
+    coordinator_name: str
     _default_update_interval: Incomplete
     def webhook_subscription_listener(self, connected: bool) -> None: ...
     async def _internal_update_data(self) -> Goals: ...
 
 class WithingsActivityDataUpdateCoordinator(WithingsDataUpdateCoordinator[Activity | None]):
+    coordinator_name: str
     _previous_data: Activity | None
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...
@@ -61,6 +67,7 @@ class WithingsActivityDataUpdateCoordinator(WithingsDataUpdateCoordinator[Activi
     async def _internal_update_data(self) -> Activity | None: ...
 
 class WithingsWorkoutDataUpdateCoordinator(WithingsDataUpdateCoordinator[Workout | None]):
+    coordinator_name: str
     _previous_data: Workout | None
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...

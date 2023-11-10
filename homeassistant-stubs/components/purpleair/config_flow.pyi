@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from aiopurpleair import API
 from aiopurpleair.endpoints.sensors import NearbySensorResult as NearbySensorResult
 from collections.abc import Mapping
+from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
@@ -29,9 +30,10 @@ def async_get_nearby_sensors_schema(options: list[SelectOptionDict]) -> vol.Sche
 def async_get_remove_sensor_options(hass: HomeAssistant, config_entry: ConfigEntry) -> list[SelectOptionDict]: ...
 def async_get_remove_sensor_schema(sensors: list[SelectOptionDict]) -> vol.Schema: ...
 
+@dataclass
 class ValidationResult:
-    data: Any
-    errors: dict[str, Any]
+    data: Any = ...
+    errors: dict[str, Any] = ...
     def __init__(self, data, errors) -> None: ...
 
 async def async_validate_api_key(hass: HomeAssistant, api_key: str) -> ValidationResult: ...

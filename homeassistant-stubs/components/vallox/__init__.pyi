@@ -1,6 +1,7 @@
 import voluptuous as vol
 from .const import DEFAULT_FAN_SPEED_AWAY as DEFAULT_FAN_SPEED_AWAY, DEFAULT_FAN_SPEED_BOOST as DEFAULT_FAN_SPEED_BOOST, DEFAULT_FAN_SPEED_HOME as DEFAULT_FAN_SPEED_HOME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, STATE_SCAN_INTERVAL as STATE_SCAN_INTERVAL
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import date
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, Platform as Platform
@@ -27,9 +28,10 @@ SERVICE_SET_PROFILE_FAN_SPEED_AWAY: str
 SERVICE_SET_PROFILE_FAN_SPEED_BOOST: str
 SERVICE_TO_METHOD: Incomplete
 
+@dataclass
 class ValloxState:
-    metric_cache: dict[str, Any]
-    profile: VALLOX_PROFILE
+    metric_cache: dict[str, Any] = ...
+    profile: VALLOX_PROFILE = ...
     def get_metric(self, metric_key: str) -> StateType: ...
     @property
     def model(self) -> str | None: ...

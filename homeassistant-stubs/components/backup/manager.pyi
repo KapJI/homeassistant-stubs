@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import integration_platform as integration_platform
@@ -10,6 +11,7 @@ from typing import Any, Protocol
 
 BUF_SIZE: Incomplete
 
+@dataclass(slots=True)
 class Backup:
     slug: str
     name: str

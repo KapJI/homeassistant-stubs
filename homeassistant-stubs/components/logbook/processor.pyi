@@ -5,6 +5,7 @@ from .queries import statement_for_request as statement_for_request
 from .queries.common import PSEUDO_EVENT_STATE_CHANGED as PSEUDO_EVENT_STATE_CHANGED
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator, Sequence
+from dataclasses import dataclass
 from datetime import datetime as dt
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.filters import Filters as Filters
@@ -19,6 +20,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
+@dataclass(slots=True)
 class LogbookRun:
     context_lookup: dict[bytes | None, Row | EventAsRow | None]
     external_events: dict[str, tuple[str, Callable[[LazyEventPartialState], dict[str, Any]]]]
@@ -26,7 +28,7 @@ class LogbookRun:
     entity_name_cache: EntityNameCache
     include_entity_name: bool
     format_time: Callable[[Row | EventAsRow], Any]
-    memoize_new_contexts: bool
+    memoize_new_contexts: bool = ...
     def __init__(self, context_lookup, external_events, event_cache, entity_name_cache, include_entity_name, format_time, memoize_new_contexts) -> None: ...
 
 class EventProcessor:

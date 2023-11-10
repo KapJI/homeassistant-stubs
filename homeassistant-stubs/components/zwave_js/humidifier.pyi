@@ -2,6 +2,7 @@ from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.humidifier import DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntity as HumidifierEntity, HumidifierEntityDescription as HumidifierEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -14,14 +15,16 @@ from zwave_js_server.model.value import Value as ZwaveValue
 
 PARALLEL_UPDATES: int
 
+@dataclass
 class ZwaveHumidifierEntityDescriptionRequiredKeys:
     on_mode: HumidityControlMode
     inverse_mode: HumidityControlMode
     setpoint_type: HumidityControlSetpointType
     def __init__(self, on_mode, inverse_mode, setpoint_type) -> None: ...
 
+@dataclass
 class ZwaveHumidifierEntityDescription(HumidifierEntityDescription, ZwaveHumidifierEntityDescriptionRequiredKeys):
-    def __init__(self, *, on_mode, inverse_mode, setpoint_type, **kwargs) -> None: ...
+    def __init__(self, *selfon_modeinverse_modesetpoint_type_, on_mode, inverse_mode, setpoint_type, **selfon_modeinverse_modesetpoint_type__) -> None: ...
 
 HUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 DEHUMIDIFIER_ENTITY_DESCRIPTION: Incomplete

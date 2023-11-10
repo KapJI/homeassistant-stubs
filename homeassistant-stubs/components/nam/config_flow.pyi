@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
@@ -10,6 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from typing import Any
 
+@dataclass
 class NamConfig:
     mac_address: str
     auth_enabled: bool

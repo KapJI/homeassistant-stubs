@@ -3,6 +3,7 @@ from .const import DATA_UV as DATA_UV, DOMAIN as DOMAIN, TYPE_CURRENT_OZONE_LEVE
 from .coordinator import OpenUvCoordinator as OpenUvCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UV_INDEX as UV_INDEX, UnitOfTime as UnitOfTime
@@ -14,6 +15,7 @@ from typing import Any
 ATTR_MAX_UV_TIME: str
 EXPOSURE_TYPE_MAP: Incomplete
 
+@dataclass
 class UvLabel:
     value: str
     minimum_index: int
@@ -23,10 +25,12 @@ UV_LABEL_DEFINITIONS: Incomplete
 
 def get_uv_label(uv_index: int) -> str: ...
 
+@dataclass
 class OpenUvSensorEntityDescriptionMixin:
     value_fn: Callable[[dict[str, Any]], int | str]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class OpenUvSensorEntityDescription(SensorEntityDescription, OpenUvSensorEntityDescriptionMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

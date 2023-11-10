@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN, IMAGE_GUEST_WIFI as IMAGE_GUEST_WIFI, SWITC
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from devolo_plc_api import Device as Device
 from devolo_plc_api.device_api import WifiGuestAccessGet
 from homeassistant.components.image import ImageEntity as ImageEntity, ImageEntityDescription as ImageEntityDescription
@@ -11,10 +12,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
+@dataclass
 class DevoloImageRequiredKeysMixin:
     image_func: Callable[[WifiGuestAccessGet], bytes]
     def __init__(self, image_func) -> None: ...
 
+@dataclass
 class DevoloImageEntityDescription(ImageEntityDescription, DevoloImageRequiredKeysMixin):
     def __init__(self, image_func, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

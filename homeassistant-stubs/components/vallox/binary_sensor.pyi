@@ -1,6 +1,7 @@
 from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator, ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -15,10 +16,12 @@ class ValloxBinarySensorEntity(ValloxEntity, BinarySensorEntity):
     @property
     def is_on(self) -> bool | None: ...
 
+@dataclass
 class ValloxMetricKeyMixin:
     metric_key: str
     def __init__(self, metric_key) -> None: ...
 
+@dataclass
 class ValloxBinarySensorEntityDescription(BinarySensorEntityDescription, ValloxMetricKeyMixin):
     def __init__(self, metric_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

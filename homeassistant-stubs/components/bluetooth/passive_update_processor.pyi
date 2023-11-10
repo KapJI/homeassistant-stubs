@@ -1,3 +1,4 @@
+import dataclasses
 import logging
 from .const import DOMAIN as DOMAIN
 from .models import BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
@@ -22,6 +23,7 @@ STORAGE_SAVE_INTERVAL: Incomplete
 PASSIVE_UPDATE_PROCESSOR: str
 _T = TypeVar('_T')
 
+@dataclasses.dataclass(slots=True, frozen=True)
 class PassiveBluetoothEntityKey:
     key: str
     device_id: str | None
@@ -30,6 +32,7 @@ class PassiveBluetoothEntityKey:
     def from_string(cls, key: str) -> PassiveBluetoothEntityKey: ...
     def __init__(self, key, device_id) -> None: ...
 
+@dataclasses.dataclass(slots=True, frozen=False)
 class PassiveBluetoothProcessorData:
     coordinators: set[PassiveBluetoothProcessorCoordinator]
     all_restore_data: dict[str, dict[str, RestoredPassiveBluetoothDataUpdate]]
@@ -46,11 +49,12 @@ cached_fields: Incomplete
 def deserialize_entity_description(descriptions_class: type[EntityDescription], data: dict[str, Any]) -> EntityDescription: ...
 def serialize_entity_description(description: EntityDescription) -> dict[str, Any]: ...
 
+@dataclasses.dataclass(slots=True, frozen=False)
 class PassiveBluetoothDataUpdate(Generic[_T]):
-    devices: dict[str | None, DeviceInfo]
-    entity_descriptions: dict[PassiveBluetoothEntityKey, EntityDescription]
-    entity_names: dict[PassiveBluetoothEntityKey, str | None]
-    entity_data: dict[PassiveBluetoothEntityKey, _T]
+    devices: dict[str | None, DeviceInfo] = ...
+    entity_descriptions: dict[PassiveBluetoothEntityKey, EntityDescription] = ...
+    entity_names: dict[PassiveBluetoothEntityKey, str | None] = ...
+    entity_data: dict[PassiveBluetoothEntityKey, _T] = ...
     def update(self, new_data: PassiveBluetoothDataUpdate[_T]) -> set[PassiveBluetoothEntityKey] | None: ...
     def async_get_restore_data(self) -> RestoredPassiveBluetoothDataUpdate: ...
     def async_set_restore_data(self, restore_data: RestoredPassiveBluetoothDataUpdate, entity_description_class: type[EntityDescription]) -> None: ...

@@ -5,6 +5,7 @@ from .models import AsyncMessageCallbackType as AsyncMessageCallbackType, Messag
 from .util import get_file_path as get_file_path, get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Iterable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
@@ -31,12 +32,13 @@ async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayload
 async def async_subscribe(hass: HomeAssistant, topic: str, msg_callback: AsyncMessageCallbackType | MessageCallbackType, qos: int = ..., encoding: str | None = ...) -> CALLBACK_TYPE: ...
 def subscribe(hass: HomeAssistant, topic: str, msg_callback: MessageCallbackType, qos: int = ..., encoding: str = ...) -> Callable[[], None]: ...
 
+@dataclass(frozen=True)
 class Subscription:
     topic: str
     matcher: Any
     job: HassJob[[ReceiveMessage], Coroutine[Any, Any, None] | None]
-    qos: int
-    encoding: str | None
+    qos: int = ...
+    encoding: str | None = ...
     def __init__(self, topic, matcher, job, qos, encoding) -> None: ...
 
 class MqttClientSetup:

@@ -3,6 +3,7 @@ from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordi
 from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, async_handle_api_call as async_handle_api_call
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,6 +14,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
+@dataclass
 class DeviceBaseEntityDescriptionMixin:
     value_fn: Callable[[SensiboDevice], bool | None]
     extra_fn: Callable[[SensiboDevice], dict[str, str | bool | None]] | None
@@ -21,6 +23,7 @@ class DeviceBaseEntityDescriptionMixin:
     data_key: str
     def __init__(self, value_fn, extra_fn, command_on, command_off, data_key) -> None: ...
 
+@dataclass
 class SensiboDeviceSwitchEntityDescription(SwitchEntityDescription, DeviceBaseEntityDescriptionMixin):
     def __init__(self, value_fn, extra_fn, command_on, command_off, data_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

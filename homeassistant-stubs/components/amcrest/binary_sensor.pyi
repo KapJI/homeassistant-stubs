@@ -2,6 +2,7 @@ from . import AmcrestDevice as AmcrestDevice
 from .const import BINARY_SENSOR_SCAN_INTERVAL_SECS as BINARY_SENSOR_SCAN_INTERVAL_SECS, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, SERVICE_EVENT as SERVICE_EVENT, SERVICE_UPDATE as SERVICE_UPDATE
 from .helpers import log_update_error as log_update_error, service_signal as service_signal
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -10,9 +11,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import Throttle as Throttle
 
+@dataclass
 class AmcrestSensorEntityDescription(BinarySensorEntityDescription):
-    event_codes: set[str] | None
-    should_poll: bool
+    event_codes: set[str] | None = ...
+    should_poll: bool = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_codes, should_poll) -> None: ...
 
 _LOGGER: Incomplete

@@ -3,6 +3,7 @@ from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_ent
 from .util import serial_from_unique_id as serial_from_unique_id
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.number import DOMAIN as DOMAIN, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -17,6 +18,7 @@ from typing import Any, Generic, TypeVar
 
 T = TypeVar('T', Presence, PydeconzSensorBase)
 
+@dataclass
 class DeconzNumberDescriptionMixin(Generic[T]):
     instance_check: type[T]
     name_suffix: str
@@ -25,6 +27,7 @@ class DeconzNumberDescriptionMixin(Generic[T]):
     value_fn: Callable[[T], float | None]
     def __init__(self, instance_check, name_suffix, set_fn, update_key, value_fn) -> None: ...
 
+@dataclass
 class DeconzNumberDescription(NumberEntityDescription, DeconzNumberDescriptionMixin[T]):
     def __init__(self, instance_check, name_suffix, set_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 

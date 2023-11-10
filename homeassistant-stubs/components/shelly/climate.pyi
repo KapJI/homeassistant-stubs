@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, NOT_CALIBRATED_ISSUE_ID a
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, get_entry_data as get_entry_data
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
+from dataclasses import dataclass
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
@@ -20,8 +21,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 def async_setup_climate_entities(async_add_entities: AddEntitiesCallback, coordinator: ShellyBlockCoordinator) -> None: ...
 def async_restore_climate_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, coordinator: ShellyBlockCoordinator) -> None: ...
 
+@dataclass
 class ShellyClimateExtraStoredData(ExtraStoredData):
-    last_target_temp: float | None
+    last_target_temp: float | None = ...
     def as_dict(self) -> dict[str, Any]: ...
     def __init__(self, last_target_temp) -> None: ...
 

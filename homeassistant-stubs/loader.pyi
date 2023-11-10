@@ -16,6 +16,7 @@ from .util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_lo
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Callable, Iterable
+from dataclasses import dataclass
 from types import ModuleType
 from typing import Any, Literal, Protocol, TypeVar, TypedDict
 
@@ -66,6 +67,7 @@ class USBMatcherOptional(TypedDict, total=False):
 
 class USBMatcher(USBMatcherRequired, USBMatcherOptional): ...
 
+@dataclass(slots=True)
 class HomeKitDiscoveredIntegration:
     domain: str
     always_discover: bool

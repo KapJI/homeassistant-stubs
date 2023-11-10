@@ -4,6 +4,7 @@ from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,15 +14,17 @@ from typing import Any
 
 _LOGGER: Incomplete
 
+@dataclass
 class BMWRequiredKeysMixin:
     value_fn: Callable[[MyBMWVehicle], bool]
     remote_service_on: Callable[[MyBMWVehicle], Coroutine[Any, Any, Any]]
     remote_service_off: Callable[[MyBMWVehicle], Coroutine[Any, Any, Any]]
     def __init__(self, value_fn, remote_service_on, remote_service_off) -> None: ...
 
+@dataclass
 class BMWSwitchEntityDescription(SwitchEntityDescription, BMWRequiredKeysMixin):
-    is_available: Callable[[MyBMWVehicle], bool]
-    dynamic_options: Callable[[MyBMWVehicle], list[str]] | None
+    is_available: Callable[[MyBMWVehicle], bool] = ...
+    dynamic_options: Callable[[MyBMWVehicle], list[str]] | None = ...
     def __init__(self, value_fn, remote_service_on, remote_service_off, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_available, dynamic_options) -> None: ...
 
 CHARGING_STATE_ON: Incomplete

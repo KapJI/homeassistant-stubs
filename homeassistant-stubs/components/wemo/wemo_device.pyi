@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN, WEMO_SUBSCRIPTION_EVENT as WEMO_SUBSCRIPTION_EVENT
 from .models import async_wemo_data as async_wemo_data
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CONFIGURATION_URL as ATTR_CONFIGURATION_URL, ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_NAME as CONF_NAME, CONF_PARAMS as CONF_PARAMS, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -18,9 +19,10 @@ class OptionsValidationError(Exception):
     error_key: Incomplete
     def __init__(self, field_key: OptionsFieldKey, error_key: ErrorStringKey, message: str) -> None: ...
 
+@dataclass(frozen=True)
 class Options:
-    enable_subscription: bool
-    enable_long_press: bool
+    enable_subscription: bool = ...
+    enable_long_press: bool = ...
     def __post_init__(self) -> None: ...
     def __init__(self, enable_subscription, enable_long_press) -> None: ...
 

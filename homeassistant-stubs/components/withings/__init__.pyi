@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from aiohttp.web import Request as Request, Response as Response
 from aiowithings import WithingsClient
 from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components import cloud as cloud
 from homeassistant.components.application_credentials import ClientCredential as ClientCredential, async_import_client_credential as async_import_client_credential
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
@@ -24,6 +25,7 @@ CONF_CLOUDHOOK_URL: str
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
+@dataclass(slots=True)
 class WithingsData:
     client: WithingsClient
     measurement_coordinator: WithingsMeasurementDataUpdateCoordinator
@@ -32,7 +34,7 @@ class WithingsData:
     goals_coordinator: WithingsGoalsDataUpdateCoordinator
     activity_coordinator: WithingsActivityDataUpdateCoordinator
     workout_coordinator: WithingsWorkoutDataUpdateCoordinator
-    coordinators: set[WithingsDataUpdateCoordinator]
+    coordinators: set[WithingsDataUpdateCoordinator] = ...
     def __post_init__(self) -> None: ...
     def __init__(self, client, measurement_coordinator, sleep_coordinator, bed_presence_coordinator, goals_coordinator, activity_coordinator, workout_coordinator, coordinators) -> None: ...
 

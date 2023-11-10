@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_API_TOKEN as CONF_API_TOKEN, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -10,11 +11,13 @@ from switchbot_api import Device, Remote, SwitchBotAPI
 _LOGGER: Incomplete
 PLATFORMS: list[Platform]
 
+@dataclass
 class SwitchbotDevices:
-    climates: list[Remote]
-    switches: list[Device | Remote]
+    climates: list[Remote] = ...
+    switches: list[Device | Remote] = ...
     def __init__(self, climates, switches) -> None: ...
 
+@dataclass
 class SwitchbotCloudData:
     api: SwitchBotAPI
     devices: SwitchbotDevices

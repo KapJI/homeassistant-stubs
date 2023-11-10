@@ -5,6 +5,7 @@ from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers.frame import report as report
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, Mapping
+from dataclasses import dataclass
 from enum import StrEnum
 from typing import Any, Required, TypedDict
 
@@ -30,6 +31,7 @@ RESULT_TYPE_SHOW_PROGRESS_DONE: str
 RESULT_TYPE_MENU: str
 EVENT_DATA_ENTRY_FLOW_PROGRESSED: str
 
+@dataclass(slots=True)
 class BaseServiceInfo: ...
 class FlowError(HomeAssistantError): ...
 class UnknownHandler(FlowError): ...

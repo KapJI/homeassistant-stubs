@@ -1,3 +1,4 @@
+import astral
 import astral.location
 import datetime
 from _typeshed import Incomplete

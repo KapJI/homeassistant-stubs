@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -6,6 +7,7 @@ from starlink_grpc import AlertDict as AlertDict, LocationDict as LocationDict, 
 
 _LOGGER: Incomplete
 
+@dataclass
 class StarlinkData:
     location: LocationDict
     status: StatusDict

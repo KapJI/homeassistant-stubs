@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -16,6 +17,7 @@ DEFAULT_INIT_TASK_LIMIT: int
 DEFAULT_UPDATE_INTERVAL: Incomplete
 CONF_SHOW_INACTIVE: str
 
+@dataclass
 class TileData:
     coordinators: dict[str, DataUpdateCoordinator[None]]
     tiles: dict[str, Tile]

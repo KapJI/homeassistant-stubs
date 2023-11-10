@@ -5,6 +5,7 @@ from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -13,12 +14,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, Final
 
+@dataclass
 class ShellyBlockEventDescription(EventEntityDescription):
-    removal_condition: Callable[[dict, Block], bool] | None
+    removal_condition: Callable[[dict, Block], bool] | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types, removal_condition) -> None: ...
 
+@dataclass
 class ShellyRpcEventDescription(EventEntityDescription):
-    removal_condition: Callable[[dict, dict, str], bool] | None
+    removal_condition: Callable[[dict, dict, str], bool] | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types, removal_condition) -> None: ...
 
 BLOCK_EVENT: Final[Incomplete]

@@ -2,6 +2,7 @@ import re
 from .models import BluetoothCallback as BluetoothCallback, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from _typeshed import Incomplete
 from bleak.backends.scanner import AdvertisementData as AdvertisementData
+from dataclasses import dataclass
 from homeassistant.core import callback as callback
 from homeassistant.loader import BluetoothMatcher as BluetoothMatcher, BluetoothMatcherOptional as BluetoothMatcherOptional
 from typing import Final, Generic, TypeVar, TypedDict
@@ -28,6 +29,7 @@ class _BluetoothCallbackMatcherWithCallback(TypedDict):
 
 class BluetoothCallbackMatcherWithCallback(_BluetoothCallbackMatcherWithCallback, BluetoothCallbackMatcher): ...
 
+@dataclass(slots=True, frozen=False)
 class IntegrationMatchHistory:
     manufacturer_data: bool
     service_data: set[str]

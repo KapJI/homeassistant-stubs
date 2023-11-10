@@ -2,6 +2,7 @@ import asyncio
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Iterator
+from dataclasses import dataclass
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -20,6 +21,7 @@ CONFIG_SCHEMA: Incomplete
 def process_uploaded_file(hass: HomeAssistant, file_id: str) -> Iterator[Path]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
+@dataclass(frozen=True)
 class FileUploadData:
     temp_dir: Path
     files: dict[str, str]

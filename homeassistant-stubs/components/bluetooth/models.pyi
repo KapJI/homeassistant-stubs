@@ -2,6 +2,7 @@ from .manager import BluetoothManager as BluetoothManager
 from _typeshed import Incomplete
 from bleak import BaseBleakClient as BaseBleakClient
 from collections.abc import Callable
+from dataclasses import dataclass
 from enum import Enum
 from home_assistant_bluetooth import BluetoothServiceInfoBleak
 from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
@@ -10,6 +11,7 @@ from typing import Final
 MANAGER: BluetoothManager | None
 MONOTONIC_TIME: Final[Incomplete]
 
+@dataclass(slots=True)
 class HaBluetoothConnector:
     client: type[BaseBleakClient]
     source: str

@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
@@ -79,8 +80,9 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
+@dataclass
 class BinarySensorEntityDescription(EntityDescription):
-    device_class: BinarySensorDeviceClass | None
+    device_class: BinarySensorDeviceClass | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class BinarySensorEntity(Entity):

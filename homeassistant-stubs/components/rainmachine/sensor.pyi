@@ -3,6 +3,7 @@ from .const import DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DA
 from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey, RainMachineEntityDescriptionMixinUid as RainMachineEntityDescriptionMixinUid
 from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, RUN_STATE_MAP as RUN_STATE_MAP, RunStates as RunStates, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements, key_exists as key_exists
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfVolume as UnitOfVolume
@@ -23,9 +24,11 @@ TYPE_PROGRAM_RUN_COMPLETION_TIME: str
 TYPE_RAIN_SENSOR_RAIN_START: str
 TYPE_ZONE_RUN_COMPLETION_TIME: str
 
+@dataclass
 class RainMachineSensorDataDescription(SensorEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey):
     def __init__(self, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
+@dataclass
 class RainMachineSensorCompletionTimerDescription(SensorEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinUid):
     def __init__(self, uid, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

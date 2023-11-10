@@ -1,3 +1,4 @@
+import dataclasses
 import python_otbr_api
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
@@ -5,10 +6,10 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import MultiprotocolAddonManager as MultiprotocolAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager, is_multiprotocol_url as is_multiprotocol_url, multi_pan_addon_using_device as multi_pan_addon_using_device
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 _R = TypeVar('_R')
-_P: Incomplete
+_P = ParamSpec('_P')
 _LOGGER: Incomplete
 INFO_URL_SKY_CONNECT: str
 INFO_URL_YELLOW: str
@@ -17,6 +18,7 @@ INSECURE_PASSPHRASES: Incomplete
 
 def _handle_otbr_error(func: Callable[Concatenate[OTBRData, _P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[OTBRData, _P], Coroutine[Any, Any, _R]]: ...
 
+@dataclasses.dataclass
 class OTBRData:
     url: str
     api: python_otbr_api.OTBR

@@ -13,6 +13,7 @@ from bleak.backends.client import BaseBleakClient, NotifyCallback as NotifyCallb
 from bleak.backends.device import BLEDevice
 from bleak.backends.service import BleakGATTServiceCollection
 from collections.abc import Callable
+from dataclasses import dataclass
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE
 from typing import Any, TypeVar
 from typing_extensions import Buffer
@@ -33,6 +34,7 @@ def mac_to_int(address: str) -> int: ...
 def verify_connected(func: _WrapFuncType) -> _WrapFuncType: ...
 def api_error_as_bleak_error(func: _WrapFuncType) -> _WrapFuncType: ...
 
+@dataclass(slots=True)
 class ESPHomeClientData:
     bluetooth_device: ESPHomeBluetoothDevice
     cache: ESPHomeBluetoothCache
@@ -41,7 +43,7 @@ class ESPHomeClientData:
     api_version: APIVersion
     title: str
     scanner: ESPHomeScanner | None
-    disconnect_callbacks: list[Callable[[], None]]
+    disconnect_callbacks: list[Callable[[], None]] = ...
     def __init__(self, bluetooth_device, cache, client, device_info, api_version, title, scanner, disconnect_callbacks) -> None: ...
 
 class ESPHomeClient(BaseBleakClient):

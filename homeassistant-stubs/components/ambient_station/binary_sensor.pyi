@@ -1,6 +1,7 @@
 from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DOMAIN as DOMAIN
 from .entity import AmbientWeatherEntity as AmbientWeatherEntity
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_NAME as ATTR_NAME, EntityCategory as EntityCategory
@@ -53,10 +54,12 @@ TYPE_RELAY7: str
 TYPE_RELAY8: str
 TYPE_RELAY9: str
 
+@dataclass
 class AmbientBinarySensorDescriptionMixin:
     on_state: Literal[0, 1]
     def __init__(self, on_state) -> None: ...
 
+@dataclass
 class AmbientBinarySensorDescription(BinarySensorEntityDescription, AmbientBinarySensorDescriptionMixin):
     def __init__(self, on_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

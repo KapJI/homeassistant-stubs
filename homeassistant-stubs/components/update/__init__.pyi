@@ -1,5 +1,6 @@
 from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.const import EntityCategory
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
@@ -12,9 +13,10 @@ class UpdateDeviceClass(StrEnum):
 
 DEVICE_CLASSES_SCHEMA: Incomplete
 
+@dataclass
 class UpdateEntityDescription(EntityDescription):
-    device_class: UpdateDeviceClass | None
-    entity_category: EntityCategory | None
+    device_class: UpdateDeviceClass | None = ...
+    entity_category: EntityCategory | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class UpdateEntity(RestoreEntity):

@@ -4,6 +4,7 @@ from .entity import RestEntityDescription as RestEntityDescription, RpcEntityDes
 from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.update import ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -15,19 +16,23 @@ from typing import Any, Final
 
 LOGGER: Incomplete
 
+@dataclass
 class RpcUpdateRequiredKeysMixin:
     latest_version: Callable[[dict], Any]
     beta: bool
     def __init__(self, latest_version, beta) -> None: ...
 
+@dataclass
 class RestUpdateRequiredKeysMixin:
     latest_version: Callable[[dict], Any]
     beta: bool
     def __init__(self, latest_version, beta) -> None: ...
 
+@dataclass
 class RpcUpdateDescription(RpcEntityDescription, UpdateEntityDescription, RpcUpdateRequiredKeysMixin):
     def __init__(self, latest_version, beta, sub_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
+@dataclass
 class RestUpdateDescription(RestEntityDescription, UpdateEntityDescription, RestUpdateRequiredKeysMixin):
     def __init__(self, latest_version, beta, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, value, extra_state_attributes) -> None: ...
 

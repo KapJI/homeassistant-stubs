@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -26,8 +27,9 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
+@dataclass
 class ButtonEntityDescription(EntityDescription):
-    device_class: ButtonDeviceClass | None
+    device_class: ButtonDeviceClass | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class ButtonEntity(RestoreEntity):

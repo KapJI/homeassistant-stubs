@@ -2,6 +2,7 @@ from . import CoordinatorDataT as CoordinatorDataT, NextDnsSettingsUpdateCoordin
 from .const import ATTR_SETTINGS as ATTR_SETTINGS, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -13,10 +14,12 @@ from typing import Any, Generic
 
 PARALLEL_UPDATES: int
 
+@dataclass
 class NextDnsSwitchRequiredKeysMixin(Generic[CoordinatorDataT]):
     state: Callable[[CoordinatorDataT], bool]
     def __init__(self, state) -> None: ...
 
+@dataclass
 class NextDnsSwitchEntityDescription(SwitchEntityDescription, NextDnsSwitchRequiredKeysMixin[CoordinatorDataT]):
     def __init__(self, state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

@@ -1,6 +1,7 @@
 from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from datetime import datetime
 from hdate.zmanim import Zmanim as Zmanim
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
@@ -9,10 +10,12 @@ from homeassistant.helpers import event as event
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
+@dataclass
 class JewishCalendarBinarySensorMixIns(BinarySensorEntityDescription):
-    is_on: Callable[..., bool]
+    is_on: Callable[..., bool] = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_on) -> None: ...
 
+@dataclass
 class JewishCalendarBinarySensorEntityDescription(JewishCalendarBinarySensorMixIns, BinarySensorEntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_on) -> None: ...
 

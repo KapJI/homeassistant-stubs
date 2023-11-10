@@ -6,6 +6,7 @@ from _typeshed import Incomplete
 from abc import abstractmethod
 from chip.clusters.Objects import ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
@@ -16,8 +17,9 @@ from typing import Any
 
 LOGGER: Incomplete
 
+@dataclass
 class MatterEntityDescription(EntityDescription):
-    measurement_to_ha: Callable[[Any], Any] | None
+    measurement_to_ha: Callable[[Any], Any] | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, measurement_to_ha) -> None: ...
 
 class MatterEntity(Entity, metaclass=abc.ABCMeta):

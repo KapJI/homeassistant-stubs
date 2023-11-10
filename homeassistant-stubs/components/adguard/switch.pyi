@@ -3,6 +3,7 @@ from .entity import AdGuardHomeEntity as AdGuardHomeEntity
 from _typeshed import Incomplete
 from adguardhome import AdGuardHome as AdGuardHome
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,12 +14,14 @@ from typing import Any
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
 
+@dataclass
 class AdGuardHomeSwitchEntityDescriptionMixin:
     is_on_fn: Callable[[AdGuardHome], Callable[[], Coroutine[Any, Any, bool]]]
     turn_on_fn: Callable[[AdGuardHome], Callable[[], Coroutine[Any, Any, None]]]
     turn_off_fn: Callable[[AdGuardHome], Callable[[], Coroutine[Any, Any, None]]]
     def __init__(self, is_on_fn, turn_on_fn, turn_off_fn) -> None: ...
 
+@dataclass
 class AdGuardHomeSwitchEntityDescription(SwitchEntityDescription, AdGuardHomeSwitchEntityDescriptionMixin):
     def __init__(self, is_on_fn, turn_on_fn, turn_off_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

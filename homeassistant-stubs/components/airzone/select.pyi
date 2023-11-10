@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneEntity as AirzoneEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -9,11 +10,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Final
 
+@dataclass
 class AirzoneSelectDescriptionMixin:
     api_param: str
     options_dict: dict[str, int]
     def __init__(self, api_param, options_dict) -> None: ...
 
+@dataclass
 class AirzoneSelectDescription(SelectEntityDescription, AirzoneSelectDescriptionMixin):
     def __init__(self, api_param, options_dict, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 

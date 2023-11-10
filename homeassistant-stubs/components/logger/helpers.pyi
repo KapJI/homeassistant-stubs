@@ -2,6 +2,7 @@ import logging
 from .const import DOMAIN as DOMAIN, LOGGER_DEFAULT as LOGGER_DEFAULT, LOGGER_LOGS as LOGGER_LOGS, LOGSEVERITY as LOGSEVERITY, LOGSEVERITY_NOTSET as LOGSEVERITY_NOTSET, STORAGE_KEY as STORAGE_KEY, STORAGE_LOG_KEY as STORAGE_LOG_KEY, STORAGE_VERSION as STORAGE_VERSION
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.const import EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -17,12 +18,14 @@ def _set_log_level(logger: logging.Logger, level: int) -> None: ...
 def _chattiest_log_level(level1: int, level2: int) -> int: ...
 async def get_integration_loggers(hass: HomeAssistant, domain: str) -> set[str]: ...
 
+@dataclass(slots=True)
 class LoggerSetting:
     level: str
     persistence: str
     type: str
     def __init__(self, level, persistence, type) -> None: ...
 
+@dataclass(slots=True)
 class LoggerDomainConfig:
     overrides: dict[str, Any]
     settings: LoggerSettings

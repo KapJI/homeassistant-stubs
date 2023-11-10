@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from aioshelly.block_device import BlockDevice, BlockUpdateType
 from aioshelly.rpc_device import RpcDevice, RpcUpdateType
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -15,12 +16,13 @@ from typing import Any, Generic, TypeVar
 
 _DeviceT = TypeVar('_DeviceT', bound='BlockDevice|RpcDevice')
 
+@dataclass
 class ShellyEntryData:
-    block: ShellyBlockCoordinator | None
-    device: BlockDevice | RpcDevice | None
-    rest: ShellyRestCoordinator | None
-    rpc: ShellyRpcCoordinator | None
-    rpc_poll: ShellyRpcPollingCoordinator | None
+    block: ShellyBlockCoordinator | None = ...
+    device: BlockDevice | RpcDevice | None = ...
+    rest: ShellyRestCoordinator | None = ...
+    rpc: ShellyRpcCoordinator | None = ...
+    rpc_poll: ShellyRpcPollingCoordinator | None = ...
     def __init__(self, block, device, rest, rpc, rpc_poll) -> None: ...
 
 def get_entry_data(hass: HomeAssistant) -> dict[str, ShellyEntryData]: ...

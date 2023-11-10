@@ -2,6 +2,7 @@ import voluptuous as vol
 from .const import CONF_FROM_WINDOW as CONF_FROM_WINDOW, CONF_TO_WINDOW as CONF_TO_WINDOW, DEFAULT_FROM_WINDOW as DEFAULT_FROM_WINDOW, DEFAULT_TO_WINDOW as DEFAULT_TO_WINDOW, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ELEVATION as CONF_ELEVATION, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
@@ -15,6 +16,7 @@ STEP_REAUTH_SCHEMA: Incomplete
 OPTIONS_SCHEMA: Incomplete
 OPTIONS_FLOW: Incomplete
 
+@dataclass
 class OpenUvData:
     api_key: str
     latitude: float

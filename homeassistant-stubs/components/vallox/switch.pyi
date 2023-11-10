@@ -1,6 +1,7 @@
 from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator, ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -21,10 +22,12 @@ class ValloxSwitchEntity(ValloxEntity, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _set_value(self, value: bool) -> None: ...
 
+@dataclass
 class ValloxMetricKeyMixin:
     metric_key: str
     def __init__(self, metric_key) -> None: ...
 
+@dataclass
 class ValloxSwitchEntityDescription(SwitchEntityDescription, ValloxMetricKeyMixin):
     def __init__(self, metric_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

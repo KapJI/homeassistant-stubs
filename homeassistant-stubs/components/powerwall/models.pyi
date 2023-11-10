@@ -1,8 +1,10 @@
+from dataclasses import dataclass
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from requests import Session
 from tesla_powerwall import DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregates as MetersAggregates, Powerwall, PowerwallStatus as PowerwallStatus, SiteInfo as SiteInfo, SiteMaster as SiteMaster
 from typing import TypedDict
 
+@dataclass
 class PowerwallBaseInfo:
     gateway_din: None | str
     site_info: SiteInfo
@@ -12,6 +14,7 @@ class PowerwallBaseInfo:
     url: str
     def __init__(self, gateway_din, site_info, status, device_type, serial_numbers, url) -> None: ...
 
+@dataclass
 class PowerwallData:
     charge: float
     site_master: SiteMaster

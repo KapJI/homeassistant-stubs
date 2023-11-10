@@ -1,6 +1,7 @@
 from .const import CONF_TIME as CONF_TIME, DOMAIN as DOMAIN
 from .util import next_departuredate as next_departuredate
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_WEEKDAY as CONF_WEEKDAY
@@ -10,6 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pytrafikverket.trafikverket_train import StationInfo as StationInfo, TrainStop as TrainStop
 
+@dataclass
 class TrainData:
     departure_time: datetime | None
     departure_state: str

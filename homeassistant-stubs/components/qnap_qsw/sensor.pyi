@@ -2,6 +2,7 @@ from .const import ATTR_MAX as ATTR_MAX, DOMAIN as DOMAIN, QSW_COORD_DATA as QSW
 from .coordinator import QswDataCoordinator as QswDataCoordinator
 from .entity import QswEntityDescription as QswEntityDescription, QswEntityType as QswEntityType, QswSensorEntity as QswSensorEntity
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
@@ -10,10 +11,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import Final
 
+@dataclass
 class QswSensorEntityDescription(SensorEntityDescription, QswEntityDescription):
-    attributes: dict[str, list[str]] | None
-    qsw_type: QswEntityType | None
-    sep_key: str
+    attributes: dict[str, list[str]] | None = ...
+    qsw_type: QswEntityType | None = ...
+    sep_key: str = ...
     def __init__(self, subkey, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, attributes, qsw_type, sep_key) -> None: ...
 
 SENSOR_TYPES: Final[tuple[QswSensorEntityDescription, ...]]

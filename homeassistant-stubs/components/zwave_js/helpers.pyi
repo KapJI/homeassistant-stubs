@@ -2,6 +2,7 @@ import logging
 import voluptuous as vol
 from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, DATA_CLIENT as DATA_CLIENT, DATA_OLD_SERVER_LOG_LEVEL as DATA_OLD_SERVER_LOG_LEVEL, DOMAIN as DOMAIN, LIB_LOGGER as LIB_LOGGER, LOGGER as LOGGER
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.group import expand_entity_ids as expand_entity_ids
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_TYPE as CONF_TYPE
@@ -16,18 +17,20 @@ from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import Value as ZwaveValue, ValueDataType as ValueDataType
 
+@dataclass
 class ZwaveValueID:
     property_: str | int
     command_class: int
-    endpoint: int | None
-    property_key: str | int | None
+    endpoint: int | None = ...
+    property_key: str | int | None = ...
     def __init__(self, property_, command_class, endpoint, property_key) -> None: ...
 
+@dataclass
 class ZwaveValueMatcher:
-    property_: str | int | None
-    command_class: int | None
-    endpoint: int | None
-    property_key: str | int | None
+    property_: str | int | None = ...
+    command_class: int | None = ...
+    endpoint: int | None = ...
+    property_key: str | int | None = ...
     def __post_init__(self) -> None: ...
     def __init__(self, property_, command_class, endpoint, property_key) -> None: ...
 

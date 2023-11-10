@@ -4,6 +4,7 @@ from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable, Iterable
+from dataclasses import dataclass
 from enum import IntFlag
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
@@ -54,6 +55,7 @@ CAMERA_SERVICE_SNAPSHOT: Final[Incomplete]
 CAMERA_SERVICE_PLAY_STREAM: Final[Incomplete]
 CAMERA_SERVICE_RECORD: Final[Incomplete]
 
+@dataclass
 class CameraEntityDescription(EntityDescription):
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

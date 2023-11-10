@@ -1,6 +1,8 @@
+from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Protocol
 
+@dataclass(slots=True)
 class BoardInfo:
     hassio_board_id: str | None
     manufacturer: str
@@ -8,6 +10,7 @@ class BoardInfo:
     revision: str | None
     def __init__(self, hassio_board_id, manufacturer, model, revision) -> None: ...
 
+@dataclass(slots=True, frozen=True)
 class USBInfo:
     vid: str
     pid: str
@@ -16,6 +19,7 @@ class USBInfo:
     description: str | None
     def __init__(self, vid, pid, serial_number, manufacturer, description) -> None: ...
 
+@dataclass(slots=True, frozen=True)
 class HardwareInfo:
     name: str | None
     board: BoardInfo | None

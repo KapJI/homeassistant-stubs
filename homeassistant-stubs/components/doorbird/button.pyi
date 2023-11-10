@@ -3,6 +3,7 @@ from .entity import DoorBirdEntity as DoorBirdEntity
 from .models import DoorBirdData as DoorBirdData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from doorbirdpy import DoorBird as DoorBird
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,10 +12,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 IR_RELAY: str
 
+@dataclass
 class DoorbirdButtonEntityDescriptionMixin:
     press_action: Callable[[DoorBird, str], None]
     def __init__(self, press_action) -> None: ...
 
+@dataclass
 class DoorbirdButtonEntityDescription(ButtonEntityDescription, DoorbirdButtonEntityDescriptionMixin):
     def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

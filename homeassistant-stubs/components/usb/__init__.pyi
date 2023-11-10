@@ -1,3 +1,4 @@
+import dataclasses
 from .models import USBDevice
 from _typeshed import Incomplete
 from homeassistant.core import CALLBACK_TYPE, Event, HomeAssistant
@@ -11,6 +12,7 @@ class USBCallbackMatcher(USBMatcher): ...
 def async_register_scan_request_callback(hass: HomeAssistant, callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
 def async_is_plugged_in(hass: HomeAssistant, matcher: USBCallbackMatcher) -> bool: ...
 
+@dataclasses.dataclass(slots=True)
 class UsbServiceInfo(BaseServiceInfo):
     device: str
     vid: str

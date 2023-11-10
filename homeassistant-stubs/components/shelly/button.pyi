@@ -3,6 +3,7 @@ from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, Shell
 from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -16,12 +17,14 @@ from typing import Any, Final, Generic, TypeVar
 
 _ShellyCoordinatorT = TypeVar('_ShellyCoordinatorT', bound=ShellyBlockCoordinator | ShellyRpcCoordinator)
 
+@dataclass
 class ShellyButtonDescriptionMixin(Generic[_ShellyCoordinatorT]):
     press_action: Callable[[_ShellyCoordinatorT], Coroutine[Any, Any, None]]
     def __init__(self, press_action) -> None: ...
 
+@dataclass
 class ShellyButtonDescription(ButtonEntityDescription, ShellyButtonDescriptionMixin[_ShellyCoordinatorT]):
-    supported: Callable[[_ShellyCoordinatorT], bool]
+    supported: Callable[[_ShellyCoordinatorT], bool] = ...
     def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, supported) -> None: ...
 
 BUTTONS: Final[list[ShellyButtonDescription[Any]]]

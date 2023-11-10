@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfo as BluetoothServiceInfo, async_discovered_service_info as async_discovered_service_info, async_process_advertisements as async_process_advertisements
 from homeassistant.config_entries import ConfigFlow as ConfigFlow
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_NAME as CONF_NAME, CONF_TOKEN as CONF_TOKEN
@@ -9,6 +10,7 @@ from typing import Any
 
 WAIT_FOR_PAIRING_TIMEOUT: int
 
+@dataclass
 class DiscoveredSnooz:
     info: BluetoothServiceInfo
     device: SnoozAdvertisementData

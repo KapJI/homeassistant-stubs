@@ -3,6 +3,7 @@ from .const import ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOV
 from .models import MessageCallbackType as MessageCallbackType, PublishPayloadType as PublishPayloadType
 from .util import get_mqtt_data as get_mqtt_data
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
@@ -11,6 +12,7 @@ STORED_MESSAGES: int
 
 def log_messages(hass: HomeAssistant, entity_id: str) -> Callable[[MessageCallbackType], MessageCallbackType]: ...
 
+@dataclass
 class TimestampedPublishMessage:
     topic: str
     payload: PublishPayloadType

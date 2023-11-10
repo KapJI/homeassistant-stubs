@@ -3,6 +3,7 @@ from .coordinator import InvalidAuth as InvalidAuth, WallboxCoordinator as Wallb
 from .entity import WallboxEntity as WallboxEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,12 +12,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 def min_charging_current_value(coordinator: WallboxCoordinator) -> float: ...
 
+@dataclass
 class WallboxNumberEntityDescriptionMixin:
     max_value_fn: Callable[[WallboxCoordinator], float]
     min_value_fn: Callable[[WallboxCoordinator], float]
     set_value_fn: Callable[[WallboxCoordinator], Callable[[float], Awaitable[None]]]
     def __init__(self, max_value_fn, min_value_fn, set_value_fn) -> None: ...
 
+@dataclass
 class WallboxNumberEntityDescription(NumberEntityDescription, WallboxNumberEntityDescriptionMixin):
     def __init__(self, max_value_fn, min_value_fn, set_value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 

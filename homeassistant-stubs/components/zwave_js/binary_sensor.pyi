@@ -2,6 +2,7 @@ from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -30,15 +31,18 @@ NOTIFICATION_WEATHER: str
 NOTIFICATION_IRRIGATION: str
 NOTIFICATION_GAS: str
 
+@dataclass
 class NotificationZWaveJSEntityDescription(BinarySensorEntityDescription):
-    off_state: str
-    states: tuple[str, ...] | None
+    off_state: str = ...
+    states: tuple[str, ...] | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, off_state, states) -> None: ...
 
+@dataclass
 class PropertyZWaveJSMixin:
     on_states: tuple[str, ...]
     def __init__(self, on_states) -> None: ...
 
+@dataclass
 class PropertyZWaveJSEntityDescription(BinarySensorEntityDescription, PropertyZWaveJSMixin):
     def __init__(self, on_states, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

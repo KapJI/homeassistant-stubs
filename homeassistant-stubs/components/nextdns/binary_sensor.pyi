@@ -2,6 +2,7 @@ from . import CoordinatorDataT as CoordinatorDataT, NextDnsConnectionUpdateCoord
 from .const import ATTR_CONNECTION as ATTR_CONNECTION, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -12,10 +13,12 @@ from typing import Generic
 
 PARALLEL_UPDATES: int
 
+@dataclass
 class NextDnsBinarySensorRequiredKeysMixin(Generic[CoordinatorDataT]):
     state: Callable[[CoordinatorDataT, str], bool]
     def __init__(self, state) -> None: ...
 
+@dataclass
 class NextDnsBinarySensorEntityDescription(BinarySensorEntityDescription, NextDnsBinarySensorRequiredKeysMixin[CoordinatorDataT]):
     def __init__(self, state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

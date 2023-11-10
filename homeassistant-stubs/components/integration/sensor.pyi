@@ -1,5 +1,6 @@
 from .const import CONF_ROUND_DIGITS as CONF_ROUND_DIGITS, CONF_SOURCE_SENSOR as CONF_SOURCE_SENSOR, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_UNIT_PREFIX as CONF_UNIT_PREFIX, CONF_UNIT_TIME as CONF_UNIT_TIME, INTEGRATION_METHODS as INTEGRATION_METHODS, METHOD_LEFT as METHOD_LEFT, METHOD_RIGHT as METHOD_RIGHT, METHOD_TRAPEZOIDAL as METHOD_TRAPEZOIDAL
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from decimal import Decimal
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorExtraStoredData as SensorExtraStoredData, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -17,6 +18,7 @@ UNIT_PREFIXES: Incomplete
 UNIT_TIME: Incomplete
 DEFAULT_ROUND: int
 
+@dataclass
 class IntegrationSensorExtraStoredData(SensorExtraStoredData):
     source_entity: str | None
     last_valid_state: Decimal | None

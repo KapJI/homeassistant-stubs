@@ -2,6 +2,7 @@ from . import GuardianData as GuardianData, PairedSensorEntity as PairedSensorEn
 from .const import API_SYSTEM_ONBOARD_SENSOR_STATUS as API_SYSTEM_ONBOARD_SENSOR_STATUS, CONF_UID as CONF_UID, DOMAIN as DOMAIN, SIGNAL_PAIRED_SENSOR_COORDINATOR_ADDED as SIGNAL_PAIRED_SENSOR_COORDINATOR_ADDED
 from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -13,6 +14,7 @@ ATTR_CONNECTED_CLIENTS: str
 SENSOR_KIND_LEAK_DETECTED: str
 SENSOR_KIND_MOVED: str
 
+@dataclass
 class ValveControllerBinarySensorDescription(BinarySensorEntityDescription, ValveControllerEntityDescription):
     def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

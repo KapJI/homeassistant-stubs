@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -11,10 +12,12 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from simplipy.system import System as System
 
+@dataclass
 class SimpliSafeButtonDescriptionMixin:
     push_action: Callable[[System], Awaitable]
     def __init__(self, push_action) -> None: ...
 
+@dataclass
 class SimpliSafeButtonDescription(ButtonEntityDescription, SimpliSafeButtonDescriptionMixin):
     def __init__(self, push_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

@@ -3,6 +3,7 @@ from .coordinator import IBeaconCoordinator as IBeaconCoordinator
 from .entity import IBeaconEntity as IBeaconEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfLength as UnitOfLength
@@ -11,10 +12,12 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
 
+@dataclass
 class IBeaconRequiredKeysMixin:
     value_fn: Callable[[iBeaconAdvertisement], str | int | None]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class IBeaconSensorEntityDescription(SensorEntityDescription, IBeaconRequiredKeysMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

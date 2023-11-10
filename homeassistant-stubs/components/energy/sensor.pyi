@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .data import EnergyManager as EnergyManager, async_get_manager as async_get_manager
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.sensor import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.components.sensor.recorder import reset_detected as reset_detected
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
@@ -21,6 +22,7 @@ _LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
 
+@dataclass(slots=True)
 class SourceAdapter:
     source_type: Literal['grid', 'gas', 'water']
     flow_type: Literal['flow_from', 'flow_to', None]

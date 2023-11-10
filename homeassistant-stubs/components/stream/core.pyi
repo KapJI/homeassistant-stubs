@@ -7,6 +7,7 @@ from aiohttp import web
 from av import CodecContext, Packet as Packet
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine, Iterable
+from dataclasses import dataclass
 from enum import IntEnum
 from homeassistant.components.camera import DynamicStreamSettings as DynamicStreamSettings
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
@@ -28,6 +29,7 @@ class Orientation(IntEnum):
     ROTATE_RIGHT_AND_FLIP: int
     ROTATE_RIGHT: int
 
+@dataclass(slots=True)
 class StreamSettings:
     ll_hls: bool
     min_segment_duration: float
@@ -38,24 +40,26 @@ class StreamSettings:
 
 STREAM_SETTINGS_NON_LL_HLS: Incomplete
 
+@dataclass(slots=True)
 class Part:
     duration: float
     has_keyframe: bool
     data: bytes
     def __init__(self, duration, has_keyframe, data) -> None: ...
 
+@dataclass(slots=True)
 class Segment:
     sequence: int
     init: bytes
     stream_id: int
     start_time: datetime.datetime
     _stream_outputs: Iterable[StreamOutput]
-    duration: float
-    parts: list[Part]
-    hls_playlist_template: list[str]
-    hls_playlist_parts: list[str]
-    hls_num_parts_rendered: int
-    hls_playlist_complete: bool
+    duration: float = ...
+    parts: list[Part] = ...
+    hls_playlist_template: list[str] = ...
+    hls_playlist_parts: list[str] = ...
+    hls_num_parts_rendered: int = ...
+    hls_playlist_complete: bool = ...
     def __post_init__(self) -> None: ...
     @property
     def complete(self) -> bool: ...

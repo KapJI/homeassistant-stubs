@@ -3,6 +3,7 @@ from .const import LOGGER as LOGGER
 from _typeshed import Incomplete
 from aioguardian import Client as Client
 from collections.abc import Awaitable, Callable as Callable, Iterable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -12,12 +13,13 @@ from typing import Any
 DEFAULT_UPDATE_INTERVAL: Incomplete
 SIGNAL_REBOOT_REQUESTED: str
 
+@dataclass
 class EntityDomainReplacementStrategy:
     old_domain: str
     old_unique_id: str
     replacement_entity_id: str
     breaks_in_ha_version: str
-    remove_old_entity: bool
+    remove_old_entity: bool = ...
     def __init__(self, old_domain, old_unique_id, replacement_entity_id, breaks_in_ha_version, remove_old_entity) -> None: ...
 
 def async_finish_entity_domain_replacements(hass: HomeAssistant, entry: ConfigEntry, entity_replacement_strategies: Iterable[EntityDomainReplacementStrategy]) -> None: ...

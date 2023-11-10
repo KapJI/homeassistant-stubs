@@ -5,22 +5,26 @@ from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Coroutine, Mapping
+from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.data_entry_flow import FlowResult as FlowResult, UnknownHandler as UnknownHandler
 from typing import Any
 
 class SchemaFlowError(Exception): ...
+@dataclass
 class SchemaFlowStep: ...
 
+@dataclass(slots=True)
 class SchemaFlowFormStep(SchemaFlowStep):
-    schema: vol.Schema | Callable[[SchemaCommonFlowHandler], Coroutine[Any, Any, vol.Schema | None]] | None
-    validate_user_input: Callable[[SchemaCommonFlowHandler, dict[str, Any]], Coroutine[Any, Any, dict[str, Any]]] | None
-    next_step: Callable[[dict[str, Any]], Coroutine[Any, Any, str | None]] | str | None
-    suggested_values: Callable[[SchemaCommonFlowHandler], Coroutine[Any, Any, dict[str, Any]]] | None | UndefinedType
-    preview: str | None
+    schema: vol.Schema | Callable[[SchemaCommonFlowHandler], Coroutine[Any, Any, vol.Schema | None]] | None = ...
+    validate_user_input: Callable[[SchemaCommonFlowHandler, dict[str, Any]], Coroutine[Any, Any, dict[str, Any]]] | None = ...
+    next_step: Callable[[dict[str, Any]], Coroutine[Any, Any, str | None]] | str | None = ...
+    suggested_values: Callable[[SchemaCommonFlowHandler], Coroutine[Any, Any, dict[str, Any]]] | None | UndefinedType = ...
+    preview: str | None = ...
     def __init__(self, schema, validate_user_input, next_step, suggested_values, preview) -> None: ...
 
+@dataclass(slots=True)
 class SchemaFlowMenuStep(SchemaFlowStep):
     options: list[str] | dict[str, str]
     def __init__(self, options) -> None: ...

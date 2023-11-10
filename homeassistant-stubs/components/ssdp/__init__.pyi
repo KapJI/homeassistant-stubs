@@ -4,6 +4,7 @@ from async_upnp_client.server import UpnpServerDevice, UpnpServerService as Upnp
 from async_upnp_client.ssdp_listener import SsdpDevice as SsdpDevice
 from async_upnp_client.utils import CaseInsensitiveDict
 from collections.abc import Awaitable, Callable, Mapping
+from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, MATCH_ALL as MATCH_ALL
@@ -55,17 +56,18 @@ PRIMARY_MATCH_KEYS: Incomplete
 _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
 
+@dataclass(slots=True)
 class SsdpServiceInfo(BaseServiceInfo):
     ssdp_usn: str
     ssdp_st: str
     upnp: Mapping[str, Any]
-    ssdp_location: str | None
-    ssdp_nt: str | None
-    ssdp_udn: str | None
-    ssdp_ext: str | None
-    ssdp_server: str | None
-    ssdp_headers: Mapping[str, Any]
-    x_homeassistant_matching_domains: set[str]
+    ssdp_location: str | None = ...
+    ssdp_nt: str | None = ...
+    ssdp_udn: str | None = ...
+    ssdp_ext: str | None = ...
+    ssdp_server: str | None = ...
+    ssdp_headers: Mapping[str, Any] = ...
+    x_homeassistant_matching_domains: set[str] = ...
     def __init__(self, ssdp_usn, ssdp_st, upnp, ssdp_location, ssdp_nt, ssdp_udn, ssdp_ext, ssdp_server, ssdp_headers, x_homeassistant_matching_domains) -> None: ...
 
 SsdpChange: Incomplete

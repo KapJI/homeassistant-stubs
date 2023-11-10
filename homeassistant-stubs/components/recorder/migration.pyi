@@ -10,6 +10,7 @@ from .tasks import CommitTask as CommitTask, PostSchemaMigrationTask as PostSche
 from .util import database_job_retry_wrapper as database_job_retry_wrapper, get_index_by_name as get_index_by_name, retryable_database_job as retryable_database_job, session_scope as session_scope
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
+from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from homeassistant.util.ulid import ulid_at_time as ulid_at_time, ulid_to_bytes as ulid_to_bytes
@@ -21,6 +22,7 @@ _EMPTY_ENTITY_ID: str
 _EMPTY_EVENT_TYPE: str
 _LOGGER: Incomplete
 
+@dataclass
 class _ColumnTypesForDialect:
     big_int_type: str
     timestamp_type: str
@@ -36,6 +38,7 @@ def raise_if_exception_missing_str(ex: Exception, match_substrs: Iterable[str]) 
 def _get_schema_version(session: Session) -> int | None: ...
 def get_schema_version(session_maker: Callable[[], Session]) -> int | None: ...
 
+@dataclass
 class SchemaValidationStatus:
     current_version: int
     schema_errors: set[str]

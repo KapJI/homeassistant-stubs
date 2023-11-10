@@ -4,6 +4,7 @@ from .model import RainMachineEntityDescription as RainMachineEntityDescription,
 from .util import RUN_STATE_MAP as RUN_STATE_MAP, key_exists as key_exists
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
+from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ID as ATTR_ID, EntityCategory as EntityCategory
@@ -11,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Concatenate, TypeVar
+from typing import Any, Concatenate, ParamSpec, TypeVar
 
 ATTR_AREA: str
 ATTR_CS_ON: str
@@ -40,16 +41,19 @@ SPRINKLER_TYPE_MAP: Incomplete
 SUN_EXPOSURE_MAP: Incomplete
 VEGETATION_MAP: Incomplete
 _T = TypeVar('_T', bound='RainMachineBaseSwitch')
-_P: Incomplete
+_P = ParamSpec('_P')
 
 def raise_on_request_error(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
+@dataclass
 class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription):
     def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
+@dataclass
 class RainMachineActivitySwitchDescription(RainMachineSwitchDescription, RainMachineEntityDescriptionMixinUid):
     def __init__(self, uid, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
+@dataclass
 class RainMachineRestrictionSwitchDescription(RainMachineSwitchDescription, RainMachineEntityDescriptionMixinDataKey):
     def __init__(self, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 

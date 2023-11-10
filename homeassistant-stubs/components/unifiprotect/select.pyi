@@ -5,6 +5,7 @@ from .models import PermRequired as PermRequired, ProtectSetableKeysMixin as Pro
 from .utils import async_get_light_motion_current as async_get_light_motion_current
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from enum import Enum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -31,10 +32,11 @@ MOTION_MODE_TO_LIGHT_MODE: Incomplete
 DEVICE_RECORDING_MODES: Incomplete
 DEVICE_CLASS_LCD_MESSAGE: Final[str]
 
+@dataclass
 class ProtectSelectEntityDescription(ProtectSetableKeysMixin[T], SelectEntityDescription):
-    ufp_options: list[dict[str, Any]] | None
-    ufp_options_fn: Callable[[ProtectApiClient], list[dict[str, Any]]] | None
-    ufp_enum_type: type[Enum] | None
+    ufp_options: list[dict[str, Any]] | None = ...
+    ufp_options_fn: Callable[[ProtectApiClient], list[dict[str, Any]]] | None = ...
+    ufp_enum_type: type[Enum] | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn, ufp_options, ufp_options_fn, ufp_enum_type) -> None: ...
 
 def _get_viewer_options(api: ProtectApiClient) -> list[dict[str, Any]]: ...

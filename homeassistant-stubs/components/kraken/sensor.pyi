@@ -2,6 +2,7 @@ from . import KrakenData as KrakenData
 from .const import CONF_TRACKED_ASSET_PAIRS as CONF_TRACKED_ASSET_PAIRS, DISPATCH_CONFIG_UPDATED as DISPATCH_CONFIG_UPDATED, DOMAIN as DOMAIN, KrakenResponse as KrakenResponse
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -12,10 +13,12 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 _LOGGER: Incomplete
 
+@dataclass
 class KrakenRequiredKeysMixin:
     value_fn: Callable[[DataUpdateCoordinator[KrakenResponse], str], float | int]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class KrakenSensorEntityDescription(SensorEntityDescription, KrakenRequiredKeysMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 

@@ -1,3 +1,4 @@
+import dataclasses
 from _typeshed import Incomplete
 from homeassistant.components.hassio import get_supervisor_info as get_supervisor_info, is_hassio as is_hassio
 from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, __version__ as __version__
@@ -17,6 +18,7 @@ CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
+@dataclasses.dataclass(slots=True, frozen=True)
 class IntegrationAlert:
     alert_id: str
     integration: str

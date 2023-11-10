@@ -4,6 +4,7 @@ from .helpers import wled_exception_handler as wled_exception_handler
 from .models import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -15,10 +16,12 @@ PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
+@dataclass
 class WLEDNumberDescriptionMixin:
     value_fn: Callable[[Segment], float | None]
     def __init__(self, value_fn) -> None: ...
 
+@dataclass
 class WLEDNumberEntityDescription(NumberEntityDescription, WLEDNumberDescriptionMixin):
     def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 

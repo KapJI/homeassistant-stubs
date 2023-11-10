@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from asyncsleepiq import AsyncSleepIQ as AsyncSleepIQ
+from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
@@ -17,6 +18,7 @@ class SleepIQPauseUpdateCoordinator(DataUpdateCoordinator[None]):
     def __init__(self, hass: HomeAssistant, client: AsyncSleepIQ, username: str) -> None: ...
     async def _async_update_data(self) -> None: ...
 
+@dataclass
 class SleepIQData:
     data_coordinator: SleepIQDataUpdateCoordinator
     pause_coordinator: SleepIQPauseUpdateCoordinator

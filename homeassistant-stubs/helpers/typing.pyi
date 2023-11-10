@@ -1,3 +1,4 @@
+import homeassistant
 import homeassistant.core
 from _typeshed import Incomplete
 from enum import Enum

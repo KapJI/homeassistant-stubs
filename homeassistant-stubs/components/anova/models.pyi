@@ -1,6 +1,8 @@
 from .coordinator import AnovaCoordinator as AnovaCoordinator
 from anova_wifi import AnovaPrecisionCooker as AnovaPrecisionCooker
+from dataclasses import dataclass
 
+@dataclass
 class AnovaData:
     api_jwt: str
     precision_cookers: list[AnovaPrecisionCooker]

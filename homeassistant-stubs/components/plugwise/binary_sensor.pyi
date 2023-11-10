@@ -3,6 +3,7 @@ from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoor
 from .entity import PlugwiseEntity as PlugwiseEntity
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -13,9 +14,10 @@ from typing import Any
 
 SEVERITIES: Incomplete
 
+@dataclass
 class PlugwiseBinarySensorEntityDescription(BinarySensorEntityDescription):
     key: BinarySensorType
-    icon_off: str | None
+    icon_off: str | None = ...
     def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_off) -> None: ...
 
 BINARY_SENSORS: tuple[PlugwiseBinarySensorEntityDescription, ...]

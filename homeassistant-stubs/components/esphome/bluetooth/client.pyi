@@ -43,7 +43,7 @@ class ESPHomeClientData:
     api_version: APIVersion
     title: str
     scanner: ESPHomeScanner | None
-    disconnect_callbacks: list[Callable[[], None]] = ...
+    disconnect_callbacks: set[Callable[[], None]] = ...
     def __init__(self, bluetooth_device, cache, client, device_info, api_version, title, scanner, disconnect_callbacks) -> None: ...
 
 class ESPHomeClient(BaseBleakClient):
@@ -64,6 +64,7 @@ class ESPHomeClient(BaseBleakClient):
     _feature_flags: Incomplete
     _address_type: Incomplete
     _source_name: Incomplete
+    _description: Incomplete
     _scanner: Incomplete
     def __init__(self, address_or_ble_device: BLEDevice | str, *args: Any, client_data: ESPHomeClientData, **kwargs: Any) -> None: ...
     def __str__(self) -> str: ...

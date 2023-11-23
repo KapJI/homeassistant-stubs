@@ -6,9 +6,9 @@ from typing import Any
 @dataclass
 class FitbitProfile:
     encoded_id: str
-    full_name: str
+    display_name: str
     locale: str | None
-    def __init__(self, encoded_id, full_name, locale) -> None: ...
+    def __init__(self, encoded_id, display_name, locale) -> None: ...
 
 @dataclass
 class FitbitDevice:

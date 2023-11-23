@@ -56,6 +56,7 @@ class BluetoothManager:
     storage: Incomplete
     slot_manager: Incomplete
     _debug: Incomplete
+    shutdown: bool
     def __init__(self, hass: HomeAssistant, integration_matcher: IntegrationMatcher, bluetooth_adapters: BluetoothAdapters, storage: BluetoothStorage, slot_manager: BleakSlotManager) -> None: ...
     @property
     def supports_passive_scan(self) -> bool: ...

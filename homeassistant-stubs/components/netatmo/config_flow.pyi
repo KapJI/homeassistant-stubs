@@ -1,4 +1,5 @@
 import logging
+from .api import get_api_scopes as get_api_scopes
 from .const import CONF_AREA_NAME as CONF_AREA_NAME, CONF_LAT_NE as CONF_LAT_NE, CONF_LAT_SW as CONF_LAT_SW, CONF_LON_NE as CONF_LON_NE, CONF_LON_SW as CONF_LON_SW, CONF_NEW_AREA as CONF_NEW_AREA, CONF_PUBLIC_MODE as CONF_PUBLIC_MODE, CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping

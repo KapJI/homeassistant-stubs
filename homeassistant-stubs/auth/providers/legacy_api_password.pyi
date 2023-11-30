@@ -2,14 +2,18 @@ from . import AUTH_PROVIDERS as AUTH_PROVIDERS, AUTH_PROVIDER_SCHEMA as AUTH_PRO
 from ..models import Credentials as Credentials, UserMeta as UserMeta
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.core import callback as callback
+from homeassistant.core import async_get_hass as async_get_hass, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from typing import Any
 
 AUTH_PROVIDER_TYPE: str
 CONF_API_PASSWORD: str
-CONFIG_SCHEMA: Incomplete
+_CONFIG_SCHEMA: Incomplete
+
+def _create_repair_and_validate(config: dict[str, Any]) -> dict[str, Any]: ...
+CONFIG_SCHEMA = _create_repair_and_validate
 LEGACY_USER_NAME: str
 
 class InvalidAuthError(HomeAssistantError): ...

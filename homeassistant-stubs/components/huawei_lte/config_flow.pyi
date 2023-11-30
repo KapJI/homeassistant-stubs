@@ -1,10 +1,10 @@
 from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, CONF_UNAUTHENTICATED_MODE as CONF_UNAUTHENTICATED_MODE, CONNECTION_TIMEOUT as CONNECTION_TIMEOUT, DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME, DEFAULT_NOTIFY_SERVICE_NAME as DEFAULT_NOTIFY_SERVICE_NAME, DEFAULT_TRACK_WIRED_CLIENTS as DEFAULT_TRACK_WIRED_CLIENTS, DEFAULT_UNAUTHENTICATED_MODE as DEFAULT_UNAUTHENTICATED_MODE, DOMAIN as DOMAIN
-from .utils import get_device_macs as get_device_macs
+from .utils import get_device_macs as get_device_macs, non_verifying_requests_session as non_verifying_requests_session
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp
-from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from huawei_lte_api.Connection import Connection

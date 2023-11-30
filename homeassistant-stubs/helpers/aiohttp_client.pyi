@@ -20,8 +20,6 @@ WARN_CLOSE_MSG: str
 MAXIMUM_CONNECTIONS: int
 MAXIMUM_CONNECTIONS_PER_HOST: int
 
-async def _noop_wait(*args: Any, **kwargs: Any) -> None: ...
-
 class HassClientResponse(aiohttp.ClientResponse):
     async def json(self, *args: Any, loads: JSONDecoder = ..., **kwargs: Any) -> Any: ...
 

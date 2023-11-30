@@ -13,6 +13,7 @@ _PARALLEL_SEMAPHORE: Incomplete
 class RenaultDataUpdateCoordinator(DataUpdateCoordinator[T]):
     access_denied: bool
     not_supported: bool
+    _has_already_worked: bool
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, update_interval: timedelta, update_method: Callable[[], Awaitable[T]]) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> T: ...

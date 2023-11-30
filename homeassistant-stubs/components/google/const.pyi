@@ -1,9 +1,9 @@
 from _typeshed import Incomplete
-from enum import Enum
+from enum import Enum, StrEnum
 
 DOMAIN: str
-DEVICE_AUTH_IMPL: str
 CONF_CALENDAR_ACCESS: str
+CONF_CREDENTIAL_TYPE: str
 DATA_CALENDARS: str
 DATA_SERVICE: str
 DATA_CONFIG: str
@@ -18,6 +18,11 @@ class FeatureAccess(Enum):
     def scope(self) -> str: ...
 
 DEFAULT_FEATURE_ACCESS: Incomplete
+
+class CredentialType(StrEnum):
+    DEVICE_AUTH: str
+    WEB_AUTH: str
+
 EVENT_DESCRIPTION: str
 EVENT_END_DATE: str
 EVENT_END_DATETIME: str

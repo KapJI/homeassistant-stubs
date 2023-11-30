@@ -13,15 +13,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-@dataclass
-class LaMetricEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class LaMetricNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[Device], int | None]
     set_value_fn: Callable[[LaMetricDevice, float], Awaitable[Any]]
-    def __init__(self, value_fn, set_value_fn) -> None: ...
-
-@dataclass
-class LaMetricNumberEntityDescription(NumberEntityDescription, LaMetricEntityDescriptionMixin):
-    def __init__(self, value_fn, set_value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, *, value_fn, set_value_fn) -> None: ...
 
 NUMBERS: Incomplete
 

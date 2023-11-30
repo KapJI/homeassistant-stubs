@@ -1,8 +1,9 @@
-from . import FritzBoxEntity as FritzBoxEntity, FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
-from .const import CONF_COORDINATOR as CONF_COORDINATOR
+from . import FritzBoxEntity as FritzBoxEntity
+from .common import get_coordinator as get_coordinator
+from .const import DOMAIN as DOMAIN
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate

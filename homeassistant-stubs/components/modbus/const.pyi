@@ -68,11 +68,9 @@ ATTR_VALUE: str
 class DataType(str, Enum):
     CUSTOM: str
     STRING: str
-    INT8: str
     INT16: str
     INT32: str
     INT64: str
-    UINT8: str
     UINT16: str
     UINT32: str
     UINT64: str

@@ -14,6 +14,7 @@ MOCKS: dict[str, tuple[str, Callable]]
 PATCHES: dict[str, Any]
 C_HEAD: str
 ERROR_STR: str
+WARNING_STR: str
 
 def color(the_color, *args, reset: Incomplete | None = ...): ...
 def run(script_args: list) -> int: ...

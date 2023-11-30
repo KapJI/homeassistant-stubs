@@ -12,16 +12,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from plugwise import Smile as Smile
 from plugwise.constants import SelectOptionsType as SelectOptionsType, SelectType as SelectType
 
-@dataclass
-class PlugwiseSelectDescriptionMixin:
+@dataclass(kw_only=True)
+class PlugwiseSelectEntityDescription(SelectEntityDescription):
     command: Callable[[Smile, str, str], Awaitable[None]]
-    options_key: SelectOptionsType
-    def __init__(self, command, options_key) -> None: ...
-
-@dataclass
-class PlugwiseSelectEntityDescription(SelectEntityDescription, PlugwiseSelectDescriptionMixin):
     key: SelectType
-    def __init__(self, command, options_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    options_key: SelectOptionsType
+    def __init__(self, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options, *, key, command, options_key) -> None: ...
 
 SELECT_TYPES: Incomplete
 

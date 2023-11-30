@@ -4,7 +4,7 @@ from .discovery_data_template import FanValueMapping as FanValueMapping, FanValu
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_value_of_zwave_value as get_value_of_zwave_value
 from _typeshed import Incomplete
-from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, NotValidPresetModeError as NotValidPresetModeError
+from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

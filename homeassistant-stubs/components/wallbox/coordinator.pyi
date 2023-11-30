@@ -1,19 +1,24 @@
 from .const import CHARGER_CURRENCY_KEY as CHARGER_CURRENCY_KEY, CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_ENERGY_PRICE_KEY as CHARGER_ENERGY_PRICE_KEY, CHARGER_LOCKED_UNLOCKED_KEY as CHARGER_LOCKED_UNLOCKED_KEY, CHARGER_MAX_CHARGING_CURRENT_KEY as CHARGER_MAX_CHARGING_CURRENT_KEY, CHARGER_STATUS_DESCRIPTION_KEY as CHARGER_STATUS_DESCRIPTION_KEY, CHARGER_STATUS_ID_KEY as CHARGER_STATUS_ID_KEY, CODE_KEY as CODE_KEY, ChargerStatus as ChargerStatus, DOMAIN as DOMAIN, UPDATE_INTERVAL as UPDATE_INTERVAL
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import Any, Concatenate, ParamSpec, TypeVar
 from wallbox import Wallbox as Wallbox
 
 _LOGGER: Incomplete
 CHARGER_STATUS: dict[int, ChargerStatus]
+_WallboxCoordinatorT = TypeVar('_WallboxCoordinatorT', bound='WallboxCoordinator')
+_P = ParamSpec('_P')
+
+def _require_authentication(func: Callable[Concatenate[_WallboxCoordinatorT, _P], Any]) -> Callable[Concatenate[_WallboxCoordinatorT, _P], Any]: ...
 
 class WallboxCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     _station: Incomplete
     _wallbox: Incomplete
     def __init__(self, station: str, wallbox: Wallbox, hass: HomeAssistant) -> None: ...
-    def _authenticate(self) -> None: ...
+    def authenticate(self) -> None: ...
     def _validate(self) -> None: ...
     async def async_validate_input(self) -> None: ...
     def _get_data(self) -> dict[str, Any]: ...

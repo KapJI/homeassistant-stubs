@@ -1,5 +1,5 @@
 from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
-from .const import CONF_COORDINATOR as CONF_COORDINATOR
+from .common import get_coordinator as get_coordinator
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -8,7 +8,7 @@ from homeassistant.components.climate import PRESET_COMFORT as PRESET_COMFORT, P
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp

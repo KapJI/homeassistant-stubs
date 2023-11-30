@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any, Generic
 
 async def async_restart_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
+async def async_power_cycle_port_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 
 @dataclass
 class UnifiButtonEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):

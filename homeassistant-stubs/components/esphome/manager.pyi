@@ -5,11 +5,11 @@ from .domain_data import DomainData as DomainData
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from .voice_assistant import VoiceAssistantUDPServer as VoiceAssistantUDPServer
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings, VoiceAssistantEventType as VoiceAssistantEventType
+from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings, VoiceAssistantEventType as VoiceAssistantEventType
 from homeassistant.components import tag as tag, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.device_registry import format_mac as format_mac
@@ -52,6 +52,7 @@ class ESPHomeManager:
     async def on_connect(self) -> None: ...
     async def on_disconnect(self, expected_disconnect: bool) -> None: ...
     async def on_connect_error(self, err: Exception) -> None: ...
+    def _async_handle_logging_changed(self, _event: Event) -> None: ...
     async def async_start(self) -> None: ...
 
 def _async_setup_device_registry(hass: HomeAssistant, entry: ConfigEntry, entry_data: RuntimeEntryData) -> str: ...

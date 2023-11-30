@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from homeassistant import util as util
 from homeassistant.backports.functools import cached_property as cached_property
 from homeassistant.components import zone as zone
-from homeassistant.config import async_log_exception as async_log_exception, load_yaml_config_file as load_yaml_config_file
+from homeassistant.config import async_log_schema_error as async_log_schema_error, load_yaml_config_file as load_yaml_config_file
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_ICON as ATTR_ICON, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ICON as CONF_ICON, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -14,7 +14,7 @@ from homeassistant.helpers import config_per_platform as config_per_platform, di
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval, async_track_utc_time_change as async_track_utc_time_change
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, GPSType as GPSType, StateType as StateType
-from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
+from homeassistant.setup import async_notify_setup_error as async_notify_setup_error, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util.yaml import dump as dump
 from types import ModuleType
 from typing import Any, Final, Protocol

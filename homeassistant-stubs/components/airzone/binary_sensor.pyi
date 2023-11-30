@@ -28,13 +28,11 @@ class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity):
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneSystemBinarySensor(AirzoneSystemEntity, AirzoneBinarySensor):
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneBinarySensorEntityDescription, entry: ConfigEntry, system_id: str, system_data: dict[str, Any]) -> None: ...
 
 class AirzoneZoneBinarySensor(AirzoneZoneEntity, AirzoneBinarySensor):
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneBinarySensorEntityDescription, entry: ConfigEntry, system_zone_id: str, zone_data: dict[str, Any]) -> None: ...

@@ -1,9 +1,7 @@
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from transmission_rpc import Torrent as Torrent
 
 DOMAIN: str
-SWITCH_TYPES: Incomplete
 ORDER_NEWEST_FIRST: str
 ORDER_OLDEST_FIRST: str
 ORDER_BEST_RATIO_FIRST: str

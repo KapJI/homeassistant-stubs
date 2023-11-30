@@ -22,19 +22,16 @@ class AirzoneSensor(AirzoneEntity, SensorEntity, metaclass=abc.ABCMeta):
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneAidooSensor(AirzoneAidooEntity, AirzoneSensor):
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: SensorEntityDescription, aidoo_id: str, aidoo_data: dict[str, Any]) -> None: ...
 
 class AirzoneWebServerSensor(AirzoneWebServerEntity, AirzoneSensor):
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: SensorEntityDescription, ws_id: str, ws_data: dict[str, Any]) -> None: ...
 
 class AirzoneZoneSensor(AirzoneZoneEntity, AirzoneSensor):
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: SensorEntityDescription, zone_id: str, zone_data: dict[str, Any]) -> None: ...

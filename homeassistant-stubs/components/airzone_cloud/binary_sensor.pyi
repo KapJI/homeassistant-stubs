@@ -30,19 +30,16 @@ class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity, metaclass=abc.ABCMe
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneAidooBinarySensor(AirzoneAidooEntity, AirzoneBinarySensor):
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneBinarySensorEntityDescription, aidoo_id: str, aidoo_data: dict[str, Any]) -> None: ...
 
 class AirzoneSystemBinarySensor(AirzoneSystemEntity, AirzoneBinarySensor):
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneBinarySensorEntityDescription, system_id: str, system_data: dict[str, Any]) -> None: ...
 
 class AirzoneZoneBinarySensor(AirzoneZoneEntity, AirzoneBinarySensor):
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneBinarySensorEntityDescription, zone_id: str, zone_data: dict[str, Any]) -> None: ...

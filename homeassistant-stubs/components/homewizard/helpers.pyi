@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entity import HomeWizardEntity as HomeWizardEntity
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

@@ -6,7 +6,7 @@ from .helpers import area_registry as area_registry, device_registry as device_r
 from .helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from .helpers.typing import ConfigType as ConfigType
 from .runner import RuntimeConfig as RuntimeConfig
-from .setup import DATA_SETUP as DATA_SETUP, DATA_SETUP_STARTED as DATA_SETUP_STARTED, DATA_SETUP_TIME as DATA_SETUP_TIME, async_set_domains_to_be_loaded as async_set_domains_to_be_loaded, async_setup_component as async_setup_component
+from .setup import DATA_SETUP as DATA_SETUP, DATA_SETUP_STARTED as DATA_SETUP_STARTED, DATA_SETUP_TIME as DATA_SETUP_TIME, async_notify_setup_error as async_notify_setup_error, async_set_domains_to_be_loaded as async_set_domains_to_be_loaded, async_setup_component as async_setup_component
 from .util.logging import async_activate_log_queue_handler as async_activate_log_queue_handler
 from .util.package import async_get_user_site as async_get_user_site, is_virtual_env as is_virtual_env
 from _typeshed import Incomplete

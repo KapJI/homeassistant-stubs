@@ -17,8 +17,9 @@ EXCHANGE_TIMEOUT_SECONDS: int
 DEVICE_AUTH_CREDS: str
 
 class OAuthError(Exception): ...
+class InvalidCredential(OAuthError): ...
 
-class DeviceAuth(AuthImplementation):
+class GoogleHybridAuth(AuthImplementation):
     async def async_resolve_external_data(self, external_data: Any) -> dict: ...
 
 class DeviceFlow:

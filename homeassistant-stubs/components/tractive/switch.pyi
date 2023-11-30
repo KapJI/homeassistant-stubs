@@ -1,5 +1,5 @@
 from . import Trackables as Trackables, TractiveClient as TractiveClient
-from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, CLIENT as CLIENT, DOMAIN as DOMAIN, TRACKABLES as TRACKABLES, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED
+from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, CLIENT as CLIENT, DOMAIN as DOMAIN, TRACKABLES as TRACKABLES, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -28,10 +28,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class TractiveSwitch(TractiveEntity, SwitchEntity):
     entity_description: TractiveSwitchEntityDescription
     _attr_unique_id: Incomplete
-    _attr_available: bool
     _tracker: Incomplete
     _method: Incomplete
     def __init__(self, client: TractiveClient, item: Trackables, description: TractiveSwitchEntityDescription) -> None: ...
+    _attr_available: bool
     _attr_is_on: Incomplete
     def handle_status_update(self, event: dict[str, Any]) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

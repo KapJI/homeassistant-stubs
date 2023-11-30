@@ -10,6 +10,7 @@ DATA_SCHEMA: Incomplete
 ERR_TIMEOUT: str
 ERR_CLIENT: str
 ERR_TOKEN: str
+TOKEN_URL: str
 
 class TibberConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int

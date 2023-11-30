@@ -12,6 +12,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_TOKEN as CONF_TOKEN, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResultType as FlowResultType
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
@@ -46,6 +47,7 @@ FITBIT_RESOURCES_LIST: Final[tuple[FitbitSensorEntityDescription, ...]]
 SLEEP_START_TIME: Incomplete
 SLEEP_START_TIME_12HR: Incomplete
 FITBIT_RESOURCE_BATTERY: Incomplete
+FITBIT_RESOURCE_BATTERY_LEVEL: Incomplete
 FITBIT_RESOURCES_KEYS: Final[list[str]]
 PLATFORM_SCHEMA: Final[Incomplete]
 FITBIT_CONF_KEYS: Incomplete
@@ -68,18 +70,29 @@ class FitbitSensor(SensorEntity):
     async def async_update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 
-class FitbitBatterySensor(CoordinatorEntity, SensorEntity):
+class FitbitBatterySensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEntity):
     entity_description: FitbitSensorEntityDescription
     _attr_attribution = ATTRIBUTION
     device: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
+    _attr_device_info: Incomplete
     _attr_entity_registry_enabled_default: bool
     def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: FitbitDevice, enable_default_override: bool) -> None: ...
     @property
     def icon(self) -> str | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, str | None]: ...
+    async def async_added_to_hass(self) -> None: ...
+    _attr_native_value: Incomplete
+    def _handle_coordinator_update(self) -> None: ...
+
+class FitbitBatteryLevelSensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEntity):
+    entity_description: FitbitSensorEntityDescription
+    _attr_attribution = ATTRIBUTION
+    device: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: FitbitDevice) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     def _handle_coordinator_update(self) -> None: ...

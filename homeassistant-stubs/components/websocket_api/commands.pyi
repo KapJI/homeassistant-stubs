@@ -1,14 +1,14 @@
 from . import const as const, decorators as decorators, messages as messages
 from .connection import ActiveConnection as ActiveConnection
-from .messages import construct_event_message as construct_event_message, construct_result_message as construct_result_message
+from .messages import construct_result_message as construct_result_message
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.auth.models import User as User
 from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.auth.permissions.events import SUBSCRIBE_ALLOWLIST as SUBSCRIBE_ALLOWLIST
 from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
-from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError, Unauthorized as Unauthorized
+from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, State as State, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, ServiceValidationError as ServiceValidationError, TemplateError as TemplateError, Unauthorized as Unauthorized
 from homeassistant.helpers import entity as entity, template as template
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result

@@ -18,7 +18,7 @@ class NetatmoScheduleSelect(NetatmoBase, SelectEntity):
     _signal_name: Incomplete
     _device_name: Incomplete
     _attr_name: Incomplete
-    _model: str
+    _model: Incomplete
     _config_url: Incomplete
     _attr_unique_id: Incomplete
     _attr_current_option: Incomplete

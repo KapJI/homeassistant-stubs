@@ -35,7 +35,6 @@ class AirzoneBaseSelect(AirzoneEntity, SelectEntity):
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneZoneSelect(AirzoneZoneEntity, AirzoneBaseSelect):
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     values_dict: Incomplete

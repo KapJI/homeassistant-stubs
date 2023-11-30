@@ -3,14 +3,17 @@ from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable
 from homeassistant import data_entry_flow as data_entry_flow
-from homeassistant.auth import AuthManagerFlowManager as AuthManagerFlowManager
+from homeassistant.auth import AuthManagerFlowManager as AuthManagerFlowManager, InvalidAuthError as InvalidAuthError
 from homeassistant.auth.models import Credentials as Credentials
+from homeassistant.auth.providers.trusted_networks import TrustedNetworksAuthProvider as TrustedNetworksAuthProvider
 from homeassistant.components import onboarding as onboarding
 from homeassistant.components.http.auth import async_user_not_allowed_do_auth as async_user_not_allowed_do_auth
 from homeassistant.components.http.ban import log_invalid_auth as log_invalid_auth, process_success_login as process_success_login, process_wrong_login as process_wrong_login
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
+from homeassistant.util.network import is_local as is_local
 from typing import Any
 
 async def async_setup(hass: HomeAssistant, store_result: Callable[[str, Credentials], str]) -> None: ...

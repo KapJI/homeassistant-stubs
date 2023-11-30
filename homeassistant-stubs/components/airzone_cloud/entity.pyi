@@ -11,6 +11,7 @@ from typing import Any
 _LOGGER: Incomplete
 
 class AirzoneEntity(CoordinatorEntity[AirzoneUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
+    _attr_has_entity_name: bool
     @property
     def available(self) -> bool: ...
     @abstractmethod

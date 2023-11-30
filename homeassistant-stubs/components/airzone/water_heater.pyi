@@ -16,8 +16,8 @@ OPERATION_MODE_TO_DHW_PARAMS: Final[dict[str, dict[str, Any]]]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneWaterHeater(AirzoneHotWaterEntity, WaterHeaterEntity):
-    _attr_supported_features: Incomplete
     _attr_name: Incomplete
+    _attr_supported_features: Incomplete
     _attr_unique_id: Incomplete
     _attr_operation_list: Incomplete
     _attr_temperature_unit: Incomplete

@@ -11,16 +11,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pywizlight import wizlight as wizlight
 
-@dataclass
-class WizNumberEntityDescriptionMixin:
-    value_fn: Callable[[wizlight], int | None]
-    set_value_fn: Callable[[wizlight, int], Coroutine[None, None, None]]
+@dataclass(kw_only=True)
+class WizNumberEntityDescription(NumberEntityDescription):
     required_feature: str
-    def __init__(self, value_fn, set_value_fn, required_feature) -> None: ...
-
-@dataclass
-class WizNumberEntityDescription(NumberEntityDescription, WizNumberEntityDescriptionMixin):
-    def __init__(self, value_fn, set_value_fn, required_feature, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    set_value_fn: Callable[[wizlight, int], Coroutine[None, None, None]]
+    value_fn: Callable[[wizlight], int | None]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, *, required_feature, set_value_fn, value_fn) -> None: ...
 
 async def _async_set_speed(device: wizlight, speed: int) -> None: ...
 async def _async_set_ratio(device: wizlight, ratio: int) -> None: ...

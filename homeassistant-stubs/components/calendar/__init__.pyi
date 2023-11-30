@@ -15,6 +15,7 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.json import JsonValueType as JsonValueType
@@ -39,8 +40,9 @@ CREATE_EVENT_SERVICE: str
 CREATE_EVENT_SCHEMA: Incomplete
 WEBSOCKET_EVENT_SCHEMA: Incomplete
 CALENDAR_EVENT_SCHEMA: Incomplete
-SERVICE_LIST_EVENTS: Final[str]
-SERVICE_LIST_EVENTS_SCHEMA: Final[Incomplete]
+LEGACY_SERVICE_LIST_EVENTS: Final[str]
+SERVICE_GET_EVENTS: Final[str]
+SERVICE_GET_EVENTS_SCHEMA: Final[Incomplete]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -111,3 +113,4 @@ async def handle_calendar_event_update(hass: HomeAssistant, connection: ActiveCo
 def _validate_timespan(values: dict[str, Any]) -> tuple[datetime.datetime | datetime.date, datetime.datetime | datetime.date]: ...
 async def async_create_event(entity: CalendarEntity, call: ServiceCall) -> None: ...
 async def async_list_events_service(calendar: CalendarEntity, service_call: ServiceCall) -> ServiceResponse: ...
+async def async_get_events_service(calendar: CalendarEntity, service_call: ServiceCall) -> ServiceResponse: ...

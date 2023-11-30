@@ -11,15 +11,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyrituals import Diffuser as Diffuser
 
-@dataclass
-class RitualsentityDescriptionMixin:
+@dataclass(kw_only=True)
+class RitualsBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[Diffuser], bool]
     has_fn: Callable[[Diffuser], bool]
-    def __init__(self, is_on_fn, has_fn) -> None: ...
-
-@dataclass
-class RitualsBinarySensorEntityDescription(BinarySensorEntityDescription, RitualsentityDescriptionMixin):
-    def __init__(self, is_on_fn, has_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, *, is_on_fn, has_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

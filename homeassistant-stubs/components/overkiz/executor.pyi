@@ -1,5 +1,6 @@
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from _typeshed import Incomplete
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from pyoverkiz.enums import OverkizCommand
 from pyoverkiz.models import Device as Device, StateDefinition as StateDefinition
 from pyoverkiz.types import StateType as OverkizStateType

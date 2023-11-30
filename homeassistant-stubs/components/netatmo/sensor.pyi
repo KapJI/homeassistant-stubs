@@ -84,8 +84,8 @@ class NetatmoRoomSensor(NetatmoBase, SensorEntity):
     _id: Incomplete
     _attr_name: Incomplete
     _room_id: Incomplete
-    _model: Incomplete
     _config_url: Incomplete
+    _model: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, netatmo_room: NetatmoRoom, description: NetatmoSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete

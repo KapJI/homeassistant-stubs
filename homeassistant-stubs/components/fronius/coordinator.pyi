@@ -19,7 +19,7 @@ class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[st
     MAX_FAILED_UPDATES: int
     _failed_update_count: int
     solar_net: Incomplete
-    unregistered_keys: Incomplete
+    unregistered_descriptors: Incomplete
     def __init__(self, *args: Any, solar_net: FroniusSolarNet, **kwargs: Any) -> None: ...
     @abstractmethod
     async def _update_method(self) -> dict[SolarNetId, Any]: ...

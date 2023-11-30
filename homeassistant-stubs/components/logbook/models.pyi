@@ -25,9 +25,6 @@ class LazyEventPartialState:
     event_type: Incomplete
     entity_id: Incomplete
     state: Incomplete
-    context_id_bin: Incomplete
-    context_user_id_bin: Incomplete
-    context_parent_id_bin: Incomplete
     data: Incomplete
     def __init__(self, row: Row | EventAsRow, event_data_cache: dict[str, dict[str, Any]]) -> None: ...
     @property

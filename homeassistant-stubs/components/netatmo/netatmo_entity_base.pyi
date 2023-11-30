@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from pyatmo import DeviceType as DeviceType
 
 class NetatmoBase(Entity):
     _attr_attribution = DEFAULT_ATTRIBUTION
@@ -11,7 +12,7 @@ class NetatmoBase(Entity):
     _publishers: Incomplete
     _device_name: str
     _id: str
-    _model: str
+    _model: Incomplete
     _config_url: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

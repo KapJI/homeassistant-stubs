@@ -1,6 +1,6 @@
 import logging
-from .api import AccessTokenAuthImpl as AccessTokenAuthImpl, DEVICE_AUTH_CREDS as DEVICE_AUTH_CREDS, DeviceAuth as DeviceAuth, DeviceFlow as DeviceFlow, OAuthError as OAuthError, async_create_device_flow as async_create_device_flow, get_feature_access as get_feature_access
-from .const import CONF_CALENDAR_ACCESS as CONF_CALENDAR_ACCESS, DOMAIN as DOMAIN, FeatureAccess as FeatureAccess
+from .api import AccessTokenAuthImpl as AccessTokenAuthImpl, DEVICE_AUTH_CREDS as DEVICE_AUTH_CREDS, DeviceFlow as DeviceFlow, GoogleHybridAuth as GoogleHybridAuth, InvalidCredential as InvalidCredential, OAuthError as OAuthError, async_create_device_flow as async_create_device_flow, get_feature_access as get_feature_access
+from .const import CONF_CALENDAR_ACCESS as CONF_CALENDAR_ACCESS, CONF_CREDENTIAL_TYPE as CONF_CREDENTIAL_TYPE, CredentialType as CredentialType, DEFAULT_FEATURE_ACCESS as DEFAULT_FEATURE_ACCESS, DOMAIN as DOMAIN, FeatureAccess as FeatureAccess
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
@@ -16,9 +16,12 @@ class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, doma
     DOMAIN = DOMAIN
     _reauth_config_entry: Incomplete
     _device_flow: Incomplete
+    _web_auth: bool
     def __init__(self) -> None: ...
     @property
     def logger(self) -> logging.Logger: ...
+    @property
+    def extra_authorize_data(self) -> dict[str, Any]: ...
     flow_impl: Incomplete
     external_data: Incomplete
     async def async_step_import(self, info: dict[str, Any]) -> FlowResult: ...

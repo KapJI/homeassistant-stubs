@@ -11,15 +11,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyrituals import Diffuser as Diffuser
 from typing import Any
 
-@dataclass
-class RitualsNumberEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class RitualsNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[Diffuser], int]
     set_value_fn: Callable[[Diffuser, int], Awaitable[Any]]
-    def __init__(self, value_fn, set_value_fn) -> None: ...
-
-@dataclass
-class RitualsNumberEntityDescription(NumberEntityDescription, RitualsNumberEntityDescriptionMixin):
-    def __init__(self, value_fn, set_value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, *, value_fn, set_value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

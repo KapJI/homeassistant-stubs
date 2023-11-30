@@ -10,6 +10,10 @@ class ENTRY(NamedTuple):
     register_count: Incomplete
     validate_parm: Incomplete
 
+ILLEGAL: str
+OPTIONAL: str
+DEMANDED: str
+
 class PARM_IS_LEGAL(NamedTuple):
     count: Incomplete
     structure: Incomplete

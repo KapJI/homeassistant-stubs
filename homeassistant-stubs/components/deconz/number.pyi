@@ -18,18 +18,14 @@ from typing import Any, Generic, TypeVar
 
 T = TypeVar('T', Presence, PydeconzSensorBase)
 
-@dataclass
-class DeconzNumberDescriptionMixin(Generic[T]):
+@dataclass(kw_only=True)
+class DeconzNumberDescription(NumberEntityDescription, Generic[T]):
     instance_check: type[T]
     name_suffix: str
     set_fn: Callable[[DeconzSession, str, int], Coroutine[Any, Any, dict[str, Any]]]
     update_key: str
     value_fn: Callable[[T], float | None]
-    def __init__(self, instance_check, name_suffix, set_fn, update_key, value_fn) -> None: ...
-
-@dataclass
-class DeconzNumberDescription(NumberEntityDescription, DeconzNumberDescriptionMixin[T]):
-    def __init__(self, instance_check, name_suffix, set_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, *, instance_check, name_suffix, set_fn, update_key, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzNumberDescription, ...]
 

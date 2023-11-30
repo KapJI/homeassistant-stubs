@@ -15,6 +15,9 @@ from homeassistant.helpers.typing import ConfigType
 from typing import Any, TypedDict
 
 ATTR_AUDIO_OUTPUT: str
+ATTR_PREFERRED_FORMAT: str
+ATTR_PREFERRED_SAMPLE_RATE: str
+ATTR_PREFERRED_SAMPLE_CHANNELS: str
 CONF_LANG: str
 
 class TTSCache(TypedDict):
@@ -87,3 +90,6 @@ class TextToSpeechView(HomeAssistantView):
     tts: Incomplete
     def __init__(self, tts: SpeechManager) -> None: ...
     async def get(self, request: web.Request, filename: str) -> web.Response: ...
+
+# Names in __all__ with no definition:
+#   SampleFormat

@@ -10,6 +10,7 @@ from typing import Any
 _LOGGER: Incomplete
 
 class AirzoneEntity(CoordinatorEntity[AirzoneUpdateCoordinator]):
+    _attr_has_entity_name: bool
     def get_airzone_value(self, key: str) -> Any: ...
 
 class AirzoneSystemEntity(AirzoneEntity):

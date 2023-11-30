@@ -18,14 +18,18 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
+    _previous_mode: str
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
+    cdr_gateway: Incomplete
+    gateway_data: Incomplete
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str) -> None: ...
+    def _previous_action_mode(self, coordinator: PlugwiseDataUpdateCoordinator) -> None: ...
     @property
     def current_temperature(self) -> float: ...
     @property
@@ -39,7 +43,7 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     @property
     def hvac_modes(self) -> list[HVACMode]: ...
     @property
-    def hvac_action(self) -> HVACAction | None: ...
+    def hvac_action(self) -> HVACAction: ...
     @property
     def preset_mode(self) -> str | None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

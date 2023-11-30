@@ -113,8 +113,15 @@ class ColorRGBSelector(Selector[ColorRGBSelectorConfig]):
     def __call__(self, data: Any) -> list[int]: ...
 
 class ColorTempSelectorConfig(TypedDict, total=False):
+    unit: ColorTempSelectorUnit
+    min: int
+    max: int
     max_mireds: int
     min_mireds: int
+
+class ColorTempSelectorUnit(StrEnum):
+    KELVIN: str
+    MIRED: str
 
 class ColorTempSelector(Selector[ColorTempSelectorConfig]):
     selector_type: str
@@ -342,6 +349,7 @@ class TextSelectorConfig(TypedDict, total=False):
     suffix: str
     type: TextSelectorType
     autocomplete: str
+    multiple: bool
 
 class TextSelectorType(StrEnum):
     COLOR: str
@@ -362,7 +370,7 @@ class TextSelector(Selector[TextSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: TextSelectorConfig | None = ...) -> None: ...
-    def __call__(self, data: Any) -> str: ...
+    def __call__(self, data: Any) -> str | list[str]: ...
 
 class ThemeSelectorConfig(TypedDict): ...
 
@@ -379,6 +387,14 @@ class TimeSelector(Selector[TimeSelectorConfig]):
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: TimeSelectorConfig | None = ...) -> None: ...
     def __call__(self, data: Any) -> str: ...
+
+class TriggerSelectorConfig(TypedDict): ...
+
+class TriggerSelector(Selector[TriggerSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: TriggerSelectorConfig | None = ...) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
 
 class FileSelectorConfig(TypedDict):
     accept: str

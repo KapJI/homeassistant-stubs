@@ -15,61 +15,41 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Generic, TypeVar
 
-@dataclass
-class WithingsMeasurementSensorEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class WithingsMeasurementSensorEntityDescription(SensorEntityDescription):
     measurement_type: MeasurementType
-    def __init__(self, measurement_type) -> None: ...
-
-@dataclass
-class WithingsMeasurementSensorEntityDescription(SensorEntityDescription, WithingsMeasurementSensorEntityDescriptionMixin):
-    def __init__(self, measurement_type, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, measurement_type) -> None: ...
 
 MEASUREMENT_SENSORS: dict[MeasurementType, WithingsMeasurementSensorEntityDescription]
 
-@dataclass
-class WithingsSleepSensorEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class WithingsSleepSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[SleepSummary], StateType]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass
-class WithingsSleepSensorEntityDescription(SensorEntityDescription, WithingsSleepSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, value_fn) -> None: ...
 
 SLEEP_SENSORS: Incomplete
 
-@dataclass
-class WithingsActivitySensorEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class WithingsActivitySensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Activity], StateType]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass
-class WithingsActivitySensorEntityDescription(SensorEntityDescription, WithingsActivitySensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, value_fn) -> None: ...
 
 ACTIVITY_SENSORS: Incomplete
 STEP_GOAL: str
 SLEEP_GOAL: str
 WEIGHT_GOAL: str
 
-@dataclass
-class WithingsGoalsSensorEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class WithingsGoalsSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Goals], StateType]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass
-class WithingsGoalsSensorEntityDescription(SensorEntityDescription, WithingsGoalsSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, value_fn) -> None: ...
 
 GOALS_SENSORS: dict[str, WithingsGoalsSensorEntityDescription]
 
-@dataclass
-class WithingsWorkoutSensorEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class WithingsWorkoutSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Workout], StateType]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass
-class WithingsWorkoutSensorEntityDescription(SensorEntityDescription, WithingsWorkoutSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, value_fn) -> None: ...
 
 _WORKOUT_CATEGORY: Incomplete
 WORKOUT_SENSORS: Incomplete

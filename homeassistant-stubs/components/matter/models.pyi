@@ -5,8 +5,14 @@ from homeassistant.const import Platform as Platform
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from matter_server.client.models.device_types import DeviceType as DeviceType
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
+from typing import TypedDict
 
 SensorValueTypes: Incomplete
+
+class MatterDeviceInfo(TypedDict):
+    unique_id: str
+    vendor_id: str
+    product_id: str
 
 @dataclass
 class MatterEntityInfo:

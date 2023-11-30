@@ -12,14 +12,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from whois import Domain
 
-@dataclass
-class WhoisSensorEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class WhoisSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Domain], datetime | int | str | None]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass
-class WhoisSensorEntityDescription(SensorEntityDescription, WhoisSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, value_fn) -> None: ...
 
 def _days_until_expiration(domain: Domain) -> int | None: ...
 def _ensure_timezone(timestamp: datetime | None) -> datetime | None: ...

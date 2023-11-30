@@ -1,4 +1,4 @@
-from .api import DeviceAuth as DeviceAuth
+from .api import GoogleHybridAuth as GoogleHybridAuth
 from _typeshed import Incomplete
 from homeassistant.components.application_credentials import AuthorizationServer as AuthorizationServer, ClientCredential as ClientCredential
 from homeassistant.core import HomeAssistant as HomeAssistant

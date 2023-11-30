@@ -1,5 +1,5 @@
 from . import HomeAssistantOverkizData as HomeAssistantOverkizData
-from .const import CONF_HUB as CONF_HUB, DOMAIN as DOMAIN
+from .const import CONF_API_TYPE as CONF_API_TYPE, CONF_HUB as CONF_HUB, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry

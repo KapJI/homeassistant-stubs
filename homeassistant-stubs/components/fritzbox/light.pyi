@@ -1,9 +1,10 @@
 from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity, FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
-from .const import COLOR_MODE as COLOR_MODE, COLOR_TEMP_MODE as COLOR_TEMP_MODE, CONF_COORDINATOR as CONF_COORDINATOR, LOGGER as LOGGER
+from .common import get_coordinator as get_coordinator
+from .const import COLOR_MODE as COLOR_MODE, COLOR_TEMP_MODE as COLOR_TEMP_MODE, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 

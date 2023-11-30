@@ -6,6 +6,7 @@ from collections.abc import Mapping
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
 from typing import Any
 
 IPAddress: Incomplete

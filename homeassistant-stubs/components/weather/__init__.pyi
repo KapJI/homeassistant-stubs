@@ -66,7 +66,8 @@ ATTR_FORECAST_UV_INDEX: Final[str]
 ENTITY_ID_FORMAT: Incomplete
 SCAN_INTERVAL: Incomplete
 ROUNDING_PRECISION: int
-SERVICE_GET_FORECAST: Final[str]
+LEGACY_SERVICE_GET_FORECAST: Final[str]
+SERVICE_GET_FORECASTS: Final[str]
 _ObservationUpdateCoordinatorT = TypeVar('_ObservationUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]')
 _DailyForecastUpdateCoordinatorT = TypeVar('_DailyForecastUpdateCoordinatorT', bound='TimestampDataUpdateCoordinator[Any]')
 _HourlyForecastUpdateCoordinatorT = TypeVar('_HourlyForecastUpdateCoordinatorT', bound='TimestampDataUpdateCoordinator[Any]')
@@ -225,6 +226,7 @@ class WeatherEntity(Entity, PostInit):
 
 def raise_unsupported_forecast(entity_id: str, forecast_type: str) -> None: ...
 async def async_get_forecast_service(weather: WeatherEntity, service_call: ServiceCall) -> ServiceResponse: ...
+async def async_get_forecasts_service(weather: WeatherEntity, service_call: ServiceCall) -> ServiceResponse: ...
 
 class CoordinatorWeatherEntity(CoordinatorEntity[_ObservationUpdateCoordinatorT], WeatherEntity, Generic[_ObservationUpdateCoordinatorT, _DailyForecastUpdateCoordinatorT, _HourlyForecastUpdateCoordinatorT, _TwiceDailyForecastUpdateCoordinatorT]):
     forecast_coordinators: Incomplete

@@ -1,7 +1,6 @@
 from . import core as core, loader as loader, requirements as requirements
-from .config import async_notify_setup_error as async_notify_setup_error
 from .const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PLATFORM_FORMAT as PLATFORM_FORMAT, Platform as Platform
-from .core import CALLBACK_TYPE as CALLBACK_TYPE
+from .core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import DependencyError as DependencyError, HomeAssistantError as HomeAssistantError
 from .helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from .helpers.typing import ConfigType as ConfigType
@@ -18,9 +17,12 @@ DATA_SETUP_DONE: str
 DATA_SETUP_STARTED: str
 DATA_SETUP_TIME: str
 DATA_DEPS_REQS: str
+DATA_PERSISTENT_ERRORS: str
+NOTIFY_FOR_TRANSLATION_KEYS: Incomplete
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int
 
+def async_notify_setup_error(hass: HomeAssistant, component: str, display_link: str | None = ...) -> None: ...
 def async_set_domains_to_be_loaded(hass: core.HomeAssistant, domains: set[str]) -> None: ...
 def setup_component(hass: core.HomeAssistant, domain: str, config: ConfigType) -> bool: ...
 async def async_setup_component(hass: core.HomeAssistant, domain: str, config: ConfigType) -> bool: ...

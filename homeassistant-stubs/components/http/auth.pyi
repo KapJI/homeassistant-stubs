@@ -10,6 +10,7 @@ from homeassistant.auth.models import User as User
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.json import json_bytes as json_bytes
+from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.util.network import is_local as is_local
 from typing import Final

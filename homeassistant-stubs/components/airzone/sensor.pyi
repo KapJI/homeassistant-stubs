@@ -21,20 +21,17 @@ class AirzoneSensor(AirzoneEntity, SensorEntity):
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneHotWaterSensor(AirzoneHotWaterEntity, AirzoneSensor):
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: SensorEntityDescription, entry: ConfigEntry) -> None: ...
 
 class AirzoneWebServerSensor(AirzoneWebServerEntity, AirzoneSensor):
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: SensorEntityDescription, entry: ConfigEntry) -> None: ...
 
 class AirzoneZoneSensor(AirzoneZoneEntity, AirzoneSensor):
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     _attr_native_unit_of_measurement: Incomplete

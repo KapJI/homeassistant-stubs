@@ -1,6 +1,6 @@
 import asyncio
 from .const import EVENT_COALESCE_TIME as EVENT_COALESCE_TIME, MAX_PENDING_HISTORY_STATES as MAX_PENDING_HISTORY_STATES
-from .helpers import entities_may_have_state_changes_after as entities_may_have_state_changes_after
+from .helpers import entities_may_have_state_changes_after as entities_may_have_state_changes_after, has_recorder_run_after as has_recorder_run_after
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, MutableMapping
 from dataclasses import dataclass

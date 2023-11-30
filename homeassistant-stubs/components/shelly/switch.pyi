@@ -1,4 +1,4 @@
-from .const import GAS_VALVE_OPEN_STATES as GAS_VALVE_OPEN_STATES
+from .const import GAS_VALVE_OPEN_STATES as GAS_VALVE_OPEN_STATES, MODEL_WALL_DISPLAY as MODEL_WALL_DISPLAY
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, get_entry_data as get_entry_data
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity, async_setup_block_attribute_entities as async_setup_block_attribute_entities
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light

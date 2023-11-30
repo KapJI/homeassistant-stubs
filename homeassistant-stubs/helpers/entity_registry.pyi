@@ -53,7 +53,7 @@ class _EventEntityRegistryUpdatedData_Update(TypedDict):
 
 EventEntityRegistryUpdatedData: Incomplete
 EntityOptionsType = Mapping[str, Mapping[str, Any]]
-ReadOnlyEntityOptionsType = ReadOnlyDict[str, Mapping[str, Any]]
+ReadOnlyEntityOptionsType = ReadOnlyDict[str, ReadOnlyDict[str, Any]]
 DISLAY_DICT_OPTIONAL: Incomplete
 
 def _protect_entity_options(data: EntityOptionsType | None) -> ReadOnlyEntityOptionsType: ...

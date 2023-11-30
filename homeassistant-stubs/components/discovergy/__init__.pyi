@@ -1,4 +1,3 @@
-import pydiscovergy
 from .const import DOMAIN as DOMAIN
 from .coordinator import DiscovergyUpdateCoordinator as DiscovergyUpdateCoordinator
 from _typeshed import Incomplete
@@ -8,13 +7,14 @@ from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from pydiscovergy import Discovergy
 from pydiscovergy.models import Meter as Meter
 
 PLATFORMS: Incomplete
 
 @dataclass
 class DiscovergyData:
-    api_client: pydiscovergy.Discovergy
+    api_client: Discovergy
     meters: list[Meter]
     coordinators: dict[str, DiscovergyUpdateCoordinator]
     def __init__(self, api_client, meters, coordinators) -> None: ...

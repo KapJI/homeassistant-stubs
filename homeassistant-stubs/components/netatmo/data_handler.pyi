@@ -15,7 +15,7 @@ ACCOUNT: str
 HOME: str
 WEATHER: str
 AIR_CARE: str
-PUBLIC: str
+PUBLIC: Incomplete
 EVENT: str
 PUBLISHERS: Incomplete
 BATCH_SIZE: int

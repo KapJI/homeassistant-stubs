@@ -15,6 +15,7 @@ _LOGGER: Incomplete
 class IdasenDeskCoordinator(DataUpdateCoordinator[int | None]):
     _address: Incomplete
     _expected_connected: bool
+    _connection_lost: bool
     desk: Incomplete
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, name: str, address: str) -> None: ...
     async def async_connect(self) -> bool: ...

@@ -8,7 +8,7 @@ from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_COND
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from pydrawise.legacy import LegacyHydrawise as LegacyHydrawise
+from pydrawise.schema import Zone as Zone
 
 BINARY_SENSOR_STATUS: Incomplete
 BINARY_SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...]

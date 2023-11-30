@@ -1,13 +1,12 @@
 from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
-from .const import CONF_COORDINATOR as CONF_COORDINATOR
-from .coordinator import FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
+from .common import get_coordinator as get_coordinator
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final

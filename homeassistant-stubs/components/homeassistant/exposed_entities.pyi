@@ -11,6 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity import get_device_class as get_device_class
 from homeassistant.helpers.storage import Store as Store
+from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from typing import Any, TypedDict
 
 KNOWN_ASSISTANTS: Incomplete

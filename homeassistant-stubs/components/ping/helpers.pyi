@@ -12,7 +12,7 @@ class PingData:
     data: dict[str, Any] | None
     is_alive: bool
     hass: Incomplete
-    _ip_address: Incomplete
+    ip_address: Incomplete
     _count: Incomplete
     def __init__(self, hass: HomeAssistant, host: str, count: int) -> None: ...
 

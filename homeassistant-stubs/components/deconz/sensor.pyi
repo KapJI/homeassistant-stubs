@@ -22,6 +22,7 @@ from pydeconz.models.sensor.generic_status import GenericStatus
 from pydeconz.models.sensor.humidity import Humidity
 from pydeconz.models.sensor.light_level import LightLevel
 from pydeconz.models.sensor.moisture import Moisture
+from pydeconz.models.sensor.particulate_matter import ParticulateMatter
 from pydeconz.models.sensor.power import Power
 from pydeconz.models.sensor.pressure import Pressure
 from pydeconz.models.sensor.temperature import Temperature
@@ -33,21 +34,17 @@ ATTR_CURRENT: str
 ATTR_POWER: str
 ATTR_DAYLIGHT: str
 ATTR_EVENT_ID: str
-T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Moisture, Power, Pressure, Temperature, Time, PydeconzSensorBase)
+T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Moisture, ParticulateMatter, Power, Pressure, Temperature, Time, PydeconzSensorBase)
 
-@dataclass
-class DeconzSensorDescriptionMixin(Generic[T]):
-    supported_fn: Callable[[T], bool]
-    update_key: str
-    value_fn: Callable[[T], datetime | StateType]
-    def __init__(self, supported_fn, update_key, value_fn) -> None: ...
-
-@dataclass
-class DeconzSensorDescription(SensorEntityDescription, DeconzSensorDescriptionMixin[T]):
+@dataclass(kw_only=True)
+class DeconzSensorDescription(SensorEntityDescription, Generic[T]):
     instance_check: type[T] | None = ...
     name_suffix: str = ...
     old_unique_id_suffix: str = ...
-    def __init__(self, supported_fn, update_key, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix) -> None: ...
+    supported_fn: Callable[[T], bool]
+    update_key: str
+    value_fn: Callable[[T], datetime | StateType]
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, instance_check, name_suffix, old_unique_id_suffix, supported_fn, update_key, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzSensorDescription, ...]
 

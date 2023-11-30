@@ -11,15 +11,11 @@ from pydeconz.models.event import EventType as EventType
 from pydeconz.models.scene import Scene as PydeconzScene
 from pydeconz.models.sensor.presence import Presence
 
-@dataclass
-class DeconzButtonDescriptionMixin:
-    suffix: str
+@dataclass(kw_only=True)
+class DeconzButtonDescription(ButtonEntityDescription):
     button_fn: str
-    def __init__(self, suffix, button_fn) -> None: ...
-
-@dataclass
-class DeconzButtonDescription(ButtonEntityDescription, DeconzButtonDescriptionMixin):
-    def __init__(self, suffix, button_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    suffix: str
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, *, button_fn, suffix) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

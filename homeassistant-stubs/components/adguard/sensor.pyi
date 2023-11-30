@@ -15,14 +15,10 @@ from typing import Any
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
 
-@dataclass
-class AdGuardHomeEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class AdGuardHomeEntityDescription(SensorEntityDescription):
     value_fn: Callable[[AdGuardHome], Coroutine[Any, Any, int | float]]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass
-class AdGuardHomeEntityDescription(SensorEntityDescription, AdGuardHomeEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, value_fn) -> None: ...
 
 SENSORS: tuple[AdGuardHomeEntityDescription, ...]
 

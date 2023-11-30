@@ -1,6 +1,6 @@
 import aiounifi
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER
-from .controller import UniFiController as UniFiController
+from .controller import UNIFI_DOMAIN as UNIFI_DOMAIN, UniFiController as UniFiController
 from .entity import HandlerT as HandlerT, SubscriptionT as SubscriptionT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent
@@ -46,6 +46,7 @@ class UnifiSwitchEntityDescription(SwitchEntityDescription, UnifiEntityDescripti
 
 ENTITY_DESCRIPTIONS: tuple[UnifiSwitchEntityDescription, ...]
 
+def async_update_unique_id(hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class UnifiSwitchEntity(UnifiEntity[HandlerT, ApiItemT], SwitchEntity):

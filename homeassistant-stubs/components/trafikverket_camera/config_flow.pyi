@@ -1,7 +1,7 @@
 from .const import CONF_LOCATION as CONF_LOCATION, DOMAIN as DOMAIN
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ID as CONF_ID
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from pytrafikverket.trafikverket_camera import CameraInfo as CameraInfo

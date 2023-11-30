@@ -12,15 +12,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from plugwise import Smile as Smile
 from plugwise.constants import NumberType as NumberType
 
-@dataclass
-class PlugwiseEntityDescriptionMixin:
+@dataclass(kw_only=True)
+class PlugwiseNumberEntityDescription(NumberEntityDescription):
     command: Callable[[Smile, str, str, float], Awaitable[None]]
-    def __init__(self, command) -> None: ...
-
-@dataclass
-class PlugwiseNumberEntityDescription(NumberEntityDescription, PlugwiseEntityDescriptionMixin):
     key: NumberType
-    def __init__(self, command, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, *, key, command) -> None: ...
 
 NUMBER_TYPES: Incomplete
 

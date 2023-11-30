@@ -2,8 +2,9 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -90,6 +91,7 @@ class BinarySensorEntity(Entity):
     _attr_device_class: BinarySensorDeviceClass | None
     _attr_is_on: bool | None
     _attr_state: None
+    async def async_internal_added_to_hass(self) -> None: ...
     def _default_to_device_class_name(self) -> bool: ...
     @property
     def device_class(self) -> BinarySensorDeviceClass | None: ...

@@ -8,6 +8,7 @@ from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_COND
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from pydrawise.schema import Zone as Zone
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 SENSOR_KEYS: list[str]
@@ -18,5 +19,6 @@ def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEnt
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HydrawiseSensor(HydrawiseEntity, SensorEntity):
+    zone: Zone
     _attr_native_value: Incomplete
     def _update_attrs(self) -> None: ...

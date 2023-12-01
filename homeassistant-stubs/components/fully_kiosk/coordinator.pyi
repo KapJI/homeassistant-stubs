@@ -8,7 +8,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 class FullyKioskDataUpdateCoordinator(DataUpdateCoordinator):
-    fully: Incomplete
     use_ssl: Incomplete
+    fully: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

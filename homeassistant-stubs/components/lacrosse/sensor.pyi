@@ -53,7 +53,7 @@ class LaCrosseTemperature(LaCrosseSensor):
 class LaCrosseHumidity(LaCrosseSensor):
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_state_class: Incomplete
-    _attr_icon: str
+    _attr_device_class: Incomplete
     @property
     def native_value(self) -> int | None: ...
 

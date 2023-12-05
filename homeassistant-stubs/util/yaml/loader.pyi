@@ -4,7 +4,7 @@ from .objects import Input as Input, NodeDictClass as NodeDictClass, NodeListCla
 from _typeshed import Incomplete
 from collections.abc import Iterator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.frame import report as report
+from homeassistant.helpers.deprecation import deprecated_class as deprecated_class
 from io import StringIO
 from pathlib import Path
 from typing import Any, TextIO, TypeVar, overload
@@ -34,15 +34,13 @@ class FastSafeLoader(FastestAvailableSafeLoader, _LoaderMixin):
     secrets: Incomplete
     def __init__(self, stream: Any, secrets: Secrets | None = ...) -> None: ...
 
-class SafeLoader(FastSafeLoader):
-    def __init__(*args: Any, **kwargs: Any) -> None: ...
+class SafeLoader(FastSafeLoader): ...
 
 class PythonSafeLoader(yaml.SafeLoader, _LoaderMixin):
     secrets: Incomplete
     def __init__(self, stream: Any, secrets: Secrets | None = ...) -> None: ...
 
-class SafeLineLoader(PythonSafeLoader):
-    def __init__(*args: Any, **kwargs: Any) -> None: ...
+class SafeLineLoader(PythonSafeLoader): ...
 
 LoaderType: Incomplete
 

@@ -2,9 +2,9 @@ import yaml
 from .const import SECRET_YAML as SECRET_YAML
 from .objects import Input as Input, NodeDictClass as NodeDictClass, NodeListClass as NodeListClass, NodeStrClass as NodeStrClass
 from _typeshed import Incomplete
-from collections.abc import Iterator
+from collections.abc import Callable as Callable, Iterator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.deprecation import deprecated_class as deprecated_class
+from homeassistant.helpers.frame import report as report
 from io import StringIO
 from pathlib import Path
 from typing import Any, TextIO, TypeVar, overload
@@ -34,13 +34,27 @@ class FastSafeLoader(FastestAvailableSafeLoader, _LoaderMixin):
     secrets: Incomplete
     def __init__(self, stream: Any, secrets: Secrets | None = ...) -> None: ...
 
-class SafeLoader(FastSafeLoader): ...
+class SafeLoader(FastSafeLoader):
+    def __init__(*args: Any, **kwargs: Any) -> None: ...
+    @classmethod
+    def add_constructor(cls, tag: str, constructor: Callable) -> None: ...
+    @classmethod
+    def add_multi_constructor(cls, tag_prefix: str, multi_constructor: Callable) -> None: ...
+    @staticmethod
+    def __report_deprecated() -> None: ...
 
 class PythonSafeLoader(yaml.SafeLoader, _LoaderMixin):
     secrets: Incomplete
     def __init__(self, stream: Any, secrets: Secrets | None = ...) -> None: ...
 
-class SafeLineLoader(PythonSafeLoader): ...
+class SafeLineLoader(PythonSafeLoader):
+    def __init__(*args: Any, **kwargs: Any) -> None: ...
+    @classmethod
+    def add_constructor(cls, tag: str, constructor: Callable) -> None: ...
+    @classmethod
+    def add_multi_constructor(cls, tag_prefix: str, multi_constructor: Callable) -> None: ...
+    @staticmethod
+    def __report_deprecated() -> None: ...
 
 LoaderType: Incomplete
 

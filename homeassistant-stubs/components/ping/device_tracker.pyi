@@ -3,9 +3,12 @@ from .const import CONF_IMPORTED_BY as CONF_IMPORTED_BY, CONF_PING_COUNT as CONF
 from .coordinator import PingUpdateCoordinator as PingUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSeeCallback, ScannerEntity as ScannerEntity, SourceType as SourceType
+from homeassistant.components.device_tracker.legacy import YAML_DEVICES as YAML_DEVICES, remove_device_from_config as remove_device_from_config
+from homeassistant.config import load_yaml_config_file as load_yaml_config_file
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_HOSTS as CONF_HOSTS, CONF_NAME as CONF_NAME
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_HOSTS as CONF_HOSTS, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType

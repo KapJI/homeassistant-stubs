@@ -9,7 +9,6 @@ _LOGGER: Incomplete
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
-    meter_verification: bool
     meter_data: dict[str, str]
     meter_error: dict[str, str]
     async def _verify_meter(self, phone_number: str) -> None: ...

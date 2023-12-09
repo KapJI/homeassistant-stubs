@@ -5,6 +5,7 @@ from homewizard_energy.models import Data as Data, Device as Device, State as St
 
 DOMAIN: str
 PLATFORMS: Incomplete
+LOGGER: Incomplete
 CONF_API_ENABLED: str
 CONF_DATA: str
 CONF_DEVICE: str

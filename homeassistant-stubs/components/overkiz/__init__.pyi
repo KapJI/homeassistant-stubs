@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from pyoverkiz.client import OverkizClient
-from pyoverkiz.models import Device as Device, OverkizServer as OverkizServer, Scenario
+from pyoverkiz.models import Device as Device, OverkizServer as OverkizServer, Scenario as Scenario
 
 @dataclass
 class HomeAssistantOverkizData:

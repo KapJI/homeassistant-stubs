@@ -1,5 +1,4 @@
 import json
-import orjson
 from .file import WriteError as WriteError
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -17,9 +16,7 @@ JSON_DECODE_EXCEPTIONS: Incomplete
 
 class SerializationError(HomeAssistantError): ...
 
-json_loads: Callable[[bytes | bytearray | memoryview | str], JsonValueType]
-json_loads = orjson.loads
-
+def json_loads(__obj: bytes | bytearray | memoryview | str) -> JsonValueType: ...
 def json_loads_array(__obj: bytes | bytearray | memoryview | str) -> JsonArrayType: ...
 def json_loads_object(__obj: bytes | bytearray | memoryview | str) -> JsonObjectType: ...
 def load_json(filename: str | PathLike, default: JsonValueType = ...) -> JsonValueType: ...

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, NumberType as NumberType
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from _typeshed import Incomplete
@@ -10,7 +10,6 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from plugwise import Smile as Smile
-from plugwise.constants import NumberType as NumberType
 
 @dataclass(kw_only=True)
 class PlugwiseNumberEntityDescription(NumberEntityDescription):

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SelectOptionsType as SelectOptionsType, SelectType as SelectType
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from _typeshed import Incomplete
@@ -10,7 +10,6 @@ from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as ST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from plugwise import Smile as Smile
-from plugwise.constants import SelectOptionsType as SelectOptionsType, SelectType as SelectType
 
 @dataclass(kw_only=True)
 class PlugwiseSelectEntityDescription(SelectEntityDescription):

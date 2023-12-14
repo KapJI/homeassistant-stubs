@@ -87,6 +87,7 @@ class PipelineStage(StrEnum):
     STT: str
     INTENT: str
     TTS: str
+    END: str
 
 PIPELINE_STAGE_ORDER: Incomplete
 

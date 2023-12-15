@@ -13,7 +13,6 @@ from homeassistant.components.http.data_validator import RequestDataValidator as
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
-from homeassistant.util.network import is_local as is_local
 from typing import Any
 
 async def async_setup(hass: HomeAssistant, store_result: Callable[[str, Credentials], str]) -> None: ...

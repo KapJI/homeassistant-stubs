@@ -20,7 +20,7 @@ from typing import Any
 _LOGGER: Incomplete
 TRIGGER_ENTITY_OPTIONS: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class RestSensor(ManualTriggerSensorEntity, RestEntity):
     _value_template: Incomplete

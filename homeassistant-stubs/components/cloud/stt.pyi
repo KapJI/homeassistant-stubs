@@ -9,7 +9,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 
 _LOGGER: Incomplete
 
-async def async_get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> CloudProvider: ...
+async def async_get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> CloudProvider: ...
 
 class CloudProvider(Provider):
     cloud: Incomplete

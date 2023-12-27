@@ -12,7 +12,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 
 WAIT_UNTIL_CHANGE: int
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class CloudRemoteBinary(BinarySensorEntity):
     _attr_name: str

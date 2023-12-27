@@ -5,6 +5,8 @@ from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_
 from homeassistant.helpers.entity import Entity, EntityDescription
 from typing import Any
 
+__all__ = ['ATTR_CYCLE', 'ATTR_OPTION', 'ATTR_OPTIONS', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SelectEntity', 'SelectEntityDescription', 'SERVICE_SELECT_FIRST', 'SERVICE_SELECT_LAST', 'SERVICE_SELECT_NEXT', 'SERVICE_SELECT_OPTION', 'SERVICE_SELECT_PREVIOUS']
+
 @dataclass
 class SelectEntityDescription(EntityDescription):
     options: list[str] | None = ...

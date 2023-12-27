@@ -7,6 +7,8 @@ from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from typing import Any, Self
 
+__all__ = ['ATTR_MAX', 'ATTR_MIN', 'ATTR_STEP', 'ATTR_VALUE', 'DEFAULT_MAX_VALUE', 'DEFAULT_MIN_VALUE', 'DEFAULT_STEP', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'NumberDeviceClass', 'NumberEntity', 'NumberEntityDescription', 'NumberExtraStoredData', 'NumberMode', 'RestoreNumber']
+
 @dataclasses.dataclass
 class NumberEntityDescription(EntityDescription):
     device_class: NumberDeviceClass | None = ...

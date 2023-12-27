@@ -49,7 +49,7 @@ class BlockSleepingClimate(CoordinatorEntity[ShellyBlockCoordinator], RestoreEnt
     _unique_id: Incomplete
     _attr_device_info: Incomplete
     _channel: Incomplete
-    def __init__(self, coordinator: ShellyBlockCoordinator, sensor_block: Block | None, device_block: Block | None, entry: RegistryEntry | None = ...) -> None: ...
+    def __init__(self, coordinator: ShellyBlockCoordinator, sensor_block: Block | None, device_block: Block | None, entry: RegistryEntry | None = None) -> None: ...
     @property
     def extra_restore_state_data(self) -> ShellyClimateExtraStoredData: ...
     @property
@@ -77,7 +77,6 @@ class BlockSleepingClimate(CoordinatorEntity[ShellyBlockCoordinator], RestoreEnt
     def _handle_coordinator_update(self) -> None: ...
 
 class RpcClimate(ShellyRpcEntity, ClimateEntity):
-    _attr_hvac_modes: Incomplete
     _attr_icon: str
     _attr_max_temp: Incomplete
     _attr_min_temp: Incomplete
@@ -86,6 +85,7 @@ class RpcClimate(ShellyRpcEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _id: Incomplete
     _thermostat_type: Incomplete
+    _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
     @property
     def target_temperature(self) -> float | None: ...

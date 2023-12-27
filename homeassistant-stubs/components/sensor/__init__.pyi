@@ -14,6 +14,8 @@ from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from homeassistant.helpers.typing import StateType, UndefinedType
 from typing import Any, Self
 
+__all__ = ['ATTR_LAST_RESET', 'ATTR_OPTIONS', 'ATTR_STATE_CLASS', 'CONF_STATE_CLASS', 'DEVICE_CLASS_STATE_CLASSES', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'RestoreSensor', 'SensorDeviceClass', 'SensorEntity', 'SensorEntityDescription', 'SensorExtraStoredData', 'SensorStateClass']
+
 @dataclass
 class SensorEntityDescription(EntityDescription):
     device_class: SensorDeviceClass | None = ...

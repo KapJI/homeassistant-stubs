@@ -10,7 +10,7 @@ CONF_TIME_FORMAT: str
 DEFAULT_NAME: str
 DEFAULT_TIME_STR_FORMAT: str
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class WorldClockSensor(SensorEntity):
     _attr_icon: str

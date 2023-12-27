@@ -24,7 +24,7 @@ DEFAULT_EXPIRE_AFTER: int
 TYPES: Incomplete
 SENSOR_SCHEMA: Incomplete
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class LaCrosseSensor(SensorEntity):
     _temperature: float | None

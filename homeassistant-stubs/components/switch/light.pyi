@@ -9,7 +9,7 @@ from typing import Any
 
 DEFAULT_NAME: str
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class LightSwitch(LightEntity):
     _attr_color_mode: Incomplete

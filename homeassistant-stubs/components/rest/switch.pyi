@@ -25,7 +25,7 @@ DEFAULT_TIMEOUT: int
 DEFAULT_VERIFY_SSL: bool
 SUPPORT_REST_METHODS: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class RestSwitch(ManualTriggerEntity, SwitchEntity):
     _resource: Incomplete

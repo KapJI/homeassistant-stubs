@@ -8,7 +8,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> SimplePushNotificationService | None: ...
+async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> SimplePushNotificationService | None: ...
 
 class SimplePushNotificationService(BaseNotificationService):
     _device_key: Incomplete

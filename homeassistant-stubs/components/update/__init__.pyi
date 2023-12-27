@@ -8,6 +8,8 @@ from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.restore_state import RestoreEntity
 from typing import Any
 
+__all__ = ['ATTR_BACKUP', 'ATTR_INSTALLED_VERSION', 'ATTR_LATEST_VERSION', 'ATTR_VERSION', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SERVICE_INSTALL', 'SERVICE_SKIP', 'UpdateDeviceClass', 'UpdateEntity', 'UpdateEntityDescription', 'UpdateEntityFeature']
+
 class UpdateDeviceClass(StrEnum):
     FIRMWARE: str
 

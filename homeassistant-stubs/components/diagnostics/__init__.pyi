@@ -10,6 +10,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntry
 from typing import Any, Protocol
 
+__all__ = ['REDACTED', 'async_redact_data']
+
 @dataclass(slots=True)
 class DiagnosticsPlatformData:
     config_entry_diagnostics: Callable[[HomeAssistant, ConfigEntry], Coroutine[Any, Any, Mapping[str, Any]]] | None
@@ -29,4 +31,4 @@ class DownloadDiagnosticsView(http.HomeAssistantView):
     url: str
     extra_urls: Incomplete
     name: str
-    async def get(self, request: web.Request, d_type: str, d_id: str, sub_type: str | None = ..., sub_id: str | None = ...) -> web.Response: ...
+    async def get(self, request: web.Request, d_type: str, d_id: str, sub_type: str | None = None, sub_id: str | None = None) -> web.Response: ...

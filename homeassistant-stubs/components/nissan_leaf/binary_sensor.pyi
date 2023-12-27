@@ -8,7 +8,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 
 _LOGGER: Incomplete
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class LeafPluggedInSensor(LeafEntity, BinarySensorEntity):
     _attr_device_class: Incomplete

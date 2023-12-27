@@ -7,6 +7,8 @@ from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from typing import Any
 
+__all__ = ['DOMAIN', 'TextEntity', 'TextEntityDescription', 'TextMode']
+
 class TextMode(StrEnum):
     PASSWORD: str
     TEXT: str

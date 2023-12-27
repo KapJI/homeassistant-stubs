@@ -43,8 +43,8 @@ class AirzoneClimate(AirzoneZoneEntity, ClimateEntity):
     _attr_hvac_mode: Incomplete
     _attr_max_temp: Incomplete
     _attr_min_temp: Incomplete
-    _attr_target_temperature: Incomplete
     _attr_fan_mode: Incomplete
     _attr_target_temperature_high: Incomplete
     _attr_target_temperature_low: Incomplete
+    _attr_target_temperature: Incomplete
     def _async_update_attrs(self) -> None: ...

@@ -7,6 +7,8 @@ from homeassistant.loader import USBMatcher
 from pyudev import Device
 from serial.tools.list_ports_common import ListPortInfo
 
+__all__ = ['async_is_plugged_in', 'async_register_scan_request_callback', 'USBCallbackMatcher', 'UsbServiceInfo']
+
 class USBCallbackMatcher(USBMatcher): ...
 
 def async_register_scan_request_callback(hass: HomeAssistant, callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...

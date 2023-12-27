@@ -20,7 +20,7 @@ VALID_ENERGY_UNITS_GAS: Incomplete
 VALID_VOLUME_UNITS_WATER: set[str]
 _LOGGER: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 @dataclass(slots=True)
 class SourceAdapter:

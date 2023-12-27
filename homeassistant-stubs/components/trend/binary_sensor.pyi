@@ -17,7 +17,7 @@ from typing import Any
 _LOGGER: Incomplete
 SENSOR_SCHEMA: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class SensorTrend(BinarySensorEntity, RestoreEntity):
     _attr_should_poll: bool

@@ -12,7 +12,7 @@ SCAN_INTERVAL: Incomplete
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 OPTION_KEYS: Incomplete
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class BitcoinSensor(SensorEntity):
     _attr_attribution: str

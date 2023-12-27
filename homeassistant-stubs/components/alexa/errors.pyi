@@ -13,7 +13,7 @@ class AlexaError(Exception):
     error_type: str | None
     error_message: Incomplete
     payload: Incomplete
-    def __init__(self, error_message: str, payload: dict[str, Any] | None = ...) -> None: ...
+    def __init__(self, error_message: str, payload: dict[str, Any] | None = None) -> None: ...
 
 class AlexaInvalidEndpointError(AlexaError):
     namespace: str

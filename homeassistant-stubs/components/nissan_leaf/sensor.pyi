@@ -12,7 +12,7 @@ from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_S
 
 _LOGGER: Incomplete
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class LeafBatterySensor(LeafEntity, SensorEntity):
     _attr_device_class: Incomplete

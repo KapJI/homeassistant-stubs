@@ -7,7 +7,7 @@ from typing import Any
 SUPPORT_LANGUAGES: Incomplete
 DEFAULT_LANG: str
 
-def get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> Provider: ...
+def get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> Provider: ...
 
 class DemoProvider(Provider):
     _lang: Incomplete

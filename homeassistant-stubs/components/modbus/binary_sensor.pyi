@@ -16,7 +16,7 @@ from typing import Any
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = ...) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class ModbusBinarySensor(BasePlatform, RestoreEntity, BinarySensorEntity):
     _count: Incomplete
@@ -29,7 +29,7 @@ class ModbusBinarySensor(BasePlatform, RestoreEntity, BinarySensorEntity):
     _call_active: bool
     _lazy_errors: Incomplete
     _attr_available: bool
-    async def async_update(self, now: datetime | None = ...) -> None: ...
+    async def async_update(self, now: datetime | None = None) -> None: ...
 
 class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreEntity, BinarySensorEntity):
     _attr_name: Incomplete

@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pylitterbot import Robot as Robot
 from typing import Any, Generic
 
-def icon_for_gauge_level(gauge_level: int | None = ..., offset: int = ...) -> str: ...
+def icon_for_gauge_level(gauge_level: int | None = None, offset: int = 0) -> str: ...
 
 @dataclass
 class RobotSensorEntityDescription(SensorEntityDescription, Generic[_RobotT]):

@@ -10,7 +10,7 @@ from typing import Any, Final
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 
-def get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = ...) -> Provider | None: ...
+def get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> Provider | None: ...
 
 class AmazonPollyProvider(Provider):
     client: Incomplete

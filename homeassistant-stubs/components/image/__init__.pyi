@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from dataclasses import dataclass
 from datetime import datetime
+from functools import cached_property as cached_property
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -26,9 +27,9 @@ TOKEN_CHANGE_INTERVAL: Final[Incomplete]
 _RND: Final[Incomplete]
 GET_IMAGE_TIMEOUT: Final[int]
 
-@dataclass
-class ImageEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class ImageEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 @dataclass
 class Image:
@@ -44,7 +45,9 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class ImageEntity(Entity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     _attr_content_type: str
     _attr_image_last_updated: datetime | None
@@ -55,13 +58,13 @@ class ImageEntity(Entity):
     _client: Incomplete
     access_tokens: Incomplete
     def __init__(self, hass: HomeAssistant, verify_ssl: bool = False) -> None: ...
-    @property
+    @cached_property
     def content_type(self) -> str: ...
     @property
     def entity_picture(self) -> str | None: ...
-    @property
+    @cached_property
     def image_last_updated(self) -> datetime | None: ...
-    @property
+    @cached_property
     def image_url(self) -> str | None | UndefinedType: ...
     def image(self) -> bytes | None: ...
     async def _fetch_url(self, url: str) -> httpx.Response | None: ...

@@ -1,19 +1,22 @@
-from .const import GAS_VALVE_OPEN_STATES as GAS_VALVE_OPEN_STATES, MODEL_WALL_DISPLAY as MODEL_WALL_DISPLAY
+from .const import DOMAIN as DOMAIN, GAS_VALVE_OPEN_STATES as GAS_VALVE_OPEN_STATES, MODEL_WALL_DISPLAY as MODEL_WALL_DISPLAY
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, get_entry_data as get_entry_data
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity, async_setup_block_attribute_entities as async_setup_block_attribute_entities
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from dataclasses import dataclass
+from homeassistant.components.automation import automations_with_entity as automations_with_entity
+from homeassistant.components.script import scripts_with_entity as scripts_with_entity
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from typing import Any
 
-@dataclass
+@dataclass(frozen=True)
 class BlockSwitchDescription(BlockEntityDescription, SwitchEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
 GAS_VALVE_SWITCH: Incomplete
 
@@ -31,6 +34,7 @@ class BlockValveSwitch(ShellyBlockAttributeEntity, SwitchEntity):
     def icon(self) -> str: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
     def _update_callback(self) -> None: ...
 
 class BlockRelaySwitch(ShellyBlockEntity, SwitchEntity):

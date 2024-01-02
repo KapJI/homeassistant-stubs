@@ -3,7 +3,7 @@ from . import area_registry as area_registry, device_registry as device_registry
 from .singleton import singleton as singleton
 from .typing import TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Generator, Iterable, MutableMapping
+from collections.abc import Callable as Callable, Generator, Iterable
 from contextlib import AbstractContextManager
 from contextvars import ContextVar
 from datetime import datetime, timedelta
@@ -17,6 +17,7 @@ from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPT
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from jinja2.sandbox import ImmutableSandboxedEnvironment
+from lru import LRU
 from types import CodeType, TracebackType
 from typing import Any, Literal, NoReturn, ParamSpec, TypeVar, overload
 
@@ -43,8 +44,8 @@ template_cv: ContextVar[tuple[str, str] | None]
 CACHED_TEMPLATE_STATES: int
 EVAL_CACHE_SIZE: int
 MAX_CUSTOM_TEMPLATE_SIZE: Incomplete
-CACHED_TEMPLATE_LRU: MutableMapping[State, TemplateState]
-CACHED_TEMPLATE_NO_COLLECT_LRU: MutableMapping[State, TemplateState]
+CACHED_TEMPLATE_LRU: LRU[State, TemplateState]
+CACHED_TEMPLATE_NO_COLLECT_LRU: LRU[State, TemplateState]
 ENTITY_COUNT_GROWTH_FACTOR: float
 ORJSON_PASSTHROUGH_OPTIONS: Incomplete
 
@@ -267,6 +268,8 @@ def strptime(string, fmt, default=...): ...
 def fail_when_undefined(value): ...
 def min_max_from_filter(builtin_filter: Any, name: str) -> Any: ...
 def average(*args: Any, default: Any = ...) -> Any: ...
+def median(*args: Any, default: Any = ...) -> Any: ...
+def statistical_mode(*args: Any, default: Any = ...) -> Any: ...
 def forgiving_float(value, default=...): ...
 def forgiving_float_filter(value, default=...): ...
 def forgiving_int(value, default=..., base: int = 10): ...

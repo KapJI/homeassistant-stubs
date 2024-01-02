@@ -1,6 +1,6 @@
 import logging
 import voluptuous as vol
-from . import config_per_platform as config_per_platform, discovery as discovery, entity as entity, service as service
+from . import discovery as discovery, entity as entity, service as service
 from .entity_platform import EntityPlatform as EntityPlatform
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from _typeshed import Incomplete

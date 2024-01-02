@@ -14,6 +14,7 @@ from typing import Any
 SCAN_INTERVAL: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+def remove_stale_devices(hass: HomeAssistant, config_entry: ConfigEntry, devices: list[dict]) -> None: ...
 
 class AladdinDevice(CoverEntity):
     _attr_device_class: Incomplete

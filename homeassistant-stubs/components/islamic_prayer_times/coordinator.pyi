@@ -2,6 +2,7 @@ from .const import CONF_CALC_METHOD as CONF_CALC_METHOD, CONF_LAT_ADJ_METHOD as 
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_point_in_time as async_track_point_in_time
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -11,6 +12,8 @@ _LOGGER: Incomplete
 
 class IslamicPrayerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, datetime]]):
     config_entry: ConfigEntry
+    latitude: Incomplete
+    longitude: Incomplete
     event_unsub: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     @property

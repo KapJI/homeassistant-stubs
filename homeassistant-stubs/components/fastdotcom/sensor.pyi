@@ -1,27 +1,26 @@
-from .const import DATA_UPDATED as DATA_UPDATED, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
+from .coordinator import FastdotcomDataUpdateCoordindator as FastdotcomDataUpdateCoordindator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfDataRate as UnitOfDataRate
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SpeedtestSensor(RestoreEntity, SensorEntity):
-    _attr_name: str
+class SpeedtestSensor(CoordinatorEntity[FastdotcomDataUpdateCoordindator], SensorEntity):
+    _attr_translation_key: str
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     _attr_icon: str
     _attr_should_poll: bool
-    _speedtest_data: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
-    def __init__(self, entry_id: str, speedtest_data: dict[str, Any]) -> None: ...
-    _attr_native_value: Incomplete
-    async def async_added_to_hass(self) -> None: ...
-    def update(self) -> None: ...
-    def _schedule_immediate_update(self) -> None: ...
+    _attr_device_info: Incomplete
+    def __init__(self, entry_id: str, coordinator: FastdotcomDataUpdateCoordindator) -> None: ...
+    @property
+    def native_value(self) -> float: ...

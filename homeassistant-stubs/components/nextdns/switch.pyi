@@ -14,14 +14,14 @@ from typing import Any, Generic
 
 PARALLEL_UPDATES: int
 
-@dataclass
+@dataclass(frozen=True)
 class NextDnsSwitchRequiredKeysMixin(Generic[CoordinatorDataT]):
     state: Callable[[CoordinatorDataT], bool]
     def __init__(self, state) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class NextDnsSwitchEntityDescription(SwitchEntityDescription, NextDnsSwitchRequiredKeysMixin[CoordinatorDataT]):
-    def __init__(self, state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, state, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 SWITCHES: Incomplete
 

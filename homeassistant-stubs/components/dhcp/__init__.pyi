@@ -16,7 +16,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_added_domain as async_track_state_added_domain, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType
 from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as async_get_dhcp
-from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from scapy.packet import Packet as Packet
 from typing import Any, Final
 

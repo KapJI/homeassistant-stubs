@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 
 class HVACMode(StrEnum):
     OFF: str
@@ -10,13 +11,13 @@ class HVACMode(StrEnum):
     DRY: str
     FAN_ONLY: str
 
-HVAC_MODE_OFF: str
-HVAC_MODE_HEAT: str
-HVAC_MODE_COOL: str
-HVAC_MODE_HEAT_COOL: str
-HVAC_MODE_AUTO: str
-HVAC_MODE_DRY: str
-HVAC_MODE_FAN_ONLY: str
+_DEPRECATED_HVAC_MODE_OFF: Incomplete
+_DEPRECATED_HVAC_MODE_HEAT: Incomplete
+_DEPRECATED_HVAC_MODE_COOL: Incomplete
+_DEPRECATED_HVAC_MODE_HEAT_COOL: Incomplete
+_DEPRECATED_HVAC_MODE_AUTO: Incomplete
+_DEPRECATED_HVAC_MODE_DRY: Incomplete
+_DEPRECATED_HVAC_MODE_FAN_ONLY: Incomplete
 HVAC_MODES: Incomplete
 PRESET_NONE: str
 PRESET_ECO: str
@@ -51,12 +52,12 @@ class HVACAction(StrEnum):
     OFF: str
     PREHEATING: str
 
-CURRENT_HVAC_OFF: str
-CURRENT_HVAC_HEAT: str
-CURRENT_HVAC_COOL: str
-CURRENT_HVAC_DRY: str
-CURRENT_HVAC_IDLE: str
-CURRENT_HVAC_FAN: str
+_DEPRECATED_CURRENT_HVAC_OFF: Incomplete
+_DEPRECATED_CURRENT_HVAC_HEAT: Incomplete
+_DEPRECATED_CURRENT_HVAC_COOL: Incomplete
+_DEPRECATED_CURRENT_HVAC_DRY: Incomplete
+_DEPRECATED_CURRENT_HVAC_IDLE: Incomplete
+_DEPRECATED_CURRENT_HVAC_FAN: Incomplete
 CURRENT_HVAC_ACTIONS: Incomplete
 ATTR_AUX_HEAT: str
 ATTR_CURRENT_HUMIDITY: str
@@ -100,10 +101,12 @@ class ClimateEntityFeature(IntFlag):
     SWING_MODE: int
     AUX_HEAT: int
 
-SUPPORT_TARGET_TEMPERATURE: int
-SUPPORT_TARGET_TEMPERATURE_RANGE: int
-SUPPORT_TARGET_HUMIDITY: int
-SUPPORT_FAN_MODE: int
-SUPPORT_PRESET_MODE: int
-SUPPORT_SWING_MODE: int
-SUPPORT_AUX_HEAT: int
+_DEPRECATED_SUPPORT_TARGET_TEMPERATURE: Incomplete
+_DEPRECATED_SUPPORT_TARGET_TEMPERATURE_RANGE: Incomplete
+_DEPRECATED_SUPPORT_TARGET_HUMIDITY: Incomplete
+_DEPRECATED_SUPPORT_FAN_MODE: Incomplete
+_DEPRECATED_SUPPORT_PRESET_MODE: Incomplete
+_DEPRECATED_SUPPORT_SWING_MODE: Incomplete
+_DEPRECATED_SUPPORT_AUX_HEAT: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete

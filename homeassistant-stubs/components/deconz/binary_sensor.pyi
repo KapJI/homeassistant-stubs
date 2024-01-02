@@ -30,14 +30,14 @@ ATTR_VIBRATIONSTRENGTH: str
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
 T = TypeVar('T', Alarm, CarbonMonoxide, Fire, GenericFlag, OpenClose, Presence, Vibration, Water, PydeconzSensorBase)
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True, kw_only=True)
 class DeconzBinarySensorDescription(BinarySensorEntityDescription, Generic[T]):
     instance_check: type[T] | None = ...
     name_suffix: str = ...
     old_unique_id_suffix: str = ...
     update_key: str
     value_fn: Callable[[T], bool | None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, *, instance_check, name_suffix, old_unique_id_suffix, update_key, value_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, instance_check, name_suffix, old_unique_id_suffix, update_key, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzBinarySensorDescription, ...]
 

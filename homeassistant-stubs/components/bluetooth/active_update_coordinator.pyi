@@ -5,7 +5,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
-from homeassistant.util.dt import monotonic_time_coarse as monotonic_time_coarse
 from typing import Any, Generic, TypeVar
 
 POLL_DEFAULT_COOLDOWN: int

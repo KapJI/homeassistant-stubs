@@ -12,9 +12,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class MatterSensorEntityDescription(SensorEntityDescription, MatterEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, measurement_to_ha, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, measurement_to_ha, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 class MatterSensor(MatterEntity, SensorEntity):
     entity_description: MatterSensorEntityDescription

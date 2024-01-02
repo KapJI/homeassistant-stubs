@@ -14,9 +14,9 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class SynologyDSMSwitchEntityDescription(SwitchEntityDescription, SynologyDSMEntityDescription):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, api_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 SURVEILLANCE_SWITCH: tuple[SynologyDSMSwitchEntityDescription, ...]
 

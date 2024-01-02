@@ -15,14 +15,14 @@ from zwave_js_server.model.value import Value as ZwaveValue
 
 PARALLEL_UPDATES: int
 
-@dataclass
+@dataclass(frozen=True)
 class ZwaveHumidifierEntityDescriptionRequiredKeys:
     on_mode: HumidityControlMode
     inverse_mode: HumidityControlMode
     setpoint_type: HumidityControlSetpointType
     def __init__(self, on_mode, inverse_mode, setpoint_type) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class ZwaveHumidifierEntityDescription(HumidifierEntityDescription, ZwaveHumidifierEntityDescriptionRequiredKeys):
     def __init__(self, *selfon_modeinverse_modesetpoint_type_, on_mode, inverse_mode, setpoint_type, **selfon_modeinverse_modesetpoint_type__) -> None: ...
 

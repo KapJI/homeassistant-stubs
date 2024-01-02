@@ -10,15 +10,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from renault_api.kamereon.models import KamereonVehicleBatteryStatusData
 
-@dataclass
+@dataclass(frozen=True)
 class RenaultSelectRequiredKeysMixin:
     data_key: str
     icon_lambda: Callable[[RenaultSelectEntity], str]
     def __init__(self, data_key, icon_lambda) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class RenaultSelectEntityDescription(SelectEntityDescription, RenaultDataEntityDescription, RenaultSelectRequiredKeysMixin):
-    def __init__(self, data_key, icon_lambda, coordinator, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    def __init__(self, data_key, icon_lambda, coordinator, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

@@ -10,14 +10,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Literal
 
-@dataclass
+@dataclass(frozen=True)
 class NotionBinarySensorDescriptionMixin:
     on_state: Literal['alarm', 'leak', 'low', 'not_missing', 'open']
     def __init__(self, on_state) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionBinarySensorDescriptionMixin, NotionEntityDescriptionMixin):
-    def __init__(self, listener_kind, on_state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, listener_kind, on_state, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from rokuecp import Roku as Roku
 from rokuecp.models import Device as RokuDevice
 
-@dataclass
+@dataclass(frozen=True)
 class RokuSelectEntityDescriptionMixin:
     options_fn: Callable[[RokuDevice], list[str]]
     value_fn: Callable[[RokuDevice], str | None]
@@ -26,9 +26,9 @@ def _get_channels(device: RokuDevice) -> list[str]: ...
 async def _launch_application(device: RokuDevice, roku: Roku, value: str) -> None: ...
 async def _tune_channel(device: RokuDevice, roku: Roku, value: str) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class RokuSelectEntityDescription(SelectEntityDescription, RokuSelectEntityDescriptionMixin):
-    def __init__(self, options_fn, value_fn, set_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    def __init__(self, options_fn, value_fn, set_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 
 ENTITIES: tuple[RokuSelectEntityDescription, ...]
 CHANNEL_ENTITY: Incomplete

@@ -2,7 +2,8 @@ from . import PingDomainData as PingDomainData
 from .const import CONF_IMPORTED_BY as CONF_IMPORTED_BY, CONF_PING_COUNT as CONF_PING_COUNT, DOMAIN as DOMAIN
 from .coordinator import PingUpdateCoordinator as PingUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSeeCallback, ScannerEntity as ScannerEntity, SourceType as SourceType
+from datetime import datetime
+from homeassistant.components.device_tracker import AsyncSeeCallback as AsyncSeeCallback, CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME, ScannerEntity as ScannerEntity, SourceType as SourceType
 from homeassistant.components.device_tracker.legacy import YAML_DEVICES as YAML_DEVICES, remove_device_from_config as remove_device_from_config
 from homeassistant.config import load_yaml_config_file as load_yaml_config_file
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
@@ -21,8 +22,10 @@ async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PingDeviceTracker(CoordinatorEntity[PingUpdateCoordinator], ScannerEntity):
+    _first_offline: datetime | None
     _attr_name: Incomplete
     config_entry: Incomplete
+    _consider_home_interval: Incomplete
     def __init__(self, config_entry: ConfigEntry, coordinator: PingUpdateCoordinator) -> None: ...
     @property
     def ip_address(self) -> str: ...

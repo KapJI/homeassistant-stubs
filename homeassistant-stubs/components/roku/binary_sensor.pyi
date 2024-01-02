@@ -9,14 +9,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from rokuecp.models import Device as RokuDevice
 
-@dataclass
+@dataclass(frozen=True)
 class RokuBinarySensorEntityDescriptionMixin:
     value_fn: Callable[[RokuDevice], bool | None]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class RokuBinarySensorEntityDescription(BinarySensorEntityDescription, RokuBinarySensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BINARY_SENSORS: tuple[RokuBinarySensorEntityDescription, ...]
 

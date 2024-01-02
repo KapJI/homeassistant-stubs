@@ -1,9 +1,9 @@
-from .const import CONF_API_ENABLED as CONF_API_ENABLED, CONF_PATH as CONF_PATH, CONF_PRODUCT_NAME as CONF_PRODUCT_NAME, CONF_PRODUCT_TYPE as CONF_PRODUCT_TYPE, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN
+from .const import CONF_API_ENABLED as CONF_API_ENABLED, CONF_PRODUCT_NAME as CONF_PRODUCT_NAME, CONF_PRODUCT_TYPE as CONF_PRODUCT_TYPE, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import onboarding as onboarding, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow
-from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS
+from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PATH as CONF_PATH
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homewizard_energy.models import Device as Device

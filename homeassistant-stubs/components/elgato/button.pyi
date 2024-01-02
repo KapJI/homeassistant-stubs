@@ -13,10 +13,10 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True, kw_only=True)
 class ElgatoButtonEntityDescription(ButtonEntityDescription):
     press_fn: Callable[[Elgato], Awaitable[Any]]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, *, press_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, press_fn) -> None: ...
 
 BUTTONS: Incomplete
 

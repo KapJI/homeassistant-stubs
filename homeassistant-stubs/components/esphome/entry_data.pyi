@@ -1,9 +1,9 @@
 import asyncio
-from .bluetooth.device import ESPHomeBluetoothDevice as ESPHomeBluetoothDevice
 from .const import DOMAIN as DOMAIN
 from .dashboard import async_get_dashboard as async_get_dashboard
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, UserService
+from bleak_esphome.backend.device import ESPHomeBluetoothDevice as ESPHomeBluetoothDevice
 from collections.abc import Callable as Callable, Coroutine, Iterable
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -79,4 +79,5 @@ class RuntimeEntryData:
     async def async_cleanup(self) -> None: ...
     async def async_update_listener(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     def async_on_disconnect(self) -> None: ...
+    def async_on_connect(self, device_info: DeviceInfo, api_version: APIVersion) -> None: ...
     def __init__(self, entry_id, title, client, store, state, stale_state, info, services, available, expected_disconnect, device_info, bluetooth_device, api_version, cleanup_callbacks, disconnect_callbacks, state_subscriptions, loaded_platforms, platform_load_lock, _storage_contents, _pending_storage, assist_pipeline_update_callbacks, assist_pipeline_state, entity_info_callbacks, entity_info_key_remove_callbacks, entity_info_key_updated_callbacks, original_options) -> None: ...

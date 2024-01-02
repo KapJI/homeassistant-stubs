@@ -24,7 +24,7 @@ def async_device_device_info_fn(controller: UniFiController, obj_id: str) -> Dev
 def async_wlan_device_info_fn(controller: UniFiController, obj_id: str) -> DeviceInfo: ...
 def async_client_device_info_fn(controller: UniFiController, obj_id: str) -> DeviceInfo: ...
 
-@dataclass
+@dataclass(frozen=True)
 class UnifiDescription(Generic[HandlerT, ApiItemT]):
     allowed_fn: Callable[[UniFiController, str], bool]
     api_handler_fn: Callable[[aiounifi.Controller], HandlerT]
@@ -39,9 +39,9 @@ class UnifiDescription(Generic[HandlerT, ApiItemT]):
     unique_id_fn: Callable[[UniFiController, str], str]
     def __init__(self, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class UnifiEntityDescription(EntityDescription, UnifiDescription[HandlerT, ApiItemT]):
-    def __init__(self, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class UnifiEntity(Entity, Generic[HandlerT, ApiItemT], metaclass=abc.ABCMeta):
     entity_description: UnifiEntityDescription[HandlerT, ApiItemT]

@@ -1,11 +1,12 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from dataclasses import dataclass
 from enum import IntFlag, StrEnum
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION, SERVICE_STOP_COVER as SERVICE_STOP_COVER, SERVICE_STOP_COVER_TILT as SERVICE_STOP_COVER_TILT, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TOGGLE_COVER_TILT as SERVICE_TOGGLE_COVER_TILT, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -33,16 +34,16 @@ class CoverDeviceClass(StrEnum):
 
 DEVICE_CLASSES_SCHEMA: Incomplete
 DEVICE_CLASSES: Incomplete
-DEVICE_CLASS_AWNING: Incomplete
-DEVICE_CLASS_BLIND: Incomplete
-DEVICE_CLASS_CURTAIN: Incomplete
-DEVICE_CLASS_DAMPER: Incomplete
-DEVICE_CLASS_DOOR: Incomplete
-DEVICE_CLASS_GARAGE: Incomplete
-DEVICE_CLASS_GATE: Incomplete
-DEVICE_CLASS_SHADE: Incomplete
-DEVICE_CLASS_SHUTTER: Incomplete
-DEVICE_CLASS_WINDOW: Incomplete
+_DEPRECATED_DEVICE_CLASS_AWNING: Incomplete
+_DEPRECATED_DEVICE_CLASS_BLIND: Incomplete
+_DEPRECATED_DEVICE_CLASS_CURTAIN: Incomplete
+_DEPRECATED_DEVICE_CLASS_DAMPER: Incomplete
+_DEPRECATED_DEVICE_CLASS_DOOR: Incomplete
+_DEPRECATED_DEVICE_CLASS_GARAGE: Incomplete
+_DEPRECATED_DEVICE_CLASS_GATE: Incomplete
+_DEPRECATED_DEVICE_CLASS_SHADE: Incomplete
+_DEPRECATED_DEVICE_CLASS_SHUTTER: Incomplete
+_DEPRECATED_DEVICE_CLASS_WINDOW: Incomplete
 
 class CoverEntityFeature(IntFlag):
     OPEN: int
@@ -54,14 +55,16 @@ class CoverEntityFeature(IntFlag):
     STOP_TILT: int
     SET_TILT_POSITION: int
 
-SUPPORT_OPEN: int
-SUPPORT_CLOSE: int
-SUPPORT_SET_POSITION: int
-SUPPORT_STOP: int
-SUPPORT_OPEN_TILT: int
-SUPPORT_CLOSE_TILT: int
-SUPPORT_STOP_TILT: int
-SUPPORT_SET_TILT_POSITION: int
+_DEPRECATED_SUPPORT_OPEN: Incomplete
+_DEPRECATED_SUPPORT_CLOSE: Incomplete
+_DEPRECATED_SUPPORT_SET_POSITION: Incomplete
+_DEPRECATED_SUPPORT_STOP: Incomplete
+_DEPRECATED_SUPPORT_OPEN_TILT: Incomplete
+_DEPRECATED_SUPPORT_CLOSE_TILT: Incomplete
+_DEPRECATED_SUPPORT_STOP_TILT: Incomplete
+_DEPRECATED_SUPPORT_SET_TILT_POSITION: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
 ATTR_CURRENT_POSITION: str
 ATTR_CURRENT_TILT_POSITION: str
 ATTR_POSITION: str
@@ -72,12 +75,14 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-@dataclass
-class CoverEntityDescription(EntityDescription):
-    device_class: CoverDeviceClass | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class CoverEntityDescription(EntityDescription, frozen_or_thawed=True):
+    device_class: CoverDeviceClass | None
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class CoverEntity(Entity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class CoverEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: CoverEntityDescription
     _attr_current_cover_position: int | None
     _attr_current_cover_tilt_position: int | None
@@ -88,11 +93,11 @@ class CoverEntity(Entity):
     _attr_state: None
     _attr_supported_features: CoverEntityFeature | None
     _cover_is_last_toggle_direction_open: bool
-    @property
+    @cached_property
     def current_cover_position(self) -> int | None: ...
-    @property
+    @cached_property
     def current_cover_tilt_position(self) -> int | None: ...
-    @property
+    @cached_property
     def device_class(self) -> CoverDeviceClass | None: ...
     @property
     def state(self) -> str | None: ...
@@ -100,11 +105,11 @@ class CoverEntity(Entity):
     def state_attributes(self) -> dict[str, Any]: ...
     @property
     def supported_features(self) -> CoverEntityFeature: ...
-    @property
+    @cached_property
     def is_opening(self) -> bool | None: ...
-    @property
+    @cached_property
     def is_closing(self) -> bool | None: ...
-    @property
+    @cached_property
     def is_closed(self) -> bool | None: ...
     def open_cover(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...

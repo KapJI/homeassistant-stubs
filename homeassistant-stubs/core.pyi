@@ -8,7 +8,7 @@ from .auth import AuthManager as AuthManager
 from .backports.functools import cached_property as cached_property
 from .components.http import ApiConfig as ApiConfig, HomeAssistantHTTP as HomeAssistantHTTP
 from .config_entries import ConfigEntries as ConfigEntries
-from .const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_CONTEXT as COMPRESSED_STATE_CONTEXT, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, LENGTH_METERS as LENGTH_METERS, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, __version__ as __version__
+from .const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_CONTEXT as COMPRESSED_STATE_CONTEXT, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, UnitOfLength as UnitOfLength, __version__ as __version__
 from .exceptions import HomeAssistantError as HomeAssistantError, InvalidEntityFormatError as InvalidEntityFormatError, InvalidStateError as InvalidStateError, MaxLengthExceeded as MaxLengthExceeded, ServiceNotFound as ServiceNotFound, Unauthorized as Unauthorized
 from .helpers.entity import StateInfo as StateInfo
 from .helpers.json import json_dumps as json_dumps
@@ -23,11 +23,13 @@ from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as Unit
 from _typeshed import Incomplete
 from collections import UserDict
 from collections.abc import Callable, Collection, Coroutine, Iterable, KeysView, Mapping, ValuesView
+from dataclasses import dataclass
 from typing import Any, Generic, Literal, ParamSpec, Self, TypeVar, overload
 
-STAGE_1_SHUTDOWN_TIMEOUT: int
-STAGE_2_SHUTDOWN_TIMEOUT: int
-STAGE_3_SHUTDOWN_TIMEOUT: int
+STOPPING_STAGE_SHUTDOWN_TIMEOUT: int
+STOP_STAGE_SHUTDOWN_TIMEOUT: int
+FINAL_WRITE_STAGE_SHUTDOWN_TIMEOUT: int
+CLOSE_STAGE_SHUTDOWN_TIMEOUT: int
 _T = TypeVar('_T')
 _R = TypeVar('_R')
 _R_co = TypeVar('_R_co', covariant=True)
@@ -49,9 +51,13 @@ class ConfigSource(enum.StrEnum):
     STORAGE: str
     YAML: str
 
-SOURCE_DISCOVERED: Incomplete
-SOURCE_STORAGE: Incomplete
-SOURCE_YAML: Incomplete
+_DEPRECATED_SOURCE_DISCOVERED: Incomplete
+_DEPRECATED_SOURCE_STORAGE: Incomplete
+_DEPRECATED_SOURCE_YAML: Incomplete
+
+def __getattr__(name: str) -> Any: ...
+def __dir__() -> list[str]: ...
+
 TIMEOUT_EVENT_START: int
 MAX_EXPECTED_ENTITY_IDS: int
 _LOGGER: Incomplete
@@ -94,6 +100,12 @@ class HassJob(Generic[_P, _R_co]):
     def cancel_on_shutdown(self) -> bool | None: ...
     def __repr__(self) -> str: ...
 
+@dataclass(frozen=True)
+class HassJobWithArgs:
+    job: HassJob[..., Coroutine[Any, Any, Any] | Any]
+    args: Iterable[Any]
+    def __init__(self, job, args) -> None: ...
+
 def _get_hassjob_callable_job_type(target: Callable[..., Any]) -> HassJobType: ...
 
 class CoreState(enum.Enum):
@@ -126,6 +138,7 @@ class HomeAssistant:
     _stopped: Incomplete
     timeout: Incomplete
     _stop_future: Incomplete
+    _shutdown_jobs: Incomplete
     def __init__(self, config_dir: str) -> None: ...
     @property
     def is_running(self) -> bool: ...
@@ -162,10 +175,14 @@ class HomeAssistant:
     def block_till_done(self) -> None: ...
     async def async_block_till_done(self) -> None: ...
     async def _await_and_log_pending(self, pending: Collection[asyncio.Future[Any]]) -> None: ...
+    @overload
+    def async_add_shutdown_job(self, hassjob: HassJob[..., Coroutine[Any, Any, Any]], *args: Any) -> CALLBACK_TYPE: ...
+    @overload
+    def async_add_shutdown_job(self, hassjob: HassJob[..., Coroutine[Any, Any, Any] | Any], *args: Any) -> CALLBACK_TYPE: ...
     def stop(self) -> None: ...
     async def async_stop(self, exit_code: int = 0, *, force: bool = False) -> None: ...
     def _cancel_cancellable_timers(self) -> None: ...
-    def _async_log_running_tasks(self, stage: int) -> None: ...
+    def _async_log_running_tasks(self, stage: str) -> None: ...
 
 class Context:
     __slots__: Incomplete
@@ -299,7 +316,7 @@ class ServiceRegistry:
     def async_services(self) -> dict[str, dict[str, Service]]: ...
     def has_service(self, domain: str, service: str) -> bool: ...
     def supports_response(self, domain: str, service: str) -> SupportsResponse: ...
-    def register(self, domain: str, service: str, service_func: Callable[[ServiceCall], Coroutine[Any, Any, ServiceResponse] | ServiceResponse | None], schema: vol.Schema | None = None) -> None: ...
+    def register(self, domain: str, service: str, service_func: Callable[[ServiceCall], Coroutine[Any, Any, ServiceResponse] | ServiceResponse | None], schema: vol.Schema | None = None, supports_response: SupportsResponse = ...) -> None: ...
     def async_register(self, domain: str, service: str, service_func: Callable[[ServiceCall], Coroutine[Any, Any, ServiceResponse | EntityServiceResponse] | ServiceResponse | EntityServiceResponse | None], schema: vol.Schema | None = None, supports_response: SupportsResponse = ...) -> None: ...
     def remove(self, domain: str, service: str) -> None: ...
     def async_remove(self, domain: str, service: str) -> None: ...

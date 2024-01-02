@@ -12,7 +12,7 @@ from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as 
 from homeassistant.core import Context as Context, EntityServiceResponse as EntityServiceResponse, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
-from homeassistant.util.yaml import load_yaml as load_yaml
+from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from types import ModuleType
 from typing import Any, TypeGuard, TypeVar, TypedDict

@@ -13,14 +13,14 @@ from typing import Any, Final
 
 _LOGGER: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class IdasenDeskButtonDescriptionMixin:
     press_action: Callable[[IdasenDeskCoordinator], Callable[[], Coroutine[Any, Any, Any]]]
     def __init__(self, press_action) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class IdasenDeskButtonDescription(ButtonEntityDescription, IdasenDeskButtonDescriptionMixin):
-    def __init__(self, press_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, press_action, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BUTTONS: Final[Incomplete]
 

@@ -20,10 +20,10 @@ from typing import Any
 LOGGER: Incomplete
 EXTRA_POLL_DELAY: float
 
-@dataclass
+@dataclass(frozen=True)
 class MatterEntityDescription(EntityDescription):
     measurement_to_ha: Callable[[Any], Any] | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, measurement_to_ha) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, measurement_to_ha) -> None: ...
 
 class MatterEntity(Entity, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool

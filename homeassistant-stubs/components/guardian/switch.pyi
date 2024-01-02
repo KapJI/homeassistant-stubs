@@ -21,15 +21,15 @@ ATTR_TRAVEL_COUNT: str
 SWITCH_KIND_ONBOARD_AP: str
 SWITCH_KIND_VALVE: str
 
-@dataclass
+@dataclass(frozen=True)
 class SwitchDescriptionMixin:
     off_action: Callable[[Client], Awaitable]
     on_action: Callable[[Client], Awaitable]
     def __init__(self, off_action, on_action) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class ValveControllerSwitchDescription(SwitchEntityDescription, ValveControllerEntityDescription, SwitchDescriptionMixin):
-    def __init__(self, off_action, on_action, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, off_action, on_action, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 async def _async_disable_ap(client: Client) -> None: ...
 async def _async_enable_ap(client: Client) -> None: ...

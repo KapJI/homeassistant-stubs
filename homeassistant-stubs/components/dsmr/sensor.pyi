@@ -1,11 +1,11 @@
-from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_PRECISION as CONF_PRECISION, CONF_PROTOCOL as CONF_PROTOCOL, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DATA_TASK as DATA_TASK, DEFAULT_PRECISION as DEFAULT_PRECISION, DEFAULT_RECONNECT_INTERVAL as DEFAULT_RECONNECT_INTERVAL, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DEVICE_NAME_ELECTRICITY as DEVICE_NAME_ELECTRICITY, DEVICE_NAME_GAS as DEVICE_NAME_GAS, DEVICE_NAME_WATER as DEVICE_NAME_WATER, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, LOGGER as LOGGER
+from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DATA_TASK as DATA_TASK, DEFAULT_PRECISION as DEFAULT_PRECISION, DEFAULT_RECONNECT_INTERVAL as DEFAULT_RECONNECT_INTERVAL, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DEVICE_NAME_ELECTRICITY as DEVICE_NAME_ELECTRICITY, DEVICE_NAME_GAS as DEVICE_NAME_GAS, DEVICE_NAME_WATER as DEVICE_NAME_WATER, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from dsmr_parser.objects import DSMRObject as DSMRObject
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
 from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
@@ -16,13 +16,13 @@ from homeassistant.util import Throttle as Throttle
 EVENT_FIRST_TELEGRAM: str
 UNIT_CONVERSION: Incomplete
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True, kw_only=True)
 class DSMRSensorEntityDescription(SensorEntityDescription):
     dsmr_versions: set[str] | None = ...
     is_gas: bool = ...
     is_water: bool = ...
     obis_reference: str
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, dsmr_versions, is_gas, is_water, obis_reference) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, dsmr_versions, is_gas, is_water, obis_reference) -> None: ...
 
 SENSORS: tuple[DSMRSensorEntityDescription, ...]
 

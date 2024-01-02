@@ -11,10 +11,11 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any, NamedTuple
+from typing import Any, NamedTuple, TypeVarTuple
 
 DEFAULT_OFF_DELAY: float
 SIGNAL_EVENT: Incomplete
+_Ts = TypeVarTuple('_Ts')
 _LOGGER: Incomplete
 
 class DeviceTuple(NamedTuple):
@@ -63,4 +64,4 @@ class RfxtrxEntity(RestoreEntity):
 class RfxtrxCommandEntity(RfxtrxEntity):
     _attr_name: Incomplete
     def __init__(self, device: rfxtrxmod.RFXtrxDevice, device_id: DeviceTuple, event: rfxtrxmod.RFXtrxEvent | None = None) -> None: ...
-    async def _async_send(self, fun: Callable[..., None], *args: Any) -> None: ...
+    async def _async_send(self, fun: Callable[[rfxtrxmod.PySerialTransport, Unpack[_Ts]], None], *args: Unpack[_Ts]) -> None: ...

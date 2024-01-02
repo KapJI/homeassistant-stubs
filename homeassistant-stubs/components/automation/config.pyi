@@ -3,11 +3,11 @@ from .helpers import async_get_blueprints as async_get_blueprints
 from _typeshed import Incomplete
 from homeassistant.components import blueprint as blueprint
 from homeassistant.components.trace import TRACE_CONFIG_SCHEMA as TRACE_CONFIG_SCHEMA
-from homeassistant.config import config_without_domain as config_without_domain
+from homeassistant.config import config_per_platform as config_per_platform, config_without_domain as config_without_domain
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_CONDITION as CONF_CONDITION, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_ID as CONF_ID, CONF_VARIABLES as CONF_VARIABLES
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import config_per_platform as config_per_platform, script as script
+from homeassistant.helpers import script as script
 from homeassistant.helpers.condition import async_validate_conditions_config as async_validate_conditions_config
 from homeassistant.helpers.trigger import async_validate_trigger_config as async_validate_trigger_config
 from homeassistant.helpers.typing import ConfigType as ConfigType

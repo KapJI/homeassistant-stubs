@@ -1,9 +1,13 @@
+from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN, NETWORK_TYPES as NETWORK_TYPES
+from .util import get_all_disk_mounts as get_all_disk_mounts, get_all_network_interfaces as get_all_network_interfaces
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TYPE as CONF_TYPE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_TYPE as CONF_TYPE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,14 +26,15 @@ SENSOR_TYPE_DEVICE_CLASS: int
 SENSOR_TYPE_MANDATORY_ARG: int
 SIGNAL_SYSTEMMONITOR_UPDATE: str
 
-@dataclass
+@dataclass(frozen=True)
 class SysMonitorSensorEntityDescription(SensorEntityDescription):
     mandatory_arg: bool = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, mandatory_arg) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, mandatory_arg) -> None: ...
 
 SENSOR_TYPES: dict[str, SysMonitorSensorEntityDescription]
 
 def check_required_arg(value: Any) -> Any: ...
+def check_legacy_resource(resource: str, resources: list[str]) -> bool: ...
 
 IO_COUNTER: Incomplete
 IF_ADDRS_FAMILY: Incomplete
@@ -45,16 +50,21 @@ class SensorData:
     def __init__(self, argument, state, value, update_time, last_exception) -> None: ...
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_sensor_registry_updates(hass: HomeAssistant, sensor_registry: dict[tuple[str, str], SensorData], scan_interval: timedelta) -> None: ...
 
 class SystemMonitorSensor(SensorEntity):
     should_poll: bool
+    _attr_has_entity_name: bool
+    _attr_entity_category: Incomplete
     entity_description: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _sensor_registry: Incomplete
     _argument: Incomplete
-    def __init__(self, sensor_registry: dict[tuple[str, str], SensorData], sensor_description: SysMonitorSensorEntityDescription, argument: str = '') -> None: ...
+    _attr_entity_registry_enabled_default: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, sensor_registry: dict[tuple[str, str], SensorData], sensor_description: SysMonitorSensorEntityDescription, entry_id: str, argument: str = '', legacy_enabled: bool = False) -> None: ...
     @property
     def native_value(self) -> str | datetime | None: ...
     @property

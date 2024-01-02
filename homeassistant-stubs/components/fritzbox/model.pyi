@@ -10,7 +10,7 @@ class ClimateExtraAttributes(TypedDict, total=False):
     summer_mode: bool
     window_open: bool
 
-@dataclass
+@dataclass(frozen=True)
 class FritzEntityDescriptionMixinBase:
     suitable: Callable[[FritzhomeDevice], bool]
     def __init__(self, suitable) -> None: ...

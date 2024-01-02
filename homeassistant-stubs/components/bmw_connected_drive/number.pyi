@@ -14,17 +14,17 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class BMWRequiredKeysMixin:
     value_fn: Callable[[MyBMWVehicle], float | int | None]
     remote_service: Callable[[MyBMWVehicle, float | int], Coroutine[Any, Any, Any]]
     def __init__(self, value_fn, remote_service) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class BMWNumberEntityDescription(NumberEntityDescription, BMWRequiredKeysMixin):
     is_available: Callable[[MyBMWVehicle], bool] = ...
     dynamic_options: Callable[[MyBMWVehicle], list[str]] | None = ...
-    def __init__(self, value_fn, remote_service, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, is_available, dynamic_options) -> None: ...
+    def __init__(self, value_fn, remote_service, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, is_available, dynamic_options) -> None: ...
 
 NUMBER_TYPES: list[BMWNumberEntityDescription]
 

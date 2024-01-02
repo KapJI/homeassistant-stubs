@@ -12,15 +12,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any, Generic
 
-@dataclass
+@dataclass(frozen=True)
 class SonarrSensorEntityDescriptionMixIn(Generic[SonarrDataT]):
     attributes_fn: Callable[[SonarrDataT], dict[str, str]]
     value_fn: Callable[[SonarrDataT], StateType]
     def __init__(self, attributes_fn, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class SonarrSensorEntityDescription(SensorEntityDescription, SonarrSensorEntityDescriptionMixIn[SonarrDataT]):
-    def __init__(self, attributes_fn, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, attributes_fn, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 def get_disk_space_attr(disks: list[Diskspace]) -> dict[str, str]: ...
 def get_queue_attr(queue: SonarrQueue) -> dict[str, str]: ...

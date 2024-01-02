@@ -15,10 +15,10 @@ from typing import Final
 
 _LOGGER: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class ProtectButtonEntityDescription(ProtectSetableKeysMixin[T], ButtonEntityDescription):
     ufp_press: str | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn, ufp_press) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn, ufp_press) -> None: ...
 
 DEVICE_CLASS_CHIME_BUTTON: Final[str]
 KEY_ADOPT: str

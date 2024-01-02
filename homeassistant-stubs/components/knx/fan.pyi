@@ -8,7 +8,8 @@ from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.percentage import int_states_in_range as int_states_in_range, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
+from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
+from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from typing import Any, Final
 from xknx import XKNX as XKNX
 from xknx.devices import Fan as XknxFan

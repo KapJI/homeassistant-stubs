@@ -1,5 +1,5 @@
 import re
-from .models import HaAsyncServiceBrowser as HaAsyncServiceBrowser, HaAsyncZeroconf as HaAsyncZeroconf, HaZeroconf as HaZeroconf
+from .models import HaAsyncZeroconf as HaAsyncZeroconf, HaZeroconf as HaZeroconf
 from .usage import install_multiple_zeroconf_catcher as install_multiple_zeroconf_catcher
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -11,7 +11,7 @@ from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow, instance_id as instance_id
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import HomeKitDiscoveredIntegration as HomeKitDiscoveredIntegration, async_get_homekit as async_get_homekit, async_get_zeroconf as async_get_zeroconf, bind_hass as bind_hass
+from homeassistant.loader import HomeKitDiscoveredIntegration as HomeKitDiscoveredIntegration, ZeroconfMatcher as ZeroconfMatcher, async_get_homekit as async_get_homekit, async_get_zeroconf as async_get_zeroconf, bind_hass as bind_hass
 from homeassistant.setup import async_when_setup_or_start as async_when_setup_or_start
 from ipaddress import IPv4Address, IPv6Address
 from typing import Any, Final
@@ -23,7 +23,6 @@ DOMAIN: str
 ZEROCONF_TYPE: str
 HOMEKIT_TYPES: Incomplete
 _HOMEKIT_MODEL_SPLITS: Incomplete
-LOWER_MATCH_ATTRS: Incomplete
 CONF_DEFAULT_INTERFACE: str
 CONF_IPV6: str
 DEFAULT_DEFAULT_INTERFACE: bool
@@ -33,6 +32,8 @@ HOMEKIT_MODEL_LOWER: str
 HOMEKIT_MODEL_UPPER: str
 MAX_PROPERTY_VALUE_LEN: int
 MAX_NAME_LEN: int
+ATTR_DOMAIN: Final[str]
+ATTR_NAME: Final[str]
 ATTR_PROPERTIES: Final[str]
 ATTR_PROPERTIES_ID: Final[str]
 CONFIG_SCHEMA: Incomplete
@@ -60,8 +61,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _build_homekit_model_lookups(homekit_models: dict[str, HomeKitDiscoveredIntegration]) -> tuple[dict[str, HomeKitDiscoveredIntegration], dict[re.Pattern, HomeKitDiscoveredIntegration]]: ...
 def _filter_disallowed_characters(name: str) -> str: ...
 async def _async_register_hass_zc_service(hass: HomeAssistant, aio_zc: HaAsyncZeroconf, uuid: str) -> None: ...
-def _match_against_data(matcher: dict[str, str | dict[str, str]], match_data: dict[str, str]) -> bool: ...
-def _match_against_props(matcher: dict[str, str], props: dict[str, str]) -> bool: ...
+def _match_against_props(matcher: dict[str, str], props: dict[str, str | None]) -> bool: ...
 def is_homekit_paired(props: dict[str, Any]) -> bool: ...
 
 class ZeroconfDiscovery:
@@ -70,9 +70,8 @@ class ZeroconfDiscovery:
     zeroconf_types: Incomplete
     homekit_model_lookups: Incomplete
     homekit_model_matchers: Incomplete
-    ipv6: Incomplete
     async_service_browser: Incomplete
-    def __init__(self, hass: HomeAssistant, zeroconf: HaZeroconf, zeroconf_types: dict[str, list[dict[str, str | dict[str, str]]]], homekit_model_lookups: dict[str, HomeKitDiscoveredIntegration], homekit_model_matchers: dict[re.Pattern, HomeKitDiscoveredIntegration], ipv6: bool) -> None: ...
+    def __init__(self, hass: HomeAssistant, zeroconf: HaZeroconf, zeroconf_types: dict[str, list[ZeroconfMatcher]], homekit_model_lookups: dict[str, HomeKitDiscoveredIntegration], homekit_model_matchers: dict[re.Pattern, HomeKitDiscoveredIntegration]) -> None: ...
     async def async_setup(self) -> None: ...
     async def async_stop(self) -> None: ...
     def _async_dismiss_discoveries(self, name: str) -> None: ...
@@ -81,9 +80,6 @@ class ZeroconfDiscovery:
     def _async_process_service_update(self, async_service_info: AsyncServiceInfo, service_type: str, name: str) -> None: ...
 
 def async_get_homekit_discovery(homekit_model_lookups: dict[str, HomeKitDiscoveredIntegration], homekit_model_matchers: dict[re.Pattern, HomeKitDiscoveredIntegration], props: dict[str, Any]) -> HomeKitDiscoveredIntegration | None: ...
-
-_stringify_ip_address: Incomplete
-
 def info_from_service(service: AsyncServiceInfo) -> ZeroconfServiceInfo | None: ...
 def _suppress_invalid_properties(properties: dict) -> None: ...
 def _truncate_location_name_to_valid(location_name: str) -> str: ...

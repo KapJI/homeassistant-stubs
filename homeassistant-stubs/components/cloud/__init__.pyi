@@ -1,6 +1,6 @@
 from . import account_link as account_link, http_api as http_api
 from .client import CloudClient as CloudClient
-from .const import CONF_ACCOUNTS_SERVER as CONF_ACCOUNTS_SERVER, CONF_ACCOUNT_LINK_SERVER as CONF_ACCOUNT_LINK_SERVER, CONF_ACME_SERVER as CONF_ACME_SERVER, CONF_ALEXA as CONF_ALEXA, CONF_ALEXA_SERVER as CONF_ALEXA_SERVER, CONF_ALIASES as CONF_ALIASES, CONF_CLOUDHOOK_SERVER as CONF_CLOUDHOOK_SERVER, CONF_COGNITO_CLIENT_ID as CONF_COGNITO_CLIENT_ID, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_FILTER as CONF_FILTER, CONF_GOOGLE_ACTIONS as CONF_GOOGLE_ACTIONS, CONF_RELAYER_SERVER as CONF_RELAYER_SERVER, CONF_REMOTESTATE_SERVER as CONF_REMOTESTATE_SERVER, CONF_SERVICEHANDLERS_SERVER as CONF_SERVICEHANDLERS_SERVER, CONF_THINGTALK_SERVER as CONF_THINGTALK_SERVER, CONF_USER_POOL_ID as CONF_USER_POOL_ID, DOMAIN as DOMAIN, MODE_DEV as MODE_DEV, MODE_PROD as MODE_PROD
+from .const import CONF_ACCOUNTS_SERVER as CONF_ACCOUNTS_SERVER, CONF_ACCOUNT_LINK_SERVER as CONF_ACCOUNT_LINK_SERVER, CONF_ACME_SERVER as CONF_ACME_SERVER, CONF_ALEXA as CONF_ALEXA, CONF_ALEXA_SERVER as CONF_ALEXA_SERVER, CONF_ALIASES as CONF_ALIASES, CONF_CLOUDHOOK_SERVER as CONF_CLOUDHOOK_SERVER, CONF_COGNITO_CLIENT_ID as CONF_COGNITO_CLIENT_ID, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_FILTER as CONF_FILTER, CONF_GOOGLE_ACTIONS as CONF_GOOGLE_ACTIONS, CONF_RELAYER_SERVER as CONF_RELAYER_SERVER, CONF_REMOTESTATE_SERVER as CONF_REMOTESTATE_SERVER, CONF_SERVICEHANDLERS_SERVER as CONF_SERVICEHANDLERS_SERVER, CONF_THINGTALK_SERVER as CONF_THINGTALK_SERVER, CONF_USER_POOL_ID as CONF_USER_POOL_ID, DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, DOMAIN as DOMAIN, MODE_DEV as MODE_DEV, MODE_PROD as MODE_PROD
 from .prefs import CloudPreferences as CloudPreferences
 from .repairs import async_manage_legacy_subscription_issue as async_manage_legacy_subscription_issue
 from .subscription import async_subscription_info as async_subscription_info
@@ -9,6 +9,7 @@ from collections.abc import Awaitable, Callable as Callable
 from enum import Enum
 from hass_nabucasa import Cloud
 from homeassistant.components import alexa as alexa, google_assistant as google_assistant
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_REGION as CONF_REGION, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -22,6 +23,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 
 DEFAULT_MODE = MODE_PROD
+PLATFORMS: Incomplete
 SERVICE_REMOTE_CONNECT: str
 SERVICE_REMOTE_DISCONNECT: str
 SIGNAL_CLOUD_CONNECTION_STATE: str
@@ -49,3 +51,5 @@ async def async_delete_cloudhook(hass: HomeAssistant, webhook_id: str) -> None: 
 def async_remote_ui_url(hass: HomeAssistant) -> str: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _remote_handle_prefs_updated(cloud: Cloud[CloudClient]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

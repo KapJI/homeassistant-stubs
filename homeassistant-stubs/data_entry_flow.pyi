@@ -2,6 +2,7 @@ import abc
 import voluptuous as vol
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
+from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.frame import report as report
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, Mapping
@@ -21,15 +22,18 @@ class FlowResultType(StrEnum):
     SHOW_PROGRESS_DONE: str
     MENU: str
 
-RESULT_TYPE_FORM: str
-RESULT_TYPE_CREATE_ENTRY: str
-RESULT_TYPE_ABORT: str
-RESULT_TYPE_EXTERNAL_STEP: str
-RESULT_TYPE_EXTERNAL_STEP_DONE: str
-RESULT_TYPE_SHOW_PROGRESS: str
-RESULT_TYPE_SHOW_PROGRESS_DONE: str
-RESULT_TYPE_MENU: str
+_DEPRECATED_RESULT_TYPE_FORM: Incomplete
+_DEPRECATED_RESULT_TYPE_CREATE_ENTRY: Incomplete
+_DEPRECATED_RESULT_TYPE_ABORT: Incomplete
+_DEPRECATED_RESULT_TYPE_EXTERNAL_STEP: Incomplete
+_DEPRECATED_RESULT_TYPE_EXTERNAL_STEP_DONE: Incomplete
+_DEPRECATED_RESULT_TYPE_SHOW_PROGRESS: Incomplete
+_DEPRECATED_RESULT_TYPE_SHOW_PROGRESS_DONE: Incomplete
+_DEPRECATED_RESULT_TYPE_MENU: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
 EVENT_DATA_ENTRY_FLOW_PROGRESSED: str
+FLOW_NOT_COMPLETE_STEPS: Incomplete
 
 @dataclass(slots=True)
 class BaseServiceInfo: ...
@@ -55,6 +59,7 @@ class FlowResult(TypedDict, total=False):
     handler: Required[str]
     last_step: bool | None
     menu_options: list[str] | dict[str, str]
+    minor_version: int
     options: Mapping[str, Any]
     preview: str | None
     progress_action: str
@@ -106,6 +111,7 @@ class FlowHandler:
     init_step: str
     init_data: Any
     VERSION: int
+    MINOR_VERSION: int
     @property
     def source(self) -> str | None: ...
     @property

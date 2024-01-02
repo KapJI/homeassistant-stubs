@@ -13,12 +13,12 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True, kw_only=True)
 class ElgatoSwitchEntityDescription(SwitchEntityDescription):
     has_fn: Callable[[ElgatoData], bool] = ...
     is_on_fn: Callable[[ElgatoData], bool | None]
     set_fn: Callable[[Elgato, bool], Awaitable[Any]]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, *, has_fn, is_on_fn, set_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, has_fn, is_on_fn, set_fn) -> None: ...
 
 SWITCHES: Incomplete
 

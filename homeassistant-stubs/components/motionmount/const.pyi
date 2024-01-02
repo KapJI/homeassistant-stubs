@@ -1,0 +1,2 @@
+DOMAIN: str
+EMPTY_MAC: str

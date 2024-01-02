@@ -1,15 +1,18 @@
-from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, CodeFormat as CodeFormat, DOMAIN as DOMAIN, FORMAT_NUMBER as FORMAT_NUMBER, FORMAT_TEXT as FORMAT_TEXT, SUPPORT_ALARM_ARM_AWAY as SUPPORT_ALARM_ARM_AWAY, SUPPORT_ALARM_ARM_CUSTOM_BYPASS as SUPPORT_ALARM_ARM_CUSTOM_BYPASS, SUPPORT_ALARM_ARM_HOME as SUPPORT_ALARM_ARM_HOME, SUPPORT_ALARM_ARM_NIGHT as SUPPORT_ALARM_ARM_NIGHT, SUPPORT_ALARM_ARM_VACATION as SUPPORT_ALARM_ARM_VACATION, SUPPORT_ALARM_TRIGGER as SUPPORT_ALARM_TRIGGER
+from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, CodeFormat as CodeFormat, DOMAIN as DOMAIN, _DEPRECATED_FORMAT_NUMBER as _DEPRECATED_FORMAT_NUMBER, _DEPRECATED_FORMAT_TEXT as _DEPRECATED_FORMAT_TEXT, _DEPRECATED_SUPPORT_ALARM_ARM_AWAY as _DEPRECATED_SUPPORT_ALARM_ARM_AWAY, _DEPRECATED_SUPPORT_ALARM_ARM_CUSTOM_BYPASS as _DEPRECATED_SUPPORT_ALARM_ARM_CUSTOM_BYPASS, _DEPRECATED_SUPPORT_ALARM_ARM_HOME as _DEPRECATED_SUPPORT_ALARM_ARM_HOME, _DEPRECATED_SUPPORT_ALARM_ARM_NIGHT as _DEPRECATED_SUPPORT_ALARM_ARM_NIGHT, _DEPRECATED_SUPPORT_ALARM_ARM_VACATION as _DEPRECATED_SUPPORT_ALARM_ARM_VACATION, _DEPRECATED_SUPPORT_ALARM_TRIGGER as _DEPRECATED_SUPPORT_ALARM_TRIGGER
 from _typeshed import Incomplete
-from dataclasses import dataclass
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_ALARM_ARM_AWAY as SERVICE_ALARM_ARM_AWAY, SERVICE_ALARM_ARM_CUSTOM_BYPASS as SERVICE_ALARM_ARM_CUSTOM_BYPASS, SERVICE_ALARM_ARM_HOME as SERVICE_ALARM_ARM_HOME, SERVICE_ALARM_ARM_NIGHT as SERVICE_ALARM_ARM_NIGHT, SERVICE_ALARM_ARM_VACATION as SERVICE_ALARM_ARM_VACATION, SERVICE_ALARM_DISARM as SERVICE_ALARM_DISARM, SERVICE_ALARM_TRIGGER as SERVICE_ALARM_TRIGGER
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import make_entity_service_schema as make_entity_service_schema
+from homeassistant.helpers.deprecation import check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final
 
+__getattr__: Incomplete
+__dir__: Incomplete
 _LOGGER: Final[Incomplete]
 SCAN_INTERVAL: Final[Incomplete]
 ENTITY_ID_FORMAT: Final[Incomplete]
@@ -21,21 +24,23 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-@dataclass
-class AlarmControlPanelEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class AlarmControlPanelEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class AlarmControlPanelEntity(Entity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class AlarmControlPanelEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: AlarmControlPanelEntityDescription
     _attr_changed_by: str | None
     _attr_code_arm_required: bool
     _attr_code_format: CodeFormat | None
     _attr_supported_features: AlarmControlPanelEntityFeature
-    @property
+    @cached_property
     def code_format(self) -> CodeFormat | None: ...
-    @property
+    @cached_property
     def changed_by(self) -> str | None: ...
-    @property
+    @cached_property
     def code_arm_required(self) -> bool: ...
     def alarm_disarm(self, code: str | None = None) -> None: ...
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...
@@ -51,7 +56,7 @@ class AlarmControlPanelEntity(Entity):
     async def async_alarm_trigger(self, code: str | None = None) -> None: ...
     def alarm_arm_custom_bypass(self, code: str | None = None) -> None: ...
     async def async_alarm_arm_custom_bypass(self, code: str | None = None) -> None: ...
-    @property
+    @cached_property
     def supported_features(self) -> AlarmControlPanelEntityFeature: ...
     @property
     def state_attributes(self) -> dict[str, Any] | None: ...

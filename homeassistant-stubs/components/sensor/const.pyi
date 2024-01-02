@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, POWER_VOLT_AMPERE_REACTIVE as POWER_VOLT_AMPERE_REACTIVE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfApparentPower as UnitOfApparentPower, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfInformation as UnitOfInformation, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, EnergyConverter as EnergyConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter
 from typing import Final
 
@@ -72,10 +73,12 @@ class SensorStateClass(StrEnum):
     TOTAL_INCREASING: str
 
 STATE_CLASSES_SCHEMA: Final[Incomplete]
-STATE_CLASS_MEASUREMENT: Final[str]
-STATE_CLASS_TOTAL: Final[str]
-STATE_CLASS_TOTAL_INCREASING: Final[str]
+_DEPRECATED_STATE_CLASS_MEASUREMENT: Final[Incomplete]
+_DEPRECATED_STATE_CLASS_TOTAL: Final[Incomplete]
+_DEPRECATED_STATE_CLASS_TOTAL_INCREASING: Final[Incomplete]
 STATE_CLASSES: Final[list[str]]
+__getattr__: Incomplete
+__dir__: Incomplete
 UNIT_CONVERTERS: dict[SensorDeviceClass | str | None, type[BaseUnitConverter]]
 DEVICE_CLASS_UNITS: dict[SensorDeviceClass, set[type[StrEnum] | str | None]]
 DEVICE_CLASS_STATE_CLASSES: dict[SensorDeviceClass, set[SensorStateClass]]

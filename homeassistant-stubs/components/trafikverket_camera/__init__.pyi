@@ -1,8 +1,8 @@
-from .const import CONF_LOCATION as CONF_LOCATION, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import TVDataUpdateCoordinator as TVDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ID as CONF_ID
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ID as CONF_ID, CONF_LOCATION as CONF_LOCATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 

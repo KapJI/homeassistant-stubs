@@ -12,7 +12,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-@dataclass
+@dataclass(frozen=True)
 class FullySwitchEntityDescriptionMixin:
     on_action: Callable[[FullyKiosk], Any]
     off_action: Callable[[FullyKiosk], Any]
@@ -21,9 +21,9 @@ class FullySwitchEntityDescriptionMixin:
     mqtt_off_event: str | None
     def __init__(self, on_action, off_action, is_on_fn, mqtt_on_event, mqtt_off_event) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class FullySwitchEntityDescription(SwitchEntityDescription, FullySwitchEntityDescriptionMixin):
-    def __init__(self, on_action, off_action, is_on_fn, mqtt_on_event, mqtt_off_event, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, on_action, off_action, is_on_fn, mqtt_on_event, mqtt_off_event, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 SWITCHES: tuple[FullySwitchEntityDescription, ...]
 

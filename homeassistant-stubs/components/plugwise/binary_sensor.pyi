@@ -14,11 +14,11 @@ from typing import Any
 
 SEVERITIES: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class PlugwiseBinarySensorEntityDescription(BinarySensorEntityDescription):
     key: BinarySensorType
     icon_off: str | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_off) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, icon_off) -> None: ...
 
 BINARY_SENSORS: tuple[PlugwiseBinarySensorEntityDescription, ...]
 

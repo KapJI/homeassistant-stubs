@@ -12,15 +12,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
-@dataclass
+@dataclass(frozen=True)
 class RequiredPiHoleBinaryDescription:
     state_value: Callable[[Hole], bool]
     def __init__(self, state_value) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class PiHoleBinarySensorEntityDescription(BinarySensorEntityDescription, RequiredPiHoleBinaryDescription):
     extra_value: Callable[[Hole], dict[str, Any] | None] = ...
-    def __init__(self, state_value, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, extra_value) -> None: ...
+    def __init__(self, state_value, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, extra_value) -> None: ...
 
 BINARY_SENSOR_TYPES: tuple[PiHoleBinarySensorEntityDescription, ...]
 

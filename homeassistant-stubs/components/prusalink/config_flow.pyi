@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -15,6 +15,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, str]) -> dict[str,
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> FlowResult: ...
 
 class CannotConnect(HomeAssistantError): ...

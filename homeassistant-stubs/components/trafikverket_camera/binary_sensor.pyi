@@ -11,14 +11,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 PARALLEL_UPDATES: int
 
-@dataclass
+@dataclass(frozen=True)
 class DeviceBaseEntityDescriptionMixin:
     value_fn: Callable[[CameraData], bool | None]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class TVCameraSensorEntityDescription(BinarySensorEntityDescription, DeviceBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_TYPE: Incomplete
 

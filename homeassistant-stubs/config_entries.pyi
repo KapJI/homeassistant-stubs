@@ -98,6 +98,7 @@ class ConfigEntry:
     __slots__: Incomplete
     entry_id: Incomplete
     version: Incomplete
+    minor_version: Incomplete
     domain: Incomplete
     title: Incomplete
     data: Incomplete
@@ -121,7 +122,7 @@ class ConfigEntry:
     _integration_for_domain: Incomplete
     _tries: int
     _setup_again_job: Incomplete
-    def __init__(self, version: int, domain: str, title: str, data: Mapping[str, Any], source: str, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, options: Mapping[str, Any] | None = None, unique_id: str | None = None, entry_id: str | None = None, state: ConfigEntryState = ..., disabled_by: ConfigEntryDisabler | None = None) -> None: ...
+    def __init__(self, *, version: int, minor_version: int, domain: str, title: str, data: Mapping[str, Any], source: str, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, options: Mapping[str, Any] | None = None, unique_id: str | None = None, entry_id: str | None = None, state: ConfigEntryState = ..., disabled_by: ConfigEntryDisabler | None = None) -> None: ...
     async def async_setup(self, hass: HomeAssistant, *, integration: loader.Integration | None = None) -> None: ...
     async def _async_setup_again(self, hass: HomeAssistant, *_: Any) -> None: ...
     def _async_get_setup_again_job(self, hass: HomeAssistant) -> HassJob: ...

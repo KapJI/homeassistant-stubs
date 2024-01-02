@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from enum import StrEnum
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from typing import Final
 
 LOGGER: Final[Incomplete]
@@ -7,10 +8,6 @@ DOMAIN: Final[str]
 ENTITY_ID_FORMAT: Final[Incomplete]
 PLATFORM_TYPE_LEGACY: Final[str]
 PLATFORM_TYPE_ENTITY: Final[str]
-SOURCE_TYPE_GPS: Final[str]
-SOURCE_TYPE_ROUTER: Final[str]
-SOURCE_TYPE_BLUETOOTH: Final[str]
-SOURCE_TYPE_BLUETOOTH_LE: Final[str]
 
 class SourceType(StrEnum):
     GPS: str
@@ -18,6 +15,12 @@ class SourceType(StrEnum):
     BLUETOOTH: str
     BLUETOOTH_LE: str
 
+_DEPRECATED_SOURCE_TYPE_GPS: Final[Incomplete]
+_DEPRECATED_SOURCE_TYPE_ROUTER: Final[Incomplete]
+_DEPRECATED_SOURCE_TYPE_BLUETOOTH: Final[Incomplete]
+_DEPRECATED_SOURCE_TYPE_BLUETOOTH_LE: Final[Incomplete]
+__getattr__: Incomplete
+__dir__: Incomplete
 CONF_SCAN_INTERVAL: Final[str]
 SCAN_INTERVAL: Final[Incomplete]
 CONF_TRACK_NEW: Final[str]

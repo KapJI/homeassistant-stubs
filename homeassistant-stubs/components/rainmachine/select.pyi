@@ -12,9 +12,9 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM, UnitSystem as UnitSystem
 
-@dataclass
+@dataclass(frozen=True)
 class RainMachineSelectDescription(SelectEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey):
-    def __init__(self, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    def __init__(self, data_key, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 
 @dataclass
 class FreezeProtectionSelectOption:
@@ -23,14 +23,14 @@ class FreezeProtectionSelectOption:
     metric_label: str
     def __init__(self, api_value, imperial_label, metric_label) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class FreezeProtectionTemperatureMixin:
     extended_options: list[FreezeProtectionSelectOption]
     def __init__(self, extended_options) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class FreezeProtectionSelectDescription(RainMachineSelectDescription, FreezeProtectionTemperatureMixin):
-    def __init__(self, extended_options, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    def __init__(self, extended_options, data_key, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
 
 TYPE_FREEZE_PROTECTION_TEMPERATURE: str
 SELECT_DESCRIPTIONS: Incomplete

@@ -13,6 +13,7 @@ from typing import TypeVar
 _SleepIQCoordinatorT = TypeVar('_SleepIQCoordinatorT', bound=SleepIQDataUpdateCoordinator | SleepIQPauseUpdateCoordinator)
 
 def device_from_bed(bed: SleepIQBed) -> DeviceInfo: ...
+def sleeper_for_side(bed: SleepIQBed, side: str) -> SleepIQSleeper: ...
 
 class SleepIQEntity(Entity):
     bed: Incomplete

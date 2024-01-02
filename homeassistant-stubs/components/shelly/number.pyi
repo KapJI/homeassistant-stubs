@@ -14,11 +14,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any, Final
 
-@dataclass
+@dataclass(frozen=True)
 class BlockNumberDescription(BlockEntityDescription, NumberEntityDescription):
     rest_path: str = ...
     rest_arg: str = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes, rest_path, rest_arg) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes, rest_path, rest_arg) -> None: ...
 
 NUMBERS: Final[Incomplete]
 

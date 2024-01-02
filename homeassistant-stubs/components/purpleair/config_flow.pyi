@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_SENSOR_INDICES as CONF_SENSOR_INDICES, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_SENSOR_INDICES as CONF_SENSOR_INDICES, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from aiopurpleair import API
 from aiopurpleair.endpoints.sensors import NearbySensorResult as NearbySensorResult
@@ -7,7 +7,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import aiohttp_client as aiohttp_client

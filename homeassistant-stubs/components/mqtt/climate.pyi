@@ -104,6 +104,8 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     _attributes_extra_blocked = MQTT_CLIMATE_ATTRIBUTES_BLOCKED
+    _attr_target_temperature_low: float | None
+    _attr_target_temperature_high: float | None
     @staticmethod
     def config_schema() -> vol.Schema: ...
     _attr_hvac_modes: Incomplete
@@ -119,8 +121,6 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _topic: Incomplete
     _optimistic: Incomplete
     _attr_target_temperature: Incomplete
-    _attr_target_temperature_low: Incomplete
-    _attr_target_temperature_high: Incomplete
     _feature_preset_mode: Incomplete
     _attr_preset_modes: Incomplete
     _attr_preset_mode: Incomplete

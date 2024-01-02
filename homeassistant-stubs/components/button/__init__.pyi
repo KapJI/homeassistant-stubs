@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
 from _typeshed import Incomplete
-from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
@@ -27,19 +27,21 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-@dataclass
-class ButtonEntityDescription(EntityDescription):
-    device_class: ButtonDeviceClass | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class ButtonEntityDescription(EntityDescription, frozen_or_thawed=True):
+    device_class: ButtonDeviceClass | None
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class ButtonEntity(RestoreEntity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class ButtonEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: ButtonEntityDescription
     _attr_should_poll: bool
     _attr_device_class: ButtonDeviceClass | None
     _attr_state: None
     __last_pressed: datetime | None
     def _default_to_device_class_name(self) -> bool: ...
-    @property
+    @cached_property
     def device_class(self) -> ButtonDeviceClass | None: ...
     @property
     def state(self) -> str | None: ...

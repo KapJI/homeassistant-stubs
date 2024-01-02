@@ -15,14 +15,14 @@ from typing import Any, Generic
 async def async_restart_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 async def async_power_cycle_port_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class UnifiButtonEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
     control_fn: Callable[[aiounifi.Controller, str], Coroutine[Any, Any, None]]
     def __init__(self, control_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class UnifiButtonEntityDescription(ButtonEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiButtonEntityDescriptionMixin[HandlerT, ApiItemT]):
-    def __init__(self, control_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, control_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiButtonEntityDescription, ...]
 

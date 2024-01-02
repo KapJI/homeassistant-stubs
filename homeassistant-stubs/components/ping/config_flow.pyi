@@ -2,6 +2,7 @@ from .const import CONF_IMPORTED_BY as CONF_IMPORTED_BY, CONF_PING_COUNT as CONF
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
+from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult

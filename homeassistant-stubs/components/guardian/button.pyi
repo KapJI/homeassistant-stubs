@@ -12,14 +12,14 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-@dataclass
+@dataclass(frozen=True)
 class GuardianButtonEntityDescriptionMixin:
     push_action: Callable[[Client], Awaitable]
     def __init__(self, push_action) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class ValveControllerButtonDescription(ButtonEntityDescription, ValveControllerEntityDescription, GuardianButtonEntityDescriptionMixin):
-    def __init__(self, push_action, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, push_action, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BUTTON_KIND_REBOOT: str
 BUTTON_KIND_RESET_VALVE_DIAGNOSTICS: str

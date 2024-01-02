@@ -2,9 +2,10 @@ from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components import frontend as frontend
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.config import config_per_platform as config_per_platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import config_per_platform as config_per_platform, discovery as discovery
+from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType

@@ -11,14 +11,14 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-@dataclass
+@dataclass(frozen=True)
 class BAFNumberDescriptionMixin:
     value_fn: Callable[[Device], int | None]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class BAFNumberDescription(NumberEntityDescription, BAFNumberDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 AUTO_COMFORT_NUMBER_DESCRIPTIONS: Incomplete
 FAN_NUMBER_DESCRIPTIONS: Incomplete

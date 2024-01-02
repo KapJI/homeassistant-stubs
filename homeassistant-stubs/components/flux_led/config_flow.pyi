@@ -6,14 +6,12 @@ from _typeshed import Incomplete
 from flux_led.scanner import FluxLEDDiscovery
 from homeassistant import config_entries as config_entries
 from homeassistant.components import dhcp as dhcp
-from homeassistant.const import CONF_HOST as CONF_HOST
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Final
-
-CONF_DEVICE: Final[str]
+from typing import Any
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int

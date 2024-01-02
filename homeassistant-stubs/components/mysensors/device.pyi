@@ -1,8 +1,8 @@
 import abc
-from .const import CHILD_CALLBACK as CHILD_CALLBACK, CONF_DEVICE as CONF_DEVICE, DOMAIN as DOMAIN, DevId as DevId, GatewayId as GatewayId, NODE_CALLBACK as NODE_CALLBACK, PLATFORM_TYPES as PLATFORM_TYPES, UPDATE_DELAY as UPDATE_DELAY
+from .const import CHILD_CALLBACK as CHILD_CALLBACK, DOMAIN as DOMAIN, DevId as DevId, GatewayId as GatewayId, NODE_CALLBACK as NODE_CALLBACK, PLATFORM_TYPES as PLATFORM_TYPES, UPDATE_DELAY as UPDATE_DELAY
 from _typeshed import Incomplete
 from abc import abstractmethod
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DEVICE as CONF_DEVICE, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo

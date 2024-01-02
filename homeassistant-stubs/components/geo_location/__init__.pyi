@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -19,20 +20,22 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class GeolocationEvent(Entity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class GeolocationEvent(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_source: str
     _attr_distance: float | None
     _attr_latitude: float | None
     _attr_longitude: float | None
     @property
     def state(self) -> float | None: ...
-    @property
+    @cached_property
     def source(self) -> str: ...
-    @property
+    @cached_property
     def distance(self) -> float | None: ...
-    @property
+    @cached_property
     def latitude(self) -> float | None: ...
-    @property
+    @cached_property
     def longitude(self) -> float | None: ...
     @property
     def state_attributes(self) -> dict[str, Any]: ...

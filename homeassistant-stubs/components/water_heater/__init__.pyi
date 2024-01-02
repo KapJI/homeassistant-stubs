@@ -1,11 +1,12 @@
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from dataclasses import dataclass
 from enum import IntFlag
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -33,9 +34,11 @@ class WaterHeaterEntityFeature(IntFlag):
     AWAY_MODE: int
     ON_OFF: int
 
-SUPPORT_TARGET_TEMPERATURE: int
-SUPPORT_OPERATION_MODE: int
-SUPPORT_AWAY_MODE: int
+_DEPRECATED_SUPPORT_TARGET_TEMPERATURE: Incomplete
+_DEPRECATED_SUPPORT_OPERATION_MODE: Incomplete
+_DEPRECATED_SUPPORT_AWAY_MODE: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
 ATTR_MAX_TEMP: str
 ATTR_MIN_TEMP: str
 ATTR_AWAY_MODE: str
@@ -55,11 +58,13 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-@dataclass
-class WaterHeaterEntityEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class WaterHeaterEntityEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class WaterHeaterEntity(Entity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     entity_description: WaterHeaterEntityEntityDescription
     _attr_current_operation: str | None
@@ -83,21 +88,21 @@ class WaterHeaterEntity(Entity):
     def capability_attributes(self) -> Mapping[str, Any]: ...
     @property
     def state_attributes(self) -> dict[str, Any]: ...
-    @property
+    @cached_property
     def temperature_unit(self) -> str: ...
-    @property
+    @cached_property
     def current_operation(self) -> str | None: ...
-    @property
+    @cached_property
     def operation_list(self) -> list[str] | None: ...
-    @property
+    @cached_property
     def current_temperature(self) -> float | None: ...
-    @property
+    @cached_property
     def target_temperature(self) -> float | None: ...
-    @property
+    @cached_property
     def target_temperature_high(self) -> float | None: ...
-    @property
+    @cached_property
     def target_temperature_low(self) -> float | None: ...
-    @property
+    @cached_property
     def is_away_mode_on(self) -> bool | None: ...
     def set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

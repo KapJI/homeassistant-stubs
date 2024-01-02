@@ -23,13 +23,15 @@ class QswDataEntity(CoordinatorEntity[QswDataCoordinator]):
     def __init__(self, coordinator: QswDataCoordinator, entry: ConfigEntry, type_id: int | None = None) -> None: ...
     def get_device_value(self, key: str, subkey: str, qsw_type: QswEntityType | None = None) -> Any: ...
 
-@dataclass
+@dataclass(frozen=True)
 class QswEntityDescriptionMixin:
     subkey: str
     def __init__(self, subkey) -> None: ...
 
+@dataclass(frozen=True)
 class QswEntityDescription(EntityDescription, QswEntityDescriptionMixin):
-    attributes: dict[str, list[str]] | None
+    attributes: dict[str, list[str]] | None = ...
+    def __init__(self, subkey, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, attributes) -> None: ...
 
 class QswSensorEntity(QswDataEntity):
     entity_description: QswEntityDescription

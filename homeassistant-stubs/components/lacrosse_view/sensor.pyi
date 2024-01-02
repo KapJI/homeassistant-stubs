@@ -13,19 +13,20 @@ from lacrosse_view import Sensor
 
 _LOGGER: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class LaCrosseSensorEntityDescriptionMixin:
     value_fn: Callable[[Sensor, str], float | int | str | None]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class LaCrosseSensorEntityDescription(SensorEntityDescription, LaCrosseSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 def get_value(sensor: Sensor, field: str) -> float | int | str | None: ...
 
 PARALLEL_UPDATES: int
 SENSOR_DESCRIPTIONS: Incomplete
+UNIT_OF_MEASUREMENT_MAP: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

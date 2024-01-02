@@ -1,11 +1,12 @@
 from _typeshed import Incomplete
-from dataclasses import dataclass
 from enum import IntFlag
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -24,10 +25,12 @@ class FanEntityFeature(IntFlag):
     DIRECTION: int
     PRESET_MODE: int
 
-SUPPORT_SET_SPEED: int
-SUPPORT_OSCILLATE: int
-SUPPORT_DIRECTION: int
-SUPPORT_PRESET_MODE: int
+_DEPRECATED_SUPPORT_SET_SPEED: Incomplete
+_DEPRECATED_SUPPORT_OSCILLATE: Incomplete
+_DEPRECATED_SUPPORT_DIRECTION: Incomplete
+_DEPRECATED_SUPPORT_PRESET_MODE: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
 SERVICE_INCREASE_SPEED: str
 SERVICE_DECREASE_SPEED: str
 SERVICE_OSCILLATE: str
@@ -51,11 +54,13 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-@dataclass
-class FanEntityDescription(ToggleEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class FanEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class FanEntity(ToggleEntity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class FanEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     entity_description: FanEntityDescription
     _attr_current_direction: str | None
@@ -83,23 +88,23 @@ class FanEntity(ToggleEntity):
     async def async_oscillate(self, oscillating: bool) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
-    @property
+    @cached_property
     def percentage(self) -> int | None: ...
-    @property
+    @cached_property
     def speed_count(self) -> int: ...
     @property
     def percentage_step(self) -> float: ...
-    @property
+    @cached_property
     def current_direction(self) -> str | None: ...
-    @property
+    @cached_property
     def oscillating(self) -> bool | None: ...
     @property
     def capability_attributes(self) -> dict[str, list[str] | None]: ...
     @property
     def state_attributes(self) -> dict[str, float | str | None]: ...
-    @property
+    @cached_property
     def supported_features(self) -> FanEntityFeature: ...
-    @property
+    @cached_property
     def preset_mode(self) -> str | None: ...
-    @property
+    @cached_property
     def preset_modes(self) -> list[str] | None: ...

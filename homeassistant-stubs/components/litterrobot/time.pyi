@@ -12,13 +12,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Generic
 
-@dataclass
+@dataclass(frozen=True)
 class RequiredKeysMixin(Generic[_RobotT]):
     value_fn: Callable[[_RobotT], time | None]
     set_fn: Callable[[_RobotT, time], Coroutine[Any, Any, bool]]
     def __init__(self, value_fn, set_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class RobotTimeEntityDescription(TimeEntityDescription, RequiredKeysMixin[_RobotT]):
     def __init__(self, *selfvalue_fnset_fn_, value_fn, set_fn, **selfvalue_fnset_fn__) -> None: ...
 

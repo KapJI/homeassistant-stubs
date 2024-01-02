@@ -14,9 +14,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 
-@dataclass
+@dataclass(frozen=True)
 class SynologyDSMSensorEntityDescription(SensorEntityDescription, SynologyDSMEntityDescription):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, api_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 UTILISATION_SENSORS: tuple[SynologyDSMSensorEntityDescription, ...]
 STORAGE_VOL_SENSORS: tuple[SynologyDSMSensorEntityDescription, ...]

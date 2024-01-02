@@ -1,3 +1,4 @@
+from .assist_pipeline import async_create_cloud_pipeline as async_create_cloud_pipeline
 from .client import CloudClient as CloudClient
 from .const import DOMAIN as DOMAIN, PREF_ALEXA_REPORT_STATE as PREF_ALEXA_REPORT_STATE, PREF_DISABLE_2FA as PREF_DISABLE_2FA, PREF_ENABLE_ALEXA as PREF_ENABLE_ALEXA, PREF_ENABLE_GOOGLE as PREF_ENABLE_GOOGLE, PREF_GOOGLE_REPORT_STATE as PREF_GOOGLE_REPORT_STATE, PREF_GOOGLE_SECURE_DEVICES_PIN as PREF_GOOGLE_SECURE_DEVICES_PIN, PREF_TTS_DEFAULT_VOICE as PREF_TTS_DEFAULT_VOICE, REQUEST_TIMEOUT as REQUEST_TIMEOUT
 from .google_config import CLOUD_GOOGLE as CLOUD_GOOGLE
@@ -7,12 +8,12 @@ from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from hass_nabucasa import Cloud as Cloud
-from homeassistant.components import assist_pipeline as assist_pipeline, conversation as conversation, websocket_api as websocket_api
+from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.homeassistant import exposed_entities as exposed_entities
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, require_admin as require_admin
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.const import CLOUD_NEVER_EXPOSED_ENTITIES as CLOUD_NEVER_EXPOSED_ENTITIES
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.util.location import async_detect_location_info as async_detect_location_info
@@ -22,7 +23,7 @@ from typing import Any, Concatenate, ParamSpec, TypeVar
 _LOGGER: Incomplete
 _CLOUD_ERRORS: dict[type[Exception], tuple[HTTPStatus, str]]
 
-async def async_setup(hass: HomeAssistant) -> None: ...
+def async_setup(hass: HomeAssistant) -> None: ...
 _HassViewT = TypeVar('_HassViewT', bound=HomeAssistantView)
 _P = ParamSpec('_P')
 

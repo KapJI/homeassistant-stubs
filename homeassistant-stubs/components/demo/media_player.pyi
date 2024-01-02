@@ -13,6 +13,7 @@ DEFAULT_SOUND_MODE: str
 YOUTUBE_PLAYER_SUPPORT: Incomplete
 MUSIC_PLAYER_SUPPORT: Incomplete
 NETFLIX_PLAYER_SUPPORT: Incomplete
+BROWSE_PLAYER_SUPPORT: Incomplete
 
 class AbstractDemoPlayer(MediaPlayerEntity):
     _attr_should_poll: bool
@@ -103,3 +104,9 @@ class DemoTVShowPlayer(AbstractDemoPlayer):
     def media_previous_track(self) -> None: ...
     def media_next_track(self) -> None: ...
     def select_source(self, source: str) -> None: ...
+
+class DemoBrowsePlayer(AbstractDemoPlayer):
+    _attr_supported_features = BROWSE_PLAYER_SUPPORT
+
+class DemoGroupPlayer(AbstractDemoPlayer):
+    _attr_supported_features: Incomplete

@@ -6,7 +6,7 @@ from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATT
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter

@@ -1,7 +1,7 @@
 from . import SensorDeviceClass as SensorDeviceClass
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.significant_change import check_absolute_change as check_absolute_change, check_percentage_change as check_percentage_change
+from homeassistant.helpers.significant_change import check_absolute_change as check_absolute_change, check_percentage_change as check_percentage_change, check_valid_float as check_valid_float
 from typing import Any
 
 def _absolute_and_relative_change(old_state: int | float | None, new_state: int | float | None, absolute_change: int | float, percentage_change: int | float) -> bool: ...

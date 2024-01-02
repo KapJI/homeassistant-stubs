@@ -1,9 +1,9 @@
-from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_PROTOCOL as CONF_PROTOCOL, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, DSMR_VERSIONS as DSMR_VERSIONS, LOGGER as LOGGER, RFXTRX_DSMR_PROTOCOL as RFXTRX_DSMR_PROTOCOL
+from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, DSMR_VERSIONS as DSMR_VERSIONS, LOGGER as LOGGER, RFXTRX_DSMR_PROTOCOL as RFXTRX_DSMR_PROTOCOL
 from _typeshed import Incomplete
 from dsmr_parser.objects import DSMRObject as DSMRObject
 from homeassistant import config_entries as config_entries, core as core, exceptions as exceptions
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_TYPE as CONF_TYPE
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any

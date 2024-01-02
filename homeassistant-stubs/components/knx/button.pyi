@@ -1,9 +1,9 @@
-from .const import CONF_PAYLOAD as CONF_PAYLOAD, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
+from .const import CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.button import ButtonEntity as ButtonEntity
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, CONF_PAYLOAD as CONF_PAYLOAD, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType

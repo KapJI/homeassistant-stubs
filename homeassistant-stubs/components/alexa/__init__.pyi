@@ -9,6 +9,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 CONF_FLASH_BRIEFINGS: str
 CONF_SMART_HOME: str
 DEFAULT_LOCALE: str
+VALID_ENDPOINTS: Incomplete
 ALEXA_ENTITY_SCHEMA: Incomplete
 SMART_HOME_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete

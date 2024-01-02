@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntry
 from homeassistant.const import ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_HOST as CONF_HOST, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
@@ -20,6 +21,7 @@ _FroniusCoordinatorT = TypeVar('_FroniusCoordinatorT', bound=FroniusCoordinatorB
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...
 
 class FroniusSolarNet:
     hass: Incomplete

@@ -1,7 +1,7 @@
-from .const import CONF_PROFILE_ID as CONF_PROFILE_ID, CONF_PROFILE_NAME as CONF_PROFILE_NAME, DOMAIN as DOMAIN
+from .const import CONF_PROFILE_ID as CONF_PROFILE_ID, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_PROFILE_NAME as CONF_PROFILE_NAME
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any

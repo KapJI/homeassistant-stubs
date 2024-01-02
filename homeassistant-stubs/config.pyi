@@ -1,19 +1,18 @@
 import voluptuous as vol
 from . import auth as auth
-from .const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_HIDDEN as ATTR_HIDDEN, CONF_ALLOWLIST_EXTERNAL_DIRS as CONF_ALLOWLIST_EXTERNAL_DIRS, CONF_ALLOWLIST_EXTERNAL_URLS as CONF_ALLOWLIST_EXTERNAL_URLS, CONF_AUTH_MFA_MODULES as CONF_AUTH_MFA_MODULES, CONF_AUTH_PROVIDERS as CONF_AUTH_PROVIDERS, CONF_COUNTRY as CONF_COUNTRY, CONF_CURRENCY as CONF_CURRENCY, CONF_CUSTOMIZE as CONF_CUSTOMIZE, CONF_CUSTOMIZE_DOMAIN as CONF_CUSTOMIZE_DOMAIN, CONF_CUSTOMIZE_GLOB as CONF_CUSTOMIZE_GLOB, CONF_ELEVATION as CONF_ELEVATION, CONF_EXTERNAL_URL as CONF_EXTERNAL_URL, CONF_ID as CONF_ID, CONF_INTERNAL_URL as CONF_INTERNAL_URL, CONF_LANGUAGE as CONF_LANGUAGE, CONF_LATITUDE as CONF_LATITUDE, CONF_LEGACY_TEMPLATES as CONF_LEGACY_TEMPLATES, CONF_LONGITUDE as CONF_LONGITUDE, CONF_MEDIA_DIRS as CONF_MEDIA_DIRS, CONF_NAME as CONF_NAME, CONF_PACKAGES as CONF_PACKAGES, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_TIME_ZONE as CONF_TIME_ZONE, CONF_TYPE as CONF_TYPE, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM, LEGACY_CONF_WHITELIST_EXTERNAL_DIRS as LEGACY_CONF_WHITELIST_EXTERNAL_DIRS, __version__ as __version__
+from .const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_HIDDEN as ATTR_HIDDEN, CONF_ALLOWLIST_EXTERNAL_DIRS as CONF_ALLOWLIST_EXTERNAL_DIRS, CONF_ALLOWLIST_EXTERNAL_URLS as CONF_ALLOWLIST_EXTERNAL_URLS, CONF_AUTH_MFA_MODULES as CONF_AUTH_MFA_MODULES, CONF_AUTH_PROVIDERS as CONF_AUTH_PROVIDERS, CONF_COUNTRY as CONF_COUNTRY, CONF_CURRENCY as CONF_CURRENCY, CONF_CUSTOMIZE as CONF_CUSTOMIZE, CONF_CUSTOMIZE_DOMAIN as CONF_CUSTOMIZE_DOMAIN, CONF_CUSTOMIZE_GLOB as CONF_CUSTOMIZE_GLOB, CONF_ELEVATION as CONF_ELEVATION, CONF_EXTERNAL_URL as CONF_EXTERNAL_URL, CONF_ID as CONF_ID, CONF_INTERNAL_URL as CONF_INTERNAL_URL, CONF_LANGUAGE as CONF_LANGUAGE, CONF_LATITUDE as CONF_LATITUDE, CONF_LEGACY_TEMPLATES as CONF_LEGACY_TEMPLATES, CONF_LONGITUDE as CONF_LONGITUDE, CONF_MEDIA_DIRS as CONF_MEDIA_DIRS, CONF_NAME as CONF_NAME, CONF_PACKAGES as CONF_PACKAGES, CONF_PLATFORM as CONF_PLATFORM, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_TIME_ZONE as CONF_TIME_ZONE, CONF_TYPE as CONF_TYPE, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM, LEGACY_CONF_WHITELIST_EXTERNAL_DIRS as LEGACY_CONF_WHITELIST_EXTERNAL_DIRS, __version__ as __version__
 from .core import ConfigSource as ConfigSource, HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import ConfigValidationError as ConfigValidationError, HomeAssistantError as HomeAssistantError
 from .generated.currencies import HISTORIC_CURRENCIES as HISTORIC_CURRENCIES
-from .helpers import config_per_platform as config_per_platform, extract_domain_configs as extract_domain_configs
 from .helpers.entity_values import EntityValues as EntityValues
 from .helpers.typing import ConfigType as ConfigType
 from .loader import ComponentProtocol as ComponentProtocol, Integration as Integration, IntegrationNotFound as IntegrationNotFound
 from .requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
 from .util.package import is_docker_env as is_docker_env
 from .util.unit_system import get_unit_system as get_unit_system, validate_unit_system as validate_unit_system
-from .util.yaml import SECRET_YAML as SECRET_YAML, Secrets as Secrets, load_yaml as load_yaml
+from .util.yaml import SECRET_YAML as SECRET_YAML, Secrets as Secrets, YamlTypeError as YamlTypeError, load_yaml_dict as load_yaml_dict
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Sequence
+from collections.abc import Callable as Callable, Iterable, Sequence
 from dataclasses import dataclass
 from enum import StrEnum
 from typing import Any
@@ -53,10 +52,10 @@ class ConfigErrorTranslationKey(StrEnum):
 class ConfigExceptionInfo:
     exception: Exception
     translation_key: ConfigErrorTranslationKey
-    platform_name: str
+    platform_path: str
     config: ConfigType
     integration_link: str | None
-    def __init__(self, exception, translation_key, platform_name, config, integration_link) -> None: ...
+    def __init__(self, exception, translation_key, platform_path, config, integration_link) -> None: ...
 
 @dataclass
 class IntegrationConfigInfo:
@@ -74,6 +73,7 @@ CUSTOMIZE_CONFIG_SCHEMA: Incomplete
 
 def _raise_issue_if_historic_currency(hass: HomeAssistant, currency: str) -> None: ...
 def _raise_issue_if_no_country(hass: HomeAssistant, country: str | None) -> None: ...
+def _raise_issue_if_legacy_templates(hass: HomeAssistant, legacy_templates: bool | None) -> None: ...
 def _validate_currency(data: Any) -> Any: ...
 
 CORE_CONFIG_SCHEMA: Incomplete
@@ -103,6 +103,8 @@ async def merge_packages_config(hass: HomeAssistant, config: dict, packages: dic
 def _get_log_message_and_stack_print_pref(hass: HomeAssistant, domain: str, platform_exception: ConfigExceptionInfo) -> tuple[str | None, bool, dict[str, str]]: ...
 async def async_process_component_and_handle_errors(hass: HomeAssistant, config: ConfigType, integration: Integration, raise_on_failure: bool = False) -> ConfigType | None: ...
 def async_handle_component_errors(hass: HomeAssistant, integration_config_info: IntegrationConfigInfo, integration: Integration, raise_on_failure: bool = False) -> ConfigType | None: ...
+def config_per_platform(config: ConfigType, domain: str) -> Iterable[tuple[str | None, ConfigType]]: ...
+def extract_domain_configs(config: ConfigType, domain: str) -> Sequence[str]: ...
 async def async_process_component_config(hass: HomeAssistant, config: ConfigType, integration: Integration) -> IntegrationConfigInfo: ...
 def config_without_domain(config: ConfigType, domain: str) -> ConfigType: ...
 async def async_check_ha_config_file(hass: HomeAssistant) -> str | None: ...

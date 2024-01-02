@@ -1,8 +1,8 @@
-from .const import ACTUATOR as ACTUATOR, DOMAIN as DOMAIN, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, ICON_OCCUPIED as ICON_OCCUPIED
+from .const import ACTUATOR as ACTUATOR, DOMAIN as DOMAIN, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, FOOT_WARMING_TIMER as FOOT_WARMING_TIMER, ICON_OCCUPIED as ICON_OCCUPIED
 from .coordinator import SleepIQData as SleepIQData, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator
-from .entity import SleepIQBedEntity as SleepIQBedEntity
+from .entity import SleepIQBedEntity as SleepIQBedEntity, sleeper_for_side as sleeper_for_side
 from _typeshed import Incomplete
-from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSleeper
+from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQFootWarmer as SleepIQFootWarmer, SleepIQSleeper as SleepIQSleeper
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-@dataclass
+@dataclass(frozen=True)
 class SleepIQNumberEntityDescriptionMixin:
     value_fn: Callable[[Any], float]
     set_value_fn: Callable[[Any, int], Coroutine[None, None, None]]
@@ -19,9 +19,9 @@ class SleepIQNumberEntityDescriptionMixin:
     get_unique_id_fn: Callable[[SleepIQBed, Any], str]
     def __init__(self, value_fn, set_value_fn, get_name_fn, get_unique_id_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class SleepIQNumberEntityDescription(NumberEntityDescription, SleepIQNumberEntityDescriptionMixin):
-    def __init__(self, value_fn, set_value_fn, get_name_fn, get_unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, value_fn, set_value_fn, get_name_fn, get_unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 async def _async_set_firmness(sleeper: SleepIQSleeper, firmness: int) -> None: ...
 async def _async_set_actuator_position(actuator: SleepIQActuator, position: int) -> None: ...
@@ -29,6 +29,9 @@ def _get_actuator_name(bed: SleepIQBed, actuator: SleepIQActuator) -> str: ...
 def _get_actuator_unique_id(bed: SleepIQBed, actuator: SleepIQActuator) -> str: ...
 def _get_sleeper_name(bed: SleepIQBed, sleeper: SleepIQSleeper) -> str: ...
 def _get_sleeper_unique_id(bed: SleepIQBed, sleeper: SleepIQSleeper) -> str: ...
+async def _async_set_foot_warmer_time(foot_warmer: SleepIQFootWarmer, time: int) -> None: ...
+def _get_foot_warming_name(bed: SleepIQBed, foot_warmer: SleepIQFootWarmer) -> str: ...
+def _get_foot_warming_unique_id(bed: SleepIQBed, foot_warmer: SleepIQFootWarmer) -> str: ...
 
 NUMBER_DESCRIPTIONS: dict[str, SleepIQNumberEntityDescription]
 

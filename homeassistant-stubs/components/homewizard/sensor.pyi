@@ -15,12 +15,12 @@ from typing import Final
 
 PARALLEL_UPDATES: int
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True, kw_only=True)
 class HomeWizardSensorEntityDescription(SensorEntityDescription):
     enabled_fn: Callable[[Data], bool] = ...
     has_fn: Callable[[Data], bool]
     value_fn: Callable[[Data], StateType]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, *, enabled_fn, has_fn, value_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, enabled_fn, has_fn, value_fn) -> None: ...
 
 SENSORS: Final[tuple[HomeWizardSensorEntityDescription, ...]]
 

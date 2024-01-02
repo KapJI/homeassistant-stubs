@@ -1,10 +1,10 @@
 from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature
 from _typeshed import Incomplete
-from dataclasses import dataclass
 from enum import StrEnum
+from functools import cached_property
 from homeassistant.const import EntityCategory
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.entity import EntityDescription
+from homeassistant.helpers.entity import ABCCachedProperties, EntityDescription
 from homeassistant.helpers.restore_state import RestoreEntity
 from typing import Any
 
@@ -15,13 +15,13 @@ class UpdateDeviceClass(StrEnum):
 
 DEVICE_CLASSES_SCHEMA: Incomplete
 
-@dataclass
-class UpdateEntityDescription(EntityDescription):
-    device_class: UpdateDeviceClass | None = ...
-    entity_category: EntityCategory | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class UpdateEntityDescription(EntityDescription, frozen_or_thawed=True):
+    device_class: UpdateDeviceClass | None
+    entity_category: EntityCategory | None
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class UpdateEntity(RestoreEntity):
+class UpdateEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCachedProperties):
     _entity_component_unrecorded_attributes: Incomplete
     entity_description: UpdateEntityDescription
     _attr_auto_update: bool
@@ -36,28 +36,28 @@ class UpdateEntity(RestoreEntity):
     _attr_title: str | None
     __skipped_version: str | None
     __in_progress: bool
-    @property
+    @cached_property
     def auto_update(self) -> bool: ...
-    @property
+    @cached_property
     def installed_version(self) -> str | None: ...
     def _default_to_device_class_name(self) -> bool: ...
-    @property
+    @cached_property
     def device_class(self) -> UpdateDeviceClass | None: ...
     @property
     def entity_category(self) -> EntityCategory | None: ...
     @property
     def entity_picture(self) -> str | None: ...
-    @property
+    @cached_property
     def in_progress(self) -> bool | int | None: ...
-    @property
+    @cached_property
     def latest_version(self) -> str | None: ...
-    @property
+    @cached_property
     def release_summary(self) -> str | None: ...
-    @property
+    @cached_property
     def release_url(self) -> str | None: ...
-    @property
+    @cached_property
     def supported_features(self) -> UpdateEntityFeature: ...
-    @property
+    @cached_property
     def title(self) -> str | None: ...
     async def async_skip(self) -> None: ...
     async def async_clear_skipped(self) -> None: ...

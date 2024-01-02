@@ -10,9 +10,12 @@ from homeassistant.core import Context as Context, HassJob as HassJob, HomeAssis
 from homeassistant.helpers.aiohttp_client import SERVER_SOFTWARE as SERVER_SOFTWARE
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.util.aiohttp import MockRequest as MockRequest, serialize_response as serialize_response
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
+
+VALID_REPAIR_TRANSLATION_KEYS: Incomplete
 
 class CloudClient(Interface):
     _hass: Incomplete
@@ -60,3 +63,4 @@ class CloudClient(Interface):
     async def async_webhook_message(self, payload: dict[Any, Any]) -> dict[Any, Any]: ...
     async def async_system_message(self, payload: dict[Any, Any] | None) -> None: ...
     async def async_cloudhooks_update(self, data: dict[str, dict[str, str | bool]]) -> None: ...
+    async def async_create_repair_issue(self, identifier: str, translation_key: str, *, placeholders: dict[str, str] | None = None, severity: Literal['error', 'warning'] = 'warning') -> None: ...

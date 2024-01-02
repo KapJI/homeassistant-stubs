@@ -20,3 +20,6 @@ class DemoCamera(Camera):
     _attr_is_on: bool
     async def async_turn_off(self) -> None: ...
     async def async_turn_on(self) -> None: ...
+
+class DemoCameraWithoutStream(DemoCamera):
+    _attr_supported_features: Incomplete

@@ -1,17 +1,21 @@
+from .assist_pipeline import async_migrate_cloud_pipeline_stt_engine as async_migrate_cloud_pipeline_stt_engine
 from .client import CloudClient as CloudClient
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, STT_ENTITY_UNIQUE_ID as STT_ENTITY_UNIQUE_ID
 from _typeshed import Incomplete
 from collections.abc import AsyncIterable
 from hass_nabucasa import Cloud as Cloud
-from homeassistant.components.stt import AudioBitRates as AudioBitRates, AudioChannels as AudioChannels, AudioCodecs as AudioCodecs, AudioFormats as AudioFormats, AudioSampleRates as AudioSampleRates, Provider as Provider, SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult, SpeechResultState as SpeechResultState
+from homeassistant.components.stt import AudioBitRates as AudioBitRates, AudioChannels as AudioChannels, AudioCodecs as AudioCodecs, AudioFormats as AudioFormats, AudioSampleRates as AudioSampleRates, SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult, SpeechResultState as SpeechResultState, SpeechToTextEntity as SpeechToTextEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 _LOGGER: Incomplete
 
-async def async_get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> CloudProvider: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class CloudProvider(Provider):
+class CloudProviderEntity(SpeechToTextEntity):
+    _attr_name: str
+    _attr_unique_id = STT_ENTITY_UNIQUE_ID
     cloud: Incomplete
     def __init__(self, cloud: Cloud[CloudClient]) -> None: ...
     @property
@@ -26,4 +30,5 @@ class CloudProvider(Provider):
     def supported_sample_rates(self) -> list[AudioSampleRates]: ...
     @property
     def supported_channels(self) -> list[AudioChannels]: ...
+    async def async_added_to_hass(self) -> None: ...
     async def async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...

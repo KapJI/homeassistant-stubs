@@ -16,7 +16,6 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as Core
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.generated import languages as languages
 from homeassistant.setup import async_start_setup as async_start_setup
-from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from logging import Logger
 from typing import Any, Protocol
 

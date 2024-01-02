@@ -14,14 +14,14 @@ from tesla_powerwall import Meter as Meter, MeterType as MeterType
 _METER_DIRECTION_EXPORT: str
 _METER_DIRECTION_IMPORT: str
 
-@dataclass
+@dataclass(frozen=True)
 class PowerwallRequiredKeysMixin:
     value_fn: Callable[[Meter], float]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class PowerwallSensorEntityDescription(SensorEntityDescription, PowerwallRequiredKeysMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 def _get_meter_power(meter: Meter) -> float: ...
 def _get_meter_frequency(meter: Meter) -> float: ...

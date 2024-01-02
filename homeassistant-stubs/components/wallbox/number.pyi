@@ -12,16 +12,16 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 def min_charging_current_value(coordinator: WallboxCoordinator) -> float: ...
 
-@dataclass
+@dataclass(frozen=True)
 class WallboxNumberEntityDescriptionMixin:
     max_value_fn: Callable[[WallboxCoordinator], float]
     min_value_fn: Callable[[WallboxCoordinator], float]
     set_value_fn: Callable[[WallboxCoordinator], Callable[[float], Awaitable[None]]]
     def __init__(self, max_value_fn, min_value_fn, set_value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class WallboxNumberEntityDescription(NumberEntityDescription, WallboxNumberEntityDescriptionMixin):
-    def __init__(self, max_value_fn, min_value_fn, set_value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, max_value_fn, min_value_fn, set_value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 NUMBER_TYPES: dict[str, WallboxNumberEntityDescription]
 

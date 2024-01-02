@@ -31,20 +31,20 @@ NOTIFICATION_WEATHER: str
 NOTIFICATION_IRRIGATION: str
 NOTIFICATION_GAS: str
 
-@dataclass
+@dataclass(frozen=True)
 class NotificationZWaveJSEntityDescription(BinarySensorEntityDescription):
     off_state: str = ...
     states: tuple[str, ...] | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, off_state, states) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, off_state, states) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class PropertyZWaveJSMixin:
     on_states: tuple[str, ...]
     def __init__(self, on_states) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class PropertyZWaveJSEntityDescription(BinarySensorEntityDescription, PropertyZWaveJSMixin):
-    def __init__(self, on_states, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, on_states, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 NOTIFICATION_SENSOR_MAPPINGS: tuple[NotificationZWaveJSEntityDescription, ...]
 PROPERTY_SENSOR_MAPPINGS: dict[str, PropertyZWaveJSEntityDescription]

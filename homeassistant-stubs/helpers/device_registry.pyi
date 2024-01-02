@@ -1,5 +1,6 @@
 from . import entity_registry as entity_registry, storage as storage
 from .debounce import Debouncer as Debouncer
+from .deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .frame import report as report
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
@@ -37,9 +38,11 @@ class DeviceEntryDisabler(StrEnum):
     INTEGRATION: str
     USER: str
 
-DISABLED_CONFIG_ENTRY: Incomplete
-DISABLED_INTEGRATION: Incomplete
-DISABLED_USER: Incomplete
+_DEPRECATED_DISABLED_CONFIG_ENTRY: Incomplete
+_DEPRECATED_DISABLED_INTEGRATION: Incomplete
+_DEPRECATED_DISABLED_USER: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
 
 class DeviceInfo(TypedDict, total=False):
     configuration_url: str | URL | None

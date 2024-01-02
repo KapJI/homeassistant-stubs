@@ -1,4 +1,6 @@
+from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from typing import Final
 
 DOMAIN: Final[str]
@@ -9,8 +11,8 @@ class CodeFormat(StrEnum):
     TEXT: str
     NUMBER: str
 
-FORMAT_TEXT: Final[str]
-FORMAT_NUMBER: Final[str]
+_DEPRECATED_FORMAT_TEXT: Final[Incomplete]
+_DEPRECATED_FORMAT_NUMBER: Final[Incomplete]
 
 class AlarmControlPanelEntityFeature(IntFlag):
     ARM_HOME: int
@@ -20,12 +22,14 @@ class AlarmControlPanelEntityFeature(IntFlag):
     ARM_CUSTOM_BYPASS: int
     ARM_VACATION: int
 
-SUPPORT_ALARM_ARM_HOME: Final[int]
-SUPPORT_ALARM_ARM_AWAY: Final[int]
-SUPPORT_ALARM_ARM_NIGHT: Final[int]
-SUPPORT_ALARM_TRIGGER: Final[int]
-SUPPORT_ALARM_ARM_CUSTOM_BYPASS: Final[int]
-SUPPORT_ALARM_ARM_VACATION: Final[int]
+_DEPRECATED_SUPPORT_ALARM_ARM_HOME: Final[Incomplete]
+_DEPRECATED_SUPPORT_ALARM_ARM_AWAY: Final[Incomplete]
+_DEPRECATED_SUPPORT_ALARM_ARM_NIGHT: Final[Incomplete]
+_DEPRECATED_SUPPORT_ALARM_TRIGGER: Final[Incomplete]
+_DEPRECATED_SUPPORT_ALARM_ARM_CUSTOM_BYPASS: Final[Incomplete]
+_DEPRECATED_SUPPORT_ALARM_ARM_VACATION: Final[Incomplete]
+__getattr__: Incomplete
+__dir__: Incomplete
 CONDITION_TRIGGERED: Final[str]
 CONDITION_DISARMED: Final[str]
 CONDITION_ARMED_HOME: Final[str]

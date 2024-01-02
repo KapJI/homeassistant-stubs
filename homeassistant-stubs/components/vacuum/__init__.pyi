@@ -1,8 +1,8 @@
 import asyncio
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from dataclasses import dataclass
 from enum import IntFlag
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -77,22 +77,24 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class _BaseVacuum(Entity):
+BASE_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class _BaseVacuum(Entity, cached_properties=BASE_CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     _attr_battery_icon: str
     _attr_battery_level: int | None
     _attr_fan_speed: str | None
     _attr_fan_speed_list: list[str]
     _attr_supported_features: VacuumEntityFeature
-    @property
+    @cached_property
     def supported_features(self) -> VacuumEntityFeature: ...
-    @property
+    @cached_property
     def battery_level(self) -> int | None: ...
-    @property
+    @cached_property
     def battery_icon(self) -> str: ...
-    @property
+    @cached_property
     def fan_speed(self) -> str | None: ...
-    @property
+    @cached_property
     def fan_speed_list(self) -> list[str]: ...
     @property
     def capability_attributes(self) -> Mapping[str, Any] | None: ...
@@ -111,15 +113,17 @@ class _BaseVacuum(Entity):
     def send_command(self, command: str, params: dict[str, Any] | list[Any] | None = None, **kwargs: Any) -> None: ...
     async def async_send_command(self, command: str, params: dict[str, Any] | list[Any] | None = None, **kwargs: Any) -> None: ...
 
-@dataclass
-class VacuumEntityDescription(ToggleEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class VacuumEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class VacuumEntity(_BaseVacuum, ToggleEntity):
+VACUUM_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class VacuumEntity(_BaseVacuum, ToggleEntity, cached_properties=VACUUM_CACHED_PROPERTIES_WITH_ATTR_):
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
     entity_description: VacuumEntityDescription
     _attr_status: str | None
-    @property
+    @cached_property
     def status(self) -> str | None: ...
     @property
     def battery_icon(self) -> str: ...
@@ -132,14 +136,16 @@ class VacuumEntity(_BaseVacuum, ToggleEntity):
     def start_pause(self, **kwargs: Any) -> None: ...
     async def async_start_pause(self, **kwargs: Any) -> None: ...
 
-@dataclass
-class StateVacuumEntityDescription(EntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class StateVacuumEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class StateVacuumEntity(_BaseVacuum):
+STATE_VACUUM_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class StateVacuumEntity(_BaseVacuum, cached_properties=STATE_VACUUM_CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: StateVacuumEntityDescription
     _attr_state: str | None
-    @property
+    @cached_property
     def state(self) -> str | None: ...
     @property
     def battery_icon(self) -> str: ...

@@ -10,14 +10,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-@dataclass
+@dataclass(frozen=True)
 class DevoloButtonRequiredKeysMixin:
     press_func: Callable[[Device], Awaitable[bool]]
     def __init__(self, press_func) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class DevoloButtonEntityDescription(ButtonEntityDescription, DevoloButtonRequiredKeysMixin):
-    def __init__(self, press_func, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, press_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BUTTON_TYPES: dict[str, DevoloButtonEntityDescription]
 

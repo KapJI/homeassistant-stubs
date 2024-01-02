@@ -4,7 +4,7 @@ from .const import CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_I
 from .helpers import async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, get_device_id as get_device_id
 from _typeshed import Incomplete
 from aiohttp import web as web
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import require_admin as require_admin
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
@@ -13,7 +13,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any, Literal
+from typing import Any, Concatenate, Literal, ParamSpec
 from zwave_js_server.client import Client as Client
 from zwave_js_server.const import InclusionStrategy
 from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics, ProvisioningEntry, QRProvisioningInformation
@@ -23,6 +23,7 @@ from zwave_js_server.model.log_message import LogMessage as LogMessage
 from zwave_js_server.model.node import Node as Node, NodeStatistics as NodeStatistics
 from zwave_js_server.model.node.firmware import NodeFirmwareUpdateProgress as NodeFirmwareUpdateProgress, NodeFirmwareUpdateResult as NodeFirmwareUpdateResult
 
+_P = ParamSpec('_P')
 DATA_UNSUBSCRIBE: str
 ID: str
 ENTRY_ID: str
@@ -78,11 +79,11 @@ PLANNED_PROVISIONING_ENTRY_SCHEMA: Incomplete
 QR_PROVISIONING_INFORMATION_SCHEMA: Incomplete
 QR_CODE_STRING_SCHEMA: Incomplete
 
-async def _async_get_entry(hass: HomeAssistant, connection: ActiveConnection, msg: dict, entry_id: str) -> tuple[ConfigEntry | None, Client | None, Driver | None]: ...
-def async_get_entry(orig_func: Callable) -> Callable: ...
+async def _async_get_entry(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry_id: str) -> tuple[ConfigEntry, Client, Driver] | tuple[None, None, None]: ...
+def async_get_entry(orig_func: Callable[[HomeAssistant, ActiveConnection, dict[str, Any], ConfigEntry, Client, Driver], Coroutine[Any, Any, None]]) -> Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], Coroutine[Any, Any, None]]: ...
 async def _async_get_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict, device_id: str) -> Node | None: ...
-def async_get_node(orig_func: Callable) -> Callable: ...
-def async_handle_failed_command(orig_func: Callable) -> Callable: ...
+def async_get_node(orig_func: Callable[[HomeAssistant, ActiveConnection, dict[str, Any], Node], Coroutine[Any, Any, None]]) -> Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], Coroutine[Any, Any, None]]: ...
+def async_handle_failed_command(orig_func: Callable[Concatenate[HomeAssistant, ActiveConnection, dict[str, Any], _P], Coroutine[Any, Any, None]]) -> Callable[Concatenate[HomeAssistant, ActiveConnection, dict[str, Any], _P], Coroutine[Any, Any, None]]: ...
 def node_status(node: Node) -> dict[str, Any]: ...
 def async_register_api(hass: HomeAssistant) -> None: ...
 async def websocket_network_status(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...

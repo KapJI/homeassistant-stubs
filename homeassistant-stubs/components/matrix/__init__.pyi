@@ -10,15 +10,15 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.json import JsonObjectType as JsonObjectType, load_json_object as load_json_object
 from nio import AsyncClient, Event, MatrixRoom as MatrixRoom
 from nio.responses import Response as Response
-from typing import TypedDict
+from typing import Final, Required, TypedDict
 
 _LOGGER: Incomplete
 SESSION_FILE: str
-CONF_HOMESERVER: str
-CONF_ROOMS: str
-CONF_COMMANDS: str
-CONF_WORD: str
-CONF_EXPRESSION: str
+CONF_HOMESERVER: Final[str]
+CONF_ROOMS: Final[str]
+CONF_COMMANDS: Final[str]
+CONF_WORD: Final[str]
+CONF_EXPRESSION: Final[str]
 CONF_USERNAME_REGEX: str
 CONF_ROOMS_REGEX: str
 EVENT_MATRIX_COMMAND: str
@@ -34,10 +34,10 @@ RoomID: Incomplete
 RoomAnyID: Incomplete
 
 class ConfigCommand(TypedDict, total=False):
-    name: str
-    rooms: list[RoomID] | None
-    word: WordCommand | None
-    expression: ExpressionCommand | None
+    name: Required[str]
+    rooms: list[RoomID]
+    word: WordCommand
+    expression: ExpressionCommand
 
 COMMAND_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete

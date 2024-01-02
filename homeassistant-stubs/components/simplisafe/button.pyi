@@ -12,14 +12,14 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from simplipy.system import System as System
 
-@dataclass
+@dataclass(frozen=True)
 class SimpliSafeButtonDescriptionMixin:
     push_action: Callable[[System], Awaitable]
     def __init__(self, push_action) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class SimpliSafeButtonDescription(ButtonEntityDescription, SimpliSafeButtonDescriptionMixin):
-    def __init__(self, push_action, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, push_action, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BUTTON_KIND_CLEAR_NOTIFICATIONS: str
 

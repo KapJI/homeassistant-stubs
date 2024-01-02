@@ -11,16 +11,16 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyrituals import Diffuser as Diffuser
 from typing import Any
 
-@dataclass
+@dataclass(frozen=True)
 class RitualsEntityDescriptionMixin:
     is_on_fn: Callable[[Diffuser], bool]
     turn_on_fn: Callable[[Diffuser], Awaitable[None]]
     turn_off_fn: Callable[[Diffuser], Awaitable[None]]
     def __init__(self, is_on_fn, turn_on_fn, turn_off_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class RitualsSwitchEntityDescription(SwitchEntityDescription, RitualsEntityDescriptionMixin):
-    def __init__(self, is_on_fn, turn_on_fn, turn_off_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, is_on_fn, turn_on_fn, turn_off_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

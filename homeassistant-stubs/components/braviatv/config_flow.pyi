@@ -1,10 +1,10 @@
-from .const import ATTR_CID as ATTR_CID, ATTR_MAC as ATTR_MAC, ATTR_MODEL as ATTR_MODEL, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_NICKNAME as CONF_NICKNAME, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN, NICKNAME_PREFIX as NICKNAME_PREFIX
+from .const import ATTR_CID as ATTR_CID, ATTR_MAC as ATTR_MAC, ATTR_MODEL as ATTR_MODEL, CONF_NICKNAME as CONF_NICKNAME, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN, NICKNAME_PREFIX as NICKNAME_PREFIX
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.components import ssdp as ssdp
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PIN as CONF_PIN
+from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PIN as CONF_PIN
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import instance_id as instance_id
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession

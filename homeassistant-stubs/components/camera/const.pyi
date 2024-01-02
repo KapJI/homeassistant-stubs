@@ -1,4 +1,6 @@
+from _typeshed import Incomplete
 from enum import StrEnum
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from typing import Final
 
 DOMAIN: Final[str]
@@ -16,5 +18,7 @@ class StreamType(StrEnum):
     HLS: str
     WEB_RTC: str
 
-STREAM_TYPE_HLS: str
-STREAM_TYPE_WEB_RTC: str
+_DEPRECATED_STREAM_TYPE_HLS: Incomplete
+_DEPRECATED_STREAM_TYPE_WEB_RTC: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete

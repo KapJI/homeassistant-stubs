@@ -10,14 +10,14 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-@dataclass
+@dataclass(frozen=True)
 class BAFBinarySensorDescriptionMixin:
     value_fn: Callable[[Device], bool | None]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class BAFBinarySensorDescription(BinarySensorEntityDescription, BAFBinarySensorDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 OCCUPANCY_SENSORS: Incomplete
 

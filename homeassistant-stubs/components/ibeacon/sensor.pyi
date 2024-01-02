@@ -12,14 +12,14 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
 
-@dataclass
+@dataclass(frozen=True)
 class IBeaconRequiredKeysMixin:
     value_fn: Callable[[iBeaconAdvertisement], str | int | None]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class IBeaconSensorEntityDescription(SensorEntityDescription, IBeaconRequiredKeysMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 SENSOR_DESCRIPTIONS: Incomplete
 

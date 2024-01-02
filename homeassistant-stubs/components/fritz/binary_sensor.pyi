@@ -11,10 +11,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 _LOGGER: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescription):
     is_suitable: Callable[[ConnectionInfo], bool] = ...
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_suitable) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_suitable) -> None: ...
 
 SENSOR_TYPES: tuple[FritzBinarySensorEntityDescription, ...]
 

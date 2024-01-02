@@ -10,14 +10,14 @@ from typing import Any, TypeVar
 
 _CoordinatorT = TypeVar('_CoordinatorT', bound=SynologyDSMUpdateCoordinator[Any])
 
-@dataclass
+@dataclass(frozen=True)
 class SynologyDSMRequiredKeysMixin:
     api_key: str
     def __init__(self, api_key) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class SynologyDSMEntityDescription(EntityDescription, SynologyDSMRequiredKeysMixin):
-    def __init__(self, api_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, api_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class SynologyDSMBaseEntity(CoordinatorEntity[_CoordinatorT]):
     entity_description: SynologyDSMEntityDescription

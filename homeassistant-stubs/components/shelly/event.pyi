@@ -14,15 +14,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, Final
 
-@dataclass
+@dataclass(frozen=True)
 class ShellyBlockEventDescription(EventEntityDescription):
     removal_condition: Callable[[dict, Block], bool] | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types, removal_condition) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types, removal_condition) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class ShellyRpcEventDescription(EventEntityDescription):
     removal_condition: Callable[[dict, dict, str], bool] | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types, removal_condition) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types, removal_condition) -> None: ...
 
 BLOCK_EVENT: Final[Incomplete]
 RPC_EVENT: Final[Incomplete]

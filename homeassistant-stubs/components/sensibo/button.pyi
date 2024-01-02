@@ -12,14 +12,14 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-@dataclass
+@dataclass(frozen=True)
 class SensiboEntityDescriptionMixin:
     data_key: str
     def __init__(self, data_key) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class SensiboButtonEntityDescription(ButtonEntityDescription, SensiboEntityDescriptionMixin):
-    def __init__(self, data_key, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, data_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 DEVICE_BUTTON_TYPES: Incomplete
 

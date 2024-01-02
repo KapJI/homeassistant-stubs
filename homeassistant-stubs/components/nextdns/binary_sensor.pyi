@@ -13,14 +13,14 @@ from typing import Generic
 
 PARALLEL_UPDATES: int
 
-@dataclass
+@dataclass(frozen=True)
 class NextDnsBinarySensorRequiredKeysMixin(Generic[CoordinatorDataT]):
     state: Callable[[CoordinatorDataT, str], bool]
     def __init__(self, state) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class NextDnsBinarySensorEntityDescription(BinarySensorEntityDescription, NextDnsBinarySensorRequiredKeysMixin[CoordinatorDataT]):
-    def __init__(self, state, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, state, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 SENSORS: Incomplete
 

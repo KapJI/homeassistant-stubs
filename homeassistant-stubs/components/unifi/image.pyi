@@ -15,15 +15,15 @@ from typing import Generic
 
 def async_wlan_qr_code_image_fn(controller: UniFiController, wlan: Wlan) -> bytes: ...
 
-@dataclass
+@dataclass(frozen=True)
 class UnifiImageEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
     image_fn: Callable[[UniFiController, ApiItemT], bytes]
     value_fn: Callable[[ApiItemT], str | None]
     def __init__(self, image_fn, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class UnifiImageEntityDescription(ImageEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiImageEntityDescriptionMixin[HandlerT, ApiItemT]):
-    def __init__(self, image_fn, value_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, image_fn, value_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiImageEntityDescription, ...]
 

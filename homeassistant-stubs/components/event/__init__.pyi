@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
+from functools import cached_property
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
@@ -15,11 +16,11 @@ class EventDeviceClass(StrEnum):
     BUTTON: str
     MOTION: str
 
-@dataclass
-class EventEntityDescription(EntityDescription):
-    device_class: EventDeviceClass | None = ...
-    event_types: list[str] | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types) -> None: ...
+class EventEntityDescription(EntityDescription, frozen_or_thawed=True):
+    device_class: EventDeviceClass | None
+    event_types: list[str] | None
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_types) -> None: ...
 
 @dataclass
 class EventExtraStoredData(ExtraStoredData):
@@ -30,7 +31,7 @@ class EventExtraStoredData(ExtraStoredData):
     def from_dict(cls, restored: dict[str, Any]) -> Self | None: ...
     def __init__(self, last_event_type, last_event_attributes) -> None: ...
 
-class EventEntity(RestoreEntity):
+class EventEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     entity_description: EventEntityDescription
     _attr_device_class: EventDeviceClass | None
@@ -39,9 +40,9 @@ class EventEntity(RestoreEntity):
     __last_event_triggered: datetime | None
     __last_event_type: str | None
     __last_event_attributes: dict[str, Any] | None
-    @property
+    @cached_property
     def device_class(self) -> EventDeviceClass | None: ...
-    @property
+    @cached_property
     def event_types(self) -> list[str]: ...
     def _trigger_event(self, event_type: str, event_attributes: dict[str, Any] | None = None) -> None: ...
     def _default_to_device_class_name(self) -> bool: ...

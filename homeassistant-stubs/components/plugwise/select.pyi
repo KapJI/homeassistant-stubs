@@ -11,12 +11,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from plugwise import Smile as Smile
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True, kw_only=True)
 class PlugwiseSelectEntityDescription(SelectEntityDescription):
     command: Callable[[Smile, str, str], Awaitable[None]]
     key: SelectType
     options_key: SelectOptionsType
-    def __init__(self, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options, *, key, command, options_key) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options, command, options_key) -> None: ...
 
 SELECT_TYPES: Incomplete
 

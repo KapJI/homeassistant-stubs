@@ -11,11 +11,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import Throttle as Throttle
 
-@dataclass
+@dataclass(frozen=True)
 class AmcrestSensorEntityDescription(BinarySensorEntityDescription):
     event_codes: set[str] | None = ...
     should_poll: bool = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_codes, should_poll) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, event_codes, should_poll) -> None: ...
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete

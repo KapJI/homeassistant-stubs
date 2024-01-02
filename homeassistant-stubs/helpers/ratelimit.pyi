@@ -2,8 +2,9 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable
 from datetime import datetime, timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any
+from typing import TypeVarTuple
 
+_Ts = TypeVarTuple('_Ts')
 _LOGGER: Incomplete
 
 class KeyedRateLimit:
@@ -15,4 +16,4 @@ class KeyedRateLimit:
     def async_triggered(self, key: Hashable, now: datetime | None = None) -> None: ...
     def async_cancel_timer(self, key: Hashable) -> None: ...
     def async_remove(self) -> None: ...
-    def async_schedule_action(self, key: Hashable, rate_limit: timedelta | None, now: datetime, action: Callable, *args: Any) -> datetime | None: ...
+    def async_schedule_action(self, key: Hashable, rate_limit: timedelta | None, now: datetime, action: Callable[[Unpack[_Ts]], None], *args: Unpack[_Ts]) -> datetime | None: ...

@@ -12,10 +12,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from plugwise.constants import SwitchType as SwitchType
 from typing import Any
 
-@dataclass
+@dataclass(frozen=True)
 class PlugwiseSwitchEntityDescription(SwitchEntityDescription):
     key: SwitchType
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 SWITCHES: tuple[PlugwiseSwitchEntityDescription, ...]
 

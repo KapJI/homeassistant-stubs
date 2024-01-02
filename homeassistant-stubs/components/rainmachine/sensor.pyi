@@ -24,13 +24,13 @@ TYPE_PROGRAM_RUN_COMPLETION_TIME: str
 TYPE_RAIN_SENSOR_RAIN_START: str
 TYPE_ZONE_RUN_COMPLETION_TIME: str
 
-@dataclass
+@dataclass(frozen=True)
 class RainMachineSensorDataDescription(SensorEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey):
-    def __init__(self, data_key, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, data_key, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class RainMachineSensorCompletionTimerDescription(SensorEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinUid):
-    def __init__(self, uid, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, uid, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 SENSOR_DESCRIPTIONS: Incomplete
 

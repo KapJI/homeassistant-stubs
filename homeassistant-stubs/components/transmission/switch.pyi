@@ -13,16 +13,16 @@ from typing import Any
 
 _LOGGING: Incomplete
 
-@dataclass
+@dataclass(frozen=True)
 class TransmissionSwitchEntityDescriptionMixin:
     is_on_func: Callable[[TransmissionDataUpdateCoordinator], bool | None]
     on_func: Callable[[TransmissionDataUpdateCoordinator], None]
     off_func: Callable[[TransmissionDataUpdateCoordinator], None]
     def __init__(self, is_on_func, on_func, off_func) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class TransmissionSwitchEntityDescription(SwitchEntityDescription, TransmissionSwitchEntityDescriptionMixin):
-    def __init__(self, is_on_func, on_func, off_func, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, is_on_func, on_func, off_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 SWITCH_TYPES: tuple[TransmissionSwitchEntityDescription, ...]
 

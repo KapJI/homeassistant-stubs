@@ -12,14 +12,14 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from py_dormakaba_dkey import DKEYLock as DKEYLock
 from py_dormakaba_dkey.commands import Notifications as Notifications
 
-@dataclass
+@dataclass(frozen=True)
 class DormakabaDkeyBinarySensorDescriptionMixin:
     is_on: Callable[[Notifications], bool]
     def __init__(self, is_on) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class DormakabaDkeyBinarySensorDescription(BinarySensorEntityDescription, DormakabaDkeyBinarySensorDescriptionMixin):
-    def __init__(self, is_on, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, is_on, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

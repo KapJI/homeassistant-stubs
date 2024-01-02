@@ -64,14 +64,14 @@ class PairedSensorEntity(GuardianEntity):
     _attr_unique_id: Incomplete
     def __init__(self, entry: ConfigEntry, coordinator: GuardianDataUpdateCoordinator, description: EntityDescription) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class ValveControllerEntityDescriptionMixin:
     api_category: str
     def __init__(self, api_category) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class ValveControllerEntityDescription(EntityDescription, ValveControllerEntityDescriptionMixin):
-    def __init__(self, api_category, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class ValveControllerEntity(GuardianEntity):
     _diagnostics_coordinator: Incomplete

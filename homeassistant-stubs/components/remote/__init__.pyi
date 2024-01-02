@@ -1,11 +1,12 @@
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from dataclasses import dataclass
 from enum import IntFlag
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -40,9 +41,11 @@ class RemoteEntityFeature(IntFlag):
     DELETE_COMMAND: int
     ACTIVITY: int
 
-SUPPORT_LEARN_COMMAND: int
-SUPPORT_DELETE_COMMAND: int
-SUPPORT_ACTIVITY: int
+_DEPRECATED_SUPPORT_LEARN_COMMAND: Incomplete
+_DEPRECATED_SUPPORT_DELETE_COMMAND: Incomplete
+_DEPRECATED_SUPPORT_ACTIVITY: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
 REMOTE_SERVICE_ACTIVITY_SCHEMA: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
@@ -50,20 +53,22 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-@dataclass
-class RemoteEntityDescription(ToggleEntityDescription):
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+class RemoteEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
-class RemoteEntity(ToggleEntity):
+CACHED_PROPERTIES_WITH_ATTR_: Incomplete
+
+class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: RemoteEntityDescription
     _attr_activity_list: list[str] | None
     _attr_current_activity: str | None
     _attr_supported_features: RemoteEntityFeature
-    @property
+    @cached_property
     def supported_features(self) -> RemoteEntityFeature: ...
-    @property
+    @cached_property
     def current_activity(self) -> str | None: ...
-    @property
+    @cached_property
     def activity_list(self) -> list[str] | None: ...
     @property
     def state_attributes(self) -> dict[str, Any] | None: ...

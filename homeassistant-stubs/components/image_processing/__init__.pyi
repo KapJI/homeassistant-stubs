@@ -1,5 +1,4 @@
 from _typeshed import Incomplete
-from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.camera import Image as Image
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE
@@ -9,7 +8,6 @@ from homeassistant.helpers.config_validation import make_entity_service_schema a
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from typing import Any, Final, TypedDict
 
 _LOGGER: Incomplete
@@ -48,12 +46,12 @@ class FaceInformation(TypedDict, total=False):
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
-@dataclass
-class ImageProcessingEntityDescription(EntityDescription):
-    device_class: ImageProcessingDeviceClass | None = ...
-    camera_entity: str | None = ...
-    confidence: float | None = ...
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, camera_entity, confidence) -> None: ...
+class ImageProcessingEntityDescription(EntityDescription, frozen_or_thawed=True):
+    device_class: ImageProcessingDeviceClass | None
+    camera_entity: str | None
+    confidence: float | None
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, camera_entity, confidence) -> None: ...
+    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, camera_entity, confidence) -> None: ...
 
 class ImageProcessingEntity(Entity):
     entity_description: ImageProcessingEntityDescription

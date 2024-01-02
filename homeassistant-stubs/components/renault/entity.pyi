@@ -6,14 +6,14 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-@dataclass
+@dataclass(frozen=True)
 class RenaultDataRequiredKeysMixin:
     coordinator: str
     def __init__(self, coordinator) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class RenaultDataEntityDescription(EntityDescription, RenaultDataRequiredKeysMixin):
-    def __init__(self, coordinator, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, coordinator, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 class RenaultEntity(Entity):
     _attr_has_entity_name: bool

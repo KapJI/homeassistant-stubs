@@ -9,10 +9,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from tailscale import Device as TailscaleDevice
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True, kw_only=True)
 class TailscaleBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[TailscaleDevice], bool | None]
-    def __init__(self, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, *, is_on_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_on_fn) -> None: ...
 
 BINARY_SENSORS: tuple[TailscaleBinarySensorEntityDescription, ...]
 

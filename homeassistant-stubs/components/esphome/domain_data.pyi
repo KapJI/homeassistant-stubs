@@ -1,6 +1,6 @@
-from .bluetooth.cache import ESPHomeBluetoothCache as ESPHomeBluetoothCache
 from .const import DOMAIN as DOMAIN
 from .entry_data import ESPHomeStorage as ESPHomeStorage, RuntimeEntryData as RuntimeEntryData
+from bleak_esphome.backend.cache import ESPHomeBluetoothCache
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant

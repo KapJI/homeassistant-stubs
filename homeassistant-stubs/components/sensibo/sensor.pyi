@@ -16,24 +16,24 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-@dataclass
+@dataclass(frozen=True)
 class MotionBaseEntityDescriptionMixin:
     value_fn: Callable[[MotionSensor], StateType]
     def __init__(self, value_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class DeviceBaseEntityDescriptionMixin:
     value_fn: Callable[[SensiboDevice], StateType | datetime]
     extra_fn: Callable[[SensiboDevice], dict[str, str | bool | None] | None] | None
     def __init__(self, value_fn, extra_fn) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class SensiboMotionSensorEntityDescription(SensorEntityDescription, MotionBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
-@dataclass
+@dataclass(frozen=True)
 class SensiboDeviceSensorEntityDescription(SensorEntityDescription, DeviceBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, extra_fn, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, extra_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 FILTER_LAST_RESET_DESCRIPTION: Incomplete
 MOTION_SENSOR_TYPES: tuple[SensiboMotionSensorEntityDescription, ...]

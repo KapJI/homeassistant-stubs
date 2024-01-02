@@ -26,7 +26,8 @@ packages = [
 "Release Notes" = "https://github.com/KapJI/homeassistant-stubs/releases"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+# Forbid 3.13 because of home-assistant-bluetooth package.
+python = ">=3.11,<3.13"
 homeassistant = "2023.12.4"
 
 [tool.poetry.group.dev.dependencies]

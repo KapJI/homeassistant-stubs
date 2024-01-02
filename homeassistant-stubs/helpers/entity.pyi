@@ -9,7 +9,7 @@ from _typeshed import Incomplete
 from abc import ABCMeta
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine, Iterable, Mapping, MutableMapping
-from enum import Enum
+from enum import Enum, IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
@@ -91,6 +91,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     platform: EntityPlatform
     entity_description: EntityDescription
     _slow_reported: bool
+    _deprecated_supported_features_reported: bool
     _disabled_reported: bool
     _async_update_ha_state_reported: bool
     _no_platform_reported: bool
@@ -224,6 +225,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def __repr__(self) -> str: ...
     async def async_request_call(self, coro: Coroutine[Any, Any, _T]) -> _T: ...
     def _suggest_report_issue(self) -> str: ...
+    def _report_deprecated_supported_features_values(self, replacement: IntFlag) -> None: ...
 
 class ToggleEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...

@@ -10,7 +10,7 @@ from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.humidifier import ATTR_HUMIDITY as ATTR_HUMIDITY, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, LightEntityFeature as LightEntityFeature
 from homeassistant.components.media_player import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, MediaPlayerEntityFeature as MediaPlayerEntityFeature
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_TEMPERATURE as ATTR_TEMPERATURE, SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_TEMPERATURE as ATTR_TEMPERATURE, SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, STATE_CLOSED as STATE_CLOSED, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import State as State
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import EventType as EventType
@@ -19,6 +19,7 @@ from homeassistant.util.network import is_local as is_local
 from typing import Any
 
 _LOGGER: Incomplete
+_OFF_STATES: dict[str, str]
 STATE_CHANGE_WAIT_TIMEOUT: float
 STATE_CACHED_TIMEOUT: float
 STATE_BRIGHTNESS: str
@@ -132,4 +133,5 @@ def create_config_model(config: Config, request: web.Request) -> dict[str, Any]:
 def create_list_of_entities(config: Config, request: web.Request) -> dict[str, Any]: ...
 def hue_brightness_to_hass(value: int) -> int: ...
 def hass_to_hue_brightness(value: int) -> int: ...
+def _hass_to_hue_state(entity: State) -> bool: ...
 async def wait_for_state_change_or_timeout(hass: core.HomeAssistant, entity_id: str, timeout: float) -> None: ...

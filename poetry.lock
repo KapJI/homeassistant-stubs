@@ -1192,14 +1192,14 @@ habluetooth = ">=0.11.0"
 
 [[package]]
 name = "homeassistant"
-version = "2024.1.0b4"
+version = "2024.1.0b5"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
 python-versions = ">=3.11.0"
 files = [
-    {file = "homeassistant-2024.1.0b4-py3-none-any.whl", hash = "sha256:1d3d48ec121c0c9c2f1cb75ac5ead36cbd467ba6d47b72d1592d0ec110512f61"},
-    {file = "homeassistant-2024.1.0b4.tar.gz", hash = "sha256:2bfe4753e56e4fcd1ba671246f48b35a265ca049482966960c6c299ac6cd8e2b"},
+    {file = "homeassistant-2024.1.0b5-py3-none-any.whl", hash = "sha256:34069000396f81d31fd330a8f1f6f08f86f17a37e0ced90deb96c5162391db96"},
+    {file = "homeassistant-2024.1.0b5.tar.gz", hash = "sha256:8f488798a24888853c5364fc69961e2b5eae18e86f84091eab44406789b89e85"},
 ]
 
 [package.dependencies]
@@ -1230,6 +1230,7 @@ PyYAML = "6.0.1"
 requests = "2.31.0"
 typing-extensions = ">=4.9.0,<5.0"
 ulid-transform = "0.9.0"
+urllib3 = ">=1.26.5,<2"
 voluptuous = "0.13.1"
 voluptuous-serialize = "2.6.0"
 yarl = "1.9.4"
@@ -2270,18 +2271,30 @@ files = [
 
 [[package]]
 name = "types-requests"
-version = "2.31.0.20231231"
+version = "2.31.0.6"
 description = "Typing stubs for requests"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "types-requests-2.31.0.20231231.tar.gz", hash = "sha256:0f8c0c9764773384122813548d9eea92a5c4e1f33ed54556b508968ec5065cee"},
-    {file = "types_requests-2.31.0.20231231-py3-none-any.whl", hash = "sha256:2e2230c7bc8dd63fa3153c1c0ae335f8a368447f0582fc332f17d54f88e69027"},
+    {file = "types-requests-2.31.0.6.tar.gz", hash = "sha256:cd74ce3b53c461f1228a9b783929ac73a666658f223e28ed29753771477b3bd0"},
+    {file = "types_requests-2.31.0.6-py3-none-any.whl", hash = "sha256:a2db9cb228a81da8348b49ad6db3f5519452dd20a9c1e1a868c83c5fe88fd1a9"},
 ]
 
 [package.dependencies]
-urllib3 = ">=2"
+types-urllib3 = "*"
+
+[[package]]
+name = "types-urllib3"
+version = "1.26.25.14"
+description = "Typing stubs for urllib3"
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-urllib3-1.26.25.14.tar.gz", hash = "sha256:229b7f577c951b8c1b92c1bc2b2fdb0b49847bd2af6d1cc2a2e3dd340f3bda8f"},
+    {file = "types_urllib3-1.26.25.14-py3-none-any.whl", hash = "sha256:9683bbb7fb72e32bfe9d2be6e04875fbe1b3eeec3cbb4ea231435aa7fd6b4f0e"},
+]
 
 [[package]]
 name = "typing-extensions"
@@ -2334,21 +2347,20 @@ files = [
 
 [[package]]
 name = "urllib3"
-version = "2.0.7"
+version = "1.26.18"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "main"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 files = [
-    {file = "urllib3-2.0.7-py3-none-any.whl", hash = "sha256:fdb6d215c776278489906c2f8916e6e7d4f5a9b602ccbcfdf7f016fc8da0596e"},
-    {file = "urllib3-2.0.7.tar.gz", hash = "sha256:c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84"},
+    {file = "urllib3-1.26.18-py2.py3-none-any.whl", hash = "sha256:34b97092d7e0a3a8cf7cd10e386f401b3737364026c45e622aa02903dffe0f07"},
+    {file = "urllib3-1.26.18.tar.gz", hash = "sha256:f8ecc1bba5667413457c529ab955bf8c67b45db799d159066261719e328580a0"},
 ]
 
 [package.extras]
-brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
-secure = ["certifi", "cryptography (>=1.9)", "idna (>=2.0.0)", "pyopenssl (>=17.1.0)", "urllib3-secure-extra"]
-socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
-zstd = ["zstandard (>=0.18.0)"]
+brotli = ["brotli (==1.0.9)", "brotli (>=1.0.9)", "brotlicffi (>=0.8.0)", "brotlipy (>=0.6.0)"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)", "urllib3-secure-extra"]
+socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
 name = "usb-devices"
@@ -2881,4 +2893,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.13"
-content-hash = "dde34aa1d76048838fe727222c79587dc7d055c7078bb6f2281f8c3248aca59b"
+content-hash = "9b8c129d2868ab37130e8ea6e6bd2957e92e7c2d1d25591469ae0823c3b6af9e"

@@ -22,7 +22,7 @@ async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PingDeviceTracker(CoordinatorEntity[PingUpdateCoordinator], ScannerEntity):
-    _first_offline: datetime | None
+    _last_seen: datetime | None
     _attr_name: Incomplete
     config_entry: Incomplete
     _consider_home_interval: Incomplete

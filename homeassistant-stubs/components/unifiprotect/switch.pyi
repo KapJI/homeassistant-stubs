@@ -14,6 +14,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pyunifiprotect.data import Camera, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
 from typing import Any
 
+_LOGGER: Incomplete
 ATTR_PREV_MIC: str
 ATTR_PREV_RECORD: str
 

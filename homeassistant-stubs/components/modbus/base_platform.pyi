@@ -48,8 +48,8 @@ class BaseStructPlatform(BasePlatform, RestoreEntity, metaclass=abc.ABCMeta):
     _swap: Incomplete
     _data_type: Incomplete
     _structure: Incomplete
-    _precision: Incomplete
     _scale: Incomplete
+    _precision: Incomplete
     _offset: Incomplete
     _slave_count: Incomplete
     _slave_size: Incomplete

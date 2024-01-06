@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
-from homeassistant.helpers.deprecation import check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -22,8 +22,6 @@ SCAN_INTERVAL: Incomplete
 CONVERTIBLE_ATTRIBUTE: Incomplete
 _LOGGER: Incomplete
 SET_TEMPERATURE_SCHEMA: Incomplete
-__getattr__: Incomplete
-__dir__: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -143,3 +141,7 @@ class ClimateEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
 
 async def async_service_aux_heat(entity: ClimateEntity, service_call: ServiceCall) -> None: ...
 async def async_service_temperature_set(entity: ClimateEntity, service_call: ServiceCall) -> None: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

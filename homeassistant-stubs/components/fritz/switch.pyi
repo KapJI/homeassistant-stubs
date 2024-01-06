@@ -39,14 +39,14 @@ class FritzBoxBaseCoordinatorSwitch(CoordinatorEntity[AvmWrapper], SwitchEntity)
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
-class FritzBoxBaseSwitch(FritzBoxBaseEntity):
-    _attr_is_on: bool | None
+class FritzBoxBaseSwitch(FritzBoxBaseEntity, SwitchEntity):
     _description: Incomplete
     _friendly_name: Incomplete
     _icon: Incomplete
     _type: Incomplete
     _update: Incomplete
     _switch: Incomplete
+    _attr_is_on: Incomplete
     _name: Incomplete
     _unique_id: Incomplete
     _attributes: Incomplete
@@ -67,7 +67,7 @@ class FritzBoxBaseSwitch(FritzBoxBaseEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _async_handle_turn_on_off(self, turn_on: bool) -> None: ...
 
-class FritzBoxPortSwitch(FritzBoxBaseSwitch, SwitchEntity):
+class FritzBoxPortSwitch(FritzBoxBaseSwitch):
     _avm_wrapper: Incomplete
     _attributes: Incomplete
     connection_type: Incomplete
@@ -108,12 +108,12 @@ class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _async_handle_turn_on_off(self, turn_on: bool) -> bool: ...
 
-class FritzBoxWifiSwitch(FritzBoxBaseSwitch, SwitchEntity):
+class FritzBoxWifiSwitch(FritzBoxBaseSwitch):
     _avm_wrapper: Incomplete
     _attributes: Incomplete
     _attr_entity_category: Incomplete
     _network_num: Incomplete
-    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, network_num: int, network_name: str) -> None: ...
+    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, network_num: int, network_data: dict) -> None: ...
     _is_available: bool
     _attr_is_on: Incomplete
     async def _async_fetch_update(self) -> None: ...

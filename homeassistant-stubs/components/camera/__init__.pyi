@@ -16,7 +16,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME 
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
@@ -46,8 +46,6 @@ class CameraEntityFeature(IntFlag):
 
 _DEPRECATED_SUPPORT_ON_OFF: Final[Incomplete]
 _DEPRECATED_SUPPORT_STREAM: Final[Incomplete]
-__getattr__: Incomplete
-__dir__: Incomplete
 RTSP_PREFIXES: Incomplete
 DEFAULT_CONTENT_TYPE: Final[str]
 ENTITY_IMAGE_URL: Final[str]
@@ -187,3 +185,7 @@ async def async_handle_snapshot_service(camera: Camera, service_call: ServiceCal
 async def async_handle_play_stream_service(camera: Camera, service_call: ServiceCall) -> None: ...
 async def _async_stream_endpoint_url(hass: HomeAssistant, camera: Camera, fmt: str) -> str: ...
 async def async_handle_record_service(camera: Camera, service_call: ServiceCall) -> None: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

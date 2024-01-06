@@ -1,6 +1,6 @@
 from . import entity_registry as entity_registry, storage as storage
 from .debounce import Debouncer as Debouncer
-from .deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from .deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .frame import report as report
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
@@ -41,8 +41,6 @@ class DeviceEntryDisabler(StrEnum):
 _DEPRECATED_DISABLED_CONFIG_ENTRY: Incomplete
 _DEPRECATED_DISABLED_INTEGRATION: Incomplete
 _DEPRECATED_DISABLED_USER: Incomplete
-__getattr__: Incomplete
-__dir__: Incomplete
 
 class DeviceInfo(TypedDict, total=False):
     configuration_url: str | URL | None
@@ -172,3 +170,7 @@ def async_config_entry_disabled_by_changed(registry: DeviceRegistry, config_entr
 def async_cleanup(hass: HomeAssistant, dev_reg: DeviceRegistry, ent_reg: entity_registry.EntityRegistry) -> None: ...
 def async_setup_cleanup(hass: HomeAssistant, dev_reg: DeviceRegistry) -> None: ...
 def _normalize_connections(connections: set[tuple[str, str]]) -> set[tuple[str, str]]: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

@@ -1,6 +1,7 @@
+from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from _typeshed import Incomplete
 from enum import StrEnum
-from typing import Any, Final
+from typing import Final
 
 APPLICATION_NAME: Final[str]
 MAJOR_VERSION: Final[int]
@@ -290,9 +291,9 @@ _DEPRECATED_DEVICE_CLASS_GAS: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_HUMIDITY: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_ILLUMINANCE: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_MONETARY: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_NITROGEN_DIOXIDE: Incomplete
-_DEPRECATED_DEVICE_CLASS_NITROGEN_MONOXIDE: Incomplete
-_DEPRECATED_DEVICE_CLASS_NITROUS_OXIDE: Incomplete
+_DEPRECATED_DEVICE_CLASS_NITROGEN_DIOXIDE: Final[Incomplete]
+_DEPRECATED_DEVICE_CLASS_NITROGEN_MONOXIDE: Final[Incomplete]
+_DEPRECATED_DEVICE_CLASS_NITROUS_OXIDE: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_OZONE: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_PM1: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_PM10: Final[Incomplete]
@@ -301,15 +302,11 @@ _DEPRECATED_DEVICE_CLASS_POWER_FACTOR: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_POWER: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_PRESSURE: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_SIGNAL_STRENGTH: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_SULPHUR_DIOXIDE: Incomplete
+_DEPRECATED_DEVICE_CLASS_SULPHUR_DIOXIDE: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_TEMPERATURE: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_TIMESTAMP: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS: Incomplete
+_DEPRECATED_DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS: Final[Incomplete]
 _DEPRECATED_DEVICE_CLASS_VOLTAGE: Final[Incomplete]
-
-def __getattr__(name: str) -> Any: ...
-def __dir__() -> list[str]: ...
-
 STATE_ON: Final[str]
 STATE_OFF: Final[str]
 STATE_HOME: Final[str]
@@ -795,3 +792,6 @@ SIGNAL_BOOTSTRAP_INTEGRATIONS: str
 FORMAT_DATE: Final[str]
 FORMAT_TIME: Final[str]
 FORMAT_DATETIME: Final[Incomplete]
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

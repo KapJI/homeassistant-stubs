@@ -4,12 +4,13 @@ from .legacy import AsyncSeeCallback as AsyncSeeCallback, DeviceScanner as Devic
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, STATE_HOME as STATE_HOME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.deprecation import check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 
-__getattr__: Incomplete
-__dir__: Incomplete
-
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

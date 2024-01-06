@@ -6,7 +6,7 @@ from homeassistant.const import EntityCategory as EntityCategory, STATE_OFF as S
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -77,8 +77,6 @@ _DEPRECATED_DEVICE_CLASS_TAMPER: Incomplete
 _DEPRECATED_DEVICE_CLASS_UPDATE: Incomplete
 _DEPRECATED_DEVICE_CLASS_VIBRATION: Incomplete
 _DEPRECATED_DEVICE_CLASS_WINDOW: Incomplete
-__getattr__: Incomplete
-__dir__: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -104,3 +102,7 @@ class BinarySensorEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     def is_on(self) -> bool | None: ...
     @property
     def state(self) -> Literal['on', 'off'] | None: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

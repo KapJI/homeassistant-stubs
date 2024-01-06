@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -44,8 +44,6 @@ class RemoteEntityFeature(IntFlag):
 _DEPRECATED_SUPPORT_LEARN_COMMAND: Incomplete
 _DEPRECATED_SUPPORT_DELETE_COMMAND: Incomplete
 _DEPRECATED_SUPPORT_ACTIVITY: Incomplete
-__getattr__: Incomplete
-__dir__: Incomplete
 REMOTE_SERVICE_ACTIVITY_SCHEMA: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
@@ -80,3 +78,7 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     async def async_learn_command(self, **kwargs: Any) -> None: ...
     def delete_command(self, **kwargs: Any) -> None: ...
     async def async_delete_command(self, **kwargs: Any) -> None: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

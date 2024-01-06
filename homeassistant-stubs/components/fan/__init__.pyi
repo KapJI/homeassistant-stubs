@@ -6,7 +6,7 @@ from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_O
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -29,8 +29,6 @@ _DEPRECATED_SUPPORT_SET_SPEED: Incomplete
 _DEPRECATED_SUPPORT_OSCILLATE: Incomplete
 _DEPRECATED_SUPPORT_DIRECTION: Incomplete
 _DEPRECATED_SUPPORT_PRESET_MODE: Incomplete
-__getattr__: Incomplete
-__dir__: Incomplete
 SERVICE_INCREASE_SPEED: str
 SERVICE_DECREASE_SPEED: str
 SERVICE_OSCILLATE: str
@@ -110,3 +108,7 @@ class FanEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def preset_mode(self) -> str | None: ...
     @cached_property
     def preset_modes(self) -> list[str] | None: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

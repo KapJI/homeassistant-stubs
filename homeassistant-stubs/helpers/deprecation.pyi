@@ -1,9 +1,5 @@
-from .frame import MissingIntegrationFrame as MissingIntegrationFrame, get_integration_frame as get_integration_frame
 from collections.abc import Callable as Callable
 from enum import Enum
-from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from typing import Any, NamedTuple, ParamSpec, TypeVar
 
 _ObjectT = TypeVar('_ObjectT', bound=object)
@@ -29,4 +25,5 @@ class DeprecatedConstantEnum(NamedTuple):
 _PREFIX_DEPRECATED: str
 
 def check_if_deprecated_constant(name: str, module_globals: dict[str, Any]) -> Any: ...
-def dir_with_deprecated_constants(module_globals: dict[str, Any]) -> list[str]: ...
+def dir_with_deprecated_constants(module_globals_keys: list[str]) -> list[str]: ...
+def all_with_deprecated_constants(module_globals: dict[str, Any]) -> list[str]: ...

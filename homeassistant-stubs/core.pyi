@@ -10,6 +10,7 @@ from .components.http import ApiConfig as ApiConfig, HomeAssistantHTTP as HomeAs
 from .config_entries import ConfigEntries as ConfigEntries
 from .const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_CONTEXT as COMPRESSED_STATE_CONTEXT, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, UnitOfLength as UnitOfLength, __version__ as __version__
 from .exceptions import HomeAssistantError as HomeAssistantError, InvalidEntityFormatError as InvalidEntityFormatError, InvalidStateError as InvalidStateError, MaxLengthExceeded as MaxLengthExceeded, ServiceNotFound as ServiceNotFound, Unauthorized as Unauthorized
+from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.entity import StateInfo as StateInfo
 from .helpers.json import json_dumps as json_dumps
 from .helpers.storage import Store as Store
@@ -54,10 +55,6 @@ class ConfigSource(enum.StrEnum):
 _DEPRECATED_SOURCE_DISCOVERED: Incomplete
 _DEPRECATED_SOURCE_STORAGE: Incomplete
 _DEPRECATED_SOURCE_YAML: Incomplete
-
-def __getattr__(name: str) -> Any: ...
-def __dir__() -> list[str]: ...
-
 TIMEOUT_EVENT_START: int
 MAX_EXPECTED_ENTITY_IDS: int
 _LOGGER: Incomplete
@@ -367,3 +364,7 @@ class Config:
         def __init__(self, hass: HomeAssistant) -> None: ...
         async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
         async def async_save(self, data: dict[str, Any]) -> None: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import platform
 import shutil
 import subprocess
 import sys
@@ -121,8 +122,8 @@ def create_package(
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
     build_package(repo_root, version)
-    create_commit(repo_root, version)
     if not dry_run:
+        create_commit(repo_root, version)
         gh_repo = get_github_repo("GITHUB_TOKEN")
         gh_admin_repo = get_github_repo("ADMIN_TOKEN")
         push_commit(repo_root, gh_admin_repo)
@@ -307,6 +308,28 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
     if new_stubs_folder.is_dir():
         shutil.rmtree(new_stubs_folder)
     stubs_folder.rename(new_stubs_folder)
+    stubs_fixup(new_stubs_folder)
+
+
+def stubs_fixup(stubs_folder: Path) -> None:
+    """Fix invalid syntax in generated files."""
+    print("Fixing stubs...")
+    command_args: list[str] = [
+        "find",
+        str(stubs_folder),
+        "-name",
+        "'*.pyi'",
+        "-print0",
+        "|",
+        "xargs",
+        "-0",
+        "sed",
+        "-i",
+    ]
+    if platform.system() == "Darwin":
+        command_args.append("''")
+    command_args.append("'/def __mypy-replace/d'")
+    subprocess.run(" ".join(command_args), shell=True, check=True)
 
 
 if __name__ == "__main__":

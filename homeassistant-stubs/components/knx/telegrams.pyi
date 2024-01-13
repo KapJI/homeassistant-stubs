@@ -1,8 +1,9 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SIGNAL_KNX_TELEGRAM_DICT as SIGNAL_KNX_TELEGRAM_DICT
 from .project import KNXProject as KNXProject
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.storage import Store as Store
 from typing import Final, TypedDict
 from xknx import XKNX as XKNX

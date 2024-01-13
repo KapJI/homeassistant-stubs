@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, PRESET_TO_VENTILATION_MODE_MAP as PRESET_TO_VENTILATION_MODE_MAP, VENTILATION_TO_PRESET_MODE_MAP as VENTILATION_TO_PRESET_MODE_MAP
+from .const import DOMAIN as DOMAIN, MAX_TEMP as MAX_TEMP, MIN_TEMP as MIN_TEMP, PRESET_TO_VENTILATION_MODE_MAP as PRESET_TO_VENTILATION_MODE_MAP, VENTILATION_TO_PRESET_MODE_MAP as VENTILATION_TO_PRESET_MODE_MAP
 from _typeshed import Incomplete
 from flexit_bacnet import FlexitBACnet as FlexitBACnet
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, PRESET_HOME as PRESET_HOME
@@ -20,6 +20,8 @@ class FlexitClimateEntity(ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_target_temperature_step = PRECISION_HALVES
     _attr_temperature_unit: Incomplete
+    _attr_max_temp = MAX_TEMP
+    _attr_min_temp = MIN_TEMP
     _device: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

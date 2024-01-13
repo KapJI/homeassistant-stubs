@@ -48,6 +48,7 @@ DATA_KNX_CONFIG: Final[str]
 DATA_HASS_CONFIG: Final[str]
 ATTR_COUNTER: Final[str]
 ATTR_SOURCE: Final[str]
+SIGNAL_KNX_TELEGRAM_DICT: Final[str]
 AsyncMessageCallbackType = Callable[[Telegram], Awaitable[None]]
 MessageCallbackType = Callable[[Telegram], None]
 

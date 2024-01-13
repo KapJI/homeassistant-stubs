@@ -1,6 +1,7 @@
 from .auth import Auth as Auth
 from .config import AbstractConfig as AbstractConfig
 from .const import API_DIRECTIVE as API_DIRECTIVE, API_HEADER as API_HEADER, CONF_ENDPOINT as CONF_ENDPOINT, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_FILTER as CONF_FILTER, CONF_LOCALE as CONF_LOCALE, EVENT_ALEXA_SMART_HOME as EVENT_ALEXA_SMART_HOME
+from .diagnostics import async_redact_auth_data as async_redact_auth_data
 from .errors import AlexaBridgeUnreachableError as AlexaBridgeUnreachableError, AlexaError as AlexaError
 from .handlers import HANDLERS as HANDLERS
 from .state_report import AlexaDirective as AlexaDirective

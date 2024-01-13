@@ -140,7 +140,6 @@ class Profiles:
 
 class LightEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

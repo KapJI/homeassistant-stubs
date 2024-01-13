@@ -25,7 +25,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class FAABinarySensor(CoordinatorEntity[FAADataUpdateCoordinator], BinarySensorEntity):
     _attr_has_entity_name: bool
     entity_description: FaaDelaysBinarySensorEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: FAADataUpdateCoordinator, entry_id: str, description: FaaDelaysBinarySensorEntityDescription) -> None: ...

@@ -117,7 +117,6 @@ class _BaseVacuum(Entity, cached_properties=BASE_CACHED_PROPERTIES_WITH_ATTR_):
 
 class VacuumEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 VACUUM_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -140,7 +139,6 @@ class VacuumEntity(_BaseVacuum, ToggleEntity, cached_properties=VACUUM_CACHED_PR
 
 class StateVacuumEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
-    def __mypy-replace(*, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
 
 STATE_VACUUM_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

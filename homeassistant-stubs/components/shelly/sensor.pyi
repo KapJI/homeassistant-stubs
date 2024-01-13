@@ -13,6 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Final
 
 @dataclass(frozen=True)

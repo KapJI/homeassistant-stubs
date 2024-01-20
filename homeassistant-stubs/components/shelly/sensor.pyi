@@ -4,7 +4,6 @@ from .entity import BlockEntityDescription as BlockEntityDescription, RestEntity
 from .utils import get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
-from collections.abc import Mapping
 from dataclasses import dataclass
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorExtraStoredData as SensorExtraStoredData, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,7 +12,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Final
 
 @dataclass(frozen=True)
@@ -32,7 +30,6 @@ SENSORS: Final[Incomplete]
 REST_SENSORS: Final[Incomplete]
 RPC_SENSORS: Final[Incomplete]
 
-def _build_block_description(entry: RegistryEntry) -> BlockSensorDescription: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockSensor(ShellyBlockAttributeEntity, SensorEntity):
@@ -55,7 +52,7 @@ class RpcSensor(ShellyRpcAttributeEntity, SensorEntity):
 class BlockSleepingSensor(ShellySleepingBlockAttributeEntity, RestoreSensor):
     entity_description: BlockSensorDescription
     restored_data: Incomplete
-    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockSensorDescription, entry: RegistryEntry | None = None, sensors: Mapping[tuple[str, str], BlockSensorDescription] | None = None) -> None: ...
+    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockSensorDescription, entry: RegistryEntry | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def native_value(self) -> StateType: ...

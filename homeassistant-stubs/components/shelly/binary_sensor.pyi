@@ -8,7 +8,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Final
 
@@ -28,7 +27,6 @@ SENSORS: Final[Incomplete]
 REST_SENSORS: Final[Incomplete]
 RPC_SENSORS: Final[Incomplete]
 
-def _build_block_description(entry: RegistryEntry) -> BlockBinarySensorDescription: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockBinarySensor(ShellyBlockAttributeEntity, BinarySensorEntity):

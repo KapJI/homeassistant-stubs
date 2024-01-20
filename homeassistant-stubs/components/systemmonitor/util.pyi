@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 
 _LOGGER: Incomplete
+SKIP_DISK_TYPES: Incomplete
 
 def get_all_disk_mounts() -> set[str]: ...
 def get_all_network_interfaces() -> set[str]: ...

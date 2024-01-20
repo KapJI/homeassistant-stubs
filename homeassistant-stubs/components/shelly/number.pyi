@@ -3,7 +3,6 @@ from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
-from collections.abc import Mapping
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntityDescription as NumberEntityDescription, NumberExtraStoredData as NumberExtraStoredData, NumberMode as NumberMode, RestoreNumber as RestoreNumber
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -22,13 +21,12 @@ class BlockNumberDescription(BlockEntityDescription, NumberEntityDescription):
 
 NUMBERS: Final[Incomplete]
 
-def _build_block_description(entry: RegistryEntry) -> BlockNumberDescription: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockSleepingNumber(ShellySleepingBlockAttributeEntity, RestoreNumber):
     entity_description: BlockNumberDescription
     restored_data: Incomplete
-    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockNumberDescription, entry: RegistryEntry | None = None, sensors: Mapping[tuple[str, str], BlockNumberDescription] | None = None) -> None: ...
+    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockNumberDescription, entry: RegistryEntry | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def native_value(self) -> float | None: ...

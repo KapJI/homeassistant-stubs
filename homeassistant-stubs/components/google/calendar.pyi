@@ -21,16 +21,19 @@ from typing import Any
 
 _LOGGER: Incomplete
 MIN_TIME_BETWEEN_UPDATES: Incomplete
+MAX_UPCOMING_EVENTS: int
 SYNC_EVENT_MIN_TIME: Incomplete
 OPAQUE: str
 RRULE_PREFIX: str
 SERVICE_CREATE_EVENT: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+def _truncate_timeline(timeline: Timeline, max_events: int) -> Timeline: ...
 
 class CalendarSyncUpdateCoordinator(DataUpdateCoordinator[Timeline]):
     config_entry: ConfigEntry
     sync: Incomplete
+    _upcoming_timeline: Incomplete
     def __init__(self, hass: HomeAssistant, sync: CalendarEventSyncManager, name: str) -> None: ...
     async def _async_update_data(self) -> Timeline: ...
     async def async_get_events(self, start_date: datetime, end_date: datetime) -> Iterable[Event]: ...

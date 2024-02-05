@@ -1,8 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .helpers import fetch_latest_carbon_intensity as fetch_latest_carbon_intensity
 from _typeshed import Incomplete
-from aioelectricitymaps import ElectricityMaps as ElectricityMaps
-from aioelectricitymaps.models import CarbonIntensityResponse
+from aioelectricitymaps import CarbonIntensityResponse, ElectricityMaps as ElectricityMaps
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed

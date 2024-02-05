@@ -21,6 +21,7 @@ class FlexitClimateEntity(FlexitEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_max_temp = MAX_TEMP
     _attr_min_temp = MIN_TEMP
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FlexitCoordinator) -> None: ...
     async def async_update(self) -> None: ...

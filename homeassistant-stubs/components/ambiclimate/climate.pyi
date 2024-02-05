@@ -27,6 +27,7 @@ class AmbiclimateEntity(ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _heater: Incomplete
     _store: Incomplete
     _attr_unique_id: Incomplete

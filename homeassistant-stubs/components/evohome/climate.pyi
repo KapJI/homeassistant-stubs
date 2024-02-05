@@ -26,6 +26,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class EvoClimateEntity(EvoDevice, ClimateEntity):
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def hvac_modes(self) -> list[HVACMode]: ...
 

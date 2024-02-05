@@ -22,6 +22,7 @@ class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete

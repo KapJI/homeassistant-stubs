@@ -18,6 +18,7 @@ class AtlanticElectricalHeater(OverkizEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
+    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def hvac_mode(self) -> HVACMode: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

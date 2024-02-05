@@ -18,6 +18,7 @@ class VelbusClimate(VelbusEntity, ClimateEntity):
     _attr_hvac_mode: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def target_temperature(self) -> float | None: ...
     @property

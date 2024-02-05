@@ -27,6 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class DeconzThermostat(DeconzDevice[Thermostat], ClimateEntity):
     TYPE = DOMAIN
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_hvac_modes: Incomplete
     _deconz_to_hvac_mode: Incomplete
     _attr_supported_features: Incomplete

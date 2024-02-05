@@ -38,6 +38,7 @@ class BlockSleepingClimate(CoordinatorEntity[ShellyBlockCoordinator], RestoreEnt
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     block: Incomplete
     control_result: Incomplete
     device_block: Incomplete
@@ -83,6 +84,7 @@ class RpcClimate(ShellyRpcEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _id: Incomplete
     _thermostat_type: Incomplete
     _attr_hvac_modes: Incomplete

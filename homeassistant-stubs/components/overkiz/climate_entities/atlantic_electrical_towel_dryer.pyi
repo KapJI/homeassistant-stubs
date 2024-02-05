@@ -18,6 +18,7 @@ class AtlanticElectricalTowelDryer(OverkizEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
+    _enable_turn_on_off_backwards_compatibility: bool
     temperature_device: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...

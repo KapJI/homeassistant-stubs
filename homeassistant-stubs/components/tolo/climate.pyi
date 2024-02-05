@@ -22,6 +22,7 @@ class SaunaClimate(ToloSaunaCoordinatorEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: int
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry) -> None: ...
     @property

@@ -18,7 +18,7 @@ _VOICE_ASSISTANT_EVENT_TYPES: EsphomeEnumMapper[VoiceAssistantEventType, Pipelin
 
 class VoiceAssistantUDPServer(asyncio.DatagramProtocol):
     started: bool
-    stopped: bool
+    stop_requested: bool
     transport: asyncio.DatagramTransport | None
     remote_addr: tuple[str, int] | None
     context: Incomplete
@@ -31,6 +31,8 @@ class VoiceAssistantUDPServer(asyncio.DatagramProtocol):
     _tts_done: Incomplete
     _tts_task: Incomplete
     def __init__(self, hass: HomeAssistant, entry_data: RuntimeEntryData, handle_event: Callable[[VoiceAssistantEventType, dict[str, str] | None], None], handle_finished: Callable[[], None]) -> None: ...
+    @property
+    def is_running(self) -> bool: ...
     async def start_server(self) -> int: ...
     def connection_made(self, transport: asyncio.BaseTransport) -> None: ...
     def datagram_received(self, data: bytes, addr: tuple[str, int]) -> None: ...

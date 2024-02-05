@@ -21,6 +21,7 @@ class ISYThermostatEntity(ISYNodeEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: float
     _attr_fan_modes: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _uom: Incomplete
     def __init__(self, node: Node, device_info: DeviceInfo | None = None) -> None: ...
     @property

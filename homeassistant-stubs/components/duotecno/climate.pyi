@@ -24,6 +24,7 @@ class DuotecnoClimate(DuotecnoEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
     _attr_translation_key: str
+    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def current_temperature(self) -> float | None: ...
     @property

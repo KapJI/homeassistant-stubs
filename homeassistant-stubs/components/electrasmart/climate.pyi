@@ -33,6 +33,7 @@ class ElectraClimateEntity(ClimateEntity):
     _attr_hvac_modes = ELECTRA_MODES
     _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _api: Incomplete
     _electra_ac_device: Incomplete
     _attr_unique_id: Incomplete

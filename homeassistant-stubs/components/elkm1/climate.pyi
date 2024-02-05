@@ -30,6 +30,7 @@ class ElkThermostat(ElkEntity, ClimateEntity):
     _attr_target_temperature_step: int
     _attr_fan_modes: Incomplete
     _element: Thermostat
+    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def temperature_unit(self) -> str: ...
     @property

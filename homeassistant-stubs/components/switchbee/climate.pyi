@@ -22,13 +22,14 @@ SUPPORTED_FAN_MODES: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SwitchBeeClimateEntity(SwitchBeeDeviceEntity[SwitchBeeThermostat], ClimateEntity):
-    _attr_supported_features: Incomplete
     _attr_fan_modes = SUPPORTED_FAN_MODES
     _attr_target_temperature_step: int
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_max_temp: Incomplete
     _attr_min_temp: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_hvac_modes: Incomplete
+    _attr_supported_features: Incomplete
     def __init__(self, device: SwitchBeeThermostat, coordinator: SwitchBeeCoordinator) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_hvac_mode: Incomplete

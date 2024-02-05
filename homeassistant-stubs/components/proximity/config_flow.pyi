@@ -6,6 +6,7 @@ from homeassistant.const import CONF_ZONE as CONF_ZONE
 from homeassistant.core import State as State, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.selector import EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig
+from homeassistant.util import slugify as slugify
 from typing import Any
 
 RESULT_SUCCESS: str

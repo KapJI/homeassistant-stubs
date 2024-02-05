@@ -35,6 +35,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_should_poll: bool
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_name: Incomplete
     heater_entity_id: Incomplete
     sensor_entity_id: Incomplete

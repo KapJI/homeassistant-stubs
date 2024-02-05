@@ -28,13 +28,14 @@ class Airtouch5ClimateEntity(ClimateEntity, Airtouch5Entity):
     _attr_temperature_unit: Incomplete
     _attr_target_temperature_step: int
     _attr_name: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
 
 class Airtouch5AC(Airtouch5ClimateEntity):
-    _attr_supported_features: Incomplete
     _ability: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_hvac_modes: Incomplete
+    _attr_supported_features: Incomplete
     _attr_fan_modes: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete

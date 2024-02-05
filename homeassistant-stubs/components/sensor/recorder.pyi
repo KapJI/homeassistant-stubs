@@ -1,5 +1,5 @@
 import datetime
-from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, SensorStateClass as SensorStateClass
+from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, SensorStateClass as SensorStateClass, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from homeassistant.components.recorder import get_instance as get_instance, history as history, statistics as statistics

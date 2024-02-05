@@ -16,7 +16,7 @@ def create_lcn_climate_entity(hass: HomeAssistant, entity_config: ConfigType, co
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LcnClimate(LcnEntity, ClimateEntity):
-    _attr_supported_features: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     variable: Incomplete
     setpoint: Incomplete
     unit: Incomplete
@@ -28,6 +28,7 @@ class LcnClimate(LcnEntity, ClimateEntity):
     _target_temperature: Incomplete
     _is_on: bool
     _attr_hvac_modes: Incomplete
+    _attr_supported_features: Incomplete
     def __init__(self, config: ConfigType, entry_id: str, device_connection: DeviceConnectionType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

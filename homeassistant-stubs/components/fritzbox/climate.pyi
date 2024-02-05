@@ -25,6 +25,7 @@ class FritzboxThermostat(FritzBoxDeviceEntity, ClimateEntity):
     _attr_precision = PRECISION_HALVES
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def current_temperature(self) -> float: ...
     @property

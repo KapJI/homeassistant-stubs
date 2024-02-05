@@ -26,7 +26,7 @@ class ProximityData:
     entities: dict[str, dict[str, str | int | None]]
     def __init__(self, proximity, entities) -> None: ...
 
-DEFAULT_DATA: Incomplete
+DEFAULT_PROXIMITY_DATA: dict[str, str | float]
 
 class ProximityDataUpdateCoordinator(DataUpdateCoordinator[ProximityData]):
     config_entry: ConfigEntry

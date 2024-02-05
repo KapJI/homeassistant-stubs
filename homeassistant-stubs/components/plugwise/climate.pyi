@@ -18,6 +18,7 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
+    _enable_turn_on_off_backwards_compatibility: bool
     _previous_mode: str
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete

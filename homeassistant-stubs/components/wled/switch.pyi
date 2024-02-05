@@ -15,7 +15,6 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WLEDNightlightSwitch(WLEDEntity, SwitchEntity):
-    _attr_icon: str
     _attr_entity_category: Incomplete
     _attr_translation_key: str
     _attr_unique_id: Incomplete
@@ -28,7 +27,6 @@ class WLEDNightlightSwitch(WLEDEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class WLEDSyncSendSwitch(WLEDEntity, SwitchEntity):
-    _attr_icon: str
     _attr_entity_category: Incomplete
     _attr_translation_key: str
     _attr_unique_id: Incomplete
@@ -41,7 +39,6 @@ class WLEDSyncSendSwitch(WLEDEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class WLEDSyncReceiveSwitch(WLEDEntity, SwitchEntity):
-    _attr_icon: str
     _attr_entity_category: Incomplete
     _attr_translation_key: str
     _attr_unique_id: Incomplete
@@ -54,10 +51,10 @@ class WLEDSyncReceiveSwitch(WLEDEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class WLEDReverseSwitch(WLEDEntity, SwitchEntity):
-    _attr_icon: str
     _attr_entity_category: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _segment: int
+    _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int) -> None: ...
     @property

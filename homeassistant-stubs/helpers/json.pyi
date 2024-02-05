@@ -1,4 +1,5 @@
 import json
+import orjson
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from functools import partial as partial
@@ -19,6 +20,8 @@ class ExtendedJSONEncoder(JSONEncoder):
 
 def _strip_null(obj: Any) -> Any: ...
 def json_bytes_strip_null(data: Any) -> bytes: ...
+json_fragment = orjson.Fragment
+
 def json_dumps(data: Any) -> str: ...
 def json_dumps_sorted(data: Any) -> str: ...
 

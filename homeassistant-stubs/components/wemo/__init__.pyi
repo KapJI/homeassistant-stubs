@@ -8,7 +8,7 @@ from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DISCOVERY as CONF_DISCOVERY, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.async_ import gather_with_limited_concurrency as gather_with_limited_concurrency
@@ -50,6 +50,7 @@ class WemoDiscovery:
     _stop: Incomplete
     _scan_delay: int
     _static_config: Incomplete
+    _discover_job: Incomplete
     def __init__(self, hass: HomeAssistant, wemo_dispatcher: WemoDispatcher, static_config: Sequence[HostPortTuple]) -> None: ...
     async def async_discover_and_schedule(self, event_time: datetime | None = None) -> None: ...
     def async_stop_discovery(self) -> None: ...

@@ -14,6 +14,7 @@ _LOGGER: Incomplete
 KEY_DASHBOARD_MANAGER: str
 STORAGE_KEY: str
 STORAGE_VERSION: int
+MIN_VERSION_SUPPORTS_UPDATE: Incomplete
 
 async def async_setup(hass: HomeAssistant) -> None: ...
 async def async_get_or_create_dashboard_manager(hass: HomeAssistant) -> ESPHomeDashboardManager: ...
@@ -36,7 +37,6 @@ class ESPHomeDashboard(DataUpdateCoordinator[dict[str, ConfiguredDevice]]):
     addon_slug: Incomplete
     url: Incomplete
     api: Incomplete
+    supports_update: Incomplete
     def __init__(self, hass: HomeAssistant, addon_slug: str, url: str, session: aiohttp.ClientSession) -> None: ...
-    @property
-    def supports_update(self) -> bool: ...
     async def _async_update_data(self) -> dict: ...

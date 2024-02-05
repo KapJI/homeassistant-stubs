@@ -25,7 +25,7 @@ class DeviceBaseEntityDescriptionMixin:
 
 @dataclass(frozen=True)
 class SensiboDeviceSwitchEntityDescription(SwitchEntityDescription, DeviceBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, extra_fn, command_on, command_off, data_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, extra_fn, command_on, command_off, data_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 DEVICE_SWITCH_TYPES: tuple[SensiboDeviceSwitchEntityDescription, ...]
 PURE_SWITCH_TYPES: tuple[SensiboDeviceSwitchEntityDescription, ...]

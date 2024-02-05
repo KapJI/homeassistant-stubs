@@ -16,7 +16,7 @@ from typing import Any
 class FaaDelaysBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[Airport], bool | None]
     extra_state_attributes_fn: Callable[[Airport], Mapping[str, Any]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, is_on_fn, extra_state_attributes_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, is_on_fn, extra_state_attributes_fn) -> None: ...
 
 FAA_BINARY_SENSORS: tuple[FaaDelaysBinarySensorEntityDescription, ...]
 

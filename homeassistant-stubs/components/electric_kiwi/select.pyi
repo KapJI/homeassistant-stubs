@@ -1,4 +1,4 @@
-from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
+from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN, HOP_COORDINATOR as HOP_COORDINATOR
 from .coordinator import ElectricKiwiHOPDataCoordinator as ElectricKiwiHOPDataCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription

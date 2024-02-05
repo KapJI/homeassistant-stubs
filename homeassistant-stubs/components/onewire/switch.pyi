@@ -11,7 +11,7 @@ from typing import Any
 
 @dataclass(frozen=True)
 class OneWireSwitchEntityDescription(OneWireEntityDescription, SwitchEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, read_mode) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, read_mode) -> None: ...
 
 DEVICE_SWITCHES: dict[str, tuple[OneWireEntityDescription, ...]]
 HOBBYBOARD_EF: dict[str, tuple[OneWireEntityDescription, ...]]

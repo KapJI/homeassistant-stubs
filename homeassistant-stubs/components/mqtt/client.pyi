@@ -11,10 +11,8 @@ from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PASSWORD 
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.logging import catch_log_exception as catch_log_exception
 from typing import Any
 
@@ -24,7 +22,6 @@ INITIAL_SUBSCRIBE_COOLDOWN: float
 SUBSCRIBE_COOLDOWN: float
 UNSUBSCRIBE_COOLDOWN: float
 TIMEOUT_ACK: int
-MQTT_ENTRIES_NAMING_BLOG_URL: str
 SubscribePayloadType: Incomplete
 
 def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
@@ -87,7 +84,6 @@ class MQTT:
     _unsubscribe_debouncer: Incomplete
     _pending_unsubscribes: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, conf: ConfigType) -> None: ...
-    def register_naming_issues(self) -> None: ...
     def start(self, mqtt_data: MqttData) -> None: ...
     @property
     def subscriptions(self) -> list[Subscription]: ...

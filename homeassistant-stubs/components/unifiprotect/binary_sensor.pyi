@@ -12,17 +12,18 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyunifiprotect.data import Camera, Light as Light, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor
 from pyunifiprotect.data.nvr import UOSDisk as UOSDisk
+from typing import Any
 
 _LOGGER: Incomplete
 _KEY_DOOR: str
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEntityDescription(ProtectRequiredKeysMixin, BinarySensorEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm) -> None: ...
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEventEntityDescription(ProtectEventMixin, BinarySensorEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_event_obj) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_event_obj) -> None: ...
 
 MOUNT_DEVICE_CLASS_MAP: Incomplete
 CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
@@ -43,6 +44,7 @@ class ProtectDeviceBinarySensor(ProtectDeviceEntity, BinarySensorEntity):
     _attr_is_on: Incomplete
     _attr_device_class: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
+    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
 
 class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
     _disk: UOSDisk
@@ -51,6 +53,7 @@ class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
     _attr_available: bool
     _attr_is_on: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
+    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
 
 class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     entity_description: ProtectBinaryEventEntityDescription
@@ -58,4 +61,4 @@ class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     _event: Incomplete
     _attr_extra_state_attributes: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
-    def _async_updated_event(self, device: ProtectModelWithId) -> None: ...
+    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...

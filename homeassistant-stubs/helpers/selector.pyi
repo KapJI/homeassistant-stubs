@@ -157,6 +157,23 @@ class ConstantSelector(Selector[ConstantSelectorConfig]):
     def __init__(self, config: ConstantSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
+class QrErrorCorrectionLevel(StrEnum):
+    LOW: str
+    MEDIUM: str
+    QUARTILE: str
+    HIGH: str
+
+class QrCodeSelectorConfig(TypedDict, total=False):
+    data: str
+    scale: int
+    error_correction_level: QrErrorCorrectionLevel
+
+class QrCodeSelector(Selector[QrCodeSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: QrCodeSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
 class ConversationAgentSelectorConfig(TypedDict, total=False):
     language: str
 

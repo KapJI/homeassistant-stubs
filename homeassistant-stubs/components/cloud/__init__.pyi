@@ -16,7 +16,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entityfilter as entityfilter
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.discovery import async_load_platform as async_load_platform
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.dispatcher import SignalType as SignalType, async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -26,7 +26,7 @@ DEFAULT_MODE = MODE_PROD
 PLATFORMS: Incomplete
 SERVICE_REMOTE_CONNECT: str
 SERVICE_REMOTE_DISCONNECT: str
-SIGNAL_CLOUD_CONNECTION_STATE: str
+SIGNAL_CLOUD_CONNECTION_STATE: SignalType[CloudConnectionState]
 STARTUP_REPAIR_DELAY: int
 ALEXA_ENTITY_SCHEMA: Incomplete
 GOOGLE_ENTITY_SCHEMA: Incomplete

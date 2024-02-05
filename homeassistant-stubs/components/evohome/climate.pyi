@@ -34,11 +34,12 @@ class EvoZone(EvoChild, EvoClimateEntity):
     _evo_device: evo.Zone
     _evo_id: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_precision: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, evo_broker: EvoBroker, evo_device: evo.Zone) -> None: ...
     async def async_zone_svc_request(self, service: str, data: dict[str, Any]) -> None: ...
+    @property
+    def name(self) -> str | None: ...
     @property
     def hvac_mode(self) -> HVACMode | None: ...
     @property

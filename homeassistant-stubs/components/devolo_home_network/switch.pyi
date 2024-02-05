@@ -24,7 +24,7 @@ class DevoloSwitchRequiredKeysMixin(Generic[_DataT]):
 
 @dataclass(frozen=True)
 class DevoloSwitchEntityDescription(SwitchEntityDescription, DevoloSwitchRequiredKeysMixin[_DataT]):
-    def __init__(self, is_on_func, turn_on_func, turn_off_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, is_on_func, turn_on_func, turn_off_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 SWITCH_TYPES: dict[str, DevoloSwitchEntityDescription[Any]]
 

@@ -1,4 +1,6 @@
 from _typeshed import Incomplete
+from homeassistant.helpers.dispatcher import SignalType as SignalType
+from typing import Any
 
 DOMAIN: str
 DATA_PLATFORMS_SETUP: str
@@ -47,5 +49,6 @@ CONF_THINGTALK_SERVER: str
 CONF_SERVICEHANDLERS_SERVER: str
 MODE_DEV: str
 MODE_PROD: str
-DISPATCHER_REMOTE_UPDATE: str
+DISPATCHER_REMOTE_UPDATE: SignalType[Any]
 STT_ENTITY_UNIQUE_ID: str
+TTS_ENTITY_UNIQUE_ID: str

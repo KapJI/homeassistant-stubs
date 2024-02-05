@@ -13,7 +13,7 @@ from enum import Enum, IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HomeAssistant as HomeAssistant, callback as callback, get_release_channel as get_release_channel
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, InvalidStateError as InvalidStateError, NoEntitySpecifiedError as NoEntitySpecifiedError
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue, bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
@@ -26,7 +26,7 @@ SLOW_UPDATE_WARNING: int
 DATA_ENTITY_SOURCE: str
 FLOAT_PRECISION: Incomplete
 CAPABILITIES_UPDATE_LIMIT: int
-CONTEXT_RECENT_TIME: Incomplete
+CONTEXT_RECENT_TIME_SECONDS: int
 
 def async_setup(hass: HomeAssistant) -> None: ...
 def entity_sources(hass: HomeAssistant) -> dict[str, EntityInfo]: ...
@@ -65,8 +65,9 @@ class EntityDescription(frozen_or_thawed=True, metaclass=FrozenOrThawed):
     has_entity_name: bool
     name: str | UndefinedType | None
     translation_key: str | None
+    translation_placeholders: Mapping[str, str] | None
     unit_of_measurement: str | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 @dataclasses.dataclass(frozen=True, slots=True)
 class CalculatedState:
@@ -94,6 +95,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     _disabled_reported: bool
     _async_update_ha_state_reported: bool
     _no_platform_reported: bool
+    _name_translation_placeholders_reported: bool
     _update_staged: bool
     parallel_updates: asyncio.Semaphore | None
     registry_entry: er.RegistryEntry | None
@@ -129,6 +131,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     _attr_state: StateType
     _attr_supported_features: int | None
     _attr_translation_key: str | None
+    _attr_translation_placeholders: Mapping[str, str]
     _attr_unique_id: str | None
     _attr_unit_of_measurement: str | None
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
@@ -148,6 +151,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def _default_to_device_class_name(self) -> bool: ...
     @cached_property
     def _name_translation_key(self) -> str | None: ...
+    def _substitute_name_placeholders(self, name: str) -> str: ...
     def _name_internal(self, device_class_name: str | None, platform_translations: dict[str, Any]) -> str | UndefinedType | None: ...
     @property
     def suggested_object_id(self) -> str | None: ...
@@ -190,6 +194,8 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def entity_category(self) -> EntityCategory | None: ...
     @cached_property
     def translation_key(self) -> str | None: ...
+    @cached_property
+    def translation_placeholders(self) -> Mapping[str, str]: ...
     @property
     def enabled(self) -> bool: ...
     def async_set_context(self, context: Context) -> None: ...
@@ -227,7 +233,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def _report_deprecated_supported_features_values(self, replacement: IntFlag) -> None: ...
 
 class ToggleEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 TOGGLE_ENTITY_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

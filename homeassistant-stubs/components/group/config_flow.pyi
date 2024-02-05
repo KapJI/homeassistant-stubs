@@ -44,7 +44,7 @@ def set_group_type(group_type: str) -> Callable[[SchemaCommonFlowHandler, dict[s
 CONFIG_FLOW: Incomplete
 OPTIONS_FLOW: Incomplete
 PREVIEW_OPTIONS_SCHEMA: dict[str, vol.Schema]
-CREATE_PREVIEW_ENTITY: dict[str, Callable[[str, dict[str, Any]], GroupEntity | MediaPlayerGroup]]
+CREATE_PREVIEW_ENTITY: dict[str, Callable[[HomeAssistant, str, dict[str, Any]], GroupEntity | MediaPlayerGroup]]
 
 class GroupConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW

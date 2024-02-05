@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
+from .models import TPLinkData as TPLinkData
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

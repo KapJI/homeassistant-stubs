@@ -1,6 +1,6 @@
 from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
 from .const import DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DOMAIN as DOMAIN
-from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey
+from .model import RainMachineEntityDescription as RainMachineEntityDescription
 from .util import key_exists as key_exists
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -12,9 +12,10 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM, UnitSystem as UnitSystem
 
-@dataclass(frozen=True)
-class RainMachineSelectDescription(SelectEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey):
-    def __init__(self, data_key, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+@dataclass(frozen=True, kw_only=True)
+class RainMachineSelectDescription(SelectEntityDescription, RainMachineEntityDescription):
+    data_key: str
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, options, data_key) -> None: ...
 
 @dataclass
 class FreezeProtectionSelectOption:
@@ -23,14 +24,10 @@ class FreezeProtectionSelectOption:
     metric_label: str
     def __init__(self, api_value, imperial_label, metric_label) -> None: ...
 
-@dataclass(frozen=True)
-class FreezeProtectionTemperatureMixin:
+@dataclass(frozen=True, kw_only=True)
+class FreezeProtectionSelectDescription(RainMachineSelectDescription):
     extended_options: list[FreezeProtectionSelectOption]
-    def __init__(self, extended_options) -> None: ...
-
-@dataclass(frozen=True)
-class FreezeProtectionSelectDescription(RainMachineSelectDescription, FreezeProtectionTemperatureMixin):
-    def __init__(self, extended_options, data_key, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, options, data_key, extended_options) -> None: ...
 
 TYPE_FREEZE_PROTECTION_TEMPERATURE: str
 SELECT_DESCRIPTIONS: Incomplete

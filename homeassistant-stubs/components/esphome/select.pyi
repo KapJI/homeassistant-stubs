@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .domain_data import DomainData as DomainData
 from .entity import EsphomeAssistEntity as EsphomeAssistEntity, EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .entry_data import RuntimeEntryData as RuntimeEntryData

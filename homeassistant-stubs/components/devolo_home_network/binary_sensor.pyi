@@ -21,7 +21,7 @@ class DevoloBinarySensorRequiredKeysMixin:
 
 @dataclass(frozen=True)
 class DevoloBinarySensorEntityDescription(BinarySensorEntityDescription, DevoloBinarySensorRequiredKeysMixin):
-    def __init__(self, value_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, value_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 SENSOR_TYPES: dict[str, DevoloBinarySensorEntityDescription]
 

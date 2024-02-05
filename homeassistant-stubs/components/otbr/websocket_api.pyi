@@ -1,5 +1,5 @@
 from .const import DEFAULT_CHANNEL as DEFAULT_CHANNEL, DOMAIN as DOMAIN
-from .util import OTBRData as OTBRData, get_allowed_channel as get_allowed_channel, update_issues as update_issues
+from .util import OTBRData as OTBRData, compose_default_network_name as compose_default_network_name, generate_random_pan_id as generate_random_pan_id, get_allowed_channel as get_allowed_channel, update_issues as update_issues
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import is_multiprotocol_url as is_multiprotocol_url
 from homeassistant.components.thread import async_add_dataset as async_add_dataset, async_get_dataset as async_get_dataset

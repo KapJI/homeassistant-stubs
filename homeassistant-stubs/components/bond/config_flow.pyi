@@ -6,7 +6,7 @@ from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
+from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 

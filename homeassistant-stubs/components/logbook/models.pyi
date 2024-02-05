@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from functools import cached_property as cached_property
 from homeassistant.components.recorder.filters import Filters as Filters
 from homeassistant.components.recorder.models import bytes_to_ulid_or_none as bytes_to_ulid_or_none, bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, ulid_to_bytes_or_none as ulid_to_bytes_or_none, uuid_hex_to_bytes_or_none as uuid_hex_to_bytes_or_none
 from homeassistant.const import ATTR_ICON as ATTR_ICON, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED
@@ -18,20 +19,22 @@ class LogbookConfig:
     def __init__(self, external_events, sqlalchemy_filter, entity_filter) -> None: ...
 
 class LazyEventPartialState:
-    __slots__: Incomplete
     row: Incomplete
     _event_data: Incomplete
     _event_data_cache: Incomplete
-    event_type: Incomplete
-    entity_id: Incomplete
-    state: Incomplete
     data: Incomplete
     def __init__(self, row: Row | EventAsRow, event_data_cache: dict[str, dict[str, Any]]) -> None: ...
-    @property
+    @cached_property
+    def event_type(self) -> str | None: ...
+    @cached_property
+    def entity_id(self) -> str | None: ...
+    @cached_property
+    def state(self) -> str | None: ...
+    @cached_property
     def context_id(self) -> str | None: ...
-    @property
+    @cached_property
     def context_user_id(self) -> str | None: ...
-    @property
+    @cached_property
     def context_parent_id(self) -> str | None: ...
 
 @dataclass(slots=True, frozen=True)

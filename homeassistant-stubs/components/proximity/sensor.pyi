@@ -1,0 +1,41 @@
+from .const import ATTR_DIR_OF_TRAVEL as ATTR_DIR_OF_TRAVEL, ATTR_DIST_TO as ATTR_DIST_TO, ATTR_NEAREST as ATTR_NEAREST, DOMAIN as DOMAIN
+from .coordinator import ProximityDataUpdateCoordinator as ProximityDataUpdateCoordinator
+from _typeshed import Incomplete
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import UnitOfLength as UnitOfLength
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+
+SENSORS_PER_ENTITY: list[SensorEntityDescription]
+SENSORS_PER_PROXIMITY: list[SensorEntityDescription]
+
+def _device_info(coordinator: ProximityDataUpdateCoordinator) -> DeviceInfo: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class ProximitySensor(CoordinatorEntity[ProximityDataUpdateCoordinator], SensorEntity):
+    _attr_has_entity_name: bool
+    entity_description: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, description: SensorEntityDescription, coordinator: ProximityDataUpdateCoordinator) -> None: ...
+    @property
+    def native_value(self) -> str | float | None: ...
+
+class ProximityTrackedEntitySensor(CoordinatorEntity[ProximityDataUpdateCoordinator], SensorEntity):
+    _attr_has_entity_name: bool
+    entity_description: Incomplete
+    tracked_entity_id: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_name: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, description: SensorEntityDescription, coordinator: ProximityDataUpdateCoordinator, tracked_entity_descriptor: dict[str, str]) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    @property
+    def data(self) -> dict[str, str | int | None] | None: ...
+    @property
+    def available(self) -> bool: ...
+    @property
+    def native_value(self) -> str | float | None: ...

@@ -21,7 +21,7 @@ class DeviceBaseEntityDescriptionMixin:
 
 @dataclass(frozen=True)
 class SensiboDeviceUpdateEntityDescription(UpdateEntityDescription, DeviceBaseEntityDescriptionMixin):
-    def __init__(self, value_version, value_available, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, value_version, value_available, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 DEVICE_SENSOR_TYPES: tuple[SensiboDeviceUpdateEntityDescription, ...]
 

@@ -12,8 +12,8 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import async_call_later as async_call_later
 
 _LOGGER: Incomplete
-_FALLBACK_SCAN_INTERVAL: Incomplete
-_BPUP_ALIVE_SCAN_INTERVAL: Incomplete
+_FALLBACK_SCAN_INTERVAL: int
+_BPUP_ALIVE_SCAN_INTERVAL: int
 
 class BondEntity(Entity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool

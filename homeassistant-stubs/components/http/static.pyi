@@ -11,9 +11,9 @@ from typing import Final
 CACHE_TIME: Final[Incomplete]
 CACHE_HEADER: Incomplete
 CACHE_HEADERS: Mapping[str, str]
-PATH_CACHE: LRU[tuple[str, Path, bool], tuple[Path | None, str | None]]
+PATH_CACHE: LRU[tuple[str, Path], tuple[Path | None, str | None]]
 
-def _get_file_path(rel_url: str, directory: Path, follow_symlinks: bool) -> Path | None: ...
+def _get_file_path(rel_url: str, directory: Path) -> Path | None: ...
 
 class CachingStaticResource(StaticResource):
     async def _handle(self, request: Request) -> StreamResponse: ...

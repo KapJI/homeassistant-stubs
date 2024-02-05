@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+DEFAULT_RETRIES: int
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 
@@ -20,6 +21,7 @@ class WanIpSensor(SensorEntity):
     hostname: Incomplete
     resolver: Incomplete
     querytype: Incomplete
+    _retries: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, name: str, hostname: str, resolver: str, ipv6: bool) -> None: ...

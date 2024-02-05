@@ -1,0 +1,7 @@
+from typing import Final
+
+DOMAIN: Final[str]
+MANUFACTURER: Final[str]
+CONCENTRATION_GRAMS_PER_CUBIC_METER: Final[str]
+ACTIVITY_BECQUEREL_PER_CUBIC_METER: Final[str]
+UPDATE_INTERVAL: float

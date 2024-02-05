@@ -3,13 +3,13 @@ import voluptuous as vol
 from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, DATA_CLIENT as DATA_CLIENT, DATA_OLD_SERVER_LOG_LEVEL as DATA_OLD_SERVER_LOG_LEVEL, DOMAIN as DOMAIN, LIB_LOGGER as LIB_LOGGER, LOGGER as LOGGER
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.components.group import expand_entity_ids as expand_entity_ids
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.group import expand_entity_ids as expand_entity_ids
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 from zwave_js_server.model.controller import Controller as Controller

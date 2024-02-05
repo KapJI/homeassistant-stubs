@@ -9,7 +9,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from pymodbus.client import ModbusBaseClient as ModbusBaseClient
+from pymodbus.client.base import ModbusBaseClient as ModbusBaseClient
 from pymodbus.pdu import ModbusResponse as ModbusResponse
 from typing import Any, NamedTuple
 

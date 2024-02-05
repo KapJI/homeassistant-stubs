@@ -5,7 +5,6 @@ from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
 from homeassistant.const import MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import Context as Context, Event as Event, EventOrigin as EventOrigin, State as State
-from homeassistant.helpers.entity import EntityInfo as EntityInfo
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP, json_bytes as json_bytes, json_bytes_strip_null as json_bytes_strip_null
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads, json_loads_object as json_loads_object
 from sqlalchemy import CHAR, ColumnElement as ColumnElement, DateTime, JSON, LargeBinary
@@ -166,7 +165,7 @@ class StateAttributes(Base):
     shared_attrs: Mapped[str | None]
     def __repr__(self) -> str: ...
     @staticmethod
-    def shared_attrs_bytes_from_event(event: Event, entity_sources: dict[str, EntityInfo], dialect: SupportedDialect | None) -> bytes: ...
+    def shared_attrs_bytes_from_event(event: Event, dialect: SupportedDialect | None) -> bytes: ...
     @staticmethod
     def hash_shared_attrs_bytes(shared_attrs_bytes: bytes) -> int: ...
     def to_native(self) -> dict[str, Any]: ...

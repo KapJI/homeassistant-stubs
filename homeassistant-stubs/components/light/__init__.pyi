@@ -92,6 +92,7 @@ FLASH_LONG: str
 ATTR_EFFECT_LIST: str
 ATTR_EFFECT: str
 EFFECT_COLORLOOP: str
+EFFECT_OFF: str
 EFFECT_RANDOM: str
 EFFECT_WHITE: str
 COLOR_GROUP: str
@@ -139,7 +140,7 @@ class Profiles:
     def apply_profile(self, name: str, params: dict[str, Any]) -> None: ...
 
 class LightEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -200,6 +201,7 @@ class LightEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @property
     def capability_attributes(self) -> dict[str, Any]: ...
     def _light_internal_convert_color(self, color_mode: ColorMode | str) -> dict[str, tuple[float, ...]]: ...
+    def __validate_color_mode(self, color_mode: ColorMode | str | None, supported_color_modes: set[ColorMode] | set[str], effect: str | None) -> None: ...
     @property
     def state_attributes(self) -> dict[str, Any] | None: ...
     @property

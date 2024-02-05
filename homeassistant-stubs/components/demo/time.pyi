@@ -14,9 +14,8 @@ class DemoTime(TimeEntity):
     _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_assumed_state: Incomplete
-    _attr_icon: Incomplete
     _attr_native_value: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, device_name: str, state: time, icon: str, assumed_state: bool) -> None: ...
+    def __init__(self, unique_id: str, device_name: str, state: time, assumed_state: bool) -> None: ...
     async def async_set_value(self, value: time) -> None: ...

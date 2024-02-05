@@ -29,7 +29,7 @@ class ValloxMetricKeyMixin:
 
 @dataclass(frozen=True)
 class ValloxSwitchEntityDescription(SwitchEntityDescription, ValloxMetricKeyMixin):
-    def __init__(self, metric_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, metric_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 SWITCH_ENTITIES: tuple[ValloxSwitchEntityDescription, ...]
 

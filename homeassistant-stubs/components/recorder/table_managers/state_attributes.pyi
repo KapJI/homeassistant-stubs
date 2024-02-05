@@ -6,7 +6,6 @@ from ..util import chunked as chunked, execute_stmt_lambda_element as execute_st
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.core import Event as Event
-from homeassistant.helpers.entity import entity_sources as entity_sources
 from homeassistant.util.json import JSON_ENCODE_EXCEPTIONS as JSON_ENCODE_EXCEPTIONS
 from sqlalchemy.orm.session import Session as Session
 
@@ -15,7 +14,6 @@ _LOGGER: Incomplete
 
 class StateAttributesManager(BaseLRUTableManager[StateAttributes]):
     active: bool
-    _entity_sources: Incomplete
     def __init__(self, recorder: Recorder) -> None: ...
     def serialize_from_event(self, event: Event) -> bytes | None: ...
     def load(self, events: list[Event], session: Session) -> None: ...

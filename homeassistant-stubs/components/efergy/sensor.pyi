@@ -16,7 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class EfergySensor(EfergyEntity, SensorEntity):
     _attr_has_entity_name: bool
     entity_description: Incomplete
-    _attr_name: Incomplete
+    _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     sid: Incomplete

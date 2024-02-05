@@ -9,12 +9,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from jaraco.abode.devices.alarm import Alarm as AbodeAl
 
-ICON: str
-
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AbodeAlarm(AbodeDevice, alarm.AlarmControlPanelEntity):
-    _attr_icon = ICON
     _attr_name: Incomplete
     _attr_code_arm_required: bool
     _attr_supported_features: Incomplete

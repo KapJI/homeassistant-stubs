@@ -24,7 +24,7 @@ class ZwaveHumidifierEntityDescriptionRequiredKeys:
 
 @dataclass(frozen=True)
 class ZwaveHumidifierEntityDescription(HumidifierEntityDescription, ZwaveHumidifierEntityDescriptionRequiredKeys):
-    def __init__(self, *selfon_modeinverse_modesetpoint_type_, on_mode, inverse_mode, setpoint_type, **selfon_modeinverse_modesetpoint_type__) -> None: ...
+    def __init__(self, on_mode, inverse_mode, setpoint_type, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 HUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 DEHUMIDIFIER_ENTITY_DESCRIPTION: Incomplete

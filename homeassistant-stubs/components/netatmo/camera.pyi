@@ -1,6 +1,6 @@
 from .const import ATTR_CAMERA_LIGHT_MODE as ATTR_CAMERA_LIGHT_MODE, ATTR_PERSON as ATTR_PERSON, ATTR_PERSONS as ATTR_PERSONS, CAMERA_LIGHT_MODES as CAMERA_LIGHT_MODES, CONF_URL_SECURITY as CONF_URL_SECURITY, DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, EVENT_TYPE_OFF as EVENT_TYPE_OFF, EVENT_TYPE_ON as EVENT_TYPE_ON, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_CAMERA as NETATMO_CREATE_CAMERA, SERVICE_SET_CAMERA_LIGHT as SERVICE_SET_CAMERA_LIGHT, SERVICE_SET_PERSONS_HOME as SERVICE_SET_PERSONS_HOME, SERVICE_SET_PERSON_AWAY as SERVICE_SET_PERSON_AWAY, WEBHOOK_LIGHT_MODE as WEBHOOK_LIGHT_MODE, WEBHOOK_NACAMERA_CONNECTION as WEBHOOK_NACAMERA_CONNECTION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
 from .data_handler import EVENT as EVENT, HOME as HOME, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
-from .netatmo_entity_base import NetatmoBase as NetatmoBase
+from .entity import NetatmoBaseEntity as NetatmoBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -17,7 +17,7 @@ DEFAULT_QUALITY: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NetatmoCamera(NetatmoBase, Camera):
+class NetatmoCamera(NetatmoBaseEntity, Camera):
     _attr_brand = MANUFACTURER
     _attr_has_entity_name: bool
     _attr_supported_features: Incomplete

@@ -1,6 +1,6 @@
 import asyncio
 from .const import API_SENSOR_PAIRED_SENSOR_STATUS as API_SENSOR_PAIRED_SENSOR_STATUS, API_SENSOR_PAIR_DUMP as API_SENSOR_PAIR_DUMP, API_SYSTEM_DIAGNOSTICS as API_SYSTEM_DIAGNOSTICS, API_SYSTEM_ONBOARD_SENSOR_STATUS as API_SYSTEM_ONBOARD_SENSOR_STATUS, API_VALVE_STATUS as API_VALVE_STATUS, API_WIFI_STATUS as API_WIFI_STATUS, CONF_UID as CONF_UID, DOMAIN as DOMAIN, LOGGER as LOGGER, SIGNAL_PAIRED_SENSOR_COORDINATOR_ADDED as SIGNAL_PAIRED_SENSOR_COORDINATOR_ADDED
-from .util import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
+from .coordinator import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
 from _typeshed import Incomplete
 from aioguardian import Client
 from collections.abc import Callable as Callable
@@ -52,26 +52,18 @@ class PairedSensorManager:
 
 class GuardianEntity(CoordinatorEntity[GuardianDataUpdateCoordinator]):
     _attr_has_entity_name: bool
-    _attr_extra_state_attributes: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: GuardianDataUpdateCoordinator, description: EntityDescription) -> None: ...
-    def _async_update_from_latest_data(self) -> None: ...
-    def _handle_coordinator_update(self) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
 
 class PairedSensorEntity(GuardianEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, entry: ConfigEntry, coordinator: GuardianDataUpdateCoordinator, description: EntityDescription) -> None: ...
 
-@dataclass(frozen=True)
-class ValveControllerEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class ValveControllerEntityDescription(EntityDescription):
     api_category: str
-    def __init__(self, api_category) -> None: ...
-
-@dataclass(frozen=True)
-class ValveControllerEntityDescription(EntityDescription, ValveControllerEntityDescriptionMixin):
-    def __init__(self, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category) -> None: ...
 
 class ValveControllerEntity(GuardianEntity):
     _diagnostics_coordinator: Incomplete

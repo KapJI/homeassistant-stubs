@@ -3,7 +3,7 @@ from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATO
 from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,6 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class TradfriLight(TradfriBaseEntity, LightEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
+    _fixed_color_mode: ColorMode | None
     _device_control: Incomplete
     _device_data: Incomplete
     _attr_unique_id: Incomplete
@@ -26,6 +27,8 @@ class TradfriLight(TradfriBaseEntity, LightEntity):
     def _refresh(self) -> None: ...
     @property
     def is_on(self) -> bool: ...
+    @property
+    def color_mode(self) -> ColorMode | None: ...
     @property
     def brightness(self) -> int | None: ...
     @property

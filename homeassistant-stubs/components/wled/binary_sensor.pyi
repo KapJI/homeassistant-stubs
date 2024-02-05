@@ -13,7 +13,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class WLEDUpdateBinarySensor(WLEDEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
-    _attr_name: str
+    _attr_translation_key: str
     _attr_entity_registry_enabled_default: bool
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...

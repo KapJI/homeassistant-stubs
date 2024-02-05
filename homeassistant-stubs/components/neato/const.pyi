@@ -2,7 +2,6 @@ from _typeshed import Incomplete
 
 NEATO_DOMAIN: str
 CONF_VENDOR: str
-NEATO_CONFIG: str
 NEATO_LOGIN: str
 NEATO_MAP_DATA: str
 NEATO_PERSISTENT_MAPS: str

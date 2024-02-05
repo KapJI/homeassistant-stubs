@@ -9,7 +9,6 @@ class FritzState(StrEnum):
     CONNECT: str
     DISCONNECT: str
 
-ICON_PHONE: Final[str]
 ATTR_PREFIXES: str
 FRITZ_ATTR_NAME: str
 FRITZ_ATTR_SERIAL_NUMBER: str

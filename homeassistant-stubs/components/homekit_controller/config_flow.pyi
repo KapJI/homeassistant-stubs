@@ -7,7 +7,7 @@ from aiohomekit.controller.abstract import AbstractDiscovery as AbstractDiscover
 from aiohomekit.model.categories import Categories
 from homeassistant import config_entries as config_entries
 from homeassistant.components import bluetooth as bluetooth, zeroconf as zeroconf
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
 from typing import Any
 
@@ -22,7 +22,6 @@ INSECURE_CODES: Incomplete
 
 def normalize_hkid(hkid: str) -> str: ...
 def formatted_category(category: Categories) -> str: ...
-def find_existing_config_entry(hass: HomeAssistant, upper_case_hkid: str) -> config_entries.ConfigEntry | None: ...
 def ensure_pin_format(pin: str, allow_insecure_setup_codes: Any = None) -> str: ...
 
 class HomekitControllerFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):

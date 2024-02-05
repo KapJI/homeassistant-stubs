@@ -1,5 +1,6 @@
 from . import GuardianData as GuardianData, ValveControllerEntity as ValveControllerEntity, ValveControllerEntityDescription as ValveControllerEntityDescription
 from .const import API_SYSTEM_DIAGNOSTICS as API_SYSTEM_DIAGNOSTICS, DOMAIN as DOMAIN
+from .util import convert_exceptions_to_homeassistant_error as convert_exceptions_to_homeassistant_error
 from _typeshed import Incomplete
 from aioguardian import Client as Client
 from collections.abc import Awaitable, Callable as Callable
@@ -8,18 +9,13 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-@dataclass(frozen=True)
-class GuardianButtonEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class ValveControllerButtonDescription(ButtonEntityDescription, ValveControllerEntityDescription):
     push_action: Callable[[Client], Awaitable]
-    def __init__(self, push_action) -> None: ...
-
-@dataclass(frozen=True)
-class ValveControllerButtonDescription(ButtonEntityDescription, ValveControllerEntityDescription, GuardianButtonEntityDescriptionMixin):
-    def __init__(self, push_action, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, push_action) -> None: ...
 
 BUTTON_KIND_REBOOT: str
 BUTTON_KIND_RESET_VALVE_DIAGNOSTICS: str

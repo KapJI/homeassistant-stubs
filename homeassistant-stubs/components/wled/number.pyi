@@ -19,13 +19,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 @dataclass(frozen=True, kw_only=True)
 class WLEDNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[Segment], float | None]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, value_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, value_fn) -> None: ...
 
 NUMBERS: Incomplete
 
 class WLEDNumber(WLEDEntity, NumberEntity):
     entity_description: WLEDNumberEntityDescription
-    _attr_name: Incomplete
+    _attr_translation_key: Incomplete
+    _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     _segment: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int, description: WLEDNumberEntityDescription) -> None: ...

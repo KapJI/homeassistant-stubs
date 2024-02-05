@@ -8,7 +8,7 @@ from collections.abc import Callable as Callable, Iterable
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import EntityServiceResponse as EntityServiceResponse, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
@@ -31,6 +31,7 @@ class EntityComponent(Generic[_EntityT]):
     _platforms: Incomplete
     async_add_entities: Incomplete
     add_entities: Incomplete
+    _entities: Incomplete
     def __init__(self, logger: logging.Logger, domain: str, hass: HomeAssistant, scan_interval: timedelta = ...) -> None: ...
     @property
     def entities(self) -> Iterable[_EntityT]: ...

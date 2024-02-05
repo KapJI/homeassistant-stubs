@@ -100,6 +100,8 @@ class ClimateEntityFeature(IntFlag):
     PRESET_MODE: int
     SWING_MODE: int
     AUX_HEAT: int
+    TURN_OFF: int
+    TURN_ON: int
 
 _DEPRECATED_SUPPORT_TARGET_TEMPERATURE: Incomplete
 _DEPRECATED_SUPPORT_TARGET_TEMPERATURE_RANGE: Incomplete

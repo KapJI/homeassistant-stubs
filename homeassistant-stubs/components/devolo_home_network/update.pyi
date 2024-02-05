@@ -22,7 +22,7 @@ class DevoloUpdateRequiredKeysMixin:
 
 @dataclass(frozen=True)
 class DevoloUpdateEntityDescription(UpdateEntityDescription, DevoloUpdateRequiredKeysMixin):
-    def __init__(self, latest_version, update_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, latest_version, update_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 UPDATE_TYPES: dict[str, DevoloUpdateEntityDescription]
 

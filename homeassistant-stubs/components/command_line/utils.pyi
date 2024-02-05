@@ -1,0 +1,6 @@
+from _typeshed import Incomplete
+
+_LOGGER: Incomplete
+
+def call_shell_with_timeout(command: str, timeout: int, *, log_return_code: bool = True) -> int: ...
+def check_output_or_log(command: str, timeout: int) -> str | None: ...

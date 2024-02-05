@@ -15,7 +15,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class WLEDLiveOverrideSelect(WLEDEntity, SelectEntity):
     _attr_entity_category: Incomplete
-    _attr_icon: str
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     _attr_options: Incomplete
@@ -25,7 +24,6 @@ class WLEDLiveOverrideSelect(WLEDEntity, SelectEntity):
     async def async_select_option(self, option: str) -> None: ...
 
 class WLEDPresetSelect(WLEDEntity, SelectEntity):
-    _attr_icon: str
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     _attr_options: Incomplete
@@ -37,7 +35,6 @@ class WLEDPresetSelect(WLEDEntity, SelectEntity):
     async def async_select_option(self, option: str) -> None: ...
 
 class WLEDPlaylistSelect(WLEDEntity, SelectEntity):
-    _attr_icon: str
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     _attr_options: Incomplete
@@ -50,9 +47,9 @@ class WLEDPlaylistSelect(WLEDEntity, SelectEntity):
 
 class WLEDPaletteSelect(WLEDEntity, SelectEntity):
     _attr_entity_category: Incomplete
-    _attr_icon: str
-    _attr_name: str
+    _attr_translation_key: str
     _segment: int
+    _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     _attr_options: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int) -> None: ...

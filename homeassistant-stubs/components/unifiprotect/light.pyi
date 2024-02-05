@@ -21,6 +21,7 @@ class ProtectLight(ProtectDeviceEntity, LightEntity):
     _attr_icon: str
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
+    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...

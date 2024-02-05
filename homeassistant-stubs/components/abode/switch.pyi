@@ -10,7 +10,6 @@ from jaraco.abode.devices.switch import Switch as AbodeSW
 from typing import Any
 
 DEVICE_TYPES: Incomplete
-ICON: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -23,7 +22,7 @@ class AbodeSwitch(AbodeDevice, SwitchEntity):
     def is_on(self) -> bool: ...
 
 class AbodeAutomationSwitch(AbodeAutomation, SwitchEntity):
-    _attr_icon = ICON
+    _attr_translation_key: str
     async def async_added_to_hass(self) -> None: ...
     def turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...

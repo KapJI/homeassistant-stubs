@@ -1,34 +1,42 @@
 from .const import DOMAIN as DOMAIN, POWERWALL_COORDINATOR as POWERWALL_COORDINATOR
-from .entity import PowerWallEntity as PowerWallEntity
-from .models import PowerwallRuntimeData as PowerwallRuntimeData
+from .entity import BatteryEntity as BatteryEntity, PowerWallEntity as PowerWallEntity
+from .models import BatteryResponse as BatteryResponse, PowerwallRuntimeData as PowerwallRuntimeData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from tesla_powerwall import Meter as Meter, MeterType as MeterType
+from tesla_powerwall import MeterResponse, MeterType as MeterType
+from typing import Generic, TypeVar
 
 _METER_DIRECTION_EXPORT: str
 _METER_DIRECTION_IMPORT: str
+_ValueParamT = TypeVar('_ValueParamT')
+_ValueT = TypeVar('_ValueT', bound=float | int | str)
 
 @dataclass(frozen=True)
-class PowerwallRequiredKeysMixin:
-    value_fn: Callable[[Meter], float]
+class PowerwallRequiredKeysMixin(Generic[_ValueParamT, _ValueT]):
+    value_fn: Callable[[_ValueParamT], _ValueT]
     def __init__(self, value_fn) -> None: ...
 
 @dataclass(frozen=True)
-class PowerwallSensorEntityDescription(SensorEntityDescription, PowerwallRequiredKeysMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+class PowerwallSensorEntityDescription(SensorEntityDescription, PowerwallRequiredKeysMixin[_ValueParamT, _ValueT], Generic[_ValueParamT, _ValueT]):
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
-def _get_meter_power(meter: Meter) -> float: ...
-def _get_meter_frequency(meter: Meter) -> float: ...
-def _get_meter_total_current(meter: Meter) -> float: ...
-def _get_meter_average_voltage(meter: Meter) -> float: ...
+def _get_meter_power(meter: MeterResponse) -> float: ...
+def _get_meter_frequency(meter: MeterResponse) -> float: ...
+def _get_meter_total_current(meter: MeterResponse) -> float: ...
+def _get_meter_average_voltage(meter: MeterResponse) -> float: ...
 
 POWERWALL_INSTANT_SENSORS: Incomplete
+
+def _get_battery_charge(battery_data: BatteryResponse) -> float: ...
+
+BATTERY_INSTANT_SENSORS: list[PowerwallSensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -43,13 +51,13 @@ class PowerWallChargeSensor(PowerWallEntity, SensorEntity):
     def native_value(self) -> int: ...
 
 class PowerWallEnergySensor(PowerWallEntity, SensorEntity):
-    entity_description: PowerwallSensorEntityDescription
+    entity_description: PowerwallSensorEntityDescription[MeterResponse, float]
     _meter: Incomplete
     _attr_translation_key: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType, description: PowerwallSensorEntityDescription) -> None: ...
+    def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType, description: PowerwallSensorEntityDescription[MeterResponse, float]) -> None: ...
     @property
-    def native_value(self) -> float: ...
+    def native_value(self) -> float | None: ...
 
 class PowerWallBackupReserveSensor(PowerWallEntity, SensorEntity):
     _attr_translation_key: str
@@ -72,14 +80,22 @@ class PowerWallEnergyDirectionSensor(PowerWallEntity, SensorEntity):
     @property
     def available(self) -> bool: ...
     @property
-    def meter(self) -> Meter: ...
+    def meter(self) -> MeterResponse | None: ...
 
 class PowerWallExportSensor(PowerWallEnergyDirectionSensor):
     def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType) -> None: ...
     @property
-    def native_value(self) -> float: ...
+    def native_value(self) -> float | None: ...
 
 class PowerWallImportSensor(PowerWallEnergyDirectionSensor):
     def __init__(self, powerwall_data: PowerwallRuntimeData, meter: MeterType) -> None: ...
     @property
-    def native_value(self) -> float: ...
+    def native_value(self) -> float | None: ...
+
+class PowerWallBatterySensor(BatteryEntity, SensorEntity, Generic[_ValueT]):
+    entity_description: PowerwallSensorEntityDescription[BatteryResponse, _ValueT]
+    _attr_translation_key: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, powerwall_data: PowerwallRuntimeData, battery: BatteryResponse, description: PowerwallSensorEntityDescription[BatteryResponse, _ValueT]) -> None: ...
+    @property
+    def native_value(self) -> float | int | str: ...

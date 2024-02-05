@@ -18,7 +18,7 @@ class RequiredKeysMixin(Generic[_RobotT]):
 
 @dataclass(frozen=True)
 class RobotBinarySensorEntityDescription(BinarySensorEntityDescription, RequiredKeysMixin[_RobotT]):
-    def __init__(self, is_on_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, is_on_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 class LitterRobotBinarySensorEntity(LitterRobotEntity[_RobotT], BinarySensorEntity):
     entity_description: RobotBinarySensorEntityDescription[_RobotT]

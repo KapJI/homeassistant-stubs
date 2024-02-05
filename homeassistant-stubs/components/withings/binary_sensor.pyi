@@ -12,7 +12,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WithingsBinarySensor(WithingsEntity, BinarySensorEntity):
-    _attr_icon: str
     _attr_translation_key: str
     _attr_device_class: Incomplete
     coordinator: WithingsBedPresenceDataUpdateCoordinator

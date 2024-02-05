@@ -24,7 +24,7 @@ class SensiboSelectDescriptionMixin:
 
 @dataclass(frozen=True)
 class SensiboSelectEntityDescription(SelectEntityDescription, SensiboSelectDescriptionMixin):
-    def __init__(self, data_key, value_fn, options_fn, transformation, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, options) -> None: ...
+    def __init__(self, data_key, value_fn, options_fn, transformation, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options) -> None: ...
 
 DEVICE_SELECT_TYPES: Incomplete
 

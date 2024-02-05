@@ -1,6 +1,6 @@
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, NETATMO_CREATE_SWITCH as NETATMO_CREATE_SWITCH
 from .data_handler import HOME as HOME, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
-from .netatmo_entity_base import NetatmoBase as NetatmoBase
+from .entity import NetatmoBaseEntity as NetatmoBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,7 +13,7 @@ _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NetatmoSwitch(NetatmoBase, SwitchEntity):
+class NetatmoSwitch(NetatmoBaseEntity, SwitchEntity):
     _switch: Incomplete
     _id: Incomplete
     _attr_name: Incomplete

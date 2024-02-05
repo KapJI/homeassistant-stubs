@@ -9,12 +9,11 @@ from .models import MatterDeviceInfo as MatterDeviceInfo
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
-from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from matter_server.client import MatterClient
 
 CONNECT_TIMEOUT: int
@@ -26,6 +25,5 @@ async def _client_listen(hass: HomeAssistant, entry: ConfigEntry, matter_client:
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...
-def _async_init_services(hass: HomeAssistant) -> None: ...
 async def _async_ensure_addon_running(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 def _get_addon_manager(hass: HomeAssistant) -> AddonManager: ...

@@ -29,11 +29,11 @@ class DeviceBaseEntityDescriptionMixin:
 
 @dataclass(frozen=True)
 class SensiboMotionSensorEntityDescription(SensorEntityDescription, MotionBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 @dataclass(frozen=True)
 class SensiboDeviceSensorEntityDescription(SensorEntityDescription, DeviceBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, extra_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, extra_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 FILTER_LAST_RESET_DESCRIPTION: Incomplete
 MOTION_SENSOR_TYPES: tuple[SensiboMotionSensorEntityDescription, ...]

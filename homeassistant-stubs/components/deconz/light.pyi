@@ -41,6 +41,7 @@ class DeconzBaseLight(DeconzDevice[_LightDeviceT], LightEntity):
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
     def __init__(self, device: _LightDeviceT, gateway: DeconzGateway) -> None: ...
+    _attr_color_mode: Incomplete
     @property
     def color_mode(self) -> str | None: ...
     @property

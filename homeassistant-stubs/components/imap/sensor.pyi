@@ -14,9 +14,7 @@ IMAP_MAIL_COUNT_DESCRIPTION: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ImapSensor(CoordinatorEntity[ImapPushDataUpdateCoordinator | ImapPollingDataUpdateCoordinator], SensorEntity):
-    _attr_icon: str
     _attr_has_entity_name: bool
-    _attr_name: Incomplete
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

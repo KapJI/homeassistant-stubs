@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyunifiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from typing import Any
 
 _LOGGER: Incomplete
 
@@ -29,6 +30,7 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     _stream_source: Incomplete
     _attr_supported_features: Incomplete
     def _async_set_stream_source(self) -> None: ...
+    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
     _attr_motion_detection_enabled: Incomplete
     _attr_is_recording: Incomplete
     _attr_available: Incomplete

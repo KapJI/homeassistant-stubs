@@ -1,0 +1,19 @@
+from .const import DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, DOMAIN_DATA_ENTRIES as DOMAIN_DATA_ENTRIES
+from arcam.fmj.client import Client
+from homeassistant import config_entries as config_entries
+from homeassistant.components import ssdp as ssdp
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from typing import Any
+
+def get_entry_client(hass: HomeAssistant, entry: config_entries.ConfigEntry) -> Client: ...
+
+class ArcamFmjFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
+    VERSION: int
+    async def _async_set_unique_id_and_update(self, host: str, port: int, uuid: str) -> None: ...
+    async def _async_check_and_create(self, host: str, port: int) -> FlowResult: ...
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> FlowResult: ...
+    async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> FlowResult: ...
+    async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> FlowResult: ...

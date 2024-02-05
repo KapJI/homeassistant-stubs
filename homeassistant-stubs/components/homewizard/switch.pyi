@@ -17,10 +17,9 @@ from typing import Any
 class HomeWizardSwitchEntityDescription(SwitchEntityDescription):
     available_fn: Callable[[DeviceResponseEntry], bool]
     create_fn: Callable[[HWEnergyDeviceUpdateCoordinator], bool]
-    icon_off: str | None = ...
     is_on_fn: Callable[[DeviceResponseEntry], bool | None]
     set_fn: Callable[[HomeWizardEnergy, bool], Awaitable[Any]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, available_fn, create_fn, icon_off, is_on_fn, set_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, available_fn, create_fn, is_on_fn, set_fn) -> None: ...
 
 SWITCHES: Incomplete
 
@@ -30,8 +29,6 @@ class HomeWizardSwitchEntity(HomeWizardEntity, SwitchEntity):
     entity_description: HomeWizardSwitchEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator, description: HomeWizardSwitchEntityDescription) -> None: ...
-    @property
-    def icon(self) -> str | None: ...
     @property
     def available(self) -> bool: ...
     @property

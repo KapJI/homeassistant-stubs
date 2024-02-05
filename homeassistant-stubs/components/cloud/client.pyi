@@ -15,6 +15,7 @@ from homeassistant.util.aiohttp import MockRequest as MockRequest, serialize_res
 from pathlib import Path
 from typing import Any, Literal
 
+_LOGGER: Incomplete
 VALID_REPAIR_TRANSLATION_KEYS: Incomplete
 
 class CloudClient(Interface):

@@ -4,7 +4,7 @@ from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from .util import convert_to_hass_hs as convert_to_hass_hs, convert_to_hass_xy as convert_to_hass_xy, convert_to_matter_hs as convert_to_matter_hs, convert_to_matter_xy as convert_to_matter_xy, renormalize as renormalize
 from _typeshed import Incomplete
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription, filter_supported_color_modes as filter_supported_color_modes
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -17,12 +17,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class MatterLight(MatterEntity, LightEntity):
     entity_description: LightEntityDescription
-    @property
-    def supports_color(self) -> bool: ...
-    @property
-    def supports_color_temperature(self) -> bool: ...
-    @property
-    def supports_brightness(self) -> bool: ...
+    _supports_brightness: bool
+    _supports_color: bool
+    _supports_color_temperature: bool
     async def _set_xy_color(self, xy_color: tuple[float, float]) -> None: ...
     async def _set_hs_color(self, hs_color: tuple[float, float]) -> None: ...
     async def _set_color_temp(self, color_temp: int) -> None: ...
@@ -36,12 +33,12 @@ class MatterLight(MatterEntity, LightEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_supported_color_modes: Incomplete
+    _attr_is_on: Incomplete
+    _attr_brightness: Incomplete
+    _attr_color_temp: Incomplete
     _attr_color_mode: Incomplete
     _attr_hs_color: Incomplete
     _attr_xy_color: Incomplete
-    _attr_color_temp: Incomplete
-    _attr_is_on: Incomplete
-    _attr_brightness: Incomplete
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

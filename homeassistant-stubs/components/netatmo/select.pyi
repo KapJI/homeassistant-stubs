@@ -1,6 +1,6 @@
 from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, NETATMO_CREATE_SELECT as NETATMO_CREATE_SELECT
 from .data_handler import HOME as HOME, NetatmoHome as NetatmoHome, SIGNAL_NAME as SIGNAL_NAME
-from .netatmo_entity_base import NetatmoBase as NetatmoBase
+from .entity import NetatmoBaseEntity as NetatmoBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,7 +12,7 @@ _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NetatmoScheduleSelect(NetatmoBase, SelectEntity):
+class NetatmoScheduleSelect(NetatmoBaseEntity, SelectEntity):
     _home: Incomplete
     _home_id: Incomplete
     _signal_name: Incomplete

@@ -18,12 +18,14 @@ from typing import Any
 
 RETRY_TIMER: int
 CHECK_HEARTBEAT_INTERVAL: Incomplete
+CHECK_WEBSOCKET_INTERVAL: Incomplete
 
 class UniFiController:
     hass: Incomplete
     config_entry: Incomplete
     api: Incomplete
     ws_task: Incomplete
+    _cancel_websocket_check: Incomplete
     available: bool
     wireless_clients: Incomplete
     site: Incomplete
@@ -70,6 +72,7 @@ class UniFiController:
     def start_websocket(self) -> None: ...
     def reconnect(self, log: bool = False) -> None: ...
     async def async_reconnect(self) -> None: ...
+    def _async_watch_websocket(self, now: datetime) -> None: ...
     def shutdown(self, event: Event) -> None: ...
     async def async_reset(self) -> bool: ...
 

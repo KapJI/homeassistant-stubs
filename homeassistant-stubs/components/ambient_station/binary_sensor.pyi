@@ -54,14 +54,10 @@ TYPE_RELAY7: str
 TYPE_RELAY8: str
 TYPE_RELAY9: str
 
-@dataclass(frozen=True)
-class AmbientBinarySensorDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class AmbientBinarySensorDescription(BinarySensorEntityDescription):
     on_state: Literal[0, 1]
-    def __init__(self, on_state) -> None: ...
-
-@dataclass(frozen=True)
-class AmbientBinarySensorDescription(BinarySensorEntityDescription, AmbientBinarySensorDescriptionMixin):
-    def __init__(self, on_state, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, on_state) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

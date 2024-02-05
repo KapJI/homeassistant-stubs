@@ -51,6 +51,14 @@ ATTR_SOURCE: Final[str]
 SIGNAL_KNX_TELEGRAM_DICT: Final[str]
 AsyncMessageCallbackType = Callable[[Telegram], Awaitable[None]]
 MessageCallbackType = Callable[[Telegram], None]
+SERVICE_KNX_SEND: Final[str]
+SERVICE_KNX_ATTR_PAYLOAD: Final[str]
+SERVICE_KNX_ATTR_TYPE: Final[str]
+SERVICE_KNX_ATTR_RESPONSE: Final[str]
+SERVICE_KNX_ATTR_REMOVE: Final[str]
+SERVICE_KNX_EVENT_REGISTER: Final[str]
+SERVICE_KNX_EXPOSURE_REGISTER: Final[str]
+SERVICE_KNX_READ: Final[str]
 
 class KNXConfigEntryData(TypedDict, total=False):
     connection_type: str

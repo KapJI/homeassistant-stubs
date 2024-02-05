@@ -1,6 +1,6 @@
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, NETATMO_CREATE_COVER as NETATMO_CREATE_COVER
 from .data_handler import HOME as HOME, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
-from .netatmo_entity_base import NetatmoBase as NetatmoBase
+from .entity import NetatmoBaseEntity as NetatmoBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,7 +13,7 @@ _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NetatmoCover(NetatmoBase, CoverEntity):
+class NetatmoCover(NetatmoBaseEntity, CoverEntity):
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     _cover: Incomplete

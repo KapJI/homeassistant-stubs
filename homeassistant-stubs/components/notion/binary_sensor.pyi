@@ -1,6 +1,6 @@
 from . import NotionEntity as NotionEntity
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SENSOR_BATTERY as SENSOR_BATTERY, SENSOR_DOOR as SENSOR_DOOR, SENSOR_GARAGE_DOOR as SENSOR_GARAGE_DOOR, SENSOR_LEAK as SENSOR_LEAK, SENSOR_MISSING as SENSOR_MISSING, SENSOR_SAFE as SENSOR_SAFE, SENSOR_SLIDING as SENSOR_SLIDING, SENSOR_SMOKE_CO as SENSOR_SMOKE_CO, SENSOR_WINDOW_HINGED as SENSOR_WINDOW_HINGED
-from .model import NotionEntityDescriptionMixin as NotionEntityDescriptionMixin
+from .model import NotionEntityDescription as NotionEntityDescription
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
@@ -10,14 +10,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Literal
 
-@dataclass(frozen=True)
-class NotionBinarySensorDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionEntityDescription):
     on_state: Literal['alarm', 'leak', 'low', 'not_missing', 'open']
-    def __init__(self, on_state) -> None: ...
-
-@dataclass(frozen=True)
-class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionBinarySensorDescriptionMixin, NotionEntityDescriptionMixin):
-    def __init__(self, listener_kind, on_state, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, *, listener_kind, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, on_state) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

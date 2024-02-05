@@ -17,6 +17,7 @@ from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
+from functools import cached_property as cached_property
 from types import ModuleType
 from typing import Any, Literal, Protocol, TypeVar, TypedDict
 
@@ -143,9 +144,9 @@ class Integration:
     _all_dependencies_resolved: Incomplete
     _all_dependencies: Incomplete
     def __init__(self, hass: HomeAssistant, pkg_path: str, file_path: pathlib.Path, manifest: Manifest) -> None: ...
-    @property
+    @cached_property
     def name(self) -> str: ...
-    @property
+    @cached_property
     def disabled(self) -> str | None: ...
     @property
     def domain(self) -> str: ...
@@ -167,7 +168,7 @@ class Integration:
     def quality_scale(self) -> str | None: ...
     @property
     def iot_class(self) -> str | None: ...
-    @property
+    @cached_property
     def integration_type(self) -> Literal['entity', 'device', 'hardware', 'helper', 'hub', 'service', 'system']: ...
     @property
     def mqtt(self) -> list[str] | None: ...

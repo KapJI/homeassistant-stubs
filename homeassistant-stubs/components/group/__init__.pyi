@@ -2,10 +2,10 @@ import abc
 from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS
 from _typeshed import Incomplete
 from abc import abstractmethod
-from collections.abc import Callable as Callable, Collection, Iterable, Mapping
+from collections.abc import Callable as Callable, Collection, Mapping
 from contextvars import ContextVar
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
@@ -55,8 +55,10 @@ class GroupIntegrationRegistry:
     def on_off_states(self, on_states: set, off_state: str) -> None: ...
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
-def expand_entity_ids(hass: HomeAssistant, entity_ids: Iterable[Any]) -> list[str]: ...
-def get_entity_ids(hass: HomeAssistant, entity_id: str, domain_filter: str | None = None) -> list[str]: ...
+
+expand_entity_ids: Incomplete
+get_entity_ids: Incomplete
+
 def groups_with_entity(hass: HomeAssistant, entity_id: str) -> list[str]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def config_entry_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...

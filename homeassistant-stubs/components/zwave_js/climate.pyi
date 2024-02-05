@@ -1,4 +1,4 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
@@ -10,7 +10,6 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 from zwave_js_server.const.command_class.thermostat import ThermostatSetpointType

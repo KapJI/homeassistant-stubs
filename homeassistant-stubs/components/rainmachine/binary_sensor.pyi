@@ -1,6 +1,6 @@
 from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
 from .const import DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_CURRENT as DATA_RESTRICTIONS_CURRENT, DOMAIN as DOMAIN
-from .model import RainMachineEntityDescription as RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey as RainMachineEntityDescriptionMixinDataKey
+from .model import RainMachineEntityDescription as RainMachineEntityDescription
 from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements, key_exists as key_exists
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -18,9 +18,10 @@ TYPE_RAINDELAY: str
 TYPE_RAINSENSOR: str
 TYPE_WEEKDAY: str
 
-@dataclass(frozen=True)
-class RainMachineBinarySensorDescription(BinarySensorEntityDescription, RainMachineEntityDescription, RainMachineEntityDescriptionMixinDataKey):
-    def __init__(self, data_key, api_category, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+@dataclass(frozen=True, kw_only=True)
+class RainMachineBinarySensorDescription(BinarySensorEntityDescription, RainMachineEntityDescription):
+    data_key: str
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, data_key) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

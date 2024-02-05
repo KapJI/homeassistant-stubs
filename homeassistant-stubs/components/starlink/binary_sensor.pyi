@@ -19,7 +19,7 @@ class StarlinkBinarySensorEntityDescriptionMixin:
 
 @dataclass(frozen=True)
 class StarlinkBinarySensorEntityDescription(BinarySensorEntityDescription, StarlinkBinarySensorEntityDescriptionMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 class StarlinkBinarySensorEntity(StarlinkEntity, BinarySensorEntity):
     entity_description: StarlinkBinarySensorEntityDescription

@@ -1,7 +1,7 @@
 from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, CONF_URL_PUBLIC_WEATHER as CONF_URL_PUBLIC_WEATHER, CONF_URL_WEATHER as CONF_URL_WEATHER, CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DATA_HANDLER as DATA_HANDLER, DOMAIN as DOMAIN, NETATMO_CREATE_BATTERY as NETATMO_CREATE_BATTERY, NETATMO_CREATE_ROOM_SENSOR as NETATMO_CREATE_ROOM_SENSOR, NETATMO_CREATE_SENSOR as NETATMO_CREATE_SENSOR, NETATMO_CREATE_WEATHER_SENSOR as NETATMO_CREATE_WEATHER_SENSOR, SIGNAL_NAME as SIGNAL_NAME
 from .data_handler import HOME as HOME, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, NetatmoRoom as NetatmoRoom, PUBLIC as PUBLIC
+from .entity import NetatmoBaseEntity as NetatmoBaseEntity
 from .helper import NetatmoArea as NetatmoArea
-from .netatmo_entity_base import NetatmoBase as NetatmoBase
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -22,7 +22,7 @@ class NetatmoRequiredKeysMixin:
 
 @dataclass(frozen=True)
 class NetatmoSensorEntityDescription(SensorEntityDescription, NetatmoRequiredKeysMixin):
-    def __init__(self, netatmo_name, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, netatmo_name, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
 
 SENSOR_TYPES: tuple[NetatmoSensorEntityDescription, ...]
 SENSOR_TYPES_KEYS: Incomplete
@@ -30,7 +30,7 @@ BATTERY_SENSOR_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NetatmoWeatherSensor(NetatmoBase, SensorEntity):
+class NetatmoWeatherSensor(NetatmoBaseEntity, SensorEntity):
     _attr_has_entity_name: bool
     entity_description: NetatmoSensorEntityDescription
     _module: Incomplete
@@ -46,7 +46,7 @@ class NetatmoWeatherSensor(NetatmoBase, SensorEntity):
     _attr_native_value: Incomplete
     def async_update_callback(self) -> None: ...
 
-class NetatmoClimateBatterySensor(NetatmoBase, SensorEntity):
+class NetatmoClimateBatterySensor(NetatmoBaseEntity, SensorEntity):
     entity_description: NetatmoSensorEntityDescription
     _module: Incomplete
     _id: Incomplete
@@ -60,7 +60,7 @@ class NetatmoClimateBatterySensor(NetatmoBase, SensorEntity):
     _attr_native_value: Incomplete
     def async_update_callback(self) -> None: ...
 
-class NetatmoSensor(NetatmoBase, SensorEntity):
+class NetatmoSensor(NetatmoBaseEntity, SensorEntity):
     entity_description: NetatmoSensorEntityDescription
     _module: Incomplete
     _id: Incomplete
@@ -78,7 +78,7 @@ def process_health(health: int) -> str: ...
 def process_rf(strength: int) -> str: ...
 def process_wifi(strength: int) -> str: ...
 
-class NetatmoRoomSensor(NetatmoBase, SensorEntity):
+class NetatmoRoomSensor(NetatmoBaseEntity, SensorEntity):
     entity_description: NetatmoSensorEntityDescription
     _room: Incomplete
     _id: Incomplete
@@ -91,7 +91,7 @@ class NetatmoRoomSensor(NetatmoBase, SensorEntity):
     _attr_native_value: Incomplete
     def async_update_callback(self) -> None: ...
 
-class NetatmoPublicSensor(NetatmoBase, SensorEntity):
+class NetatmoPublicSensor(NetatmoBaseEntity, SensorEntity):
     _attr_has_entity_name: bool
     entity_description: NetatmoSensorEntityDescription
     _signal_name: Incomplete

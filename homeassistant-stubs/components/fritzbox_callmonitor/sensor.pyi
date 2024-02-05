@@ -1,6 +1,6 @@
 import queue
 from .base import FritzBoxPhonebook as FritzBoxPhonebook
-from .const import ATTR_PREFIXES as ATTR_PREFIXES, CONF_PHONEBOOK as CONF_PHONEBOOK, CONF_PREFIXES as CONF_PREFIXES, DOMAIN as DOMAIN, FRITZBOX_PHONEBOOK as FRITZBOX_PHONEBOOK, FritzState as FritzState, ICON_PHONE as ICON_PHONE, MANUFACTURER as MANUFACTURER, SERIAL_NUMBER as SERIAL_NUMBER
+from .const import ATTR_PREFIXES as ATTR_PREFIXES, CONF_PHONEBOOK as CONF_PHONEBOOK, CONF_PREFIXES as CONF_PREFIXES, DOMAIN as DOMAIN, FRITZBOX_PHONEBOOK as FRITZBOX_PHONEBOOK, FritzState as FritzState, MANUFACTURER as MANUFACTURER, SERIAL_NUMBER as SERIAL_NUMBER
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import StrEnum
@@ -23,7 +23,7 @@ class CallState(StrEnum):
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzBoxCallSensor(SensorEntity):
-    _attr_icon = ICON_PHONE
+    _attr_has_entity_name: bool
     _attr_translation_key = DOMAIN
     _attr_device_class: Incomplete
     _attr_options: Incomplete
@@ -33,11 +33,11 @@ class FritzBoxCallSensor(SensorEntity):
     _port: Incomplete
     _monitor: Incomplete
     _attributes: Incomplete
-    _attr_name: Incomplete
+    _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, name: str, unique_id: str, fritzbox_phonebook: FritzBoxPhonebook, prefixes: list[str] | None, host: str, port: int) -> None: ...
+    def __init__(self, phonebook_name: str, unique_id: str, fritzbox_phonebook: FritzBoxPhonebook, prefixes: list[str] | None, host: str, port: int) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     def _start_call_monitor(self) -> None: ...

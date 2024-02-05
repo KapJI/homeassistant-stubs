@@ -14,11 +14,10 @@ class DemoText(TextEntity):
     _attr_should_poll: bool
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete
-    _attr_icon: Incomplete
     _attr_mode: Incomplete
     _attr_native_max: Incomplete
     _attr_native_min: Incomplete
     _attr_pattern: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, device_name: str, icon: str | None, native_value: str | None, mode: TextMode = ..., native_max: int | None = None, native_min: int | None = None, pattern: str | None = None) -> None: ...
+    def __init__(self, unique_id: str, device_name: str, native_value: str | None, mode: TextMode = ..., native_max: int | None = None, native_min: int | None = None, pattern: str | None = None) -> None: ...
     async def async_set_value(self, value: str) -> None: ...

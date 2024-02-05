@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN
+from .coordinator import FlexitCoordinator as FlexitCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_IP_ADDRESS as CONF_IP_ADDRESS, Platform as Platform
+from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 
 PLATFORMS: list[Platform]
 

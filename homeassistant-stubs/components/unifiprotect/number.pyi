@@ -11,19 +11,16 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyunifiprotect.data import Camera as Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from typing import Any
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class NumberKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class ProtectNumberEntityDescription(ProtectSetableKeysMixin[T], NumberEntityDescription):
     ufp_max: int | float
     ufp_min: int | float
     ufp_step: int | float
-    def __init__(self, ufp_max, ufp_min, ufp_step) -> None: ...
-
-@dataclass(frozen=True)
-class ProtectNumberEntityDescription(ProtectSetableKeysMixin[T], NumberEntityDescription, NumberKeysMixin):
-    def __init__(self, ufp_max, ufp_min, ufp_step, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn, ufp_max, ufp_min, ufp_step) -> None: ...
 
 def _get_pir_duration(obj: Light) -> int: ...
 async def _set_pir_duration(obj: Light, value: float) -> None: ...
@@ -49,4 +46,4 @@ class ProtectNumbers(ProtectDeviceEntity, NumberEntity):
     _attr_native_value: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...
-    def _async_updated_event(self, device: ProtectModelWithId) -> None: ...
+    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...

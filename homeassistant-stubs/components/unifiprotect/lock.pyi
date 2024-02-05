@@ -19,6 +19,7 @@ class ProtectLock(ProtectDeviceEntity, LockEntity):
     entity_description: LockEntityDescription
     _attr_name: Incomplete
     def __init__(self, data: ProtectData, doorlock: Doorlock) -> None: ...
+    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
     _attr_is_locked: bool
     _attr_is_locking: bool
     _attr_is_unlocking: bool

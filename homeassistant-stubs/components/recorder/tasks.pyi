@@ -11,7 +11,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime
-from homeassistant.core import Event as Event
 from homeassistant.helpers.typing import UndefinedType as UndefinedType
 from typing import Any
 
@@ -116,13 +115,6 @@ class DatabaseLockTask(RecorderTask):
 class StopTask(RecorderTask):
     commit_before = ...
     def run(self, instance: Recorder) -> None: ...
-
-@dataclass(slots=True)
-class EventTask(RecorderTask):
-    event: Event
-    commit_before = ...
-    def run(self, instance: Recorder) -> None: ...
-    def __init__(self, event) -> None: ...
 
 @dataclass(slots=True)
 class KeepAliveTask(RecorderTask):

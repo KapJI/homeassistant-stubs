@@ -1,11 +1,12 @@
-from .assist_pipeline import async_migrate_cloud_pipeline_stt_engine as async_migrate_cloud_pipeline_stt_engine
+from .assist_pipeline import async_migrate_cloud_pipeline_engine as async_migrate_cloud_pipeline_engine
 from .client import CloudClient as CloudClient
-from .const import DOMAIN as DOMAIN, STT_ENTITY_UNIQUE_ID as STT_ENTITY_UNIQUE_ID
+from .const import DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, DOMAIN as DOMAIN, STT_ENTITY_UNIQUE_ID as STT_ENTITY_UNIQUE_ID
 from _typeshed import Incomplete
 from collections.abc import AsyncIterable
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components.stt import AudioBitRates as AudioBitRates, AudioChannels as AudioChannels, AudioCodecs as AudioCodecs, AudioFormats as AudioFormats, AudioSampleRates as AudioSampleRates, SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult, SpeechResultState as SpeechResultState, SpeechToTextEntity as SpeechToTextEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 

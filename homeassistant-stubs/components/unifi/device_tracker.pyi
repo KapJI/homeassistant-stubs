@@ -40,7 +40,7 @@ class UnifiEntityTrackerDescriptionMixin(Generic[HandlerT, ApiItemT]):
 
 @dataclass(frozen=True)
 class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT], UnifiEntityTrackerDescriptionMixin[HandlerT, ApiItemT]):
-    def __init__(self, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 

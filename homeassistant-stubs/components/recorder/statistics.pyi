@@ -12,12 +12,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.singleton import singleton as singleton
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
-from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, EnergyConverter as EnergyConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter
+from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, DurationConverter as DurationConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, EnergyConverter as EnergyConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter, VolumeFlowRateConverter as VolumeFlowRateConverter
 from sqlalchemy import Select as Select
 from sqlalchemy.engine.row import Row
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
-from statistics import mean
 from typing import Any, Literal, TypedDict
 
 QUERY_STATISTICS: Incomplete
@@ -26,6 +25,9 @@ QUERY_STATISTICS_SUMMARY_MEAN: Incomplete
 QUERY_STATISTICS_SUMMARY_SUM: Incomplete
 STATISTIC_UNIT_TO_UNIT_CONVERTER: dict[str | None, type[BaseUnitConverter]]
 DATA_SHORT_TERM_STATISTICS_RUN_CACHE: str
+
+def mean(values: list[float]) -> float | None: ...
+
 _LOGGER: Incomplete
 
 @dataclasses.dataclass(slots=True)

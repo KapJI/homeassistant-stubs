@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
 from homeassistant.helpers.service import entity_service_call as entity_service_call
 from typing import Any
@@ -38,5 +39,6 @@ SERVICE_SET_USER_CODE_SCHEMA: Incomplete
 SERVICE_DELETE_USER_CODE_SCHEMA: Incomplete
 SERVICE_SEND_PROGRAM_COMMAND_SCHEMA: Incomplete
 
+def async_get_entities(hass: HomeAssistant) -> dict[str, Entity]: ...
 def async_setup_services(hass: HomeAssistant) -> None: ...
 def async_unload_services(hass: HomeAssistant) -> None: ...

@@ -15,7 +15,7 @@ def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_
 
 class BlockShellyCover(ShellyBlockEntity, CoverEntity):
     _attr_device_class: Incomplete
-    _attr_supported_features: Incomplete
+    _attr_supported_features: CoverEntityFeature
     control_result: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
     @property
@@ -34,7 +34,7 @@ class BlockShellyCover(ShellyBlockEntity, CoverEntity):
 
 class RpcShellyCover(ShellyRpcEntity, CoverEntity):
     _attr_device_class: Incomplete
-    _attr_supported_features: Incomplete
+    _attr_supported_features: CoverEntityFeature
     _id: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
     @property

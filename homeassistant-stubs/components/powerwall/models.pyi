@@ -1,32 +1,32 @@
 from dataclasses import dataclass
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from requests import Session
-from tesla_powerwall import DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregates as MetersAggregates, Powerwall, PowerwallStatus as PowerwallStatus, SiteInfo as SiteInfo, SiteMaster as SiteMaster
+from tesla_powerwall import BatteryResponse as BatteryResponse, DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregatesResponse as MetersAggregatesResponse, Powerwall, PowerwallStatusResponse as PowerwallStatusResponse, SiteInfoResponse as SiteInfoResponse, SiteMasterResponse as SiteMasterResponse
 from typing import TypedDict
 
 @dataclass
 class PowerwallBaseInfo:
-    gateway_din: None | str
-    site_info: SiteInfo
-    status: PowerwallStatus
+    gateway_din: str
+    site_info: SiteInfoResponse
+    status: PowerwallStatusResponse
     device_type: DeviceType
     serial_numbers: list[str]
     url: str
-    def __init__(self, gateway_din, site_info, status, device_type, serial_numbers, url) -> None: ...
+    batteries: dict[str, BatteryResponse]
+    def __init__(self, gateway_din, site_info, status, device_type, serial_numbers, url, batteries) -> None: ...
 
 @dataclass
 class PowerwallData:
     charge: float
-    site_master: SiteMaster
-    meters: MetersAggregates
+    site_master: SiteMasterResponse
+    meters: MetersAggregatesResponse
     grid_services_active: bool
     grid_status: GridStatus
     backup_reserve: float | None
-    def __init__(self, charge, site_master, meters, grid_services_active, grid_status, backup_reserve) -> None: ...
+    batteries: dict[str, BatteryResponse]
+    def __init__(self, charge, site_master, meters, grid_services_active, grid_status, backup_reserve, batteries) -> None: ...
 
 class PowerwallRuntimeData(TypedDict):
     coordinator: DataUpdateCoordinator[PowerwallData] | None
     api_instance: Powerwall
     base_info: PowerwallBaseInfo
     api_changed: bool
-    http_session: Session

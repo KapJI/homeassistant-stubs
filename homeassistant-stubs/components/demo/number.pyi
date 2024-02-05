@@ -15,7 +15,7 @@ class DemoNumber(NumberEntity):
     _attr_should_poll: bool
     _attr_assumed_state: Incomplete
     _attr_device_class: Incomplete
-    _attr_icon: Incomplete
+    _attr_translation_key: Incomplete
     _attr_mode: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_native_value: Incomplete
@@ -24,5 +24,5 @@ class DemoNumber(NumberEntity):
     _attr_native_max_value: Incomplete
     _attr_native_step: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, device_name: str, state: float, icon: str, assumed_state: bool, *, device_class: NumberDeviceClass | None = None, mode: NumberMode = ..., native_min_value: float | None = None, native_max_value: float | None = None, native_step: float | None = None, unit_of_measurement: str | None = None) -> None: ...
+    def __init__(self, unique_id: str, device_name: str, state: float, translation_key: str | None, assumed_state: bool, *, device_class: NumberDeviceClass | None = None, mode: NumberMode = ..., native_min_value: float | None = None, native_max_value: float | None = None, native_step: float | None = None, unit_of_measurement: str | None = None) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...

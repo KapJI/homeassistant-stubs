@@ -50,7 +50,7 @@ class ImageProcessingEntityDescription(EntityDescription, frozen_or_thawed=True)
     device_class: ImageProcessingDeviceClass | None
     camera_entity: str | None
     confidence: float | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, unit_of_measurement, camera_entity, confidence) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, camera_entity, confidence) -> None: ...
 
 class ImageProcessingEntity(Entity):
     entity_description: ImageProcessingEntityDescription

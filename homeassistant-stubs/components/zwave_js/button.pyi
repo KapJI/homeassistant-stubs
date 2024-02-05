@@ -25,8 +25,8 @@ class ZWaveNodePingButton(ButtonEntity):
     _attr_should_poll: bool
     _attr_entity_category: Incomplete
     _attr_has_entity_name: bool
+    _attr_translation_key: str
     node: Incomplete
-    _attr_name: str
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

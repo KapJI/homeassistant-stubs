@@ -15,7 +15,6 @@ _LOGGER: Incomplete
 ATTR_SOURCE_ID: str
 UNIT_PREFIXES: Incomplete
 UNIT_TIME: Incomplete
-ICON: str
 DEFAULT_ROUND: int
 DEFAULT_TIME_WINDOW: int
 
@@ -23,7 +22,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class DerivativeSensor(RestoreSensor, SensorEntity):
-    _attr_icon = ICON
+    _attr_translation_key: str
     _attr_should_poll: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

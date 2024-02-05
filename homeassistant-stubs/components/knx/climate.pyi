@@ -22,6 +22,7 @@ def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
 class KNXClimate(KnxEntity, ClimateEntity):
     _device: XknxClimate
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_entity_category: Incomplete
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: Incomplete

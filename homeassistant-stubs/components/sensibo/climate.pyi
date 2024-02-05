@@ -48,6 +48,7 @@ class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
     _attr_name: Incomplete
     _attr_precision = PRECISION_TENTHS
     _attr_translation_key: str
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete

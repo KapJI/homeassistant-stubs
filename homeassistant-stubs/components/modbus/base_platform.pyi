@@ -49,13 +49,11 @@ class BaseStructPlatform(BasePlatform, RestoreEntity, metaclass=abc.ABCMeta):
     _data_type: Incomplete
     _structure: Incomplete
     _scale: Incomplete
-    _precision: Incomplete
     _offset: Incomplete
     _slave_count: Incomplete
     _slave_size: Incomplete
     _value_is_int: Incomplete
-    _min_value: Incomplete
-    _max_value: Incomplete
+    _precision: Incomplete
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, config: dict) -> None: ...
     def _swap_registers(self, registers: list[int], slave_count: int) -> list[int]: ...
     def __process_raw_value(self, entry: float | int | str | bytes) -> str | None: ...

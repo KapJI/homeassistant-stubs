@@ -33,9 +33,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class MatterClimate(MatterEntity, ClimateEntity):
     _attr_temperature_unit: str
-    _attr_supported_features: ClimateEntityFeature
     _attr_hvac_mode: HVACMode
+    _enable_turn_on_off_backwards_compatibility: bool
     _attr_hvac_modes: Incomplete
+    _attr_supported_features: Incomplete
     def __init__(self, matter_client: MatterClient, endpoint: MatterEndpoint, entity_info: MatterEntityInfo) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

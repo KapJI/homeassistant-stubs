@@ -20,6 +20,7 @@ class AdaxDevice(ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_target_temperature_step = PRECISION_WHOLE
     _attr_temperature_unit: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _device_id: Incomplete
     _adax_data_handler: Incomplete
     _attr_unique_id: Incomplete

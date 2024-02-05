@@ -1,4 +1,4 @@
-from .const import ATTR_DIR_OF_TRAVEL as ATTR_DIR_OF_TRAVEL, ATTR_DIST_TO as ATTR_DIST_TO, ATTR_NEAREST as ATTR_NEAREST, DOMAIN as DOMAIN
+from .const import ATTR_DIR_OF_TRAVEL as ATTR_DIR_OF_TRAVEL, ATTR_DIST_TO as ATTR_DIST_TO, ATTR_NEAREST as ATTR_NEAREST, ATTR_NEAREST_DIR_OF_TRAVEL as ATTR_NEAREST_DIR_OF_TRAVEL, ATTR_NEAREST_DIST_TO as ATTR_NEAREST_DIST_TO, DOMAIN as DOMAIN
 from .coordinator import ProximityDataUpdateCoordinator as ProximityDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import NamedTuple
 
+DIRECTIONS: Incomplete
 SENSORS_PER_ENTITY: list[SensorEntityDescription]
 SENSORS_PER_PROXIMITY: list[SensorEntityDescription]
 
@@ -34,8 +35,8 @@ class ProximityTrackedEntitySensor(CoordinatorEntity[ProximityDataUpdateCoordina
     entity_description: Incomplete
     tracked_entity_id: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
+    _attr_translation_placeholders: Incomplete
     def __init__(self, description: SensorEntityDescription, coordinator: ProximityDataUpdateCoordinator, tracked_entity_descriptor: TrackedEntityDescriptor) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

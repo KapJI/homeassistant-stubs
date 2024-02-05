@@ -1,5 +1,4 @@
-import voluptuous as vol
-from .const import BUTTON_PRESS as BUTTON_PRESS, BUTTON_PRESS_DOUBLE_LONG as BUTTON_PRESS_DOUBLE_LONG, CONF_SUBTYPE as CONF_SUBTYPE, DOMAIN as DOMAIN, EVENT_CLASS as EVENT_CLASS, EVENT_CLASS_BUTTON as EVENT_CLASS_BUTTON, EVENT_CLASS_MOTION as EVENT_CLASS_MOTION, EVENT_TYPE as EVENT_TYPE, MOTION_DEVICE as MOTION_DEVICE, XIAOMI_BLE_EVENT as XIAOMI_BLE_EVENT
+from .const import BUTTON as BUTTON, BUTTON_PRESS as BUTTON_PRESS, BUTTON_PRESS_DOUBLE_LONG as BUTTON_PRESS_DOUBLE_LONG, CONF_SUBTYPE as CONF_SUBTYPE, DOMAIN as DOMAIN, DOUBLE_BUTTON as DOUBLE_BUTTON, DOUBLE_BUTTON_PRESS_DOUBLE_LONG as DOUBLE_BUTTON_PRESS_DOUBLE_LONG, EVENT_CLASS as EVENT_CLASS, EVENT_CLASS_BUTTON as EVENT_CLASS_BUTTON, EVENT_CLASS_MOTION as EVENT_CLASS_MOTION, EVENT_TYPE as EVENT_TYPE, MOTION as MOTION, MOTION_DEVICE as MOTION_DEVICE, TRIPPLE_BUTTON as TRIPPLE_BUTTON, TRIPPLE_BUTTON_PRESS_DOUBLE_LONG as TRIPPLE_BUTTON_PRESS_DOUBLE_LONG, XIAOMI_BLE_EVENT as XIAOMI_BLE_EVENT
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
@@ -10,13 +9,14 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 TRIGGERS_BY_TYPE: Incomplete
+EVENT_TYPES: Incomplete
 
 @dataclass
 class TriggerModelData:
-    schema: vol.Schema
     event_class: str
+    event_types: list[str]
     triggers: list[str]
-    def __init__(self, schema, event_class, triggers) -> None: ...
+    def __init__(self, event_class, event_types, triggers) -> None: ...
 
 TRIGGER_MODEL_DATA: Incomplete
 MODEL_DATA: Incomplete

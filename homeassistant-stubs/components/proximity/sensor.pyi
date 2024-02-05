@@ -8,9 +8,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import NamedTuple
 
 SENSORS_PER_ENTITY: list[SensorEntityDescription]
 SENSORS_PER_PROXIMITY: list[SensorEntityDescription]
+
+class TrackedEntityDescriptor(NamedTuple):
+    entity_id: str
+    identifier: str
 
 def _device_info(coordinator: ProximityDataUpdateCoordinator) -> DeviceInfo: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -31,7 +36,7 @@ class ProximityTrackedEntitySensor(CoordinatorEntity[ProximityDataUpdateCoordina
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, description: SensorEntityDescription, coordinator: ProximityDataUpdateCoordinator, tracked_entity_descriptor: dict[str, str]) -> None: ...
+    def __init__(self, description: SensorEntityDescription, coordinator: ProximityDataUpdateCoordinator, tracked_entity_descriptor: TrackedEntityDescriptor) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def data(self) -> dict[str, str | int | None] | None: ...

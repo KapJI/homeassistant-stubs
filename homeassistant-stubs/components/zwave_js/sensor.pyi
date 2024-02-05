@@ -31,6 +31,7 @@ def convert_dict_of_dicts(statistics: ControllerStatisticsDataType | NodeStatist
 @dataclass(frozen=True, kw_only=True)
 class ZWaveJSStatisticsSensorEntityDescription(SensorEntityDescription):
     convert: Callable[[ControllerStatisticsDataType | NodeStatisticsDataType, str], Any] = ...
+    entity_registry_enabled_default: bool = ...
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, convert) -> None: ...
 
 ENTITY_DESCRIPTION_CONTROLLER_STATISTICS_LIST: Incomplete
@@ -114,7 +115,6 @@ class ZWaveStatisticsSensor(SensorEntity):
     entity_description: ZWaveJSStatisticsSensorEntityDescription
     _attr_should_poll: bool
     _attr_entity_category: Incomplete
-    _attr_entity_registry_enabled_default: bool
     _attr_has_entity_name: bool
     config_entry: Incomplete
     statistics_src: Incomplete

@@ -6,6 +6,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -23,6 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class HomeassistantAnalyticsSensor(CoordinatorEntity[HomeassistantAnalyticsDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool
+    _attr_entity_category: Incomplete
     entity_description: AnalyticsSensorEntityDescription
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

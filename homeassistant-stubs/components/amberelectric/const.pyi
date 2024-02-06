@@ -4,7 +4,6 @@ from homeassistant.const import Platform as Platform
 DOMAIN: str
 CONF_SITE_NAME: str
 CONF_SITE_ID: str
-CONF_SITE_NMI: str
 ATTRIBUTION: str
 LOGGER: Incomplete
 PLATFORMS: Incomplete

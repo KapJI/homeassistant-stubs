@@ -266,14 +266,14 @@ tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "p
 
 [[package]]
 name = "awesomeversion"
-version = "23.11.0"
+version = "24.2.0"
 description = "One version package to rule them all, One version package to find them, One version package to bring them all, and in the darkness bind them."
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "awesomeversion-23.11.0-py3-none-any.whl", hash = "sha256:16907305c091637e296966a70731345e70825fef1664fd1a72155ce83f2b6dc7"},
-    {file = "awesomeversion-23.11.0.tar.gz", hash = "sha256:9146329196f0f045887de6c195730750f8f7a9302d1c149378db73ab5dc468f0"},
+    {file = "awesomeversion-24.2.0-py3-none-any.whl", hash = "sha256:ba365d1ad4e42aa5afdbc46b639f349e52db2d859d7c46a34744ca15ebf1430a"},
+    {file = "awesomeversion-24.2.0.tar.gz", hash = "sha256:47a6dcbbe2921b725f75106a66ab30f26f1f33dbc5e07bc8e1e39d8eb921f53c"},
 ]
 
 [[package]]
@@ -1205,14 +1205,14 @@ habluetooth = ">=0.11.0"
 
 [[package]]
 name = "homeassistant"
-version = "2024.2.0b8"
+version = "2024.2.0b9"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
 python-versions = ">=3.11.0"
 files = [
-    {file = "homeassistant-2024.2.0b8-py3-none-any.whl", hash = "sha256:7f19407abf37c4292a8136e218b16929b81420f44837103f38a9439a74b1b55a"},
-    {file = "homeassistant-2024.2.0b8.tar.gz", hash = "sha256:11bc9f9a8f48ef6be336664c2460868a72227f74de52bf78276ce9e593535c52"},
+    {file = "homeassistant-2024.2.0b9-py3-none-any.whl", hash = "sha256:6144344f836ecace31a38024f801db2b67a91a3740c27c417c3f6ef21a3283d2"},
+    {file = "homeassistant-2024.2.0b9.tar.gz", hash = "sha256:ee0d41b47446d700d6e3a0a809295fba9ec6258cb458ff6200eac0df8512957c"},
 ]
 
 [package.dependencies]
@@ -1223,7 +1223,7 @@ aiohttp-zlib-ng = "0.3.1"
 astral = "2.2"
 atomicwrites-homeassistant = "1.4.1"
 attrs = "23.2.0"
-awesomeversion = "23.11.0"
+awesomeversion = "24.2.0"
 bcrypt = "4.0.1"
 certifi = ">=2021.5.30"
 ciso8601 = "2.3.0"
@@ -2859,4 +2859,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.13"
-content-hash = "ce40de18fd6e3ccdc5dbdea9cfb73d2fb2e7ed5529e02618028250ee66fed22a"
+content-hash = "5f25110bddf9be56188e6586a1291895b42d3736415e8a10da5b58b24c137bb2"

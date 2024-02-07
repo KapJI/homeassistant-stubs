@@ -26,6 +26,7 @@ SLOW_ADD_MIN_TIMEOUT: int
 PLATFORM_NOT_READY_RETRIES: int
 DATA_ENTITY_PLATFORM: str
 DATA_DOMAIN_ENTITIES: str
+DATA_DOMAIN_PLATFORM_ENTITIES: str
 PLATFORM_NOT_READY_BASE_WAIT_TIME: int
 _LOGGER: Incomplete
 
@@ -60,6 +61,7 @@ class EntityPlatform:
     _update_in_sequence: bool
     parallel_updates_created: Incomplete
     domain_entities: Incomplete
+    domain_platform_entities: Incomplete
     def __init__(self, *, hass: HomeAssistant, logger: Logger, domain: str, platform_name: str, platform: EntityPlatformModule | None, scan_interval: timedelta, entity_namespace: str | None) -> None: ...
     def __repr__(self) -> str: ...
     def _get_parallel_updates_semaphore(self, entity_has_sync_update: bool) -> asyncio.Semaphore | None: ...

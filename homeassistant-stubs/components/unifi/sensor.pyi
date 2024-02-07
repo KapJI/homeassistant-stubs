@@ -1,6 +1,7 @@
 from .const import DEVICE_STATES as DEVICE_STATES
 from .controller import UniFiController as UniFiController
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
+from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
 from aiounifi.models.api import ApiItemT
 from aiounifi.models.client import Client
@@ -50,8 +51,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class UnifiSensorEntity(UnifiEntity[HandlerT, ApiItemT], SensorEntity):
     entity_description: UnifiSensorEntityDescription[HandlerT, ApiItemT]
-    _attr_native_value: int
+    _attr_available: bool
     def _make_disconnected(self, *_: core_Event) -> None: ...
+    _attr_native_value: Incomplete
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

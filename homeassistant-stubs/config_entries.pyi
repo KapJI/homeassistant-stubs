@@ -18,6 +18,7 @@ from .helpers.event import RANDOM_MICROSECOND_MAX as RANDOM_MICROSECOND_MAX, RAN
 from .helpers.frame import report as report
 from .helpers.service_info.mqtt import MqttServiceInfo as MqttServiceInfo
 from .helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from .loader import async_suggest_report_issue as async_suggest_report_issue
 from .setup import DATA_SETUP_DONE as DATA_SETUP_DONE, async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component
 from .util.decorator import Registry as Registry
 from _typeshed import Incomplete
@@ -167,9 +168,10 @@ class ConfigEntriesFlowManager(data_entry_flow.FlowManager):
     def _async_discovery(self) -> None: ...
 
 class ConfigEntryItems(UserDict[str, ConfigEntry]):
+    _hass: Incomplete
     _domain_index: Incomplete
     _domain_unique_id_index: Incomplete
-    def __init__(self) -> None: ...
+    def __init__(self, hass: HomeAssistant) -> None: ...
     def values(self) -> ValuesView[ConfigEntry]: ...
     def __setitem__(self, entry_id: str, entry: ConfigEntry) -> None: ...
     def _unindex_entry(self, entry_id: str) -> None: ...

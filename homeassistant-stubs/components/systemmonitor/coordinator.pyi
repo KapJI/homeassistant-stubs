@@ -17,7 +17,7 @@ class VirtualMemory(NamedTuple):
     percent: float
     used: float
     free: float
-dataT = TypeVar('dataT', bound=datetime | dict[str, list[shwtemp]] | dict[str, list[snicaddr]] | dict[str, snetio] | float | list[psutil.Process] | sswap | VirtualMemory | tuple[float, float, float] | sdiskusage)
+dataT = TypeVar('dataT', bound=datetime | dict[str, list[shwtemp]] | dict[str, list[snicaddr]] | dict[str, snetio] | float | list[psutil.Process] | sswap | VirtualMemory | tuple[float, float, float] | sdiskusage | None)
 
 class MonitorCoordinator(DataUpdateCoordinator[dataT], metaclass=abc.ABCMeta):
     def __init__(self, hass: HomeAssistant, name: str) -> None: ...
@@ -45,8 +45,8 @@ class SystemMonitorNetAddrCoordinator(MonitorCoordinator[dict[str, list[snicaddr
 class SystemMonitorLoadCoordinator(MonitorCoordinator[tuple[float, float, float]]):
     def update_data(self) -> tuple[float, float, float]: ...
 
-class SystemMonitorProcessorCoordinator(MonitorCoordinator[float]):
-    def update_data(self) -> float: ...
+class SystemMonitorProcessorCoordinator(MonitorCoordinator[float | None]):
+    def update_data(self) -> float | None: ...
 
 class SystemMonitorBootTimeCoordinator(MonitorCoordinator[datetime]):
     def update_data(self) -> datetime: ...

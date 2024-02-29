@@ -1,0 +1,33 @@
+from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
+from .atlantic_pass_apc_heating_zone import AtlanticPassAPCHeatingZone as AtlanticPassAPCHeatingZone
+from .atlantic_pass_apc_zone_control import OVERKIZ_TO_HVAC_MODE as OVERKIZ_TO_HVAC_MODE
+from _typeshed import Incomplete
+from homeassistant.components.climate import HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
+from typing import Any
+
+PRESET_SCHEDULE: str
+PRESET_MANUAL: str
+OVERKIZ_MODE_TO_PRESET_MODES: dict[str, str]
+PRESET_MODES_TO_OVERKIZ: Incomplete
+TEMPERATURE_ZONECONTROL_DEVICE_INDEX: int
+
+class AtlanticPassAPCZoneControlZone(AtlanticPassAPCHeatingZone):
+    _attr_hvac_modes: Incomplete
+    _attr_preset_modes: Incomplete
+    zone_control_device: Incomplete
+    def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
+    @property
+    def is_using_derogated_temperature_fallback(self) -> bool: ...
+    @property
+    def zone_control_hvac_mode(self) -> HVACMode: ...
+    @property
+    def hvac_mode(self) -> HVACMode: ...
+    async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @property
+    def preset_mode(self) -> str: ...
+    async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @property
+    def target_temperature(self) -> float: ...
+    async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    async def async_refresh_modes(self) -> None: ...

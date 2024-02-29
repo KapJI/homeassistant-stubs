@@ -1,4 +1,4 @@
-from .const import DISCOVERY as DISCOVERY, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, STARTUP_SCAN_TIMEOUT as STARTUP_SCAN_TIMEOUT
+from .const import DISCOVERY as DISCOVERY, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN
 from .coordinator import SteamistDataUpdateCoordinator as SteamistDataUpdateCoordinator
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_get_discovery as async_get_discovery, async_trigger_discovery as async_trigger_discovery, async_update_entry_from_discovery as async_update_entry_from_discovery
 from _typeshed import Incomplete

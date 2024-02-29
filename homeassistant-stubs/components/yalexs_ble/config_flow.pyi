@@ -7,7 +7,7 @@ from homeassistant import config_entries as config_entries, data_entry_flow as d
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_ble_device_from_address as async_ble_device_from_address, async_discovered_service_info as async_discovered_service_info
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.core import callback as callback
-from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResult as FlowResult
+from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 

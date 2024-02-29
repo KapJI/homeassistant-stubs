@@ -6,8 +6,8 @@ from _typeshed import Incomplete
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components.tts import ATTR_AUDIO_OUTPUT as ATTR_AUDIO_OUTPUT, ATTR_VOICE as ATTR_VOICE, CONF_LANG as CONF_LANG, Provider as Provider, TextToSpeechEntity as TextToSpeechEntity, TtsAudioType as TtsAudioType, Voice as Voice
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM, Platform as Platform
+from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -18,6 +18,7 @@ DEPRECATED_VOICES: Incomplete
 SUPPORT_LANGUAGES: Incomplete
 _LOGGER: Incomplete
 
+def _deprecated_platform(value: str) -> str: ...
 def validate_lang(value: dict[str, Any]) -> dict[str, Any]: ...
 
 PLATFORM_SCHEMA: Incomplete

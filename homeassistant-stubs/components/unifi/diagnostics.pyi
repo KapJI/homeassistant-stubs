@@ -1,4 +1,4 @@
-from .controller import UniFiController as UniFiController
+from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.diagnostics import REDACTED as REDACTED, async_redact_data as async_redact_data

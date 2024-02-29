@@ -1,5 +1,5 @@
 from . import format_discovered_event_class as format_discovered_event_class, format_event_dispatcher_name as format_event_dispatcher_name
-from .const import DOMAIN as DOMAIN, EVENT_CLASS_BUTTON as EVENT_CLASS_BUTTON, EVENT_CLASS_MOTION as EVENT_CLASS_MOTION, EVENT_PROPERTIES as EVENT_PROPERTIES, EVENT_TYPE as EVENT_TYPE, XiaomiBleEvent as XiaomiBleEvent
+from .const import DOMAIN as DOMAIN, EVENT_CLASS_BUTTON as EVENT_CLASS_BUTTON, EVENT_CLASS_CUBE as EVENT_CLASS_CUBE, EVENT_CLASS_DIMMER as EVENT_CLASS_DIMMER, EVENT_CLASS_MOTION as EVENT_CLASS_MOTION, EVENT_PROPERTIES as EVENT_PROPERTIES, EVENT_TYPE as EVENT_TYPE, XiaomiBleEvent as XiaomiBleEvent
 from .coordinator import XiaomiActiveBluetoothProcessorCoordinator as XiaomiActiveBluetoothProcessorCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription

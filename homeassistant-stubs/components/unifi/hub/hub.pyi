@@ -1,32 +1,25 @@
 import aiounifi
-from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, CONF_ALLOW_BANDWIDTH_SENSORS as CONF_ALLOW_BANDWIDTH_SENSORS, CONF_ALLOW_UPTIME_SENSORS as CONF_ALLOW_UPTIME_SENSORS, CONF_BLOCK_CLIENT as CONF_BLOCK_CLIENT, CONF_CLIENT_SOURCE as CONF_CLIENT_SOURCE, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_DPI_RESTRICTIONS as CONF_DPI_RESTRICTIONS, CONF_IGNORE_WIRED_BUG as CONF_IGNORE_WIRED_BUG, CONF_SITE_ID as CONF_SITE_ID, CONF_SSID_FILTER as CONF_SSID_FILTER, CONF_TRACK_CLIENTS as CONF_TRACK_CLIENTS, CONF_TRACK_DEVICES as CONF_TRACK_DEVICES, CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_ALLOW_BANDWIDTH_SENSORS as DEFAULT_ALLOW_BANDWIDTH_SENSORS, DEFAULT_ALLOW_UPTIME_SENSORS as DEFAULT_ALLOW_UPTIME_SENSORS, DEFAULT_DETECTION_TIME as DEFAULT_DETECTION_TIME, DEFAULT_DPI_RESTRICTIONS as DEFAULT_DPI_RESTRICTIONS, DEFAULT_IGNORE_WIRED_BUG as DEFAULT_IGNORE_WIRED_BUG, DEFAULT_TRACK_CLIENTS as DEFAULT_TRACK_CLIENTS, DEFAULT_TRACK_DEVICES as DEFAULT_TRACK_DEVICES, DEFAULT_TRACK_WIRED_CLIENTS as DEFAULT_TRACK_WIRED_CLIENTS, LOGGER as LOGGER, PLATFORMS as PLATFORMS, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
-from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription
-from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
+from ..const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, CONF_ALLOW_BANDWIDTH_SENSORS as CONF_ALLOW_BANDWIDTH_SENSORS, CONF_ALLOW_UPTIME_SENSORS as CONF_ALLOW_UPTIME_SENSORS, CONF_BLOCK_CLIENT as CONF_BLOCK_CLIENT, CONF_CLIENT_SOURCE as CONF_CLIENT_SOURCE, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_DPI_RESTRICTIONS as CONF_DPI_RESTRICTIONS, CONF_IGNORE_WIRED_BUG as CONF_IGNORE_WIRED_BUG, CONF_SITE_ID as CONF_SITE_ID, CONF_SSID_FILTER as CONF_SSID_FILTER, CONF_TRACK_CLIENTS as CONF_TRACK_CLIENTS, CONF_TRACK_DEVICES as CONF_TRACK_DEVICES, CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_ALLOW_BANDWIDTH_SENSORS as DEFAULT_ALLOW_BANDWIDTH_SENSORS, DEFAULT_ALLOW_UPTIME_SENSORS as DEFAULT_ALLOW_UPTIME_SENSORS, DEFAULT_DETECTION_TIME as DEFAULT_DETECTION_TIME, DEFAULT_DPI_RESTRICTIONS as DEFAULT_DPI_RESTRICTIONS, DEFAULT_IGNORE_WIRED_BUG as DEFAULT_IGNORE_WIRED_BUG, DEFAULT_TRACK_CLIENTS as DEFAULT_TRACK_CLIENTS, DEFAULT_TRACK_DEVICES as DEFAULT_TRACK_DEVICES, DEFAULT_TRACK_WIRED_CLIENTS as DEFAULT_TRACK_WIRED_CLIENTS, PLATFORMS as PLATFORMS, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
+from ..entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription
+from .websocket import UnifiWebsocket as UnifiWebsocket
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform
+from homeassistant.const import CONF_HOST as CONF_HOST, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import async_entries_for_config_entry as async_entries_for_config_entry
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
-from types import MappingProxyType
-from typing import Any
 
-RETRY_TIMER: int
 CHECK_HEARTBEAT_INTERVAL: Incomplete
-CHECK_WEBSOCKET_INTERVAL: Incomplete
 
-class UniFiController:
+class UnifiHub:
     hass: Incomplete
     config_entry: Incomplete
     api: Incomplete
-    ws_task: Incomplete
-    _cancel_websocket_check: Incomplete
-    available: bool
+    websocket: Incomplete
     wireless_clients: Incomplete
     site: Incomplete
     is_admin: bool
@@ -51,8 +44,11 @@ class UniFiController:
     def load_config_entry_options(self) -> None: ...
     @property
     def host(self) -> str: ...
+    @property
+    def available(self) -> bool: ...
     @staticmethod
     def register_platform(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, entity_class: type[UnifiEntity], descriptions: tuple[UnifiEntityDescription, ...], requires_admin: bool = False) -> None: ...
+    def _async_should_add_entity(self, description: UnifiEntityDescription, obj_id: str) -> bool: ...
     def register_platform_add_entities(self, unifi_platform_entity: type[UnifiEntity], descriptions: tuple[UnifiEntityDescription, ...], async_add_entities: AddEntitiesCallback) -> None: ...
     @property
     def signal_reachable(self) -> str: ...
@@ -69,11 +65,5 @@ class UniFiController:
     def async_update_device_registry(self) -> DeviceEntry: ...
     @staticmethod
     async def async_config_entry_updated(hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
-    def start_websocket(self) -> None: ...
-    def reconnect(self, log: bool = False) -> None: ...
-    async def async_reconnect(self) -> None: ...
-    def _async_watch_websocket(self, now: datetime) -> None: ...
     def shutdown(self, event: Event) -> None: ...
     async def async_reset(self) -> bool: ...
-
-async def get_unifi_controller(hass: HomeAssistant, config: MappingProxyType[str, Any]) -> aiounifi.Controller: ...

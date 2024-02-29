@@ -2,6 +2,8 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 LOGGER: Incomplete
+CONF_REFRESH_TOKEN: str
+CONF_USER_UUID: str
 SENSOR_BATTERY: str
 SENSOR_DOOR: str
 SENSOR_GARAGE_DOOR: str

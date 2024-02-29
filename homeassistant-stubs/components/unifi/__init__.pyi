@@ -1,6 +1,6 @@
 from .const import PLATFORMS as PLATFORMS, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
-from .controller import UniFiController as UniFiController, get_unifi_controller as get_unifi_controller
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
+from .hub import UnifiHub as UnifiHub, get_unifi_api as get_unifi_api
 from .services import async_setup_services as async_setup_services, async_unload_services as async_unload_services
 from _typeshed import Incomplete
 from aiounifi.models.client import Client as Client

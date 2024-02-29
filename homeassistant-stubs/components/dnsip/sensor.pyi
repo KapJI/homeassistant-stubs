@@ -14,8 +14,8 @@ SCAN_INTERVAL: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WanIpSensor(SensorEntity):
-    _attr_icon: str
     _attr_has_entity_name: bool
+    _attr_translation_key: str
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     hostname: Incomplete

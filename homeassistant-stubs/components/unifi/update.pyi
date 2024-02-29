@@ -1,6 +1,6 @@
 import aiounifi
-from .controller import UniFiController as UniFiController
 from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn
+from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent
 from aiounifi.interfaces.devices import Devices

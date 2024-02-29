@@ -1,6 +1,6 @@
 import aiounifi
-from .controller import UNIFI_DOMAIN as UNIFI_DOMAIN, UniFiController as UniFiController
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn
+from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent
 from aiounifi.models.api import ApiItemT
@@ -26,15 +26,15 @@ WIRED_DISCONNECTION: Incomplete
 WIRELESS_CONNECTION: Incomplete
 WIRELESS_DISCONNECTION: Incomplete
 
-def async_client_allowed_fn(controller: UniFiController, obj_id: str) -> bool: ...
-def async_client_is_connected_fn(controller: UniFiController, obj_id: str) -> bool: ...
-def async_device_heartbeat_timedelta_fn(controller: UniFiController, obj_id: str) -> timedelta: ...
+def async_client_allowed_fn(hub: UnifiHub, obj_id: str) -> bool: ...
+def async_client_is_connected_fn(hub: UnifiHub, obj_id: str) -> bool: ...
+def async_device_heartbeat_timedelta_fn(hub: UnifiHub, obj_id: str) -> timedelta: ...
 
 @dataclass(frozen=True)
 class UnifiEntityTrackerDescriptionMixin(Generic[HandlerT, ApiItemT]):
-    heartbeat_timedelta_fn: Callable[[UniFiController, str], timedelta]
+    heartbeat_timedelta_fn: Callable[[UnifiHub, str], timedelta]
     ip_address_fn: Callable[[aiounifi.Controller, str], str | None]
-    is_connected_fn: Callable[[UniFiController, str], bool]
+    is_connected_fn: Callable[[UnifiHub, str], bool]
     hostname_fn: Callable[[aiounifi.Controller, str], str | None]
     def __init__(self, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn) -> None: ...
 

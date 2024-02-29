@@ -17,7 +17,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class CPUSpeedSensor(SensorEntity):
     _attr_device_class: Incomplete
-    _attr_icon: str
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_native_unit_of_measurement: Incomplete

@@ -1,4 +1,4 @@
-from aionotion.sensor.models import ListenerKind as ListenerKind
+from aionotion.listener.models import ListenerKind as ListenerKind
 from dataclasses import dataclass
 
 @dataclass(frozen=True, kw_only=True)

@@ -39,6 +39,7 @@ class IntegrationMatchHistory:
 def seen_all_fields(previous_match: IntegrationMatchHistory, advertisement_data: AdvertisementData) -> bool: ...
 
 class IntegrationMatcher:
+    __slots__: Incomplete
     _integration_matchers: Incomplete
     _matched: Incomplete
     _matched_connectable: Incomplete
@@ -50,6 +51,7 @@ class IntegrationMatcher:
 _T = TypeVar('_T', BluetoothMatcher, BluetoothCallbackMatcherWithCallback)
 
 class BluetoothMatcherIndexBase(Generic[_T]):
+    __slots__: Incomplete
     local_name: Incomplete
     service_uuid: Incomplete
     service_data_uuid: Incomplete
@@ -66,6 +68,7 @@ class BluetoothMatcherIndexBase(Generic[_T]):
 class BluetoothMatcherIndex(BluetoothMatcherIndexBase[BluetoothMatcher]): ...
 
 class BluetoothCallbackMatcherIndex(BluetoothMatcherIndexBase[BluetoothCallbackMatcherWithCallback]):
+    __slots__: Incomplete
     address: Incomplete
     connectable: Incomplete
     def __init__(self) -> None: ...

@@ -3,8 +3,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from myuplink.api import MyUplinkAPI as MyUplinkAPI
-from myuplink.models import Device as Device, DevicePoint as DevicePoint, System as System
+from myuplink import Device as Device, DevicePoint as DevicePoint, MyUplinkAPI as MyUplinkAPI, System as System
 
 _LOGGER: Incomplete
 

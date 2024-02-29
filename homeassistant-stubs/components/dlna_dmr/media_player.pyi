@@ -1,5 +1,5 @@
 import asyncio
-from .const import CONF_BROWSE_UNFILTERED as CONF_BROWSE_UNFILTERED, CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, MEDIA_METADATA_DIDL as MEDIA_METADATA_DIDL, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP, MEDIA_UPNP_CLASS_MAP as MEDIA_UPNP_CLASS_MAP, REPEAT_PLAY_MODES as REPEAT_PLAY_MODES, SHUFFLE_PLAY_MODES as SHUFFLE_PLAY_MODES, STREAMABLE_PROTOCOLS as STREAMABLE_PROTOCOLS
+from .const import CONF_BROWSE_UNFILTERED as CONF_BROWSE_UNFILTERED, CONF_CALLBACK_URL_OVERRIDE as CONF_CALLBACK_URL_OVERRIDE, CONF_LISTEN_PORT as CONF_LISTEN_PORT, CONF_POLL_AVAILABILITY as CONF_POLL_AVAILABILITY, DOMAIN as DOMAIN, MEDIA_METADATA_DIDL as MEDIA_METADATA_DIDL, MEDIA_TYPE_MAP as MEDIA_TYPE_MAP, MEDIA_UPNP_CLASS_MAP as MEDIA_UPNP_CLASS_MAP, REPEAT_PLAY_MODES as REPEAT_PLAY_MODES, SHUFFLE_PLAY_MODES as SHUFFLE_PLAY_MODES, STREAMABLE_PROTOCOLS as STREAMABLE_PROTOCOLS
 from .data import EventListenAddr as EventListenAddr, get_domain_data as get_domain_data
 from _typeshed import Incomplete
 from async_upnp_client.client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
@@ -10,7 +10,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components import media_source as media_source, ssdp as ssdp
 from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_MAC as CONF_MAC, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Concatenate, ParamSpec, TypeVar
 
@@ -38,8 +38,13 @@ class DlnaDmrEntity(MediaPlayerEntity):
     _attr_sound_mode: Incomplete
     _attr_name: Incomplete
     mac_address: Incomplete
-    def __init__(self, udn: str, device_type: str, name: str, event_port: int, event_callback_url: str | None, poll_availability: bool, location: str, mac_address: str | None, browse_unfiltered: bool) -> None: ...
+    _background_setup_task: Incomplete
+    _updated_registry: bool
+    _config_entry: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, udn: str, device_type: str, name: str, event_port: int, event_callback_url: str | None, poll_availability: bool, location: str, mac_address: str | None, browse_unfiltered: bool, config_entry: config_entries.ConfigEntry) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    async def _async_setup(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_ssdp_callback(self, info: ssdp.SsdpServiceInfo, change: ssdp.SsdpChange) -> None: ...
     async def async_config_update_listener(self, hass: HomeAssistant, entry: config_entries.ConfigEntry) -> None: ...

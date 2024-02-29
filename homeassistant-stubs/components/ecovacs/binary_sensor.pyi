@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .controller import EcovacsController as EcovacsController
-from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
+from .entity import CapabilityDevice as CapabilityDevice, EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
 from .util import get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -16,13 +16,13 @@ from typing import Generic
 @dataclass(kw_only=True, frozen=True)
 class EcovacsBinarySensorEntityDescription(BinarySensorEntityDescription, EcovacsCapabilityEntityDescription, Generic[EventT]):
     value_fn: Callable[[EventT], bool | None]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, capability_fn, value_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, device_capabilities, capability_fn, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsBinarySensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class EcovacsBinarySensor(EcovacsDescriptionEntity[CapabilityEvent[EventT]], BinarySensorEntity):
+class EcovacsBinarySensor(EcovacsDescriptionEntity[CapabilityDevice, CapabilityEvent[EventT]], BinarySensorEntity):
     entity_description: EcovacsBinarySensorEntityDescription
     _attr_is_on: Incomplete
     async def async_added_to_hass(self) -> None: ...

@@ -2,6 +2,10 @@ from .device import AxisNetworkDevice as AxisNetworkDevice
 from .entity import AxisEventEntity as AxisEventEntity
 from _typeshed import Incomplete
 from axis.models.event import Event as Event
+from axis.vapix.interfaces.applications.fence_guard import FenceGuardHandler as FenceGuardHandler
+from axis.vapix.interfaces.applications.loitering_guard import LoiteringGuardHandler as LoiteringGuardHandler
+from axis.vapix.interfaces.applications.motion_guard import MotionGuardHandler as MotionGuardHandler
+from axis.vapix.interfaces.applications.vmd4 import Vmd4Handler as Vmd4Handler
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

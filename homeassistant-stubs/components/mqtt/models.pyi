@@ -2,6 +2,7 @@ import asyncio
 import datetime as dt
 import voluptuous as vol
 from .client import MQTT as MQTT, Subscription as Subscription
+from .const import DOMAIN as DOMAIN, TEMPLATE_ERRORS as TEMPLATE_ERRORS
 from .debug_info import TimestampedPublishMessage as TimestampedPublishMessage
 from .device_trigger import Trigger as Trigger
 from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload
@@ -13,6 +14,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError, TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
@@ -71,6 +73,14 @@ class MqttOriginInfo(TypedDict, total=False):
     sw_version: str
     hw_version: str
     support_url: str
+
+class MqttCommandTemplateException(ServiceValidationError):
+    translation_domain: Incomplete
+    translation_key: str
+    translation_placeholders: Incomplete
+    _message: Incomplete
+    def __init__(self, *args: object, base_exception: Exception, command_template: str, value: PublishPayloadType, entity_id: str | None = None) -> None: ...
+    def __str__(self) -> str: ...
 
 class MqttCommandTemplate:
     _template_state: Incomplete

@@ -4,6 +4,7 @@ from .const import SECRET_YAML as SECRET_YAML
 from .objects import Input as Input, NodeDictClass as NodeDictClass, NodeListClass as NodeListClass, NodeStrClass as NodeStrClass
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterator
+from functools import cached_property as cached_property
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.frame import report as report
 from io import StringIO
@@ -28,7 +29,9 @@ class Secrets:
 class _LoaderMixin:
     name: str
     stream: Any
+    @cached_property
     def get_name(self) -> str: ...
+    @cached_property
     def get_stream_name(self) -> str: ...
 
 class FastSafeLoader(FastestAvailableSafeLoader, _LoaderMixin):

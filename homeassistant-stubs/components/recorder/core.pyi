@@ -53,6 +53,7 @@ class Recorder(threading.Thread):
     auto_purge: Incomplete
     auto_repack: Incomplete
     keep_days: Incomplete
+    is_running: bool
     _hass_started: Incomplete
     commit_interval: Incomplete
     _queue: Incomplete

@@ -1,4 +1,4 @@
-from .const import CONF_ALLOW_EA as CONF_ALLOW_EA, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, OUTDATED_LOG_MESSAGE as OUTDATED_LOG_MESSAGE, PLATFORMS as PLATFORMS
+from .const import AUTH_RETRIES as AUTH_RETRIES, CONF_ALLOW_EA as CONF_ALLOW_EA, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, OUTDATED_LOG_MESSAGE as OUTDATED_LOG_MESSAGE, PLATFORMS as PLATFORMS
 from .data import ProtectData as ProtectData, async_ufp_instance_for_config_entry_ids as async_ufp_instance_for_config_entry_ids
 from .discovery import async_start_discovery as async_start_discovery
 from .migrate import async_migrate_data as async_migrate_data

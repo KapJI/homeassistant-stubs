@@ -5,6 +5,7 @@ from collections.abc import Callable as Callable, Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_DEVICE as CONF_DEVICE, CONF_DEVICES as CONF_DEVICES, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
@@ -15,6 +16,7 @@ from typing import Any, NamedTuple, TypeVarTuple
 
 DEFAULT_OFF_DELAY: float
 SIGNAL_EVENT: Incomplete
+CONNECT_TIMEOUT: float
 _Ts = TypeVarTuple('_Ts')
 _LOGGER: Incomplete
 
@@ -30,7 +32,7 @@ PLATFORMS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-def _create_rfx(config: Mapping[str, Any]) -> rfxtrxmod.Connect: ...
+def _create_rfx(config: Mapping[str, Any], event_callback: Callable[[rfxtrxmod.RFXtrxEvent], None]) -> rfxtrxmod.Connect: ...
 def _get_device_lookup(devices: dict[str, dict[str, Any]]) -> dict[DeviceTuple, dict[str, Any]]: ...
 async def async_setup_internal(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_setup_platform_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, supported: Callable[[rfxtrxmod.RFXtrxEvent], bool], constructor: Callable[[rfxtrxmod.RFXtrxEvent, rfxtrxmod.RFXtrxEvent | None, DeviceTuple, dict[str, Any]], list[Entity]]) -> None: ...

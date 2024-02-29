@@ -3,6 +3,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send, dispatcher_connect as dispatcher_connect
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, create_issue as create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 

@@ -22,5 +22,7 @@ OPTIONS_FLOW: Incomplete
 class SystemMonitorConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
+    VERSION: int
+    MINOR_VERSION: int
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> FlowResult: ...

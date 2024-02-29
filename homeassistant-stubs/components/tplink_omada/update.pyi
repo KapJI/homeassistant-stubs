@@ -8,8 +8,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from tplink_omada_client import OmadaSiteClient as OmadaSiteClient
 from tplink_omada_client.devices import OmadaFirmwareUpdate as OmadaFirmwareUpdate, OmadaListDevice as OmadaListDevice
-from tplink_omada_client.omadasiteclient import OmadaSiteClient as OmadaSiteClient
 from typing import Any, NamedTuple
 
 POLL_DELAY_IDLE: Incomplete

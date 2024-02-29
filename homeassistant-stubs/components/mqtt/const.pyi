@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.const import CONF_PAYLOAD as CONF_PAYLOAD, Platform as Platform
+from homeassistant.exceptions import TemplateError as TemplateError
 
 ATTR_DISCOVERY_HASH: str
 ATTR_DISCOVERY_PAYLOAD: str
@@ -112,3 +113,4 @@ PAYLOAD_EMPTY_JSON: str
 PAYLOAD_NONE: str
 PLATFORMS: Incomplete
 RELOADABLE_PLATFORMS: Incomplete
+TEMPLATE_ERRORS: Incomplete

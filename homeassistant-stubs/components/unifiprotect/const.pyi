@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 
 DOMAIN: str
+AUTH_RETRIES: int
 ATTR_EVENT_SCORE: str
 ATTR_EVENT_ID: str
 ATTR_WIDTH: str

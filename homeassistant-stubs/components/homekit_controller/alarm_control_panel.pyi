@@ -16,7 +16,6 @@ TARGET_STATE_MAP: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HomeKitAlarmControlPanelEntity(HomeKitEntity, AlarmControlPanelEntity):
-    _attr_icon: str
     _attr_supported_features: Incomplete
     def get_characteristic_types(self) -> list[str]: ...
     @property

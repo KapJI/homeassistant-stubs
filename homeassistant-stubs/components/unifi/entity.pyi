@@ -1,7 +1,7 @@
 import abc
 import aiounifi
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN
-from .controller import UniFiController as UniFiController
+from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from abc import abstractmethod
 from aiounifi.interfaces.api_handlers import APIHandler, CallbackType, ItemEvent, UnsubscribeType
@@ -18,25 +18,25 @@ from typing import Generic, TypeVar
 HandlerT = TypeVar('HandlerT', bound=APIHandler)
 SubscriptionT = Callable[[CallbackType, ItemEvent], UnsubscribeType]
 
-def async_device_available_fn(controller: UniFiController, obj_id: str) -> bool: ...
-def async_wlan_available_fn(controller: UniFiController, obj_id: str) -> bool: ...
-def async_device_device_info_fn(controller: UniFiController, obj_id: str) -> DeviceInfo: ...
-def async_wlan_device_info_fn(controller: UniFiController, obj_id: str) -> DeviceInfo: ...
-def async_client_device_info_fn(controller: UniFiController, obj_id: str) -> DeviceInfo: ...
+def async_device_available_fn(hub: UnifiHub, obj_id: str) -> bool: ...
+def async_wlan_available_fn(hub: UnifiHub, obj_id: str) -> bool: ...
+def async_device_device_info_fn(hub: UnifiHub, obj_id: str) -> DeviceInfo: ...
+def async_wlan_device_info_fn(hub: UnifiHub, obj_id: str) -> DeviceInfo: ...
+def async_client_device_info_fn(hub: UnifiHub, obj_id: str) -> DeviceInfo: ...
 
 @dataclass(frozen=True)
 class UnifiDescription(Generic[HandlerT, ApiItemT]):
-    allowed_fn: Callable[[UniFiController, str], bool]
+    allowed_fn: Callable[[UnifiHub, str], bool]
     api_handler_fn: Callable[[aiounifi.Controller], HandlerT]
-    available_fn: Callable[[UniFiController, str], bool]
-    device_info_fn: Callable[[UniFiController, str], DeviceInfo | None]
+    available_fn: Callable[[UnifiHub, str], bool]
+    device_info_fn: Callable[[UnifiHub, str], DeviceInfo | None]
     event_is_on: tuple[EventKey, ...] | None
     event_to_subscribe: tuple[EventKey, ...] | None
     name_fn: Callable[[ApiItemT], str | None]
     object_fn: Callable[[aiounifi.Controller, str], ApiItemT]
     should_poll: bool
-    supported_fn: Callable[[UniFiController, str], bool | None]
-    unique_id_fn: Callable[[UniFiController, str], str]
+    supported_fn: Callable[[UnifiHub, str], bool | None]
+    unique_id_fn: Callable[[UnifiHub, str], str]
     def __init__(self, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn) -> None: ...
 
 @dataclass(frozen=True)
@@ -47,13 +47,13 @@ class UnifiEntity(Entity, Generic[HandlerT, ApiItemT], metaclass=abc.ABCMeta):
     entity_description: UnifiEntityDescription[HandlerT, ApiItemT]
     _attr_unique_id: str
     _obj_id: Incomplete
-    controller: Incomplete
+    hub: Incomplete
     _removed: bool
     _attr_available: Incomplete
     _attr_device_info: Incomplete
     _attr_should_poll: Incomplete
     _attr_name: Incomplete
-    def __init__(self, obj_id: str, controller: UniFiController, description: UnifiEntityDescription[HandlerT, ApiItemT]) -> None: ...
+    def __init__(self, obj_id: str, hub: UnifiHub, description: UnifiEntityDescription[HandlerT, ApiItemT]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def async_signalling_callback(self, event: ItemEvent, obj_id: str) -> None: ...
     def async_signal_reachable_callback(self) -> None: ...

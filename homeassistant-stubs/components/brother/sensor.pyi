@@ -7,9 +7,9 @@ from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -38,5 +38,5 @@ class BrotherPrinterSensor(CoordinatorEntity[BrotherDataUpdateCoordinator], Sens
     _attr_device_info: Incomplete
     _attr_native_value: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: BrotherDataUpdateCoordinator, description: BrotherSensorEntityDescription, device_info: DeviceInfo) -> None: ...
+    def __init__(self, coordinator: BrotherDataUpdateCoordinator, description: BrotherSensorEntityDescription) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

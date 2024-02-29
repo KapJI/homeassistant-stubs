@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Collection, Iterable
 from dataclasses import dataclass
 from enum import Enum
+from functools import cached_property as cached_property
 from homeassistant.components.homeassistant.exposed_entities import async_should_expose as async_should_expose
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback
@@ -20,6 +21,7 @@ INTENT_TURN_ON: str
 INTENT_TOGGLE: str
 INTENT_GET_STATE: str
 INTENT_NEVERMIND: str
+INTENT_SET_POSITION: str
 SLOT_SCHEMA: Incomplete
 DATA_KEY: str
 SPEECH_TYPE_PLAIN: str
@@ -57,10 +59,11 @@ def async_test_feature(state: State, feature: int, feature_name: str) -> None: .
 class IntentHandler:
     intent_type: str | None
     slot_schema: vol.Schema | None
-    _slot_schema: vol.Schema | None
     platforms: Iterable[str] | None
     def async_can_handle(self, intent_obj: Intent) -> bool: ...
     def async_validate_slots(self, slots: _SlotsType) -> _SlotsType: ...
+    @cached_property
+    def _slot_schema(self) -> vol.Schema: ...
     async def async_handle(self, intent_obj: Intent) -> IntentResponse: ...
     def __repr__(self) -> str: ...
 
@@ -71,7 +74,10 @@ class ServiceIntentHandler(IntentHandler):
     domain: Incomplete
     service: Incomplete
     speech: Incomplete
-    def __init__(self, intent_type: str, domain: str, service: str, speech: str | None = None) -> None: ...
+    extra_slots: Incomplete
+    def __init__(self, intent_type: str, domain: str, service: str, speech: str | None = None, extra_slots: dict[str, vol.Schema] | None = None) -> None: ...
+    @cached_property
+    def _slot_schema(self) -> vol.Schema: ...
     async def async_handle(self, intent_obj: Intent) -> IntentResponse: ...
     async def async_handle_states(self, intent_obj: Intent, states: list[State], area: area_registry.AreaEntry | None = None) -> IntentResponse: ...
     async def async_call_service(self, intent_obj: Intent, state: State) -> None: ...

@@ -2,7 +2,7 @@ import httpx
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS
+from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, TEMPLATE_ERRORS as TEMPLATE_ERRORS
 from .debug_info import log_messages as log_messages
 from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage

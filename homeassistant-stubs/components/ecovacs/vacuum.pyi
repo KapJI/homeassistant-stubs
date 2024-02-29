@@ -4,7 +4,7 @@ from .controller import EcovacsController as EcovacsController
 from .entity import EcovacsEntity as EcovacsEntity
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from deebot_client.capabilities import Capabilities
+from deebot_client.capabilities import VacuumCapabilities
 from deebot_client.device import Device as Device
 from deebot_client.events import BatteryEvent as BatteryEvent, FanSpeedEvent as FanSpeedEvent, RoomsEvent as RoomsEvent, StateEvent as StateEvent
 from deebot_client.models import CleanAction, Room as Room
@@ -55,13 +55,13 @@ class EcovacsLegacyVacuum(StateVacuumEntity):
 _STATE_TO_VACUUM_STATE: Incomplete
 _ATTR_ROOMS: str
 
-class EcovacsVacuum(EcovacsEntity[Capabilities], StateVacuumEntity):
+class EcovacsVacuum(EcovacsEntity[VacuumCapabilities, VacuumCapabilities], StateVacuumEntity):
     _unrecorded_attributes: Incomplete
     _attr_supported_features: Incomplete
     entity_description: Incomplete
     _rooms: Incomplete
     _attr_fan_speed_list: Incomplete
-    def __init__(self, device: Device) -> None: ...
+    def __init__(self, device: Device[VacuumCapabilities]) -> None: ...
     _attr_battery_level: Incomplete
     _attr_fan_speed: Incomplete
     _attr_state: Incomplete

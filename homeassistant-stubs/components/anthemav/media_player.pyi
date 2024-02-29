@@ -19,7 +19,6 @@ class AnthemAVR(MediaPlayerEntity):
     _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_device_class: Incomplete
-    _attr_icon: str
     _attr_supported_features: Incomplete
     avr: Incomplete
     _entry_id: Incomplete

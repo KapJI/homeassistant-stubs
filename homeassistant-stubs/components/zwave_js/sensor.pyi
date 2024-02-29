@@ -73,7 +73,6 @@ class ZWaveListSensor(ZwaveSensor):
 
 class ZWaveConfigParameterSensor(ZWaveListSensor):
     _attr_entity_category: Incomplete
-    _primary_value: Incomplete
     _attr_name: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: str | None = None) -> None: ...
     @property

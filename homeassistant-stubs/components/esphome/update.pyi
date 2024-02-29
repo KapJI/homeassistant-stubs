@@ -15,7 +15,6 @@ from typing import Any
 
 KEY_UPDATE_LOCK: str
 NO_FEATURES: Incomplete
-_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

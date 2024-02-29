@@ -2,7 +2,7 @@ from .entity import EsphomeEntity as EsphomeEntity, esphome_state_property as es
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, SensorInfo, SensorState, SensorStateClass as EsphomeSensorStateClass, TextSensorInfo, TextSensorState
-from datetime import datetime
+from datetime import date, datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -23,5 +23,7 @@ class EsphomeSensor(EsphomeEntity[SensorInfo, SensorState], SensorEntity):
     def native_value(self) -> datetime | str | None: ...
 
 class EsphomeTextSensor(EsphomeEntity[TextSensorInfo, TextSensorState], SensorEntity):
+    _attr_device_class: Incomplete
+    def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
-    def native_value(self) -> str | None: ...
+    def native_value(self) -> str | datetime | date | None: ...

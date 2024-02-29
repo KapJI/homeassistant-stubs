@@ -1,23 +1,18 @@
-from . import ADB_PYTHON_EXCEPTIONS as ADB_PYTHON_EXCEPTIONS, ADB_TCP_EXCEPTIONS as ADB_TCP_EXCEPTIONS, get_androidtv_mac as get_androidtv_mac
 from .const import ANDROID_DEV as ANDROID_DEV, ANDROID_DEV_OPT as ANDROID_DEV_OPT, CONF_APPS as CONF_APPS, CONF_EXCLUDE_UNNAMED_APPS as CONF_EXCLUDE_UNNAMED_APPS, CONF_GET_SOURCES as CONF_GET_SOURCES, CONF_SCREENCAP as CONF_SCREENCAP, CONF_TURN_OFF_COMMAND as CONF_TURN_OFF_COMMAND, CONF_TURN_ON_COMMAND as CONF_TURN_ON_COMMAND, DEFAULT_EXCLUDE_UNNAMED_APPS as DEFAULT_EXCLUDE_UNNAMED_APPS, DEFAULT_GET_SOURCES as DEFAULT_GET_SOURCES, DEFAULT_SCREENCAP as DEFAULT_SCREENCAP, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, DOMAIN as DOMAIN, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
+from .entity import AndroidTVEntity as AndroidTVEntity, adb_decorator as adb_decorator
 from _typeshed import Incomplete
 from androidtv.setup_async import AndroidTVAsync as AndroidTVAsync, FireTVAsync as FireTVAsync
-from collections.abc import Callable
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
+from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util import Throttle as Throttle
-from typing import Any, ParamSpec, TypeVar
+from typing import Any
 
-_ADBDeviceT = TypeVar('_ADBDeviceT', bound='ADBDevice')
-_R = TypeVar('_R')
-_P = ParamSpec('_P')
 _LOGGER: Incomplete
 ATTR_ADB_RESPONSE: str
 ATTR_DEVICE_PATH: str
@@ -28,28 +23,16 @@ SERVICE_ADB_COMMAND: str
 SERVICE_DOWNLOAD: str
 SERVICE_LEARN_SENDEVENT: str
 SERVICE_UPLOAD: str
-PREFIX_ANDROIDTV: str
-PREFIX_FIRETV: str
 ANDROIDTV_STATES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-_FuncType: Incomplete
-_ReturnFuncType: Incomplete
-
-def adb_decorator(override_available: bool = False) -> Callable[[_FuncType[_ADBDeviceT, _P, _R]], _ReturnFuncType[_ADBDeviceT, _P, _R]]: ...
-
-class ADBDevice(MediaPlayerEntity):
+class ADBDevice(AndroidTVEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
-    aftv: Incomplete
-    _attr_unique_id: Incomplete
     _entry_id: Incomplete
-    _entry_data: Incomplete
     _media_image: Incomplete
     _attr_media_image_hash: Incomplete
-    _attr_device_info: Incomplete
     _app_id_to_name: Incomplete
     _app_name_to_id: Incomplete
     _get_sources: Incomplete
@@ -57,10 +40,9 @@ class ADBDevice(MediaPlayerEntity):
     _screencap: Incomplete
     turn_on_command: Incomplete
     turn_off_command: Incomplete
-    exceptions: Incomplete
     _attr_extra_state_attributes: Incomplete
     _failed_connect_count: int
-    def __init__(self, aftv: AndroidTVAsync | FireTVAsync, name: str, dev_type: str, unique_id: str, entry_id: str, entry_data: dict[str, Any]) -> None: ...
+    def __init__(self, aftv: AndroidTVAsync | FireTVAsync, entry: ConfigEntry, entry_data: dict[str, Any]) -> None: ...
     def _process_config(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _adb_screencap(self) -> bytes | None: ...

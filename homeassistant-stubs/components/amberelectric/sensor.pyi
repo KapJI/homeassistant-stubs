@@ -12,7 +12,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-ICONS: Incomplete
 UNIT: Incomplete
 
 def format_cents_to_dollars(cents: float) -> float: ...

@@ -18,8 +18,8 @@ def crownstone_state_to_hass(value: int) -> int: ...
 def hass_to_crownstone_state(value: int) -> int: ...
 
 class CrownstoneEntity(CrownstoneBaseEntity, LightEntity):
-    _attr_icon: str
     _attr_name: Incomplete
+    _attr_translation_key: str
     usb: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, crownstone_data: Crownstone, usb: CrownstoneUart | None = None) -> None: ...

@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from tplink_omada_client.omadaclient import OmadaSiteClient as OmadaSiteClient
+from tplink_omada_client import OmadaSiteClient as OmadaSiteClient
 from typing import Generic, TypeVar
 
 _LOGGER: Incomplete

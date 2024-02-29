@@ -9,9 +9,8 @@ from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_D
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers import entity_registry as er
-from homeassistant.helpers.entityfilter import CONF_EXCLUDE_DOMAINS as CONF_EXCLUDE_DOMAINS, CONF_EXCLUDE_ENTITIES as CONF_EXCLUDE_ENTITIES, CONF_INCLUDE_DOMAINS as CONF_INCLUDE_DOMAINS, CONF_INCLUDE_ENTITIES as CONF_INCLUDE_ENTITIES
 from homeassistant.loader import async_get_integrations as async_get_integrations
-from typing import Any
+from typing import Any, Final, TypedDict
 
 CONF_CAMERA_AUDIO: str
 CONF_CAMERA_COPY: str
@@ -24,10 +23,20 @@ NEVER_BRIDGED_DOMAINS: Incomplete
 CAMERA_ENTITY_PREFIX: Incomplete
 SUPPORTED_DOMAINS: Incomplete
 DEFAULT_DOMAINS: Incomplete
-_EMPTY_ENTITY_FILTER: dict[str, list[str]]
+CONF_INCLUDE_DOMAINS: Final[str]
+CONF_INCLUDE_ENTITIES: Final[str]
+CONF_EXCLUDE_DOMAINS: Final[str]
+CONF_EXCLUDE_ENTITIES: Final[str]
 
+class EntityFilterDict(TypedDict, total=False):
+    include_domains: list[str]
+    include_entities: list[str]
+    exclude_domains: list[str]
+    exclude_entities: list[str]
+
+def _make_entity_filter(include_domains: list[str] | None = None, include_entities: list[str] | None = None, exclude_domains: list[str] | None = None, exclude_entities: list[str] | None = None) -> EntityFilterDict: ...
 async def _async_domain_names(hass: HomeAssistant, domains: list[str]) -> str: ...
-def _async_build_entites_filter(domains: list[str], entities: list[str]) -> dict[str, Any]: ...
+def _async_build_entities_filter(domains: list[str], entities: list[str]) -> EntityFilterDict: ...
 def _async_cameras_from_entities(entities: list[str]) -> dict[str, str]: ...
 async def _async_name_to_type_map(hass: HomeAssistant) -> dict[str, str]: ...
 

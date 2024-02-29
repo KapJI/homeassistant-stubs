@@ -66,6 +66,10 @@ def entities_domain(domain: str | list[str]) -> Callable[[str | list], list[str]
 def enum(enumClass: type[Enum]) -> vol.All: ...
 def icon(value: Any) -> str: ...
 
+_COLOR_HEX: Incomplete
+
+def color_hex(value: Any) -> str: ...
+
 _TIME_PERIOD_DICT_KEYS: Incomplete
 time_period_dict: Incomplete
 

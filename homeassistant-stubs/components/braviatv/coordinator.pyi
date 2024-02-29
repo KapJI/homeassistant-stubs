@@ -33,6 +33,8 @@ class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     media_content_type: Incomplete
     media_uri: Incomplete
     media_duration: Incomplete
+    media_position: Incomplete
+    media_position_updated_at: Incomplete
     volume_level: Incomplete
     volume_target: Incomplete
     volume_muted: bool

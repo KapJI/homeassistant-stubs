@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from aiohttp import web as web
-from homeassistant import config_entries as config_entries, data_entry_flow as data_entry_flow
+from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from typing import Any
@@ -12,6 +12,7 @@ class _BaseFlowManagerView(HomeAssistantView):
 
 class FlowManagerIndexView(_BaseFlowManagerView):
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+    def get_context(self, data: dict[str, Any]) -> dict[str, Any]: ...
 
 class FlowManagerResourceView(_BaseFlowManagerView):
     async def get(self, request: web.Request, flow_id: str) -> web.Response: ...

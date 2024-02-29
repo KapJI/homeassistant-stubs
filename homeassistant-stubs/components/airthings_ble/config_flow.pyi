@@ -10,6 +10,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any
 
 _LOGGER: Incomplete
+SERVICE_UUIDS: Incomplete
 
 @dataclasses.dataclass
 class Discovery:

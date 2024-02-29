@@ -1,8 +1,8 @@
 from .coordinator import OmadaCoordinator as OmadaCoordinator
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
+from tplink_omada_client import OmadaSiteClient as OmadaSiteClient
 from tplink_omada_client.devices import OmadaGateway, OmadaSwitch as OmadaSwitch, OmadaSwitchPortDetails
-from tplink_omada_client.omadasiteclient import OmadaSiteClient as OmadaSiteClient
 
 POLL_SWITCH_PORT: int
 POLL_GATEWAY: int

@@ -1,6 +1,6 @@
 import aiounifi
-from .controller import UniFiController as UniFiController
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn
+from .hub import UnifiHub as UnifiHub
 from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
 from aiounifi.models.api import ApiItemT
 from collections.abc import Callable as Callable, Coroutine

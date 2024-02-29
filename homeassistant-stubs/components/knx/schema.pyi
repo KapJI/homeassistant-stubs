@@ -1,36 +1,21 @@
 import voluptuous as vol
 from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, ColorTempModes as ColorTempModes, KNX_ADDRESS as KNX_ADDRESS, PRESET_MODES as PRESET_MODES
+from .validation import ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_validator as sync_state_validator
 from _typeshed import Incomplete
 from abc import ABC
 from collections import OrderedDict
-from collections.abc import Callable as Callable
 from homeassistant.components.climate import HVACMode as HVACMode
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.components.text import TextMode as TextMode
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PAYLOAD as CONF_PAYLOAD, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
-from typing import Any, ClassVar, Final
-from xknx.dpt import DPTBase
+from typing import ClassVar, Final
 
-def dpt_subclass_validator(dpt_base_class: type[DPTBase]) -> Callable[[Any], str | int]: ...
-
-numeric_type_validator: Incomplete
-sensor_type_validator: Incomplete
-string_type_validator: Incomplete
-
-def ga_validator(value: Any) -> str | int: ...
-
-ga_list_validator: Incomplete
-ia_validator: Incomplete
-
-def ip_v4_validator(value: Any, multicast: bool | None = None) -> str: ...
 def number_limit_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
 def _max_payload_value(payload_length: int) -> int: ...
 def button_payload_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
 def select_options_sub_validator(entity_config: OrderedDict) -> OrderedDict: ...
-
-sync_state_validator: Incomplete
 
 class EventSchema:
     KNX_EVENT_FILTER_SCHEMA: Incomplete
@@ -38,7 +23,7 @@ class EventSchema:
 
 class KNXPlatformSchema(ABC):
     PLATFORM: ClassVar[Platform | str]
-    ENTITY_SCHEMA: ClassVar[vol.Schema]
+    ENTITY_SCHEMA: ClassVar[vol.Schema | vol.All | vol.Any]
     @classmethod
     def platform_node(cls) -> dict[vol.Optional, vol.All]: ...
 

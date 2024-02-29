@@ -5,6 +5,7 @@ from homeassistant.components import http as http
 from homeassistant.components.cover import SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.components.lock import SERVICE_LOCK as SERVICE_LOCK, SERVICE_UNLOCK as SERVICE_UNLOCK
+from homeassistant.components.valve import SERVICE_CLOSE_VALVE as SERVICE_CLOSE_VALVE, SERVICE_OPEN_VALVE as SERVICE_OPEN_VALVE
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers import integration_platform as integration_platform, intent as intent

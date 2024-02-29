@@ -19,7 +19,6 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CertExpiryEntity(CoordinatorEntity[CertExpiryDataUpdateCoordinator]):
-    _attr_icon: str
     _attr_has_entity_name: bool
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...

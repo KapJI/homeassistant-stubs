@@ -1,5 +1,5 @@
-from .controller import UniFiController as UniFiController
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
+from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
 from aiounifi.models.api import ApiItemT
@@ -13,11 +13,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Generic
 
-def async_wlan_qr_code_image_fn(controller: UniFiController, wlan: Wlan) -> bytes: ...
+def async_wlan_qr_code_image_fn(hub: UnifiHub, wlan: Wlan) -> bytes: ...
 
 @dataclass(frozen=True)
 class UnifiImageEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
-    image_fn: Callable[[UniFiController, ApiItemT], bytes]
+    image_fn: Callable[[UnifiHub, ApiItemT], bytes]
     value_fn: Callable[[ApiItemT], str | None]
     def __init__(self, image_fn, value_fn) -> None: ...
 
@@ -34,7 +34,7 @@ class UnifiImageEntity(UnifiEntity[HandlerT, ApiItemT], ImageEntity):
     _attr_content_type: str
     current_image: bytes | None
     previous_value: str | None
-    def __init__(self, obj_id: str, controller: UniFiController, description: UnifiEntityDescription[HandlerT, ApiItemT]) -> None: ...
+    def __init__(self, obj_id: str, hub: UnifiHub, description: UnifiEntityDescription[HandlerT, ApiItemT]) -> None: ...
     def image(self) -> bytes | None: ...
     _attr_image_last_updated: Incomplete
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

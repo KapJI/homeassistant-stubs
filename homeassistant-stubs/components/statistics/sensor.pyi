@@ -56,6 +56,7 @@ STATS_BINARY_PERCENTAGE: Incomplete
 CONF_STATE_CHARACTERISTIC: str
 CONF_SAMPLES_MAX_BUFFER_SIZE: str
 CONF_MAX_AGE: str
+CONF_KEEP_LAST_SAMPLE: str
 CONF_PRECISION: str
 CONF_PERCENTILE: str
 DEFAULT_NAME: str
@@ -64,6 +65,7 @@ ICON: str
 
 def valid_state_characteristic_configuration(config: dict[str, Any]) -> dict[str, Any]: ...
 def valid_boundary_configuration(config: dict[str, Any]) -> dict[str, Any]: ...
+def valid_keep_last_sample(config: dict[str, Any]) -> dict[str, Any]: ...
 
 _PLATFORM_SCHEMA_BASE: Incomplete
 
@@ -79,6 +81,7 @@ class StatisticsSensor(SensorEntity):
     _state_characteristic: Incomplete
     _samples_max_buffer_size: Incomplete
     _samples_max_age: Incomplete
+    samples_keep_last: Incomplete
     _precision: Incomplete
     _percentile: Incomplete
     _value: Incomplete
@@ -89,7 +92,7 @@ class StatisticsSensor(SensorEntity):
     attributes: Incomplete
     _state_characteristic_fn: Incomplete
     _update_listener: Incomplete
-    def __init__(self, source_entity_id: str, name: str, unique_id: str | None, state_characteristic: str, samples_max_buffer_size: int | None, samples_max_age: timedelta | None, precision: int, percentile: int) -> None: ...
+    def __init__(self, source_entity_id: str, name: str, unique_id: str | None, state_characteristic: str, samples_max_buffer_size: int | None, samples_max_age: timedelta | None, samples_keep_last: bool, precision: int, percentile: int) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _add_state_to_queue(self, new_state: State) -> None: ...
     def _derive_unit_of_measurement(self, new_state: State) -> str | None: ...

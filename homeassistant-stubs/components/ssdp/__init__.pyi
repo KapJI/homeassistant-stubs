@@ -17,6 +17,7 @@ from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableE
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_ssdp as async_get_ssdp, bind_hass as bind_hass
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from ipaddress import IPv4Address, IPv6Address
 from typing import Any
 

@@ -15,6 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class BMWDeviceTracker(BMWBaseEntity, TrackerEntity):
     _attr_force_update: bool
+    _attr_translation_key: str
     _attr_icon: str
     _attr_unique_id: Incomplete
     _attr_name: Incomplete

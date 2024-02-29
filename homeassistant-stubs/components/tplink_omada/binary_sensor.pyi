@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGateway, OmadaGatewayPort as OmadaGatewayPort
+from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGateway, OmadaGatewayPortStatus as OmadaGatewayPortStatus
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def get_gateway_port_status_sensors(gateway: OmadaGateway, hass: HomeAssistant, coordinator: OmadaGatewayCoordinator) -> Generator[BinarySensorEntity, None, None]: ...
@@ -17,7 +17,7 @@ class GatewayPortBinarySensorConfig:
     id_suffix: str
     name_suffix: str
     device_class: BinarySensorDeviceClass
-    update_func: Callable[[OmadaGatewayPort], bool]
+    update_func: Callable[[OmadaGatewayPortStatus], bool]
     def __init__(self, port_number, id_suffix, name_suffix, device_class, update_func) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...

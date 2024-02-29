@@ -6,7 +6,7 @@ from .tasks import AddRecorderPlatformTask as AddRecorderPlatformTask
 from .util import get_instance as get_instance
 from _typeshed import Incomplete
 from homeassistant.const import CONF_EXCLUDE as CONF_EXCLUDE, EVENT_RECORDER_5MIN_STATISTICS_GENERATED as EVENT_RECORDER_5MIN_STATISTICS_GENERATED, EVENT_RECORDER_HOURLY_STATISTICS_GENERATED as EVENT_RECORDER_HOURLY_STATISTICS_GENERATED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA, INCLUDE_EXCLUDE_FILTER_SCHEMA_INNER as INCLUDE_EXCLUDE_FILTER_SCHEMA_INNER, convert_include_exclude_filter as convert_include_exclude_filter
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType

@@ -27,6 +27,7 @@ SENSORS: tuple[SensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TibberSensor(SensorEntity):
+    _attr_has_entity_name: bool
     _tibber_home: Incomplete
     _home_name: Incomplete
     _device_name: Incomplete
@@ -36,13 +37,13 @@ class TibberSensor(SensorEntity):
     def device_info(self) -> DeviceInfo: ...
 
 class TibberSensorElPrice(TibberSensor):
+    _attr_state_class: Incomplete
+    _attr_translation_key: str
     _last_updated: Incomplete
     _spread_load_constant: Incomplete
     _attr_available: bool
     _attr_extra_state_attributes: Incomplete
     _attr_icon: Incomplete
-    _attr_name: Incomplete
-    _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
     _model: str
     _device_name: Incomplete
@@ -54,7 +55,6 @@ class TibberSensorElPrice(TibberSensor):
 class TibberDataSensor(TibberSensor, CoordinatorEntity['TibberDataCoordinator']):
     entity_description: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _device_name: Incomplete
     def __init__(self, tibber_home: tibber.TibberHome, coordinator: TibberDataCoordinator, entity_description: SensorEntityDescription) -> None: ...
@@ -65,7 +65,6 @@ class TibberSensorRT(TibberSensor, CoordinatorEntity['TibberRtDataCoordinator'])
     entity_description: Incomplete
     _model: str
     _device_name: Incomplete
-    _attr_name: Incomplete
     _attr_native_value: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete

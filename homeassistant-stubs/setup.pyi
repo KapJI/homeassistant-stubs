@@ -1,16 +1,19 @@
 from . import core as core, loader as loader, requirements as requirements
 from .const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PLATFORM_FORMAT as PLATFORM_FORMAT, Platform as Platform
-from .core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from .core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import DependencyError as DependencyError, HomeAssistantError as HomeAssistantError
+from .helpers import translation as translation
 from .helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from .helpers.typing import ConfigType as ConfigType
+from .helpers.typing import ConfigType as ConfigType, EventType as EventType
 from .util import ensure_unique_string as ensure_unique_string
+from .util.async_ import create_eager_task as create_eager_task
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Generator, Iterable
 from types import ModuleType
+from typing import Final, TypedDict
 
 _LOGGER: Incomplete
-ATTR_COMPONENT: str
+ATTR_COMPONENT: Final[str]
 BASE_PLATFORMS: Incomplete
 DATA_SETUP: str
 DATA_SETUP_DONE: str
@@ -21,6 +24,9 @@ DATA_PERSISTENT_ERRORS: str
 NOTIFY_FOR_TRANSLATION_KEYS: Incomplete
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int
+
+class EventComponentLoaded(TypedDict):
+    component: str
 
 def async_notify_setup_error(hass: HomeAssistant, component: str, display_link: str | None = None) -> None: ...
 def async_set_domains_to_be_loaded(hass: core.HomeAssistant, domains: set[str]) -> None: ...

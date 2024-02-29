@@ -6,7 +6,6 @@ from homeassistant.loader import Integration as Integration, async_get_integrati
 from homeassistant.util.json import load_json_object as load_json_object
 from typing import Any
 
-ICON_LOAD_LOCK: str
 ICON_CACHE: str
 _LOGGER: Incomplete
 
@@ -19,6 +18,7 @@ class _IconsCache:
     _hass: Incomplete
     _loaded: Incomplete
     _cache: Incomplete
+    _lock: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_fetch(self, category: str, components: set[str]) -> dict[str, dict[str, Any]]: ...
     async def _async_load(self, components: set[str]) -> None: ...

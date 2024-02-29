@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
 from functools import cached_property as cached_property
 from homeassistant.components.recorder.filters import Filters as Filters
@@ -39,7 +39,7 @@ class LazyEventPartialState:
 
 @dataclass(slots=True, frozen=True)
 class EventAsRow:
-    data: dict[str, Any]
+    data: Mapping[str, Any]
     context: Context
     context_id_bin: bytes
     time_fired_ts: float

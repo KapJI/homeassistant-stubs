@@ -10,6 +10,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 
 async def async_get_media_source(hass: HomeAssistant) -> CameraMediaSource: ...
+def _media_source_for_camera(camera: Camera, content_type: str) -> BrowseMediaSource: ...
 
 class CameraMediaSource(MediaSource):
     name: str

@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from homeassistant.auth.models import User as User
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
 WS_TYPE_LIST: str
@@ -9,7 +9,7 @@ SCHEMA_WS_LIST: Incomplete
 WS_TYPE_DELETE: str
 SCHEMA_WS_DELETE: Incomplete
 
-async def async_setup(hass: HomeAssistant) -> bool: ...
+def async_setup(hass: HomeAssistant) -> bool: ...
 async def websocket_list(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def websocket_delete(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def websocket_create(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

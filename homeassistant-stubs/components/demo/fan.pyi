@@ -16,6 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class BaseDemoFan(FanEntity):
     _attr_should_poll: bool
+    _attr_translation_key: str
     hass: Incomplete
     _unique_id: Incomplete
     _attr_supported_features: Incomplete

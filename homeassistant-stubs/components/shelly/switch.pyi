@@ -1,7 +1,7 @@
-from .const import DOMAIN as DOMAIN, GAS_VALVE_OPEN_STATES as GAS_VALVE_OPEN_STATES, MODEL_WALL_DISPLAY as MODEL_WALL_DISPLAY
+from .const import DOMAIN as DOMAIN, GAS_VALVE_OPEN_STATES as GAS_VALVE_OPEN_STATES
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, get_entry_data as get_entry_data
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity, async_setup_block_attribute_entities as async_setup_block_attribute_entities
-from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light
+from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from dataclasses import dataclass
@@ -16,7 +16,7 @@ from typing import Any
 
 @dataclass(frozen=True)
 class BlockSwitchDescription(BlockEntityDescription, SwitchEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, icon_fn, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
 GAS_VALVE_SWITCH: Incomplete
 
@@ -26,12 +26,11 @@ def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_
 
 class BlockValveSwitch(ShellyBlockAttributeEntity, SwitchEntity):
     entity_description: BlockSwitchDescription
+    _attr_translation_key: str
     control_result: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockSwitchDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...
-    @property
-    def icon(self) -> str: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_added_to_hass(self) -> None: ...

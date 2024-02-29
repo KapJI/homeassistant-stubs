@@ -7,13 +7,13 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyenphase import EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
-from pyenphase.const import PhaseNames
+from pyenphase.models.meters import CtMeterStatus, CtState as CtState, CtStatusFlags as CtStatusFlags, CtType, EnvoyMeterData as EnvoyMeterData
 
 ICON: str
 _LOGGER: Incomplete
@@ -34,7 +34,7 @@ INVERTER_SENSORS: Incomplete
 @dataclass(frozen=True)
 class EnvoyProductionRequiredKeysMixin:
     value_fn: Callable[[EnvoySystemProduction], int]
-    on_phase: PhaseNames | None
+    on_phase: str | None
     def __init__(self, value_fn, on_phase) -> None: ...
 
 @dataclass(frozen=True)
@@ -47,7 +47,7 @@ PRODUCTION_PHASE_SENSORS: Incomplete
 @dataclass(frozen=True)
 class EnvoyConsumptionRequiredKeysMixin:
     value_fn: Callable[[EnvoySystemConsumption], int]
-    on_phase: PhaseNames | None
+    on_phase: str | None
     def __init__(self, value_fn, on_phase) -> None: ...
 
 @dataclass(frozen=True)
@@ -56,6 +56,21 @@ class EnvoyConsumptionSensorEntityDescription(SensorEntityDescription, EnvoyCons
 
 CONSUMPTION_SENSORS: Incomplete
 CONSUMPTION_PHASE_SENSORS: Incomplete
+
+@dataclass(frozen=True)
+class EnvoyCTRequiredKeysMixin:
+    value_fn: Callable[[EnvoyMeterData], int | float | str | CtType | CtMeterStatus | CtStatusFlags | CtState | None]
+    on_phase: str | None
+    def __init__(self, value_fn, on_phase) -> None: ...
+
+@dataclass(frozen=True)
+class EnvoyCTSensorEntityDescription(SensorEntityDescription, EnvoyCTRequiredKeysMixin):
+    def __init__(self, value_fn, on_phase, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+
+CT_NET_CONSUMPTION_SENSORS: Incomplete
+CT_NET_CONSUMPTION_PHASE_SENSORS: Incomplete
+CT_PRODUCTION_SENSORS: Incomplete
+CT_PRODUCTION_PHASE_SENSORS: Incomplete
 
 @dataclass(frozen=True)
 class EnvoyEnchargeRequiredKeysMixin:
@@ -129,6 +144,26 @@ class EnvoyConsumptionPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyConsumptionSensorEntityDescription
     @property
     def native_value(self) -> int | None: ...
+
+class EnvoyConsumptionCTEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyCTSensorEntityDescription
+    @property
+    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
+
+class EnvoyConsumptionCTPhaseEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyCTSensorEntityDescription
+    @property
+    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
+
+class EnvoyProductionCTEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyCTSensorEntityDescription
+    @property
+    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
+
+class EnvoyProductionCTPhaseEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyCTSensorEntityDescription
+    @property
+    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
 
 class EnvoyInverterEntity(EnvoySensorBaseEntity):
     _attr_icon = ICON

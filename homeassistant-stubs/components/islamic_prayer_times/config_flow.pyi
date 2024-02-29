@@ -7,7 +7,7 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.selector import LocationSelector as LocationSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
 from typing import Any
 
-async def async_validate_location(hass: HomeAssistant, lon: float, lat: float) -> dict[str, str]: ...
+async def async_validate_location(hass: HomeAssistant, lat: float, lon: float) -> dict[str, str]: ...
 
 class IslamicPrayerFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int

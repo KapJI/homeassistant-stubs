@@ -3,7 +3,6 @@ from _typeshed import Incomplete
 from aiohttp.web import Application as Application, Request as Request, Response as Response, StreamResponse as StreamResponse
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from datetime import datetime
-from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.config import load_yaml_config_file as load_yaml_config_file
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

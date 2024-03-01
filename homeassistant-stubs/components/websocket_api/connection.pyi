@@ -5,9 +5,9 @@ from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Callable
 from homeassistant.auth.models import RefreshToken as RefreshToken, User as User
-from homeassistant.components.http import current_request as current_request
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
+from homeassistant.helpers.http import current_request as current_request
 from homeassistant.util.json import JsonValueType as JsonValueType
 from typing import Any
 

@@ -2,15 +2,14 @@ import asyncio
 import ssl
 from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
-from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
+from .const import KEY_HASS as KEY_HASS, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
 from .cors import setup_cors as setup_cors
 from .decorators import require_admin as require_admin
 from .forwarded import async_setup_forwarded as async_setup_forwarded
 from .headers import setup_headers as setup_headers
-from .request_context import current_request as current_request, setup_request_context as setup_request_context
+from .request_context import setup_request_context as setup_request_context
 from .security_filter import setup_security_filter as setup_security_filter
 from .static import CACHE_HEADERS as CACHE_HEADERS, CachingStaticResource as CachingStaticResource
-from .view import HomeAssistantView as HomeAssistantView
 from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite
 from _typeshed import Incomplete
 from aiohttp import web
@@ -25,6 +24,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import storage as storage
+from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED, current_request as current_request
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass

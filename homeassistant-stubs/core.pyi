@@ -15,6 +15,7 @@ from .helpers.json import json_bytes as json_bytes, json_fragment as json_fragme
 from .helpers.storage import Store as Store
 from .util import location as location
 from .util.async_ import cancelling as cancelling, create_eager_task as create_eager_task, run_callback_threadsafe as run_callback_threadsafe, shutdown_run_callback_threadsafe as shutdown_run_callback_threadsafe
+from .util.executor import InterruptibleThreadPoolExecutor as InterruptibleThreadPoolExecutor
 from .util.json import JsonObjectType as JsonObjectType
 from .util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from .util.timeout import TimeoutManager as TimeoutManager
@@ -136,6 +137,7 @@ class HomeAssistant:
     timeout: Incomplete
     _stop_future: Incomplete
     _shutdown_jobs: Incomplete
+    import_executor: Incomplete
     def __init__(self, config_dir: str) -> None: ...
     @cached_property
     def is_running(self) -> bool: ...
@@ -160,6 +162,7 @@ class HomeAssistant:
     def async_create_task(self, target: Coroutine[Any, Any, _R], name: str | None = None, eager_start: bool = False) -> asyncio.Task[_R]: ...
     def async_create_background_task(self, target: Coroutine[Any, Any, _R], name: str, eager_start: bool = False) -> asyncio.Task[_R]: ...
     def async_add_executor_job(self, target: Callable[..., _T], *args: Any) -> asyncio.Future[_T]: ...
+    def async_add_import_executor_job(self, target: Callable[..., _T], *args: Any) -> asyncio.Future[_T]: ...
     @overload
     def async_run_hass_job(self, hassjob: HassJob[..., Coroutine[Any, Any, _R]], *args: Any) -> asyncio.Future[_R] | None: ...
     @overload

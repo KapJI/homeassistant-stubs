@@ -2,7 +2,7 @@ import voluptuous as vol
 from .const import CONF_IGNORED_ZONES as CONF_IGNORED_ZONES, CONF_TOLERANCE as CONF_TOLERANCE, CONF_TRACKED_ENTITIES as CONF_TRACKED_ENTITIES, DEFAULT_PROXIMITY_ZONE as DEFAULT_PROXIMITY_ZONE, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, OptionsFlow as OptionsFlow
-from homeassistant.const import CONF_ZONE as CONF_ZONE
+from homeassistant.const import CONF_ZONE as CONF_ZONE, UnitOfLength as UnitOfLength
 from homeassistant.core import State as State, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.selector import EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig

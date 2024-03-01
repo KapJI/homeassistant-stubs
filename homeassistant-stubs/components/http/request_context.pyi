@@ -2,7 +2,6 @@ from aiohttp.web import Application as Application, Request as Request, StreamRe
 from collections.abc import Callable as Callable
 from contextvars import ContextVar
 from homeassistant.core import callback as callback
-
-current_request: ContextVar[Request | None]
+from homeassistant.helpers.http import current_request as current_request
 
 def setup_request_context(app: Application, context: ContextVar[Request | None]) -> None: ...

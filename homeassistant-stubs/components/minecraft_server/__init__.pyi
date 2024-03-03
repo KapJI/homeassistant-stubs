@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from typing import Any
 
 PLATFORMS: Incomplete

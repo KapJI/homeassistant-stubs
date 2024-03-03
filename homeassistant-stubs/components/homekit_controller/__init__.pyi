@@ -3,6 +3,7 @@ from .connection import HKDevice as HKDevice
 from .const import DOMAIN as DOMAIN, KNOWN_DEVICES as KNOWN_DEVICES
 from .utils import async_get_controller as async_get_controller
 from _typeshed import Incomplete
+from aiohomekit.controller import ble as ble, coap as coap, ip as ip
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant

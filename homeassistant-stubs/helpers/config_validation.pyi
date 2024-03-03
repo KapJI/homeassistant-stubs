@@ -1,6 +1,7 @@
 import re
 import voluptuous as vol
 from . import template as template_helper
+from .frame import get_integration_logger as get_integration_logger
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable
 from datetime import date as date_sys, datetime as datetime_sys, time as time_sys, timedelta

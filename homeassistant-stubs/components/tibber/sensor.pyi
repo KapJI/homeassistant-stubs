@@ -21,6 +21,8 @@ ICON: str
 SCAN_INTERVAL: Incomplete
 MIN_TIME_BETWEEN_UPDATES: Incomplete
 PARALLEL_UPDATES: int
+RT_SENSORS_UNIQUE_ID_MIGRATION: Incomplete
+RT_SENSORS_UNIQUE_ID_MIGRATION_SIMPLE: Incomplete
 RT_SENSORS: tuple[SensorEntityDescription, ...]
 SENSORS: tuple[SensorEntityDescription, ...]
 
@@ -80,8 +82,10 @@ class TibberRtDataCoordinator(DataUpdateCoordinator):
     hass: Incomplete
     _added_sensors: Incomplete
     _async_remove_device_updates_handler: Incomplete
+    entity_registry: Incomplete
     def __init__(self, async_add_entities: AddEntitiesCallback, tibber_home: tibber.TibberHome, hass: HomeAssistant) -> None: ...
     def _handle_ha_stop(self, _event: Event) -> None: ...
+    def _migrate_unique_id(self, sensor_description: SensorEntityDescription) -> None: ...
     def _add_sensors(self) -> None: ...
     def get_live_measurement(self) -> Any: ...
 

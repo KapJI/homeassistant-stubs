@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from ical.calendar import Calendar as Calendar
+from ical.store import TodoStore
 from ical.todo import Todo
 
 _LOGGER: Incomplete
@@ -28,6 +29,7 @@ class LocalTodoListEntity(TodoListEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, store: LocalTodoListStore, calendar: Calendar, name: str, unique_id: str) -> None: ...
+    def _new_todo_store(self) -> TodoStore: ...
     _attr_todo_items: Incomplete
     async def async_update(self) -> None: ...
     async def async_create_todo_item(self, item: TodoItem) -> None: ...

@@ -5,12 +5,13 @@ from homeassistant.components.media_player import BrowseError as BrowseError, Me
 from homeassistant.components.media_source.error import Unresolvable as Unresolvable
 from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
+from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 
 async def async_get_media_source(hass: HomeAssistant) -> CameraMediaSource: ...
-def _media_source_for_camera(camera: Camera, content_type: str) -> BrowseMediaSource: ...
+def _media_source_for_camera(hass: HomeAssistant, camera: Camera, content_type: str) -> BrowseMediaSource: ...
 
 class CameraMediaSource(MediaSource):
     name: str

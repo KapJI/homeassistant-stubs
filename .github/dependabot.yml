@@ -1,11 +1,11 @@
 version: 2
 updates:
-  - package-ecosystem: pip
-    directory: "/"
-    schedule:
-      interval: daily
-    ignore:
-      - dependency-name: "homeassistant"
+  # - package-ecosystem: pip
+  #   directory: "/"
+  #   schedule:
+  #     interval: daily
+  #   ignore:
+  #     - dependency-name: "homeassistant"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:

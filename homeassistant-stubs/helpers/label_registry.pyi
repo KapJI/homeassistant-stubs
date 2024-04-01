@@ -1,10 +1,11 @@
+from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems, normalize_name as normalize_name
+from .registry import BaseRegistry as BaseRegistry
 from .storage import Store as Store
-from .typing import EventType as EventType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from collections import UserDict
-from collections.abc import Iterable, ValuesView
+from collections.abc import Iterable
 from dataclasses import dataclass
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
 from typing import Literal, TypedDict
 
@@ -12,33 +13,22 @@ DATA_REGISTRY: str
 EVENT_LABEL_REGISTRY_UPDATED: str
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
-SAVE_DELAY: int
 
 class EventLabelRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
     label_id: str
-EventLabelRegistryUpdated = EventType[EventLabelRegistryUpdatedData]
+EventLabelRegistryUpdated = Event[EventLabelRegistryUpdatedData]
 
-@dataclass(slots=True, frozen=True)
-class LabelEntry:
+@dataclass(slots=True, frozen=True, kw_only=True)
+class LabelEntry(NormalizedNameBaseRegistryEntry):
     label_id: str
-    name: str
-    normalized_name: str
     description: str | None = ...
     color: str | None = ...
     icon: str | None = ...
-    def __init__(self, label_id, name, normalized_name, description, color, icon) -> None: ...
+    def __init__(self, *, name, normalized_name, label_id, description, color, icon) -> None: ...
 
-class LabelRegistryItems(UserDict[str, LabelEntry]):
-    _normalized_names: Incomplete
-    def __init__(self) -> None: ...
-    def values(self) -> ValuesView[LabelEntry]: ...
-    def __setitem__(self, key: str, entry: LabelEntry) -> None: ...
-    def __delitem__(self, key: str) -> None: ...
-    def get_label_by_name(self, name: str) -> LabelEntry | None: ...
-
-class LabelRegistry:
-    labels: LabelRegistryItems
+class LabelRegistry(BaseRegistry):
+    labels: NormalizedNameBaseRegistryItems[LabelEntry]
     _label_data: dict[str, LabelEntry]
     hass: Incomplete
     _store: Incomplete
@@ -51,9 +41,7 @@ class LabelRegistry:
     def async_delete(self, label_id: str) -> None: ...
     def async_update(self, label_id: str, *, color: str | None | UndefinedType = ..., description: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., name: str | UndefinedType = ...) -> LabelEntry: ...
     async def async_load(self) -> None: ...
-    def async_schedule_save(self) -> None: ...
     def _data_to_save(self) -> dict[str, list[dict[str, str | None]]]: ...
 
 def async_get(hass: HomeAssistant) -> LabelRegistry: ...
 async def async_load(hass: HomeAssistant) -> None: ...
-def _normalize_label_name(label_name: str) -> str: ...

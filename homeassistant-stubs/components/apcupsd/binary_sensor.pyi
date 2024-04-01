@@ -1,4 +1,5 @@
-from . import APCUPSdCoordinator as APCUPSdCoordinator, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
+from .coordinator import APCUPSdCoordinator as APCUPSdCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -14,6 +15,7 @@ _VALUE_ONLINE_MASK: Final[int]
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OnlineStatus(CoordinatorEntity[APCUPSdCoordinator], BinarySensorEntity):
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     _attr_device_info: Incomplete

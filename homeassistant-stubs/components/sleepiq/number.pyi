@@ -11,17 +11,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-@dataclass(frozen=True)
-class SleepIQNumberEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class SleepIQNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[Any], float]
     set_value_fn: Callable[[Any, int], Coroutine[None, None, None]]
     get_name_fn: Callable[[SleepIQBed, Any], str]
     get_unique_id_fn: Callable[[SleepIQBed, Any], str]
-    def __init__(self, value_fn, set_value_fn, get_name_fn, get_unique_id_fn) -> None: ...
-
-@dataclass(frozen=True)
-class SleepIQNumberEntityDescription(NumberEntityDescription, SleepIQNumberEntityDescriptionMixin):
-    def __init__(self, value_fn, set_value_fn, get_name_fn, get_unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, value_fn, set_value_fn, get_name_fn, get_unique_id_fn) -> None: ...
 
 async def _async_set_firmness(sleeper: SleepIQSleeper, firmness: int) -> None: ...
 async def _async_set_actuator_position(actuator: SleepIQActuator, position: int) -> None: ...

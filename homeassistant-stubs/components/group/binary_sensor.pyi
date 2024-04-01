@@ -1,4 +1,4 @@
-from . import GroupEntity as GroupEntity
+from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

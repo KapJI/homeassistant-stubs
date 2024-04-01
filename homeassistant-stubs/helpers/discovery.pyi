@@ -1,3 +1,4 @@
+from ..util.signal_type import SignalTypeFormat as SignalTypeFormat
 from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from collections.abc import Callable as Callable, Coroutine
@@ -6,7 +7,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, TypedDict
 
-SIGNAL_PLATFORM_DISCOVERED: str
+SIGNAL_PLATFORM_DISCOVERED: SignalTypeFormat[DiscoveryDict]
 EVENT_LOAD_PLATFORM: str
 ATTR_PLATFORM: str
 ATTR_DISCOVERED: str

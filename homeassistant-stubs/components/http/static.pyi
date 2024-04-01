@@ -3,7 +3,6 @@ from _typeshed import Incomplete
 from aiohttp.web import Request as Request, StreamResponse as StreamResponse
 from aiohttp.web_urldispatcher import StaticResource
 from collections.abc import Mapping
-from homeassistant.core import HomeAssistant as HomeAssistant
 from lru import LRU
 from pathlib import Path
 from typing import Final

@@ -1,7 +1,7 @@
 from . import MyUplinkDataCoordinator as MyUplinkDataCoordinator
 from .const import DOMAIN as DOMAIN
 from .entity import MyUplinkEntity as MyUplinkEntity
-from .helpers import find_matching_platform as find_matching_platform
+from .helpers import find_matching_platform as find_matching_platform, skip_entity as skip_entity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

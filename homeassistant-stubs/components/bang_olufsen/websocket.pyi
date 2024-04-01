@@ -1,4 +1,4 @@
-from .const import BANG_OLUFSEN_WEBSOCKET_EVENT as BANG_OLUFSEN_WEBSOCKET_EVENT, CONNECTION_STATUS as CONNECTION_STATUS, WEBSOCKET_NOTIFICATION as WEBSOCKET_NOTIFICATION
+from .const import BANG_OLUFSEN_WEBSOCKET_EVENT as BANG_OLUFSEN_WEBSOCKET_EVENT, CONNECTION_STATUS as CONNECTION_STATUS, WebsocketNotification as WebsocketNotification
 from .entity import BangOlufsenBase as BangOlufsenBase
 from .util import get_device as get_device
 from _typeshed import Incomplete

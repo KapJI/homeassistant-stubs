@@ -1,4 +1,5 @@
-from . import APCUPSdCoordinator as APCUPSdCoordinator, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
+from .coordinator import APCUPSdCoordinator as APCUPSdCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -15,6 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 def infer_unit(value: str) -> tuple[str, str | None]: ...
 
 class APCUPSdSensor(CoordinatorEntity[APCUPSdCoordinator], SensorEntity):
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     _attr_device_info: Incomplete

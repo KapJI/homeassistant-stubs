@@ -12,16 +12,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 STEP_SIZE: int
 
-@dataclass(frozen=True)
-class BondButtonEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class BondButtonEntityDescription(ButtonEntityDescription):
+    name: str | None = ...
     mutually_exclusive: Action | None
     argument: int | None
-    def __init__(self, mutually_exclusive, argument) -> None: ...
-
-@dataclass(frozen=True)
-class BondButtonEntityDescription(ButtonEntityDescription, BondButtonEntityDescriptionMixin):
-    name: str | None = ...
-    def __init__(self, mutually_exclusive, argument, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, mutually_exclusive, argument) -> None: ...
 
 STOP_BUTTON: Incomplete
 BUTTONS: tuple[BondButtonEntityDescription, ...]

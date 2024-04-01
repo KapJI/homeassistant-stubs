@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, __version__ as __version__
+from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow, instance_id as instance_id

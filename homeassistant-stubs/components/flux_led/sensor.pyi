@@ -11,7 +11,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FluxPairedRemotes(FluxEntity, SensorEntity):
-    _attr_icon: str
     _attr_entity_category: Incomplete
     _attr_translation_key: str
     @property

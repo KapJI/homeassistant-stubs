@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any
 
 SOURCES: Incomplete

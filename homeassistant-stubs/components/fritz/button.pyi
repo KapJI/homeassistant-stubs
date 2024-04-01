@@ -13,14 +13,10 @@ from typing import Final
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class FritzButtonDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class FritzButtonDescription(ButtonEntityDescription):
     press_action: Callable
-    def __init__(self, press_action) -> None: ...
-
-@dataclass(frozen=True)
-class FritzButtonDescription(ButtonEntityDescription, FritzButtonDescriptionMixin):
-    def __init__(self, press_action, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, press_action) -> None: ...
 
 BUTTONS: Final[Incomplete]
 

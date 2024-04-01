@@ -12,14 +12,10 @@ from typing import Any, Literal
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class TractiveRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class TractiveSwitchEntityDescription(SwitchEntityDescription):
     method: Literal['async_set_buzzer', 'async_set_led', 'async_set_live_tracking']
-    def __init__(self, method) -> None: ...
-
-@dataclass(frozen=True)
-class TractiveSwitchEntityDescription(SwitchEntityDescription, TractiveRequiredKeysMixin):
-    def __init__(self, method, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, method) -> None: ...
 
 SWITCH_TYPES: tuple[TractiveSwitchEntityDescription, ...]
 

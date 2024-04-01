@@ -3,7 +3,7 @@ from .client import CloudClient as CloudClient
 from .const import DOMAIN as DOMAIN
 from .subscription import async_migrate_paypal_agreement as async_migrate_paypal_agreement, async_subscription_info as async_subscription_info
 from hass_nabucasa import Cloud as Cloud
-from homeassistant.components.repairs import RepairsFlow as RepairsFlow, repairs_flow_manager as repairs_flow_manager
+from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow, repairs_flow_manager as repairs_flow_manager
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any

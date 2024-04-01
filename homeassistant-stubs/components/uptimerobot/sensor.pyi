@@ -7,11 +7,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import TypedDict
-
-class StatusValue(TypedDict):
-    value: str
-    icon: str
 
 SENSORS_INFO: Incomplete
 
@@ -20,5 +15,3 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class UptimeRobotSensor(UptimeRobotEntity, SensorEntity):
     @property
     def native_value(self) -> str: ...
-    @property
-    def icon(self) -> str: ...

@@ -14,6 +14,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Any
 
 _LOGGER: Incomplete
+API_CONTROL_DEVICE: str
+API_SET_AUTO_SHUTDOWN: str
 SERVICE_SET_AUTO_OFF_SCHEMA: Incomplete
 SERVICE_TURN_ON_WITH_TIMER_SCHEMA: Incomplete
 

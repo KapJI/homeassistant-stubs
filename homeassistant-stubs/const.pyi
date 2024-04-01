@@ -1,4 +1,5 @@
 from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from .util.signal_type import SignalType as SignalType
 from _typeshed import Incomplete
 from enum import StrEnum
 from typing import Final
@@ -274,6 +275,7 @@ EVENT_LOGGING_CHANGED: Final[str]
 EVENT_SERVICE_REGISTERED: Final[str]
 EVENT_SERVICE_REMOVED: Final[str]
 EVENT_STATE_CHANGED: Final[str]
+EVENT_STATE_REPORTED: Final[str]
 EVENT_THEMES_UPDATED: Final[str]
 EVENT_PANELS_UPDATED: Final[str]
 EVENT_LOVELACE_UPDATED: Final[str]
@@ -354,6 +356,8 @@ ATTR_NAME: Final[str]
 ATTR_ENTITY_ID: Final[str]
 ATTR_AREA_ID: Final[str]
 ATTR_DEVICE_ID: Final[str]
+ATTR_FLOOR_ID: Final[str]
+ATTR_LABEL_ID: Final[str]
 ATTR_FRIENDLY_NAME: Final[str]
 ATTR_ENTITY_PICTURE: Final[str]
 ATTR_IDENTIFIERS: Final[str]
@@ -608,6 +612,7 @@ CONCENTRATION_PARTS_PER_MILLION: Final[str]
 CONCENTRATION_PARTS_PER_BILLION: Final[str]
 
 class UnitOfSpeed(StrEnum):
+    BEAUFORT: str
     FEET_PER_SECOND: str
     METERS_PER_SECOND: str
     KILOMETERS_PER_HOUR: str
@@ -694,11 +699,11 @@ _DEPRECATED_DATA_RATE_GIGABYTES_PER_SECOND: Final[Incomplete]
 _DEPRECATED_DATA_RATE_KIBIBYTES_PER_SECOND: Final[Incomplete]
 _DEPRECATED_DATA_RATE_MEBIBYTES_PER_SECOND: Final[Incomplete]
 _DEPRECATED_DATA_RATE_GIBIBYTES_PER_SECOND: Final[Incomplete]
-COMPRESSED_STATE_STATE: str
-COMPRESSED_STATE_ATTRIBUTES: str
-COMPRESSED_STATE_CONTEXT: str
-COMPRESSED_STATE_LAST_CHANGED: str
-COMPRESSED_STATE_LAST_UPDATED: str
+COMPRESSED_STATE_STATE: Final[str]
+COMPRESSED_STATE_ATTRIBUTES: Final[str]
+COMPRESSED_STATE_CONTEXT: Final[str]
+COMPRESSED_STATE_LAST_CHANGED: Final[str]
+COMPRESSED_STATE_LAST_UPDATED: Final[str]
 SERVICE_TURN_ON: Final[str]
 SERVICE_TURN_OFF: Final[str]
 SERVICE_TOGGLE: Final[str]
@@ -792,7 +797,7 @@ ENTITY_CATEGORIES: Final[list[str]]
 CAST_APP_ID_HOMEASSISTANT_MEDIA: Final[str]
 CAST_APP_ID_HOMEASSISTANT_LOVELACE: Final[str]
 HASSIO_USER_NAME: str
-SIGNAL_BOOTSTRAP_INTEGRATIONS: str
+SIGNAL_BOOTSTRAP_INTEGRATIONS: SignalType[dict[str, float]]
 KEY_DATA_LOGGING: str
 FORMAT_DATE: Final[str]
 FORMAT_TIME: Final[str]

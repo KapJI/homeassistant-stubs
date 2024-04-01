@@ -20,15 +20,11 @@ ATTR_DESCR: str
 ATTR_LEVEL: str
 ATTR_STATION: str
 
-@dataclass(frozen=True)
-class AirNowEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class AirNowEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Any], StateType]
     extra_state_attributes_fn: Callable[[Any], dict[str, str]] | None
-    def __init__(self, value_fn, extra_state_attributes_fn) -> None: ...
-
-@dataclass(frozen=True)
-class AirNowEntityDescription(SensorEntityDescription, AirNowEntityDescriptionMixin):
-    def __init__(self, value_fn, extra_state_attributes_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, extra_state_attributes_fn) -> None: ...
 
 def station_extra_attrs(data: dict[str, Any]) -> dict[str, Any]: ...
 

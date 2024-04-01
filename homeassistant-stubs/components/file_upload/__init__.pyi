@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Iterator
 from dataclasses import dataclass
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback

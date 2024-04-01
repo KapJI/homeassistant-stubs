@@ -22,15 +22,14 @@ ATTR_LAST_TIMESTAMP: str
 ATTR_RING_STATE: str
 ATTR_TILE_NAME: str
 ATTR_VOIP_STATE: str
-DEFAULT_ICON: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: AsyncSeeCallback, discovery_info: DiscoveryInfoType | None = None) -> bool: ...
 
 class TileDeviceTracker(CoordinatorEntity[DataUpdateCoordinator[None]], TrackerEntity):
-    _attr_icon = DEFAULT_ICON
     _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _attr_translation_key: str
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     _entry: Incomplete

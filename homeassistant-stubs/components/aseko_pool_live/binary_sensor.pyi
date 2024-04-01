@@ -10,14 +10,10 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-@dataclass(frozen=True)
-class AsekoBinarySensorDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class AsekoBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[Unit], bool]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass(frozen=True)
-class AsekoBinarySensorEntityDescription(BinarySensorEntityDescription, AsekoBinarySensorDescriptionMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn) -> None: ...
 
 UNIT_BINARY_SENSORS: tuple[AsekoBinarySensorEntityDescription, ...]
 

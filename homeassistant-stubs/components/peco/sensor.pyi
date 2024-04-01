@@ -12,15 +12,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Final
 
-@dataclass(frozen=True)
-class PECOSensorEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class PECOSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[PECOCoordinatorData], int | str]
     attribute_fn: Callable[[PECOCoordinatorData], dict[str, str]]
-    def __init__(self, value_fn, attribute_fn) -> None: ...
-
-@dataclass(frozen=True)
-class PECOSensorEntityDescription(SensorEntityDescription, PECOSensorEntityDescriptionMixin):
-    def __init__(self, value_fn, attribute_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, attribute_fn) -> None: ...
 
 PARALLEL_UPDATES: Final[int]
 SENSOR_LIST: tuple[PECOSensorEntityDescription, ...]

@@ -9,7 +9,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components import sensor as sensor
-from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, RestoreSensor as RestoreSensor, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorExtraStoredData as SensorExtraStoredData
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, RestoreSensor as RestoreSensor, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorExtraStoredData as SensorExtraStoredData, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_FORCE_UPDATE as CONF_FORCE_UPDATE, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, State as State, callback as callback
@@ -26,6 +26,9 @@ MQTT_SENSOR_ATTRIBUTES_BLOCKED: Incomplete
 DEFAULT_NAME: str
 DEFAULT_FORCE_UPDATE: bool
 _PLATFORM_SCHEMA_BASE: Incomplete
+
+def validate_sensor_state_class_config(config: ConfigType) -> ConfigType: ...
+
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 

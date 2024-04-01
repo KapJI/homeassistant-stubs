@@ -1,6 +1,6 @@
 from .const import PLATFORMS as PLATFORMS
-from .device import AxisNetworkDevice as AxisNetworkDevice, get_axis_device as get_axis_device
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
+from .hub import AxisHub as AxisHub, get_axis_api as get_axis_api
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP

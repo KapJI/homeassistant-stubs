@@ -19,6 +19,7 @@ from typing import Any, Final
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
+HDR_MODES: Incomplete
 INFRARED_MODES: Incomplete
 CHIME_TYPES: Incomplete
 MOUNT_TYPES: Incomplete

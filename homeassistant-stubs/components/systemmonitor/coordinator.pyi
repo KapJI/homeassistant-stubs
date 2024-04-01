@@ -1,16 +1,30 @@
-import abc
 import psutil_home_assistant as ha_psutil
 from _typeshed import Incomplete
-from abc import abstractmethod
+from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
-from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator, UpdateFailed as UpdateFailed
-from psutil import Process
-from psutil._common import sdiskusage, shwtemp, snetio, snicaddr, sswap
-from typing import NamedTuple, TypeVar
+from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
+from psutil import Process as Process
+from psutil._common import sdiskusage as sdiskusage, shwtemp as shwtemp, snetio as snetio, snicaddr as snicaddr, sswap as sswap
+from typing import Any, NamedTuple
 
 _LOGGER: Incomplete
+
+@dataclass(frozen=True, kw_only=True, slots=True)
+class SensorData:
+    disk_usage: dict[str, sdiskusage]
+    swap: sswap
+    memory: VirtualMemory
+    io_counters: dict[str, snetio]
+    addresses: dict[str, list[snicaddr]]
+    load: tuple[float, float, float]
+    cpu_percent: float | None
+    boot_time: datetime
+    processes: list[Process]
+    temperatures: dict[str, list[shwtemp]]
+    def as_dict(self) -> dict[str, Any]: ...
+    def __init__(self, *, disk_usage, swap, memory, io_counters, addresses, load, cpu_percent, boot_time, processes, temperatures) -> None: ...
 
 class VirtualMemory(NamedTuple):
     total: float
@@ -18,45 +32,14 @@ class VirtualMemory(NamedTuple):
     percent: float
     used: float
     free: float
-dataT = TypeVar('dataT', bound=datetime | dict[str, list[shwtemp]] | dict[str, list[snicaddr]] | dict[str, snetio] | float | list[Process] | sswap | VirtualMemory | tuple[float, float, float] | sdiskusage | None)
 
-class MonitorCoordinator(TimestampDataUpdateCoordinator[dataT], metaclass=abc.ABCMeta):
+class SystemMonitorCoordinator(TimestampDataUpdateCoordinator[SensorData]):
     _psutil: Incomplete
-    def __init__(self, hass: HomeAssistant, psutil_wrapper: ha_psutil.PsutilWrapper, name: str) -> None: ...
-    async def _async_update_data(self) -> dataT: ...
-    @abstractmethod
-    def update_data(self) -> dataT: ...
-
-class SystemMonitorDiskCoordinator(MonitorCoordinator[sdiskusage]):
-    _argument: Incomplete
-    def __init__(self, hass: HomeAssistant, psutil_wrapper: ha_psutil.PsutilWrapper, name: str, argument: str) -> None: ...
-    def update_data(self) -> sdiskusage: ...
-
-class SystemMonitorSwapCoordinator(MonitorCoordinator[sswap]):
-    def update_data(self) -> sswap: ...
-
-class SystemMonitorMemoryCoordinator(MonitorCoordinator[VirtualMemory]):
-    def update_data(self) -> VirtualMemory: ...
-
-class SystemMonitorNetIOCoordinator(MonitorCoordinator[dict[str, snetio]]):
-    def update_data(self) -> dict[str, snetio]: ...
-
-class SystemMonitorNetAddrCoordinator(MonitorCoordinator[dict[str, list[snicaddr]]]):
-    def update_data(self) -> dict[str, list[snicaddr]]: ...
-
-class SystemMonitorLoadCoordinator(MonitorCoordinator[tuple[float, float, float] | None]):
-    def update_data(self) -> tuple[float, float, float] | None: ...
-    async def _async_update_data(self) -> tuple[float, float, float] | None: ...
-
-class SystemMonitorProcessorCoordinator(MonitorCoordinator[float | None]):
-    def update_data(self) -> float | None: ...
-    async def _async_update_data(self) -> float | None: ...
-
-class SystemMonitorBootTimeCoordinator(MonitorCoordinator[datetime]):
-    def update_data(self) -> datetime: ...
-
-class SystemMonitorProcessCoordinator(MonitorCoordinator[list[Process]]):
-    def update_data(self) -> list[Process]: ...
-
-class SystemMonitorCPUtempCoordinator(MonitorCoordinator[dict[str, list[shwtemp]]]):
-    def update_data(self) -> dict[str, list[shwtemp]]: ...
+    _arguments: Incomplete
+    boot_time: Incomplete
+    _initial_update: bool
+    update_subscribers: Incomplete
+    def __init__(self, hass: HomeAssistant, psutil_wrapper: ha_psutil.PsutilWrapper, arguments: list[str]) -> None: ...
+    def set_subscribers_tuples(self, arguments: list[str]) -> dict[tuple[str, str], set[str]]: ...
+    async def _async_update_data(self) -> SensorData: ...
+    def update_data(self) -> dict[str, Any]: ...

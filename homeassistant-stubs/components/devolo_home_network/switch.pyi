@@ -15,16 +15,12 @@ from typing import Any, Generic, TypeVar
 
 _DataT = TypeVar('_DataT', bound=WifiGuestAccessGet | bool)
 
-@dataclass(frozen=True)
-class DevoloSwitchRequiredKeysMixin(Generic[_DataT]):
+@dataclass(frozen=True, kw_only=True)
+class DevoloSwitchEntityDescription(SwitchEntityDescription, Generic[_DataT]):
     is_on_func: Callable[[_DataT], bool]
     turn_on_func: Callable[[Device], Awaitable[bool]]
     turn_off_func: Callable[[Device], Awaitable[bool]]
-    def __init__(self, is_on_func, turn_on_func, turn_off_func) -> None: ...
-
-@dataclass(frozen=True)
-class DevoloSwitchEntityDescription(SwitchEntityDescription, DevoloSwitchRequiredKeysMixin[_DataT]):
-    def __init__(self, is_on_func, turn_on_func, turn_off_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, is_on_func, turn_on_func, turn_off_func) -> None: ...
 
 SWITCH_TYPES: dict[str, DevoloSwitchEntityDescription[Any]]
 

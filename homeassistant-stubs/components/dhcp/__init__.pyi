@@ -1,9 +1,7 @@
-import abc
 import aiodhcpwatcher
 import re
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
@@ -15,7 +13,7 @@ from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceRegistry as DeviceRegistry, async_get as async_get, format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_added_domain as async_track_state_added_domain, async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as async_get_dhcp
 from typing import Any, Final
 
@@ -45,15 +43,13 @@ class DhcpMatchers:
 def async_index_integration_matchers(integration_matchers: list[DHCPMatcher]) -> DhcpMatchers: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
-class WatcherBase(ABC, metaclass=abc.ABCMeta):
+class WatcherBase:
     hass: Incomplete
     _integration_matchers: Incomplete
     _address_data: Incomplete
     _unsub: Incomplete
     def __init__(self, hass: HomeAssistant, address_data: dict[str, dict[str, str]], integration_matchers: DhcpMatchers) -> None: ...
     def async_stop(self) -> None: ...
-    @abstractmethod
-    def async_start(self) -> None: ...
     def async_process_client(self, ip_address: str, hostname: str, unformatted_mac_address: str) -> None: ...
 
 class NetworkWatcher(WatcherBase):
@@ -69,7 +65,7 @@ class NetworkWatcher(WatcherBase):
 class DeviceTrackerWatcher(WatcherBase):
     _unsub: Incomplete
     def async_start(self) -> None: ...
-    def _async_process_device_event(self, event: EventType[EventStateChangedData]) -> None: ...
+    def _async_process_device_event(self, event: Event[EventStateChangedData]) -> None: ...
     def _async_process_device_state(self, state: State | None) -> None: ...
 
 class DeviceTrackerRegisteredWatcher(WatcherBase):
@@ -80,7 +76,7 @@ class DeviceTrackerRegisteredWatcher(WatcherBase):
 class DHCPWatcher(WatcherBase):
     def _async_process_dhcp_request(self, response: aiodhcpwatcher.DHCPRequest) -> None: ...
     _unsub: Incomplete
-    def async_start(self) -> None: ...
+    async def async_start(self) -> None: ...
 
 def _compile_fnmatch(pattern: str) -> re.Pattern: ...
 def _memorized_fnmatch(name: str, pattern: str) -> bool: ...

@@ -12,18 +12,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyoverkiz.types import StateType as OverkizStateType
 from typing import Any
 
-@dataclass(frozen=True)
-class OverkizSwitchDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class OverkizSwitchDescription(SwitchEntityDescription):
     turn_on: str
     turn_off: str
-    def __init__(self, turn_on, turn_off) -> None: ...
-
-@dataclass(frozen=True)
-class OverkizSwitchDescription(SwitchEntityDescription, OverkizSwitchDescriptionMixin):
     is_on: Callable[[Callable[[str], OverkizStateType]], bool] | None = ...
     turn_on_args: OverkizStateType | list[OverkizStateType] | None = ...
     turn_off_args: OverkizStateType | list[OverkizStateType] | None = ...
-    def __init__(self, turn_on, turn_off, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, is_on, turn_on_args, turn_off_args) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, turn_on, turn_off, is_on, turn_on_args, turn_off_args) -> None: ...
 
 SWITCH_DESCRIPTIONS: list[OverkizSwitchDescription]
 SUPPORTED_DEVICES: Incomplete

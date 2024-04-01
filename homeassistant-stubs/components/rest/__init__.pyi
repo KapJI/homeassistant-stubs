@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFA
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config, async_reload_integration_platforms as async_reload_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete

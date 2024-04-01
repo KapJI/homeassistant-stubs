@@ -1,3 +1,4 @@
+import asyncio
 from .const import DOMAIN as DOMAIN
 from .data import EnergyManager as EnergyManager, async_get_manager as async_get_manager
 from _typeshed import Incomplete
@@ -12,7 +13,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import unit_conversion as unit_conversion
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
-from typing import Final, Literal
+from typing import Any, Final, Literal
 
 SUPPORTED_STATE_CLASSES: Incomplete
 VALID_ENERGY_UNITS: set[str]
@@ -43,6 +44,8 @@ class SensorManager:
     async def _process_manager_data(self) -> None: ...
     def _process_sensor_data(self, adapter: SourceAdapter, config: dict, to_add: list[EnergyCostSensor], to_remove: dict[tuple[str, str | None, str], EnergyCostSensor]) -> None: ...
 
+def _set_result_unless_done(future: asyncio.Future[None]) -> None: ...
+
 class EnergyCostSensor(SensorEntity):
     _attr_entity_registry_visible_default: bool
     _attr_should_poll: bool
@@ -62,6 +65,7 @@ class EnergyCostSensor(SensorEntity):
     def _update_cost(self) -> None: ...
     _attr_name: Incomplete
     async def async_added_to_hass(self) -> None: ...
+    def _async_state_changed_listener(self, *_: Any) -> None: ...
     def add_to_platform_abort(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     def update_config(self, config: dict) -> None: ...

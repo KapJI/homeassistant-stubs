@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .util import get_usb_service_info as get_usb_service_info
+from .util import get_hardware_variant as get_hardware_variant, get_usb_service_info as get_usb_service_info
 from homeassistant.components import usb as usb
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import check_multi_pan_addon as check_multi_pan_addon, get_zigbee_socket as get_zigbee_socket, multi_pan_addon_using_device as multi_pan_addon_using_device
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HARDWARE as SOURCE_HARDWARE

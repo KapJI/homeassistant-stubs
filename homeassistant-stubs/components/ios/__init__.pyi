@@ -2,7 +2,7 @@ from .const import CONF_ACTIONS as CONF_ACTIONS, CONF_ACTION_BACKGROUND_COLOR as
 from _typeshed import Incomplete
 from aiohttp import web as web
 from homeassistant import config_entries as config_entries
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

@@ -14,7 +14,7 @@ class OpenSkySensor(CoordinatorEntity[OpenSkyDataUpdateCoordinator], SensorEntit
     _attr_attribution: str
     _attr_has_entity_name: bool
     _attr_name: Incomplete
-    _attr_icon: str
+    _attr_translation_key: str
     _attr_native_unit_of_measurement: str
     _attr_state_class: Incomplete
     _attr_unique_id: Incomplete

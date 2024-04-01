@@ -1,6 +1,7 @@
 from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DISPATCH_ADOPT as DISPATCH_ADOPT, DISPATCH_CHANNELS as DISPATCH_CHANNELS, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
+from .utils import get_camera_base_name as get_camera_base_name
 from _typeshed import Incomplete
 from collections.abc import Generator
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
@@ -8,13 +9,15 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
 from pyunifiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
 from typing import Any
 
 _LOGGER: Incomplete
 
-def get_camera_channels(data: ProtectData, ufp_device: UFPCamera | None = None) -> Generator[tuple[UFPCamera, CameraChannel, bool], None, None]: ...
-def _async_camera_entities(data: ProtectData, ufp_device: UFPCamera | None = None) -> list[ProtectDeviceEntity]: ...
+def _create_rtsp_repair(hass: HomeAssistant, entry: ConfigEntry, data: ProtectData, camera: UFPCamera) -> None: ...
+def _get_camera_channels(hass: HomeAssistant, entry: ConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> Generator[tuple[UFPCamera, CameraChannel, bool], None, None]: ...
+def _async_camera_entities(hass: HomeAssistant, entry: ConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> list[ProtectDeviceEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ProtectCamera(ProtectDeviceEntity, Camera):

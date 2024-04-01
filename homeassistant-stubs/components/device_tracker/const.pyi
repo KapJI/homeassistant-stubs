@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Final
 
 LOGGER: Final[Incomplete]
@@ -36,7 +37,7 @@ ATTR_MAC: Final[str]
 ATTR_SOURCE_TYPE: Final[str]
 ATTR_CONSIDER_HOME: Final[str]
 ATTR_IP: Final[str]
-CONNECTED_DEVICE_REGISTERED: Final[str]
+CONNECTED_DEVICE_REGISTERED: Incomplete
 __getattr__: Incomplete
 __dir__: Incomplete
 __all__: Incomplete

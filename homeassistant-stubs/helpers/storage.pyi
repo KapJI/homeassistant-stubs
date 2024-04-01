@@ -1,20 +1,43 @@
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Mapping, Sequence
+from collections.abc import Callable as Callable, Iterable, Mapping, Sequence
 from functools import cached_property as cached_property
-from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE
+from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.loader import MAX_LOAD_CONCURRENTLY as MAX_LOAD_CONCURRENTLY, bind_hass as bind_hass
+from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util import json as json_util
 from homeassistant.util.file import WriteError as WriteError
 from json import JSONEncoder
 from typing import Any, Generic, TypeVar
 
+MAX_LOAD_CONCURRENTLY: int
 STORAGE_DIR: str
 _LOGGER: Incomplete
 STORAGE_SEMAPHORE: str
+STORAGE_MANAGER: str
+MANAGER_CLEANUP_DELAY: int
 _T = TypeVar('_T', bound=Mapping[str, Any] | Sequence[Any])
 
 async def async_migrator(hass: HomeAssistant, old_path: str, store: Store[_T], *, old_conf_load_func: Callable | None = None, old_conf_migrate_func: Callable | None = None) -> _T | None: ...
+def get_internal_store_manager(hass: HomeAssistant, config_dir: str | None = None) -> _StoreManager: ...
+
+class _StoreManager:
+    _hass: Incomplete
+    _invalidated: Incomplete
+    _files: Incomplete
+    _data_preload: Incomplete
+    _storage_path: Incomplete
+    _cancel_cleanup: Incomplete
+    def __init__(self, hass: HomeAssistant, config_dir: str) -> None: ...
+    async def async_initialize(self) -> None: ...
+    def async_invalidate(self, key: str) -> None: ...
+    def async_fetch(self, key: str) -> tuple[bool, json_util.JsonValueType | None] | None: ...
+    def _async_schedule_cleanup(self, _event: Event) -> None: ...
+    def _async_cancel_and_cleanup(self, _event: Event) -> None: ...
+    def _async_cleanup(self) -> None: ...
+    async def async_preload(self, keys: Iterable[str]) -> None: ...
+    def _preload(self, keys: Iterable[str]) -> None: ...
+    def _initialize_files(self) -> None: ...
 
 class Store(Generic[_T]):
     version: Incomplete
@@ -31,7 +54,8 @@ class Store(Generic[_T]):
     _atomic_writes: Incomplete
     _read_only: Incomplete
     _next_write_time: float
-    def __init__(self, hass: HomeAssistant, version: int, key: str, private: bool = False, *, atomic_writes: bool = False, encoder: type[JSONEncoder] | None = None, minor_version: int = 1, read_only: bool = False) -> None: ...
+    _manager: Incomplete
+    def __init__(self, hass: HomeAssistant, version: int, key: str, private: bool = False, *, atomic_writes: bool = False, encoder: type[JSONEncoder] | None = None, minor_version: int = 1, read_only: bool = False, config_dir: str | None = None) -> None: ...
     @cached_property
     def path(self): ...
     async def async_load(self) -> _T | None: ...

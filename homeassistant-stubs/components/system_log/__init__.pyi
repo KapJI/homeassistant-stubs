@@ -1,5 +1,6 @@
 import logging
 import re
+import traceback
 from _typeshed import Incomplete
 from collections import OrderedDict
 from homeassistant.components import websocket_api as websocket_api
@@ -25,7 +26,7 @@ CONFIG_SCHEMA: Incomplete
 SERVICE_CLEAR_SCHEMA: Incomplete
 SERVICE_WRITE_SCHEMA: Incomplete
 
-def _figure_out_source(record: logging.LogRecord, paths_re: re.Pattern[str]) -> tuple[str, int]: ...
+def _figure_out_source(record: logging.LogRecord, paths_re: re.Pattern[str], extracted_tb: traceback.StackSummary | None = None) -> tuple[str, int]: ...
 def _safe_get_message(record: logging.LogRecord) -> str: ...
 
 class LogEntry:
@@ -38,8 +39,9 @@ class LogEntry:
     root_cause: Incomplete
     source: Incomplete
     count: int
+    extracted_tb: Incomplete
     key: Incomplete
-    def __init__(self, record: logging.LogRecord, source: tuple[str, int]) -> None: ...
+    def __init__(self, record: logging.LogRecord, paths_re: re.Pattern, figure_out_source: bool = False) -> None: ...
     def to_dict(self) -> dict[str, Any]: ...
 
 class DedupStore(OrderedDict[KeyType, LogEntry]):

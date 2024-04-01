@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .manager import BackupManager as BackupManager
 from aiohttp.web import FileResponse, Request as Request, Response
-from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
 

@@ -12,14 +12,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-@dataclass(frozen=True)
-class StarlinkBinarySensorEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class StarlinkBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[StarlinkData], bool | None]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass(frozen=True)
-class StarlinkBinarySensorEntityDescription(BinarySensorEntityDescription, StarlinkBinarySensorEntityDescriptionMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn) -> None: ...
 
 class StarlinkBinarySensorEntity(StarlinkEntity, BinarySensorEntity):
     entity_description: StarlinkBinarySensorEntityDescription

@@ -101,6 +101,16 @@ class SpeedConverter(BaseUnitConverter):
     NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
+    @classmethod
+    def converter_factory(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float], float]: ...
+    @classmethod
+    def converter_factory_allow_none(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float | None], float | None]: ...
+    @classmethod
+    def _converter_factory(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float], float]: ...
+    @classmethod
+    def _ms_to_beaufort(cls, ms: float) -> float: ...
+    @classmethod
+    def _beaufort_to_ms(cls, beaufort: float) -> float: ...
 
 class TemperatureConverter(BaseUnitConverter):
     UNIT_CLASS: str

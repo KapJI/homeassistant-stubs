@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from pyunifiprotect import ProtectApiClient
-from pyunifiprotect.data import Bootstrap as Bootstrap, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
+from pyunifiprotect.data import Bootstrap as Bootstrap, CameraChannel as CameraChannel, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any
 
 _SENTINEL: Incomplete
@@ -21,3 +21,4 @@ def async_get_devices(bootstrap: Bootstrap, model_type: Iterable[ModelType]) -> 
 def async_get_light_motion_current(obj: Light) -> str: ...
 def async_dispatch_id(entry: ConfigEntry, dispatch: str) -> str: ...
 def async_create_api_client(hass: HomeAssistant, entry: ConfigEntry) -> ProtectApiClient: ...
+def get_camera_base_name(channel: CameraChannel) -> str: ...

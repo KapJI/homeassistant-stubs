@@ -14,18 +14,14 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class BMWRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class BMWSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[MyBMWVehicle], bool]
     remote_service_on: Callable[[MyBMWVehicle], Coroutine[Any, Any, Any]]
     remote_service_off: Callable[[MyBMWVehicle], Coroutine[Any, Any, Any]]
-    def __init__(self, value_fn, remote_service_on, remote_service_off) -> None: ...
-
-@dataclass(frozen=True)
-class BMWSwitchEntityDescription(SwitchEntityDescription, BMWRequiredKeysMixin):
     is_available: Callable[[MyBMWVehicle], bool] = ...
     dynamic_options: Callable[[MyBMWVehicle], list[str]] | None = ...
-    def __init__(self, value_fn, remote_service_on, remote_service_off, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, is_available, dynamic_options) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, remote_service_on, remote_service_off, is_available, dynamic_options) -> None: ...
 
 CHARGING_STATE_ON: Incomplete
 NUMBER_TYPES: list[BMWSwitchEntityDescription]

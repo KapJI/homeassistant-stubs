@@ -1,5 +1,5 @@
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, CodeFormat as CodeFormat, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,7 @@ from pydeconz.models.sensor.ancillary_control import AncillaryControl
 
 DECONZ_TO_ALARM_STATE: Incomplete
 
-def get_alarm_system_id_for_unique_id(gateway: DeconzGateway, unique_id: str) -> str | None: ...
+def get_alarm_system_id_for_unique_id(hub: DeconzHub, unique_id: str) -> str | None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzAlarmControlPanel(DeconzDevice[AncillaryControl], AlarmControlPanelEntity):
@@ -20,7 +20,7 @@ class DeconzAlarmControlPanel(DeconzDevice[AncillaryControl], AlarmControlPanelE
     _attr_code_format: Incomplete
     _attr_supported_features: Incomplete
     alarm_system_id: Incomplete
-    def __init__(self, device: AncillaryControl, gateway: DeconzGateway, alarm_system_id: str) -> None: ...
+    def __init__(self, device: AncillaryControl, hub: DeconzHub, alarm_system_id: str) -> None: ...
     def async_update_callback(self) -> None: ...
     @property
     def state(self) -> str | None: ...

@@ -16,15 +16,11 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-@dataclass(frozen=True)
-class SwitcherThermostatButtonDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class SwitcherThermostatButtonEntityDescription(ButtonEntityDescription):
     press_fn: Callable[[SwitcherType2Api, SwitcherBreezeRemote], SwitcherBaseResponse]
     supported: Callable[[SwitcherBreezeRemote], bool]
-    def __init__(self, press_fn, supported) -> None: ...
-
-@dataclass(frozen=True)
-class SwitcherThermostatButtonEntityDescription(ButtonEntityDescription, SwitcherThermostatButtonDescriptionMixin):
-    def __init__(self, press_fn, supported, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, press_fn, supported) -> None: ...
 
 THERMOSTAT_BUTTONS: Incomplete
 

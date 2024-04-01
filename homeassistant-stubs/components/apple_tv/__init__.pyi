@@ -22,6 +22,9 @@ BACKOFF_TIME_UPPER_LIMIT: int
 SIGNAL_CONNECTED: str
 SIGNAL_DISCONNECTED: str
 PLATFORMS: Incomplete
+AUTH_EXCEPTIONS: Incomplete
+CONNECTION_TIMEOUT_EXCEPTIONS: Incomplete
+DEVICE_EXCEPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

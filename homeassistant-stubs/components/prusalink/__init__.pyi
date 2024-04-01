@@ -8,8 +8,8 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterStatus, PrusaLink
 from typing import TypeVar

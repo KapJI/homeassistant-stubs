@@ -17,14 +17,10 @@ from nettigo_air_monitor import NAMSensors as NAMSensors
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class NAMSensorRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class NAMSensorEntityDescription(SensorEntityDescription):
     value: Callable[[NAMSensors], StateType | datetime]
-    def __init__(self, value) -> None: ...
-
-@dataclass(frozen=True)
-class NAMSensorEntityDescription(SensorEntityDescription, NAMSensorRequiredKeysMixin):
-    def __init__(self, value, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value) -> None: ...
 
 SENSORS: tuple[NAMSensorEntityDescription, ...]
 

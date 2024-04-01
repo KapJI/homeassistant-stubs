@@ -5,9 +5,11 @@ from .core import ConfigSource as ConfigSource, HomeAssistant as HomeAssistant, 
 from .exceptions import ConfigValidationError as ConfigValidationError, HomeAssistantError as HomeAssistantError
 from .generated.currencies import HISTORIC_CURRENCIES as HISTORIC_CURRENCIES
 from .helpers.entity_values import EntityValues as EntityValues
+from .helpers.translation import async_get_exception_message as async_get_exception_message
 from .helpers.typing import ConfigType as ConfigType
 from .loader import ComponentProtocol as ComponentProtocol, Integration as Integration, IntegrationNotFound as IntegrationNotFound
 from .requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
+from .util.async_ import create_eager_task as create_eager_task
 from .util.package import is_docker_env as is_docker_env
 from .util.unit_system import get_unit_system as get_unit_system, validate_unit_system as validate_unit_system
 from .util.yaml import SECRET_YAML as SECRET_YAML, Secrets as Secrets, YamlTypeError as YamlTypeError, load_yaml_dict as load_yaml_dict
@@ -43,11 +45,12 @@ class ConfigErrorTranslationKey(StrEnum):
     CONFIG_PLATFORM_IMPORT_ERR: str
     CONFIG_VALIDATOR_UNKNOWN_ERR: str
     CONFIG_SCHEMA_UNKNOWN_ERR: str
-    PLATFORM_VALIDATOR_UNKNOWN_ERR: str
     PLATFORM_COMPONENT_LOAD_ERR: str
     PLATFORM_COMPONENT_LOAD_EXC: str
     PLATFORM_SCHEMA_VALIDATOR_ERR: str
-    INTEGRATION_CONFIG_ERROR: str
+    MULTIPLE_INTEGRATION_CONFIG_ERRORS: str
+
+_CONFIG_LOG_SHOW_STACK_TRACE: dict[ConfigErrorTranslationKey, bool]
 
 @dataclass
 class ConfigExceptionInfo:
@@ -108,8 +111,20 @@ async def async_process_component_and_handle_errors(hass: HomeAssistant, config:
 def async_drop_config_annotations(integration_config_info: IntegrationConfigInfo, integration: Integration) -> ConfigType | None: ...
 def async_handle_component_errors(hass: HomeAssistant, integration_config_info: IntegrationConfigInfo, integration: Integration, raise_on_failure: bool = False) -> None: ...
 def config_per_platform(config: ConfigType, domain: str) -> Iterable[tuple[str | None, ConfigType]]: ...
+def extract_platform_integrations(config: ConfigType, domains: set[str]) -> dict[str, set[str]]: ...
 def extract_domain_configs(config: ConfigType, domain: str) -> Sequence[str]: ...
-async def async_process_component_config(hass: HomeAssistant, config: ConfigType, integration: Integration) -> IntegrationConfigInfo: ...
+
+@dataclass(slots=True)
+class _PlatformIntegration:
+    path: str
+    name: str
+    integration: Integration
+    config: ConfigType
+    validated_config: ConfigType
+    def __init__(self, path, name, integration, config, validated_config) -> None: ...
+
+async def _async_load_and_validate_platform_integration(domain: str, integration_docs: str | None, config_exceptions: list[ConfigExceptionInfo], p_integration: _PlatformIntegration) -> ConfigType | None: ...
+async def async_process_component_config(hass: HomeAssistant, config: ConfigType, integration: Integration, component: ComponentProtocol | None = None) -> IntegrationConfigInfo: ...
 def config_without_domain(config: ConfigType, domain: str) -> ConfigType: ...
 async def async_check_ha_config_file(hass: HomeAssistant) -> str | None: ...
 def safe_mode_enabled(config_dir: str) -> bool: ...

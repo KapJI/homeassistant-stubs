@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.singleton import singleton as singleton
 from homeassistant.helpers.storage import Store as Store
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any
 
 _LOGGER: Incomplete

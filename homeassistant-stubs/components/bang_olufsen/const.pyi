@@ -3,35 +3,35 @@ from homeassistant.components.media_player import MediaPlayerState as MediaPlaye
 from mozart_api.models import SourceArray
 from typing import Final
 
-class SOURCE_ENUM(StrEnum):
-    uriStreamer: str
-    bluetooth: str
-    airPlay: str
-    chromeCast: str
-    spotify: str
-    generator: str
-    lineIn: str
-    spdif: str
-    netRadio: str
-    local: str
-    dlna: str
-    qplay: str
-    wpl: str
-    pl: str
-    tv: str
-    deezer: str
-    beolink: str
-    tidalConnect: str
+class BangOlufsenSource(StrEnum):
+    URI_STREAMER: str
+    BLUETOOTH: str
+    AIR_PLAY: str
+    CHROMECAST: str
+    SPOTIFY: str
+    GENERATOR: str
+    LINE_IN: str
+    SPDIF: str
+    NET_RADIO: str
+    LOCAL: str
+    DLNA: str
+    QPLAY: str
+    WPL: str
+    PL: str
+    TV: str
+    DEEZER: str
+    BEOLINK: str
+    TIDAL_CONNECT: str
 
 BANG_OLUFSEN_STATES: dict[str, MediaPlayerState]
 
-class BANG_OLUFSEN_MEDIA_TYPE(StrEnum):
+class BangOlufsenMediaType(StrEnum):
     FAVOURITE: str
     DEEZER: str
     RADIO: str
     TTS: str
 
-class MODEL_ENUM(StrEnum):
+class BangOlufsenModel(StrEnum):
     BEOLAB_8: str
     BEOLAB_28: str
     BEOSOUND_2: str
@@ -42,7 +42,7 @@ class MODEL_ENUM(StrEnum):
     BEOSOUND_LEVEL: str
     BEOSOUND_THEATRE: str
 
-class WEBSOCKET_NOTIFICATION(StrEnum):
+class WebsocketNotification(StrEnum):
     PLAYBACK_ERROR: Final[str]
     PLAYBACK_METADATA: Final[str]
     PLAYBACK_PROGRESS: Final[str]

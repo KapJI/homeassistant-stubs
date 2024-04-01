@@ -6,6 +6,7 @@ from homeassistant.const import CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.util.decorator import Registry as Registry
 from typing import Any
 

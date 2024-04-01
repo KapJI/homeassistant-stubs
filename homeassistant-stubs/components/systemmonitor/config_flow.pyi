@@ -3,8 +3,8 @@ from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN
 from .util import get_all_running_processes as get_all_running_processes
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult
 from homeassistant.core import callback as callback
-from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
@@ -25,4 +25,4 @@ class SystemMonitorConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
-    def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> FlowResult: ...
+    def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> ConfigFlowResult: ...

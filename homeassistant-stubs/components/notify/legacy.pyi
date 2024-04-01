@@ -10,7 +10,7 @@ from homeassistant.helpers.service import async_set_service_schema as async_set_
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
-from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
+from homeassistant.setup import SetupPhases as SetupPhases, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util import slugify as slugify
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from typing import Any, Protocol

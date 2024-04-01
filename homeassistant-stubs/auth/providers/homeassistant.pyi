@@ -1,10 +1,9 @@
 from . import AUTH_PROVIDERS as AUTH_PROVIDERS, AUTH_PROVIDER_SCHEMA as AUTH_PROVIDER_SCHEMA, AuthProvider as AuthProvider, LoginFlow as LoginFlow
-from ..models import Credentials as Credentials, UserMeta as UserMeta
+from ..models import AuthFlowResult as AuthFlowResult, Credentials as Credentials, UserMeta as UserMeta
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.storage import Store as Store
 from typing import Any
@@ -54,4 +53,4 @@ class HassAuthProvider(AuthProvider):
     async def async_will_remove_credentials(self, credentials: Credentials) -> None: ...
 
 class HassLoginFlow(LoginFlow):
-    async def async_step_init(self, user_input: dict[str, str] | None = None) -> FlowResult: ...
+    async def async_step_init(self, user_input: dict[str, str] | None = None) -> AuthFlowResult: ...

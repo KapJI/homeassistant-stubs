@@ -11,7 +11,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class IPSensor(SensorEntity):
     _attr_unique_id = SENSOR
-    _attr_icon: str
+    _attr_translation_key: str
     _attr_name: Incomplete
     def __init__(self, name: str) -> None: ...
     _attr_native_value: Incomplete

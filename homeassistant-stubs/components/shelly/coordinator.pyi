@@ -1,6 +1,6 @@
 from .bluetooth import async_connect_scanner as async_connect_scanner
 from .const import ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLEScannerMode as BLEScannerMode, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DATA_CONFIG_ENTRY as DATA_CONFIG_ENTRY, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, LOGGER as LOGGER, MAX_PUSH_UPDATE_FAILURES as MAX_PUSH_UPDATE_FAILURES, MODELS_SUPPORTING_LIGHT_EFFECTS as MODELS_SUPPORTING_LIGHT_EFFECTS, OTA_BEGIN as OTA_BEGIN, OTA_ERROR as OTA_ERROR, OTA_PROGRESS as OTA_PROGRESS, OTA_SUCCESS as OTA_SUCCESS, PUSH_UPDATE_ISSUE_ID as PUSH_UPDATE_ISSUE_ID, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, RPC_SENSORS_POLLING_INTERVAL as RPC_SENSORS_POLLING_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, SLEEP_PERIOD_MULTIPLIER as SLEEP_PERIOD_MULTIPLIER, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
-from .utils import get_device_entry_gen as get_device_entry_gen, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period, update_device_fw_info as update_device_fw_info
+from .utils import async_shutdown_device as async_shutdown_device, get_device_entry_gen as get_device_entry_gen, get_http_port as get_http_port, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period, update_device_fw_info as update_device_fw_info
 from _typeshed import Incomplete
 from aioshelly.block_device import BlockDevice, BlockUpdateType
 from aioshelly.rpc_device import RpcDevice, RpcUpdateType
@@ -43,6 +43,8 @@ class ShellyCoordinatorBase(DataUpdateCoordinator[None], Generic[_DeviceT]):
     def sleep_period(self) -> int: ...
     def async_setup(self) -> None: ...
     async def _async_reload_entry(self) -> None: ...
+    last_update_success: bool
+    async def async_shutdown_device_and_start_reauth(self) -> None: ...
 
 class ShellyBlockCoordinator(ShellyCoordinatorBase[BlockDevice]):
     entry: Incomplete

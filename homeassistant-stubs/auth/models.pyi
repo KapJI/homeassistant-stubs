@@ -4,11 +4,13 @@ from attr import Attribute
 from datetime import datetime, timedelta
 from functools import cached_property as cached_property
 from homeassistant.const import __version__ as __version__
+from homeassistant.data_entry_flow import FlowResult as FlowResult
 from typing import Any, NamedTuple
 
 TOKEN_TYPE_NORMAL: str
 TOKEN_TYPE_SYSTEM: str
 TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN: str
+AuthFlowResult = FlowResult[tuple[str, str]]
 
 class Group:
     name: str | None

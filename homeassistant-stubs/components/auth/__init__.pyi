@@ -5,6 +5,7 @@ from collections.abc import Callable
 from homeassistant.auth import InvalidAuthError as InvalidAuthError
 from homeassistant.auth.models import Credentials as Credentials, RefreshToken as RefreshToken, TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN as TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN, User as User
 from homeassistant.components import websocket_api as websocket_api
+from homeassistant.components.http import KEY_HASS as KEY_HASS
 from homeassistant.components.http.auth import async_sign_path as async_sign_path, async_user_not_allowed_do_auth as async_user_not_allowed_do_auth
 from homeassistant.components.http.ban import log_invalid_auth as log_invalid_auth
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator

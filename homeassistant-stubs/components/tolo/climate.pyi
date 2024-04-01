@@ -1,11 +1,12 @@
 from . import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity, ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
-from .const import DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MAX_TEMP as DEFAULT_MAX_TEMP, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_OFF as FAN_OFF, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from tololib import TARGET_HUMIDITY_MAX, TARGET_HUMIDITY_MIN, TARGET_TEMPERATURE_MAX, TARGET_TEMPERATURE_MIN
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -13,10 +14,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class SaunaClimate(ToloSaunaCoordinatorEntity, ClimateEntity):
     _attr_fan_modes: Incomplete
     _attr_hvac_modes: Incomplete
-    _attr_max_humidity = DEFAULT_MAX_HUMIDITY
-    _attr_max_temp = DEFAULT_MAX_TEMP
-    _attr_min_humidity = DEFAULT_MIN_HUMIDITY
-    _attr_min_temp = DEFAULT_MIN_TEMP
+    _attr_max_humidity = TARGET_HUMIDITY_MAX
+    _attr_max_temp = TARGET_TEMPERATURE_MAX
+    _attr_min_humidity = TARGET_HUMIDITY_MIN
+    _attr_min_temp = TARGET_TEMPERATURE_MIN
     _attr_name: Incomplete
     _attr_precision = PRECISION_WHOLE
     _attr_supported_features: Incomplete

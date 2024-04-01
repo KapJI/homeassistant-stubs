@@ -31,7 +31,6 @@ ATTR_ZONE: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
-    _attr_icon: str
     _attr_supported_features: Incomplete
     _attr_name: Incomplete
     _attr_available: Incomplete

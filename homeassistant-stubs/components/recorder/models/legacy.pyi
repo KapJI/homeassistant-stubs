@@ -14,6 +14,7 @@ class LegacyLazyStatePreSchema31(State):
     state: Incomplete
     _attributes: Incomplete
     _last_changed: Incomplete
+    _last_reported: Incomplete
     _last_updated: Incomplete
     _context: Incomplete
     attr_cache: Incomplete
@@ -31,6 +32,10 @@ class LegacyLazyStatePreSchema31(State):
     @last_changed.setter
     def last_changed(self, value: datetime) -> None: ...
     @property
+    def last_reported(self) -> datetime: ...
+    @last_reported.setter
+    def last_reported(self, value: datetime) -> None: ...
+    @property
     def last_updated(self) -> datetime: ...
     @last_updated.setter
     def last_updated(self, value: datetime) -> None: ...
@@ -46,6 +51,7 @@ class LegacyLazyState(State):
     _attributes: Incomplete
     _last_updated_ts: Incomplete
     _last_changed_ts: Incomplete
+    _last_reported_ts: Incomplete
     _context: Incomplete
     attr_cache: Incomplete
     def __init__(self, row: Row, attr_cache: dict[str, dict[str, Any]], start_time: datetime | None, entity_id: str | None = None) -> None: ...
@@ -61,6 +67,10 @@ class LegacyLazyState(State):
     def last_changed(self) -> datetime: ...
     @last_changed.setter
     def last_changed(self, value: datetime) -> None: ...
+    @property
+    def last_reported(self) -> datetime: ...
+    @last_reported.setter
+    def last_reported(self, value: datetime) -> None: ...
     @property
     def last_updated(self) -> datetime: ...
     @last_updated.setter

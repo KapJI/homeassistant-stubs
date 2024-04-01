@@ -10,7 +10,7 @@ from collections.abc import Callable as Callable, Coroutine, Iterable
 from dataclasses import dataclass
 from enum import IntEnum
 from homeassistant.components.camera import DynamicStreamSettings as DynamicStreamSettings
-from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.decorator import Registry as Registry

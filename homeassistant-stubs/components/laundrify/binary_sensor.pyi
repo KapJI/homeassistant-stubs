@@ -15,10 +15,10 @@ async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_
 
 class LaundrifyPowerPlug(CoordinatorEntity[LaundrifyUpdateCoordinator], BinarySensorEntity):
     _attr_device_class: Incomplete
-    _attr_icon: str
     _attr_unique_id: str
     _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _attr_translation_key: str
     _device: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: LaundrifyUpdateCoordinator, device: LaundrifyDevice) -> None: ...

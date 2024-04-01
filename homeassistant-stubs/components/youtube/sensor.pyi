@@ -12,17 +12,13 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
 
-@dataclass(frozen=True)
-class YouTubeMixin:
+@dataclass(frozen=True, kw_only=True)
+class YouTubeSensorEntityDescription(SensorEntityDescription):
     available_fn: Callable[[Any], bool]
     value_fn: Callable[[Any], StateType]
     entity_picture_fn: Callable[[Any], str | None]
     attributes_fn: Callable[[Any], dict[str, Any] | None] | None
-    def __init__(self, available_fn, value_fn, entity_picture_fn, attributes_fn) -> None: ...
-
-@dataclass(frozen=True)
-class YouTubeSensorEntityDescription(SensorEntityDescription, YouTubeMixin):
-    def __init__(self, available_fn, value_fn, entity_picture_fn, attributes_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, available_fn, value_fn, entity_picture_fn, attributes_fn) -> None: ...
 
 SENSOR_TYPES: Incomplete
 

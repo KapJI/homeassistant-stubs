@@ -1,6 +1,6 @@
 from .const import DEFAULT_STREAM_PROFILE as DEFAULT_STREAM_PROFILE, DEFAULT_VIDEO_SOURCE as DEFAULT_VIDEO_SOURCE
-from .device import AxisNetworkDevice as AxisNetworkDevice
 from .entity import AxisEntity as AxisEntity
+from .hub import AxisHub as AxisHub
 from _typeshed import Incomplete
 from homeassistant.components.camera import CameraEntityFeature as CameraEntityFeature
 from homeassistant.components.mjpeg import MjpegCamera as MjpegCamera, filter_urllib3_logging as filter_urllib3_logging
@@ -17,7 +17,7 @@ class AxisCamera(AxisEntity, MjpegCamera):
     _still_image_url: str
     _mjpeg_url: str
     _stream_source: str
-    def __init__(self, device: AxisNetworkDevice) -> None: ...
+    def __init__(self, hub: AxisHub) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _generate_sources(self) -> None: ...
     @property

@@ -7,14 +7,13 @@ from homeassistant.components import climate as climate, cover as cover, fan as 
 from homeassistant.components.climate import ClimateEntityFeature as ClimateEntityFeature, SERVICE_SET_TEMPERATURE as SERVICE_SET_TEMPERATURE
 from homeassistant.components.cover import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_POSITION as ATTR_POSITION, CoverEntityFeature as CoverEntityFeature
 from homeassistant.components.fan import ATTR_PERCENTAGE as ATTR_PERCENTAGE, FanEntityFeature as FanEntityFeature
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.humidifier import ATTR_HUMIDITY as ATTR_HUMIDITY, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntityFeature as LightEntityFeature
 from homeassistant.components.media_player import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_TEMPERATURE as ATTR_TEMPERATURE, SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, STATE_CLOSED as STATE_CLOSED, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
-from homeassistant.core import State as State
+from homeassistant.core import Event as Event, State as State
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.typing import EventType as EventType
 from homeassistant.util.json import json_loads as json_loads
 from homeassistant.util.network import is_local as is_local
 from typing import Any

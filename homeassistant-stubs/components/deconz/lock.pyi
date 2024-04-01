@@ -1,5 +1,5 @@
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from homeassistant.components.lock import DOMAIN as DOMAIN, LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

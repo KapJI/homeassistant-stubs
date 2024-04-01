@@ -15,16 +15,12 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class BMWRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class BMWButtonEntityDescription(ButtonEntityDescription):
     remote_function: Callable[[MyBMWVehicle], Coroutine[Any, Any, RemoteServiceStatus]]
-    def __init__(self, remote_function) -> None: ...
-
-@dataclass(frozen=True)
-class BMWButtonEntityDescription(ButtonEntityDescription, BMWRequiredKeysMixin):
     enabled_when_read_only: bool = ...
     is_available: Callable[[MyBMWVehicle], bool] = ...
-    def __init__(self, remote_function, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, enabled_when_read_only, is_available) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, remote_function, enabled_when_read_only, is_available) -> None: ...
 
 BUTTON_TYPES: tuple[BMWButtonEntityDescription, ...]
 

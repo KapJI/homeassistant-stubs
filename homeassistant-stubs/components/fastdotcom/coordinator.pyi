@@ -2,6 +2,6 @@ from .const import DEFAULT_INTERVAL as DEFAULT_INTERVAL, DOMAIN as DOMAIN, LOGGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
-class FastdotcomDataUpdateCoordindator(DataUpdateCoordinator[float]):
+class FastdotcomDataUpdateCoordinator(DataUpdateCoordinator[float]):
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def _async_update_data(self) -> float: ...

@@ -1,4 +1,4 @@
-from . import GroupEntity as GroupEntity
+from .entity import GroupEntity as GroupEntity
 from .util import find_state_attributes as find_state_attributes, mean_tuple as mean_tuple, reduce_attribute as reduce_attribute
 from _typeshed import Incomplete
 from homeassistant.components import light as light

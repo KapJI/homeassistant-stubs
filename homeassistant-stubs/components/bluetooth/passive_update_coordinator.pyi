@@ -5,9 +5,10 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
-from typing import Any, TypeVar
+from typing import Any
+from typing_extensions import TypeVar
 
-_PassiveBluetoothDataUpdateCoordinatorT = TypeVar('_PassiveBluetoothDataUpdateCoordinatorT', bound='PassiveBluetoothDataUpdateCoordinator')
+_PassiveBluetoothDataUpdateCoordinatorT = TypeVar('_PassiveBluetoothDataUpdateCoordinatorT', bound='PassiveBluetoothDataUpdateCoordinator', default='PassiveBluetoothDataUpdateCoordinator')
 
 class PassiveBluetoothDataUpdateCoordinator(BasePassiveBluetoothCoordinator, BaseDataUpdateCoordinatorProtocol):
     _listeners: Incomplete

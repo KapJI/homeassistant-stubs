@@ -1,5 +1,5 @@
 from . import BangOlufsenData as BangOlufsenData
-from .const import BANG_OLUFSEN_MEDIA_TYPE as BANG_OLUFSEN_MEDIA_TYPE, BANG_OLUFSEN_STATES as BANG_OLUFSEN_STATES, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, HIDDEN_SOURCE_IDS as HIDDEN_SOURCE_IDS, SOURCE_ENUM as SOURCE_ENUM, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WEBSOCKET_NOTIFICATION as WEBSOCKET_NOTIFICATION
+from .const import BANG_OLUFSEN_STATES as BANG_OLUFSEN_STATES, BangOlufsenMediaType as BangOlufsenMediaType, BangOlufsenSource as BangOlufsenSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, HIDDEN_SOURCE_IDS as HIDDEN_SOURCE_IDS, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
 from .entity import BangOlufsenEntity as BangOlufsenEntity
 from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
@@ -20,16 +20,15 @@ BANG_OLUFSEN_FEATURES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class BangOlufsenMediaPlayer(MediaPlayerEntity, BangOlufsenEntity):
-    _attr_has_entity_name: bool
+class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     _attr_icon: str
+    _attr_name: Incomplete
+    _attr_device_class: Incomplete
     _attr_supported_features = BANG_OLUFSEN_FEATURES
     _beolink_jid: Incomplete
     _model: Incomplete
     _attr_device_info: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_class: Incomplete
     _audio_sources: Incomplete
     _media_image: Incomplete
     _software_status: Incomplete

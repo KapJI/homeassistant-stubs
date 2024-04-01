@@ -13,23 +13,15 @@ from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as Sensi
 
 PARALLEL_UPDATES: int
 
-@dataclass(frozen=True)
-class MotionBaseEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class SensiboMotionBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[MotionSensor], bool | None]
-    def __init__(self, value_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn) -> None: ...
 
-@dataclass(frozen=True)
-class DeviceBaseEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class SensiboDeviceBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[SensiboDevice], bool | None]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass(frozen=True)
-class SensiboMotionBinarySensorEntityDescription(BinarySensorEntityDescription, MotionBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
-
-@dataclass(frozen=True)
-class SensiboDeviceBinarySensorEntityDescription(BinarySensorEntityDescription, DeviceBaseEntityDescriptionMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn) -> None: ...
 
 FILTER_CLEAN_REQUIRED_DESCRIPTION: Incomplete
 MOTION_SENSOR_TYPES: tuple[SensiboMotionBinarySensorEntityDescription, ...]

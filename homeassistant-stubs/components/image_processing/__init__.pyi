@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from enum import StrEnum
-from homeassistant.components.camera import Image as Image
+from homeassistant.components.camera import async_get_image as async_get_image
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

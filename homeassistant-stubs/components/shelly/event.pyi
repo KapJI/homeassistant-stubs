@@ -14,12 +14,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, Final
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class ShellyBlockEventDescription(EventEntityDescription):
     removal_condition: Callable[[dict, Block], bool] | None = ...
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, event_types, removal_condition) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class ShellyRpcEventDescription(EventEntityDescription):
     removal_condition: Callable[[dict, dict, str], bool] | None = ...
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, event_types, removal_condition) -> None: ...

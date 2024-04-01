@@ -5,11 +5,11 @@ from datetime import datetime
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, EventType as EventType, StateType as StateType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -68,5 +68,5 @@ class MinMaxSensor(SensorEntity):
     def native_unit_of_measurement(self) -> str | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
-    def _async_min_max_sensor_state_listener(self, event: EventType[EventStateChangedData], update_state: bool = True) -> None: ...
+    def _async_min_max_sensor_state_listener(self, event: Event[EventStateChangedData], update_state: bool = True) -> None: ...
     def _calc_values(self) -> None: ...

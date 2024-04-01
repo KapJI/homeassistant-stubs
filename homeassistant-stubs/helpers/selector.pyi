@@ -250,6 +250,15 @@ class IconSelector(Selector[IconSelectorConfig]):
     def __init__(self, config: IconSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
+class LabelSelectorConfig(TypedDict, total=False):
+    multiple: bool
+
+class LabelSelector(Selector[LabelSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: LabelSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> str | list[str]: ...
+
 class LanguageSelectorConfig(TypedDict, total=False):
     languages: list[str]
     native_name: bool

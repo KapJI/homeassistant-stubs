@@ -11,7 +11,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class ShoppingTodoListEntity(TodoListEntity):
     _attr_has_entity_name: bool
-    _attr_icon: str
     _attr_translation_key: str
     _attr_should_poll: bool
     _attr_supported_features: Incomplete

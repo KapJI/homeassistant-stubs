@@ -1,4 +1,5 @@
 import dataclasses
+from .registry import BaseRegistry as BaseRegistry
 from .storage import Store as Store
 from _typeshed import Incomplete
 from datetime import datetime
@@ -12,7 +13,6 @@ EVENT_REPAIRS_ISSUE_REGISTRY_UPDATED: str
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
-SAVE_DELAY: int
 
 class IssueSeverity(StrEnum):
     CRITICAL: str
@@ -41,7 +41,7 @@ class IssueEntry:
 class IssueRegistryStore(Store[dict[str, list[dict[str, Any]]]]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
-class IssueRegistry:
+class IssueRegistry(BaseRegistry):
     hass: Incomplete
     issues: Incomplete
     _read_only: Incomplete
@@ -52,7 +52,6 @@ class IssueRegistry:
     def async_delete(self, domain: str, issue_id: str) -> None: ...
     def async_ignore(self, domain: str, issue_id: str, ignore: bool) -> IssueEntry: ...
     async def async_load(self) -> None: ...
-    def async_schedule_save(self) -> None: ...
     def _data_to_save(self) -> dict[str, list[dict[str, str | None]]]: ...
 
 def async_get(hass: HomeAssistant) -> IssueRegistry: ...

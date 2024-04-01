@@ -6,10 +6,9 @@ from homeassistant.components import binary_sensor as binary_sensor, media_playe
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntityFeature as MediaPlayerEntityFeature
 from homeassistant.components.remote import RemoteEntityFeature as RemoteEntityFeature
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
-from homeassistant.helpers.typing import EventType as EventType
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from pyhap.accessory import Accessory as Accessory
 from typing import Any
@@ -62,4 +61,4 @@ def _async_find_next_available_port(start_port: int, exclude_ports: set) -> int:
 def pid_is_alive(pid: int) -> bool: ...
 def accessory_friendly_name(hass_name: str, accessory: Accessory) -> str: ...
 def state_needs_accessory_mode(state: State) -> bool: ...
-def state_changed_event_is_same_state(event: EventType[EventStateChangedData]) -> bool: ...
+def state_changed_event_is_same_state(event: Event[EventStateChangedData]) -> bool: ...

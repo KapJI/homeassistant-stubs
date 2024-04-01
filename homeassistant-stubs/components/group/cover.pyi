@@ -1,4 +1,4 @@
-from . import GroupEntity as GroupEntity
+from .entity import GroupEntity as GroupEntity
 from .util import reduce_attribute as reduce_attribute
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION, ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, DOMAIN as DOMAIN, PLATFORM_SCHEMA as PLATFORM_SCHEMA

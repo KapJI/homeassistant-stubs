@@ -10,14 +10,10 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-@dataclass(frozen=True)
-class GlancesSensorEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class GlancesSensorEntityDescription(SensorEntityDescription):
     type: str
-    def __init__(self, type) -> None: ...
-
-@dataclass(frozen=True)
-class GlancesSensorEntityDescription(SensorEntityDescription, GlancesSensorEntityDescriptionMixin):
-    def __init__(self, type, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, type) -> None: ...
 
 SENSOR_TYPES: Incomplete
 

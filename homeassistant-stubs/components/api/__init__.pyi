@@ -10,7 +10,7 @@ from homeassistant.helpers import template as template
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData
 from homeassistant.helpers.json import json_dumps as json_dumps, json_fragment as json_fragment
 from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
-from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.json import json_loads as json_loads
 from typing import Any
 

@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import FastdotcomDataUpdateCoordindator as FastdotcomDataUpdateCoordindator
+from .coordinator import FastdotcomDataUpdateCoordinator as FastdotcomDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SpeedtestSensor(CoordinatorEntity[FastdotcomDataUpdateCoordindator], SensorEntity):
+class SpeedtestSensor(CoordinatorEntity[FastdotcomDataUpdateCoordinator], SensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
@@ -20,6 +20,6 @@ class SpeedtestSensor(CoordinatorEntity[FastdotcomDataUpdateCoordindator], Senso
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, entry_id: str, coordinator: FastdotcomDataUpdateCoordindator) -> None: ...
+    def __init__(self, entry_id: str, coordinator: FastdotcomDataUpdateCoordinator) -> None: ...
     @property
     def native_value(self) -> float: ...

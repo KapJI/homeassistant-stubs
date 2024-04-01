@@ -7,6 +7,7 @@ from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_ENABLED as CONF_E
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any, Protocol, TypedDict
 
 _PLATFORM_ALIASES: Incomplete

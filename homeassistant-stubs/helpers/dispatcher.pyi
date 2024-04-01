@@ -1,23 +1,15 @@
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine
-from dataclasses import dataclass
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.logging import catch_log_exception as catch_log_exception
-from typing import Any, Generic, TypeVarTuple, overload
+from homeassistant.util.signal_type import SignalType as SignalType
+from typing import Any, TypeVarTuple, overload
 
 _Ts = TypeVarTuple('_Ts')
 _LOGGER: Incomplete
 DATA_DISPATCHER: str
-
-@dataclass(frozen=True)
-class SignalType(Generic[*_Ts]):
-    name: str
-    def __hash__(self) -> int: ...
-    def __eq__(self, other: Any) -> bool: ...
-    def __init__(self, name) -> None: ...
-
 _DispatcherDataType: Incomplete
 
 @overload

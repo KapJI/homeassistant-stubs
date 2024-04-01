@@ -1,5 +1,5 @@
 from .deconz_device import DeconzDevice as DeconzDevice, DeconzSceneMixin as DeconzSceneMixin
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription, DOMAIN as DOMAIN
@@ -25,7 +25,7 @@ class DeconzSceneButton(DeconzSceneMixin, ButtonEntity):
     TYPE = DOMAIN
     entity_description: Incomplete
     _attr_name: Incomplete
-    def __init__(self, device: PydeconzScene, gateway: DeconzGateway, description: DeconzButtonDescription) -> None: ...
+    def __init__(self, device: PydeconzScene, hub: DeconzHub, description: DeconzButtonDescription) -> None: ...
     async def async_press(self) -> None: ...
     def get_device_identifier(self) -> str: ...
 

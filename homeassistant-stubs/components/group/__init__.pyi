@@ -1,58 +1,26 @@
-import abc
-from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS
+from .const import ATTR_ADD_ENTITIES as ATTR_ADD_ENTITIES, ATTR_ALL as ATTR_ALL, ATTR_AUTO as ATTR_AUTO, ATTR_ENTITIES as ATTR_ENTITIES, ATTR_OBJECT_ID as ATTR_OBJECT_ID, ATTR_ORDER as ATTR_ORDER, ATTR_REMOVE_ENTITIES as ATTR_REMOVE_ENTITIES, CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS, DOMAIN as DOMAIN, GROUP_ORDER as GROUP_ORDER, REG_KEY as REG_KEY
+from .entity import Group as Group, async_get_component as async_get_component
+from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry
 from _typeshed import Incomplete
-from abc import abstractmethod
-from collections.abc import Callable as Callable, Collection, Mapping
-from contextvars import ContextVar
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback, split_entity_id as split_entity_id
-from homeassistant.helpers import start as start
-from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.reload import async_reload_integration_platforms as async_reload_integration_platforms
-from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, Protocol
+from typing import Any
 
-DOMAIN: str
-GROUP_ORDER: str
-ENTITY_ID_FORMAT: Incomplete
 CONF_ALL: str
-ATTR_ADD_ENTITIES: str
-ATTR_REMOVE_ENTITIES: str
-ATTR_AUTO: str
-ATTR_ENTITIES: str
-ATTR_OBJECT_ID: str
-ATTR_ORDER: str
-ATTR_ALL: str
 SERVICE_SET: str
 SERVICE_REMOVE: str
 PLATFORMS: Incomplete
-REG_KEY: Incomplete
-ENTITY_PREFIX: Incomplete
 _LOGGER: Incomplete
-current_domain: ContextVar[str]
-
-class GroupProtocol(Protocol):
-    def async_describe_on_off_states(self, hass: HomeAssistant, registry: GroupIntegrationRegistry) -> None: ...
 
 def _conf_preprocess(value: Any) -> dict[str, Any]: ...
 
 GROUP_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
-
-def _async_get_component(hass: HomeAssistant) -> EntityComponent[Group]: ...
-
-class GroupIntegrationRegistry:
-    on_off_mapping: dict[str, str]
-    off_on_mapping: dict[str, str]
-    on_states_by_domain: dict[str, set]
-    exclude_domains: set
-    def exclude_domain(self) -> None: ...
-    def on_off_states(self, on_states: set, off_state: str) -> None: ...
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 
@@ -65,67 +33,4 @@ async def config_entry_update_listener(hass: HomeAssistant, entry: ConfigEntry) 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-def _process_group_platform(hass: HomeAssistant, domain: str, platform: GroupProtocol) -> None: ...
 async def _async_process_config(hass: HomeAssistant, config: ConfigType) -> None: ...
-
-class GroupEntity(Entity, metaclass=abc.ABCMeta):
-    _unrecorded_attributes: Incomplete
-    _attr_should_poll: bool
-    _entity_ids: list[str]
-    def async_start_preview(self, preview_callback: Callable[[str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...
-    async def async_added_to_hass(self) -> None: ...
-    def _update_at_start(self, _: HomeAssistant) -> None: ...
-    def async_defer_or_update_ha_state(self) -> None: ...
-    @abstractmethod
-    def async_update_group_state(self) -> None: ...
-    def async_update_supported_features(self, entity_id: str, new_state: State | None) -> None: ...
-
-class Group(Entity):
-    _unrecorded_attributes: Incomplete
-    _attr_should_poll: bool
-    tracking: tuple[str, ...]
-    trackable: tuple[str, ...]
-    hass: Incomplete
-    _name: Incomplete
-    _state: Incomplete
-    _icon: Incomplete
-    _on_off: Incomplete
-    _assumed: Incomplete
-    _on_states: Incomplete
-    created_by_service: Incomplete
-    mode: Incomplete
-    _order: Incomplete
-    _assumed_state: bool
-    _async_unsub_state_changed: Incomplete
-    def __init__(self, hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, order: int | None) -> None: ...
-    @staticmethod
-    def async_create_group_entity(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None) -> Group: ...
-    @staticmethod
-    async def async_create_group(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None) -> Group: ...
-    @property
-    def name(self) -> str: ...
-    @name.setter
-    def name(self, value: str) -> None: ...
-    @property
-    def state(self) -> str | None: ...
-    @property
-    def icon(self) -> str | None: ...
-    @icon.setter
-    def icon(self, value: str | None) -> None: ...
-    @property
-    def extra_state_attributes(self) -> dict[str, Any]: ...
-    @property
-    def assumed_state(self) -> bool: ...
-    def update_tracked_entity_ids(self, entity_ids: Collection[str] | None) -> None: ...
-    async def async_update_tracked_entity_ids(self, entity_ids: Collection[str] | None) -> None: ...
-    def _set_tracked(self, entity_ids: Collection[str] | None) -> None: ...
-    def _async_start(self, _: HomeAssistant | None = None) -> None: ...
-    def _async_start_tracking(self) -> None: ...
-    def _async_stop(self) -> None: ...
-    def async_update_group_state(self) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
-    async def async_will_remove_from_hass(self) -> None: ...
-    async def _async_state_changed_listener(self, event: EventType[EventStateChangedData]) -> None: ...
-    def _reset_tracked_state(self) -> None: ...
-    def _see_state(self, new_state: State) -> None: ...
-    def _async_update_group_state(self, tr_state: State | None = None) -> None: ...

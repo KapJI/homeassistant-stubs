@@ -8,7 +8,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util.dt import as_local as as_local, utcnow as utcnow
 
 ZODIAC_BY_DATE: Incomplete
-ZODIAC_ICONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -22,6 +21,5 @@ class ZodiacSensor(SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, entry_id: str) -> None: ...
     _attr_native_value: Incomplete
-    _attr_icon: Incomplete
     _attr_extra_state_attributes: Incomplete
     async def async_update(self) -> None: ...

@@ -13,8 +13,8 @@ def async_get_calendar_event_from_pickup_event(pickup_event: RidwellPickupEvent)
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RidwellCalendar(RidwellEntity, CalendarEntity):
-    _attr_icon: str
     _attr_name: Incomplete
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     _event: Incomplete
     def __init__(self, coordinator: RidwellDataUpdateCoordinator, account: RidwellAccount) -> None: ...

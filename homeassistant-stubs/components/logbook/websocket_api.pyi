@@ -14,6 +14,7 @@ from homeassistant.components.websocket_api.connection import ActiveConnection a
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.json import json_bytes as json_bytes
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any
 
 MAX_PENDING_LOGBOOK_EVENTS: int

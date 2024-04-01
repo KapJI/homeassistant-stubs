@@ -3,7 +3,7 @@ from .processor import EventProcessor as EventProcessor
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.filters import Filters as Filters
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

@@ -1,6 +1,6 @@
 from aiohttp import web as web
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView, require_admin as require_admin
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, require_admin as require_admin
 from homeassistant.components.sensor import async_update_suggested_units as async_update_suggested_units
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import check_config as check_config

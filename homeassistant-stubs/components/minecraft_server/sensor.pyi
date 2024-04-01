@@ -14,15 +14,6 @@ from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
 
 ATTR_PLAYERS_LIST: str
-ICON_EDITION: str
-ICON_GAME_MODE: str
-ICON_MAP_NAME: str
-ICON_LATENCY: str
-ICON_PLAYERS_MAX: str
-ICON_PLAYERS_ONLINE: str
-ICON_PROTOCOL_VERSION: str
-ICON_VERSION: str
-ICON_MOTD: str
 KEY_EDITION: str
 KEY_GAME_MODE: str
 KEY_MAP_NAME: str
@@ -33,16 +24,12 @@ KEY_VERSION: str
 UNIT_PLAYERS_MAX: str
 UNIT_PLAYERS_ONLINE: str
 
-@dataclass(frozen=True)
-class MinecraftServerEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class MinecraftServerSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[MinecraftServerData], StateType]
     attributes_fn: Callable[[MinecraftServerData], MutableMapping[str, Any]] | None
     supported_server_types: set[MinecraftServerType]
-    def __init__(self, value_fn, attributes_fn, supported_server_types) -> None: ...
-
-@dataclass(frozen=True)
-class MinecraftServerSensorEntityDescription(SensorEntityDescription, MinecraftServerEntityDescriptionMixin):
-    def __init__(self, value_fn, attributes_fn, supported_server_types, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, attributes_fn, supported_server_types) -> None: ...
 
 def get_extra_state_attributes_players_list(data: MinecraftServerData) -> dict[str, list[str]]: ...
 

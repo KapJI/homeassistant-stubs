@@ -1,7 +1,7 @@
 import concurrent.futures
 from _typeshed import Incomplete
 from asyncio import AbstractEventLoop, Future, Task
-from collections.abc import Awaitable, Callable as Callable
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any, ParamSpec, TypeVar, TypeVarTuple
 
@@ -12,7 +12,7 @@ _R = TypeVar('_R')
 _P = ParamSpec('_P')
 _Ts = TypeVarTuple('_Ts')
 
-def create_eager_task(coro: Awaitable[_T], *, name: str | None = None, loop: AbstractEventLoop | None = None) -> Task[_T]: ...
+def create_eager_task(coro: Coroutine[Any, Any, _T], *, name: str | None = None, loop: AbstractEventLoop | None = None) -> Task[_T]: ...
 def cancelling(task: Future[Any]) -> bool: ...
 def run_callback_threadsafe(loop: AbstractEventLoop, callback: Callable[[Unpack[_Ts]], _T], *args: Unpack[_Ts]) -> concurrent.futures.Future[_T]: ...
 def check_loop(func: Callable[..., Any], strict: bool = True, advise_msg: str | None = None) -> None: ...

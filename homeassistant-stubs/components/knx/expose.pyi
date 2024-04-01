@@ -3,9 +3,9 @@ from .schema import ExposeSchema as ExposeSchema
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType, StateType as StateType
+from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from xknx import XKNX as XKNX
 from xknx.devices import DateTime, ExposeSensor
 
@@ -27,7 +27,7 @@ class KNXExposeSensor:
     def _init_expose_state(self) -> None: ...
     def shutdown(self) -> None: ...
     def _get_expose_value(self, state: State | None) -> bool | int | float | str | None: ...
-    async def _async_entity_changed(self, event: EventType[EventStateChangedData]) -> None: ...
+    async def _async_entity_changed(self, event: Event[EventStateChangedData]) -> None: ...
     async def _async_set_knx_value(self, value: StateType) -> None: ...
 
 class KNXExposeTime:

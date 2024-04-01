@@ -12,15 +12,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-@dataclass(frozen=True)
-class StarlinkDeviceTrackerEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class StarlinkDeviceTrackerEntityDescription(EntityDescription):
     latitude_fn: Callable[[StarlinkData], float]
     longitude_fn: Callable[[StarlinkData], float]
-    def __init__(self, latitude_fn, longitude_fn) -> None: ...
-
-@dataclass(frozen=True)
-class StarlinkDeviceTrackerEntityDescription(EntityDescription, StarlinkDeviceTrackerEntityDescriptionMixin):
-    def __init__(self, latitude_fn, longitude_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, latitude_fn, longitude_fn) -> None: ...
 
 DEVICE_TRACKERS: Incomplete
 

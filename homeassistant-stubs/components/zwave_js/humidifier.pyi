@@ -15,16 +15,12 @@ from zwave_js_server.model.value import Value as ZwaveValue
 
 PARALLEL_UPDATES: int
 
-@dataclass(frozen=True)
-class ZwaveHumidifierEntityDescriptionRequiredKeys:
+@dataclass(frozen=True, kw_only=True)
+class ZwaveHumidifierEntityDescription(HumidifierEntityDescription):
     on_mode: HumidityControlMode
     inverse_mode: HumidityControlMode
     setpoint_type: HumidityControlSetpointType
-    def __init__(self, on_mode, inverse_mode, setpoint_type) -> None: ...
-
-@dataclass(frozen=True)
-class ZwaveHumidifierEntityDescription(HumidifierEntityDescription, ZwaveHumidifierEntityDescriptionRequiredKeys):
-    def __init__(self, on_mode, inverse_mode, setpoint_type, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, on_mode, inverse_mode, setpoint_type) -> None: ...
 
 HUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 DEHUMIDIFIER_ENTITY_DESCRIPTION: Incomplete

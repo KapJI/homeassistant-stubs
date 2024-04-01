@@ -6,8 +6,7 @@ from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.http import require_admin as require_admin
-from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, require_admin as require_admin
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_INVALID_FORMAT as ERR_INVALID_FORMAT, ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED, ERR_UNKNOWN_ERROR as ERR_UNKNOWN_ERROR
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

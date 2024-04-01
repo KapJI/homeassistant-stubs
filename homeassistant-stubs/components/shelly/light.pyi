@@ -1,4 +1,4 @@
-from .const import DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, KELVIN_MAX_VALUE as KELVIN_MAX_VALUE, KELVIN_MIN_VALUE_COLOR as KELVIN_MIN_VALUE_COLOR, KELVIN_MIN_VALUE_WHITE as KELVIN_MIN_VALUE_WHITE, LOGGER as LOGGER, MAX_TRANSITION_TIME as MAX_TRANSITION_TIME, MODELS_SUPPORTING_LIGHT_TRANSITION as MODELS_SUPPORTING_LIGHT_TRANSITION, RGBW_MODELS as RGBW_MODELS, SHBLB_1_RGB_EFFECTS as SHBLB_1_RGB_EFFECTS, STANDARD_RGB_EFFECTS as STANDARD_RGB_EFFECTS
+from .const import BLOCK_MAX_TRANSITION_TIME_MS as BLOCK_MAX_TRANSITION_TIME_MS, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, KELVIN_MAX_VALUE as KELVIN_MAX_VALUE, KELVIN_MIN_VALUE_COLOR as KELVIN_MIN_VALUE_COLOR, KELVIN_MIN_VALUE_WHITE as KELVIN_MIN_VALUE_WHITE, LOGGER as LOGGER, MODELS_SUPPORTING_LIGHT_TRANSITION as MODELS_SUPPORTING_LIGHT_TRANSITION, RGBW_MODELS as RGBW_MODELS, RPC_MIN_TRANSITION_TIME_SEC as RPC_MIN_TRANSITION_TIME_SEC, SHBLB_1_RGB_EFFECTS as SHBLB_1_RGB_EFFECTS, STANDARD_RGB_EFFECTS as STANDARD_RGB_EFFECTS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, get_entry_data as get_entry_data
 from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, brightness_to_percentage as brightness_to_percentage, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light, percentage_to_brightness as percentage_to_brightness
@@ -42,24 +42,40 @@ class BlockShellyLight(ShellyBlockEntity, LightEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def _update_callback(self) -> None: ...
 
-class RpcShellySwitchAsLight(ShellyRpcEntity, LightEntity):
-    _attr_color_mode: Incomplete
-    _attr_supported_color_modes: Incomplete
-    _id: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
-    @property
-    def is_on(self) -> bool: ...
-    async def async_turn_on(self, **kwargs: Any) -> None: ...
-    async def async_turn_off(self, **kwargs: Any) -> None: ...
-
-class RpcShellyLight(ShellyRpcEntity, LightEntity):
-    _attr_color_mode: Incomplete
-    _attr_supported_color_modes: Incomplete
+class RpcShellyLightBase(ShellyRpcEntity, LightEntity):
+    _component: str
     _id: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property
     def brightness(self) -> int: ...
+    @property
+    def rgb_color(self) -> tuple[int, int, int]: ...
+    @property
+    def rgbw_color(self) -> tuple[int, int, int, int]: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class RpcShellySwitchAsLight(RpcShellyLightBase):
+    _component: str
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+
+class RpcShellyLight(RpcShellyLightBase):
+    _component: str
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_supported_features: Incomplete
+
+class RpcShellyRgbLight(RpcShellyLightBase):
+    _component: str
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_supported_features: Incomplete
+
+class RpcShellyRgbwLight(RpcShellyLightBase):
+    _component: str
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
+    _attr_supported_features: Incomplete

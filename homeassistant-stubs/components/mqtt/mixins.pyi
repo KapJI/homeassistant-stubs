@@ -2,10 +2,10 @@ import abc
 import voluptuous as vol
 from . import debug_info as debug_info, subscription as subscription
 from .client import async_publish as async_publish
-from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOVERY_TOPIC as ATTR_DISCOVERY_TOPIC, CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_CONFIGURATION_URL as CONF_CONFIGURATION_URL, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_DEPRECATED_VIA_HUB as CONF_DEPRECATED_VIA_HUB, CONF_ENCODING as CONF_ENCODING, CONF_HW_VERSION as CONF_HW_VERSION, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_OBJECT_ID as CONF_OBJECT_ID, CONF_ORIGIN as CONF_ORIGIN, CONF_QOS as CONF_QOS, CONF_SCHEMA as CONF_SCHEMA, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, CONF_SUGGESTED_AREA as CONF_SUGGESTED_AREA, CONF_SW_VERSION as CONF_SW_VERSION, CONF_TOPIC as CONF_TOPIC, CONF_VIA_DEVICE as CONF_VIA_DEVICE, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_PAYLOAD_AVAILABLE as DEFAULT_PAYLOAD_AVAILABLE, DEFAULT_PAYLOAD_NOT_AVAILABLE as DEFAULT_PAYLOAD_NOT_AVAILABLE, DOMAIN as DOMAIN, MQTT_CONNECTED as MQTT_CONNECTED, MQTT_DISCONNECTED as MQTT_DISCONNECTED, TEMPLATE_ERRORS as TEMPLATE_ERRORS
+from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOVERY_TOPIC as ATTR_DISCOVERY_TOPIC, CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_CONFIGURATION_URL as CONF_CONFIGURATION_URL, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_DEPRECATED_VIA_HUB as CONF_DEPRECATED_VIA_HUB, CONF_ENCODING as CONF_ENCODING, CONF_HW_VERSION as CONF_HW_VERSION, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_OBJECT_ID as CONF_OBJECT_ID, CONF_ORIGIN as CONF_ORIGIN, CONF_QOS as CONF_QOS, CONF_SCHEMA as CONF_SCHEMA, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, CONF_SUGGESTED_AREA as CONF_SUGGESTED_AREA, CONF_SW_VERSION as CONF_SW_VERSION, CONF_TOPIC as CONF_TOPIC, CONF_VIA_DEVICE as CONF_VIA_DEVICE, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_PAYLOAD_AVAILABLE as DEFAULT_PAYLOAD_AVAILABLE, DEFAULT_PAYLOAD_NOT_AVAILABLE as DEFAULT_PAYLOAD_NOT_AVAILABLE, DOMAIN as DOMAIN, MQTT_CONNECTED as MQTT_CONNECTED, MQTT_DISCONNECTED as MQTT_DISCONNECTED
 from .debug_info import log_message as log_message, log_messages as log_messages
 from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload, MQTT_DISCOVERY_DONE as MQTT_DISCOVERY_DONE, MQTT_DISCOVERY_NEW as MQTT_DISCOVERY_NEW, MQTT_DISCOVERY_UPDATED as MQTT_DISCOVERY_UPDATED, MQTT_ORIGIN_INFO_SCHEMA as MQTT_ORIGIN_INFO_SCHEMA, clear_discovery_hash as clear_discovery_hash, set_discovery_hash as set_discovery_hash
-from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
+from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .subscription import EntitySubscription as EntitySubscription, async_prepare_subscribe_topics as async_prepare_subscribe_topics, async_subscribe_topics as async_subscribe_topics, async_unsubscribe_topics as async_unsubscribe_topics
 from .util import get_mqtt_data as get_mqtt_data, mqtt_config_entry_enabled as mqtt_config_entry_enabled, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
@@ -14,7 +14,7 @@ from collections.abc import Callable as Callable, Coroutine
 from functools import partial
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CONFIGURATION_URL as ATTR_CONFIGURATION_URL, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_DEVICE as CONF_DEVICE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ICON as CONF_ICON, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
@@ -22,7 +22,7 @@ from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATE
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, EventType as EventType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.util.json import json_loads as json_loads
 from typing import Any, Protocol
 
@@ -95,7 +95,7 @@ def get_discovery_hash(discovery_data: DiscoveryInfoType) -> tuple[str, str]: ..
 def send_discovery_done(hass: HomeAssistant, discovery_data: DiscoveryInfoType) -> None: ...
 def stop_discovery_updates(hass: HomeAssistant, discovery_data: DiscoveryInfoType, remove_discovery_updated: Callable[[], None] | None = None) -> None: ...
 async def async_remove_discovery_payload(hass: HomeAssistant, discovery_data: DiscoveryInfoType) -> None: ...
-async def async_clear_discovery_topic_if_entity_removed(hass: HomeAssistant, discovery_data: DiscoveryInfoType, event: EventType[er.EventEntityRegistryUpdatedData]) -> None: ...
+async def async_clear_discovery_topic_if_entity_removed(hass: HomeAssistant, discovery_data: DiscoveryInfoType, event: Event[er.EventEntityRegistryUpdatedData]) -> None: ...
 
 class MqttDiscoveryDeviceUpdate(ABC, metaclass=abc.ABCMeta):
     hass: Incomplete
@@ -110,7 +110,7 @@ class MqttDiscoveryDeviceUpdate(ABC, metaclass=abc.ABCMeta):
     def __init__(self, hass: HomeAssistant, discovery_data: DiscoveryInfoType, device_id: str | None, config_entry: ConfigEntry, log_name: str) -> None: ...
     def _entry_unload(self, *_: Any) -> None: ...
     async def async_discovery_update(self, discovery_payload: MQTTDiscoveryPayload) -> None: ...
-    async def _async_device_removed(self, event: EventType[EventDeviceRegistryUpdatedData]) -> None: ...
+    async def _async_device_removed(self, event: Event[EventDeviceRegistryUpdatedData]) -> None: ...
     async def _async_tear_down(self) -> None: ...
     @abstractmethod
     async def async_update(self, discovery_data: MQTTDiscoveryPayload) -> None: ...
@@ -173,4 +173,4 @@ class MqttEntity(MqttAttributes, MqttAvailability, MqttDiscoveryUpdate, MqttEnti
     async def _subscribe_topics(self) -> None: ...
 
 def update_device(hass: HomeAssistant, config_entry: ConfigEntry, config: ConfigType) -> str | None: ...
-def async_removed_from_device(hass: HomeAssistant, event: EventType[EventDeviceRegistryUpdatedData], mqtt_device_id: str, config_entry_id: str) -> bool: ...
+def async_removed_from_device(hass: HomeAssistant, event: Event[EventDeviceRegistryUpdatedData], mqtt_device_id: str, config_entry_id: str) -> bool: ...

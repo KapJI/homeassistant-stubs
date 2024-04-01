@@ -1,3 +1,4 @@
+import asyncio
 import voluptuous as vol
 from .const import ATTR_ATTRIBUTES as ATTR_ATTRIBUTES, ATTR_BATTERY as ATTR_BATTERY, ATTR_CONSIDER_HOME as ATTR_CONSIDER_HOME, ATTR_DEV_ID as ATTR_DEV_ID, ATTR_GPS as ATTR_GPS, ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_LOCATION_NAME as ATTR_LOCATION_NAME, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, CONF_NEW_DEVICE_DEFAULTS as CONF_NEW_DEVICE_DEFAULTS, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_TRACK_NEW as CONF_TRACK_NEW, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME, DEFAULT_TRACK_NEW as DEFAULT_TRACK_NEW, DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORM_TYPE_LEGACY as PLATFORM_TYPE_LEGACY, SCAN_INTERVAL as SCAN_INTERVAL, SourceType as SourceType
 from _typeshed import Incomplete
@@ -6,6 +7,7 @@ from datetime import datetime, timedelta
 from homeassistant import util as util
 from homeassistant.backports.functools import cached_property as cached_property
 from homeassistant.components import zone as zone
+from homeassistant.components.zone import ENTITY_ID_HOME as ENTITY_ID_HOME
 from homeassistant.config import async_log_schema_error as async_log_schema_error, config_per_platform as config_per_platform, load_yaml_config_file as load_yaml_config_file
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_ICON as ATTR_ICON, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ICON as CONF_ICON, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -14,7 +16,8 @@ from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval, async_track_utc_time_change as async_track_utc_time_change
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, GPSType as GPSType, StateType as StateType
-from homeassistant.setup import async_notify_setup_error as async_notify_setup_error, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
+from homeassistant.setup import SetupPhases as SetupPhases, async_notify_setup_error as async_notify_setup_error, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.yaml import dump as dump
 from types import ModuleType
 from typing import Any, Final, Protocol
@@ -35,7 +38,8 @@ class AsyncSeeCallback(Protocol):
     async def __call__(self, mac: str | None = None, dev_id: str | None = None, host_name: str | None = None, location_name: str | None = None, gps: GPSType | None = None, gps_accuracy: int | None = None, battery: int | None = None, attributes: dict[str, Any] | None = None, source_type: SourceType | str = ..., picture: str | None = None, icon: str | None = None, consider_home: timedelta | None = None) -> None: ...
 
 def see(hass: HomeAssistant, mac: str | None = None, dev_id: str | None = None, host_name: str | None = None, location_name: str | None = None, gps: GPSType | None = None, gps_accuracy: int | None = None, battery: int | None = None, attributes: dict[str, Any] | None = None) -> None: ...
-async def async_setup_integration(hass: HomeAssistant, config: ConfigType) -> None: ...
+def async_setup_integration(hass: HomeAssistant, config: ConfigType) -> None: ...
+async def _async_setup_integration(hass: HomeAssistant, config: ConfigType, tracker_future: asyncio.Future[DeviceTracker]) -> None: ...
 
 class DeviceTrackerPlatform:
     LEGACY_SETUP: Final[tuple[str, ...]]

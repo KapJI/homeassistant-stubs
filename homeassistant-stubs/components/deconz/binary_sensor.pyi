@@ -1,7 +1,6 @@
 from .const import ATTR_DARK as ATTR_DARK, ATTR_ON as ATTR_ON
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
-from .util import serial_from_unique_id as serial_from_unique_id
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -41,7 +40,6 @@ class DeconzBinarySensorDescription(BinarySensorEntityDescription, Generic[T]):
 
 ENTITY_DESCRIPTIONS: tuple[DeconzBinarySensorDescription, ...]
 
-def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: DeconzBinarySensorDescription) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzBinarySensor(DeconzDevice[SensorResources], BinarySensorEntity):
@@ -50,7 +48,7 @@ class DeconzBinarySensor(DeconzDevice[SensorResources], BinarySensorEntity):
     unique_id_suffix: Incomplete
     _update_key: Incomplete
     _name_suffix: Incomplete
-    def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzBinarySensorDescription) -> None: ...
+    def __init__(self, device: SensorResources, hub: DeconzHub, description: DeconzBinarySensorDescription) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
     @property

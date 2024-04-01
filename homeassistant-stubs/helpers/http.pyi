@@ -2,9 +2,8 @@ from .json import find_paths_unserializable_data as find_paths_unserializable_da
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
-from aiohttp.web import Request as Request
-from aiohttp.web_urldispatcher import AbstractRoute as AbstractRoute
-from collections.abc import Awaitable, Callable as Callable
+from aiohttp.web import AppKey, Request as Request
+from collections.abc import Awaitable, Callable
 from contextvars import ContextVar
 from homeassistant import exceptions as exceptions
 from homeassistant.const import CONTENT_TYPE_JSON as CONTENT_TYPE_JSON
@@ -14,7 +13,11 @@ from http import HTTPStatus
 from typing import Any, Final
 
 _LOGGER: Incomplete
+AllowCorsType: Incomplete
 KEY_AUTHENTICATED: Final[str]
+KEY_ALLOW_ALL_CORS: Incomplete
+KEY_ALLOW_CONFIGRED_CORS: Incomplete
+KEY_HASS: AppKey[HomeAssistant]
 current_request: ContextVar[Request | None]
 
 def request_handler_factory(hass: HomeAssistant, view: HomeAssistantView, handler: Callable) -> Callable[[web.Request], Awaitable[web.StreamResponse]]: ...

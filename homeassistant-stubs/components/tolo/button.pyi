@@ -11,7 +11,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ToloLampNextColorButton(ToloSaunaCoordinatorEntity, ButtonEntity):
     _attr_entity_category: Incomplete
-    _attr_icon: str
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry) -> None: ...

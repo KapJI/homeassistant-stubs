@@ -14,17 +14,13 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-@dataclass(frozen=True)
-class SensiboSelectDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class SensiboSelectEntityDescription(SelectEntityDescription):
     data_key: str
     value_fn: Callable[[SensiboDevice], str | None]
     options_fn: Callable[[SensiboDevice], list[str] | None]
     transformation: Callable[[SensiboDevice], dict | None]
-    def __init__(self, data_key, value_fn, options_fn, transformation) -> None: ...
-
-@dataclass(frozen=True)
-class SensiboSelectEntityDescription(SelectEntityDescription, SensiboSelectDescriptionMixin):
-    def __init__(self, data_key, value_fn, options_fn, transformation, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, data_key, value_fn, options_fn, transformation) -> None: ...
 
 DEVICE_SELECT_TYPES: Incomplete
 

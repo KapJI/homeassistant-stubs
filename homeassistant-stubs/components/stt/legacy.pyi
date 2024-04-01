@@ -8,7 +8,7 @@ from homeassistant.config import config_per_platform as config_per_platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
+from homeassistant.setup import SetupPhases as SetupPhases, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from typing import Any
 
 _LOGGER: Incomplete

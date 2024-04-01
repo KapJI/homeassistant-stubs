@@ -1,4 +1,4 @@
-from . import GroupEntity as GroupEntity
+from .entity import GroupEntity as GroupEntity
 from .util import attribute_equal as attribute_equal, most_frequent_attribute as most_frequent_attribute, reduce_attribute as reduce_attribute
 from _typeshed import Incomplete
 from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PERCENTAGE_STEP as ATTR_PERCENTAGE_STEP, DOMAIN as DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SERVICE_OSCILLATE as SERVICE_OSCILLATE, SERVICE_SET_DIRECTION as SERVICE_SET_DIRECTION, SERVICE_SET_PERCENTAGE as SERVICE_SET_PERCENTAGE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON

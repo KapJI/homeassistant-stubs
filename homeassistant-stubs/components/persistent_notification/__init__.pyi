@@ -8,6 +8,7 @@ from homeassistant.helpers import singleton as singleton
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.signal_type import SignalType as SignalType
 from homeassistant.util.uuid import random_uuid_hex as random_uuid_hex
 from typing import Any, Final, TypedDict
 
@@ -30,7 +31,7 @@ class UpdateType(StrEnum):
     REMOVED: str
     UPDATED: str
 
-SIGNAL_PERSISTENT_NOTIFICATIONS_UPDATED: str
+SIGNAL_PERSISTENT_NOTIFICATIONS_UPDATED: Incomplete
 SCHEMA_SERVICE_NOTIFICATION: Incomplete
 _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete

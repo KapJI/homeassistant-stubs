@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class BlockNumberDescription(BlockEntityDescription, NumberEntityDescription):
     rest_path: str = ...
     rest_arg: str = ...

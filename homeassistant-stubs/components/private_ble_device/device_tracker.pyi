@@ -16,6 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class BasePrivateDeviceTracker(BasePrivateDeviceEntity, BaseTrackerEntity):
     _attr_should_poll: bool
     _attr_has_entity_name: bool
+    _attr_translation_key: str
     _attr_name: Incomplete
     @property
     def extra_state_attributes(self) -> Mapping[str, str]: ...
@@ -26,5 +27,3 @@ class BasePrivateDeviceTracker(BasePrivateDeviceEntity, BaseTrackerEntity):
     def state(self) -> str: ...
     @property
     def source_type(self) -> SourceType: ...
-    @property
-    def icon(self) -> str: ...

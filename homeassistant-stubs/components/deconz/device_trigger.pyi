@@ -1,6 +1,6 @@
 from . import DOMAIN as DOMAIN
 from .deconz_event import CONF_DECONZ_EVENT as CONF_DECONZ_EVENT, CONF_GESTURE as CONF_GESTURE, DeconzAlarmEvent as DeconzAlarmEvent, DeconzEvent as DeconzEvent, DeconzPresenceEvent as DeconzPresenceEvent, DeconzRelativeRotaryEvent as DeconzRelativeRotaryEvent
-from .gateway import DeconzGateway as DeconzGateway
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig

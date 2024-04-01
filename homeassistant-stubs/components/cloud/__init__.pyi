@@ -9,7 +9,7 @@ from collections.abc import Awaitable, Callable as Callable
 from enum import Enum
 from hass_nabucasa import Cloud
 from homeassistant.components import alexa as alexa, google_assistant as google_assistant
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_REGION as CONF_REGION, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

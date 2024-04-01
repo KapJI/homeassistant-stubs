@@ -1,3 +1,4 @@
+from ..const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.const import CONF_EVENT as CONF_EVENT, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant

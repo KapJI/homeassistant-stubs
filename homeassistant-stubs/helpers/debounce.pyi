@@ -15,9 +15,10 @@ class Debouncer(Generic[_R_co]):
     _timer_task: Incomplete
     _execute_at_end_of_timer: bool
     _execute_lock: Incomplete
+    _background: Incomplete
     _job: Incomplete
     _shutdown_requested: bool
-    def __init__(self, hass: HomeAssistant, logger: Logger, *, cooldown: float, immediate: bool, function: Callable[[], _R_co] | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, logger: Logger, *, cooldown: float, immediate: bool, function: Callable[[], _R_co] | None = None, background: bool = False) -> None: ...
     @property
     def function(self) -> Callable[[], _R_co] | None: ...
     @function.setter

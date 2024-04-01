@@ -1,4 +1,4 @@
-from .entity import EsphomeEntity as EsphomeEntity, platform_async_setup_entry as platform_async_setup_entry
+from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, platform_async_setup_entry as platform_async_setup_entry
 from _typeshed import Incomplete
 from aioesphomeapi import ButtonInfo, EntityInfo as EntityInfo, EntityState
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity

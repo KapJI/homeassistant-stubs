@@ -8,7 +8,7 @@ from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings
 from homeassistant.components import tag as tag, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
@@ -17,7 +17,7 @@ from homeassistant.helpers.event import EventStateChangedData as EventStateChang
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.typing import EventType as EventType
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any, NamedTuple
 
 _LOGGER: Incomplete
@@ -44,7 +44,7 @@ class ESPHomeManager:
     def services_issue(self) -> str: ...
     def async_on_service_call(self, service: HomeassistantServiceCall) -> None: ...
     def _send_home_assistant_state(self, entity_id: str, attribute: str | None, state: State | None) -> None: ...
-    def _send_home_assistant_state_event(self, attribute: str | None, event: EventType[EventStateChangedData]) -> None: ...
+    def _send_home_assistant_state_event(self, attribute: str | None, event: Event[EventStateChangedData]) -> None: ...
     def async_on_state_subscription(self, entity_id: str, attribute: str | None = None) -> None: ...
     def _handle_pipeline_finished(self) -> None: ...
     async def _handle_pipeline_start(self, conversation_id: str, flags: int, audio_settings: VoiceAssistantAudioSettings, wake_word_phrase: str | None) -> int | None: ...

@@ -1,2 +1,14 @@
+from _typeshed import Incomplete
+
 CONF_HIDE_MEMBERS: str
 CONF_IGNORE_NON_NUMERIC: str
+DOMAIN: str
+REG_KEY: Incomplete
+GROUP_ORDER: str
+ATTR_ADD_ENTITIES: str
+ATTR_REMOVE_ENTITIES: str
+ATTR_AUTO: str
+ATTR_ENTITIES: str
+ATTR_OBJECT_ID: str
+ATTR_ORDER: str
+ATTR_ALL: str

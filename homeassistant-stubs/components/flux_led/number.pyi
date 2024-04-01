@@ -25,7 +25,6 @@ class FluxSpeedNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], N
     _attr_native_max_value: int
     _attr_native_step: int
     _attr_mode: Incomplete
-    _attr_icon: str
     _attr_translation_key: str
     @property
     def native_value(self) -> float: ...
@@ -47,7 +46,6 @@ class FluxConfigNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], 
 
 class FluxPixelsPerSegmentNumber(FluxConfigNumber):
     _attr_translation_key: str
-    _attr_icon: str
     @property
     def native_max_value(self) -> int: ...
     @property
@@ -56,7 +54,6 @@ class FluxPixelsPerSegmentNumber(FluxConfigNumber):
 
 class FluxSegmentsNumber(FluxConfigNumber):
     _attr_translation_key: str
-    _attr_icon: str
     @property
     def native_max_value(self) -> int: ...
     @property
@@ -69,7 +66,6 @@ class FluxMusicNumber(FluxConfigNumber, metaclass=abc.ABCMeta):
 
 class FluxMusicPixelsPerSegmentNumber(FluxMusicNumber):
     _attr_translation_key: str
-    _attr_icon: str
     @property
     def native_max_value(self) -> int: ...
     @property
@@ -78,7 +74,6 @@ class FluxMusicPixelsPerSegmentNumber(FluxMusicNumber):
 
 class FluxMusicSegmentsNumber(FluxMusicNumber):
     _attr_translation_key: str
-    _attr_icon: str
     @property
     def native_max_value(self) -> int: ...
     @property

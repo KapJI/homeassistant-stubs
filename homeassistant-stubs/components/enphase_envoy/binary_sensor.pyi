@@ -12,25 +12,17 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyenphase import EnvoyEncharge as EnvoyEncharge, EnvoyEnpower as EnvoyEnpower
 
-@dataclass(frozen=True)
-class EnvoyEnchargeRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class EnvoyEnchargeBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[EnvoyEncharge], bool]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass(frozen=True)
-class EnvoyEnchargeBinarySensorEntityDescription(BinarySensorEntityDescription, EnvoyEnchargeRequiredKeysMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn) -> None: ...
 
 ENCHARGE_SENSORS: Incomplete
 
-@dataclass(frozen=True)
-class EnvoyEnpowerRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class EnvoyEnpowerBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[EnvoyEnpower], bool]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass(frozen=True)
-class EnvoyEnpowerBinarySensorEntityDescription(BinarySensorEntityDescription, EnvoyEnpowerRequiredKeysMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn) -> None: ...
 
 ENPOWER_SENSORS: Incomplete
 

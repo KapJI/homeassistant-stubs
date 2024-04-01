@@ -1,4 +1,4 @@
-from .gateway import get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

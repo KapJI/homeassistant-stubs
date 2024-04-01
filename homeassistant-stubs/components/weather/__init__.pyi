@@ -1,5 +1,4 @@
 import abc
-import asyncio
 from .const import ATTR_WEATHER_APPARENT_TEMPERATURE as ATTR_WEATHER_APPARENT_TEMPERATURE, ATTR_WEATHER_CLOUD_COVERAGE as ATTR_WEATHER_CLOUD_COVERAGE, ATTR_WEATHER_DEW_POINT as ATTR_WEATHER_DEW_POINT, ATTR_WEATHER_HUMIDITY as ATTR_WEATHER_HUMIDITY, ATTR_WEATHER_OZONE as ATTR_WEATHER_OZONE, ATTR_WEATHER_PRECIPITATION_UNIT as ATTR_WEATHER_PRECIPITATION_UNIT, ATTR_WEATHER_PRESSURE as ATTR_WEATHER_PRESSURE, ATTR_WEATHER_PRESSURE_UNIT as ATTR_WEATHER_PRESSURE_UNIT, ATTR_WEATHER_TEMPERATURE as ATTR_WEATHER_TEMPERATURE, ATTR_WEATHER_TEMPERATURE_UNIT as ATTR_WEATHER_TEMPERATURE_UNIT, ATTR_WEATHER_UV_INDEX as ATTR_WEATHER_UV_INDEX, ATTR_WEATHER_VISIBILITY as ATTR_WEATHER_VISIBILITY, ATTR_WEATHER_VISIBILITY_UNIT as ATTR_WEATHER_VISIBILITY_UNIT, ATTR_WEATHER_WIND_BEARING as ATTR_WEATHER_WIND_BEARING, ATTR_WEATHER_WIND_GUST_SPEED as ATTR_WEATHER_WIND_GUST_SPEED, ATTR_WEATHER_WIND_SPEED as ATTR_WEATHER_WIND_SPEED, ATTR_WEATHER_WIND_SPEED_UNIT as ATTR_WEATHER_WIND_SPEED_UNIT, DOMAIN as DOMAIN, UNIT_CONVERSIONS as UNIT_CONVERSIONS, VALID_UNITS as VALID_UNITS, WeatherEntityFeature as WeatherEntityFeature
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
@@ -12,10 +11,8 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import ABCCachedProperties as ABCCachedProperties, Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
-from homeassistant.loader import async_get_issue_tracker as async_get_issue_tracker, async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
@@ -38,7 +35,6 @@ ATTR_CONDITION_SNOWY_RAINY: str
 ATTR_CONDITION_SUNNY: str
 ATTR_CONDITION_WINDY: str
 ATTR_CONDITION_WINDY_VARIANT: str
-ATTR_FORECAST: str
 ATTR_FORECAST_IS_DAYTIME: Final[str]
 ATTR_FORECAST_CONDITION: Final[str]
 ATTR_FORECAST_HUMIDITY: Final[str]
@@ -115,10 +111,8 @@ class PostInit(metaclass=PostInitMeta):
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
 class WeatherEntity(Entity, PostInit, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
-    _entity_component_unrecorded_attributes: Incomplete
     entity_description: WeatherEntityDescription
     _attr_condition: str | None
-    _attr_forecast: list[Forecast] | None
     _attr_humidity: float | None
     _attr_ozone: float | None
     _attr_cloud_coverage: int | None
@@ -139,17 +133,12 @@ class WeatherEntity(Entity, PostInit, cached_properties=CACHED_PROPERTIES_WITH_A
     _attr_native_wind_speed_unit: str | None
     _attr_native_dew_point: float | None
     _forecast_listeners: dict[Literal['daily', 'hourly', 'twice_daily'], list[Callable[[list[JsonValueType] | None], None]]]
-    __weather_reported_legacy_forecast: bool
-    __weather_legacy_forecast: bool
     _weather_option_temperature_unit: str | None
     _weather_option_pressure_unit: str | None
     _weather_option_visibility_unit: str | None
     _weather_option_precipitation_unit: str | None
     _weather_option_wind_speed_unit: str | None
     def __post_init__(self, *args: Any, **kwargs: Any) -> None: ...
-    def __init_subclass__(cls, **kwargs: Any) -> None: ...
-    def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
-    def _report_legacy_forecast(self, hass: HomeAssistant) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
     @cached_property
     def native_apparent_temperature(self) -> float | None: ...
@@ -199,8 +188,6 @@ class WeatherEntity(Entity, PostInit, cached_properties=CACHED_PROPERTIES_WITH_A
     def _default_visibility_unit(self) -> str: ...
     @property
     def _visibility_unit(self) -> str: ...
-    @property
-    def forecast(self) -> list[Forecast] | None: ...
     async def async_forecast_daily(self) -> list[Forecast] | None: ...
     async def async_forecast_twice_daily(self) -> list[Forecast] | None: ...
     async def async_forecast_hourly(self) -> list[Forecast] | None: ...

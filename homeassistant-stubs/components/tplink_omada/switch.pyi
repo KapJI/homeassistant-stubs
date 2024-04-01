@@ -1,34 +1,71 @@
 from .const import DOMAIN as DOMAIN
-from .controller import OmadaSiteController as OmadaSiteController, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
+from .controller import OmadaGatewayCoordinator as OmadaGatewayCoordinator, OmadaSiteController as OmadaSiteController, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
+from .coordinator import OmadaCoordinator as OmadaCoordinator
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity
 from _typeshed import Incomplete
-from homeassistant.components.switch import SwitchEntity as SwitchEntity
+from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
+from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from tplink_omada_client.devices import OmadaSwitch as OmadaSwitch, OmadaSwitchPortDetails
-from typing import Any
+from tplink_omada_client import OmadaSiteClient as OmadaSiteClient
+from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGateway, OmadaGatewayPortConfig, OmadaGatewayPortStatus, OmadaSwitch, OmadaSwitchPortDetails
+from typing import Any, Generic, TypeVar
 
-POE_SWITCH_ICON: str
+TPort = TypeVar('TPort')
+TDevice = TypeVar('TDevice', bound='OmadaDevice')
+TCoordinator = TypeVar('TCoordinator', bound='OmadaCoordinator[Any]')
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def get_port_base_name(port: OmadaSwitchPortDetails) -> str: ...
+def _get_switch_port_base_name(port: OmadaSwitchPortDetails) -> str: ...
 
-class OmadaNetworkSwitchPortPoEControl(OmadaDeviceEntity[OmadaSwitchPortDetails], SwitchEntity):
+@dataclass(frozen=True, kw_only=True)
+class OmadaDevicePortSwitchEntityDescription(SwitchEntityDescription, Generic[TCoordinator, TDevice, TPort]):
+    exists_func: Callable[[TDevice, TPort], bool] = ...
+    coordinator_update_func: Callable[[TCoordinator, TDevice, int | str], TPort | None] = ...
+    set_func: Callable[[OmadaSiteClient, TDevice, TPort, bool], Awaitable[TPort]]
+    update_func: Callable[[TPort], bool]
+    refresh_after_set: bool = ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, exists_func, coordinator_update_func, set_func, update_func, refresh_after_set) -> None: ...
+
+@dataclass(frozen=True, kw_only=True)
+class OmadaSwitchPortSwitchEntityDescription(OmadaDevicePortSwitchEntityDescription[OmadaSwitchPortCoordinator, OmadaSwitch, OmadaSwitchPortDetails]):
+    coordinator_update_func: Callable[[OmadaSwitchPortCoordinator, OmadaSwitch, int | str], OmadaSwitchPortDetails | None] = ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, exists_func, coordinator_update_func, set_func, update_func, refresh_after_set) -> None: ...
+
+@dataclass(frozen=True, kw_only=True)
+class OmadaGatewayPortConfigSwitchEntityDescription(OmadaDevicePortSwitchEntityDescription[OmadaGatewayCoordinator, OmadaGateway, OmadaGatewayPortConfig]):
+    coordinator_update_func: Callable[[OmadaGatewayCoordinator, OmadaGateway, int | str], OmadaGatewayPortConfig | None] = ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, exists_func, coordinator_update_func, set_func, update_func, refresh_after_set) -> None: ...
+
+@dataclass(frozen=True, kw_only=True)
+class OmadaGatewayPortStatusSwitchEntityDescription(OmadaDevicePortSwitchEntityDescription[OmadaGatewayCoordinator, OmadaGateway, OmadaGatewayPortStatus]):
+    coordinator_update_func: Callable[[OmadaGatewayCoordinator, OmadaGateway, int | str], OmadaGatewayPortStatus] = ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, exists_func, coordinator_update_func, set_func, update_func, refresh_after_set) -> None: ...
+
+def _wan_connect_disconnect(client: OmadaSiteClient, device: OmadaDevice, port: OmadaGatewayPortStatus, enable: bool, ipv6: bool) -> Awaitable[OmadaGatewayPortStatus]: ...
+
+SWITCH_PORT_DETAILS_SWITCHES: list[OmadaSwitchPortSwitchEntityDescription]
+GATEWAY_PORT_STATUS_SWITCHES: list[OmadaGatewayPortStatusSwitchEntityDescription]
+GATEWAY_PORT_CONFIG_SWITCHES: list[OmadaGatewayPortConfigSwitchEntityDescription]
+
+class OmadaDevicePortSwitchEntity(OmadaDeviceEntity[TCoordinator], SwitchEntity, Generic[TCoordinator, TDevice, TPort]):
     _attr_has_entity_name: bool
-    _attr_entity_category: Incomplete
-    _attr_icon = POE_SWITCH_ICON
-    port_id: Incomplete
-    port_details: Incomplete
-    omada_client: Incomplete
+    _port_details: TPort | None
+    entity_description: OmadaDevicePortSwitchEntityDescription[TCoordinator, TDevice, TPort]
+    _device: Incomplete
+    _port_id: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
-    def __init__(self, coordinator: OmadaSwitchPortCoordinator, device: OmadaSwitch, port_id: str) -> None: ...
+    _attr_translation_placeholders: Incomplete
+    def __init__(self, coordinator: TCoordinator, device: TDevice, port_id: int | str, entity_description: OmadaDevicePortSwitchEntityDescription[TCoordinator, TDevice, TPort], port_name: str | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    async def _async_turn_on_off_poe(self, enable: bool) -> None: ...
+    _attr_is_on: Incomplete
+    async def _async_turn_on_off(self, enable: bool) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    _attr_is_on: Incomplete
-    def _refresh_state(self) -> None: ...
+    @property
+    def available(self) -> bool: ...
+    def _do_update(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

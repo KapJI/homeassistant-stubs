@@ -1,3 +1,4 @@
+from .const import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import IntFlag
@@ -32,10 +33,6 @@ SERVICE_START_PAUSE: str
 SERVICE_START: str
 SERVICE_PAUSE: str
 SERVICE_STOP: str
-STATE_CLEANING: str
-STATE_DOCKED: str
-STATE_RETURNING: str
-STATE_ERROR: str
 STATES: Incomplete
 DEFAULT_NAME: str
 

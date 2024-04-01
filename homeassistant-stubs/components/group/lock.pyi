@@ -1,4 +1,4 @@
-from . import GroupEntity as GroupEntity
+from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import DOMAIN as DOMAIN, LockEntity as LockEntity, LockEntityFeature as LockEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -14,7 +14,6 @@ STATE_WANING_CRESCENT: str
 STATE_WANING_GIBBOUS: str
 STATE_WAXING_CRESCENT: str
 STATE_WAXING_GIBBOUS: str
-MOON_ICONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -27,5 +26,4 @@ class MoonSensorEntity(SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, entry: ConfigEntry) -> None: ...
     _attr_native_value: Incomplete
-    _attr_icon: Incomplete
     async def async_update(self) -> None: ...

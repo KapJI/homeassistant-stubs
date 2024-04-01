@@ -10,7 +10,6 @@ class BangOlufsenBase:
     _client: Incomplete
     entry: Incomplete
     _host: Incomplete
-    _name: Incomplete
     _unique_id: Incomplete
     _playback_metadata: Incomplete
     _playback_progress: Incomplete
@@ -22,10 +21,8 @@ class BangOlufsenBase:
 
 class BangOlufsenEntity(Entity, BangOlufsenBase):
     _attr_has_entity_name: bool
-    _attr_device_info: Incomplete
-    _attr_device_class: Incomplete
-    _attr_entity_category: Incomplete
     _attr_should_poll: bool
+    _attr_device_info: Incomplete
     def __init__(self, entry: ConfigEntry, client: MozartClient) -> None: ...
     _attr_available: Incomplete
     async def _update_connection_state(self, connection_state: bool) -> None: ...

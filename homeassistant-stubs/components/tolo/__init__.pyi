@@ -5,7 +5,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from tololib.message_info import SettingsInfo as SettingsInfo, StatusInfo as StatusInfo
+from tololib import ToloSettings as ToloSettings, ToloStatus as ToloStatus
 from typing import NamedTuple
 
 PLATFORMS: Incomplete
@@ -15,8 +15,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class ToloSaunaData(NamedTuple):
-    status: StatusInfo
-    settings: SettingsInfo
+    status: ToloStatus
+    settings: ToloSettings
 
 class ToloSaunaUpdateCoordinator(DataUpdateCoordinator[ToloSaunaData]):
     client: Incomplete

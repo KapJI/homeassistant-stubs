@@ -1,4 +1,4 @@
 from .const import DOMAIN as DOMAIN
-from homeassistant import config_entries as config_entries
+from homeassistant.config_entries import ConfigFlow as ConfigFlow
 
-class ZoneConfigFlow(config_entries.ConfigFlow, domain=DOMAIN): ...
+class ZoneConfigFlow(ConfigFlow, domain=DOMAIN): ...

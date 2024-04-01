@@ -1,18 +1,24 @@
 from .core import Context as Context
 from _typeshed import Incomplete
-from collections.abc import Generator, Sequence
+from collections.abc import Callable as Callable, Generator, Sequence
 from dataclasses import dataclass
 
+_function_cache: dict[str, Callable[[str, str, dict[str, str] | None], str]]
+
+def import_async_get_exception_message() -> Callable[[str, str, dict[str, str] | None], str]: ...
+
 class HomeAssistantError(Exception):
+    _message: str | None
+    generate_message: bool
     translation_domain: Incomplete
     translation_key: Incomplete
     translation_placeholders: Incomplete
     def __init__(self, *args: object, translation_domain: str | None = None, translation_key: str | None = None, translation_placeholders: dict[str, str] | None = None) -> None: ...
+    def __str__(self) -> str: ...
 
 class ConfigValidationError(HomeAssistantError, ExceptionGroup[Exception]):
-    _message: Incomplete
-    def __init__(self, message: str, exceptions: list[Exception], translation_domain: str | None = None, translation_key: str | None = None, translation_placeholders: dict[str, str] | None = None) -> None: ...
-    def __str__(self) -> str: ...
+    generate_message: bool
+    def __init__(self, message_translation_key: str, exceptions: list[Exception], translation_domain: str | None = None, translation_placeholders: dict[str, str] | None = None) -> None: ...
 
 class ServiceValidationError(HomeAssistantError): ...
 class InvalidEntityFormatError(HomeAssistantError): ...
@@ -73,13 +79,14 @@ class UnknownUser(Unauthorized): ...
 class ServiceNotFound(HomeAssistantError):
     domain: Incomplete
     service: Incomplete
+    generate_message: bool
     def __init__(self, domain: str, service: str) -> None: ...
-    def __str__(self) -> str: ...
 
 class MaxLengthExceeded(HomeAssistantError):
     value: Incomplete
     property_name: Incomplete
     max_length: Incomplete
+    generate_message: bool
     def __init__(self, value: str, property_name: str, max_length: int) -> None: ...
 
 class DependencyError(HomeAssistantError):

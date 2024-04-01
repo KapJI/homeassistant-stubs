@@ -5,7 +5,7 @@ from aiohttp import web
 from dataclasses import dataclass
 from datetime import datetime
 from functools import cached_property as cached_property
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -15,7 +15,7 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
-from homeassistant.helpers.typing import ConfigType as ConfigType, EventType as EventType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from typing import Final
 
 _LOGGER: Incomplete

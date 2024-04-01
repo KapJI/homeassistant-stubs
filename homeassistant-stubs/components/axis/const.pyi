@@ -4,7 +4,6 @@ from homeassistant.const import Platform as Platform
 LOGGER: Incomplete
 DOMAIN: str
 ATTR_MANUFACTURER: str
-CONF_EVENTS: str
 CONF_STREAM_PROFILE: str
 CONF_VIDEO_SOURCE: str
 DEFAULT_EVENTS: bool

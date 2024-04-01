@@ -14,15 +14,15 @@ from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Final
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class BlockSensorDescription(BlockEntityDescription, SensorEntityDescription):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class RpcSensorDescription(RpcEntityDescription, SensorEntityDescription):
-    def __init__(self, sub_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, sub_key, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class RestSensorDescription(RestEntityDescription, SensorEntityDescription):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value, extra_state_attributes) -> None: ...
 

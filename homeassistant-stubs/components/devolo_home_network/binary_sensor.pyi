@@ -14,14 +14,10 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 def _is_connected_to_router(entity: DevoloBinarySensorEntity) -> bool: ...
 
-@dataclass(frozen=True)
-class DevoloBinarySensorRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class DevoloBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_func: Callable[[DevoloBinarySensorEntity], bool]
-    def __init__(self, value_func) -> None: ...
-
-@dataclass(frozen=True)
-class DevoloBinarySensorEntityDescription(BinarySensorEntityDescription, DevoloBinarySensorRequiredKeysMixin):
-    def __init__(self, value_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_func) -> None: ...
 
 SENSOR_TYPES: dict[str, DevoloBinarySensorEntityDescription]
 

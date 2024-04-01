@@ -14,24 +14,16 @@ from pyenphase import Envoy as Envoy, EnvoyDryContactSettings as EnvoyDryContact
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
 from typing import Any
 
-@dataclass(frozen=True)
-class EnvoyRelayRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class EnvoyRelayNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[EnvoyDryContactSettings], float]
-    def __init__(self, value_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, value_fn) -> None: ...
 
-@dataclass(frozen=True)
-class EnvoyRelayNumberEntityDescription(NumberEntityDescription, EnvoyRelayRequiredKeysMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
-
-@dataclass(frozen=True)
-class EnvoyStorageSettingsRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class EnvoyStorageSettingsNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[EnvoyStorageSettings], float]
     update_fn: Callable[[Envoy, float], Awaitable[dict[str, Any]]]
-    def __init__(self, value_fn, update_fn) -> None: ...
-
-@dataclass(frozen=True)
-class EnvoyStorageSettingsNumberEntityDescription(NumberEntityDescription, EnvoyStorageSettingsRequiredKeysMixin):
-    def __init__(self, value_fn, update_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, value_fn, update_fn) -> None: ...
 
 RELAY_ENTITIES: Incomplete
 STORAGE_RESERVE_SOC_ENTITY: Incomplete

@@ -1,4 +1,4 @@
-from .const import CID as CID, DATA_KEY_API as DATA_KEY_API, DOMAIN as DOMAIN, ICON as ICON
+from .const import CID as CID, DATA_KEY_API as DATA_KEY_API, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,10 +11,10 @@ from phone_modem import PhoneModem as PhoneModem
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ModemCalleridSensor(SensorEntity):
-    _attr_icon = ICON
     _attr_should_poll: bool
     _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _attr_translation_key: str
     api: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete

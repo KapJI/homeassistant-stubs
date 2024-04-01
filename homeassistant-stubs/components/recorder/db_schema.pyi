@@ -30,6 +30,7 @@ TABLE_STATISTICS: str
 TABLE_STATISTICS_META: str
 TABLE_STATISTICS_RUNS: str
 TABLE_STATISTICS_SHORT_TERM: str
+TABLE_MIGRATION_CHANGES: str
 STATISTICS_TABLES: Incomplete
 MAX_STATE_ATTRS_BYTES: int
 MAX_EVENT_DATA_BYTES: int
@@ -135,6 +136,7 @@ class States(Base):
     event_id: Mapped[int | None]
     last_changed: Mapped[datetime | None]
     last_changed_ts: Mapped[float | None]
+    last_reported_ts: Mapped[float | None]
     last_updated: Mapped[datetime | None]
     last_updated_ts: Mapped[float | None]
     old_state_id: Mapped[int | None]
@@ -230,6 +232,11 @@ class RecorderRuns(Base):
     created: Mapped[datetime]
     def __repr__(self) -> str: ...
     def to_native(self, validate_entity_id: bool = True) -> Self: ...
+
+class MigrationChanges(Base):
+    __tablename__ = TABLE_MIGRATION_CHANGES
+    migration_id: Mapped[str]
+    version: Mapped[int]
 
 class SchemaChanges(Base):
     __tablename__ = TABLE_SCHEMA_CHANGES

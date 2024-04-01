@@ -1,5 +1,5 @@
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -18,7 +18,7 @@ class DeconzCover(DeconzDevice[Cover], CoverEntity):
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     legacy_mode: Incomplete
-    def __init__(self, cover_id: str, gateway: DeconzGateway) -> None: ...
+    def __init__(self, cover_id: str, hub: DeconzHub) -> None: ...
     @property
     def current_cover_position(self) -> int: ...
     @property

@@ -6,13 +6,13 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.color import color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin
-from jaraco.abode.devices.light import Light as AbodeLT
+from jaraco.abode.devices.light import Light as Light
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AbodeLight(AbodeDevice, LightEntity):
-    _device: AbodeLT
+    _device: Light
     _attr_name: Incomplete
     def turn_on(self, **kwargs: Any) -> None: ...
     def turn_off(self, **kwargs: Any) -> None: ...

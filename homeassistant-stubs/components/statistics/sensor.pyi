@@ -5,12 +5,12 @@ from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.sensor import DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.start import async_at_start as async_at_start
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, EventType as EventType, StateType as StateType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any
 

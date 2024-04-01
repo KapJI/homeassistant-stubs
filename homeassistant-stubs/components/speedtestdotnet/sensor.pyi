@@ -1,4 +1,4 @@
-from .const import ATTRIBUTION as ATTRIBUTION, ATTR_BYTES_RECEIVED as ATTR_BYTES_RECEIVED, ATTR_BYTES_SENT as ATTR_BYTES_SENT, ATTR_SERVER_COUNTRY as ATTR_SERVER_COUNTRY, ATTR_SERVER_ID as ATTR_SERVER_ID, ATTR_SERVER_NAME as ATTR_SERVER_NAME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, ICON as ICON
+from .const import ATTRIBUTION as ATTRIBUTION, ATTR_BYTES_RECEIVED as ATTR_BYTES_RECEIVED, ATTR_BYTES_SENT as ATTR_BYTES_SENT, ATTR_SERVER_COUNTRY as ATTR_SERVER_COUNTRY, ATTR_SERVER_ID as ATTR_SERVER_ID, ATTR_SERVER_NAME as ATTR_SERVER_NAME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from .coordinator import SpeedTestDataCoordinator as SpeedTestDataCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -26,7 +26,6 @@ class SpeedtestSensor(CoordinatorEntity[SpeedTestDataCoordinator], SensorEntity)
     entity_description: SpeedtestSensorEntityDescription
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
-    _attr_icon = ICON
     _attr_unique_id: Incomplete
     _state: Incomplete
     _attrs: Incomplete

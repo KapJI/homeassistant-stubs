@@ -11,19 +11,14 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Generic
 
 def async_wlan_qr_code_image_fn(hub: UnifiHub, wlan: Wlan) -> bytes: ...
 
-@dataclass(frozen=True)
-class UnifiImageEntityDescriptionMixin(Generic[HandlerT, ApiItemT]):
+@dataclass(frozen=True, kw_only=True)
+class UnifiImageEntityDescription(ImageEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):
     image_fn: Callable[[UnifiHub, ApiItemT], bytes]
     value_fn: Callable[[ApiItemT], str | None]
-    def __init__(self, image_fn, value_fn) -> None: ...
-
-@dataclass(frozen=True)
-class UnifiImageEntityDescription(ImageEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT], UnifiImageEntityDescriptionMixin[HandlerT, ApiItemT]):
-    def __init__(self, image_fn, value_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn, available_fn, name_fn, supported_fn, event_is_on, event_to_subscribe, should_poll, image_fn, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiImageEntityDescription, ...]
 

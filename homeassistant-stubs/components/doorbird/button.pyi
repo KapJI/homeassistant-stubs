@@ -12,14 +12,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 IR_RELAY: str
 
-@dataclass(frozen=True)
-class DoorbirdButtonEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class DoorbirdButtonEntityDescription(ButtonEntityDescription):
     press_action: Callable[[DoorBird, str], None]
-    def __init__(self, press_action) -> None: ...
-
-@dataclass(frozen=True)
-class DoorbirdButtonEntityDescription(ButtonEntityDescription, DoorbirdButtonEntityDescriptionMixin):
-    def __init__(self, press_action, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, press_action) -> None: ...
 
 RELAY_ENTITY_DESCRIPTION: Incomplete
 IR_ENTITY_DESCRIPTION: Incomplete

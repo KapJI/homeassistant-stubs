@@ -1,16 +1,18 @@
-from .const import BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, CONF_COAP_PORT as CONF_COAP_PORT, CONF_GEN as CONF_GEN, DEFAULT_COAP_PORT as DEFAULT_COAP_PORT, DEVICES_WITHOUT_FIRMWARE_CHANGELOG as DEVICES_WITHOUT_FIRMWARE_CHANGELOG, DOMAIN as DOMAIN, FIRMWARE_UNSUPPORTED_ISSUE_ID as FIRMWARE_UNSUPPORTED_ISSUE_ID, GEN1_RELEASE_URL as GEN1_RELEASE_URL, GEN2_RELEASE_URL as GEN2_RELEASE_URL, LOGGER as LOGGER, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION
+from .const import BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, CONF_COAP_PORT as CONF_COAP_PORT, CONF_GEN as CONF_GEN, DEVICES_WITHOUT_FIRMWARE_CHANGELOG as DEVICES_WITHOUT_FIRMWARE_CHANGELOG, DOMAIN as DOMAIN, FIRMWARE_UNSUPPORTED_ISSUE_ID as FIRMWARE_UNSUPPORTED_ISSUE_ID, GEN1_RELEASE_URL as GEN1_RELEASE_URL, GEN2_RELEASE_URL as GEN2_RELEASE_URL, LOGGER as LOGGER, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, WebSocketResponse as WebSocketResponse
-from aioshelly.block_device import Block as Block, BlockDevice as BlockDevice, COAP
-from aioshelly.rpc_device import RpcDevice as RpcDevice, WsServer
+from aioshelly.block_device import Block as Block, BlockDevice, COAP
+from aioshelly.rpc_device import RpcDevice, WsServer
 from datetime import datetime
+from homeassistant.components import network as network
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import singleton as singleton
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.util.dt import utcnow as utcnow
+from types import MappingProxyType
 from typing import Any
 
 def async_remove_shelly_entity(hass: HomeAssistant, domain: str, unique_id: str) -> None: ...
@@ -54,3 +56,5 @@ def mac_address_from_name(name: str) -> str | None: ...
 def get_release_url(gen: int, model: str, beta: bool) -> str | None: ...
 def async_create_issue_unsupported_firmware(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 def is_rpc_wifi_stations_disabled(config: dict[str, Any], _status: dict[str, Any], key: str) -> bool: ...
+def get_http_port(data: MappingProxyType[str, Any]) -> int: ...
+async def async_shutdown_device(device: BlockDevice | RpcDevice) -> None: ...

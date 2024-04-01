@@ -10,14 +10,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from kaleidescape import Device as KaleidescapeDevice
 
-@dataclass(frozen=True)
-class BaseEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class KaleidescapeSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[KaleidescapeDevice], StateType]
-    def __init__(self, value_fn) -> None: ...
-
-@dataclass(frozen=True)
-class KaleidescapeSensorEntityDescription(SensorEntityDescription, BaseEntityDescriptionMixin):
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn) -> None: ...
 
 SENSOR_TYPES: tuple[KaleidescapeSensorEntityDescription, ...]
 

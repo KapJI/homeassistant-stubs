@@ -1,5 +1,5 @@
-from . import GroupEntity as GroupEntity
 from .const import CONF_IGNORE_NON_NUMERIC as CONF_IGNORE_NON_NUMERIC
+from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, DOMAIN as DOMAIN, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass, UNIT_CONVERTERS as UNIT_CONVERTERS

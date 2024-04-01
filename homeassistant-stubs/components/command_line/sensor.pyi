@@ -1,5 +1,5 @@
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, LOGGER as LOGGER
-from .utils import check_output_or_log as check_output_or_log
+from .utils import async_check_output_or_log as async_check_output_or_log
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass
@@ -44,4 +44,4 @@ class CommandSensorData:
     command: Incomplete
     timeout: Incomplete
     def __init__(self, hass: HomeAssistant, command: str, command_timeout: int) -> None: ...
-    def update(self) -> None: ...
+    async def async_update(self) -> None: ...

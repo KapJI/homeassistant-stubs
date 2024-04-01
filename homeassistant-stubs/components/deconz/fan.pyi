@@ -1,5 +1,5 @@
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.components.fan import DOMAIN as DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -18,7 +18,7 @@ class DeconzFan(DeconzDevice[Light], FanEntity):
     TYPE = DOMAIN
     _default_on_speed: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, device: Light, gateway: DeconzGateway) -> None: ...
+    def __init__(self, device: Light, hub: DeconzHub) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property

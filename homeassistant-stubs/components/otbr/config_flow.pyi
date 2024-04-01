@@ -3,10 +3,9 @@ from .util import compose_default_network_name as compose_default_network_name, 
 from _typeshed import Incomplete
 from homeassistant.components.hassio import HassioAPIError as HassioAPIError, HassioServiceInfo as HassioServiceInfo, async_get_addon_info as async_get_addon_info
 from homeassistant.components.thread import async_get_preferred_dataset as async_get_preferred_dataset
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, SOURCE_HASSIO as SOURCE_HASSIO
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 
@@ -18,5 +17,5 @@ async def _title(hass: HomeAssistant, discovery_info: HassioServiceInfo) -> str:
 class OTBRConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def _connect_and_set_dataset(self, otbr_url: str) -> None: ...
-    async def async_step_user(self, user_input: dict[str, str] | None = None) -> FlowResult: ...
-    async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> FlowResult: ...
+    async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
+    async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> ConfigFlowResult: ...

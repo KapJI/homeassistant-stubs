@@ -1,14 +1,16 @@
+import abc
 from . import Recorder as Recorder
 from .auto_repairs.statistics.duplicates import delete_statistics_duplicates as delete_statistics_duplicates, delete_statistics_meta_duplicates as delete_statistics_meta_duplicates
-from .const import SupportedDialect as SupportedDialect
-from .db_schema import Base as Base, CONTEXT_ID_BIN_MAX_LENGTH as CONTEXT_ID_BIN_MAX_LENGTH, DOUBLE_PRECISION_TYPE_SQL as DOUBLE_PRECISION_TYPE_SQL, EventTypes as EventTypes, Events as Events, LEGACY_STATES_ENTITY_ID_LAST_UPDATED_INDEX as LEGACY_STATES_ENTITY_ID_LAST_UPDATED_INDEX, LEGACY_STATES_EVENT_ID_INDEX as LEGACY_STATES_EVENT_ID_INDEX, MYSQL_COLLATE as MYSQL_COLLATE, MYSQL_DEFAULT_CHARSET as MYSQL_DEFAULT_CHARSET, SCHEMA_VERSION as SCHEMA_VERSION, STATISTICS_TABLES as STATISTICS_TABLES, SchemaChanges as SchemaChanges, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm, TABLE_STATES as TABLE_STATES
+from .const import CONTEXT_ID_AS_BINARY_SCHEMA_VERSION as CONTEXT_ID_AS_BINARY_SCHEMA_VERSION, EVENT_TYPE_IDS_SCHEMA_VERSION as EVENT_TYPE_IDS_SCHEMA_VERSION, STATES_META_SCHEMA_VERSION as STATES_META_SCHEMA_VERSION, SupportedDialect as SupportedDialect
+from .db_schema import Base as Base, CONTEXT_ID_BIN_MAX_LENGTH as CONTEXT_ID_BIN_MAX_LENGTH, DOUBLE_PRECISION_TYPE_SQL as DOUBLE_PRECISION_TYPE_SQL, EventTypes as EventTypes, Events as Events, LEGACY_STATES_ENTITY_ID_LAST_UPDATED_INDEX as LEGACY_STATES_ENTITY_ID_LAST_UPDATED_INDEX, LEGACY_STATES_EVENT_ID_INDEX as LEGACY_STATES_EVENT_ID_INDEX, MYSQL_COLLATE as MYSQL_COLLATE, MYSQL_DEFAULT_CHARSET as MYSQL_DEFAULT_CHARSET, MigrationChanges as MigrationChanges, SCHEMA_VERSION as SCHEMA_VERSION, STATISTICS_TABLES as STATISTICS_TABLES, SchemaChanges as SchemaChanges, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm, TABLE_STATES as TABLE_STATES
 from .models import process_timestamp as process_timestamp
 from .models.time import datetime_to_timestamp_or_none as datetime_to_timestamp_or_none
-from .queries import batch_cleanup_entity_ids as batch_cleanup_entity_ids, delete_duplicate_short_term_statistics_row as delete_duplicate_short_term_statistics_row, delete_duplicate_statistics_row as delete_duplicate_statistics_row, find_entity_ids_to_migrate as find_entity_ids_to_migrate, find_event_type_to_migrate as find_event_type_to_migrate, find_events_context_ids_to_migrate as find_events_context_ids_to_migrate, find_states_context_ids_to_migrate as find_states_context_ids_to_migrate, find_unmigrated_short_term_statistics_rows as find_unmigrated_short_term_statistics_rows, find_unmigrated_statistics_rows as find_unmigrated_statistics_rows, has_used_states_event_ids as has_used_states_event_ids, migrate_single_short_term_statistics_row_to_timestamp as migrate_single_short_term_statistics_row_to_timestamp, migrate_single_statistics_row_to_timestamp as migrate_single_statistics_row_to_timestamp
+from .queries import batch_cleanup_entity_ids as batch_cleanup_entity_ids, delete_duplicate_short_term_statistics_row as delete_duplicate_short_term_statistics_row, delete_duplicate_statistics_row as delete_duplicate_statistics_row, find_entity_ids_to_migrate as find_entity_ids_to_migrate, find_event_type_to_migrate as find_event_type_to_migrate, find_events_context_ids_to_migrate as find_events_context_ids_to_migrate, find_states_context_ids_to_migrate as find_states_context_ids_to_migrate, find_unmigrated_short_term_statistics_rows as find_unmigrated_short_term_statistics_rows, find_unmigrated_statistics_rows as find_unmigrated_statistics_rows, has_entity_ids_to_migrate as has_entity_ids_to_migrate, has_event_type_to_migrate as has_event_type_to_migrate, has_events_context_ids_to_migrate as has_events_context_ids_to_migrate, has_states_context_ids_to_migrate as has_states_context_ids_to_migrate, has_used_states_event_ids as has_used_states_event_ids, migrate_single_short_term_statistics_row_to_timestamp as migrate_single_short_term_statistics_row_to_timestamp, migrate_single_statistics_row_to_timestamp as migrate_single_statistics_row_to_timestamp
 from .statistics import get_start_time as get_start_time
-from .tasks import CommitTask as CommitTask, PostSchemaMigrationTask as PostSchemaMigrationTask, StatisticsTimestampMigrationCleanupTask as StatisticsTimestampMigrationCleanupTask
-from .util import database_job_retry_wrapper as database_job_retry_wrapper, get_index_by_name as get_index_by_name, retryable_database_job as retryable_database_job, session_scope as session_scope
+from .tasks import CommitTask as CommitTask, EntityIDMigrationTask as EntityIDMigrationTask, EventTypeIDMigrationTask as EventTypeIDMigrationTask, EventsContextIDMigrationTask as EventsContextIDMigrationTask, PostSchemaMigrationTask as PostSchemaMigrationTask, RecorderTask as RecorderTask, StatesContextIDMigrationTask as StatesContextIDMigrationTask, StatisticsTimestampMigrationCleanupTask as StatisticsTimestampMigrationCleanupTask
+from .util import database_job_retry_wrapper as database_job_retry_wrapper, execute_stmt_lambda_element as execute_stmt_lambda_element, get_index_by_name as get_index_by_name, retryable_database_job as retryable_database_job, session_scope as session_scope
 from _typeshed import Incomplete
+from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -16,6 +18,7 @@ from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from homeassistant.util.ulid import ulid_at_time as ulid_at_time, ulid_to_bytes as ulid_to_bytes
 from sqlalchemy.engine import CursorResult as CursorResult, Engine as Engine
 from sqlalchemy.orm.session import Session as Session
+from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
 
 LIVE_MIGRATION_MIN_SCHEMA_VERSION: int
 _EMPTY_ENTITY_ID: str
@@ -76,3 +79,42 @@ def post_migrate_entity_ids(instance: Recorder) -> bool: ...
 def cleanup_legacy_states_event_ids(instance: Recorder) -> bool: ...
 def _initialize_database(session: Session) -> bool: ...
 def initialize_database(session_maker: Callable[[], Session]) -> bool: ...
+
+class BaseRunTimeMigration(ABC, metaclass=abc.ABCMeta):
+    required_schema_version: int
+    migration_version: int
+    migration_id: str
+    task: Callable[[], RecorderTask]
+    schema_version: Incomplete
+    session: Incomplete
+    migration_changes: Incomplete
+    def __init__(self, session: Session, schema_version: int, migration_changes: dict[str, int]) -> None: ...
+    @abstractmethod
+    def needs_migrate_query(self) -> StatementLambdaElement: ...
+    def needs_migrate(self) -> bool: ...
+
+class StatesContextIDMigration(BaseRunTimeMigration):
+    required_schema_version = CONTEXT_ID_AS_BINARY_SCHEMA_VERSION
+    migration_id: str
+    task = StatesContextIDMigrationTask
+    def needs_migrate_query(self) -> StatementLambdaElement: ...
+
+class EventsContextIDMigration(BaseRunTimeMigration):
+    required_schema_version = CONTEXT_ID_AS_BINARY_SCHEMA_VERSION
+    migration_id: str
+    task = EventsContextIDMigrationTask
+    def needs_migrate_query(self) -> StatementLambdaElement: ...
+
+class EventTypeIDMigration(BaseRunTimeMigration):
+    required_schema_version = EVENT_TYPE_IDS_SCHEMA_VERSION
+    migration_id: str
+    task = EventTypeIDMigrationTask
+    def needs_migrate_query(self) -> StatementLambdaElement: ...
+
+class EntityIDMigration(BaseRunTimeMigration):
+    required_schema_version = STATES_META_SCHEMA_VERSION
+    migration_id: str
+    task = EntityIDMigrationTask
+    def needs_migrate_query(self) -> StatementLambdaElement: ...
+
+def _mark_migration_done(session: Session, migration: type[BaseRunTimeMigration]) -> None: ...

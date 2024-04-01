@@ -1,8 +1,7 @@
 import homeassistant
-import homeassistant.core
 from _typeshed import Incomplete
 from enum import Enum
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 _DataT = TypeVar('_DataT')
 GPSType = tuple[float, float]
@@ -18,8 +17,6 @@ class UndefinedType(Enum):
     _singleton: int
 
 UNDEFINED: Incomplete
+EventType = homeassistant.core.Event
 HomeAssistantType = homeassistant.core.HomeAssistant
 ServiceCallType = homeassistant.core.ServiceCall
-
-class EventType(homeassistant.core.Event, Generic[_DataT]):
-    data: _DataT

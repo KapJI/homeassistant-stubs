@@ -8,7 +8,6 @@ from homeassistant.const import ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_LATIT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 

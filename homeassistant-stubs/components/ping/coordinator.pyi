@@ -11,7 +11,7 @@ _LOGGER: Incomplete
 class PingResult:
     ip_address: str
     is_alive: bool
-    data: dict[str, Any] | None
+    data: dict[str, Any]
     def __init__(self, ip_address, is_alive, data) -> None: ...
 
 class PingUpdateCoordinator(DataUpdateCoordinator[PingResult]):

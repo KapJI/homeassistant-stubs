@@ -1,6 +1,6 @@
 from .const import POWER_PLUGS as POWER_PLUGS
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DOMAIN as DOMAIN, EFFECT_COLORLOOP as EFFECT_COLORLOOP, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -41,7 +41,7 @@ class DeconzBaseLight(DeconzDevice[_LightDeviceT], LightEntity):
     api: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
-    def __init__(self, device: _LightDeviceT, gateway: DeconzGateway) -> None: ...
+    def __init__(self, device: _LightDeviceT, hub: DeconzHub) -> None: ...
     @property
     def color_mode(self) -> str | None: ...
     @property
@@ -70,7 +70,7 @@ class DeconzGroup(DeconzBaseLight[Group]):
     _attr_has_entity_name: bool
     _unique_id: Incomplete
     _attr_name: Incomplete
-    def __init__(self, device: Group, gateway: DeconzGateway) -> None: ...
+    def __init__(self, device: Group, hub: DeconzHub) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property

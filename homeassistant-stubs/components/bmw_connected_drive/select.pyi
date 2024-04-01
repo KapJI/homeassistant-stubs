@@ -15,17 +15,13 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class BMWRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class BMWSelectEntityDescription(SelectEntityDescription):
     current_option: Callable[[MyBMWVehicle], str]
     remote_service: Callable[[MyBMWVehicle, str], Coroutine[Any, Any, Any]]
-    def __init__(self, current_option, remote_service) -> None: ...
-
-@dataclass(frozen=True)
-class BMWSelectEntityDescription(SelectEntityDescription, BMWRequiredKeysMixin):
     is_available: Callable[[MyBMWVehicle], bool] = ...
     dynamic_options: Callable[[MyBMWVehicle], list[str]] | None = ...
-    def __init__(self, current_option, remote_service, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, is_available, dynamic_options) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, current_option, remote_service, is_available, dynamic_options) -> None: ...
 
 SELECT_TYPES: dict[str, BMWSelectEntityDescription]
 

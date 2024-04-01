@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.const import CONF_DEVICES as CONF_DEVICES
+from homeassistant.util.signal_type import SignalTypeFormat as SignalTypeFormat
 
 DEBOUNCE_TIMEOUT: float
 DEVICE_PRECISION_LEEWAY: int
@@ -8,6 +9,8 @@ PERSIST_LOCK_DATA: Incomplete
 HOMEKIT_FILE: str
 SHUTDOWN_TIMEOUT: int
 CONF_ENTRY_INDEX: str
+EMPTY_MAC: str
+SIGNAL_RELOAD_ENTITIES: SignalTypeFormat[tuple[str, ...]]
 VIDEO_CODEC_COPY: str
 VIDEO_CODEC_LIBX264: str
 AUDIO_CODEC_OPUS: str

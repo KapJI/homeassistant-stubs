@@ -10,14 +10,10 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-@dataclass(frozen=True)
-class OverkizSelectDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class OverkizSelectDescription(SelectEntityDescription):
     select_option: Callable[[str, Callable[..., Awaitable[None]]], Awaitable[None]]
-    def __init__(self, select_option) -> None: ...
-
-@dataclass(frozen=True)
-class OverkizSelectDescription(SelectEntityDescription, OverkizSelectDescriptionMixin):
-    def __init__(self, select_option, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, select_option) -> None: ...
 
 def _select_option_open_closed_pedestrian(option: str, execute_command: Callable[..., Awaitable[None]]) -> Awaitable[None]: ...
 def _select_option_open_closed_partial(option: str, execute_command: Callable[..., Awaitable[None]]) -> Awaitable[None]: ...

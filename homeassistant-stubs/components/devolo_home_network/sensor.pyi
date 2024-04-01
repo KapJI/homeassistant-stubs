@@ -22,14 +22,10 @@ class DataRateDirection(StrEnum):
     RX: str
     TX: str
 
-@dataclass(frozen=True)
-class DevoloSensorRequiredKeysMixin(Generic[_CoordinatorDataT]):
+@dataclass(frozen=True, kw_only=True)
+class DevoloSensorEntityDescription(SensorEntityDescription, Generic[_CoordinatorDataT]):
     value_func: Callable[[_CoordinatorDataT], float]
-    def __init__(self, value_func) -> None: ...
-
-@dataclass(frozen=True)
-class DevoloSensorEntityDescription(SensorEntityDescription, DevoloSensorRequiredKeysMixin[_CoordinatorDataT]):
-    def __init__(self, value_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_func) -> None: ...
 
 SENSOR_TYPES: dict[str, DevoloSensorEntityDescription[Any]]
 

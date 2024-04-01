@@ -12,13 +12,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from rokuecp import Roku as Roku
 from rokuecp.models import Device as RokuDevice
 
-@dataclass(frozen=True)
-class RokuSelectEntityDescriptionMixin:
-    options_fn: Callable[[RokuDevice], list[str]]
-    value_fn: Callable[[RokuDevice], str | None]
-    set_fn: Callable[[RokuDevice, Roku, str], Awaitable[None]]
-    def __init__(self, options_fn, value_fn, set_fn) -> None: ...
-
 def _get_application_name(device: RokuDevice) -> str | None: ...
 def _get_applications(device: RokuDevice) -> list[str]: ...
 def _get_channel_name(device: RokuDevice) -> str | None: ...
@@ -26,9 +19,12 @@ def _get_channels(device: RokuDevice) -> list[str]: ...
 async def _launch_application(device: RokuDevice, roku: Roku, value: str) -> None: ...
 async def _tune_channel(device: RokuDevice, roku: Roku, value: str) -> None: ...
 
-@dataclass(frozen=True)
-class RokuSelectEntityDescription(SelectEntityDescription, RokuSelectEntityDescriptionMixin):
-    def __init__(self, options_fn, value_fn, set_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options) -> None: ...
+@dataclass(frozen=True, kw_only=True)
+class RokuSelectEntityDescription(SelectEntityDescription):
+    options_fn: Callable[[RokuDevice], list[str]]
+    value_fn: Callable[[RokuDevice], str | None]
+    set_fn: Callable[[RokuDevice, Roku, str], Awaitable[None]]
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, options_fn, value_fn, set_fn) -> None: ...
 
 ENTITIES: tuple[RokuSelectEntityDescription, ...]
 CHANNEL_ENTITY: Incomplete

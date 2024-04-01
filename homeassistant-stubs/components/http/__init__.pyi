@@ -2,7 +2,7 @@ import asyncio
 import ssl
 from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
-from .const import KEY_HASS as KEY_HASS, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
+from .const import KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
 from .cors import setup_cors as setup_cors
 from .decorators import require_admin as require_admin
 from .forwarded import async_setup_forwarded as async_setup_forwarded
@@ -24,11 +24,12 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import storage as storage
-from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED, current_request as current_request
+from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_ALLOW_CONFIGRED_CORS as KEY_ALLOW_CONFIGRED_CORS, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, current_request as current_request
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.setup import async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
+from homeassistant.setup import SetupPhases as SetupPhases, async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.json import json_loads as json_loads
 from ipaddress import IPv4Network, IPv6Network
 from typing import Any, Final, TypedDict

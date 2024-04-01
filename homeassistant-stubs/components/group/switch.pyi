@@ -1,4 +1,4 @@
-from . import GroupEntity as GroupEntity
+from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import DOMAIN as DOMAIN, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

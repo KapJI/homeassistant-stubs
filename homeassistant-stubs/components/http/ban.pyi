@@ -1,3 +1,4 @@
+from .const import KEY_HASS as KEY_HASS
 from .view import HomeAssistantView as HomeAssistantView
 from _typeshed import Incomplete
 from aiohttp.web import Application as Application, Request as Request, Response as Response, StreamResponse as StreamResponse
@@ -13,9 +14,9 @@ from typing import Any, Concatenate, Final, ParamSpec, TypeVar
 _HassViewT = TypeVar('_HassViewT', bound=HomeAssistantView)
 _P = ParamSpec('_P')
 _LOGGER: Final[Incomplete]
-KEY_BAN_MANAGER: Final[str]
-KEY_FAILED_LOGIN_ATTEMPTS: Final[str]
-KEY_LOGIN_THRESHOLD: Final[str]
+KEY_BAN_MANAGER: Incomplete
+KEY_FAILED_LOGIN_ATTEMPTS: Incomplete
+KEY_LOGIN_THRESHOLD: Incomplete
 NOTIFICATION_ID_BAN: Final[str]
 NOTIFICATION_ID_LOGIN: Final[str]
 IP_BANS_FILE: Final[str]

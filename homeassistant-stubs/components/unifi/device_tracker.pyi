@@ -13,7 +13,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Generic
+from typing import Any
 
 LOGGER: Incomplete
 CLIENT_TRACKER: str
@@ -30,17 +30,13 @@ def async_client_allowed_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 def async_client_is_connected_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 def async_device_heartbeat_timedelta_fn(hub: UnifiHub, obj_id: str) -> timedelta: ...
 
-@dataclass(frozen=True)
-class UnifiEntityTrackerDescriptionMixin(Generic[HandlerT, ApiItemT]):
+@dataclass(frozen=True, kw_only=True)
+class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT]):
     heartbeat_timedelta_fn: Callable[[UnifiHub, str], timedelta]
     ip_address_fn: Callable[[aiounifi.Controller, str], str | None]
     is_connected_fn: Callable[[UnifiHub, str], bool]
     hostname_fn: Callable[[aiounifi.Controller, str], str | None]
-    def __init__(self, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn) -> None: ...
-
-@dataclass(frozen=True)
-class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT], UnifiEntityTrackerDescriptionMixin[HandlerT, ApiItemT]):
-    def __init__(self, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn, available_fn, name_fn, supported_fn, event_is_on, event_to_subscribe, should_poll, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 

@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
+from homeassistant.setup import SetupPhases as SetupPhases, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from typing import Any
 

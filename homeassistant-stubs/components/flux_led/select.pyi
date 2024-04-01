@@ -23,7 +23,6 @@ class FluxConfigSelect(FluxEntity, SelectEntity):
 
 class FluxPowerStateSelect(FluxConfigAtStartSelect, SelectEntity):
     _attr_translation_key: str
-    _attr_icon: str
     _attr_options: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
@@ -32,7 +31,6 @@ class FluxPowerStateSelect(FluxConfigAtStartSelect, SelectEntity):
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxICTypeSelect(FluxConfigSelect):
-    _attr_icon: str
     _attr_translation_key: str
     @property
     def options(self) -> list[str]: ...
@@ -41,7 +39,6 @@ class FluxICTypeSelect(FluxConfigSelect):
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxWiringsSelect(FluxConfigSelect):
-    _attr_icon: str
     _attr_translation_key: str
     @property
     def options(self) -> list[str]: ...

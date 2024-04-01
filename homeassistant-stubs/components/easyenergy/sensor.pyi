@@ -12,15 +12,11 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-@dataclass(frozen=True)
-class EasyEnergySensorEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class EasyEnergySensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EasyEnergyData], float | datetime | None]
     service_type: str
-    def __init__(self, value_fn, service_type) -> None: ...
-
-@dataclass(frozen=True)
-class EasyEnergySensorEntityDescription(SensorEntityDescription, EasyEnergySensorEntityDescriptionMixin):
-    def __init__(self, value_fn, service_type, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, service_type) -> None: ...
 
 SENSORS: tuple[EasyEnergySensorEntityDescription, ...]
 

@@ -3,8 +3,7 @@ from .device import async_reset_device_favorites as async_reset_device_favorites
 from .util import get_door_station_by_token as get_door_station_by_token
 from _typeshed import Incomplete
 from aiohttp import web
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 
 class DoorBirdRequestView(HomeAssistantView):
     requires_auth: bool

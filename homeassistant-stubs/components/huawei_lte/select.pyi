@@ -13,14 +13,10 @@ from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class HuaweiSelectEntityMixin:
+@dataclass(frozen=True, kw_only=True)
+class HuaweiSelectEntityDescription(SelectEntityDescription):
     setter_fn: Callable[[str], None]
-    def __init__(self, setter_fn) -> None: ...
-
-@dataclass(frozen=True)
-class HuaweiSelectEntityDescription(SelectEntityDescription, HuaweiSelectEntityMixin):
-    def __init__(self, setter_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, setter_fn) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

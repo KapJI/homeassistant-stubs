@@ -57,9 +57,9 @@ class BondUpLight(BondBaseLight, BondEntity, LightEntity):
 class BondFireplace(BondEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
+    _attr_translation_key: str
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
-    _attr_icon: Incomplete
     def _apply_state(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

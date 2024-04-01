@@ -9,7 +9,7 @@ from .util import describe_request as describe_request
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

@@ -12,6 +12,7 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.loader import async_get_issue_tracker as async_get_issue_tracker, async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any, Literal
 
@@ -45,9 +46,9 @@ class ClimateEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_hvac_mode: HVACMode | None
     _attr_hvac_modes: list[HVACMode]
     _attr_is_aux_heat: bool | None
-    _attr_max_humidity: int
+    _attr_max_humidity: float
     _attr_max_temp: float
-    _attr_min_humidity: int
+    _attr_min_humidity: float
     _attr_min_temp: float
     _attr_precision: float
     _attr_preset_mode: str | None
@@ -55,16 +56,18 @@ class ClimateEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_supported_features: ClimateEntityFeature
     _attr_swing_mode: str | None
     _attr_swing_modes: list[str] | None
-    _attr_target_humidity: int | None
+    _attr_target_humidity: float | None
     _attr_target_temperature_high: float | None
     _attr_target_temperature_low: float | None
     _attr_target_temperature_step: float | None
     _attr_target_temperature: float | None
     _attr_temperature_unit: str
+    __climate_reported_legacy_aux: bool
     __mod_supported_features: ClimateEntityFeature
     _enable_turn_on_off_backwards_compatibility: bool
     def __getattribute__(self, __name: str) -> Any: ...
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
+    def _report_legacy_aux(self) -> None: ...
     @property
     def state(self) -> str | None: ...
     @property
@@ -76,9 +79,9 @@ class ClimateEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @cached_property
     def temperature_unit(self) -> str: ...
     @cached_property
-    def current_humidity(self) -> int | None: ...
+    def current_humidity(self) -> float | None: ...
     @cached_property
-    def target_humidity(self) -> int | None: ...
+    def target_humidity(self) -> float | None: ...
     @cached_property
     def hvac_mode(self) -> HVACMode | None: ...
     @cached_property
@@ -142,9 +145,9 @@ class ClimateEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @cached_property
     def max_temp(self) -> float: ...
     @cached_property
-    def min_humidity(self) -> int: ...
+    def min_humidity(self) -> float: ...
     @cached_property
-    def max_humidity(self) -> int: ...
+    def max_humidity(self) -> float: ...
 
 async def async_service_aux_heat(entity: ClimateEntity, service_call: ServiceCall) -> None: ...
 async def async_service_temperature_set(entity: ClimateEntity, service_call: ServiceCall) -> None: ...

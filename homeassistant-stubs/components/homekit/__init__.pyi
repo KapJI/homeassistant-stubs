@@ -1,7 +1,7 @@
 from . import type_cameras as type_cameras, type_covers as type_covers, type_fans as type_fans, type_humidifiers as type_humidifiers, type_lights as type_lights, type_locks as type_locks, type_media_players as type_media_players, type_remotes as type_remotes, type_security_systems as type_security_systems, type_sensors as type_sensors, type_switches as type_switches, type_thermostats as type_thermostats
 from .accessories import HomeAccessory as HomeAccessory, HomeBridge as HomeBridge, HomeDriver as HomeDriver, get_accessory as get_accessory
 from .aidmanager import AccessoryAidStorage as AccessoryAidStorage
-from .const import ATTR_INTEGRATION as ATTR_INTEGRATION, BRIDGE_NAME as BRIDGE_NAME, BRIDGE_SERIAL_NUMBER as BRIDGE_SERIAL_NUMBER, CONFIG_OPTIONS as CONFIG_OPTIONS, CONF_ADVERTISE_IP as CONF_ADVERTISE_IP, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_ENTRY_INDEX as CONF_ENTRY_INDEX, CONF_EXCLUDE_ACCESSORY_MODE as CONF_EXCLUDE_ACCESSORY_MODE, CONF_FILTER as CONF_FILTER, CONF_HOMEKIT_MODE as CONF_HOMEKIT_MODE, CONF_LINKED_BATTERY_CHARGING_SENSOR as CONF_LINKED_BATTERY_CHARGING_SENSOR, CONF_LINKED_BATTERY_SENSOR as CONF_LINKED_BATTERY_SENSOR, CONF_LINKED_DOORBELL_SENSOR as CONF_LINKED_DOORBELL_SENSOR, CONF_LINKED_HUMIDITY_SENSOR as CONF_LINKED_HUMIDITY_SENSOR, CONF_LINKED_MOTION_SENSOR as CONF_LINKED_MOTION_SENSOR, DEFAULT_EXCLUDE_ACCESSORY_MODE as DEFAULT_EXCLUDE_ACCESSORY_MODE, DEFAULT_HOMEKIT_MODE as DEFAULT_HOMEKIT_MODE, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HOMEKIT_MODES as HOMEKIT_MODES, HOMEKIT_MODE_ACCESSORY as HOMEKIT_MODE_ACCESSORY, MANUFACTURER as MANUFACTURER, PERSIST_LOCK_DATA as PERSIST_LOCK_DATA, SERVICE_HOMEKIT_RESET_ACCESSORY as SERVICE_HOMEKIT_RESET_ACCESSORY, SERVICE_HOMEKIT_UNPAIR as SERVICE_HOMEKIT_UNPAIR, SHUTDOWN_TIMEOUT as SHUTDOWN_TIMEOUT
+from .const import ATTR_INTEGRATION as ATTR_INTEGRATION, BRIDGE_NAME as BRIDGE_NAME, BRIDGE_SERIAL_NUMBER as BRIDGE_SERIAL_NUMBER, CONFIG_OPTIONS as CONFIG_OPTIONS, CONF_ADVERTISE_IP as CONF_ADVERTISE_IP, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_ENTRY_INDEX as CONF_ENTRY_INDEX, CONF_EXCLUDE_ACCESSORY_MODE as CONF_EXCLUDE_ACCESSORY_MODE, CONF_FILTER as CONF_FILTER, CONF_HOMEKIT_MODE as CONF_HOMEKIT_MODE, CONF_LINKED_BATTERY_CHARGING_SENSOR as CONF_LINKED_BATTERY_CHARGING_SENSOR, CONF_LINKED_BATTERY_SENSOR as CONF_LINKED_BATTERY_SENSOR, CONF_LINKED_DOORBELL_SENSOR as CONF_LINKED_DOORBELL_SENSOR, CONF_LINKED_HUMIDITY_SENSOR as CONF_LINKED_HUMIDITY_SENSOR, CONF_LINKED_MOTION_SENSOR as CONF_LINKED_MOTION_SENSOR, DEFAULT_EXCLUDE_ACCESSORY_MODE as DEFAULT_EXCLUDE_ACCESSORY_MODE, DEFAULT_HOMEKIT_MODE as DEFAULT_HOMEKIT_MODE, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HOMEKIT_MODES as HOMEKIT_MODES, HOMEKIT_MODE_ACCESSORY as HOMEKIT_MODE_ACCESSORY, MANUFACTURER as MANUFACTURER, PERSIST_LOCK_DATA as PERSIST_LOCK_DATA, SERVICE_HOMEKIT_RESET_ACCESSORY as SERVICE_HOMEKIT_RESET_ACCESSORY, SERVICE_HOMEKIT_UNPAIR as SERVICE_HOMEKIT_UNPAIR, SHUTDOWN_TIMEOUT as SHUTDOWN_TIMEOUT, SIGNAL_RELOAD_ENTITIES as SIGNAL_RELOAD_ENTITIES
 from .iidmanager import AccessoryIIDStorage as AccessoryIIDStorage
 from .models import HomeKitEntryData as HomeKitEntryData
 from .type_triggers import DeviceTriggerAccessory as DeviceTriggerAccessory
@@ -12,17 +12,18 @@ from collections.abc import Iterable
 from homeassistant.components import device_automation as device_automation, network as network, zeroconf as zeroconf
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.components.device_automation.trigger import async_validate_trigger_config as async_validate_trigger_config
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_DEVICES as CONF_DEVICES, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_RELOAD as SERVICE_RELOAD
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
+from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_DEVICES as CONF_DEVICES, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from homeassistant.helpers import device_registry as dr, entity_registry as er, instance_id as instance_id
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entityfilter import BASE_FILTER_SCHEMA as BASE_FILTER_SCHEMA, EntityFilter as EntityFilter, FILTER_SCHEMA as FILTER_SCHEMA
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
 from homeassistant.helpers.service import async_extract_referenced_entity_ids as async_extract_referenced_entity_ids, async_register_admin_service as async_register_admin_service
+from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from pyhap.characteristic import Characteristic as Characteristic
@@ -38,6 +39,8 @@ STATUS_STOPPED: int
 STATUS_WAIT: int
 PORT_CLEANUP_CHECK_INTERVAL_SECS: int
 _HOMEKIT_CONFIG_UPDATE_TIME: int
+_HAS_IPV6: Incomplete
+_DEFAULT_BIND: Incomplete
 
 def _has_all_unique_names_and_ports(bridges: list[dict[str, Any]]) -> list[dict[str, Any]]: ...
 
@@ -78,7 +81,7 @@ class HomeKit:
     _reset_lock: Incomplete
     _cancel_reload_dispatcher: Incomplete
     def __init__(self, hass: HomeAssistant, name: str, port: int, ip_address: str | None, entity_filter: EntityFilter, exclude_accessory_mode: bool, entity_config: dict, homekit_mode: str, advertise_ips: list[str], entry_id: str, entry_title: str, devices: list[str] | None = None) -> None: ...
-    def setup(self, async_zeroconf_instance: AsyncZeroconf, uuid: str) -> None: ...
+    def setup(self, async_zeroconf_instance: AsyncZeroconf, uuid: str) -> bool: ...
     async def async_reset_accessories(self, entity_ids: Iterable[str]) -> None: ...
     async def async_reload_accessories(self, entity_ids: Iterable[str]) -> None: ...
     def _async_shutdown_accessory(self, accessory: HomeAccessory) -> None: ...
@@ -103,7 +106,7 @@ class HomeKit:
     async def _async_add_trigger_accessories(self) -> None: ...
     async def _async_create_accessories(self) -> bool: ...
     async def async_stop(self, *args: Any) -> None: ...
-    def _async_configure_linked_sensors(self, ent_reg_ent: er.RegistryEntry, device_lookup: dict[str, dict[tuple[str, str | None], str]], state: State) -> None: ...
+    def _async_configure_linked_sensors(self, ent_reg_ent: er.RegistryEntry, device_lookup: dict[tuple[str, str | None], str], state: State) -> None: ...
     async def _async_set_device_info_attributes(self, ent_reg_ent: er.RegistryEntry, dev_reg: dr.DeviceRegistry, entity_id: str) -> None: ...
     def _fill_config_from_device_registry_entry(self, device_entry: dr.DeviceEntry, config: dict[str, Any]) -> None: ...
 

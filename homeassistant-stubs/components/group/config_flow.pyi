@@ -1,8 +1,8 @@
 import voluptuous as vol
-from . import DOMAIN as DOMAIN, GroupEntity as GroupEntity
 from .binary_sensor import CONF_ALL as CONF_ALL, async_create_preview_binary_sensor as async_create_preview_binary_sensor
-from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS, CONF_IGNORE_NON_NUMERIC as CONF_IGNORE_NON_NUMERIC
+from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS, CONF_IGNORE_NON_NUMERIC as CONF_IGNORE_NON_NUMERIC, DOMAIN as DOMAIN
 from .cover import async_create_preview_cover as async_create_preview_cover
+from .entity import GroupEntity as GroupEntity
 from .event import async_create_preview_event as async_create_preview_event
 from .fan import async_create_preview_fan as async_create_preview_fan
 from .light import async_create_preview_light as async_create_preview_light

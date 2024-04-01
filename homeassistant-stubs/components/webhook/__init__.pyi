@@ -3,7 +3,7 @@ from aiohttp import StreamReader as StreamReader
 from aiohttp.web import Request, Response
 from collections.abc import Awaitable, Callable as Callable, Iterable
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.network import get_url as get_url, is_cloud_connection as is_cloud_connection
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -37,7 +37,6 @@ class WebhookView(HomeAssistantView):
     head = _handle
     post = _handle
     put = _handle
-    get = _handle
 
 def websocket_list(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def websocket_handle(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

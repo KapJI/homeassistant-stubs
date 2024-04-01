@@ -53,7 +53,7 @@ class ElkKeypad(ElkSensor):
     def _element_changed(self, _: Element, changeset: Any) -> None: ...
 
 class ElkPanel(ElkSensor):
-    _attr_icon: str
+    _attr_translation_key: str
     _attr_entity_category: Incomplete
     _element: Panel
     @property
@@ -62,7 +62,7 @@ class ElkPanel(ElkSensor):
     def _element_changed(self, _: Element, changeset: Any) -> None: ...
 
 class ElkSetting(ElkSensor):
-    _attr_icon: str
+    _attr_translation_key: str
     _element: Setting
     _attr_native_value: Incomplete
     def _element_changed(self, _: Element, changeset: Any) -> None: ...

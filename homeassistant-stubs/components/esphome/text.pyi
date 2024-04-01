@@ -1,4 +1,4 @@
-from .entity import EsphomeEntity as EsphomeEntity, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, TextInfo, TextMode as EsphomeTextMode, TextState

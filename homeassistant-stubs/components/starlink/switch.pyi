@@ -12,16 +12,12 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-@dataclass(frozen=True)
-class StarlinkSwitchEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class StarlinkSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[StarlinkData], bool | None]
     turn_on_fn: Callable[[StarlinkUpdateCoordinator], Awaitable[None]]
     turn_off_fn: Callable[[StarlinkUpdateCoordinator], Awaitable[None]]
-    def __init__(self, value_fn, turn_on_fn, turn_off_fn) -> None: ...
-
-@dataclass(frozen=True)
-class StarlinkSwitchEntityDescription(SwitchEntityDescription, StarlinkSwitchEntityDescriptionMixin):
-    def __init__(self, value_fn, turn_on_fn, turn_off_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 class StarlinkSwitchEntity(StarlinkEntity, SwitchEntity):
     entity_description: StarlinkSwitchEntityDescription

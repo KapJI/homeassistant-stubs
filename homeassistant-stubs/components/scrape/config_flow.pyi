@@ -11,6 +11,7 @@ from homeassistant.const import CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_AUTHENTIC
 from homeassistant.core import async_get_hass as async_get_hass
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, ObjectSelector as ObjectSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
+from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY
 from typing import Any
 
 RESOURCE_SETUP: Incomplete

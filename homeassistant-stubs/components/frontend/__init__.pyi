@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from aiohttp import web, web_urldispatcher
 from collections.abc import Iterator
 from homeassistant.components import onboarding as onboarding, websocket_api as websocket_api
-from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_PANELS_UPDATED as EVENT_PANELS_UPDATED, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED

@@ -1,5 +1,5 @@
-from . import Sun as Sun
 from .const import DOMAIN as DOMAIN, SIGNAL_EVENTS_CHANGED as SIGNAL_EVENTS_CHANGED, SIGNAL_POSITION_CHANGED as SIGNAL_POSITION_CHANGED
+from .entity import Sun as Sun
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

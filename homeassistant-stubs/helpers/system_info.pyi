@@ -1,3 +1,4 @@
+from .importlib import async_import_module as async_import_module
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.loader import bind_hass as bind_hass

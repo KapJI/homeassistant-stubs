@@ -2,8 +2,8 @@ import pathlib
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiohttp import web
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.http.static import CACHE_HEADERS as CACHE_HEADERS
-from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import collection as collection

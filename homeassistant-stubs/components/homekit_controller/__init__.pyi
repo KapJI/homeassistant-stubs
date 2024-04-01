@@ -10,6 +10,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 
 _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete

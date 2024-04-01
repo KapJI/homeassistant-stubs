@@ -7,7 +7,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util import Throttle as Throttle
-from jaraco.abode.devices.base import Device as AbodeDev
+from jaraco.abode.devices.base import Device as Device
 from jaraco.abode.devices.camera import Camera as AbodeCam
 from typing import Any
 
@@ -20,7 +20,7 @@ class AbodeCamera(AbodeDevice, Camera):
     _attr_name: Incomplete
     _event: Incomplete
     _response: Incomplete
-    def __init__(self, data: AbodeSystem, device: AbodeDev, event: Event) -> None: ...
+    def __init__(self, data: AbodeSystem, device: Device, event: Event) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def capture(self) -> bool: ...
     def refresh_image(self) -> None: ...

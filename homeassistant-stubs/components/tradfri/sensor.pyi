@@ -13,14 +13,10 @@ from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
 from typing import Any
 
-@dataclass(frozen=True)
-class TradfriSensorEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class TradfriSensorEntityDescription(SensorEntityDescription):
     value: Callable[[Device], Any | None]
-    def __init__(self, value) -> None: ...
-
-@dataclass(frozen=True)
-class TradfriSensorEntityDescription(SensorEntityDescription, TradfriSensorEntityDescriptionMixin):
-    def __init__(self, value, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value) -> None: ...
 
 def _get_air_quality(device: Device) -> int | None: ...
 def _get_filter_time_left(device: Device) -> int: ...

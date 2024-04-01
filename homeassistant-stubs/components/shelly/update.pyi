@@ -16,25 +16,17 @@ from typing import Any, Final
 
 LOGGER: Incomplete
 
-@dataclass(frozen=True)
-class RpcUpdateRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class RpcUpdateDescription(RpcEntityDescription, UpdateEntityDescription):
     latest_version: Callable[[dict], Any]
     beta: bool
-    def __init__(self, latest_version, beta) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, sub_key, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported, latest_version, beta) -> None: ...
 
-@dataclass(frozen=True)
-class RestUpdateRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class RestUpdateDescription(RestEntityDescription, UpdateEntityDescription):
     latest_version: Callable[[dict], Any]
     beta: bool
-    def __init__(self, latest_version, beta) -> None: ...
-
-@dataclass(frozen=True)
-class RpcUpdateDescription(RpcEntityDescription, UpdateEntityDescription, RpcUpdateRequiredKeysMixin):
-    def __init__(self, latest_version, beta, sub_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
-
-@dataclass(frozen=True)
-class RestUpdateDescription(RestEntityDescription, UpdateEntityDescription, RestUpdateRequiredKeysMixin):
-    def __init__(self, latest_version, beta, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value, extra_state_attributes) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value, extra_state_attributes, latest_version, beta) -> None: ...
 
 REST_UPDATES: Final[Incomplete]
 RPC_UPDATES: Final[Incomplete]

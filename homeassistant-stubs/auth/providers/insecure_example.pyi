@@ -1,9 +1,8 @@
 from . import AUTH_PROVIDERS as AUTH_PROVIDERS, AUTH_PROVIDER_SCHEMA as AUTH_PROVIDER_SCHEMA, AuthProvider as AuthProvider, LoginFlow as LoginFlow
-from ..models import Credentials as Credentials, UserMeta as UserMeta
+from ..models import AuthFlowResult as AuthFlowResult, Credentials as Credentials, UserMeta as UserMeta
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.core import callback as callback
-from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any
 
@@ -19,4 +18,4 @@ class ExampleAuthProvider(AuthProvider):
     async def async_user_meta_for_credentials(self, credentials: Credentials) -> UserMeta: ...
 
 class ExampleLoginFlow(LoginFlow):
-    async def async_step_init(self, user_input: dict[str, str] | None = None) -> FlowResult: ...
+    async def async_step_init(self, user_input: dict[str, str] | None = None) -> AuthFlowResult: ...

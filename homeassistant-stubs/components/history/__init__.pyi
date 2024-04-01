@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from datetime import datetime as dt
 from homeassistant.components import frontend as frontend
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.recorder.util import session_scope as session_scope
 from homeassistant.const import CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE

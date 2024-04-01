@@ -1,6 +1,6 @@
 from .const import POWER_PLUGS as POWER_PLUGS
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import get_gateway_from_config_entry as get_gateway_from_config_entry
+from .hub import DeconzHub as DeconzHub
 from homeassistant.components.switch import DOMAIN as DOMAIN, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

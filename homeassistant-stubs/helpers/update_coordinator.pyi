@@ -8,16 +8,17 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine, Generato
 from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any, Generic, Protocol, TypeVar
+from typing import Any, Generic, Protocol
+from typing_extensions import TypeVar
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
-_DataT = TypeVar('_DataT')
+_DataT = TypeVar('_DataT', default=dict[str, Any])
 _BaseDataUpdateCoordinatorT = TypeVar('_BaseDataUpdateCoordinatorT', bound='BaseDataUpdateCoordinatorProtocol')
-_DataUpdateCoordinatorT = TypeVar('_DataUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]')
+_DataUpdateCoordinatorT = TypeVar('_DataUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]', default='DataUpdateCoordinator[dict[str, Any]]')
 
 class UpdateFailed(Exception): ...
 
@@ -36,7 +37,6 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     data: Incomplete
     _microsecond: Incomplete
     _listeners: Incomplete
-    _job: Incomplete
     _unsub_refresh: Incomplete
     _unsub_shutdown: Incomplete
     _request_refresh_task: Incomplete

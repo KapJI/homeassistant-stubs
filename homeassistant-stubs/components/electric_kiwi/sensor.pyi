@@ -19,25 +19,17 @@ ATTR_TOTAL_CURRENT_BALANCE: str
 ATTR_NEXT_BILLING_DATE: str
 ATTR_HOP_PERCENTAGE: str
 
-@dataclass(frozen=True)
-class ElectricKiwiAccountRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class ElectricKiwiAccountSensorEntityDescription(SensorEntityDescription):
     value_func: Callable[[AccountBalance], float | datetime]
-    def __init__(self, value_func) -> None: ...
-
-@dataclass(frozen=True)
-class ElectricKiwiAccountSensorEntityDescription(SensorEntityDescription, ElectricKiwiAccountRequiredKeysMixin):
-    def __init__(self, value_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_func) -> None: ...
 
 ACCOUNT_SENSOR_TYPES: tuple[ElectricKiwiAccountSensorEntityDescription, ...]
 
-@dataclass(frozen=True)
-class ElectricKiwiHOPRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class ElectricKiwiHOPSensorEntityDescription(SensorEntityDescription):
     value_func: Callable[[Hop], datetime]
-    def __init__(self, value_func) -> None: ...
-
-@dataclass(frozen=True)
-class ElectricKiwiHOPSensorEntityDescription(SensorEntityDescription, ElectricKiwiHOPRequiredKeysMixin):
-    def __init__(self, value_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_func) -> None: ...
 
 def _check_and_move_time(hop: Hop, time: str) -> datetime: ...
 

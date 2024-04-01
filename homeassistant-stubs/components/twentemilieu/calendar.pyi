@@ -14,8 +14,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class TwenteMilieuCalendar(TwenteMilieuEntity, CalendarEntity):
     _attr_has_entity_name: bool
-    _attr_icon: str
     _attr_name: Incomplete
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     _event: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[dict[WasteType, list[date]]], entry: ConfigEntry) -> None: ...

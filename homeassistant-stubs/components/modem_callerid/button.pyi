@@ -11,7 +11,6 @@ from phone_modem import PhoneModem as PhoneModem
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PhoneModemButton(ButtonEntity):
-    _attr_icon: str
     _attr_translation_key: str
     _attr_has_entity_name: bool
     device: Incomplete

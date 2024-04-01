@@ -9,8 +9,7 @@ from _typeshed import Incomplete
 from aiohttp import web as web
 from homeassistant import core as core
 from homeassistant.auth.models import User as User
-from homeassistant.components.http import HomeAssistantRequest as HomeAssistantRequest
-from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantRequest as HomeAssistantRequest, HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType

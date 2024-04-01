@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.const import ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.entity import async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType

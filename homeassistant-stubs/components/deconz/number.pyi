@@ -1,6 +1,5 @@
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
-from .util import serial_from_unique_id as serial_from_unique_id
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -29,7 +28,6 @@ class DeconzNumberDescription(NumberEntityDescription, Generic[T]):
 
 ENTITY_DESCRIPTIONS: tuple[DeconzNumberDescription, ...]
 
-def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: DeconzNumberDescription) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzNumber(DeconzDevice[SensorResources], NumberEntity):
@@ -38,7 +36,7 @@ class DeconzNumber(DeconzDevice[SensorResources], NumberEntity):
     unique_id_suffix: Incomplete
     _name_suffix: Incomplete
     _update_key: Incomplete
-    def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzNumberDescription) -> None: ...
+    def __init__(self, device: SensorResources, hub: DeconzHub, description: DeconzNumberDescription) -> None: ...
     @property
     def native_value(self) -> float | None: ...
     async def async_set_native_value(self, value: float) -> None: ...

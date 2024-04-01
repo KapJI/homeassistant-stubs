@@ -14,15 +14,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
-@dataclass(frozen=True)
-class DevoloUpdateRequiredKeysMixin:
+@dataclass(frozen=True, kw_only=True)
+class DevoloUpdateEntityDescription(UpdateEntityDescription):
     latest_version: Callable[[UpdateFirmwareCheck], str]
     update_func: Callable[[Device], Awaitable[bool]]
-    def __init__(self, latest_version, update_func) -> None: ...
-
-@dataclass(frozen=True)
-class DevoloUpdateEntityDescription(UpdateEntityDescription, DevoloUpdateRequiredKeysMixin):
-    def __init__(self, latest_version, update_func, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, latest_version, update_func) -> None: ...
 
 UPDATE_TYPES: dict[str, DevoloUpdateEntityDescription]
 

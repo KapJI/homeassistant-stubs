@@ -11,15 +11,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Final
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class BlockBinarySensorDescription(BlockEntityDescription, BinarySensorEntityDescription):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, unit_fn, value, available, removal_condition, extra_state_attributes) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class RpcBinarySensorDescription(RpcEntityDescription, BinarySensorEntityDescription):
-    def __init__(self, sub_key, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, sub_key, value, available, removal_condition, extra_state_attributes, use_polling_coordinator, supported) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class RestBinarySensorDescription(RestEntityDescription, BinarySensorEntityDescription):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value, extra_state_attributes) -> None: ...
 

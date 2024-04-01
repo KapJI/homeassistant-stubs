@@ -27,7 +27,7 @@ class OmadaFirmwareUpdateCoodinator(OmadaCoordinator[FirmwareUpdateStatus]):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class OmadaDeviceUpdate(OmadaDeviceEntity[FirmwareUpdateStatus], UpdateEntity):
+class OmadaDeviceUpdate(OmadaDeviceEntity[OmadaFirmwareUpdateCoodinator], UpdateEntity):
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
     _attr_device_class: Incomplete

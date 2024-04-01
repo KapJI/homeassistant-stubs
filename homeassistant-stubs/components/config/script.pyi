@@ -1,4 +1,5 @@
-from . import ACTION_DELETE as ACTION_DELETE, EditKeyBasedConfigView as EditKeyBasedConfigView
+from .const import ACTION_DELETE as ACTION_DELETE
+from .view import EditKeyBasedConfigView as EditKeyBasedConfigView
 from homeassistant.components.script import DOMAIN as DOMAIN
 from homeassistant.components.script.config import SCRIPT_ENTITY_SCHEMA as SCRIPT_ENTITY_SCHEMA, async_validate_config_item as async_validate_config_item
 from homeassistant.config import SCRIPT_CONFIG_PATH as SCRIPT_CONFIG_PATH

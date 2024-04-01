@@ -1,7 +1,6 @@
 from .const import ATTR_DARK as ATTR_DARK, ATTR_ON as ATTR_ON
 from .deconz_device import DeconzDevice as DeconzDevice
-from .gateway import DeconzGateway as DeconzGateway, get_gateway_from_config_entry as get_gateway_from_config_entry
-from .util import serial_from_unique_id as serial_from_unique_id
+from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -48,7 +47,6 @@ class DeconzSensorDescription(SensorEntityDescription, Generic[T]):
 
 ENTITY_DESCRIPTIONS: tuple[DeconzSensorDescription, ...]
 
-def async_update_unique_id(hass: HomeAssistant, unique_id: str, description: DeconzSensorDescription) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
@@ -57,7 +55,7 @@ class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
     unique_id_suffix: Incomplete
     _update_key: Incomplete
     _name_suffix: Incomplete
-    def __init__(self, device: SensorResources, gateway: DeconzGateway, description: DeconzSensorDescription) -> None: ...
+    def __init__(self, device: SensorResources, hub: DeconzHub, description: DeconzSensorDescription) -> None: ...
     @property
     def native_value(self) -> StateType | datetime: ...
     @property
@@ -65,9 +63,9 @@ class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
 
 class DeconzBatteryTracker:
     sensor: Incomplete
-    gateway: Incomplete
+    hub: Incomplete
     description: Incomplete
     async_add_entities: Incomplete
     unsubscribe: Incomplete
-    def __init__(self, sensor_id: str, gateway: DeconzGateway, description: DeconzSensorDescription, async_add_entities: AddEntitiesCallback) -> None: ...
+    def __init__(self, sensor_id: str, hub: DeconzHub, description: DeconzSensorDescription, async_add_entities: AddEntitiesCallback) -> None: ...
     def async_update_callback(self) -> None: ...

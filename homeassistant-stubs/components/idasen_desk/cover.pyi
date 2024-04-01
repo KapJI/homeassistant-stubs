@@ -3,7 +3,6 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -15,10 +14,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class IdasenDeskCover(CoordinatorEntity[IdasenDeskCoordinator], CoverEntity):
     _attr_device_class: Incomplete
-    _attr_icon: str
     _attr_supported_features: Incomplete
-    _desk: Incomplete
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _attr_translation_key: str
+    _desk: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_current_cover_position: Incomplete

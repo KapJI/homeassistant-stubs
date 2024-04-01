@@ -11,7 +11,7 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 LOGGER: Incomplete
 _DataT = TypeVar('_DataT', bound=Device)
@@ -19,15 +19,11 @@ _HandlerT = TypeVar('_HandlerT', bound=Devices)
 
 async def async_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 
-@dataclass(frozen=True)
-class UnifiUpdateEntityDescriptionMixin(Generic[_HandlerT, _DataT]):
+@dataclass(frozen=True, kw_only=True)
+class UnifiUpdateEntityDescription(UpdateEntityDescription, UnifiEntityDescription[_HandlerT, _DataT]):
     control_fn: Callable[[aiounifi.Controller, str], Coroutine[Any, Any, None]]
     state_fn: Callable[[aiounifi.Controller, _DataT], bool]
-    def __init__(self, control_fn, state_fn) -> None: ...
-
-@dataclass(frozen=True)
-class UnifiUpdateEntityDescription(UpdateEntityDescription, UnifiEntityDescription[_HandlerT, _DataT], UnifiUpdateEntityDescriptionMixin[_HandlerT, _DataT]):
-    def __init__(self, control_fn, state_fn, allowed_fn, api_handler_fn, available_fn, device_info_fn, event_is_on, event_to_subscribe, name_fn, object_fn, should_poll, supported_fn, unique_id_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn, available_fn, name_fn, supported_fn, event_is_on, event_to_subscribe, should_poll, control_fn, state_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiUpdateEntityDescription, ...]
 

@@ -12,15 +12,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
-@dataclass(frozen=True)
-class HomeKitSelectEntityDescriptionRequired:
+@dataclass(frozen=True, kw_only=True)
+class HomeKitSelectEntityDescription(SelectEntityDescription):
     choices: dict[str, IntEnum]
-    def __init__(self, choices) -> None: ...
-
-@dataclass(frozen=True)
-class HomeKitSelectEntityDescription(SelectEntityDescription, HomeKitSelectEntityDescriptionRequired):
     name: str | None = ...
-    def __init__(self, choices, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, choices) -> None: ...
 
 SELECT_ENTITIES: dict[str, HomeKitSelectEntityDescription]
 _ECOBEE_MODE_TO_TEXT: Incomplete

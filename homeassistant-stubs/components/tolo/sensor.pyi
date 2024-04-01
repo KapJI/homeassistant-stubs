@@ -8,18 +8,14 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from tololib.message_info import SettingsInfo as SettingsInfo, StatusInfo as StatusInfo
+from tololib import ToloSettings as ToloSettings, ToloStatus as ToloStatus
 
-@dataclass(frozen=True)
-class ToloSensorEntityDescriptionBase:
-    getter: Callable[[StatusInfo], int | None]
-    availability_checker: Callable[[SettingsInfo, StatusInfo], bool] | None
-    def __init__(self, getter, availability_checker) -> None: ...
-
-@dataclass(frozen=True)
-class ToloSensorEntityDescription(SensorEntityDescription, ToloSensorEntityDescriptionBase):
+@dataclass(frozen=True, kw_only=True)
+class ToloSensorEntityDescription(SensorEntityDescription):
+    getter: Callable[[ToloStatus], int | None]
+    availability_checker: Callable[[ToloSettings, ToloStatus], bool] | None
     state_class = ...
-    def __init__(self, getter, availability_checker, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, getter, availability_checker) -> None: ...
 
 SENSORS: Incomplete
 

@@ -1,9 +1,8 @@
 from . import AUTH_PROVIDERS as AUTH_PROVIDERS, AUTH_PROVIDER_SCHEMA as AUTH_PROVIDER_SCHEMA, AuthProvider as AuthProvider, LoginFlow as LoginFlow
-from ..models import Credentials as Credentials, UserMeta as UserMeta
+from ..models import AuthFlowResult as AuthFlowResult, Credentials as Credentials, UserMeta as UserMeta
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.core import async_get_hass as async_get_hass, callback as callback
-from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from typing import Any
@@ -28,4 +27,4 @@ class LegacyApiPasswordAuthProvider(AuthProvider):
     async def async_user_meta_for_credentials(self, credentials: Credentials) -> UserMeta: ...
 
 class LegacyLoginFlow(LoginFlow):
-    async def async_step_init(self, user_input: dict[str, str] | None = None) -> FlowResult: ...
+    async def async_step_init(self, user_input: dict[str, str] | None = None) -> AuthFlowResult: ...

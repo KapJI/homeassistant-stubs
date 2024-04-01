@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_MODE as CONF_MODE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.start import async_at_started as async_at_started
 
 PLATFORMS: Incomplete
 

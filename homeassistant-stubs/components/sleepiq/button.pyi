@@ -11,14 +11,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-@dataclass(frozen=True)
-class SleepIQButtonEntityDescriptionMixin:
+@dataclass(frozen=True, kw_only=True)
+class SleepIQButtonEntityDescription(ButtonEntityDescription):
     press_action: Callable[[SleepIQBed], Any]
-    def __init__(self, press_action) -> None: ...
-
-@dataclass(frozen=True)
-class SleepIQButtonEntityDescription(ButtonEntityDescription, SleepIQButtonEntityDescriptionMixin):
-    def __init__(self, press_action, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, press_action) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

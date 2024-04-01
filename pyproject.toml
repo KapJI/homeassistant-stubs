@@ -9,7 +9,7 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Software Development",
     "Typing :: Typed",
 ]
@@ -27,7 +27,7 @@ packages = [
 
 [tool.poetry.dependencies]
 # Forbid 3.13 because of home-assistant-bluetooth package.
-python = ">=3.11,<3.13"
+python = ">=3.12,<3.13"
 homeassistant = "2024.3.3"
 
 [tool.poetry.group.dev.dependencies]
@@ -69,7 +69,7 @@ disable = [
 ]
 
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"
 show_error_codes = true
 strict = true
 disallow_any_explicit = true

@@ -13,6 +13,7 @@ from .util.async_ import create_eager_task as create_eager_task
 from .util.logging import async_activate_log_queue_handler as async_activate_log_queue_handler
 from .util.package import async_get_user_site as async_get_user_site, is_virtual_env as is_virtual_env
 from _typeshed import Incomplete
+from anyio._backends import _asyncio as _asyncio
 from typing import Any
 
 _LOGGER: Incomplete

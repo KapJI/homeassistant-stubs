@@ -39,7 +39,6 @@ class LogEntry:
     root_cause: Incomplete
     source: Incomplete
     count: int
-    extracted_tb: Incomplete
     key: Incomplete
     def __init__(self, record: logging.LogRecord, paths_re: re.Pattern, figure_out_source: bool = False) -> None: ...
     def to_dict(self) -> dict[str, Any]: ...

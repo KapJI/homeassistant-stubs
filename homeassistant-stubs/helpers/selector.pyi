@@ -241,6 +241,17 @@ class EntitySelector(Selector[EntitySelectorConfig]):
     def __init__(self, config: EntitySelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
+class FloorSelectorConfig(TypedDict, total=False):
+    entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
+    device: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
+    multiple: bool
+
+class FloorSelector(Selector[AreaSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: FloorSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> str | list[str]: ...
+
 class IconSelectorConfig(TypedDict, total=False):
     placeholder: str
 

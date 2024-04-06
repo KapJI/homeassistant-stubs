@@ -235,11 +235,13 @@ class RecorderRuns(Base):
 
 class MigrationChanges(Base):
     __tablename__ = TABLE_MIGRATION_CHANGES
+    __table_args__: Incomplete
     migration_id: Mapped[str]
     version: Mapped[int]
 
 class SchemaChanges(Base):
     __tablename__ = TABLE_SCHEMA_CHANGES
+    __table_args__: Incomplete
     change_id: Mapped[int]
     schema_version: Mapped[int | None]
     changed: Mapped[datetime]
@@ -247,6 +249,7 @@ class SchemaChanges(Base):
 
 class StatisticsRuns(Base):
     __tablename__ = TABLE_STATISTICS_RUNS
+    __table_args__: Incomplete
     run_id: Mapped[int]
     start: Mapped[datetime]
     def __repr__(self) -> str: ...

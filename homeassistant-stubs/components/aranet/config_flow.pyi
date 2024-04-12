@@ -7,8 +7,9 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from typing import Any
 
-_LOGGER: Incomplete
 MIN_VERSION: Incomplete
+
+def _title(discovery_info: BluetoothServiceInfoBleak) -> str: ...
 
 class AranetConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

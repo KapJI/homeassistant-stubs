@@ -1,6 +1,8 @@
+from .const import CONF_PROVINCE as CONF_PROVINCE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform
+from homeassistant.const import CONF_COUNTRY as CONF_COUNTRY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as async_pause_setup
 
 PLATFORMS: list[Platform]
 

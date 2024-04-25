@@ -1,17 +1,7 @@
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
-from typing import Any, Generic, Self, TypeVar, overload
+from homeassistant.helpers.deprecation import DeprecatedAlias as DeprecatedAlias, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 
-_T = TypeVar('_T')
-
-class cached_property(Generic[_T]):
-    func: Incomplete
-    attrname: Incomplete
-    __doc__: Incomplete
-    def __init__(self, func: Callable[[Any], _T]) -> None: ...
-    def __set_name__(self, owner: type[Any], name: str) -> None: ...
-    @overload
-    def __get__(self, instance: None, owner: type[Any] | None = None) -> Self: ...
-    @overload
-    def __get__(self, instance: Any, owner: type[Any] | None = None) -> _T: ...
-    __class_getitem__: Incomplete
+_DEPRECATED_cached_property: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

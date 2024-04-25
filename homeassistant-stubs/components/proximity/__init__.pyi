@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_DEVICES as CONF_DEVICES, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_ZONE as CONF_ZONE, Platform as Platform, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.event import async_track_entity_registry_updated_event as async_track_entity_registry_updated_event, async_track_state_change as async_track_state_change
+from homeassistant.helpers.event import async_track_entity_registry_updated_event as async_track_entity_registry_updated_event, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity

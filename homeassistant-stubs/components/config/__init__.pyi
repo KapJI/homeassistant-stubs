@@ -5,7 +5,7 @@ from homeassistant.components import frontend as frontend
 from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.setup import ATTR_COMPONENT as ATTR_COMPONENT
+from homeassistant.setup import EventComponentLoaded as EventComponentLoaded
 
 SECTIONS: Incomplete
 CONFIG_SCHEMA: Incomplete

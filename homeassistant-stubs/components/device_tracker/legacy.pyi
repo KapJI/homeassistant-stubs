@@ -4,8 +4,8 @@ from .const import ATTR_ATTRIBUTES as ATTR_ATTRIBUTES, ATTR_BATTERY as ATTR_BATT
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Sequence
 from datetime import datetime, timedelta
+from functools import cached_property as cached_property
 from homeassistant import util as util
-from homeassistant.backports.functools import cached_property as cached_property
 from homeassistant.components import zone as zone
 from homeassistant.components.zone import ENTITY_ID_HOME as ENTITY_ID_HOME
 from homeassistant.config import async_log_schema_error as async_log_schema_error, config_per_platform as config_per_platform, load_yaml_config_file as load_yaml_config_file
@@ -46,6 +46,7 @@ class DeviceTrackerPlatform:
     name: str
     platform: ModuleType
     config: dict
+    @cached_property
     def type(self) -> str | None: ...
     async def async_setup_legacy(self, hass: HomeAssistant, tracker: DeviceTracker, discovery_info: dict[str, Any] | None = None) -> None: ...
     def __init__(self, name, platform, config) -> None: ...

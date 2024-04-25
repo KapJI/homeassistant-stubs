@@ -23,6 +23,7 @@ CONF_SERVICE_ENTITY_ID: str
 _LOGGER: Incomplete
 SERVICE_DESCRIPTION_CACHE: str
 ALL_SERVICE_DESCRIPTIONS_CACHE: str
+_T = TypeVar('_T')
 
 def _base_components() -> dict[str, ModuleType]: ...
 def _validate_option_or_feature(option_or_feature: str, label: str) -> Any: ...
@@ -88,5 +89,7 @@ class ReloadServiceHelper:
     _service_func: Incomplete
     _service_running: bool
     _service_condition: Incomplete
-    def __init__(self, service_func: Callable[[ServiceCall], Awaitable]) -> None: ...
+    _pending_reload_targets: Incomplete
+    _reload_targets_func: Incomplete
+    def __init__(self, service_func: Callable[[ServiceCall], Awaitable], reload_targets_func: Callable[[ServiceCall], set[_T]]) -> None: ...
     async def execute_service(self, service_call: ServiceCall) -> None: ...

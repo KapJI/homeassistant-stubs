@@ -3,8 +3,7 @@ from .helpers import async_calculate_period as async_calculate_period, floored_t
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.recorder import get_instance as get_instance, history as history
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.template import Template as Template
 
 MIN_TIME_UTC: Incomplete

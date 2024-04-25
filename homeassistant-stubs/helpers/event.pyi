@@ -1,5 +1,6 @@
 import asyncio
 import time
+from . import frame as frame
 from .device_registry import EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from .entity_registry import EVENT_ENTITY_REGISTRY_UPDATED as EVENT_ENTITY_REGISTRY_UPDATED, EventEntityRegistryUpdatedData as EventEntityRegistryUpdatedData
 from .ratelimit import KeyedRateLimit as KeyedRateLimit
@@ -11,11 +12,12 @@ from collections.abc import Callable, Coroutine, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from typing import Any, Concatenate, Generic, ParamSpec, TypeVar, TypedDict
+from homeassistant.util.event_type import EventType as EventType
+from typing import Any, Concatenate, Generic, ParamSpec, TypeVar
 
 TRACK_STATE_CHANGE_CALLBACKS: str
 TRACK_STATE_CHANGE_LISTENER: str
@@ -40,11 +42,10 @@ _P = ParamSpec('_P')
 class _KeyedEventTracker(Generic[_TypedDictT]):
     listeners_key: str
     callbacks_key: str
-    event_type: str
+    event_type: EventType[_TypedDictT] | str
     dispatcher_callable: Callable[[HomeAssistant, dict[str, list[HassJob[[Event[_TypedDictT]], Any]]], Event[_TypedDictT]], None]
     filter_callable: Callable[[HomeAssistant, dict[str, list[HassJob[[Event[_TypedDictT]], Any]]], _TypedDictT], bool]
-    run_immediately: bool
-    def __init__(self, listeners_key, callbacks_key, event_type, dispatcher_callable, filter_callable, run_immediately) -> None: ...
+    def __init__(self, listeners_key, callbacks_key, event_type, dispatcher_callable, filter_callable) -> None: ...
 
 @dataclass(slots=True)
 class TrackStates:
@@ -66,11 +67,6 @@ class TrackTemplateResult:
     last_result: Any
     result: Any
     def __init__(self, template, last_result, result) -> None: ...
-
-class EventStateChangedData(TypedDict):
-    entity_id: str
-    old_state: State | None
-    new_state: State | None
 
 def threaded_listener_factory(async_factory: Callable[Concatenate[HomeAssistant, _P], Any]) -> Callable[Concatenate[HomeAssistant, _P], CALLBACK_TYPE]: ...
 def async_track_state_change(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[str, State | None, State | None], Coroutine[Any, Any, None] | None], from_state: None | str | Iterable[str] = None, to_state: None | str | Iterable[str] = None) -> CALLBACK_TYPE: ...
@@ -213,23 +209,20 @@ def async_track_time_interval(hass: HomeAssistant, action: Callable[[datetime], 
 
 track_time_interval: Incomplete
 
+@dataclass(slots=True)
 class SunListener:
     hass: HomeAssistant
     job: HassJob[[], Coroutine[Any, Any, None] | None]
     event: str
     offset: timedelta | None
-    _unsub_sun: CALLBACK_TYPE | None
-    _unsub_config: CALLBACK_TYPE | None
+    _unsub_sun: CALLBACK_TYPE | None = ...
+    _unsub_config: CALLBACK_TYPE | None = ...
     def async_attach(self) -> None: ...
     def async_detach(self) -> None: ...
     def _listen_next_sun_event(self) -> None: ...
     def _handle_sun_event(self, _now: Any) -> None: ...
     def _handle_config_event(self, _event: Any) -> None: ...
-    def __init__(self, hass, job, event, offset, unsub_sun, unsub_config) -> None: ...
-    def __lt__(self, other): ...
-    def __le__(self, other): ...
-    def __gt__(self, other): ...
-    def __ge__(self, other): ...
+    def __init__(self, hass, job, event, offset, _unsub_sun, _unsub_config) -> None: ...
 
 def async_track_sunrise(hass: HomeAssistant, action: Callable[[], None], offset: timedelta | None = None) -> CALLBACK_TYPE: ...
 

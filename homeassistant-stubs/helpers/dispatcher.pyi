@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine
-from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.logging import catch_log_exception as catch_log_exception

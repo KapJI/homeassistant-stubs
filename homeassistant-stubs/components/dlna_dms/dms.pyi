@@ -8,7 +8,7 @@ from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from didl_lite import didl_lite
 from enum import StrEnum
-from homeassistant.backports.functools import cached_property as cached_property
+from functools import cached_property as cached_property
 from homeassistant.components import ssdp as ssdp
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source.error import Unresolvable as Unresolvable
@@ -82,6 +82,7 @@ class DmsDeviceSource:
     def _didl_to_media_source(self, item: didl_lite.DidlObject, browsed_children: DmsDevice.BrowseResult | None = None) -> BrowseMediaSource: ...
     def _didl_thumbnail_url(self, item: didl_lite.DidlObject) -> str | None: ...
     def _make_identifier(self, action: Action, object_id: str) -> str: ...
+    @cached_property
     def _sort_criteria(self) -> list[str]: ...
 
 class Action(StrEnum):

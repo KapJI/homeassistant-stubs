@@ -6,8 +6,9 @@ from _typeshed import Incomplete
 from homeassistant.components import camera as camera
 from homeassistant.components.ffmpeg import get_ffmpeg_manager as get_ffmpeg_manager
 from homeassistant.const import STATE_ON as STATE_ON
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
+from homeassistant.util.async_ import create_eager_task as create_eager_task
 from pyhap.camera import Camera as PyhapCamera
 from typing import Any
 

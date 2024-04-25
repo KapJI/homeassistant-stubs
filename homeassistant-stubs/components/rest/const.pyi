@@ -20,3 +20,4 @@ REST: str
 REST_DATA: str
 METHODS: Incomplete
 XML_MIME_TYPES: Incomplete
+CONF_PAYLOAD_TEMPLATE: str

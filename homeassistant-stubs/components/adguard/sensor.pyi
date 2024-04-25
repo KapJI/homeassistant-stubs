@@ -1,4 +1,5 @@
-from .const import DATA_ADGUARD_CLIENT as DATA_ADGUARD_CLIENT, DATA_ADGUARD_VERSION as DATA_ADGUARD_VERSION, DOMAIN as DOMAIN
+from . import AdGuardData as AdGuardData
+from .const import DOMAIN as DOMAIN
 from .entity import AdGuardHomeEntity as AdGuardHomeEntity
 from _typeshed import Incomplete
 from adguardhome import AdGuardHome as AdGuardHome
@@ -8,7 +9,6 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
@@ -27,6 +27,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class AdGuardHomeSensor(AdGuardHomeEntity, SensorEntity):
     entity_description: AdGuardHomeEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, adguard: AdGuardHome, entry: ConfigEntry, description: AdGuardHomeEntityDescription) -> None: ...
+    def __init__(self, data: AdGuardData, entry: ConfigEntry, description: AdGuardHomeEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     async def _adguard_update(self) -> None: ...

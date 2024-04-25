@@ -56,6 +56,7 @@ SourceType: Incomplete
 
 class DeviceConsumption(TypedDict):
     stat_consumption: str
+    name: str | None
 
 class EnergyPreferences(TypedDict):
     energy_sources: list[SourceType]

@@ -1,16 +1,18 @@
 from _typeshed import Incomplete
-from homeassistant.components.notify import BaseNotificationService as BaseNotificationService
+from homeassistant.components.notify import DOMAIN as DOMAIN, NotifyEntity as NotifyEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 EVENT_NOTIFY: str
 
-def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> BaseNotificationService: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DemoNotificationService(BaseNotificationService):
-    hass: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
-    @property
-    def targets(self) -> dict[str, str]: ...
-    def send_message(self, message: str = '', **kwargs: Any) -> None: ...
+class DemoNotifyEntity(NotifyEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, unique_id: str, device_name: str) -> None: ...
+    async def async_send_message(self, message: str) -> None: ...

@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .data import DEVICE_CONSUMPTION_SCHEMA as DEVICE_CONSUMPTION_SCHEMA, ENERGY_SOURCE_SCHEMA as ENERGY_SOURCE_SCHEMA, EnergyManager as EnergyManager, EnergyPreferencesUpdate as EnergyPreferencesUpdate, async_get_manager as async_get_manager
-from .types import EnergyPlatform as EnergyPlatform, GetSolarForecastType as GetSolarForecastType
+from .types import EnergyPlatform as EnergyPlatform, GetSolarForecastType as GetSolarForecastType, SolarForecastType as SolarForecastType
 from .validate import async_validate as async_validate
 from _typeshed import Incomplete
 from homeassistant.components import recorder as recorder, websocket_api as websocket_api

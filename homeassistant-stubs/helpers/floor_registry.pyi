@@ -7,12 +7,23 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
+from homeassistant.util.event_type import EventType as EventType
 from typing import Literal, TypedDict
 
 DATA_REGISTRY: str
-EVENT_FLOOR_REGISTRY_UPDATED: str
+EVENT_FLOOR_REGISTRY_UPDATED: EventType[EventFloorRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
+
+class _FloorStoreData(TypedDict):
+    aliases: list[str]
+    floor_id: str
+    icon: str | None
+    level: int | None
+    name: str
+
+class FloorRegistryStoreData(TypedDict):
+    floors: list[_FloorStoreData]
 
 class EventFloorRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
@@ -27,7 +38,7 @@ class FloorEntry(NormalizedNameBaseRegistryEntry):
     level: int | None = ...
     def __init__(self, *, name, normalized_name, aliases, floor_id, icon, level) -> None: ...
 
-class FloorRegistry(BaseRegistry):
+class FloorRegistry(BaseRegistry[FloorRegistryStoreData]):
     floors: NormalizedNameBaseRegistryItems[FloorEntry]
     _floor_data: dict[str, FloorEntry]
     hass: Incomplete
@@ -41,7 +52,7 @@ class FloorRegistry(BaseRegistry):
     def async_delete(self, floor_id: str) -> None: ...
     def async_update(self, floor_id: str, *, aliases: set[str] | UndefinedType = ..., icon: str | None | UndefinedType = ..., level: int | UndefinedType = ..., name: str | UndefinedType = ...) -> FloorEntry: ...
     async def async_load(self) -> None: ...
-    def _data_to_save(self) -> dict[str, list[dict[str, str | int | list[str] | None]]]: ...
+    def _data_to_save(self) -> FloorRegistryStoreData: ...
 
 def async_get(hass: HomeAssistant) -> FloorRegistry: ...
 async def async_load(hass: HomeAssistant) -> None: ...

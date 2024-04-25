@@ -3,7 +3,7 @@ from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETA
 from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, get_file_path as get_file_path, valid_birth_will as valid_birth_will, valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from collections import OrderedDict
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Mapping
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
 from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
@@ -35,13 +35,21 @@ BROKER_VERIFICATION_SELECTOR: Incomplete
 CA_CERT_UPLOAD_SELECTOR: Incomplete
 CERT_UPLOAD_SELECTOR: Incomplete
 KEY_UPLOAD_SELECTOR: Incomplete
+REAUTH_SCHEMA: Incomplete
+PWD_NOT_CHANGED: str
+
+def update_password_from_user_input(entry_password: str | None, user_input: dict[str, Any]) -> dict[str, Any]: ...
 
 class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    entry: ConfigEntry | None
     _hassio_discovery: dict[str, Any] | None
+    _reauth_config_entry: ConfigEntry | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> MQTTOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
+    async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_broker(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> ConfigFlowResult: ...
     async def async_step_hassio_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

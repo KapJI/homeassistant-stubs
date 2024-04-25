@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.setup import async_when_setup as async_when_setup
 from typing import Any
 
 ATTR_GENDER: str

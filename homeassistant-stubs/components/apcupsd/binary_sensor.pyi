@@ -8,6 +8,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Final
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 _DESCRIPTION: Incomplete
 _VALUE_ONLINE_MASK: Final[int]

@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 SENSORS: dict[str, SensorEntityDescription]
 INFERRED_UNITS: Incomplete

@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .controller import EcovacsController as EcovacsController
 from .entity import CapabilityDevice as CapabilityDevice, EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
-from .util import get_supported_entitites as get_supported_entitites
+from .util import get_name_key as get_name_key, get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

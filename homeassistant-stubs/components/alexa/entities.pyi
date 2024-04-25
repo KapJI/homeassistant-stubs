@@ -65,8 +65,6 @@ class DisplayCategory:
     WATER_HEATER: str
     WEARABLE: str
 
-def generate_alexa_id(entity_id: str) -> str: ...
-
 class AlexaEntity:
     hass: Incomplete
     config: Incomplete

@@ -2,6 +2,7 @@ import sucks
 from .const import DOMAIN as DOMAIN
 from .controller import EcovacsController as EcovacsController
 from .entity import EcovacsEntity as EcovacsEntity
+from .util import get_name_key as get_name_key
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from deebot_client.capabilities import VacuumCapabilities

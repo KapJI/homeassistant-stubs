@@ -2,6 +2,7 @@ import enum
 from .const import DOMAIN as DOMAIN, SYN_RESOLUTION_MATCH as SYN_RESOLUTION_MATCH
 from _typeshed import Incomplete
 from aiohttp.web import Response as Response
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import http as http
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -10,7 +11,7 @@ from homeassistant.util.decorator import Registry as Registry
 from typing import Any
 
 _LOGGER: Incomplete
-HANDLERS: Incomplete
+HANDLERS: Registry[str, Callable[[HomeAssistant, dict[str, Any]], Coroutine[Any, Any, dict[str, Any]]]]
 INTENTS_API_ENDPOINT: str
 
 class SpeechType(enum.StrEnum):

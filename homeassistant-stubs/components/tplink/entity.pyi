@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from kasa import SmartDevice as SmartDevice

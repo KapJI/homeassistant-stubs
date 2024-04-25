@@ -4,10 +4,10 @@ from .const import CONF_AUTOMATIC_ADD as CONF_AUTOMATIC_ADD, CONF_DATA_BITS as C
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_COMMAND_OFF as CONF_COMMAND_OFF, CONF_COMMAND_ON as CONF_COMMAND_ON, CONF_DEVICE as CONF_DEVICE, CONF_DEVICES as CONF_DEVICES, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
-from homeassistant.core import State as State, callback as callback
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr
-from homeassistant.helpers.event import async_track_state_change as async_track_state_change
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from typing import Any, TypedDict
 
 CONF_EVENT_CODE: str

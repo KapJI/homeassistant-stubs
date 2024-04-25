@@ -6,14 +6,16 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
-from homeassistant.helpers.start import async_at_start as async_at_start
+from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.setup import EventComponentLoaded as EventComponentLoaded
 
 COMPONENT_LOADED_COOLDOWN: int
 DOMAIN: str
 UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete
+REQUEST_TIMEOUT: Incomplete
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

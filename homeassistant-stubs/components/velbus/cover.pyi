@@ -12,7 +12,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class VelbusCover(VelbusEntity, CoverEntity):
     _channel: VelbusBlind
+    _assumed_closed: bool
     _attr_supported_features: Incomplete
+    _attr_assumed_state: bool
     def __init__(self, channel: VelbusBlind) -> None: ...
     @property
     def is_closed(self) -> bool | None: ...

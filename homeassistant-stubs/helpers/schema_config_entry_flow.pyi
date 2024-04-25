@@ -4,7 +4,7 @@ from . import selector as selector
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from collections.abc import Callable as Callable, Coroutine, Mapping
+from collections.abc import Callable as Callable, Container, Coroutine, Mapping
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
@@ -26,7 +26,7 @@ class SchemaFlowFormStep(SchemaFlowStep):
 
 @dataclass(slots=True)
 class SchemaFlowMenuStep(SchemaFlowStep):
-    options: list[str] | dict[str, str]
+    options: Container[str]
     def __init__(self, options) -> None: ...
 
 class SchemaCommonFlowHandler:

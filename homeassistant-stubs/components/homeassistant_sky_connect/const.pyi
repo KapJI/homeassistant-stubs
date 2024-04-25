@@ -4,6 +4,14 @@ from _typeshed import Incomplete
 from typing import Self
 
 DOMAIN: str
+ZHA_DOMAIN: str
+DOCS_WEB_FLASHER_URL: str
+OTBR_ADDON_NAME: str
+OTBR_ADDON_MANAGER_DATA: str
+OTBR_ADDON_SLUG: str
+ZIGBEE_FLASHER_ADDON_NAME: str
+ZIGBEE_FLASHER_ADDON_MANAGER_DATA: str
+ZIGBEE_FLASHER_ADDON_SLUG: str
 
 @dataclasses.dataclass(frozen=True)
 class VariantInfo:

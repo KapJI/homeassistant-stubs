@@ -4,12 +4,12 @@ from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Collection, Mapping
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_ON as STATE_ON
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from typing import Any
 
 ENTITY_ID_FORMAT: Incomplete
@@ -31,12 +31,13 @@ class GroupEntity(Entity, metaclass=abc.ABCMeta):
 class Group(Entity):
     _unrecorded_attributes: Incomplete
     _attr_should_poll: bool
+    single_active_domain: str | None
     tracking: tuple[str, ...]
     trackable: tuple[str, ...]
     hass: Incomplete
-    _name: Incomplete
+    _attr_name: Incomplete
     _state: Incomplete
-    _icon: Incomplete
+    _attr_icon: Incomplete
     _on_off: Incomplete
     _assumed: Incomplete
     _on_states: Incomplete
@@ -50,16 +51,10 @@ class Group(Entity):
     def async_create_group_entity(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None) -> Group: ...
     @staticmethod
     async def async_create_group(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None) -> Group: ...
-    @property
-    def name(self) -> str: ...
-    @name.setter
-    def name(self, value: str) -> None: ...
+    def set_name(self, value: str) -> None: ...
     @property
     def state(self) -> str | None: ...
-    @property
-    def icon(self) -> str | None: ...
-    @icon.setter
-    def icon(self, value: str | None) -> None: ...
+    def set_icon(self, value: str | None) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
@@ -76,6 +71,7 @@ class Group(Entity):
     async def _async_state_changed_listener(self, event: Event[EventStateChangedData]) -> None: ...
     def _reset_tracked_state(self) -> None: ...
     def _see_state(self, new_state: State) -> None: ...
+    def _detect_specific_on_off_state(self, group_is_on: bool) -> set[str]: ...
     def _async_update_group_state(self, tr_state: State | None = None) -> None: ...
 
 def async_get_component(hass: HomeAssistant) -> EntityComponent[Group]: ...

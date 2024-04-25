@@ -3,17 +3,17 @@ from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_DE
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entry_data import RuntimeEntryData as RuntimeEntryData
-from .voice_assistant import VoiceAssistantUDPServer as VoiceAssistantUDPServer
+from .voice_assistant import VoiceAssistantAPIPipeline as VoiceAssistantAPIPipeline, VoiceAssistantPipeline as VoiceAssistantPipeline, VoiceAssistantUDPPipeline as VoiceAssistantUDPPipeline
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings
 from homeassistant.components import tag as tag, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.device_registry import format_mac as format_mac
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.template import Template as Template
@@ -34,7 +34,7 @@ class ESPHomeManager:
     cli: Incomplete
     device_id: Incomplete
     domain_data: Incomplete
-    voice_assistant_udp_server: Incomplete
+    voice_assistant_pipeline: Incomplete
     reconnect_logic: Incomplete
     zeroconf_instance: Incomplete
     entry_data: Incomplete
@@ -49,6 +49,7 @@ class ESPHomeManager:
     def _handle_pipeline_finished(self) -> None: ...
     async def _handle_pipeline_start(self, conversation_id: str, flags: int, audio_settings: VoiceAssistantAudioSettings, wake_word_phrase: str | None) -> int | None: ...
     async def _handle_pipeline_stop(self) -> None: ...
+    async def _handle_audio(self, data: bytes) -> None: ...
     async def on_connect(self) -> None: ...
     async def _on_connnect(self) -> None: ...
     async def on_disconnect(self, expected_disconnect: bool) -> None: ...

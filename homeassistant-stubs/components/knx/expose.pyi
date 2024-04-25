@@ -3,8 +3,8 @@ from .schema import ExposeSchema as ExposeSchema
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from xknx import XKNX as XKNX
 from xknx.devices import DateTime, ExposeSensor

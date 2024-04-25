@@ -12,12 +12,12 @@ from homeassistant.components.http.auth import async_user_not_allowed_do_auth as
 from homeassistant.components.http.ban import log_invalid_auth as log_invalid_auth, process_success_login as process_success_login, process_wrong_login as process_wrong_login
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
 from homeassistant.util.network import is_local as is_local
 from typing import Any
 
-async def async_setup(hass: HomeAssistant, store_result: Callable[[str, Credentials], str]) -> None: ...
+def async_setup(hass: HomeAssistant, store_result: Callable[[str, Credentials], str]) -> None: ...
 
 class WellKnownOAuthInfoView(HomeAssistantView):
     requires_auth: bool

@@ -1,4 +1,5 @@
 import aiohttp
+from .backports.aiohttp_resolver import AsyncResolver as AsyncResolver
 from .frame import warn_use as warn_use
 from .json import json_dumps as json_dumps
 from _typeshed import Incomplete

@@ -7,13 +7,26 @@ from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
+from homeassistant.util.event_type import EventType as EventType
 from typing import Any, Literal, TypedDict
 
 DATA_REGISTRY: str
-EVENT_AREA_REGISTRY_UPDATED: str
+EVENT_AREA_REGISTRY_UPDATED: EventType[EventAreaRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
+
+class _AreaStoreData(TypedDict):
+    aliases: list[str]
+    floor_id: str | None
+    icon: str | None
+    id: str
+    labels: list[str]
+    name: str
+    picture: str | None
+
+class AreasRegistryStoreData(TypedDict):
+    areas: list[_AreaStoreData]
 
 class EventAreaRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
@@ -29,11 +42,20 @@ class AreaEntry(NormalizedNameBaseRegistryEntry):
     picture: str | None
     def __init__(self, *, name, normalized_name, aliases, floor_id, icon, id, labels, picture) -> None: ...
 
-class AreaRegistryStore(Store[dict[str, list[dict[str, Any]]]]):
-    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> dict[str, Any]: ...
+class AreaRegistryStore(Store[AreasRegistryStoreData]):
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> AreasRegistryStoreData: ...
 
-class AreaRegistry(BaseRegistry):
-    areas: NormalizedNameBaseRegistryItems[AreaEntry]
+class AreaRegistryItems(NormalizedNameBaseRegistryItems[AreaEntry]):
+    _labels_index: Incomplete
+    _floors_index: Incomplete
+    def __init__(self) -> None: ...
+    def _index_entry(self, key: str, entry: AreaEntry) -> None: ...
+    def _unindex_entry(self, key: str, replacement_entry: AreaEntry | None = None) -> None: ...
+    def get_areas_for_label(self, label: str) -> list[AreaEntry]: ...
+    def get_areas_for_floor(self, floor: str) -> list[AreaEntry]: ...
+
+class AreaRegistry(BaseRegistry[AreasRegistryStoreData]):
+    areas: AreaRegistryItems
     _area_data: dict[str, AreaEntry]
     hass: Incomplete
     _store: Incomplete
@@ -47,7 +69,7 @@ class AreaRegistry(BaseRegistry):
     def async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ...) -> AreaEntry: ...
     def _async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ...) -> AreaEntry: ...
     async def async_load(self) -> None: ...
-    def _data_to_save(self) -> dict[str, list[dict[str, Any]]]: ...
+    def _data_to_save(self) -> AreasRegistryStoreData: ...
     def _generate_area_id(self, name: str) -> str: ...
     def _async_setup_cleanup(self) -> None: ...
 

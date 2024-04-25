@@ -1,10 +1,11 @@
 from .const import CONF_ADDR as CONF_ADDR, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_DIMMERS as CONF_DIMMERS, CONF_KEYPADS as CONF_KEYPADS, CONF_RATE as CONF_RATE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, dispatcher_send as dispatcher_send
 from homeassistant.helpers.entity import Entity as Entity
@@ -15,6 +16,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 PLATFORMS: list[Platform]
+CONF_COMMAND: str
 EVENT_BUTTON_PRESS: str
 EVENT_BUTTON_RELEASE: str
 DEFAULT_FADE_RATE: float
@@ -23,6 +25,7 @@ CV_FADE_RATE: Incomplete
 DIMMER_SCHEMA: Incomplete
 KEYPAD_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
+SERVICE_SEND_COMMAND_SCHEMA: Incomplete
 
 @dataclass
 class HomeworksData:
@@ -31,6 +34,8 @@ class HomeworksData:
     keypads: dict[str, HomeworksKeypad]
     def __init__(self, controller, controller_id, keypads) -> None: ...
 
+def async_setup_services(hass: HomeAssistant) -> None: ...
+async def async_send_command(hass: HomeAssistant, data: Mapping[str, Any]) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

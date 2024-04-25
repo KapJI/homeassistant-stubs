@@ -21,7 +21,7 @@ from homeassistant.helpers.reload import async_integration_yaml_config as async_
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration
-from typing import Any, TypeVar
+from typing import Any
 
 _LOGGER: Incomplete
 SERVICE_PUBLISH: str
@@ -33,7 +33,6 @@ CONNECTION_SUCCESS: str
 CONNECTION_FAILED: str
 CONNECTION_FAILED_RECOVERABLE: str
 CONFIG_ENTRY_CONFIG_KEYS: Incomplete
-_T = TypeVar('_T')
 REMOVED_OPTIONS: Incomplete
 CONFIG_SCHEMA: Incomplete
 MQTT_PUBLISH_SCHEMA: Incomplete

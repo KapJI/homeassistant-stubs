@@ -1,13 +1,12 @@
-from .const import ATTR_END_DATETIME as ATTR_END_DATETIME, ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATTR_SCHEDULE_NAME as ATTR_SCHEDULE_NAME, ATTR_SELECTED_SCHEDULE as ATTR_SELECTED_SCHEDULE, ATTR_TARGET_TEMPERATURE as ATTR_TARGET_TEMPERATURE, ATTR_TIME_PERIOD as ATTR_TIME_PERIOD, CONF_URL_ENERGY as CONF_URL_ENERGY, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_CANCEL_SET_POINT as EVENT_TYPE_CANCEL_SET_POINT, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, EVENT_TYPE_SET_POINT as EVENT_TYPE_SET_POINT, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, NETATMO_CREATE_CLIMATE as NETATMO_CREATE_CLIMATE, SERVICE_CLEAR_TEMPERATURE_SETTING as SERVICE_CLEAR_TEMPERATURE_SETTING, SERVICE_SET_PRESET_MODE_WITH_END_DATETIME as SERVICE_SET_PRESET_MODE_WITH_END_DATETIME, SERVICE_SET_SCHEDULE as SERVICE_SET_SCHEDULE, SERVICE_SET_TEMPERATURE_WITH_END_DATETIME as SERVICE_SET_TEMPERATURE_WITH_END_DATETIME, SERVICE_SET_TEMPERATURE_WITH_TIME_PERIOD as SERVICE_SET_TEMPERATURE_WITH_TIME_PERIOD
+from .const import ATTR_END_DATETIME as ATTR_END_DATETIME, ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATTR_SCHEDULE_NAME as ATTR_SCHEDULE_NAME, ATTR_SELECTED_SCHEDULE as ATTR_SELECTED_SCHEDULE, ATTR_TARGET_TEMPERATURE as ATTR_TARGET_TEMPERATURE, ATTR_TIME_PERIOD as ATTR_TIME_PERIOD, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_CANCEL_SET_POINT as EVENT_TYPE_CANCEL_SET_POINT, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, EVENT_TYPE_SET_POINT as EVENT_TYPE_SET_POINT, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, NETATMO_CREATE_CLIMATE as NETATMO_CREATE_CLIMATE, SERVICE_CLEAR_TEMPERATURE_SETTING as SERVICE_CLEAR_TEMPERATURE_SETTING, SERVICE_SET_PRESET_MODE_WITH_END_DATETIME as SERVICE_SET_PRESET_MODE_WITH_END_DATETIME, SERVICE_SET_SCHEDULE as SERVICE_SET_SCHEDULE, SERVICE_SET_TEMPERATURE_WITH_END_DATETIME as SERVICE_SET_TEMPERATURE_WITH_END_DATETIME, SERVICE_SET_TEMPERATURE_WITH_TIME_PERIOD as SERVICE_SET_TEMPERATURE_WITH_TIME_PERIOD
 from .data_handler import HOME as HOME, NetatmoRoom as NetatmoRoom, SIGNAL_NAME as SIGNAL_NAME
-from .entity import NetatmoBaseEntity as NetatmoBaseEntity
+from .entity import NetatmoRoomEntity as NetatmoRoomEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_PRESET_MODE as ATTR_PRESET_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, PRESET_HOME as PRESET_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, STATE_OFF as STATE_OFF, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, STATE_OFF as STATE_OFF, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -36,30 +35,25 @@ NA_VALVE: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class NetatmoThermostat(NetatmoBaseEntity, ClimateEntity):
+class NetatmoThermostat(NetatmoRoomEntity, ClimateEntity):
     _attr_hvac_mode: Incomplete
     _attr_max_temp = DEFAULT_MAX_TEMP
     _attr_preset_modes = SUPPORT_PRESET
     _attr_supported_features = SUPPORT_FLAGS
     _attr_target_temperature_step = PRECISION_HALVES
     _attr_temperature_unit: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
-    _room: Incomplete
-    _id: Incomplete
-    _home_id: Incomplete
-    _signal_name: Incomplete
-    _model: Incomplete
-    _config_url: Incomplete
     _attr_name: Incomplete
-    _away: Incomplete
-    _connected: Incomplete
-    _away_temperature: Incomplete
-    _hg_temperature: Incomplete
-    _boilerstatus: Incomplete
+    _away: bool | None
+    _connected: bool | None
+    _enable_turn_on_off_backwards_compatibility: bool
+    _away_temperature: float | None
+    _hg_temperature: float | None
+    _boilerstatus: bool | None
+    _signal_name: Incomplete
     _selected_schedule: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, netatmo_device: NetatmoRoom) -> None: ...
+    def __init__(self, room: NetatmoRoom) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_preset_mode: Incomplete
     _attr_target_temperature: Incomplete
@@ -80,5 +74,3 @@ class NetatmoThermostat(NetatmoBaseEntity, ClimateEntity):
     async def _async_service_set_temperature_with_end_datetime(self, **kwargs: Any) -> None: ...
     async def _async_service_set_temperature_with_time_period(self, **kwargs: Any) -> None: ...
     async def _async_service_clear_temperature_setting(self, **kwargs: Any) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...

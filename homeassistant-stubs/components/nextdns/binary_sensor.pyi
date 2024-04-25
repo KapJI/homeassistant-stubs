@@ -1,5 +1,5 @@
-from . import CoordinatorDataT as CoordinatorDataT, NextDnsConnectionUpdateCoordinator as NextDnsConnectionUpdateCoordinator
 from .const import ATTR_CONNECTION as ATTR_CONNECTION, DOMAIN as DOMAIN
+from .coordinator import CoordinatorDataT as CoordinatorDataT, NextDnsConnectionUpdateCoordinator as NextDnsConnectionUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

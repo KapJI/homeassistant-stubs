@@ -1,5 +1,5 @@
 import aiounifi
-from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn
+from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from .hub import UnifiHub as UnifiHub
 from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
 from aiounifi.models.api import ApiItemT
@@ -14,6 +14,7 @@ from typing import Any
 
 async def async_restart_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 async def async_power_cycle_port_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
+async def async_regenerate_password_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class UnifiButtonEntityDescription(ButtonEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):

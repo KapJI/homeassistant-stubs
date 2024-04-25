@@ -1,9 +1,8 @@
 import json
 from _typeshed import Incomplete
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant
 from homeassistant.helpers.entityfilter import EntityFilter as EntityFilter, FILTER_SCHEMA as FILTER_SCHEMA
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Literal
 

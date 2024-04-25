@@ -8,11 +8,10 @@ from homeassistant.components.humidifier import ATTR_AVAILABLE_MODES as ATTR_AVA
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, PERCENTAGE as PERCENTAGE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers import entityfilter as entityfilter
 from homeassistant.helpers.entity_registry import EVENT_ENTITY_REGISTRY_UPDATED as EVENT_ENTITY_REGISTRY_UPDATED, EventEntityRegistryUpdatedData as EventEntityRegistryUpdatedData
 from homeassistant.helpers.entity_values import EntityValues as EntityValues
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.dt import as_timestamp as as_timestamp
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter

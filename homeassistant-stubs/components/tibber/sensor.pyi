@@ -16,6 +16,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util import Throttle as Throttle
 from typing import Any
 
+FIVE_YEARS: Incomplete
 _LOGGER: Incomplete
 ICON: str
 SCAN_INTERVAL: Incomplete

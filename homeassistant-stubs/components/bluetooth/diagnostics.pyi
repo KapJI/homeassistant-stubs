@@ -1,4 +1,4 @@
-from . import _get_manager as _get_manager
+from .api import _get_manager as _get_manager
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any

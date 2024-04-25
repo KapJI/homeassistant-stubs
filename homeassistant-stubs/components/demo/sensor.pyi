@@ -24,7 +24,7 @@ class DemoSensor(SensorEntity):
     _attr_translation_key: Incomplete
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def __init__(self, unique_id: str, device_name: str | None, state: float | int | str | None, device_class: SensorDeviceClass, state_class: SensorStateClass | None, unit_of_measurement: str | None, battery: int | None, options: list[str] | None = None, translation_key: str | None = None) -> None: ...
+    def __init__(self, unique_id: str, device_name: str | None, state: float | str | None, device_class: SensorDeviceClass, state_class: SensorStateClass | None, unit_of_measurement: str | None, battery: int | None, options: list[str] | None = None, translation_key: str | None = None) -> None: ...
 
 class DemoSumSensor(RestoreSensor):
     _attr_should_poll: bool

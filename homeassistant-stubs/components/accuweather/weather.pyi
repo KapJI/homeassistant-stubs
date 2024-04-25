@@ -1,18 +1,20 @@
-from . import AccuWeatherDataUpdateCoordinator as AccuWeatherDataUpdateCoordinator
-from .const import API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_FORECAST as ATTR_FORECAST, ATTR_SPEED as ATTR_SPEED, ATTR_VALUE as ATTR_VALUE, CONDITION_MAP as CONDITION_MAP, DOMAIN as DOMAIN
+from . import AccuWeatherData as AccuWeatherData
+from .const import API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_SPEED as ATTR_SPEED, ATTR_VALUE as ATTR_VALUE, CONDITION_MAP as CONDITION_MAP, DOMAIN as DOMAIN
+from .coordinator import AccuWeatherDailyForecastDataUpdateCoordinator as AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherObservationDataUpdateCoordinator as AccuWeatherObservationDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.components.weather import ATTR_FORECAST_CLOUD_COVERAGE as ATTR_FORECAST_CLOUD_COVERAGE, ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_NATIVE_APPARENT_TEMP as ATTR_FORECAST_NATIVE_APPARENT_TEMP, ATTR_FORECAST_NATIVE_PRECIPITATION as ATTR_FORECAST_NATIVE_PRECIPITATION, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_TEMP_LOW as ATTR_FORECAST_NATIVE_TEMP_LOW, ATTR_FORECAST_NATIVE_WIND_GUST_SPEED as ATTR_FORECAST_NATIVE_WIND_GUST_SPEED, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_PRECIPITATION_PROBABILITY as ATTR_FORECAST_PRECIPITATION_PROBABILITY, ATTR_FORECAST_TIME as ATTR_FORECAST_TIME, ATTR_FORECAST_UV_INDEX as ATTR_FORECAST_UV_INDEX, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, Forecast as Forecast, SingleCoordinatorWeatherEntity as SingleCoordinatorWeatherEntity, WeatherEntityFeature as WeatherEntityFeature
+from homeassistant.components.weather import ATTR_FORECAST_CLOUD_COVERAGE as ATTR_FORECAST_CLOUD_COVERAGE, ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_NATIVE_APPARENT_TEMP as ATTR_FORECAST_NATIVE_APPARENT_TEMP, ATTR_FORECAST_NATIVE_PRECIPITATION as ATTR_FORECAST_NATIVE_PRECIPITATION, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_TEMP_LOW as ATTR_FORECAST_NATIVE_TEMP_LOW, ATTR_FORECAST_NATIVE_WIND_GUST_SPEED as ATTR_FORECAST_NATIVE_WIND_GUST_SPEED, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_PRECIPITATION_PROBABILITY as ATTR_FORECAST_PRECIPITATION_PROBABILITY, ATTR_FORECAST_TIME as ATTR_FORECAST_TIME, ATTR_FORECAST_UV_INDEX as ATTR_FORECAST_UV_INDEX, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, CoordinatorWeatherEntity as CoordinatorWeatherEntity, Forecast as Forecast, WeatherEntityFeature as WeatherEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class AccuWeatherEntity(SingleCoordinatorWeatherEntity[AccuWeatherDataUpdateCoordinator]):
+class AccuWeatherEntity(CoordinatorWeatherEntity[AccuWeatherObservationDataUpdateCoordinator, AccuWeatherDailyForecastDataUpdateCoordinator, TimestampDataUpdateCoordinator, TimestampDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_native_precipitation_unit: Incomplete
@@ -24,7 +26,9 @@ class AccuWeatherEntity(SingleCoordinatorWeatherEntity[AccuWeatherDataUpdateCoor
     _attr_attribution: Incomplete
     _attr_device_info: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, coordinator: AccuWeatherDataUpdateCoordinator) -> None: ...
+    observation_coordinator: Incomplete
+    daily_coordinator: Incomplete
+    def __init__(self, accuweather_data: AccuWeatherData) -> None: ...
     @property
     def condition(self) -> str | None: ...
     @property

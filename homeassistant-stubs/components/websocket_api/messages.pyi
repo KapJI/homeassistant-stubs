@@ -1,8 +1,7 @@
 from . import const as const
 from _typeshed import Incomplete
 from homeassistant.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_CONTEXT as COMPRESSED_STATE_CONTEXT, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
-from homeassistant.core import Event as Event, State as State
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, State as State
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any, Final

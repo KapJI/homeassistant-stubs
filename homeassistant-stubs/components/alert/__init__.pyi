@@ -3,11 +3,11 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TITLE as ATTR_TITLE
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_REPEAT as CONF_REPEAT, CONF_STATE as CONF_STATE, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
-from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HassJob as HassJob, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceNotFound as ServiceNotFound
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_point_in_time as async_track_point_in_time, async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.dt import now as now

@@ -1,18 +1,19 @@
 from ..core import Recorder as Recorder
 from _typeshed import Incomplete
+from homeassistant.util.event_type import EventType as EventType
 from lru import LRU
-from typing import Generic, TypeVar
+from typing import Any, Generic, TypeVar
 
 _DataT = TypeVar('_DataT')
 
 class BaseTableManager(Generic[_DataT]):
-    _id_map: LRU[str, int]
+    _id_map: LRU[EventType[Any] | str, int]
     active: bool
     recorder: Incomplete
     _pending: Incomplete
     def __init__(self, recorder: Recorder) -> None: ...
     def get_from_cache(self, data: str) -> int | None: ...
-    def get_pending(self, shared_data: str) -> _DataT | None: ...
+    def get_pending(self, shared_data: EventType[Any] | str) -> _DataT | None: ...
     def reset(self) -> None: ...
 
 class BaseLRUTableManager(BaseTableManager[_DataT]):

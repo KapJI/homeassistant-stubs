@@ -12,6 +12,7 @@ from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.helpers.typing import UndefinedType as UndefinedType
+from homeassistant.util.event_type import EventType as EventType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -186,6 +187,6 @@ class EventIdMigrationTask(RecorderTask):
 
 @dataclass(slots=True)
 class RefreshEventTypesTask(RecorderTask):
-    event_types: list[str]
+    event_types: list[EventType[Any] | str]
     def run(self, instance: Recorder) -> None: ...
     def __init__(self, event_types) -> None: ...

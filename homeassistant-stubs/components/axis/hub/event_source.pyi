@@ -1,0 +1,23 @@
+import axis
+from _typeshed import Incomplete
+from axis.stream_manager import Signal
+from homeassistant.components import mqtt as mqtt
+from homeassistant.components.mqtt.models import ReceiveMessage as ReceiveMessage
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.setup import async_when_setup as async_when_setup
+
+class AxisEventSource:
+    hass: Incomplete
+    config_entry: Incomplete
+    api: Incomplete
+    signal_reachable: Incomplete
+    available: bool
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: axis.AxisDevice) -> None: ...
+    def setup(self) -> None: ...
+    def teardown(self) -> None: ...
+    def _disconnect_from_stream(self) -> None: ...
+    async def _async_use_mqtt(self, hass: HomeAssistant, component: str) -> None: ...
+    def _mqtt_message(self, message: ReceiveMessage) -> None: ...
+    def _connection_status_cb(self, status: Signal) -> None: ...

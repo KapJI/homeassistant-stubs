@@ -14,6 +14,7 @@ from homeassistant.components.recorder.util import execute_stmt_lambda_element a
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_NAME as ATTR_NAME, ATTR_SERVICE as ATTR_SERVICE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY
 from homeassistant.core import HomeAssistant as HomeAssistant, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er
+from homeassistant.util.event_type import EventType as EventType
 from sqlalchemy.engine import Result as Result
 from sqlalchemy.engine.row import Row as Row
 from typing import Any
@@ -23,7 +24,7 @@ _LOGGER: Incomplete
 @dataclass(slots=True)
 class LogbookRun:
     context_lookup: dict[bytes | None, Row | EventAsRow | None]
-    external_events: dict[str, tuple[str, Callable[[LazyEventPartialState], dict[str, Any]]]]
+    external_events: dict[EventType[Any] | str, tuple[str, Callable[[LazyEventPartialState], dict[str, Any]]]]
     event_cache: EventCache
     entity_name_cache: EntityNameCache
     include_entity_name: bool
@@ -41,7 +42,7 @@ class EventProcessor:
     filters: Incomplete
     logbook_run: Incomplete
     context_augmenter: Incomplete
-    def __init__(self, hass: HomeAssistant, event_types: tuple[str, ...], entity_ids: list[str] | None = None, device_ids: list[str] | None = None, context_id: str | None = None, timestamp: bool = False, include_entity_name: bool = True) -> None: ...
+    def __init__(self, hass: HomeAssistant, event_types: tuple[EventType[Any] | str, ...], entity_ids: list[str] | None = None, device_ids: list[str] | None = None, context_id: str | None = None, timestamp: bool = False, include_entity_name: bool = True) -> None: ...
     @property
     def limited_select(self) -> bool: ...
     def switch_to_live(self) -> None: ...

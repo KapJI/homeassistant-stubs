@@ -2,11 +2,9 @@ from .const import CALC_METHODS as CALC_METHODS, CONF_CALC_METHOD as CONF_CALC_M
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as CONF_LOCATION, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import LocationSelector as LocationSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
 from typing import Any
-
-async def async_validate_location(hass: HomeAssistant, lat: float, lon: float) -> dict[str, str]: ...
 
 class IslamicPrayerFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int

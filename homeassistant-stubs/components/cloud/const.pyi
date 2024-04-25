@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.helpers.dispatcher import SignalType as SignalType
+from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Any
 
 DOMAIN: str
@@ -28,6 +28,7 @@ PREF_GOOGLE_SETTINGS_VERSION: str
 PREF_TTS_DEFAULT_VOICE: str
 PREF_GOOGLE_CONNECTED: str
 PREF_REMOTE_ALLOW_REMOTE_ENABLE: str
+PREF_STRICT_CONNECTION: str
 DEFAULT_TTS_DEFAULT_VOICE: Incomplete
 DEFAULT_DISABLE_2FA: bool
 DEFAULT_ALEXA_REPORT_STATE: bool

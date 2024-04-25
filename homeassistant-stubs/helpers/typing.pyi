@@ -1,22 +1,26 @@
-import homeassistant
+from .deprecation import DeprecatedAlias as DeprecatedAlias, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from enum import Enum
-from typing import Any, TypeVar
+from typing import Any, Never
 
-_DataT = TypeVar('_DataT')
 GPSType = tuple[float, float]
 ConfigType = dict[str, Any]
-ContextType = homeassistant.core.Context
 DiscoveryInfoType = dict[str, Any]
 ServiceDataType = dict[str, Any]
 StateType: Incomplete
 TemplateVarsType: Incomplete
+NoEventData = Mapping[str, Never]
 QueryType = Any
 
 class UndefinedType(Enum):
     _singleton: int
 
 UNDEFINED: Incomplete
-EventType = homeassistant.core.Event
-HomeAssistantType = homeassistant.core.HomeAssistant
-ServiceCallType = homeassistant.core.ServiceCall
+_DEPRECATED_ContextType: Incomplete
+_DEPRECATED_EventType: Incomplete
+_DEPRECATED_HomeAssistantType: Incomplete
+_DEPRECATED_ServiceCallType: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

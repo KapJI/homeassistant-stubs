@@ -1,7 +1,9 @@
 from .core import Context as Context
+from .util.event_type import EventType as EventType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator, Sequence
 from dataclasses import dataclass
+from typing import Any
 
 _function_cache: dict[str, Callable[[str, str, dict[str, str] | None], str]]
 
@@ -76,7 +78,7 @@ class Unauthorized(HomeAssistantError):
 
 class UnknownUser(Unauthorized): ...
 
-class ServiceNotFound(HomeAssistantError):
+class ServiceNotFound(ServiceValidationError):
     domain: Incomplete
     service: Incomplete
     generate_message: bool
@@ -87,7 +89,7 @@ class MaxLengthExceeded(HomeAssistantError):
     property_name: Incomplete
     max_length: Incomplete
     generate_message: bool
-    def __init__(self, value: str, property_name: str, max_length: int) -> None: ...
+    def __init__(self, value: EventType[Any] | str, property_name: str, max_length: int) -> None: ...
 
 class DependencyError(HomeAssistantError):
     failed_dependencies: Incomplete

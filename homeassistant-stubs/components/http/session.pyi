@@ -1,0 +1,29 @@
+from .ban import process_wrong_login as process_wrong_login
+from _typeshed import Incomplete
+from aiohttp.web import Request as Request, StreamResponse as StreamResponse
+from aiohttp_session import Session
+from aiohttp_session.cookie_storage import EncryptedCookieStorage
+from homeassistant.auth.const import REFRESH_TOKEN_EXPIRATION as REFRESH_TOKEN_EXPIRATION
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.json import json_dumps as json_dumps
+from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
+from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
+
+_LOGGER: Incomplete
+COOKIE_NAME: str
+PREFIXED_COOKIE_NAME: Incomplete
+SESSION_CACHE_SIZE: int
+
+def _get_cookie_name(is_secure: bool) -> str: ...
+
+class HomeAssistantCookieStorage(EncryptedCookieStorage):
+    _hass: Incomplete
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    def _secure_connection(self, request: Request) -> bool: ...
+    def load_cookie(self, request: Request) -> str | None: ...
+    def _decrypt_cookie(self, cookie: str) -> Session | None: ...
+    async def new_session(self) -> Session: ...
+    async def load_session(self, request: Request) -> Session: ...
+    async def save_session(self, request: Request, response: StreamResponse, session: Session) -> None: ...
+    @staticmethod
+    def _add_cache_control_header(response: StreamResponse) -> None: ...

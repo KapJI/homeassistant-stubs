@@ -11,6 +11,7 @@ from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEM
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.event_type import EventType as EventType
 from typing import Any
 
 _LOGGER: Incomplete

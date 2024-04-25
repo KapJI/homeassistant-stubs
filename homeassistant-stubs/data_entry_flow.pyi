@@ -7,7 +7,7 @@ from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnu
 from .helpers.frame import report as report
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Iterable, Mapping
+from collections.abc import Callable as Callable, Container, Iterable, Mapping
 from dataclasses import dataclass
 from enum import StrEnum
 from typing import Any, Generic, Required, TypedDict
@@ -66,7 +66,7 @@ class FlowResult(TypedDict, Generic[_HandlerT], total=False):
     flow_id: Required[str]
     handler: Required[_HandlerT]
     last_step: bool | None
-    menu_options: list[str] | dict[str, str]
+    menu_options: Container[str]
     options: Mapping[str, Any]
     preview: str | None
     progress_action: str
@@ -139,7 +139,7 @@ class FlowHandler(Generic[_FlowResultT, _HandlerT]):
     def async_external_step_done(self, *, next_step_id: str) -> _FlowResultT: ...
     def async_show_progress(self, *, step_id: str | None = None, progress_action: str, description_placeholders: Mapping[str, str] | None = None, progress_task: asyncio.Task[Any] | None = None) -> _FlowResultT: ...
     def async_show_progress_done(self, *, next_step_id: str) -> _FlowResultT: ...
-    def async_show_menu(self, *, step_id: str | None = None, menu_options: list[str] | dict[str, str], description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
+    def async_show_menu(self, *, step_id: str | None = None, menu_options: Container[str], description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
     def async_remove(self) -> None: ...
     @staticmethod
     async def async_setup_preview(hass: HomeAssistant) -> None: ...

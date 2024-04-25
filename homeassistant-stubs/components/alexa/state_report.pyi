@@ -2,14 +2,13 @@ import aiohttp
 from .config import AbstractConfig as AbstractConfig
 from .const import API_CHANGE as API_CHANGE, API_CONTEXT as API_CONTEXT, API_DIRECTIVE as API_DIRECTIVE, API_ENDPOINT as API_ENDPOINT, API_EVENT as API_EVENT, API_HEADER as API_HEADER, API_PAYLOAD as API_PAYLOAD, API_SCOPE as API_SCOPE, Cause as Cause, DATE_FORMAT as DATE_FORMAT, DOMAIN as DOMAIN
 from .diagnostics import async_redact_auth_data as async_redact_auth_data
-from .entities import AlexaEntity as AlexaEntity, ENTITY_ADAPTERS as ENTITY_ADAPTERS, generate_alexa_id as generate_alexa_id
+from .entities import AlexaEntity as AlexaEntity, ENTITY_ADAPTERS as ENTITY_ADAPTERS
 from .errors import AlexaInvalidEndpointError as AlexaInvalidEndpointError, NoTokenAvailable as NoTokenAvailable, RequireRelink as RequireRelink
 from _typeshed import Incomplete
 from homeassistant.components import event as event
-from homeassistant.const import MATCH_ALL as MATCH_ALL, STATE_ON as STATE_ON
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, State as State, callback as callback
+from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, STATE_ON as STATE_ON
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.event import async_track_state_change as async_track_state_change
 from homeassistant.helpers.significant_change import create_checker as create_checker
 from homeassistant.util.json import JsonObjectType as JsonObjectType, json_loads_object as json_loads_object
 from typing import Any

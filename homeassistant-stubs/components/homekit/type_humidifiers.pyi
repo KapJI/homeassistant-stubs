@@ -3,8 +3,8 @@ from .const import CHAR_ACTIVE as CHAR_ACTIVE, CHAR_CURRENT_HUMIDIFIER_DEHUMIDIF
 from _typeshed import Incomplete
 from homeassistant.components.humidifier import ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MAX_HUMIDITY as ATTR_MAX_HUMIDITY, ATTR_MIN_HUMIDITY as ATTR_MIN_HUMIDITY, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DOMAIN as DOMAIN, HumidifierDeviceClass as HumidifierDeviceClass, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, PERCENTAGE as PERCENTAGE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
-from homeassistant.core import Event as Event, State as State, callback as callback
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_change_event as async_track_state_change_event
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, State as State, callback as callback
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from typing import Any
 
 _LOGGER: Incomplete

@@ -3,6 +3,7 @@ from homeassistant.helpers.area_registry import EVENT_AREA_REGISTRY_UPDATED as E
 from homeassistant.helpers.device_registry import EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED
 from homeassistant.helpers.entity_registry import EVENT_ENTITY_REGISTRY_UPDATED as EVENT_ENTITY_REGISTRY_UPDATED
 from homeassistant.helpers.issue_registry import EVENT_REPAIRS_ISSUE_REGISTRY_UPDATED as EVENT_REPAIRS_ISSUE_REGISTRY_UPDATED
-from typing import Final
+from homeassistant.util.event_type import EventType as EventType
+from typing import Any, Final
 
-SUBSCRIBE_ALLOWLIST: Final[set[str]]
+SUBSCRIBE_ALLOWLIST: Final[set[EventType[Any] | str]]

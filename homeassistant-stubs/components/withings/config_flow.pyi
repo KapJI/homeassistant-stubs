@@ -1,5 +1,5 @@
 import logging
-from .const import CONF_USE_WEBHOOK as CONF_USE_WEBHOOK, DEFAULT_TITLE as DEFAULT_TITLE, DOMAIN as DOMAIN
+from .const import DEFAULT_TITLE as DEFAULT_TITLE, DOMAIN as DOMAIN
 from collections.abc import Mapping
 from homeassistant.components.webhook import async_generate_id as async_generate_id
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult

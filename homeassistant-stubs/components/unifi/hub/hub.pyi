@@ -1,45 +1,40 @@
 import aiounifi
 from ..const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, CONF_SITE_ID as CONF_SITE_ID, PLATFORMS as PLATFORMS
 from .config import UnifiConfig as UnifiConfig
+from .entity_helper import UnifiEntityHelper as UnifiEntityHelper
 from .entity_loader import UnifiEntityLoader as UnifiEntityLoader
 from .websocket import UnifiWebsocket as UnifiWebsocket
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
-
-CHECK_HEARTBEAT_INTERVAL: Incomplete
 
 class UnifiHub:
     hass: Incomplete
     api: Incomplete
     config: Incomplete
     entity_loader: Incomplete
+    _entity_helper: Incomplete
     websocket: Incomplete
     site: Incomplete
     is_admin: bool
-    _cancel_heartbeat_check: Incomplete
-    _heartbeat_time: Incomplete
-    poe_command_queue: Incomplete
-    _cancel_poe_command: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: aiounifi.Controller) -> None: ...
     @staticmethod
     def get_hub(hass: HomeAssistant, config_entry: ConfigEntry) -> UnifiHub: ...
     @property
     def available(self) -> bool: ...
     @property
+    def signal_heartbeat_missed(self) -> str: ...
+    def update_heartbeat(self, unique_id: str, heartbeat_expire_time: datetime) -> None: ...
+    def remove_heartbeat(self, unique_id: str) -> None: ...
+    def queue_poe_port_command(self, device_id: str, port_idx: int, poe_mode: str) -> None: ...
+    @property
     def signal_reachable(self) -> str: ...
     @property
     def signal_options_update(self) -> str: ...
-    @property
-    def signal_heartbeat_missed(self) -> str: ...
     async def initialize(self) -> None: ...
-    def async_heartbeat(self, unique_id: str, heartbeat_expire_time: datetime | None = None) -> None: ...
-    def _async_check_for_stale(self, *_: datetime) -> None: ...
-    def async_queue_poe_port_command(self, device_id: str, port_idx: int, poe_mode: str) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     def async_update_device_registry(self) -> DeviceEntry: ...

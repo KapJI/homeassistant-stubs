@@ -13,11 +13,10 @@ from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENT
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, TypeVar
+from typing import Any
 
 _LOGGER: Incomplete
 _SlotsType = dict[str, Any]
-_T = TypeVar('_T')
 INTENT_TURN_OFF: str
 INTENT_TURN_ON: str
 INTENT_TOGGLE: str

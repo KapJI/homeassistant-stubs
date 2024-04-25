@@ -38,7 +38,7 @@ class PublishMessage:
     retain: bool
     def __init__(self, topic, payload, qos, retain) -> None: ...
 
-@dataclass
+@dataclass(slots=True, frozen=True)
 class ReceiveMessage:
     topic: str
     payload: ReceivePayloadType

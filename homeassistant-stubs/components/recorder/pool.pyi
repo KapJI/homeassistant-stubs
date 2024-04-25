@@ -2,7 +2,7 @@ import threading
 from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX
 from _typeshed import Incomplete
 from homeassistant.helpers.frame import report as report
-from homeassistant.util.async_ import check_loop as check_loop
+from homeassistant.util.loop import check_loop as check_loop
 from sqlalchemy.pool import ConnectionPoolEntry as ConnectionPoolEntry, NullPool, SingletonThreadPool, StaticPool
 from typing import Any
 

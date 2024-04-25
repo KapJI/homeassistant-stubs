@@ -1,4 +1,7 @@
+from .core import EventStateChangedData as EventStateChangedData
 from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from .helpers.typing import NoEventData as NoEventData
+from .util.event_type import EventType as EventType
 from .util.signal_type import SignalType as SignalType
 from _typeshed import Incomplete
 from enum import StrEnum
@@ -23,6 +26,7 @@ class Platform(StrEnum):
     CALENDAR: str
     CAMERA: str
     CLIMATE: str
+    CONVERSATION: str
     COVER: str
     DATE: str
     DATETIME: str
@@ -260,21 +264,22 @@ CONF_WHILE: Final[str]
 CONF_WHITELIST: Final[str]
 CONF_ALLOWLIST_EXTERNAL_DIRS: Final[str]
 LEGACY_CONF_WHITELIST_EXTERNAL_DIRS: Final[str]
+CONF_DEBUG: Final[str]
 CONF_XY: Final[str]
 CONF_ZONE: Final[str]
 EVENT_CALL_SERVICE: Final[str]
 EVENT_COMPONENT_LOADED: Final[str]
 EVENT_CORE_CONFIG_UPDATE: Final[str]
-EVENT_HOMEASSISTANT_CLOSE: Final[str]
-EVENT_HOMEASSISTANT_START: Final[str]
-EVENT_HOMEASSISTANT_STARTED: Final[str]
-EVENT_HOMEASSISTANT_STOP: Final[str]
-EVENT_HOMEASSISTANT_FINAL_WRITE: Final[str]
+EVENT_HOMEASSISTANT_CLOSE: EventType[NoEventData]
+EVENT_HOMEASSISTANT_START: EventType[NoEventData]
+EVENT_HOMEASSISTANT_STARTED: EventType[NoEventData]
+EVENT_HOMEASSISTANT_STOP: EventType[NoEventData]
+EVENT_HOMEASSISTANT_FINAL_WRITE: EventType[NoEventData]
 EVENT_LOGBOOK_ENTRY: Final[str]
 EVENT_LOGGING_CHANGED: Final[str]
 EVENT_SERVICE_REGISTERED: Final[str]
 EVENT_SERVICE_REMOVED: Final[str]
-EVENT_STATE_CHANGED: Final[str]
+EVENT_STATE_CHANGED: EventType[EventStateChangedData]
 EVENT_STATE_REPORTED: Final[str]
 EVENT_THEMES_UPDATED: Final[str]
 EVENT_PANELS_UPDATED: Final[str]

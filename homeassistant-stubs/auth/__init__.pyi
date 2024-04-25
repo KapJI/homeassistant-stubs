@@ -3,6 +3,7 @@ from .const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION, GROUP_ID_
 from .mfa_modules import MultiFactorAuthModule as MultiFactorAuthModule, auth_mfa_module_from_config as auth_mfa_module_from_config
 from .models import AuthFlowResult as AuthFlowResult
 from .providers import AuthProvider as AuthProvider, LoginFlow as LoginFlow, auth_provider_from_config as auth_provider_from_config
+from .session import SessionManager as SessionManager
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from homeassistant import data_entry_flow as data_entry_flow
@@ -38,8 +39,9 @@ class AuthManager:
     _revoke_callbacks: Incomplete
     _expire_callback: Incomplete
     _remove_expired_job: Incomplete
+    session: Incomplete
     def __init__(self, hass: HomeAssistant, store: auth_store.AuthStore, providers: _ProviderDict, mfa_modules: _MfaModuleDict) -> None: ...
-    def async_setup(self) -> None: ...
+    async def async_setup(self) -> None: ...
     @property
     def auth_providers(self) -> list[AuthProvider]: ...
     @property

@@ -8,12 +8,12 @@ ATTR_CATEGORY: Final[str]
 ATTR_DIRECTION: Final[str]
 ATTR_ENGLISH: Final[str]
 ATTR_LEVEL: Final[str]
-ATTR_FORECAST: Final[str]
 ATTR_SPEED: Final[str]
 ATTR_VALUE: Final[str]
-CONF_FORECAST: Final[str]
 DOMAIN: Final[str]
 MANUFACTURER: Final[str]
 MAX_FORECAST_DAYS: Final[int]
 CONDITION_CLASSES: Final[dict[str, list[int]]]
 CONDITION_MAP: Incomplete
+UPDATE_INTERVAL_OBSERVATION: Incomplete
+UPDATE_INTERVAL_DAILY_FORECAST: Incomplete

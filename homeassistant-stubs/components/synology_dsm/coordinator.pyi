@@ -1,5 +1,5 @@
-from .common import SynoApi as SynoApi
-from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, SIGNAL_CAMERA_SOURCE_CHANGED as SIGNAL_CAMERA_SOURCE_CHANGED, SYNOLOGY_CONNECTION_EXCEPTIONS as SYNOLOGY_CONNECTION_EXCEPTIONS
+from .common import SynoApi as SynoApi, raise_config_entry_auth_error as raise_config_entry_auth_error
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, SIGNAL_CAMERA_SOURCE_CHANGED as SIGNAL_CAMERA_SOURCE_CHANGED, SYNOLOGY_AUTH_FAILED_EXCEPTIONS as SYNOLOGY_AUTH_FAILED_EXCEPTIONS, SYNOLOGY_CONNECTION_EXCEPTIONS as SYNOLOGY_CONNECTION_EXCEPTIONS
 from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -28,6 +28,6 @@ class SynologyDSMCentralUpdateCoordinator(SynologyDSMUpdateCoordinator[None]):
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: SynoApi) -> None: ...
     async def _async_update_data(self) -> None: ...
 
-class SynologyDSMCameraUpdateCoordinator(SynologyDSMUpdateCoordinator[dict[str, dict[str, SynoCamera]]]):
+class SynologyDSMCameraUpdateCoordinator(SynologyDSMUpdateCoordinator[dict[str, dict[int, SynoCamera]]]):
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: SynoApi) -> None: ...
-    async def _async_update_data(self) -> dict[str, dict[str, SynoCamera]]: ...
+    async def _async_update_data(self) -> dict[str, dict[int, SynoCamera]]: ...

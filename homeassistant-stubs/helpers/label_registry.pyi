@@ -7,12 +7,23 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
+from homeassistant.util.event_type import EventType as EventType
 from typing import Literal, TypedDict
 
 DATA_REGISTRY: str
-EVENT_LABEL_REGISTRY_UPDATED: str
+EVENT_LABEL_REGISTRY_UPDATED: EventType[EventLabelRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
+
+class _LabelStoreData(TypedDict):
+    color: str | None
+    description: str | None
+    icon: str | None
+    label_id: str
+    name: str
+
+class LabelRegistryStoreData(TypedDict):
+    labels: list[_LabelStoreData]
 
 class EventLabelRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
@@ -27,7 +38,7 @@ class LabelEntry(NormalizedNameBaseRegistryEntry):
     icon: str | None = ...
     def __init__(self, *, name, normalized_name, label_id, description, color, icon) -> None: ...
 
-class LabelRegistry(BaseRegistry):
+class LabelRegistry(BaseRegistry[LabelRegistryStoreData]):
     labels: NormalizedNameBaseRegistryItems[LabelEntry]
     _label_data: dict[str, LabelEntry]
     hass: Incomplete
@@ -41,7 +52,7 @@ class LabelRegistry(BaseRegistry):
     def async_delete(self, label_id: str) -> None: ...
     def async_update(self, label_id: str, *, color: str | None | UndefinedType = ..., description: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., name: str | UndefinedType = ...) -> LabelEntry: ...
     async def async_load(self) -> None: ...
-    def _data_to_save(self) -> dict[str, list[dict[str, str | None]]]: ...
+    def _data_to_save(self) -> LabelRegistryStoreData: ...
 
 def async_get(hass: HomeAssistant) -> LabelRegistry: ...
 async def async_load(hass: HomeAssistant) -> None: ...

@@ -1,20 +1,22 @@
-from .const import CONF_DEVICE_TOKEN as CONF_DEVICE_TOKEN, SYNOLOGY_CONNECTION_EXCEPTIONS as SYNOLOGY_CONNECTION_EXCEPTIONS
+from .const import CONF_DEVICE_TOKEN as CONF_DEVICE_TOKEN, EXCEPTION_DETAILS as EXCEPTION_DETAILS, EXCEPTION_UNKNOWN as EXCEPTION_UNKNOWN, SYNOLOGY_CONNECTION_EXCEPTIONS as SYNOLOGY_CONNECTION_EXCEPTIONS
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from synology_dsm import SynologyDSM
 from synology_dsm.api.dsm.network import SynoDSMNetwork as SynoDSMNetwork
 from synology_dsm.api.photos import SynoPhotos as SynoPhotos
 
 LOGGER: Incomplete
 
 class SynoApi:
+    dsm: SynologyDSM
     _hass: Incomplete
     _entry: Incomplete
     config_url: Incomplete
-    dsm: Incomplete
     information: Incomplete
     network: Incomplete
     security: Incomplete
@@ -44,3 +46,5 @@ class SynoApi:
     async def async_unload(self) -> None: ...
     async def async_update(self) -> None: ...
     async def _update(self) -> None: ...
+
+def raise_config_entry_auth_error(err: Exception) -> None: ...

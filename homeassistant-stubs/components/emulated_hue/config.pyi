@@ -1,9 +1,9 @@
 from _typeshed import Incomplete
 from homeassistant.components import climate as climate, cover as cover, fan as fan, humidifier as humidifier, light as light, media_player as media_player, scene as scene, script as script
 from homeassistant.const import CONF_ENTITIES as CONF_ENTITIES, CONF_TYPE as CONF_TYPE
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import storage as storage
-from homeassistant.helpers.event import EventStateChangedData as EventStateChangedData, async_track_state_added_domain as async_track_state_added_domain, async_track_state_removed_domain as async_track_state_removed_domain
+from homeassistant.helpers.event import async_track_state_added_domain as async_track_state_added_domain, async_track_state_removed_domain as async_track_state_removed_domain
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 SUPPORTED_DOMAINS: Incomplete

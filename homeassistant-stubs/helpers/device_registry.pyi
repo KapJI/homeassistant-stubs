@@ -3,25 +3,25 @@ from .debounce import Debouncer as Debouncer
 from .deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .frame import report as report
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
-from .registry import BaseRegistry as BaseRegistry
+from .registry import BaseRegistry as BaseRegistry, BaseRegistryItems as BaseRegistryItems
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from collections import UserDict
-from collections.abc import Mapping, ValuesView
+from collections.abc import Mapping
 from enum import StrEnum
-from homeassistant.backports.functools import cached_property as cached_property
+from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback, get_release_channel as get_release_channel
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_release_channel as get_release_channel
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
+from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any, Literal, TypeVar, TypedDict
 from yarl import URL
 
 _LOGGER: Incomplete
 DATA_REGISTRY: str
-EVENT_DEVICE_REGISTRY_UPDATED: str
+EVENT_DEVICE_REGISTRY_UPDATED: EventType[EventDeviceRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
@@ -114,7 +114,9 @@ class DeviceEntry:
     def disabled(self) -> bool: ...
     @property
     def dict_repr(self) -> dict[str, Any]: ...
+    @cached_property
     def json_repr(self) -> bytes | None: ...
+    @cached_property
     def as_storage_fragment(self) -> json_fragment: ...
     def __init__(self, area_id, config_entries, configuration_url, connections, disabled_by, entry_type, hw_version, id, identifiers, labels, manufacturer, model, name_by_user, name, serial_number, suggested_area, sw_version, via_device_id, is_new) -> None: ...
     def __lt__(self, other): ...
@@ -129,6 +131,7 @@ class DeletedDeviceEntry:
     id: str
     orphaned_timestamp: float | None
     def to_device_entry(self, config_entry_id: str, connections: set[tuple[str, str]], identifiers: set[tuple[str, str]]) -> DeviceEntry: ...
+    @cached_property
     def as_storage_fragment(self) -> json_fragment: ...
     def __init__(self, config_entries, connections, identifiers, id, orphaned_timestamp) -> None: ...
     def __lt__(self, other): ...
@@ -142,17 +145,27 @@ class DeviceRegistryStore(storage.Store[dict[str, list[dict[str, Any]]]]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> dict[str, Any]: ...
 _EntryTypeT = TypeVar('_EntryTypeT', DeviceEntry, DeletedDeviceEntry)
 
-class DeviceRegistryItems(UserDict[str, _EntryTypeT]):
+class DeviceRegistryItems(BaseRegistryItems[_EntryTypeT]):
     _connections: Incomplete
     _identifiers: Incomplete
     def __init__(self) -> None: ...
-    def values(self) -> ValuesView[_EntryTypeT]: ...
-    def __setitem__(self, key: str, entry: _EntryTypeT) -> None: ...
-    def __delitem__(self, key: str) -> None: ...
+    def _index_entry(self, key: str, entry: _EntryTypeT) -> None: ...
+    def _unindex_entry(self, key: str, replacement_entry: _EntryTypeT | None = None) -> None: ...
     def get_entry(self, identifiers: set[tuple[str, str]] | None, connections: set[tuple[str, str]] | None) -> _EntryTypeT | None: ...
 
-class DeviceRegistry(BaseRegistry):
-    devices: DeviceRegistryItems[DeviceEntry]
+class ActiveDeviceRegistryItems(DeviceRegistryItems[DeviceEntry]):
+    _area_id_index: Incomplete
+    _config_entry_id_index: Incomplete
+    _labels_index: Incomplete
+    def __init__(self) -> None: ...
+    def _index_entry(self, key: str, entry: DeviceEntry) -> None: ...
+    def _unindex_entry(self, key: str, replacement_entry: DeviceEntry | None = None) -> None: ...
+    def get_devices_for_area_id(self, area_id: str) -> list[DeviceEntry]: ...
+    def get_devices_for_label(self, label: str) -> list[DeviceEntry]: ...
+    def get_devices_for_config_entry_id(self, config_entry_id: str) -> list[DeviceEntry]: ...
+
+class DeviceRegistry(BaseRegistry[dict[str, list[dict[str, Any]]]]):
+    devices: ActiveDeviceRegistryItems
     deleted_devices: DeviceRegistryItems[DeletedDeviceEntry]
     _device_data: dict[str, DeviceEntry]
     hass: Incomplete

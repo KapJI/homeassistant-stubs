@@ -22,7 +22,6 @@ from pydeconz.models.sensor.vibration import Vibration
 from pydeconz.models.sensor.water import Water
 from typing import Generic, TypeVar
 
-_SensorDeviceT = TypeVar('_SensorDeviceT', bound=PydeconzSensorBase)
 ATTR_ORIENTATION: str
 ATTR_TILTANGLE: str
 ATTR_VIBRATIONSTRENGTH: str

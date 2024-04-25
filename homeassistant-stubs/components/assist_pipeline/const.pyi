@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 DATA_CONFIG: Incomplete
+DATA_MIGRATIONS: Incomplete
 DEFAULT_PIPELINE_TIMEOUT: Incomplete
 DEFAULT_WAKE_WORD_TIMEOUT: int
 CONF_DEBUG_RECORDING_DIR: str

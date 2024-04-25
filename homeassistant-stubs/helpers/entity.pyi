@@ -8,12 +8,12 @@ from .typing import StateType as StateType, UNDEFINED as UNDEFINED, UndefinedTyp
 from _typeshed import Incomplete
 from abc import ABCMeta
 from collections import deque
-from collections.abc import Callable as Callable, Coroutine, Iterable, Mapping, MutableMapping
+from collections.abc import Callable as Callable, Coroutine, Iterable, Mapping
 from enum import Enum, IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, get_release_channel as get_release_channel
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, get_release_channel as get_release_channel
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, InvalidStateError as InvalidStateError, NoEntitySpecifiedError as NoEntitySpecifiedError
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue, bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
@@ -111,6 +111,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     __combined_unrecorded_attributes: frozenset[str]
     _job_types: dict[str, HassJobType] | None
     _state_info: StateInfo
+    _is_custom_component: bool
     __capabilities_updated_at: deque[float]
     __capabilities_updated_at_reported: bool
     __remove_future: asyncio.Future[None] | None
@@ -125,7 +126,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     _attr_entity_picture: str | None
     _attr_entity_registry_enabled_default: bool
     _attr_entity_registry_visible_default: bool
-    _attr_extra_state_attributes: MutableMapping[str, Any]
+    _attr_extra_state_attributes: dict[str, Any]
     _attr_force_update: bool
     _attr_icon: str | None
     _attr_name: str | None
@@ -203,6 +204,8 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def enabled(self) -> bool: ...
     def async_set_context(self, context: Context) -> None: ...
     async def async_update_ha_state(self, force_refresh: bool = False) -> None: ...
+    def _async_verify_state_writable(self) -> None: ...
+    def _async_write_ha_state_from_call_soon_threadsafe(self) -> None: ...
     def async_write_ha_state(self) -> None: ...
     def _stringify_state(self, available: bool) -> str: ...
     def _friendly_name_internal(self) -> str | None: ...

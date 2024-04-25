@@ -8,19 +8,23 @@ from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from enum import Enum
 from hass_nabucasa import Cloud
-from homeassistant.components import alexa as alexa, google_assistant as google_assistant
+from homeassistant.components import alexa as alexa, google_assistant as google_assistant, http as http
+from homeassistant.components.auth import STRICT_CONNECTION_URL as STRICT_CONNECTION_URL
+from homeassistant.components.http.auth import async_sign_path as async_sign_path
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_REGION as CONF_REGION, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
-from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.helpers import entityfilter as entityfilter
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.discovery import async_load_platform as async_load_platform
-from homeassistant.helpers.dispatcher import SignalType as SignalType, async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.signal_type import SignalType as SignalType
 
 DEFAULT_MODE = MODE_PROD
 PLATFORMS: Incomplete
@@ -54,3 +58,4 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _remote_handle_prefs_updated(cloud: Cloud[CloudClient]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+def _setup_services(hass: HomeAssistant, prefs: CloudPreferences) -> None: ...

@@ -13,3 +13,4 @@ CONF_GCID: str
 DATA_HASS_CONFIG: str
 UNIT_MAP: Incomplete
 SCAN_INTERVALS: Incomplete
+CLIMATE_ACTIVITY_STATE: list[str]

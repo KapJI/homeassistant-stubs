@@ -1,5 +1,6 @@
-from . import AccuWeatherDataUpdateCoordinator as AccuWeatherDataUpdateCoordinator
-from .const import API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_CATEGORY as ATTR_CATEGORY, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_ENGLISH as ATTR_ENGLISH, ATTR_FORECAST as ATTR_FORECAST, ATTR_LEVEL as ATTR_LEVEL, ATTR_SPEED as ATTR_SPEED, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, MAX_FORECAST_DAYS as MAX_FORECAST_DAYS
+from . import AccuWeatherData as AccuWeatherData
+from .const import API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_CATEGORY as ATTR_CATEGORY, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_ENGLISH as ATTR_ENGLISH, ATTR_LEVEL as ATTR_LEVEL, ATTR_SPEED as ATTR_SPEED, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, MAX_FORECAST_DAYS as MAX_FORECAST_DAYS
+from .coordinator import AccuWeatherDailyForecastDataUpdateCoordinator as AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherObservationDataUpdateCoordinator as AccuWeatherObservationDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -17,27 +18,47 @@ PARALLEL_UPDATES: int
 class AccuWeatherSensorDescription(SensorEntityDescription):
     value_fn: Callable[[dict[str, Any]], str | int | float | None]
     attr_fn: Callable[[dict[str, Any]], dict[str, Any]] = ...
-    day: int | None = ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, attr_fn) -> None: ...
+
+@dataclass(frozen=True, kw_only=True)
+class AccuWeatherForecastSensorDescription(AccuWeatherSensorDescription):
+    day: int
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, attr_fn, day) -> None: ...
 
-FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
+FORECAST_SENSOR_TYPES: tuple[AccuWeatherForecastSensorDescription, ...]
 SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class AccuWeatherSensor(CoordinatorEntity[AccuWeatherDataUpdateCoordinator], SensorEntity):
+class AccuWeatherSensor(CoordinatorEntity[AccuWeatherObservationDataUpdateCoordinator], SensorEntity):
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     entity_description: AccuWeatherSensorDescription
-    forecast_day: Incomplete
     _sensor_data: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: AccuWeatherDataUpdateCoordinator, description: AccuWeatherSensorDescription) -> None: ...
+    def __init__(self, coordinator: AccuWeatherObservationDataUpdateCoordinator, description: AccuWeatherSensorDescription) -> None: ...
     @property
     def native_value(self) -> str | int | float | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     def _handle_coordinator_update(self) -> None: ...
+    @staticmethod
+    def _get_sensor_data(sensors: dict[str, Any], kind: str) -> Any: ...
 
-def _get_sensor_data(sensors: dict[str, Any], kind: str, forecast_day: int | None = None) -> Any: ...
+class AccuWeatherForecastSensor(CoordinatorEntity[AccuWeatherDailyForecastDataUpdateCoordinator], SensorEntity):
+    _attr_attribution = ATTRIBUTION
+    _attr_has_entity_name: bool
+    entity_description: AccuWeatherForecastSensorDescription
+    forecast_day: Incomplete
+    _sensor_data: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: AccuWeatherDailyForecastDataUpdateCoordinator, description: AccuWeatherForecastSensorDescription) -> None: ...
+    @property
+    def native_value(self) -> str | int | float | None: ...
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]: ...
+    def _handle_coordinator_update(self) -> None: ...
+    @staticmethod
+    def _get_sensor_data(sensors: list[dict[str, Any]], kind: str, forecast_day: int) -> Any: ...

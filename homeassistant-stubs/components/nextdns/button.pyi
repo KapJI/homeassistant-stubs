@@ -1,5 +1,5 @@
-from . import NextDnsStatusUpdateCoordinator as NextDnsStatusUpdateCoordinator
 from .const import ATTR_STATUS as ATTR_STATUS, DOMAIN as DOMAIN
+from .coordinator import NextDnsStatusUpdateCoordinator as NextDnsStatusUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

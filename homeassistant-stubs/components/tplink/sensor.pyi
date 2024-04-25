@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_VOLTAGE as ATTR_VOLTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from kasa import SmartDevice as SmartDevice
 
@@ -30,5 +30,6 @@ class SmartPlugSensor(CoordinatedTPLinkEntity, SensorEntity):
     _attr_translation_placeholders: Incomplete
     _attr_translation_key: Incomplete
     def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkSensorEntityDescription, has_parent: bool = False) -> None: ...
-    @property
-    def native_value(self) -> float | None: ...
+    _attr_native_value: Incomplete
+    def _async_update_attrs(self) -> None: ...
+    def _handle_coordinator_update(self) -> None: ...

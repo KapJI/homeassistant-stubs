@@ -22,6 +22,11 @@ class DeprecatedConstantEnum(NamedTuple):
     enum: Enum
     breaks_in_ha_version: str | None
 
+class DeprecatedAlias(NamedTuple):
+    value: Any
+    replacement: str
+    breaks_in_ha_version: str | None
+
 _PREFIX_DEPRECATED: str
 
 def check_if_deprecated_constant(name: str, module_globals: dict[str, Any]) -> Any: ...

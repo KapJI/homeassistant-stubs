@@ -2,8 +2,6 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 LOGGER: Incomplete
-DATA_ADGUARD_CLIENT: str
-DATA_ADGUARD_VERSION: str
 CONF_FORCE: str
 SERVICE_ADD_URL: str
 SERVICE_DISABLE_URL: str

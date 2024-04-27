@@ -19,7 +19,6 @@ class GroupIntegrationRegistry:
     on_off_mapping: Incomplete
     off_on_mapping: Incomplete
     on_states_by_domain: Incomplete
-    off_state_by_domain: Incomplete
     exclude_domains: Incomplete
     def __init__(self) -> None: ...
     def exclude_domain(self) -> None: ...

@@ -4,7 +4,7 @@ from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Collection, Mapping
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
@@ -31,7 +31,6 @@ class GroupEntity(Entity, metaclass=abc.ABCMeta):
 class Group(Entity):
     _unrecorded_attributes: Incomplete
     _attr_should_poll: bool
-    single_active_domain: str | None
     tracking: tuple[str, ...]
     trackable: tuple[str, ...]
     hass: Incomplete
@@ -71,7 +70,6 @@ class Group(Entity):
     async def _async_state_changed_listener(self, event: Event[EventStateChangedData]) -> None: ...
     def _reset_tracked_state(self) -> None: ...
     def _see_state(self, new_state: State) -> None: ...
-    def _detect_specific_on_off_state(self, group_is_on: bool) -> set[str]: ...
     def _async_update_group_state(self, tr_state: State | None = None) -> None: ...
 
 def async_get_component(hass: HomeAssistant) -> EntityComponent[Group]: ...

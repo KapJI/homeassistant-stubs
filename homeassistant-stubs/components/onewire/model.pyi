@@ -7,5 +7,5 @@ class OWDeviceDescription:
     family: str
     id: str
     path: str
-    type: str
+    type: str | None
     def __init__(self, device_info, family, id, path, type) -> None: ...

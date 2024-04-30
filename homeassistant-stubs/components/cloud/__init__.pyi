@@ -13,7 +13,7 @@ from homeassistant.components.auth import STRICT_CONNECTION_URL as STRICT_CONNEC
 from homeassistant.components.http.auth import async_sign_path as async_sign_path
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_REGION as CONF_REGION, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
-from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.helpers import entityfilter as entityfilter
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

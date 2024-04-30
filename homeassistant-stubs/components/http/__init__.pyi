@@ -21,7 +21,7 @@ from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
 from aiohttp.web_protocol import RequestHandler as RequestHandler
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.helpers import storage as storage
 from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_ALLOW_CONFIGRED_CORS as KEY_ALLOW_CONFIGRED_CORS, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, current_request as current_request
@@ -32,7 +32,7 @@ from homeassistant.setup import SetupPhases as SetupPhases, async_start_setup as
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.json import json_loads as json_loads
 from ipaddress import IPv4Network, IPv6Network
-from typing import Any, Final, Required, TypedDict
+from typing import Any, Final, TypedDict
 
 CONF_SERVER_HOST: Final[str]
 CONF_SERVER_PORT: Final[str]
@@ -78,7 +78,6 @@ class ConfData(TypedDict, total=False):
     login_attempts_threshold: int
     ip_ban_enabled: bool
     ssl_profile: str
-    strict_connection: Required[StrictConnectionMode]
 
 async def async_get_last_config(hass: HomeAssistant) -> dict[str, Any] | None: ...
 

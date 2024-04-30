@@ -19,6 +19,7 @@ class WithingsDataUpdateCoordinator(DataUpdateCoordinator[_T], metaclass=abc.ABC
     _last_valid_update: datetime | None
     webhooks_connected: bool
     coordinator_name: str
+    name: Incomplete
     _client: Incomplete
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...

@@ -21,7 +21,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class AsekoUnitBinarySensorEntity(AsekoEntity, BinarySensorEntity):
     entity_description: AsekoBinarySensorEntityDescription
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, unit: Unit, coordinator: AsekoDataUpdateCoordinator, entity_description: AsekoBinarySensorEntityDescription) -> None: ...
     @property

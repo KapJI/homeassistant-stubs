@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as async_pause_setup
 from ical.calendar import Calendar as Calendar
 from ical.store import TodoStore
 from ical.todo import Todo

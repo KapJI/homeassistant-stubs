@@ -7,6 +7,7 @@ from homeassistant.components.mqtt import ReceivePayloadType as ReceivePayloadTy
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as async_pause_setup
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from mysensors import BaseAsyncGateway as BaseAsyncGateway, Message as Message, Sensor as Sensor
 from typing import Any

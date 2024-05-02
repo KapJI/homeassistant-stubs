@@ -13,6 +13,7 @@ from typing import Any
 
 COLOR_MODE_MAP: Incomplete
 DEFAULT_TRANSITION: float
+TRANSITION_BLOCKLIST: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -21,6 +22,7 @@ class MatterLight(MatterEntity, LightEntity):
     _supports_brightness: bool
     _supports_color: bool
     _supports_color_temperature: bool
+    _transitions_disabled: bool
     async def _set_xy_color(self, xy_color: tuple[float, float], transition: float = 0.0) -> None: ...
     async def _set_hs_color(self, hs_color: tuple[float, float], transition: float = 0.0) -> None: ...
     async def _set_color_temp(self, color_temp: int, transition: float = 0.0) -> None: ...
@@ -41,5 +43,6 @@ class MatterLight(MatterEntity, LightEntity):
     _attr_hs_color: Incomplete
     _attr_xy_color: Incomplete
     def _update_from_device(self) -> None: ...
+    def _check_transition_blocklist(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

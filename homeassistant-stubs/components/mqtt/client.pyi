@@ -7,10 +7,11 @@ from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Callable as Callable, Coroutine, Iterable
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import create_eager_task as create_eager_task
@@ -91,6 +92,8 @@ class MQTT:
     _unsubscribe_debouncer: Incomplete
     _pending_unsubscribes: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, conf: ConfigType) -> None: ...
+    def _async_ha_started(self, _hass: HomeAssistant) -> None: ...
+    async def _async_ha_stop(self, _event: Event) -> None: ...
     def start(self, mqtt_data: MqttData) -> None: ...
     @property
     def subscriptions(self) -> list[Subscription]: ...

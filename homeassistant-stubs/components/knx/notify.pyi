@@ -26,7 +26,7 @@ class KNXNotificationService(BaseNotificationService):
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_notification_instance(xknx: XKNX, config: ConfigType) -> XknxNotification: ...
 
-class KNXNotify(NotifyEntity, KnxEntity):
+class KNXNotify(KnxEntity, NotifyEntity):
     _device: XknxNotification
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete

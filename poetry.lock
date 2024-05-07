@@ -180,19 +180,19 @@ aiohttp = ">=3.8.5,<3.10"
 
 [[package]]
 name = "aiohttp-isal"
-version = "0.2.0"
+version = "0.3.1"
 description = "isal support for aiohttp"
 category = "main"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "aiohttp_isal-0.2.0-py3-none-any.whl", hash = "sha256:bdffbff06c27fdf7dbf3766dd8b40c957fa9fe8de99144fd2187097fb00ad8ed"},
-    {file = "aiohttp_isal-0.2.0.tar.gz", hash = "sha256:2ac02dcd196c7620960b40789b73b93fab7318350d9cbd22d00bf177a67f1b76"},
+    {file = "aiohttp_isal-0.3.1-py3-none-any.whl", hash = "sha256:fbb864cc5ae152b9002118ecd3f1566528ce076180ce6e0bb82e407d4651ca32"},
+    {file = "aiohttp_isal-0.3.1.tar.gz", hash = "sha256:5fa3ab3ebaff80ba3d39cafecf5916e9c8a1117178d2085ad1d0123d13d8bf71"},
 ]
 
 [package.dependencies]
 aiohttp = ">=3.9.0"
-isal = ">=1.6.1"
+isal = {version = ">=1.6.1", markers = "sys_platform == \"darwin\" or sys_platform == \"linux\" or sys_platform == \"win32\""}
 
 [[package]]
 name = "aiohttp-session"
@@ -1499,14 +1499,14 @@ habluetooth = ">=0.11.0"
 
 [[package]]
 name = "homeassistant"
-version = "2024.5.1"
+version = "2024.5.2"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
 python-versions = ">=3.12.0"
 files = [
-    {file = "homeassistant-2024.5.1-py3-none-any.whl", hash = "sha256:b6fd324410af7d61ec09354e81d77ef949c5f2e63f9edfd1de122eb500137ae5"},
-    {file = "homeassistant-2024.5.1.tar.gz", hash = "sha256:dd3aacfbaf5ed4448e704302c772d3b75734e291b9a4afd1197df4c7c5917a04"},
+    {file = "homeassistant-2024.5.2-py3-none-any.whl", hash = "sha256:f7cef41114c097a1d33143b785b502b7e4b518be32fb7915133d5d3afec576be"},
+    {file = "homeassistant-2024.5.2.tar.gz", hash = "sha256:e404ae4d1124014092f7852be7234753c212ac048697dd2c73261604788a94a2"},
 ]
 
 [package.dependencies]
@@ -1514,7 +1514,7 @@ aiodns = "3.2.0"
 aiohttp = "3.9.5"
 aiohttp-cors = "0.7.0"
 aiohttp-fast-url-dispatcher = "0.3.0"
-aiohttp-isal = "0.2.0"
+aiohttp-isal = "0.3.1"
 aiohttp-session = "2.12.0"
 astral = "2.2"
 async-interrupt = "1.1.1"
@@ -3645,4 +3645,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.13"
-content-hash = "d6387e56b956ab21db4edb23533b122478a965d0b02f7ef4a55d6919d63195aa"
+content-hash = "afcdd897ce00d69009c60ee48956ba0a1af3da989275887486bde38c8901547c"

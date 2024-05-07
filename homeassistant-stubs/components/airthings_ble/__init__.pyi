@@ -1,4 +1,4 @@
-from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, MAX_RETRIES_AFTER_STARTUP as MAX_RETRIES_AFTER_STARTUP
 from _typeshed import Incomplete
 from airthings_ble import AirthingsDevice as AirthingsDevice
 from homeassistant.components import bluetooth as bluetooth

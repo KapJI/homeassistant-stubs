@@ -1499,14 +1499,14 @@ habluetooth = ">=0.11.0"
 
 [[package]]
 name = "homeassistant"
-version = "2024.5.2"
+version = "2024.5.3"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
 python-versions = ">=3.12.0"
 files = [
-    {file = "homeassistant-2024.5.2-py3-none-any.whl", hash = "sha256:f7cef41114c097a1d33143b785b502b7e4b518be32fb7915133d5d3afec576be"},
-    {file = "homeassistant-2024.5.2.tar.gz", hash = "sha256:e404ae4d1124014092f7852be7234753c212ac048697dd2c73261604788a94a2"},
+    {file = "homeassistant-2024.5.3-py3-none-any.whl", hash = "sha256:4773185534567bb09a40f1fb78f7de973405e5ff555683570ff9e7a4dede4f50"},
+    {file = "homeassistant-2024.5.3.tar.gz", hash = "sha256:d1ab0bf5303300048fabccad03c1e1c9a39481f554cd03ec6490b3d5353281fe"},
 ]
 
 [package.dependencies]
@@ -1530,7 +1530,7 @@ hass-nabucasa = "0.78.0"
 home-assistant-bluetooth = "1.12.0"
 httpx = "0.27.0"
 ifaddr = "0.2.0"
-Jinja2 = "3.1.3"
+Jinja2 = "3.1.4"
 lru-dict = "1.3.0"
 orjson = "3.9.15"
 packaging = ">=23.1"
@@ -1706,14 +1706,14 @@ colors = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "jinja2"
-version = "3.1.3"
+version = "3.1.4"
 description = "A very fast and expressive template engine."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "Jinja2-3.1.3-py3-none-any.whl", hash = "sha256:7d6d50dd97d52cbc355597bd845fabfbac3f551e1f99619e39a35ce8c370b5fa"},
-    {file = "Jinja2-3.1.3.tar.gz", hash = "sha256:ac8bd6544d4bb2c9792bf3a159e80bba8fda7f07e81bc3aed565432d5925ba90"},
+    {file = "jinja2-3.1.4-py3-none-any.whl", hash = "sha256:bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d"},
+    {file = "jinja2-3.1.4.tar.gz", hash = "sha256:4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369"},
 ]
 
 [package.dependencies]
@@ -3645,4 +3645,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.13"
-content-hash = "afcdd897ce00d69009c60ee48956ba0a1af3da989275887486bde38c8901547c"
+content-hash = "710bb8958d2c3c23aefcf47f3dd3ed17f731a66d6ea1fb86098c82946b296dc7"

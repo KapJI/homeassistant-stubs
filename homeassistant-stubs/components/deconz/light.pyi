@@ -33,6 +33,7 @@ class SetStateAttributes(TypedDict, total=False):
     transition_time: int
     xy: tuple[float, float]
 
+def update_color_state(group: Group, lights: list[Light], override: bool = False) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzBaseLight(DeconzDevice[_LightDeviceT], LightEntity):

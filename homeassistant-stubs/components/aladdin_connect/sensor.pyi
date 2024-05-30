@@ -1,12 +1,13 @@
+from . import api as api
 from .const import DOMAIN as DOMAIN
-from .model import DoorDevice as DoorDevice
-from AIOAladdinConnect import AladdinConnectClient
+from .model import GarageDoor as GarageDoor
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from genie_partner_sdk.client import AladdinConnectClient
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS
+from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -28,7 +29,6 @@ class AladdinConnectSensor(SensorEntity):
     _acc: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _attr_entity_registry_enabled_default: bool
-    def __init__(self, acc: AladdinConnectClient, device: DoorDevice, description: AccSensorEntityDescription) -> None: ...
+    def __init__(self, acc: AladdinConnectClient, device: GarageDoor, description: AccSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> float | None: ...

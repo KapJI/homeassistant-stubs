@@ -1,14 +1,12 @@
 from .registry import BaseRegistryItems as BaseRegistryItems
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from typing import TypeVar
 
 @dataclass(slots=True, frozen=True, kw_only=True)
 class NormalizedNameBaseRegistryEntry:
     name: str
     normalized_name: str
     def __init__(self, *, name, normalized_name) -> None: ...
-_VT = TypeVar('_VT', bound=NormalizedNameBaseRegistryEntry)
 
 def normalize_name(name: str) -> str: ...
 

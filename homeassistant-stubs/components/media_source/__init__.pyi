@@ -5,8 +5,12 @@ from collections.abc import Callable
 from homeassistant.components.media_player import BrowseMedia
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import UndefinedType
+from typing import Protocol
 
 __all__ = ['DOMAIN', 'is_media_source_id', 'generate_media_source_id', 'async_browse_media', 'async_resolve_media', 'BrowseMediaSource', 'PlayMedia', 'MediaSourceItem', 'Unresolvable', 'MediaSource', 'MediaSourceError', 'MEDIA_CLASS_MAP', 'MEDIA_MIME_TYPES']
+
+class MediaSourceProtocol(Protocol):
+    async def async_get_media_source(self, hass: HomeAssistant) -> MediaSource: ...
 
 def is_media_source_id(media_content_id: str) -> bool: ...
 def generate_media_source_id(domain: str, identifier: str) -> str: ...

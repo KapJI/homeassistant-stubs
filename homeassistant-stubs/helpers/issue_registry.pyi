@@ -1,18 +1,26 @@
 import dataclasses
 from .registry import BaseRegistry as BaseRegistry
+from .singleton import singleton as singleton
 from .storage import Store as Store
 from _typeshed import Incomplete
 from datetime import datetime
 from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from typing import Any
+from homeassistant.util.event_type import EventType as EventType
+from homeassistant.util.hass_dict import HassKey as HassKey
+from typing import Any, Literal, TypedDict
 
-DATA_REGISTRY: str
-EVENT_REPAIRS_ISSUE_REGISTRY_UPDATED: str
+DATA_REGISTRY: HassKey[IssueRegistry]
+EVENT_REPAIRS_ISSUE_REGISTRY_UPDATED: EventType[EventIssueRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
+
+class EventIssueRegistryUpdatedData(TypedDict):
+    action: Literal['create', 'remove', 'update']
+    domain: str
+    issue_id: str
 
 class IssueSeverity(StrEnum):
     CRITICAL: str
@@ -44,13 +52,13 @@ class IssueRegistryStore(Store[dict[str, list[dict[str, Any]]]]):
 class IssueRegistry(BaseRegistry):
     hass: Incomplete
     issues: Incomplete
-    _read_only: Incomplete
     _store: Incomplete
-    def __init__(self, hass: HomeAssistant, *, read_only: bool = False) -> None: ...
+    def __init__(self, hass: HomeAssistant) -> None: ...
     def async_get_issue(self, domain: str, issue_id: str) -> IssueEntry | None: ...
     def async_get_or_create(self, domain: str, issue_id: str, *, breaks_in_ha_version: str | None = None, data: dict[str, str | int | float | None] | None = None, is_fixable: bool, is_persistent: bool, issue_domain: str | None = None, learn_more_url: str | None = None, severity: IssueSeverity, translation_key: str, translation_placeholders: dict[str, str] | None = None) -> IssueEntry: ...
     def async_delete(self, domain: str, issue_id: str) -> None: ...
     def async_ignore(self, domain: str, issue_id: str, ignore: bool) -> IssueEntry: ...
+    def make_read_only(self) -> None: ...
     async def async_load(self) -> None: ...
     def _data_to_save(self) -> dict[str, list[dict[str, str | None]]]: ...
 

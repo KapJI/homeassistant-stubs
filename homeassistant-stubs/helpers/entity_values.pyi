@@ -1,7 +1,6 @@
 from _typeshed import Incomplete
+from homeassistant.const import MAX_EXPECTED_ENTITY_IDS as MAX_EXPECTED_ENTITY_IDS
 from homeassistant.core import split_entity_id as split_entity_id
-
-_MAX_EXPECTED_ENTITIES: int
 
 class EntityValues:
     _exact: Incomplete

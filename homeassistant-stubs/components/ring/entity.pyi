@@ -7,14 +7,11 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from ring_doorbell import RingDevices as RingDevices, RingGeneric
-from typing import Concatenate, Generic, ParamSpec
+from typing import Concatenate, Generic
 from typing_extensions import TypeVar
 
 RingDeviceT = TypeVar('RingDeviceT', bound=RingGeneric, default=RingGeneric)
 _RingCoordinatorT = TypeVar('_RingCoordinatorT', bound=RingDataCoordinator | RingNotificationsCoordinator)
-_RingBaseEntityT = TypeVar('_RingBaseEntityT', bound='RingBaseEntity[Any, Any]')
-_R = TypeVar('_R')
-_P = ParamSpec('_P')
 
 def exception_wrap(func: Callable[Concatenate[_RingBaseEntityT, _P], _R]) -> Callable[Concatenate[_RingBaseEntityT, _P], _R]: ...
 

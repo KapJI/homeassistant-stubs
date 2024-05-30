@@ -4,7 +4,7 @@ from .data import EventListenAddr as EventListenAddr, get_domain_data as get_dom
 from _typeshed import Incomplete
 from async_upnp_client.client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from async_upnp_client.profiles.dlna import DmrDevice
-from collections.abc import Awaitable, Callable as Callable, Coroutine, Sequence
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine, Sequence
 from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.components import media_source as media_source, ssdp as ssdp
@@ -12,12 +12,9 @@ from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_MAC as CONF_MAC, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
 PARALLEL_UPDATES: int
-_DlnaDmrEntityT = TypeVar('_DlnaDmrEntityT', bound='DlnaDmrEntity')
-_R = TypeVar('_R')
-_P = ParamSpec('_P')
 _TRANSPORT_STATE_TO_MEDIA_PLAYER_STATE: Incomplete
 
 def catch_request_errors(func: Callable[Concatenate[_DlnaDmrEntityT, _P], Awaitable[_R]]) -> Callable[Concatenate[_DlnaDmrEntityT, _P], Coroutine[Any, Any, _R | None]]: ...

@@ -1,5 +1,5 @@
 import pysnmp.hlapi.asyncio as hlapi
-from .const import DOMAIN as DOMAIN, SNMP as SNMP
+from .const import SNMP_ENGINE as SNMP_ENGINE
 from _typeshed import Incomplete
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback

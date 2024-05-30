@@ -1,3 +1,4 @@
+from . import TVFerryConfigEntry as TVFerryConfigEntry
 from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import TVDataUpdateCoordinator as TVDataUpdateCoordinator
 from _typeshed import Incomplete
@@ -5,7 +6,6 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -29,7 +29,7 @@ class TrafikverketSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[TrafikverketSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TVFerryConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FerrySensor(CoordinatorEntity[TVDataUpdateCoordinator], SensorEntity):
     entity_description: TrafikverketSensorEntityDescription

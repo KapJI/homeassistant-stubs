@@ -1,13 +1,13 @@
-from .const import DOMAIN as DOMAIN, NumberType as NumberType
+from . import PlugwiseConfigEntry as PlugwiseConfigEntry
+from .const import NumberType as NumberType
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from plugwise import Smile as Smile
 
@@ -19,7 +19,7 @@ class PlugwiseNumberEntityDescription(NumberEntityDescription):
 
 NUMBER_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PlugwiseNumberEntity(PlugwiseEntity, NumberEntity):
     entity_description: PlugwiseNumberEntityDescription

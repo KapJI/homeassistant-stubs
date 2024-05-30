@@ -1,9 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import TypeVarTuple
 
-_Ts = TypeVarTuple('_Ts')
 _LOGGER: Incomplete
 
 class KeyedRateLimit:

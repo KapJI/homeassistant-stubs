@@ -1,8 +1,6 @@
-from typing import Any, TypeVar
+from typing import Any
 
 def _readonly(*args: Any, **kwargs: Any) -> Any: ...
-_KT = TypeVar('_KT')
-_VT = TypeVar('_VT')
 
 class ReadOnlyDict(dict[_KT, _VT]):
     __setitem__ = _readonly
@@ -12,3 +10,5 @@ class ReadOnlyDict(dict[_KT, _VT]):
     clear = _readonly
     update = _readonly
     setdefault = _readonly
+    def __copy__(self) -> dict[_KT, _VT]: ...
+    def __deepcopy__(self, memo: Any) -> dict[_KT, _VT]: ...

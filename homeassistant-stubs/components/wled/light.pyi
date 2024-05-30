@@ -1,17 +1,17 @@
-from .const import ATTR_COLOR_PRIMARY as ATTR_COLOR_PRIMARY, ATTR_ON as ATTR_ON, ATTR_SEGMENT_ID as ATTR_SEGMENT_ID, DOMAIN as DOMAIN
+from . import WLEDConfigEntry as WLEDConfigEntry
+from .const import ATTR_COLOR_PRIMARY as ATTR_COLOR_PRIMARY, ATTR_ON as ATTR_ON, ATTR_SEGMENT_ID as ATTR_SEGMENT_ID
 from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
+from .entity import WLEDEntity as WLEDEntity
 from .helpers import wled_exception_handler as wled_exception_handler
-from .models import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WLEDMainLight(WLEDEntity, LightEntity):
     _attr_color_mode: Incomplete

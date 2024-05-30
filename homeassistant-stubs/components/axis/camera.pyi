@@ -1,16 +1,16 @@
+from . import AxisConfigEntry as AxisConfigEntry
 from .const import DEFAULT_STREAM_PROFILE as DEFAULT_STREAM_PROFILE, DEFAULT_VIDEO_SOURCE as DEFAULT_VIDEO_SOURCE
 from .entity import AxisEntity as AxisEntity
 from .hub import AxisHub as AxisHub
 from _typeshed import Incomplete
 from homeassistant.components.camera import CameraEntityFeature as CameraEntityFeature
 from homeassistant.components.mjpeg import MjpegCamera as MjpegCamera, filter_urllib3_logging as filter_urllib3_logging
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import HTTP_DIGEST_AUTHENTICATION as HTTP_DIGEST_AUTHENTICATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AxisConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AxisCamera(AxisEntity, MjpegCamera):
     _attr_supported_features: Incomplete

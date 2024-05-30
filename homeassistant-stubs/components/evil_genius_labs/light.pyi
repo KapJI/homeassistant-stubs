@@ -1,5 +1,6 @@
-from . import EvilGeniusEntity as EvilGeniusEntity, EvilGeniusUpdateCoordinator as EvilGeniusUpdateCoordinator
+from . import EvilGeniusEntity as EvilGeniusEntity
 from .const import DOMAIN as DOMAIN
+from .coordinator import EvilGeniusUpdateCoordinator as EvilGeniusUpdateCoordinator
 from .util import update_when_done as update_when_done
 from _typeshed import Incomplete
 from homeassistant.components import light as light

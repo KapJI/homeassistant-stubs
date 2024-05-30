@@ -1,5 +1,5 @@
 from . import debug_info as debug_info, is_connected as is_connected
-from .util import get_mqtt_data as get_mqtt_data
+from .models import DATA_MQTT as DATA_MQTT
 from _typeshed import Incomplete
 from homeassistant.components import device_tracker as device_tracker
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data

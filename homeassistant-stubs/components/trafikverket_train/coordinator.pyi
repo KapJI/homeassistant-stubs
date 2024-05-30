@@ -1,9 +1,9 @@
-from .const import CONF_TIME as CONF_TIME, DOMAIN as DOMAIN
+from . import TVTrainConfigEntry as TVTrainConfigEntry
+from .const import CONF_FILTER_PRODUCT as CONF_FILTER_PRODUCT, CONF_TIME as CONF_TIME, DOMAIN as DOMAIN
 from .util import next_departuredate as next_departuredate
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_WEEKDAY as CONF_WEEKDAY
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -34,11 +34,12 @@ def _get_as_utc(date_value: datetime | None) -> datetime | None: ...
 def _get_as_joined(information: list[str] | None) -> str | None: ...
 
 class TVDataUpdateCoordinator(DataUpdateCoordinator[TrainData]):
+    config_entry: TVTrainConfigEntry
     _train_api: Incomplete
     from_station: Incomplete
     to_station: Incomplete
     _time: Incomplete
     _weekdays: Incomplete
     _filter_product: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, to_station: StationInfo, from_station: StationInfo, filter_product: str | None) -> None: ...
+    def __init__(self, hass: HomeAssistant, to_station: StationInfo, from_station: StationInfo) -> None: ...
     async def _async_update_data(self) -> TrainData: ...

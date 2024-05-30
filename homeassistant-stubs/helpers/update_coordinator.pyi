@@ -17,7 +17,6 @@ from typing_extensions import TypeVar
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
 _DataT = TypeVar('_DataT', default=dict[str, Any])
-_BaseDataUpdateCoordinatorT = TypeVar('_BaseDataUpdateCoordinatorT', bound='BaseDataUpdateCoordinatorProtocol')
 _DataUpdateCoordinatorT = TypeVar('_DataUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]', default='DataUpdateCoordinator[dict[str, Any]]')
 
 class UpdateFailed(Exception): ...
@@ -73,7 +72,7 @@ class TimestampDataUpdateCoordinator(DataUpdateCoordinator[_DataT]):
     last_update_success_time: datetime | None
     def _async_refresh_finished(self) -> None: ...
 
-class BaseCoordinatorEntity(entity.Entity, Generic[_BaseDataUpdateCoordinatorT], metaclass=abc.ABCMeta):
+class BaseCoordinatorEntity(entity.Entity, metaclass=abc.ABCMeta):
     coordinator: Incomplete
     coordinator_context: Incomplete
     def __init__(self, coordinator: _BaseDataUpdateCoordinatorT, context: Any = None) -> None: ...

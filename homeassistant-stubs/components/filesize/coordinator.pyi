@@ -9,8 +9,8 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 _LOGGER: Incomplete
 
 class FileSizeCoordinator(DataUpdateCoordinator[dict[str, int | float | datetime]]):
+    path: pathlib.Path
     _unresolved_path: Incomplete
-    _path: Incomplete
     def __init__(self, hass: HomeAssistant, unresolved_path: str) -> None: ...
     def _get_full_path(self) -> pathlib.Path: ...
     def _update(self) -> os.stat_result: ...

@@ -2,12 +2,10 @@ import concurrent.futures
 from _typeshed import Incomplete
 from asyncio import AbstractEventLoop, Future, Task
 from collections.abc import Callable as Callable, Coroutine
-from typing import Any, TypeVar, TypeVarTuple
+from typing import Any
 
 _LOGGER: Incomplete
 _SHUTDOWN_RUN_CALLBACK_THREADSAFE: str
-_T = TypeVar('_T')
-_Ts = TypeVarTuple('_Ts')
 
 def create_eager_task(coro: Coroutine[Any, Any, _T], *, name: str | None = None, loop: AbstractEventLoop | None = None) -> Task[_T]: ...
 def cancelling(task: Future[Any]) -> bool: ...

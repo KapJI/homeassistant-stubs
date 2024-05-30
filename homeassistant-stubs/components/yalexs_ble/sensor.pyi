@@ -1,10 +1,9 @@
-from .const import DOMAIN as DOMAIN
+from . import YALEXSBLEConfigEntry as YALEXSBLEConfigEntry
 from .entity import YALEXSBLEEntity as YALEXSBLEEntity
 from .models import YaleXSBLEData as YaleXSBLEData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant import config_entries as config_entries
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricPotential as UnitOfElectricPotential
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -18,7 +17,7 @@ class YaleXSBLESensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[YaleXSBLESensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: YALEXSBLEConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class YaleXSBLESensor(YALEXSBLEEntity, SensorEntity):
     entity_description: YaleXSBLESensorEntityDescription

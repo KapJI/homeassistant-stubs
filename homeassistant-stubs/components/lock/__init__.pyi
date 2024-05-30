@@ -1,9 +1,10 @@
 import re
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from enum import IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_JAMMED as STATE_JAMMED, STATE_LOCKED as STATE_LOCKED, STATE_LOCKING as STATE_LOCKING, STATE_UNLOCKED as STATE_UNLOCKED, STATE_UNLOCKING as STATE_UNLOCKING
+from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_JAMMED as STATE_JAMMED, STATE_LOCKED as STATE_LOCKED, STATE_LOCKING as STATE_LOCKING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNLOCKED as STATE_UNLOCKED, STATE_UNLOCKING as STATE_UNLOCKING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
@@ -16,7 +17,6 @@ from typing import Any
 _LOGGER: Incomplete
 ATTR_CHANGED_BY: str
 CONF_DEFAULT_CODE: str
-DOMAIN: str
 SCAN_INTERVAL: Incomplete
 ENTITY_ID_FORMAT: Incomplete
 MIN_TIME_BETWEEN_SCANS: Incomplete
@@ -43,6 +43,8 @@ class LockEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_code_format: str | None
     _attr_is_locked: bool | None
     _attr_is_locking: bool | None
+    _attr_is_open: bool | None
+    _attr_is_opening: bool | None
     _attr_is_unlocking: bool | None
     _attr_is_jammed: bool | None
     _attr_state: None
@@ -62,6 +64,10 @@ class LockEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def is_locking(self) -> bool | None: ...
     @cached_property
     def is_unlocking(self) -> bool | None: ...
+    @cached_property
+    def is_open(self) -> bool | None: ...
+    @cached_property
+    def is_opening(self) -> bool | None: ...
     @cached_property
     def is_jammed(self) -> bool | None: ...
     async def async_handle_lock_service(self, **kwargs: Any) -> None: ...

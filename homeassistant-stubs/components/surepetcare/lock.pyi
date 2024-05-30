@@ -1,5 +1,5 @@
-from . import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .entity import SurePetcareEntity as SurePetcareEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity

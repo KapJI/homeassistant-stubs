@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
+from . import BAFConfigEntry as BAFConfigEntry
 from .entity import BAFEntity as BAFEntity
-from .models import BAFData as BAFData
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant import config_entries as config_entries
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -20,7 +18,7 @@ AUTO_COMFORT_SENSORS: Incomplete
 DEFINED_ONLY_SENSORS: Incomplete
 FAN_SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BAFSensor(BAFEntity, SensorEntity):
     entity_description: BAFSensorDescription

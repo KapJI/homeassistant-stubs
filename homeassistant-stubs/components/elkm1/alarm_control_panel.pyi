@@ -1,12 +1,11 @@
-from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
-from .const import ATTR_CHANGED_BY_ID as ATTR_CHANGED_BY_ID, ATTR_CHANGED_BY_KEYPAD as ATTR_CHANGED_BY_KEYPAD, ATTR_CHANGED_BY_TIME as ATTR_CHANGED_BY_TIME, DOMAIN as DOMAIN, ELK_USER_CODE_SERVICE_SCHEMA as ELK_USER_CODE_SERVICE_SCHEMA
+from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
+from .const import ATTR_CHANGED_BY_ID as ATTR_CHANGED_BY_ID, ATTR_CHANGED_BY_KEYPAD as ATTR_CHANGED_BY_KEYPAD, ATTR_CHANGED_BY_TIME as ATTR_CHANGED_BY_TIME, ELK_USER_CODE_SERVICE_SCHEMA as ELK_USER_CODE_SERVICE_SCHEMA
 from .models import ELKM1Data as ELKM1Data
 from _typeshed import Incomplete
 from elkm1_lib.areas import Area as Area
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
 from homeassistant.components.alarm_control_panel import ATTR_CHANGED_BY as ATTR_CHANGED_BY, AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, CodeFormat as CodeFormat
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_ARMED_NIGHT as STATE_ALARM_ARMED_NIGHT, STATE_ALARM_ARMING as STATE_ALARM_ARMING, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED, STATE_ALARM_PENDING as STATE_ALARM_PENDING, STATE_ALARM_TRIGGERED as STATE_ALARM_TRIGGERED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
@@ -22,7 +21,7 @@ SERVICE_ALARM_ARM_NIGHT_INSTANT: str
 SERVICE_ALARM_BYPASS: str
 SERVICE_ALARM_CLEAR_BYPASS: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElkArea(ElkAttachedEntity, AlarmControlPanelEntity, RestoreEntity):
     _attr_supported_features: Incomplete

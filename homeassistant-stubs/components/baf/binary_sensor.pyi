@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
+from . import BAFConfigEntry as BAFConfigEntry
 from .entity import BAFEntity as BAFEntity
-from .models import BAFData as BAFData
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant import config_entries as config_entries
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -17,7 +15,7 @@ class BAFBinarySensorDescription(BinarySensorEntityDescription):
 
 OCCUPANCY_SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BAFBinarySensor(BAFEntity, BinarySensorEntity):
     entity_description: BAFBinarySensorDescription

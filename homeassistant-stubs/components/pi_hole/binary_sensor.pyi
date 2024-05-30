@@ -1,11 +1,9 @@
-from . import PiHoleEntity as PiHoleEntity
-from .const import DATA_KEY_API as DATA_KEY_API, DATA_KEY_COORDINATOR as DATA_KEY_COORDINATOR
+from . import PiHoleConfigEntry as PiHoleConfigEntry, PiHoleEntity as PiHoleEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from hole import Hole as Hole
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -20,13 +18,13 @@ class PiHoleBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSOR_TYPES: tuple[PiHoleBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PiHoleConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PiHoleBinarySensor(PiHoleEntity, BinarySensorEntity):
     entity_description: PiHoleBinarySensorEntityDescription
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
-    def __init__(self, api: Hole, coordinator: DataUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleBinarySensorEntityDescription) -> None: ...
+    def __init__(self, api: Hole, coordinator: DataUpdateCoordinator[None], name: str, server_unique_id: str, description: PiHoleBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property

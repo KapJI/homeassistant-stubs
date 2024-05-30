@@ -9,11 +9,9 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.file import write_utf8_file_atomic as write_utf8_file_atomic
 from homeassistant.util.yaml import dump as dump, load_yaml as load_yaml
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
-from typing import Any, Generic, TypeVar
+from typing import Any
 
-_DataT = TypeVar('_DataT', dict[str, dict[str, Any]], list[dict[str, Any]])
-
-class BaseEditConfigView(HomeAssistantView, Generic[_DataT]):
+class BaseEditConfigView(HomeAssistantView):
     url: Incomplete
     name: Incomplete
     path: Incomplete

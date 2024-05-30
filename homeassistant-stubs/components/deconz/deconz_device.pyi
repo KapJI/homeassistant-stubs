@@ -5,15 +5,11 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_ZIGBEE as CONNECTION_ZIGBEE, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
-from pydeconz.models.group import Group as PydeconzGroup
-from pydeconz.models.light import LightBase as PydeconzLightBase
 from pydeconz.models.scene import Scene as PydeconzScene
-from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
-from typing import Generic, TypeVar
 
-_DeviceT = TypeVar('_DeviceT', bound=PydeconzGroup | PydeconzLightBase | PydeconzSensorBase | PydeconzScene)
+_DeviceType: Incomplete
 
-class DeconzBase(Generic[_DeviceT]):
+class DeconzBase:
     unique_id_suffix: str | None
     _device: Incomplete
     hub: Incomplete

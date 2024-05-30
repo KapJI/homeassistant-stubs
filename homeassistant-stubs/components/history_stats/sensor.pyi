@@ -14,7 +14,6 @@ from homeassistant.helpers.reload import async_setup_reload_service as async_set
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, TypeVar
 
 CONF_START: str
 CONF_END: str
@@ -27,7 +26,6 @@ CONF_TYPE_KEYS: Incomplete
 DEFAULT_NAME: str
 UNITS: dict[str, str]
 ICON: str
-_T = TypeVar('_T', bound=dict[str, Any])
 
 def exactly_two_period_keys(conf: _T) -> _T: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

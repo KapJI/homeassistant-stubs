@@ -1,6 +1,6 @@
+from . import TVWeatherConfigEntry as TVWeatherConfigEntry
 from .const import CONF_STATION as CONF_STATION, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -12,7 +12,8 @@ _LOGGER: Incomplete
 TIME_BETWEEN_UPDATES: Incomplete
 
 class TVDataUpdateCoordinator(DataUpdateCoordinator[WeatherStationInfo]):
+    config_entry: TVWeatherConfigEntry
     _weather_api: Incomplete
     _station: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant) -> None: ...
     async def _async_update_data(self) -> WeatherStationInfo: ...

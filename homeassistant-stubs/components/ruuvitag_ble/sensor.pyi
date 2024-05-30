@@ -7,7 +7,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
-from sensor_state_data import DeviceKey as DeviceKey, SensorDescription as SensorDescription, SensorDeviceClass as SSDSensorDeviceClass, SensorUpdate as SensorUpdate, Units
+from sensor_state_data import DeviceKey as DeviceKey, SensorDescription as SensorDescription, SensorDeviceClass as SSDSensorDeviceClass, SensorUpdate, Units
 
 SENSOR_DESCRIPTIONS: Incomplete
 
@@ -16,6 +16,6 @@ def _to_sensor_key(description: SensorDescription) -> tuple[SSDSensorDeviceClass
 def sensor_update_to_bluetooth_data_update(sensor_update: SensorUpdate) -> PassiveBluetoothDataUpdate: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class RuuvitagBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[float | int | None]], SensorEntity):
+class RuuvitagBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[float | int | None, SensorUpdate]], SensorEntity):
     @property
     def native_value(self) -> int | float | None: ...

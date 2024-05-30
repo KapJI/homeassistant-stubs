@@ -6,9 +6,6 @@ from dataclasses import dataclass
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, TypeVar
-
-_CoordinatorT = TypeVar('_CoordinatorT', bound=SynologyDSMUpdateCoordinator[Any])
 
 @dataclass(frozen=True, kw_only=True)
 class SynologyDSMEntityDescription(EntityDescription):

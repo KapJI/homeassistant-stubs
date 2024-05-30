@@ -1,13 +1,12 @@
 from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
-from .common import get_coordinator as get_coordinator
+from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzboxCover(FritzBoxDeviceEntity, CoverEntity):
     _attr_device_class: Incomplete

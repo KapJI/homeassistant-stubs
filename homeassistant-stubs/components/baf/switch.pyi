@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
+from . import BAFConfigEntry as BAFConfigEntry
 from .entity import BAFEntity as BAFEntity
-from .models import BAFData as BAFData
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant import config_entries as config_entries
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -22,7 +20,7 @@ AUTO_COMFORT_SWITCHES: Incomplete
 FAN_SWITCHES: Incomplete
 LIGHT_SWITCHES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BAFSwitch(BAFEntity, SwitchEntity):
     entity_description: BAFSwitchDescription

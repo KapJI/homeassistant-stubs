@@ -1,6 +1,6 @@
 import abc
-from . import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from _typeshed import Incomplete
 from abc import abstractmethod
 from homeassistant.core import callback as callback

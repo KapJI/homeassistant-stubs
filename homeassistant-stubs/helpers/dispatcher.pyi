@@ -1,13 +1,12 @@
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine
-from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type
+from homeassistant.core import HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from homeassistant.util.logging import catch_log_exception as catch_log_exception
+from homeassistant.util.logging import catch_log_exception as catch_log_exception, log_exception as log_exception
 from homeassistant.util.signal_type import SignalType as SignalType
-from typing import Any, TypeVarTuple, overload
+from typing import Any, overload
 
-_Ts = TypeVarTuple('_Ts')
 _LOGGER: Incomplete
 DATA_DISPATCHER: str
 _DispatcherDataType: Incomplete
@@ -26,8 +25,9 @@ def dispatcher_send(hass: HomeAssistant, signal: SignalType[Unpack[_Ts]], *args:
 @overload
 def dispatcher_send(hass: HomeAssistant, signal: str, *args: Any) -> None: ...
 def _format_err(signal: SignalType[Unpack[_Ts]] | str, target: Callable[[Unpack[_Ts]], Any] | Callable[..., Any], *args: Any) -> str: ...
-def _generate_job(signal: SignalType[Unpack[_Ts]] | str, target: Callable[[Unpack[_Ts]], Any] | Callable[..., Any]) -> HassJob[..., None | Coroutine[Any, Any, None]]: ...
+def _generate_job(signal: SignalType[Unpack[_Ts]] | str, target: Callable[[Unpack[_Ts]], Any] | Callable[..., Any]) -> HassJob[..., Coroutine[Any, Any, None] | None]: ...
 @overload
 def async_dispatcher_send(hass: HomeAssistant, signal: SignalType[Unpack[_Ts]], *args: Unpack[_Ts]) -> None: ...
 @overload
 def async_dispatcher_send(hass: HomeAssistant, signal: str, *args: Any) -> None: ...
+def async_dispatcher_send_internal(hass: HomeAssistant, signal: SignalType[Unpack[_Ts]] | str, *args: Unpack[_Ts]) -> None: ...

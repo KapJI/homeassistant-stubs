@@ -8,7 +8,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from twentemilieu import WasteType
 
 @dataclass(frozen=True, kw_only=True)
@@ -23,6 +22,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class TwenteMilieuSensor(TwenteMilieuEntity, SensorEntity):
     entity_description: TwenteMilieuSensorDescription
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: DataUpdateCoordinator[dict[WasteType, list[date]]], description: TwenteMilieuSensorDescription, entry: ConfigEntry) -> None: ...
+    def __init__(self, entry: ConfigEntry, description: TwenteMilieuSensorDescription) -> None: ...
     @property
     def native_value(self) -> date | None: ...

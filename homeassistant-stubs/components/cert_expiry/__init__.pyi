@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import CertExpiryDataUpdateCoordinator as CertExpiryDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.start import async_at_started as async_at_started
 
 PLATFORMS: Incomplete
+CertExpiryConfigEntry = ConfigEntry[CertExpiryDataUpdateCoordinator]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CertExpiryConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

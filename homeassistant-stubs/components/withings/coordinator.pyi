@@ -1,20 +1,18 @@
 import abc
+from . import WithingsConfigEntry as WithingsConfigEntry
 from .const import LOGGER as LOGGER
 from _typeshed import Incomplete
 from abc import abstractmethod
 from aiowithings import Activity, Goals, MeasurementType, NotificationCategory, SleepSummary, WithingsClient as WithingsClient, Workout
 from datetime import datetime, timedelta
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import TypeVar
 
-_T = TypeVar('_T')
 UPDATE_INTERVAL: Incomplete
 
-class WithingsDataUpdateCoordinator(DataUpdateCoordinator[_T], metaclass=abc.ABCMeta):
-    config_entry: ConfigEntry
+class WithingsDataUpdateCoordinator(DataUpdateCoordinator[_DataT], metaclass=abc.ABCMeta):
+    config_entry: WithingsConfigEntry
     _default_update_interval: timedelta | None
     _last_valid_update: datetime | None
     webhooks_connected: bool
@@ -26,9 +24,9 @@ class WithingsDataUpdateCoordinator(DataUpdateCoordinator[_T], metaclass=abc.ABC
     update_interval: Incomplete
     def webhook_subscription_listener(self, connected: bool) -> None: ...
     async def async_webhook_data_updated(self, notification_category: NotificationCategory) -> None: ...
-    async def _async_update_data(self) -> _T: ...
+    async def _async_update_data(self) -> _DataT: ...
     @abstractmethod
-    async def _internal_update_data(self) -> _T: ...
+    async def _internal_update_data(self) -> _DataT: ...
 
 class WithingsMeasurementDataUpdateCoordinator(WithingsDataUpdateCoordinator[dict[MeasurementType, float]]):
     coordinator_name: str

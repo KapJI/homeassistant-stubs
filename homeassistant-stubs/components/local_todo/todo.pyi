@@ -1,8 +1,8 @@
-from .const import CONF_TODO_LIST_NAME as CONF_TODO_LIST_NAME, DOMAIN as DOMAIN
+from . import LocalTodoConfigEntry as LocalTodoConfigEntry
+from .const import CONF_TODO_LIST_NAME as CONF_TODO_LIST_NAME
 from .store import LocalTodoListStore as LocalTodoListStore
 from _typeshed import Incomplete
 from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity, TodoListEntityFeature as TodoListEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -18,7 +18,7 @@ ICS_TODO_STATUS_MAP: Incomplete
 ICS_TODO_STATUS_MAP_INV: Incomplete
 
 def _migrate_calendar(calendar: Calendar) -> bool: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LocalTodoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _convert_item(item: TodoItem) -> Todo: ...
 
 class LocalTodoListEntity(TodoListEntity):

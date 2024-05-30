@@ -2,10 +2,7 @@ import logging
 import logging.handlers
 from collections.abc import Callable, Coroutine
 from homeassistant.core import HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type
-from typing import Any, TypeVar, TypeVarTuple, overload
-
-_T = TypeVar('_T')
-_Ts = TypeVarTuple('_Ts')
+from typing import Any, overload
 
 class HomeAssistantQueueHandler(logging.handlers.QueueHandler):
     listener: logging.handlers.QueueListener | None

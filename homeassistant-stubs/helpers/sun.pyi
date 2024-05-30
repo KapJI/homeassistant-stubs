@@ -6,8 +6,9 @@ from collections.abc import Callable
 from homeassistant.const import SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.hass_dict import HassKey as HassKey
 
-DATA_LOCATION_CACHE: str
+DATA_LOCATION_CACHE: HassKey[dict[tuple[str, str, str, float, float], astral.location.Location]]
 ELEVATION_AGNOSTIC_EVENTS: Incomplete
 _AstralSunEventCallable = Callable[..., datetime.datetime]
 

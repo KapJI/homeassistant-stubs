@@ -1,5 +1,5 @@
-from . import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .const import DOMAIN as DOMAIN, SURE_BATT_VOLTAGE_DIFF as SURE_BATT_VOLTAGE_DIFF, SURE_BATT_VOLTAGE_LOW as SURE_BATT_VOLTAGE_LOW
+from .coordinator import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .entity import SurePetcareEntity as SurePetcareEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity

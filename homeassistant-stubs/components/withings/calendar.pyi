@@ -1,4 +1,4 @@
-from . import DOMAIN as DOMAIN, WithingsData as WithingsData
+from . import DOMAIN as DOMAIN, WithingsConfigEntry as WithingsConfigEntry
 from .coordinator import WithingsWorkoutDataUpdateCoordinator as WithingsWorkoutDataUpdateCoordinator
 from .entity import WithingsEntity as WithingsEntity
 from _typeshed import Incomplete
@@ -6,12 +6,11 @@ from aiowithings import WithingsClient as WithingsClient, WorkoutCategory as Wor
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WithingsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def get_event_name(category: WorkoutCategory) -> str: ...
 
 class WithingsWorkoutCalendarEntity(WithingsEntity[WithingsWorkoutDataUpdateCoordinator], CalendarEntity):

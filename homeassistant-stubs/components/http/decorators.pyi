@@ -1,14 +1,11 @@
 from .view import HomeAssistantView as HomeAssistantView
 from _typeshed import Incomplete
-from aiohttp.web import Response, StreamResponse
 from collections.abc import Callable
 from homeassistant.auth.models import User as User
 from homeassistant.exceptions import Unauthorized as Unauthorized
-from typing import ParamSpec, TypeVar, overload
+from typing import overload
 
-_HomeAssistantViewT = TypeVar('_HomeAssistantViewT', bound=HomeAssistantView)
-_ResponseT = TypeVar('_ResponseT', bound=Response | StreamResponse)
-_P = ParamSpec('_P')
+_ResponseType: Incomplete
 _FuncType: Incomplete
 
 @overload

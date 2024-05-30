@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .models import DomainData as DomainData
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,12 +12,9 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from sfrbox_api.bridge import SFRBox as SFRBox
 from sfrbox_api.models import SystemInfo as SystemInfo
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
-_T = TypeVar('_T')
-_P = ParamSpec('_P')
-
-def with_error_wrapping(func: Callable[Concatenate[SFRBoxButton, _P], Awaitable[_T]]) -> Callable[Concatenate[SFRBoxButton, _P], Coroutine[Any, Any, _T]]: ...
+def with_error_wrapping(func: Callable[Concatenate[SFRBoxButton, _P], Awaitable[_R]]) -> Callable[Concatenate[SFRBoxButton, _P], Coroutine[Any, Any, _R]]: ...
 
 @dataclass(frozen=True, kw_only=True)
 class SFRBoxButtonEntityDescription(ButtonEntityDescription):

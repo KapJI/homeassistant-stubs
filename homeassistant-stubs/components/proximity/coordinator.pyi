@@ -12,6 +12,7 @@ from homeassistant.util.location import distance as distance
 from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter
 
 _LOGGER: Incomplete
+ProximityConfigEntry = ConfigEntry[ProximityDataUpdateCoordinator]
 
 @dataclass
 class StateChangedData:
@@ -29,7 +30,7 @@ class ProximityData:
 DEFAULT_PROXIMITY_DATA: dict[str, str | int | None]
 
 class ProximityDataUpdateCoordinator(DataUpdateCoordinator[ProximityData]):
-    config_entry: ConfigEntry
+    config_entry: ProximityConfigEntry
     ignored_zone_ids: Incomplete
     tracked_entities: Incomplete
     tolerance: Incomplete

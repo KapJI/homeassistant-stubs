@@ -1,8 +1,7 @@
-from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
+from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from _typeshed import Incomplete
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
-from aioswitcher.device import SwitcherShutter as SwitcherShutter
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

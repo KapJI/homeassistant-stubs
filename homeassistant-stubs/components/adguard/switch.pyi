@@ -1,4 +1,4 @@
-from . import AdGuardData as AdGuardData
+from . import AdGuardConfigEntry as AdGuardConfigEntry, AdGuardData as AdGuardData
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .entity import AdGuardHomeEntity as AdGuardHomeEntity
 from _typeshed import Incomplete
@@ -6,7 +6,6 @@ from adguardhome import AdGuardHome as AdGuardHome
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -23,12 +22,12 @@ class AdGuardHomeSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCHES: tuple[AdGuardHomeSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AdGuardConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AdGuardHomeSwitch(AdGuardHomeEntity, SwitchEntity):
     entity_description: AdGuardHomeSwitchEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, data: AdGuardData, entry: ConfigEntry, description: AdGuardHomeSwitchEntityDescription) -> None: ...
+    def __init__(self, data: AdGuardData, entry: AdGuardConfigEntry, description: AdGuardHomeSwitchEntityDescription) -> None: ...
     _attr_available: bool
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

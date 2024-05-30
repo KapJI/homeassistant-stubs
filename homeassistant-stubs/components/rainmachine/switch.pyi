@@ -3,7 +3,7 @@ from .const import CONF_ALLOW_INACTIVE_ZONES_TO_RUN as CONF_ALLOW_INACTIVE_ZONES
 from .model import RainMachineEntityDescription as RainMachineEntityDescription
 from .util import RUN_STATE_MAP as RUN_STATE_MAP, key_exists as key_exists
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,13 +12,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
+ATTR_ACTIVITY_TYPE: str
 ATTR_AREA: str
 ATTR_CS_ON: str
 ATTR_CURRENT_CYCLE: str
 ATTR_CYCLES: str
-ATTR_ZONE_RUN_TIME: str
 ATTR_DELAY: str
 ATTR_DELAY_ON: str
 ATTR_FIELD_CAPACITY: str
@@ -34,14 +34,13 @@ ATTR_STATUS: str
 ATTR_SUN_EXPOSURE: str
 ATTR_VEGETATION_TYPE: str
 ATTR_ZONES: str
+ATTR_ZONE_RUN_TIME: str
 DAYS: Incomplete
 SOIL_TYPE_MAP: Incomplete
 SLOPE_TYPE_MAP: Incomplete
 SPRINKLER_TYPE_MAP: Incomplete
 SUN_EXPOSURE_MAP: Incomplete
 VEGETATION_MAP: Incomplete
-_T = TypeVar('_T', bound='RainMachineBaseSwitch')
-_P = ParamSpec('_P')
 
 def raise_on_request_error(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
@@ -51,8 +50,9 @@ class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDes
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineActivitySwitchDescription(RainMachineSwitchDescription):
+    kind: str
     uid: int
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, uid) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, kind, uid) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineRestrictionSwitchDescription(RainMachineSwitchDescription):
@@ -79,6 +79,7 @@ class RainMachineBaseSwitch(RainMachineEntity, SwitchEntity):
 class RainMachineActivitySwitch(RainMachineBaseSwitch):
     _attr_icon: str
     entity_description: RainMachineActivitySwitchDescription
+    def __init__(self, entry: ConfigEntry, data: RainMachineData, description: RainMachineSwitchDescription) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_turn_off_when_active(self, **kwargs: Any) -> None: ...
     _attr_is_on: bool
@@ -89,6 +90,7 @@ class RainMachineEnabledSwitch(RainMachineBaseSwitch):
     _attr_entity_category: Incomplete
     _attr_icon: str
     entity_description: RainMachineActivitySwitchDescription
+    def __init__(self, entry: ConfigEntry, data: RainMachineData, description: RainMachineSwitchDescription) -> None: ...
     _attr_is_on: Incomplete
     def update_from_latest_data(self) -> None: ...
 

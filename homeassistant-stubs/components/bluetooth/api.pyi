@@ -7,6 +7,7 @@ from collections.abc import Callable as Callable, Iterable
 from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothScannerDevice as BluetoothScannerDevice, BluetoothScanningMode as BluetoothScanningMode, HaBleakScannerWrapper
 from home_assistant_bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
+from homeassistant.helpers.singleton import singleton as singleton
 
 def _get_manager(hass: HomeAssistant) -> HomeAssistantBluetoothManager: ...
 def async_get_scanner(hass: HomeAssistant) -> HaBleakScannerWrapper: ...

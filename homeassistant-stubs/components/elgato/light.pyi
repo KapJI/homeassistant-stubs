@@ -1,9 +1,9 @@
-from .const import DOMAIN as DOMAIN, SERVICE_IDENTIFY as SERVICE_IDENTIFY
+from . import ElgatorConfigEntry as ElgatorConfigEntry
+from .const import SERVICE_IDENTIFY as SERVICE_IDENTIFY
 from .coordinator import ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
 from .entity import ElgatoEntity as ElgatoEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
@@ -11,7 +11,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ElgatorConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElgatoLight(ElgatoEntity, LightEntity):
     _attr_name: Incomplete

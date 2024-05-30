@@ -1,4 +1,6 @@
-from . import DOMAIN as DOMAIN, PrusaLinkEntity as PrusaLinkEntity, PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
+from . import PrusaLinkEntity as PrusaLinkEntity
+from .const import DOMAIN as DOMAIN
+from .coordinator import PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass

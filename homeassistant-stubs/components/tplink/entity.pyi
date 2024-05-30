@@ -1,15 +1,12 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from kasa import SmartDevice as SmartDevice
-from typing import Any, Concatenate, ParamSpec, TypeVar
-
-_T = TypeVar('_T', bound='CoordinatedTPLinkEntity')
-_P = ParamSpec('_P')
+from typing import Any, Concatenate
 
 def async_refresh_after(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 

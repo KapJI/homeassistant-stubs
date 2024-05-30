@@ -1,6 +1,6 @@
 from . import async_wemo_dispatcher_connect as async_wemo_dispatcher_connect
+from .coordinator import DeviceCoordinator as DeviceCoordinator
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity
-from .wemo_device import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

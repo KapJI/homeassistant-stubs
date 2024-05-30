@@ -2,11 +2,9 @@ from ..core import Recorder as Recorder
 from _typeshed import Incomplete
 from homeassistant.util.event_type import EventType as EventType
 from lru import LRU
-from typing import Any, Generic, TypeVar
+from typing import Any
 
-_DataT = TypeVar('_DataT')
-
-class BaseTableManager(Generic[_DataT]):
+class BaseTableManager:
     _id_map: LRU[EventType[Any] | str, int]
     active: bool
     recorder: Incomplete

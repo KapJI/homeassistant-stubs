@@ -1,9 +1,9 @@
+from . import SensiboConfigEntry as SensiboConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordinator
 from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, async_handle_api_call as async_handle_api_call
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_SWING_MODE as ATTR_SWING_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
@@ -42,7 +42,7 @@ HA_TO_SENSIBO: Incomplete
 AC_STATE_TO_DATA: Incomplete
 
 def _find_valid_target_temp(target: int, valid_targets: list[int]) -> int: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
     _attr_name: Incomplete

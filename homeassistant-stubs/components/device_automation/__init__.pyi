@@ -16,9 +16,9 @@ from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from homeassistant.requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
-from typing import Any, Literal, TypeAlias, overload
+from typing import Any, Literal, overload
 
-DeviceAutomationPlatformType: TypeAlias
+DeviceAutomationPlatformType: Incomplete
 DOMAIN: str
 CONFIG_SCHEMA: Incomplete
 DEVICE_TRIGGER_BASE_SCHEMA: vol.Schema

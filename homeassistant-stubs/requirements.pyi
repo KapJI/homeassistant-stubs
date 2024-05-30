@@ -1,6 +1,7 @@
 import asyncio
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
+from .helpers import singleton as singleton
 from .helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from .loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from _typeshed import Incomplete

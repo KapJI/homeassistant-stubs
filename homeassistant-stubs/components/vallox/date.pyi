@@ -1,5 +1,6 @@
-from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator, ValloxEntity as ValloxEntity
+from . import ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN
+from .coordinator import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from _typeshed import Incomplete
 from datetime import date
 from homeassistant.components.date import DateEntity as DateEntity

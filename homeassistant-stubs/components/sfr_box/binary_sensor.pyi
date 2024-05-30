@@ -12,12 +12,9 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from sfrbox_api.models import DslInfo, FtthInfo, SystemInfo as SystemInfo, WanInfo
-from typing import Generic, TypeVar
-
-_T = TypeVar('_T')
 
 @dataclass(frozen=True, kw_only=True)
-class SFRBoxBinarySensorEntityDescription(BinarySensorEntityDescription, Generic[_T]):
+class SFRBoxBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[_T], bool | None]
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn) -> None: ...
 

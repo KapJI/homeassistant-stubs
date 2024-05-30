@@ -1,13 +1,13 @@
-from .const import DOMAIN as DOMAIN, SelectOptionsType as SelectOptionsType, SelectType as SelectType
+from . import PlugwiseConfigEntry as PlugwiseConfigEntry
+from .const import SelectOptionsType as SelectOptionsType, SelectType as SelectType
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from plugwise import Smile as Smile
 
@@ -20,7 +20,7 @@ class PlugwiseSelectEntityDescription(SelectEntityDescription):
 
 SELECT_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PlugwiseSelectEntity(PlugwiseEntity, SelectEntity):
     entity_description: PlugwiseSelectEntityDescription

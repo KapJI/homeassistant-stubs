@@ -9,10 +9,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import yaml as yaml
 from ipaddress import IPv4Address, IPv6Address
-from typing import Any, Concatenate, Final, ParamSpec, TypeVar
+from typing import Any, Concatenate, Final
 
-_HassViewT = TypeVar('_HassViewT', bound=HomeAssistantView)
-_P = ParamSpec('_P')
 _LOGGER: Final[Incomplete]
 KEY_BAN_MANAGER: Incomplete
 KEY_FAILED_LOGIN_ATTEMPTS: Incomplete

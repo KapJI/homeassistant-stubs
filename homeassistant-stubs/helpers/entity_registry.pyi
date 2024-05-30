@@ -1,7 +1,8 @@
 from . import storage as storage
 from .device_registry import EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGISTRY_UPDATED, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
-from .registry import BaseRegistry as BaseRegistry, BaseRegistryItems as BaseRegistryItems
+from .registry import BaseRegistry as BaseRegistry, BaseRegistryItems as BaseRegistryItems, RegistryIndexType as RegistryIndexType
+from .singleton import singleton as singleton
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Container, Hashable, KeysView, Mapping
@@ -14,12 +15,12 @@ from homeassistant.exceptions import MaxLengthExceeded as MaxLengthExceeded
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util import slugify as slugify
 from homeassistant.util.event_type import EventType as EventType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
-from typing import Any, Literal, NotRequired, TypeVar, TypedDict
+from typing import Any, Literal, NotRequired, TypedDict
 
-T = TypeVar('T')
-DATA_REGISTRY: str
+DATA_REGISTRY: HassKey[EntityRegistry]
 EVENT_ENTITY_REGISTRY_UPDATED: EventType[EventEntityRegistryUpdatedData]
 _LOGGER: Incomplete
 STORAGE_VERSION_MAJOR: int
@@ -149,7 +150,7 @@ class EntityRegistryItems(BaseRegistryItems[RegistryEntry]):
     def get_entries_for_area_id(self, area_id: str) -> list[RegistryEntry]: ...
     def get_entries_for_label(self, label: str) -> list[RegistryEntry]: ...
 
-def _validate_item(hass: HomeAssistant, domain: str, platform: str, unique_id: str | Hashable | UndefinedType | Any, *, disabled_by: RegistryEntryDisabler | None | UndefinedType = None, entity_category: EntityCategory | None | UndefinedType = None, hidden_by: RegistryEntryHider | None | UndefinedType = None) -> None: ...
+def _validate_item(hass: HomeAssistant, domain: str, platform: str, *, disabled_by: RegistryEntryDisabler | None | UndefinedType = None, entity_category: EntityCategory | None | UndefinedType = None, hidden_by: RegistryEntryHider | None | UndefinedType = None, report_non_string_unique_id: bool = True, unique_id: str | Hashable | UndefinedType | Any) -> None: ...
 
 class EntityRegistry(BaseRegistry):
     deleted_entities: dict[tuple[str, str, str], DeletedRegistryEntry]

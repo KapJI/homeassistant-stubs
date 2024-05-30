@@ -3,9 +3,10 @@ import logging
 import voluptuous as vol
 from . import condition as condition, service as service, template as template
 from .condition import ConditionCheckerType as ConditionCheckerType, trace_condition_function as trace_condition_function
-from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send_internal as async_dispatcher_send_internal
 from .event import async_call_later as async_call_later, async_track_template as async_track_template
 from .script_variables import ScriptVariables as ScriptVariables
+from .template import Template as Template
 from .trace import TraceElement as TraceElement, async_trace_path as async_trace_path, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_id_get as trace_id_get, trace_path as trace_path, trace_path_get as trace_path_get, trace_path_stack_cv as trace_path_stack_cv, trace_set_result as trace_set_result, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top, trace_update_result as trace_update_result
 from .trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from .typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
@@ -23,10 +24,10 @@ from homeassistant.core import Context as Context, Event as Event, HassJob as Ha
 from homeassistant.util import slugify as slugify
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.dt import utcnow as utcnow
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType, SignalTypeFormat as SignalTypeFormat
-from typing import Any, Literal, TypeVar, TypedDict
+from typing import Any, Literal, TypedDict
 
-_T = TypeVar('_T')
 SCRIPT_MODE_PARALLEL: str
 SCRIPT_MODE_QUEUED: str
 SCRIPT_MODE_RESTART: str
@@ -40,9 +41,9 @@ _MAX_EXCEEDED_CHOICES: Incomplete
 DEFAULT_MAX_EXCEEDED: str
 ATTR_CUR: str
 ATTR_MAX: str
-DATA_SCRIPTS: str
-DATA_SCRIPT_BREAKPOINTS: str
-DATA_NEW_SCRIPT_RUNS_NOT_ALLOWED: str
+DATA_SCRIPTS: HassKey[list[ScriptData]]
+DATA_SCRIPT_BREAKPOINTS: HassKey[dict[str, dict[str, set[str]]]]
+DATA_NEW_SCRIPT_RUNS_NOT_ALLOWED: HassKey[None]
 RUN_ID_ANY: str
 NODE_ANY: str
 _LOGGER: Incomplete
@@ -53,7 +54,11 @@ ACTION_TRACE_NODE_MAX_LEN: int
 SCRIPT_BREAKPOINT_HIT: Incomplete
 SCRIPT_DEBUG_CONTINUE_STOP: SignalTypeFormat[Literal['continue', 'stop']]
 SCRIPT_DEBUG_CONTINUE_ALL: str
-script_stack_cv: ContextVar[list[int] | None]
+script_stack_cv: ContextVar[list[str] | None]
+
+class ScriptData(TypedDict):
+    instance: Script
+    started_before_shutdown: bool
 
 class ScriptStoppedError(Exception): ...
 
@@ -122,6 +127,7 @@ class _ScriptRun:
     async def _async_variables_step(self) -> None: ...
     async def _async_set_conversation_response_step(self) -> None: ...
     async def _async_stop_step(self) -> None: ...
+    async def _async_sequence_step(self) -> None: ...
     async def _async_parallel_step(self) -> None: ...
     async def _async_run_script(self, script: Script) -> None: ...
 
@@ -159,6 +165,7 @@ class Script:
     _hass: Incomplete
     sequence: Incomplete
     name: Incomplete
+    unique_id: Incomplete
     domain: Incomplete
     running_description: Incomplete
     _change_listener: Incomplete
@@ -176,14 +183,15 @@ class Script:
     _choose_data: Incomplete
     _if_data: Incomplete
     _parallel_scripts: Incomplete
+    _sequence_scripts: Incomplete
     variables: Incomplete
     _variables_dynamic: Incomplete
     _copy_variables_on_run: Incomplete
-    def __init__(self, hass: HomeAssistant, sequence: Sequence[dict[str, Any]], name: str, domain: str, *, change_listener: Callable[..., Any] | None = None, copy_variables: bool = False, log_exceptions: bool = True, logger: logging.Logger | None = None, max_exceeded: str = ..., max_runs: int = ..., running_description: str | None = None, script_mode: str = ..., top_level: bool = True, variables: ScriptVariables | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, sequence: Sequence[dict[str, Any]], name: str, domain: str, *, change_listener: Callable[[], Any] | None = None, copy_variables: bool = False, log_exceptions: bool = True, logger: logging.Logger | None = None, max_exceeded: str = ..., max_runs: int = ..., running_description: str | None = None, script_mode: str = ..., top_level: bool = True, variables: ScriptVariables | None = None) -> None: ...
     @property
     def change_listener(self) -> Callable[..., Any] | None: ...
     @change_listener.setter
-    def change_listener(self, change_listener: Callable[..., Any]) -> None: ...
+    def change_listener(self, change_listener: Callable[[], Any]) -> None: ...
     _logger: Incomplete
     def _set_logger(self, logger: logging.Logger | None = None) -> None: ...
     def update_logger(self, logger: logging.Logger | None = None) -> None: ...
@@ -224,6 +232,8 @@ class Script:
     async def _async_get_if_data(self, step: int) -> _IfData: ...
     async def _async_prep_parallel_scripts(self, step: int) -> list[Script]: ...
     async def _async_get_parallel_scripts(self, step: int) -> list[Script]: ...
+    async def _async_prep_sequence_script(self, step: int) -> Script: ...
+    async def _async_get_sequence_script(self, step: int) -> Script: ...
     def _log(self, msg: str, *args: Any, level: int = ..., **kwargs: Any) -> None: ...
 
 def breakpoint_clear(hass: HomeAssistant, key: str, run_id: str | None, node: str) -> None: ...

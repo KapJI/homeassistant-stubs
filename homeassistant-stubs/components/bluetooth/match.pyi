@@ -5,7 +5,7 @@ from bleak.backends.scanner import AdvertisementData as AdvertisementData
 from dataclasses import dataclass
 from homeassistant.core import callback as callback
 from homeassistant.loader import BluetoothMatcher as BluetoothMatcher, BluetoothMatcherOptional as BluetoothMatcherOptional
-from typing import Final, Generic, TypeVar, TypedDict
+from typing import Final, TypedDict
 
 MAX_REMEMBER_ADDRESSES: Final[int]
 CALLBACK: Final[str]
@@ -48,9 +48,8 @@ class IntegrationMatcher:
     def async_setup(self) -> None: ...
     def async_clear_address(self, address: str) -> None: ...
     def match_domains(self, service_info: BluetoothServiceInfoBleak) -> set[str]: ...
-_T = TypeVar('_T', BluetoothMatcher, BluetoothCallbackMatcherWithCallback)
 
-class BluetoothMatcherIndexBase(Generic[_T]):
+class BluetoothMatcherIndexBase:
     __slots__: Incomplete
     local_name: Incomplete
     service_uuid: Incomplete

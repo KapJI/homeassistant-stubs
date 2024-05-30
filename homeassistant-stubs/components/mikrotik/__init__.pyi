@@ -1,6 +1,6 @@
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN
+from .coordinator import MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator, get_api as get_api
 from .errors import CannotConnect as CannotConnect, LoginError as LoginError
-from .hub import MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator, get_api as get_api
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform

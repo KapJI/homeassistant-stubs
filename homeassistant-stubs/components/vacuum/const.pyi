@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 
+DOMAIN: str
 STATE_CLEANING: str
 STATE_DOCKED: str
 STATE_RETURNING: str

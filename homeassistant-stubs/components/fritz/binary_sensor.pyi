@@ -1,5 +1,6 @@
-from .common import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo, FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from .const import DOMAIN as DOMAIN
+from .coordinator import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo
+from .entity import FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -11,10 +12,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 _LOGGER: Incomplete
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescription):
     is_suitable: Callable[[ConnectionInfo], bool] = ...
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, is_suitable) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, is_suitable) -> None: ...
 
 SENSOR_TYPES: tuple[FritzBinarySensorEntityDescription, ...]
 

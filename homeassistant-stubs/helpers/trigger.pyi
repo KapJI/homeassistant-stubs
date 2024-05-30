@@ -1,17 +1,20 @@
 import voluptuous as vol
+from .template import Template as Template
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
+from collections import defaultdict
 from collections.abc import Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_ENABLED as CONF_ENABLED, CONF_ID as CONF_ID, CONF_PLATFORM as CONF_PLATFORM, CONF_VARIABLES as CONF_VARIABLES
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from homeassistant.util.async_ import create_eager_task as create_eager_task
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Protocol, TypedDict
 
 _PLATFORM_ALIASES: Incomplete
-DATA_PLUGGABLE_ACTIONS: str
+DATA_PLUGGABLE_ACTIONS: HassKey[defaultdict[tuple, PluggableActionsEntry]]
 
 class TriggerProtocol(Protocol):
     TRIGGER_SCHEMA: vol.Schema

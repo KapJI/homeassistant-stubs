@@ -1,5 +1,5 @@
 import aiotractive
-from .const import ATTR_ACTIVITY_LABEL as ATTR_ACTIVITY_LABEL, ATTR_CALORIES as ATTR_CALORIES, ATTR_DAILY_GOAL as ATTR_DAILY_GOAL, ATTR_MINUTES_ACTIVE as ATTR_MINUTES_ACTIVE, ATTR_MINUTES_DAY_SLEEP as ATTR_MINUTES_DAY_SLEEP, ATTR_MINUTES_NIGHT_SLEEP as ATTR_MINUTES_NIGHT_SLEEP, ATTR_MINUTES_REST as ATTR_MINUTES_REST, ATTR_SLEEP_LABEL as ATTR_SLEEP_LABEL, ATTR_TRACKER_STATE as ATTR_TRACKER_STATE, CLIENT as CLIENT, CLIENT_ID as CLIENT_ID, DOMAIN as DOMAIN, RECONNECT_INTERVAL as RECONNECT_INTERVAL, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, SWITCH_KEY_MAP as SWITCH_KEY_MAP, TRACKABLES as TRACKABLES, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_POSITION_UPDATED as TRACKER_POSITION_UPDATED, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED, TRACKER_WELLNESS_STATUS_UPDATED as TRACKER_WELLNESS_STATUS_UPDATED
+from .const import ATTR_ACTIVITY_LABEL as ATTR_ACTIVITY_LABEL, ATTR_CALORIES as ATTR_CALORIES, ATTR_DAILY_GOAL as ATTR_DAILY_GOAL, ATTR_MINUTES_ACTIVE as ATTR_MINUTES_ACTIVE, ATTR_MINUTES_DAY_SLEEP as ATTR_MINUTES_DAY_SLEEP, ATTR_MINUTES_NIGHT_SLEEP as ATTR_MINUTES_NIGHT_SLEEP, ATTR_MINUTES_REST as ATTR_MINUTES_REST, ATTR_SLEEP_LABEL as ATTR_SLEEP_LABEL, ATTR_TRACKER_STATE as ATTR_TRACKER_STATE, CLIENT_ID as CLIENT_ID, RECONNECT_INTERVAL as RECONNECT_INTERVAL, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, SWITCH_KEY_MAP as SWITCH_KEY_MAP, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_POSITION_UPDATED as TRACKER_POSITION_UPDATED, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED, TRACKER_WELLNESS_STATUS_UPDATED as TRACKER_WELLNESS_STATUS_UPDATED
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -22,9 +22,16 @@ class Trackables:
     pos_report: dict
     def __init__(self, tracker, trackable, tracker_details, hw_info, pos_report) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+@dataclass(slots=True)
+class TractiveData:
+    client: TractiveClient
+    trackables: list[Trackables]
+    def __init__(self, client, trackables) -> None: ...
+TractiveConfigEntry = ConfigEntry[TractiveData]
+
+async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry) -> bool: ...
 async def _generate_trackables(client: aiotractive.Tractive, trackable: aiotractive.trackable_object.TrackableObject) -> Trackables | None: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: TractiveConfigEntry) -> bool: ...
 
 class TractiveClient:
     _hass: Incomplete

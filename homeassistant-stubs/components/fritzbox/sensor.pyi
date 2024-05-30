@@ -1,12 +1,11 @@
 from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
-from .common import get_coordinator as get_coordinator
+from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.climate import PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -36,7 +35,7 @@ def value_scheduled_preset(device: FritzhomeDevice) -> str: ...
 
 SENSOR_TYPES: Final[tuple[FritzSensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzBoxSensor(FritzBoxDeviceEntity, SensorEntity):
     entity_description: FritzSensorEntityDescription

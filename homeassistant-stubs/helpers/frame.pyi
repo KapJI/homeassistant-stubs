@@ -1,17 +1,15 @@
 import logging
 from _typeshed import Incomplete
-from collections.abc import Callable
+from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from functools import cached_property as cached_property
-from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass
+from homeassistant.core import async_get_hass_or_none as async_get_hass_or_none
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from types import FrameType
-from typing import TypeVar
 
 _LOGGER: Incomplete
 _REPORTED_INTEGRATIONS: set[str]
-_CallableT = TypeVar('_CallableT', bound=Callable)
 
 @dataclass(kw_only=True)
 class IntegrationFrame:

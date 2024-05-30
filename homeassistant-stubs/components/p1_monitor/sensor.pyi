@@ -1,5 +1,5 @@
-from . import P1MonitorDataUpdateCoordinator as P1MonitorDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN, SERVICE_PHASES as SERVICE_PHASES, SERVICE_SETTINGS as SERVICE_SETTINGS, SERVICE_SMARTMETER as SERVICE_SMARTMETER, SERVICE_WATERMETER as SERVICE_WATERMETER
+from .coordinator import P1MonitorDataUpdateCoordinator as P1MonitorDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

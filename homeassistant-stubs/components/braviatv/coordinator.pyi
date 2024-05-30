@@ -1,6 +1,6 @@
 from .const import CONF_NICKNAME as CONF_NICKNAME, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN, LEGACY_CLIENT_ID as LEGACY_CLIENT_ID, NICKNAME_PREFIX as NICKNAME_PREFIX, SourceType as SourceType
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine, Iterable
 from homeassistant.components.media_player import MediaType as MediaType
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PIN as CONF_PIN
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -9,10 +9,8 @@ from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pybravia import BraviaClient as BraviaClient
 from types import MappingProxyType
-from typing import Any, Concatenate, Final, ParamSpec, TypeVar
+from typing import Any, Concatenate, Final
 
-_BraviaTVCoordinatorT = TypeVar('_BraviaTVCoordinatorT', bound='BraviaTVCoordinator')
-_P = ParamSpec('_P')
 _LOGGER: Incomplete
 SCAN_INTERVAL: Final[Incomplete]
 

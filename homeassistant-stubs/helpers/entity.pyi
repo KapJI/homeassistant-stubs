@@ -1,6 +1,7 @@
 import asyncio
 import dataclasses
-from . import device_registry as dr, entity_registry as er
+import time
+from . import device_registry as dr, entity_registry as er, singleton as singleton
 from .device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from .entity_platform import EntityPlatform as EntityPlatform
 from .event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
@@ -18,9 +19,9 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, I
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue, bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from homeassistant.util.frozen_dataclass_compat import FrozenOrThawed as FrozenOrThawed
-from typing import Any, Final, Literal, NotRequired, TypeVar, TypedDict
+from typing import Any, Final, Literal, NotRequired, TypedDict
 
-_T = TypeVar('_T')
+timer = time.time
 _LOGGER: Incomplete
 SLOW_UPDATE_WARNING: int
 DATA_ENTITY_SOURCE: str
@@ -118,7 +119,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     _attr_assumed_state: bool
     _attr_attribution: str | None
     _attr_available: bool
-    _attr_capability_attributes: Mapping[str, Any] | None
+    _attr_capability_attributes: dict[str, Any] | None
     _attr_device_class: str | None
     _attr_device_info: DeviceInfo | None
     _attr_entity_category: EntityCategory | None
@@ -164,7 +165,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     @cached_property
     def state(self) -> StateType: ...
     @cached_property
-    def capability_attributes(self) -> Mapping[str, Any] | None: ...
+    def capability_attributes(self) -> dict[str, Any] | None: ...
     def get_initial_entity_options(self) -> er.EntityOptionsType | None: ...
     @cached_property
     def state_attributes(self) -> dict[str, Any] | None: ...

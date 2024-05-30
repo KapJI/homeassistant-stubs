@@ -3,13 +3,11 @@ from .coordinator import SwitchBeeCoordinator as SwitchBeeCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from switchbee.device import SwitchBeeBaseDevice
-from typing import Generic, TypeVar
+from switchbee.device import SwitchBeeBaseDevice as SwitchBeeBaseDevice
 
-_DeviceTypeT = TypeVar('_DeviceTypeT', bound=SwitchBeeBaseDevice)
 _LOGGER: Incomplete
 
-class SwitchBeeEntity(CoordinatorEntity[SwitchBeeCoordinator], Generic[_DeviceTypeT]):
+class SwitchBeeEntity(CoordinatorEntity[SwitchBeeCoordinator]):
     _attr_has_entity_name: bool
     _device: Incomplete
     _attr_name: Incomplete

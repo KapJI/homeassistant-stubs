@@ -1,6 +1,6 @@
 from .const import CONF_ARP_PING as CONF_ARP_PING, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_FORCE_DHCP as CONF_FORCE_DHCP, DEFAULT_API_PORT as DEFAULT_API_PORT, DEFAULT_DETECTION_TIME as DEFAULT_DETECTION_TIME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .coordinator import get_api as get_api
 from .errors import CannotConnect as CannotConnect, LoginError as LoginError
-from .hub import get_api as get_api
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow

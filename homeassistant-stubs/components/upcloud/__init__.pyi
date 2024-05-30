@@ -1,15 +1,15 @@
 import dataclasses
 import upcloud_api
 from .const import CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE as CONFIG_ENTRY_UPDATE_SIGNAL_TEMPLATE, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
+from .coordinator import UpCloudDataUpdateCoordinator as UpCloudDataUpdateCoordinator
 from _typeshed import Incomplete
-from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_USERNAME as CONF_USERNAME, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PROBLEM as STATE_PROBLEM
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 _LOGGER: Incomplete
@@ -25,13 +25,6 @@ DEFAULT_COMPONENT_NAME: str
 PLATFORMS: Incomplete
 SIGNAL_UPDATE_UPCLOUD: str
 STATE_MAP: Incomplete
-
-class UpCloudDataUpdateCoordinator(DataUpdateCoordinator[dict[str, upcloud_api.Server]]):
-    cloud_manager: Incomplete
-    def __init__(self, hass: HomeAssistant, *, cloud_manager: upcloud_api.CloudManager, update_interval: timedelta, username: str) -> None: ...
-    update_interval: Incomplete
-    async def async_update_config(self, config_entry: ConfigEntry) -> None: ...
-    async def _async_update_data(self) -> dict[str, upcloud_api.Server]: ...
 
 @dataclasses.dataclass
 class UpCloudHassData:

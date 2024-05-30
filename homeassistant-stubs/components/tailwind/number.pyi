@@ -1,12 +1,11 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import TailwindDataUpdateCoordinator as TailwindDataUpdateCoordinator
 from .entity import TailwindEntity as TailwindEntity
+from .typing import TailwindConfigEntry as TailwindConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from gotailwind import Tailwind as Tailwind, TailwindDeviceStatus as TailwindDeviceStatus
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -21,7 +20,7 @@ class TailwindNumberEntityDescription(NumberEntityDescription):
 
 DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TailwindConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TailwindNumberEntity(TailwindEntity, NumberEntity):
     entity_description: TailwindNumberEntityDescription

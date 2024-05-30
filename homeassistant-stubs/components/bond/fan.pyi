@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN, SERVICE_SET_FAN_SPEED_TRACKED_STATE as SERVICE_SET_FAN_SPEED_TRACKED_STATE
+from . import BondConfigEntry as BondConfigEntry
+from .const import SERVICE_SET_FAN_SPEED_TRACKED_STATE as SERVICE_SET_FAN_SPEED_TRACKED_STATE
 from .entity import BondEntity as BondEntity
-from .models import BondData as BondData
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from _typeshed import Incomplete
 from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -17,7 +16,7 @@ from typing import Any
 _LOGGER: Incomplete
 PRESET_MODE_BREEZE: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BondFan(BondEntity, FanEntity):
     _power: Incomplete

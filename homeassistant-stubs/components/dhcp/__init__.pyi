@@ -10,7 +10,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTA
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceRegistry as DeviceRegistry, async_get as async_get, format_mac as format_mac
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.event import async_track_state_added_domain as async_track_state_added_domain, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType

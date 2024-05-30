@@ -12,8 +12,8 @@ from homeassistant.util.json import JsonValueType as JsonValueType
 from typing import Any
 
 current_connection: Incomplete
-MessageHandler: Incomplete
-BinaryHandler: Incomplete
+MessageHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
+BinaryHandler = Callable[[HomeAssistant, ActiveConnection, bytes], None]
 
 class ActiveConnection:
     __slots__: Incomplete

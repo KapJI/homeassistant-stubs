@@ -1,9 +1,6 @@
 from _typeshed import Incomplete
 from collections import OrderedDict
-from typing import Any, TypeVar
-
-_KT = TypeVar('_KT')
-_VT = TypeVar('_VT')
+from typing import Any
 
 class LimitedSizeDict(OrderedDict[_KT, _VT]):
     size_limit: Incomplete

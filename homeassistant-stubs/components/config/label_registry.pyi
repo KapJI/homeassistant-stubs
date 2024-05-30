@@ -2,7 +2,7 @@ from _typeshed import Incomplete
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.label_registry import LabelEntry as LabelEntry, async_get as async_get
+from homeassistant.helpers.label_registry import LabelEntry as LabelEntry
 from typing import Any
 
 SUPPORTED_LABEL_THEME_COLORS: Incomplete

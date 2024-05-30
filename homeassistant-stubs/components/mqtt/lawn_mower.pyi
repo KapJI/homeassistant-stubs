@@ -1,10 +1,10 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, DEFAULT_RETAIN as DEFAULT_RETAIN
-from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper, write_state_on_attr_change as write_state_on_attr_change
+from .const import CONF_RETAIN as CONF_RETAIN, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, DEFAULT_RETAIN as DEFAULT_RETAIN
+from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -50,7 +50,7 @@ class MqttLawnMower(MqttEntity, LawnMowerEntity, RestoreEntity):
     _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_activity: Incomplete
-    _sub_state: Incomplete
+    def _message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     async def _async_operate(self, option: str, activity: LawnMowerActivity) -> None: ...

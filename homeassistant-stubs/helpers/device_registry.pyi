@@ -3,7 +3,8 @@ from .debounce import Debouncer as Debouncer
 from .deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .frame import report as report
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
-from .registry import BaseRegistry as BaseRegistry, BaseRegistryItems as BaseRegistryItems
+from .registry import BaseRegistry as BaseRegistry, BaseRegistryItems as BaseRegistryItems, RegistryIndexType as RegistryIndexType
+from .singleton import singleton as singleton
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -15,12 +16,13 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, R
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.event_type import EventType as EventType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
-from typing import Any, Literal, TypeVar, TypedDict
+from typing import Any, Literal, TypedDict
 from yarl import URL
 
 _LOGGER: Incomplete
-DATA_REGISTRY: str
+DATA_REGISTRY: HassKey[DeviceRegistry]
 EVENT_DEVICE_REGISTRY_UPDATED: EventType[EventDeviceRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
@@ -143,7 +145,6 @@ def format_mac(mac: str) -> str: ...
 
 class DeviceRegistryStore(storage.Store[dict[str, list[dict[str, Any]]]]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> dict[str, Any]: ...
-_EntryTypeT = TypeVar('_EntryTypeT', DeviceEntry, DeletedDeviceEntry)
 
 class DeviceRegistryItems(BaseRegistryItems[_EntryTypeT]):
     _connections: Incomplete

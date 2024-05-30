@@ -6,24 +6,23 @@ from .group import expand_entity_ids as expand_entity_ids
 from .selector import TargetSelector as TargetSelector
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable, Iterable
+from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SERVICE as CONF_SERVICE, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
 from homeassistant.core import Context as Context, EntityServiceResponse as EntityServiceResponse, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
 from homeassistant.util.async_ import create_eager_task as create_eager_task
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from types import ModuleType
-from typing import Any, TypeGuard, TypeVar, TypedDict
+from typing import Any, TypeGuard, TypedDict
 
-_EntityT = TypeVar('_EntityT', bound=Entity)
 CONF_SERVICE_ENTITY_ID: str
 _LOGGER: Incomplete
-SERVICE_DESCRIPTION_CACHE: str
-ALL_SERVICE_DESCRIPTIONS_CACHE: str
-_T = TypeVar('_T')
+SERVICE_DESCRIPTION_CACHE: HassKey[dict[tuple[str, str], dict[str, Any] | None]]
+ALL_SERVICE_DESCRIPTIONS_CACHE: HassKey[tuple[set[tuple[str, str]], dict[str, dict[str, Any]]]]
 
 def _base_components() -> dict[str, ModuleType]: ...
 def _validate_option_or_feature(option_or_feature: str, label: str) -> Any: ...
@@ -78,7 +77,7 @@ def _load_services_files(hass: HomeAssistant, integrations: Iterable[Integration
 async def async_get_all_descriptions(hass: HomeAssistant) -> dict[str, dict[str, Any]]: ...
 def remove_entity_service_fields(call: ServiceCall) -> dict[Any, Any]: ...
 def async_set_service_schema(hass: HomeAssistant, domain: str, service: str, schema: dict[str, Any]) -> None: ...
-def _get_permissible_entity_candidates(call: ServiceCall, entities: dict[str, Entity], entity_perms: None | Callable[[str, str], bool], target_all_entities: bool, all_referenced: set[str] | None) -> list[Entity]: ...
+def _get_permissible_entity_candidates(call: ServiceCall, entities: dict[str, Entity], entity_perms: Callable[[str, str], bool] | None, target_all_entities: bool, all_referenced: set[str] | None) -> list[Entity]: ...
 async def entity_service_call(hass: HomeAssistant, registered_entities: dict[str, Entity], func: str | HassJob, call: ServiceCall, required_features: Iterable[int] | None = None) -> EntityServiceResponse | None: ...
 async def _handle_entity_call(hass: HomeAssistant, entity: Entity, func: str | HassJob, data: dict | ServiceCall, context: Context) -> ServiceResponse: ...
 async def _async_admin_handler(hass: HomeAssistant, service_job: HassJob[[ServiceCall], Awaitable[None] | None], call: ServiceCall) -> None: ...
@@ -91,5 +90,5 @@ class ReloadServiceHelper:
     _service_condition: Incomplete
     _pending_reload_targets: Incomplete
     _reload_targets_func: Incomplete
-    def __init__(self, service_func: Callable[[ServiceCall], Awaitable], reload_targets_func: Callable[[ServiceCall], set[_T]]) -> None: ...
+    def __init__(self, service_func: Callable[[ServiceCall], Coroutine[Any, Any, Any]], reload_targets_func: Callable[[ServiceCall], set[_T]]) -> None: ...
     async def execute_service(self, service_call: ServiceCall) -> None: ...

@@ -1,10 +1,10 @@
 import voluptuous as vol
 from .climate import MqttTemperatureControlEntity as MqttTemperatureControlEntity
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_CURRENT_TEMP_TEMPLATE as CONF_CURRENT_TEMP_TEMPLATE, CONF_CURRENT_TEMP_TOPIC as CONF_CURRENT_TEMP_TOPIC, CONF_MODE_COMMAND_TEMPLATE as CONF_MODE_COMMAND_TEMPLATE, CONF_MODE_COMMAND_TOPIC as CONF_MODE_COMMAND_TOPIC, CONF_MODE_LIST as CONF_MODE_LIST, CONF_MODE_STATE_TEMPLATE as CONF_MODE_STATE_TEMPLATE, CONF_MODE_STATE_TOPIC as CONF_MODE_STATE_TOPIC, CONF_POWER_COMMAND_TEMPLATE as CONF_POWER_COMMAND_TEMPLATE, CONF_POWER_COMMAND_TOPIC as CONF_POWER_COMMAND_TOPIC, CONF_PRECISION as CONF_PRECISION, CONF_RETAIN as CONF_RETAIN, CONF_TEMP_COMMAND_TEMPLATE as CONF_TEMP_COMMAND_TEMPLATE, CONF_TEMP_COMMAND_TOPIC as CONF_TEMP_COMMAND_TOPIC, CONF_TEMP_INITIAL as CONF_TEMP_INITIAL, CONF_TEMP_MAX as CONF_TEMP_MAX, CONF_TEMP_MIN as CONF_TEMP_MIN, CONF_TEMP_STATE_TEMPLATE as CONF_TEMP_STATE_TEMPLATE, CONF_TEMP_STATE_TOPIC as CONF_TEMP_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC
-from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, async_setup_entity_entry_helper as async_setup_entity_entry_helper, write_state_on_attr_change as write_state_on_attr_change
+from .const import CONF_CURRENT_TEMP_TEMPLATE as CONF_CURRENT_TEMP_TEMPLATE, CONF_CURRENT_TEMP_TOPIC as CONF_CURRENT_TEMP_TOPIC, CONF_MODE_COMMAND_TEMPLATE as CONF_MODE_COMMAND_TEMPLATE, CONF_MODE_COMMAND_TOPIC as CONF_MODE_COMMAND_TOPIC, CONF_MODE_LIST as CONF_MODE_LIST, CONF_MODE_STATE_TEMPLATE as CONF_MODE_STATE_TEMPLATE, CONF_MODE_STATE_TOPIC as CONF_MODE_STATE_TOPIC, CONF_POWER_COMMAND_TEMPLATE as CONF_POWER_COMMAND_TEMPLATE, CONF_POWER_COMMAND_TOPIC as CONF_POWER_COMMAND_TOPIC, CONF_PRECISION as CONF_PRECISION, CONF_RETAIN as CONF_RETAIN, CONF_TEMP_COMMAND_TEMPLATE as CONF_TEMP_COMMAND_TEMPLATE, CONF_TEMP_COMMAND_TOPIC as CONF_TEMP_COMMAND_TOPIC, CONF_TEMP_INITIAL as CONF_TEMP_INITIAL, CONF_TEMP_MAX as CONF_TEMP_MAX, CONF_TEMP_MIN as CONF_TEMP_MIN, CONF_TEMP_STATE_TEMPLATE as CONF_TEMP_STATE_TEMPLATE, CONF_TEMP_STATE_TOPIC as CONF_TEMP_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, PAYLOAD_NONE as PAYLOAD_NONE
+from .mixins import async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components import water_heater as water_heater
@@ -52,6 +52,7 @@ class MqttWaterHeater(MqttTemperatureControlEntity, WaterHeaterEntity):
     _command_templates: Incomplete
     _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
+    def _handle_current_mode_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...

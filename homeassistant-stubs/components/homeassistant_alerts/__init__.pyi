@@ -1,37 +1,16 @@
-import dataclasses
+from .const import COMPONENT_LOADED_COOLDOWN as COMPONENT_LOADED_COOLDOWN, DOMAIN as DOMAIN, REQUEST_TIMEOUT as REQUEST_TIMEOUT
+from .coordinator import AlertUpdateCoordinator as AlertUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.components.hassio import get_supervisor_info as get_supervisor_info, is_hassio as is_hassio
-from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, __version__ as __version__
+from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.setup import EventComponentLoaded as EventComponentLoaded
 
-COMPONENT_LOADED_COOLDOWN: int
-DOMAIN: str
-UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete
-REQUEST_TIMEOUT: Incomplete
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-
-@dataclasses.dataclass(slots=True, frozen=True)
-class IntegrationAlert:
-    alert_id: str
-    integration: str
-    filename: str
-    date_updated: str | None
-    @property
-    def issue_id(self) -> str: ...
-    def __init__(self, alert_id, integration, filename, date_updated) -> None: ...
-
-class AlertUpdateCoordinator(DataUpdateCoordinator[dict[str, IntegrationAlert]]):
-    ha_version: Incomplete
-    supervisor: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
-    async def _async_update_data(self) -> dict[str, IntegrationAlert]: ...

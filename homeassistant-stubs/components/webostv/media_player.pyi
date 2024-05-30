@@ -3,7 +3,7 @@ from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_SOUND_OUTPUT as ATTR_SOUND
 from .triggers.turn_on import async_get_turn_on_trigger as async_get_turn_on_trigger
 from _typeshed import Incomplete
 from aiowebostv import WebOsClient as WebOsClient
-from collections.abc import Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from homeassistant import util as util
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -16,7 +16,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
 _LOGGER: Incomplete
 SUPPORT_WEBOSTV: Incomplete
@@ -26,9 +26,6 @@ MIN_TIME_BETWEEN_FORCED_SCANS: Incomplete
 SCAN_INTERVAL: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-_T = TypeVar('_T', bound='LgWebOSMediaPlayerEntity')
-_P = ParamSpec('_P')
-
 def cmd(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):

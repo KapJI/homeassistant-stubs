@@ -1,5 +1,5 @@
-from .const import DOMAIN as DOMAIN, SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
-from .controller import EcovacsController as EcovacsController
+from . import EcovacsConfigEntry as EcovacsConfigEntry
+from .const import SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
 from .entity import CapabilityDevice as CapabilityDevice, EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity
 from .util import get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from deebot_client.capabilities import Capabilities, CapabilityExecute, CapabilityLifeSpan
 from deebot_client.events import LifeSpan as LifeSpan
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -24,7 +23,7 @@ class EcovacsLifespanButtonEntityDescription(ButtonEntityDescription):
 ENTITY_DESCRIPTIONS: tuple[EcovacsButtonEntityDescription, ...]
 LIFESPAN_ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EcovacsButtonEntity(EcovacsDescriptionEntity[CapabilityDevice, CapabilityExecute], ButtonEntity):
     entity_description: EcovacsLifespanButtonEntityDescription

@@ -7,14 +7,14 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
-from oralb_ble import SensorUpdate as SensorUpdate
+from oralb_ble import SensorUpdate
 
 SENSOR_DESCRIPTIONS: dict[str, SensorEntityDescription]
 
 def sensor_update_to_bluetooth_data_update(sensor_update: SensorUpdate) -> PassiveBluetoothDataUpdate: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class OralBBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[str | int | None]], SensorEntity):
+class OralBBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[str | int | None, SensorUpdate]], SensorEntity):
     @property
     def native_value(self) -> str | int | None: ...
     @property

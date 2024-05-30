@@ -1,16 +1,20 @@
 import dataclasses
+from .json import json_bytes as json_bytes, json_fragment as json_fragment
 from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems, normalize_name as normalize_name
-from .registry import BaseRegistry as BaseRegistry
+from .registry import BaseRegistry as BaseRegistry, RegistryIndexType as RegistryIndexType
+from .singleton import singleton as singleton
 from .storage import Store as Store
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Iterable
+from functools import cached_property as cached_property
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
 from homeassistant.util.event_type import EventType as EventType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Literal, TypedDict
 
-DATA_REGISTRY: str
+DATA_REGISTRY: HassKey[AreaRegistry]
 EVENT_AREA_REGISTRY_UPDATED: EventType[EventAreaRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
@@ -32,7 +36,7 @@ class EventAreaRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
     area_id: str
 
-@dataclasses.dataclass(frozen=True, kw_only=True, slots=True)
+@dataclasses.dataclass(frozen=True, kw_only=True)
 class AreaEntry(NormalizedNameBaseRegistryEntry):
     aliases: set[str]
     floor_id: str | None
@@ -40,6 +44,8 @@ class AreaEntry(NormalizedNameBaseRegistryEntry):
     id: str
     labels: set[str] = ...
     picture: str | None
+    @cached_property
+    def json_fragment(self) -> json_fragment: ...
     def __init__(self, *, name, normalized_name, aliases, floor_id, icon, id, labels, picture) -> None: ...
 
 class AreaRegistryStore(Store[AreasRegistryStoreData]):

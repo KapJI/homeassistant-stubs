@@ -1,10 +1,10 @@
 import voluptuous as vol
 from .. import subscription as subscription
 from ..config import DEFAULT_QOS as DEFAULT_QOS, DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
-from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
-from ..debug_info import log_messages as log_messages
-from ..mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, write_state_on_attr_change as write_state_on_attr_change
+from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from ..mixins import MqttEntity as MqttEntity
 from ..models import ReceiveMessage as ReceiveMessage
+from ..schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from ..util import valid_subscribe_topic as valid_subscribe_topic
 from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from .schema_basic import CONF_BRIGHTNESS_SCALE as CONF_BRIGHTNESS_SCALE, CONF_WHITE_SCALE as CONF_WHITE_SCALE, MQTT_LIGHT_ATTRIBUTES_BLOCKED as MQTT_LIGHT_ATTRIBUTES_BLOCKED
@@ -77,7 +77,7 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _attr_is_on: bool
     _attr_brightness: Incomplete
     _attr_effect: Incomplete
-    _sub_state: Incomplete
+    def _state_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     @property

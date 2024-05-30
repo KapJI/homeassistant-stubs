@@ -1,5 +1,6 @@
-from .common import AvmWrapper as AvmWrapper, FritzBoxBaseEntity as FritzBoxBaseEntity
 from .const import DOMAIN as DOMAIN
+from .coordinator import AvmWrapper as AvmWrapper
+from .entity import FritzBoxBaseEntity as FritzBoxBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.image import ImageEntity as ImageEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

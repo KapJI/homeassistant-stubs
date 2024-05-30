@@ -1,5 +1,5 @@
-from . import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .const import CONF_AUTO_OFF as CONF_AUTO_OFF, CONF_TIMER_MINUTES as CONF_TIMER_MINUTES, SERVICE_SET_AUTO_OFF_NAME as SERVICE_SET_AUTO_OFF_NAME, SERVICE_TURN_ON_WITH_TIMER_NAME as SERVICE_TURN_ON_WITH_TIMER_NAME, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
+from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from _typeshed import Incomplete
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from datetime import timedelta

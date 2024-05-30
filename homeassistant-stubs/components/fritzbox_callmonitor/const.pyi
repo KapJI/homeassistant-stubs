@@ -26,5 +26,3 @@ DEFAULT_NAME: str
 DOMAIN: Final[str]
 MANUFACTURER: Final[str]
 PLATFORMS: Incomplete
-UNDO_UPDATE_LISTENER: Final[str]
-FRITZBOX_PHONEBOOK: Final[str]

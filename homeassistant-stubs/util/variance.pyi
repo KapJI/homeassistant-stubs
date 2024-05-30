@@ -1,9 +1,6 @@
 from collections.abc import Callable as Callable
-from datetime import datetime, timedelta
-from typing import ParamSpec, TypeVar, overload
-
-_R = TypeVar('_R', int, float, datetime)
-_P = ParamSpec('_P')
+from datetime import datetime as datetime, timedelta
+from typing import overload
 
 @overload
 def ignore_variance(func: Callable[_P, int], ignored_variance: int) -> Callable[_P, int]: ...

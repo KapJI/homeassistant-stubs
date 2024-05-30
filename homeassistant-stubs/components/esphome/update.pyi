@@ -1,4 +1,5 @@
-from .dashboard import ESPHomeDashboard as ESPHomeDashboard, async_get_dashboard as async_get_dashboard
+from .coordinator import ESPHomeDashboardCoordinator as ESPHomeDashboardCoordinator
+from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
@@ -17,7 +18,7 @@ NO_FEATURES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class ESPHomeUpdateEntity(CoordinatorEntity[ESPHomeDashboard], UpdateEntity):
+class ESPHomeUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator], UpdateEntity):
     _attr_has_entity_name: bool
     _attr_device_class: Incomplete
     _attr_title: str
@@ -26,7 +27,7 @@ class ESPHomeUpdateEntity(CoordinatorEntity[ESPHomeDashboard], UpdateEntity):
     _entry_data: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, entry_data: RuntimeEntryData, coordinator: ESPHomeDashboard) -> None: ...
+    def __init__(self, entry_data: RuntimeEntryData, coordinator: ESPHomeDashboardCoordinator) -> None: ...
     _attr_supported_features: Incomplete
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete

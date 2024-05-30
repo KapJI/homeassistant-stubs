@@ -1,10 +1,6 @@
-from collections.abc import Callable
-from enum import Enum
-from typing import Any, TypeVar
+from collections.abc import Callable as Callable
+from enum import Enum as Enum
+from typing import Any
 
-_LruCacheT = TypeVar('_LruCacheT', bound=Callable)
-
-def lru_cache(func: _LruCacheT) -> _LruCacheT: ...
-_EnumT = TypeVar('_EnumT', bound=Enum)
-
+def lru_cache(func: _T) -> _T: ...
 def try_parse_enum(cls, value: Any) -> _EnumT | None: ...

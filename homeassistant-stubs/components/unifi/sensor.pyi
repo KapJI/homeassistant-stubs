@@ -1,3 +1,4 @@
+from . import UnifiConfigEntry as UnifiConfigEntry
 from .const import DEVICE_STATES as DEVICE_STATES
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from .hub import UnifiHub as UnifiHub
@@ -12,7 +13,6 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from decimal import Decimal
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, UnitOfTemperature as UnitOfTemperature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfDataRate as UnitOfDataRate, UnitOfPower as UnitOfPower
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -42,7 +42,7 @@ class UnifiSensorEntityDescription(SensorEntityDescription, UnifiEntityDescripti
 
 ENTITY_DESCRIPTIONS: tuple[UnifiSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class UnifiSensorEntity(UnifiEntity[HandlerT, ApiItemT], SensorEntity):
     entity_description: UnifiSensorEntityDescription[HandlerT, ApiItemT]

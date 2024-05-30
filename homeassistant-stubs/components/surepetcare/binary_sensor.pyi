@@ -1,6 +1,6 @@
 import abc
-from . import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .entity import SurePetcareEntity as SurePetcareEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity

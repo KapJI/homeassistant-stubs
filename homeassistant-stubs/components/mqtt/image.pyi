@@ -2,11 +2,10 @@ import httpx
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS
-from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
-from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, ReceiveMessage as ReceiveMessage
-from .util import get_mqtt_data as get_mqtt_data, valid_subscribe_topic as valid_subscribe_topic
+from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
+from .models import DATA_MQTT as DATA_MQTT, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, ReceiveMessage as ReceiveMessage
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
+from .util import valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import image as image
@@ -51,8 +50,9 @@ class MqttImage(MqttEntity, ImageEntity):
     _attr_image_url: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_image_last_updated: Incomplete
+    def _image_data_received(self, msg: ReceiveMessage) -> None: ...
     _cached_image: Incomplete
-    _sub_state: Incomplete
+    def _image_from_url_request_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     async def async_image(self) -> bytes | None: ...

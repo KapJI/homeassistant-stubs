@@ -1,5 +1,6 @@
-from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator, ValloxEntity as ValloxEntity
+from . import ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN, METRIC_KEY_MODE as METRIC_KEY_MODE, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, MODE_OFF as MODE_OFF, MODE_ON as MODE_ON, PRESET_MODE_TO_VALLOX_PROFILE_SETTABLE as PRESET_MODE_TO_VALLOX_PROFILE_SETTABLE, VALLOX_PROFILE_TO_PRESET_MODE_REPORTABLE as VALLOX_PROFILE_TO_PRESET_MODE_REPORTABLE
+from .coordinator import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature

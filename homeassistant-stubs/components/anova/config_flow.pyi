@@ -1,5 +1,4 @@
 from .const import DOMAIN as DOMAIN
-from .util import serialize_device_list as serialize_device_list
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_DEVICES as CONF_DEVICES, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

@@ -1,5 +1,6 @@
+import asyncio
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Iterable, Mapping, Sequence
+from collections.abc import Callable as Callable, Iterable, Sequence as Sequence
 from functools import cached_property as cached_property
 from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -7,16 +8,15 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import json as json_util
 from homeassistant.util.file import WriteError as WriteError
+from homeassistant.util.hass_dict import HassKey as HassKey
 from json import JSONEncoder
-from typing import Any, Generic, TypeVar
 
 MAX_LOAD_CONCURRENTLY: int
 STORAGE_DIR: str
 _LOGGER: Incomplete
-STORAGE_SEMAPHORE: str
-STORAGE_MANAGER: str
+STORAGE_SEMAPHORE: HassKey[asyncio.Semaphore]
+STORAGE_MANAGER: HassKey[_StoreManager]
 MANAGER_CLEANUP_DELAY: int
-_T = TypeVar('_T', bound=Mapping[str, Any] | Sequence[Any])
 
 async def async_migrator(hass: HomeAssistant, old_path: str, store: Store[_T], *, old_conf_load_func: Callable | None = None, old_conf_migrate_func: Callable | None = None) -> _T | None: ...
 def get_internal_store_manager(hass: HomeAssistant) -> _StoreManager: ...
@@ -39,7 +39,7 @@ class _StoreManager:
     def _preload(self, keys: Iterable[str]) -> None: ...
     def _initialize_files(self) -> None: ...
 
-class Store(Generic[_T]):
+class Store:
     version: Incomplete
     minor_version: Incomplete
     key: Incomplete
@@ -49,7 +49,7 @@ class Store(Generic[_T]):
     _delay_handle: Incomplete
     _unsub_final_write_listener: Incomplete
     _write_lock: Incomplete
-    _load_task: Incomplete
+    _load_future: Incomplete
     _encoder: Incomplete
     _atomic_writes: Incomplete
     _read_only: Incomplete
@@ -58,6 +58,7 @@ class Store(Generic[_T]):
     def __init__(self, hass: HomeAssistant, version: int, key: str, private: bool = False, *, atomic_writes: bool = False, encoder: type[JSONEncoder] | None = None, minor_version: int = 1, read_only: bool = False) -> None: ...
     @cached_property
     def path(self): ...
+    def make_read_only(self) -> None: ...
     async def async_load(self) -> _T | None: ...
     async def _async_load(self) -> _T | None: ...
     async def _async_load_data(self): ...

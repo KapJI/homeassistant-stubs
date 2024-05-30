@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 def _build_forecast_data(timestep: Timestep) -> Forecast: ...
 def _calculate_unique_id(coordinates: str, use_3hourly: bool) -> str: ...
 
-class MetOfficeWeather(CoordinatorWeatherEntity[TimestampDataUpdateCoordinator[MetOfficeData], TimestampDataUpdateCoordinator[MetOfficeData], TimestampDataUpdateCoordinator[MetOfficeData], TimestampDataUpdateCoordinator[MetOfficeData]]):
+class MetOfficeWeather(CoordinatorWeatherEntity[TimestampDataUpdateCoordinator[MetOfficeData], TimestampDataUpdateCoordinator[MetOfficeData]]):
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     _attr_native_temperature_unit: Incomplete

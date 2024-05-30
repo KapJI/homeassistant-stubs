@@ -1,6 +1,6 @@
 from . import async_wemo_dispatcher_connect as async_wemo_dispatcher_connect
+from .coordinator import DeviceCoordinator as DeviceCoordinator
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity, WemoEntity as WemoEntity
-from .wemo_device import DeviceCoordinator as DeviceCoordinator
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant

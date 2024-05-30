@@ -1,10 +1,6 @@
 from collections.abc import Callable as Callable
 from enum import Enum
-from typing import Any, NamedTuple, ParamSpec, TypeVar
-
-_ObjectT = TypeVar('_ObjectT', bound=object)
-_R = TypeVar('_R')
-_P = ParamSpec('_P')
+from typing import Any, NamedTuple
 
 def deprecated_substitute(substitute_name: str) -> Callable[[Callable[[_ObjectT], Any]], Callable[[_ObjectT], Any]]: ...
 def get_deprecated(config: dict[str, Any], new_name: str, old_name: str, default: Any | None = None) -> Any | None: ...

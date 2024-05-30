@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.util.ssl import get_default_no_verify_context as get_default_no_verify_context
+from sucks import VacBot
 from typing import Any
 
 _LOGGER: Incomplete
@@ -17,7 +18,7 @@ _LOGGER: Incomplete
 class EcovacsController:
     _hass: Incomplete
     _devices: Incomplete
-    legacy_devices: Incomplete
+    _legacy_devices: Incomplete
     _device_id: Incomplete
     _continent: Incomplete
     _authenticator: Incomplete
@@ -27,3 +28,5 @@ class EcovacsController:
     async def initialize(self) -> None: ...
     async def teardown(self) -> None: ...
     def devices(self, capability: type[Capabilities]) -> Generator[Device, None, None]: ...
+    @property
+    def legacy_devices(self) -> list[VacBot]: ...

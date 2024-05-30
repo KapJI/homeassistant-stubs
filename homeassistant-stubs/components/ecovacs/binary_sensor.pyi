@@ -1,5 +1,4 @@
-from .const import DOMAIN as DOMAIN
-from .controller import EcovacsController as EcovacsController
+from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .entity import CapabilityDevice as CapabilityDevice, EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
 from .util import get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
@@ -7,7 +6,6 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from deebot_client.capabilities import CapabilityEvent
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -20,7 +18,7 @@ class EcovacsBinarySensorEntityDescription(BinarySensorEntityDescription, Ecovac
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EcovacsBinarySensor(EcovacsDescriptionEntity[CapabilityDevice, CapabilityEvent[EventT]], BinarySensorEntity):
     entity_description: EcovacsBinarySensorEntityDescription

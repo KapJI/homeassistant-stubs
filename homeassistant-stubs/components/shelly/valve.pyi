@@ -1,11 +1,10 @@
-from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, get_entry_data as get_entry_data
+from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, async_setup_block_attribute_entities as async_setup_block_attribute_entities
 from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from dataclasses import dataclass
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -16,8 +15,8 @@ class BlockValveDescription(BlockEntityDescription, ValveEntityDescription):
 
 GAS_VALVE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def async_setup_block_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+def async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BlockShellyValve(ShellyBlockAttributeEntity, ValveEntity):
     entity_description: BlockValveDescription

@@ -8,9 +8,11 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 DEFAULT_RETRIES: int
+MAX_RESULTS: int
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 
+def sort_ips(ips: list, querytype: str) -> list: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WanIpSensor(SensorEntity):

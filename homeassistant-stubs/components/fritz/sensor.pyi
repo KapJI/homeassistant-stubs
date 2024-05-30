@@ -1,5 +1,6 @@
-from .common import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo, FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
+from .coordinator import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo
+from .entity import FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -33,10 +34,10 @@ def _retrieve_link_noise_margin_received_state(status: FritzStatus, last_value: 
 def _retrieve_link_attenuation_sent_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_link_attenuation_received_state(status: FritzStatus, last_value: str) -> float: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescription):
     is_suitable: Callable[[ConnectionInfo], bool] = ...
-    def __init__(self, value_fn, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, is_suitable) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, is_suitable) -> None: ...
 
 SENSOR_TYPES: tuple[FritzSensorEntityDescription, ...]
 

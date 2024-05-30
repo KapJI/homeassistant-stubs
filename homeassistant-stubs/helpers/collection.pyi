@@ -22,9 +22,6 @@ SAVE_DELAY: int
 CHANGE_ADDED: str
 CHANGE_UPDATED: str
 CHANGE_REMOVED: str
-_ItemT = TypeVar('_ItemT')
-_StoreT = TypeVar('_StoreT', bound='SerializedStorageCollection')
-_StorageCollectionT = TypeVar('_StorageCollectionT', bound='StorageCollection')
 _EntityT = TypeVar('_EntityT', bound=Entity, default=Entity)
 
 @dataclass(slots=True)
@@ -59,7 +56,7 @@ class CollectionEntity(Entity, metaclass=abc.ABCMeta):
     @abstractmethod
     async def async_update_config(self, config: ConfigType) -> None: ...
 
-class ObservableCollection(ABC, Generic[_ItemT]):
+class ObservableCollection(ABC):
     id_manager: Incomplete
     data: Incomplete
     listeners: Incomplete
@@ -80,7 +77,7 @@ class YamlCollection(ObservableCollection[dict]):
 class SerializedStorageCollection(TypedDict):
     items: list[dict[str, Any]]
 
-class StorageCollection(ObservableCollection[_ItemT], Generic[_ItemT, _StoreT], metaclass=abc.ABCMeta):
+class StorageCollection(ObservableCollection[_ItemT], metaclass=abc.ABCMeta):
     store: Incomplete
     def __init__(self, store: Store[_StoreT], id_manager: IDManager | None = None) -> None: ...
     @staticmethod
@@ -140,7 +137,7 @@ class _CollectionLifeCycle(Generic[_EntityT]):
 
 def sync_entity_lifecycle(hass: HomeAssistant, domain: str, platform: str, entity_component: EntityComponent[_EntityT], collection: StorageCollection | YamlCollection, entity_class: type[CollectionEntity]) -> None: ...
 
-class StorageCollectionWebsocket(Generic[_StorageCollectionT]):
+class StorageCollectionWebsocket:
     storage_collection: Incomplete
     api_prefix: Incomplete
     model_name: Incomplete

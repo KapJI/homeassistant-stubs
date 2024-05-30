@@ -10,10 +10,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.util.decorator import Registry as Registry
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
-DATA_REQS: str
+DATA_REQS: HassKey[set[str]]
 AUTH_PROVIDERS: Registry[str, type[AuthProvider]]
 AUTH_PROVIDER_SCHEMA: Incomplete
 

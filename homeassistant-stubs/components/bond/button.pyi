@@ -1,12 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from . import BondConfigEntry as BondConfigEntry
 from .entity import BondEntity as BondEntity
-from .models import BondData as BondData
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from _typeshed import Incomplete
 from bond_async import Action, BPUPSubscriptions as BPUPSubscriptions
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
@@ -22,7 +20,7 @@ class BondButtonEntityDescription(ButtonEntityDescription):
 STOP_BUTTON: Incomplete
 BUTTONS: tuple[BondButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BondButtonEntity(BondEntity, ButtonEntity):
     entity_description: BondButtonEntityDescription

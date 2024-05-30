@@ -1,11 +1,8 @@
 from _typeshed import Incomplete
-from aioesphomeapi import APIIntEnum
-from typing import Generic, TypeVar, overload
+from aioesphomeapi import APIIntEnum as APIIntEnum
+from typing import overload
 
-_EnumT = TypeVar('_EnumT', bound=APIIntEnum)
-_ValT = TypeVar('_ValT')
-
-class EsphomeEnumMapper(Generic[_EnumT, _ValT]):
+class EsphomeEnumMapper:
     _mapping: Incomplete
     _inverse: Incomplete
     def __init__(self, mapping: dict[_EnumT, _ValT]) -> None: ...

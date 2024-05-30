@@ -1,7 +1,7 @@
 from . import async_wemo_dispatcher_connect as async_wemo_dispatcher_connect
 from .const import SERVICE_RESET_FILTER_LIFE as SERVICE_RESET_FILTER_LIFE, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY
+from .coordinator import DeviceCoordinator as DeviceCoordinator
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity
-from .wemo_device import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

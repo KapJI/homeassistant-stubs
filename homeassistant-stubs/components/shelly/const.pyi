@@ -5,12 +5,12 @@ from typing import Final
 
 DOMAIN: Final[str]
 LOGGER: Logger
-DATA_CONFIG_ENTRY: Final[str]
 CONF_COAP_PORT: Final[str]
 FIRMWARE_PATTERN: Final[Incomplete]
 BLOCK_MAX_TRANSITION_TIME_MS: Final[int]
 RPC_MIN_TRANSITION_TIME_SEC: float
 RGBW_MODELS: Final[Incomplete]
+MOTION_MODELS: Final[Incomplete]
 MODELS_SUPPORTING_LIGHT_TRANSITION: Final[Incomplete]
 MODELS_SUPPORTING_LIGHT_EFFECTS: Final[Incomplete]
 MODELS_WITH_WRONG_SLEEP_PERIOD: Final[Incomplete]

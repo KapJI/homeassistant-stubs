@@ -1,6 +1,5 @@
-from .const import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING
+from .const import DOMAIN as DOMAIN, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING
 from _typeshed import Incomplete
-from collections.abc import Mapping
 from enum import IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -15,7 +14,6 @@ from homeassistant.loader import bind_hass as bind_hass
 from typing import Any
 
 _LOGGER: Incomplete
-DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
 SCAN_INTERVAL: Incomplete
 ATTR_BATTERY_ICON: str
@@ -91,7 +89,7 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     @property
     def battery_icon(self) -> str: ...
     @property
-    def capability_attributes(self) -> Mapping[str, Any] | None: ...
+    def capability_attributes(self) -> dict[str, Any] | None: ...
     @cached_property
     def fan_speed(self) -> str | None: ...
     @cached_property

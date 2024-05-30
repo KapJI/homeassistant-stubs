@@ -1,4 +1,4 @@
-from .wemo_device import DeviceCoordinator as DeviceCoordinator
+from .coordinator import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
 from collections.abc import Generator
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo

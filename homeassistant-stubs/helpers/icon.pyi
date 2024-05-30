@@ -4,13 +4,13 @@ from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import load_json_object as load_json_object
 from typing import Any
 
-ICON_CACHE: str
+ICON_CACHE: HassKey[_IconsCache]
 _LOGGER: Incomplete
 
-def _component_icons_path(integration: Integration) -> pathlib.Path: ...
 def _load_icons_files(icons_files: dict[str, pathlib.Path]) -> dict[str, dict[str, Any]]: ...
 async def _async_get_component_icons(hass: HomeAssistant, components: set[str], integrations: dict[str, Integration]) -> dict[str, Any]: ...
 

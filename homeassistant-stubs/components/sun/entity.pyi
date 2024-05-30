@@ -2,6 +2,7 @@ from .const import SIGNAL_EVENTS_CHANGED as SIGNAL_EVENTS_CHANGED, SIGNAL_POSITI
 from _typeshed import Incomplete
 from astral.location import Elevation as Elevation, Location as Location
 from datetime import datetime
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
@@ -10,6 +11,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.sun import get_astral_location as get_astral_location, get_location_astral_event_next as get_location_astral_event_next
 from typing import Any
 
+SunConfigEntry = ConfigEntry[Sun]
 _LOGGER: Incomplete
 ENTITY_ID: str
 STATE_ATTR_AZIMUTH: str

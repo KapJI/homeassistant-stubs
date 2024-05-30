@@ -1,6 +1,6 @@
 from . import async_wemo_dispatcher_connect as async_wemo_dispatcher_connect
+from .coordinator import DeviceCoordinator as DeviceCoordinator
 from .entity import WemoEntity as WemoEntity
-from .wemo_device import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

@@ -1,3 +1,4 @@
+from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import DOMAIN as DOMAIN, REGULAR_FIRMWARE as REGULAR_FIRMWARE
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
@@ -6,7 +7,6 @@ from dataclasses import dataclass
 from devolo_plc_api.device import Device as Device
 from devolo_plc_api.device_api import UpdateFirmwareCheck as UpdateFirmwareCheck
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -22,13 +22,13 @@ class DevoloUpdateEntityDescription(UpdateEntityDescription):
 
 UPDATE_TYPES: dict[str, DevoloUpdateEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloUpdateEntity(DevoloCoordinatorEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     entity_description: DevoloUpdateEntityDescription
     _in_progress_old_version: Incomplete
-    def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator, description: DevoloUpdateEntityDescription, device: Device) -> None: ...
+    def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DataUpdateCoordinator, description: DevoloUpdateEntityDescription) -> None: ...
     @property
     def installed_version(self) -> str: ...
     @property

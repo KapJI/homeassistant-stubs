@@ -1,5 +1,5 @@
-from . import PureEnergieData as PureEnergieData, PureEnergieDataUpdateCoordinator as PureEnergieDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import PureEnergieData as PureEnergieData, PureEnergieDataUpdateCoordinator as PureEnergieDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

@@ -1,5 +1,5 @@
-from .const import DOMAIN as DOMAIN, SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
-from .controller import EcovacsController as EcovacsController
+from . import EcovacsConfigEntry as EcovacsConfigEntry
+from .const import SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
 from .entity import CapabilityDevice as CapabilityDevice, EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity, EventT as EventT
 from .util import get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
@@ -8,7 +8,6 @@ from dataclasses import dataclass
 from deebot_client.capabilities import Capabilities, CapabilityEvent, CapabilityLifeSpan
 from deebot_client.events import ErrorEvent, Event as Event, LifeSpan as LifeSpan, LifeSpanEvent as LifeSpanEvent
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import AREA_SQUARE_METERS as AREA_SQUARE_METERS, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DESCRIPTION as CONF_DESCRIPTION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -30,7 +29,7 @@ class EcovacsLifespanSensorEntityDescription(SensorEntityDescription):
 
 LIFESPAN_ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EcovacsSensor(EcovacsDescriptionEntity[CapabilityDevice, CapabilityEvent], SensorEntity):
     entity_description: EcovacsSensorEntityDescription

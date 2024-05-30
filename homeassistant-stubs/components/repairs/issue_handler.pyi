@@ -4,7 +4,6 @@ from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
-from homeassistant.helpers.issue_registry import async_delete_issue as async_delete_issue
 from typing import Any
 
 class ConfirmRepairFlow(RepairsFlow):

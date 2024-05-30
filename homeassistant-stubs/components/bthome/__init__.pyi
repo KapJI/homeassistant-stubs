@@ -6,7 +6,7 @@ from homeassistant.components.bluetooth import BluetoothScanningMode as Bluetoot
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceRegistry as DeviceRegistry, async_get as async_get
+from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceRegistry as DeviceRegistry
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.util.signal_type import SignalType as SignalType
 

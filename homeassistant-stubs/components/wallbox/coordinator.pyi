@@ -4,13 +4,11 @@ from collections.abc import Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 from wallbox import Wallbox as Wallbox
 
 _LOGGER: Incomplete
 CHARGER_STATUS: dict[int, ChargerStatus]
-_WallboxCoordinatorT = TypeVar('_WallboxCoordinatorT', bound='WallboxCoordinator')
-_P = ParamSpec('_P')
 
 def _require_authentication(func: Callable[Concatenate[_WallboxCoordinatorT, _P], Any]) -> Callable[Concatenate[_WallboxCoordinatorT, _P], Any]: ...
 

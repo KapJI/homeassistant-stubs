@@ -1,9 +1,9 @@
+from . import ScrapeConfigEntry as ScrapeConfigEntry
 from .const import CONF_INDEX as CONF_INDEX, CONF_SELECT as CONF_SELECT, DOMAIN as DOMAIN
 from .coordinator import ScrapeCoordinator as ScrapeCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass
 from homeassistant.components.sensor.helpers import async_parse_date_datetime as async_parse_date_datetime
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
@@ -19,7 +19,7 @@ _LOGGER: Incomplete
 TRIGGER_ENTITY_OPTIONS: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ScrapeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ScrapeSensor(CoordinatorEntity[ScrapeCoordinator], ManualTriggerSensorEntity):
     _select: Incomplete

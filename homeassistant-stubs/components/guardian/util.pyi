@@ -6,12 +6,10 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
-_GuardianEntityT = TypeVar('_GuardianEntityT', bound=GuardianEntity)
 DEFAULT_UPDATE_INTERVAL: Incomplete
 SIGNAL_REBOOT_REQUESTED: str
-_P = ParamSpec('_P')
 
 @dataclass
 class EntityDomainReplacementStrategy:

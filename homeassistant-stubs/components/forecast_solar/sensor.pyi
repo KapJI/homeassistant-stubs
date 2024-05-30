@@ -1,3 +1,4 @@
+from . import ForecastSolarConfigEntry as ForecastSolarConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import ForecastSolarDataUpdateCoordinator as ForecastSolarDataUpdateCoordinator
 from _typeshed import Incomplete
@@ -6,7 +7,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from forecast_solar.models import Estimate as Estimate
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -22,7 +22,7 @@ class ForecastSolarSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[ForecastSolarSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ForecastSolarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ForecastSolarSensorEntity(CoordinatorEntity[ForecastSolarDataUpdateCoordinator], SensorEntity):
     entity_description: ForecastSolarSensorEntityDescription

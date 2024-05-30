@@ -2,6 +2,7 @@ from .core import EventStateChangedData as EventStateChangedData
 from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
+from .util.hass_dict import HassKey as HassKey
 from .util.signal_type import SignalType as SignalType
 from _typeshed import Incomplete
 from enum import StrEnum
@@ -62,6 +63,7 @@ class Platform(StrEnum):
     WATER_HEATER: str
     WEATHER: str
 
+BASE_PLATFORMS: Final[Incomplete]
 MATCH_ALL: Final[str]
 ENTITY_MATCH_NONE: Final[str]
 ENTITY_MATCH_ALL: Final[str]
@@ -80,6 +82,7 @@ CONF_ACCESS_TOKEN: Final[str]
 CONF_ADDRESS: Final[str]
 CONF_AFTER: Final[str]
 CONF_ALIAS: Final[str]
+CONF_LLM_HASS_API: str
 CONF_ALLOWLIST_EXTERNAL_URLS: Final[str]
 CONF_API_KEY: Final[str]
 CONF_API_TOKEN: Final[str]
@@ -803,10 +806,11 @@ CAST_APP_ID_HOMEASSISTANT_MEDIA: Final[str]
 CAST_APP_ID_HOMEASSISTANT_LOVELACE: Final[str]
 HASSIO_USER_NAME: str
 SIGNAL_BOOTSTRAP_INTEGRATIONS: SignalType[dict[str, float]]
-KEY_DATA_LOGGING: str
+KEY_DATA_LOGGING: HassKey[str]
 FORMAT_DATE: Final[str]
 FORMAT_TIME: Final[str]
 FORMAT_DATETIME: Final[Incomplete]
+MAX_EXPECTED_ENTITY_IDS: Final[int]
 __getattr__: Incomplete
 __dir__: Incomplete
 __all__: Incomplete

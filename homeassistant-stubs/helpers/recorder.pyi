@@ -1,14 +1,15 @@
 import asyncio
 from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
-DOMAIN: str
+DOMAIN: HassKey[RecorderData]
 
 @dataclass(slots=True)
 class RecorderData:
     recorder_platforms: dict[str, Any] = ...
-    db_connected: asyncio.Future = ...
+    db_connected: asyncio.Future[bool] = ...
     def __init__(self, recorder_platforms, db_connected) -> None: ...
 
 def async_migration_in_progress(hass: HomeAssistant) -> bool: ...

@@ -1,7 +1,8 @@
+from . import RenaultConfigEntry as RenaultConfigEntry
 from .const import DOMAIN as DOMAIN
-from .renault_hub import RenaultHub as RenaultHub
 from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from _typeshed import Incomplete
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 
 LOGGER: Incomplete
@@ -20,4 +21,3 @@ SERVICE_CHARGE_SET_SCHEDULES: str
 SERVICES: Incomplete
 
 def setup_services(hass: HomeAssistant) -> None: ...
-def unload_services(hass: HomeAssistant) -> None: ...

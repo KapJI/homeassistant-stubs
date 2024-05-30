@@ -1,10 +1,10 @@
-from .const import ANDROID_DEV as ANDROID_DEV, ANDROID_DEV_OPT as ANDROID_DEV_OPT, CONF_APPS as CONF_APPS, CONF_EXCLUDE_UNNAMED_APPS as CONF_EXCLUDE_UNNAMED_APPS, CONF_GET_SOURCES as CONF_GET_SOURCES, CONF_SCREENCAP as CONF_SCREENCAP, CONF_TURN_OFF_COMMAND as CONF_TURN_OFF_COMMAND, CONF_TURN_ON_COMMAND as CONF_TURN_ON_COMMAND, DEFAULT_EXCLUDE_UNNAMED_APPS as DEFAULT_EXCLUDE_UNNAMED_APPS, DEFAULT_GET_SOURCES as DEFAULT_GET_SOURCES, DEFAULT_SCREENCAP as DEFAULT_SCREENCAP, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, DOMAIN as DOMAIN, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
+from . import AndroidTVConfigEntry as AndroidTVConfigEntry
+from .const import CONF_APPS as CONF_APPS, CONF_EXCLUDE_UNNAMED_APPS as CONF_EXCLUDE_UNNAMED_APPS, CONF_GET_SOURCES as CONF_GET_SOURCES, CONF_SCREENCAP as CONF_SCREENCAP, CONF_TURN_OFF_COMMAND as CONF_TURN_OFF_COMMAND, CONF_TURN_ON_COMMAND as CONF_TURN_ON_COMMAND, DEFAULT_EXCLUDE_UNNAMED_APPS as DEFAULT_EXCLUDE_UNNAMED_APPS, DEFAULT_GET_SOURCES as DEFAULT_GET_SOURCES, DEFAULT_SCREENCAP as DEFAULT_SCREENCAP, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
 from .entity import AndroidTVEntity as AndroidTVEntity, adb_decorator as adb_decorator
 from _typeshed import Incomplete
 from androidtv.setup_async import AndroidTVAsync as AndroidTVAsync, FireTVAsync as FireTVAsync
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
@@ -25,7 +25,7 @@ SERVICE_LEARN_SENDEVENT: str
 SERVICE_UPLOAD: str
 ANDROIDTV_STATES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AndroidTVConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ADBDevice(AndroidTVEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
@@ -42,7 +42,7 @@ class ADBDevice(AndroidTVEntity, MediaPlayerEntity):
     turn_off_command: Incomplete
     _attr_extra_state_attributes: Incomplete
     _failed_connect_count: int
-    def __init__(self, aftv: AndroidTVAsync | FireTVAsync, entry: ConfigEntry, entry_data: dict[str, Any]) -> None: ...
+    def __init__(self, entry: AndroidTVConfigEntry) -> None: ...
     def _process_config(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _adb_screencap(self) -> bytes | None: ...

@@ -1,4 +1,3 @@
-import datetime as dt
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
@@ -12,5 +11,5 @@ class MqttServiceInfo(BaseServiceInfo):
     qos: int
     retain: bool
     subscribed_topic: str
-    timestamp: dt.datetime
+    timestamp: float
     def __init__(self, topic, payload, qos, retain, subscribed_topic, timestamp) -> None: ...

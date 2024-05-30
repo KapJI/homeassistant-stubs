@@ -1,12 +1,11 @@
-from .const import DOMAIN as DOMAIN
+from . import WLEDConfigEntry as WLEDConfigEntry
 from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
-from .models import WLEDEntity as WLEDEntity
+from .entity import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,7 +21,7 @@ class WLEDSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[WLEDSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WLEDSensorEntity(WLEDEntity, SensorEntity):
     entity_description: WLEDSensorEntityDescription

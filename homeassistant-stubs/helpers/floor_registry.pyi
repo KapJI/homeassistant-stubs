@@ -1,5 +1,6 @@
 from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems, normalize_name as normalize_name
 from .registry import BaseRegistry as BaseRegistry
+from .singleton import singleton as singleton
 from .storage import Store as Store
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
@@ -8,9 +9,10 @@ from dataclasses import dataclass
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
 from homeassistant.util.event_type import EventType as EventType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Literal, TypedDict
 
-DATA_REGISTRY: str
+DATA_REGISTRY: HassKey[FloorRegistry]
 EVENT_FLOOR_REGISTRY_UPDATED: EventType[EventFloorRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int

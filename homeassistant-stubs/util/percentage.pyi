@@ -1,7 +1,4 @@
 from .scaling import int_states_in_range as int_states_in_range, scale_ranged_value_to_int_range as scale_ranged_value_to_int_range, scale_to_ranged_value as scale_to_ranged_value, states_in_range as states_in_range
-from typing import TypeVar
-
-_T = TypeVar('_T')
 
 def ordered_list_item_to_percentage(ordered_list: list[_T], item: _T) -> int: ...
 def percentage_to_ordered_list_item(ordered_list: list[_T], percentage: int) -> _T: ...

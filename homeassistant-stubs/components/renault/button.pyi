@@ -1,10 +1,8 @@
-from .const import DOMAIN as DOMAIN
+from . import RenaultConfigEntry as RenaultConfigEntry
 from .entity import RenaultEntity as RenaultEntity
-from .renault_hub import RenaultHub as RenaultHub
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -15,7 +13,7 @@ class RenaultButtonEntityDescription(ButtonEntityDescription):
     requires_electricity: bool = ...
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, async_press, requires_electricity) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RenaultButtonEntity(RenaultEntity, ButtonEntity):
     entity_description: RenaultButtonEntityDescription

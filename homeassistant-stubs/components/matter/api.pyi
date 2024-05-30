@@ -5,9 +5,8 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from matter_server.client.models.node import MatterNode as MatterNode
-from typing import Any, Concatenate, ParamSpec
+from typing import Any, Concatenate
 
-_P = ParamSpec('_P')
 ID: str
 TYPE: str
 DEVICE_ID: str

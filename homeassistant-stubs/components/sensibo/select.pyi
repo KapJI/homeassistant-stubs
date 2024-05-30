@@ -1,3 +1,4 @@
+from . import SensiboConfigEntry as SensiboConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordinator
 from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, async_handle_api_call as async_handle_api_call
@@ -5,7 +6,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -24,7 +24,7 @@ class SensiboSelectEntityDescription(SelectEntityDescription):
 
 DEVICE_SELECT_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensiboSelect(SensiboDeviceBaseEntity, SelectEntity):
     entity_description: SensiboSelectEntityDescription

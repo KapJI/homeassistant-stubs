@@ -1,9 +1,7 @@
 from .const import REDACTED as REDACTED
 from collections.abc import Iterable, Mapping
 from homeassistant.core import callback as callback
-from typing import Any, TypeVar, overload
-
-_T = TypeVar('_T')
+from typing import Any, overload
 
 @overload
 def async_redact_data(data: Mapping, to_redact: Iterable[Any]) -> dict: ...

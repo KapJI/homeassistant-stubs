@@ -1,4 +1,5 @@
 import aiounifi
+from . import UnifiConfigEntry as UnifiConfigEntry
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER
 from .entity import HandlerT as HandlerT, SubscriptionT as SubscriptionT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from .hub import UnifiHub as UnifiHub
@@ -10,7 +11,6 @@ from aiounifi.models.event import Event as Event
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import DOMAIN as DOMAIN, SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -42,8 +42,8 @@ class UnifiSwitchEntityDescription(SwitchEntityDescription, UnifiEntityDescripti
 
 ENTITY_DESCRIPTIONS: tuple[UnifiSwitchEntityDescription, ...]
 
-def async_update_unique_id(hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+def async_update_unique_id(hass: HomeAssistant, config_entry: UnifiConfigEntry) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class UnifiSwitchEntity(UnifiEntity[HandlerT, ApiItemT], SwitchEntity):
     entity_description: UnifiSwitchEntityDescription[HandlerT, ApiItemT]

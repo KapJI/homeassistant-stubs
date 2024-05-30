@@ -21,10 +21,9 @@ class MatterEntityInfo:
     attributes_to_watch: list[type[ClusterAttributeDescriptor]]
     entity_description: EntityDescription
     entity_class: type
-    should_poll: bool
     @property
     def primary_attribute(self) -> type[ClusterAttributeDescriptor]: ...
-    def __init__(self, endpoint, platform, attributes_to_watch, entity_description, entity_class, should_poll) -> None: ...
+    def __init__(self, endpoint, platform, attributes_to_watch, entity_description, entity_class) -> None: ...
 
 @dataclass
 class MatterDiscoverySchema:

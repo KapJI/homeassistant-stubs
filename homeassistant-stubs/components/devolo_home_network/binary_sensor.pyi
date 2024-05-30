@@ -1,12 +1,11 @@
-from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_TO_ROUTER as CONNECTED_TO_ROUTER, DOMAIN as DOMAIN
+from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
+from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_TO_ROUTER as CONNECTED_TO_ROUTER
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from devolo_plc_api import Device as Device
 from devolo_plc_api.plcnet_api import LogicalNetwork
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -21,10 +20,10 @@ class DevoloBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 SENSOR_TYPES: dict[str, DevoloBinarySensorEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloBinarySensorEntity(DevoloCoordinatorEntity[LogicalNetwork], BinarySensorEntity):
     entity_description: Incomplete
-    def __init__(self, entry: ConfigEntry, coordinator: DataUpdateCoordinator[LogicalNetwork], description: DevoloBinarySensorEntityDescription, device: Device) -> None: ...
+    def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DataUpdateCoordinator[LogicalNetwork], description: DevoloBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

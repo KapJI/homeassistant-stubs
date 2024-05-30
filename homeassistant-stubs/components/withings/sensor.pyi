@@ -1,4 +1,4 @@
-from . import WithingsData as WithingsData
+from . import WithingsConfigEntry as WithingsConfigEntry
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SCORE_POINTS as SCORE_POINTS, UOM_BEATS_PER_MINUTE as UOM_BEATS_PER_MINUTE, UOM_BREATHS_PER_MINUTE as UOM_BREATHS_PER_MINUTE, UOM_FREQUENCY as UOM_FREQUENCY, UOM_MMHG as UOM_MMHG
 from .coordinator import WithingsActivityDataUpdateCoordinator as WithingsActivityDataUpdateCoordinator, WithingsDataUpdateCoordinator as WithingsDataUpdateCoordinator, WithingsGoalsDataUpdateCoordinator as WithingsGoalsDataUpdateCoordinator, WithingsMeasurementDataUpdateCoordinator as WithingsMeasurementDataUpdateCoordinator, WithingsSleepDataUpdateCoordinator as WithingsSleepDataUpdateCoordinator, WithingsWorkoutDataUpdateCoordinator as WithingsWorkoutDataUpdateCoordinator
 from .entity import WithingsEntity as WithingsEntity
@@ -8,12 +8,10 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, Platform as Platform, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Generic, TypeVar
 
 @dataclass(frozen=True, kw_only=True)
 class WithingsMeasurementSensorEntityDescription(SensorEntityDescription):
@@ -55,11 +53,9 @@ _WORKOUT_CATEGORY: Incomplete
 WORKOUT_SENSORS: Incomplete
 
 def get_current_goals(goals: Goals) -> set[str]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-_T = TypeVar('_T', bound=WithingsDataUpdateCoordinator)
-_ED = TypeVar('_ED', bound=SensorEntityDescription)
+async def async_setup_entry(hass: HomeAssistant, entry: WithingsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class WithingsSensor(WithingsEntity[_T], SensorEntity, Generic[_T, _ED]):
+class WithingsSensor(WithingsEntity[_T], SensorEntity):
     entity_description: _ED
     def __init__(self, coordinator: _T, entity_description: _ED) -> None: ...
 

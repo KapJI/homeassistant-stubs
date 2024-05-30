@@ -1,15 +1,14 @@
-from .const import DOMAIN as DOMAIN
+from . import DevoloHomeControlConfigEntry as DevoloHomeControlConfigEntry
 from .devolo_multi_level_switch import DevoloMultiLevelSwitchDeviceEntity as DevoloMultiLevelSwitchDeviceEntity
 from _typeshed import Incomplete
 from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
 from homeassistant.components.siren import ATTR_TONE as ATTR_TONE, SirenEntity as SirenEntity, SirenEntityFeature as SirenEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloSirenDeviceEntity(DevoloMultiLevelSwitchDeviceEntity, SirenEntity):
     _attr_supported_features: Incomplete

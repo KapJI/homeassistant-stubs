@@ -1,3 +1,4 @@
+from . import DiscovergyConfigEntry as DiscovergyConfigEntry
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .coordinator import DiscovergyUpdateCoordinator as DiscovergyUpdateCoordinator
 from _typeshed import Incomplete
@@ -5,7 +6,6 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -26,7 +26,7 @@ GAS_SENSORS: tuple[DiscovergySensorEntityDescription, ...]
 ELECTRICITY_SENSORS: tuple[DiscovergySensorEntityDescription, ...]
 ADDITIONAL_SENSORS: tuple[DiscovergySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DiscovergyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DiscovergySensor(CoordinatorEntity[DiscovergyUpdateCoordinator], SensorEntity):
     entity_description: DiscovergySensorEntityDescription

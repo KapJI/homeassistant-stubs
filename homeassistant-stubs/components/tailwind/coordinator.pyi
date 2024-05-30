@@ -9,7 +9,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 class TailwindDataUpdateCoordinator(DataUpdateCoordinator[TailwindDeviceStatus]):
-    config_entry: ConfigEntry
     tailwind: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> TailwindDeviceStatus: ...

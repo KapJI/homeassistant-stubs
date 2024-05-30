@@ -6,10 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from switchbee.device import SwitchBeeGroupSwitch, SwitchBeeSwitch, SwitchBeeTimedSwitch, SwitchBeeTimerSwitch
-from typing import Any, TypeVar
-
-_DeviceTypeT = TypeVar('_DeviceTypeT', bound=SwitchBeeTimedSwitch | SwitchBeeGroupSwitch | SwitchBeeSwitch | SwitchBeeTimerSwitch)
+from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

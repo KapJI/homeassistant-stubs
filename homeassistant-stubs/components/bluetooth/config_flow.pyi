@@ -1,4 +1,3 @@
-from . import models as models
 from .const import CONF_ADAPTER as CONF_ADAPTER, CONF_DETAILS as CONF_DETAILS, CONF_PASSIVE as CONF_PASSIVE, DOMAIN as DOMAIN
 from .util import adapter_title as adapter_title
 from _typeshed import Incomplete

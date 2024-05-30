@@ -1,15 +1,17 @@
+import asyncio
 import contextvars
 from . import core as core, loader as loader, requirements as requirements
-from .const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PLATFORM_FORMAT as PLATFORM_FORMAT, Platform as Platform
+from .const import BASE_PLATFORMS as BASE_PLATFORMS, EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PLATFORM_FORMAT as PLATFORM_FORMAT
 from .core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import DependencyError as DependencyError, HomeAssistantError as HomeAssistantError
-from .helpers import translation as translation
+from .helpers import singleton as singleton, translation as translation
 from .helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from .helpers.typing import ConfigType as ConfigType
 from .util.async_ import create_eager_task as create_eager_task
+from .util.hass_dict import HassKey as HassKey
 from _typeshed import Incomplete
 from collections import defaultdict
-from collections.abc import Awaitable, Callable as Callable, Generator
+from collections.abc import Awaitable, Callable as Callable, Generator, Mapping
 from enum import StrEnum
 from types import ModuleType
 from typing import Final, TypedDict
@@ -17,13 +19,12 @@ from typing import Final, TypedDict
 current_setup_group: contextvars.ContextVar[tuple[str, str | None] | None]
 _LOGGER: Incomplete
 ATTR_COMPONENT: Final[str]
-BASE_PLATFORMS: Incomplete
-DATA_SETUP: str
-DATA_SETUP_DONE: str
-DATA_SETUP_STARTED: str
-DATA_SETUP_TIME: str
-DATA_DEPS_REQS: str
-DATA_PERSISTENT_ERRORS: str
+DATA_SETUP: HassKey[dict[str, asyncio.Future[bool]]]
+DATA_SETUP_DONE: HassKey[dict[str, asyncio.Future[bool]]]
+DATA_SETUP_STARTED: HassKey[dict[tuple[str, str | None], float]]
+DATA_SETUP_TIME: HassKey[defaultdict[str, defaultdict[str | None, defaultdict[SetupPhases, float]]]]
+DATA_DEPS_REQS: HassKey[set[str]]
+DATA_PERSISTENT_ERRORS: HassKey[dict[str, str | None]]
 NOTIFY_FOR_TRANSLATION_KEYS: Incomplete
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int
@@ -59,3 +60,4 @@ def async_pause_setup(hass: core.HomeAssistant, phase: SetupPhases) -> Generator
 def _setup_times(hass: core.HomeAssistant) -> defaultdict[str, defaultdict[str | None, defaultdict[SetupPhases, float]]]: ...
 def async_start_setup(hass: core.HomeAssistant, integration: str, phase: SetupPhases, group: str | None = None) -> Generator[None, None, None]: ...
 def async_get_setup_timings(hass: core.HomeAssistant) -> dict[str, float]: ...
+def async_get_domain_setup_times(hass: core.HomeAssistant, domain: str) -> Mapping[str | None, dict[SetupPhases, float]]: ...

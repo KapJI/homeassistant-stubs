@@ -20,6 +20,7 @@ from .util import async_create_backup_failure_issue as async_create_backup_failu
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
+from functools import cached_property as cached_property
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
@@ -31,10 +32,9 @@ from homeassistant.util.event_type import EventType as EventType
 from sqlalchemy.engine import Engine as Engine
 from sqlalchemy.engine.interfaces import DBAPIConnection as DBAPIConnection
 from sqlalchemy.orm.session import Session as Session
-from typing import Any, TypeVar
+from typing import Any
 
 _LOGGER: Incomplete
-T = TypeVar('T')
 DEFAULT_URL: str
 EXPIRE_AFTER_COMMITS: int
 SHUTDOWN_TASK: Incomplete
@@ -52,6 +52,7 @@ class Recorder(threading.Thread):
     stop_requested: bool
     hass: Incomplete
     thread_id: Incomplete
+    recorder_and_worker_thread_ids: Incomplete
     auto_purge: Incomplete
     auto_repack: Incomplete
     keep_days: Incomplete
@@ -103,7 +104,7 @@ class Recorder(threading.Thread):
     def __init__(self, hass: HomeAssistant, auto_purge: bool, auto_repack: bool, keep_days: int, commit_interval: int, uri: str, db_max_retries: int, db_retry_wait: int, entity_filter: Callable[[str], bool], exclude_event_types: set[EventType[Any] | str]) -> None: ...
     @property
     def backlog(self) -> int: ...
-    @property
+    @cached_property
     def dialect_name(self) -> SupportedDialect | None: ...
     @property
     def _using_file_sqlite(self) -> bool: ...
@@ -117,7 +118,7 @@ class Recorder(threading.Thread):
     def async_initialize(self) -> None: ...
     def _async_keep_alive(self, now: datetime) -> None: ...
     def _async_commit(self, now: datetime) -> None: ...
-    def async_add_executor_job(self, target: Callable[..., T], *args: Any) -> asyncio.Future[T]: ...
+    def async_add_executor_job(self, target: Callable[..., _T], *args: Any) -> asyncio.Future[_T]: ...
     def _stop_executor(self) -> None: ...
     def _async_check_queue(self, *_: Any) -> None: ...
     def _available_memory(self) -> int: ...

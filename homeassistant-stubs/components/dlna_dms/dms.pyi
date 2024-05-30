@@ -17,10 +17,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from typing import Any, TypeVar
-
-_DlnaDmsDeviceMethod = TypeVar('_DlnaDmsDeviceMethod', bound='DmsDeviceSource')
-_R = TypeVar('_R')
+from typing import Any
 
 class DlnaDmsData:
     hass: HomeAssistant

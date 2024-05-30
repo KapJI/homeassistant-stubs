@@ -10,6 +10,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from typing import Any
 
+_LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 STEP_PAIR_DATA_SCHEMA: Incomplete
 

@@ -9,13 +9,11 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from renault_api.kamereon import models as models
 from renault_api.renault_vehicle import RenaultVehicle as RenaultVehicle
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
 LOGGER: Incomplete
-_T = TypeVar('_T')
-_P = ParamSpec('_P')
 
-def with_error_wrapping(func: Callable[Concatenate[RenaultVehicleProxy, _P], Awaitable[_T]]) -> Callable[Concatenate[RenaultVehicleProxy, _P], Coroutine[Any, Any, _T]]: ...
+def with_error_wrapping(func: Callable[Concatenate[RenaultVehicleProxy, _P], Awaitable[_R]]) -> Callable[Concatenate[RenaultVehicleProxy, _P], Coroutine[Any, Any, _R]]: ...
 
 @dataclass
 class RenaultCoordinatorDescription:

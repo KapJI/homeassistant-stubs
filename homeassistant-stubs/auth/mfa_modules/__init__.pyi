@@ -8,11 +8,12 @@ from homeassistant.data_entry_flow import FlowResult as FlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.util.decorator import Registry as Registry
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 MULTI_FACTOR_AUTH_MODULES: Registry[str, type[MultiFactorAuthModule]]
 MULTI_FACTOR_AUTH_MODULE_SCHEMA: Incomplete
-DATA_REQS: str
+DATA_REQS: HassKey[set[str]]
 _LOGGER: Incomplete
 
 class MultiFactorAuthModule:

@@ -1,10 +1,10 @@
+from . import SpeedTestConfigEntry as SpeedTestConfigEntry
 from .const import ATTRIBUTION as ATTRIBUTION, ATTR_BYTES_RECEIVED as ATTR_BYTES_RECEIVED, ATTR_BYTES_SENT as ATTR_BYTES_SENT, ATTR_SERVER_COUNTRY as ATTR_SERVER_COUNTRY, ATTR_SERVER_ID as ATTR_SERVER_ID, ATTR_SERVER_NAME as ATTR_SERVER_NAME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from .coordinator import SpeedTestDataCoordinator as SpeedTestDataCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfDataRate as UnitOfDataRate, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -20,7 +20,7 @@ class SpeedtestSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[SpeedtestSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: SpeedTestConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SpeedtestSensor(CoordinatorEntity[SpeedTestDataCoordinator], SensorEntity):
     entity_description: SpeedtestSensorEntityDescription

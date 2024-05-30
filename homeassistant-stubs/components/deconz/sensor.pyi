@@ -15,8 +15,10 @@ from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
 from pydeconz.models.sensor.air_quality import AirQuality
+from pydeconz.models.sensor.carbon_dioxide import CarbonDioxide
 from pydeconz.models.sensor.consumption import Consumption
 from pydeconz.models.sensor.daylight import Daylight
+from pydeconz.models.sensor.formaldehyde import Formaldehyde
 from pydeconz.models.sensor.generic_status import GenericStatus
 from pydeconz.models.sensor.humidity import Humidity
 from pydeconz.models.sensor.light_level import LightLevel
@@ -33,7 +35,7 @@ ATTR_CURRENT: str
 ATTR_POWER: str
 ATTR_DAYLIGHT: str
 ATTR_EVENT_ID: str
-T = TypeVar('T', AirQuality, Consumption, Daylight, GenericStatus, Humidity, LightLevel, Moisture, ParticulateMatter, Power, Pressure, Temperature, Time, PydeconzSensorBase)
+T = TypeVar('T', AirQuality, CarbonDioxide, Consumption, Daylight, Formaldehyde, GenericStatus, Humidity, LightLevel, Moisture, ParticulateMatter, Power, Pressure, Temperature, Time, PydeconzSensorBase)
 
 @dataclass(frozen=True, kw_only=True)
 class DeconzSensorDescription(SensorEntityDescription, Generic[T]):

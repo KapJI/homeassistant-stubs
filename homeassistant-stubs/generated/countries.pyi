@@ -1,3 +1,3 @@
-from _typeshed import Incomplete
+from typing import Final
 
-COUNTRIES: Incomplete
+COUNTRIES: Final[set[str]]

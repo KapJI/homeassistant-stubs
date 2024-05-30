@@ -12,7 +12,7 @@ _LOGGER: Incomplete
 UPDATE_INTERVAL: Final[Incomplete]
 TIMEOUT: int
 
-class FitbitDeviceCoordinator(DataUpdateCoordinator):
+class FitbitDeviceCoordinator(DataUpdateCoordinator[dict[str, FitbitDevice]]):
     _api: Incomplete
     def __init__(self, hass: HomeAssistant, api: FitbitApi) -> None: ...
     async def _async_update_data(self) -> dict[str, FitbitDevice]: ...

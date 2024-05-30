@@ -1,5 +1,6 @@
-from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
+from . import AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
+from .entity import AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverEntity as CoverEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

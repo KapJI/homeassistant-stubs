@@ -6,9 +6,8 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Self, TypeVar
+from typing import Any, Self
 
-_T = TypeVar('_T')
 _LOGGER: Incomplete
 ATTR_INITIAL: str
 ATTR_STEP: str

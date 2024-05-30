@@ -1,7 +1,7 @@
 from .common import SynoApi as SynoApi, raise_config_entry_auth_error as raise_config_entry_auth_error
 from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, SIGNAL_CAMERA_SOURCE_CHANGED as SIGNAL_CAMERA_SOURCE_CHANGED, SYNOLOGY_AUTH_FAILED_EXCEPTIONS as SYNOLOGY_AUTH_FAILED_EXCEPTIONS, SYNOLOGY_CONNECTION_EXCEPTIONS as SYNOLOGY_CONNECTION_EXCEPTIONS
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
@@ -9,14 +9,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from synology_dsm.api.surveillance_station.camera import SynoCamera
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
 _LOGGER: Incomplete
-_DataT = TypeVar('_DataT')
-_T = TypeVar('_T', bound='SynologyDSMUpdateCoordinator')
-_P = ParamSpec('_P')
 
-def async_re_login_on_expired(func: Callable[Concatenate[_T, _P], Awaitable[_DataT]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, _DataT]]: ...
+def async_re_login_on_expired(func: Callable[Concatenate[_T, _P], Awaitable[_R]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, _R]]: ...
 
 class SynologyDSMUpdateCoordinator(DataUpdateCoordinator[_DataT]):
     api: Incomplete

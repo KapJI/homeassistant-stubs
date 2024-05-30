@@ -12,6 +12,7 @@ from pyairvisual.node import NodeSamba
 
 PLATFORMS: Incomplete
 UPDATE_INTERVAL: Incomplete
+AirVisualProConfigEntry = ConfigEntry[AirVisualProData]
 
 @dataclass
 class AirVisualProData:
@@ -19,8 +20,8 @@ class AirVisualProData:
     node: NodeSamba
     def __init__(self, coordinator, node) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirVisualProConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: AirVisualProConfigEntry) -> bool: ...
 
 class AirVisualProEntity(CoordinatorEntity):
     _attr_unique_id: Incomplete

@@ -1,3 +1,4 @@
+from . import CO2SignalConfigEntry as CO2SignalConfigEntry
 from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import CO2SignalCoordinator as CO2SignalCoordinator
 from _typeshed import Incomplete
@@ -5,7 +6,6 @@ from aioelectricitymaps.models import CarbonIntensityResponse as CarbonIntensity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -21,7 +21,7 @@ class CO2SensorEntityDescription(SensorEntityDescription):
 
 SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CO2SignalConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CO2Sensor(CoordinatorEntity[CO2SignalCoordinator], SensorEntity):
     entity_description: CO2SensorEntityDescription

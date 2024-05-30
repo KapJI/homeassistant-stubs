@@ -1,10 +1,10 @@
-from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN, DOMAIN_COORDINATOR as DOMAIN_COORDINATOR
+from . import SystemMonitorConfigEntry as SystemMonitorConfigEntry
+from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN
 from .coordinator import SystemMonitorCoordinator as SystemMonitorCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -33,7 +33,7 @@ class SysMonitorBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 SENSOR_TYPES: tuple[SysMonitorBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SystemMonitorConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SystemMonitorSensor(CoordinatorEntity[SystemMonitorCoordinator], BinarySensorEntity):
     _attr_has_entity_name: bool

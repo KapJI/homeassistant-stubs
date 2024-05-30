@@ -1,9 +1,8 @@
-from .const import DOMAIN as DOMAIN
+from . import TedeeConfigEntry as TedeeConfigEntry
 from .entity import TedeeDescriptionEntity as TedeeDescriptionEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -16,7 +15,7 @@ class TedeeBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 ENTITIES: tuple[TedeeBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TedeeBinarySensorEntity(TedeeDescriptionEntity, BinarySensorEntity):
     entity_description: TedeeBinarySensorEntityDescription

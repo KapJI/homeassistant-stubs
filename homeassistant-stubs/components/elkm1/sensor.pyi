@@ -1,6 +1,5 @@
-from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
-from .const import ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, ELK_USER_CODE_SERVICE_SCHEMA as ELK_USER_CODE_SERVICE_SCHEMA
-from .models import ELKM1Data as ELKM1Data
+from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
+from .const import ATTR_VALUE as ATTR_VALUE, ELK_USER_CODE_SERVICE_SCHEMA as ELK_USER_CODE_SERVICE_SCHEMA
 from _typeshed import Incomplete
 from elkm1_lib.counters import Counter as Counter
 from elkm1_lib.elements import Element as Element
@@ -9,7 +8,6 @@ from elkm1_lib.panel import Panel as Panel
 from elkm1_lib.settings import Setting as Setting
 from elkm1_lib.zones import Zone as Zone
 from homeassistant.components.sensor import SensorEntity as SensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricPotential as UnitOfElectricPotential
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -24,7 +22,7 @@ SERVICE_SENSOR_ZONE_TRIGGER: str
 UNDEFINED_TEMPERATURE: int
 ELK_SET_COUNTER_SERVICE_SCHEMA: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def temperature_to_state(temperature: int, undefined_temperature: int) -> str | None: ...
 
 class ElkSensor(ElkAttachedEntity, SensorEntity):

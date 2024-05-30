@@ -10,3 +10,8 @@ class MyUplinkEntity(CoordinatorEntity[MyUplinkDataCoordinator]):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, unique_id_suffix: str) -> None: ...
+
+class MyUplinkSystemEntity(MyUplinkEntity):
+    system_id: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: MyUplinkDataCoordinator, system_id: str, device_id: str, unique_id_suffix: str) -> None: ...

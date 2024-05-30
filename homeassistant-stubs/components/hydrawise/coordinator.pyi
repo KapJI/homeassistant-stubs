@@ -3,17 +3,20 @@ from dataclasses import dataclass
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from pydrawise import HydrawiseBase as HydrawiseBase
-from pydrawise.schema import Controller as Controller, User as User, Zone as Zone
+from homeassistant.util.dt import now as now
+from pydrawise import Hydrawise as Hydrawise
+from pydrawise.schema import Controller as Controller, ControllerWaterUseSummary, Sensor as Sensor, User as User, Zone as Zone
 
 @dataclass
 class HydrawiseData:
     user: User
     controllers: dict[int, Controller]
     zones: dict[int, Zone]
-    def __init__(self, user, controllers, zones) -> None: ...
+    sensors: dict[int, Sensor]
+    daily_water_use: dict[int, ControllerWaterUseSummary]
+    def __init__(self, user, controllers, zones, sensors, daily_water_use) -> None: ...
 
 class HydrawiseDataUpdateCoordinator(DataUpdateCoordinator[HydrawiseData]):
-    api: HydrawiseBase
-    def __init__(self, hass: HomeAssistant, api: HydrawiseBase, scan_interval: timedelta) -> None: ...
+    api: Hydrawise
+    def __init__(self, hass: HomeAssistant, api: Hydrawise, scan_interval: timedelta) -> None: ...
     async def _async_update_data(self) -> HydrawiseData: ...

@@ -1,7 +1,7 @@
 import pywemo
 from .const import DOMAIN as DOMAIN
+from .coordinator import DeviceCoordinator as DeviceCoordinator, async_register_device as async_register_device
 from .models import WemoConfigEntryData as WemoConfigEntryData, WemoData as WemoData, async_wemo_data as async_wemo_data
-from .wemo_device import DeviceCoordinator as DeviceCoordinator, async_register_device as async_register_device
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine, Sequence
 from datetime import datetime

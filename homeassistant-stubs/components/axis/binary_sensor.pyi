@@ -1,3 +1,4 @@
+from . import AxisConfigEntry as AxisConfigEntry
 from .entity import AxisEventDescription as AxisEventDescription, AxisEventEntity as AxisEventEntity
 from .hub import AxisHub as AxisHub
 from _typeshed import Incomplete
@@ -9,7 +10,6 @@ from axis.models.event import Event as Event
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
@@ -30,7 +30,7 @@ def object_analytics_name_fn(hub: AxisHub, event: Event) -> str: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AxisConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AxisBinarySensor(AxisEventEntity, BinarySensorEntity):
     entity_description: AxisBinarySensorDescription

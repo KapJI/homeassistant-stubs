@@ -6,10 +6,8 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import MultiprotocolAddonManager as MultiprotocolAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager, is_multiprotocol_url as is_multiprotocol_url, multi_pan_addon_using_device as multi_pan_addon_using_device
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
-_R = TypeVar('_R')
-_P = ParamSpec('_P')
 _LOGGER: Incomplete
 INFO_URL_SKY_CONNECT: str
 INFO_URL_YELLOW: str

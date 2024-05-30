@@ -1,18 +1,16 @@
-from .const import DOMAIN as DOMAIN
+from . import BondConfigEntry as BondConfigEntry
 from .entity import BondEntity as BondEntity
-from .models import BondData as BondData
 from .utils import BondDevice as BondDevice, BondHub as BondHub
 from _typeshed import Incomplete
 from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
 def _bond_to_hass_position(bond_position: int) -> int: ...
 def _hass_to_bond_position(hass_position: int) -> int: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BondCover(BondEntity, CoverEntity):
     _attr_device_class: Incomplete

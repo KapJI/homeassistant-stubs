@@ -1,10 +1,11 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
-from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttAvailability as MqttAvailability, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper, write_state_on_attr_change as write_state_on_attr_change
+from .const import CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
+from .mixins import MqttAvailabilityMixin as MqttAvailabilityMixin, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
+from .util import check_state_too_long as check_state_too_long
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -19,7 +20,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete
 CONF_EXPIRE_AFTER: str
-CONF_LAST_RESET_TOPIC: str
 CONF_LAST_RESET_VALUE_TEMPLATE: str
 CONF_SUGGESTED_DISPLAY_PRECISION: str
 MQTT_SENSOR_ATTRIBUTES_BLOCKED: Incomplete
@@ -42,8 +42,8 @@ class MqttSensor(MqttEntity, RestoreSensor):
     _expiration_trigger: CALLBACK_TYPE | None
     _expire_after: int | None
     _expired: bool | None
-    _template: Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType]
-    _last_reset_template: Callable[[ReceivePayloadType], ReceivePayloadType]
+    _template: Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType] | None
+    _last_reset_template: Callable[[ReceivePayloadType], ReceivePayloadType] | None
     _attr_native_value: Incomplete
     async def mqtt_async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
@@ -55,7 +55,9 @@ class MqttSensor(MqttEntity, RestoreSensor):
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
-    _sub_state: Incomplete
+    def _update_state(self, msg: ReceiveMessage) -> None: ...
+    def _update_last_reset(self, msg: ReceiveMessage) -> None: ...
+    def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     def _value_is_expired(self, *_: datetime) -> None: ...

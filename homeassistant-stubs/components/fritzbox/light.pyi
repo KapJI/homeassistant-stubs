@@ -1,16 +1,15 @@
 from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity, FritzboxDataUpdateCoordinator as FritzboxDataUpdateCoordinator
-from .common import get_coordinator as get_coordinator
 from .const import COLOR_MODE as COLOR_MODE, COLOR_TEMP_MODE as COLOR_TEMP_MODE, LOGGER as LOGGER
+from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
 SUPPORTED_COLOR_MODES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzboxLight(FritzBoxDeviceEntity, LightEntity):
     _supported_hs: Incomplete

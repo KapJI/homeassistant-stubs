@@ -11,10 +11,14 @@ async def async_setup_intents(hass: HomeAssistant) -> None: ...
 
 class HumidityHandler(intent.IntentHandler):
     intent_type = INTENT_HUMIDITY
+    description: str
     slot_schema: Incomplete
+    platforms: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class SetModeHandler(intent.IntentHandler):
     intent_type = INTENT_MODE
+    description: str
     slot_schema: Incomplete
+    platforms: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

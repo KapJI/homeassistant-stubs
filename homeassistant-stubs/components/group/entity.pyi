@@ -1,10 +1,10 @@
 import abc
 from .const import ATTR_AUTO as ATTR_AUTO, ATTR_ORDER as ATTR_ORDER, DOMAIN as DOMAIN, GROUP_ORDER as GROUP_ORDER, REG_KEY as REG_KEY
-from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry
+from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry, SingleStateType as SingleStateType
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Collection, Mapping
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
@@ -33,10 +33,12 @@ class Group(Entity):
     _attr_should_poll: bool
     tracking: tuple[str, ...]
     trackable: tuple[str, ...]
+    single_state_type_key: SingleStateType | None
     hass: Incomplete
     _attr_name: Incomplete
     _state: Incomplete
     _attr_icon: Incomplete
+    _entity_ids: Incomplete
     _on_off: Incomplete
     _assumed: Incomplete
     _on_states: Incomplete
@@ -61,6 +63,7 @@ class Group(Entity):
     def update_tracked_entity_ids(self, entity_ids: Collection[str] | None) -> None: ...
     async def async_update_tracked_entity_ids(self, entity_ids: Collection[str] | None) -> None: ...
     def _set_tracked(self, entity_ids: Collection[str] | None) -> None: ...
+    def _async_deregister(self) -> None: ...
     def _async_start(self, _: HomeAssistant | None = None) -> None: ...
     def _async_start_tracking(self) -> None: ...
     def _async_stop(self) -> None: ...

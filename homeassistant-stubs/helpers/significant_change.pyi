@@ -1,14 +1,18 @@
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from _typeshed import Incomplete
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
-from typing import Any
+from homeassistant.util.hass_dict import HassKey as HassKey
+from typing import Any, Protocol
 
 PLATFORM: str
-DATA_FUNCTIONS: str
+DATA_FUNCTIONS: HassKey[dict[str, CheckTypeFunc]]
 CheckTypeFunc: Incomplete
 ExtraCheckTypeFunc: Incomplete
+
+class SignificantChangeProtocol(Protocol):
+    def async_check_significant_change(self, hass: HomeAssistant, old_state: str, old_attrs: Mapping[str, Any], new_state: str, new_attrs: Mapping[str, Any]) -> bool | None: ...
 
 async def create_checker(hass: HomeAssistant, _domain: str, extra_significant_check: ExtraCheckTypeFunc | None = None) -> SignificantlyChangedChecker: ...
 async def _initialize(hass: HomeAssistant) -> None: ...

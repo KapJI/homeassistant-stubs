@@ -1,11 +1,10 @@
-from .const import ATTR_COMMAND_SET as ATTR_COMMAND_SET, ATTR_INFO as ATTR_INFO, ATTR_MARKER_HIGH_LEVEL as ATTR_MARKER_HIGH_LEVEL, ATTR_MARKER_LOW_LEVEL as ATTR_MARKER_LOW_LEVEL, ATTR_MARKER_TYPE as ATTR_MARKER_TYPE, ATTR_SERIAL as ATTR_SERIAL, ATTR_STATE_MESSAGE as ATTR_STATE_MESSAGE, ATTR_STATE_REASON as ATTR_STATE_REASON, ATTR_URI_SUPPORTED as ATTR_URI_SUPPORTED, DOMAIN as DOMAIN
-from .coordinator import IPPDataUpdateCoordinator as IPPDataUpdateCoordinator
+from . import IPPConfigEntry as IPPConfigEntry
+from .const import ATTR_COMMAND_SET as ATTR_COMMAND_SET, ATTR_INFO as ATTR_INFO, ATTR_MARKER_HIGH_LEVEL as ATTR_MARKER_HIGH_LEVEL, ATTR_MARKER_LOW_LEVEL as ATTR_MARKER_LOW_LEVEL, ATTR_MARKER_TYPE as ATTR_MARKER_TYPE, ATTR_SERIAL as ATTR_SERIAL, ATTR_STATE_MESSAGE as ATTR_STATE_MESSAGE, ATTR_STATE_REASON as ATTR_STATE_REASON, ATTR_URI_SUPPORTED as ATTR_URI_SUPPORTED
 from .entity import IPPEntity as IPPEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_LOCATION as ATTR_LOCATION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -25,7 +24,7 @@ def _get_marker_value_fn(marker_index: int, value_fn: Callable[[Marker], StateTy
 
 PRINTER_SENSORS: tuple[IPPSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IPPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class IPPSensor(IPPEntity, SensorEntity):
     entity_description: IPPSensorEntityDescription

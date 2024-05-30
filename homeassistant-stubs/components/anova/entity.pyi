@@ -8,6 +8,8 @@ class AnovaEntity(CoordinatorEntity[AnovaCoordinator], Entity):
     device: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AnovaCoordinator) -> None: ...
+    @property
+    def available(self) -> bool: ...
 
 class AnovaDescriptionEntity(AnovaEntity):
     entity_description: Incomplete

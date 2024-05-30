@@ -1,15 +1,15 @@
-from .const import DOMAIN as DOMAIN, SourceType as SourceType
+from . import BraviaTVConfigEntry as BraviaTVConfigEntry
+from .const import SourceType as SourceType
 from .entity import BraviaTVEntity as BraviaTVEntity
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.components.media_player.browse_media import BrowseMedia as BrowseMedia
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BraviaTVConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BraviaTVMediaPlayer(BraviaTVEntity, MediaPlayerEntity):
     _attr_name: Incomplete

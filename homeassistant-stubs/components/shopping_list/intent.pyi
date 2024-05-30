@@ -10,10 +10,14 @@ async def async_setup_intents(hass: HomeAssistant) -> None: ...
 
 class AddItemIntent(intent.IntentHandler):
     intent_type = INTENT_ADD_ITEM
+    description: str
     slot_schema: Incomplete
+    platforms: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class ListTopItemsIntent(intent.IntentHandler):
     intent_type = INTENT_LAST_ITEMS
+    description: str
     slot_schema: Incomplete
+    platforms: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

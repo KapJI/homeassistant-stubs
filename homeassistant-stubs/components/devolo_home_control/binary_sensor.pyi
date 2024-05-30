@@ -1,17 +1,16 @@
-from .const import DOMAIN as DOMAIN
+from . import DevoloHomeControlConfigEntry as DevoloHomeControlConfigEntry
 from .devolo_device import DevoloDeviceEntity as DevoloDeviceEntity
 from _typeshed import Incomplete
 from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 DEVICE_CLASS_MAPPING: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloBinaryDeviceEntity(DevoloDeviceEntity, BinarySensorEntity):
     _binary_sensor_property: Incomplete

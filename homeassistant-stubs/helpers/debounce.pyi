@@ -2,11 +2,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from logging import Logger
-from typing import Generic, TypeVar
 
-_R_co = TypeVar('_R_co', covariant=True)
-
-class Debouncer(Generic[_R_co]):
+class Debouncer:
     hass: Incomplete
     logger: Incomplete
     _function: Incomplete

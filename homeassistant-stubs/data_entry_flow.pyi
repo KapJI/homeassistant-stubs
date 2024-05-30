@@ -67,7 +67,6 @@ class FlowResult(TypedDict, Generic[_HandlerT], total=False):
     handler: Required[_HandlerT]
     last_step: bool | None
     menu_options: Container[str]
-    options: Mapping[str, Any]
     preview: str | None
     progress_action: str
     progress_task: asyncio.Task[Any] | None

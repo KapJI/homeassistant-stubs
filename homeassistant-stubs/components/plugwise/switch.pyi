@@ -1,13 +1,12 @@
-from .const import DOMAIN as DOMAIN
+from . import PlugwiseConfigEntry as PlugwiseConfigEntry
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from plugwise.constants import SwitchType as SwitchType
 from typing import Any
@@ -19,7 +18,7 @@ class PlugwiseSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCHES: tuple[PlugwiseSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PlugwiseSwitchEntity(PlugwiseEntity, SwitchEntity):
     entity_description: PlugwiseSwitchEntityDescription

@@ -1,8 +1,6 @@
-from . import NAMDataUpdateCoordinator as NAMDataUpdateCoordinator
-from .const import DOMAIN as DOMAIN
+from . import NAMConfigEntry as NAMConfigEntry, NAMDataUpdateCoordinator as NAMDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +10,7 @@ PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 RESTART_BUTTON: ButtonEntityDescription
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NAMConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NAMButton(CoordinatorEntity[NAMDataUpdateCoordinator], ButtonEntity):
     _attr_has_entity_name: bool

@@ -1,5 +1,6 @@
-from .common import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, FritzDeviceBase as FritzDeviceBase, device_filter_out_from_trackers as device_filter_out_from_trackers
 from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN
+from .coordinator import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, device_filter_out_from_trackers as device_filter_out_from_trackers
+from .entity import FritzDeviceBase as FritzDeviceBase
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -8,9 +8,7 @@ from datetime import timedelta
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, TypeVar
-
-_FroniusEntityT = TypeVar('_FroniusEntityT', bound=_FroniusSensorEntity)
+from typing import Any
 
 class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[str, Any]]], metaclass=abc.ABCMeta):
     default_interval: timedelta

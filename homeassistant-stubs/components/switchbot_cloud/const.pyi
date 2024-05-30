@@ -3,4 +3,7 @@ from typing import Final
 
 DOMAIN: Final[str]
 ENTRY_TITLE: str
-SCAN_INTERVAL: Incomplete
+DEFAULT_SCAN_INTERVAL: Incomplete
+SENSOR_KIND_TEMPERATURE: str
+SENSOR_KIND_HUMIDITY: str
+SENSOR_KIND_BATTERY: str

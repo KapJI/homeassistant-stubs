@@ -1,4 +1,4 @@
-from . import PingDomainData as PingDomainData
+from . import PingConfigEntry as PingConfigEntry
 from .const import CONF_IMPORTED_BY as CONF_IMPORTED_BY, CONF_PING_COUNT as CONF_PING_COUNT, DOMAIN as DOMAIN
 from .coordinator import PingUpdateCoordinator as PingUpdateCoordinator
 from _typeshed import Incomplete
@@ -19,7 +19,7 @@ _LOGGER: Incomplete
 PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_scanner(hass: HomeAssistant, config: ConfigType, async_see: AsyncSeeCallback, discovery_info: DiscoveryInfoType | None = None) -> bool: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PingDeviceTracker(CoordinatorEntity[PingUpdateCoordinator], ScannerEntity):
     _last_seen: datetime | None

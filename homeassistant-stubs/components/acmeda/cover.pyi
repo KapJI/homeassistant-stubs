@@ -1,16 +1,15 @@
+from . import AcmedaConfigEntry as AcmedaConfigEntry
 from .base import AcmedaBase as AcmedaBase
-from .const import ACMEDA_HUB_UPDATE as ACMEDA_HUB_UPDATE, DOMAIN as DOMAIN
+from .const import ACMEDA_HUB_UPDATE as ACMEDA_HUB_UPDATE
 from .helpers import async_add_acmeda_entities as async_add_acmeda_entities
-from .hub import PulseHub as PulseHub
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AcmedaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AcmedaCover(AcmedaBase, CoverEntity):
     _attr_name: Incomplete

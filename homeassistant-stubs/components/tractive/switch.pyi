@@ -1,10 +1,9 @@
-from . import Trackables as Trackables, TractiveClient as TractiveClient
-from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, CLIENT as CLIENT, DOMAIN as DOMAIN, TRACKABLES as TRACKABLES, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED
+from . import Trackables as Trackables, TractiveClient as TractiveClient, TractiveConfigEntry as TractiveConfigEntry
+from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -19,7 +18,7 @@ class TractiveSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCH_TYPES: tuple[TractiveSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TractiveSwitch(TractiveEntity, SwitchEntity):
     entity_description: TractiveSwitchEntityDescription

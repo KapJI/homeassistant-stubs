@@ -1,17 +1,15 @@
-from . import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
-from .const import DOMAIN as DOMAIN
+from . import ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
 from .models import ELKM1Data as ELKM1Data
 from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
 from elkm1_lib.lights import Light as Light
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElkLight(ElkEntity, LightEntity):
     _attr_color_mode: Incomplete

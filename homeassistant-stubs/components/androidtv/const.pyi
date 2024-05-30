@@ -1,8 +1,6 @@
 from _typeshed import Incomplete
 
 DOMAIN: str
-ANDROID_DEV = DOMAIN
-ANDROID_DEV_OPT: str
 CONF_ADB_SERVER_IP: str
 CONF_ADB_SERVER_PORT: str
 CONF_ADBKEY: str

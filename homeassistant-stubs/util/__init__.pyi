@@ -2,10 +2,8 @@ from .dt import as_local as as_local, utcnow as utcnow
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, KeysView
 from datetime import timedelta
-from typing import Any, TypeVar
+from typing import Any
 
-_T = TypeVar('_T')
-_U = TypeVar('_U')
 RE_SANITIZE_FILENAME: Incomplete
 RE_SANITIZE_PATH: Incomplete
 

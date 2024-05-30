@@ -3,7 +3,7 @@ from .device_info import NestDeviceInfo as NestDeviceInfo
 from _typeshed import Incomplete
 from google_nest_sdm.device import Device as Device
 from google_nest_sdm.device_manager import DeviceManager as DeviceManager
-from google_nest_sdm.thermostat_traits import ThermostatHeatCoolTrait as ThermostatHeatCoolTrait
+from google_nest_sdm.thermostat_traits import ThermostatEcoTrait, ThermostatTemperatureSetpointTrait
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_OFF as FAN_OFF, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
@@ -56,7 +56,7 @@ class ThermostatEntity(ClimateEntity):
     @property
     def target_temperature_low(self) -> float | None: ...
     @property
-    def _target_temperature_trait(self) -> ThermostatHeatCoolTrait | None: ...
+    def _target_temperature_trait(self) -> ThermostatEcoTrait | ThermostatTemperatureSetpointTrait | None: ...
     @property
     def hvac_mode(self) -> HVACMode: ...
     @property

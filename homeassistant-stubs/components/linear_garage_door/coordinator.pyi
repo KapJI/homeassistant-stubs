@@ -1,4 +1,6 @@
 from _typeshed import Incomplete
+from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
@@ -9,12 +11,16 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class LinearUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
-    _email: str
-    _password: str
-    _device_id: str
-    _site_id: str
-    _devices: list[dict[str, list[str] | str]] | None
-    _linear: Linear
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-    async def _async_update_data(self) -> dict[str, Any]: ...
+@dataclass
+class LinearDevice:
+    name: str
+    subdevices: dict[str, dict[str, str]]
+    def __init__(self, name, subdevices) -> None: ...
+
+class LinearUpdateCoordinator(DataUpdateCoordinator[dict[str, LinearDevice]]):
+    _devices: list[dict[str, Any]] | None
+    config_entry: ConfigEntry
+    site_id: Incomplete
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    async def _async_update_data(self) -> dict[str, LinearDevice]: ...
+    async def execute(self, func: Callable[[Linear], Awaitable[_T]]) -> _T: ...

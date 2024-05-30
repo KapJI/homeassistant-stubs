@@ -2,9 +2,10 @@ from . import BaseLRUTableManager as BaseLRUTableManager
 from ..core import Recorder as Recorder
 from ..db_schema import StatesMeta as StatesMeta
 from ..queries import find_all_states_metadata_ids as find_all_states_metadata_ids, find_states_metadata_ids as find_states_metadata_ids
-from ..util import chunked as chunked, execute_stmt_lambda_element as execute_stmt_lambda_element
+from ..util import execute_stmt_lambda_element as execute_stmt_lambda_element
 from collections.abc import Iterable
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData
+from homeassistant.util.collection import chunked as chunked
 from sqlalchemy.orm.session import Session as Session
 
 CACHE_SIZE: int

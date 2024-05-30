@@ -1,10 +1,10 @@
 from .coordinator import AnovaCoordinator as AnovaCoordinator
-from anova_wifi import AnovaPrecisionCooker as AnovaPrecisionCooker
+from anova_wifi import AnovaApi as AnovaApi
 from dataclasses import dataclass
 
 @dataclass
 class AnovaData:
     api_jwt: str
-    precision_cookers: list[AnovaPrecisionCooker]
     coordinators: list[AnovaCoordinator]
-    def __init__(self, api_jwt, precision_cookers, coordinators) -> None: ...
+    api: AnovaApi
+    def __init__(self, api_jwt, coordinators, api) -> None: ...

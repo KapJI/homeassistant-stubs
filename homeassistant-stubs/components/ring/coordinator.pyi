@@ -5,11 +5,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from ring_doorbell import Ring as Ring, RingDevices
-from typing import TypeVar, TypeVarTuple
 
 _LOGGER: Incomplete
-_R = TypeVar('_R')
-_Ts = TypeVarTuple('_Ts')
 
 async def _call_api(hass: HomeAssistant, target: Callable[[Unpack[_Ts]], _R], *args: Unpack[_Ts], msg_suffix: str = '') -> _R: ...
 

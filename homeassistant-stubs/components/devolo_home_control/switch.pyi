@@ -1,15 +1,14 @@
-from .const import DOMAIN as DOMAIN
+from . import DevoloHomeControlConfigEntry as DevoloHomeControlConfigEntry
 from .devolo_device import DevoloDeviceEntity as DevoloDeviceEntity
 from _typeshed import Incomplete
 from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloSwitch(DevoloDeviceEntity, SwitchEntity):
     _attr_name: Incomplete

@@ -3,10 +3,11 @@ from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_DE
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entry_data import RuntimeEntryData as RuntimeEntryData
-from .voice_assistant import VoiceAssistantAPIPipeline as VoiceAssistantAPIPipeline, VoiceAssistantPipeline as VoiceAssistantPipeline, VoiceAssistantUDPPipeline as VoiceAssistantUDPPipeline
+from .voice_assistant import VoiceAssistantAPIPipeline as VoiceAssistantAPIPipeline, VoiceAssistantPipeline as VoiceAssistantPipeline, VoiceAssistantUDPPipeline as VoiceAssistantUDPPipeline, handle_timer_event as handle_timer_event
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings
 from homeassistant.components import tag as tag, zeroconf as zeroconf
+from homeassistant.components.intent import async_register_timer_handler as async_register_timer_handler
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback

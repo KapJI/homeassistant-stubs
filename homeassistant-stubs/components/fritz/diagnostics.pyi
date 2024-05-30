@@ -1,5 +1,5 @@
-from .common import AvmWrapper as AvmWrapper
 from .const import DOMAIN as DOMAIN
+from .coordinator import AvmWrapper as AvmWrapper
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

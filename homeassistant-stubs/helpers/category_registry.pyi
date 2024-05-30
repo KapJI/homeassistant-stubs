@@ -1,4 +1,5 @@
 from .registry import BaseRegistry as BaseRegistry
+from .singleton import singleton as singleton
 from .storage import Store as Store
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
@@ -6,10 +7,11 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.event_type import EventType as EventType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ulid import ulid_now as ulid_now
 from typing import Literal, TypedDict
 
-DATA_REGISTRY: str
+DATA_REGISTRY: HassKey[CategoryRegistry]
 EVENT_CATEGORY_REGISTRY_UPDATED: EventType[EventCategoryRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int

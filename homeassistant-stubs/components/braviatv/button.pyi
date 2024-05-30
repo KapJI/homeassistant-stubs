@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from . import BraviaTVConfigEntry as BraviaTVConfigEntry
 from .coordinator import BraviaTVCoordinator as BraviaTVCoordinator
 from .entity import BraviaTVEntity as BraviaTVEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -17,7 +16,7 @@ class BraviaTVButtonDescription(ButtonEntityDescription):
 
 BUTTONS: tuple[BraviaTVButtonDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BraviaTVConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BraviaTVButton(BraviaTVEntity, ButtonEntity):
     entity_description: BraviaTVButtonDescription

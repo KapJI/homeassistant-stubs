@@ -1,11 +1,11 @@
-from .const import DOMAIN as DOMAIN, SIGNAL_IBEACON_DEVICE_NEW as SIGNAL_IBEACON_DEVICE_NEW
+from . import IBeaconConfigEntry as IBeaconConfigEntry
+from .const import SIGNAL_IBEACON_DEVICE_NEW as SIGNAL_IBEACON_DEVICE_NEW
 from .coordinator import IBeaconCoordinator as IBeaconCoordinator
 from .entity import IBeaconEntity as IBeaconEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -19,7 +19,7 @@ class IBeaconSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IBeaconConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class IBeaconSensorEntity(IBeaconEntity, SensorEntity):
     entity_description: IBeaconSensorEntityDescription

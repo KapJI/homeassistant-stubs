@@ -6,7 +6,6 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.entity_registry import async_entries_for_config_entry as async_entries_for_config_entry
 
 CHECK_HEARTBEAT_INTERVAL: Incomplete
 

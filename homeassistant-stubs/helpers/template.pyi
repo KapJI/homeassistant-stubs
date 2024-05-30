@@ -14,30 +14,25 @@ from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import convert as convert
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from jinja2.sandbox import ImmutableSandboxedEnvironment
 from lru import LRU
 from types import CodeType, TracebackType
-from typing import Any, Literal, NoReturn, ParamSpec, Self, TypeVar, overload
+from typing import Any, Literal, NoReturn, Self, overload
 
 _LOGGER: Incomplete
 _SENTINEL: Incomplete
 DATE_STR_FORMAT: str
-_ENVIRONMENT: str
-_ENVIRONMENT_LIMITED: str
-_ENVIRONMENT_STRICT: str
+_ENVIRONMENT: HassKey[TemplateEnvironment]
+_ENVIRONMENT_LIMITED: HassKey[TemplateEnvironment]
+_ENVIRONMENT_STRICT: HassKey[TemplateEnvironment]
 _HASS_LOADER: str
-_RE_JINJA_DELIMITERS: Incomplete
 _IS_NUMERIC: Incomplete
 _RESERVED_NAMES: Incomplete
-_GROUP_DOMAIN_PREFIX: str
-_ZONE_DOMAIN_PREFIX: str
 _COLLECTABLE_STATE_ATTRIBUTES: Incomplete
-_T = TypeVar('_T')
-_R = TypeVar('_R')
-_P = ParamSpec('_P')
 ALL_STATES_RATE_LIMIT: int
 DOMAIN_STATES_RATE_LIMIT: int
 _render_info: ContextVar[RenderInfo | None]
@@ -75,8 +70,7 @@ RESULT_WRAPPERS: dict[type, type]
 
 def _true(arg: str) -> bool: ...
 def _false(arg: str) -> bool: ...
-
-_cached_literal_eval: Incomplete
+def _cached_parse_result(render_result: str) -> Any: ...
 
 class RenderInfo:
     __slots__: Incomplete
@@ -270,6 +264,7 @@ def utcnow(hass: HomeAssistant) -> datetime: ...
 def raise_no_default(function: str, value: Any) -> NoReturn: ...
 def forgiving_round(value, precision: int = 0, method: str = 'common', default=...): ...
 def multiply(value, amount, default=...): ...
+def add(value, amount, default=...): ...
 def logarithm(value, base=..., default=...): ...
 def sine(value, default=...): ...
 def cosine(value, default=...): ...

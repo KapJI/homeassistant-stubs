@@ -6,12 +6,13 @@ from homeassistant.const import EVENT_COMPONENT_LOADED as EVENT_COMPONENT_LOADED
 from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, async_get_loaded_integration as async_get_loaded_integration, async_register_preload_platform as async_register_preload_platform, bind_hass as bind_hass
 from homeassistant.setup import ATTR_COMPONENT as ATTR_COMPONENT, EventComponentLoaded as EventComponentLoaded
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.logging import catch_log_exception as catch_log_exception
 from types import ModuleType
 from typing import Any
 
 _LOGGER: Incomplete
-DATA_INTEGRATION_PLATFORMS: str
+DATA_INTEGRATION_PLATFORMS: HassKey[list[IntegrationPlatform]]
 
 @dataclass(slots=True, frozen=True)
 class IntegrationPlatform:

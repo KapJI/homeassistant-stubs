@@ -11,19 +11,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pydeconz.gateway import DeconzSession as DeconzSession
 from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
-from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
-from pydeconz.models.sensor.presence import Presence
-from typing import Any, Generic, TypeVar
-
-T = TypeVar('T', Presence, PydeconzSensorBase)
+from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
-class DeconzNumberDescription(NumberEntityDescription, Generic[T]):
-    instance_check: type[T]
+class DeconzNumberDescription(NumberEntityDescription):
+    instance_check: type[_T]
     name_suffix: str
     set_fn: Callable[[DeconzSession, str, int], Coroutine[Any, Any, dict[str, Any]]]
     update_key: str
-    value_fn: Callable[[T], float | None]
+    value_fn: Callable[[_T], float | None]
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, instance_check, name_suffix, set_fn, update_key, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzNumberDescription, ...]

@@ -16,7 +16,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
-from typing import Any, Final, Generic, Literal, Required, TypeVar, TypedDict
+from typing import Any, Final, Generic, Literal, Required, TypedDict
+from typing_extensions import TypeVar
 
 _LOGGER: Incomplete
 ATTR_CONDITION_CLASS: str
@@ -64,10 +65,10 @@ SCAN_INTERVAL: Incomplete
 ROUNDING_PRECISION: int
 LEGACY_SERVICE_GET_FORECAST: Final[str]
 SERVICE_GET_FORECASTS: Final[str]
-_ObservationUpdateCoordinatorT = TypeVar('_ObservationUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]')
-_DailyForecastUpdateCoordinatorT = TypeVar('_DailyForecastUpdateCoordinatorT', bound='TimestampDataUpdateCoordinator[Any]')
-_HourlyForecastUpdateCoordinatorT = TypeVar('_HourlyForecastUpdateCoordinatorT', bound='TimestampDataUpdateCoordinator[Any]')
-_TwiceDailyForecastUpdateCoordinatorT = TypeVar('_TwiceDailyForecastUpdateCoordinatorT', bound='TimestampDataUpdateCoordinator[Any]')
+_ObservationUpdateCoordinatorT = TypeVar('_ObservationUpdateCoordinatorT', bound=DataUpdateCoordinator[Any], default=DataUpdateCoordinator[dict[str, Any]])
+_DailyForecastUpdateCoordinatorT = TypeVar('_DailyForecastUpdateCoordinatorT', bound=TimestampDataUpdateCoordinator[Any], default=TimestampDataUpdateCoordinator[None])
+_HourlyForecastUpdateCoordinatorT = TypeVar('_HourlyForecastUpdateCoordinatorT', bound=TimestampDataUpdateCoordinator[Any], default=_DailyForecastUpdateCoordinatorT)
+_TwiceDailyForecastUpdateCoordinatorT = TypeVar('_TwiceDailyForecastUpdateCoordinatorT', bound=TimestampDataUpdateCoordinator[Any], default=_DailyForecastUpdateCoordinatorT)
 
 def round_temperature(temperature: float | None, precision: float) -> float | None: ...
 
@@ -220,7 +221,7 @@ class CoordinatorWeatherEntity(CoordinatorEntity[_ObservationUpdateCoordinatorT]
     forecast_coordinators: Incomplete
     forecast_valid: Incomplete
     unsub_forecast: Incomplete
-    def __init__(self, observation_coordinator: _ObservationUpdateCoordinatorT, *, context: Any = None, daily_coordinator: _DailyForecastUpdateCoordinatorT | None = None, hourly_coordinator: _DailyForecastUpdateCoordinatorT | None = None, twice_daily_coordinator: _DailyForecastUpdateCoordinatorT | None = None, daily_forecast_valid: timedelta | None = None, hourly_forecast_valid: timedelta | None = None, twice_daily_forecast_valid: timedelta | None = None) -> None: ...
+    def __init__(self, observation_coordinator: _ObservationUpdateCoordinatorT, *, context: Any = None, daily_coordinator: _DailyForecastUpdateCoordinatorT | None = None, hourly_coordinator: _HourlyForecastUpdateCoordinatorT | None = None, twice_daily_coordinator: _TwiceDailyForecastUpdateCoordinatorT | None = None, daily_forecast_valid: timedelta | None = None, hourly_forecast_valid: timedelta | None = None, twice_daily_forecast_valid: timedelta | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _remove_forecast_listener(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> None: ...
     def _async_subscription_started(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> None: ...
@@ -238,6 +239,6 @@ class CoordinatorWeatherEntity(CoordinatorEntity[_ObservationUpdateCoordinatorT]
     async def async_forecast_hourly(self) -> list[Forecast] | None: ...
     async def async_forecast_twice_daily(self) -> list[Forecast] | None: ...
 
-class SingleCoordinatorWeatherEntity(CoordinatorWeatherEntity[_ObservationUpdateCoordinatorT, TimestampDataUpdateCoordinator[None], TimestampDataUpdateCoordinator[None], TimestampDataUpdateCoordinator[None]]):
+class SingleCoordinatorWeatherEntity(CoordinatorWeatherEntity[_ObservationUpdateCoordinatorT, TimestampDataUpdateCoordinator[None]]):
     def __init__(self, coordinator: _ObservationUpdateCoordinatorT, context: Any = None) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

@@ -8,12 +8,13 @@ from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any
 
 _LOGGER: Incomplete
-STEP_USER_DATA_SCHEMA: Incomplete
+CONFIG_SCHEMA: Incomplete
 
 async def validate_host(hass: HomeAssistant, host: str) -> None: ...
 
 class ValloxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class InvalidHost(HomeAssistantError): ...

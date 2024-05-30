@@ -1,3 +1,4 @@
+from . import AccuWeatherConfigEntry as AccuWeatherConfigEntry
 from .const import DOMAIN as DOMAIN
 from homeassistant.components import system_health as system_health
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

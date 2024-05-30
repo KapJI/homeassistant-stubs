@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
@@ -20,7 +21,6 @@ ATTR_PM_0_1: Final[str]
 ATTR_PM_10: Final[str]
 ATTR_PM_2_5: Final[str]
 ATTR_SO2: Final[str]
-DOMAIN: Final[str]
 ENTITY_ID_FORMAT: Final[Incomplete]
 SCAN_INTERVAL: Final[Incomplete]
 PROP_TO_ATTR: Final[dict[str, str]]

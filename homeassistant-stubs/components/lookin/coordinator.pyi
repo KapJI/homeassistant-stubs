@@ -4,10 +4,8 @@ from collections.abc import Awaitable, Callable as Callable
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import TypeVar
 
 _LOGGER: Incomplete
-_DataT = TypeVar('_DataT')
 
 class LookinPushCoordinator:
     last_update: Incomplete

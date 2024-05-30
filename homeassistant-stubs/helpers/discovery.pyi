@@ -1,5 +1,5 @@
 from ..util.signal_type import SignalTypeFormat as SignalTypeFormat
-from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send_internal as async_dispatcher_send_internal
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant import core as core, setup as setup

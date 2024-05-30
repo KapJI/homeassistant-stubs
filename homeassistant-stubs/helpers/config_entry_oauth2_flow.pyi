@@ -10,12 +10,13 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components import http as http
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import async_get_application_credentials as async_get_application_credentials
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
 DATA_JWT_SECRET: str
-DATA_IMPLEMENTATIONS: str
-DATA_PROVIDERS: str
+DATA_IMPLEMENTATIONS: HassKey[dict[str, dict[str, AbstractOAuth2Implementation]]]
+DATA_PROVIDERS: HassKey[dict[str, Callable[[HomeAssistant, str], Awaitable[list[AbstractOAuth2Implementation]]]]]
 AUTH_CALLBACK_PATH: str
 HEADER_FRONTEND_BASE: str
 MY_AUTH_CALLBACK_PATH: str
@@ -95,6 +96,7 @@ class OAuth2Session:
     hass: Incomplete
     config_entry: Incomplete
     implementation: Incomplete
+    _token_lock: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: config_entries.ConfigEntry, implementation: AbstractOAuth2Implementation) -> None: ...
     @property
     def token(self) -> dict: ...

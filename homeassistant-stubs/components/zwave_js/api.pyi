@@ -1,6 +1,6 @@
 import homeassistant.helpers.device_registry as dr
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
-from .const import CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, USER_AGENT as USER_AGENT
+from .const import CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DATA_CLIENT as DATA_CLIENT, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, USER_AGENT as USER_AGENT
 from .helpers import async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, get_device_id as get_device_id
 from _typeshed import Incomplete
 from aiohttp import web as web
@@ -12,7 +12,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any, Concatenate, Literal, ParamSpec
+from typing import Any, Concatenate, Literal
 from zwave_js_server.client import Client as Client
 from zwave_js_server.const import InclusionStrategy
 from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics, ProvisioningEntry, QRProvisioningInformation
@@ -22,7 +22,6 @@ from zwave_js_server.model.log_message import LogMessage as LogMessage
 from zwave_js_server.model.node import Node as Node, NodeStatistics as NodeStatistics
 from zwave_js_server.model.node.firmware import NodeFirmwareUpdateProgress as NodeFirmwareUpdateProgress, NodeFirmwareUpdateResult as NodeFirmwareUpdateResult
 
-_P = ParamSpec('_P')
 DATA_UNSUBSCRIBE: str
 ID: str
 ENTRY_ID: str

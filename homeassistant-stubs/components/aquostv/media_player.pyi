@@ -6,10 +6,8 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
-_SharpAquosTVDeviceT = TypeVar('_SharpAquosTVDeviceT', bound='SharpAquosTVDevice')
-_P = ParamSpec('_P')
 _LOGGER: Incomplete
 DEFAULT_NAME: str
 DEFAULT_PORT: int

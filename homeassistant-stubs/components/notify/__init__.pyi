@@ -1,6 +1,8 @@
 from .const import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_RECIPIENTS as ATTR_RECIPIENTS, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, DOMAIN as DOMAIN, NOTIFY_SERVICE_SCHEMA as NOTIFY_SERVICE_SCHEMA, SERVICE_NOTIFY as SERVICE_NOTIFY, SERVICE_PERSISTENT_NOTIFICATION as SERVICE_PERSISTENT_NOTIFICATION, SERVICE_SEND_MESSAGE as SERVICE_SEND_MESSAGE
 from .legacy import BaseNotificationService as BaseNotificationService, async_reload as async_reload, async_reset_platform as async_reset_platform, async_setup_legacy as async_setup_legacy, check_templates_warn as check_templates_warn
+from .repairs import migrate_notify_issue as migrate_notify_issue
 from _typeshed import Incomplete
+from enum import IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, STATE_UNAVAILABLE as STATE_UNAVAILABLE
@@ -18,6 +20,9 @@ MIN_TIME_BETWEEN_SCANS: Incomplete
 _LOGGER: Incomplete
 PLATFORM_SCHEMA: Incomplete
 
+class NotifyEntityFeature(IntFlag):
+    TITLE: int
+
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class NotifyEntityDescription(EntityDescription, frozen_or_thawed=True):
@@ -28,6 +33,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class NotifyEntity(RestoreEntity):
     entity_description: NotifyEntityDescription
+    _attr_supported_features: NotifyEntityFeature
     _attr_should_poll: bool
     _attr_device_class: None
     _attr_state: None
@@ -37,5 +43,5 @@ class NotifyEntity(RestoreEntity):
     def __set_state(self, state: str | None) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
     async def _async_send_message(self, **kwargs: Any) -> None: ...
-    def send_message(self, message: str) -> None: ...
-    async def async_send_message(self, message: str) -> None: ...
+    def send_message(self, message: str, title: str | None = None) -> None: ...
+    async def async_send_message(self, message: str, title: str | None = None) -> None: ...

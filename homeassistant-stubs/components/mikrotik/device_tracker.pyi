@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .hub import Device as Device, MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator
+from .coordinator import Device as Device, MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

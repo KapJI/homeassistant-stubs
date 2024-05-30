@@ -1,5 +1,5 @@
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from collections.abc import Mapping
 from enum import IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -16,7 +16,6 @@ from typing import Any
 
 DEFAULT_MIN_TEMP: int
 DEFAULT_MAX_TEMP: int
-DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
 SCAN_INTERVAL: Incomplete
 SERVICE_SET_AWAY_MODE: str
@@ -83,7 +82,7 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @property
     def precision(self) -> float: ...
     @property
-    def capability_attributes(self) -> Mapping[str, Any]: ...
+    def capability_attributes(self) -> dict[str, Any]: ...
     @property
     def state_attributes(self) -> dict[str, Any]: ...
     @cached_property

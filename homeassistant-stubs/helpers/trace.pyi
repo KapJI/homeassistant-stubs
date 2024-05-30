@@ -4,10 +4,7 @@ from collections import deque
 from collections.abc import Callable as Callable, Coroutine, Generator
 from contextvars import ContextVar
 from homeassistant.core import ServiceResponse as ServiceResponse
-from typing import Any, TypeVar, TypeVarTuple
-
-_T = TypeVar('_T')
-_Ts = TypeVarTuple('_Ts')
+from typing import Any
 
 class TraceElement:
     __slots__: Incomplete

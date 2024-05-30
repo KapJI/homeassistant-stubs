@@ -4,6 +4,7 @@ from .entity import Entity as Entity
 from .event import async_track_time_interval as async_track_time_interval
 from .frame import report as report
 from .json import JSONEncoder as JSONEncoder
+from .singleton import singleton as singleton
 from .storage import Store as Store
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
@@ -11,10 +12,11 @@ from datetime import datetime
 from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import json_loads as json_loads
 from typing import Any, Self
 
-DATA_RESTORE_STATE: str
+DATA_RESTORE_STATE: HassKey[RestoreStateData]
 _LOGGER: Incomplete
 STORAGE_KEY: str
 STORAGE_VERSION: int

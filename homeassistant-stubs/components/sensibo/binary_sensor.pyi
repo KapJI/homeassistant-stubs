@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from . import SensiboConfigEntry as SensiboConfigEntry
 from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordinator
 from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, SensiboMotionBaseEntity as SensiboMotionBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -30,7 +29,7 @@ DEVICE_SENSOR_TYPES: tuple[SensiboDeviceBinarySensorEntityDescription, ...]
 PURE_SENSOR_TYPES: tuple[SensiboDeviceBinarySensorEntityDescription, ...]
 DESCRIPTION_BY_MODELS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensiboMotionSensor(SensiboMotionBaseEntity, BinarySensorEntity):
     entity_description: SensiboMotionBinarySensorEntityDescription

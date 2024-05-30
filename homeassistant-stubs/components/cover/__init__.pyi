@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from enum import IntFlag, StrEnum
@@ -11,14 +12,11 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from typing import Any, ParamSpec, TypeVar
+from typing import Any
 
 _LOGGER: Incomplete
-DOMAIN: str
 SCAN_INTERVAL: Incomplete
 ENTITY_ID_FORMAT: Incomplete
-_P = ParamSpec('_P')
-_R = TypeVar('_R')
 
 class CoverDeviceClass(StrEnum):
     AWNING: str

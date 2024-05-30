@@ -15,10 +15,9 @@ from homeassistant.helpers.entity_values import EntityValues as EntityValues
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.dt import as_timestamp as as_timestamp
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
-from prometheus_client.metrics import MetricWrapperBase
-from typing import Any, TypeVar
+from prometheus_client.metrics import MetricWrapperBase as MetricWrapperBase
+from typing import Any
 
-_MetricBaseT = TypeVar('_MetricBaseT', bound=MetricWrapperBase)
 _LOGGER: Incomplete
 API_ENDPOINT: str
 DOMAIN: str

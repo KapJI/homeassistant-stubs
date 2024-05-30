@@ -2,10 +2,12 @@ from . import debug_info as debug_info
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, CONF_ENCODING as CONF_ENCODING, CONF_PAYLOAD as CONF_PAYLOAD, CONF_QOS as CONF_QOS, CONF_TOPIC as CONF_TOPIC, DOMAIN as DOMAIN
 from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload, clear_discovery_hash as clear_discovery_hash
-from .mixins import MQTT_ENTITY_DEVICE_INFO_SCHEMA as MQTT_ENTITY_DEVICE_INFO_SCHEMA, MqttDiscoveryDeviceUpdate as MqttDiscoveryDeviceUpdate, send_discovery_done as send_discovery_done, update_device as update_device
-from .util import get_mqtt_data as get_mqtt_data
+from .mixins import MqttDiscoveryDeviceUpdateMixin as MqttDiscoveryDeviceUpdateMixin, send_discovery_done as send_discovery_done, update_device as update_device
+from .models import DATA_MQTT as DATA_MQTT
+from .schemas import MQTT_ENTITY_DEVICE_INFO_SCHEMA as MQTT_ENTITY_DEVICE_INFO_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_PLATFORM as CONF_PLATFORM, CONF_TYPE as CONF_TYPE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
@@ -25,22 +27,20 @@ TRIGGER_SCHEMA: Incomplete
 TRIGGER_DISCOVERY_SCHEMA: Incomplete
 LOG_NAME: str
 
+@dataclass(slots=True)
 class TriggerInstance:
     action: TriggerActionType
     trigger_info: TriggerInfo
     trigger: Trigger
-    remove: CALLBACK_TYPE | None
+    remove: CALLBACK_TYPE | None = ...
     async def async_attach_trigger(self) -> None: ...
     def __init__(self, action, trigger_info, trigger, remove) -> None: ...
-    def __lt__(self, other): ...
-    def __le__(self, other): ...
-    def __gt__(self, other): ...
-    def __ge__(self, other): ...
 
+@dataclass(slots=True, kw_only=True)
 class Trigger:
     device_id: str
-    discovery_data: DiscoveryInfoType | None
-    discovery_id: str | None
+    discovery_data: DiscoveryInfoType | None = ...
+    discovery_id: str | None = ...
     hass: HomeAssistant
     payload: str | None
     qos: int | None
@@ -48,17 +48,13 @@ class Trigger:
     topic: str | None
     type: str
     value_template: str | None
-    trigger_instances: list[TriggerInstance]
+    trigger_instances: list[TriggerInstance] = ...
     async def add_trigger(self, action: TriggerActionType, trigger_info: TriggerInfo) -> Callable[[], None]: ...
     async def update_trigger(self, config: ConfigType) -> None: ...
     def detach_trigger(self) -> None: ...
-    def __init__(self, device_id, discovery_data, discovery_id, hass, payload, qos, subtype, topic, type, value_template, trigger_instances) -> None: ...
-    def __lt__(self, other): ...
-    def __le__(self, other): ...
-    def __gt__(self, other): ...
-    def __ge__(self, other): ...
+    def __init__(self, *, device_id, discovery_data, discovery_id, hass, payload, qos, subtype, topic, type, value_template, trigger_instances) -> None: ...
 
-class MqttDeviceTrigger(MqttDiscoveryDeviceUpdate):
+class MqttDeviceTrigger(MqttDiscoveryDeviceUpdateMixin):
     _config: Incomplete
     _config_entry: Incomplete
     device_id: Incomplete

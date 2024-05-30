@@ -8,8 +8,8 @@ from homeassistant.const import CURRENCY_EURO as CURRENCY_EURO, UnitOfElectricCu
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-TIMESTAMP_KEYS: Incomplete
 SENSORS: Incomplete
+TIMESTAMP_SENSORS: Incomplete
 GRID_SENSORS: Incomplete
 PARALLEL_UPDATES: int
 
@@ -20,6 +20,12 @@ class ChargePointSensor(ChargepointEntity, SensorEntity):
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, connector: Connector, sensor: SensorEntityDescription, evse_id: str) -> None: ...
+    has_value: bool
+    _attr_native_value: Incomplete
+    def update_from_latest_data(self) -> None: ...
+
+class ChargePointTimestampSensor(ChargePointSensor):
+    _attr_device_class: Incomplete
     has_value: bool
     _attr_native_value: Incomplete
     def update_from_latest_data(self) -> None: ...

@@ -1,11 +1,12 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
-from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttAvailability as MqttAvailability, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper, write_state_on_attr_change as write_state_on_attr_change
+from .const import CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
+from .mixins import MqttAvailabilityMixin as MqttAvailabilityMixin, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from _typeshed import Incomplete
+from datetime import datetime
 from homeassistant.components import binary_sensor as binary_sensor
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -45,7 +46,8 @@ class MqttBinarySensor(MqttEntity, BinarySensorEntity, RestoreEntity):
     _attr_device_class: Incomplete
     _value_template: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
-    _sub_state: Incomplete
+    def _off_delay_listener(self, now: datetime) -> None: ...
+    def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     def _value_is_expired(self, *_: Any) -> None: ...

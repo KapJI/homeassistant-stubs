@@ -4,7 +4,7 @@ from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneAidooEntity as AirzoneAidooEntity, AirzoneEntity as AirzoneEntity, AirzoneGroupEntity as AirzoneGroupEntity, AirzoneInstallationEntity as AirzoneInstallationEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from aioairzone_cloud.common import OperationAction, OperationMode
-from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACAction as HVACAction, HVACMode as HVACMode
+from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -24,6 +24,9 @@ class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
     _enable_turn_on_off_backwards_compatibility: bool
+    _attr_target_temperature_step: Incomplete
+    _attr_hvac_modes: Incomplete
+    def _init_attributes(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete
@@ -31,6 +34,8 @@ class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_hvac_mode: Incomplete
     _attr_max_temp: Incomplete
     _attr_min_temp: Incomplete
+    _attr_target_temperature_high: Incomplete
+    _attr_target_temperature_low: Incomplete
     _attr_target_temperature: Incomplete
     def _async_update_attrs(self) -> None: ...
 
@@ -51,8 +56,6 @@ class AirzoneAidooClimate(AirzoneAidooEntity, AirzoneDeviceClimate):
     _speeds: dict[int, str]
     _speeds_reverse: dict[str, int]
     _attr_unique_id: Incomplete
-    _attr_target_temperature_step: Incomplete
-    _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, aidoo_id: str, aidoo_data: dict) -> None: ...
     _attr_fan_modes: Incomplete
     def _initialize_fan_speeds(self) -> None: ...
@@ -63,19 +66,13 @@ class AirzoneAidooClimate(AirzoneAidooEntity, AirzoneDeviceClimate):
 
 class AirzoneGroupClimate(AirzoneGroupEntity, AirzoneDeviceGroupClimate):
     _attr_unique_id: Incomplete
-    _attr_target_temperature_step: Incomplete
-    _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, group_id: str, group_data: dict) -> None: ...
 
 class AirzoneInstallationClimate(AirzoneInstallationEntity, AirzoneDeviceGroupClimate):
     _attr_unique_id: Incomplete
-    _attr_target_temperature_step: Incomplete
-    _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, inst_id: str, inst_data: dict) -> None: ...
 
 class AirzoneZoneClimate(AirzoneZoneEntity, AirzoneDeviceClimate):
     _attr_unique_id: Incomplete
-    _attr_target_temperature_step: Incomplete
-    _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, system_zone_id: str, zone_data: dict) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

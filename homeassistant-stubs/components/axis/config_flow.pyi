@@ -1,3 +1,4 @@
+from . import AxisConfigEntry as AxisConfigEntry
 from .const import CONF_STREAM_PROFILE as CONF_STREAM_PROFILE, CONF_VIDEO_SOURCE as CONF_VIDEO_SOURCE, DEFAULT_STREAM_PROFILE as DEFAULT_STREAM_PROFILE, DEFAULT_VIDEO_SOURCE as DEFAULT_VIDEO_SOURCE, DOMAIN as AXIS_DOMAIN
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
 from .hub import AxisHub as AxisHub, get_axis_api as get_axis_api
@@ -34,6 +35,7 @@ class AxisFlowHandler(ConfigFlow, domain=AXIS_DOMAIN):
     async def _process_discovered_device(self, discovery_info: dict[str, Any]) -> ConfigFlowResult: ...
 
 class AxisOptionsFlowHandler(OptionsFlowWithConfigEntry):
+    config_entry: AxisConfigEntry
     hub: AxisHub
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_configure_stream(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

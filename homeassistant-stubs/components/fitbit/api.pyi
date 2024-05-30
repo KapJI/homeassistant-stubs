@@ -10,12 +10,11 @@ from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
-from typing import Any, TypeVar
+from typing import Any
 
 _LOGGER: Incomplete
 CONF_REFRESH_TOKEN: str
 CONF_EXPIRES_AT: str
-_T = TypeVar('_T')
 
 class FitbitApi(ABC, metaclass=abc.ABCMeta):
     _hass: Incomplete

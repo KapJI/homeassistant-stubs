@@ -1,3 +1,4 @@
+from . import Airtouch5ConfigEntry as Airtouch5ConfigEntry
 from .const import DOMAIN as DOMAIN, FAN_INTELLIGENT_AUTO as FAN_INTELLIGENT_AUTO, FAN_TURBO as FAN_TURBO
 from .entity import Airtouch5Entity as Airtouch5Entity
 from _typeshed import Incomplete
@@ -9,7 +10,6 @@ from airtouch5py.packets.zone_control import ZoneSettingPower, ZoneSettingValue
 from airtouch5py.packets.zone_name import ZoneName as ZoneName
 from airtouch5py.packets.zone_status import ZoneStatusZone as ZoneStatusZone
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_DIFFUSE as FAN_DIFFUSE, FAN_FOCUS as FAN_FOCUS, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_NONE as PRESET_NONE
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -22,7 +22,7 @@ HVAC_MODE_TO_SET_AC_MODE: Incomplete
 AC_FAN_SPEED_TO_FAN_SPEED: Incomplete
 FAN_MODE_TO_SET_AC_FAN_SPEED: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: Airtouch5ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class Airtouch5ClimateEntity(ClimateEntity, Airtouch5Entity):
     _attr_temperature_unit: Incomplete

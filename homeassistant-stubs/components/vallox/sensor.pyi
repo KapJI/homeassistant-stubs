@@ -1,5 +1,6 @@
-from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator, ValloxEntity as ValloxEntity
+from . import ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN, METRIC_KEY_MODE as METRIC_KEY_MODE, MODE_ON as MODE_ON, VALLOX_CELL_STATE_TO_STR as VALLOX_CELL_STATE_TO_STR, VALLOX_PROFILE_TO_PRESET_MODE_REPORTABLE as VALLOX_PROFILE_TO_PRESET_MODE_REPORTABLE
+from .coordinator import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime

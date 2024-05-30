@@ -1,11 +1,10 @@
-from . import Trackables as Trackables, TractiveClient as TractiveClient
-from .const import ATTR_ACTIVITY_LABEL as ATTR_ACTIVITY_LABEL, ATTR_CALORIES as ATTR_CALORIES, ATTR_DAILY_GOAL as ATTR_DAILY_GOAL, ATTR_MINUTES_ACTIVE as ATTR_MINUTES_ACTIVE, ATTR_MINUTES_DAY_SLEEP as ATTR_MINUTES_DAY_SLEEP, ATTR_MINUTES_NIGHT_SLEEP as ATTR_MINUTES_NIGHT_SLEEP, ATTR_MINUTES_REST as ATTR_MINUTES_REST, ATTR_SLEEP_LABEL as ATTR_SLEEP_LABEL, ATTR_TRACKER_STATE as ATTR_TRACKER_STATE, CLIENT as CLIENT, DOMAIN as DOMAIN, TRACKABLES as TRACKABLES, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_WELLNESS_STATUS_UPDATED as TRACKER_WELLNESS_STATUS_UPDATED
+from . import Trackables as Trackables, TractiveClient as TractiveClient, TractiveConfigEntry as TractiveConfigEntry
+from .const import ATTR_ACTIVITY_LABEL as ATTR_ACTIVITY_LABEL, ATTR_CALORIES as ATTR_CALORIES, ATTR_DAILY_GOAL as ATTR_DAILY_GOAL, ATTR_MINUTES_ACTIVE as ATTR_MINUTES_ACTIVE, ATTR_MINUTES_DAY_SLEEP as ATTR_MINUTES_DAY_SLEEP, ATTR_MINUTES_NIGHT_SLEEP as ATTR_MINUTES_NIGHT_SLEEP, ATTR_MINUTES_REST as ATTR_MINUTES_REST, ATTR_SLEEP_LABEL as ATTR_SLEEP_LABEL, ATTR_TRACKER_STATE as ATTR_TRACKER_STATE, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_WELLNESS_STATUS_UPDATED as TRACKER_WELLNESS_STATUS_UPDATED
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -29,4 +28,4 @@ class TractiveSensor(TractiveEntity, SensorEntity):
 
 SENSOR_TYPES: tuple[TractiveSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

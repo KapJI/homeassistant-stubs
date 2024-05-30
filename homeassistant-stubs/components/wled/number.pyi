@@ -1,12 +1,12 @@
-from .const import ATTR_INTENSITY as ATTR_INTENSITY, ATTR_SPEED as ATTR_SPEED, DOMAIN as DOMAIN
+from . import WLEDConfigEntry as WLEDConfigEntry
+from .const import ATTR_INTENSITY as ATTR_INTENSITY, ATTR_SPEED as ATTR_SPEED
 from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
+from .entity import WLEDEntity as WLEDEntity
 from .helpers import wled_exception_handler as wled_exception_handler
-from .models import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -14,7 +14,7 @@ from wled import Segment as Segment
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class WLEDNumberEntityDescription(NumberEntityDescription):

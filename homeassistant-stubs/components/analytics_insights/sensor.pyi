@@ -1,11 +1,10 @@
-from . import AnalyticsInsightsData as AnalyticsInsightsData
+from . import AnalyticsInsightsConfigEntry as AnalyticsInsightsConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import AnalyticsData as AnalyticsData, HomeassistantAnalyticsDataUpdateCoordinator as HomeassistantAnalyticsDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -20,7 +19,7 @@ class AnalyticsSensorEntityDescription(SensorEntityDescription):
 
 def get_core_integration_entity_description(domain: str, name: str) -> AnalyticsSensorEntityDescription: ...
 def get_custom_integration_entity_description(domain: str) -> AnalyticsSensorEntityDescription: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AnalyticsInsightsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HomeassistantAnalyticsSensor(CoordinatorEntity[HomeassistantAnalyticsDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool

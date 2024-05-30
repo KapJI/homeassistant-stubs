@@ -1,15 +1,17 @@
 from .connection import ActiveConnection as ActiveConnection
 from _typeshed import Incomplete
+from collections.abc import Awaitable, Callable
 from homeassistant.core import HomeAssistant as HomeAssistant
-from typing import Final
+from typing import Any, Final
 
-WebSocketCommandHandler: Incomplete
-AsyncWebSocketCommandHandler: Incomplete
+WebSocketCommandHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
+AsyncWebSocketCommandHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], Awaitable[None]]
 DOMAIN: Final[str]
 URL: Final[str]
 PENDING_MSG_PEAK: Final[int]
 PENDING_MSG_PEAK_TIME: Final[int]
 MAX_PENDING_MSG: Final[int]
+PENDING_MSG_MAX_FORCE_READY: Final[int]
 ERR_ID_REUSE: Final[str]
 ERR_INVALID_FORMAT: Final[str]
 ERR_NOT_ALLOWED: Final[str]

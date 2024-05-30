@@ -10,6 +10,7 @@ from .helpers.typing import ConfigType as ConfigType
 from .loader import ComponentProtocol as ComponentProtocol, Integration as Integration, IntegrationNotFound as IntegrationNotFound
 from .requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
 from .util.async_ import create_eager_task as create_eager_task
+from .util.hass_dict import HassKey as HassKey
 from .util.package import is_docker_env as is_docker_env
 from .util.unit_system import get_unit_system as get_unit_system, validate_unit_system as validate_unit_system
 from .util.yaml import SECRET_YAML as SECRET_YAML, Secrets as Secrets, YamlTypeError as YamlTypeError, load_yaml_dict as load_yaml_dict
@@ -26,7 +27,7 @@ RE_ASCII: Incomplete
 YAML_CONFIG_FILE: str
 VERSION_FILE: str
 CONFIG_DIR_NAME: str
-DATA_CUSTOMIZE: str
+DATA_CUSTOMIZE: HassKey[EntityValues]
 AUTOMATION_CONFIG_PATH: str
 SCRIPT_CONFIG_PATH: str
 SCENE_CONFIG_PATH: str

@@ -1,26 +1,16 @@
-import logging
 from .const import DOMAIN as DOMAIN
+from .coordinator import IdasenDeskCoordinator as IdasenDeskCoordinator
 from _typeshed import Incomplete
 from homeassistant.components import bluetooth as bluetooth
+from homeassistant.components.bluetooth.match import ADDRESS as ADDRESS, BluetoothCallbackMatcher as BluetoothCallbackMatcher
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_NAME as ATTR_NAME, CONF_ADDRESS as CONF_ADDRESS, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
-
-class IdasenDeskCoordinator(DataUpdateCoordinator[int | None]):
-    _address: Incomplete
-    _expected_connected: bool
-    _connection_lost: bool
-    desk: Incomplete
-    def __init__(self, hass: HomeAssistant, logger: logging.Logger, name: str, address: str) -> None: ...
-    async def async_connect(self) -> bool: ...
-    async def async_disconnect(self) -> None: ...
-    def async_set_updated_data(self, data: int | None) -> None: ...
 
 class DeskData:
     address: str

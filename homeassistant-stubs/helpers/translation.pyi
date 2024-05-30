@@ -1,6 +1,8 @@
 import pathlib
+from . import singleton as singleton
 from _typeshed import Incomplete
 from collections.abc import Iterable
+from dataclasses import dataclass
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.loader import Integration as Integration, async_get_config_flows as async_get_config_flows, async_get_integrations as async_get_integrations, bind_hass as bind_hass
@@ -12,16 +14,20 @@ TRANSLATION_FLATTEN_CACHE: str
 LOCALE_EN: str
 
 def recursive_flatten(prefix: str, data: dict[str, dict[str, Any] | str]) -> dict[str, str]: ...
-def component_translation_path(language: str, integration: Integration) -> pathlib.Path: ...
 def _load_translations_files_by_language(translation_files: dict[str, dict[str, pathlib.Path]]) -> dict[str, dict[str, Any]]: ...
 def build_resources(translation_strings: dict[str, dict[str, dict[str, Any] | str]], components: set[str], category: str) -> dict[str, dict[str, Any] | str]: ...
 async def _async_get_component_strings(hass: HomeAssistant, languages: Iterable[str], components: set[str], integrations: dict[str, Integration]) -> dict[str, dict[str, Any]]: ...
 
+@dataclass(slots=True)
+class _TranslationsCacheData:
+    loaded: dict[str, set[str]]
+    cache: dict[str, dict[str, dict[str, dict[str, str]]]]
+    def __init__(self, loaded, cache) -> None: ...
+
 class _TranslationCache:
     __slots__: Incomplete
     hass: Incomplete
-    loaded: Incomplete
-    cache: Incomplete
+    cache_data: Incomplete
     lock: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_is_loaded(self, language: str, components: set[str]) -> bool: ...

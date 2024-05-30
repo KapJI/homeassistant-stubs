@@ -10,9 +10,8 @@ from homeassistant.helpers.event import async_track_point_in_utc_time as async_t
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Self, TypeVar
+from typing import Any, Self
 
-_T = TypeVar('_T')
 _LOGGER: Incomplete
 DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete

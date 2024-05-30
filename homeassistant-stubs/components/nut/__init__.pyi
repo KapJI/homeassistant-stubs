@@ -1,4 +1,4 @@
-from .const import COORDINATOR as COORDINATOR, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, INTEGRATION_SUPPORTED_COMMANDS as INTEGRATION_SUPPORTED_COMMANDS, PLATFORMS as PLATFORMS, PYNUT_DATA as PYNUT_DATA, PYNUT_UNIQUE_ID as PYNUT_UNIQUE_ID, USER_AVAILABLE_COMMANDS as USER_AVAILABLE_COMMANDS
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, INTEGRATION_SUPPORTED_COMMANDS as INTEGRATION_SUPPORTED_COMMANDS, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,8 +9,17 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 NUT_FAKE_SERIAL: Incomplete
 _LOGGER: Incomplete
+NutConfigEntry = ConfigEntry[NutRuntimeData]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+@dataclass
+class NutRuntimeData:
+    coordinator: DataUpdateCoordinator
+    data: PyNUTData
+    unique_id: str
+    user_available_commands: set[str]
+    def __init__(self, coordinator, data, unique_id, user_available_commands) -> None: ...
+
+async def async_setup_entry(hass: HomeAssistant, entry: NutConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 def _manufacturer_from_status(status: dict[str, str]) -> str | None: ...

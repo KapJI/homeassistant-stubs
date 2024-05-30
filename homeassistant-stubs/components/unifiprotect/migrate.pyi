@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
 from pyunifiprotect import ProtectApiClient as ProtectApiClient
 from pyunifiprotect.data import Bootstrap as Bootstrap
-from typing_extensions import TypedDict
+from typing import TypedDict
 
 _LOGGER: Incomplete
 

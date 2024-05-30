@@ -3,11 +3,12 @@ from .const import DOMAIN as DOMAIN
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, VoiceAssistantAudioSettings, VoiceAssistantEventType
+from aioesphomeapi import APIClient as APIClient, VoiceAssistantAudioSettings, VoiceAssistantEventType, VoiceAssistantTimerEventType
 from collections.abc import AsyncIterable, Callable as Callable
 from homeassistant.components import stt as stt, tts as tts
 from homeassistant.components.assist_pipeline import AudioSettings as AudioSettings, PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineNotFound as PipelineNotFound, PipelineStage as PipelineStage, WakeWordSettings as WakeWordSettings, async_pipeline_from_audio_stream as async_pipeline_from_audio_stream
 from homeassistant.components.assist_pipeline.error import WakeWordDetectionAborted as WakeWordDetectionAborted, WakeWordDetectionError as WakeWordDetectionError
+from homeassistant.components.intent.timers import TimerEventType as TimerEventType, TimerInfo as TimerInfo
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 
@@ -15,6 +16,7 @@ _LOGGER: Incomplete
 UDP_PORT: int
 UDP_MAX_PACKET_SIZE: int
 _VOICE_ASSISTANT_EVENT_TYPES: EsphomeEnumMapper[VoiceAssistantEventType, PipelineEventType]
+_TIMER_EVENT_TYPES: EsphomeEnumMapper[VoiceAssistantTimerEventType, TimerEventType]
 
 class VoiceAssistantPipeline:
     started: bool
@@ -59,3 +61,5 @@ class VoiceAssistantAPIPipeline(VoiceAssistantPipeline):
     def receive_audio_bytes(self, data: bytes) -> None: ...
     stop_requested: bool
     def stop(self) -> None: ...
+
+def handle_timer_event(api_client: APIClient, event_type: TimerEventType, timer_info: TimerInfo) -> None: ...

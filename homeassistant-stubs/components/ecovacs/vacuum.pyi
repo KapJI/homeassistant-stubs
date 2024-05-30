@@ -1,6 +1,6 @@
 import sucks
+from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .const import DOMAIN as DOMAIN
-from .controller import EcovacsController as EcovacsController
 from .entity import EcovacsEntity as EcovacsEntity
 from .util import get_name_key as get_name_key
 from _typeshed import Incomplete
@@ -10,7 +10,6 @@ from deebot_client.device import Device as Device
 from deebot_client.events import BatteryEvent as BatteryEvent, FanSpeedEvent as FanSpeedEvent, RoomsEvent as RoomsEvent, StateEvent as StateEvent
 from deebot_client.models import CleanAction, Room as Room
 from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumEntityFeature as VacuumEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,7 +21,7 @@ _LOGGER: Incomplete
 ATTR_ERROR: str
 ATTR_COMPONENT_PREFIX: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EcovacsLegacyVacuum(StateVacuumEntity):
     _attr_fan_speed_list: Incomplete

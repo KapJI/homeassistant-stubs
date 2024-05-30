@@ -1,4 +1,4 @@
-from . import PingDomainData as PingDomainData
+from . import PingConfigEntry as PingConfigEntry
 from .const import CONF_IMPORTED_BY as CONF_IMPORTED_BY, CONF_PING_COUNT as CONF_PING_COUNT, DEFAULT_PING_COUNT as DEFAULT_PING_COUNT, DOMAIN as DOMAIN
 from .coordinator import PingUpdateCoordinator as PingUpdateCoordinator
 from .entity import PingEntity as PingEntity
@@ -20,7 +20,7 @@ ATTR_ROUND_TRIP_TIME_MIN: str
 PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PingBinarySensor(PingEntity, BinarySensorEntity):
     _attr_device_class: Incomplete

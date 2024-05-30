@@ -1,5 +1,4 @@
-from . import PingDomainData as PingDomainData
-from .const import DOMAIN as DOMAIN
+from . import PingConfigEntry as PingConfigEntry
 from .coordinator import PingResult as PingResult, PingUpdateCoordinator as PingUpdateCoordinator
 from .entity import PingEntity as PingEntity
 from collections.abc import Callable as Callable
@@ -18,7 +17,7 @@ class PingSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[PingSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PingSensor(PingEntity, SensorEntity):
     entity_description: PingSensorEntityDescription

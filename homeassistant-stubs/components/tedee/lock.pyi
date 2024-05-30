@@ -1,16 +1,15 @@
-from .const import DOMAIN as DOMAIN
+from . import TedeeConfigEntry as TedeeConfigEntry
 from .coordinator import TedeeApiCoordinator as TedeeApiCoordinator
 from .entity import TedeeEntity as TedeeEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pytedee_async import TedeeLock as TedeeLock
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TedeeLockEntity(TedeeEntity, LockEntity):
     _attr_name: Incomplete
@@ -19,6 +18,10 @@ class TedeeLockEntity(TedeeEntity, LockEntity):
     def is_locked(self) -> bool: ...
     @property
     def is_unlocking(self) -> bool: ...
+    @property
+    def is_open(self) -> bool: ...
+    @property
+    def is_opening(self) -> bool: ...
     @property
     def is_locking(self) -> bool: ...
     @property

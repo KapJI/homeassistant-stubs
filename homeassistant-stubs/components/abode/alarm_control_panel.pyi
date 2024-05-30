@@ -1,5 +1,6 @@
-from . import AbodeDevice as AbodeDevice, AbodeSystem as AbodeSystem
+from . import AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
+from .entity import AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

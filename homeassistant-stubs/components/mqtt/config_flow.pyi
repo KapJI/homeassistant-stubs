@@ -44,7 +44,6 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     entry: ConfigEntry | None
     _hassio_discovery: dict[str, Any] | None
-    _reauth_config_entry: ConfigEntry | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> MQTTOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

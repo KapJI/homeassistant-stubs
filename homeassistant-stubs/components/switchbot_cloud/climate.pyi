@@ -16,7 +16,7 @@ _DEFAULT_SWITCHBOT_FAN_MODE: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SwitchBotCloudAirConditionner(SwitchBotCloudEntity, ClimateEntity):
+class SwitchBotCloudAirConditioner(SwitchBotCloudEntity, ClimateEntity):
     _attr_assumed_state: bool
     _attr_supported_features: Incomplete
     _attr_fan_modes: Incomplete

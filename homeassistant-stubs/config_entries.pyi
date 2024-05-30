@@ -13,7 +13,7 @@ from .data_entry_flow import FLOW_NOT_COMPLETE_STEPS as FLOW_NOT_COMPLETE_STEPS,
 from .exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from .helpers import device_registry as device_registry, entity_registry as entity_registry, storage as storage
 from .helpers.debounce import Debouncer as Debouncer
-from .helpers.dispatcher import SignalType as SignalType, async_dispatcher_send as async_dispatcher_send
+from .helpers.dispatcher import SignalType as SignalType, async_dispatcher_send_internal as async_dispatcher_send_internal
 from .helpers.event import RANDOM_MICROSECOND_MAX as RANDOM_MICROSECOND_MAX, RANDOM_MICROSECOND_MIN as RANDOM_MICROSECOND_MIN, async_call_later as async_call_later
 from .helpers.frame import report as report
 from .helpers.json import json_bytes as json_bytes, json_fragment as json_fragment
@@ -23,6 +23,7 @@ from .loader import async_suggest_report_issue as async_suggest_report_issue
 from .setup import DATA_SETUP_DONE as DATA_SETUP_DONE, SetupPhases as SetupPhases, async_pause_setup as async_pause_setup, async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component, async_start_setup as async_start_setup
 from .util.async_ import create_eager_task as create_eager_task
 from .util.decorator import Registry as Registry
+from .util.enum import try_parse_enum as try_parse_enum
 from _typeshed import Incomplete
 from collections import UserDict
 from collections.abc import Callable, Coroutine, Generator, Iterable, Mapping, ValuesView
@@ -30,7 +31,8 @@ from contextvars import ContextVar
 from enum import Enum, StrEnum
 from functools import cached_property as cached_property
 from types import MappingProxyType
-from typing import Any, Self, TypeVar
+from typing import Any, Generic, Self
+from typing_extensions import TypeVar
 
 _LOGGER: Incomplete
 SOURCE_BLUETOOTH: str
@@ -54,10 +56,10 @@ SOURCE_RECONFIGURE: str
 HANDLERS: Registry[str, type[ConfigFlow]]
 STORAGE_KEY: str
 STORAGE_VERSION: int
-PATH_CONFIG: str
+STORAGE_VERSION_MINOR: int
 SAVE_DELAY: int
 DISCOVERY_COOLDOWN: int
-_R = TypeVar('_R')
+_DataT = TypeVar('_DataT', default=Any)
 
 class ConfigEntryState(Enum):
     LOADED: Incomplete
@@ -100,20 +102,21 @@ CONN_CLASS_UNKNOWN: str
 class ConfigError(HomeAssistantError): ...
 class UnknownEntry(ConfigError): ...
 class OperationNotAllowed(ConfigError): ...
-
-UpdateListenerType: Incomplete
+UpdateListenerType = Callable[[HomeAssistant, ConfigEntry], Coroutine[Any, Any, None]]
 FROZEN_CONFIG_ENTRY_ATTRS: Incomplete
 UPDATE_ENTRY_CONFIG_ENTRY_ATTRS: Incomplete
 
 class ConfigFlowResult(FlowResult, total=False):
     minor_version: int
+    options: Mapping[str, Any]
     version: int
 
-class ConfigEntry:
+class ConfigEntry(Generic[_DataT]):
     entry_id: str
     domain: str
     title: str
     data: MappingProxyType[str, Any]
+    runtime_data: _DataT
     options: MappingProxyType[str, Any]
     unique_id: str | None
     state: ConfigEntryState
@@ -140,7 +143,7 @@ class ConfigEntry:
     _background_tasks: set[asyncio.Future[Any]]
     _integration_for_domain: loader.Integration | None
     _tries: int
-    def __init__(self, *, version: int, minor_version: int, domain: str, title: str, data: Mapping[str, Any], source: str, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, options: Mapping[str, Any] | None = None, unique_id: str | None = None, entry_id: str | None = None, state: ConfigEntryState = ..., disabled_by: ConfigEntryDisabler | None = None) -> None: ...
+    def __init__(self, *, data: Mapping[str, Any], disabled_by: ConfigEntryDisabler | None = None, domain: str, entry_id: str | None = None, minor_version: int, options: Mapping[str, Any] | None, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, source: str, state: ConfigEntryState = ..., title: str, unique_id: str | None, version: int) -> None: ...
     def __repr__(self) -> str: ...
     def __setattr__(self, key: str, value: Any) -> None: ...
     @property
@@ -207,6 +210,10 @@ class ConfigEntryItems(UserDict[str, ConfigEntry]):
     def get_entries_for_domain(self, domain: str) -> list[ConfigEntry]: ...
     def get_entry_by_domain_and_unique_id(self, domain: str, unique_id: str) -> ConfigEntry | None: ...
 
+class ConfigEntryStore(storage.Store[dict[str, list[dict[str, Any]]]]):
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
+
 class ConfigEntries:
     hass: Incomplete
     flow: Incomplete
@@ -218,14 +225,15 @@ class ConfigEntries:
     def async_domains(self, include_ignore: bool = False, include_disabled: bool = False) -> list[str]: ...
     def async_get_entry(self, entry_id: str) -> ConfigEntry | None: ...
     def async_entry_ids(self) -> list[str]: ...
+    def async_has_entries(self, domain: str, include_ignore: bool = True, include_disabled: bool = True) -> bool: ...
     def async_entries(self, domain: str | None = None, include_ignore: bool = True, include_disabled: bool = True) -> list[ConfigEntry]: ...
     def async_entry_for_domain_unique_id(self, domain: str, unique_id: str) -> ConfigEntry | None: ...
     async def async_add(self, entry: ConfigEntry) -> None: ...
     async def async_remove(self, entry_id: str) -> dict[str, Any]: ...
     def _async_shutdown(self, event: Event) -> None: ...
     async def async_initialize(self) -> None: ...
-    async def async_setup(self, entry_id: str) -> bool: ...
-    async def async_unload(self, entry_id: str) -> bool: ...
+    async def async_setup(self, entry_id: str, _lock: bool = True) -> bool: ...
+    async def async_unload(self, entry_id: str, _lock: bool = True) -> bool: ...
     def async_schedule_reload(self, entry_id: str) -> None: ...
     async def async_reload(self, entry_id: str) -> bool: ...
     async def async_set_disabled_by(self, entry_id: str, disabled_by: ConfigEntryDisabler | None) -> bool: ...
@@ -240,7 +248,6 @@ class ConfigEntries:
     def _data_to_save(self) -> dict[str, list[dict[str, Any]]]: ...
     async def async_wait_component(self, entry: ConfigEntry) -> bool: ...
 
-async def _old_conf_migrator(old_config: dict[str, Any]) -> dict[str, Any]: ...
 def _async_abort_entries_match(other_entries: list[ConfigEntry], match_dict: dict[str, Any] | None = None) -> None: ...
 
 class ConfigEntryBaseFlow(data_entry_flow.FlowHandler[ConfigFlowResult]):

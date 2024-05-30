@@ -5,13 +5,12 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
-from typing import Any, Generic, TypeVar
+from typing import Any
 
 POLL_DEFAULT_COOLDOWN: int
 POLL_DEFAULT_IMMEDIATE: bool
-_T = TypeVar('_T')
 
-class ActiveBluetoothDataUpdateCoordinator(PassiveBluetoothDataUpdateCoordinator, Generic[_T]):
+class ActiveBluetoothDataUpdateCoordinator(PassiveBluetoothDataUpdateCoordinator):
     data: Incomplete
     _needs_poll_method: Incomplete
     _poll_method: Incomplete

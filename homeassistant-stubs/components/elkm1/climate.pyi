@@ -1,12 +1,9 @@
-from . import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
-from .const import DOMAIN as DOMAIN
-from .models import ELKM1Data as ELKM1Data
+from . import ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
 from _typeshed import Incomplete
 from elkm1_lib.const import ThermostatFan, ThermostatMode
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.thermostats import Thermostat as Thermostat
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_ON as FAN_ON, HVACMode as HVACMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PRECISION_WHOLE as PRECISION_WHOLE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -18,7 +15,7 @@ ELK_TO_HASS_HVAC_MODES: Incomplete
 HASS_TO_ELK_FAN_MODES: Incomplete
 ELK_TO_HASS_FAN_MODES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElkThermostat(ElkEntity, ClimateEntity):
     _attr_precision = PRECISION_WHOLE

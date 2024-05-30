@@ -1,12 +1,15 @@
-from .const import CONF_CONNECTIONS as CONF_CONNECTIONS, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pyfritzhome import Fritzhome as Fritzhome, FritzhomeDevice as FritzhomeDevice
+from pyfritzhome import Fritzhome, FritzhomeDevice as FritzhomeDevice
 from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate
+
+FritzboxConfigEntry = ConfigEntry[FritzboxDataUpdateCoordinator]
 
 @dataclass
 class FritzboxCoordinatorData:
@@ -15,14 +18,14 @@ class FritzboxCoordinatorData:
     def __init__(self, devices, templates) -> None: ...
 
 class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorData]):
-    config_entry: ConfigEntry
+    config_entry: FritzboxConfigEntry
     configuration_url: str
-    fritz: Incomplete
-    has_templates: Incomplete
+    fritz: Fritzhome
+    has_templates: bool
     new_devices: Incomplete
     new_templates: Incomplete
     data: Incomplete
-    def __init__(self, hass: HomeAssistant, name: str, has_templates: bool) -> None: ...
+    def __init__(self, hass: HomeAssistant, name: str) -> None: ...
     async def async_setup(self) -> None: ...
     def cleanup_removed_devices(self, available_ains: list[str]) -> None: ...
     def _update_fritz_devices(self) -> FritzboxCoordinatorData: ...

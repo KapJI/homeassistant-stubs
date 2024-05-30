@@ -12,12 +12,11 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any, NamedTuple, TypeVarTuple
+from typing import Any, NamedTuple
 
 DEFAULT_OFF_DELAY: float
 SIGNAL_EVENT: Incomplete
 CONNECT_TIMEOUT: float
-_Ts = TypeVarTuple('_Ts')
 _LOGGER: Incomplete
 
 class DeviceTuple(NamedTuple):

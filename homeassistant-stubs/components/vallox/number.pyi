@@ -1,5 +1,6 @@
-from . import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator, ValloxEntity as ValloxEntity
+from . import ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN
+from .coordinator import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription

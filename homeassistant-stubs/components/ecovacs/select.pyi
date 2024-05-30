@@ -1,5 +1,4 @@
-from .const import DOMAIN as DOMAIN
-from .controller import EcovacsController as EcovacsController
+from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .entity import CapabilityDevice as CapabilityDevice, EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
 from .util import get_name_key as get_name_key, get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
@@ -8,7 +7,6 @@ from dataclasses import dataclass
 from deebot_client.capabilities import CapabilitySetTypes
 from deebot_client.device import Device as Device
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,7 +20,7 @@ class EcovacsSelectEntityDescription(SelectEntityDescription, EcovacsCapabilityE
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSelectEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EcovacsSelectEntity(EcovacsDescriptionEntity[CapabilityDevice, CapabilitySetTypes[EventT, str]], SelectEntity):
     _attr_current_option: str | None

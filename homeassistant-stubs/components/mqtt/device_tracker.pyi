@@ -1,10 +1,10 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_QOS as CONF_QOS, CONF_STATE_TOPIC as CONF_STATE_TOPIC
-from .debug_info import log_messages as log_messages
-from .mixins import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper, write_state_on_attr_change as write_state_on_attr_change
+from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .mixins import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -16,6 +16,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
+_LOGGER: Incomplete
 CONF_PAYLOAD_HOME: str
 CONF_PAYLOAD_NOT_HOME: str
 CONF_SOURCE_TYPE: str
@@ -34,11 +35,11 @@ class MqttDeviceTracker(MqttEntity, TrackerEntity):
     _default_name: Incomplete
     _entity_id_format: Incomplete
     _location_name: str | None
-    _value_template: Callable[..., ReceivePayloadType]
+    _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
     def config_schema() -> vol.Schema: ...
     def _setup_from_config(self, config: ConfigType) -> None: ...
-    _sub_state: Incomplete
+    def _tracker_message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     @property
     def force_update(self) -> bool: ...

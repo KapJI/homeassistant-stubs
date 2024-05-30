@@ -4,10 +4,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_COVERS as CONF_COVERS, CONF_DEVICES as CONF_DEVICES, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES, CONF_HOST as CONF_HOST, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_LIGHTS as CONF_LIGHTS, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_RESOURCE as CONF_RESOURCE, CONF_SENSORS as CONF_SENSORS, CONF_SOURCE as CONF_SOURCE, CONF_SWITCHES as CONF_SWITCHES, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import TypeAlias
 
 AddressType = tuple[int, int, bool]
-DeviceConnectionType: TypeAlias
+DeviceConnectionType: Incomplete
 InputType: Incomplete
 PATTERN_ADDRESS: Incomplete
 DOMAIN_LOOKUP: Incomplete

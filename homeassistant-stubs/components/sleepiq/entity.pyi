@@ -8,9 +8,8 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import TypeVar
 
-_SleepIQCoordinatorT = TypeVar('_SleepIQCoordinatorT', bound=SleepIQDataUpdateCoordinator | SleepIQPauseUpdateCoordinator)
+_DataCoordinatorType: Incomplete
 
 def device_from_bed(bed: SleepIQBed) -> DeviceInfo: ...
 def sleeper_for_side(bed: SleepIQBed, side: str) -> SleepIQSleeper: ...

@@ -1,4 +1,5 @@
 import aiounifi
+from . import UnifiConfigEntry as UnifiConfigEntry
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
@@ -9,7 +10,6 @@ from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
 from datetime import timedelta
 from homeassistant.components.device_tracker import DOMAIN as DOMAIN, ScannerEntity as ScannerEntity, SourceType as SourceType
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -40,8 +40,8 @@ class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT]):
 
 ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 
-def async_update_unique_id(hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+def async_update_unique_id(hass: HomeAssistant, config_entry: UnifiConfigEntry) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class UnifiScannerEntity(UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
     entity_description: UnifiTrackerEntityDescription

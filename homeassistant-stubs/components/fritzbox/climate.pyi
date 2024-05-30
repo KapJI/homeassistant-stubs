@@ -1,10 +1,9 @@
 from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
-from .common import get_coordinator as get_coordinator
 from .const import ATTR_STATE_BATTERY_LOW as ATTR_STATE_BATTERY_LOW, ATTR_STATE_HOLIDAY_MODE as ATTR_STATE_HOLIDAY_MODE, ATTR_STATE_SUMMER_MODE as ATTR_STATE_SUMMER_MODE, ATTR_STATE_WINDOW_OPEN as ATTR_STATE_WINDOW_OPEN, LOGGER as LOGGER
+from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
 from .model import ClimateExtraAttributes as ClimateExtraAttributes
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -19,7 +18,7 @@ OFF_API_TEMPERATURE: float
 ON_REPORT_SET_TEMPERATURE: float
 OFF_REPORT_SET_TEMPERATURE: float
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzboxThermostat(FritzBoxDeviceEntity, ClimateEntity):
     _attr_precision = PRECISION_HALVES

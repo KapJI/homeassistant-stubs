@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN, HALF_DAY_SECS as HALF_DAY_SECS, ONE_DAY_SECS as ONE_DAY_SECS, ONE_MIN_SECS as ONE_MIN_SECS, SPEED_RANGE as SPEED_RANGE
+from . import BAFConfigEntry as BAFConfigEntry
+from .const import HALF_DAY_SECS as HALF_DAY_SECS, ONE_DAY_SECS as ONE_DAY_SECS, ONE_MIN_SECS as ONE_MIN_SECS, SPEED_RANGE as SPEED_RANGE
 from .entity import BAFEntity as BAFEntity
-from .models import BAFData as BAFData
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant import config_entries as config_entries
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -20,7 +19,7 @@ AUTO_COMFORT_NUMBER_DESCRIPTIONS: Incomplete
 FAN_NUMBER_DESCRIPTIONS: Incomplete
 LIGHT_NUMBER_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BAFNumber(BAFEntity, NumberEntity):
     entity_description: BAFNumberDescription

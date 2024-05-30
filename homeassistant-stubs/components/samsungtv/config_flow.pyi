@@ -19,6 +19,7 @@ def _mac_is_same_with_incorrect_formatting(current_unformatted_mac: str, formatt
 
 class SamsungTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     _reauth_entry: Incomplete
     _host: str
     _mac: Incomplete

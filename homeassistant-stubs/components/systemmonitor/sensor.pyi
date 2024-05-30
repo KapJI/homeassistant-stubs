@@ -1,4 +1,5 @@
-from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN, DOMAIN_COORDINATOR as DOMAIN_COORDINATOR, NET_IO_TYPES as NET_IO_TYPES
+from . import SystemMonitorConfigEntry as SystemMonitorConfigEntry
+from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN, NET_IO_TYPES as NET_IO_TYPES
 from .coordinator import SystemMonitorCoordinator as SystemMonitorCoordinator
 from .util import get_all_disk_mounts as get_all_disk_mounts, get_all_network_interfaces as get_all_network_interfaces, read_cpu_temperature as read_cpu_temperature
 from _typeshed import Incomplete
@@ -6,7 +7,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -51,7 +52,7 @@ IO_COUNTER: Incomplete
 IF_ADDRS_FAMILY: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SystemMonitorConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SystemMonitorSensor(CoordinatorEntity[SystemMonitorCoordinator], SensorEntity):
     _attr_has_entity_name: bool

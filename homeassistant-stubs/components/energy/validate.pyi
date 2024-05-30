@@ -8,17 +8,17 @@ from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, STATE_UN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 
 ENERGY_USAGE_DEVICE_CLASSES: Incomplete
-ENERGY_USAGE_UNITS: Incomplete
+ENERGY_USAGE_UNITS: dict[str, tuple[UnitOfEnergy, ...]]
 ENERGY_PRICE_UNITS: Incomplete
 ENERGY_UNIT_ERROR: str
 ENERGY_PRICE_UNIT_ERROR: str
 GAS_USAGE_DEVICE_CLASSES: Incomplete
-GAS_USAGE_UNITS: Incomplete
+GAS_USAGE_UNITS: dict[str, tuple[UnitOfEnergy | UnitOfVolume, ...]]
 GAS_PRICE_UNITS: Incomplete
 GAS_UNIT_ERROR: str
 GAS_PRICE_UNIT_ERROR: str
 WATER_USAGE_DEVICE_CLASSES: Incomplete
-WATER_USAGE_UNITS: Incomplete
+WATER_USAGE_UNITS: dict[str, tuple[UnitOfVolume, ...]]
 WATER_PRICE_UNITS: Incomplete
 WATER_UNIT_ERROR: str
 WATER_PRICE_UNIT_ERROR: str

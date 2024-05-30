@@ -16,6 +16,9 @@ from typing import Any
 
 TEMPERATURE_SCALING_FACTOR: int
 HVAC_SYSTEM_MODE_MAP: Incomplete
+SINGLE_SETPOINT_DEVICES: set[tuple[int, int]]
+SUPPORT_DRY_MODE_DEVICES: set[tuple[int, int]]
+SUPPORT_FAN_MODE_DEVICES: set[tuple[int, int]]
 SystemModeEnum: Incomplete
 ControlSequenceEnum: Incomplete
 ThermostatFeature: Incomplete
@@ -49,7 +52,5 @@ class MatterClimate(MatterEntity, ClimateEntity):
     _attr_max_temp: Incomplete
     def _update_from_device(self) -> None: ...
     def _get_temperature_in_degrees(self, attribute: type[clusters.ClusterAttributeDescriptor]) -> float | None: ...
-    @staticmethod
-    def _create_optional_setpoint_command(mode: clusters.Thermostat.Enums.SetpointAdjustMode | int, target_temp: float, current_target_temp: float) -> clusters.Thermostat.Commands.SetpointRaiseLower | None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

@@ -1,10 +1,8 @@
 from collections.abc import Callable as Callable, Iterable, Mapping
 from homeassistant.core import callback as callback
-from typing import Any, TypeVar, overload
+from typing import Any, overload
 
 REDACTED: str
-_T = TypeVar('_T')
-_ValueT = TypeVar('_ValueT')
 
 def partial_redact(x: str | Any, unmasked_prefix: int = 4, unmasked_suffix: int = 4) -> str: ...
 @overload

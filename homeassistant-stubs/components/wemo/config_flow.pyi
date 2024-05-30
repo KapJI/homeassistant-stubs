@@ -1,6 +1,6 @@
 import voluptuous as vol
 from .const import DOMAIN as DOMAIN
-from .wemo_device import Options as Options, OptionsValidationError as OptionsValidationError
+from .coordinator import Options as Options, OptionsValidationError as OptionsValidationError
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

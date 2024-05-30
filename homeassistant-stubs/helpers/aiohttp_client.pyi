@@ -10,11 +10,12 @@ from homeassistant import config_entries as config_entries
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import json_loads as json_loads
 from typing import Any
 
-DATA_CONNECTOR: str
-DATA_CLIENTSESSION: str
+DATA_CONNECTOR: HassKey[dict[tuple[bool, int], aiohttp.BaseConnector]]
+DATA_CLIENTSESSION: HassKey[dict[tuple[bool, int], aiohttp.ClientSession]]
 SERVER_SOFTWARE: Incomplete
 ENABLE_CLEANUP_CLOSED: Incomplete
 WARN_CLOSE_MSG: str

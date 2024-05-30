@@ -1,10 +1,10 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_SCHEMA as CONF_SCHEMA, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DOMAIN as DOMAIN
-from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper, write_state_on_attr_change as write_state_on_attr_change
+from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_SCHEMA as CONF_SCHEMA, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DOMAIN as DOMAIN
+from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import ReceiveMessage as ReceiveMessage
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -85,7 +85,7 @@ class MqttStateVacuum(MqttEntity, StateVacuumEntity):
     _attr_battery_level: Incomplete
     def _update_state_attributes(self, payload: dict[str, Any]) -> None: ...
     _attr_state: Incomplete
-    _sub_state: Incomplete
+    def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     async def _async_publish_command(self, feature: VacuumEntityFeature) -> None: ...

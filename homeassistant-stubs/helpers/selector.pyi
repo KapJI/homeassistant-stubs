@@ -1,28 +1,27 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping, Sequence
-from enum import IntFlag, StrEnum
+from enum import StrEnum
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.generated.countries import COUNTRIES as COUNTRIES
 from homeassistant.util import decorator as decorator
 from homeassistant.util.yaml import dumper as dumper
-from typing import Any, Generic, Literal, Required, TypeVar, TypedDict
+from typing import Any, Literal, Required, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]
-_T = TypeVar('_T', bound=Mapping[str, Any])
 
 def _get_selector_class(config: Any) -> type[Selector]: ...
 def selector(config: Any) -> Selector: ...
 def validate_selector(config: Any) -> dict: ...
 
-class Selector(Generic[_T]):
+class Selector:
     CONFIG_SCHEMA: Callable
     config: _T
     selector_type: str
     def __init__(self, config: Mapping[str, Any] | None = None) -> None: ...
     def serialize(self) -> dict[str, dict[str, _T]]: ...
 
-def _entity_features() -> dict[str, type[IntFlag]]: ...
+def _entity_feature_flag(domain: str, enum_name: str, feature_name: str) -> int: ...
 def _validate_supported_feature(supported_feature: str) -> int: ...
 def _validate_supported_features(supported_features: int | list[str]) -> int: ...
 

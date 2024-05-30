@@ -1,15 +1,13 @@
-from .const import DOMAIN as DOMAIN
+from . import BAFConfigEntry as BAFConfigEntry
 from .entity import BAFEntity as BAFEntity
-from .models import BAFData as BAFData
 from _typeshed import Incomplete
-from homeassistant import config_entries as config_entries
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BAFAutoComfort(BAFEntity, ClimateEntity):
     _attr_supported_features: Incomplete

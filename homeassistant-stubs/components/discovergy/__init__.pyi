@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import DiscovergyUpdateCoordinator as DiscovergyUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,7 +7,8 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 
 PLATFORMS: Incomplete
+DiscovergyConfigEntry = ConfigEntry[list[DiscovergyUpdateCoordinator]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DiscovergyConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...

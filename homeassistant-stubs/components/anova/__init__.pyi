@@ -1,11 +1,12 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import AnovaCoordinator as AnovaCoordinator
 from .models import AnovaData as AnovaData
-from .util import serialize_device_list as serialize_device_list
 from _typeshed import Incomplete
+from anova_wifi import APCWifiDevice as APCWifiDevice
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_DEVICES as CONF_DEVICES, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
+from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 
 PLATFORMS: Incomplete

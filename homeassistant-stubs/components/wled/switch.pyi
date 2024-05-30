@@ -1,10 +1,10 @@
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_FADE as ATTR_FADE, ATTR_TARGET_BRIGHTNESS as ATTR_TARGET_BRIGHTNESS, ATTR_UDP_PORT as ATTR_UDP_PORT, DOMAIN as DOMAIN
+from . import WLEDConfigEntry as WLEDConfigEntry
+from .const import ATTR_DURATION as ATTR_DURATION, ATTR_FADE as ATTR_FADE, ATTR_TARGET_BRIGHTNESS as ATTR_TARGET_BRIGHTNESS, ATTR_UDP_PORT as ATTR_UDP_PORT
 from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
+from .entity import WLEDEntity as WLEDEntity
 from .helpers import wled_exception_handler as wled_exception_handler
-from .models import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +12,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WLEDNightlightSwitch(WLEDEntity, SwitchEntity):
     _attr_entity_category: Incomplete

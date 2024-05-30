@@ -1,7 +1,7 @@
 import re
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE
+from homeassistant.const import CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE, MAX_EXPECTED_ENTITY_IDS as MAX_EXPECTED_ENTITY_IDS
 from homeassistant.core import split_entity_id as split_entity_id
 
 CONF_INCLUDE_DOMAINS: str

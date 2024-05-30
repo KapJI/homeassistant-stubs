@@ -11,7 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 from pyasuswrt import AsusWrtHttp
-from typing import Any, NamedTuple, TypeVar
+from typing import Any, NamedTuple
 
 SENSORS_TYPE_BYTES: str
 SENSORS_TYPE_COUNT: str
@@ -25,11 +25,10 @@ class WrtDevice(NamedTuple):
     connected_to: Incomplete
 
 _LOGGER: Incomplete
-_AsusWrtBridgeT = TypeVar('_AsusWrtBridgeT', bound='AsusWrtBridge')
 _FuncType: Incomplete
-_ReturnFuncType = Callable[[_AsusWrtBridgeT], Coroutine[Any, Any, dict[str, Any]]]
+_ReturnFuncType = Callable[[_T], Coroutine[Any, Any, dict[str, Any]]]
 
-def handle_errors_and_zip(exceptions: type[Exception] | tuple[type[Exception], ...], keys: list[str] | None) -> Callable[[_FuncType], _ReturnFuncType]: ...
+def handle_errors_and_zip(exceptions: type[Exception] | tuple[type[Exception], ...], keys: list[str] | None) -> Callable[[_FuncType[_AsusWrtBridgeT]], _ReturnFuncType[_AsusWrtBridgeT]]: ...
 
 class AsusWrtBridge(ABC, metaclass=abc.ABCMeta):
     @staticmethod

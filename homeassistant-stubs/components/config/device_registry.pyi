@@ -3,7 +3,7 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api.decorators import require_admin as require_admin
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceEntryDisabler as DeviceEntryDisabler, async_get as async_get
+from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceEntryDisabler as DeviceEntryDisabler
 from typing import Any
 
 def async_setup(hass: HomeAssistant) -> bool: ...

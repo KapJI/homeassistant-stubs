@@ -1,7 +1,5 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import IPPDataUpdateCoordinator as IPPDataUpdateCoordinator
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from . import IPPConfigEntry as IPPConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 
-async def async_get_config_entry_diagnostics(hass: HomeAssistant, config_entry: ConfigEntry) -> dict[str, Any]: ...
+async def async_get_config_entry_diagnostics(hass: HomeAssistant, config_entry: IPPConfigEntry) -> dict[str, Any]: ...

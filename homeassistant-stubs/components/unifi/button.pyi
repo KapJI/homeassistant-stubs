@@ -1,12 +1,11 @@
 import aiounifi
+from . import UnifiConfigEntry as UnifiConfigEntry
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
-from .hub import UnifiHub as UnifiHub
 from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
 from aiounifi.models.api import ApiItemT
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -23,7 +22,7 @@ class UnifiButtonEntityDescription(ButtonEntityDescription, UnifiEntityDescripti
 
 ENTITY_DESCRIPTIONS: tuple[UnifiButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class UnifiButtonEntity(UnifiEntity[HandlerT, ApiItemT], ButtonEntity):
     entity_description: UnifiButtonEntityDescription[HandlerT, ApiItemT]

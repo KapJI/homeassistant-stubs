@@ -14,6 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class CanaryAlarm(CoordinatorEntity[CanaryDataUpdateCoordinator], AlarmControlPanelEntity):
     _attr_supported_features: Incomplete
+    _attr_code_arm_required: bool
     _location_id: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

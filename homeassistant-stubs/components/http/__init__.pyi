@@ -1,8 +1,8 @@
 import asyncio
 import ssl
-from .auth import async_setup_auth as async_setup_auth, async_sign_path as async_sign_path
+from .auth import async_setup_auth as async_setup_auth
 from .ban import setup_bans as setup_bans
-from .const import DOMAIN as DOMAIN, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER, StrictConnectionMode as StrictConnectionMode
+from .const import DOMAIN as DOMAIN, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER
 from .cors import setup_cors as setup_cors
 from .decorators import require_admin as require_admin
 from .forwarded import async_setup_forwarded as async_setup_forwarded
@@ -21,10 +21,11 @@ from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
 from aiohttp.web_protocol import RequestHandler as RequestHandler
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import storage as storage
 from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_ALLOW_CONFIGRED_CORS as KEY_ALLOW_CONFIGRED_CORS, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, current_request as current_request
+from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
@@ -47,7 +48,6 @@ CONF_TRUSTED_PROXIES: Final[str]
 CONF_LOGIN_ATTEMPTS_THRESHOLD: Final[str]
 CONF_IP_BAN_ENABLED: Final[str]
 CONF_SSL_PROFILE: Final[str]
-CONF_STRICT_CONNECTION: Final[str]
 SSL_MODERN: Final[str]
 SSL_INTERMEDIATE: Final[str]
 _LOGGER: Final[Incomplete]
@@ -110,7 +110,7 @@ class HomeAssistantHTTP:
     site: Incomplete
     context: Incomplete
     def __init__(self, hass: HomeAssistant, ssl_certificate: str | None, ssl_peer_certificate: str | None, ssl_key: str | None, server_host: list[str] | None, server_port: int, trusted_proxies: list[IPv4Network | IPv6Network], ssl_profile: str) -> None: ...
-    async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool, use_x_frame_options: bool, strict_connection_non_cloud: StrictConnectionMode) -> None: ...
+    async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool, use_x_frame_options: bool) -> None: ...
     def register_view(self, view: HomeAssistantView | type[HomeAssistantView]) -> None: ...
     def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection] = ...) -> None: ...
     def register_static_path(self, url_path: str, path: str, cache_headers: bool = True) -> None: ...
@@ -120,4 +120,3 @@ class HomeAssistantHTTP:
     async def stop(self) -> None: ...
 
 async def start_http_server_and_save_config(hass: HomeAssistant, conf: dict, server: HomeAssistantHTTP) -> None: ...
-def _setup_services(hass: HomeAssistant, conf: ConfData) -> None: ...

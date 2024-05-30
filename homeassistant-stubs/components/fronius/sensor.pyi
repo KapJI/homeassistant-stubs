@@ -1,11 +1,10 @@
-from . import FroniusSolarNet as FroniusSolarNet
+from . import FroniusConfigEntry as FroniusConfigEntry
 from .const import DOMAIN as DOMAIN, InverterStatusCodeOption as InverterStatusCodeOption, MeterLocationCodeOption as MeterLocationCodeOption, OhmPilotStateCodeOption as OhmPilotStateCodeOption, SOLAR_NET_DISCOVERY_NEW as SOLAR_NET_DISCOVERY_NEW, get_inverter_status_message as get_inverter_status_message, get_meter_location_description as get_meter_location_description, get_ohmpilot_state_message as get_ohmpilot_state_message
 from .coordinator import FroniusCoordinatorBase as FroniusCoordinatorBase, FroniusInverterUpdateCoordinator as FroniusInverterUpdateCoordinator, FroniusLoggerUpdateCoordinator as FroniusLoggerUpdateCoordinator, FroniusMeterUpdateCoordinator as FroniusMeterUpdateCoordinator, FroniusOhmpilotUpdateCoordinator as FroniusOhmpilotUpdateCoordinator, FroniusPowerFlowUpdateCoordinator as FroniusPowerFlowUpdateCoordinator, FroniusStorageUpdateCoordinator as FroniusStorageUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, POWER_VOLT_AMPERE_REACTIVE as POWER_VOLT_AMPERE_REACTIVE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -17,7 +16,7 @@ from typing import Any, Final
 
 ENERGY_VOLT_AMPERE_REACTIVE_HOUR: Final[str]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: FroniusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True)
 class FroniusSensorEntityDescription(SensorEntityDescription):

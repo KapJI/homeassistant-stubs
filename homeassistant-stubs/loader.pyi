@@ -1,3 +1,4 @@
+import asyncio
 import pathlib
 import voluptuous as vol
 from . import generated as generated
@@ -13,17 +14,18 @@ from .generated.ssdp import SSDP as SSDP
 from .generated.usb import USB as USB
 from .generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
 from .helpers import device_registry as dr
+from .helpers.json import json_bytes as json_bytes, json_fragment as json_fragment
 from .helpers.typing import ConfigType as ConfigType
+from .util.hass_dict import HassKey as HassKey
 from .util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
-from collections.abc import Callable, Iterable
+from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from functools import cached_property as cached_property
 from types import ModuleType
-from typing import Any, Literal, Protocol, TypeVar, TypedDict
+from typing import Any, Literal, Protocol, TypedDict
 
-_CallableT = TypeVar('_CallableT', bound=Callable[..., Any])
 _LOGGER: Incomplete
 BASE_PRELOAD_PLATFORMS: Incomplete
 
@@ -34,11 +36,11 @@ class BlockedIntegration:
     def __init__(self, lowest_good_version, reason) -> None: ...
 
 BLOCKED_CUSTOM_INTEGRATIONS: dict[str, BlockedIntegration]
-DATA_COMPONENTS: str
-DATA_INTEGRATIONS: str
-DATA_MISSING_PLATFORMS: str
-DATA_CUSTOM_COMPONENTS: str
-DATA_PRELOAD_PLATFORMS: str
+DATA_COMPONENTS: HassKey[dict[str, ModuleType | ComponentProtocol]]
+DATA_INTEGRATIONS: HassKey[dict[str, Integration | asyncio.Future[None]]]
+DATA_MISSING_PLATFORMS: HassKey[dict[str, bool]]
+DATA_CUSTOM_COMPONENTS: HassKey[dict[str, Integration] | asyncio.Future[dict[str, Integration]]]
+DATA_PRELOAD_PLATFORMS: HassKey[list[str]]
 PACKAGE_CUSTOM_COMPONENTS: str
 PACKAGE_BUILTIN: str
 CUSTOM_WARNING: str
@@ -166,6 +168,8 @@ class Integration:
     _missing_platforms_cache: Incomplete
     _top_level_files: Incomplete
     def __init__(self, hass: HomeAssistant, pkg_path: str, file_path: pathlib.Path, manifest: Manifest, top_level_files: set[str] | None = None) -> None: ...
+    @cached_property
+    def manifest_json_fragment(self) -> json_fragment: ...
     @cached_property
     def name(self) -> str: ...
     @cached_property

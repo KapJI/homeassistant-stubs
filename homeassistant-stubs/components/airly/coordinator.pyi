@@ -9,7 +9,7 @@ _LOGGER: Incomplete
 
 def set_update_interval(instances_count: int, requests_remaining: int) -> timedelta: ...
 
-class AirlyDataUpdateCoordinator(DataUpdateCoordinator):
+class AirlyDataUpdateCoordinator(DataUpdateCoordinator[dict[str, str | float | int]]):
     latitude: Incomplete
     longitude: Incomplete
     airly: Incomplete

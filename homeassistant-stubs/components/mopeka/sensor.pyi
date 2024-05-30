@@ -8,13 +8,13 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
-from mopeka_iot_ble import SensorUpdate as SensorUpdate
+from mopeka_iot_ble import SensorUpdate
 
 SENSOR_DESCRIPTIONS: Incomplete
 
 def sensor_update_to_bluetooth_data_update(sensor_update: SensorUpdate) -> PassiveBluetoothDataUpdate: ...
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MopekaBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[float | int | None]], SensorEntity):
+class MopekaBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[float | int | None, SensorUpdate]], SensorEntity):
     @property
     def native_value(self) -> int | float | None: ...

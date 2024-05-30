@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from homeassistant.components.group import GroupIntegrationRegistry as GroupIntegrationRegistry
 from homeassistant.const import STATE_CLOSED as STATE_CLOSED, STATE_OPEN as STATE_OPEN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

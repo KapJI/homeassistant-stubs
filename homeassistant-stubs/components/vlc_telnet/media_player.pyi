@@ -1,7 +1,8 @@
-from .const import DATA_AVAILABLE as DATA_AVAILABLE, DATA_VLC as DATA_VLC, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
+from . import VlcConfigEntry as VlcConfigEntry
+from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from aiovlc.client import Client as Client
-from collections.abc import Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASSIO as SOURCE_HASSIO
@@ -9,13 +10,12 @@ from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Concatenate, ParamSpec, TypeVar
+from typing import Any, Concatenate
 
 MAX_VOLUME: int
-_VlcDeviceT = TypeVar('_VlcDeviceT', bound='VlcDevice')
-_P = ParamSpec('_P')
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+def _get_str(data: dict, key: str) -> str | None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: VlcConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def catch_vlc_errors(func: Callable[Concatenate[_VlcDeviceT, _P], Awaitable[None]]) -> Callable[Concatenate[_VlcDeviceT, _P], Coroutine[Any, Any, None]]: ...
 
 class VlcDevice(MediaPlayerEntity):

@@ -1,10 +1,10 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_ENCODING as CONF_ENCODING, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON
-from .debug_info import log_messages as log_messages
-from .mixins import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper, write_state_on_attr_change as write_state_on_attr_change
-from .models import MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
+from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON
+from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
+from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
+from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components import update as update
@@ -56,7 +56,8 @@ class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
-    _sub_state: Incomplete
+    def _handle_state_message_received(self, msg: ReceiveMessage) -> None: ...
+    def _handle_latest_version_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

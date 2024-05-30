@@ -1,5 +1,6 @@
-from .common import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, FritzDeviceBase as FritzDeviceBase, _is_tracked as _is_tracked
 from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, MeshRoles as MeshRoles
+from .coordinator import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, _is_tracked as _is_tracked
+from .entity import FritzDeviceBase as FritzDeviceBase
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -10,13 +11,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Final
+from typing import Any, Final
 
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class FritzButtonDescription(ButtonEntityDescription):
-    press_action: Callable
+    press_action: Callable[[AvmWrapper], Any]
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, press_action) -> None: ...
 
 BUTTONS: Final[Incomplete]

@@ -1,9 +1,3 @@
-from .const import DATA_DISCOVERY as DATA_DISCOVERY, DOMAIN as DOMAIN
-from .utils import async_discover_devices as async_discover_devices
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from typing import Any
-
-class SwitcherFlowHandler(ConfigFlow, domain=DOMAIN):
-    async def async_step_import(self, import_config: dict[str, Any]) -> ConfigFlowResult: ...
-    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
-    async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+from .const import DOMAIN as DOMAIN
+from .utils import async_has_devices as async_has_devices
+from homeassistant.helpers import config_entry_flow as config_entry_flow

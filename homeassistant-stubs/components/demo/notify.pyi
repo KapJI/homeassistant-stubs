@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.components.notify import DOMAIN as DOMAIN, NotifyEntity as NotifyEntity
+from homeassistant.components.notify import DOMAIN as DOMAIN, NotifyEntity as NotifyEntity, NotifyEntityFeature as NotifyEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -13,6 +13,7 @@ class DemoNotifyEntity(NotifyEntity):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
+    _attr_supported_features: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, unique_id: str, device_name: str) -> None: ...
-    async def async_send_message(self, message: str) -> None: ...
+    async def async_send_message(self, message: str, title: str | None = None) -> None: ...

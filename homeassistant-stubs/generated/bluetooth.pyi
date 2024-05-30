@@ -1,1 +1,3 @@
-BLUETOOTH: list[dict[str, bool | str | int | list[int]]]
+from typing import Final
+
+BLUETOOTH: Final[list[dict[str, bool | str | int | list[int]]]]

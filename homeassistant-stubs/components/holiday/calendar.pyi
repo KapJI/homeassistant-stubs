@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 
+def _get_obj_holidays_and_language(country: str, province: str | None, language: str) -> tuple[HolidayBase, str]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HolidayCalendarEntity(CalendarEntity):

@@ -55,7 +55,7 @@ class EvoBroker:
     _location: Incomplete
     config: Incomplete
     tcs: Incomplete
-    tcs_utc_offset: Incomplete
+    loc_utc_offset: Incomplete
     temps: Incomplete
     def __init__(self, hass: HomeAssistant, client: evo.EvohomeClient, client_v1: ev1.EvohomeClient | None, store: Store[dict[str, Any]], params: ConfigType) -> None: ...
     async def save_auth_tokens(self) -> None: ...

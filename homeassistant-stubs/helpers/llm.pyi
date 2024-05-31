@@ -7,6 +7,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from homeassistant.components.climate.intent import INTENT_GET_TEMPERATURE as INTENT_GET_TEMPERATURE
 from homeassistant.components.conversation.trace import ConversationTraceEventType as ConversationTraceEventType, async_conversation_trace_append as async_conversation_trace_append
+from homeassistant.components.cover.intent import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
 from homeassistant.components.homeassistant.exposed_entities import async_should_expose as async_should_expose
 from homeassistant.components.intent import async_device_supports_timers as async_device_supports_timers
 from homeassistant.components.weather.intent import INTENT_GET_WEATHER as INTENT_GET_WEATHER

@@ -60,13 +60,12 @@ class TagEntity(Entity):
     _unrecorded_attributes: Incomplete
     _attr_translation_key = DOMAIN
     _attr_should_poll: bool
-    hass: Incomplete
     _attr_name: Incomplete
     _tag_id: Incomplete
     _attr_unique_id: Incomplete
     _last_device_id: Incomplete
     _last_scanned: Incomplete
-    def __init__(self, hass: HomeAssistant, name: str, tag_id: str, last_scanned: str | None, device_id: str | None) -> None: ...
+    def __init__(self, name: str, tag_id: str, last_scanned: str | None, device_id: str | None) -> None: ...
     def async_handle_event(self, device_id: str | None, last_scanned: str | None) -> None: ...
     @property
     def state(self) -> str | None: ...

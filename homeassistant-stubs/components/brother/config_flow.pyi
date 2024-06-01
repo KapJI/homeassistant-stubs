@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, PRINTER_TYPES as PRINTER_TYPES
-from .utils import get_snmp_engine as get_snmp_engine
 from _typeshed import Incomplete
 from homeassistant.components import zeroconf as zeroconf
+from homeassistant.components.snmp import async_get_snmp_engine as async_get_snmp_engine
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_TYPE as CONF_TYPE
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

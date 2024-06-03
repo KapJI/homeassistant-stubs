@@ -18,6 +18,7 @@ from homeassistant.util.json import JsonObjectType as JsonObjectType
 from typing import Any
 
 LLM_API_ASSIST: str
+BASE_PROMPT: str
 DEFAULT_INSTRUCTIONS_PROMPT: str
 
 def async_render_no_api_prompt(hass: HomeAssistant) -> str: ...

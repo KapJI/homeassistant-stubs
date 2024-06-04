@@ -130,13 +130,5 @@ class MqttData:
     tags: dict[str, dict[str, MQTTTagScanner]] = ...
     def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, last_discovery, platforms_loaded, reload_dispatchers, reload_handlers, reload_schema, state_write_requests, subscriptions_to_restore, tags) -> None: ...
 
-@dataclass(slots=True)
-class MqttComponentConfig:
-    component: str
-    object_id: str
-    node_id: str | None
-    discovery_payload: MQTTDiscoveryPayload
-    def __init__(self, component, object_id, node_id, discovery_payload) -> None: ...
-
 DATA_MQTT: HassKey[MqttData]
 DATA_MQTT_AVAILABLE: HassKey[asyncio.Future[bool]]

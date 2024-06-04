@@ -92,7 +92,6 @@ class MqttDiscoveryDeviceUpdateMixin(ABC, metaclass=abc.ABCMeta):
     _config_entry: Incomplete
     _config_entry_id: Incomplete
     _skip_device_removal: bool
-    _migrate_discovery: Incomplete
     _remove_discovery_updated: Incomplete
     _remove_device_updated: Incomplete
     def __init__(self, hass: HomeAssistant, discovery_data: DiscoveryInfoType, device_id: str | None, config_entry: ConfigEntry, log_name: str) -> None: ...
@@ -111,7 +110,6 @@ class MqttDiscoveryUpdateMixin(Entity):
     _remove_discovery_updated: Incomplete
     _removed_from_hass: bool
     _registry_hooks: Incomplete
-    _migrate_discovery: Incomplete
     def __init__(self, hass: HomeAssistant, discovery_data: DiscoveryInfoType | None, discovery_update: Callable[[MQTTDiscoveryPayload], Coroutine[Any, Any, None]] | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _async_remove_state_and_registry_entry(self) -> None: ...

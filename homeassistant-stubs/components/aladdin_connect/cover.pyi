@@ -1,35 +1,22 @@
-from . import api as api
-from .const import DOMAIN as DOMAIN, SUPPORTED_FEATURES as SUPPORTED_FEATURES
-from .model import GarageDoor as GarageDoor
+from . import AladdinConnectConfigEntry as AladdinConnectConfigEntry, AladdinConnectCoordinator as AladdinConnectCoordinator
+from .entity import AladdinConnectEntity as AladdinConnectEntity
 from _typeshed import Incomplete
-from genie_partner_sdk.client import AladdinConnectClient
-from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from genie_partner_sdk.model import GarageDoor as GarageDoor
+from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-SCAN_INTERVAL: Incomplete
+async def async_setup_entry(hass: HomeAssistant, config_entry: AladdinConnectConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def remove_stale_devices(hass: HomeAssistant, config_entry: ConfigEntry, devices: list[GarageDoor]) -> None: ...
-
-class AladdinDevice(CoverEntity):
+class AladdinDevice(AladdinConnectEntity, CoverEntity):
     _attr_device_class: Incomplete
-    _attr_supported_features = SUPPORTED_FEATURES
-    _attr_has_entity_name: bool
+    _attr_supported_features: Incomplete
     _attr_name: Incomplete
-    _acc: Incomplete
-    _device_id: Incomplete
-    _number: Incomplete
-    _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, acc: AladdinConnectClient, device: GarageDoor, entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: AladdinConnectCoordinator, device: GarageDoor) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
-    async def async_update(self) -> None: ...
     @property
     def is_closed(self) -> bool | None: ...
     @property

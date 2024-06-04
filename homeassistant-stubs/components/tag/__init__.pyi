@@ -1,11 +1,11 @@
 from .const import DEFAULT_NAME as DEFAULT_NAME, DEVICE_ID as DEVICE_ID, DOMAIN as DOMAIN, EVENT_TAG_SCANNED as EVENT_TAG_SCANNED, LOGGER as LOGGER, TAG_ID as TAG_ID
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.const import CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_ID as CONF_ID, CONF_NAME as CONF_NAME
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import collection as collection, entity_registry as er
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.storage import Store as Store
@@ -60,15 +60,17 @@ class TagEntity(Entity):
     _unrecorded_attributes: Incomplete
     _attr_translation_key = DOMAIN
     _attr_should_poll: bool
+    _entity_update_handlers: Incomplete
     _attr_name: Incomplete
     _tag_id: Incomplete
     _attr_unique_id: Incomplete
     _last_device_id: Incomplete
     _last_scanned: Incomplete
-    def __init__(self, name: str, tag_id: str, last_scanned: str | None, device_id: str | None) -> None: ...
+    def __init__(self, entity_update_handlers: dict[str, Callable[[str | None, str | None], None]], name: str, tag_id: str, last_scanned: str | None, device_id: str | None) -> None: ...
     def async_handle_event(self, device_id: str | None, last_scanned: str | None) -> None: ...
     @property
     def state(self) -> str | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     async def async_added_to_hass(self) -> None: ...
+    async def async_will_remove_from_hass(self) -> None: ...

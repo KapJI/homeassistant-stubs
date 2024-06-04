@@ -72,6 +72,7 @@ class API(ABC, metaclass=abc.ABCMeta):
 class IntentTool(Tool):
     name: Incomplete
     description: Incomplete
+    extra_slots: Incomplete
     parameters: Incomplete
     def __init__(self, intent_handler: intent.IntentHandler) -> None: ...
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...

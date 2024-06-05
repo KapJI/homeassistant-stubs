@@ -1,6 +1,6 @@
 import abc
 import voluptuous as vol
-from . import intent as intent
+from . import intent as intent, service as service
 from .singleton import singleton as singleton
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod

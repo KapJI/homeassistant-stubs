@@ -53,6 +53,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class OverkizAlarmControlPanel(OverkizDescriptiveEntity, AlarmControlPanelEntity):
     entity_description: OverkizAlarmDescription
+    _attr_code_arm_required: bool
     _attr_supported_features: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator, description: EntityDescription) -> None: ...
     @property

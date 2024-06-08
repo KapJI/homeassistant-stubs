@@ -1,8 +1,7 @@
-from . import ClimateEntity as ClimateEntity, DOMAIN as DOMAIN
+from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 
 INTENT_GET_TEMPERATURE: str
 

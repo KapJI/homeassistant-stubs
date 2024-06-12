@@ -8,9 +8,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.service import async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
-from pyunifiprotect.api import ProtectApiClient as ProtectApiClient
-from pyunifiprotect.data import Camera
 from typing import Any
+from uiprotect.api import ProtectApiClient as ProtectApiClient
+from uiprotect.data import Camera
 
 SERVICE_ADD_DOORBELL_TEXT: str
 SERVICE_REMOVE_DOORBELL_TEXT: str

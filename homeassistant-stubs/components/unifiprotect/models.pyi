@@ -4,8 +4,8 @@ from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from enum import Enum
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from pyunifiprotect.data import Event as Event, NVR, ProtectAdoptableDeviceModel
 from typing import Any, Generic, TypeVar
+from uiprotect.data import Event as Event, NVR, ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
 T = TypeVar('T', bound=ProtectAdoptableDeviceModel | NVR)

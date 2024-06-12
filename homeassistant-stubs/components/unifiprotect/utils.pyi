@@ -6,9 +6,9 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
-from pyunifiprotect import ProtectApiClient
-from pyunifiprotect.data import Bootstrap as Bootstrap, CameraChannel as CameraChannel, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 from typing import Any
+from uiprotect import ProtectApiClient
+from uiprotect.data import Bootstrap as Bootstrap, CameraChannel as CameraChannel, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _SENTINEL: Incomplete
 

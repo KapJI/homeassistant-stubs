@@ -7,9 +7,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from pyunifiprotect import ProtectApiClient as ProtectApiClient
-from pyunifiprotect.data import Bootstrap as Bootstrap, ModelType, NVR, ProtectAdoptableDeviceModel, WSSubscriptionMessage as WSSubscriptionMessage
 from typing import Any
+from uiprotect import ProtectApiClient as ProtectApiClient
+from uiprotect.data import Bootstrap as Bootstrap, ModelType, NVR, ProtectAdoptableDeviceModel, WSSubscriptionMessage as WSSubscriptionMessage
 
 _LOGGER: Incomplete
 ProtectDeviceType: Incomplete

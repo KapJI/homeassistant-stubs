@@ -13,8 +13,8 @@ from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util.network import is_ip_address as is_ip_address
-from pyunifiprotect.data import NVR as NVR
 from typing import Any
+from uiprotect.data import NVR as NVR
 
 _LOGGER: Incomplete
 ENTRY_FAILURE_STATES: Incomplete

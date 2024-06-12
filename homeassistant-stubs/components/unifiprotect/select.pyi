@@ -13,9 +13,9 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pyunifiprotect.api import ProtectApiClient as ProtectApiClient
-from pyunifiprotect.data import Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor, Viewer
 from typing import Any, Final
+from uiprotect.api import ProtectApiClient as ProtectApiClient
+from uiprotect.data import Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor, Viewer
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str

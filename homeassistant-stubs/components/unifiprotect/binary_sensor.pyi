@@ -10,9 +10,9 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pyunifiprotect.data import Camera, Light as Light, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor
-from pyunifiprotect.data.nvr import UOSDisk as UOSDisk
 from typing import Any
+from uiprotect.data import Camera, Light as Light, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor
+from uiprotect.data.nvr import UOSDisk as UOSDisk
 
 _LOGGER: Incomplete
 _KEY_DOOR: str

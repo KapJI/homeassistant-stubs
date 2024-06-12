@@ -10,8 +10,8 @@ from homeassistant.components.media_source.models import BrowseMediaSource as Br
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er
-from pyunifiprotect.data import Camera, Event, EventType
 from typing import Any, NoReturn
+from uiprotect.data import Camera, Event, EventType
 
 VIDEO_FORMAT: str
 THUMBNAIL_WIDTH: int

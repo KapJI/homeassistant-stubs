@@ -13,8 +13,8 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from pyunifiprotect.data import Bootstrap as Bootstrap
-from pyunifiprotect.test_util.anonymize import anonymize_data as anonymize_data
+from uiprotect.data import Bootstrap as Bootstrap
+from uiprotect.test_util.anonymize import anonymize_data as anonymize_data
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete

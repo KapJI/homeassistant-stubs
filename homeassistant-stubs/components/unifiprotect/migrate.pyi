@@ -6,9 +6,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
-from pyunifiprotect import ProtectApiClient as ProtectApiClient
-from pyunifiprotect.data import Bootstrap as Bootstrap
 from typing import TypedDict
+from uiprotect import ProtectApiClient as ProtectApiClient
+from uiprotect.data import Bootstrap as Bootstrap
 
 _LOGGER: Incomplete
 

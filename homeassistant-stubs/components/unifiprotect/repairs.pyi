@@ -4,8 +4,8 @@ from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from pyunifiprotect import ProtectApiClient as ProtectApiClient
-from pyunifiprotect.data import Bootstrap as Bootstrap, Camera as Camera
+from uiprotect import ProtectApiClient as ProtectApiClient
+from uiprotect.data import Bootstrap as Bootstrap, Camera as Camera
 
 class ProtectRepair(RepairsFlow):
     _api: ProtectApiClient

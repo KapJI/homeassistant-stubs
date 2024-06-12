@@ -5,8 +5,8 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from http import HTTPStatus
-from pyunifiprotect.data import Camera, Event as Event
 from typing import Any
+from uiprotect.data import Camera, Event as Event
 
 _LOGGER: Incomplete
 

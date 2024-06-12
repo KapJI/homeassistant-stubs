@@ -12,8 +12,8 @@ from homeassistant.const import EntityCategory as EntityCategory, LIGHT_LUX as L
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pyunifiprotect.data import Camera, NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel as ProtectDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor
 from typing import Any
+from uiprotect.data import Camera, NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel as ProtectDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor
 
 _LOGGER: Incomplete
 OBJECT_TYPE_NONE: str

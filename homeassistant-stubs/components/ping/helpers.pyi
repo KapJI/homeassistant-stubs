@@ -1,6 +1,7 @@
 from .const import ICMP_TIMEOUT as ICMP_TIMEOUT, PING_TIMEOUT as PING_TIMEOUT
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 from typing import Any
 
 _LOGGER: Incomplete

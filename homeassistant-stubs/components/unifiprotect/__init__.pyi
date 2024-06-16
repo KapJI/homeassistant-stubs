@@ -19,6 +19,7 @@ from uiprotect.test_util.anonymize import anonymize_data as anonymize_data
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 CONFIG_SCHEMA: Incomplete
+EARLY_ACCESS_URL: str
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

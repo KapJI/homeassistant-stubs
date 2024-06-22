@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SHARED_SUFFIX as SHARED_SUFFIX
 from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
 from aiohttp import web
@@ -16,6 +16,7 @@ class SynologyPhotosMediaSourceIdentifier:
     album_id: Incomplete
     cache_key: Incomplete
     file_name: Incomplete
+    is_shared: bool
     def __init__(self, identifier: str) -> None: ...
 
 class SynologyPhotosMediaSource(MediaSource):

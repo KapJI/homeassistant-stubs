@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON
@@ -14,7 +13,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAM
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from typing import Any, TypedDict
 
@@ -47,7 +46,7 @@ class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     @property
     def entity_picture(self) -> str | None: ...
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
     _attr_release_summary: Incomplete
     _attr_release_url: Incomplete

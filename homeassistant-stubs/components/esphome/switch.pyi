@@ -2,13 +2,9 @@ from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error a
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, SwitchInfo, SwitchState
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any
-
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EsphomeSwitch(EsphomeEntity[SwitchInfo, SwitchState], SwitchEntity):
     _attr_assumed_state: Incomplete
@@ -18,3 +14,5 @@ class EsphomeSwitch(EsphomeEntity[SwitchInfo, SwitchState], SwitchEntity):
     def is_on(self) -> bool | None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+async_setup_entry: Incomplete

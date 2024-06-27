@@ -1,8 +1,9 @@
 import logging
+from . import GoogleSheetsConfigEntry as GoogleSheetsConfigEntry
 from .const import DEFAULT_ACCESS as DEFAULT_ACCESS, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_TOKEN as CONF_TOKEN
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
@@ -11,7 +12,7 @@ _LOGGER: Incomplete
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
-    reauth_entry: ConfigEntry | None
+    reauth_entry: GoogleSheetsConfigEntry | None
     @property
     def logger(self) -> logging.Logger: ...
     @property

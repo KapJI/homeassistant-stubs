@@ -1,12 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from . import LitterRobotConfigEntry as LitterRobotConfigEntry
 from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT
-from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from datetime import datetime, time
 from homeassistant.components.time import TimeEntity as TimeEntity, TimeEntityDescription as TimeEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -26,7 +24,7 @@ def _as_local_time(start: datetime | None) -> time | None: ...
 
 LITTER_ROBOT_3_SLEEP_START: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LitterRobotTimeEntity(LitterRobotEntity[_RobotT], TimeEntity):
     entity_description: RobotTimeEntityDescription[_RobotT]

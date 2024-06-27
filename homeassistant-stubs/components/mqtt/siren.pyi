@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STATE_VALUE_TEMPLATE as CONF_STATE_VALUE_TEMPLATE, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON, PAYLOAD_NONE as PAYLOAD_NONE
@@ -15,7 +14,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads_object as json_loads_object
 from typing import Any
 
@@ -50,7 +49,7 @@ class MqttSiren(MqttEntity, SirenEntity):
     _state_off: str
     _optimistic: bool
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_available_tones: Incomplete
     _attr_supported_features: Incomplete
     _attr_assumed_state: Incomplete

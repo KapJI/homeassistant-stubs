@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 

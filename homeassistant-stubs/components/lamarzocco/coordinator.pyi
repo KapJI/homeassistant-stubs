@@ -1,26 +1,28 @@
-from .const import CONF_MACHINE as CONF_MACHINE, CONF_USE_BLUETOOTH as CONF_USE_BLUETOOTH, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from bleak.backends.device import BLEDevice as BLEDevice
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.components.bluetooth import async_ble_device_from_address as async_ble_device_from_address, async_discovered_service_info as async_discovered_service_info
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
-from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from lmcloud.client_bluetooth import LaMarzoccoBluetoothClient as LaMarzoccoBluetoothClient
+from lmcloud.client_cloud import LaMarzoccoCloudClient as LaMarzoccoCloudClient
+from lmcloud.client_local import LaMarzoccoLocalClient as LaMarzoccoLocalClient
 
 SCAN_INTERVAL: Incomplete
+FIRMWARE_UPDATE_INTERVAL: int
+STATISTICS_UPDATE_INTERVAL: int
 _LOGGER: Incomplete
-NAME_PREFIXES: Incomplete
 
 class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: ConfigEntry
-    lm: Incomplete
     local_connection_configured: Incomplete
-    _use_bluetooth: bool
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    device: Incomplete
+    _last_firmware_data_update: Incomplete
+    _last_statistics_data_update: Incomplete
+    _local_client: Incomplete
+    def __init__(self, hass: HomeAssistant, cloud_client: LaMarzoccoCloudClient, local_client: LaMarzoccoLocalClient | None, bluetooth_client: LaMarzoccoBluetoothClient | None) -> None: ...
+    async def async_setup(self) -> None: ...
     async def _async_update_data(self) -> None: ...
-    async def _async_init_client(self) -> None: ...
     async def _async_handle_request(self, func: Callable[_P, Coroutine[None, None, None]], *args: _P.args, **kwargs: _P.kwargs) -> None: ...
-    def async_get_ble_device(self) -> BLEDevice | None: ...

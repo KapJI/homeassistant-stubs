@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from datetime import tzinfo
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_TIME_ZONE as CONF_TIME_ZONE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -9,6 +9,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 CONF_TIME_FORMAT: str
 DEFAULT_NAME: str
 DEFAULT_TIME_STR_FORMAT: str
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

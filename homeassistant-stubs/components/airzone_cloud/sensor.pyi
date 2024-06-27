@@ -1,10 +1,9 @@
 import abc
-from .const import DOMAIN as DOMAIN
+from . import AirzoneCloudConfigEntry as AirzoneCloudConfigEntry
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneAidooEntity as AirzoneAidooEntity, AirzoneEntity as AirzoneEntity, AirzoneWebServerEntity as AirzoneWebServerEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -14,7 +13,7 @@ AIDOO_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 WEBSERVER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 ZONE_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneSensor(AirzoneEntity, SensorEntity, metaclass=abc.ABCMeta):
     def _handle_coordinator_update(self) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from typing import Any, Self
 
 _LOGGER: Incomplete
@@ -21,7 +21,7 @@ STORAGE_VERSION_MINOR: int
 
 def _unique(options: Any) -> Any: ...
 
-STORAGE_FIELDS: Incomplete
+STORAGE_FIELDS: VolDictType
 
 def _remove_duplicates(options: list[str], name: str | None) -> list[str]: ...
 def _cv_input_select(cfg: dict[str, Any]) -> dict[str, Any]: ...

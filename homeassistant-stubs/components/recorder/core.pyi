@@ -4,7 +4,7 @@ from . import migration as migration, statistics as statistics
 from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DOMAIN as DOMAIN, ESTIMATED_QUEUE_ITEM_SIZE as ESTIMATED_QUEUE_ITEM_SIZE, KEEPALIVE_TIME as KEEPALIVE_TIME, LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION, LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION as LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, QUEUE_PERCENTAGE_ALLOWED_AVAILABLE_MEMORY as QUEUE_PERCENTAGE_ALLOWED_AVAILABLE_MEMORY, SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, STATISTICS_ROWS_SCHEMA_VERSION as STATISTICS_ROWS_SCHEMA_VERSION, SupportedDialect as SupportedDialect
 from .db_schema import Base as Base, EventData as EventData, EventTypes as EventTypes, Events as Events, LEGACY_STATES_ENTITY_ID_LAST_UPDATED_INDEX as LEGACY_STATES_ENTITY_ID_LAST_UPDATED_INDEX, LEGACY_STATES_EVENT_ID_INDEX as LEGACY_STATES_EVENT_ID_INDEX, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm, TABLE_STATES as TABLE_STATES
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
-from .migration import EntityIDMigration as EntityIDMigration, EventTypeIDMigration as EventTypeIDMigration, EventsContextIDMigration as EventsContextIDMigration, StatesContextIDMigration as StatesContextIDMigration
+from .migration import BaseRunTimeMigration as BaseRunTimeMigration, EntityIDMigration as EntityIDMigration, EventTypeIDMigration as EventTypeIDMigration, EventsContextIDMigration as EventsContextIDMigration, StatesContextIDMigration as StatesContextIDMigration
 from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
 from .queries import get_migration_changes as get_migration_changes
@@ -101,7 +101,7 @@ class Recorder(threading.Thread):
     _dialect_name: Incomplete
     enabled: bool
     max_bind_vars: Incomplete
-    def __init__(self, hass: HomeAssistant, auto_purge: bool, auto_repack: bool, keep_days: int, commit_interval: int, uri: str, db_max_retries: int, db_retry_wait: int, entity_filter: Callable[[str], bool], exclude_event_types: set[EventType[Any] | str]) -> None: ...
+    def __init__(self, hass: HomeAssistant, auto_purge: bool, auto_repack: bool, keep_days: int, commit_interval: int, uri: str, db_max_retries: int, db_retry_wait: int, entity_filter: Callable[[str], bool] | None, exclude_event_types: set[EventType[Any] | str]) -> None: ...
     @property
     def backlog(self) -> int: ...
     @cached_property

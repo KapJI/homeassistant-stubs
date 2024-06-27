@@ -3,18 +3,19 @@ from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 _LOGGER: Incomplete
-ATTR_DISTANCE: str
-ATTR_SOURCE: str
 DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
+ATTR_DISTANCE: str
+ATTR_SOURCE: str
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

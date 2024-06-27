@@ -1,4 +1,5 @@
 from .const import DATA_HASS_CONFIG as DATA_HASS_CONFIG, DOMAIN as DOMAIN
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform

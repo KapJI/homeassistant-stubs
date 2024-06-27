@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from . import AirzoneConfigEntry as AirzoneConfigEntry
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneEntity as AirzoneEntity, AirzoneSystemEntity as AirzoneSystemEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
@@ -18,7 +18,7 @@ class AirzoneBinarySensorEntityDescription(BinarySensorEntityDescription):
 SYSTEM_BINARY_SENSOR_TYPES: Final[tuple[AirzoneBinarySensorEntityDescription, ...]]
 ZONE_BINARY_SENSOR_TYPES: Final[tuple[AirzoneBinarySensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity):
     entity_description: AirzoneBinarySensorEntityDescription

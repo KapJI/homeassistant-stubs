@@ -10,9 +10,8 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Final
 
-BLOCK_PLATFORMS: Final[Incomplete]
+PLATFORMS: Final[Incomplete]
 BLOCK_SLEEPING_PLATFORMS: Final[Incomplete]
-RPC_PLATFORMS: Final[Incomplete]
 RPC_SLEEPING_PLATFORMS: Final[Incomplete]
 COAP_SCHEMA: Final[Incomplete]
 CONFIG_SCHEMA: Final[Incomplete]

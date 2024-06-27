@@ -1,7 +1,7 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .entity import EcovacsEntity as EcovacsEntity
 from _typeshed import Incomplete
-from deebot_client.capabilities import MowerCapabilities
+from deebot_client.capabilities import Capabilities
 from deebot_client.device import Device as Device
 from deebot_client.events import StateEvent as StateEvent
 from deebot_client.models import CleanAction
@@ -14,10 +14,10 @@ _STATE_TO_MOWER_STATE: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class EcovacsMower(EcovacsEntity[MowerCapabilities, MowerCapabilities], LawnMowerEntity):
+class EcovacsMower(EcovacsEntity[Capabilities], LawnMowerEntity):
     _attr_supported_features: Incomplete
     entity_description: Incomplete
-    def __init__(self, device: Device[MowerCapabilities]) -> None: ...
+    def __init__(self, device: Device) -> None: ...
     _attr_activity: Incomplete
     async def async_added_to_hass(self) -> None: ...
     async def _clean_command(self, action: CleanAction) -> None: ...

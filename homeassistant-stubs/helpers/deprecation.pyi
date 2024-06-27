@@ -1,3 +1,5 @@
+import functools
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from enum import Enum
 from typing import Any, NamedTuple
@@ -22,6 +24,14 @@ class DeprecatedAlias(NamedTuple):
     value: Any
     replacement: str
     breaks_in_ha_version: str | None
+
+class DeferredDeprecatedAlias:
+    breaks_in_ha_version: Incomplete
+    replacement: Incomplete
+    _value_fn: Incomplete
+    def __init__(self, value_fn: Callable[[], Any], replacement: str, breaks_in_ha_version: str | None) -> None: ...
+    @functools.cached_property
+    def value(self) -> Any: ...
 
 _PREFIX_DEPRECATED: str
 

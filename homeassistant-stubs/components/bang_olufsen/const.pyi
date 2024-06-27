@@ -29,7 +29,9 @@ class BangOlufsenMediaType(StrEnum):
     FAVOURITE: str
     DEEZER: str
     RADIO: str
+    TIDAL: str
     TTS: str
+    OVERLAY_TTS: str
 
 class BangOlufsenModel(StrEnum):
     BEOLAB_8: str

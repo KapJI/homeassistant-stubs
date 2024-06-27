@@ -5,7 +5,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -14,8 +13,10 @@ from typing import Literal
 
 _LOGGER: Incomplete
 DOMAIN: str
-SCAN_INTERVAL: Incomplete
 ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Incomplete
 
 class BinarySensorDeviceClass(StrEnum):
     BATTERY: str

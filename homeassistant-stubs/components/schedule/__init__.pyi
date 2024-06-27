@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from typing import Any, Literal
 
 STORAGE_VERSION: int
@@ -19,11 +19,11 @@ def valid_schedule(schedule: list[dict[str, str]]) -> list[dict[str, str]]: ...
 def deserialize_to_time(value: Any) -> Any: ...
 def serialize_to_time(value: Any) -> Any: ...
 
-BASE_SCHEMA: Incomplete
-TIME_RANGE_SCHEMA: Incomplete
+BASE_SCHEMA: VolDictType
+TIME_RANGE_SCHEMA: VolDictType
 STORAGE_TIME_RANGE_SCHEMA: Incomplete
-SCHEDULE_SCHEMA: Incomplete
-STORAGE_SCHEDULE_SCHEMA: Incomplete
+SCHEDULE_SCHEMA: VolDictType
+STORAGE_SCHEDULE_SCHEMA: VolDictType
 CONFIG_SCHEMA: Incomplete
 STORAGE_SCHEMA: Incomplete
 ENTITY_SCHEMA: Incomplete

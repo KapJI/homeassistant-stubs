@@ -1,17 +1,16 @@
-from . import legacy_device_id as legacy_device_id
-from .const import DOMAIN as DOMAIN
+from . import TPLinkConfigEntry as TPLinkConfigEntry, legacy_device_id as legacy_device_id
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, async_refresh_after as async_refresh_after
-from .models import TPLinkData as TPLinkData
 from _typeshed import Incomplete
 from collections.abc import Sequence
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, EFFECT_OFF as EFFECT_OFF, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from kasa import SmartBulb, SmartLightStrip
-from typing import Any, Final
+from homeassistant.helpers.typing import VolDictType as VolDictType
+from kasa import Device as Device
+from kasa.interfaces import Light as Light, LightEffect
+from typing import Any
 
 _LOGGER: Incomplete
 SERVICE_RANDOM_EFFECT: str
@@ -21,23 +20,24 @@ SAT: Incomplete
 VAL: Incomplete
 TRANSITION: Incomplete
 HSV_SEQUENCE: Incomplete
-BASE_EFFECT_DICT: Final[Incomplete]
-SEQUENCE_EFFECT_DICT: Final[Incomplete]
-RANDOM_EFFECT_DICT: Final[Incomplete]
+BASE_EFFECT_DICT: VolDictType
+SEQUENCE_EFFECT_DICT: VolDictType
+RANDOM_EFFECT_DICT: VolDictType
 
 def _async_build_base_effect(brightness: int, duration: int, transition: int, segments: list[int]) -> dict[str, Any]: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
+class TPLinkLightEntity(CoordinatedTPLinkEntity, LightEntity):
     _attr_supported_features: Incomplete
-    _attr_name: Incomplete
     _fixed_color_mode: ColorMode | None
-    device: SmartBulb
-    _attr_unique_id: Incomplete
+    _parent: Incomplete
+    _light_module: Incomplete
+    _attr_name: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     _attr_supported_color_modes: Incomplete
-    def __init__(self, device: SmartBulb, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
+    def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, light_module: Light, parent: Device | None = None) -> None: ...
+    def _get_unique_id(self) -> str: ...
     def _async_extract_brightness_transition(self, **kwargs: Any) -> tuple[int | None, int | None]: ...
     async def _async_set_hsv(self, hs_color: tuple[int, int], brightness: int | None, transition: int | None) -> None: ...
     async def _async_set_color_temp(self, color_temp: float, brightness: int | None, transition: int | None) -> None: ...
@@ -51,10 +51,10 @@ class TPLinkSmartBulb(CoordinatedTPLinkEntity, LightEntity):
     _attr_color_temp_kelvin: Incomplete
     _attr_hs_color: Incomplete
     def _async_update_attrs(self) -> None: ...
-    def _handle_coordinator_update(self) -> None: ...
 
-class TPLinkSmartLightStrip(TPLinkSmartBulb):
-    device: SmartLightStrip
+class TPLinkLightEffectEntity(TPLinkLightEntity):
+    _effect_module: Incomplete
+    def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, light_module: Light, effect_module: LightEffect) -> None: ...
     _attr_supported_features: Incomplete
     _attr_effect: Incomplete
     _attr_effect_list: Incomplete

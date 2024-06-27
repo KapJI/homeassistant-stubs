@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .data import ProtectData as ProtectData
+from .data import ProtectData as ProtectData, async_get_ufp_entries as async_get_ufp_entries
 from .views import async_generate_event_video_url as async_generate_event_video_url, async_generate_thumbnail_url as async_generate_thumbnail_url
 from _typeshed import Incomplete
 from datetime import date, datetime, timedelta
@@ -11,7 +11,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er
 from typing import Any, NoReturn
-from uiprotect.data import Camera, Event, EventType
+from uiprotect.data import Camera as Camera, Event, EventType
 
 VIDEO_FORMAT: str
 THUMBNAIL_WIDTH: int
@@ -36,7 +36,6 @@ class IdentifierTimeType(str, Enum):
 EVENT_MAP: dict[SimpleEventType, set[EventType]]
 EVENT_NAME_MAP: Incomplete
 
-def get_ufp_event(event_type: SimpleEventType) -> set[EventType]: ...
 async def async_get_media_source(hass: HomeAssistant) -> MediaSource: ...
 def _get_month_start_end(start: datetime) -> tuple[datetime, datetime]: ...
 def _bad_identifier(identifier: str, err: Exception | None = None) -> NoReturn: ...

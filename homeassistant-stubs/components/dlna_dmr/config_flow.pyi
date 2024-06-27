@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import IntegrationError as IntegrationError
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 LOGGER: Incomplete

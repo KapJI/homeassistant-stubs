@@ -1,4 +1,5 @@
-from .const import DOMAIN as DOMAIN, EXECUTION_TIME_DELAY as EXECUTION_TIME_DELAY
+from . import AutomowerConfigEntry as AutomowerConfigEntry
+from .const import EXECUTION_TIME_DELAY as EXECUTION_TIME_DELAY
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerControlEntity as AutomowerControlEntity
 from _typeshed import Incomplete
@@ -7,7 +8,6 @@ from aioautomower.session import AutomowerSession as AutomowerSession
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -39,7 +39,7 @@ class AutomowerWorkAreaNumberEntityDescription(NumberEntityDescription):
 
 WORK_AREA_NUMBER_TYPES: tuple[AutomowerWorkAreaNumberEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AutomowerNumberEntity(AutomowerControlEntity, NumberEntity):
     entity_description: AutomowerNumberEntityDescription
@@ -51,7 +51,6 @@ class AutomowerNumberEntity(AutomowerControlEntity, NumberEntity):
 
 class AutomowerWorkAreaNumberEntity(AutomowerControlEntity, NumberEntity):
     entity_description: AutomowerWorkAreaNumberEntityDescription
-    coordinator: Incomplete
     work_area_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_translation_placeholders: Incomplete
@@ -64,4 +63,4 @@ class AutomowerWorkAreaNumberEntity(AutomowerControlEntity, NumberEntity):
     def native_value(self) -> float: ...
     async def async_set_native_value(self, value: float) -> None: ...
 
-def async_remove_entities(hass: HomeAssistant, coordinator: AutomowerDataUpdateCoordinator, config_entry: ConfigEntry, mower_id: str) -> None: ...
+def async_remove_entities(hass: HomeAssistant, coordinator: AutomowerDataUpdateCoordinator, entry: AutomowerConfigEntry, mower_id: str) -> None: ...

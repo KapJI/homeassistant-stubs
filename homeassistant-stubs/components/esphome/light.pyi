@@ -2,15 +2,10 @@ from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error a
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, LightColorCapability, LightInfo, LightState
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, ColorMode as ColorMode, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.core import callback as callback
 from typing import Any
 
 FLASH_LENGTHS: Incomplete
-
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-
 _COLOR_MODE_MAPPING: Incomplete
 
 def _mired_to_kelvin(mired_temperature: float) -> int: ...
@@ -47,3 +42,5 @@ class EsphomeLight(EsphomeEntity[LightInfo, LightState], LightEntity):
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
+
+async_setup_entry: Incomplete

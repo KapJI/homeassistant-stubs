@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC
@@ -13,7 +12,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
 CONF_MIN: str
@@ -39,7 +38,7 @@ class MqttNumber(MqttEntity, RestoreNumber):
     _command_template: Callable[[PublishPayloadType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _config: Incomplete
     _attr_assumed_state: Incomplete
     _attr_device_class: Incomplete

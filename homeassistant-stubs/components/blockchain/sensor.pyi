@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -9,6 +9,7 @@ _LOGGER: Incomplete
 CONF_ADDRESSES: str
 DEFAULT_NAME: str
 SCAN_INTERVAL: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

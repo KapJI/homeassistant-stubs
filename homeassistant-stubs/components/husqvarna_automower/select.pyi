@@ -1,9 +1,8 @@
-from .const import DOMAIN as DOMAIN
+from . import AutomowerConfigEntry as AutomowerConfigEntry
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerControlEntity as AutomowerControlEntity
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -12,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 _LOGGER: Incomplete
 HEADLIGHT_MODES: list
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AutomowerSelectEntity(AutomowerControlEntity, SelectEntity):
     _attr_options = HEADLIGHT_MODES

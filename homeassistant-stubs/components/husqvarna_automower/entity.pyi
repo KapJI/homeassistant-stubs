@@ -6,6 +6,8 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 _LOGGER: Incomplete
+ERROR_ACTIVITIES: Incomplete
+ERROR_STATES: Incomplete
 
 class AutomowerBaseEntity(CoordinatorEntity[AutomowerDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -15,6 +17,10 @@ class AutomowerBaseEntity(CoordinatorEntity[AutomowerDataUpdateCoordinator]):
     @property
     def mower_attributes(self) -> MowerAttributes: ...
 
-class AutomowerControlEntity(AutomowerBaseEntity):
+class AutomowerAvailableEntity(AutomowerBaseEntity):
+    @property
+    def available(self) -> bool: ...
+
+class AutomowerControlEntity(AutomowerAvailableEntity):
     @property
     def available(self) -> bool: ...

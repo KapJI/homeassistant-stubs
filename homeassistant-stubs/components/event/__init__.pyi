@@ -4,12 +4,14 @@ from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
 from functools import cached_property
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from typing import Any, Self
 
 __all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'EventDeviceClass', 'EventEntity', 'EventEntityDescription']
+
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 
 class EventDeviceClass(StrEnum):
     DOORBELL: str

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from . import AirzoneConfigEntry as AirzoneConfigEntry
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneEntity as AirzoneEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
@@ -20,7 +20,7 @@ GRILLE_ANGLE_DICT: Final[dict[str, int]]
 SLEEP_DICT: Final[dict[str, int]]
 ZONE_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneBaseSelect(AirzoneEntity, SelectEntity):
     entity_description: AirzoneSelectDescription

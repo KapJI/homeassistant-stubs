@@ -1,7 +1,7 @@
 import sharp_aquos_rc
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,6 +15,7 @@ DEFAULT_USERNAME: str
 DEFAULT_PASSWORD: str
 DEFAULT_TIMEOUT: float
 DEFAULT_RETRIES: int
+PLATFORM_SCHEMA: Incomplete
 SOURCES: Incomplete
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

@@ -1,11 +1,12 @@
 from _typeshed import Incomplete
-from homeassistant.components.tts import CONF_LANG as CONF_LANG, PLATFORM_SCHEMA as PLATFORM_SCHEMA, Provider as Provider, TtsAudioType as TtsAudioType
+from homeassistant.components.tts import CONF_LANG as CONF_LANG, Provider as Provider, TtsAudioType as TtsAudioType
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
 SUPPORT_LANGUAGES: Incomplete
 DEFAULT_LANG: str
+PLATFORM_SCHEMA: Incomplete
 
 def get_engine(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> Provider: ...
 

@@ -1,6 +1,6 @@
 from . import AquaLogicProcessor as AquaLogicProcessor, DOMAIN as DOMAIN, UPDATE_TOPIC as UPDATE_TOPIC
 from _typeshed import Incomplete
-from homeassistant.components.switch import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SwitchEntity as SwitchEntity
+from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -9,6 +9,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from typing import Any
 
 SWITCH_TYPES: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

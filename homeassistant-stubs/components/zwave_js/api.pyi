@@ -15,7 +15,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from typing import Any, Concatenate, Literal
 from zwave_js_server.client import Client as Client
 from zwave_js_server.const import InclusionStrategy
-from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics, ProvisioningEntry, QRProvisioningInformation
+from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics
 from zwave_js_server.model.controller.firmware import ControllerFirmwareUpdateProgress as ControllerFirmwareUpdateProgress, ControllerFirmwareUpdateResult as ControllerFirmwareUpdateResult
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.log_message import LogMessage as LogMessage
@@ -69,10 +69,6 @@ REQUESTED_SECURITY_CLASSES: str
 FEATURE: str
 STRATEGY: str
 MINIMUM_QR_STRING_LENGTH: int
-
-def convert_planned_provisioning_entry(info: dict) -> ProvisioningEntry: ...
-def convert_qr_provisioning_information(info: dict) -> QRProvisioningInformation: ...
-
 PLANNED_PROVISIONING_ENTRY_SCHEMA: Incomplete
 QR_PROVISIONING_INFORMATION_SCHEMA: Incomplete
 QR_CODE_STRING_SCHEMA: Incomplete

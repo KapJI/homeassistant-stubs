@@ -5,7 +5,7 @@ from .issues import raise_mirrored_entries as raise_mirrored_entries, raise_no_p
 from _typeshed import Incomplete
 from collections import OrderedDict
 from collections.abc import Callable as Callable
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, CONF_STATE as CONF_STATE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConditionError as ConditionError, TemplateError as TemplateError
@@ -22,6 +22,7 @@ _LOGGER: Incomplete
 NUMERIC_STATE_SCHEMA: Incomplete
 STATE_SCHEMA: Incomplete
 TEMPLATE_SCHEMA: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 def update_probability(prior: float, prob_given_true: float, prob_given_false: float) -> float: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

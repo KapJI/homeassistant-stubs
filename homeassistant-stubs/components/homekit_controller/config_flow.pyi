@@ -9,6 +9,7 @@ from homeassistant.components import bluetooth as bluetooth, zeroconf as zerocon
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 HOMEKIT_DIR: str

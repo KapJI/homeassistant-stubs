@@ -1,4 +1,5 @@
-from .const import DOMAIN as DOMAIN, TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
+from . import AirzoneConfigEntry as AirzoneConfigEntry
+from .const import TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneHotWaterEntity as AirzoneHotWaterEntity
 from _typeshed import Incomplete
@@ -13,7 +14,7 @@ from typing import Any, Final
 OPERATION_LIB_TO_HASS: Final[dict[HotWaterOperation, str]]
 OPERATION_MODE_TO_DHW_PARAMS: Final[dict[str, dict[str, Any]]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneWaterHeater(AirzoneHotWaterEntity, WaterHeaterEntity):
     _attr_name: Incomplete

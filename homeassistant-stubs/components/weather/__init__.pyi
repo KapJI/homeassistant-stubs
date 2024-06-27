@@ -8,7 +8,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import ABCCachedProperties as ABCCachedProperties, Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -20,6 +19,10 @@ from typing import Any, Final, Generic, Literal, Required, TypedDict
 from typing_extensions import TypeVar
 
 _LOGGER: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Incomplete
 ATTR_CONDITION_CLASS: str
 ATTR_CONDITION_CLEAR_NIGHT: str
 ATTR_CONDITION_CLOUDY: str
@@ -60,10 +63,7 @@ ATTR_FORECAST_NATIVE_DEW_POINT: Final[str]
 ATTR_FORECAST_DEW_POINT: Final[str]
 ATTR_FORECAST_CLOUD_COVERAGE: Final[str]
 ATTR_FORECAST_UV_INDEX: Final[str]
-ENTITY_ID_FORMAT: Incomplete
-SCAN_INTERVAL: Incomplete
 ROUNDING_PRECISION: int
-LEGACY_SERVICE_GET_FORECAST: Final[str]
 SERVICE_GET_FORECASTS: Final[str]
 _ObservationUpdateCoordinatorT = TypeVar('_ObservationUpdateCoordinatorT', bound=DataUpdateCoordinator[Any], default=DataUpdateCoordinator[dict[str, Any]])
 _DailyForecastUpdateCoordinatorT = TypeVar('_DailyForecastUpdateCoordinatorT', bound=TimestampDataUpdateCoordinator[Any], default=TimestampDataUpdateCoordinator[None])
@@ -214,7 +214,6 @@ class WeatherEntity(Entity, PostInit, cached_properties=CACHED_PROPERTIES_WITH_A
     async def async_update_listeners(self, forecast_types: Iterable[Literal['daily', 'hourly', 'twice_daily']] | None) -> None: ...
 
 def raise_unsupported_forecast(entity_id: str, forecast_type: str) -> None: ...
-async def async_get_forecast_service(weather: WeatherEntity, service_call: ServiceCall) -> ServiceResponse: ...
 async def async_get_forecasts_service(weather: WeatherEntity, service_call: ServiceCall) -> ServiceResponse: ...
 
 class CoordinatorWeatherEntity(CoordinatorEntity[_ObservationUpdateCoordinatorT], WeatherEntity, Generic[_ObservationUpdateCoordinatorT, _DailyForecastUpdateCoordinatorT, _HourlyForecastUpdateCoordinatorT, _TwiceDailyForecastUpdateCoordinatorT]):

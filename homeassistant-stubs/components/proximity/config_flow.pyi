@@ -5,12 +5,13 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_ZONE as CONF_ZONE, UnitOfLength as UnitOfLength
 from homeassistant.core import State as State, callback as callback
 from homeassistant.helpers.selector import EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
 from typing import Any
 
 RESULT_SUCCESS: str
 
-def _base_schema(user_input: dict[str, Any]) -> vol.Schema: ...
+def _base_schema(user_input: dict[str, Any]) -> VolDictType: ...
 
 class ProximityConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

@@ -1,5 +1,4 @@
 import abc
-import voluptuous as vol
 from . import subscription as subscription
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_ACTION_TEMPLATE as CONF_ACTION_TEMPLATE, CONF_ACTION_TOPIC as CONF_ACTION_TOPIC, CONF_CURRENT_HUMIDITY_TEMPLATE as CONF_CURRENT_HUMIDITY_TEMPLATE, CONF_CURRENT_HUMIDITY_TOPIC as CONF_CURRENT_HUMIDITY_TOPIC, CONF_CURRENT_TEMP_TEMPLATE as CONF_CURRENT_TEMP_TEMPLATE, CONF_CURRENT_TEMP_TOPIC as CONF_CURRENT_TEMP_TOPIC, CONF_MODE_COMMAND_TEMPLATE as CONF_MODE_COMMAND_TEMPLATE, CONF_MODE_COMMAND_TOPIC as CONF_MODE_COMMAND_TOPIC, CONF_MODE_LIST as CONF_MODE_LIST, CONF_MODE_STATE_TEMPLATE as CONF_MODE_STATE_TEMPLATE, CONF_MODE_STATE_TOPIC as CONF_MODE_STATE_TOPIC, CONF_POWER_COMMAND_TEMPLATE as CONF_POWER_COMMAND_TEMPLATE, CONF_POWER_COMMAND_TOPIC as CONF_POWER_COMMAND_TOPIC, CONF_PRECISION as CONF_PRECISION, CONF_RETAIN as CONF_RETAIN, CONF_TEMP_COMMAND_TEMPLATE as CONF_TEMP_COMMAND_TEMPLATE, CONF_TEMP_COMMAND_TOPIC as CONF_TEMP_COMMAND_TOPIC, CONF_TEMP_INITIAL as CONF_TEMP_INITIAL, CONF_TEMP_MAX as CONF_TEMP_MAX, CONF_TEMP_MIN as CONF_TEMP_MIN, CONF_TEMP_STATE_TEMPLATE as CONF_TEMP_STATE_TEMPLATE, CONF_TEMP_STATE_TOPIC as CONF_TEMP_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, PAYLOAD_NONE as PAYLOAD_NONE
@@ -17,7 +16,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 
@@ -103,7 +102,7 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _attr_target_temperature_high: float | None
     _enable_turn_on_off_backwards_compatibility: bool
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_hvac_modes: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_min_temp: Incomplete

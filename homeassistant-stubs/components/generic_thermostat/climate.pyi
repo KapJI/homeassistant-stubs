@@ -1,7 +1,9 @@
 from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from datetime import datetime, timedelta
-from homeassistant.components.climate import ATTR_PRESET_MODE as ATTR_PRESET_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PLATFORM_SCHEMA as PLATFORM_SCHEMA, PRESET_ACTIVITY as PRESET_ACTIVITY, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
+from homeassistant.components.climate import ATTR_PRESET_MODE as ATTR_PRESET_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_ACTIVITY as PRESET_ACTIVITY, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import CoreState as CoreState, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import ConditionError as ConditionError
@@ -30,8 +32,12 @@ CONF_INITIAL_HVAC_MODE: str
 CONF_PRECISION: str
 CONF_TEMP_STEP: str
 CONF_PRESETS: Incomplete
+PLATFORM_SCHEMA_COMMON: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], unique_id: str | None, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_should_poll: bool

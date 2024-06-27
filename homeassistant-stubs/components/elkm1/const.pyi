@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_CODE as ATTR_CODE, CONF_ZONE as CONF_ZONE
+from homeassistant.helpers.typing import VolDictType as VolDictType
 
 DOMAIN: str
 LOGIN_TIMEOUT: int
@@ -24,4 +25,4 @@ ATTR_CHANGED_BY_KEYPAD: str
 ATTR_CHANGED_BY_ID: str
 ATTR_CHANGED_BY_TIME: str
 ATTR_VALUE: str
-ELK_USER_CODE_SERVICE_SCHEMA: Incomplete
+ELK_USER_CODE_SERVICE_SCHEMA: VolDictType

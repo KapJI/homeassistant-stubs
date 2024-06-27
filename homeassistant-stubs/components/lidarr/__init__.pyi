@@ -1,6 +1,7 @@
 from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from .coordinator import DiskSpaceDataUpdateCoordinator as DiskSpaceDataUpdateCoordinator, LidarrDataUpdateCoordinator as LidarrDataUpdateCoordinator, QueueDataUpdateCoordinator as QueueDataUpdateCoordinator, StatusDataUpdateCoordinator as StatusDataUpdateCoordinator, T as T, WantedDataUpdateCoordinator as WantedDataUpdateCoordinator
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_URL as CONF_URL, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -9,10 +10,19 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+LidarrConfigEntry = ConfigEntry[LidarrData]
 PLATFORMS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+@dataclass(kw_only=True, slots=True)
+class LidarrData:
+    disk_space: DiskSpaceDataUpdateCoordinator
+    queue: QueueDataUpdateCoordinator
+    status: StatusDataUpdateCoordinator
+    wanted: WantedDataUpdateCoordinator
+    def __init__(self, *, disk_space, queue, status, wanted) -> None: ...
+
+async def async_setup_entry(hass: HomeAssistant, entry: LidarrConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: LidarrConfigEntry) -> bool: ...
 
 class LidarrEntity(CoordinatorEntity[LidarrDataUpdateCoordinator[T]]):
     _attr_has_entity_name: bool

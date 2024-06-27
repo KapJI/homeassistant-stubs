@@ -1,9 +1,14 @@
+import asyncio
+from .client import CloudClient as CloudClient
 from _typeshed import Incomplete
+from hass_nabucasa import Cloud as Cloud
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Any
 
 DOMAIN: str
-DATA_PLATFORMS_SETUP: str
+DATA_CLOUD: HassKey[Cloud[CloudClient]]
+DATA_PLATFORMS_SETUP: HassKey[dict[str, asyncio.Event]]
 REQUEST_TIMEOUT: int
 PREF_ENABLE_ALEXA: str
 PREF_ENABLE_GOOGLE: str

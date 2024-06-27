@@ -1,6 +1,6 @@
 import httpx
 from _typeshed import Incomplete
-from homeassistant.components.switch import DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SwitchEntity as SwitchEntity
+from homeassistant.components.switch import DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_HEADERS as CONF_HEADERS, CONF_ICON as CONF_ICON, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_PARAMS as CONF_PARAMS, CONF_PASSWORD as CONF_PASSWORD, CONF_RESOURCE as CONF_RESOURCE, CONF_TIMEOUT as CONF_TIMEOUT, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
@@ -24,6 +24,7 @@ DEFAULT_NAME: str
 DEFAULT_TIMEOUT: int
 DEFAULT_VERIFY_SSL: bool
 SUPPORT_REST_METHODS: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

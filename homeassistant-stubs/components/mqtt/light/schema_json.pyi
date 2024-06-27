@@ -1,4 +1,3 @@
-import voluptuous as vol
 from .. import subscription as subscription
 from ..config import DEFAULT_QOS as DEFAULT_QOS, DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
@@ -16,7 +15,7 @@ from homeassistant.core import async_get_hass as async_get_hass, callback as cal
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
@@ -58,7 +57,7 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _optimistic: bool
     _deprecated_color_handling: bool
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_max_mireds: Incomplete
     _attr_min_mireds: Incomplete
     _attr_effect_list: Incomplete

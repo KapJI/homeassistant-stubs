@@ -15,7 +15,7 @@ from .generated.usb import USB as USB
 from .generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
 from .helpers import device_registry as dr
 from .helpers.json import json_bytes as json_bytes, json_fragment as json_fragment
-from .helpers.typing import ConfigType as ConfigType
+from .helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED
 from .util.hass_dict import HassKey as HassKey
 from .util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from _typeshed import Incomplete
@@ -45,7 +45,6 @@ PACKAGE_CUSTOM_COMPONENTS: str
 PACKAGE_BUILTIN: str
 CUSTOM_WARNING: str
 IMPORT_EVENT_LOOP_WARNING: str
-_UNDEF: Incomplete
 MOVED_ZEROCONF_PROPS: Incomplete
 
 class DHCPMatcherRequired(TypedDict, total=True):

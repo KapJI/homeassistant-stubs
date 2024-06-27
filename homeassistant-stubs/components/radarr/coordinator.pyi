@@ -1,4 +1,5 @@
 import abc
+from . import RadarrConfigEntry as RadarrConfigEntry
 from .const import DEFAULT_MAX_RECORDS as DEFAULT_MAX_RECORDS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
@@ -8,7 +9,6 @@ from aiopyarr.radarr_client import RadarrClient as RadarrClient
 from dataclasses import dataclass
 from datetime import date, datetime
 from homeassistant.components.calendar import CalendarEvent as CalendarEvent
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -26,7 +26,7 @@ class RadarrEvent(CalendarEvent, RadarrEventMixIn):
     def __init__(self, release_type, start, end, summary, description, location, uid, recurrence_id, rrule) -> None: ...
 
 class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, Generic[T], metaclass=abc.ABCMeta):
-    config_entry: ConfigEntry
+    config_entry: RadarrConfigEntry
     _update_interval: Incomplete
     api_client: Incomplete
     host_configuration: Incomplete

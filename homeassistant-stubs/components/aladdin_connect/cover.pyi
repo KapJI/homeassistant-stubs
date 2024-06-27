@@ -1,7 +1,6 @@
 from . import AladdinConnectConfigEntry as AladdinConnectConfigEntry, AladdinConnectCoordinator as AladdinConnectCoordinator
 from .entity import AladdinConnectEntity as AladdinConnectEntity
 from _typeshed import Incomplete
-from genie_partner_sdk.model import GarageDoor as GarageDoor
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

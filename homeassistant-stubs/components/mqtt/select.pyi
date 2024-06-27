@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC
@@ -14,7 +13,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
 CONF_OPTIONS: str
@@ -34,7 +33,7 @@ class MqttSelect(MqttEntity, SelectEntity, RestoreEntity):
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     _optimistic: bool
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_assumed_state: Incomplete
     _attr_options: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...

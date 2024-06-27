@@ -1,11 +1,10 @@
 import asyncio
-import voluptuous as vol
 from . import service as service, translation as translation
 from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
 from .event import async_call_later as async_call_later
 from .issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED
+from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
 from contextvars import ContextVar
@@ -91,7 +90,7 @@ class EntityPlatform:
     async def async_destroy(self) -> None: ...
     async def async_remove_entity(self, entity_id: str) -> None: ...
     async def async_extract_from_service(self, service_call: ServiceCall, expand_group: bool = True) -> list[Entity]: ...
-    def async_register_entity_service(self, name: str, schema: dict[str | vol.Marker, Any] | vol.Schema, func: str | Callable[..., Any], required_features: Iterable[int] | None = None, supports_response: SupportsResponse = ...) -> None: ...
+    def async_register_entity_service(self, name: str, schema: VolDictType | VolSchemaType | None, func: str | Callable[..., Any], required_features: Iterable[int] | None = None, supports_response: SupportsResponse = ...) -> None: ...
     async def _async_update_entity_states(self) -> None: ...
 
 current_platform: ContextVar[EntityPlatform | None]

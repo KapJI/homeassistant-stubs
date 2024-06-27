@@ -2,7 +2,7 @@ from _typeshed import Incomplete
 from alpha_vantage.foreignexchange import ForeignExchange
 from alpha_vantage.timeseries import TimeSeries
 from homeassistant.components import persistent_notification as persistent_notification
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_CURRENCY as CONF_CURRENCY, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,6 +22,7 @@ ICONS: Incomplete
 SCAN_INTERVAL: Incomplete
 SYMBOL_SCHEMA: Incomplete
 CURRENCY_SCHEMA: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

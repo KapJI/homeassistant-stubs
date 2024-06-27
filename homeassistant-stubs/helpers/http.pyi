@@ -16,7 +16,7 @@ _LOGGER: Incomplete
 AllowCorsType: Incomplete
 KEY_AUTHENTICATED: Final[str]
 KEY_ALLOW_ALL_CORS: Incomplete
-KEY_ALLOW_CONFIGRED_CORS: Incomplete
+KEY_ALLOW_CONFIGURED_CORS: Incomplete
 KEY_HASS: AppKey[HomeAssistant]
 current_request: ContextVar[Request | None]
 

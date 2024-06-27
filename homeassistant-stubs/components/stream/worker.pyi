@@ -6,11 +6,12 @@ from .diagnostics import Diagnostics as Diagnostics
 from .fmp4utils import read_init as read_init
 from .hls import HlsStreamOutput as HlsStreamOutput
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Generator, Iterator, Mapping
+from collections.abc import Callable as Callable, Iterator, Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant
 from io import BytesIO
 from threading import Event
 from typing import Any, Self
+from typing_extensions import Generator
 
 _LOGGER: Incomplete
 NEGATIVE_INF: Incomplete
@@ -71,7 +72,7 @@ class PeekIterator(Iterator):
     def __iter__(self) -> Self: ...
     def __next__(self) -> av.Packet: ...
     def _pop_buffer(self) -> av.Packet: ...
-    def peek(self) -> Generator[av.Packet, None, None]: ...
+    def peek(self) -> Generator[av.Packet]: ...
 
 class TimestampValidator:
     _last_dts: Incomplete

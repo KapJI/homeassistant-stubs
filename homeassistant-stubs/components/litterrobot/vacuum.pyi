@@ -1,10 +1,8 @@
-from .const import DOMAIN as DOMAIN
+from . import LitterRobotConfigEntry as LitterRobotConfigEntry
 from .entity import LitterRobotEntity as LitterRobotEntity
-from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
 from datetime import time
 from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_PAUSED as STATE_PAUSED, StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumEntityFeature as VacuumEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
@@ -16,7 +14,7 @@ SERVICE_SET_SLEEP_MODE: str
 LITTER_BOX_STATUS_STATE_MAP: Incomplete
 LITTER_BOX_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LitterRobotCleaner(LitterRobotEntity[LitterRobot], StateVacuumEntity):
     _attr_supported_features: Incomplete

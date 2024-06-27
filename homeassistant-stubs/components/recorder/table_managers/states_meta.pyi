@@ -5,7 +5,7 @@ from ..queries import find_all_states_metadata_ids as find_all_states_metadata_i
 from ..util import execute_stmt_lambda_element as execute_stmt_lambda_element
 from collections.abc import Iterable
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData
-from homeassistant.util.collection import chunked as chunked
+from homeassistant.util.collection import chunked_or_all as chunked_or_all
 from sqlalchemy.orm.session import Session as Session
 
 CACHE_SIZE: int

@@ -1,9 +1,10 @@
 from .coordinator import ESPHomeDashboardCoordinator as ESPHomeDashboardCoordinator
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
+from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
-from aioesphomeapi import DeviceInfo as ESPHomeDeviceInfo, EntityInfo as EntityInfo
+from aioesphomeapi import DeviceInfo as ESPHomeDeviceInfo, EntityInfo as EntityInfo, UpdateInfo, UpdateState
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
@@ -11,6 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any
 
 KEY_UPDATE_LOCK: str
@@ -18,7 +20,7 @@ NO_FEATURES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class ESPHomeUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator], UpdateEntity):
+class ESPHomeDashboardUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator], UpdateEntity):
     _attr_has_entity_name: bool
     _attr_device_class: Incomplete
     _attr_title: str
@@ -39,4 +41,22 @@ class ESPHomeUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator], Update
     def available(self) -> bool: ...
     def _handle_device_update(self, static_info: list[EntityInfo] | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
+
+class ESPHomeUpdateEntity(EsphomeEntity[UpdateInfo, UpdateState], UpdateEntity):
+    _attr_supported_features: Incomplete
+    _attr_device_class: Incomplete
+    def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
+    @property
+    def installed_version(self) -> str | None: ...
+    @property
+    def in_progress(self) -> bool | int | None: ...
+    @property
+    def latest_version(self) -> str | None: ...
+    @property
+    def release_summary(self) -> str | None: ...
+    @property
+    def release_url(self) -> str | None: ...
+    @property
+    def title(self) -> str | None: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

@@ -10,7 +10,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
@@ -19,8 +18,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as 
 from typing import Final
 
 _LOGGER: Incomplete
-SCAN_INTERVAL: Final[Incomplete]
 ENTITY_ID_FORMAT: Final[Incomplete]
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Final[Incomplete]
 DEFAULT_CONTENT_TYPE: Final[str]
 ENTITY_IMAGE_URL: Final[str]
 TOKEN_CHANGE_INTERVAL: Final[Incomplete]

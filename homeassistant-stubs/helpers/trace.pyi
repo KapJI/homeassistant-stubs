@@ -1,10 +1,11 @@
 from .typing import TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
 from collections import deque
-from collections.abc import Callable as Callable, Coroutine, Generator
+from collections.abc import Callable as Callable, Coroutine
 from contextvars import ContextVar
 from homeassistant.core import ServiceResponse as ServiceResponse
 from typing import Any
+from typing_extensions import Generator
 
 class TraceElement:
     __slots__: Incomplete
@@ -54,5 +55,5 @@ class StopReason:
 
 def script_execution_set(reason: str, response: ServiceResponse = None) -> None: ...
 def script_execution_get() -> str | None: ...
-def trace_path(suffix: str | list[str]) -> Generator[None, None, None]: ...
+def trace_path(suffix: str | list[str]) -> Generator[None]: ...
 def async_trace_path(suffix: str | list[str]) -> Callable[[Callable[[Unpack[_Ts]], Coroutine[Any, Any, None]]], Callable[[Unpack[_Ts]], Coroutine[Any, Any, None]]]: ...

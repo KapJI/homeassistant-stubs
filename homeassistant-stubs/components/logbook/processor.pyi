@@ -4,7 +4,7 @@ from .models import EventAsRow as EventAsRow, LazyEventPartialState as LazyEvent
 from .queries import statement_for_request as statement_for_request
 from .queries.common import PSEUDO_EVENT_STATE_CHANGED as PSEUDO_EVENT_STATE_CHANGED
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Generator, Sequence
+from collections.abc import Callable as Callable, Sequence
 from dataclasses import dataclass
 from datetime import datetime as dt
 from homeassistant.components.recorder import get_instance as get_instance
@@ -18,6 +18,7 @@ from homeassistant.util.event_type import EventType as EventType
 from sqlalchemy.engine import Result as Result
 from sqlalchemy.engine.row import Row as Row
 from typing import Any
+from typing_extensions import Generator
 
 _LOGGER: Incomplete
 
@@ -47,9 +48,9 @@ class EventProcessor:
     def limited_select(self) -> bool: ...
     def switch_to_live(self) -> None: ...
     def get_events(self, start_day: dt, end_day: dt) -> list[dict[str, Any]]: ...
-    def humanify(self, rows: Generator[EventAsRow, None, None] | Sequence[Row] | Result) -> list[dict[str, str]]: ...
+    def humanify(self, rows: Generator[EventAsRow] | Sequence[Row] | Result) -> list[dict[str, str]]: ...
 
-def _humanify(hass: HomeAssistant, rows: Generator[EventAsRow, None, None] | Sequence[Row] | Result, ent_reg: er.EntityRegistry, logbook_run: LogbookRun, context_augmenter: ContextAugmenter) -> Generator[dict[str, Any], None, None]: ...
+def _humanify(hass: HomeAssistant, rows: Generator[EventAsRow] | Sequence[Row] | Result, ent_reg: er.EntityRegistry, logbook_run: LogbookRun, context_augmenter: ContextAugmenter) -> Generator[dict[str, Any]]: ...
 
 class ContextAugmenter:
     context_lookup: Incomplete

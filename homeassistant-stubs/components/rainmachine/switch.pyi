@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any, Concatenate
 
 ATTR_ACTIVITY_TYPE: str

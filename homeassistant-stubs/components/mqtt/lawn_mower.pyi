@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_RETAIN as CONF_RETAIN, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, DEFAULT_RETAIN as DEFAULT_RETAIN
@@ -15,7 +14,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
 CONF_ACTIVITY_STATE_TOPIC: str
@@ -45,7 +44,7 @@ class MqttLawnMower(MqttEntity, LawnMowerEntity, RestoreEntity):
     _command_topics: dict[str, str]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_assumed_state: Incomplete
     _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...

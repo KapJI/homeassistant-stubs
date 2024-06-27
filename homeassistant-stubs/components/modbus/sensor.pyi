@@ -31,7 +31,7 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     _attr_available: bool
     async def async_update(self, now: datetime | None = None) -> None: ...
 
-class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreSensor, SensorEntity):
+class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[float] | None]], RestoreSensor, SensorEntity):
     _idx: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
@@ -39,7 +39,7 @@ class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], Re
     _attr_state_class: Incomplete
     _attr_device_class: Incomplete
     _attr_available: bool
-    def __init__(self, coordinator: DataUpdateCoordinator[list[int] | None], idx: int, entry: dict[str, Any]) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator[list[float] | None], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

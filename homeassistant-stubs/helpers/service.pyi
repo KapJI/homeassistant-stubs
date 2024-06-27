@@ -1,10 +1,9 @@
 import dataclasses
-import voluptuous as vol
 from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, floor_registry as floor_registry, label_registry as label_registry, template as template, translation as translation
 from .entity import Entity as Entity
 from .group import expand_entity_ids as expand_entity_ids
 from .selector import TargetSelector as TargetSelector
-from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
@@ -30,7 +29,11 @@ def validate_attribute_option(attribute_option: str) -> Any: ...
 def validate_supported_feature(supported_feature: str) -> Any: ...
 
 _FIELD_SCHEMA: Incomplete
+_SECTION_SCHEMA: Incomplete
 _SERVICE_SCHEMA: Incomplete
+
+def starts_with_dot(key: str) -> str: ...
+
 _SERVICES_SCHEMA: Incomplete
 
 class ServiceParams(TypedDict):
@@ -82,7 +85,7 @@ def _get_permissible_entity_candidates(call: ServiceCall, entities: dict[str, En
 async def entity_service_call(hass: HomeAssistant, registered_entities: dict[str, Entity], func: str | HassJob, call: ServiceCall, required_features: Iterable[int] | None = None) -> EntityServiceResponse | None: ...
 async def _handle_entity_call(hass: HomeAssistant, entity: Entity, func: str | HassJob, data: dict | ServiceCall, context: Context) -> ServiceResponse: ...
 async def _async_admin_handler(hass: HomeAssistant, service_job: HassJob[[ServiceCall], Awaitable[None] | None], call: ServiceCall) -> None: ...
-def async_register_admin_service(hass: HomeAssistant, domain: str, service: str, service_func: Callable[[ServiceCall], Awaitable[None] | None], schema: vol.Schema = ...) -> None: ...
+def async_register_admin_service(hass: HomeAssistant, domain: str, service: str, service_func: Callable[[ServiceCall], Awaitable[None] | None], schema: VolSchemaType = ...) -> None: ...
 def verify_domain_control(hass: HomeAssistant, domain: str) -> Callable[[Callable[[ServiceCall], Any]], Callable[[ServiceCall], Any]]: ...
 
 class ReloadServiceHelper:

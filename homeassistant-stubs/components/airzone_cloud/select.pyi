@@ -1,11 +1,10 @@
 import abc
-from .const import DOMAIN as DOMAIN
+from . import AirzoneCloudConfigEntry as AirzoneCloudConfigEntry
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneEntity as AirzoneEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -20,7 +19,7 @@ class AirzoneSelectDescription(SelectEntityDescription):
 AIR_QUALITY_MAP: Final[dict[str, str]]
 ZONE_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneBaseSelect(AirzoneEntity, SelectEntity, metaclass=abc.ABCMeta):
     entity_description: AirzoneSelectDescription

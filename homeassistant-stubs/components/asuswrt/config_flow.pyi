@@ -8,6 +8,7 @@ from homeassistant.const import CONF_BASE as CONF_BASE, CONF_HOST as CONF_HOST, 
 from homeassistant.core import callback as callback
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 ALLOWED_PROTOCOL: Incomplete

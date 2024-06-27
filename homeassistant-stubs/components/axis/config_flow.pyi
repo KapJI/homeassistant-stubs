@@ -9,6 +9,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util.network import is_link_local as is_link_local
 from typing import Any
 

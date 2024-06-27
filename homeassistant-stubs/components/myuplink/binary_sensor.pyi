@@ -1,10 +1,8 @@
-from . import MyUplinkDataCoordinator as MyUplinkDataCoordinator
-from .const import DOMAIN as DOMAIN
+from . import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
 from .entity import MyUplinkEntity as MyUplinkEntity, MyUplinkSystemEntity as MyUplinkSystemEntity
 from .helpers import find_matching_platform as find_matching_platform
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,7 +13,7 @@ CONNECTED_BINARY_SENSOR_DESCRIPTION: Incomplete
 ALARM_BINARY_SENSOR_DESCRIPTION: Incomplete
 
 def get_description(device_point: DevicePoint) -> BinarySensorEntityDescription | None: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MyUplinkDevicePointBinarySensor(MyUplinkEntity, BinarySensorEntity):
     point_id: Incomplete

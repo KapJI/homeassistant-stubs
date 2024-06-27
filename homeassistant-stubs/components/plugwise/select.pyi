@@ -1,22 +1,20 @@
 from . import PlugwiseConfigEntry as PlugwiseConfigEntry
-from .const import SelectOptionsType as SelectOptionsType, SelectType as SelectType
+from .const import LOCATION as LOCATION, SelectOptionsType as SelectOptionsType, SelectType as SelectType
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
+from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from plugwise import Smile as Smile
 
 @dataclass(frozen=True, kw_only=True)
 class PlugwiseSelectEntityDescription(SelectEntityDescription):
-    command: Callable[[Smile, str, str], Awaitable[None]]
     key: SelectType
     options_key: SelectOptionsType
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, command, options_key) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, options_key) -> None: ...
 
 SELECT_TYPES: Incomplete
 

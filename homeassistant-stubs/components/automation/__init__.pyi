@@ -1,5 +1,5 @@
 import abc
-from .config import AutomationConfig as AutomationConfig
+from .config import AutomationConfig as AutomationConfig, ValidationStatus as ValidationStatus
 from .const import CONF_ACTION as CONF_ACTION, CONF_INITIAL_STATE as CONF_INITIAL_STATE, CONF_TRACE as CONF_TRACE, CONF_TRIGGER as CONF_TRIGGER, CONF_TRIGGER_VARIABLES as CONF_TRIGGER_VARIABLES, DEFAULT_INITIAL_STATE as DEFAULT_INITIAL_STATE, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import async_get_blueprints as async_get_blueprints
 from .trace import trace_automation as trace_automation
@@ -17,7 +17,7 @@ from homeassistant.helpers import condition as condition
 from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_MAX, CONF_MAX as CONF_MAX, CONF_MAX_EXCEEDED as CONF_MAX_EXCEEDED, Script as Script, ScriptRunResult as ScriptRunResult, script_stack_cv as script_stack_cv
 from homeassistant.helpers.script_variables import ScriptVariables as ScriptVariables
@@ -97,7 +97,9 @@ class UnavailableAutomationEntity(BaseAutomationEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     raw_config: Incomplete
-    def __init__(self, automation_id: str | None, name: str, raw_config: ConfigType | None) -> None: ...
+    _validation_error: Incomplete
+    _validation_status: Incomplete
+    def __init__(self, automation_id: str | None, name: str, raw_config: ConfigType | None, validation_error: str, validation_status: ValidationStatus) -> None: ...
     @cached_property
     def referenced_labels(self) -> set[str]: ...
     @cached_property
@@ -110,6 +112,8 @@ class UnavailableAutomationEntity(BaseAutomationEntity):
     def referenced_devices(self) -> set[str]: ...
     @cached_property
     def referenced_entities(self) -> set[str]: ...
+    async def async_added_to_hass(self) -> None: ...
+    async def async_will_remove_from_hass(self) -> None: ...
     async def async_trigger(self, run_variables: dict[str, Any], context: Context | None = None, skip_condition: bool = False) -> None: ...
 
 class AutomationEntity(BaseAutomationEntity, RestoreEntity):
@@ -163,8 +167,9 @@ class AutomationEntityConfig:
     list_no: int
     raw_blueprint_inputs: ConfigType | None
     raw_config: ConfigType | None
-    validation_failed: bool
-    def __init__(self, config_block, list_no, raw_blueprint_inputs, raw_config, validation_failed) -> None: ...
+    validation_error: str | None
+    validation_status: ValidationStatus
+    def __init__(self, config_block, list_no, raw_blueprint_inputs, raw_config, validation_error, validation_status) -> None: ...
 
 async def _prepare_automation_config(hass: HomeAssistant, config: ConfigType, wanted_automation_id: str | None) -> list[AutomationEntityConfig]: ...
 def _automation_name(automation_config: AutomationEntityConfig) -> str: ...

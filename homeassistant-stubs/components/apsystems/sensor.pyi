@@ -1,14 +1,13 @@
-from .const import DOMAIN as DOMAIN
+from . import ApSystemsConfigEntry as ApSystemsConfigEntry, ApSystemsData as ApSystemsData
 from .coordinator import ApSystemsDataCoordinator as ApSystemsDataCoordinator
+from .entity import ApSystemsEntity as ApSystemsEntity
 from APsystemsEZ1 import ReturnOutputData as ReturnOutputData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -20,12 +19,12 @@ class ApsystemsLocalApiSensorDescription(SensorEntityDescription):
 
 SENSORS: tuple[ApsystemsLocalApiSensorDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ApSystemsConfigEntry, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
-class ApSystemsSensorWithDescription(CoordinatorEntity[ApSystemsDataCoordinator], SensorEntity):
+class ApSystemsSensorWithDescription(CoordinatorEntity[ApSystemsDataCoordinator], ApSystemsEntity, SensorEntity):
     entity_description: ApsystemsLocalApiSensorDescription
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    def __init__(self, coordinator: ApSystemsDataCoordinator, entity_description: ApsystemsLocalApiSensorDescription, device_id: str) -> None: ...
+    def __init__(self, data: ApSystemsData, entity_description: ApsystemsLocalApiSensorDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...

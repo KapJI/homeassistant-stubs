@@ -11,9 +11,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
-DISPLAY_MESSAGE_SERVICE_SCHEMA: Incomplete
+DISPLAY_MESSAGE_SERVICE_SCHEMA: VolDictType
 SERVICE_ALARM_DISPLAY_MESSAGE: str
 SERVICE_ALARM_ARM_VACATION: str
 SERVICE_ALARM_ARM_HOME_INSTANT: str

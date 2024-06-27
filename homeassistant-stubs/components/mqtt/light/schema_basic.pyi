@@ -1,4 +1,3 @@
-import voluptuous as vol
 from .. import subscription as subscription
 from ..config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STATE_VALUE_TEMPLATE as CONF_STATE_VALUE_TEMPLATE, PAYLOAD_NONE as PAYLOAD_NONE
@@ -13,7 +12,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, STATE_ON as STATE_ON
 from homeassistant.core import callback as callback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -90,7 +89,7 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _optimistic_rgbww_color: bool
     _optimistic_xy_color: bool
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_min_mireds: Incomplete
     _attr_max_mireds: Incomplete
     _attr_effect_list: Incomplete

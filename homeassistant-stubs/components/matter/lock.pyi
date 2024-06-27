@@ -32,6 +32,7 @@ class MatterLock(MatterEntity, LockEntity):
     _attr_is_locking: bool
     _attr_is_unlocking: bool
     _attr_is_jammed: Incomplete
+    _attr_is_open: Incomplete
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

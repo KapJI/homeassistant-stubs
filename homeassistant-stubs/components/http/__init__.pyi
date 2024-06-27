@@ -19,12 +19,14 @@ from aiohttp.streams import StreamReader as StreamReader
 from aiohttp.typedefs import JSONDecoder as JSONDecoder, StrOrURL as StrOrURL
 from aiohttp.web_exceptions import HTTPRedirection as HTTPRedirection
 from aiohttp.web_protocol import RequestHandler as RequestHandler
+from collections.abc import Collection
+from dataclasses import dataclass
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import storage as storage
-from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_ALLOW_CONFIGRED_CORS as KEY_ALLOW_CONFIGRED_CORS, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, current_request as current_request
+from homeassistant.helpers import frame as frame, storage as storage
+from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_ALLOW_CONFIGURED_CORS as KEY_ALLOW_CONFIGURED_CORS, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, current_request as current_request
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -64,6 +66,15 @@ _DEFAULT_BIND: Incomplete
 HTTP_SCHEMA: Final[Incomplete]
 CONFIG_SCHEMA: Final[Incomplete]
 
+@dataclass(slots=True)
+class StaticPathConfig:
+    url_path: str
+    path: str
+    cache_headers: bool = ...
+    def __init__(self, url_path, path, cache_headers) -> None: ...
+
+_STATIC_CLASSES: Incomplete
+
 class ConfData(TypedDict, total=False):
     server_host: list[str]
     server_port: int
@@ -96,6 +107,9 @@ class HomeAssistantRequest(web.Request):
 class HomeAssistantApplication(web.Application):
     def _make_request(self, message: RawRequestMessage, payload: StreamReader, protocol: RequestHandler, writer: AbstractStreamWriter, task: asyncio.Task[None], _cls: type[web.Request] = ...) -> web.Request: ...
 
+async def _serve_file_with_cache_headers(path: str, request: web.Request) -> web.FileResponse: ...
+async def _serve_file(path: str, request: web.Request) -> web.FileResponse: ...
+
 class HomeAssistantHTTP:
     app: Incomplete
     hass: Incomplete
@@ -113,6 +127,9 @@ class HomeAssistantHTTP:
     async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool, use_x_frame_options: bool) -> None: ...
     def register_view(self, view: HomeAssistantView | type[HomeAssistantView]) -> None: ...
     def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection] = ...) -> None: ...
+    def _make_static_resources(self, configs: Collection[StaticPathConfig]) -> dict[str, CachingStaticResource | web.StaticResource | None]: ...
+    async def async_register_static_paths(self, configs: Collection[StaticPathConfig]) -> None: ...
+    def _async_register_static_paths(self, configs: Collection[StaticPathConfig], resources: dict[str, CachingStaticResource | web.StaticResource | None]) -> None: ...
     def register_static_path(self, url_path: str, path: str, cache_headers: bool = True) -> None: ...
     def _create_ssl_context(self) -> ssl.SSLContext | None: ...
     def _create_emergency_ssl_context(self) -> ssl.SSLContext: ...

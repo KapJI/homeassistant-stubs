@@ -3,13 +3,16 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from typing import Final
 
 _LOGGER: Final[Incomplete]
+ENTITY_ID_FORMAT: Final[Incomplete]
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Final[Incomplete]
 ATTR_AQI: Final[str]
 ATTR_CO2: Final[str]
 ATTR_CO: Final[str]
@@ -21,8 +24,6 @@ ATTR_PM_0_1: Final[str]
 ATTR_PM_10: Final[str]
 ATTR_PM_2_5: Final[str]
 ATTR_SO2: Final[str]
-ENTITY_ID_FORMAT: Final[Incomplete]
-SCAN_INTERVAL: Final[Incomplete]
 PROP_TO_ATTR: Final[dict[str, str]]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CONF_APPS as CONF_APPS, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -15,6 +15,7 @@ class AndroidTVRemoteBaseEntity(Entity):
     _api: Incomplete
     _host: Incomplete
     _name: Incomplete
+    _apps: Incomplete
     _attr_unique_id: Incomplete
     _attr_is_on: Incomplete
     _attr_device_info: Incomplete

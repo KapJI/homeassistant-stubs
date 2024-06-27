@@ -1,5 +1,5 @@
 from .client import CloudClient as CloudClient
-from .const import DISPATCHER_REMOTE_UPDATE as DISPATCHER_REMOTE_UPDATE, DOMAIN as DOMAIN
+from .const import DATA_CLOUD as DATA_CLOUD, DISPATCHER_REMOTE_UPDATE as DISPATCHER_REMOTE_UPDATE
 from _typeshed import Incomplete
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity

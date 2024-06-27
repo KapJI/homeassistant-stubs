@@ -1,5 +1,5 @@
 from . import BAFConfigEntry as BAFConfigEntry
-from .entity import BAFEntity as BAFEntity
+from .entity import BAFDescriptionEntity as BAFDescriptionEntity
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
@@ -20,9 +20,7 @@ FAN_SENSORS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class BAFSensor(BAFEntity, SensorEntity):
+class BAFSensor(BAFDescriptionEntity, SensorEntity):
     entity_description: BAFSensorDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, device: Device, description: BAFSensorDescription) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...

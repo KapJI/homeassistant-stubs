@@ -17,7 +17,6 @@ class LidarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, Generic[T], met
     config_entry: ConfigEntry
     api_client: Incomplete
     host_configuration: Incomplete
-    system_version: Incomplete
     def __init__(self, hass: HomeAssistant, host_configuration: PyArrHostConfiguration, api_client: LidarrClient) -> None: ...
     async def _async_update_data(self) -> T: ...
     @abstractmethod

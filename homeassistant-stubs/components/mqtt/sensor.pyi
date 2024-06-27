@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
 from .const import CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
@@ -16,7 +15,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_FOR
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
 CONF_EXPIRE_AFTER: str
@@ -48,7 +47,7 @@ class MqttSensor(MqttEntity, RestoreSensor):
     async def mqtt_async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
     _attr_force_update: Incomplete
     _attr_suggested_display_precision: Incomplete

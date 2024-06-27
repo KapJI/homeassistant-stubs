@@ -1,7 +1,7 @@
 from .entity import GroupEntity as GroupEntity
 from .util import attribute_equal as attribute_equal, most_frequent_attribute as most_frequent_attribute, reduce_attribute as reduce_attribute
 from _typeshed import Incomplete
-from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PERCENTAGE_STEP as ATTR_PERCENTAGE_STEP, DOMAIN as DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SERVICE_OSCILLATE as SERVICE_OSCILLATE, SERVICE_SET_DIRECTION as SERVICE_SET_DIRECTION, SERVICE_SET_PERCENTAGE as SERVICE_SET_PERCENTAGE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
+from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PERCENTAGE_STEP as ATTR_PERCENTAGE_STEP, DOMAIN as DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, SERVICE_OSCILLATE as SERVICE_OSCILLATE, SERVICE_SET_DIRECTION as SERVICE_SET_DIRECTION, SERVICE_SET_PERCENTAGE as SERVICE_SET_PERCENTAGE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
@@ -12,6 +12,7 @@ from typing import Any
 SUPPORTED_FLAGS: Incomplete
 DEFAULT_NAME: str
 PARALLEL_UPDATES: int
+PLATFORM_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

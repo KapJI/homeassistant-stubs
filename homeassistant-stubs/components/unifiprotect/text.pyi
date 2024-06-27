@@ -1,33 +1,30 @@
-from .const import DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
-from .data import ProtectData as ProtectData
+from .data import UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity, async_all_device_entities as async_all_device_entities
-from .models import PermRequired as PermRequired, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
+from .models import PermRequired as PermRequired, ProtectEntityDescription as ProtectEntityDescription, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
 from _typeshed import Incomplete
+from collections.abc import Sequence
 from dataclasses import dataclass
 from homeassistant.components.text import TextEntity as TextEntity, TextEntityDescription as TextEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
-from uiprotect.data import Camera as Camera, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from uiprotect.data import Camera as Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
 
 @dataclass(frozen=True, kw_only=True)
 class ProtectTextEntityDescription(ProtectSetableKeysMixin[T], TextEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, native_min, native_max, mode, pattern, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, native_min, native_max, mode, pattern, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, has_required, get_ufp_enabled, ufp_set_method, ufp_set_method_fn) -> None: ...
 
 def _get_doorbell_current(obj: Camera) -> str | None: ...
 async def _set_doorbell_message(obj: Camera, message: str) -> None: ...
 
 CAMERA: tuple[ProtectTextEntityDescription, ...]
+_MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ProtectDeviceText(ProtectDeviceEntity, TextEntity):
     entity_description: ProtectTextEntityDescription
-    def __init__(self, data: ProtectData, device: ProtectAdoptableDeviceModel, description: ProtectTextEntityDescription) -> None: ...
+    _state_attrs: Incomplete
     _attr_native_value: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
-    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
     async def async_set_value(self, value: str) -> None: ...

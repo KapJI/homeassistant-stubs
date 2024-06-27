@@ -1,4 +1,3 @@
-import voluptuous as vol
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_MODE as ATTR_MODE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -6,7 +5,7 @@ from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from typing import Any, Self
 
 _LOGGER: Incomplete
@@ -27,7 +26,7 @@ ATTR_PATTERN = CONF_PATTERN
 SERVICE_SET_VALUE: str
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
-STORAGE_FIELDS: Incomplete
+STORAGE_FIELDS: VolDictType
 
 def _cv_input_text(config: dict[str, Any]) -> dict[str, Any]: ...
 
@@ -38,7 +37,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class InputTextStorageCollection(collection.DictStorageCollection):
     CREATE_UPDATE_SCHEMA: Incomplete
-    async def _process_create_data(self, data: dict[str, Any]) -> vol.Schema: ...
+    async def _process_create_data(self, data: dict[str, Any]) -> dict[str, Any]: ...
     def _get_suggested_id(self, info: dict[str, Any]) -> str: ...
     async def _update_data(self, item: dict[str, Any], update_data: dict[str, Any]) -> dict[str, Any]: ...
 

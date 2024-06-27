@@ -1,10 +1,8 @@
-from .const import DOMAIN as DOMAIN
+from . import LitterRobotConfigEntry as LitterRobotConfigEntry
 from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT
-from .hub import LitterRobotHub as LitterRobotHub
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -27,4 +25,4 @@ class LitterRobotBinarySensorEntity(LitterRobotEntity[_RobotT], BinarySensorEnti
 
 BINARY_SENSOR_MAP: dict[type[Robot], tuple[RobotBinarySensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

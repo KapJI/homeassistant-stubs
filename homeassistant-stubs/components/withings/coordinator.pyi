@@ -3,7 +3,7 @@ from . import WithingsConfigEntry as WithingsConfigEntry
 from .const import LOGGER as LOGGER
 from _typeshed import Incomplete
 from abc import abstractmethod
-from aiowithings import Activity, Goals, MeasurementType, NotificationCategory, SleepSummary, WithingsClient as WithingsClient, Workout
+from aiowithings import Activity, Goals, MeasurementPosition, MeasurementType, NotificationCategory, SleepSummary, WithingsClient as WithingsClient, Workout
 from datetime import datetime, timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -28,13 +28,13 @@ class WithingsDataUpdateCoordinator(DataUpdateCoordinator[_DataT], metaclass=abc
     @abstractmethod
     async def _internal_update_data(self) -> _DataT: ...
 
-class WithingsMeasurementDataUpdateCoordinator(WithingsDataUpdateCoordinator[dict[MeasurementType, float]]):
+class WithingsMeasurementDataUpdateCoordinator(WithingsDataUpdateCoordinator[dict[tuple[MeasurementType, MeasurementPosition | None], float]]):
     coordinator_name: str
     notification_categories: Incomplete
     _previous_data: Incomplete
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...
     _last_valid_update: Incomplete
-    async def _internal_update_data(self) -> dict[MeasurementType, float]: ...
+    async def _internal_update_data(self) -> dict[tuple[MeasurementType, MeasurementPosition | None], float]: ...
 
 class WithingsSleepDataUpdateCoordinator(WithingsDataUpdateCoordinator[SleepSummary | None]):
     coordinator_name: str

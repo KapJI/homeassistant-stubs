@@ -1,5 +1,4 @@
-from .const import DOMAIN as DOMAIN
-from .data import ProtectData as ProtectData
+from .data import ProtectData as ProtectData, async_get_data_for_entry_id as async_get_data_for_entry_id, async_get_data_for_nvr_id as async_get_data_for_nvr_id
 from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
@@ -21,9 +20,8 @@ def _validate_event(event: Event) -> None: ...
 class ProtectProxyView(HomeAssistantView):
     requires_auth: bool
     hass: Incomplete
-    data: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
-    def _get_data_or_404(self, nvr_id: str) -> ProtectData | web.Response: ...
+    def _get_data_or_404(self, nvr_id_or_entry_id: str) -> ProtectData | web.Response: ...
 
 class ThumbnailProxyView(ProtectProxyView):
     url: str

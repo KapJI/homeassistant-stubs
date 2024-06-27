@@ -2,20 +2,18 @@ from . import PlugwiseConfigEntry as PlugwiseConfigEntry
 from .const import NumberType as NumberType
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
+from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from plugwise import Smile as Smile
 
 @dataclass(frozen=True, kw_only=True)
 class PlugwiseNumberEntityDescription(NumberEntityDescription):
-    command: Callable[[Smile, str, str, float], Awaitable[None]]
     key: NumberType
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, command) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step) -> None: ...
 
 NUMBER_TYPES: Incomplete
 

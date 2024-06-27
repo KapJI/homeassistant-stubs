@@ -2,6 +2,7 @@ from . import KNXModule as KNXModule
 from .const import DOMAIN as DOMAIN
 from .telegrams import TelegramDict as TelegramDict
 from homeassistant.components import panel_custom as panel_custom, websocket_api as websocket_api
+from homeassistant.components.http import StaticPathConfig as StaticPathConfig
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Final
 

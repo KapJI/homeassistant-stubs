@@ -8,6 +8,7 @@ from homeassistant.core import Event as Event, EventStateChangedData as EventSta
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any, TypedDict
 
 CONF_EVENT_CODE: str

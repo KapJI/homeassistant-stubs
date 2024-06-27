@@ -1,5 +1,4 @@
 import httpx
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
@@ -16,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, VolSchemaType as VolSchemaType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -45,7 +44,7 @@ class MqttImage(MqttEntity, ImageEntity):
     _topic: dict[str, Any]
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_content_type: Incomplete
     _attr_image_url: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...

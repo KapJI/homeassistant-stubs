@@ -12,13 +12,14 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 LIFX_STATE_SETTLE_DELAY: float
 SERVICE_LIFX_SET_STATE: str
-LIFX_SET_STATE_SCHEMA: Incomplete
+LIFX_SET_STATE_SCHEMA: VolDictType
 SERVICE_LIFX_SET_HEV_CYCLE_STATE: str
-LIFX_SET_HEV_CYCLE_STATE_SCHEMA: Incomplete
+LIFX_SET_HEV_CYCLE_STATE_SCHEMA: VolDictType
 HSBK_HUE: int
 HSBK_SATURATION: int
 HSBK_BRIGHTNESS: int

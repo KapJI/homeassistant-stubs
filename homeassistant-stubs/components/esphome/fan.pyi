@@ -3,16 +3,11 @@ from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, FanDirection, FanInfo, FanState
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.core import callback as callback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
 
 ORDERED_NAMED_FAN_SPEEDS: Incomplete
-
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-
 _FAN_DIRECTIONS: EsphomeEnumMapper[FanDirection, str]
 
 class EsphomeFan(EsphomeEntity[FanInfo, FanState], FanEntity):
@@ -38,3 +33,5 @@ class EsphomeFan(EsphomeEntity[FanInfo, FanState], FanEntity):
     _attr_preset_modes: Incomplete
     _attr_speed_count: Incomplete
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
+
+async_setup_entry: Incomplete

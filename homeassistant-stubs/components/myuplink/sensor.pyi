@@ -1,11 +1,9 @@
-from . import MyUplinkDataCoordinator as MyUplinkDataCoordinator
-from .const import DOMAIN as DOMAIN
+from . import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
 from .entity import MyUplinkEntity as MyUplinkEntity
 from .helpers import find_matching_platform as find_matching_platform, skip_entity as skip_entity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
+from homeassistant.const import Platform as Platform, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -16,7 +14,7 @@ MARKER_FOR_UNKNOWN_VALUE: int
 CATEGORY_BASED_DESCRIPTIONS: dict[str, dict[str, SensorEntityDescription]]
 
 def get_description(device_point: DevicePoint) -> SensorEntityDescription | None: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MyUplinkDevicePointSensor(MyUplinkEntity, SensorEntity):
     point_id: Incomplete

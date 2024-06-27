@@ -1,21 +1,19 @@
-from .const import DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN, TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
-from .data import ProtectData as ProtectData
+from .const import TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
+from .data import ProtectData as ProtectData, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity, async_all_device_entities as async_all_device_entities
-from .models import PermRequired as PermRequired, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
+from .models import PermRequired as PermRequired, ProtectEntityDescription as ProtectEntityDescription, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
 from .utils import async_get_light_motion_current as async_get_light_motion_current
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Sequence
 from dataclasses import dataclass
 from enum import Enum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Final
 from uiprotect.api import ProtectApiClient as ProtectApiClient
-from uiprotect.data import Camera, Doorlock, Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor, Viewer
+from uiprotect.data import Camera, Doorlock, Light, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId, Sensor, Viewer
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
@@ -38,7 +36,7 @@ class ProtectSelectEntityDescription(ProtectSetableKeysMixin[T], SelectEntityDes
     ufp_options: list[dict[str, Any]] | None = ...
     ufp_options_fn: Callable[[ProtectApiClient], list[dict[str, Any]]] | None = ...
     ufp_enum_type: type[Enum] | None = ...
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn, ufp_options, ufp_options_fn, ufp_enum_type) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, has_required, get_ufp_enabled, ufp_set_method, ufp_set_method_fn, ufp_options, ufp_options_fn, ufp_enum_type) -> None: ...
 
 def _get_viewer_options(api: ProtectApiClient) -> list[dict[str, Any]]: ...
 def _get_doorbell_options(api: ProtectApiClient) -> list[dict[str, Any]]: ...
@@ -55,13 +53,14 @@ LIGHT_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 SENSE_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 DOORLOCK_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 VIEWER_SELECTS: tuple[ProtectSelectEntityDescription, ...]
+_MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     device: Camera | Light | Viewer
     entity_description: ProtectSelectEntityDescription
-    _attr_name: Incomplete
+    _state_attrs: Incomplete
     def __init__(self, data: ProtectData, device: Camera | Light | Viewer, description: ProtectSelectEntityDescription) -> None: ...
     _attr_current_option: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
@@ -70,4 +69,3 @@ class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     _unifi_to_hass_options: Incomplete
     def _async_set_options(self, data: ProtectData, description: ProtectSelectEntityDescription) -> None: ...
     async def async_select_option(self, option: str) -> None: ...
-    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...

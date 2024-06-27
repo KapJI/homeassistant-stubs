@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.components.humidifier import HumidifierDeviceClass as HumidifierDeviceClass
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import discovery as discovery
@@ -26,3 +27,6 @@ HYGROSTAT_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def config_entry_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

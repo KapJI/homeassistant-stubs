@@ -1,8 +1,8 @@
-from .const import CONF_ADDR as CONF_ADDR, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_DIMMERS as CONF_DIMMERS, CONF_KEYPADS as CONF_KEYPADS, CONF_RATE as CONF_RATE, DOMAIN as DOMAIN
+from .const import CONF_ADDR as CONF_ADDR, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_KEYPADS as CONF_KEYPADS, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, ServiceValidationError as ServiceValidationError
@@ -21,9 +21,6 @@ EVENT_BUTTON_PRESS: str
 EVENT_BUTTON_RELEASE: str
 DEFAULT_FADE_RATE: float
 KEYPAD_LEDSTATE_POLL_COOLDOWN: float
-CV_FADE_RATE: Incomplete
-DIMMER_SCHEMA: Incomplete
-KEYPAD_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 SERVICE_SEND_COMMAND_SCHEMA: Incomplete
 

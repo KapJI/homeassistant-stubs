@@ -9,7 +9,7 @@ from homeassistant.helpers import collection as collection, entity_registry as e
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
@@ -21,9 +21,8 @@ STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
 STORAGE_VERSION_MINOR: int
 TAG_DATA: HassKey[TagStorageCollection]
-SIGNAL_TAG_CHANGED: str
-CREATE_FIELDS: Incomplete
-UPDATE_FIELDS: Incomplete
+CREATE_FIELDS: VolDictType
+UPDATE_FIELDS: VolDictType
 CONFIG_SCHEMA: Incomplete
 
 class TagIDExistsError(HomeAssistantError):
@@ -50,7 +49,7 @@ class TagStorageCollection(collection.DictStorageCollection):
 
 class TagDictStorageCollectionWebsocket(collection.StorageCollectionWebsocket[TagStorageCollection]):
     entity_registry: Incomplete
-    def __init__(self, storage_collection: TagStorageCollection, api_prefix: str, model_name: str, create_schema: ConfigType, update_schema: ConfigType) -> None: ...
+    def __init__(self, storage_collection: TagStorageCollection, api_prefix: str, model_name: str, create_schema: VolDictType, update_schema: VolDictType) -> None: ...
     def ws_list_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

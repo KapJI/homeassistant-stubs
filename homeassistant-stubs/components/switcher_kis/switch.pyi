@@ -10,14 +10,15 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 _LOGGER: Incomplete
 API_CONTROL_DEVICE: str
 API_SET_AUTO_SHUTDOWN: str
-SERVICE_SET_AUTO_OFF_SCHEMA: Incomplete
-SERVICE_TURN_ON_WITH_TIMER_SCHEMA: Incomplete
+SERVICE_SET_AUTO_OFF_SCHEMA: VolDictType
+SERVICE_TURN_ON_WITH_TIMER_SCHEMA: VolDictType
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

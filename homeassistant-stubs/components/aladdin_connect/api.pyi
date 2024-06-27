@@ -1,6 +1,5 @@
 from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession
-from genie_partner_sdk.auth import Auth
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAuth2Session
 
 API_URL: str

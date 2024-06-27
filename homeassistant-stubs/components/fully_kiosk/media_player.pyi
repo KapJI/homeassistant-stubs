@@ -6,6 +6,7 @@ from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
@@ -18,6 +19,7 @@ class FullyMediaPlayer(FullyKioskEntity, MediaPlayerEntity):
     _attr_unique_id: Incomplete
     _attr_state: Incomplete
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator) -> None: ...
+    _attr_media_content_type: Incomplete
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
     async def async_media_stop(self) -> None: ...
     _attr_volume_level: Incomplete

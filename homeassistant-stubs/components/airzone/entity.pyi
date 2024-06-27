@@ -1,3 +1,4 @@
+from . import AirzoneConfigEntry as AirzoneConfigEntry
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from _typeshed import Incomplete
@@ -17,7 +18,7 @@ class AirzoneSystemEntity(AirzoneEntity):
     system_id: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry, system_data: dict[str, Any]) -> None: ...
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: AirzoneConfigEntry, system_data: dict[str, Any]) -> None: ...
     @property
     def available(self) -> bool: ...
     def get_airzone_value(self, key: str) -> Any: ...

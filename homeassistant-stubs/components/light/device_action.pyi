@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import get_supported_features as get_supported_features
-from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolDictType as VolDictType
 
 TYPE_BRIGHTNESS_INCREASE: str
 TYPE_BRIGHTNESS_DECREASE: str

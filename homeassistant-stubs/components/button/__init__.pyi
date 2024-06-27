@@ -5,16 +5,17 @@ from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
-SCAN_INTERVAL: Incomplete
-ENTITY_ID_FORMAT: Incomplete
-MIN_TIME_BETWEEN_SCANS: Incomplete
 _LOGGER: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Incomplete
+MIN_TIME_BETWEEN_SCANS: Incomplete
 
 class ButtonDeviceClass(StrEnum):
     IDENTIFY: str

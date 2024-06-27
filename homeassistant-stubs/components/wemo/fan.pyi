@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from pywemo import FanMode, Humidifier as Humidifier
@@ -22,7 +23,7 @@ ATTR_FILTER_LIFE: str
 ATTR_FILTER_EXPIRED: str
 ATTR_WATER_LEVEL: str
 SPEED_RANGE: Incomplete
-SET_HUMIDITY_SCHEMA: Incomplete
+SET_HUMIDITY_SCHEMA: VolDictType
 
 async def async_setup_entry(hass: HomeAssistant, _config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

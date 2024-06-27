@@ -1,10 +1,9 @@
 import feedparser
-from .const import DOMAIN as DOMAIN
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from time import struct_time as struct_time
 
 DELAY_SAVE: int
@@ -20,7 +19,7 @@ class FeedReaderCoordinator(DataUpdateCoordinator[None]):
     _last_entry_timestamp: Incomplete
     _event_type: Incomplete
     _feed_id: Incomplete
-    def __init__(self, hass: HomeAssistant, url: str, scan_interval: timedelta, max_entries: int, storage: StoredData) -> None: ...
+    def __init__(self, hass: HomeAssistant, url: str, max_entries: int, storage: StoredData) -> None: ...
     def _log_no_entries(self) -> None: ...
     def _fetch_feed(self) -> feedparser.FeedParserDict: ...
     async def _async_update_data(self) -> None: ...
@@ -32,6 +31,7 @@ class StoredData:
     _data: Incomplete
     hass: Incomplete
     _store: Incomplete
+    is_initialized: bool
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_setup(self) -> None: ...
     def get_timestamp(self, feed_id: str) -> struct_time | None: ...

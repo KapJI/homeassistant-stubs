@@ -11,11 +11,9 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, time_period_str as time_period_str
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.json import JsonValueType as JsonValueType
@@ -24,6 +22,8 @@ from typing import Any, Final
 _LOGGER: Incomplete
 DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 VALID_FREQS: Incomplete
 MIN_NEW_EVENT_DURATION: Incomplete
@@ -41,7 +41,6 @@ CREATE_EVENT_SERVICE: str
 CREATE_EVENT_SCHEMA: Incomplete
 WEBSOCKET_EVENT_SCHEMA: Incomplete
 CALENDAR_EVENT_SCHEMA: Incomplete
-LEGACY_SERVICE_LIST_EVENTS: Final[str]
 SERVICE_GET_EVENTS: Final[str]
 SERVICE_GET_EVENTS_SCHEMA: Final[Incomplete]
 
@@ -113,5 +112,4 @@ async def handle_calendar_event_delete(hass: HomeAssistant, connection: ActiveCo
 async def handle_calendar_event_update(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 def _validate_timespan(values: dict[str, Any]) -> tuple[datetime.datetime | datetime.date, datetime.datetime | datetime.date]: ...
 async def async_create_event(entity: CalendarEntity, call: ServiceCall) -> None: ...
-async def async_list_events_service(calendar: CalendarEntity, service_call: ServiceCall) -> ServiceResponse: ...
 async def async_get_events_service(calendar: CalendarEntity, service_call: ServiceCall) -> ServiceResponse: ...

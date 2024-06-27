@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from .const import CONF_ACTION_TEMPLATE as CONF_ACTION_TEMPLATE, CONF_ACTION_TOPIC as CONF_ACTION_TOPIC, CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_CURRENT_HUMIDITY_TEMPLATE as CONF_CURRENT_HUMIDITY_TEMPLATE, CONF_CURRENT_HUMIDITY_TOPIC as CONF_CURRENT_HUMIDITY_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STATE_VALUE_TEMPLATE as CONF_STATE_VALUE_TEMPLATE, PAYLOAD_NONE as PAYLOAD_NONE
@@ -15,7 +14,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from typing import Any
 
 CONF_AVAILABLE_MODES_LIST: str
@@ -62,7 +61,7 @@ class MqttHumidifier(MqttEntity, HumidifierEntity):
     _payload: dict[str, str]
     _topic: dict[str, Any]
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
     _attr_min_humidity: Incomplete
     _attr_max_humidity: Incomplete

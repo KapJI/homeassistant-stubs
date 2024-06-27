@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
-from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
+from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, VolDictType as VolDictType
 from typing import Any, Final
 from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
 from xknx.secure.keyring import Keyring as Keyring, XMLInterface as XMLInterface

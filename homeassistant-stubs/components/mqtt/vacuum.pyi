@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_SCHEMA as CONF_SCHEMA, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DOMAIN as DOMAIN
@@ -16,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.json import json_dumps as json_dumps
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
@@ -77,7 +76,7 @@ class MqttStateVacuum(MqttEntity, StateVacuumEntity):
     _state_attrs: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_supported_features: Incomplete
     _attr_fan_speed_list: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...

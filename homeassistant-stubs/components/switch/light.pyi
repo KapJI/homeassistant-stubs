@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -8,6 +8,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from typing import Any
 
 DEFAULT_NAME: str
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 DEFAULT_BAUD_RATE: int

@@ -1,4 +1,4 @@
-from .const import CONF_ENABLE_IME as CONF_ENABLE_IME, DOMAIN as DOMAIN
+from .const import CONF_APPS as CONF_APPS, CONF_APP_ICON as CONF_APP_ICON, CONF_APP_NAME as CONF_APP_NAME, CONF_ENABLE_IME as CONF_ENABLE_IME, DOMAIN as DOMAIN
 from .helpers import create_api as create_api, get_enable_ime as get_enable_ime
 from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote
@@ -8,9 +8,13 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from typing import Any
 
 _LOGGER: Incomplete
+APPS_NEW_ID: str
+CONF_APP_DELETE: str
+CONF_APP_ID: str
 STEP_USER_DATA_SCHEMA: Incomplete
 STEP_PAIR_DATA_SCHEMA: Incomplete
 
@@ -33,4 +37,10 @@ class AndroidTVRemoteConfigFlow(ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry: ConfigEntry) -> AndroidTVRemoteOptionsFlowHandler: ...
 
 class AndroidTVRemoteOptionsFlowHandler(OptionsFlowWithConfigEntry):
+    _apps: Incomplete
+    _conf_app_id: Incomplete
+    def __init__(self, config_entry: ConfigEntry) -> None: ...
+    def _save_config(self, data: dict[str, Any]) -> ConfigFlowResult: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_apps(self, user_input: dict[str, Any] | None = None, app_id: str | None = None) -> ConfigFlowResult: ...
+    def _async_apps_form(self, app_id: str) -> ConfigFlowResult: ...

@@ -1,6 +1,6 @@
 from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
-from homeassistant.components.lock import DOMAIN as DOMAIN, LockEntity as LockEntity, LockEntityFeature as LockEntityFeature, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.lock import DOMAIN as DOMAIN, LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_JAMMED as STATE_JAMMED, STATE_LOCKED as STATE_LOCKED, STATE_LOCKING as STATE_LOCKING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, STATE_UNLOCKING as STATE_UNLOCKING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -10,6 +10,7 @@ from typing import Any
 
 DEFAULT_NAME: str
 PARALLEL_UPDATES: int
+PLATFORM_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

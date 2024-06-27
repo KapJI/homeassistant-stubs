@@ -2,7 +2,7 @@ from . import PLATFORMS as PLATFORMS
 from .const import CONF_ENTITY_IDS as CONF_ENTITY_IDS, CONF_ROUND_DIGITS as CONF_ROUND_DIGITS, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
@@ -26,6 +26,7 @@ ATTR_SUM: str
 ICON: str
 SENSOR_TYPES: Incomplete
 SENSOR_TYPE_TO_ATTR: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

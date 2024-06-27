@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_PAYLOAD_CLOSE as CONF_PAYLOAD_CLOSE, CONF_PAYLOAD_OPEN as CONF_PAYLOAD_OPEN, CONF_PAYLOAD_STOP as CONF_PAYLOAD_STOP, CONF_POSITION_CLOSED as CONF_POSITION_CLOSED, CONF_POSITION_OPEN as CONF_POSITION_OPEN, CONF_RETAIN as CONF_RETAIN, CONF_STATE_CLOSED as CONF_STATE_CLOSED, CONF_STATE_CLOSING as CONF_STATE_CLOSING, CONF_STATE_OPEN as CONF_STATE_OPEN, CONF_STATE_OPENING as CONF_STATE_OPENING, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, DEFAULT_PAYLOAD_CLOSE as DEFAULT_PAYLOAD_CLOSE, DEFAULT_PAYLOAD_OPEN as DEFAULT_PAYLOAD_OPEN, DEFAULT_POSITION_CLOSED as DEFAULT_POSITION_CLOSED, DEFAULT_POSITION_OPEN as DEFAULT_POSITION_OPEN, DEFAULT_RETAIN as DEFAULT_RETAIN, PAYLOAD_NONE as PAYLOAD_NONE
@@ -14,7 +13,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAM
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
@@ -67,7 +66,7 @@ class MqttCover(MqttEntity, CoverEntity):
     _pos_range: tuple[int, int]
     _tilt_range: tuple[int, int]
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     _attr_assumed_state: Incomplete
     _value_template: Incomplete
     _set_position_template: Incomplete

@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
 from homeassistant.helpers.service import entity_service_call as entity_service_call
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 SERVICE_SEND_PROGRAM_COMMAND: str
@@ -35,8 +36,8 @@ SERVICE_SEND_NODE_COMMAND_SCHEMA: Incomplete
 SERVICE_RENAME_NODE_SCHEMA: Incomplete
 SERVICE_GET_ZWAVE_PARAMETER_SCHEMA: Incomplete
 SERVICE_SET_ZWAVE_PARAMETER_SCHEMA: Incomplete
-SERVICE_SET_USER_CODE_SCHEMA: Incomplete
-SERVICE_DELETE_USER_CODE_SCHEMA: Incomplete
+SERVICE_SET_USER_CODE_SCHEMA: VolDictType
+SERVICE_DELETE_USER_CODE_SCHEMA: VolDictType
 SERVICE_SEND_PROGRAM_COMMAND_SCHEMA: Incomplete
 
 def async_get_entities(hass: HomeAssistant) -> dict[str, Entity]: ...

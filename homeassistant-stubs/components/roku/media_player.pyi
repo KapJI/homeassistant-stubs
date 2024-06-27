@@ -13,6 +13,7 @@ from homeassistant.const import ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -20,7 +21,7 @@ STREAM_FORMAT_TO_MEDIA_TYPE: Incomplete
 ATTRS_TO_LAUNCH_PARAMS: Incomplete
 ATTRS_TO_PLAY_ON_ROKU_PARAMS: Incomplete
 ATTRS_TO_PLAY_ON_ROKU_AUDIO_PARAMS: Incomplete
-SEARCH_SCHEMA: Incomplete
+SEARCH_SCHEMA: VolDictType
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

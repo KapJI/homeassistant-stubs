@@ -5,6 +5,7 @@ from . import device_registry as dr, entity_registry as er, singleton as singlet
 from .device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from .entity_platform import EntityPlatform as EntityPlatform
 from .event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
+from .frame import report_non_thread_safe_operation as report_non_thread_safe_operation
 from .typing import StateType as StateType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import ABCMeta
@@ -98,6 +99,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     _no_platform_reported: bool
     _name_translation_placeholders_reported: bool
     _update_staged: bool
+    _verified_state_writable: bool
     parallel_updates: asyncio.Semaphore | None
     registry_entry: er.RegistryEntry | None
     _removed_from_registry: bool
@@ -112,7 +114,6 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     __combined_unrecorded_attributes: frozenset[str]
     _job_types: dict[str, HassJobType] | None
     _state_info: StateInfo
-    _is_custom_component: bool
     __capabilities_updated_at: deque[float]
     __capabilities_updated_at_reported: bool
     __remove_future: asyncio.Future[None] | None
@@ -144,7 +145,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def should_poll(self) -> bool: ...
     @cached_property
     def unique_id(self) -> str | None: ...
-    @property
+    @cached_property
     def use_device_name(self) -> bool: ...
     @cached_property
     def has_entity_name(self) -> bool: ...

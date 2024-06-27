@@ -7,7 +7,7 @@ from ..util import execute_stmt_lambda_element as execute_stmt_lambda_element
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.core import Event as Event
-from homeassistant.util.collection import chunked as chunked
+from homeassistant.util.collection import chunked_or_all as chunked_or_all
 from homeassistant.util.event_type import EventType as EventType
 from sqlalchemy.orm.session import Session as Session
 from typing import Any

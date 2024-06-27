@@ -1,13 +1,11 @@
 import dataclasses
-from . import RadarrEntity as RadarrEntity
-from .const import DOMAIN as DOMAIN
+from . import RadarrConfigEntry as RadarrConfigEntry, RadarrEntity as RadarrEntity
 from .coordinator import RadarrDataUpdateCoordinator as RadarrDataUpdateCoordinator, T as T
 from _typeshed import Incomplete
 from aiopyarr import Diskspace as Diskspace, RootFolder as RootFolder
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -30,7 +28,7 @@ SENSOR_TYPES: dict[str, RadarrSensorEntityDescription[Any]]
 BYTE_SIZES: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RadarrConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RadarrSensor(RadarrEntity[T], SensorEntity):
     coordinator: RadarrDataUpdateCoordinator[T]

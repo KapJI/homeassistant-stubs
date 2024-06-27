@@ -6,17 +6,16 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_RESOURCES as CONF_RESOURCES, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
-from typing import Any, Literal
+from typing import Literal
 
 _LOGGER: Incomplete
 CONF_ARG: str
@@ -45,13 +44,11 @@ class SysMonitorSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: dict[str, SysMonitorSensorEntityDescription]
 
-def check_required_arg(value: Any) -> Any: ...
 def check_legacy_resource(resource: str, resources: set[str]) -> bool: ...
 
 IO_COUNTER: Incomplete
 IF_ADDRS_FAMILY: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: SystemMonitorConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SystemMonitorSensor(CoordinatorEntity[SystemMonitorCoordinator], SensorEntity):

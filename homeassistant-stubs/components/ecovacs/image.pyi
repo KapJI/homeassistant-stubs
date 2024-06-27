@@ -1,7 +1,7 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .entity import EcovacsEntity as EcovacsEntity
 from _typeshed import Incomplete
-from deebot_client.capabilities import CapabilityMap, VacuumCapabilities
+from deebot_client.capabilities import CapabilityMap
 from deebot_client.device import Device as Device
 from deebot_client.events.map import CachedMapInfoEvent as CachedMapInfoEvent, MapChangedEvent as MapChangedEvent
 from homeassistant.components.image import ImageEntity as ImageEntity
@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class EcovacsMap(EcovacsEntity[VacuumCapabilities, CapabilityMap], ImageEntity):
+class EcovacsMap(EcovacsEntity[CapabilityMap], ImageEntity):
     _attr_content_type: str
     _attr_extra_state_attributes: Incomplete
     def __init__(self, device: Device, capability: CapabilityMap, hass: HomeAssistant) -> None: ...

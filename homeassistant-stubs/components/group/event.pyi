@@ -1,6 +1,6 @@
 from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
-from homeassistant.components.event import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, DOMAIN as DOMAIN, EventEntity as EventEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.event import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, DOMAIN as DOMAIN, EventEntity as EventEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
@@ -11,6 +11,7 @@ from typing import Any
 
 DEFAULT_NAME: str
 PARALLEL_UPDATES: int
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(_: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, __: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

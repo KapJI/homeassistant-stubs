@@ -1,18 +1,16 @@
-from .const import DISPATCH_ADOPT as DISPATCH_ADOPT, DOMAIN as DOMAIN
-from .data import ProtectData as ProtectData
-from .entity import ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
-from .models import PermRequired as PermRequired, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
+from .data import ProtectData as ProtectData, UFPConfigEntry as UFPConfigEntry
+from .entity import BaseProtectEntity as BaseProtectEntity, ProtectDeviceEntity as ProtectDeviceEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
+from .models import PermRequired as PermRequired, ProtectEntityDescription as ProtectEntityDescription, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T
 from _typeshed import Incomplete
+from collections.abc import Sequence
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any
-from uiprotect.data import Camera, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from uiprotect.data import Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
 
 _LOGGER: Incomplete
 ATTR_PREV_MIC: str
@@ -20,7 +18,7 @@ ATTR_PREV_RECORD: str
 
 @dataclass(frozen=True, kw_only=True)
 class ProtectSwitchEntityDescription(ProtectSetableKeysMixin[T], SwitchEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, ufp_set_method, ufp_set_method_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, ufp_required_field, ufp_value, ufp_value_fn, ufp_enabled, ufp_perm, has_required, get_ufp_enabled, ufp_set_method, ufp_set_method_fn) -> None: ...
 
 async def _set_highfps(obj: Camera, value: bool) -> None: ...
 
@@ -31,37 +29,30 @@ LIGHT_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 DOORLOCK_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 VIEWER_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 NVR_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
+_MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
+_PRIVACY_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-
-class ProtectSwitch(ProtectDeviceEntity, SwitchEntity):
+class ProtectBaseSwitch(BaseProtectEntity, SwitchEntity):
     entity_description: ProtectSwitchEntityDescription
-    _attr_name: Incomplete
-    _switch_type: Incomplete
-    def __init__(self, data: ProtectData, device: ProtectAdoptableDeviceModel, description: ProtectSwitchEntityDescription) -> None: ...
+    _state_attrs: Incomplete
     _attr_is_on: Incomplete
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
 
-class ProtectNVRSwitch(ProtectNVREntity, SwitchEntity):
-    entity_description: ProtectSwitchEntityDescription
-    _attr_name: Incomplete
-    def __init__(self, data: ProtectData, device: NVR, description: ProtectSwitchEntityDescription) -> None: ...
-    @property
-    def is_on(self) -> bool: ...
-    async def async_turn_on(self, **kwargs: Any) -> None: ...
-    async def async_turn_off(self, **kwargs: Any) -> None: ...
+class ProtectSwitch(ProtectBaseSwitch, ProtectDeviceEntity): ...
+class ProtectNVRSwitch(ProtectBaseSwitch, ProtectNVREntity): ...
 
 class ProtectPrivacyModeSwitch(RestoreEntity, ProtectSwitch):
     device: Camera
     _previous_mic_level: Incomplete
     _previous_record_mode: Incomplete
-    def __init__(self, data: ProtectData, device: ProtectAdoptableDeviceModel, description: ProtectSwitchEntityDescription) -> None: ...
+    def __init__(self, data: ProtectData, device: Camera, description: ProtectSwitchEntityDescription) -> None: ...
     _attr_extra_state_attributes: Incomplete
     def _update_previous_attr(self) -> None: ...
     def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+
+async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

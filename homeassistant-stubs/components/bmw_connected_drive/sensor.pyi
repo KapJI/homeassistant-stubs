@@ -1,5 +1,5 @@
 from . import BMWBaseEntity as BMWBaseEntity
-from .const import CLIMATE_ACTIVITY_STATE as CLIMATE_ACTIVITY_STATE, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle

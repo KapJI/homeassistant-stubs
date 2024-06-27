@@ -1,4 +1,5 @@
 import dataclasses
+import voluptuous as vol
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from enum import IntFlag, StrEnum
@@ -7,17 +8,18 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Self
 
 DOMAIN: str
+ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 DATA_PROFILES: str
-ENTITY_ID_FORMAT: Incomplete
 
 class LightEntityFeature(IntFlag):
     EFFECT: int
@@ -103,12 +105,12 @@ VALID_BRIGHTNESS_PCT: Incomplete
 VALID_BRIGHTNESS_STEP: Incomplete
 VALID_BRIGHTNESS_STEP_PCT: Incomplete
 VALID_FLASH: Incomplete
-LIGHT_TURN_ON_SCHEMA: Incomplete
-LIGHT_TURN_OFF_SCHEMA: Incomplete
+LIGHT_TURN_ON_SCHEMA: VolDictType
+LIGHT_TURN_OFF_SCHEMA: VolDictType
 _LOGGER: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
-def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any]) -> None: ...
+def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any] | dict[str | vol.Optional, Any]) -> None: ...
 def filter_turn_off_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
 def filter_turn_on_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

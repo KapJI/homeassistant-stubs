@@ -5,7 +5,7 @@ from .data import HistoryStats as HistoryStats
 from .helpers import pretty_ratio as pretty_ratio
 from _typeshed import Incomplete
 from abc import abstractmethod
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
@@ -28,6 +28,9 @@ UNITS: dict[str, str]
 ICON: str
 
 def exactly_two_period_keys(conf: _T) -> _T: ...
+
+PLATFORM_SCHEMA: Incomplete
+
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class HistoryStatsSensorBase(CoordinatorEntity[HistoryStatsUpdateCoordinator], SensorEntity, metaclass=abc.ABCMeta):

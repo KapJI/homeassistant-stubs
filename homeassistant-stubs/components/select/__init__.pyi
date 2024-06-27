@@ -1,11 +1,13 @@
 from .const import ATTR_CYCLE as ATTR_CYCLE, ATTR_OPTION as ATTR_OPTION, ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN, SERVICE_SELECT_FIRST as SERVICE_SELECT_FIRST, SERVICE_SELECT_LAST as SERVICE_SELECT_LAST, SERVICE_SELECT_NEXT as SERVICE_SELECT_NEXT, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION, SERVICE_SELECT_PREVIOUS as SERVICE_SELECT_PREVIOUS
 from _typeshed import Incomplete
 from functools import cached_property
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity, EntityDescription
 from typing import Any
 
 __all__ = ['ATTR_CYCLE', 'ATTR_OPTION', 'ATTR_OPTIONS', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SelectEntity', 'SelectEntityDescription', 'SERVICE_SELECT_FIRST', 'SERVICE_SELECT_LAST', 'SERVICE_SELECT_NEXT', 'SERVICE_SELECT_OPTION', 'SERVICE_SELECT_PREVIOUS']
+
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 
 class SelectEntityDescription(EntityDescription, frozen_or_thawed=True):
     options: list[str] | None

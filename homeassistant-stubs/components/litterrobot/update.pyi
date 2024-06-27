@@ -1,8 +1,7 @@
-from .const import DOMAIN as DOMAIN
-from .entity import LitterRobotEntity as LitterRobotEntity, LitterRobotHub as LitterRobotHub
+from . import LitterRobotConfigEntry as LitterRobotConfigEntry
+from .entity import LitterRobotEntity as LitterRobotEntity
 from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +11,7 @@ from typing import Any
 SCAN_INTERVAL: Incomplete
 FIRMWARE_UPDATE_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RobotUpdateEntity(LitterRobotEntity[LitterRobot4], UpdateEntity):
     _attr_supported_features: Incomplete

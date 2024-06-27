@@ -1,5 +1,5 @@
 from . import BAFConfigEntry as BAFConfigEntry
-from .entity import BAFEntity as BAFEntity
+from .entity import BAFDescriptionEntity as BAFDescriptionEntity
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
@@ -22,10 +22,8 @@ LIGHT_SWITCHES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class BAFSwitch(BAFEntity, SwitchEntity):
+class BAFSwitch(BAFDescriptionEntity, SwitchEntity):
     entity_description: BAFSwitchDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, device: Device, description: BAFSwitchDescription) -> None: ...
     _attr_is_on: Incomplete
     def _async_update_attrs(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

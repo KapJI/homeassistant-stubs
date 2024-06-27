@@ -11,7 +11,7 @@ from .trace import TraceElement as TraceElement, async_trace_path as async_trace
 from .trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from .typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from collections.abc import AsyncGenerator, Callable as Callable, Mapping, Sequence
+from collections.abc import Callable as Callable, Mapping, Sequence
 from contextvars import ContextVar
 from dataclasses import dataclass
 from datetime import datetime, timedelta
@@ -27,6 +27,7 @@ from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType, SignalTypeFormat as SignalTypeFormat
 from typing import Any, Literal, TypedDict
+from typing_extensions import AsyncGenerator
 
 SCRIPT_MODE_PARALLEL: str
 SCRIPT_MODE_QUEUED: str
@@ -64,7 +65,7 @@ class ScriptStoppedError(Exception): ...
 
 def _set_result_unless_done(future: asyncio.Future[None]) -> None: ...
 def action_trace_append(variables, path): ...
-async def trace_action(hass: HomeAssistant, script_run: _ScriptRun, stop: asyncio.Future[None], variables: dict[str, Any]) -> AsyncGenerator[TraceElement, None]: ...
+async def trace_action(hass: HomeAssistant, script_run: _ScriptRun, stop: asyncio.Future[None], variables: dict[str, Any]) -> AsyncGenerator[TraceElement]: ...
 def make_script_schema(schema: Mapping[Any, Any], default_script_mode: str, extra: int = ...) -> vol.Schema: ...
 
 STATIC_VALIDATION_ACTION_TYPES: Incomplete

@@ -2,13 +2,14 @@ import pathlib
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiohttp import web
+from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.http.static import CACHE_HEADERS as CACHE_HEADERS
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -16,8 +17,8 @@ STORAGE_KEY: str
 STORAGE_VERSION: int
 VALID_SIZES: Incomplete
 MAX_SIZE: Incomplete
-CREATE_FIELDS: Incomplete
-UPDATE_FIELDS: Incomplete
+CREATE_FIELDS: VolDictType
+UPDATE_FIELDS: VolDictType
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -32,6 +33,9 @@ class ImageStorageCollection(collection.DictStorageCollection):
     def _get_suggested_id(self, info: dict[str, Any]) -> str: ...
     async def _update_data(self, item: dict[str, Any], update_data: dict[str, Any]) -> dict[str, Any]: ...
     async def _change_listener(self, change_type: str, item_id: str, data: dict[str, Any]) -> None: ...
+
+class ImageUploadStorageCollectionWebsocket(collection.DictStorageCollectionWebsocket):
+    async def ws_create_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 
 class ImageUploadView(HomeAssistantView):
     url: str

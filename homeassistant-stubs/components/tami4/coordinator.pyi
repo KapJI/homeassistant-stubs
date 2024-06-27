@@ -10,16 +10,14 @@ _LOGGER: Incomplete
 
 @dataclass
 class FlattenedWaterQuality:
-    uv_last_replacement: date
     uv_upcoming_replacement: date
-    uv_status: str
-    filter_last_replacement: date
+    uv_installed: bool
     filter_upcoming_replacement: date
-    filter_status: str
+    filter_installed: bool
     filter_litters_passed: float
     def __init__(self, water_quality: WaterQuality) -> None: ...
 
-class Tami4EdgeWaterQualityCoordinator(DataUpdateCoordinator[FlattenedWaterQuality]):
+class Tami4EdgeCoordinator(DataUpdateCoordinator[FlattenedWaterQuality]):
     _api: Incomplete
     def __init__(self, hass: HomeAssistant, api: Tami4EdgeAPI) -> None: ...
     async def _async_update_data(self) -> FlattenedWaterQuality: ...

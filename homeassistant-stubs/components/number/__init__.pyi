@@ -3,12 +3,14 @@ from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR
 from _typeshed import Incomplete
 from collections.abc import Callable
 from functools import cached_property
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from typing import Any, Self
 
 __all__ = ['ATTR_MAX', 'ATTR_MIN', 'ATTR_STEP', 'ATTR_VALUE', 'DEFAULT_MAX_VALUE', 'DEFAULT_MIN_VALUE', 'DEFAULT_STEP', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'NumberDeviceClass', 'NumberEntity', 'NumberEntityDescription', 'NumberExtraStoredData', 'NumberMode', 'RestoreNumber']
+
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 
 class NumberEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: NumberDeviceClass | None

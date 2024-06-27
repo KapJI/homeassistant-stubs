@@ -1,4 +1,4 @@
-from .core import EventStateChangedData as EventStateChangedData
+from .core import EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData
 from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
@@ -283,7 +283,7 @@ EVENT_LOGGING_CHANGED: Final[str]
 EVENT_SERVICE_REGISTERED: Final[str]
 EVENT_SERVICE_REMOVED: Final[str]
 EVENT_STATE_CHANGED: EventType[EventStateChangedData]
-EVENT_STATE_REPORTED: Final[str]
+EVENT_STATE_REPORTED: EventType[EventStateReportedData]
 EVENT_THEMES_UPDATED: Final[str]
 EVENT_PANELS_UPDATED: Final[str]
 EVENT_LOVELACE_UPDATED: Final[str]
@@ -584,7 +584,13 @@ _DEPRECATED_MASS_MILLIGRAMS: Final[Incomplete]
 _DEPRECATED_MASS_MICROGRAMS: Final[Incomplete]
 _DEPRECATED_MASS_OUNCES: Final[Incomplete]
 _DEPRECATED_MASS_POUNDS: Final[Incomplete]
-CONDUCTIVITY: Final[str]
+
+class UnitOfConductivity(StrEnum):
+    SIEMENS: str
+    MICROSIEMENS: str
+    MILLISIEMENS: str
+
+_DEPRECATED_CONDUCTIVITY: Final[Incomplete]
 LIGHT_LUX: Final[str]
 UV_INDEX: Final[str]
 PERCENTAGE: Final[str]

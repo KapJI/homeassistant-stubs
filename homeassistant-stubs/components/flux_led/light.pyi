@@ -9,6 +9,7 @@ from homeassistant.const import CONF_EFFECT as CONF_EFFECT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.color import color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin
 from typing import Any, Final
@@ -24,9 +25,9 @@ EFFECT_CUSTOM: Final[str]
 SERVICE_CUSTOM_EFFECT: Final[str]
 SERVICE_SET_ZONES: Final[str]
 SERVICE_SET_MUSIC_MODE: Final[str]
-CUSTOM_EFFECT_DICT: Final[Incomplete]
-SET_MUSIC_MODE_DICT: Final[Incomplete]
-SET_ZONES_DICT: Final[Incomplete]
+CUSTOM_EFFECT_DICT: VolDictType
+SET_MUSIC_MODE_DICT: VolDictType
+SET_ZONES_DICT: VolDictType
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

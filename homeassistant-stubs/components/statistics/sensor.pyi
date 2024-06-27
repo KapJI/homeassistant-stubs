@@ -3,7 +3,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
-from homeassistant.components.sensor import DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -68,8 +69,10 @@ def valid_boundary_configuration(config: dict[str, Any]) -> dict[str, Any]: ...
 def valid_keep_last_sample(config: dict[str, Any]) -> dict[str, Any]: ...
 
 _PLATFORM_SCHEMA_BASE: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class StatisticsSensor(SensorEntity):
     _attr_should_poll: bool

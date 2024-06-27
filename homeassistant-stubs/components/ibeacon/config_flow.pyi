@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.components import bluetooth as bluetooth
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 class IBeaconConfigFlow(ConfigFlow, domain=DOMAIN):

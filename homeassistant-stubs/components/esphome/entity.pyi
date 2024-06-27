@@ -1,10 +1,8 @@
-from .domain_data import DomainData as DomainData
-from .entry_data import RuntimeEntryData as RuntimeEntryData
+from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState
 from collections.abc import Awaitable, Callable as Callable, Coroutine
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -21,7 +19,7 @@ _EntityT = TypeVar('_EntityT', bound='EsphomeEntity[Any,Any]')
 _StateT = TypeVar('_StateT', bound=EntityState)
 
 def async_static_info_updated(hass: HomeAssistant, entry_data: RuntimeEntryData, platform: entity_platform.EntityPlatform, async_add_entities: AddEntitiesCallback, info_type: type[_InfoT], entity_type: type[_EntityT], state_type: type[_StateT], infos: list[EntityInfo]) -> None: ...
-async def platform_async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback, *, info_type: type[_InfoT], entity_type: type[_EntityT], state_type: type[_StateT]) -> None: ...
+async def platform_async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, async_add_entities: AddEntitiesCallback, *, info_type: type[_InfoT], entity_type: type[_EntityT], state_type: type[_StateT]) -> None: ...
 def esphome_state_property(func: Callable[[_EntityT], _R]) -> Callable[[_EntityT], _R | None]: ...
 def convert_api_error_ha_error(func: Callable[Concatenate[_EntityT, _P], Awaitable[None]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...
 

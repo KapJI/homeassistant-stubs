@@ -7,7 +7,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_JAMMED as STATE_JAMMED, STATE_LOCKED as STATE_LOCKED, STATE_LOCKING as STATE_LOCKING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNLOCKED as STATE_UNLOCKED, STATE_UNLOCKING as STATE_UNLOCKING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -15,10 +14,12 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as 
 from typing import Any
 
 _LOGGER: Incomplete
+ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Incomplete
 ATTR_CHANGED_BY: str
 CONF_DEFAULT_CODE: str
-SCAN_INTERVAL: Incomplete
-ENTITY_ID_FORMAT: Incomplete
 MIN_TIME_BETWEEN_SCANS: Incomplete
 LOCK_SERVICE_SCHEMA: Incomplete
 

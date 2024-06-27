@@ -1,4 +1,5 @@
-from .const import DOMAIN as DOMAIN, TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
+from . import AirzoneConfigEntry as AirzoneConfigEntry
+from .const import TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneEntity as AirzoneEntity, AirzoneHotWaterEntity as AirzoneHotWaterEntity, AirzoneWebServerEntity as AirzoneWebServerEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
@@ -13,7 +14,7 @@ HOT_WATER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 WEBSERVER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 ZONE_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneSensor(AirzoneEntity, SensorEntity):
     def _handle_coordinator_update(self) -> None: ...

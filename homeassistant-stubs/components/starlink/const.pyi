@@ -1,1 +1,2 @@
 DOMAIN: str
+ATTR_ALTITUDE: str

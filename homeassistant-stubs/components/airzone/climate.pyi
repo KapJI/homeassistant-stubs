@@ -1,4 +1,5 @@
-from .const import API_TEMPERATURE_STEP as API_TEMPERATURE_STEP, DOMAIN as DOMAIN, TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
+from . import AirzoneConfigEntry as AirzoneConfigEntry
+from .const import API_TEMPERATURE_STEP as API_TEMPERATURE_STEP, TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
 from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
@@ -17,7 +18,7 @@ HVAC_ACTION_LIB_TO_HASS: Final[dict[OperationAction, HVACAction]]
 HVAC_MODE_LIB_TO_HASS: Final[dict[OperationMode, HVACMode]]
 HVAC_MODE_HASS_TO_LIB: Final[dict[HVACMode, OperationMode]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneClimate(AirzoneZoneEntity, ClimateEntity):
     _attr_name: Incomplete

@@ -4,7 +4,7 @@ from . import entity as entity, event as event
 from .debounce import Debouncer as Debouncer
 from _typeshed import Incomplete
 from abc import abstractmethod
-from collections.abc import Awaitable, Callable as Callable, Coroutine, Generator
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -12,7 +12,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, H
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any, Generic, Protocol
-from typing_extensions import TypeVar
+from typing_extensions import Generator, TypeVar
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
@@ -48,7 +48,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     def async_update_listeners(self) -> None: ...
     async def async_shutdown(self) -> None: ...
     def _unschedule_refresh(self) -> None: ...
-    def async_contexts(self) -> Generator[Any, None, None]: ...
+    def async_contexts(self) -> Generator[Any]: ...
     def _async_unsub_refresh(self) -> None: ...
     def _async_unsub_shutdown(self) -> None: ...
     @property

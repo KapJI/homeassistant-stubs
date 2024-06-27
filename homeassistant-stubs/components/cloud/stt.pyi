@@ -1,6 +1,6 @@
 from .assist_pipeline import async_migrate_cloud_pipeline_engine as async_migrate_cloud_pipeline_engine
 from .client import CloudClient as CloudClient
-from .const import DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, DOMAIN as DOMAIN, STT_ENTITY_UNIQUE_ID as STT_ENTITY_UNIQUE_ID
+from .const import DATA_CLOUD as DATA_CLOUD, DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, STT_ENTITY_UNIQUE_ID as STT_ENTITY_UNIQUE_ID
 from _typeshed import Incomplete
 from collections.abc import AsyncIterable
 from hass_nabucasa import Cloud as Cloud

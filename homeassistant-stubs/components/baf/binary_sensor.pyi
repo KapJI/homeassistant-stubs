@@ -1,5 +1,5 @@
 from . import BAFConfigEntry as BAFConfigEntry
-from .entity import BAFEntity as BAFEntity
+from .entity import BAFDescriptionEntity as BAFDescriptionEntity
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
@@ -17,9 +17,7 @@ OCCUPANCY_SENSORS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class BAFBinarySensor(BAFEntity, BinarySensorEntity):
+class BAFBinarySensor(BAFDescriptionEntity, BinarySensorEntity):
     entity_description: BAFBinarySensorDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, device: Device, description: BAFBinarySensorDescription) -> None: ...
     _attr_is_on: Incomplete
     def _async_update_attrs(self) -> None: ...

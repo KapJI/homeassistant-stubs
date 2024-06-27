@@ -5,7 +5,7 @@ from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from typing import Any, Self
 
 _LOGGER: Incomplete
@@ -27,7 +27,7 @@ SERVICE_RESET: str
 SERVICE_SET_VALUE: str
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
-STORAGE_FIELDS: Incomplete
+STORAGE_FIELDS: VolDictType
 
 def _none_to_empty_dict(value: _T | None) -> _T | dict[str, Any]: ...
 

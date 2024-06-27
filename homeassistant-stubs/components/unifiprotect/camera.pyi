@@ -1,27 +1,28 @@
-from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DISPATCH_ADOPT as DISPATCH_ADOPT, DISPATCH_CHANNELS as DISPATCH_CHANNELS, DOMAIN as DOMAIN
-from .data import ProtectData as ProtectData
+from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DOMAIN as DOMAIN
+from .data import ProtectData as ProtectData, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from .utils import get_camera_base_name as get_camera_base_name
 from _typeshed import Incomplete
-from collections.abc import Generator
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
-from typing import Any
+from typing_extensions import Generator
 from uiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
 
 _LOGGER: Incomplete
 
-def _create_rtsp_repair(hass: HomeAssistant, entry: ConfigEntry, data: ProtectData, camera: UFPCamera) -> None: ...
-def _get_camera_channels(hass: HomeAssistant, entry: ConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> Generator[tuple[UFPCamera, CameraChannel, bool], None, None]: ...
-def _async_camera_entities(hass: HomeAssistant, entry: ConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> list[ProtectDeviceEntity]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+def _create_rtsp_repair(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, camera: UFPCamera) -> None: ...
+def _get_camera_channels(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> Generator[tuple[UFPCamera, CameraChannel, bool]]: ...
+def _async_camera_entities(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> list[ProtectDeviceEntity]: ...
+async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+_EMPTY_CAMERA_FEATURES: Incomplete
 
 class ProtectCamera(ProtectDeviceEntity, Camera):
     device: UFPCamera
+    _state_attrs: Incomplete
     channel: Incomplete
     _secure: Incomplete
     _disable_stream: Incomplete
@@ -33,7 +34,6 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     _stream_source: Incomplete
     _attr_supported_features: Incomplete
     def _async_set_stream_source(self) -> None: ...
-    def _async_get_state_attrs(self) -> tuple[Any, ...]: ...
     _attr_motion_detection_enabled: Incomplete
     _attr_is_recording: Incomplete
     _attr_available: Incomplete

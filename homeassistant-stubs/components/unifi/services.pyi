@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC

@@ -1,9 +1,8 @@
-from . import GlancesDataUpdateCoordinator as GlancesDataUpdateCoordinator
+from . import GlancesConfigEntry as GlancesConfigEntry, GlancesDataUpdateCoordinator as GlancesDataUpdateCoordinator
 from .const import CPU_ICON as CPU_ICON, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -17,7 +16,7 @@ class GlancesSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: GlancesConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class GlancesSensor(CoordinatorEntity[GlancesDataUpdateCoordinator], SensorEntity):
     entity_description: GlancesSensorEntityDescription

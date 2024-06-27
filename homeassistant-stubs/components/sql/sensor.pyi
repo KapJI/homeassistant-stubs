@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.recorder import CONF_DB_URL as CONF_DB_URL, SupportedDialect as SupportedDialect, get_instance as get_instance
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, MATCH_ALL as MATCH_ALL
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -31,6 +31,7 @@ def _validate_and_get_session_maker_for_db_url(db_url: str) -> scoped_session | 
 def _generate_lambda_stmt(query: str) -> StatementLambdaElement: ...
 
 class SQLSensor(ManualTriggerSensorEntity):
+    _unrecorded_attributes: Incomplete
     _query: Incomplete
     _template: Incomplete
     _column_name: Incomplete

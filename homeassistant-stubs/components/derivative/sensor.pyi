@@ -2,10 +2,11 @@ from .const import CONF_ROUND_DIGITS as CONF_ROUND_DIGITS, CONF_TIME_WINDOW as C
 from _typeshed import Incomplete
 from datetime import timedelta
 from decimal import Decimal
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, RestoreSensor as RestoreSensor, SensorEntity as SensorEntity
+from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTime as UnitOfTime
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
@@ -17,6 +18,7 @@ UNIT_PREFIXES: Incomplete
 UNIT_TIME: Incomplete
 DEFAULT_ROUND: int
 DEFAULT_TIME_WINDOW: int
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

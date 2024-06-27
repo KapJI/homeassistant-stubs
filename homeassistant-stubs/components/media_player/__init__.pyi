@@ -18,7 +18,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, SERVICE_MEDIA_NEXT_TRACK as SERVICE_MEDIA_NEXT_TRACK, SERVICE_MEDIA_PAUSE as SERVICE_MEDIA_PAUSE, SERVICE_MEDIA_PLAY as SERVICE_MEDIA_PLAY, SERVICE_MEDIA_PLAY_PAUSE as SERVICE_MEDIA_PLAY_PAUSE, SERVICE_MEDIA_PREVIOUS_TRACK as SERVICE_MEDIA_PREVIOUS_TRACK, SERVICE_MEDIA_SEEK as SERVICE_MEDIA_SEEK, SERVICE_MEDIA_STOP as SERVICE_MEDIA_STOP, SERVICE_REPEAT_SET as SERVICE_REPEAT_SET, SERVICE_SHUFFLE_SET as SERVICE_SHUFFLE_SET, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_DOWN as SERVICE_VOLUME_DOWN, SERVICE_VOLUME_MUTE as SERVICE_VOLUME_MUTE, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, SERVICE_VOLUME_UP as SERVICE_VOLUME_UP, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_PLAYING as STATE_PLAYING, STATE_STANDBY as STATE_STANDBY
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.network import get_url as get_url
@@ -28,12 +27,14 @@ from typing import Any, Final, Required, TypedDict
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Incomplete
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Incomplete
 CACHE_IMAGES: Final[str]
 CACHE_MAXSIZE: Final[str]
 CACHE_LOCK: Final[str]
 CACHE_URL: Final[str]
 CACHE_CONTENT: Final[str]
-SCAN_INTERVAL: Incomplete
 
 class MediaPlayerEnqueue(StrEnum):
     ADD: str

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from . import AutomowerConfigEntry as AutomowerConfigEntry
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerBaseEntity as AutomowerBaseEntity
 from _typeshed import Incomplete
@@ -6,7 +6,6 @@ from aioautomower.model import MowerAttributes as MowerAttributes
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
@@ -19,7 +18,7 @@ class AutomowerBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSOR_TYPES: tuple[AutomowerBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AutomowerBinarySensorEntity(AutomowerBaseEntity, BinarySensorEntity):
     entity_description: AutomowerBinarySensorEntityDescription

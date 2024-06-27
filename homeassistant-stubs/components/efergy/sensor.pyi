@@ -1,8 +1,7 @@
-from . import EfergyEntity as EfergyEntity
-from .const import CONF_CURRENT_VALUES as CONF_CURRENT_VALUES, DOMAIN as DOMAIN, LOGGER as LOGGER
+from . import EfergyConfigEntry as EfergyConfigEntry, EfergyEntity as EfergyEntity
+from .const import CONF_CURRENT_VALUES as CONF_CURRENT_VALUES, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -11,7 +10,7 @@ from pyefergy import Efergy as Efergy
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: EfergyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EfergySensor(EfergyEntity, SensorEntity):
     _attr_has_entity_name: bool

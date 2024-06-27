@@ -7,7 +7,6 @@ from decimal import Decimal
 from functools import cached_property
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.entity_platform import EntityPlatform
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
@@ -15,6 +14,9 @@ from homeassistant.helpers.typing import StateType, UndefinedType
 from typing import Any, Self
 
 __all__ = ['ATTR_LAST_RESET', 'ATTR_OPTIONS', 'ATTR_STATE_CLASS', 'CONF_STATE_CLASS', 'DEVICE_CLASS_STATE_CLASSES', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'RestoreSensor', 'SensorDeviceClass', 'SensorEntity', 'SensorEntityDescription', 'SensorExtraStoredData', 'SensorStateClass']
+
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
 
 class SensorEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: SensorDeviceClass | None

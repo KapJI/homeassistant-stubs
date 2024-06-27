@@ -1,6 +1,7 @@
 from .const import CONF_ACTION as CONF_ACTION, CONF_HIDE_ENTITY as CONF_HIDE_ENTITY, CONF_INITIAL_STATE as CONF_INITIAL_STATE, CONF_TRACE as CONF_TRACE, CONF_TRIGGER as CONF_TRIGGER, CONF_TRIGGER_VARIABLES as CONF_TRIGGER_VARIABLES, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import async_get_blueprints as async_get_blueprints
 from _typeshed import Incomplete
+from enum import StrEnum
 from homeassistant.components import blueprint as blueprint
 from homeassistant.components.trace import TRACE_CONFIG_SCHEMA as TRACE_CONFIG_SCHEMA
 from homeassistant.config import config_per_platform as config_per_platform, config_without_domain as config_without_domain
@@ -20,10 +21,19 @@ PLATFORM_SCHEMA: Incomplete
 
 async def _async_validate_config_item(hass: HomeAssistant, config: ConfigType, raise_on_errors: bool, warn_on_errors: bool) -> AutomationConfig: ...
 
+class ValidationStatus(StrEnum):
+    FAILED_ACTIONS: str
+    FAILED_BLUEPRINT: str
+    FAILED_CONDITIONS: str
+    FAILED_SCHEMA: str
+    FAILED_TRIGGERS: str
+    OK: str
+
 class AutomationConfig(dict):
     raw_config: dict[str, Any] | None
     raw_blueprint_inputs: dict[str, Any] | None
-    validation_failed: bool
+    validation_status: ValidationStatus
+    validation_error: str | None
 
 async def _try_async_validate_config_item(hass: HomeAssistant, config: dict[str, Any]) -> AutomationConfig | None: ...
 async def async_validate_config_item(hass: HomeAssistant, config_key: str, config: dict[str, Any]) -> AutomationConfig | None: ...

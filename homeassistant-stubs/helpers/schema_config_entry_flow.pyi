@@ -4,7 +4,7 @@ from . import selector as selector
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from collections.abc import Callable as Callable, Container, Coroutine, Mapping
+from collections.abc import Callable, Container, Coroutine, Mapping
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
@@ -78,4 +78,4 @@ class SchemaOptionsFlowHandler(OptionsFlowWithConfigEntry):
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> ConfigFlowResult: ...
 
 def wrapped_entity_config_entry_title(hass: HomeAssistant, entity_id_or_uuid: str) -> str: ...
-def entity_selector_without_own_entities(handler: SchemaOptionsFlowHandler, entity_selector_config: selector.EntitySelectorConfig) -> vol.Schema: ...
+def entity_selector_without_own_entities(handler: SchemaOptionsFlowHandler, entity_selector_config: selector.EntitySelectorConfig) -> selector.EntitySelector: ...

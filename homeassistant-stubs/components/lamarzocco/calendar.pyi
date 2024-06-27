@@ -1,18 +1,24 @@
-from .const import DOMAIN as DOMAIN
+from . import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
+from .coordinator import LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordinator
 from .entity import LaMarzoccoBaseEntity as LaMarzoccoBaseEntity
+from _typeshed import Incomplete
 from collections.abc import Iterator
 from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from lmcloud.models import LaMarzoccoWakeUpSleepEntry as LaMarzoccoWakeUpSleepEntry
 
 CALENDAR_KEY: str
+DAY_OF_WEEK: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LaMarzoccoCalendarEntity(LaMarzoccoBaseEntity, CalendarEntity):
     _attr_translation_key = CALENDAR_KEY
+    wake_up_sleep_entry: Incomplete
+    _attr_translation_placeholders: Incomplete
+    def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, key: str, wake_up_sleep_entry: LaMarzoccoWakeUpSleepEntry) -> None: ...
     @property
     def event(self) -> CalendarEvent | None: ...
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...

@@ -1,6 +1,6 @@
 from . import BAFConfigEntry as BAFConfigEntry
 from .const import HALF_DAY_SECS as HALF_DAY_SECS, ONE_DAY_SECS as ONE_DAY_SECS, ONE_MIN_SECS as ONE_MIN_SECS, SPEED_RANGE as SPEED_RANGE
-from .entity import BAFEntity as BAFEntity
+from .entity import BAFDescriptionEntity as BAFDescriptionEntity
 from _typeshed import Incomplete
 from aiobafi6 import Device as Device
 from collections.abc import Callable as Callable
@@ -21,10 +21,8 @@ LIGHT_NUMBER_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class BAFNumber(BAFEntity, NumberEntity):
+class BAFNumber(BAFDescriptionEntity, NumberEntity):
     entity_description: BAFNumberDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, device: Device, description: BAFNumberDescription) -> None: ...
     _attr_native_value: Incomplete
     def _async_update_attrs(self) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...

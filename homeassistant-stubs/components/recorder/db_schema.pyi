@@ -3,7 +3,8 @@ from .models import StatisticData as StatisticData, StatisticDataTimestamp as St
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
-from homeassistant.const import MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
+from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import Context as Context, Event as Event, EventOrigin as EventOrigin, EventStateChangedData as EventStateChangedData, State as State
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP, json_bytes as json_bytes, json_bytes_strip_null as json_bytes_strip_null
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads, json_loads_object as json_loads_object

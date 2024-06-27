@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from . import LitterRobotConfigEntry as LitterRobotConfigEntry
 from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT
 from .hub import LitterRobotHub as LitterRobotHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -31,7 +30,7 @@ class RobotSelectEntityDescription(SelectEntityDescription, RequiredKeysMixin[_R
 
 ROBOT_SELECT_MAP: dict[type[Robot], RobotSelectEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LitterRobotSelectEntity(LitterRobotEntity[_RobotT], SelectEntity, Generic[_RobotT, _CastTypeT]):
     entity_description: RobotSelectEntityDescription[_RobotT, _CastTypeT]

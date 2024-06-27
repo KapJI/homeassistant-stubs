@@ -7,7 +7,7 @@ from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM, CONF_TYPE as CON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from typing import Final
 from xknx.telegram import Telegram as Telegram
 from xknx.telegram.address import DeviceGroupAddress as DeviceGroupAddress
@@ -20,8 +20,7 @@ CONF_KNX_GROUP_VALUE_READ: Final[str]
 CONF_KNX_GROUP_VALUE_RESPONSE: Final[str]
 CONF_KNX_INCOMING: Final[str]
 CONF_KNX_OUTGOING: Final[str]
-TELEGRAM_TRIGGER_OPTIONS: Final[Incomplete]
-TELEGRAM_TRIGGER_SCHEMA: Final[Incomplete]
+TELEGRAM_TRIGGER_SCHEMA: VolDictType
 TRIGGER_SCHEMA: Incomplete
 
 async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: TriggerActionType, trigger_info: TriggerInfo) -> CALLBACK_TYPE: ...

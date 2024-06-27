@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from blockchain import exchangerates, statistics
-from homeassistant.components.sensor import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import CONF_CURRENCY as CONF_CURRENCY, CONF_DISPLAY_OPTIONS as CONF_DISPLAY_OPTIONS, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -11,6 +11,7 @@ DEFAULT_CURRENCY: str
 SCAN_INTERVAL: Incomplete
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 OPTION_KEYS: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

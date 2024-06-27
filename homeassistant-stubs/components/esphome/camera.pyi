@@ -5,12 +5,8 @@ from aiohttp import web as web
 from collections.abc import Callable as Callable
 from homeassistant.components import camera as camera
 from homeassistant.components.camera import Camera as Camera
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.core import callback as callback
 from typing import Any
-
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EsphomeCamera(Camera, EsphomeEntity[CameraInfo, CameraState]):
     _loop: Incomplete
@@ -22,3 +18,5 @@ class EsphomeCamera(Camera, EsphomeEntity[CameraInfo, CameraState]):
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     async def _async_request_image(self, request_method: Callable[[], None]) -> bytes | None: ...
     async def handle_async_mjpeg_stream(self, request: web.Request) -> web.StreamResponse: ...
+
+async_setup_entry: Incomplete

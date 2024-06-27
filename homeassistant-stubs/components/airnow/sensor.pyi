@@ -1,5 +1,5 @@
 from . import AirNowConfigEntry as AirNowConfigEntry, AirNowDataUpdateCoordinator as AirNowDataUpdateCoordinator
-from .const import ATTR_API_AQI as ATTR_API_AQI, ATTR_API_AQI_DESCRIPTION as ATTR_API_AQI_DESCRIPTION, ATTR_API_AQI_LEVEL as ATTR_API_AQI_LEVEL, ATTR_API_O3 as ATTR_API_O3, ATTR_API_PM10 as ATTR_API_PM10, ATTR_API_PM25 as ATTR_API_PM25, ATTR_API_REPORT_DATE as ATTR_API_REPORT_DATE, ATTR_API_REPORT_HOUR as ATTR_API_REPORT_HOUR, ATTR_API_REPORT_TZ as ATTR_API_REPORT_TZ, ATTR_API_STATION as ATTR_API_STATION, ATTR_API_STATION_LATITUDE as ATTR_API_STATION_LATITUDE, ATTR_API_STATION_LONGITUDE as ATTR_API_STATION_LONGITUDE, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import ATTR_API_AQI as ATTR_API_AQI, ATTR_API_AQI_DESCRIPTION as ATTR_API_AQI_DESCRIPTION, ATTR_API_AQI_LEVEL as ATTR_API_AQI_LEVEL, ATTR_API_O3 as ATTR_API_O3, ATTR_API_PM10 as ATTR_API_PM10, ATTR_API_PM25 as ATTR_API_PM25, ATTR_API_REPORT_DATE as ATTR_API_REPORT_DATE, ATTR_API_REPORT_HOUR as ATTR_API_REPORT_HOUR, ATTR_API_REPORT_TZINFO as ATTR_API_REPORT_TZINFO, ATTR_API_STATION as ATTR_API_STATION, ATTR_API_STATION_LATITUDE as ATTR_API_STATION_LATITUDE, ATTR_API_STATION_LONGITUDE as ATTR_API_STATION_LONGITUDE, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -10,7 +10,6 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from homeassistant.util.dt import get_time_zone as get_time_zone
 from typing import Any
 
 ATTRIBUTION: str

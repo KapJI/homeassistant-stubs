@@ -15,24 +15,25 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Final
 
 _LOGGER: Incomplete
+ENTITY_ID_FORMAT: Final[Incomplete]
+PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA_BASE: Incomplete
+SCAN_INTERVAL: Final[Incomplete]
 SERVICE_ENABLE_MOTION: Final[str]
 SERVICE_DISABLE_MOTION: Final[str]
 SERVICE_SNAPSHOT: Final[str]
 SERVICE_PLAY_STREAM: Final[str]
-SCAN_INTERVAL: Final[Incomplete]
-ENTITY_ID_FORMAT: Final[Incomplete]
 ATTR_FILENAME: Final[str]
 ATTR_MEDIA_PLAYER: Final[str]
 ATTR_FORMAT: Final[str]
@@ -52,9 +53,9 @@ ENTITY_IMAGE_URL: Final[str]
 TOKEN_CHANGE_INTERVAL: Final[Incomplete]
 _RND: Final[Incomplete]
 MIN_STREAM_INTERVAL: Final[float]
-CAMERA_SERVICE_SNAPSHOT: Final[Incomplete]
-CAMERA_SERVICE_PLAY_STREAM: Final[Incomplete]
-CAMERA_SERVICE_RECORD: Final[Incomplete]
+CAMERA_SERVICE_SNAPSHOT: VolDictType
+CAMERA_SERVICE_PLAY_STREAM: VolDictType
+CAMERA_SERVICE_RECORD: VolDictType
 
 class CameraEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...

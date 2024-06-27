@@ -1,0 +1,21 @@
+from .const import DOMAIN as DOMAIN
+from .coordinator import FullyKioskDataUpdateCoordinator as FullyKioskDataUpdateCoordinator
+from .entity import FullyKioskEntity as FullyKioskEntity
+from _typeshed import Incomplete
+from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class FullyCameraEntity(FullyKioskEntity, Camera):
+    _attr_name: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: FullyKioskDataUpdateCoordinator) -> None: ...
+    async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
+    async def async_turn_on(self) -> None: ...
+    async def async_turn_off(self) -> None: ...
+    _attr_is_on: Incomplete
+    def _handle_coordinator_update(self) -> None: ...

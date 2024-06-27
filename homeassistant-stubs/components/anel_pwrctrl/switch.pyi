@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from anel_pwrctrl import Device as Device, Switch as Switch
-from homeassistant.components.switch import PLATFORM_SCHEMA as PLATFORM_SCHEMA, SwitchEntity as SwitchEntity
+from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,6 +12,7 @@ _LOGGER: Incomplete
 CONF_PORT_RECV: str
 CONF_PORT_SEND: str
 MIN_TIME_BETWEEN_UPDATES: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

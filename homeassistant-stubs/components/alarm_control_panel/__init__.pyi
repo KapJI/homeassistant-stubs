@@ -13,12 +13,12 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final
 
 _LOGGER: Final[Incomplete]
-SCAN_INTERVAL: Final[Incomplete]
 ENTITY_ID_FORMAT: Final[Incomplete]
-CONF_DEFAULT_CODE: str
-ALARM_SERVICE_SCHEMA: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 PLATFORM_SCHEMA_BASE: Final[Incomplete]
+SCAN_INTERVAL: Final[Incomplete]
+CONF_DEFAULT_CODE: str
+ALARM_SERVICE_SCHEMA: Final[Incomplete]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

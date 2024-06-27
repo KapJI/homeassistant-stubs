@@ -7,7 +7,7 @@ from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnu
 from .helpers.frame import report as report
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Container, Iterable, Mapping
+from collections.abc import Callable as Callable, Container, Hashable, Iterable, Mapping
 from dataclasses import dataclass
 from enum import StrEnum
 from typing import Any, Generic, Required, TypedDict
@@ -48,7 +48,7 @@ class UnknownStep(FlowError): ...
 
 class InvalidData(vol.Invalid):
     schema_errors: Incomplete
-    def __init__(self, message: str, path: list[str | vol.Marker] | None, error_message: str | None, schema_errors: dict[str, Any], **kwargs: Any) -> None: ...
+    def __init__(self, message: str, path: list[Hashable] | None, error_message: str | None, schema_errors: dict[str, Any], **kwargs: Any) -> None: ...
 
 class AbortFlow(FlowError):
     reason: Incomplete
@@ -145,6 +145,16 @@ class FlowHandler(Generic[_FlowResultT, _HandlerT]):
     def async_cancel_progress_task(self) -> None: ...
     def async_get_progress_task(self) -> asyncio.Task[Any] | None: ...
     def async_set_progress_task(self, progress_task: asyncio.Task[Any]) -> None: ...
+
+class SectionConfig(TypedDict, total=False):
+    collapsed: bool
+
+class section:
+    CONFIG_SCHEMA: Incomplete
+    schema: Incomplete
+    options: Incomplete
+    def __init__(self, schema: vol.Schema, options: SectionConfig | None = None) -> None: ...
+    def __call__(self, value: Any) -> Any: ...
 
 __getattr__: Incomplete
 __dir__: Incomplete

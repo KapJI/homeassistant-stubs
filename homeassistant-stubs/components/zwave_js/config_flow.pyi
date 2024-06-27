@@ -2,7 +2,7 @@ import abc
 import voluptuous as vol
 from . import disconnect_client as disconnect_client
 from .addon import get_addon_manager as get_addon_manager
-from .const import ADDON_SLUG as ADDON_SLUG, CONF_ADDON_DEVICE as CONF_ADDON_DEVICE, CONF_ADDON_EMULATE_HARDWARE as CONF_ADDON_EMULATE_HARDWARE, CONF_ADDON_LOG_LEVEL as CONF_ADDON_LOG_LEVEL, CONF_ADDON_NETWORK_KEY as CONF_ADDON_NETWORK_KEY, CONF_ADDON_S0_LEGACY_KEY as CONF_ADDON_S0_LEGACY_KEY, CONF_ADDON_S2_ACCESS_CONTROL_KEY as CONF_ADDON_S2_ACCESS_CONTROL_KEY, CONF_ADDON_S2_AUTHENTICATED_KEY as CONF_ADDON_S2_AUTHENTICATED_KEY, CONF_ADDON_S2_UNAUTHENTICATED_KEY as CONF_ADDON_S2_UNAUTHENTICATED_KEY, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_S0_LEGACY_KEY as CONF_S0_LEGACY_KEY, CONF_S2_ACCESS_CONTROL_KEY as CONF_S2_ACCESS_CONTROL_KEY, CONF_S2_AUTHENTICATED_KEY as CONF_S2_AUTHENTICATED_KEY, CONF_S2_UNAUTHENTICATED_KEY as CONF_S2_UNAUTHENTICATED_KEY, CONF_USB_PATH as CONF_USB_PATH, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN
+from .const import ADDON_SLUG as ADDON_SLUG, CONF_ADDON_DEVICE as CONF_ADDON_DEVICE, CONF_ADDON_EMULATE_HARDWARE as CONF_ADDON_EMULATE_HARDWARE, CONF_ADDON_LOG_LEVEL as CONF_ADDON_LOG_LEVEL, CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY as CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY, CONF_ADDON_LR_S2_AUTHENTICATED_KEY as CONF_ADDON_LR_S2_AUTHENTICATED_KEY, CONF_ADDON_NETWORK_KEY as CONF_ADDON_NETWORK_KEY, CONF_ADDON_S0_LEGACY_KEY as CONF_ADDON_S0_LEGACY_KEY, CONF_ADDON_S2_ACCESS_CONTROL_KEY as CONF_ADDON_S2_ACCESS_CONTROL_KEY, CONF_ADDON_S2_AUTHENTICATED_KEY as CONF_ADDON_S2_AUTHENTICATED_KEY, CONF_ADDON_S2_UNAUTHENTICATED_KEY as CONF_ADDON_S2_UNAUTHENTICATED_KEY, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_LR_S2_ACCESS_CONTROL_KEY as CONF_LR_S2_ACCESS_CONTROL_KEY, CONF_LR_S2_AUTHENTICATED_KEY as CONF_LR_S2_AUTHENTICATED_KEY, CONF_S0_LEGACY_KEY as CONF_S0_LEGACY_KEY, CONF_S2_ACCESS_CONTROL_KEY as CONF_S2_ACCESS_CONTROL_KEY, CONF_S2_AUTHENTICATED_KEY as CONF_S2_AUTHENTICATED_KEY, CONF_S2_UNAUTHENTICATED_KEY as CONF_S2_UNAUTHENTICATED_KEY, CONF_USB_PATH as CONF_USB_PATH, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.components import usb as usb
@@ -14,6 +14,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowManager as FlowManager
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 from zwave_js_server.version import VersionInfo as VersionInfo
 
@@ -41,6 +42,8 @@ class BaseZwaveJSFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
     s2_access_control_key: Incomplete
     s2_authenticated_key: Incomplete
     s2_unauthenticated_key: Incomplete
+    lr_s2_access_control_key: Incomplete
+    lr_s2_authenticated_key: Incomplete
     usb_path: Incomplete
     ws_address: Incomplete
     restart_addon: bool
@@ -91,6 +94,8 @@ class ZWaveJSConfigFlow(BaseZwaveJSFlow, ConfigFlow, domain=DOMAIN):
     s2_access_control_key: Incomplete
     s2_authenticated_key: Incomplete
     s2_unauthenticated_key: Incomplete
+    lr_s2_access_control_key: Incomplete
+    lr_s2_authenticated_key: Incomplete
     async def async_step_on_supervisor(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_configure_addon(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     version_info: Incomplete
@@ -112,6 +117,8 @@ class OptionsFlowHandler(BaseZwaveJSFlow, OptionsFlow):
     s2_access_control_key: Incomplete
     s2_authenticated_key: Incomplete
     s2_unauthenticated_key: Incomplete
+    lr_s2_access_control_key: Incomplete
+    lr_s2_authenticated_key: Incomplete
     usb_path: Incomplete
     restart_addon: bool
     async def async_step_configure_addon(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

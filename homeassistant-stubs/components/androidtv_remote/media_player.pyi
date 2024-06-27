@@ -1,8 +1,10 @@
 from . import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
+from .const import CONF_APP_ICON as CONF_APP_ICON, CONF_APP_NAME as CONF_APP_NAME
 from .entity import AndroidTVRemoteBaseEntity as AndroidTVRemoteBaseEntity
 from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
+from homeassistant.components.media_player import MediaClass as MediaClass, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
+from homeassistant.components.media_player.browse_media import BrowseMedia as BrowseMedia
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -42,4 +44,5 @@ class AndroidTVRemoteMediaPlayerEntity(AndroidTVRemoteBaseEntity, MediaPlayerEnt
     async def async_media_previous_track(self) -> None: ...
     async def async_media_next_track(self) -> None: ...
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
+    async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     async def _send_key_commands(self, key_codes: list[str], delay_secs: float = 0.1) -> None: ...

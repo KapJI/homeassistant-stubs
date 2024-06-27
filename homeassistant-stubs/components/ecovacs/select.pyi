@@ -1,5 +1,5 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
-from .entity import CapabilityDevice as CapabilityDevice, EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
+from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
 from .util import get_name_key as get_name_key, get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -16,13 +16,13 @@ from typing import Any, Generic
 class EcovacsSelectEntityDescription(SelectEntityDescription, EcovacsCapabilityEntityDescription, Generic[EventT]):
     current_option_fn: Callable[[EventT], str | None]
     options_fn: Callable[[CapabilitySetTypes], list[str]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, device_capabilities, capability_fn, options, current_option_fn, options_fn) -> None: ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, capability_fn, options, current_option_fn, options_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSelectEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class EcovacsSelectEntity(EcovacsDescriptionEntity[CapabilityDevice, CapabilitySetTypes[EventT, str]], SelectEntity):
+class EcovacsSelectEntity(EcovacsDescriptionEntity[CapabilitySetTypes[EventT, str]], SelectEntity):
     _attr_current_option: str | None
     entity_description: EcovacsSelectEntityDescription
     _attr_options: Incomplete

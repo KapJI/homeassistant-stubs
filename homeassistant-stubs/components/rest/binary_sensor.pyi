@@ -4,7 +4,7 @@ from .data import RestData as RestData
 from .entity import RestEntity as RestEntity
 from .schema import BINARY_SENSOR_SCHEMA as BINARY_SENSOR_SCHEMA, RESOURCE_SCHEMA as RESOURCE_SCHEMA
 from _typeshed import Incomplete
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, PLATFORM_SCHEMA as PLATFORM_SCHEMA
+from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_FORCE_UPDATE as CONF_FORCE_UPDATE, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_RESOURCE as CONF_RESOURCE, CONF_RESOURCE_TEMPLATE as CONF_RESOURCE_TEMPLATE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
@@ -15,6 +15,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 _LOGGER: Incomplete
+PLATFORM_SCHEMA: Incomplete
 TRIGGER_ENTITY_OPTIONS: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

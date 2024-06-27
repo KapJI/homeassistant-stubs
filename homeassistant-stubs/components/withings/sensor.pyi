@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SCORE_POINTS as SCORE_POI
 from .coordinator import WithingsActivityDataUpdateCoordinator as WithingsActivityDataUpdateCoordinator, WithingsDataUpdateCoordinator as WithingsDataUpdateCoordinator, WithingsGoalsDataUpdateCoordinator as WithingsGoalsDataUpdateCoordinator, WithingsMeasurementDataUpdateCoordinator as WithingsMeasurementDataUpdateCoordinator, WithingsSleepDataUpdateCoordinator as WithingsSleepDataUpdateCoordinator, WithingsWorkoutDataUpdateCoordinator as WithingsWorkoutDataUpdateCoordinator
 from .entity import WithingsEntity as WithingsEntity
 from _typeshed import Incomplete
-from aiowithings import Activity as Activity, Goals as Goals, MeasurementType, SleepSummary as SleepSummary, Workout as Workout
+from aiowithings import Activity as Activity, Goals as Goals, MeasurementPosition, MeasurementType, SleepSummary as SleepSummary, Workout as Workout
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
@@ -16,9 +16,13 @@ from homeassistant.helpers.typing import StateType as StateType
 @dataclass(frozen=True, kw_only=True)
 class WithingsMeasurementSensorEntityDescription(SensorEntityDescription):
     measurement_type: MeasurementType
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, measurement_type) -> None: ...
+    measurement_position: MeasurementPosition | None = ...
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, measurement_type, measurement_position) -> None: ...
 
 MEASUREMENT_SENSORS: dict[MeasurementType, WithingsMeasurementSensorEntityDescription]
+
+def get_positional_measurement_description(measurement_type: MeasurementType, measurement_position: MeasurementPosition) -> WithingsMeasurementSensorEntityDescription | None: ...
+def get_measurement_description(measurement: tuple[MeasurementType, MeasurementPosition | None]) -> WithingsMeasurementSensorEntityDescription | None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class WithingsSleepSensorEntityDescription(SensorEntityDescription):

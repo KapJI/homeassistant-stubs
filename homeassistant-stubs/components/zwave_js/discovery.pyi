@@ -3,13 +3,13 @@ from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDisc
 from .helpers import ZwaveValueID as ZwaveValueID
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
-from collections.abc import Generator
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from typing import Any
+from typing_extensions import Generator
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import ConfigurationValue, Value as ZwaveValue
 
@@ -90,7 +90,7 @@ WINDOW_COVERING_COVER_CURRENT_VALUE_SCHEMA: Incomplete
 WINDOW_COVERING_SLAT_CURRENT_VALUE_SCHEMA: Incomplete
 DISCOVERY_SCHEMAS: Incomplete
 
-def async_discover_node_values(node: ZwaveNode, device: DeviceEntry, discovered_value_ids: dict[str, set[str]]) -> Generator[ZwaveDiscoveryInfo, None, None]: ...
-def async_discover_single_value(value: ZwaveValue, device: DeviceEntry, discovered_value_ids: dict[str, set[str]]) -> Generator[ZwaveDiscoveryInfo, None, None]: ...
-def async_discover_single_configuration_value(value: ConfigurationValue) -> Generator[ZwaveDiscoveryInfo, None, None]: ...
+def async_discover_node_values(node: ZwaveNode, device: DeviceEntry, discovered_value_ids: dict[str, set[str]]) -> Generator[ZwaveDiscoveryInfo]: ...
+def async_discover_single_value(value: ZwaveValue, device: DeviceEntry, discovered_value_ids: dict[str, set[str]]) -> Generator[ZwaveDiscoveryInfo]: ...
+def async_discover_single_configuration_value(value: ConfigurationValue) -> Generator[ZwaveDiscoveryInfo]: ...
 def check_value(value: ZwaveValue, schema: ZWaveValueDiscoverySchema) -> bool: ...

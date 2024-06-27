@@ -1,4 +1,3 @@
-import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC
@@ -14,7 +13,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
 CONF_PAYLOAD_HOME: str
@@ -37,7 +36,7 @@ class MqttDeviceTracker(MqttEntity, TrackerEntity):
     _location_name: str | None
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> VolSchemaType: ...
     def _setup_from_config(self, config: ConfigType) -> None: ...
     def _tracker_message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...

@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from typing import Any, Self
 
 _LOGGER: Incomplete
@@ -40,7 +40,7 @@ SERVICE_CHANGE: str
 SERVICE_FINISH: str
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
-STORAGE_FIELDS: Incomplete
+STORAGE_FIELDS: VolDictType
 
 def _format_timedelta(delta: timedelta) -> str: ...
 def _none_to_empty_dict(value: _T | None) -> _T | dict[Any, Any]: ...

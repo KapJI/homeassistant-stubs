@@ -1,8 +1,6 @@
-import asyncio
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers import singleton as singleton
-from .helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from .loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from _typeshed import Incomplete
 from collections.abc import Iterable
@@ -28,7 +26,6 @@ def async_clear_install_history(hass: HomeAssistant) -> None: ...
 def pip_kwargs(config_dir: str | None) -> dict[str, Any]: ...
 def _install_with_retry(requirement: str, kwargs: dict[str, Any]) -> bool: ...
 def _install_requirements_if_missing(requirements: list[str], kwargs: dict[str, Any]) -> tuple[set[str], set[str]]: ...
-def _set_result_unless_done(future: asyncio.Future[None]) -> None: ...
 
 class RequirementsManager:
     hass: Incomplete

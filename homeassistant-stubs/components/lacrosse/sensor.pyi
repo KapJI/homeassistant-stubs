@@ -1,7 +1,7 @@
 import pylacrosse
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.sensor import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_TYPE as CONF_TYPE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import async_generate_entity_id as async_generate_entity_id
@@ -23,6 +23,7 @@ DEFAULT_BAUD: int
 DEFAULT_EXPIRE_AFTER: int
 TYPES: Incomplete
 SENSOR_SCHEMA: Incomplete
+PLATFORM_SCHEMA: Incomplete
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 

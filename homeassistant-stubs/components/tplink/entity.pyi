@@ -1,18 +1,60 @@
-from .const import DOMAIN as DOMAIN
+import abc
+from . import get_device_name as get_device_name, legacy_device_id as legacy_device_id
+from .const import ATTR_CURRENT_A as ATTR_CURRENT_A, ATTR_CURRENT_POWER_W as ATTR_CURRENT_POWER_W, ATTR_TODAY_ENERGY_KWH as ATTR_TODAY_ENERGY_KWH, ATTR_TOTAL_ENERGY_KWH as ATTR_TOTAL_ENERGY_KWH, DOMAIN as DOMAIN, PRIMARY_STATE_ID as PRIMARY_STATE_ID
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from _typeshed import Incomplete
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from abc import ABC, abstractmethod
+from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine, Mapping
+from dataclasses import dataclass
+from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
+from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from kasa import SmartDevice as SmartDevice
+from kasa import Device, Feature
 from typing import Any, Concatenate
+
+_LOGGER: Incomplete
+FEATURE_CATEGORY_TO_ENTITY_CATEGORY: Incomplete
+DEVICETYPES_WITH_SPECIALIZED_PLATFORMS: Incomplete
+EXCLUDED_FEATURES: Incomplete
+LEGACY_KEY_MAPPING: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class TPLinkFeatureEntityDescription(EntityDescription):
+    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
 
 def async_refresh_after(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
-class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator]):
+class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
-    device: Incomplete
-    _attr_unique_id: Incomplete
+    _device: Device
+    _feature: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, device: SmartDevice, coordinator: TPLinkDataUpdateCoordinator) -> None: ...
+    _attr_unique_id: Incomplete
+    def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, feature: Feature | None = None, parent: Device | None = None) -> None: ...
+    def _get_unique_id(self) -> str: ...
+    async def async_added_to_hass(self) -> None: ...
+    @abstractmethod
+    def _async_update_attrs(self) -> None: ...
+    _attr_available: bool
+    def _async_call_update_attrs(self) -> None: ...
+    def _handle_coordinator_update(self) -> None: ...
+    @property
+    def available(self) -> bool: ...
+
+class CoordinatedTPLinkFeatureEntity(CoordinatedTPLinkEntity, ABC, metaclass=abc.ABCMeta):
+    entity_description: TPLinkFeatureEntityDescription
+    _feature: Feature
+    def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, feature: Feature, description: TPLinkFeatureEntityDescription, parent: Device | None = None) -> None: ...
+    def _get_unique_id(self) -> str: ...
+    @classmethod
+    def _category_for_feature(cls, feature: Feature | None) -> EntityCategory | None: ...
+    @classmethod
+    def _description_for_feature(cls, feature: Feature, descriptions: Mapping[str, _D], *, device: Device, parent: Device | None = None) -> _D | None: ...
+    @classmethod
+    def _entities_for_device(cls, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, feature_type: Feature.Type, entity_class: type[_E], descriptions: Mapping[str, _D], parent: Device | None = None) -> list[_E]: ...
+    @classmethod
+    def entities_for_device_and_its_children(cls, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, feature_type: Feature.Type, entity_class: type[_E], descriptions: Mapping[str, _D], child_coordinators: list[TPLinkDataUpdateCoordinator] | None = None) -> list[_E]: ...

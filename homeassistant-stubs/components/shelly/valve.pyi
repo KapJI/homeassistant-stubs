@@ -1,6 +1,6 @@
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry
 from .entity import BlockEntityDescription as BlockEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, async_setup_block_attribute_entities as async_setup_block_attribute_entities
-from .utils import get_device_entry_gen as get_device_entry_gen
+from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from dataclasses import dataclass

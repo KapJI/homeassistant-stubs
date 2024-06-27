@@ -1,5 +1,5 @@
 from .const import API as API, COORDINATOR as COORDINATOR, DOMAIN as DOMAIN
-from .coordinator import Tami4EdgeWaterQualityCoordinator as Tami4EdgeWaterQualityCoordinator
+from .coordinator import Tami4EdgeCoordinator as Tami4EdgeCoordinator
 from .entity import Tami4EdgeBaseEntity as Tami4EdgeBaseEntity
 from Tami4EdgeAPI import Tami4EdgeAPI as Tami4EdgeAPI
 from _typeshed import Incomplete
@@ -15,8 +15,8 @@ ENTITY_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class Tami4EdgeSensorEntity(Tami4EdgeBaseEntity, CoordinatorEntity[Tami4EdgeWaterQualityCoordinator], SensorEntity):
-    def __init__(self, coordinator: Tami4EdgeWaterQualityCoordinator, api: Tami4EdgeAPI, entity_description: SensorEntityDescription) -> None: ...
+class Tami4EdgeSensorEntity(Tami4EdgeBaseEntity, CoordinatorEntity[Tami4EdgeCoordinator], SensorEntity):
+    def __init__(self, coordinator: Tami4EdgeCoordinator, api: Tami4EdgeAPI, entity_description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     def _update_attr(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

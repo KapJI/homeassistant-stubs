@@ -2,11 +2,13 @@ import tibber
 from .const import MANUFACTURER as MANUFACTURER
 from .coordinator import TibberDataCoordinator as TibberDataCoordinator
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -74,15 +76,19 @@ class TibberSensorRT(TibberSensor, CoordinatorEntity['TibberRtDataCoordinator'])
     _attr_last_reset: Incomplete
     def _handle_coordinator_update(self) -> None: ...
 
-class TibberRtDataCoordinator(DataUpdateCoordinator):
+class TibberRtEntityCreator:
     _async_add_entities: Incomplete
     _tibber_home: Incomplete
-    hass: Incomplete
     _added_sensors: Incomplete
-    _async_remove_device_updates_handler: Incomplete
-    entity_registry: Incomplete
-    def __init__(self, async_add_entities: AddEntitiesCallback, tibber_home: tibber.TibberHome, hass: HomeAssistant) -> None: ...
-    def _handle_ha_stop(self, _event: Event) -> None: ...
+    _entity_registry: Incomplete
+    def __init__(self, async_add_entities: AddEntitiesCallback, tibber_home: tibber.TibberHome, entity_registry: er.EntityRegistry) -> None: ...
     def _migrate_unique_id(self, sensor_description: SensorEntityDescription) -> None: ...
-    def _add_sensors(self) -> None: ...
+    def add_sensors(self, coordinator: TibberRtDataCoordinator, live_measurement: Any) -> None: ...
+
+class TibberRtDataCoordinator(DataUpdateCoordinator):
+    _add_sensor_callback: Incomplete
+    _async_remove_device_updates_handler: Incomplete
+    def __init__(self, add_sensor_callback: Callable[[TibberRtDataCoordinator, Any], None], tibber_home: tibber.TibberHome, hass: HomeAssistant) -> None: ...
+    def _handle_ha_stop(self, _event: Event) -> None: ...
+    def _data_updated(self) -> None: ...
     def get_live_measurement(self) -> Any: ...

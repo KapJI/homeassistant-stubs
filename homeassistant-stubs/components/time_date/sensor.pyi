@@ -1,19 +1,19 @@
-from .const import DOMAIN as DOMAIN, OPTION_TYPES as OPTION_TYPES
+from .const import OPTION_TYPES as OPTION_TYPES
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from datetime import datetime
-from homeassistant.components.sensor import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, PLATFORM_SCHEMA as PLATFORM_SCHEMA, SensorEntity as SensorEntity
+from homeassistant.components.sensor import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DISPLAY_OPTIONS as CONF_DISPLAY_OPTIONS, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
 _LOGGER: Incomplete
 TIME_STR_FORMAT: str
+PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

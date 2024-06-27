@@ -3,8 +3,6 @@ from .entity import AladdinConnectEntity as AladdinConnectEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from genie_partner_sdk.client import AladdinConnectClient
-from genie_partner_sdk.model import GarageDoor as GarageDoor
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -1,5 +1,5 @@
 from . import async_discover_devices as async_discover_devices, create_async_tplink_clientsession as create_async_tplink_clientsession, get_credentials as get_credentials, mac_alias as mac_alias, set_credentials as set_credentials
-from .const import CONF_DEVICE_CONFIG as CONF_DEVICE_CONFIG, CONNECT_TIMEOUT as CONNECT_TIMEOUT, DOMAIN as DOMAIN
+from .const import CONF_CONNECTION_TYPE as CONF_CONNECTION_TYPE, CONF_CREDENTIALS_HASH as CONF_CREDENTIALS_HASH, CONF_DEVICE_CONFIG as CONF_DEVICE_CONFIG, CONNECT_TIMEOUT as CONNECT_TIMEOUT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import dhcp as dhcp

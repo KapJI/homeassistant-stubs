@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from lmcloud.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
@@ -33,6 +34,7 @@ class LaMarzoccoAutoOnOffSwitchEntity(LaMarzoccoBaseEntity, SwitchEntity):
     _attr_translation_key: str
     _identifier: Incomplete
     _attr_translation_placeholders: Incomplete
+    entity_category: Incomplete
     def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, identifier: str) -> None: ...
     async def _async_enable(self, state: bool) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

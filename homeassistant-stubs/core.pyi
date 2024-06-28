@@ -53,15 +53,15 @@ class ConfigSource(enum.StrEnum):
     STORAGE: str
     YAML: str
 
-class EventStateChangedData(TypedDict):
+class EventStateEventData(TypedDict):
     entity_id: str
-    old_state: State | None
     new_state: State | None
 
-class EventStateReportedData(TypedDict):
-    entity_id: str
+class EventStateChangedData(EventStateEventData):
+    old_state: State | None
+
+class EventStateReportedData(EventStateEventData):
     old_last_reported: datetime.datetime
-    new_state: State | None
 
 _DEPRECATED_SOURCE_DISCOVERED: Incomplete
 _DEPRECATED_SOURCE_STORAGE: Incomplete

@@ -14,6 +14,7 @@ EVENT_TRIGGERED: str
 class KnockiTrigger(EventEntity):
     _attr_event_types: Incomplete
     _attr_has_entity_name: bool
+    _attr_should_poll: bool
     _attr_translation_key: str
     _trigger: Incomplete
     _client: Incomplete

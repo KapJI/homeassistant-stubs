@@ -12,8 +12,8 @@ from collections import defaultdict
 from collections.abc import Callable, Coroutine, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_STATE_REPORTED as EVENT_STATE_REPORTED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, EventStateEventData as EventStateEventData, EventStateReportedData as EventStateReportedData, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
@@ -22,6 +22,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Concatenate, Generic, TypeVar
 
 _TRACK_STATE_CHANGE_DATA: HassKey[_KeyedEventData[EventStateChangedData]]
+_TRACK_STATE_REPORT_DATA: HassKey[_KeyedEventData[EventStateReportedData]]
 _TRACK_STATE_ADDED_DOMAIN_DATA: HassKey[_KeyedEventData[EventStateChangedData]]
 _TRACK_STATE_REMOVED_DOMAIN_DATA: HassKey[_KeyedEventData[EventStateChangedData]]
 _TRACK_ENTITY_REGISTRY_UPDATED_DATA: HassKey[_KeyedEventData[EventEntityRegistryUpdatedData]]
@@ -33,6 +34,7 @@ _LOGGER: Incomplete
 RANDOM_MICROSECOND_MIN: int
 RANDOM_MICROSECOND_MAX: int
 _TypedDictT = TypeVar('_TypedDictT', bound=Mapping[str, Any])
+_StateEventDataT = TypeVar('_StateEventDataT', bound=EventStateEventData)
 
 @dataclass(slots=True, frozen=True)
 class _KeyedEventTracker(Generic[_TypedDictT]):
@@ -75,12 +77,16 @@ def async_track_state_change(hass: HomeAssistant, entity_ids: str | Iterable[str
 track_state_change: Incomplete
 
 def async_track_state_change_event(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
-def _async_dispatch_entity_id_event(hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[EventStateChangedData]], Any]]], event: Event[EventStateChangedData]) -> None: ...
-def _async_state_change_filter(hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[EventStateChangedData]], Any]]], event_data: EventStateChangedData) -> bool: ...
+def _async_dispatch_entity_id_event(hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]], event: Event[_StateEventDataT]) -> None: ...
+def _async_state_filter(hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]], event_data: _StateEventDataT) -> bool: ...
 
 _KEYED_TRACK_STATE_CHANGE: Incomplete
 
 def _async_track_state_change_event(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None) -> CALLBACK_TYPE: ...
+
+_KEYED_TRACK_STATE_REPORT: Incomplete
+
+def async_track_state_report_event(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[Event[EventStateReportedData]], Any], job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
 def _remove_empty_listener() -> None: ...
 def _remove_listener(hass: HomeAssistant, tracker: _KeyedEventTracker[_TypedDictT], keys: Iterable[str], job: HassJob[[Event[_TypedDictT]], Any], callbacks: dict[str, list[HassJob[[Event[_TypedDictT]], Any]]]) -> None: ...
 def _async_track_event(tracker: _KeyedEventTracker[_TypedDictT], hass: HomeAssistant, keys: str | Iterable[str], action: Callable[[Event[_TypedDictT]], None], job_type: HassJobType | None) -> CALLBACK_TYPE: ...

@@ -49,6 +49,7 @@ MYSQL_COLLATE: str
 MYSQL_DEFAULT_CHARSET: str
 MYSQL_ENGINE: str
 _DEFAULT_TABLE_ARGS: Incomplete
+_MATCH_ALL_KEEP: Incomplete
 
 class UnusedDateTime(DateTime): ...
 class Unused(CHAR): ...

@@ -19,6 +19,7 @@ from typing import Any, Concatenate
 _LOGGER: Incomplete
 FEATURE_CATEGORY_TO_ENTITY_CATEGORY: Incomplete
 DEVICETYPES_WITH_SPECIALIZED_PLATFORMS: Incomplete
+FEATURES_ALLOW_LIST: Incomplete
 EXCLUDED_FEATURES: Incomplete
 LEGACY_KEY_MAPPING: Incomplete
 
@@ -36,7 +37,6 @@ class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator], AB
     _attr_unique_id: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, feature: Feature | None = None, parent: Device | None = None) -> None: ...
     def _get_unique_id(self) -> str: ...
-    async def async_added_to_hass(self) -> None: ...
     @abstractmethod
     def _async_update_attrs(self) -> None: ...
     _attr_available: bool

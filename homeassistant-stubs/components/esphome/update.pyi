@@ -26,6 +26,7 @@ class ESPHomeDashboardUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator
     _attr_title: str
     _attr_name: str
     _attr_release_url: str
+    _attr_entity_registry_enabled_default: bool
     _entry_data: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

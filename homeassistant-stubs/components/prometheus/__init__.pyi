@@ -3,7 +3,7 @@ from aiohttp import web
 from collections.abc import Callable as Callable
 from homeassistant.components.climate import ATTR_CURRENT_TEMPERATURE as ATTR_CURRENT_TEMPERATURE, ATTR_HVAC_ACTION as ATTR_HVAC_ACTION, ATTR_HVAC_MODES as ATTR_HVAC_MODES, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, HVACAction as HVACAction
 from homeassistant.components.cover import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.humidifier import ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_HUMIDITY as ATTR_HUMIDITY
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass

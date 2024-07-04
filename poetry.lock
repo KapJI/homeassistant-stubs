@@ -1470,14 +1470,14 @@ habluetooth = ">=3.0"
 
 [[package]]
 name = "homeassistant"
-version = "2024.7.0b10"
+version = "2024.7.0b11"
 description = "Open-source home automation platform running on Python 3."
 category = "main"
 optional = false
 python-versions = ">=3.12.0"
 files = [
-    {file = "homeassistant-2024.7.0b10-py3-none-any.whl", hash = "sha256:cfc08d89e402dc669a01674b64389caae9674605b2f507c0e7256a2c06c90ae6"},
-    {file = "homeassistant-2024.7.0b10.tar.gz", hash = "sha256:b9acdbd212661582b7f0752ecdea451de6b75f3a85de5c9d94e7a29940cccc43"},
+    {file = "homeassistant-2024.7.0b11-py3-none-any.whl", hash = "sha256:c21b838ebece903303fcf2ce6ac5c4f7ae07bb71fd8888da3f2fbc25837026e2"},
+    {file = "homeassistant-2024.7.0b11.tar.gz", hash = "sha256:f7da3953610300176f2719225a61444642ae7308aa321ba6e3cc8f45211fdb7d"},
 ]
 
 [package.dependencies]
@@ -3546,4 +3546,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.13"
-content-hash = "fa244a431b7c7c11440c9ed6e047ef4b9e53a202463ae00cbf4a2add3d241641"
+content-hash = "2591e565b85698141d440665e2992f2e44a7aae86c4225dc6e12538591f80e81"

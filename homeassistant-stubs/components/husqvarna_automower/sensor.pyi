@@ -15,6 +15,7 @@ from homeassistant.helpers.typing import StateType as StateType
 _LOGGER: Incomplete
 ERROR_KEY_LIST: Incomplete
 RESTRICTED_REASONS: list
+STATE_NO_WORK_AREA_ACTIVE: str
 
 def _get_work_area_names(data: MowerAttributes) -> list[str]: ...
 def _get_current_work_area_name(data: MowerAttributes) -> str: ...

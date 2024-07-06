@@ -17,6 +17,9 @@ _LOGGER: Incomplete
 NEGATIVE_INF: Incomplete
 
 class StreamWorkerError(Exception): ...
+
+def redact_av_error_string(err: av.AVError) -> str: ...
+
 class StreamEndedError(StreamWorkerError): ...
 
 class StreamState:

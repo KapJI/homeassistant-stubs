@@ -1,3 +1,4 @@
+import asyncio
 from .const import LOGGER as LOGGER
 from .entity import MatterEntity as MatterEntity
 from .helpers import get_matter as get_matter
@@ -17,6 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class MatterLock(MatterEntity, LockEntity):
     features: int | None
+    _optimistic_timer: asyncio.TimerHandle | None
     @property
     def code_format(self) -> str | None: ...
     @property
@@ -28,11 +30,12 @@ class MatterLock(MatterEntity, LockEntity):
     async def async_lock(self, **kwargs: Any) -> None: ...
     _attr_is_unlocking: bool
     async def async_unlock(self, **kwargs: Any) -> None: ...
+    _attr_is_opening: bool
     async def async_open(self, **kwargs: Any) -> None: ...
     _attr_supported_features: Incomplete
     _attr_is_locked: bool
-    _attr_is_jammed: Incomplete
-    _attr_is_open: Incomplete
+    _attr_is_open: bool
     def _update_from_device(self) -> None: ...
+    def _reset_optimistic_state(self, write_state: bool = True) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

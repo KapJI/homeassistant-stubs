@@ -1,6 +1,7 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
+from .hub import UnifiHub as UnifiHub
 from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
 from aiounifi.models.api import ApiItemT
 from collections.abc import Callable as Callable, Coroutine
@@ -11,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+def async_port_power_cycle_available_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 async def async_restart_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 async def async_power_cycle_port_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 async def async_regenerate_password_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...

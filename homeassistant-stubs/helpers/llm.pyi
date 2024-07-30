@@ -96,6 +96,7 @@ def _selector_serializer(schema: Any) -> Any: ...
 
 class ScriptTool(Tool):
     name: Incomplete
+    _entity_id: Incomplete
     parameters: Incomplete
     description: Incomplete
     def __init__(self, hass: HomeAssistant, script_entity_id: str) -> None: ...

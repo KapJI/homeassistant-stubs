@@ -57,7 +57,6 @@ async def async_scan_tag(hass: HomeAssistant, tag_id: str, device_id: str | None
 
 class TagEntity(Entity):
     _unrecorded_attributes: Incomplete
-    _attr_translation_key = DOMAIN
     _attr_should_poll: bool
     _entity_update_handlers: Incomplete
     _attr_name: Incomplete

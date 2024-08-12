@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import ATTR_SOURCE as ATTR_SOURCE, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import SensorSchema as SensorSchema
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -34,7 +34,7 @@ SYSTEM_ENTITY_DESCRIPTIONS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_sensor(xknx: XKNX, config: ConfigType) -> XknxSensor: ...
 
-class KNXSensor(KnxEntity, SensorEntity):
+class KNXSensor(KnxYamlEntity, SensorEntity):
     _device: XknxSensor
     _attr_device_class: Incomplete
     _attr_force_update: Incomplete

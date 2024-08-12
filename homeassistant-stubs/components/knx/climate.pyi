@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import ClimateSchema as ClimateSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -20,7 +20,7 @@ PRESET_MODES_INV: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
 
-class KNXClimate(KnxEntity, ClimateEntity):
+class KNXClimate(KnxYamlEntity, ClimateEntity):
     _device: XknxClimate
     _attr_temperature_unit: Incomplete
     _enable_turn_on_off_backwards_compatibility: bool

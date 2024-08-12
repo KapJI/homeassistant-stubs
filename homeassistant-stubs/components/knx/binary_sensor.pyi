@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import ATTR_COUNTER as ATTR_COUNTER, ATTR_SOURCE as ATTR_SOURCE, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import BinarySensorSchema as BinarySensorSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -15,7 +15,7 @@ from xknx.devices import BinarySensor as XknxBinarySensor
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class KNXBinarySensor(KnxEntity, BinarySensorEntity, RestoreEntity):
+class KNXBinarySensor(KnxYamlEntity, BinarySensorEntity, RestoreEntity):
     _device: XknxBinarySensor
     _attr_entity_category: Incomplete
     _attr_device_class: Incomplete

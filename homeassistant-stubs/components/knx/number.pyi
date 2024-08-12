@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import NumberSchema as NumberSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -15,7 +15,7 @@ from xknx.devices import NumericValue
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_numeric_value(xknx: XKNX, config: ConfigType) -> NumericValue: ...
 
-class KNXNumber(KnxEntity, RestoreNumber):
+class KNXNumber(KnxYamlEntity, RestoreNumber):
     _device: NumericValue
     _attr_native_max_value: Incomplete
     _attr_native_min_value: Incomplete

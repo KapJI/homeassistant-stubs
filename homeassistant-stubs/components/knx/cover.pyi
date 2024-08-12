@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import CoverSchema as CoverSchema
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -15,7 +15,7 @@ from xknx.devices import Cover as XknxCover
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class KNXCover(KnxEntity, CoverEntity):
+class KNXCover(KnxYamlEntity, CoverEntity):
     _device: XknxCover
     _unsubscribe_auto_updater: Incomplete
     _attr_entity_category: Incomplete

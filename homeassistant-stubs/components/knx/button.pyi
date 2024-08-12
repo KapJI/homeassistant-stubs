@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.button import ButtonEntity as ButtonEntity
@@ -12,7 +12,7 @@ from xknx.devices import RawValue as XknxRawValue
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class KNXButton(KnxEntity, ButtonEntity):
+class KNXButton(KnxYamlEntity, ButtonEntity):
     _device: XknxRawValue
     _payload: Incomplete
     _attr_entity_category: Incomplete

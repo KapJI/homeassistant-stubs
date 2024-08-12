@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.notify import BaseNotificationService as BaseNotificationService, NotifyEntity as NotifyEntity, migrate_notify_issue as migrate_notify_issue
@@ -26,7 +26,7 @@ class KNXNotificationService(BaseNotificationService):
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_notification_instance(xknx: XKNX, config: ConfigType) -> XknxNotification: ...
 
-class KNXNotify(KnxEntity, NotifyEntity):
+class KNXNotify(KnxYamlEntity, NotifyEntity):
     _device: XknxNotification
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete

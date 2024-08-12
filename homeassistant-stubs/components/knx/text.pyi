@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.text import TextEntity as TextEntity
@@ -15,7 +15,7 @@ from xknx.devices import Notification as XknxNotification
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_notification(xknx: XKNX, config: ConfigType) -> XknxNotification: ...
 
-class KNXText(KnxEntity, TextEntity, RestoreEntity):
+class KNXText(KnxYamlEntity, TextEntity, RestoreEntity):
     _device: XknxNotification
     _attr_native_max: int
     _attr_mode: Incomplete

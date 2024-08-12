@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import SelectSchema as SelectSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -16,7 +16,7 @@ from xknx.devices import Device as XknxDevice, RawValue
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_raw_value(xknx: XKNX, config: ConfigType) -> RawValue: ...
 
-class KNXSelect(KnxEntity, SelectEntity, RestoreEntity):
+class KNXSelect(KnxYamlEntity, SelectEntity, RestoreEntity):
     _device: RawValue
     _option_payloads: Incomplete
     _attr_options: Incomplete

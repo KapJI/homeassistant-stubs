@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import FanSchema as FanSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -18,7 +18,7 @@ DEFAULT_PERCENTAGE: Final[int]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class KNXFan(KnxEntity, FanEntity):
+class KNXFan(KnxYamlEntity, FanEntity):
     _device: XknxFan
     _enable_turn_on_off_backwards_compatibility: bool
     _step_range: Incomplete

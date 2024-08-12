@@ -18,6 +18,7 @@ from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssista
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.util import slugify as slugify
 from typing import Literal
 
 def async_bandwidth_sensor_allowed_fn(hub: UnifiHub, obj_id: str) -> bool: ...

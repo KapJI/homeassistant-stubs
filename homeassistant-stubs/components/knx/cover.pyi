@@ -1,3 +1,4 @@
+from . import KNXModule as KNXModule
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import CoverSchema as CoverSchema
@@ -10,7 +11,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
-from xknx import XKNX as XKNX
 from xknx.devices import Cover as XknxCover
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -22,7 +22,7 @@ class KNXCover(KnxEntity, CoverEntity):
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     @property
     def current_cover_position(self) -> int | None: ...
     @property

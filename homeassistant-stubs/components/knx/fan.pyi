@@ -1,3 +1,4 @@
+from . import KNXModule as KNXModule
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import FanSchema as FanSchema
@@ -11,7 +12,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from typing import Any, Final
-from xknx import XKNX as XKNX
 from xknx.devices import Fan as XknxFan
 
 DEFAULT_PERCENTAGE: Final[int]
@@ -24,7 +24,7 @@ class KNXFan(KnxEntity, FanEntity):
     _step_range: Incomplete
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
     @property
     def supported_features(self) -> FanEntityFeature: ...

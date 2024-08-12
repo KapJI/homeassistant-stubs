@@ -1,3 +1,4 @@
+from . import KNXModule as KNXModule
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
 from .knx_entity import KnxEntity as KnxEntity
 from _typeshed import Incomplete
@@ -29,5 +30,5 @@ class KNXNotify(KnxEntity, NotifyEntity):
     _device: XknxNotification
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...

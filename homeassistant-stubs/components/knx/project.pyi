@@ -8,7 +8,8 @@ from homeassistant.helpers.storage import Store as Store
 from typing import Final
 from xknx import XKNX as XKNX
 from xknx.dpt import DPTBase
-from xknxproject.models import Device as Device, GroupAddress as GroupAddressModel, KNXProject as KNXProjectModel, ProjectInfo as ProjectInfo
+from xknx.telegram.address import DeviceAddressableType as DeviceAddressableType
+from xknxproject.models import DPTType as DPTType, Device as Device, GroupAddress as GroupAddressModel, KNXProject as KNXProjectModel, ProjectInfo as ProjectInfo
 
 _LOGGER: Incomplete
 STORAGE_VERSION: Final[int]

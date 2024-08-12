@@ -1,3 +1,4 @@
+from . import KNXModule as KNXModule
 from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import WeatherSchema as WeatherSchema
@@ -21,7 +22,7 @@ class KNXWeather(KnxEntity, WeatherEntity):
     _attr_native_wind_speed_unit: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_category: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     @property
     def native_temperature(self) -> float | None: ...
     @property

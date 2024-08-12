@@ -1,4 +1,5 @@
 import abc
+from .const import BYTES_PER_CHUNK as BYTES_PER_CHUNK
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
@@ -19,14 +20,9 @@ class AudioEnhancer(ABC, metaclass=abc.ABCMeta):
     def __init__(self, auto_gain: int, noise_suppression: int, is_vad_enabled: bool) -> None: ...
     @abstractmethod
     def enhance_chunk(self, audio: bytes, timestamp_ms: int) -> EnhancedAudioChunk: ...
-    @property
-    @abstractmethod
-    def samples_per_chunk(self) -> int | None: ...
 
 class MicroVadEnhancer(AudioEnhancer):
     vad: Incomplete
     threshold: float
     def __init__(self, auto_gain: int, noise_suppression: int, is_vad_enabled: bool) -> None: ...
     def enhance_chunk(self, audio: bytes, timestamp_ms: int) -> EnhancedAudioChunk: ...
-    @property
-    def samples_per_chunk(self) -> int | None: ...

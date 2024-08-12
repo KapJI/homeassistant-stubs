@@ -1,3 +1,4 @@
+from . import KNXModule as KNXModule
 from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import ClimateSchema as ClimateSchema
@@ -29,7 +30,7 @@ class KNXClimate(KnxEntity, ClimateEntity):
     _attr_unique_id: Incomplete
     default_hvac_mode: Incomplete
     _last_hvac_mode: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     @property
     def current_temperature(self) -> float | None: ...
     @property

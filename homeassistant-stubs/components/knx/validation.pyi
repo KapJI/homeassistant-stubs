@@ -1,5 +1,7 @@
+import voluptuous as vol
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from enum import Enum
 from typing import Any
 from xknx.dpt import DPTBase
 
@@ -20,3 +22,5 @@ ia_validator: Incomplete
 def ip_v4_validator(value: Any, multicast: bool | None = None) -> str: ...
 
 sync_state_validator: Incomplete
+
+def backwards_compatible_xknx_climate_enum_member(enumClass: type[Enum]) -> vol.All: ...

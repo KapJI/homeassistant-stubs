@@ -1,3 +1,4 @@
+from . import KNXModule as KNXModule
 from .const import ATTR_COUNTER as ATTR_COUNTER, ATTR_SOURCE as ATTR_SOURCE, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
 from .knx_entity import KnxEntity as KnxEntity
 from .schema import BinarySensorSchema as BinarySensorSchema
@@ -10,7 +11,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
-from xknx import XKNX as XKNX
 from xknx.devices import BinarySensor as XknxBinarySensor
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -21,7 +21,7 @@ class KNXBinarySensor(KnxEntity, BinarySensorEntity, RestoreEntity):
     _attr_device_class: Incomplete
     _attr_force_update: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def is_on(self) -> bool: ...

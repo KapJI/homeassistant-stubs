@@ -1,13 +1,17 @@
 from . import KNXModule as KNXModule
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
 from xknx.devices import Device as XknxDevice
 
+SIGNAL_ENTITY_REMOVE: Incomplete
+
 class KnxEntity(Entity):
     _attr_should_poll: bool
+    _knx_module: Incomplete
     _device: Incomplete
-    def __init__(self, device: XknxDevice) -> None: ...
+    def __init__(self, knx_module: KNXModule, device: XknxDevice) -> None: ...
     @property
     def name(self) -> str: ...
     @property
@@ -16,3 +20,7 @@ class KnxEntity(Entity):
     def after_update_callback(self, _device: XknxDevice) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
+
+class KnxUIEntity(KnxEntity):
+    _attr_unique_id: str
+    async def async_added_to_hass(self) -> None: ...

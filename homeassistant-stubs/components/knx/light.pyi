@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
 from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, ColorTempModes as ColorTempModes, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxEntity as KnxEntity
+from .knx_entity import KnxEntity as KnxEntity, KnxUIEntity as KnxUIEntity
 from .schema import LightSchema as LightSchema
 from .storage.const import CONF_COLOR_TEMP_MAX as CONF_COLOR_TEMP_MAX, CONF_COLOR_TEMP_MIN as CONF_COLOR_TEMP_MIN, CONF_DEVICE_INFO as CONF_DEVICE_INFO, CONF_DPT as CONF_DPT, CONF_ENTITY as CONF_ENTITY, CONF_GA_BLUE_BRIGHTNESS as CONF_GA_BLUE_BRIGHTNESS, CONF_GA_BLUE_SWITCH as CONF_GA_BLUE_SWITCH, CONF_GA_BRIGHTNESS as CONF_GA_BRIGHTNESS, CONF_GA_COLOR as CONF_GA_COLOR, CONF_GA_COLOR_TEMP as CONF_GA_COLOR_TEMP, CONF_GA_GREEN_BRIGHTNESS as CONF_GA_GREEN_BRIGHTNESS, CONF_GA_GREEN_SWITCH as CONF_GA_GREEN_SWITCH, CONF_GA_HUE as CONF_GA_HUE, CONF_GA_PASSIVE as CONF_GA_PASSIVE, CONF_GA_RED_BRIGHTNESS as CONF_GA_RED_BRIGHTNESS, CONF_GA_RED_SWITCH as CONF_GA_RED_SWITCH, CONF_GA_SATURATION as CONF_GA_SATURATION, CONF_GA_STATE as CONF_GA_STATE, CONF_GA_SWITCH as CONF_GA_SWITCH, CONF_GA_WHITE_BRIGHTNESS as CONF_GA_WHITE_BRIGHTNESS, CONF_GA_WHITE_SWITCH as CONF_GA_WHITE_SWITCH, CONF_GA_WRITE as CONF_GA_WRITE
 from .storage.entity_store_schema import LightColorMode as LightColorMode
@@ -20,7 +20,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 def _create_yaml_light(xknx: XKNX, config: ConfigType) -> XknxLight: ...
 def _create_ui_light(xknx: XKNX, knx_config: ConfigType, name: str) -> XknxLight: ...
 
-class _KnxLight(KnxEntity, LightEntity):
+class _KnxLight(LightEntity):
     _attr_max_color_temp_kelvin: int
     _attr_min_color_temp_kelvin: int
     _device: XknxLight
@@ -45,18 +45,18 @@ class _KnxLight(KnxEntity, LightEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
-class KnxYamlLight(_KnxLight):
+class KnxYamlLight(_KnxLight, KnxEntity):
     _device: XknxLight
     _attr_max_color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     def _device_unique_id(self) -> str: ...
 
-class KnxUiLight(_KnxLight):
-    _device: XknxLight
+class KnxUiLight(_KnxLight, KnxUIEntity):
     _attr_has_entity_name: bool
+    _device: XknxLight
     _attr_max_color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_entity_category: Incomplete

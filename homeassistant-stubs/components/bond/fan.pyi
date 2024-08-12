@@ -1,9 +1,9 @@
 from . import BondConfigEntry as BondConfigEntry
 from .const import SERVICE_SET_FAN_SPEED_TRACKED_STATE as SERVICE_SET_FAN_SPEED_TRACKED_STATE
 from .entity import BondEntity as BondEntity
-from .utils import BondDevice as BondDevice, BondHub as BondHub
+from .models import BondData as BondData
+from .utils import BondDevice as BondDevice
 from _typeshed import Incomplete
-from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -24,7 +24,7 @@ class BondFan(BondEntity, FanEntity):
     _direction: Incomplete
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions) -> None: ...
+    def __init__(self, data: BondData, device: BondDevice) -> None: ...
     _attr_preset_mode: Incomplete
     def _apply_state(self) -> None: ...
     @property

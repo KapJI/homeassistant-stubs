@@ -8,6 +8,7 @@ from collections.abc import AsyncIterable, Callable as Callable
 from homeassistant.components import stt as stt, tts as tts
 from homeassistant.components.assist_pipeline import AudioSettings as AudioSettings, PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineNotFound as PipelineNotFound, PipelineStage as PipelineStage, WakeWordSettings as WakeWordSettings, async_pipeline_from_audio_stream as async_pipeline_from_audio_stream
 from homeassistant.components.assist_pipeline.error import WakeWordDetectionAborted as WakeWordDetectionAborted, WakeWordDetectionError as WakeWordDetectionError
+from homeassistant.components.assist_pipeline.vad import VadSensitivity as VadSensitivity
 from homeassistant.components.intent.timers import TimerEventType as TimerEventType, TimerInfo as TimerInfo
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback

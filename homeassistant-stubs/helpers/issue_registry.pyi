@@ -23,9 +23,9 @@ class EventIssueRegistryUpdatedData(TypedDict):
     issue_id: str
 
 class IssueSeverity(StrEnum):
-    CRITICAL: str
-    ERROR: str
-    WARNING: str
+    CRITICAL = 'critical'
+    ERROR = 'error'
+    WARNING = 'warning'
 
 @dataclasses.dataclass(slots=True, frozen=True)
 class IssueEntry:

@@ -15,14 +15,14 @@ HANDLERS: Registry[str, Callable[[HomeAssistant, dict[str, Any]], Coroutine[Any,
 INTENTS_API_ENDPOINT: str
 
 class SpeechType(enum.StrEnum):
-    plaintext: str
-    ssml: str
+    plaintext = 'PlainText'
+    ssml = 'SSML'
 
 SPEECH_MAPPINGS: Incomplete
 
 class CardType(enum.StrEnum):
-    simple: str
-    link_account: str
+    simple = 'Simple'
+    link_account = 'LinkAccount'
 
 def async_setup(hass: HomeAssistant) -> None: ...
 async def async_setup_intents(hass: HomeAssistant) -> None: ...

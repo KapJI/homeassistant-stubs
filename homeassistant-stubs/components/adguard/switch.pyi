@@ -18,7 +18,7 @@ class AdGuardHomeSwitchEntityDescription(SwitchEntityDescription):
     is_on_fn: Callable[[AdGuardHome], Callable[[], Coroutine[Any, Any, bool]]]
     turn_on_fn: Callable[[AdGuardHome], Callable[[], Coroutine[Any, Any, None]]]
     turn_off_fn: Callable[[AdGuardHome], Callable[[], Coroutine[Any, Any, None]]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, is_on_fn, turn_on_fn, turn_off_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., is_on_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 SWITCHES: tuple[AdGuardHomeSwitchEntityDescription, ...]
 

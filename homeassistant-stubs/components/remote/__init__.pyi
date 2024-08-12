@@ -38,9 +38,9 @@ DEFAULT_DELAY_SECS: float
 DEFAULT_HOLD_SECS: int
 
 class RemoteEntityFeature(IntFlag):
-    LEARN_COMMAND: int
-    DELETE_COMMAND: int
-    ACTIVITY: int
+    LEARN_COMMAND = 1
+    DELETE_COMMAND = 2
+    ACTIVITY = 4
 
 _DEPRECATED_SUPPORT_LEARN_COMMAND: Incomplete
 _DEPRECATED_SUPPORT_DELETE_COMMAND: Incomplete
@@ -53,7 +53,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class RemoteEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CONF_OFF_ACTION as CONF_OFF_ACTION, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PING_TIMEOUT as DEFAULT_PING_TIMEOUT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_BROADCAST_ADDRESS as CONF_BROADCAST_ADDRESS, CONF_BROADCAST_PORT as CONF_BROADCAST_PORT, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
@@ -9,12 +9,9 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from typing import Any
 
 _LOGGER: Incomplete
-CONF_OFF_ACTION: str
-DEFAULT_NAME: str
-DEFAULT_PING_TIMEOUT: int
 PLATFORM_SCHEMA: Incomplete
 
-def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class WolSwitch(SwitchEntity):
     _attr_name: Incomplete

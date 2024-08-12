@@ -3,21 +3,23 @@ from . import DEFAULT_FADE_RATE as DEFAULT_FADE_RATE, calculate_unique_id as cal
 from .const import CONF_ADDR as CONF_ADDR, CONF_BUTTONS as CONF_BUTTONS, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_DIMMERS as CONF_DIMMERS, CONF_INDEX as CONF_INDEX, CONF_KEYPADS as CONF_KEYPADS, CONF_LED as CONF_LED, CONF_NUMBER as CONF_NUMBER, CONF_RATE as CONF_RATE, CONF_RELEASE_DELAY as CONF_RELEASE_DELAY, DEFAULT_BUTTON_NAME as DEFAULT_BUTTON_NAME, DEFAULT_KEYPAD_NAME as DEFAULT_KEYPAD_NAME, DEFAULT_LIGHT_NAME as DEFAULT_LIGHT_NAME, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import async_get_hass as async_get_hass, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
 from homeassistant.helpers.selector import TextSelector as TextSelector
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
 from typing import Any
 
 _LOGGER: Incomplete
 CONTROLLER_EDIT: Incomplete
-LIGHT_EDIT: Incomplete
-BUTTON_EDIT: Incomplete
+LIGHT_EDIT: VolDictType
+BUTTON_EDIT: VolDictType
 validate_addr: Incomplete
 
+def _validate_credentials(user_input: dict[str, Any]) -> None: ...
 async def validate_add_controller(handler: ConfigFlow | SchemaOptionsFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
 async def _try_connection(user_input: dict[str, Any]) -> None: ...
 def _validate_address(handler: SchemaCommonFlowHandler, addr: str) -> None: ...

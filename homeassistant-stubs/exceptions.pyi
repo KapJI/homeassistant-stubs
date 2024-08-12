@@ -1,10 +1,9 @@
 from .core import Context as Context
 from .util.event_type import EventType as EventType
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Sequence
+from collections.abc import Callable as Callable, Generator, Sequence
 from dataclasses import dataclass
 from typing import Any
-from typing_extensions import Generator
 
 _function_cache: dict[str, Callable[[str, str, dict[str, str] | None], str]]
 

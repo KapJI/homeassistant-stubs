@@ -20,7 +20,7 @@ class ValloxBinarySensorEntity(ValloxEntity, BinarySensorEntity):
 @dataclass(frozen=True, kw_only=True)
 class ValloxBinarySensorEntityDescription(BinarySensorEntityDescription):
     metric_key: str
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, metric_key) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., metric_key) -> None: ...
 
 BINARY_SENSOR_ENTITIES: tuple[ValloxBinarySensorEntityDescription, ...]
 

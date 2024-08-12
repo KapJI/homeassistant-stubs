@@ -13,10 +13,10 @@ MODE_AUTO: str
 MODE_BABY: str
 
 class HumidifierAction(StrEnum):
-    HUMIDIFYING: str
-    DRYING: str
-    IDLE: str
-    OFF: str
+    HUMIDIFYING = 'humidifying'
+    DRYING = 'drying'
+    IDLE = 'idle'
+    OFF = 'off'
 
 ATTR_ACTION: str
 ATTR_AVAILABLE_MODES: str
@@ -33,7 +33,7 @@ SERVICE_SET_MODE: str
 SERVICE_SET_HUMIDITY: str
 
 class HumidifierEntityFeature(IntFlag):
-    MODES: int
+    MODES = 1
 
 _DEPRECATED_SUPPORT_MODES: Incomplete
 __getattr__: Incomplete

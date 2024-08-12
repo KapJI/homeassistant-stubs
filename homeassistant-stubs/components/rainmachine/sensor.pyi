@@ -1,5 +1,5 @@
-from . import RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
-from .const import DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN
+from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
+from .const import DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_ZONES as DATA_ZONES
 from .model import RainMachineEntityDescription as RainMachineEntityDescription
 from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, RUN_STATE_MAP as RUN_STATE_MAP, RunStates as RunStates, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements, key_exists as key_exists
 from _typeshed import Incomplete
@@ -27,16 +27,16 @@ TYPE_ZONE_RUN_COMPLETION_TIME: str
 @dataclass(frozen=True, kw_only=True)
 class RainMachineSensorDataDescription(SensorEntityDescription, RainMachineEntityDescription):
     data_key: str
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, data_key) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., data_key) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineSensorCompletionTimerDescription(SensorEntityDescription, RainMachineEntityDescription):
     uid: int
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, uid) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., uid) -> None: ...
 
 SENSOR_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class TimeRemainingSensor(RainMachineEntity, RestoreSensor):
     entity_description: RainMachineSensorCompletionTimerDescription

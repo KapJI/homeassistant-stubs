@@ -1,15 +1,15 @@
 from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DOMAIN as DOMAIN
-from .data import ProtectData as ProtectData, UFPConfigEntry as UFPConfigEntry
+from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from .utils import get_camera_base_name as get_camera_base_name
 from _typeshed import Incomplete
+from collections.abc import Generator
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
-from typing_extensions import Generator
-from uiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from uiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
 
@@ -38,7 +38,7 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     _attr_is_recording: Incomplete
     _attr_available: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
+    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     async def stream_source(self) -> str | None: ...
     async def async_enable_motion_detection(self) -> None: ...

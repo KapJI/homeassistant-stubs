@@ -6,10 +6,11 @@ from collections.abc import Mapping
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
+from ipaddress import IPv4Address, IPv4Network, IPv6Address, IPv6Network
 from typing import Any
 
-IPAddress: Incomplete
-IPNetwork: Incomplete
+IPAddress = IPv4Address | IPv6Address
+IPNetwork = IPv4Network | IPv6Network
 CONF_TRUSTED_NETWORKS: str
 CONF_TRUSTED_USERS: str
 CONF_GROUP: str

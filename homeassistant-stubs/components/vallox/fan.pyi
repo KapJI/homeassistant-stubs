@@ -24,6 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ValloxFanEntity(ValloxEntity, FanEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _client: Incomplete
     _attr_unique_id: Incomplete
     _attr_preset_modes: Incomplete

@@ -1,5 +1,4 @@
 import dataclasses
-import voluptuous as vol
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from enum import IntFlag, StrEnum
@@ -22,9 +21,9 @@ SCAN_INTERVAL: Incomplete
 DATA_PROFILES: str
 
 class LightEntityFeature(IntFlag):
-    EFFECT: int
-    FLASH: int
-    TRANSITION: int
+    EFFECT = 4
+    FLASH = 8
+    TRANSITION = 32
 
 SUPPORT_BRIGHTNESS: int
 SUPPORT_COLOR_TEMP: int
@@ -36,16 +35,16 @@ ATTR_COLOR_MODE: str
 ATTR_SUPPORTED_COLOR_MODES: str
 
 class ColorMode(StrEnum):
-    UNKNOWN: str
-    ONOFF: str
-    BRIGHTNESS: str
-    COLOR_TEMP: str
-    HS: str
-    XY: str
-    RGB: str
-    RGBW: str
-    RGBWW: str
-    WHITE: str
+    UNKNOWN = 'unknown'
+    ONOFF = 'onoff'
+    BRIGHTNESS = 'brightness'
+    COLOR_TEMP = 'color_temp'
+    HS = 'hs'
+    XY = 'xy'
+    RGB = 'rgb'
+    RGBW = 'rgbw'
+    RGBWW = 'rgbww'
+    WHITE = 'white'
 
 COLOR_MODE_UNKNOWN: str
 COLOR_MODE_ONOFF: str
@@ -110,7 +109,7 @@ LIGHT_TURN_OFF_SCHEMA: VolDictType
 _LOGGER: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
-def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any] | dict[str | vol.Optional, Any]) -> None: ...
+def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any] | VolDictType) -> None: ...
 def filter_turn_off_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
 def filter_turn_on_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -130,7 +129,7 @@ class Profile:
     def __post_init__(self) -> None: ...
     @classmethod
     def from_csv_row(cls, csv_row: list[str]) -> Self: ...
-    def __init__(self, name, color_x, color_y, brightness, transition) -> None: ...
+    def __init__(self, name, color_x, color_y, brightness, transition=...) -> None: ...
 
 class Profiles:
     hass: Incomplete
@@ -142,7 +141,7 @@ class Profiles:
     def apply_profile(self, name: str, params: dict[str, Any]) -> None: ...
 
 class LightEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

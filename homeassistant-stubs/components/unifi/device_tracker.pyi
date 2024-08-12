@@ -9,6 +9,7 @@ from aiounifi.models.event import Event, EventKey
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
 from datetime import timedelta
+from functools import cached_property as cached_property
 from homeassistant.components.device_tracker import DOMAIN as DOMAIN, ScannerEntity as ScannerEntity, SourceType as SourceType
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -36,7 +37,7 @@ class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT]):
     ip_address_fn: Callable[[aiounifi.Controller, str], str | None]
     is_connected_fn: Callable[[UnifiHub, str], bool]
     hostname_fn: Callable[[aiounifi.Controller, str], str | None]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn, available_fn, name_fn, supported_fn, event_is_on, event_to_subscribe, should_poll, heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn=..., available_fn=..., name_fn=..., supported_fn=..., event_is_on=..., event_to_subscribe=..., should_poll=..., heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 
@@ -45,7 +46,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry,
 
 class UnifiScannerEntity(UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
     entity_description: UnifiTrackerEntityDescription
-    _event_is_on: tuple[EventKey, ...]
+    _event_is_on: set[EventKey]
     _ignore_events: bool
     _is_connected: bool
     def async_initiate_state(self) -> None: ...
@@ -55,11 +56,11 @@ class UnifiScannerEntity(UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
     def hostname(self) -> str | None: ...
     @property
     def ip_address(self) -> str | None: ...
-    @property
+    @cached_property
     def mac_address(self) -> str: ...
-    @property
+    @cached_property
     def source_type(self) -> SourceType: ...
-    @property
+    @cached_property
     def unique_id(self) -> str: ...
     def _make_disconnected(self, *_: core_Event) -> None: ...
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

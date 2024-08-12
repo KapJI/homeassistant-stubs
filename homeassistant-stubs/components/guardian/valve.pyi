@@ -15,14 +15,14 @@ from typing import Any
 VALVE_KIND_VALVE: str
 
 class GuardianValveState(StrEnum):
-    CLOSED: str
-    CLOSING: str
-    FINISH_CLOSING: str
-    FINISH_OPENING: str
-    OPEN: str
-    OPENING: str
-    START_CLOSING: str
-    START_OPENING: str
+    CLOSED = 'closed'
+    CLOSING = 'closing'
+    FINISH_CLOSING = 'finish_closing'
+    FINISH_OPENING = 'finish_opening'
+    OPEN = 'open'
+    OPENING = 'opening'
+    START_CLOSING = 'start_closing'
+    START_OPENING = 'start_opening'
 
 @dataclass(frozen=True, kw_only=True)
 class ValveControllerValveDescription(ValveEntityDescription, ValveControllerEntityDescription):
@@ -32,7 +32,7 @@ class ValveControllerValveDescription(ValveEntityDescription, ValveControllerEnt
     close_coro_fn: Callable[[Client], Coroutine[Any, Any, None]]
     halt_coro_fn: Callable[[Client], Coroutine[Any, Any, None]]
     open_coro_fn: Callable[[Client], Coroutine[Any, Any, None]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, reports_position, is_closed_fn, is_closing_fn, is_opening_fn, close_coro_fn, halt_coro_fn, open_coro_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, reports_position=..., is_closed_fn, is_closing_fn, is_opening_fn, close_coro_fn, halt_coro_fn, open_coro_fn) -> None: ...
 
 async def async_close_valve(client: Client) -> None: ...
 async def async_halt_valve(client: Client) -> None: ...

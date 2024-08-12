@@ -1,6 +1,6 @@
 import voluptuous as vol
-from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, ColorTempModes as ColorTempModes, KNX_ADDRESS as KNX_ADDRESS, PRESET_MODES as PRESET_MODES
-from .validation import ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_validator as sync_state_validator
+from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, ColorTempModes as ColorTempModes, KNX_ADDRESS as KNX_ADDRESS
+from .validation import dpt_base_type_validator as dpt_base_type_validator, ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_validator as sync_state_validator
 from _typeshed import Incomplete
 from abc import ABC
 from collections import OrderedDict
@@ -122,6 +122,9 @@ class ExposeSchema(KNXPlatformSchema):
     CONF_KNX_EXPOSE_BINARY: str
     CONF_KNX_EXPOSE_COOLDOWN: str
     CONF_KNX_EXPOSE_DEFAULT: str
+    CONF_TIME: str
+    CONF_DATE: str
+    CONF_DATETIME: str
     EXPOSE_TIME_TYPES: Final[Incomplete]
     EXPOSE_TIME_SCHEMA: Incomplete
     EXPOSE_SENSOR_SCHEMA: Incomplete

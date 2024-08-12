@@ -46,13 +46,13 @@ class TimerInfo:
     def unpause(self) -> None: ...
     def add_time(self, seconds: int) -> None: ...
     def finish(self) -> None: ...
-    def __init__(self, id, name, seconds, device_id, start_hours, start_minutes, start_seconds, created_at, updated_at, language, is_active, area_id, area_name, floor_id, conversation_command, conversation_agent_id, _created_seconds) -> None: ...
+    def __init__(self, id, name, seconds, device_id, start_hours, start_minutes, start_seconds, created_at, updated_at, language, is_active=..., area_id=..., area_name=..., floor_id=..., conversation_command=..., conversation_agent_id=..., _created_seconds=...) -> None: ...
 
 class TimerEventType(StrEnum):
-    STARTED: str
-    UPDATED: str
-    CANCELLED: str
-    FINISHED: str
+    STARTED = 'started'
+    UPDATED = 'updated'
+    CANCELLED = 'cancelled'
+    FINISHED = 'finished'
 TimerHandler = Callable[[TimerEventType, TimerInfo], None]
 
 class TimerNotFoundError(intent.IntentHandleError):
@@ -85,8 +85,8 @@ def async_device_supports_timers(hass: HomeAssistant, device_id: str) -> bool: .
 def async_register_timer_handler(hass: HomeAssistant, device_id: str, handler: TimerHandler) -> Callable[[], None]: ...
 
 class FindTimerFilter(StrEnum):
-    ONLY_ACTIVE: str
-    ONLY_INACTIVE: str
+    ONLY_ACTIVE = 'only_active'
+    ONLY_INACTIVE = 'only_inactive'
 
 def _find_timer(hass: HomeAssistant, device_id: str | None, slots: dict[str, Any], find_filter: FindTimerFilter | None = None) -> TimerInfo: ...
 def _find_timers(hass: HomeAssistant, device_id: str | None, slots: dict[str, Any]) -> list[TimerInfo]: ...

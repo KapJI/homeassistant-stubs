@@ -1,8 +1,8 @@
 from . import BondConfigEntry as BondConfigEntry
 from .entity import BondEntity as BondEntity
-from .utils import BondDevice as BondDevice, BondHub as BondHub
+from .models import BondData as BondData
+from .utils import BondDevice as BondDevice
 from _typeshed import Incomplete
-from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_a
 class BondCover(BondEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions) -> None: ...
+    def __init__(self, data: BondData, device: BondDevice) -> None: ...
     _attr_is_closed: Incomplete
     _attr_current_cover_position: Incomplete
     def _apply_state(self) -> None: ...

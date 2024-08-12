@@ -1,5 +1,6 @@
 import voluptuous as vol
 from .binary_sensor import CONF_ALL as CONF_ALL, async_create_preview_binary_sensor as async_create_preview_binary_sensor
+from .button import async_create_preview_button as async_create_preview_button
 from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS, CONF_IGNORE_NON_NUMERIC as CONF_IGNORE_NON_NUMERIC, DOMAIN as DOMAIN
 from .cover import async_create_preview_cover as async_create_preview_cover
 from .entity import GroupEntity as GroupEntity
@@ -8,6 +9,7 @@ from .fan import async_create_preview_fan as async_create_preview_fan
 from .light import async_create_preview_light as async_create_preview_light
 from .lock import async_create_preview_lock as async_create_preview_lock
 from .media_player import MediaPlayerGroup as MediaPlayerGroup, async_create_preview_media_player as async_create_preview_media_player
+from .notify import async_create_preview_notify as async_create_preview_notify
 from .sensor import async_create_preview_sensor as async_create_preview_sensor
 from .switch import async_create_preview_switch as async_create_preview_switch
 from _typeshed import Incomplete

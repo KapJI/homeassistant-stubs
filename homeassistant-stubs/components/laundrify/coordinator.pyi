@@ -1,10 +1,9 @@
 from .const import DOMAIN as DOMAIN, REQUEST_TIMEOUT as REQUEST_TIMEOUT
-from .model import LaundrifyDevice as LaundrifyDevice
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from laundrify_aio import LaundrifyAPI as LaundrifyAPI
+from laundrify_aio import LaundrifyAPI as LaundrifyAPI, LaundrifyDevice
 
 _LOGGER: Incomplete
 

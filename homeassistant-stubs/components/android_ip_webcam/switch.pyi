@@ -16,7 +16,7 @@ from typing import Any
 class AndroidIPWebcamSwitchEntityDescription(SwitchEntityDescription):
     on_func: Callable[[PyDroidIPCam], Coroutine[Any, Any, bool]]
     off_func: Callable[[PyDroidIPCam], Coroutine[Any, Any, bool]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, on_func, off_func) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., on_func, off_func) -> None: ...
 
 SWITCH_TYPES: tuple[AndroidIPWebcamSwitchEntityDescription, ...]
 

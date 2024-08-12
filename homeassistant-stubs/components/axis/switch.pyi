@@ -12,7 +12,7 @@ from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
 class AxisSwitchDescription(AxisEventDescription, SwitchEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, event_topic, name_fn, supported_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., event_topic, name_fn=..., supported_fn=...) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

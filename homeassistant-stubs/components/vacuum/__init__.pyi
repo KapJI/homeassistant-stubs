@@ -36,20 +36,20 @@ STATES: Incomplete
 DEFAULT_NAME: str
 
 class VacuumEntityFeature(IntFlag):
-    TURN_ON: int
-    TURN_OFF: int
-    PAUSE: int
-    STOP: int
-    RETURN_HOME: int
-    FAN_SPEED: int
-    BATTERY: int
-    STATUS: int
-    SEND_COMMAND: int
-    LOCATE: int
-    CLEAN_SPOT: int
-    MAP: int
-    STATE: int
-    START: int
+    TURN_ON = 1
+    TURN_OFF = 2
+    PAUSE = 4
+    STOP = 8
+    RETURN_HOME = 16
+    FAN_SPEED = 32
+    BATTERY = 64
+    STATUS = 128
+    SEND_COMMAND = 256
+    LOCATE = 512
+    CLEAN_SPOT = 1024
+    MAP = 2048
+    STATE = 4096
+    START = 8192
 
 SUPPORT_TURN_ON: int
 SUPPORT_TURN_OFF: int
@@ -72,7 +72,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class StateVacuumEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 STATE_VACUUM_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

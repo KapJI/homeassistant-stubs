@@ -30,6 +30,16 @@ class SetPositionIntentHandler(intent.DynamicServiceIntentHandler):
     def __init__(self) -> None: ...
     def get_domain_and_service(self, intent_obj: intent.Intent, state: State) -> tuple[str, str]: ...
 
+class GetCurrentDateIntentHandler(intent.IntentHandler):
+    intent_type: Incomplete
+    description: str
+    async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
+
+class GetCurrentTimeIntentHandler(intent.IntentHandler):
+    intent_type: Incomplete
+    description: str
+    async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
+
 class IntentHandleView(http.HomeAssistantView):
     url: str
     name: str

@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 @dataclass(frozen=True, kw_only=True)
 class ValveControllerButtonDescription(ButtonEntityDescription, ValveControllerEntityDescription):
     push_action: Callable[[Client], Awaitable]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, api_category, push_action) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, push_action) -> None: ...
 
 BUTTON_KIND_REBOOT: str
 BUTTON_KIND_RESET_VALVE_DIAGNOSTICS: str

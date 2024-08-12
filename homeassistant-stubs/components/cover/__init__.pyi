@@ -20,16 +20,16 @@ PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 
 class CoverDeviceClass(StrEnum):
-    AWNING: str
-    BLIND: str
-    CURTAIN: str
-    DAMPER: str
-    DOOR: str
-    GARAGE: str
-    GATE: str
-    SHADE: str
-    SHUTTER: str
-    WINDOW: str
+    AWNING = 'awning'
+    BLIND = 'blind'
+    CURTAIN = 'curtain'
+    DAMPER = 'damper'
+    DOOR = 'door'
+    GARAGE = 'garage'
+    GATE = 'gate'
+    SHADE = 'shade'
+    SHUTTER = 'shutter'
+    WINDOW = 'window'
 
 DEVICE_CLASSES_SCHEMA: Incomplete
 DEVICE_CLASSES: Incomplete
@@ -45,14 +45,14 @@ _DEPRECATED_DEVICE_CLASS_SHUTTER: Incomplete
 _DEPRECATED_DEVICE_CLASS_WINDOW: Incomplete
 
 class CoverEntityFeature(IntFlag):
-    OPEN: int
-    CLOSE: int
-    SET_POSITION: int
-    STOP: int
-    OPEN_TILT: int
-    CLOSE_TILT: int
-    STOP_TILT: int
-    SET_TILT_POSITION: int
+    OPEN = 1
+    CLOSE = 2
+    SET_POSITION = 4
+    STOP = 8
+    OPEN_TILT = 16
+    CLOSE_TILT = 32
+    STOP_TILT = 64
+    SET_TILT_POSITION = 128
 
 _DEPRECATED_SUPPORT_OPEN: Incomplete
 _DEPRECATED_SUPPORT_CLOSE: Incomplete
@@ -74,7 +74,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class CoverEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: CoverDeviceClass | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

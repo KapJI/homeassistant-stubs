@@ -10,13 +10,13 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from xknx import XKNX as XKNX
-from xknx.devices import DateTime as XknxDateTime
+from xknx.devices import DateTimeDevice as XknxDateTimeDevice
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def _create_xknx_device(xknx: XKNX, config: ConfigType) -> XknxDateTime: ...
+def _create_xknx_device(xknx: XKNX, config: ConfigType) -> XknxDateTimeDevice: ...
 
-class KNXDateTime(KnxEntity, DateTimeEntity, RestoreEntity):
-    _device: XknxDateTime
+class KNXDateTimeEntity(KnxEntity, DateTimeEntity, RestoreEntity):
+    _device: XknxDateTimeDevice
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...

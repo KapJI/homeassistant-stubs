@@ -15,7 +15,7 @@ EVENT_USER_ADDED: str
 EVENT_USER_UPDATED: str
 EVENT_USER_REMOVED: str
 _MfaModuleDict = dict[str, MultiFactorAuthModule]
-_ProviderKey: Incomplete
+_ProviderKey = tuple[str, str | None]
 _ProviderDict = dict[_ProviderKey, AuthProvider]
 
 class InvalidAuthError(Exception): ...

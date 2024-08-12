@@ -82,17 +82,17 @@ ATTR_SLAVE: str
 ATTR_VALUE: str
 
 class DataType(str, Enum):
-    CUSTOM: str
-    STRING: str
-    INT16: str
-    INT32: str
-    INT64: str
-    UINT16: str
-    UINT32: str
-    UINT64: str
-    FLOAT16: str
-    FLOAT32: str
-    FLOAT64: str
+    CUSTOM = 'custom'
+    STRING = 'string'
+    INT16 = 'int16'
+    INT32 = 'int32'
+    INT64 = 'int64'
+    UINT16 = 'uint16'
+    UINT32 = 'uint32'
+    UINT64 = 'uint64'
+    FLOAT16 = 'float16'
+    FLOAT32 = 'float32'
+    FLOAT64 = 'float64'
 
 CALL_TYPE_COIL: str
 CALL_TYPE_DISCRETE: str

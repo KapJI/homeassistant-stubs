@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "homeassistant-stubs"
-version = "2024.7.4"
+version = "2024.8.0b0"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = ["Ruslan Sayfutdinov <ruslan@sayfutdinov.com>"]
 license = "MIT"
@@ -28,7 +28,7 @@ packages = [
 [tool.poetry.dependencies]
 # Forbid 3.13 because of home-assistant-bluetooth package.
 python = ">=3.12,<3.13"
-homeassistant = "2024.7.4"
+homeassistant = "2024.8.0b0"
 
 [tool.poetry.group.dev.dependencies]
 awesomeversion = ">=21.11.0"

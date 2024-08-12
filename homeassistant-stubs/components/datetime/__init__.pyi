@@ -6,7 +6,7 @@ from homeassistant.helpers.entity import Entity, EntityDescription
 __all__ = ['ATTR_DATETIME', 'DOMAIN', 'DateTimeEntity', 'DateTimeEntityDescription']
 
 class DateTimeEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 class DateTimeEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: DateTimeEntityDescription

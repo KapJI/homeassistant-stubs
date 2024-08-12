@@ -1,13 +1,12 @@
-import abc
 import asyncio
 from .const import DEFAULT_CACHE_DIR as DEFAULT_CACHE_DIR, TtsAudioType as TtsAudioType
 from .legacy import PLATFORM_SCHEMA as PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE as PLATFORM_SCHEMA_BASE, Provider as Provider
 from .media_source import generate_media_source_id as generate_media_source_id
 from .models import Voice as Voice
 from _typeshed import Incomplete
-from abc import abstractmethod
 from aiohttp import web
 from collections.abc import Mapping
+from functools import cached_property
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.restore_state import RestoreEntity
@@ -31,20 +30,22 @@ def async_default_engine(hass: HomeAssistant) -> str | None: ...
 async def async_support_options(hass: HomeAssistant, engine: str, language: str | None = None, options: dict | None = None) -> bool: ...
 async def async_get_media_source_audio(hass: HomeAssistant, media_source_id: str) -> tuple[str, bytes]: ...
 
-class TextToSpeechEntity(RestoreEntity, metaclass=abc.ABCMeta):
+class TextToSpeechEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_should_poll: bool
     __last_tts_loaded: str | None
+    _attr_default_language: str
+    _attr_default_options: Mapping[str, Any] | None
+    _attr_supported_languages: list[str]
+    _attr_supported_options: list[str] | None
     @property
     def state(self) -> str | None: ...
-    @property
-    @abstractmethod
+    @cached_property
     def supported_languages(self) -> list[str]: ...
-    @property
-    @abstractmethod
+    @cached_property
     def default_language(self) -> str: ...
-    @property
+    @cached_property
     def supported_options(self) -> list[str] | None: ...
-    @property
+    @cached_property
     def default_options(self) -> Mapping[str, Any] | None: ...
     def async_get_supported_voices(self, language: str) -> list[Voice] | None: ...
     async def async_internal_added_to_hass(self) -> None: ...

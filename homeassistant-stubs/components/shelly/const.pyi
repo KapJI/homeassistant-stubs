@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from enum import StrEnum
+from homeassistant.components.number import NumberMode as NumberMode
 from logging import Logger
 from typing import Final
 
@@ -53,9 +54,9 @@ SHELLY_GAS_MODELS: Incomplete
 CONF_BLE_SCANNER_MODE: str
 
 class BLEScannerMode(StrEnum):
-    DISABLED: str
-    ACTIVE: str
-    PASSIVE: str
+    DISABLED = 'disabled'
+    ACTIVE = 'active'
+    PASSIVE = 'passive'
 
 MAX_PUSH_UPDATE_FAILURES: int
 PUSH_UPDATE_ISSUE_ID: str
@@ -71,3 +72,5 @@ GEN2_RELEASE_URL: str
 DEVICES_WITHOUT_FIRMWARE_CHANGELOG: Incomplete
 CONF_GEN: str
 SHELLY_PLUS_RGBW_CHANNELS: int
+VIRTUAL_COMPONENTS_MAP: Incomplete
+VIRTUAL_NUMBER_MODE_MAP: Incomplete

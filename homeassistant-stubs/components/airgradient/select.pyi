@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 class AirGradientSelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[Config], str | None]
     set_value_fn: Callable[[AirGradientClient, str], Awaitable[None]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, value_fn, set_value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., value_fn, set_value_fn) -> None: ...
 
 CONFIG_CONTROL_ENTITY: Incomplete
 DISPLAY_SELECT_TYPES: tuple[AirGradientSelectEntityDescription, ...]

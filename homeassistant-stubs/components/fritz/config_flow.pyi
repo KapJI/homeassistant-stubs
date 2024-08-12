@@ -6,6 +6,7 @@ from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_C
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 from urllib.parse import ParseResult as ParseResult
 

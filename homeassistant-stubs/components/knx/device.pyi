@@ -8,6 +8,7 @@ from xknx.core import XknxConnectionState
 from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
 
 class KNXInterfaceDevice:
+    hass: Incomplete
     device_registry: Incomplete
     gateway_descriptor: Incomplete
     xknx: Incomplete
@@ -15,4 +16,4 @@ class KNXInterfaceDevice:
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, xknx: XKNX) -> None: ...
     async def update(self) -> None: ...
-    async def connection_state_changed_cb(self, state: XknxConnectionState) -> None: ...
+    def connection_state_changed_cb(self, state: XknxConnectionState) -> None: ...

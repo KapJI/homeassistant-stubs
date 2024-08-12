@@ -20,7 +20,7 @@ PREBREW_MODE_LM_TO_HA: Incomplete
 class LaMarzoccoSelectEntityDescription(LaMarzoccoEntityDescription, SelectEntityDescription):
     current_option_fn: Callable[[LaMarzoccoMachineConfig], str]
     select_option_fn: Callable[[LaMarzoccoMachine, str], Coroutine[Any, Any, bool]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, available_fn, supported_fn, current_option_fn, select_option_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., available_fn=..., supported_fn=..., current_option_fn, select_option_fn) -> None: ...
 
 ENTITIES: tuple[LaMarzoccoSelectEntityDescription, ...]
 

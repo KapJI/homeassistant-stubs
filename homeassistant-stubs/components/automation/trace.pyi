@@ -1,10 +1,10 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections.abc import Generator
 from homeassistant.components.trace import ActionTrace as ActionTrace, CONF_STORED_TRACES as CONF_STORED_TRACES, async_store_trace as async_store_trace
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
-from typing_extensions import Generator
 
 class AutomationTrace(ActionTrace):
     _domain = DOMAIN

@@ -6,7 +6,6 @@ from typing import Any
 
 class BaseTableManager:
     _id_map: LRU[EventType[Any] | str, int]
-    active: bool
     recorder: Incomplete
     _pending: Incomplete
     def __init__(self, recorder: Recorder) -> None: ...

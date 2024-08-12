@@ -11,10 +11,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class DevoloImageEntityDescription(ImageEntityDescription):
     image_func: Callable[[WifiGuestAccessGet], bytes]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, image_func) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., image_func) -> None: ...
 
 IMAGE_TYPES: dict[str, DevoloImageEntityDescription]
 

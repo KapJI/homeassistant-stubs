@@ -12,67 +12,67 @@ ATTR_STATE_CLASS: Final[str]
 ATTR_OPTIONS: Final[str]
 
 class SensorDeviceClass(StrEnum):
-    DATE: str
-    ENUM: str
-    TIMESTAMP: str
-    APPARENT_POWER: str
-    AQI: str
-    ATMOSPHERIC_PRESSURE: str
-    BATTERY: str
-    CO: str
-    CO2: str
-    CONDUCTIVITY: str
-    CURRENT: str
-    DATA_RATE: str
-    DATA_SIZE: str
-    DISTANCE: str
-    DURATION: str
-    ENERGY: str
-    ENERGY_STORAGE: str
-    FREQUENCY: str
-    GAS: str
-    HUMIDITY: str
-    ILLUMINANCE: str
-    IRRADIANCE: str
-    MOISTURE: str
-    MONETARY: str
-    NITROGEN_DIOXIDE: str
-    NITROGEN_MONOXIDE: str
-    NITROUS_OXIDE: str
-    OZONE: str
-    PH: str
-    PM1: str
-    PM10: str
-    PM25: str
-    POWER_FACTOR: str
-    POWER: str
-    PRECIPITATION: str
-    PRECIPITATION_INTENSITY: str
-    PRESSURE: str
-    REACTIVE_POWER: str
-    SIGNAL_STRENGTH: str
-    SOUND_PRESSURE: str
-    SPEED: str
-    SULPHUR_DIOXIDE: str
-    TEMPERATURE: str
-    VOLATILE_ORGANIC_COMPOUNDS: str
-    VOLATILE_ORGANIC_COMPOUNDS_PARTS: str
-    VOLTAGE: str
-    VOLUME: str
-    VOLUME_STORAGE: str
-    VOLUME_FLOW_RATE: str
-    WATER: str
-    WEIGHT: str
-    WIND_SPEED: str
+    DATE = 'date'
+    ENUM = 'enum'
+    TIMESTAMP = 'timestamp'
+    APPARENT_POWER = 'apparent_power'
+    AQI = 'aqi'
+    ATMOSPHERIC_PRESSURE = 'atmospheric_pressure'
+    BATTERY = 'battery'
+    CO = 'carbon_monoxide'
+    CO2 = 'carbon_dioxide'
+    CONDUCTIVITY = 'conductivity'
+    CURRENT = 'current'
+    DATA_RATE = 'data_rate'
+    DATA_SIZE = 'data_size'
+    DISTANCE = 'distance'
+    DURATION = 'duration'
+    ENERGY = 'energy'
+    ENERGY_STORAGE = 'energy_storage'
+    FREQUENCY = 'frequency'
+    GAS = 'gas'
+    HUMIDITY = 'humidity'
+    ILLUMINANCE = 'illuminance'
+    IRRADIANCE = 'irradiance'
+    MOISTURE = 'moisture'
+    MONETARY = 'monetary'
+    NITROGEN_DIOXIDE = 'nitrogen_dioxide'
+    NITROGEN_MONOXIDE = 'nitrogen_monoxide'
+    NITROUS_OXIDE = 'nitrous_oxide'
+    OZONE = 'ozone'
+    PH = 'ph'
+    PM1 = 'pm1'
+    PM10 = 'pm10'
+    PM25 = 'pm25'
+    POWER_FACTOR = 'power_factor'
+    POWER = 'power'
+    PRECIPITATION = 'precipitation'
+    PRECIPITATION_INTENSITY = 'precipitation_intensity'
+    PRESSURE = 'pressure'
+    REACTIVE_POWER = 'reactive_power'
+    SIGNAL_STRENGTH = 'signal_strength'
+    SOUND_PRESSURE = 'sound_pressure'
+    SPEED = 'speed'
+    SULPHUR_DIOXIDE = 'sulphur_dioxide'
+    TEMPERATURE = 'temperature'
+    VOLATILE_ORGANIC_COMPOUNDS = 'volatile_organic_compounds'
+    VOLATILE_ORGANIC_COMPOUNDS_PARTS = 'volatile_organic_compounds_parts'
+    VOLTAGE = 'voltage'
+    VOLUME = 'volume'
+    VOLUME_STORAGE = 'volume_storage'
+    VOLUME_FLOW_RATE = 'volume_flow_rate'
+    WATER = 'water'
+    WEIGHT = 'weight'
+    WIND_SPEED = 'wind_speed'
 
 NON_NUMERIC_DEVICE_CLASSES: Incomplete
 DEVICE_CLASSES_SCHEMA: Final[Incomplete]
 DEVICE_CLASSES: Final[list[str]]
 
 class SensorStateClass(StrEnum):
-    MEASUREMENT: str
-    TOTAL: str
-    TOTAL_INCREASING: str
+    MEASUREMENT = 'measurement'
+    TOTAL = 'total'
+    TOTAL_INCREASING = 'total_increasing'
 
 STATE_CLASSES_SCHEMA: Final[Incomplete]
 _DEPRECATED_STATE_CLASS_MEASUREMENT: Final[Incomplete]

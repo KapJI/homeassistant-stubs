@@ -1,11 +1,10 @@
-from .config_flow import get_entry_client as get_entry_client
+from . import ArcamFmjConfigEntry as ArcamFmjConfigEntry
 from .const import DOMAIN as DOMAIN, EVENT_TURN_ON as EVENT_TURN_ON, SIGNAL_CLIENT_DATA as SIGNAL_CLIENT_DATA, SIGNAL_CLIENT_STARTED as SIGNAL_CLIENT_STARTED, SIGNAL_CLIENT_STOPPED as SIGNAL_CLIENT_STOPPED
 from _typeshed import Incomplete
 from arcam.fmj.state import State
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.components.media_player.errors import BrowseError as BrowseError
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -16,7 +15,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ArcamFmjConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def convert_exception(func: Callable[_P, Coroutine[Any, Any, _R]]) -> Callable[_P, Coroutine[Any, Any, _R]]: ...
 
 class ArcamFmj(MediaPlayerEntity):

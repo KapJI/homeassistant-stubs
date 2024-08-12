@@ -20,48 +20,48 @@ REQUIRED_NEXT_PYTHON_HA_RELEASE: Final[str]
 PLATFORM_FORMAT: Final[str]
 
 class Platform(StrEnum):
-    AIR_QUALITY: str
-    ALARM_CONTROL_PANEL: str
-    BINARY_SENSOR: str
-    BUTTON: str
-    CALENDAR: str
-    CAMERA: str
-    CLIMATE: str
-    CONVERSATION: str
-    COVER: str
-    DATE: str
-    DATETIME: str
-    DEVICE_TRACKER: str
-    EVENT: str
-    FAN: str
-    GEO_LOCATION: str
-    HUMIDIFIER: str
-    IMAGE: str
-    IMAGE_PROCESSING: str
-    LAWN_MOWER: str
-    LIGHT: str
-    LOCK: str
-    MAILBOX: str
-    MEDIA_PLAYER: str
-    NOTIFY: str
-    NUMBER: str
-    REMOTE: str
-    SCENE: str
-    SELECT: str
-    SENSOR: str
-    SIREN: str
-    STT: str
-    SWITCH: str
-    TEXT: str
-    TIME: str
-    TODO: str
-    TTS: str
-    VACUUM: str
-    VALVE: str
-    UPDATE: str
-    WAKE_WORD: str
-    WATER_HEATER: str
-    WEATHER: str
+    AIR_QUALITY = 'air_quality'
+    ALARM_CONTROL_PANEL = 'alarm_control_panel'
+    BINARY_SENSOR = 'binary_sensor'
+    BUTTON = 'button'
+    CALENDAR = 'calendar'
+    CAMERA = 'camera'
+    CLIMATE = 'climate'
+    CONVERSATION = 'conversation'
+    COVER = 'cover'
+    DATE = 'date'
+    DATETIME = 'datetime'
+    DEVICE_TRACKER = 'device_tracker'
+    EVENT = 'event'
+    FAN = 'fan'
+    GEO_LOCATION = 'geo_location'
+    HUMIDIFIER = 'humidifier'
+    IMAGE = 'image'
+    IMAGE_PROCESSING = 'image_processing'
+    LAWN_MOWER = 'lawn_mower'
+    LIGHT = 'light'
+    LOCK = 'lock'
+    MAILBOX = 'mailbox'
+    MEDIA_PLAYER = 'media_player'
+    NOTIFY = 'notify'
+    NUMBER = 'number'
+    REMOTE = 'remote'
+    SCENE = 'scene'
+    SELECT = 'select'
+    SENSOR = 'sensor'
+    SIREN = 'siren'
+    STT = 'stt'
+    SWITCH = 'switch'
+    TEXT = 'text'
+    TIME = 'time'
+    TODO = 'todo'
+    TTS = 'tts'
+    VACUUM = 'vacuum'
+    VALVE = 'valve'
+    UPDATE = 'update'
+    WAKE_WORD = 'wake_word'
+    WATER_HEATER = 'water_heater'
+    WEATHER = 'weather'
 
 BASE_PLATFORMS: Final[Incomplete]
 MATCH_ALL: Final[str]
@@ -79,6 +79,7 @@ SUN_EVENT_SUNSET: Final[str]
 SUN_EVENT_SUNRISE: Final[str]
 CONF_ABOVE: Final[str]
 CONF_ACCESS_TOKEN: Final[str]
+CONF_ACTION: Final[str]
 CONF_ADDRESS: Final[str]
 CONF_AFTER: Final[str]
 CONF_ALIAS: Final[str]
@@ -412,14 +413,14 @@ ATTR_TEMPERATURE: Final[str]
 ATTR_PERSONS: Final[str]
 
 class UnitOfApparentPower(StrEnum):
-    VOLT_AMPERE: str
+    VOLT_AMPERE = 'VA'
 
 _DEPRECATED_POWER_VOLT_AMPERE: Final[Incomplete]
 
 class UnitOfPower(StrEnum):
-    WATT: str
-    KILO_WATT: str
-    BTU_PER_HOUR: str
+    WATT = 'W'
+    KILO_WATT = 'kW'
+    BTU_PER_HOUR = 'BTU/h'
 
 _DEPRECATED_POWER_WATT: Final[Incomplete]
 _DEPRECATED_POWER_KILO_WATT: Final[Incomplete]
@@ -427,26 +428,26 @@ _DEPRECATED_POWER_BTU_PER_HOUR: Final[Incomplete]
 POWER_VOLT_AMPERE_REACTIVE: Final[str]
 
 class UnitOfEnergy(StrEnum):
-    GIGA_JOULE: str
-    KILO_WATT_HOUR: str
-    MEGA_JOULE: str
-    MEGA_WATT_HOUR: str
-    WATT_HOUR: str
+    GIGA_JOULE = 'GJ'
+    KILO_WATT_HOUR = 'kWh'
+    MEGA_JOULE = 'MJ'
+    MEGA_WATT_HOUR = 'MWh'
+    WATT_HOUR = 'Wh'
 
 _DEPRECATED_ENERGY_KILO_WATT_HOUR: Final[Incomplete]
 _DEPRECATED_ENERGY_MEGA_WATT_HOUR: Final[Incomplete]
 _DEPRECATED_ENERGY_WATT_HOUR: Final[Incomplete]
 
 class UnitOfElectricCurrent(StrEnum):
-    MILLIAMPERE: str
-    AMPERE: str
+    MILLIAMPERE = 'mA'
+    AMPERE = 'A'
 
 _DEPRECATED_ELECTRIC_CURRENT_MILLIAMPERE: Final[Incomplete]
 _DEPRECATED_ELECTRIC_CURRENT_AMPERE: Final[Incomplete]
 
 class UnitOfElectricPotential(StrEnum):
-    MILLIVOLT: str
-    VOLT: str
+    MILLIVOLT = 'mV'
+    VOLT = 'V'
 
 _DEPRECATED_ELECTRIC_POTENTIAL_MILLIVOLT: Final[Incomplete]
 _DEPRECATED_ELECTRIC_POTENTIAL_VOLT: Final[Incomplete]
@@ -456,24 +457,24 @@ CURRENCY_DOLLAR: Final[str]
 CURRENCY_CENT: Final[str]
 
 class UnitOfTemperature(StrEnum):
-    CELSIUS: str
-    FAHRENHEIT: str
-    KELVIN: str
+    CELSIUS = '°C'
+    FAHRENHEIT = '°F'
+    KELVIN = 'K'
 
 _DEPRECATED_TEMP_CELSIUS: Final[Incomplete]
 _DEPRECATED_TEMP_FAHRENHEIT: Final[Incomplete]
 _DEPRECATED_TEMP_KELVIN: Final[Incomplete]
 
 class UnitOfTime(StrEnum):
-    MICROSECONDS: str
-    MILLISECONDS: str
-    SECONDS: str
-    MINUTES: str
-    HOURS: str
-    DAYS: str
-    WEEKS: str
-    MONTHS: str
-    YEARS: str
+    MICROSECONDS = 'μs'
+    MILLISECONDS = 'ms'
+    SECONDS = 's'
+    MINUTES = 'min'
+    HOURS = 'h'
+    DAYS = 'd'
+    WEEKS = 'w'
+    MONTHS = 'm'
+    YEARS = 'y'
 
 _DEPRECATED_TIME_MICROSECONDS: Final[Incomplete]
 _DEPRECATED_TIME_MILLISECONDS: Final[Incomplete]
@@ -486,14 +487,14 @@ _DEPRECATED_TIME_MONTHS: Final[Incomplete]
 _DEPRECATED_TIME_YEARS: Final[Incomplete]
 
 class UnitOfLength(StrEnum):
-    MILLIMETERS: str
-    CENTIMETERS: str
-    METERS: str
-    KILOMETERS: str
-    INCHES: str
-    FEET: str
-    YARDS: str
-    MILES: str
+    MILLIMETERS = 'mm'
+    CENTIMETERS = 'cm'
+    METERS = 'm'
+    KILOMETERS = 'km'
+    INCHES = 'in'
+    FEET = 'ft'
+    YARDS = 'yd'
+    MILES = 'mi'
 
 _DEPRECATED_LENGTH_MILLIMETERS: Final[Incomplete]
 _DEPRECATED_LENGTH_CENTIMETERS: Final[Incomplete]
@@ -505,10 +506,10 @@ _DEPRECATED_LENGTH_YARD: Final[Incomplete]
 _DEPRECATED_LENGTH_MILES: Final[Incomplete]
 
 class UnitOfFrequency(StrEnum):
-    HERTZ: str
-    KILOHERTZ: str
-    MEGAHERTZ: str
-    GIGAHERTZ: str
+    HERTZ = 'Hz'
+    KILOHERTZ = 'kHz'
+    MEGAHERTZ = 'MHz'
+    GIGAHERTZ = 'GHz'
 
 _DEPRECATED_FREQUENCY_HERTZ: Final[Incomplete]
 _DEPRECATED_FREQUENCY_KILOHERTZ: Final[Incomplete]
@@ -516,15 +517,15 @@ _DEPRECATED_FREQUENCY_MEGAHERTZ: Final[Incomplete]
 _DEPRECATED_FREQUENCY_GIGAHERTZ: Final[Incomplete]
 
 class UnitOfPressure(StrEnum):
-    PA: str
-    HPA: str
-    KPA: str
-    BAR: str
-    CBAR: str
-    MBAR: str
-    MMHG: str
-    INHG: str
-    PSI: str
+    PA = 'Pa'
+    HPA = 'hPa'
+    KPA = 'kPa'
+    BAR = 'bar'
+    CBAR = 'cbar'
+    MBAR = 'mbar'
+    MMHG = 'mmHg'
+    INHG = 'inHg'
+    PSI = 'psi'
 
 _DEPRECATED_PRESSURE_PA: Final[Incomplete]
 _DEPRECATED_PRESSURE_HPA: Final[Incomplete]
@@ -537,20 +538,20 @@ _DEPRECATED_PRESSURE_INHG: Final[Incomplete]
 _DEPRECATED_PRESSURE_PSI: Final[Incomplete]
 
 class UnitOfSoundPressure(StrEnum):
-    DECIBEL: str
-    WEIGHTED_DECIBEL_A: str
+    DECIBEL = 'dB'
+    WEIGHTED_DECIBEL_A = 'dBA'
 
 _DEPRECATED_SOUND_PRESSURE_DB: Final[Incomplete]
 _DEPRECATED_SOUND_PRESSURE_WEIGHTED_DBA: Final[Incomplete]
 
 class UnitOfVolume(StrEnum):
-    CUBIC_FEET: str
-    CENTUM_CUBIC_FEET: str
-    CUBIC_METERS: str
-    LITERS: str
-    MILLILITERS: str
-    GALLONS: str
-    FLUID_OUNCES: str
+    CUBIC_FEET = 'ft³'
+    CENTUM_CUBIC_FEET = 'CCF'
+    CUBIC_METERS = 'm³'
+    LITERS = 'L'
+    MILLILITERS = 'mL'
+    GALLONS = 'gal'
+    FLUID_OUNCES = 'fl. oz.'
 
 _DEPRECATED_VOLUME_LITERS: Final[Incomplete]
 _DEPRECATED_VOLUME_MILLILITERS: Final[Incomplete]
@@ -560,23 +561,23 @@ _DEPRECATED_VOLUME_GALLONS: Final[Incomplete]
 _DEPRECATED_VOLUME_FLUID_OUNCE: Final[Incomplete]
 
 class UnitOfVolumeFlowRate(StrEnum):
-    CUBIC_METERS_PER_HOUR: str
-    CUBIC_FEET_PER_MINUTE: str
-    LITERS_PER_MINUTE: str
-    GALLONS_PER_MINUTE: str
+    CUBIC_METERS_PER_HOUR = 'm³/h'
+    CUBIC_FEET_PER_MINUTE = 'ft³/min'
+    LITERS_PER_MINUTE = 'L/min'
+    GALLONS_PER_MINUTE = 'gal/min'
 
 _DEPRECATED_VOLUME_FLOW_RATE_CUBIC_METERS_PER_HOUR: Final[Incomplete]
 _DEPRECATED_VOLUME_FLOW_RATE_CUBIC_FEET_PER_MINUTE: Final[Incomplete]
 AREA_SQUARE_METERS: Final[str]
 
 class UnitOfMass(StrEnum):
-    GRAMS: str
-    KILOGRAMS: str
-    MILLIGRAMS: str
-    MICROGRAMS: str
-    OUNCES: str
-    POUNDS: str
-    STONES: str
+    GRAMS = 'g'
+    KILOGRAMS = 'kg'
+    MILLIGRAMS = 'mg'
+    MICROGRAMS = 'µg'
+    OUNCES = 'oz'
+    POUNDS = 'lb'
+    STONES = 'st'
 
 _DEPRECATED_MASS_GRAMS: Final[Incomplete]
 _DEPRECATED_MASS_KILOGRAMS: Final[Incomplete]
@@ -586,9 +587,9 @@ _DEPRECATED_MASS_OUNCES: Final[Incomplete]
 _DEPRECATED_MASS_POUNDS: Final[Incomplete]
 
 class UnitOfConductivity(StrEnum):
-    SIEMENS: str
-    MICROSIEMENS: str
-    MILLISIEMENS: str
+    SIEMENS = 'S/cm'
+    MICROSIEMENS = 'µS/cm'
+    MILLISIEMENS = 'mS/cm'
 
 _DEPRECATED_CONDUCTIVITY: Final[Incomplete]
 LIGHT_LUX: Final[str]
@@ -597,22 +598,22 @@ PERCENTAGE: Final[str]
 REVOLUTIONS_PER_MINUTE: Final[str]
 
 class UnitOfIrradiance(StrEnum):
-    WATTS_PER_SQUARE_METER: str
-    BTUS_PER_HOUR_SQUARE_FOOT: str
+    WATTS_PER_SQUARE_METER = 'W/m²'
+    BTUS_PER_HOUR_SQUARE_FOOT = 'BTU/(h⋅ft²)'
 
 _DEPRECATED_IRRADIATION_WATTS_PER_SQUARE_METER: Final[Incomplete]
 _DEPRECATED_IRRADIATION_BTUS_PER_HOUR_SQUARE_FOOT: Final[Incomplete]
 
 class UnitOfVolumetricFlux(StrEnum):
-    INCHES_PER_DAY: str
-    INCHES_PER_HOUR: str
-    MILLIMETERS_PER_DAY: str
-    MILLIMETERS_PER_HOUR: str
+    INCHES_PER_DAY = 'in/d'
+    INCHES_PER_HOUR = 'in/h'
+    MILLIMETERS_PER_DAY = 'mm/d'
+    MILLIMETERS_PER_HOUR = 'mm/h'
 
 class UnitOfPrecipitationDepth(StrEnum):
-    INCHES: str
-    MILLIMETERS: str
-    CENTIMETERS: str
+    INCHES = 'in'
+    MILLIMETERS = 'mm'
+    CENTIMETERS = 'cm'
 
 _DEPRECATED_PRECIPITATION_INCHES: Final[Incomplete]
 _DEPRECATED_PRECIPITATION_MILLIMETERS: Final[Incomplete]
@@ -626,12 +627,12 @@ CONCENTRATION_PARTS_PER_MILLION: Final[str]
 CONCENTRATION_PARTS_PER_BILLION: Final[str]
 
 class UnitOfSpeed(StrEnum):
-    BEAUFORT: str
-    FEET_PER_SECOND: str
-    METERS_PER_SECOND: str
-    KILOMETERS_PER_HOUR: str
-    KNOTS: str
-    MILES_PER_HOUR: str
+    BEAUFORT = 'Beaufort'
+    FEET_PER_SECOND = 'ft/s'
+    METERS_PER_SECOND = 'm/s'
+    KILOMETERS_PER_HOUR = 'km/h'
+    KNOTS = 'kn'
+    MILES_PER_HOUR = 'mph'
 
 _DEPRECATED_SPEED_FEET_PER_SECOND: Final[Incomplete]
 _DEPRECATED_SPEED_METERS_PER_SECOND: Final[Incomplete]
@@ -645,27 +646,27 @@ SIGNAL_STRENGTH_DECIBELS: Final[str]
 SIGNAL_STRENGTH_DECIBELS_MILLIWATT: Final[str]
 
 class UnitOfInformation(StrEnum):
-    BITS: str
-    KILOBITS: str
-    MEGABITS: str
-    GIGABITS: str
-    BYTES: str
-    KILOBYTES: str
-    MEGABYTES: str
-    GIGABYTES: str
-    TERABYTES: str
-    PETABYTES: str
-    EXABYTES: str
-    ZETTABYTES: str
-    YOTTABYTES: str
-    KIBIBYTES: str
-    MEBIBYTES: str
-    GIBIBYTES: str
-    TEBIBYTES: str
-    PEBIBYTES: str
-    EXBIBYTES: str
-    ZEBIBYTES: str
-    YOBIBYTES: str
+    BITS = 'bit'
+    KILOBITS = 'kbit'
+    MEGABITS = 'Mbit'
+    GIGABITS = 'Gbit'
+    BYTES = 'B'
+    KILOBYTES = 'kB'
+    MEGABYTES = 'MB'
+    GIGABYTES = 'GB'
+    TERABYTES = 'TB'
+    PETABYTES = 'PB'
+    EXABYTES = 'EB'
+    ZETTABYTES = 'ZB'
+    YOTTABYTES = 'YB'
+    KIBIBYTES = 'KiB'
+    MEBIBYTES = 'MiB'
+    GIBIBYTES = 'GiB'
+    TEBIBYTES = 'TiB'
+    PEBIBYTES = 'PiB'
+    EXBIBYTES = 'EiB'
+    ZEBIBYTES = 'ZiB'
+    YOBIBYTES = 'YiB'
 
 _DEPRECATED_DATA_BITS: Final[Incomplete]
 _DEPRECATED_DATA_KILOBITS: Final[Incomplete]
@@ -690,17 +691,17 @@ _DEPRECATED_DATA_ZEBIBYTES: Final[Incomplete]
 _DEPRECATED_DATA_YOBIBYTES: Final[Incomplete]
 
 class UnitOfDataRate(StrEnum):
-    BITS_PER_SECOND: str
-    KILOBITS_PER_SECOND: str
-    MEGABITS_PER_SECOND: str
-    GIGABITS_PER_SECOND: str
-    BYTES_PER_SECOND: str
-    KILOBYTES_PER_SECOND: str
-    MEGABYTES_PER_SECOND: str
-    GIGABYTES_PER_SECOND: str
-    KIBIBYTES_PER_SECOND: str
-    MEBIBYTES_PER_SECOND: str
-    GIBIBYTES_PER_SECOND: str
+    BITS_PER_SECOND = 'bit/s'
+    KILOBITS_PER_SECOND = 'kbit/s'
+    MEGABITS_PER_SECOND = 'Mbit/s'
+    GIGABITS_PER_SECOND = 'Gbit/s'
+    BYTES_PER_SECOND = 'B/s'
+    KILOBYTES_PER_SECOND = 'kB/s'
+    MEGABYTES_PER_SECOND = 'MB/s'
+    GIGABYTES_PER_SECOND = 'GB/s'
+    KIBIBYTES_PER_SECOND = 'KiB/s'
+    MEBIBYTES_PER_SECOND = 'MiB/s'
+    GIBIBYTES_PER_SECOND = 'GiB/s'
 
 _DEPRECATED_DATA_RATE_BITS_PER_SECOND: Final[Incomplete]
 _DEPRECATED_DATA_RATE_KILOBITS_PER_SECOND: Final[Incomplete]
@@ -802,8 +803,8 @@ PRECISION_TENTHS: Final[float]
 CLOUD_NEVER_EXPOSED_ENTITIES: Final[list[str]]
 
 class EntityCategory(StrEnum):
-    CONFIG: str
-    DIAGNOSTIC: str
+    CONFIG = 'config'
+    DIAGNOSTIC = 'diagnostic'
 
 _DEPRECATED_ENTITY_CATEGORY_CONFIG: Final[Incomplete]
 _DEPRECATED_ENTITY_CATEGORY_DIAGNOSTIC: Final[Incomplete]

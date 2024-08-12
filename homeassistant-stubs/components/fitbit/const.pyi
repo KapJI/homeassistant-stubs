@@ -28,21 +28,21 @@ DEFAULT_CLOCK_FORMAT: Final[str]
 BATTERY_LEVELS: Final[dict[str, int]]
 
 class FitbitUnitSystem(StrEnum):
-    LEGACY_DEFAULT: str
-    METRIC: str
-    EN_US: str
-    EN_GB: str
+    LEGACY_DEFAULT = 'default'
+    METRIC = 'metric'
+    EN_US = 'en_US'
+    EN_GB = 'en_GB'
 
 CONF_SCOPE: Final[str]
 
 class FitbitScope(StrEnum):
-    ACTIVITY: str
-    HEART_RATE: str
-    NUTRITION: str
-    PROFILE: str
-    DEVICE: str
-    SLEEP: str
-    WEIGHT: str
+    ACTIVITY = 'activity'
+    HEART_RATE = 'heartrate'
+    NUTRITION = 'nutrition'
+    PROFILE = 'profile'
+    DEVICE = 'settings'
+    SLEEP = 'sleep'
+    WEIGHT = 'weight'
 
 OAUTH2_AUTHORIZE: str
 OAUTH2_TOKEN: str

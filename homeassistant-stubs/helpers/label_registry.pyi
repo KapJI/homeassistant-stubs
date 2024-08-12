@@ -8,14 +8,16 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
+from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Literal, TypedDict
+from typing import Any, Literal, TypedDict
 
 DATA_REGISTRY: HassKey[LabelRegistry]
 EVENT_LABEL_REGISTRY_UPDATED: EventType[EventLabelRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
+STORAGE_VERSION_MINOR: int
 
 class _LabelStoreData(TypedDict):
     color: str | None
@@ -23,6 +25,8 @@ class _LabelStoreData(TypedDict):
     icon: str | None
     label_id: str
     name: str
+    created_at: str
+    modified_at: str
 
 class LabelRegistryStoreData(TypedDict):
     labels: list[_LabelStoreData]
@@ -38,7 +42,10 @@ class LabelEntry(NormalizedNameBaseRegistryEntry):
     description: str | None = ...
     color: str | None = ...
     icon: str | None = ...
-    def __init__(self, *, name, normalized_name, label_id, description, color, icon) -> None: ...
+    def __init__(self, *, name, normalized_name, created_at=..., modified_at=..., label_id, description=..., color=..., icon=...) -> None: ...
+
+class LabelRegistryStore(Store[LabelRegistryStoreData]):
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> LabelRegistryStoreData: ...
 
 class LabelRegistry(BaseRegistry[LabelRegistryStoreData]):
     labels: NormalizedNameBaseRegistryItems[LabelEntry]

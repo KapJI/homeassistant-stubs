@@ -2,7 +2,7 @@ from .const import CONF_MAX_ENTRIES as CONF_MAX_ENTRIES, DEFAULT_MAX_ENTRIES as 
 from .coordinator import FeedReaderCoordinator as FeedReaderCoordinator, StoredData as StoredData
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_URL as CONF_URL
+from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_URL as CONF_URL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType

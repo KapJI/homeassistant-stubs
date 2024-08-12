@@ -1,4 +1,4 @@
-from .data import UFPConfigEntry as UFPConfigEntry
+from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
-from uiprotect.data import Camera, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from uiprotect.data import Camera, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
 _SPEAKER_DESCRIPTION: Incomplete
@@ -23,7 +23,7 @@ class ProtectMediaPlayer(ProtectDeviceEntity, MediaPlayerEntity):
     _attr_volume_level: Incomplete
     _attr_state: Incomplete
     _attr_available: Incomplete
-    def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
+    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     async def async_set_volume_level(self, volume: float) -> None: ...
     async def async_media_stop(self) -> None: ...
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...

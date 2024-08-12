@@ -1,6 +1,5 @@
 from .coordinator import StreamlabsCoordinator as StreamlabsCoordinator, StreamlabsData as StreamlabsData
 from _typeshed import Incomplete
-from homeassistant.core import DOMAIN as DOMAIN
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 

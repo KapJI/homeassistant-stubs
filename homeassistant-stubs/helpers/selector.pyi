@@ -120,8 +120,8 @@ class ColorTempSelectorConfig(TypedDict, total=False):
     min_mireds: int
 
 class ColorTempSelectorUnit(StrEnum):
-    KELVIN: str
-    MIRED: str
+    KELVIN = 'kelvin'
+    MIRED = 'mired'
 
 class ColorTempSelector(Selector[ColorTempSelectorConfig]):
     selector_type: str
@@ -158,10 +158,10 @@ class ConstantSelector(Selector[ConstantSelectorConfig]):
     def __call__(self, data: Any) -> Any: ...
 
 class QrErrorCorrectionLevel(StrEnum):
-    LOW: str
-    MEDIUM: str
-    QUARTILE: str
-    HIGH: str
+    LOW = 'low'
+    MEDIUM = 'medium'
+    QUARTILE = 'quartile'
+    HIGH = 'high'
 
 class QrCodeSelectorConfig(TypedDict, total=False):
     data: str
@@ -222,6 +222,7 @@ class DeviceSelector(Selector[DeviceSelectorConfig]):
 
 class DurationSelectorConfig(TypedDict, total=False):
     enable_day: bool
+    enable_millisecond: bool
     allow_negative: bool
 
 class DurationSelector(Selector[DurationSelectorConfig]):
@@ -310,8 +311,8 @@ class NumberSelectorConfig(TypedDict, total=False):
     mode: NumberSelectorMode
 
 class NumberSelectorMode(StrEnum):
-    BOX: str
-    SLIDER: str
+    BOX = 'box'
+    SLIDER = 'slider'
 
 def validate_slider(data: Any) -> Any: ...
 
@@ -336,8 +337,8 @@ class SelectOptionDict(TypedDict):
     label: str
 
 class SelectSelectorMode(StrEnum):
-    LIST: str
-    DROPDOWN: str
+    LIST = 'list'
+    DROPDOWN = 'dropdown'
 
 class SelectSelectorConfig(TypedDict, total=False):
     options: Required[Sequence[SelectOptionDict] | Sequence[str]]
@@ -390,19 +391,19 @@ class TextSelectorConfig(TypedDict, total=False):
     multiple: bool
 
 class TextSelectorType(StrEnum):
-    COLOR: str
-    DATE: str
-    DATETIME_LOCAL: str
-    EMAIL: str
-    MONTH: str
-    NUMBER: str
-    PASSWORD: str
-    SEARCH: str
-    TEL: str
-    TEXT: str
-    TIME: str
-    URL: str
-    WEEK: str
+    COLOR = 'color'
+    DATE = 'date'
+    DATETIME_LOCAL = 'datetime-local'
+    EMAIL = 'email'
+    MONTH = 'month'
+    NUMBER = 'number'
+    PASSWORD = 'password'
+    SEARCH = 'search'
+    TEL = 'tel'
+    TEXT = 'text'
+    TIME = 'time'
+    URL = 'url'
+    WEEK = 'week'
 
 class TextSelector(Selector[TextSelectorConfig]):
     selector_type: str

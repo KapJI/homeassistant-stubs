@@ -8,15 +8,15 @@ GPSType = tuple[float, float]
 ConfigType = dict[str, Any]
 DiscoveryInfoType = dict[str, Any]
 ServiceDataType = dict[str, Any]
-StateType: Incomplete
-TemplateVarsType: Incomplete
+StateType = str | int | float | None
+TemplateVarsType = Mapping[str, Any] | None
 NoEventData = Mapping[str, Never]
 VolSchemaType: Incomplete
 VolDictType: Incomplete
 QueryType = Any
 
 class UndefinedType(Enum):
-    _singleton: int
+    _singleton = 0
 
 UNDEFINED: Incomplete
 

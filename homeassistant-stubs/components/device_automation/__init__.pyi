@@ -16,9 +16,10 @@ from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound
 from homeassistant.requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
+from types import ModuleType
 from typing import Any, Literal, overload
 
-DeviceAutomationPlatformType: Incomplete
+DeviceAutomationPlatformType = ModuleType | DeviceAutomationTriggerProtocol | DeviceAutomationConditionProtocol | DeviceAutomationActionProtocol
 DOMAIN: str
 CONFIG_SCHEMA: Incomplete
 DEVICE_TRIGGER_BASE_SCHEMA: vol.Schema
@@ -31,9 +32,9 @@ class DeviceAutomationDetails:
     def __init__(self, section, get_automations_func, get_capabilities_func) -> None: ...
 
 class DeviceAutomationType(Enum):
-    TRIGGER: Incomplete
-    CONDITION: Incomplete
-    ACTION: Incomplete
+    TRIGGER = ...
+    CONDITION = ...
+    ACTION = ...
 
 TYPES: Incomplete
 

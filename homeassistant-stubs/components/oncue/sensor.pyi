@@ -1,9 +1,8 @@
-from .const import DOMAIN as DOMAIN
 from .entity import OncueEntity as OncueEntity
+from .types import OncueConfigEntry as OncueConfigEntry
 from _typeshed import Incomplete
 from aiooncue import OncueDevice as OncueDevice, OncueSensor as OncueSensor
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -13,7 +12,7 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 SENSOR_MAP: Incomplete
 UNIT_MAPPINGS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OncueConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OncueSensorEntity(OncueEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete

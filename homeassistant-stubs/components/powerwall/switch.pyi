@@ -1,9 +1,7 @@
-from .const import DOMAIN as DOMAIN
 from .entity import PowerWallEntity as PowerWallEntity
-from .models import PowerwallRuntimeData as PowerwallRuntimeData
+from .models import PowerwallConfigEntry as PowerwallConfigEntry, PowerwallRuntimeData as PowerwallRuntimeData
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -13,7 +11,7 @@ from typing import Any
 
 OFF_GRID_STATUSES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PowerwallConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PowerwallOffGridEnabledEntity(PowerWallEntity, SwitchEntity):
     _attr_translation_key: str

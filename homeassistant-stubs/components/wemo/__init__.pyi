@@ -18,7 +18,7 @@ MAX_CONCURRENCY: int
 WEMO_MODEL_DISPATCH: Incomplete
 _LOGGER: Incomplete
 DispatchCallback = Callable[[DeviceCoordinator], Coroutine[Any, Any, None]]
-HostPortTuple: Incomplete
+HostPortTuple = tuple[str, int | None]
 
 def coerce_host_port(value: str) -> HostPortTuple: ...
 

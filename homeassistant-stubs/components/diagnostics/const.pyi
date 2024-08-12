@@ -4,7 +4,7 @@ DOMAIN: str
 REDACTED: str
 
 class DiagnosticsType(StrEnum):
-    CONFIG_ENTRY: str
+    CONFIG_ENTRY = 'config_entry'
 
 class DiagnosticsSubType(StrEnum):
-    DEVICE: str
+    DEVICE = 'device'

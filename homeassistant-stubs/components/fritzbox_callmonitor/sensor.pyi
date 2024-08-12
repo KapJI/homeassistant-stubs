@@ -15,10 +15,10 @@ _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 
 class CallState(StrEnum):
-    RINGING: str
-    DIALING: str
-    TALKING: str
-    IDLE: str
+    RINGING = 'ringing'
+    DIALING = 'dialing'
+    TALKING = 'talking'
+    IDLE = 'idle'
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: FritzBoxCallMonitorConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

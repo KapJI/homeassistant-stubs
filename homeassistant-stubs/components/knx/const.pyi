@@ -81,11 +81,12 @@ class KNXConfigEntryData(TypedDict, total=False):
     telegram_log_size: int
 
 class ColorTempModes(Enum):
-    ABSOLUTE: str
-    ABSOLUTE_FLOAT: str
-    RELATIVE: str
+    ABSOLUTE = '7.600'
+    ABSOLUTE_FLOAT = '9'
+    RELATIVE = '5.001'
 
-SUPPORTED_PLATFORMS: Final[Incomplete]
+SUPPORTED_PLATFORMS_YAML: Final[Incomplete]
+SUPPORTED_PLATFORMS_UI: Final[Incomplete]
 CONTROLLER_MODES: Final[Incomplete]
 CURRENT_HVAC_ACTIONS: Final[Incomplete]
 PRESET_MODES: Final[Incomplete]

@@ -40,16 +40,16 @@ TTS_PRE_92: str
 TTS_92: str
 
 class ConfigErrorTranslationKey(StrEnum):
-    CONFIG_VALIDATION_ERR: str
-    PLATFORM_CONFIG_VALIDATION_ERR: str
-    COMPONENT_IMPORT_ERR: str
-    CONFIG_PLATFORM_IMPORT_ERR: str
-    CONFIG_VALIDATOR_UNKNOWN_ERR: str
-    CONFIG_SCHEMA_UNKNOWN_ERR: str
-    PLATFORM_COMPONENT_LOAD_ERR: str
-    PLATFORM_COMPONENT_LOAD_EXC: str
-    PLATFORM_SCHEMA_VALIDATOR_ERR: str
-    MULTIPLE_INTEGRATION_CONFIG_ERRORS: str
+    CONFIG_VALIDATION_ERR = 'config_validation_err'
+    PLATFORM_CONFIG_VALIDATION_ERR = 'platform_config_validation_err'
+    COMPONENT_IMPORT_ERR = 'component_import_err'
+    CONFIG_PLATFORM_IMPORT_ERR = 'config_platform_import_err'
+    CONFIG_VALIDATOR_UNKNOWN_ERR = 'config_validator_unknown_err'
+    CONFIG_SCHEMA_UNKNOWN_ERR = 'config_schema_unknown_err'
+    PLATFORM_COMPONENT_LOAD_ERR = 'platform_component_load_err'
+    PLATFORM_COMPONENT_LOAD_EXC = 'platform_component_load_exc'
+    PLATFORM_SCHEMA_VALIDATOR_ERR = 'platform_schema_validator_err'
+    MULTIPLE_INTEGRATION_CONFIG_ERRORS = 'multiple_integration_config_errors'
 
 _CONFIG_LOG_SHOW_STACK_TRACE: dict[ConfigErrorTranslationKey, bool]
 

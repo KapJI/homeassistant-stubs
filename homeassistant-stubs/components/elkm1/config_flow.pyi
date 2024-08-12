@@ -7,7 +7,7 @@ from homeassistant.components import dhcp as dhcp
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PREFIX as CONF_PREFIX, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType, VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
 from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any
@@ -19,7 +19,7 @@ STANDARD_PORTS: Incomplete
 _LOGGER: Incomplete
 PROTOCOL_MAP: Incomplete
 VALIDATE_TIMEOUT: int
-BASE_SCHEMA: Incomplete
+BASE_SCHEMA: VolDictType
 SECURE_PROTOCOLS: Incomplete
 ALL_PROTOCOLS: Incomplete
 DEFAULT_SECURE_PROTOCOL: str

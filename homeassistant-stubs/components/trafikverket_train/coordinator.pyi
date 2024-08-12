@@ -9,13 +9,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pytrafikverket.trafikverket_train import StationInfo as StationInfo, TrainStop as TrainStop
+from pytrafikverket.models import StationInfoModel as StationInfoModel, TrainStopModel as TrainStopModel
 
 @dataclass
 class TrainData:
     departure_time: datetime | None
     departure_state: str
-    cancelled: bool
+    cancelled: bool | None
     delayed_time: int | None
     planned_time: datetime | None
     estimated_time: datetime | None
@@ -41,5 +41,5 @@ class TVDataUpdateCoordinator(DataUpdateCoordinator[TrainData]):
     _time: Incomplete
     _weekdays: Incomplete
     _filter_product: Incomplete
-    def __init__(self, hass: HomeAssistant, to_station: StationInfo, from_station: StationInfo) -> None: ...
+    def __init__(self, hass: HomeAssistant, to_station: StationInfoModel, from_station: StationInfoModel) -> None: ...
     async def _async_update_data(self) -> TrainData: ...

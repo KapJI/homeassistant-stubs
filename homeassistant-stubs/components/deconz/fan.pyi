@@ -18,6 +18,7 @@ class DeconzFan(DeconzDevice[Light], FanEntity):
     TYPE = DOMAIN
     _default_on_speed: Incomplete
     _attr_supported_features: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     def __init__(self, device: Light, hub: DeconzHub) -> None: ...
     @property
     def is_on(self) -> bool: ...

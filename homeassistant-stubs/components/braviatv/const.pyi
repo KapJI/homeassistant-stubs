@@ -12,6 +12,6 @@ LEGACY_CLIENT_ID: Final[str]
 NICKNAME_PREFIX: Final[str]
 
 class SourceType(StrEnum):
-    APP: str
-    CHANNEL: str
-    INPUT: str
+    APP = 'app'
+    CHANNEL = 'channel'
+    INPUT = 'input'

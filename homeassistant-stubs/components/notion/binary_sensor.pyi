@@ -14,7 +14,7 @@ from typing import Literal
 @dataclass(frozen=True, kw_only=True)
 class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionEntityDescription):
     on_state: Literal['alarm', 'leak', 'low', 'not_missing', 'open']
-    def __init__(self, *, listener_kind, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, on_state) -> None: ...
+    def __init__(self, *, listener_kind, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., on_state) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

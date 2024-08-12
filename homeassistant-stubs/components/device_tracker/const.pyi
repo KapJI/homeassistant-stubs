@@ -11,10 +11,10 @@ PLATFORM_TYPE_LEGACY: Final[str]
 PLATFORM_TYPE_ENTITY: Final[str]
 
 class SourceType(StrEnum):
-    GPS: str
-    ROUTER: str
-    BLUETOOTH: str
-    BLUETOOTH_LE: str
+    GPS = 'gps'
+    ROUTER = 'router'
+    BLUETOOTH = 'bluetooth'
+    BLUETOOTH_LE = 'bluetooth_le'
 
 _DEPRECATED_SOURCE_TYPE_GPS: Final[Incomplete]
 _DEPRECATED_SOURCE_TYPE_ROUTER: Final[Incomplete]

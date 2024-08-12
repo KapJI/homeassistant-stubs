@@ -1,8 +1,8 @@
 from .coordinator import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
+from collections.abc import Generator
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing_extensions import Generator
 
 _LOGGER: Incomplete
 

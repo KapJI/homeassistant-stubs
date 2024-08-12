@@ -33,21 +33,21 @@ CHARGER_STATUS_DESCRIPTION_KEY: str
 CHARGER_CONNECTIONS: str
 
 class ChargerStatus(StrEnum):
-    CHARGING: str
-    DISCHARGING: str
-    PAUSED: str
-    SCHEDULED: str
-    WAITING_FOR_CAR: str
-    WAITING: str
-    DISCONNECTED: str
-    ERROR: str
-    READY: str
-    LOCKED: str
-    LOCKED_CAR_CONNECTED: str
-    UPDATING: str
-    WAITING_IN_QUEUE_POWER_SHARING: str
-    WAITING_IN_QUEUE_POWER_BOOST: str
-    WAITING_MID_FAILED: str
-    WAITING_MID_SAFETY: str
-    WAITING_IN_QUEUE_ECO_SMART: str
-    UNKNOWN: str
+    CHARGING = 'Charging'
+    DISCHARGING = 'Discharging'
+    PAUSED = 'Paused'
+    SCHEDULED = 'Scheduled'
+    WAITING_FOR_CAR = 'Waiting for car demand'
+    WAITING = 'Waiting'
+    DISCONNECTED = 'Disconnected'
+    ERROR = 'Error'
+    READY = 'Ready'
+    LOCKED = 'Locked'
+    LOCKED_CAR_CONNECTED = 'Locked, car connected'
+    UPDATING = 'Updating'
+    WAITING_IN_QUEUE_POWER_SHARING = 'Waiting in queue by Power Sharing'
+    WAITING_IN_QUEUE_POWER_BOOST = 'Waiting in queue by Power Boost'
+    WAITING_MID_FAILED = 'Waiting MID failed'
+    WAITING_MID_SAFETY = 'Waiting MID safety margin exceeded'
+    WAITING_IN_QUEUE_ECO_SMART = 'Waiting in queue by Eco-Smart'
+    UNKNOWN = 'Unknown'

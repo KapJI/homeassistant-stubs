@@ -5,9 +5,9 @@ from homeassistant.util.unit_conversion import DistanceConverter as DistanceConv
 from typing import Final
 
 class WeatherEntityFeature(IntFlag):
-    FORECAST_DAILY: int
-    FORECAST_HOURLY: int
-    FORECAST_TWICE_DAILY: int
+    FORECAST_DAILY = 1
+    FORECAST_HOURLY = 2
+    FORECAST_TWICE_DAILY = 4
 
 ATTR_WEATHER_HUMIDITY: str
 ATTR_WEATHER_OZONE: str

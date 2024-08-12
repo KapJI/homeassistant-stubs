@@ -1,20 +1,19 @@
 from .const import AUTH_RETRIES as AUTH_RETRIES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_MAX_MEDIA as CONF_MAX_MEDIA, DEFAULT_MAX_MEDIA as DEFAULT_MAX_MEDIA, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DISPATCH_ADD as DISPATCH_ADD, DISPATCH_ADOPT as DISPATCH_ADOPT, DISPATCH_CHANNELS as DISPATCH_CHANNELS, DOMAIN as DOMAIN
 from .utils import async_get_devices_by_type as async_get_devices_by_type
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Iterable
+from collections.abc import Callable as Callable, Generator, Iterable
 from datetime import datetime, timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from typing import Any
-from typing_extensions import Generator
 from uiprotect import ProtectApiClient as ProtectApiClient
 from uiprotect.data import Camera, ModelType, NVR, ProtectAdoptableDeviceModel, WSSubscriptionMessage as WSSubscriptionMessage
 from uiprotect.websocket import WebsocketState
 
 _LOGGER: Incomplete
-ProtectDeviceType: Incomplete
+ProtectDeviceType = ProtectAdoptableDeviceModel | NVR
 UFPConfigEntry = ConfigEntry[ProtectData]
 
 def async_last_update_was_successful(hass: HomeAssistant, entry: UFPConfigEntry) -> bool: ...

@@ -8,14 +8,16 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
+from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Literal, TypedDict
+from typing import Any, Literal, TypedDict
 
 DATA_REGISTRY: HassKey[FloorRegistry]
 EVENT_FLOOR_REGISTRY_UPDATED: EventType[EventFloorRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
+STORAGE_VERSION_MINOR: int
 
 class _FloorStoreData(TypedDict):
     aliases: list[str]
@@ -23,6 +25,8 @@ class _FloorStoreData(TypedDict):
     icon: str | None
     level: int | None
     name: str
+    created_at: str
+    modified_at: str
 
 class FloorRegistryStoreData(TypedDict):
     floors: list[_FloorStoreData]
@@ -38,7 +42,10 @@ class FloorEntry(NormalizedNameBaseRegistryEntry):
     floor_id: str
     icon: str | None = ...
     level: int | None = ...
-    def __init__(self, *, name, normalized_name, aliases, floor_id, icon, level) -> None: ...
+    def __init__(self, *, name, normalized_name, created_at=..., modified_at=..., aliases, floor_id, icon=..., level=...) -> None: ...
+
+class FloorRegistryStore(Store[FloorRegistryStoreData]):
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> FloorRegistryStoreData: ...
 
 class FloorRegistry(BaseRegistry[FloorRegistryStoreData]):
     floors: NormalizedNameBaseRegistryItems[FloorEntry]

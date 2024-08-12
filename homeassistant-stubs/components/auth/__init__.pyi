@@ -19,7 +19,7 @@ from typing import Any
 
 DOMAIN: str
 StoreResultType = Callable[[str, Credentials], str]
-RetrieveResultType: Incomplete
+RetrieveResultType = Callable[[str, str], Credentials | None]
 CONFIG_SCHEMA: Incomplete
 DELETE_CURRENT_TOKEN_DELAY: int
 

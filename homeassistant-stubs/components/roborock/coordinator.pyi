@@ -1,11 +1,13 @@
 from .const import DOMAIN as DOMAIN
 from .models import RoborockA01HassDeviceInfo as RoborockA01HassDeviceInfo, RoborockHassDeviceInfo as RoborockHassDeviceInfo, RoborockMapInfo as RoborockMapInfo
 from _typeshed import Incomplete
+from functools import cached_property as cached_property
 from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util import slugify as slugify
 from roborock import HomeDataRoom as HomeDataRoom
 from roborock.containers import HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, NetworkInfo as NetworkInfo
 from roborock.roborock_message import RoborockDyadDataProtocol, RoborockZeoProtocol
@@ -32,8 +34,10 @@ class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceProp]):
     def _set_current_map(self) -> None: ...
     async def get_maps(self) -> None: ...
     async def get_rooms(self) -> None: ...
-    @property
+    @cached_property
     def duid(self) -> str: ...
+    @cached_property
+    def duid_slug(self) -> str: ...
 
 class RoborockDataUpdateCoordinatorA01(DataUpdateCoordinator[dict[RoborockDyadDataProtocol | RoborockZeoProtocol, StateType]]):
     api: Incomplete
@@ -43,5 +47,7 @@ class RoborockDataUpdateCoordinatorA01(DataUpdateCoordinator[dict[RoborockDyadDa
     def __init__(self, hass: HomeAssistant, device: HomeDataDevice, product_info: HomeDataProduct, api: RoborockClientA01) -> None: ...
     async def _async_update_data(self) -> dict[RoborockDyadDataProtocol | RoborockZeoProtocol, StateType]: ...
     async def release(self) -> None: ...
-    @property
+    @cached_property
     def duid(self) -> str: ...
+    @cached_property
+    def duid_slug(self) -> str: ...

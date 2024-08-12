@@ -1,16 +1,15 @@
-from .const import DOMAIN as DOMAIN
+from . import HomeWizardConfigEntry as HomeWizardConfigEntry
 from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator
 from .entity import HomeWizardEntity as HomeWizardEntity
 from .helpers import homewizard_exception_handler as homewizard_exception_handler
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HomeWizardConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HWEnergyNumberEntity(HomeWizardEntity, NumberEntity):
     _attr_entity_category: Incomplete

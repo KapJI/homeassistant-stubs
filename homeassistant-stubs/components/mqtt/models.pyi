@@ -22,12 +22,12 @@ from paho.mqtt.client import MQTTMessage as MQTTMessage
 from typing import TypedDict
 
 class PayloadSentinel(StrEnum):
-    NONE: str
-    DEFAULT: str
+    NONE = 'none'
+    DEFAULT = 'default'
 
 _LOGGER: Incomplete
 ATTR_THIS: str
-PublishPayloadType: Incomplete
+PublishPayloadType = str | bytes | int | float | None
 
 @dataclass
 class PublishMessage:
@@ -127,7 +127,7 @@ class MqttData:
     state_write_requests: EntityTopicState = ...
     subscriptions_to_restore: set[Subscription] = ...
     tags: dict[str, dict[str, MQTTTagScanner]] = ...
-    def __init__(self, client, config, debug_info_entities, debug_info_triggers, device_triggers, data_config_flow_lock, discovery_already_discovered, discovery_pending_discovered, discovery_registry_hooks, discovery_unsubscribe, integration_unsubscribe, last_discovery, platforms_loaded, reload_dispatchers, reload_handlers, reload_schema, state_write_requests, subscriptions_to_restore, tags) -> None: ...
+    def __init__(self, client, config, debug_info_entities=..., debug_info_triggers=..., device_triggers=..., data_config_flow_lock=..., discovery_already_discovered=..., discovery_pending_discovered=..., discovery_registry_hooks=..., discovery_unsubscribe=..., integration_unsubscribe=..., last_discovery=..., platforms_loaded=..., reload_dispatchers=..., reload_handlers=..., reload_schema=..., state_write_requests=..., subscriptions_to_restore=..., tags=...) -> None: ...
 
 DATA_MQTT: HassKey[MqttData]
 DATA_MQTT_AVAILABLE: HassKey[asyncio.Future[bool]]

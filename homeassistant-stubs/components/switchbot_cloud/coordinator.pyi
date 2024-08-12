@@ -3,9 +3,10 @@ from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from switchbot_api import Device as Device, Remote, SwitchBotAPI as SwitchBotAPI
+from typing import Any
 
 _LOGGER: Incomplete
-Status: Incomplete
+Status = dict[str, Any] | None
 
 class SwitchBotCoordinator(DataUpdateCoordinator[Status]):
     _api: SwitchBotAPI

@@ -11,7 +11,7 @@ from typing import Any
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoButtonEntityDescription(LaMarzoccoEntityDescription, ButtonEntityDescription):
     press_fn: Callable[[LaMarzoccoMachine], Coroutine[Any, Any, None]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, available_fn, supported_fn, press_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_fn=..., supported_fn=..., press_fn) -> None: ...
 
 ENTITIES: tuple[LaMarzoccoButtonEntityDescription, ...]
 

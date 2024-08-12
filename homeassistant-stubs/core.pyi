@@ -44,14 +44,14 @@ CORE_STORAGE_VERSION: int
 CORE_STORAGE_MINOR_VERSION: int
 DOMAIN: str
 BLOCK_LOG_TIMEOUT: int
-ServiceResponse: Incomplete
+ServiceResponse = JsonObjectType | None
 EntityServiceResponse = dict[str, ServiceResponse]
 
 class ConfigSource(enum.StrEnum):
-    DEFAULT: str
-    DISCOVERED: str
-    STORAGE: str
-    YAML: str
+    DEFAULT = 'default'
+    DISCOVERED = 'discovered'
+    STORAGE = 'storage'
+    YAML = 'yaml'
 
 class EventStateEventData(TypedDict):
     entity_id: str
@@ -93,17 +93,17 @@ def async_get_hass() -> HomeAssistant: ...
 def async_get_hass_or_none() -> HomeAssistant | None: ...
 
 class ReleaseChannel(enum.StrEnum):
-    BETA: str
-    DEV: str
-    NIGHTLY: str
-    STABLE: str
+    BETA = 'beta'
+    DEV = 'dev'
+    NIGHTLY = 'nightly'
+    STABLE = 'stable'
 
 def get_release_channel() -> ReleaseChannel: ...
 
 class HassJobType(enum.Enum):
-    Coroutinefunction: int
-    Callback: int
-    Executor: int
+    Coroutinefunction = 1
+    Callback = 2
+    Executor = 3
 
 class HassJob:
     target: Incomplete
@@ -125,12 +125,12 @@ class HassJobWithArgs:
 def get_hassjob_callable_job_type(target: Callable[..., Any]) -> HassJobType: ...
 
 class CoreState(enum.Enum):
-    not_running: str
-    starting: str
-    running: str
-    stopping: str
-    final_write: str
-    stopped: str
+    not_running = 'NOT_RUNNING'
+    starting = 'STARTING'
+    running = 'RUNNING'
+    stopping = 'STOPPING'
+    final_write = 'FINAL_WRITE'
+    stopped = 'STOPPED'
     def __str__(self) -> str: ...
 
 class HomeAssistant:
@@ -230,9 +230,11 @@ class Context:
     def json_fragment(self) -> json_fragment: ...
 
 class EventOrigin(enum.Enum):
-    local: str
-    remote: str
+    local = 'LOCAL'
+    remote = 'REMOTE'
     def __str__(self) -> str: ...
+    @cached_property
+    def idx(self) -> int: ...
 
 class Event(Generic[_DataT]):
     event_type: Incomplete
@@ -263,7 +265,7 @@ class _OneTimeListener(Generic[_DataT]):
     remove: CALLBACK_TYPE | None = ...
     def __call__(self, event: Event[_DataT]) -> None: ...
     def __repr__(self) -> str: ...
-    def __init__(self, hass, listener_job, remove) -> None: ...
+    def __init__(self, hass, listener_job, remove=...) -> None: ...
 
 EMPTY_LIST: list[Any]
 
@@ -338,8 +340,8 @@ class States(UserDict[str, State]):
     def values(self) -> ValuesView[State]: ...
     def __setitem__(self, key: str, entry: State) -> None: ...
     def __delitem__(self, key: str) -> None: ...
-    def domain_entity_ids(self, key: str) -> KeysView[str] | tuple: ...
-    def domain_states(self, key: str) -> ValuesView[State] | tuple: ...
+    def domain_entity_ids(self, key: str) -> KeysView[str] | tuple[()]: ...
+    def domain_states(self, key: str) -> ValuesView[State] | tuple[()]: ...
 
 class StateMachine:
     __slots__: Incomplete
@@ -362,11 +364,12 @@ class StateMachine:
     def async_reserve(self, entity_id: str) -> None: ...
     def async_available(self, entity_id: str) -> bool: ...
     def async_set(self, entity_id: str, new_state: str, attributes: Mapping[str, Any] | None = None, force_update: bool = False, context: Context | None = None, state_info: StateInfo | None = None, timestamp: float | None = None) -> None: ...
+    def async_set_internal(self, entity_id: str, new_state: str, attributes: Mapping[str, Any] | None, force_update: bool, context: Context | None, state_info: StateInfo | None, timestamp: float) -> None: ...
 
 class SupportsResponse(enum.StrEnum):
-    NONE: str
-    OPTIONAL: str
-    ONLY: str
+    NONE = 'none'
+    OPTIONAL = 'optional'
+    ONLY = 'only'
 
 class Service:
     __slots__: Incomplete

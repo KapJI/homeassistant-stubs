@@ -1,6 +1,5 @@
-from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODEL as MODEL
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODELS as MODELS
 from .coordinator import LaundrifyUpdateCoordinator as LaundrifyUpdateCoordinator
-from .model import LaundrifyDevice as LaundrifyDevice
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from laundrify_aio import LaundrifyDevice as LaundrifyDevice
 
 _LOGGER: Incomplete
 

@@ -15,8 +15,8 @@ CAMERA_STREAM_SOURCE_TIMEOUT: Final[int]
 CAMERA_IMAGE_TIMEOUT: Final[int]
 
 class StreamType(StrEnum):
-    HLS: str
-    WEB_RTC: str
+    HLS = 'hls'
+    WEB_RTC = 'web_rtc'
 
 _DEPRECATED_STREAM_TYPE_HLS: Incomplete
 _DEPRECATED_STREAM_TYPE_WEB_RTC: Incomplete

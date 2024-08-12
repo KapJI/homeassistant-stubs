@@ -7,6 +7,7 @@ from deebot_client.device import Device as Device
 from deebot_client.events.base import Event
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
+from sucks import EventListener as EventListener, VacBot as VacBot
 from typing import Any, Generic, TypeVar
 
 CapabilityEntity = TypeVar('CapabilityEntity')
@@ -35,4 +36,17 @@ class EcovacsDescriptionEntity(EcovacsEntity[CapabilityEntity]):
 @dataclass(kw_only=True, frozen=True)
 class EcovacsCapabilityEntityDescription(EntityDescription, Generic[CapabilityEntity]):
     capability_fn: Callable[[Capabilities], CapabilityEntity | None]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, capability_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., capability_fn) -> None: ...
+
+class EcovacsLegacyEntity(Entity):
+    _attr_has_entity_name: bool
+    _attr_should_poll: bool
+    device: Incomplete
+    error: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    _event_listeners: Incomplete
+    def __init__(self, device: VacBot) -> None: ...
+    @property
+    def available(self) -> bool: ...
+    async def async_will_remove_from_hass(self) -> None: ...

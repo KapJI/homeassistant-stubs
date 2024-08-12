@@ -35,13 +35,13 @@ class LoggerDomainConfig:
     def __init__(self, overrides, settings) -> None: ...
 
 class LogPersistance(StrEnum):
-    NONE: str
-    ONCE: str
-    PERMANENT: str
+    NONE = 'none'
+    ONCE = 'once'
+    PERMANENT = 'permanent'
 
 class LogSettingsType(StrEnum):
-    INTEGRATION: str
-    MODULE: str
+    INTEGRATION = 'integration'
+    MODULE = 'module'
 
 class LoggerSettings:
     _stored_config: dict[str, dict[str, LoggerSetting]]

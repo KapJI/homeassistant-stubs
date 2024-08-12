@@ -16,7 +16,7 @@ from typing import Any
 class AirGradientSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[Config], bool]
     set_value_fn: Callable[[AirGradientClient, bool], Awaitable[None]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, set_value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, set_value_fn) -> None: ...
 
 POST_DATA_TO_AIRGRADIENT: Incomplete
 

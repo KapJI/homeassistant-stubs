@@ -5,9 +5,9 @@ from . import area_registry as area_registry, device_registry as device_registry
 from .typing import VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from abc import abstractmethod
-from collections.abc import Collection, Iterable
+from collections.abc import Callable, Collection, Iterable
 from dataclasses import dataclass
-from enum import Enum
+from enum import Enum, StrEnum
 from functools import cached_property as cached_property
 from homeassistant.components.homeassistant.exposed_entities import async_should_expose as async_should_expose
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
@@ -19,7 +19,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 _SlotsType = dict[str, Any]
-_IntentSlotsType: Incomplete
+_IntentSlotsType = dict[str | tuple[str, str], VolSchemaType | Callable[[Any], Any]]
 INTENT_TURN_OFF: str
 INTENT_TURN_ON: str
 INTENT_TOGGLE: str
@@ -33,6 +33,8 @@ INTENT_DECREASE_TIMER: str
 INTENT_PAUSE_TIMER: str
 INTENT_UNPAUSE_TIMER: str
 INTENT_TIMER_STATUS: str
+INTENT_GET_CURRENT_DATE: str
+INTENT_GET_CURRENT_TIME: str
 SLOT_SCHEMA: Incomplete
 DATA_KEY: HassKey[dict[str, IntentHandler]]
 SPEECH_TYPE_PLAIN: str
@@ -54,17 +56,17 @@ class IntentHandleError(IntentError):
 class IntentUnexpectedError(IntentError): ...
 
 class MatchFailedReason(Enum):
-    NAME: Incomplete
-    AREA: Incomplete
-    FLOOR: Incomplete
-    DOMAIN: Incomplete
-    DEVICE_CLASS: Incomplete
-    FEATURE: Incomplete
-    STATE: Incomplete
-    ASSISTANT: Incomplete
-    INVALID_AREA: Incomplete
-    INVALID_FLOOR: Incomplete
-    DUPLICATE_NAME: Incomplete
+    NAME = ...
+    AREA = ...
+    FLOOR = ...
+    DOMAIN = ...
+    DEVICE_CLASS = ...
+    FEATURE = ...
+    STATE = ...
+    ASSISTANT = ...
+    INVALID_AREA = ...
+    INVALID_FLOOR = ...
+    DUPLICATE_NAME = ...
     def is_no_entities_reason(self) -> bool: ...
 
 @dataclass
@@ -80,13 +82,13 @@ class MatchTargetsConstraints:
     allow_duplicate_names: bool = ...
     @property
     def has_constraints(self) -> bool: ...
-    def __init__(self, name, area_name, floor_name, domains, device_classes, features, states, assistant, allow_duplicate_names) -> None: ...
+    def __init__(self, name=..., area_name=..., floor_name=..., domains=..., device_classes=..., features=..., states=..., assistant=..., allow_duplicate_names=...) -> None: ...
 
 @dataclass
 class MatchTargetsPreferences:
     area_id: str | None = ...
     floor_id: str | None = ...
-    def __init__(self, area_id, floor_id) -> None: ...
+    def __init__(self, area_id=..., floor_id=...) -> None: ...
 
 @dataclass
 class MatchTargetsResult:
@@ -96,7 +98,7 @@ class MatchTargetsResult:
     no_match_name: str | None = ...
     areas: list[area_registry.AreaEntry] = ...
     floors: list[floor_registry.FloorEntry] = ...
-    def __init__(self, is_match, no_match_reason, states, no_match_name, areas, floors) -> None: ...
+    def __init__(self, is_match, no_match_reason=..., states=..., no_match_name=..., areas=..., floors=...) -> None: ...
 
 class MatchFailedError(IntentError):
     result: Incomplete
@@ -116,7 +118,7 @@ class MatchTargetsCandidate:
     floor: floor_registry.FloorEntry | None = ...
     device: device_registry.DeviceEntry | None = ...
     matched_name: str | None = ...
-    def __init__(self, state, entity, area, floor, device, matched_name) -> None: ...
+    def __init__(self, state, entity=..., area=..., floor=..., device=..., matched_name=...) -> None: ...
 
 def find_areas(name: str, areas: area_registry.AreaRegistry) -> Iterable[area_registry.AreaEntry]: ...
 def find_floors(name: str, floors: floor_registry.FloorRegistry) -> Iterable[floor_registry.FloorEntry]: ...
@@ -153,9 +155,10 @@ class DynamicServiceIntentHandler(IntentHandler, metaclass=abc.ABCMeta):
     required_states: Incomplete
     description: Incomplete
     platforms: Incomplete
+    device_classes: Incomplete
     required_slots: Incomplete
     optional_slots: Incomplete
-    def __init__(self, intent_type: str, speech: str | None = None, required_slots: _IntentSlotsType | None = None, optional_slots: _IntentSlotsType | None = None, required_domains: set[str] | None = None, required_features: int | None = None, required_states: set[str] | None = None, description: str | None = None, platforms: set[str] | None = None) -> None: ...
+    def __init__(self, intent_type: str, speech: str | None = None, required_slots: _IntentSlotsType | None = None, optional_slots: _IntentSlotsType | None = None, required_domains: set[str] | None = None, required_features: int | None = None, required_states: set[str] | None = None, description: str | None = None, platforms: set[str] | None = None, device_classes: set[type[StrEnum]] | None = None) -> None: ...
     @cached_property
     def slot_schema(self) -> dict: ...
     @abstractmethod
@@ -168,12 +171,12 @@ class DynamicServiceIntentHandler(IntentHandler, metaclass=abc.ABCMeta):
 class ServiceIntentHandler(DynamicServiceIntentHandler):
     domain: Incomplete
     service: Incomplete
-    def __init__(self, intent_type: str, domain: str, service: str, speech: str | None = None, required_slots: _IntentSlotsType | None = None, optional_slots: _IntentSlotsType | None = None, required_domains: set[str] | None = None, required_features: int | None = None, required_states: set[str] | None = None, description: str | None = None, platforms: set[str] | None = None) -> None: ...
+    def __init__(self, intent_type: str, domain: str, service: str, speech: str | None = None, required_slots: _IntentSlotsType | None = None, optional_slots: _IntentSlotsType | None = None, required_domains: set[str] | None = None, required_features: int | None = None, required_states: set[str] | None = None, description: str | None = None, platforms: set[str] | None = None, device_classes: set[type[StrEnum]] | None = None) -> None: ...
     def get_domain_and_service(self, intent_obj: Intent, state: State) -> tuple[str, str]: ...
 
 class IntentCategory(Enum):
-    ACTION: str
-    QUERY: str
+    ACTION = 'action'
+    QUERY = 'query'
 
 class Intent:
     __slots__: Incomplete
@@ -192,32 +195,32 @@ class Intent:
     def create_response(self) -> IntentResponse: ...
 
 class IntentResponseType(Enum):
-    ACTION_DONE: str
-    PARTIAL_ACTION_DONE: str
-    QUERY_ANSWER: str
-    ERROR: str
+    ACTION_DONE = 'action_done'
+    PARTIAL_ACTION_DONE = 'partial_action_done'
+    QUERY_ANSWER = 'query_answer'
+    ERROR = 'error'
 
 class IntentResponseErrorCode(str, Enum):
-    NO_INTENT_MATCH: str
-    NO_VALID_TARGETS: str
-    FAILED_TO_HANDLE: str
-    UNKNOWN: str
+    NO_INTENT_MATCH = 'no_intent_match'
+    NO_VALID_TARGETS = 'no_valid_targets'
+    FAILED_TO_HANDLE = 'failed_to_handle'
+    UNKNOWN = 'unknown'
 
 class IntentResponseTargetType(str, Enum):
-    AREA: str
-    FLOOR: str
-    DEVICE: str
-    ENTITY: str
-    DOMAIN: str
-    DEVICE_CLASS: str
-    CUSTOM: str
+    AREA = 'area'
+    FLOOR = 'floor'
+    DEVICE = 'device'
+    ENTITY = 'entity'
+    DOMAIN = 'domain'
+    DEVICE_CLASS = 'device_class'
+    CUSTOM = 'custom'
 
 @dataclass(slots=True)
 class IntentResponseTarget:
     name: str
     type: IntentResponseTargetType
     id: str | None = ...
-    def __init__(self, name, type, id) -> None: ...
+    def __init__(self, name, type, id=...) -> None: ...
 
 class IntentResponse:
     language: Incomplete

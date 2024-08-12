@@ -26,10 +26,10 @@ class Notification(TypedDict):
     title: str | None
 
 class UpdateType(StrEnum):
-    CURRENT: str
-    ADDED: str
-    REMOVED: str
-    UPDATED: str
+    CURRENT = 'current'
+    ADDED = 'added'
+    REMOVED = 'removed'
+    UPDATED = 'updated'
 
 SIGNAL_PERSISTENT_NOTIFICATIONS_UPDATED: Incomplete
 SCHEMA_SERVICE_NOTIFICATION: Incomplete

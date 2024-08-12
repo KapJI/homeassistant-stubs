@@ -14,6 +14,7 @@ SCAN_INTERVAL: Incomplete
 TOKEN_REFRESH_CHECK_INTERVAL: Incomplete
 STALE_TOKEN_THRESHOLD: Incomplete
 _LOGGER: Incomplete
+EnphaseConfigEntry = ConfigEntry[EnphaseUpdateCoordinator]
 
 class EnphaseUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     envoy_serial_number: str
@@ -23,7 +24,7 @@ class EnphaseUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     password: Incomplete
     _setup_complete: bool
     _cancel_token_refresh: Incomplete
-    def __init__(self, hass: HomeAssistant, envoy: Envoy, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, envoy: Envoy, entry: EnphaseConfigEntry) -> None: ...
     def _async_refresh_token_if_needed(self, now: datetime.datetime) -> None: ...
     async def _async_try_refresh_token(self) -> None: ...
     def _async_mark_setup_complete(self) -> None: ...

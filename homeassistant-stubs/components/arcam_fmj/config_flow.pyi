@@ -1,13 +1,9 @@
-from .const import DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, DOMAIN_DATA_ENTRIES as DOMAIN_DATA_ENTRIES
-from arcam.fmj.client import Client
+from .const import DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN
 from homeassistant.components import ssdp as ssdp
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
-from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
-
-def get_entry_client(hass: HomeAssistant, entry: ConfigEntry) -> Client: ...
 
 class ArcamFmjFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int

@@ -30,10 +30,10 @@ STATE_HEAT_PUMP: str
 STATE_GAS: str
 
 class WaterHeaterEntityFeature(IntFlag):
-    TARGET_TEMPERATURE: int
-    OPERATION_MODE: int
-    AWAY_MODE: int
-    ON_OFF: int
+    TARGET_TEMPERATURE = 1
+    OPERATION_MODE = 2
+    AWAY_MODE = 4
+    ON_OFF = 8
 
 _DEPRECATED_SUPPORT_TARGET_TEMPERATURE: Incomplete
 _DEPRECATED_SUPPORT_OPERATION_MODE: Incomplete
@@ -58,7 +58,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class WaterHeaterEntityEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

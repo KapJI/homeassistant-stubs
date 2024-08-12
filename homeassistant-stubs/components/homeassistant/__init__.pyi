@@ -1,4 +1,3 @@
-import homeassistant.core as ha
 from .const import DATA_EXPOSED_ENTITIES as DATA_EXPOSED_ENTITIES, DATA_STOP_HANDLER as DATA_STOP_HANDLER, DOMAIN as DOMAIN, SERVICE_HOMEASSISTANT_RESTART as SERVICE_HOMEASSISTANT_RESTART, SERVICE_HOMEASSISTANT_STOP as SERVICE_HOMEASSISTANT_STOP
 from .exposed_entities import ExposedEntities as ExposedEntities
 from _typeshed import Incomplete
@@ -6,6 +5,7 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.const import ATTR_ELEVATION as ATTR_ELEVATION, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, RESTART_EXIT_CODE as RESTART_EXIT_CODE, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_SAVE_PERSISTENT_STATES as SERVICE_SAVE_PERSISTENT_STATES, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.helpers import recorder as recorder, restore_state as restore_state
 from homeassistant.helpers.entity_component import async_update_entity as async_update_entity
@@ -30,6 +30,6 @@ SCHEMA_RELOAD_CONFIG_ENTRY: Incomplete
 SCHEMA_RESTART: Incomplete
 SHUTDOWN_SERVICES: Incomplete
 
-async def async_setup(hass: ha.HomeAssistant, config: ConfigType) -> bool: ...
-async def _async_stop(hass: ha.HomeAssistant, restart: bool) -> None: ...
-def async_set_stop_handler(hass: ha.HomeAssistant, stop_handler: Callable[[ha.HomeAssistant, bool], Coroutine[Any, Any, None]]) -> None: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+async def _async_stop(hass: HomeAssistant, restart: bool) -> None: ...
+def async_set_stop_handler(hass: HomeAssistant, stop_handler: Callable[[HomeAssistant, bool], Coroutine[Any, Any, None]]) -> None: ...

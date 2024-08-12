@@ -20,37 +20,37 @@ class FroniusDeviceInfo(NamedTuple):
     unique_id: str
 
 class InverterStatusCodeOption(StrEnum):
-    STARTUP: str
-    RUNNING: str
-    STANDBY: str
-    BOOTLOADING: str
-    ERROR: str
-    IDLE: str
-    READY: str
-    SLEEPING: str
-    UNKNOWN: str
-    INVALID: str
+    STARTUP = 'startup'
+    RUNNING = 'running'
+    STANDBY = 'standby'
+    BOOTLOADING = 'bootloading'
+    ERROR = 'error'
+    IDLE = 'idle'
+    READY = 'ready'
+    SLEEPING = 'sleeping'
+    UNKNOWN = 'unknown'
+    INVALID = 'invalid'
 
 _INVERTER_STATUS_CODES: Final[dict[int, InverterStatusCodeOption]]
 
 def get_inverter_status_message(code: StateType) -> InverterStatusCodeOption: ...
 
 class MeterLocationCodeOption(StrEnum):
-    FEED_IN: str
-    CONSUMPTION_PATH: str
-    GENERATOR: str
-    EXT_BATTERY: str
-    SUBLOAD: str
+    FEED_IN = 'feed_in'
+    CONSUMPTION_PATH = 'consumption_path'
+    GENERATOR = 'external_generator'
+    EXT_BATTERY = 'external_battery'
+    SUBLOAD = 'subload'
 
 def get_meter_location_description(code: StateType) -> MeterLocationCodeOption | None: ...
 
 class OhmPilotStateCodeOption(StrEnum):
-    UP_AND_RUNNING: str
-    KEEP_MINIMUM_TEMPERATURE: str
-    LEGIONELLA_PROTECTION: str
-    CRITICAL_FAULT: str
-    FAULT: str
-    BOOST_MODE: str
+    UP_AND_RUNNING = 'up_and_running'
+    KEEP_MINIMUM_TEMPERATURE = 'keep_minimum_temperature'
+    LEGIONELLA_PROTECTION = 'legionella_protection'
+    CRITICAL_FAULT = 'critical_fault'
+    FAULT = 'fault'
+    BOOST_MODE = 'boost_mode'
 
 _OHMPILOT_STATE_CODES: Final[dict[int, OhmPilotStateCodeOption]]
 

@@ -4,10 +4,10 @@ from homeassistant.const import Platform as Platform
 from typing import Final
 
 class FritzState(StrEnum):
-    RING: str
-    CALL: str
-    CONNECT: str
-    DISCONNECT: str
+    RING = 'RING'
+    CALL = 'CALL'
+    CONNECT = 'CONNECT'
+    DISCONNECT = 'DISCONNECT'
 
 ATTR_PREFIXES: str
 FRITZ_ATTR_NAME: str

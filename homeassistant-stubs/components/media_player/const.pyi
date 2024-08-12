@@ -36,35 +36,35 @@ ATTR_SOUND_MODE_LIST: str
 DOMAIN: str
 
 class MediaPlayerState(StrEnum):
-    OFF: str
-    ON: str
-    IDLE: str
-    PLAYING: str
-    PAUSED: str
-    STANDBY: str
-    BUFFERING: str
+    OFF = 'off'
+    ON = 'on'
+    IDLE = 'idle'
+    PLAYING = 'playing'
+    PAUSED = 'paused'
+    STANDBY = 'standby'
+    BUFFERING = 'buffering'
 
 class MediaClass(StrEnum):
-    ALBUM: str
-    APP: str
-    ARTIST: str
-    CHANNEL: str
-    COMPOSER: str
-    CONTRIBUTING_ARTIST: str
-    DIRECTORY: str
-    EPISODE: str
-    GAME: str
-    GENRE: str
-    IMAGE: str
-    MOVIE: str
-    MUSIC: str
-    PLAYLIST: str
-    PODCAST: str
-    SEASON: str
-    TRACK: str
-    TV_SHOW: str
-    URL: str
-    VIDEO: str
+    ALBUM = 'album'
+    APP = 'app'
+    ARTIST = 'artist'
+    CHANNEL = 'channel'
+    COMPOSER = 'composer'
+    CONTRIBUTING_ARTIST = 'contributing_artist'
+    DIRECTORY = 'directory'
+    EPISODE = 'episode'
+    GAME = 'game'
+    GENRE = 'genre'
+    IMAGE = 'image'
+    MOVIE = 'movie'
+    MUSIC = 'music'
+    PLAYLIST = 'playlist'
+    PODCAST = 'podcast'
+    SEASON = 'season'
+    TRACK = 'track'
+    TV_SHOW = 'tv_show'
+    URL = 'url'
+    VIDEO = 'video'
 
 MEDIA_CLASS_ALBUM: str
 MEDIA_CLASS_APP: str
@@ -88,27 +88,27 @@ MEDIA_CLASS_URL: str
 MEDIA_CLASS_VIDEO: str
 
 class MediaType(StrEnum):
-    ALBUM: str
-    APP: str
-    APPS: str
-    ARTIST: str
-    CHANNEL: str
-    CHANNELS: str
-    COMPOSER: str
-    CONTRIBUTING_ARTIST: str
-    EPISODE: str
-    GAME: str
-    GENRE: str
-    IMAGE: str
-    MOVIE: str
-    MUSIC: str
-    PLAYLIST: str
-    PODCAST: str
-    SEASON: str
-    TRACK: str
-    TVSHOW: str
-    URL: str
-    VIDEO: str
+    ALBUM = 'album'
+    APP = 'app'
+    APPS = 'apps'
+    ARTIST = 'artist'
+    CHANNEL = 'channel'
+    CHANNELS = 'channels'
+    COMPOSER = 'composer'
+    CONTRIBUTING_ARTIST = 'contributing_artist'
+    EPISODE = 'episode'
+    GAME = 'game'
+    GENRE = 'genre'
+    IMAGE = 'image'
+    MOVIE = 'movie'
+    MUSIC = 'music'
+    PLAYLIST = 'playlist'
+    PODCAST = 'podcast'
+    SEASON = 'season'
+    TRACK = 'track'
+    TVSHOW = 'tvshow'
+    URL = 'url'
+    VIDEO = 'video'
 
 MEDIA_TYPE_ALBUM: str
 MEDIA_TYPE_APP: str
@@ -139,9 +139,9 @@ SERVICE_SELECT_SOURCE: str
 SERVICE_UNJOIN: str
 
 class RepeatMode(StrEnum):
-    ALL: str
-    OFF: str
-    ONE: str
+    ALL = 'all'
+    OFF = 'off'
+    ONE = 'one'
 
 REPEAT_MODE_ALL: str
 REPEAT_MODE_OFF: str
@@ -149,27 +149,27 @@ REPEAT_MODE_ONE: str
 REPEAT_MODES: Incomplete
 
 class MediaPlayerEntityFeature(IntFlag):
-    PAUSE: int
-    SEEK: int
-    VOLUME_SET: int
-    VOLUME_MUTE: int
-    PREVIOUS_TRACK: int
-    NEXT_TRACK: int
-    TURN_ON: int
-    TURN_OFF: int
-    PLAY_MEDIA: int
-    VOLUME_STEP: int
-    SELECT_SOURCE: int
-    STOP: int
-    CLEAR_PLAYLIST: int
-    PLAY: int
-    SHUFFLE_SET: int
-    SELECT_SOUND_MODE: int
-    BROWSE_MEDIA: int
-    REPEAT_SET: int
-    GROUPING: int
-    MEDIA_ANNOUNCE: int
-    MEDIA_ENQUEUE: int
+    PAUSE = 1
+    SEEK = 2
+    VOLUME_SET = 4
+    VOLUME_MUTE = 8
+    PREVIOUS_TRACK = 16
+    NEXT_TRACK = 32
+    TURN_ON = 128
+    TURN_OFF = 256
+    PLAY_MEDIA = 512
+    VOLUME_STEP = 1024
+    SELECT_SOURCE = 2048
+    STOP = 4096
+    CLEAR_PLAYLIST = 8192
+    PLAY = 16384
+    SHUFFLE_SET = 32768
+    SELECT_SOUND_MODE = 65536
+    BROWSE_MEDIA = 131072
+    REPEAT_SET = 262144
+    GROUPING = 524288
+    MEDIA_ANNOUNCE = 1048576
+    MEDIA_ENQUEUE = 2097152
 
 SUPPORT_PAUSE: int
 SUPPORT_SEEK: int

@@ -1,9 +1,9 @@
 import abc
 from .const import DOMAIN as DOMAIN
-from .utils import BondDevice as BondDevice, BondHub as BondHub
+from .models import BondData as BondData
+from .utils import BondDevice as BondDevice
 from _typeshed import Incomplete
 from abc import abstractmethod
-from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from datetime import datetime
 from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL as ATTR_MODEL, ATTR_NAME as ATTR_NAME, ATTR_SUGGESTED_AREA as ATTR_SUGGESTED_AREA, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, callback as callback
@@ -18,6 +18,7 @@ _BPUP_ALIVE_SCAN_INTERVAL: int
 class BondEntity(Entity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool
     _hub: Incomplete
+    _bond: Incomplete
     _device: Incomplete
     _device_id: Incomplete
     _sub_device: Incomplete
@@ -30,7 +31,7 @@ class BondEntity(Entity, metaclass=abc.ABCMeta):
     _attr_assumed_state: Incomplete
     _bpup_polling_fallback: Incomplete
     _async_update_if_bpup_not_alive_job: Incomplete
-    def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions, sub_device: str | None = None, sub_device_id: str | None = None) -> None: ...
+    def __init__(self, data: BondData, device: BondDevice, sub_device: str | None = None, sub_device_id: str | None = None) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     async def async_update(self) -> None: ...

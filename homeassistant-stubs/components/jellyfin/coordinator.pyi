@@ -2,7 +2,6 @@ import abc
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, USER_APP_NAME as USER_APP_NAME
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from jellyfin_apiclient_python import JellyfinClient as JellyfinClient
@@ -11,7 +10,6 @@ from typing import Any, TypeVar
 JellyfinDataT = TypeVar('JellyfinDataT', bound=dict[str, dict[str, Any]] | dict[str, Any])
 
 class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[JellyfinDataT], ABC, metaclass=abc.ABCMeta):
-    config_entry: ConfigEntry
     api_client: Incomplete
     server_id: Incomplete
     server_name: Incomplete

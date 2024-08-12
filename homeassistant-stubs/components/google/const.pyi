@@ -10,9 +10,9 @@ DATA_CONFIG: str
 DATA_STORE: str
 
 class FeatureAccess(Enum):
-    read_only: str
-    read_write: str
-    _scope: Incomplete
+    read_only = 'https://www.googleapis.com/auth/calendar.readonly'
+    read_write = 'https://www.googleapis.com/auth/calendar'
+    _scope = ...
     def __init__(self, scope: str) -> None: ...
     @property
     def scope(self) -> str: ...
@@ -20,8 +20,8 @@ class FeatureAccess(Enum):
 DEFAULT_FEATURE_ACCESS: Incomplete
 
 class CredentialType(StrEnum):
-    DEVICE_AUTH: str
-    WEB_AUTH: str
+    DEVICE_AUTH = 'device_auth'
+    WEB_AUTH = 'web_auth'
 
 EVENT_DESCRIPTION: str
 EVENT_END_DATE: str

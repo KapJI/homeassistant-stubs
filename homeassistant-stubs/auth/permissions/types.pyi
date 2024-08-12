@@ -1,8 +1,7 @@
-from _typeshed import Incomplete
 from collections.abc import Mapping
 
-ValueType: Incomplete
+ValueType = Mapping[str, bool] | bool | None
 SubCategoryDict = Mapping[str, ValueType]
-SubCategoryType: Incomplete
-CategoryType: Incomplete
+SubCategoryType = SubCategoryDict | bool | None
+CategoryType = Mapping[str, SubCategoryType] | Mapping[str, ValueType] | bool | None
 PolicyType = Mapping[str, CategoryType]

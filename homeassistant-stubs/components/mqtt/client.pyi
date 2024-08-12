@@ -5,7 +5,7 @@ from .const import CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF
 from .models import DATA_MQTT as DATA_MQTT, MessageCallbackType as MessageCallbackType, MqttData as MqttData, PublishMessage as PublishMessage, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .util import EnsureJobAfterCooldown as EnsureJobAfterCooldown, get_file_path as get_file_path, mqtt_config_entry_enabled as mqtt_config_entry_enabled
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Coroutine, Iterable
+from collections.abc import AsyncGenerator, Callable as Callable, Coroutine, Iterable
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -20,7 +20,6 @@ from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as
 from homeassistant.util.collection import chunked_or_all as chunked_or_all
 from homeassistant.util.logging import catch_log_exception as catch_log_exception, log_exception as log_exception
 from typing import Any
-from typing_extensions import AsyncGenerator
 
 _LOGGER: Incomplete
 MIN_BUFFER_SIZE: int
@@ -35,7 +34,7 @@ MAX_SUBSCRIBES_PER_CALL: int
 MAX_UNSUBSCRIBES_PER_CALL: int
 MAX_PACKETS_TO_READ: int
 SocketType: Incomplete
-SubscribePayloadType: Incomplete
+SubscribePayloadType = str | bytes
 
 def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
 async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
@@ -51,7 +50,7 @@ class Subscription:
     job: HassJob[[ReceiveMessage], Coroutine[Any, Any, None] | None]
     qos: int = ...
     encoding: str | None = ...
-    def __init__(self, topic, is_simple_match, complex_matcher, job, qos, encoding) -> None: ...
+    def __init__(self, topic, is_simple_match, complex_matcher, job, qos=..., encoding=...) -> None: ...
 
 class MqttClientSetup:
     _client: AsyncMQTTClient

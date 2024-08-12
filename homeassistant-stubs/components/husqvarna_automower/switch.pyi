@@ -1,13 +1,11 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
-from .const import EXECUTION_TIME_DELAY as EXECUTION_TIME_DELAY
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
-from .entity import AutomowerControlEntity as AutomowerControlEntity
+from .entity import AutomowerControlEntity as AutomowerControlEntity, handle_sending_exception as handle_sending_exception
 from _typeshed import Incomplete
 from aioautomower.model import StayOutZones as StayOutZones, Zone as Zone
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 

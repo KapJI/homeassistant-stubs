@@ -8,19 +8,19 @@ ATTR_CHANGED_BY: Final[str]
 ATTR_CODE_ARM_REQUIRED: Final[str]
 
 class CodeFormat(StrEnum):
-    TEXT: str
-    NUMBER: str
+    TEXT = 'text'
+    NUMBER = 'number'
 
 _DEPRECATED_FORMAT_TEXT: Final[Incomplete]
 _DEPRECATED_FORMAT_NUMBER: Final[Incomplete]
 
 class AlarmControlPanelEntityFeature(IntFlag):
-    ARM_HOME: int
-    ARM_AWAY: int
-    ARM_NIGHT: int
-    TRIGGER: int
-    ARM_CUSTOM_BYPASS: int
-    ARM_VACATION: int
+    ARM_HOME = 1
+    ARM_AWAY = 2
+    ARM_NIGHT = 4
+    TRIGGER = 8
+    ARM_CUSTOM_BYPASS = 16
+    ARM_VACATION = 32
 
 _DEPRECATED_SUPPORT_ALARM_ARM_HOME: Final[Incomplete]
 _DEPRECATED_SUPPORT_ALARM_ARM_AWAY: Final[Incomplete]

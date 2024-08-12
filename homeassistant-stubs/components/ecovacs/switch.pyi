@@ -12,7 +12,7 @@ from typing import Any
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsSwitchEntityDescription(SwitchEntityDescription, EcovacsCapabilityEntityDescription[CapabilitySetEnable]):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, capability_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., capability_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSwitchEntityDescription, ...]
 

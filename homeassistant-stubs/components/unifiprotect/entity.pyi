@@ -1,5 +1,5 @@
 from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_EVENT_SCORE as ATTR_EVENT_SCORE, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
-from .data import ProtectData as ProtectData
+from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType
 from .models import PermRequired as PermRequired, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
@@ -7,7 +7,7 @@ from datetime import datetime
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from uiprotect.data import Event as Event, ModelType, NVR as NVR, ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from uiprotect.data import Event as Event, ModelType, NVR as NVR, ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
 
@@ -19,7 +19,7 @@ def _combine_model_descs(model_type: ModelType, model_descriptions: dict[ModelTy
 def async_all_device_entities(data: ProtectData, klass: type[BaseProtectEntity], model_descriptions: dict[ModelType, Sequence[ProtectEntityDescription]] | None = None, all_descs: Sequence[ProtectEntityDescription] | None = None, unadopted_descs: list[ProtectEntityDescription] | None = None, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[BaseProtectEntity]: ...
 
 class BaseProtectEntity(Entity):
-    device: ProtectAdoptableDeviceModel | NVR
+    device: ProtectDeviceType
     _attr_should_poll: bool
     _attr_attribution = DEFAULT_ATTRIBUTION
     _state_attrs: tuple[str, ...]
@@ -30,24 +30,28 @@ class BaseProtectEntity(Entity):
     _attr_name: Incomplete
     entity_description: Incomplete
     _state_getters: Incomplete
-    def __init__(self, data: ProtectData, device: ProtectAdoptableDeviceModel | NVR, description: EntityDescription | None = None) -> None: ...
+    def __init__(self, data: ProtectData, device: ProtectDeviceType, description: EntityDescription | None = None) -> None: ...
     async def async_update(self) -> None: ...
-    _attr_device_info: Incomplete
     def _async_set_device_info(self) -> None: ...
     _attr_available: Incomplete
-    def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
-    def _async_updated_event(self, device: ProtectAdoptableDeviceModel | NVR) -> None: ...
+    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    def _async_updated_event(self, device: ProtectDeviceType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 
+class ProtectIsOnEntity(BaseProtectEntity):
+    _state_attrs: tuple[str, ...]
+    _attr_is_on: bool | None
+    entity_description: ProtectEntityDescription
+    def _async_update_device_from_protect(self, device: ProtectAdoptableDeviceModel | NVR) -> None: ...
+
 class ProtectDeviceEntity(BaseProtectEntity):
-    device: ProtectAdoptableDeviceModel
+    _attr_device_info: Incomplete
+    def _async_set_device_info(self) -> None: ...
 
 class ProtectNVREntity(BaseProtectEntity):
     device: NVR
     _attr_device_info: Incomplete
     def _async_set_device_info(self) -> None: ...
-    _attr_available: Incomplete
-    def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
 
 class EventEntityMixin(ProtectDeviceEntity):
     entity_description: ProtectEventMixin

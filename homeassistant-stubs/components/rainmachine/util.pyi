@@ -8,9 +8,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from typing import Any
 
 class RunStates(StrEnum):
-    NOT_RUNNING: str
-    QUEUED: str
-    RUNNING: str
+    NOT_RUNNING = 'Not Running'
+    QUEUED = 'Queued'
+    RUNNING = 'Running'
 
 RUN_STATE_MAP: Incomplete
 
@@ -21,7 +21,7 @@ class EntityDomainReplacementStrategy:
     replacement_entity_id: str
     breaks_in_ha_version: str
     remove_old_entity: bool = ...
-    def __init__(self, old_domain, old_unique_id, replacement_entity_id, breaks_in_ha_version, remove_old_entity) -> None: ...
+    def __init__(self, old_domain, old_unique_id, replacement_entity_id, breaks_in_ha_version, remove_old_entity=...) -> None: ...
 
 def async_finish_entity_domain_replacements(hass: HomeAssistant, entry: ConfigEntry, entity_replacement_strategies: Iterable[EntityDomainReplacementStrategy]) -> None: ...
 def key_exists(data: dict[str, Any], search_key: str) -> bool: ...

@@ -1,13 +1,13 @@
-from . import BMWBaseEntity as BMWBaseEntity
-from .const import DOMAIN as DOMAIN, UNIT_MAP as UNIT_MAP
+from . import BMWConfigEntry as BMWConfigEntry
+from .const import UNIT_MAP as UNIT_MAP
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
+from .entity import BMWBaseEntity as BMWBaseEntity
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
 from bimmer_connected.vehicle.reports import ConditionBasedService as ConditionBasedService
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.unit_system import UnitSystem as UnitSystem
@@ -28,11 +28,11 @@ class BMWBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[MyBMWVehicle], bool]
     attr_fn: Callable[[MyBMWVehicle, UnitSystem], dict[str, Any]] | None = ...
     is_available: Callable[[MyBMWVehicle], bool] = ...
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, attr_fn, is_available) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, attr_fn=..., is_available=...) -> None: ...
 
 SENSOR_TYPES: tuple[BMWBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BMWBinarySensor(BMWBaseEntity, BinarySensorEntity):
     entity_description: BMWBinarySensorEntityDescription

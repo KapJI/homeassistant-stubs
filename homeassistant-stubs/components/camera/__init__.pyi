@@ -42,8 +42,8 @@ STATE_STREAMING: Final[str]
 STATE_IDLE: Final[str]
 
 class CameraEntityFeature(IntFlag):
-    ON_OFF: int
-    STREAM: int
+    ON_OFF = 1
+    STREAM = 2
 
 _DEPRECATED_SUPPORT_ON_OFF: Final[Incomplete]
 _DEPRECATED_SUPPORT_STREAM: Final[Incomplete]
@@ -58,7 +58,7 @@ CAMERA_SERVICE_PLAY_STREAM: VolDictType
 CAMERA_SERVICE_RECORD: VolDictType
 
 class CameraEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 class Image:
     content_type: str
@@ -77,8 +77,7 @@ async def async_get_stream_source(hass: HomeAssistant, entity_id: str) -> str | 
 async def async_get_mjpeg_stream(hass: HomeAssistant, request: web.Request, entity_id: str) -> web.StreamResponse | None: ...
 async def async_get_still_stream(request: web.Request, image_cb: Callable[[], Awaitable[bytes | None]], content_type: str, interval: float) -> web.StreamResponse: ...
 def _get_camera_from_entity_id(hass: HomeAssistant, entity_id: str) -> Camera: ...
-
-RtspToWebRtcProviderType: Incomplete
+RtspToWebRtcProviderType = Callable[[str, str, str], Awaitable[str | None]]
 
 def async_register_rtsp_to_web_rtc_provider(hass: HomeAssistant, domain: str, provider: RtspToWebRtcProviderType) -> Callable[[], None]: ...
 async def _async_refresh_providers(hass: HomeAssistant) -> None: ...

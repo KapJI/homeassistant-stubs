@@ -2,7 +2,6 @@ from _typeshed import Incomplete
 from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfVolume as UnitOfVolume
 
 DOMAIN: str
-ATTRIBUTION: str
 ATTR_DIRECTION: str
 ATTR_VIN: str
 CONF_ALLOWED_REGIONS: Incomplete

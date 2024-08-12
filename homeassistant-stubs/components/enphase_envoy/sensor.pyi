@@ -1,12 +1,11 @@
 import datetime
 from .const import DOMAIN as DOMAIN
-from .coordinator import EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
+from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
 from .entity import EnvoyBaseEntity as EnvoyBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -23,7 +22,7 @@ LAST_REPORTED_KEY: str
 @dataclass(frozen=True, kw_only=True)
 class EnvoyInverterSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyInverter], datetime.datetime | float]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 INVERTER_SENSORS: Incomplete
 
@@ -31,7 +30,7 @@ INVERTER_SENSORS: Incomplete
 class EnvoyProductionSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoySystemProduction], int]
     on_phase: str | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, on_phase) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn, on_phase) -> None: ...
 
 PRODUCTION_SENSORS: Incomplete
 PRODUCTION_PHASE_SENSORS: Incomplete
@@ -40,7 +39,7 @@ PRODUCTION_PHASE_SENSORS: Incomplete
 class EnvoyConsumptionSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoySystemConsumption], int]
     on_phase: str | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, on_phase) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn, on_phase) -> None: ...
 
 CONSUMPTION_SENSORS: Incomplete
 CONSUMPTION_PHASE_SENSORS: Incomplete
@@ -49,7 +48,7 @@ CONSUMPTION_PHASE_SENSORS: Incomplete
 class EnvoyCTSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyMeterData], int | float | str | CtType | CtMeterStatus | CtStatusFlags | CtState | None]
     on_phase: str | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn, on_phase) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn, on_phase) -> None: ...
 
 CT_NET_CONSUMPTION_SENSORS: Incomplete
 CT_NET_CONSUMPTION_PHASE_SENSORS: Incomplete
@@ -61,7 +60,7 @@ CT_STORAGE_PHASE_SENSORS: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnchargeSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyEncharge], datetime.datetime | int | float]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(frozen=True)
 class EnvoyEnchargePowerRequiredKeysMixin: ...
@@ -69,7 +68,7 @@ class EnvoyEnchargePowerRequiredKeysMixin: ...
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnchargePowerSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyEnchargePower], int | float]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 ENCHARGE_INVENTORY_SENSORS: Incomplete
 ENCHARGE_POWER_SENSORS: Incomplete
@@ -77,7 +76,7 @@ ENCHARGE_POWER_SENSORS: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnpowerSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyEnpower], datetime.datetime | int | float]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 ENPOWER_SENSORS: Incomplete
 
@@ -87,11 +86,11 @@ class EnvoyEnchargeAggregateRequiredKeysMixin: ...
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnchargeAggregateSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyEnchargeAggregate], int]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, last_reset, native_unit_of_measurement, options, state_class, suggested_display_precision, suggested_unit_of_measurement, value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 ENCHARGE_AGGREGATE_SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EnvoySensorBaseEntity(EnvoyBaseEntity, SensorEntity): ...
 

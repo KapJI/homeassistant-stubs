@@ -20,14 +20,14 @@ _LOGGER: Incomplete
 PROVIDERS: Registry[str, type[StreamOutput]]
 
 class Orientation(IntEnum):
-    NO_TRANSFORM: int
-    MIRROR: int
-    ROTATE_180: int
-    FLIP: int
-    ROTATE_LEFT_AND_FLIP: int
-    ROTATE_LEFT: int
-    ROTATE_RIGHT_AND_FLIP: int
-    ROTATE_RIGHT: int
+    NO_TRANSFORM = 1
+    MIRROR = 2
+    ROTATE_180 = 3
+    FLIP = 4
+    ROTATE_LEFT_AND_FLIP = 5
+    ROTATE_LEFT = 6
+    ROTATE_RIGHT_AND_FLIP = 7
+    ROTATE_RIGHT = 8
 
 @dataclass(slots=True)
 class StreamSettings:
@@ -71,7 +71,7 @@ class Segment:
     def get_data(self) -> bytes: ...
     def _render_hls_template(self, last_stream_id: int, render_parts: bool) -> str: ...
     def render_hls(self, last_stream_id: int, render_parts: bool, add_hint: bool) -> str: ...
-    def __init__(self, sequence, init, stream_id, start_time, _stream_outputs, duration, parts, hls_playlist_template, hls_playlist_parts, hls_num_parts_rendered, hls_playlist_complete) -> None: ...
+    def __init__(self, sequence, init, stream_id, start_time, _stream_outputs, duration=..., parts=..., hls_playlist_template=..., hls_playlist_parts=..., hls_num_parts_rendered=..., hls_playlist_complete=...) -> None: ...
 
 class IdleTimer:
     _hass: Incomplete

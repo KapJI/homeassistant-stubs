@@ -24,7 +24,7 @@ MIN_TIME_BETWEEN_SCANS: Incomplete
 LOCK_SERVICE_SCHEMA: Incomplete
 
 class LockEntityFeature(IntFlag):
-    OPEN: int
+    OPEN = 1
 
 _DEPRECATED_SUPPORT_OPEN: Incomplete
 PROP_TO_ATTR: Incomplete
@@ -34,7 +34,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class LockEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

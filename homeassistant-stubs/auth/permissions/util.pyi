@@ -1,10 +1,9 @@
 from .const import SUBCAT_ALL as SUBCAT_ALL
 from .models import PermissionLookup as PermissionLookup
 from .types import CategoryType as CategoryType, SubCategoryDict as SubCategoryDict, ValueType as ValueType
-from _typeshed import Incomplete
 from collections.abc import Callable
 
-LookupFunc: Incomplete
+LookupFunc = Callable[[PermissionLookup, SubCategoryDict, str], ValueType | None]
 SubCatLookupType = dict[str, LookupFunc]
 
 def lookup_all(perm_lookup: PermissionLookup, lookup_dict: SubCategoryDict, object_id: str) -> ValueType: ...

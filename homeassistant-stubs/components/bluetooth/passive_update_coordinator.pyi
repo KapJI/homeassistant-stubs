@@ -2,11 +2,11 @@ import logging
 from . import BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from .update_coordinator import BasePassiveBluetoothCoordinator as BasePassiveBluetoothCoordinator
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Generator
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
 from typing import Any
-from typing_extensions import Generator, TypeVar
+from typing_extensions import TypeVar
 
 _PassiveBluetoothDataUpdateCoordinatorT = TypeVar('_PassiveBluetoothDataUpdateCoordinatorT', bound='PassiveBluetoothDataUpdateCoordinator', default='PassiveBluetoothDataUpdateCoordinator')
 

@@ -1,5 +1,3 @@
-from _typeshed import Incomplete
-
 DOMAIN: str
 SIGNAL_CLIENT_STARTED: str
 SIGNAL_CLIENT_STOPPED: str
@@ -8,4 +6,3 @@ EVENT_TURN_ON: str
 DEFAULT_PORT: int
 DEFAULT_NAME: str
 DEFAULT_SCAN_INTERVAL: int
-DOMAIN_DATA_ENTRIES: Incomplete

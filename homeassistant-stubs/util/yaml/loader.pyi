@@ -13,7 +13,7 @@ from typing import Any, TextIO, overload
 from yaml import SafeLoader as FastestAvailableSafeLoader
 
 HAS_C_LOADER: bool
-JSON_TYPE: Incomplete
+JSON_TYPE = list | dict | str
 _LOGGER: Incomplete
 
 class YamlTypeError(HomeAssistantError): ...
@@ -60,8 +60,7 @@ class SafeLineLoader(PythonSafeLoader):
     def add_multi_constructor(cls, tag_prefix: str, multi_constructor: Callable) -> None: ...
     @staticmethod
     def __report_deprecated() -> None: ...
-
-LoaderType: Incomplete
+LoaderType = FastSafeLoader | PythonSafeLoader
 
 def load_yaml(fname: str | os.PathLike[str], secrets: Secrets | None = None) -> JSON_TYPE | None: ...
 def load_yaml_dict(fname: str | os.PathLike[str], secrets: Secrets | None = None) -> dict: ...

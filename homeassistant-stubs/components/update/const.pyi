@@ -4,11 +4,11 @@ from typing import Final
 DOMAIN: Final[str]
 
 class UpdateEntityFeature(IntFlag):
-    INSTALL: int
-    SPECIFIC_VERSION: int
-    PROGRESS: int
-    BACKUP: int
-    RELEASE_NOTES: int
+    INSTALL = 1
+    SPECIFIC_VERSION = 2
+    PROGRESS = 4
+    BACKUP = 8
+    RELEASE_NOTES = 16
 
 SERVICE_INSTALL: Final[str]
 SERVICE_SKIP: Final[str]

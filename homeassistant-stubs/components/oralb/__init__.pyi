@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_ble_device_from_address as async_ble_device_from_address
 from homeassistant.components.bluetooth.active_update_processor import ActiveBluetoothProcessorCoordinator as ActiveBluetoothProcessorCoordinator
@@ -9,6 +8,7 @@ from oralb_ble import SensorUpdate as SensorUpdate
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
+OralBConfigEntry = ConfigEntry[ActiveBluetoothProcessorCoordinator]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OralBConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: OralBConfigEntry) -> bool: ...

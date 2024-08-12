@@ -26,6 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: Airtouch5ConfigEn
 
 class Airtouch5ClimateEntity(ClimateEntity, Airtouch5Entity):
     _attr_temperature_unit: Incomplete
+    _attr_translation_key = DOMAIN
     _attr_target_temperature_step: int
     _attr_name: Incomplete
     _enable_turn_on_off_backwards_compatibility: bool

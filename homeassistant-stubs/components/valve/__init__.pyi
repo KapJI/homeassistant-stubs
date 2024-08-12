@@ -17,16 +17,16 @@ PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 
 class ValveDeviceClass(StrEnum):
-    WATER: str
-    GAS: str
+    WATER = 'water'
+    GAS = 'gas'
 
 DEVICE_CLASSES_SCHEMA: Incomplete
 
 class ValveEntityFeature(IntFlag):
-    OPEN: int
-    CLOSE: int
-    SET_POSITION: int
-    STOP: int
+    OPEN = 1
+    CLOSE = 2
+    SET_POSITION = 4
+    STOP = 8
 
 ATTR_CURRENT_POSITION: str
 ATTR_POSITION: str
@@ -39,7 +39,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class ValveEntityDescription(EntityDescription):
     device_class: ValveDeviceClass | None = ...
     reports_position: bool = ...
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, reports_position) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., reports_position=...) -> None: ...
 
 class ValveEntity(Entity):
     entity_description: ValveEntityDescription

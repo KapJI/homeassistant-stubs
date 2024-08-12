@@ -20,9 +20,9 @@ ENERGY_RETURN_SERVICE_NAME: Final[str]
 SERVICE_SCHEMA: Final[Incomplete]
 
 class PriceType(str, Enum):
-    ENERGY_USAGE: str
-    ENERGY_RETURN: str
-    GAS: str
+    ENERGY_USAGE = 'energy_usage'
+    ENERGY_RETURN = 'energy_return'
+    GAS = 'gas'
 
 def __get_date(date_input: str | None) -> date | datetime: ...
 def __serialize_prices(prices: list[dict[str, float | datetime]]) -> ServiceResponse: ...

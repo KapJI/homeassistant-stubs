@@ -1,9 +1,8 @@
 from . import format_discovered_event_class as format_discovered_event_class, format_event_dispatcher_name as format_event_dispatcher_name
 from .const import BTHomeBleEvent as BTHomeBleEvent, DOMAIN as DOMAIN, EVENT_CLASS_BUTTON as EVENT_CLASS_BUTTON, EVENT_CLASS_DIMMER as EVENT_CLASS_DIMMER, EVENT_PROPERTIES as EVENT_PROPERTIES, EVENT_TYPE as EVENT_TYPE
-from .coordinator import BTHomePassiveBluetoothProcessorCoordinator as BTHomePassiveBluetoothProcessorCoordinator
+from .types import BTHomeConfigEntry as BTHomeConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -22,4 +21,4 @@ class BTHomeEventEntity(EventEntity):
     async def async_added_to_hass(self) -> None: ...
     def _async_handle_event(self, event: BTHomeBleEvent) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BTHomeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

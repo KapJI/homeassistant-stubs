@@ -2,15 +2,14 @@ from .capabilities import Alexa as Alexa, AlexaBrightnessController as AlexaBrig
 from .config import AbstractConfig as AbstractConfig
 from .const import CONF_DISPLAY_CATEGORIES as CONF_DISPLAY_CATEGORIES
 from _typeshed import Incomplete
-from collections.abc import Iterable
-from homeassistant.components import alarm_control_panel as alarm_control_panel, alert as alert, automation as automation, binary_sensor as binary_sensor, button as button, camera as camera, climate as climate, cover as cover, event as event, fan as fan, group as group, humidifier as humidifier, image_processing as image_processing, input_boolean as input_boolean, input_button as input_button, input_number as input_number, light as light, lock as lock, media_player as media_player, number as number, scene as scene, script as script, sensor as sensor, switch as switch, timer as timer, vacuum as vacuum, valve as valve, water_heater as water_heater
+from collections.abc import Generator, Iterable
+from homeassistant.components import alarm_control_panel as alarm_control_panel, alert as alert, automation as automation, binary_sensor as binary_sensor, button as button, camera as camera, climate as climate, cover as cover, event as event, fan as fan, group as group, humidifier as humidifier, image_processing as image_processing, input_boolean as input_boolean, input_button as input_button, input_number as input_number, light as light, lock as lock, media_player as media_player, number as number, remote as remote, scene as scene, script as script, sensor as sensor, switch as switch, timer as timer, vacuum as vacuum, valve as valve, water_heater as water_heater
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CLOUD_NEVER_EXPOSED_ENTITIES as CLOUD_NEVER_EXPOSED_ENTITIES, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME, UnitOfTemperature as UnitOfTemperature, __version__ as __version__
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers import network as network
 from homeassistant.helpers.entity import entity_sources as entity_sources
 from homeassistant.util.decorator import Registry as Registry
 from typing import Any
-from typing_extensions import Generator
 
 _LOGGER: Incomplete
 ENTITY_ADAPTERS: Registry[str, type[AlexaEntity]]
@@ -47,6 +46,7 @@ class DisplayCategory:
     OVEN: str
     PHONE: str
     PRINTER: str
+    REMOTE: str
     ROUTER: str
     SCENE_TRIGGER: str
     SCREEN: str
@@ -114,6 +114,10 @@ class LightCapabilities(AlexaEntity):
     def interfaces(self) -> Generator[AlexaCapability]: ...
 
 class FanCapabilities(AlexaEntity):
+    def default_display_categories(self) -> list[str]: ...
+    def interfaces(self) -> Generator[AlexaCapability]: ...
+
+class RemoteCapabilities(AlexaEntity):
     def default_display_categories(self) -> list[str]: ...
     def interfaces(self) -> Generator[AlexaCapability]: ...
 

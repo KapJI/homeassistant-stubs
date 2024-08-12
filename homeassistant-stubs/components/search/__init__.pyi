@@ -14,19 +14,20 @@ _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
 
 class ItemType(StrEnum):
-    AREA: str
-    AUTOMATION: str
-    AUTOMATION_BLUEPRINT: str
-    CONFIG_ENTRY: str
-    DEVICE: str
-    ENTITY: str
-    FLOOR: str
-    GROUP: str
-    LABEL: str
-    PERSON: str
-    SCENE: str
-    SCRIPT: str
-    SCRIPT_BLUEPRINT: str
+    AREA = 'area'
+    AUTOMATION = 'automation'
+    AUTOMATION_BLUEPRINT = 'automation_blueprint'
+    CONFIG_ENTRY = 'config_entry'
+    DEVICE = 'device'
+    ENTITY = 'entity'
+    FLOOR = 'floor'
+    GROUP = 'group'
+    INTEGRATION = 'integration'
+    LABEL = 'label'
+    PERSON = 'person'
+    SCENE = 'scene'
+    SCRIPT = 'script'
+    SCRIPT_BLUEPRINT = 'script_blueprint'
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def websocket_search_related(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

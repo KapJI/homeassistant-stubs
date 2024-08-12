@@ -14,7 +14,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 class PlugwiseSelectEntityDescription(SelectEntityDescription):
     key: SelectType
     options_key: SelectOptionsType
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, options_key) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., options_key) -> None: ...
 
 SELECT_TYPES: Incomplete
 

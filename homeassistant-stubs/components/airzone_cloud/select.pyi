@@ -14,7 +14,7 @@ from typing import Any, Final
 class AirzoneSelectDescription(SelectEntityDescription):
     api_param: str
     options_dict: dict[str, str]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, api_param, options_dict) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., api_param, options_dict) -> None: ...
 
 AIR_QUALITY_MAP: Final[dict[str, str]]
 ZONE_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]

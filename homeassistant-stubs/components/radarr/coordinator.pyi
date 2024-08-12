@@ -23,7 +23,7 @@ class RadarrEventMixIn:
 
 @dataclass
 class RadarrEvent(CalendarEvent, RadarrEventMixIn):
-    def __init__(self, release_type, start, end, summary, description, location, uid, recurrence_id, rrule) -> None: ...
+    def __init__(self, release_type, start, end, summary, description=..., location=..., uid=..., recurrence_id=..., rrule=...) -> None: ...
 
 class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, Generic[T], metaclass=abc.ABCMeta):
     config_entry: RadarrConfigEntry

@@ -6,7 +6,7 @@ from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterStatus, PrusaLink as PrusaLink
+from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterInfo, PrinterStatus, PrusaLink as PrusaLink
 from typing import TypeVar
 
 _LOGGER: Incomplete
@@ -32,3 +32,6 @@ class LegacyStatusCoordinator(PrusaLinkUpdateCoordinator[LegacyPrinterStatus]):
 
 class JobUpdateCoordinator(PrusaLinkUpdateCoordinator[JobInfo]):
     async def _fetch_data(self) -> JobInfo: ...
+
+class InfoUpdateCoordinator(PrusaLinkUpdateCoordinator[PrinterInfo]):
+    async def _fetch_data(self) -> PrinterInfo: ...

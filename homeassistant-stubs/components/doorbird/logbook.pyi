@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .models import DoorBirdData as DoorBirdData
+from .util import async_get_entries as async_get_entries
 from collections.abc import Callable as Callable
 from homeassistant.components.logbook import LOGBOOK_ENTRY_ENTITY_ID as LOGBOOK_ENTRY_ENTITY_ID, LOGBOOK_ENTRY_MESSAGE as LOGBOOK_ENTRY_MESSAGE, LOGBOOK_ENTRY_NAME as LOGBOOK_ENTRY_NAME
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID

@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from . import WizConfigEntry as WizConfigEntry
 from .entity import WizEntity as WizEntity
 from .models import WizData as WizData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -16,14 +15,14 @@ class WizNumberEntityDescription(NumberEntityDescription):
     required_feature: str
     set_value_fn: Callable[[wizlight, int], Coroutine[None, None, None]]
     value_fn: Callable[[wizlight], int | None]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, required_feature, set_value_fn, value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., required_feature, set_value_fn, value_fn) -> None: ...
 
 async def _async_set_speed(device: wizlight, speed: int) -> None: ...
 async def _async_set_ratio(device: wizlight, ratio: int) -> None: ...
 
 NUMBERS: tuple[WizNumberEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class WizSpeedNumber(WizEntity, NumberEntity):
     entity_description: WizNumberEntityDescription

@@ -1,11 +1,10 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
-from .entity import AutomowerControlEntity as AutomowerControlEntity
+from .entity import AutomowerControlEntity as AutomowerControlEntity, handle_sending_exception as handle_sending_exception
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 _LOGGER: Incomplete

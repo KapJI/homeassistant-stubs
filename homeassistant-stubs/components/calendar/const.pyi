@@ -4,9 +4,9 @@ from enum import IntFlag
 CONF_EVENT: str
 
 class CalendarEntityFeature(IntFlag):
-    CREATE_EVENT: int
-    DELETE_EVENT: int
-    UPDATE_EVENT: int
+    CREATE_EVENT = 1
+    DELETE_EVENT = 2
+    UPDATE_EVENT = 4
 
 EVENT_UID: str
 EVENT_START: str

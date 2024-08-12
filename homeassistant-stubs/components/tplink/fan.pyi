@@ -20,6 +20,7 @@ SPEED_RANGE: Incomplete
 class TPLinkFanEntity(CoordinatedTPLinkEntity, FanEntity):
     _attr_speed_count: Incomplete
     _attr_supported_features: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     fan_module: Incomplete
     _attr_name: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, fan_module: FanInterface, parent: Device | None = None) -> None: ...

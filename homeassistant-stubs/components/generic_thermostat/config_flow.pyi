@@ -1,6 +1,7 @@
-from .climate import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_MIN_DUR as CONF_MIN_DUR, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN
+from .const import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_MIN_DUR as CONF_MIN_DUR, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from homeassistant.components import fan as fan, switch as switch
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.const import CONF_NAME as CONF_NAME, DEGREE as DEGREE
 from homeassistant.helpers import selector as selector

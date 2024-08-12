@@ -23,6 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class ZwaveFan(ZWaveBaseEntity, FanEntity):
     _attr_supported_features: Incomplete
+    _enable_turn_on_off_backwards_compatibility: bool
     _target_value: Incomplete
     _use_optimistic_state: bool
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...

@@ -16,6 +16,7 @@ from sqlalchemy.types import TypeDecorator as TypeDecorator
 from typing import Any, Self
 
 class Base(DeclarativeBase): ...
+class LegacyBase(DeclarativeBase): ...
 
 SCHEMA_VERSION: int
 _LOGGER: Incomplete
@@ -58,11 +59,12 @@ def compile_char_zero(type_: TypeDecorator, compiler: Any, **kw: Any) -> str: ..
 def compile_char_one(type_: TypeDecorator, compiler: Any, **kw: Any) -> str: ...
 
 class FAST_PYSQLITE_DATETIME(sqlite.DATETIME):
-    def result_processor(self, dialect, coltype): ...
+    def result_processor(self, dialect: Dialect, coltype: Any) -> Callable | None: ...
 
 class NativeLargeBinary(LargeBinary):
-    def result_processor(self, dialect, coltype) -> None: ...
+    def result_processor(self, dialect: Dialect, coltype: Any) -> Callable | None: ...
 
+ID_TYPE: Incomplete
 UINT_32_TYPE: Incomplete
 JSON_VARIANT_CAST: Incomplete
 JSONB_VARIANT_CAST: Incomplete
@@ -72,6 +74,7 @@ UNUSED_LEGACY_COLUMN: Incomplete
 UNUSED_LEGACY_DATETIME_COLUMN: Incomplete
 UNUSED_LEGACY_INTEGER_COLUMN: Incomplete
 DOUBLE_PRECISION_TYPE_SQL: str
+BIG_INTEGER_SQL: str
 CONTEXT_BINARY_TYPE: Incomplete
 TIMESTAMP_TYPE = DOUBLE_TYPE
 
@@ -79,7 +82,6 @@ class JSONLiteral(JSON):
     def literal_processor(self, dialect: Dialect) -> Callable[[Any], str]: ...
 
 EVENT_ORIGIN_ORDER: Incomplete
-EVENT_ORIGIN_TO_IDX: Incomplete
 
 class Events(Base):
     __table_args__: Incomplete
@@ -206,12 +208,18 @@ class Statistics(Base, StatisticsBase):
     __table_args__: Incomplete
     __tablename__ = TABLE_STATISTICS
 
-class StatisticsShortTerm(Base, StatisticsBase):
+class _StatisticsShortTerm(StatisticsBase):
     duration: Incomplete
-    __table_args__: Incomplete
     __tablename__ = TABLE_STATISTICS_SHORT_TERM
 
-class StatisticsMeta(Base):
+class StatisticsShortTerm(Base, _StatisticsShortTerm):
+    __table_args__: Incomplete
+
+class LegacyStatisticsShortTerm(LegacyBase, _StatisticsShortTerm):
+    __table_args__: Incomplete
+    metadata_id: Mapped[int | None]
+
+class _StatisticsMeta:
     __table_args__: Incomplete
     __tablename__ = TABLE_STATISTICS_META
     id: Mapped[int]
@@ -223,6 +231,11 @@ class StatisticsMeta(Base):
     name: Mapped[str | None]
     @staticmethod
     def from_meta(meta: StatisticMetaData) -> StatisticsMeta: ...
+
+class StatisticsMeta(Base, _StatisticsMeta): ...
+
+class LegacyStatisticsMeta(LegacyBase, _StatisticsMeta):
+    id: Mapped[int]
 
 class RecorderRuns(Base):
     __table_args__: Incomplete

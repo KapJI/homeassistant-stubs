@@ -1,11 +1,10 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
+from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
 from .entity import EnvoyBaseEntity as EnvoyBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -13,34 +12,32 @@ from pyenphase import Envoy as Envoy, EnvoyDryContactStatus as EnvoyDryContactSt
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
 from typing import Any
 
-_LOGGER: Incomplete
-
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnpowerSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[EnvoyEnpower], bool]
     turn_on_fn: Callable[[Envoy], Coroutine[Any, Any, dict[str, Any]]]
     turn_off_fn: Callable[[Envoy], Coroutine[Any, Any, dict[str, Any]]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, turn_on_fn, turn_off_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyDryContactSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[EnvoyDryContactStatus], bool]
     turn_on_fn: Callable[[Envoy, str], Coroutine[Any, Any, dict[str, Any]]]
     turn_off_fn: Callable[[Envoy, str], Coroutine[Any, Any, dict[str, Any]]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, turn_on_fn, turn_off_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyStorageSettingsSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[EnvoyStorageSettings], bool]
     turn_on_fn: Callable[[Envoy], Awaitable[dict[str, Any]]]
     turn_off_fn: Callable[[Envoy], Awaitable[dict[str, Any]]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, value_fn, turn_on_fn, turn_off_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 ENPOWER_GRID_SWITCH: Incomplete
 RELAY_STATE_SWITCH: Incomplete
 CHARGE_FROM_GRID_SWITCH: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EnvoyEnpowerSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     entity_description: EnvoyEnpowerSwitchEntityDescription

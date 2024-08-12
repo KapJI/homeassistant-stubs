@@ -10,6 +10,7 @@ from collections.abc import Iterable
 from functools import cached_property as cached_property
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util import slugify as slugify
+from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Literal, TypedDict
@@ -28,6 +29,8 @@ class _AreaStoreData(TypedDict):
     labels: list[str]
     name: str
     picture: str | None
+    created_at: str
+    modified_at: str
 
 class AreasRegistryStoreData(TypedDict):
     areas: list[_AreaStoreData]
@@ -46,7 +49,7 @@ class AreaEntry(NormalizedNameBaseRegistryEntry):
     picture: str | None
     @cached_property
     def json_fragment(self) -> json_fragment: ...
-    def __init__(self, *, name, normalized_name, aliases, floor_id, icon, id, labels, picture) -> None: ...
+    def __init__(self, *, name, normalized_name, created_at=..., modified_at=..., aliases, floor_id, icon, id, labels=..., picture) -> None: ...
 
 class AreaRegistryStore(Store[AreasRegistryStoreData]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> AreasRegistryStoreData: ...

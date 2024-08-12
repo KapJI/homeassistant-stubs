@@ -16,20 +16,20 @@ class Preset(str, Enum):
     COMFORT = PRESET_COMFORT
     BOOST = PRESET_BOOST
     AWAY = PRESET_AWAY
-    OPEN: str
-    LOW_BATTERY: str
-    WINDOW_OPEN: str
+    OPEN = 'Open'
+    LOW_BATTERY = 'Low Battery'
+    WINDOW_OPEN = 'Window'
 
 class CurrentTemperatureSelector(str, Enum):
-    NOTHING: str
-    UI: str
-    DEVICE: str
-    VALVE: str
-    ENTITY: str
+    NOTHING = 'NOTHING'
+    UI = 'UI'
+    DEVICE = 'DEVICE'
+    VALVE = 'VALVE'
+    ENTITY = 'ENTITY'
 
 class TargetTemperatureSelector(str, Enum):
-    TARGET: str
-    LAST_REPORTED: str
+    TARGET = 'TARGET'
+    LAST_REPORTED = 'LAST_REPORTED'
 
 DEFAULT_CURRENT_TEMP_SELECTOR: Incomplete
 DEFAULT_TARGET_TEMP_SELECTOR: Incomplete

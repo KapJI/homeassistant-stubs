@@ -11,6 +11,7 @@ from sqlalchemy.orm.session import Session as Session
 CACHE_SIZE: int
 
 class StatesMetaManager(BaseLRUTableManager[StatesMeta]):
+    active: bool
     _did_first_load: bool
     def __init__(self, recorder: Recorder) -> None: ...
     def load(self, events: list[Event[EventStateChangedData]], session: Session) -> None: ...

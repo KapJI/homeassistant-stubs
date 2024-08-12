@@ -1,12 +1,18 @@
 import json
 import orjson
+from .deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, deprecated_function as deprecated_function, dir_with_deprecated_constants as dir_with_deprecated_constants
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from functools import partial as partial
 from homeassistant.util.file import write_utf8_file as write_utf8_file, write_utf8_file_atomic as write_utf8_file_atomic
-from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, JSON_ENCODE_EXCEPTIONS as JSON_ENCODE_EXCEPTIONS, SerializationError as SerializationError, format_unserializable_data as format_unserializable_data, json_loads as json_loads
+from homeassistant.util.json import SerializationError as SerializationError, format_unserializable_data as format_unserializable_data
 from typing import Any, Final
 
+_DEPRECATED_JSON_DECODE_EXCEPTIONS: Incomplete
+_DEPRECATED_JSON_ENCODE_EXCEPTIONS: Incomplete
+json_loads: Incomplete
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete
 _LOGGER: Incomplete
 
 class JSONEncoder(json.JSONEncoder):

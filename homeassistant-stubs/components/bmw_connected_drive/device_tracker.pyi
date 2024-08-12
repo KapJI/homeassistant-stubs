@@ -1,17 +1,17 @@
-from . import BMWBaseEntity as BMWBaseEntity
-from .const import ATTR_DIRECTION as ATTR_DIRECTION, DOMAIN as DOMAIN
+from . import BMWConfigEntry as BMWConfigEntry
+from .const import ATTR_DIRECTION as ATTR_DIRECTION
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
+from .entity import BMWBaseEntity as BMWBaseEntity
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
 from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BMWDeviceTracker(BMWBaseEntity, TrackerEntity):
     _attr_force_update: bool

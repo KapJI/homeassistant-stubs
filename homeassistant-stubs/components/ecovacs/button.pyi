@@ -13,12 +13,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsButtonEntityDescription(ButtonEntityDescription, EcovacsCapabilityEntityDescription):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, capability_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., capability_fn) -> None: ...
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsLifespanButtonEntityDescription(ButtonEntityDescription):
     component: LifeSpan
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, component) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., component) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsButtonEntityDescription, ...]
 LIFESPAN_ENTITY_DESCRIPTIONS: Incomplete

@@ -19,8 +19,8 @@ ENERGY_SERVICE_NAME: Final[str]
 SERVICE_SCHEMA: Final[Incomplete]
 
 class PriceType(Enum):
-    ENERGY: str
-    GAS: str
+    ENERGY = 'energy'
+    GAS = 'gas'
 
 def __get_date(date_input: str | None) -> date | datetime: ...
 def __serialize_prices(prices: Electricity | Gas) -> ServiceResponse: ...

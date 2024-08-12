@@ -8,10 +8,10 @@ from typing import Any, Self
 ZONE_GLOBAL: str
 
 class _State(str, enum.Enum):
-    INIT: str
-    ACTIVE: str
-    TIMEOUT: str
-    EXIT: str
+    INIT = 'INIT'
+    ACTIVE = 'ACTIVE'
+    TIMEOUT = 'TIMEOUT'
+    EXIT = 'EXIT'
 
 class _GlobalFreezeContext:
     _loop: Incomplete

@@ -9,6 +9,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloScannerEntity(CoordinatorEntity[DataUpdateCoordinator[list[ConnectedStationInfo]]], ScannerEntity):

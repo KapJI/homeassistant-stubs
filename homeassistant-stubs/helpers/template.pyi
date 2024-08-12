@@ -4,10 +4,11 @@ from .singleton import singleton as singleton
 from .translation import async_translate_state as async_translate_state
 from .typing import TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Iterable
+from collections.abc import Callable as Callable, Generator, Iterable
 from contextlib import AbstractContextManager
 from contextvars import ContextVar
 from datetime import datetime, timedelta
+from functools import cached_property as cached_property
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_PERSONS as ATTR_PERSONS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_domain as valid_domain, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
@@ -22,7 +23,6 @@ from jinja2.sandbox import ImmutableSandboxedEnvironment
 from lru import LRU
 from types import CodeType, TracebackType
 from typing import Any, Literal, NoReturn, Self, overload
-from typing_extensions import Generator
 
 _LOGGER: Incomplete
 _SENTINEL: Incomplete
@@ -176,7 +176,7 @@ class TemplateStateBase(State):
     def __init__(self, hass: HomeAssistant, collect: bool, entity_id: str) -> None: ...
     def _collect_state(self) -> None: ...
     def __getitem__(self, item: str) -> Any: ...
-    @property
+    @cached_property
     def entity_id(self) -> str: ...
     @property
     def state(self) -> str: ...

@@ -2,9 +2,9 @@ import abc
 from . import BondConfigEntry as BondConfigEntry
 from .const import ATTR_POWER_STATE as ATTR_POWER_STATE, SERVICE_SET_LIGHT_BRIGHTNESS_TRACKED_STATE as SERVICE_SET_LIGHT_BRIGHTNESS_TRACKED_STATE, SERVICE_SET_LIGHT_POWER_TRACKED_STATE as SERVICE_SET_LIGHT_POWER_TRACKED_STATE
 from .entity import BondEntity as BondEntity
-from .utils import BondDevice as BondDevice, BondHub as BondHub
+from .models import BondData as BondData
+from .utils import BondDevice as BondDevice
 from _typeshed import Incomplete
-from bond_async import BPUPSubscriptions as BPUPSubscriptions
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -30,7 +30,7 @@ class BondBaseLight(BondEntity, LightEntity, metaclass=abc.ABCMeta):
 class BondLight(BondBaseLight, BondEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
-    def __init__(self, hub: BondHub, device: BondDevice, bpup_subs: BPUPSubscriptions, sub_device: str | None = None) -> None: ...
+    def __init__(self, data: BondData, device: BondDevice, sub_device: str | None = None) -> None: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     def _apply_state(self) -> None: ...

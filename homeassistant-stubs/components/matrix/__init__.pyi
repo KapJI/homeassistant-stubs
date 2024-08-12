@@ -31,7 +31,7 @@ WordCommand: Incomplete
 ExpressionCommand: Incomplete
 RoomAlias: Incomplete
 RoomID: Incomplete
-RoomAnyID: Incomplete
+RoomAnyID = RoomID | RoomAlias
 
 class ConfigCommand(TypedDict, total=False):
     name: Required[str]

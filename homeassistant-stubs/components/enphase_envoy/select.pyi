@@ -1,11 +1,10 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
+from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
 from .entity import EnvoyBaseEntity as EnvoyBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -17,13 +16,13 @@ from typing import Any
 class EnvoyRelaySelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[EnvoyDryContactSettings], str]
     update_fn: Callable[[Envoy, EnvoyDryContactSettings, str], Coroutine[Any, Any, dict[str, Any]]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, value_fn, update_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., value_fn, update_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyStorageSettingsSelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[EnvoyStorageSettings], str]
     update_fn: Callable[[Envoy, str], Awaitable[dict[str, Any]]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, value_fn, update_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., value_fn, update_fn) -> None: ...
 
 RELAY_MODE_MAP: Incomplete
 REVERSE_RELAY_MODE_MAP: Incomplete
@@ -37,7 +36,7 @@ STORAGE_MODE_OPTIONS: Incomplete
 RELAY_ENTITIES: Incomplete
 STORAGE_MODE_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EnvoyRelaySelectEntity(EnvoyBaseEntity, SelectEntity):
     entity_description: EnvoyRelaySelectEntityDescription

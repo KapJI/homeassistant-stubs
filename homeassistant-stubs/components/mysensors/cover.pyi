@@ -11,10 +11,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 class CoverState(Enum):
-    OPEN: int
-    OPENING: int
-    CLOSING: int
-    CLOSED: int
+    OPEN = 0
+    OPENING = 1
+    CLOSING = 2
+    CLOSED = 3
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

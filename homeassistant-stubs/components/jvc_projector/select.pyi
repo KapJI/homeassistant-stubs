@@ -14,7 +14,7 @@ from typing import Final
 @dataclass(frozen=True, kw_only=True)
 class JvcProjectorSelectDescription(SelectEntityDescription):
     command: Callable[[JvcProjector, str], Awaitable[None]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, options, command) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., command) -> None: ...
 
 OPTIONS: Final[dict[str, dict[str, str]]]
 SELECTS: Final[list[JvcProjectorSelectDescription]]

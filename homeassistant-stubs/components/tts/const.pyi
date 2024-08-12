@@ -1,5 +1,3 @@
-from _typeshed import Incomplete
-
 ATTR_CACHE: str
 ATTR_LANGUAGE: str
 ATTR_MESSAGE: str
@@ -13,4 +11,4 @@ DEFAULT_CACHE_DIR: str
 DEFAULT_TIME_MEMORY: int
 DOMAIN: str
 DATA_TTS_MANAGER: str
-TtsAudioType: Incomplete
+TtsAudioType = tuple[str | None, bytes | None]

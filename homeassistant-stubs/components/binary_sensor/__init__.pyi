@@ -19,34 +19,34 @@ PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 
 class BinarySensorDeviceClass(StrEnum):
-    BATTERY: str
-    BATTERY_CHARGING: str
-    CO: str
-    COLD: str
-    CONNECTIVITY: str
-    DOOR: str
-    GARAGE_DOOR: str
-    GAS: str
-    HEAT: str
-    LIGHT: str
-    LOCK: str
-    MOISTURE: str
-    MOTION: str
-    MOVING: str
-    OCCUPANCY: str
-    OPENING: str
-    PLUG: str
-    POWER: str
-    PRESENCE: str
-    PROBLEM: str
-    RUNNING: str
-    SAFETY: str
-    SMOKE: str
-    SOUND: str
-    TAMPER: str
-    UPDATE: str
-    VIBRATION: str
-    WINDOW: str
+    BATTERY = 'battery'
+    BATTERY_CHARGING = 'battery_charging'
+    CO = 'carbon_monoxide'
+    COLD = 'cold'
+    CONNECTIVITY = 'connectivity'
+    DOOR = 'door'
+    GARAGE_DOOR = 'garage_door'
+    GAS = 'gas'
+    HEAT = 'heat'
+    LIGHT = 'light'
+    LOCK = 'lock'
+    MOISTURE = 'moisture'
+    MOTION = 'motion'
+    MOVING = 'moving'
+    OCCUPANCY = 'occupancy'
+    OPENING = 'opening'
+    PLUG = 'plug'
+    POWER = 'power'
+    PRESENCE = 'presence'
+    PROBLEM = 'problem'
+    RUNNING = 'running'
+    SAFETY = 'safety'
+    SMOKE = 'smoke'
+    SOUND = 'sound'
+    TAMPER = 'tamper'
+    UPDATE = 'update'
+    VIBRATION = 'vibration'
+    WINDOW = 'window'
 
 DEVICE_CLASSES_SCHEMA: Incomplete
 DEVICE_CLASSES: Incomplete
@@ -85,7 +85,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class BinarySensorEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: BinarySensorDeviceClass | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

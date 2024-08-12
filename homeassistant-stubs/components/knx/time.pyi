@@ -11,15 +11,15 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Final
 from xknx import XKNX as XKNX
-from xknx.devices import DateTime as XknxDateTime
+from xknx.devices import TimeDevice as XknxTimeDevice
 
 _TIME_TRANSLATION_FORMAT: Final[str]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def _create_xknx_device(xknx: XKNX, config: ConfigType) -> XknxDateTime: ...
+def _create_xknx_device(xknx: XKNX, config: ConfigType) -> XknxTimeDevice: ...
 
-class KNXTime(KnxEntity, TimeEntity, RestoreEntity):
-    _device: XknxDateTime
+class KNXTimeEntity(KnxEntity, TimeEntity, RestoreEntity):
+    _device: XknxTimeDevice
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...

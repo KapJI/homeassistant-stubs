@@ -8,7 +8,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 class AsekoEntity(CoordinatorEntity[AsekoDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _unit: Incomplete
-    _device_model: Incomplete
+    _device_model: str
     _device_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, unit: Unit, coordinator: AsekoDataUpdateCoordinator) -> None: ...

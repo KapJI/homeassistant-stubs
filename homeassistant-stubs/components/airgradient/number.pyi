@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 class AirGradientNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[Config], int]
     set_value_fn: Callable[[AirGradientClient, int], Awaitable[None]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, value_fn, set_value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., value_fn, set_value_fn) -> None: ...
 
 DISPLAY_BRIGHTNESS: Incomplete
 LED_BAR_BRIGHTNESS: Incomplete

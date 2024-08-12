@@ -4,7 +4,7 @@ from .models import EventAsRow as EventAsRow, LazyEventPartialState as LazyEvent
 from .queries import statement_for_request as statement_for_request
 from .queries.common import PSEUDO_EVENT_STATE_CHANGED as PSEUDO_EVENT_STATE_CHANGED
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Sequence
+from collections.abc import Callable as Callable, Generator, Sequence
 from dataclasses import dataclass
 from datetime import datetime as dt
 from homeassistant.components.recorder import get_instance as get_instance
@@ -18,7 +18,6 @@ from homeassistant.util.event_type import EventType as EventType
 from sqlalchemy.engine import Result as Result
 from sqlalchemy.engine.row import Row as Row
 from typing import Any
-from typing_extensions import Generator
 
 _LOGGER: Incomplete
 
@@ -31,7 +30,7 @@ class LogbookRun:
     include_entity_name: bool
     format_time: Callable[[Row | EventAsRow], Any]
     memoize_new_contexts: bool = ...
-    def __init__(self, context_lookup, external_events, event_cache, entity_name_cache, include_entity_name, format_time, memoize_new_contexts) -> None: ...
+    def __init__(self, context_lookup, external_events, event_cache, entity_name_cache, include_entity_name, format_time, memoize_new_contexts=...) -> None: ...
 
 class EventProcessor:
     hass: Incomplete

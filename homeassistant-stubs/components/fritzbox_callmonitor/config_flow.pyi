@@ -11,11 +11,11 @@ from typing import Any
 DATA_SCHEMA_USER: Incomplete
 
 class ConnectResult(StrEnum):
-    INVALID_AUTH: str
-    INSUFFICIENT_PERMISSIONS: str
-    MALFORMED_PREFIXES: str
-    NO_DEVIES_FOUND: str
-    SUCCESS: str
+    INVALID_AUTH = 'invalid_auth'
+    INSUFFICIENT_PERMISSIONS = 'insufficient_permissions'
+    MALFORMED_PREFIXES = 'malformed_prefixes'
+    NO_DEVIES_FOUND = 'no_devices_found'
+    SUCCESS = 'success'
 
 class FritzBoxCallMonitorConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

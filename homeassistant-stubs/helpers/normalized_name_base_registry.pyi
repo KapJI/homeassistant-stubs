@@ -1,12 +1,15 @@
 from .registry import BaseRegistryItems as BaseRegistryItems
 from _typeshed import Incomplete
 from dataclasses import dataclass
+from datetime import datetime
 
 @dataclass(slots=True, frozen=True, kw_only=True)
 class NormalizedNameBaseRegistryEntry:
     name: str
     normalized_name: str
-    def __init__(self, *, name, normalized_name) -> None: ...
+    created_at: datetime = ...
+    modified_at: datetime = ...
+    def __init__(self, *, name, normalized_name, created_at=..., modified_at=...) -> None: ...
 
 def normalize_name(name: str) -> str: ...
 

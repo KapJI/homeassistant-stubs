@@ -5,34 +5,34 @@ DOMAIN: str
 DATA_PROVIDERS: Incomplete
 
 class AudioCodecs(str, Enum):
-    PCM: str
-    OPUS: str
+    PCM = 'pcm'
+    OPUS = 'opus'
 
 class AudioFormats(str, Enum):
-    WAV: str
-    OGG: str
+    WAV = 'wav'
+    OGG = 'ogg'
 
 class AudioBitRates(int, Enum):
-    BITRATE_8: int
-    BITRATE_16: int
-    BITRATE_24: int
-    BITRATE_32: int
+    BITRATE_8 = 8
+    BITRATE_16 = 16
+    BITRATE_24 = 24
+    BITRATE_32 = 32
 
 class AudioSampleRates(int, Enum):
-    SAMPLERATE_8000: int
-    SAMPLERATE_11000: int
-    SAMPLERATE_16000: int
-    SAMPLERATE_18900: int
-    SAMPLERATE_22000: int
-    SAMPLERATE_32000: int
-    SAMPLERATE_37800: int
-    SAMPLERATE_44100: int
-    SAMPLERATE_48000: int
+    SAMPLERATE_8000 = 8000
+    SAMPLERATE_11000 = 11000
+    SAMPLERATE_16000 = 16000
+    SAMPLERATE_18900 = 18900
+    SAMPLERATE_22000 = 22000
+    SAMPLERATE_32000 = 32000
+    SAMPLERATE_37800 = 37800
+    SAMPLERATE_44100 = 44100
+    SAMPLERATE_48000 = 48000
 
 class AudioChannels(int, Enum):
-    CHANNEL_MONO: int
-    CHANNEL_STEREO: int
+    CHANNEL_MONO = 1
+    CHANNEL_STEREO = 2
 
 class SpeechResultState(str, Enum):
-    SUCCESS: str
-    ERROR: str
+    SUCCESS = 'success'
+    ERROR = 'error'

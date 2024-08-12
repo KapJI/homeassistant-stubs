@@ -10,11 +10,11 @@ ATTR_DURATION: Final[str]
 ATTR_VOLUME_LEVEL: Final[str]
 
 class SirenEntityFeature(IntFlag):
-    TURN_ON: int
-    TURN_OFF: int
-    TONES: int
-    VOLUME_SET: int
-    DURATION: int
+    TURN_ON = 1
+    TURN_OFF = 2
+    TONES = 4
+    VOLUME_SET = 8
+    DURATION = 16
 
 _DEPRECATED_SUPPORT_TURN_ON: Final[Incomplete]
 _DEPRECATED_SUPPORT_TURN_OFF: Final[Incomplete]

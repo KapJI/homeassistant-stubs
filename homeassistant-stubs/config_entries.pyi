@@ -23,16 +23,18 @@ from .loader import async_suggest_report_issue as async_suggest_report_issue
 from .setup import DATA_SETUP_DONE as DATA_SETUP_DONE, SetupPhases as SetupPhases, async_pause_setup as async_pause_setup, async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component, async_start_setup as async_start_setup
 from .util.async_ import create_eager_task as create_eager_task
 from .util.decorator import Registry as Registry
+from .util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from .util.enum import try_parse_enum as try_parse_enum
 from _typeshed import Incomplete
 from collections import UserDict
-from collections.abc import Callable, Coroutine, Iterable, Mapping, ValuesView
+from collections.abc import Callable, Coroutine, Generator, Iterable, Mapping, ValuesView
 from contextvars import ContextVar
+from datetime import datetime
 from enum import Enum, StrEnum
 from functools import cached_property as cached_property
 from types import MappingProxyType
 from typing import Any, Generic, Self
-from typing_extensions import Generator, TypeVar
+from typing_extensions import TypeVar
 
 _LOGGER: Incomplete
 SOURCE_BLUETOOTH: str
@@ -62,13 +64,13 @@ DISCOVERY_COOLDOWN: int
 _DataT = TypeVar('_DataT', default=Any)
 
 class ConfigEntryState(Enum):
-    LOADED: Incomplete
-    SETUP_ERROR: Incomplete
-    MIGRATION_ERROR: Incomplete
-    SETUP_RETRY: Incomplete
-    NOT_LOADED: Incomplete
-    FAILED_UNLOAD: Incomplete
-    SETUP_IN_PROGRESS: Incomplete
+    LOADED = ('loaded', True)
+    SETUP_ERROR = ('setup_error', True)
+    MIGRATION_ERROR = ('migration_error', False)
+    SETUP_RETRY = ('setup_retry', True)
+    NOT_LOADED = ('not_loaded', True)
+    FAILED_UNLOAD = ('failed_unload', False)
+    SETUP_IN_PROGRESS = ('setup_in_progress', False)
     _recoverable: bool
     def __new__(cls, value: str, recoverable: bool) -> Self: ...
     @property
@@ -83,12 +85,12 @@ SIGNAL_CONFIG_ENTRY_CHANGED: Incomplete
 NO_RESET_TRIES_STATES: Incomplete
 
 class ConfigEntryChange(StrEnum):
-    ADDED: str
-    REMOVED: str
-    UPDATED: str
+    ADDED = 'added'
+    REMOVED = 'removed'
+    UPDATED = 'updated'
 
 class ConfigEntryDisabler(StrEnum):
-    USER: str
+    USER = 'user'
 
 DISABLED_USER: Incomplete
 RELOAD_AFTER_UPDATE_DELAY: int
@@ -143,7 +145,9 @@ class ConfigEntry(Generic[_DataT]):
     _background_tasks: set[asyncio.Future[Any]]
     _integration_for_domain: loader.Integration | None
     _tries: int
-    def __init__(self, *, data: Mapping[str, Any], disabled_by: ConfigEntryDisabler | None = None, domain: str, entry_id: str | None = None, minor_version: int, options: Mapping[str, Any] | None, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, source: str, state: ConfigEntryState = ..., title: str, unique_id: str | None, version: int) -> None: ...
+    created_at: datetime
+    modified_at: datetime
+    def __init__(self, *, created_at: datetime | None = None, data: Mapping[str, Any], disabled_by: ConfigEntryDisabler | None = None, domain: str, entry_id: str | None = None, minor_version: int, modified_at: datetime | None = None, options: Mapping[str, Any] | None, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, source: str, state: ConfigEntryState = ..., title: str, unique_id: str | None, version: int) -> None: ...
     def __repr__(self) -> str: ...
     def __setattr__(self, key: str, value: Any) -> None: ...
     @property

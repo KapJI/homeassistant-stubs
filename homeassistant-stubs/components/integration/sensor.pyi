@@ -51,8 +51,8 @@ def _decimal_state(state: str) -> Decimal | None: ...
 _NAME_TO_INTEGRATION_METHOD: dict[str, type[_IntegrationMethod]]
 
 class _IntegrationTrigger(Enum):
-    StateEvent: str
-    TimeElapsed: str
+    StateEvent = 'state_event'
+    TimeElapsed = 'time_elapsed'
 
 @dataclass
 class IntegrationSensorExtraStoredData(SensorExtraStoredData):

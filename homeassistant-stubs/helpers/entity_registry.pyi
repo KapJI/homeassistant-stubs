@@ -6,6 +6,7 @@ from .singleton import singleton as singleton
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Container, Hashable, KeysView, Mapping
+from datetime import datetime
 from enum import StrEnum
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -14,6 +15,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import MaxLengthExceeded as MaxLengthExceeded
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util import slugify as slugify
+from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
@@ -33,15 +35,15 @@ ENTITY_CATEGORY_INDEX_TO_VALUE: Incomplete
 ENTITY_DESCRIBING_ATTRIBUTES: Incomplete
 
 class RegistryEntryDisabler(StrEnum):
-    CONFIG_ENTRY: str
-    DEVICE: str
-    HASS: str
-    INTEGRATION: str
-    USER: str
+    CONFIG_ENTRY = 'config_entry'
+    DEVICE = 'device'
+    HASS = 'hass'
+    INTEGRATION = 'integration'
+    USER = 'user'
 
 class RegistryEntryHider(StrEnum):
-    INTEGRATION: str
-    USER: str
+    INTEGRATION = 'integration'
+    USER = 'user'
 
 class _EventEntityRegistryUpdatedData_CreateRemove(TypedDict):
     action: Literal['create', 'remove']
@@ -52,8 +54,7 @@ class _EventEntityRegistryUpdatedData_Update(TypedDict):
     entity_id: str
     changes: dict[str, Any]
     old_entity_id: NotRequired[str]
-
-EventEntityRegistryUpdatedData: Incomplete
+EventEntityRegistryUpdatedData = _EventEntityRegistryUpdatedData_CreateRemove | _EventEntityRegistryUpdatedData_Update
 EntityOptionsType = Mapping[str, Mapping[str, Any]]
 ReadOnlyEntityOptionsType = ReadOnlyDict[str, ReadOnlyDict[str, Any]]
 DISPLAY_DICT_OPTIONAL: Incomplete
@@ -70,6 +71,7 @@ class RegistryEntry:
     categories: dict[str, str]
     capabilities: Mapping[str, Any] | None
     config_entry_id: str | None
+    created_at: datetime
     device_class: str | None
     device_id: str | None
     domain: str
@@ -80,6 +82,7 @@ class RegistryEntry:
     id: str
     has_entity_name: bool
     labels: set[str]
+    modified_at: datetime
     name: str | None
     options: ReadOnlyEntityOptionsType
     original_device_class: str | None
@@ -106,7 +109,7 @@ class RegistryEntry:
     @cached_property
     def as_storage_fragment(self) -> json_fragment: ...
     def write_unavailable_state(self, hass: HomeAssistant) -> None: ...
-    def __init__(self, entity_id, unique_id, platform, previous_unique_id, aliases, area_id, categories, capabilities, config_entry_id, device_class, device_id, domain, disabled_by, entity_category, hidden_by, icon, id, has_entity_name, labels, name, options, original_device_class, original_icon, original_name, supported_features, translation_key, unit_of_measurement) -> None: ...
+    def __init__(self, entity_id, unique_id, platform, previous_unique_id, aliases, area_id, categories, capabilities, config_entry_id, created_at, device_class, device_id, domain, disabled_by, entity_category, hidden_by, icon, id, has_entity_name, labels, modified_at, name, options, original_device_class, original_icon, original_name, supported_features, translation_key, unit_of_measurement) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
     def __gt__(self, other): ...
@@ -120,10 +123,12 @@ class DeletedRegistryEntry:
     domain: str
     id: str
     orphaned_timestamp: float | None
+    created_at: datetime
+    modified_at: datetime
     def _domain_default(self) -> str: ...
     @cached_property
     def as_storage_fragment(self) -> json_fragment: ...
-    def __init__(self, entity_id, unique_id, platform, config_entry_id, domain, id, orphaned_timestamp) -> None: ...
+    def __init__(self, entity_id, unique_id, platform, config_entry_id, domain, id, orphaned_timestamp, created_at, modified_at) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
     def __gt__(self, other): ...

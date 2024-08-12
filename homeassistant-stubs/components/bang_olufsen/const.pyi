@@ -1,48 +1,39 @@
 from enum import StrEnum
 from homeassistant.components.media_player import MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from mozart_api.models import SourceArray
+from mozart_api.models import Source, SourceArray
 from typing import Final
 
-class BangOlufsenSource(StrEnum):
-    URI_STREAMER: str
-    BLUETOOTH: str
-    AIR_PLAY: str
-    CHROMECAST: str
-    SPOTIFY: str
-    GENERATOR: str
-    LINE_IN: str
-    SPDIF: str
-    NET_RADIO: str
-    LOCAL: str
-    DLNA: str
-    QPLAY: str
-    WPL: str
-    PL: str
-    TV: str
-    DEEZER: str
-    BEOLINK: str
-    TIDAL_CONNECT: str
+class BangOlufsenSource:
+    URI_STREAMER: Final[Source]
+    BLUETOOTH: Final[Source]
+    CHROMECAST: Final[Source]
+    LINE_IN: Final[Source]
+    SPDIF: Final[Source]
+    NET_RADIO: Final[Source]
+    DEEZER: Final[Source]
+    TIDAL: Final[Source]
 
 BANG_OLUFSEN_STATES: dict[str, MediaPlayerState]
 
 class BangOlufsenMediaType(StrEnum):
-    FAVOURITE: str
-    DEEZER: str
-    RADIO: str
-    TIDAL: str
-    TTS: str
-    OVERLAY_TTS: str
+    FAVOURITE = 'favourite'
+    DEEZER = 'deezer'
+    RADIO = 'radio'
+    TIDAL = 'tidal'
+    TTS = 'provider'
+    OVERLAY_TTS = 'overlay_tts'
 
 class BangOlufsenModel(StrEnum):
-    BEOLAB_8: str
-    BEOLAB_28: str
-    BEOSOUND_2: str
-    BEOSOUND_A5: str
-    BEOSOUND_A9: str
-    BEOSOUND_BALANCE: str
-    BEOSOUND_EMERGE: str
-    BEOSOUND_LEVEL: str
-    BEOSOUND_THEATRE: str
+    BEOCONNECT_CORE = 'Beoconnect Core'
+    BEOLAB_8 = 'BeoLab 8'
+    BEOLAB_28 = 'BeoLab 28'
+    BEOSOUND_2 = 'Beosound 2 3rd Gen'
+    BEOSOUND_A5 = 'Beosound A5'
+    BEOSOUND_A9 = 'Beosound A9 5th Gen'
+    BEOSOUND_BALANCE = 'Beosound Balance'
+    BEOSOUND_EMERGE = 'Beosound Emerge'
+    BEOSOUND_LEVEL = 'Beosound Level'
+    BEOSOUND_THEATRE = 'Beosound Theatre'
 
 class WebsocketNotification(StrEnum):
     PLAYBACK_ERROR: Final[str]

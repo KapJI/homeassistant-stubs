@@ -25,6 +25,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class MatterFan(MatterEntity, FanEntity):
     _last_known_preset_mode: str | None
+    _last_known_percentage: int
+    _enable_turn_on_off_backwards_compatibility: bool
+    _feature_map: int | None
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
@@ -37,6 +40,7 @@ class MatterFan(MatterEntity, FanEntity):
     _attr_current_direction: Incomplete
     _attr_oscillating: Incomplete
     def _update_from_device(self) -> None: ...
+    _attr_supported_features: Incomplete
     _attr_speed_count: Incomplete
     _attr_preset_modes: Incomplete
     def _calculate_features(self) -> None: ...

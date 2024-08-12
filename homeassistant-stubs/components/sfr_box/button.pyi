@@ -19,7 +19,7 @@ def with_error_wrapping(func: Callable[Concatenate[SFRBoxButton, _P], Awaitable[
 @dataclass(frozen=True, kw_only=True)
 class SFRBoxButtonEntityDescription(ButtonEntityDescription):
     async_press: Callable[[SFRBox], Coroutine[None, None, None]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, async_press) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., async_press) -> None: ...
 
 BUTTON_TYPES: tuple[SFRBoxButtonEntityDescription, ...]
 

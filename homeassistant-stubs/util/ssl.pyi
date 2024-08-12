@@ -3,9 +3,9 @@ from _typeshed import Incomplete
 from enum import StrEnum
 
 class SSLCipherList(StrEnum):
-    PYTHON_DEFAULT: str
-    INTERMEDIATE: str
-    MODERN: str
+    PYTHON_DEFAULT = 'python_default'
+    INTERMEDIATE = 'intermediate'
+    MODERN = 'modern'
 
 SSL_CIPHER_LISTS: Incomplete
 

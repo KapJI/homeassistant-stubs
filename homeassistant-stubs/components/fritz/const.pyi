@@ -4,9 +4,9 @@ from homeassistant.const import Platform as Platform
 from typing import Literal
 
 class MeshRoles(StrEnum):
-    NONE: str
-    MASTER: str
-    SLAVE: str
+    NONE = 'none'
+    MASTER = 'master'
+    SLAVE = 'slave'
 
 DOMAIN: str
 PLATFORMS: Incomplete

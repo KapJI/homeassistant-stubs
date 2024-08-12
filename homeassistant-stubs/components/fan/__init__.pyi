@@ -1,3 +1,4 @@
+import asyncio
 from _typeshed import Incomplete
 from enum import IntFlag
 from functools import cached_property as cached_property
@@ -8,6 +9,7 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
@@ -21,10 +23,12 @@ PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 
 class FanEntityFeature(IntFlag):
-    SET_SPEED: int
-    OSCILLATE: int
-    DIRECTION: int
-    PRESET_MODE: int
+    SET_SPEED = 1
+    OSCILLATE = 2
+    DIRECTION = 4
+    PRESET_MODE = 8
+    TURN_OFF = 16
+    TURN_ON = 32
 
 _DEPRECATED_SUPPORT_SET_SPEED: Incomplete
 _DEPRECATED_SUPPORT_OSCILLATE: Incomplete
@@ -54,7 +58,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class FanEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -68,6 +72,10 @@ class FanEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_preset_modes: list[str] | None
     _attr_speed_count: int
     _attr_supported_features: FanEntityFeature
+    __mod_supported_features: FanEntityFeature
+    _enable_turn_on_off_backwards_compatibility: bool
+    def __getattribute__(self, __name: str) -> Any: ...
+    def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
     def set_percentage(self, percentage: int) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_increase_speed(self, percentage_step: int | None = None) -> None: ...
@@ -102,8 +110,6 @@ class FanEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def state_attributes(self) -> dict[str, float | str | None]: ...
     @cached_property
     def supported_features(self) -> FanEntityFeature: ...
-    @property
-    def supported_features_compat(self) -> FanEntityFeature: ...
     @cached_property
     def preset_mode(self) -> str | None: ...
     @cached_property

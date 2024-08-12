@@ -16,14 +16,14 @@ from typing_extensions import TypeVar
 _LOGGER: Incomplete
 
 class FlowResultType(StrEnum):
-    FORM: str
-    CREATE_ENTRY: str
-    ABORT: str
-    EXTERNAL_STEP: str
-    EXTERNAL_STEP_DONE: str
-    SHOW_PROGRESS: str
-    SHOW_PROGRESS_DONE: str
-    MENU: str
+    FORM = 'form'
+    CREATE_ENTRY = 'create_entry'
+    ABORT = 'abort'
+    EXTERNAL_STEP = 'external'
+    EXTERNAL_STEP_DONE = 'external_done'
+    SHOW_PROGRESS = 'progress'
+    SHOW_PROGRESS_DONE = 'progress_done'
+    MENU = 'menu'
 
 _DEPRECATED_RESULT_TYPE_FORM: Incomplete
 _DEPRECATED_RESULT_TYPE_CREATE_ENTRY: Incomplete

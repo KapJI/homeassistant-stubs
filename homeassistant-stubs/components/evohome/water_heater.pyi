@@ -1,6 +1,7 @@
 import evohomeasync2 as evo
-from . import EvoBroker as EvoBroker, EvoChild as EvoChild
+from . import EvoBroker as EvoBroker
 from .const import DOMAIN as DOMAIN, EVO_FOLLOW as EVO_FOLLOW, EVO_PERMOVER as EVO_PERMOVER
+from .entity import EvoChild as EvoChild
 from _typeshed import Incomplete
 from homeassistant.components.water_heater import WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
 from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature

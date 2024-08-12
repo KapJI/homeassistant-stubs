@@ -1,4 +1,3 @@
-from .discovery import MatterEntityInfo as MatterEntityInfo
 from .entity import MatterEntity as MatterEntity
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
@@ -10,8 +9,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from matter_server.client import MatterClient as MatterClient
-from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from typing import Any
 
 TEMPERATURE_SCALING_FACTOR: int
@@ -24,23 +21,21 @@ ControlSequenceEnum: Incomplete
 ThermostatFeature: Incomplete
 
 class ThermostatRunningState(IntEnum):
-    Heat: int
-    Cool: int
-    Fan: int
-    HeatStage2: int
-    CoolStage2: int
-    FanStage2: int
-    FanStage3: int
+    Heat = 1
+    Cool = 2
+    Fan = 4
+    HeatStage2 = 8
+    CoolStage2 = 16
+    FanStage2 = 32
+    FanStage3 = 64
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MatterClimate(MatterEntity, ClimateEntity):
     _attr_temperature_unit: str
     _attr_hvac_mode: HVACMode
+    _feature_map: int | None
     _enable_turn_on_off_backwards_compatibility: bool
-    _attr_hvac_modes: Incomplete
-    _attr_supported_features: Incomplete
-    def __init__(self, matter_client: MatterClient, endpoint: MatterEndpoint, entity_info: MatterEntityInfo) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_current_temperature: Incomplete
@@ -51,6 +46,9 @@ class MatterClimate(MatterEntity, ClimateEntity):
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     def _update_from_device(self) -> None: ...
+    _attr_hvac_modes: Incomplete
+    _attr_supported_features: Incomplete
+    def _calculate_features(self) -> None: ...
     def _get_temperature_in_degrees(self, attribute: type[clusters.ClusterAttributeDescriptor]) -> float | None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

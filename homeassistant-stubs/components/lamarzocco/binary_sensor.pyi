@@ -11,7 +11,7 @@ from lmcloud.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoBinarySensorEntityDescription(LaMarzoccoEntityDescription, BinarySensorEntityDescription):
     is_on_fn: Callable[[LaMarzoccoMachineConfig], bool]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, available_fn, supported_fn, is_on_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_fn=..., supported_fn=..., is_on_fn) -> None: ...
 
 ENTITIES: tuple[LaMarzoccoBinarySensorEntityDescription, ...]
 

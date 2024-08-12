@@ -5,6 +5,8 @@ from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as C
 
 LOGGER: Incomplete
 CONF_COMMAND_TIMEOUT: str
+CONF_JSON_ATTRIBUTES: str
+CONF_JSON_ATTRIBUTES_PATH: str
 DEFAULT_TIMEOUT: int
 DOMAIN: str
 PLATFORMS: Incomplete

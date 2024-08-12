@@ -1,7 +1,6 @@
-import sucks
 from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .const import DOMAIN as DOMAIN
-from .entity import EcovacsEntity as EcovacsEntity
+from .entity import EcovacsEntity as EcovacsEntity, EcovacsLegacyEntity as EcovacsLegacyEntity
 from .util import get_name_key as get_name_key
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -25,16 +24,11 @@ SERVICE_RAW_GET_POSITIONS: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class EcovacsLegacyVacuum(StateVacuumEntity):
+class EcovacsLegacyVacuum(EcovacsLegacyEntity, StateVacuumEntity):
     _attr_fan_speed_list: Incomplete
-    _attr_should_poll: bool
     _attr_supported_features: Incomplete
-    device: Incomplete
-    error: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_name: Incomplete
-    def __init__(self, device: sucks.VacBot) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    error: Incomplete
     def on_error(self, error: str) -> None: ...
     @property
     def state(self) -> str | None: ...

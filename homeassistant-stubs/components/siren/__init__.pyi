@@ -28,7 +28,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class SirenEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
     available_tones: list[int | str] | dict[int, str] | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, available_tones) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_tones=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

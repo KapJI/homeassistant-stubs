@@ -3,13 +3,13 @@ from enum import IntFlag, StrEnum
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 
 class HVACMode(StrEnum):
-    OFF: str
-    HEAT: str
-    COOL: str
-    HEAT_COOL: str
-    AUTO: str
-    DRY: str
-    FAN_ONLY: str
+    OFF = 'off'
+    HEAT = 'heat'
+    COOL = 'cool'
+    HEAT_COOL = 'heat_cool'
+    AUTO = 'auto'
+    DRY = 'dry'
+    FAN_ONLY = 'fan_only'
 
 _DEPRECATED_HVAC_MODE_OFF: Incomplete
 _DEPRECATED_HVAC_MODE_HEAT: Incomplete
@@ -44,13 +44,14 @@ SWING_VERTICAL: str
 SWING_HORIZONTAL: str
 
 class HVACAction(StrEnum):
-    COOLING: str
-    DRYING: str
-    FAN: str
-    HEATING: str
-    IDLE: str
-    OFF: str
-    PREHEATING: str
+    COOLING = 'cooling'
+    DEFROSTING = 'defrosting'
+    DRYING = 'drying'
+    FAN = 'fan'
+    HEATING = 'heating'
+    IDLE = 'idle'
+    OFF = 'off'
+    PREHEATING = 'preheating'
 
 _DEPRECATED_CURRENT_HVAC_OFF: Incomplete
 _DEPRECATED_CURRENT_HVAC_HEAT: Incomplete
@@ -93,15 +94,15 @@ SERVICE_SET_SWING_MODE: str
 SERVICE_SET_TEMPERATURE: str
 
 class ClimateEntityFeature(IntFlag):
-    TARGET_TEMPERATURE: int
-    TARGET_TEMPERATURE_RANGE: int
-    TARGET_HUMIDITY: int
-    FAN_MODE: int
-    PRESET_MODE: int
-    SWING_MODE: int
-    AUX_HEAT: int
-    TURN_OFF: int
-    TURN_ON: int
+    TARGET_TEMPERATURE = 1
+    TARGET_TEMPERATURE_RANGE = 2
+    TARGET_HUMIDITY = 4
+    FAN_MODE = 8
+    PRESET_MODE = 16
+    SWING_MODE = 32
+    AUX_HEAT = 64
+    TURN_OFF = 128
+    TURN_ON = 256
 
 _DEPRECATED_SUPPORT_TARGET_TEMPERATURE: Incomplete
 _DEPRECATED_SUPPORT_TARGET_TEMPERATURE_RANGE: Incomplete

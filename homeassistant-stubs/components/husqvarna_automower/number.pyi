@@ -1,7 +1,6 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
-from .const import EXECUTION_TIME_DELAY as EXECUTION_TIME_DELAY
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
-from .entity import AutomowerControlEntity as AutomowerControlEntity
+from .entity import AutomowerControlEntity as AutomowerControlEntity, handle_sending_exception as handle_sending_exception
 from _typeshed import Incomplete
 from aioautomower.model import MowerAttributes as MowerAttributes, WorkArea as WorkArea
 from aioautomower.session import AutomowerSession as AutomowerSession
@@ -10,7 +9,6 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
@@ -26,7 +24,7 @@ class AutomowerNumberEntityDescription(NumberEntityDescription):
     exists_fn: Callable[[MowerAttributes], bool] = ...
     value_fn: Callable[[MowerAttributes], int]
     set_value_fn: Callable[[AutomowerSession, str, float], Awaitable[Any]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, exists_fn, value_fn, set_value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., exists_fn=..., value_fn, set_value_fn) -> None: ...
 
 NUMBER_TYPES: tuple[AutomowerNumberEntityDescription, ...]
 
@@ -35,7 +33,7 @@ class AutomowerWorkAreaNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[WorkArea], int]
     translation_key_fn: Callable[[int], str]
     set_value_fn: Callable[[AutomowerDataUpdateCoordinator, str, float, int], Awaitable[Any]]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, max_value, min_value, mode, native_max_value, native_min_value, native_step, native_unit_of_measurement, step, value_fn, translation_key_fn, set_value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., value_fn, translation_key_fn, set_value_fn) -> None: ...
 
 WORK_AREA_NUMBER_TYPES: tuple[AutomowerWorkAreaNumberEntityDescription, ...]
 

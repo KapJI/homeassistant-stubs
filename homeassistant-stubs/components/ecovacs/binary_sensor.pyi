@@ -14,7 +14,7 @@ from typing import Generic
 @dataclass(kw_only=True, frozen=True)
 class EcovacsBinarySensorEntityDescription(BinarySensorEntityDescription, EcovacsCapabilityEntityDescription, Generic[EventT]):
     value_fn: Callable[[EventT], bool | None]
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, capability_fn, value_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., capability_fn, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsBinarySensorEntityDescription, ...]
 

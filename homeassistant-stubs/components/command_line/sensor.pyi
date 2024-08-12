@@ -1,4 +1,4 @@
-from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
+from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, CONF_JSON_ATTRIBUTES as CONF_JSON_ATTRIBUTES, CONF_JSON_ATTRIBUTES_PATH as CONF_JSON_ATTRIBUTES_PATH, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
 from .utils import async_check_output_or_log as async_check_output_or_log
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
@@ -14,7 +14,6 @@ from homeassistant.helpers.trigger_template_entity import ManualTriggerSensorEnt
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-CONF_JSON_ATTRIBUTES: str
 DEFAULT_NAME: str
 SCAN_INTERVAL: Incomplete
 
@@ -25,11 +24,12 @@ class CommandSensor(ManualTriggerSensorEntity):
     data: Incomplete
     _attr_extra_state_attributes: Incomplete
     _json_attributes: Incomplete
+    _json_attributes_path: Incomplete
     _attr_native_value: Incomplete
     _value_template: Incomplete
     _scan_interval: Incomplete
     _process_updates: Incomplete
-    def __init__(self, data: CommandSensorData, config: ConfigType, value_template: Template | None, json_attributes: list[str] | None, scan_interval: timedelta) -> None: ...
+    def __init__(self, data: CommandSensorData, config: ConfigType, value_template: Template | None, json_attributes: list[str] | None, json_attributes_path: str | None, scan_interval: timedelta) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     async def async_added_to_hass(self) -> None: ...

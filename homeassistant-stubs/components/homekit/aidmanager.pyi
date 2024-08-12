@@ -1,9 +1,9 @@
 from .util import get_aid_storage_filename_for_entry_id as get_aid_storage_filename_for_entry_id
 from _typeshed import Incomplete
+from collections.abc import Generator
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.storage import Store as Store
-from typing_extensions import Generator
 
 AID_MANAGER_STORAGE_VERSION: int
 AID_MANAGER_SAVE_DELAY: int

@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
 from aiohttp.web import AppKey, Request as Request
+from aiohttp.web_urldispatcher import AbstractResource, AbstractRoute
 from collections.abc import Awaitable, Callable
 from contextvars import ContextVar
 from homeassistant import exceptions as exceptions
@@ -13,7 +14,7 @@ from http import HTTPStatus
 from typing import Any, Final
 
 _LOGGER: Incomplete
-AllowCorsType: Incomplete
+AllowCorsType = Callable[[AbstractRoute | AbstractResource], None]
 KEY_AUTHENTICATED: Final[str]
 KEY_ALLOW_ALL_CORS: Incomplete
 KEY_ALLOW_CONFIGURED_CORS: Incomplete

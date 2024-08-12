@@ -11,11 +11,10 @@ from .util.async_ import create_eager_task as create_eager_task
 from .util.hass_dict import HassKey as HassKey
 from _typeshed import Incomplete
 from collections import defaultdict
-from collections.abc import Awaitable, Callable as Callable, Mapping
+from collections.abc import Awaitable, Callable as Callable, Generator, Mapping
 from enum import StrEnum
 from types import ModuleType
 from typing import Final, TypedDict
-from typing_extensions import Generator
 
 current_setup_group: contextvars.ContextVar[tuple[str, str | None] | None]
 _LOGGER: Incomplete
@@ -48,13 +47,13 @@ def _async_when_setup(hass: core.HomeAssistant, component: str, when_setup_cb: C
 def async_get_loaded_integrations(hass: core.HomeAssistant) -> set[str]: ...
 
 class SetupPhases(StrEnum):
-    SETUP: str
-    CONFIG_ENTRY_SETUP: str
-    PLATFORM_SETUP: str
-    CONFIG_ENTRY_PLATFORM_SETUP: str
-    WAIT_BASE_PLATFORM_SETUP: str
-    WAIT_IMPORT_PLATFORMS: str
-    WAIT_IMPORT_PACKAGES: str
+    SETUP = 'setup'
+    CONFIG_ENTRY_SETUP = 'config_entry_setup'
+    PLATFORM_SETUP = 'platform_setup'
+    CONFIG_ENTRY_PLATFORM_SETUP = 'config_entry_platform_setup'
+    WAIT_BASE_PLATFORM_SETUP = 'wait_base_component'
+    WAIT_IMPORT_PLATFORMS = 'wait_import_platforms'
+    WAIT_IMPORT_PACKAGES = 'wait_import_packages'
 
 def _setup_started(hass: core.HomeAssistant) -> dict[tuple[str, str | None], float]: ...
 def async_pause_setup(hass: core.HomeAssistant, phase: SetupPhases) -> Generator[None]: ...

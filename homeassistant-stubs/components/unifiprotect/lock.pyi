@@ -1,11 +1,11 @@
-from .data import UFPConfigEntry as UFPConfigEntry
+from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
-from uiprotect.data import Doorlock, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectModelWithId as ProtectModelWithId
+from uiprotect.data import Doorlock, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
 
@@ -20,6 +20,6 @@ class ProtectLock(ProtectDeviceEntity, LockEntity):
     _attr_is_unlocking: bool
     _attr_is_jammed: bool
     _attr_available: bool
-    def _async_update_device_from_protect(self, device: ProtectModelWithId) -> None: ...
+    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     async def async_unlock(self, **kwargs: Any) -> None: ...
     async def async_lock(self, **kwargs: Any) -> None: ...

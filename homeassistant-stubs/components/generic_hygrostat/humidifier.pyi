@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers import condition as condition
+from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -27,6 +28,7 @@ class GenericHygrostat(HumidifierEntity, RestoreEntity):
     _name: Incomplete
     _switch_entity_id: Incomplete
     _sensor_entity_id: Incomplete
+    _attr_device_info: Incomplete
     _device_class: Incomplete
     _min_cycle_duration: Incomplete
     _dry_tolerance: Incomplete
@@ -47,7 +49,7 @@ class GenericHygrostat(HumidifierEntity, RestoreEntity):
     _is_away: bool
     _attr_action: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, name: str, switch_entity_id: str, sensor_entity_id: str, min_humidity: float | None, max_humidity: float | None, target_humidity: float | None, device_class: HumidifierDeviceClass | None, min_cycle_duration: timedelta | None, dry_tolerance: float, wet_tolerance: float, keep_alive: timedelta | None, initial_state: bool | None, away_humidity: int | None, away_fixed: bool | None, sensor_stale_duration: timedelta | None, unique_id: str | None) -> None: ...
+    def __init__(self, hass: HomeAssistant, name: str, switch_entity_id: str, sensor_entity_id: str, min_humidity: float | None, max_humidity: float | None, target_humidity: float | None, device_class: HumidifierDeviceClass | None, min_cycle_duration: timedelta | None, dry_tolerance: float, wet_tolerance: float, keep_alive: timedelta | None, initial_state: bool | None, away_humidity: int | None, away_fixed: bool | None, sensor_stale_duration: timedelta | None, unique_id: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     @property

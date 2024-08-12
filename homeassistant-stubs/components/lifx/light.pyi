@@ -1,7 +1,7 @@
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_INFRARED as ATTR_INFRARED, ATTR_POWER as ATTR_POWER, ATTR_ZONES as ATTR_ZONES, DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, INFRARED_BRIGHTNESS as INFRARED_BRIGHTNESS, _LOGGER as _LOGGER
+from .const import ATTR_DURATION as ATTR_DURATION, ATTR_INFRARED as ATTR_INFRARED, ATTR_POWER as ATTR_POWER, ATTR_ZONES as ATTR_ZONES, DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, INFRARED_BRIGHTNESS as INFRARED_BRIGHTNESS, LIFX_CEILING_PRODUCT_IDS as LIFX_CEILING_PRODUCT_IDS, _LOGGER as _LOGGER
 from .coordinator import FirmwareEffect as FirmwareEffect, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .entity import LIFXEntity as LIFXEntity
-from .manager import LIFXManager as LIFXManager, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_FLAME as SERVICE_EFFECT_FLAME, SERVICE_EFFECT_MORPH as SERVICE_EFFECT_MORPH, SERVICE_EFFECT_MOVE as SERVICE_EFFECT_MOVE, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP
+from .manager import LIFXManager as LIFXManager, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_FLAME as SERVICE_EFFECT_FLAME, SERVICE_EFFECT_MORPH as SERVICE_EFFECT_MORPH, SERVICE_EFFECT_MOVE as SERVICE_EFFECT_MOVE, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_SKY as SERVICE_EFFECT_SKY, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP
 from .util import convert_16_to_8 as convert_16_to_8, convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk, lifx_features as lifx_features, merge_hsbk as merge_hsbk
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_EFFECT as ATTR_EFFECT, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LIGHT_TURN_ON_SCHEMA as LIGHT_TURN_ON_SCHEMA, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
@@ -84,4 +84,7 @@ class LIFXExtendedMultiZone(LIFXMultiZone):
     async def set_color(self, hsbk: list[float | int | None], kwargs: dict[str, Any], duration: int = 0) -> None: ...
 
 class LIFXMatrix(LIFXColor):
+    _attr_effect_list: Incomplete
+
+class LIFXCeiling(LIFXMatrix):
     _attr_effect_list: Incomplete

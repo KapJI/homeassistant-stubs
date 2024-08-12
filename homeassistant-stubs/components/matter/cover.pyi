@@ -15,10 +15,10 @@ OPERATIONAL_STATUS_MASK: int
 TYPE_MAP: Incomplete
 
 class OperationalStatus(IntEnum):
-    COVERING_IS_CURRENTLY_NOT_MOVING: int
-    COVERING_IS_CURRENTLY_OPENING: int
-    COVERING_IS_CURRENTLY_CLOSING: int
-    RESERVED: int
+    COVERING_IS_CURRENTLY_NOT_MOVING = 0
+    COVERING_IS_CURRENTLY_OPENING = 1
+    COVERING_IS_CURRENTLY_CLOSING = 2
+    RESERVED = 3
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

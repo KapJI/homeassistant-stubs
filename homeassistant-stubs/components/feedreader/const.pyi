@@ -1,6 +1,8 @@
-from _typeshed import Incomplete
+from datetime import timedelta
+from typing import Final
 
-DOMAIN: str
-CONF_MAX_ENTRIES: str
-DEFAULT_MAX_ENTRIES: int
-DEFAULT_SCAN_INTERVAL: Incomplete
+DOMAIN: Final[str]
+CONF_MAX_ENTRIES: Final[str]
+DEFAULT_MAX_ENTRIES: Final[int]
+DEFAULT_SCAN_INTERVAL: Final[timedelta]
+EVENT_FEEDREADER: Final[str]

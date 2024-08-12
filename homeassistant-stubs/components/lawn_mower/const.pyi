@@ -1,15 +1,15 @@
 from enum import IntFlag, StrEnum
 
 class LawnMowerActivity(StrEnum):
-    ERROR: str
-    PAUSED: str
-    MOWING: str
-    DOCKED: str
+    ERROR = 'error'
+    PAUSED = 'paused'
+    MOWING = 'mowing'
+    DOCKED = 'docked'
 
 class LawnMowerEntityFeature(IntFlag):
-    START_MOWING: int
-    PAUSE: int
-    DOCK: int
+    START_MOWING = 1
+    PAUSE = 2
+    DOCK = 4
 
 DOMAIN: str
 SERVICE_START_MOWING: str

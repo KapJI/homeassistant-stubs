@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import CONF_COUNTRY as CONF_COUNTRY, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from sucks import VacBot as VacBot
 
 CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete

@@ -22,12 +22,12 @@ PLATFORM_SCHEMA: Incomplete
 async def _async_validate_config_item(hass: HomeAssistant, config: ConfigType, raise_on_errors: bool, warn_on_errors: bool) -> AutomationConfig: ...
 
 class ValidationStatus(StrEnum):
-    FAILED_ACTIONS: str
-    FAILED_BLUEPRINT: str
-    FAILED_CONDITIONS: str
-    FAILED_SCHEMA: str
-    FAILED_TRIGGERS: str
-    OK: str
+    FAILED_ACTIONS = 'failed_actions'
+    FAILED_BLUEPRINT = 'failed_blueprint'
+    FAILED_CONDITIONS = 'failed_conditions'
+    FAILED_SCHEMA = 'failed_schema'
+    FAILED_TRIGGERS = 'failed_triggers'
+    OK = 'ok'
 
 class AutomationConfig(dict):
     raw_config: dict[str, Any] | None

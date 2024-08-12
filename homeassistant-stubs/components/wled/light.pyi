@@ -1,10 +1,10 @@
 from . import WLEDConfigEntry as WLEDConfigEntry
-from .const import ATTR_COLOR_PRIMARY as ATTR_COLOR_PRIMARY, ATTR_ON as ATTR_ON, ATTR_SEGMENT_ID as ATTR_SEGMENT_ID
+from .const import ATTR_CCT as ATTR_CCT, ATTR_COLOR_PRIMARY as ATTR_COLOR_PRIMARY, ATTR_ON as ATTR_ON, ATTR_SEGMENT_ID as ATTR_SEGMENT_ID, COLOR_TEMP_K_MAX as COLOR_TEMP_K_MAX, COLOR_TEMP_K_MIN as COLOR_TEMP_K_MIN, LIGHT_CAPABILITIES_COLOR_MODE_MAPPING as LIGHT_CAPABILITIES_COLOR_MODE_MAPPING
 from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
 from .entity import WLEDEntity as WLEDEntity
-from .helpers import wled_exception_handler as wled_exception_handler
+from .helpers import kelvin_to_255 as kelvin_to_255, kelvin_to_255_reverse as kelvin_to_255_reverse, wled_exception_handler as wled_exception_handler
 from _typeshed import Incomplete
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -32,8 +32,8 @@ class WLEDMainLight(WLEDEntity, LightEntity):
 class WLEDSegmentLight(WLEDEntity, LightEntity):
     _attr_supported_features: Incomplete
     _attr_translation_key: str
-    _rgbw: Incomplete
-    _wv: Incomplete
+    _attr_min_color_temp_kelvin = COLOR_TEMP_K_MIN
+    _attr_max_color_temp_kelvin = COLOR_TEMP_K_MAX
     _segment: Incomplete
     _attr_name: Incomplete
     _attr_translation_placeholders: Incomplete
@@ -47,6 +47,8 @@ class WLEDSegmentLight(WLEDEntity, LightEntity):
     def rgb_color(self) -> tuple[int, int, int] | None: ...
     @property
     def rgbw_color(self) -> tuple[int, int, int, int] | None: ...
+    @property
+    def color_temp_kelvin(self) -> int | None: ...
     @property
     def effect(self) -> str | None: ...
     @property

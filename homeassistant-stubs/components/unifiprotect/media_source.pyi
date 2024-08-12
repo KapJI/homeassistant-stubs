@@ -18,20 +18,20 @@ THUMBNAIL_WIDTH: int
 THUMBNAIL_HEIGHT: int
 
 class SimpleEventType(str, Enum):
-    ALL: str
-    RING: str
-    MOTION: str
-    SMART: str
-    AUDIO: str
+    ALL = 'all'
+    RING = 'ring'
+    MOTION = 'motion'
+    SMART = 'smart'
+    AUDIO = 'audio'
 
 class IdentifierType(str, Enum):
-    EVENT: str
-    EVENT_THUMB: str
-    BROWSE: str
+    EVENT = 'event'
+    EVENT_THUMB = 'eventthumb'
+    BROWSE = 'browse'
 
 class IdentifierTimeType(str, Enum):
-    RECENT: str
-    RANGE: str
+    RECENT = 'recent'
+    RANGE = 'range'
 
 EVENT_MAP: dict[SimpleEventType, set[EventType]]
 EVENT_NAME_MAP: Incomplete

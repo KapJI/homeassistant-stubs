@@ -14,14 +14,14 @@ PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 
 class EventDeviceClass(StrEnum):
-    DOORBELL: str
-    BUTTON: str
-    MOTION: str
+    DOORBELL = 'doorbell'
+    BUTTON = 'button'
+    MOTION = 'motion'
 
 class EventEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: EventDeviceClass | None
     event_types: list[str] | None
-    def __init__(self, *, key, device_class, entity_category, entity_registry_enabled_default, entity_registry_visible_default, force_update, icon, has_entity_name, name, translation_key, translation_placeholders, unit_of_measurement, event_types) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., event_types=...) -> None: ...
 
 @dataclass
 class EventExtraStoredData(ExtraStoredData):

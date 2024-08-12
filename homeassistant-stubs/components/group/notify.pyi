@@ -3,13 +3,16 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TITLE as ATTR_TITLE, BaseNotificationService as BaseNotificationService, DOMAIN as DOMAIN, NotifyEntity as NotifyEntity, SERVICE_SEND_MESSAGE as SERVICE_SEND_MESSAGE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SERVICE as ATTR_SERVICE, CONF_ENTITIES as CONF_ENTITIES, STATE_UNAVAILABLE as STATE_UNAVAILABLE
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ACTION as CONF_ACTION, CONF_ENTITIES as CONF_ENTITIES, CONF_SERVICE as CONF_SERVICE, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
 CONF_SERVICES: str
+
+def _backward_compat_schema(value: Any | None) -> Any: ...
+
 PLATFORM_SCHEMA: Incomplete
 
 def add_defaults(input_data: dict[str, Any], default_data: Mapping[str, Any]) -> dict[str, Any]: ...

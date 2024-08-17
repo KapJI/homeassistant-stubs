@@ -21,6 +21,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: GlancesConfigEntr
 class GlancesSensor(CoordinatorEntity[GlancesDataUpdateCoordinator], SensorEntity):
     entity_description: GlancesSensorEntityDescription
     _attr_has_entity_name: bool
+    _data_valid: bool
     _sensor_label: Incomplete
     _attr_translation_placeholders: Incomplete
     _attr_device_info: Incomplete
@@ -31,3 +32,4 @@ class GlancesSensor(CoordinatorEntity[GlancesDataUpdateCoordinator], SensorEntit
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     def _update_native_value(self) -> None: ...
+    def _update_data_valid(self) -> None: ...

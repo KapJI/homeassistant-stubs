@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 from xknx import XKNX as XKNX
-from xknx.devices import Climate as XknxClimate
+from xknx.devices import Climate as XknxClimate, Device as XknxDevice
 
 ATTR_COMMAND_VALUE: str
 CONTROLLER_MODES_INV: Incomplete
@@ -58,3 +58,4 @@ class KNXClimate(KnxYamlEntity, ClimateEntity):
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
+    def after_update_callback(self, _device: XknxDevice) -> None: ...

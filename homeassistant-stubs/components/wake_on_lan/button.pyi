@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

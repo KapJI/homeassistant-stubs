@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from deebot_client.const import UndefinedType as UndefinedType
 from deebot_client.device import Device
+from deebot_client.mqtt_client import MqttClient
 from homeassistant.const import CONF_COUNTRY as CONF_COUNTRY, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
@@ -22,13 +23,15 @@ class EcovacsController:
     _continent: Incomplete
     _authenticator: Incomplete
     _api_client: Incomplete
-    _mqtt: Incomplete
+    _mqtt_config_fn: Incomplete
+    _mqtt_client: Incomplete
     _added_legacy_entities: Incomplete
     def __init__(self, hass: HomeAssistant, config: Mapping[str, Any]) -> None: ...
     async def initialize(self) -> None: ...
     async def teardown(self) -> None: ...
     def add_legacy_entity(self, device: VacBot, component: str) -> None: ...
     def legacy_entity_is_added(self, device: VacBot, component: str) -> bool: ...
+    async def _get_mqtt_client(self) -> MqttClient: ...
     @property
     def devices(self) -> list[Device]: ...
     @property

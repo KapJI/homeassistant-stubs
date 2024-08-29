@@ -23,6 +23,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry,
 
 class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity, metaclass=abc.ABCMeta):
     entity_description: AirzoneBinarySensorEntityDescription
+    @property
+    def available(self) -> bool: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete

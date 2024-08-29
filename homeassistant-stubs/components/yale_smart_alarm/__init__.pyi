@@ -4,7 +4,6 @@ from homeassistant.components.lock import CONF_DEFAULT_CODE as CONF_DEFAULT_CODE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CODE as CONF_CODE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 
 YaleConfigEntry = ConfigEntry[YaleDataUpdateCoordinator]
 

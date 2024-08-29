@@ -18,7 +18,6 @@ from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as a
 from typing import Any, Final
 
 CONFIG_SCHEMA: Incomplete
-FILTER: str
 HOSTNAME: Final[str]
 MAC_ADDRESS: Final[str]
 IP_ADDRESS: Final[str]

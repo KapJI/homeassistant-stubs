@@ -7,7 +7,6 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 
-CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 MikrotikConfigEntry = ConfigEntry[MikrotikDataUpdateCoordinator]
 

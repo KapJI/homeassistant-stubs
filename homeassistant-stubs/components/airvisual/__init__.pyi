@@ -16,7 +16,6 @@ from typing import Any
 DOMAIN_AIRVISUAL_PRO: str
 PLATFORMS: Incomplete
 DEFAULT_ATTRIBUTION: str
-CONFIG_SCHEMA: Incomplete
 
 def async_get_cloud_api_update_interval(hass: HomeAssistant, api_key: str, num_consumers: int) -> timedelta: ...
 def async_get_cloud_coordinators_by_api_key(hass: HomeAssistant, api_key: str) -> list[DataUpdateCoordinator]: ...

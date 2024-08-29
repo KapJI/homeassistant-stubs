@@ -17,7 +17,6 @@ from homeassistant.util.network import is_ip_address as is_ip_address
 from regenmaschine.controller import Controller as Controller
 
 DEFAULT_SSL: bool
-CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 CONF_CONDITION: str
 CONF_DEWPOINT: str

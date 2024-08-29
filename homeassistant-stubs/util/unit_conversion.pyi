@@ -28,7 +28,6 @@ _CUBIC_FOOT_TO_CUBIC_METER: Incomplete
 
 class BaseUnitConverter:
     UNIT_CLASS: str
-    NORMALIZED_UNIT: str | None
     VALID_UNITS: set[str | None]
     _UNIT_CONVERSION: dict[str | None, float]
     @classmethod
@@ -44,67 +43,56 @@ class BaseUnitConverter:
 
 class DataRateConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class DistanceConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class ConductivityConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class ElectricCurrentConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class ElectricPotentialConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class EnergyConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class InformationConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class MassConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class PowerConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class PressureConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class SpeedConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
     @classmethod
@@ -120,7 +108,6 @@ class SpeedConverter(BaseUnitConverter):
 
 class TemperatureConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     VALID_UNITS: Incomplete
     _UNIT_CONVERSION: Incomplete
     @classmethod
@@ -146,24 +133,20 @@ class TemperatureConverter(BaseUnitConverter):
 
 class UnitlessRatioConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class VolumeConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class VolumeFlowRateConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class DurationConverter(BaseUnitConverter):
     UNIT_CLASS: str
-    NORMALIZED_UNIT: Incomplete
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete

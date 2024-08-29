@@ -1,10 +1,10 @@
 from . import KNXModule as KNXModule
-from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
+from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
 from .knx_entity import KnxYamlEntity as KnxYamlEntity
 from .schema import ClimateSchema as ClimateSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
-from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY
+from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,7 +15,6 @@ from xknx.devices import Climate as XknxClimate, Device as XknxDevice
 
 ATTR_COMMAND_VALUE: str
 CONTROLLER_MODES_INV: Incomplete
-PRESET_MODES_INV: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
@@ -23,9 +22,11 @@ def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
 class KNXClimate(KnxYamlEntity, ClimateEntity):
     _device: XknxClimate
     _attr_temperature_unit: Incomplete
+    _attr_translation_key: str
     _enable_turn_on_off_backwards_compatibility: bool
     _attr_entity_category: Incomplete
     _attr_supported_features: Incomplete
+    _attr_preset_modes: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_unique_id: Incomplete
     default_hvac_mode: Incomplete
@@ -51,8 +52,6 @@ class KNXClimate(KnxYamlEntity, ClimateEntity):
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property
     def preset_mode(self) -> str | None: ...
-    @property
-    def preset_modes(self) -> list[str] | None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

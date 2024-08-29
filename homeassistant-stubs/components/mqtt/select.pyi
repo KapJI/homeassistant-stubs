@@ -1,8 +1,8 @@
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
-from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_OPTIONS as CONF_OPTIONS, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
-from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -13,10 +13,10 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
-CONF_OPTIONS: str
 DEFAULT_NAME: str
 MQTT_SELECT_ATTRIBUTES_BLOCKED: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete

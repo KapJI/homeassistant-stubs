@@ -11,7 +11,6 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 from synology_dsm.api.surveillance_station.camera import SynoCamera as SynoCamera
 
-CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

@@ -11,7 +11,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError, TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.entity import Entity as Entity
@@ -28,6 +28,8 @@ class PayloadSentinel(StrEnum):
 _LOGGER: Incomplete
 ATTR_THIS: str
 PublishPayloadType = str | bytes | int | float | None
+
+def convert_outgoing_mqtt_payload(payload: PublishPayloadType) -> PublishPayloadType: ...
 
 @dataclass
 class PublishMessage:
@@ -84,7 +86,7 @@ class MqttCommandTemplate:
     _template_state: Incomplete
     _command_template: Incomplete
     _entity: Incomplete
-    def __init__(self, command_template: template.Template | None, *, hass: HomeAssistant | None = None, entity: Entity | None = None) -> None: ...
+    def __init__(self, command_template: template.Template | None, *, entity: Entity | None = None) -> None: ...
     def async_render(self, value: PublishPayloadType = None, variables: TemplateVarsType = None) -> PublishPayloadType: ...
 
 class MqttValueTemplateException(TemplateError):
@@ -97,7 +99,7 @@ class MqttValueTemplate:
     _value_template: Incomplete
     _config_attributes: Incomplete
     _entity: Incomplete
-    def __init__(self, value_template: template.Template | None, *, hass: HomeAssistant | None = None, entity: Entity | None = None, config_attributes: TemplateVarsType = None) -> None: ...
+    def __init__(self, value_template: template.Template | None, *, entity: Entity | None = None, config_attributes: TemplateVarsType = None) -> None: ...
     def async_render_with_possible_json_value(self, payload: ReceivePayloadType, default: ReceivePayloadType | PayloadSentinel = ..., variables: TemplateVarsType = None) -> ReceivePayloadType: ...
 
 class EntityTopicState:

@@ -11,7 +11,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from homeassistant.util.network import is_ip_address as is_ip_address
 from tesla_powerwall import Powerwall
 
-CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
 API_CHANGED_ERROR_BODY: str

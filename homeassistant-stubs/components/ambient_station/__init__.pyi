@@ -1,4 +1,4 @@
-from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, CONF_APP_KEY as CONF_APP_KEY, DOMAIN as DOMAIN, LOGGER as LOGGER, TYPE_SOLARRADIATION as TYPE_SOLARRADIATION, TYPE_SOLARRADIATION_LX as TYPE_SOLARRADIATION_LX
+from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, CONF_APP_KEY as CONF_APP_KEY, LOGGER as LOGGER, TYPE_SOLARRADIATION as TYPE_SOLARRADIATION, TYPE_SOLARRADIATION_LX as TYPE_SOLARRADIATION_LX
 from _typeshed import Incomplete
 from aioambient import Websocket
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,6 @@ from typing import Any
 PLATFORMS: Incomplete
 DATA_CONFIG: str
 DEFAULT_SOCKET_MIN_RETRY: int
-CONFIG_SCHEMA: Incomplete
 AmbientStationConfigEntry = ConfigEntry[AmbientStation]
 
 def async_wm2_to_lx(value: float) -> int: ...

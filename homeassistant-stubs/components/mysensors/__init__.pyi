@@ -11,7 +11,6 @@ from mysensors import BaseAsyncGateway as BaseAsyncGateway
 
 _LOGGER: Incomplete
 DATA_HASS_CONFIG: str
-CONFIG_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

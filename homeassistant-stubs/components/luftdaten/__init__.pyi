@@ -7,7 +7,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-CONFIG_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

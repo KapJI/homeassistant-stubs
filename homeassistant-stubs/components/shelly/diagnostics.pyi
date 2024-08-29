@@ -1,4 +1,5 @@
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry
+from .utils import get_rpc_ws_url as get_rpc_ws_url
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import async_scanner_by_source as async_scanner_by_source
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data

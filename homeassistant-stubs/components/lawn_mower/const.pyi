@@ -5,6 +5,7 @@ class LawnMowerActivity(StrEnum):
     PAUSED = 'paused'
     MOWING = 'mowing'
     DOCKED = 'docked'
+    RETURNING = 'returning'
 
 class LawnMowerEntityFeature(IntFlag):
     START_MOWING = 1

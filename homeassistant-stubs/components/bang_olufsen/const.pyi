@@ -36,17 +36,17 @@ class BangOlufsenModel(StrEnum):
     BEOSOUND_THEATRE = 'Beosound Theatre'
 
 class WebsocketNotification(StrEnum):
-    PLAYBACK_ERROR: Final[str]
-    PLAYBACK_METADATA: Final[str]
-    PLAYBACK_PROGRESS: Final[str]
-    PLAYBACK_SOURCE: Final[str]
-    PLAYBACK_STATE: Final[str]
-    SOFTWARE_UPDATE_STATE: Final[str]
-    SOURCE_CHANGE: Final[str]
-    VOLUME: Final[str]
-    NOTIFICATION: Final[str]
-    REMOTE_MENU_CHANGED: Final[str]
-    ALL: Final[str]
+    PLAYBACK_ERROR = 'playback_error'
+    PLAYBACK_METADATA = 'playback_metadata'
+    PLAYBACK_PROGRESS = 'playback_progress'
+    PLAYBACK_SOURCE = 'playback_source'
+    PLAYBACK_STATE = 'playback_state'
+    SOFTWARE_UPDATE_STATE = 'software_update_state'
+    SOURCE_CHANGE = 'source_change'
+    VOLUME = 'volume'
+    NOTIFICATION = 'notification'
+    REMOTE_MENU_CHANGED = 'remoteMenuChanged'
+    ALL = 'all'
 
 DOMAIN: Final[str]
 DEFAULT_MODEL: Final[str]

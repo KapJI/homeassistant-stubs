@@ -14,7 +14,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, as
 
 class AutomowerButtonEntity(AutomowerAvailableEntity, ButtonEntity):
     _attr_translation_key: str
-    _attr_entity_registry_enabled_default: bool
     _attr_unique_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator) -> None: ...
     @property

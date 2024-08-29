@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, CONF_TOKEN as CONF_TOKEN, __version__ as __version__
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from ring_doorbell import Ring, RingDevices as RingDevices
 

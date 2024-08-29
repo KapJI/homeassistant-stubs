@@ -11,7 +11,6 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete
-CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 PiHoleConfigEntry = ConfigEntry[PiHoleData]
 

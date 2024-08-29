@@ -14,7 +14,7 @@ def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEnt
 
 class AcerSwitch(SwitchEntity):
     _attr_icon = ICON
-    ser: Incomplete
+    serial: Incomplete
     _serial_port: Incomplete
     _attr_name: Incomplete
     _attributes: Incomplete

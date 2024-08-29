@@ -1,19 +1,19 @@
 from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import RingDataCoordinator as RingDataCoordinator, RingNotificationsCoordinator as RingNotificationsCoordinator
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from ring_doorbell import RingDevices as RingDevices, RingGeneric
-from typing import Concatenate, Generic
+from typing import Any, Concatenate, Generic
 from typing_extensions import TypeVar
 
 RingDeviceT = TypeVar('RingDeviceT', bound=RingGeneric, default=RingGeneric)
 _RingCoordinatorT = TypeVar('_RingCoordinatorT', bound=RingDataCoordinator | RingNotificationsCoordinator)
 
-def exception_wrap(func: Callable[Concatenate[_RingBaseEntityT, _P], _R]) -> Callable[Concatenate[_RingBaseEntityT, _P], _R]: ...
+def exception_wrap(async_func: Callable[Concatenate[_RingBaseEntityT, _P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[_RingBaseEntityT, _P], Coroutine[Any, Any, _R]]: ...
 
 class RingBaseEntity(CoordinatorEntity[_RingCoordinatorT], Generic[_RingCoordinatorT, RingDeviceT]):
     _attr_attribution = ATTRIBUTION

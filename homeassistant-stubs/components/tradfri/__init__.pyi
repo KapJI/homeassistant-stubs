@@ -10,7 +10,6 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
 
-CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 SIGNAL_GW: str
 TIMEOUT_API: int

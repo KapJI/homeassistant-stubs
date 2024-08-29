@@ -17,6 +17,7 @@ class SynologyPhotosMediaSourceIdentifier:
     cache_key: Incomplete
     file_name: Incomplete
     is_shared: bool
+    passphrase: str
     def __init__(self, identifier: str) -> None: ...
 
 class SynologyPhotosMediaSource(MediaSource):

@@ -1,4 +1,4 @@
-from .const import BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, CONF_COAP_PORT as CONF_COAP_PORT, CONF_GEN as CONF_GEN, DEVICES_WITHOUT_FIRMWARE_CHANGELOG as DEVICES_WITHOUT_FIRMWARE_CHANGELOG, DOMAIN as DOMAIN, FIRMWARE_UNSUPPORTED_ISSUE_ID as FIRMWARE_UNSUPPORTED_ISSUE_ID, GEN1_RELEASE_URL as GEN1_RELEASE_URL, GEN2_RELEASE_URL as GEN2_RELEASE_URL, LOGGER as LOGGER, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION, VIRTUAL_COMPONENTS_MAP as VIRTUAL_COMPONENTS_MAP
+from .const import API_WS_URL as API_WS_URL, BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, CONF_COAP_PORT as CONF_COAP_PORT, CONF_GEN as CONF_GEN, DEVICES_WITHOUT_FIRMWARE_CHANGELOG as DEVICES_WITHOUT_FIRMWARE_CHANGELOG, DOMAIN as DOMAIN, FIRMWARE_UNSUPPORTED_ISSUE_ID as FIRMWARE_UNSUPPORTED_ISSUE_ID, GEN1_RELEASE_URL as GEN1_RELEASE_URL, GEN2_RELEASE_URL as GEN2_RELEASE_URL, LOGGER as LOGGER, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION, VIRTUAL_COMPONENTS_MAP as VIRTUAL_COMPONENTS_MAP
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, WebSocketResponse as WebSocketResponse
 from aioshelly.block_device import Block as Block, BlockDevice as BlockDevice, COAP
@@ -11,6 +11,7 @@ from homeassistant.const import CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import singleton as singleton
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.util.dt import utcnow as utcnow
 from types import MappingProxyType
 from typing import Any
@@ -27,7 +28,7 @@ async def get_coap_context(hass: HomeAssistant) -> COAP: ...
 
 class ShellyReceiver(HomeAssistantView):
     requires_auth: bool
-    url: str
+    url = API_WS_URL
     name: str
     _ws_server: Incomplete
     def __init__(self, ws_server: WsServer) -> None: ...
@@ -62,3 +63,4 @@ def async_remove_shelly_rpc_entities(hass: HomeAssistant, domain: str, mac: str,
 def is_rpc_thermostat_mode(ident: int, status: dict[str, Any]) -> bool: ...
 def get_virtual_component_ids(config: dict[str, Any], platform: str) -> list[str]: ...
 def async_remove_orphaned_virtual_entities(hass: HomeAssistant, config_entry_id: str, mac: str, platform: str, virt_comp_type: str, virt_comp_ids: list[str]) -> None: ...
+def get_rpc_ws_url(hass: HomeAssistant) -> str | None: ...

@@ -38,6 +38,7 @@ class _IntentCardData(TypedDict):
     content: template.Template
 
 class ScriptIntentHandler(intent.IntentHandler):
+    slot_schema: Incomplete
     intent_type: Incomplete
     config: Incomplete
     description: Incomplete

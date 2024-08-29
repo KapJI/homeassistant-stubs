@@ -4,15 +4,16 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_NAME as CONF_NAME
 from homeassistant.helpers.selector import TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util import slugify as slugify
 from typing import Any
 
 STEP_USER_DATA_SCHEMA: Incomplete
 
 class MastodonConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     config_entry: ConfigEntry
     def check_connection(self, base_url: str, client_id: str, client_secret: str, access_token: str) -> tuple[dict[str, str] | None, dict[str, str] | None, dict[str, str]]: ...
     def show_user_form(self, user_input: dict[str, Any] | None = None, errors: dict[str, str] | None = None, description_placeholders: dict[str, str] | None = None, step_id: str = 'user') -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
-    async def async_step_import(self, import_config: ConfigType) -> ConfigFlowResult: ...
+    async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...

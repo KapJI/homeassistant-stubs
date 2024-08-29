@@ -1,8 +1,8 @@
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
+from .const import CONF_OPTIONS as CONF_OPTIONS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
 from .mixins import MqttAvailabilityMixin as MqttAvailabilityMixin, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
-from .models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import check_state_too_long as check_state_too_long
 from _typeshed import Incomplete
@@ -15,6 +15,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_FOR
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
+from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
@@ -26,7 +27,7 @@ DEFAULT_NAME: str
 DEFAULT_FORCE_UPDATE: bool
 _PLATFORM_SCHEMA_BASE: Incomplete
 
-def validate_sensor_state_class_config(config: ConfigType) -> ConfigType: ...
+def validate_sensor_state_and_device_class_config(config: ConfigType) -> ConfigType: ...
 
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
@@ -52,6 +53,7 @@ class MqttSensor(MqttEntity, RestoreSensor):
     _attr_force_update: Incomplete
     _attr_suggested_display_precision: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    _attr_options: Incomplete
     _attr_state_class: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     def _update_state(self, msg: ReceiveMessage) -> None: ...

@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers import discovery as discovery
 
 _LOGGER: Incomplete
-CONFIG_SCHEMA: Incomplete
 SERVICE_SCHEMA: Incomplete
 DEFAULT_OPTIONS: Incomplete
 PLATFORMS: Incomplete

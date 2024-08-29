@@ -4,6 +4,7 @@ from .dashboard import async_get_dashboard as async_get_dashboard
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, UserService
 from bleak_esphome.backend.device import ESPHomeBluetoothDevice as ESPHomeBluetoothDevice
+from collections import defaultdict
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -32,7 +33,7 @@ class RuntimeEntryData:
     title: str
     client: APIClient
     store: ESPHomeStorage
-    state: dict[type[EntityState], dict[int, EntityState]] = ...
+    state: defaultdict[type[EntityState], dict[int, EntityState]] = ...
     stale_state: set[tuple[type[EntityState], int]] = ...
     info: dict[type[EntityInfo], dict[int, EntityInfo]] = ...
     services: dict[int, UserService] = ...

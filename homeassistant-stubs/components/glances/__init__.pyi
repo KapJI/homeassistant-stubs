@@ -11,7 +11,6 @@ from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity,
 from typing import Any
 
 PLATFORMS: Incomplete
-CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
 GlancesConfigEntry = ConfigEntry[GlancesDataUpdateCoordinator]
 

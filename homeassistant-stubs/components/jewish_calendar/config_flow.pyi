@@ -5,7 +5,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_ELEVATION as CONF_ELEVATION, CONF_LANGUAGE as CONF_LANGUAGE, CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as CONF_LOCATION, CONF_LONGITUDE as CONF_LONGITUDE, CONF_TIME_ZONE as CONF_TIME_ZONE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, LocationSelector as LocationSelector, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 LANGUAGE: Incomplete
@@ -19,7 +18,7 @@ class JewishCalendarConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowWithConfigEntry: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
-    async def async_step_import(self, import_config: ConfigType | None) -> ConfigFlowResult: ...
+    async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...
 
 class JewishCalendarOptionsFlowHandler(OptionsFlowWithConfigEntry):
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...

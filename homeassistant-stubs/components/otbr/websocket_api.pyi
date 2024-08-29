@@ -1,3 +1,4 @@
+from . import OTBRConfigEntry as OTBRConfigEntry
 from .const import DEFAULT_CHANNEL as DEFAULT_CHANNEL, DOMAIN as DOMAIN
 from .util import OTBRData as OTBRData, compose_default_network_name as compose_default_network_name, generate_random_pan_id as generate_random_pan_id, get_allowed_channel as get_allowed_channel, update_issues as update_issues
 from collections.abc import Callable as Callable, Coroutine

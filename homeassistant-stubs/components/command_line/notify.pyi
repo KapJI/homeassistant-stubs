@@ -9,7 +9,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> CommandLineNotificationService: ...
+def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> CommandLineNotificationService | None: ...
 
 class CommandLineNotificationService(BaseNotificationService):
     command: Incomplete

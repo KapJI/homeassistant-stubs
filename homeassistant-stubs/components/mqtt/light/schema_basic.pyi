@@ -2,7 +2,7 @@ from .. import subscription as subscription
 from ..config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STATE_VALUE_TEMPLATE as CONF_STATE_VALUE_TEMPLATE, PAYLOAD_NONE as PAYLOAD_NONE
 from ..mixins import MqttEntity as MqttEntity
-from ..models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType, TemplateVarsType as TemplateVarsType
+from ..models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, TemplateVarsType as TemplateVarsType
 from ..schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from ..util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
@@ -12,6 +12,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, STATE_ON as STATE_ON
 from homeassistant.core import callback as callback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from typing import Any
 

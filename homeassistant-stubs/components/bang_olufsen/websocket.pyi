@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from mozart_api.models import PlaybackContentMetadata as PlaybackContentMetadata, PlaybackError as PlaybackError, PlaybackProgress as PlaybackProgress, RenderingState as RenderingState, SoftwareUpdateState as SoftwareUpdateState, Source as Source, VolumeState as VolumeState, WebsocketNotificationTag as WebsocketNotificationTag
 from mozart_api.mozart_client import MozartClient as MozartClient
 

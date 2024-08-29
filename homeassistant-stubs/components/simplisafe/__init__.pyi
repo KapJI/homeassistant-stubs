@@ -49,7 +49,6 @@ SERVICE_SET_PIN_SCHEMA: Incomplete
 SERVICE_SET_SYSTEM_PROPERTIES_SCHEMA: Incomplete
 WEBSOCKET_EVENTS_REQUIRING_SERIAL: Incomplete
 WEBSOCKET_EVENTS_TO_FIRE_HASS_EVENT: Incomplete
-CONFIG_SCHEMA: Incomplete
 
 def _async_get_system_for_service_call(hass: HomeAssistant, call: ServiceCall) -> SystemType: ...
 def _async_register_base_station(hass: HomeAssistant, entry: ConfigEntry, system: SystemType) -> None: ...

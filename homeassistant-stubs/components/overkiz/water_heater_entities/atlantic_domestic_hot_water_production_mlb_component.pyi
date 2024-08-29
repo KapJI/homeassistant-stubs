@@ -1,7 +1,7 @@
 from .. import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
-from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_OFF as STATE_OFF, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
+from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_ELECTRIC as STATE_ELECTRIC, STATE_OFF as STATE_OFF, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from typing import Any
 

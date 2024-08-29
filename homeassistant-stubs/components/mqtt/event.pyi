@@ -2,7 +2,7 @@ from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
 from .const import CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_EMPTY_JSON as PAYLOAD_EMPTY_JSON, PAYLOAD_NONE as PAYLOAD_NONE
 from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
-from .models import DATA_MQTT as DATA_MQTT, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .models import DATA_MQTT as DATA_MQTT, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -12,6 +12,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads_object as json_loads_object
 

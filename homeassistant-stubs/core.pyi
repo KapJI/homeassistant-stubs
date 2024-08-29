@@ -15,7 +15,7 @@ from .helpers.json import json_bytes as json_bytes, json_fragment as json_fragme
 from .helpers.storage import Store as Store
 from .helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType, VolSchemaType as VolSchemaType
 from .util import location as location
-from .util.async_ import cancelling as cancelling, create_eager_task as create_eager_task, run_callback_threadsafe as run_callback_threadsafe, shutdown_run_callback_threadsafe as shutdown_run_callback_threadsafe
+from .util.async_ import cancelling as cancelling, create_eager_task as create_eager_task, get_scheduled_timer_handles as get_scheduled_timer_handles, run_callback_threadsafe as run_callback_threadsafe, shutdown_run_callback_threadsafe as shutdown_run_callback_threadsafe
 from .util.event_type import EventType as EventType
 from .util.executor import InterruptibleThreadPoolExecutor as InterruptibleThreadPoolExecutor
 from .util.hass_dict import HassDict as HassDict

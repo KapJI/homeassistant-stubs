@@ -8,7 +8,7 @@ from homeassistant.helpers.storage import Store as Store
 from typing import Final
 from xknx import XKNX as XKNX
 from xknx.dpt import DPTBase
-from xknx.telegram.address import DeviceAddressableType as DeviceAddressableType
+from xknx.telegram.address import DeviceAddressableType as DeviceAddressableType, GroupAddressType
 from xknxproject.models import DPTType as DPTType, Device as Device, GroupAddress as GroupAddressModel, KNXProject as KNXProjectModel, ProjectInfo as ProjectInfo
 
 _LOGGER: Incomplete
@@ -40,3 +40,4 @@ class KNXProject:
     async def process_project_file(self, xknx: XKNX, file_id: str, password: str) -> None: ...
     async def remove_project_file(self) -> None: ...
     async def get_knxproject(self) -> KNXProjectModel | None: ...
+    def get_address_format(self) -> GroupAddressType: ...

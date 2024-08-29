@@ -3,13 +3,13 @@ from _typeshed import Incomplete
 from enum import IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 
@@ -48,10 +48,9 @@ ATTR_TARGET_TEMP_LOW: str
 ATTR_CURRENT_TEMPERATURE: str
 CONVERTIBLE_ATTRIBUTE: Incomplete
 _LOGGER: Incomplete
-ON_OFF_SERVICE_SCHEMA: Incomplete
-SET_AWAY_MODE_SCHEMA: Incomplete
-SET_TEMPERATURE_SCHEMA: Incomplete
-SET_OPERATION_MODE_SCHEMA: Incomplete
+SET_AWAY_MODE_SCHEMA: VolDictType
+SET_TEMPERATURE_SCHEMA: VolDictType
+SET_OPERATION_MODE_SCHEMA: VolDictType
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

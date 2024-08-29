@@ -1,7 +1,8 @@
 from . import LcnEntity as LcnEntity
-from .const import CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_LOCKABLE as CONF_LOCKABLE, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_SETPOINT as CONF_SETPOINT
+from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_LOCKABLE as CONF_LOCKABLE, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_SETPOINT as CONF_SETPOINT, DOMAIN as DOMAIN
 from .helpers import DeviceConnectionType as DeviceConnectionType, InputType as InputType, get_device_connection as get_device_connection
 from _typeshed import Incomplete
+from collections.abc import Iterable
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_ADDRESS as CONF_ADDRESS, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES, CONF_SOURCE as CONF_SOURCE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, UnitOfTemperature as UnitOfTemperature
@@ -12,7 +13,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-def create_lcn_climate_entity(hass: HomeAssistant, entity_config: ConfigType, config_entry: ConfigEntry) -> LcnEntity: ...
+def add_lcn_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, entity_configs: Iterable[ConfigType]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LcnClimate(LcnEntity, ClimateEntity):

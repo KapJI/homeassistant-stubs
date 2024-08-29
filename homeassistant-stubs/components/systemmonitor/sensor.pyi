@@ -1,5 +1,5 @@
 from . import SystemMonitorConfigEntry as SystemMonitorConfigEntry
-from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN, NET_IO_TYPES as NET_IO_TYPES
+from .const import DOMAIN as DOMAIN, NET_IO_TYPES as NET_IO_TYPES
 from .coordinator import SystemMonitorCoordinator as SystemMonitorCoordinator
 from .util import get_all_disk_mounts as get_all_disk_mounts, get_all_network_interfaces as get_all_network_interfaces, read_cpu_temperature as read_cpu_temperature
 from _typeshed import Incomplete
@@ -7,11 +7,10 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
@@ -27,7 +26,6 @@ SENSOR_TYPE_MANDATORY_ARG: int
 SIGNAL_SYSTEMMONITOR_UPDATE: str
 
 def get_cpu_icon() -> Literal['mdi:cpu-64-bit', 'mdi:cpu-32-bit']: ...
-def get_process(entity: SystemMonitorSensor) -> str: ...
 def get_network(entity: SystemMonitorSensor) -> float | None: ...
 def get_packets(entity: SystemMonitorSensor) -> float | None: ...
 def get_throughput(entity: SystemMonitorSensor) -> float | None: ...

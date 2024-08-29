@@ -1,6 +1,6 @@
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_SCHEMA as CONF_SCHEMA, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -17,10 +17,9 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
-LEGACY: str
-STATE: str
 BATTERY: str
 FAN_SPEED: str
+STATE: str
 POSSIBLE_STATES: dict[str, str]
 CONF_SUPPORTED_FEATURES = ATTR_SUPPORTED_FEATURES
 CONF_PAYLOAD_TURN_ON: str
@@ -54,9 +53,8 @@ DEFAULT_SERVICE_STRINGS: Incomplete
 _FEATURE_PAYLOADS: Incomplete
 MQTT_VACUUM_ATTRIBUTES_BLOCKED: Incomplete
 MQTT_VACUUM_DOCS_URL: str
-VACUUM_BASE_SCHEMA: Incomplete
-DISCOVERY_SCHEMA: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
+DISCOVERY_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

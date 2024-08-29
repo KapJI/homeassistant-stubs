@@ -2,6 +2,7 @@ from . import BangOlufsenData as BangOlufsenData
 from .const import BANG_OLUFSEN_STATES as BANG_OLUFSEN_STATES, BangOlufsenMediaType as BangOlufsenMediaType, BangOlufsenSource as BangOlufsenSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, HIDDEN_SOURCE_IDS as HIDDEN_SOURCE_IDS, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
 from .entity import BangOlufsenEntity as BangOlufsenEntity
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

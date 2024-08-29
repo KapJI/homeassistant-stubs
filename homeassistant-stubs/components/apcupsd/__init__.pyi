@@ -8,7 +8,6 @@ from typing import Final
 
 _LOGGER: Incomplete
 PLATFORMS: Final[Incomplete]
-CONFIG_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

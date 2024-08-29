@@ -11,7 +11,6 @@ from homeassistant.helpers.debounce import Debouncer as Debouncer
 from typing import Any
 
 PLATFORMS: Incomplete
-CONFIG_SCHEMA: Incomplete
 SamsungTVConfigEntry = ConfigEntry[SamsungTVDataUpdateCoordinator]
 
 def _async_get_device_bridge(hass: HomeAssistant, data: dict[str, Any]) -> SamsungTVBridge: ...

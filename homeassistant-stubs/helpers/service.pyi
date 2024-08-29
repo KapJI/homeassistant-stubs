@@ -3,12 +3,12 @@ from . import area_registry as area_registry, device_registry as device_registry
 from .entity import Entity as Entity
 from .group import expand_entity_ids as expand_entity_ids
 from .selector import TargetSelector as TargetSelector
-from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolSchemaType as VolSchemaType
+from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, CONF_ACTION as CONF_ACTION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
-from homeassistant.core import Context as Context, EntityServiceResponse as EntityServiceResponse, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import Context as Context, EntityServiceResponse as EntityServiceResponse, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
 from homeassistant.util.async_ import create_eager_task as create_eager_task
@@ -96,3 +96,5 @@ class ReloadServiceHelper:
     _reload_targets_func: Incomplete
     def __init__(self, service_func: Callable[[ServiceCall], Coroutine[Any, Any, Any]], reload_targets_func: Callable[[ServiceCall], set[_T]]) -> None: ...
     async def execute_service(self, service_call: ServiceCall) -> None: ...
+
+def async_register_entity_service(hass: HomeAssistant, domain: str, name: str, *, entities: dict[str, Entity], func: str | Callable[..., Any], job_type: HassJobType | None, required_features: Iterable[int] | None = None, schema: VolDictType | VolSchemaType | None, supports_response: SupportsResponse = ...) -> None: ...

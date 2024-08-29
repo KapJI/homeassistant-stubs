@@ -41,7 +41,6 @@ class Platform(StrEnum):
     LAWN_MOWER = 'lawn_mower'
     LIGHT = 'light'
     LOCK = 'lock'
-    MAILBOX = 'mailbox'
     MEDIA_PLAYER = 'media_player'
     NOTIFY = 'notify'
     NUMBER = 'number'
@@ -188,6 +187,7 @@ CONF_METHOD: Final[str]
 CONF_MINIMUM: Final[str]
 CONF_MODE: Final[str]
 CONF_MODEL: Final[str]
+CONF_MODEL_ID: Final[str]
 CONF_MONITORED_CONDITIONS: Final[str]
 CONF_MONITORED_VARIABLES: Final[str]
 CONF_NAME: Final[str]
@@ -382,6 +382,7 @@ ATTR_CONNECTIONS: Final[str]
 ATTR_DEFAULT_NAME: Final[str]
 ATTR_MANUFACTURER: Final[str]
 ATTR_MODEL: Final[str]
+ATTR_MODEL_ID: Final[str]
 ATTR_SERIAL_NUMBER: Final[str]
 ATTR_SUGGESTED_AREA: Final[str]
 ATTR_SW_VERSION: Final[str]
@@ -425,7 +426,11 @@ class UnitOfPower(StrEnum):
 _DEPRECATED_POWER_WATT: Final[Incomplete]
 _DEPRECATED_POWER_KILO_WATT: Final[Incomplete]
 _DEPRECATED_POWER_BTU_PER_HOUR: Final[Incomplete]
-POWER_VOLT_AMPERE_REACTIVE: Final[str]
+
+class UnitOfReactivePower(StrEnum):
+    VOLT_AMPERE_REACTIVE = 'var'
+
+_DEPRECATED_POWER_VOLT_AMPERE_REACTIVE: Final[Incomplete]
 
 class UnitOfEnergy(StrEnum):
     GIGA_JOULE = 'GJ'

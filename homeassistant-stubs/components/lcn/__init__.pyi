@@ -1,8 +1,9 @@
 import pypck
-from .const import CONF_DIM_MODE as CONF_DIM_MODE, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_SK_NUM_TRIES as CONF_SK_NUM_TRIES, CONNECTION as CONNECTION, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_DIM_MODE as CONF_DIM_MODE, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_SK_NUM_TRIES as CONF_SK_NUM_TRIES, CONNECTION as CONNECTION, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .helpers import AddressType as AddressType, DeviceConnectionType as DeviceConnectionType, InputType as InputType, async_update_config_entry as async_update_config_entry, generate_unique_id as generate_unique_id, get_device_model as get_device_model, import_lcn_config as import_lcn_config, register_lcn_address_devices as register_lcn_address_devices, register_lcn_host_device as register_lcn_host_device
 from .schemas import CONFIG_SCHEMA as CONFIG_SCHEMA
 from .services import SERVICES as SERVICES
+from .websocket import register_panel_and_ws_api as register_panel_and_ws_api
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries

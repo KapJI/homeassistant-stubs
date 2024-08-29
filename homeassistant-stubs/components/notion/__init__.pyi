@@ -16,7 +16,6 @@ PLATFORMS: Incomplete
 ATTR_SYSTEM_MODE: str
 ATTR_SYSTEM_NAME: str
 DEFAULT_SCAN_INTERVAL: Incomplete
-CONFIG_SCHEMA: Incomplete
 TASK_TYPE_TO_LISTENER_MAP: dict[str, ListenerKind]
 
 def is_uuid(value: str) -> bool: ...

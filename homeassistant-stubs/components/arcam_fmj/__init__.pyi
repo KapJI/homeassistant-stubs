@@ -1,4 +1,4 @@
-from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, SIGNAL_CLIENT_DATA as SIGNAL_CLIENT_DATA, SIGNAL_CLIENT_STARTED as SIGNAL_CLIENT_STARTED, SIGNAL_CLIENT_STOPPED as SIGNAL_CLIENT_STOPPED
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, SIGNAL_CLIENT_DATA as SIGNAL_CLIENT_DATA, SIGNAL_CLIENT_STARTED as SIGNAL_CLIENT_STARTED, SIGNAL_CLIENT_STOPPED as SIGNAL_CLIENT_STOPPED
 from _typeshed import Incomplete
 from arcam.fmj.client import Client
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,7 +8,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 
 ArcamFmjConfigEntry = ConfigEntry[Client]
 _LOGGER: Incomplete
-CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ArcamFmjConfigEntry) -> bool: ...

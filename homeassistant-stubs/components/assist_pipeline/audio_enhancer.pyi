@@ -21,7 +21,10 @@ class AudioEnhancer(ABC, metaclass=abc.ABCMeta):
     @abstractmethod
     def enhance_chunk(self, audio: bytes, timestamp_ms: int) -> EnhancedAudioChunk: ...
 
-class MicroVadEnhancer(AudioEnhancer):
+class MicroVadSpeexEnhancer(AudioEnhancer):
+    audio_processor: Incomplete
+    noise_suppression: Incomplete
+    auto_gain: Incomplete
     vad: Incomplete
     threshold: float
     def __init__(self, auto_gain: int, noise_suppression: int, is_vad_enabled: bool) -> None: ...

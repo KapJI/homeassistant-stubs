@@ -3,10 +3,11 @@ from .handler import HANDLERS as HANDLERS
 from .helpers import discover_mysensors_node as discover_mysensors_node, discover_mysensors_platform as discover_mysensors_platform, on_unload as on_unload, validate_child as validate_child, validate_node as validate_node
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.mqtt import ReceivePayloadType as ReceivePayloadType, async_publish as async_publish, async_subscribe as async_subscribe
+from homeassistant.components.mqtt import async_publish as async_publish, async_subscribe as async_subscribe
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as async_pause_setup
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from mysensors import BaseAsyncGateway as BaseAsyncGateway, Message as Message, Sensor as Sensor

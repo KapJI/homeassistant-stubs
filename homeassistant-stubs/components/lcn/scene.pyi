@@ -1,7 +1,8 @@
 from . import LcnEntity as LcnEntity
-from .const import CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_OUTPUTS as CONF_OUTPUTS, CONF_REGISTER as CONF_REGISTER, CONF_TRANSITION as CONF_TRANSITION, OUTPUT_PORTS as OUTPUT_PORTS
+from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_OUTPUTS as CONF_OUTPUTS, CONF_REGISTER as CONF_REGISTER, CONF_TRANSITION as CONF_TRANSITION, DOMAIN as DOMAIN, OUTPUT_PORTS as OUTPUT_PORTS
 from .helpers import DeviceConnectionType as DeviceConnectionType, get_device_connection as get_device_connection
 from _typeshed import Incomplete
+from collections.abc import Iterable
 from homeassistant.components.scene import Scene as Scene
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES, CONF_SCENE as CONF_SCENE
@@ -12,7 +13,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-def create_lcn_scene_entity(hass: HomeAssistant, entity_config: ConfigType, config_entry: ConfigEntry) -> LcnEntity: ...
+def add_lcn_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, entity_configs: Iterable[ConfigType]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LcnScene(LcnEntity, Scene):

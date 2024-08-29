@@ -6,7 +6,6 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final
 

@@ -1,5 +1,5 @@
 from . import TVTrainConfigEntry as TVTrainConfigEntry
-from .const import CONF_FILTER_PRODUCT as CONF_FILTER_PRODUCT, CONF_TIME as CONF_TIME, DOMAIN as DOMAIN
+from .const import CONF_FILTER_PRODUCT as CONF_FILTER_PRODUCT, CONF_FROM as CONF_FROM, CONF_TIME as CONF_TIME, CONF_TO as CONF_TO, DOMAIN as DOMAIN
 from .util import next_departuredate as next_departuredate
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -35,11 +35,12 @@ def _get_as_joined(information: list[str] | None) -> str | None: ...
 
 class TVDataUpdateCoordinator(DataUpdateCoordinator[TrainData]):
     config_entry: TVTrainConfigEntry
+    from_station: StationInfoModel
+    to_station: StationInfoModel
     _train_api: Incomplete
-    from_station: Incomplete
-    to_station: Incomplete
     _time: Incomplete
     _weekdays: Incomplete
     _filter_product: Incomplete
-    def __init__(self, hass: HomeAssistant, to_station: StationInfoModel, from_station: StationInfoModel) -> None: ...
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> TrainData: ...

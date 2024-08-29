@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import IslamicPrayerDataUpdateCoordinator as IslamicPrayerDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -6,7 +5,6 @@ from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE a
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 
 PLATFORMS: Incomplete
-CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
 IslamicPrayerTimesConfigEntry = ConfigEntry[IslamicPrayerDataUpdateCoordinator]
 

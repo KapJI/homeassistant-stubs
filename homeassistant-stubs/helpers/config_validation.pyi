@@ -1,14 +1,16 @@
 import re
+import threading
 import voluptuous as vol
 from . import template as template_helper
 from .frame import get_integration_logger as get_integration_logger
 from .typing import VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable
+from contextvars import ContextVar
 from datetime import date as date_sys, datetime as datetime_sys, time as time_sys, timedelta
 from enum import Enum, StrEnum
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, CONF_ABOVE as CONF_ABOVE, CONF_ACTION as CONF_ACTION, CONF_ALIAS as CONF_ALIAS, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BELOW as CONF_BELOW, CONF_CHOOSE as CONF_CHOOSE, CONF_CONDITION as CONF_CONDITION, CONF_CONDITIONS as CONF_CONDITIONS, CONF_CONTINUE_ON_ERROR as CONF_CONTINUE_ON_ERROR, CONF_CONTINUE_ON_TIMEOUT as CONF_CONTINUE_ON_TIMEOUT, CONF_COUNT as CONF_COUNT, CONF_DEFAULT as CONF_DEFAULT, CONF_DELAY as CONF_DELAY, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ELSE as CONF_ELSE, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_ERROR as CONF_ERROR, CONF_EVENT as CONF_EVENT, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_EVENT_DATA_TEMPLATE as CONF_EVENT_DATA_TEMPLATE, CONF_FOR as CONF_FOR, CONF_FOR_EACH as CONF_FOR_EACH, CONF_ID as CONF_ID, CONF_IF as CONF_IF, CONF_MATCH as CONF_MATCH, CONF_PARALLEL as CONF_PARALLEL, CONF_PLATFORM as CONF_PLATFORM, CONF_REPEAT as CONF_REPEAT, CONF_RESPONSE_VARIABLE as CONF_RESPONSE_VARIABLE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_SCENE as CONF_SCENE, CONF_SEQUENCE as CONF_SEQUENCE, CONF_SERVICE as CONF_SERVICE, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_SET_CONVERSATION_RESPONSE as CONF_SET_CONVERSATION_RESPONSE, CONF_STATE as CONF_STATE, CONF_STOP as CONF_STOP, CONF_TARGET as CONF_TARGET, CONF_THEN as CONF_THEN, CONF_TIMEOUT as CONF_TIMEOUT, CONF_UNTIL as CONF_UNTIL, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_VARIABLES as CONF_VARIABLES, CONF_WAIT_FOR_TRIGGER as CONF_WAIT_FOR_TRIGGER, CONF_WAIT_TEMPLATE as CONF_WAIT_TEMPLATE, CONF_WHILE as CONF_WHILE, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET, UnitOfTemperature as UnitOfTemperature, WEEKDAYS as WEEKDAYS
-from homeassistant.core import async_get_hass as async_get_hass, async_get_hass_or_none as async_get_hass_or_none, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
+from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, async_get_hass_or_none as async_get_hass_or_none, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.generated import currencies as currencies
 from homeassistant.generated.countries import COUNTRIES as COUNTRIES
@@ -18,6 +20,19 @@ from homeassistant.util.yaml.objects import NodeStrClass as NodeStrClass
 from typing import Any, overload
 
 TIME_PERIOD_ERROR: str
+
+class MustValidateInExecutor(HomeAssistantError): ...
+
+class _Hass(threading.local):
+    hass: HomeAssistant | None
+
+_hass: Incomplete
+
+def _async_get_hass_or_none() -> HomeAssistant | None: ...
+
+_validating_async: ContextVar[bool]
+
+def not_async_friendly(validator: Callable[_P, _R]) -> Callable[_P, _R]: ...
 
 class UrlProtocolSchema(StrEnum):
     HTTP = 'http'
@@ -130,6 +145,7 @@ def removed(key: str, default: Any | None = None, raise_if_present: bool | None 
 def key_value_schemas(key: str, value_schemas: dict[Hashable, VolSchemaType | Callable[[Any], dict[str, Any]]], default_schema: VolSchemaType | None = None, default_description: str | None = None) -> Callable[[Any], dict[Hashable, Any]]: ...
 def key_dependency(key: Hashable, dependency: Hashable) -> Callable[[dict[_KT, _VT]], dict[_KT, _VT]]: ...
 def custom_serializer(schema: Any) -> Any: ...
+def _custom_serializer(schema: Any, *, allow_section: bool) -> Any: ...
 def expand_condition_shorthand(value: Any | None) -> Any: ...
 def empty_config_schema(domain: str) -> Callable[[dict], dict]: ...
 def _no_yaml_config_schema(domain: str, issue_base: str, translation_key: str, translation_placeholders: dict[str, str]) -> Callable[[dict], dict]: ...
@@ -142,11 +158,12 @@ ENTITY_SERVICE_FIELDS: VolDictType
 TARGET_SERVICE_FIELDS: Incomplete
 _HAS_ENTITY_SERVICE_FIELD: Incomplete
 
-def _make_entity_service_schema(schema: dict, extra: int) -> vol.Schema: ...
+def is_entity_service_schema(validator: VolSchemaType) -> bool: ...
+def _make_entity_service_schema(schema: dict, extra: int) -> VolSchemaType: ...
 
 BASE_ENTITY_SCHEMA: Incomplete
 
-def make_entity_service_schema(schema: dict, *, extra: int = ...) -> vol.Schema: ...
+def make_entity_service_schema(schema: dict | None, *, extra: int = ...) -> VolSchemaType: ...
 
 SCRIPT_CONVERSATION_RESPONSE_SCHEMA: Incomplete
 SCRIPT_VARIABLES_SCHEMA: Incomplete
@@ -234,3 +251,6 @@ currency: Incomplete
 historic_currency: Incomplete
 country: Incomplete
 language: Incomplete
+
+async def async_validate(hass: HomeAssistant, validator: Callable[[Any], Any], value: Any) -> Any: ...
+def _validate_in_executor(hass: HomeAssistant, validator: Callable[[Any], Any], value: Any) -> Any: ...

@@ -2,7 +2,7 @@ from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_RETAIN as CONF_RETAIN, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, DEFAULT_RETAIN as DEFAULT_RETAIN
 from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
-from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage, ReceivePayloadType as ReceivePayloadType
+from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
@@ -14,6 +14,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete

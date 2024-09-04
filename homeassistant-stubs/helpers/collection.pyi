@@ -3,6 +3,7 @@ import logging
 from . import entity_registry as entity_registry
 from .entity import Entity as Entity
 from .entity_component import EntityComponent as EntityComponent
+from .json import json_bytes as json_bytes
 from .storage import Store as Store
 from .typing import ConfigType as ConfigType, VolDictType as VolDictType
 from _typeshed import Incomplete
@@ -29,7 +30,8 @@ class CollectionChange:
     change_type: str
     item_id: str
     item: Any
-    def __init__(self, change_type, item_id, item) -> None: ...
+    item_hash: str | None = ...
+    def __init__(self, change_type, item_id, item, item_hash=...) -> None: ...
 ChangeListener = Callable[[str, str, dict], Awaitable[None]]
 ChangeSetListener = Callable[[Iterable[CollectionChange]], Awaitable[None]]
 
@@ -105,6 +107,7 @@ class StorageCollection(ObservableCollection[_ItemT], metaclass=abc.ABCMeta):
     def _base_data_to_save(self) -> SerializedStorageCollection: ...
     @abstractmethod
     def _data_to_save(self) -> _StoreT: ...
+    def _hash_item(self, item: dict) -> str: ...
 
 class DictStorageCollection(StorageCollection[dict, SerializedStorageCollection], metaclass=abc.ABCMeta):
     def _create_item(self, item_id: str, data: dict) -> dict: ...

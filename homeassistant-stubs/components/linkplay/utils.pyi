@@ -1,3 +1,7 @@
+from .const import CONF_SESSION as CONF_SESSION, DOMAIN as DOMAIN
+from aiohttp import ClientSession as ClientSession
+from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from typing import Final
 
 MANUFACTURER_ARTSOUND: Final[str]
@@ -17,3 +21,4 @@ MODELS_IEAST_AUDIOCAST_M5: Final[str]
 MODELS_GENERIC: Final[str]
 
 def get_info_from_project(project: str) -> tuple[str, str]: ...
+async def async_get_client_session(hass: HomeAssistant) -> ClientSession: ...

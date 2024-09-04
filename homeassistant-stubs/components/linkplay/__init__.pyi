@@ -1,13 +1,17 @@
 from .const import PLATFORMS as PLATFORMS
+from .utils import async_get_client_session as async_get_client_session
+from aiohttp import ClientSession as ClientSession
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
 
+@dataclass
 class LinkPlayData:
     bridge: LinkPlayBridge
+    def __init__(self, bridge) -> None: ...
 LinkPlayConfigEntry = ConfigEntry[LinkPlayData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry) -> bool: ...

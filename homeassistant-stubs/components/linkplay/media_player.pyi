@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
+from homeassistant.components.media_player.browse_media import async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

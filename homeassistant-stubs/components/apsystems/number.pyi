@@ -10,7 +10,6 @@ from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 async def async_setup_entry(hass: HomeAssistant, config_entry: ApSystemsConfigEntry, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class ApSystemsMaxOutputNumber(ApSystemsEntity, NumberEntity):
-    _attr_native_min_value: int
     _attr_native_step: int
     _attr_device_class: Incomplete
     _attr_mode: Incomplete
@@ -19,6 +18,7 @@ class ApSystemsMaxOutputNumber(ApSystemsEntity, NumberEntity):
     _api: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_max_value: Incomplete
+    _attr_native_min_value: Incomplete
     def __init__(self, data: ApSystemsData) -> None: ...
     _attr_native_value: Incomplete
     async def async_update(self) -> None: ...

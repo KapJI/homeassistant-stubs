@@ -76,3 +76,8 @@ disallow_any_unimported = true
 show_none_errors = true
 warn_no_return = true
 warn_unreachable = true
+
+[tool.codespell]
+quiet-level = 2
+skip = "poetry.lock,./.git/*,./.mypy_cache/*,./.venv/*,./dist/*,./env/*,*.egg-info,./homeassistant_core/*,./homeassistant-stubs/*"
+ignore-words-list = "hass"

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Fetch the latest homeassistant tag and generate typing stubs for it."""
+
 from __future__ import annotations
 
 import argparse

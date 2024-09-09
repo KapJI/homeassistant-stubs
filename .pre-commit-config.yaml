@@ -14,9 +14,9 @@ repos:
       - id: prettier
   - repo: local
     hooks:
-      - id: black
-        name: black
-        entry: poetry run black
+      - id: ruff-format
+        name: ruff format
+        entry: poetry run ruff format
         language: system
         types: [python]
         require_serial: true

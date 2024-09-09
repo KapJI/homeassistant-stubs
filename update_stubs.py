@@ -6,17 +6,20 @@ from __future__ import annotations
 import argparse
 import json
 import os
+from pathlib import Path
 import platform
 import shutil
 import subprocess
 import sys
-from pathlib import Path
+from typing import TYPE_CHECKING
 from urllib.request import urlopen
 
 from awesomeversion.awesomeversion import AwesomeVersion
 from awesomeversion.strategy import AwesomeVersionStrategy
 from github import Auth, Github
-from github.Repository import Repository
+
+if TYPE_CHECKING:
+    from github.Repository import Repository
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
 
@@ -32,7 +35,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    repo_root = Path(os.path.dirname(os.path.realpath(__file__)))
+    repo_root = Path(__file__).resolve().parent
     homeassistant_root = repo_root / "homeassistant_core"
 
     # Find which versions are missing
@@ -138,10 +141,10 @@ def update_dependency(repo_root: Path, version: str) -> bool:
         subprocess.run(
             ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
         )
-        return True
     except subprocess.CalledProcessError as ex:
         print(f"Failed to add dependency: {ex}")
         return False
+    return True
 
 
 def checkout_version(homeassistant_root: Path, version: str) -> None:
@@ -277,7 +280,8 @@ def get_old_typed_paths(homeassistant_root: Path) -> list[Path]:
         matched_lines = [line for line in fp.readlines() if line.startswith("[mypy-")]
     if not matched_lines:
         raise ValueError("can't find mypy config in setup.cfg")
-    if len(matched_lines) > 2:
+    expected_matched_lines = 2
+    if len(matched_lines) > expected_matched_lines:
         raise ValueError("too many mypy entries in setup.cfg, update the script")
     mypy_config = matched_lines[0][len("[mypy-") : -len("]\n")]
     typed_paths: list[Path] = []
@@ -315,22 +319,19 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
 def stubs_fixup(stubs_folder: Path) -> None:
     """Fix invalid syntax in generated files."""
     print("Fixing stubs...")
-    command_args: list[str] = [
-        "find",
-        str(stubs_folder),
-        "-name",
-        "'*.pyi'",
-        "-print0",
-        "|",
-        "xargs",
-        "-0",
-        "sed",
-        "-i",
-    ]
+
+    # Run the 'find' command and capture the output
+    find_command = ["find", str(stubs_folder), "-name", "*.pyi", "-print0"]
+    sed_command = ["xargs", "-0", "sed", "-i"]
+
+    # MacOS needs an additional empty argument
     if platform.system() == "Darwin":
-        command_args.append("''")
-    command_args.append("'/def __mypy-replace/d'")
-    subprocess.run(" ".join(command_args), shell=True, check=True)
+        sed_command.append("")
+    sed_command.append("/def __mypy-replace/d")
+
+    with subprocess.Popen(find_command, stdout=subprocess.PIPE) as find_process:
+        # Pipe the output of 'find' into 'xargs sed'
+        subprocess.run(sed_command, stdin=find_process.stdout, check=True)
 
 
 if __name__ == "__main__":

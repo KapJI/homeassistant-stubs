@@ -10,7 +10,7 @@ from renault_api.kamereon.models import KamereonVehicleBatteryStatusData
 @dataclass(frozen=True, kw_only=True)
 class RenaultBinarySensorEntityDescription(BinarySensorEntityDescription, RenaultDataEntityDescription):
     on_key: str
-    on_value: StateType
+    on_value: StateType | list[StateType]
     def __init__(self, coordinator, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., on_key, on_value) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

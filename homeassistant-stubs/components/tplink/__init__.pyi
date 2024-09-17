@@ -1,4 +1,4 @@
-from .const import CONF_CREDENTIALS_HASH as CONF_CREDENTIALS_HASH, CONF_DEVICE_CONFIG as CONF_DEVICE_CONFIG, CONNECT_TIMEOUT as CONNECT_TIMEOUT, DISCOVERY_TIMEOUT as DISCOVERY_TIMEOUT, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import CONF_AES_KEYS as CONF_AES_KEYS, CONF_CONFIG_ENTRY_MINOR_VERSION as CONF_CONFIG_ENTRY_MINOR_VERSION, CONF_CONNECTION_PARAMETERS as CONF_CONNECTION_PARAMETERS, CONF_CREDENTIALS_HASH as CONF_CREDENTIALS_HASH, CONF_DEVICE_CONFIG as CONF_DEVICE_CONFIG, CONF_USES_HTTP as CONF_USES_HTTP, CONNECT_TIMEOUT as CONNECT_TIMEOUT, DISCOVERY_TIMEOUT as DISCOVERY_TIMEOUT, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
 from .models import TPLinkData as TPLinkData
 from _typeshed import Incomplete
@@ -7,7 +7,7 @@ from collections.abc import Iterable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_AUTHENTICATION as CONF_AUTHENTICATION, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_AUTHENTICATION as CONF_AUTHENTICATION, CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr, discovery_flow as discovery_flow

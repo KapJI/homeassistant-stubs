@@ -125,13 +125,13 @@ def create_package(
     checkout_version(homeassistant_root, version)
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
-    build_package(repo_root, version)
     if not dry_run:
         create_commit(repo_root, version)
         gh_repo = get_github_repo("GITHUB_TOKEN")
         gh_admin_repo = get_github_repo("ADMIN_TOKEN")
         push_commit(repo_root, gh_admin_repo)
         create_github_release(version, gh_repo)
+        build_package(repo_root)
         publish_package(repo_root)
 
 
@@ -139,7 +139,7 @@ def update_dependency(repo_root: Path, version: str) -> bool:
     """Update version of homeassistant dependency."""
     try:
         subprocess.run(
-            ["poetry", "add", f"homeassistant@{version}"], cwd=repo_root, check=True
+            ["uv", "add", f"homeassistant=={version}"], cwd=repo_root, check=True
         )
     except subprocess.CalledProcessError as ex:
         print(f"Failed to add dependency: {ex}")
@@ -152,11 +152,10 @@ def checkout_version(homeassistant_root: Path, version: str) -> None:
     subprocess.run(["git", "checkout", version], cwd=homeassistant_root, check=True)
 
 
-def build_package(repo_root: Path, version: str) -> None:
-    """Build new package with Poetry."""
+def build_package(repo_root: Path) -> None:
+    """Build new package with uv."""
     print("Building package...")
-    subprocess.run(["poetry", "version", version], cwd=repo_root, check=True)
-    subprocess.run(["poetry", "build"], cwd=repo_root, check=True)
+    subprocess.run(["uv", "build"], cwd=repo_root, check=True)
 
 
 def create_commit(repo_root: Path, version: str) -> None:
@@ -169,7 +168,7 @@ def create_commit(repo_root: Path, version: str) -> None:
             "homeassistant_core",
             "homeassistant-stubs",
             "pyproject.toml",
-            "poetry.lock",
+            "uv.lock",
         ],
         cwd=repo_root,
         check=True,
@@ -208,15 +207,19 @@ def create_github_release(version: str, gh_repo: Repository) -> None:
 def publish_package(repo_root: Path) -> None:
     """Publish new package on PyPI."""
     print("Publishing package...")
-    pypi_token = os.environ.get("PYPI_TOKEN")
-    if pypi_token is None:
-        raise RuntimeError("PYPI_TOKEN is not set")
     subprocess.run(
-        ["poetry", "config", "pypi-token.pypi", pypi_token],
+        [
+            "uvx",
+            "twine",
+            "upload",
+            "--non-interactive",
+            "--disable-progress-bar",
+            "--skip-existing",
+            "dist/*",
+        ],
         cwd=repo_root,
         check=True,
     )
-    subprocess.run(["poetry", "publish"], cwd=repo_root, check=True)
 
 
 def get_typed_paths(homeassistant_root: Path) -> list[Path]:
@@ -300,7 +303,7 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
     """Use stubgen to generate typing stubs for all typed paths."""
     print("Generating stubs...")
     command_args: list[str] = [
-        "poetry",
+        "uv",
         "run",
         "stubgen",
         "--include-private",

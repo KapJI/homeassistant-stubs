@@ -9,10 +9,10 @@ You can use it to enable type checks against Home Assistant code in your custom 
 ## How to use
 
 Add it to dev dependencies of your project.
-I recommend to use [Poetry](https://python-poetry.org/) for managing dependencies:
+I recommend to use [uv](https://docs.astral.sh/uv/) for managing dependencies:
 
 ```shell
-poetry add --group dev homeassistant-stubs
+uv add --dev homeassistant-stubs
 ```
 
 Please note that only stubs from strictly typed modules are added in this package.

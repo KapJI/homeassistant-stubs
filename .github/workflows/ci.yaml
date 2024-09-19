@@ -6,9 +6,6 @@ on:
       - main
   pull_request:
 
-env:
-  PYTHON_VERSION: "3.12"
-
 jobs:
   lint:
     name: Lint
@@ -17,27 +14,8 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install Poetry
-        uses: abatilo/actions-poetry@v3
-
-      - name: Use local virtual environment
-        run: |
-          poetry config virtualenvs.create true --local
-          poetry config virtualenvs.in-project true --local
-
-      - uses: actions/cache@v4
-        id: cache-poetry-deps
-        name: Cache Poetry dependencies
-        with:
-          path: ./.venv
-          key: venv-${{ env.PYTHON_VERSION }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            venv-${{ env.PYTHON_VERSION }}-
+      - name: Prepare and install deps
+        uses: ./.github/actions/install-deps
 
       - uses: actions/cache@v4
         name: Cache pre-commit hooks
@@ -52,10 +30,6 @@ jobs:
             pre-commit-${{ env.PYTHON_VERSION }}-
             pre-commit-
 
-      - name: Install dependencies with Poetry
-        if: steps.cache-poetry-deps.outputs.cache-hit != 'true'
-        run: poetry install
-
       - name: Run pre-commit on all files
         run: |
-          poetry run pre-commit run --all-files --show-diff-on-failure --color=always
+          uv run pre-commit run --all-files --show-diff-on-failure --color=always

@@ -1,10 +1,9 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
 name = "homeassistant-stubs"
-version = "2024.9.2"
 description = "PEP 484 typing stubs for Home Assistant Core"
 authors = [{name = "Ruslan Sayfutdinov", email = "ruslan@sayfutdinov.com"}]
 readme = "README.md"
@@ -22,6 +21,7 @@ classifiers = [
 keywords = ["homeassistant", "typing", "pep484"]
 # Forbid 3.13 because of home-assistant-bluetooth package.
 requires-python = ">=3.12,<3.13"
+dynamic = ["version"]
 dependencies = [
     "homeassistant==2024.9.2",
 ]
@@ -33,6 +33,9 @@ dependencies = [
 
 [tool.hatch.build]
 packages = ["homeassistant-stubs"]
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.uv]
 dev-dependencies = [

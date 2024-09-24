@@ -131,7 +131,7 @@ def create_package(
         gh_admin_repo = get_github_repo("ADMIN_TOKEN")
         push_commit(repo_root, gh_admin_repo)
         create_github_release(version, gh_repo)
-        build_package(repo_root)
+        build_package(repo_root, version)
         publish_package(repo_root)
 
 
@@ -152,9 +152,10 @@ def checkout_version(homeassistant_root: Path, version: str) -> None:
     subprocess.run(["git", "checkout", version], cwd=homeassistant_root, check=True)
 
 
-def build_package(repo_root: Path) -> None:
+def build_package(repo_root: Path, version: str) -> None:
     """Build new package with uv."""
     print("Building package...")
+    subprocess.run(["git", "tag", version], cwd=repo_root, check=True)
     subprocess.run(["uv", "build"], cwd=repo_root, check=True)
 
 

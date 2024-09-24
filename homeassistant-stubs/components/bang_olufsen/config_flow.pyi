@@ -4,6 +4,7 @@ from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfSer
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
+from homeassistant.util.ssl import get_default_context as get_default_context
 from mozart_api.mozart_client import MozartClient
 from typing import Any, TypedDict
 

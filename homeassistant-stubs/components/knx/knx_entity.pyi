@@ -1,8 +1,10 @@
-import abc
 from . import KNXModule as KNXModule
+from .const import DOMAIN as DOMAIN
 from .storage.config_store import PlatformControllerBase as PlatformControllerBase
+from .storage.const import CONF_DEVICE_INFO as CONF_DEVICE_INFO
 from _typeshed import Incomplete
-from abc import ABC, abstractmethod
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, EntityCategory as EntityCategory
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
@@ -35,7 +37,10 @@ class KnxYamlEntity(_KnxEntityBase):
     _device: Incomplete
     def __init__(self, knx_module: KNXModule, device: XknxDevice) -> None: ...
 
-class KnxUiEntity(_KnxEntityBase, ABC, metaclass=abc.ABCMeta):
+class KnxUiEntity(_KnxEntityBase):
     _attr_unique_id: str
-    @abstractmethod
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]): ...
+    _attr_has_entity_name: bool
+    _knx_module: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, knx_module: KNXModule, unique_id: str, entity_config: dict[str, Any]) -> None: ...

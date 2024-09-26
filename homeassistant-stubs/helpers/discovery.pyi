@@ -1,10 +1,10 @@
-from ..util.signal_type import SignalTypeFormat as SignalTypeFormat
 from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send_internal as async_dispatcher_send_internal
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant import core as core, setup as setup
 from homeassistant.const import Platform as Platform
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.signal_type import SignalTypeFormat as SignalTypeFormat
 from typing import Any, TypedDict
 
 SIGNAL_PLATFORM_DISCOVERED: SignalTypeFormat[DiscoveryDict]

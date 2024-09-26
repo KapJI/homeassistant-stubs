@@ -7,12 +7,6 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any
-
-ATTR_ROUND_TRIP_TIME_AVG: str
-ATTR_ROUND_TRIP_TIME_MAX: str
-ATTR_ROUND_TRIP_TIME_MDEV: str
-ATTR_ROUND_TRIP_TIME_MIN: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -24,5 +18,3 @@ class PingBinarySensor(PingEntity, BinarySensorEntity):
     def __init__(self, config_entry: ConfigEntry, coordinator: PingUpdateCoordinator) -> None: ...
     @property
     def is_on(self) -> bool: ...
-    @property
-    def extra_state_attributes(self) -> dict[str, Any] | None: ...

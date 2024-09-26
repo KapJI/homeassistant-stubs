@@ -5,11 +5,16 @@ from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+
+_LOGGER: Incomplete
+SCAN_INTERVAL: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MotionMountPresets(MotionMountEntity, SelectEntity):
+    _attr_should_poll: bool
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     _presets: Incomplete

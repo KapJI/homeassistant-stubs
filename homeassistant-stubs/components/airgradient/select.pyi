@@ -1,6 +1,6 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
 from .const import DOMAIN as DOMAIN, PM_STANDARD as PM_STANDARD, PM_STANDARD_REVERSE as PM_STANDARD_REVERSE
-from .coordinator import AirGradientConfigCoordinator as AirGradientConfigCoordinator
+from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity
 from _typeshed import Incomplete
 from airgradient import AirGradientClient as AirGradientClient, Config as Config
@@ -31,9 +31,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirGradientConfigEntry, 
 
 class AirGradientSelect(AirGradientEntity, SelectEntity):
     entity_description: AirGradientSelectEntityDescription
-    coordinator: AirGradientConfigCoordinator
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AirGradientConfigCoordinator, description: AirGradientSelectEntityDescription) -> None: ...
+    def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientSelectEntityDescription) -> None: ...
     @property
     def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...

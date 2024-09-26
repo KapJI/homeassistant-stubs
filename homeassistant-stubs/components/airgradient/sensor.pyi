@@ -1,6 +1,6 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
 from .const import PM_STANDARD as PM_STANDARD, PM_STANDARD_REVERSE as PM_STANDARD_REVERSE
-from .coordinator import AirGradientConfigCoordinator as AirGradientConfigCoordinator, AirGradientMeasurementCoordinator as AirGradientMeasurementCoordinator
+from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity
 from _typeshed import Incomplete
 from airgradient import Config as Config
@@ -30,19 +30,19 @@ CONFIG_DISPLAY_SENSOR_TYPES: tuple[AirGradientConfigSensorEntityDescription, ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: AirGradientConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class AirGradientMeasurementSensor(AirGradientEntity, SensorEntity):
-    entity_description: AirGradientMeasurementSensorEntityDescription
-    coordinator: AirGradientMeasurementCoordinator
+class AirGradientSensor(AirGradientEntity, SensorEntity):
+    entity_description: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AirGradientMeasurementCoordinator, description: AirGradientMeasurementSensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: AirGradientCoordinator, description: SensorEntityDescription) -> None: ...
+
+class AirGradientMeasurementSensor(AirGradientSensor):
+    entity_description: AirGradientMeasurementSensorEntityDescription
     @property
     def native_value(self) -> StateType: ...
 
-class AirGradientConfigSensor(AirGradientEntity, SensorEntity):
+class AirGradientConfigSensor(AirGradientSensor):
     entity_description: AirGradientConfigSensorEntityDescription
-    coordinator: AirGradientConfigCoordinator
-    _attr_unique_id: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
-    def __init__(self, coordinator: AirGradientConfigCoordinator, description: AirGradientConfigSensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientConfigSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...

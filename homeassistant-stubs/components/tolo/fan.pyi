@@ -1,5 +1,6 @@
-from . import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity, ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
+from .entity import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity
 from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

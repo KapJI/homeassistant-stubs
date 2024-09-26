@@ -4,7 +4,6 @@ from .util import cleanup_name_for_homekit as cleanup_name_for_homekit
 from _typeshed import Incomplete
 from homeassistant.components import button as button, input_button as input_button
 from homeassistant.components.input_select import ATTR_OPTIONS as ATTR_OPTIONS, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION
-from homeassistant.components.switch import DOMAIN as DOMAIN
 from homeassistant.components.vacuum import SERVICE_RETURN_TO_BASE as SERVICE_RETURN_TO_BASE, SERVICE_START as SERVICE_START, STATE_CLEANING as STATE_CLEANING, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_TYPE as CONF_TYPE, SERVICE_CLOSE_VALVE as SERVICE_CLOSE_VALVE, SERVICE_OPEN_VALVE as SERVICE_OPEN_VALVE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id

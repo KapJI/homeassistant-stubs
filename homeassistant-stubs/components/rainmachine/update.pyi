@@ -1,6 +1,6 @@
-from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineEntity as RainMachineEntity
+from . import RainMachineConfigEntry as RainMachineConfigEntry
 from .const import DATA_MACHINE_FIRMWARE_UPDATE_STATUS as DATA_MACHINE_FIRMWARE_UPDATE_STATUS
-from .model import RainMachineEntityDescription as RainMachineEntityDescription
+from .entity import RainMachineEntity as RainMachineEntity, RainMachineEntityDescription as RainMachineEntityDescription
 from _typeshed import Incomplete
 from enum import Enum
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature

@@ -1,13 +1,13 @@
-from . import SpeechManager as SpeechManager, TextToSpeechEntity as TextToSpeechEntity
-from .const import DATA_TTS_MANAGER as DATA_TTS_MANAGER, DOMAIN as DOMAIN
+from .const import DATA_COMPONENT as DATA_COMPONENT, DATA_TTS_MANAGER as DATA_TTS_MANAGER, DOMAIN as DOMAIN
 from .helper import get_engine_instance as get_engine_instance
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from typing import TypedDict
+
+URL_QUERY_TTS_OPTIONS: str
 
 async def async_get_media_source(hass: HomeAssistant) -> TTSMediaSource: ...
 def generate_media_source_id(hass: HomeAssistant, message: str, engine: str | None = None, language: str | None = None, options: dict | None = None, cache: bool | None = None) -> str: ...

@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import AirNowDataUpdateCoordinator as AirNowDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

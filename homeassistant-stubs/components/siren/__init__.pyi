@@ -8,9 +8,11 @@ from homeassistant.helpers.deprecation import all_with_deprecated_constants as a
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, TypedDict
 
 _LOGGER: Incomplete
+DATA_COMPONENT: HassKey[EntityComponent[SirenEntity]]
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete

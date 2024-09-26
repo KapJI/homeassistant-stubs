@@ -1,11 +1,9 @@
-from . import RingData as RingData
-from .const import DOMAIN as DOMAIN
+from . import RingConfigEntry as RingConfigEntry
 from .coordinator import RingDataCoordinator as RingDataCoordinator
 from .entity import RingEntity as RingEntity, exception_wrap as exception_wrap
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from ring_doorbell import RingStickUpCam
@@ -18,7 +16,7 @@ class OnOffState(StrEnum):
     ON = ...
     OFF = ...
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RingLight(RingEntity[RingStickUpCam], LightEntity):
     _attr_color_mode: Incomplete

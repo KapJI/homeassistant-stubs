@@ -22,6 +22,7 @@ PLATFORM_FORMAT: Final[str]
 class Platform(StrEnum):
     AIR_QUALITY = 'air_quality'
     ALARM_CONTROL_PANEL = 'alarm_control_panel'
+    ASSIST_SATELLITE = 'assist_satellite'
     BINARY_SENSOR = 'binary_sensor'
     BUTTON = 'button'
     CALENDAR = 'calendar'
@@ -55,9 +56,9 @@ class Platform(StrEnum):
     TIME = 'time'
     TODO = 'todo'
     TTS = 'tts'
+    UPDATE = 'update'
     VACUUM = 'vacuum'
     VALVE = 'valve'
-    UPDATE = 'update'
     WAKE_WORD = 'wake_word'
     WATER_HEATER = 'water_heater'
     WEATHER = 'weather'
@@ -247,6 +248,8 @@ CONF_THEN: Final[str]
 CONF_TIMEOUT: Final[str]
 CONF_TIME_ZONE: Final[str]
 CONF_TOKEN: Final[str]
+CONF_TRIGGER: Final[str]
+CONF_TRIGGERS: Final[str]
 CONF_TRIGGER_TIME: Final[str]
 CONF_TTL: Final[str]
 CONF_TYPE: Final[str]
@@ -343,14 +346,14 @@ STATE_ALARM_PENDING: Final[str]
 STATE_ALARM_ARMING: Final[str]
 STATE_ALARM_DISARMING: Final[str]
 STATE_ALARM_TRIGGERED: Final[str]
-STATE_LOCKED: Final[str]
-STATE_UNLOCKED: Final[str]
-STATE_LOCKING: Final[str]
-STATE_UNLOCKING: Final[str]
-STATE_JAMMED: Final[str]
 STATE_UNAVAILABLE: Final[str]
 STATE_OK: Final[str]
 STATE_PROBLEM: Final[str]
+_DEPRECATED_STATE_LOCKED: Final[Incomplete]
+_DEPRECATED_STATE_UNLOCKED: Final[Incomplete]
+_DEPRECATED_STATE_LOCKING: Final[Incomplete]
+_DEPRECATED_STATE_UNLOCKING: Final[Incomplete]
+_DEPRECATED_STATE_JAMMED: Final[Incomplete]
 ATTR_ATTRIBUTION: Final[str]
 ATTR_CREDENTIALS: Final[str]
 ATTR_NOW: Final[str]
@@ -433,11 +436,17 @@ class UnitOfReactivePower(StrEnum):
 _DEPRECATED_POWER_VOLT_AMPERE_REACTIVE: Final[Incomplete]
 
 class UnitOfEnergy(StrEnum):
-    GIGA_JOULE = 'GJ'
-    KILO_WATT_HOUR = 'kWh'
+    JOULE = 'J'
+    KILO_JOULE = 'kJ'
     MEGA_JOULE = 'MJ'
-    MEGA_WATT_HOUR = 'MWh'
+    GIGA_JOULE = 'GJ'
     WATT_HOUR = 'Wh'
+    KILO_WATT_HOUR = 'kWh'
+    MEGA_WATT_HOUR = 'MWh'
+    CALORIE = 'cal'
+    KILO_CALORIE = 'kcal'
+    MEGA_CALORIE = 'Mcal'
+    GIGA_CALORIE = 'Gcal'
 
 _DEPRECATED_ENERGY_KILO_WATT_HOUR: Final[Incomplete]
 _DEPRECATED_ENERGY_MEGA_WATT_HOUR: Final[Incomplete]
@@ -634,10 +643,12 @@ CONCENTRATION_PARTS_PER_BILLION: Final[str]
 class UnitOfSpeed(StrEnum):
     BEAUFORT = 'Beaufort'
     FEET_PER_SECOND = 'ft/s'
+    INCHES_PER_SECOND = 'in/s'
     METERS_PER_SECOND = 'm/s'
     KILOMETERS_PER_HOUR = 'km/h'
     KNOTS = 'kn'
     MILES_PER_HOUR = 'mph'
+    MILLIMETERS_PER_SECOND = 'mm/s'
 
 _DEPRECATED_SPEED_FEET_PER_SECOND: Final[Incomplete]
 _DEPRECATED_SPEED_METERS_PER_SECOND: Final[Incomplete]

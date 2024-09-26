@@ -3,8 +3,7 @@ from .const import DOMAIN as DOMAIN, EVENT_TURN_ON as EVENT_TURN_ON, SIGNAL_CLIE
 from _typeshed import Incomplete
 from arcam.fmj.state import State
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.components.media_player.errors import BrowseError as BrowseError
+from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

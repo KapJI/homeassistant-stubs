@@ -11,8 +11,7 @@ from enum import StrEnum
 from functools import cached_property as cached_property
 from homeassistant.components import ssdp as ssdp
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
-from homeassistant.components.media_source.error import Unresolvable as Unresolvable
-from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, PlayMedia as PlayMedia
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

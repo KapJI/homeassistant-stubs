@@ -1,6 +1,6 @@
-from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineData as RainMachineData, RainMachineEntity as RainMachineEntity
+from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineData as RainMachineData
 from .const import DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL
-from .model import RainMachineEntityDescription as RainMachineEntityDescription
+from .entity import RainMachineEntity as RainMachineEntity, RainMachineEntityDescription as RainMachineEntityDescription
 from .util import key_exists as key_exists
 from _typeshed import Incomplete
 from dataclasses import dataclass

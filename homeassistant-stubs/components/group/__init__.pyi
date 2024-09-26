@@ -1,11 +1,9 @@
-from .const import ATTR_ADD_ENTITIES as ATTR_ADD_ENTITIES, ATTR_ALL as ATTR_ALL, ATTR_AUTO as ATTR_AUTO, ATTR_ENTITIES as ATTR_ENTITIES, ATTR_OBJECT_ID as ATTR_OBJECT_ID, ATTR_ORDER as ATTR_ORDER, ATTR_REMOVE_ENTITIES as ATTR_REMOVE_ENTITIES, CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS, DOMAIN as DOMAIN, GROUP_ORDER as GROUP_ORDER, REG_KEY as REG_KEY
+from .const import ATTR_ADD_ENTITIES as ATTR_ADD_ENTITIES, ATTR_ALL as ATTR_ALL, ATTR_AUTO as ATTR_AUTO, ATTR_ENTITIES as ATTR_ENTITIES, ATTR_OBJECT_ID as ATTR_OBJECT_ID, ATTR_ORDER as ATTR_ORDER, ATTR_REMOVE_ENTITIES as ATTR_REMOVE_ENTITIES, CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, GROUP_ORDER as GROUP_ORDER, REG_KEY as REG_KEY
 from .entity import Group as Group, async_get_component as async_get_component
-from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.reload import async_reload_integration_platforms as async_reload_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass

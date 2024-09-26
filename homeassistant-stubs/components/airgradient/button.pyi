@@ -1,5 +1,6 @@
-from . import AirGradientConfigEntry as AirGradientConfigEntry, DOMAIN as DOMAIN
-from .coordinator import AirGradientConfigCoordinator as AirGradientConfigCoordinator
+from . import AirGradientConfigEntry as AirGradientConfigEntry
+from .const import DOMAIN as DOMAIN
+from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity
 from _typeshed import Incomplete
 from airgradient import AirGradientClient as AirGradientClient
@@ -22,7 +23,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirGradientConfigEntry, 
 
 class AirGradientButton(AirGradientEntity, ButtonEntity):
     entity_description: AirGradientButtonEntityDescription
-    coordinator: AirGradientConfigCoordinator
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AirGradientConfigCoordinator, description: AirGradientButtonEntityDescription) -> None: ...
+    def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientButtonEntityDescription) -> None: ...
     async def async_press(self) -> None: ...

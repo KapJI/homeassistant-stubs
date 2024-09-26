@@ -1,5 +1,6 @@
-from . import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice, Router as Router
+from . import Router as Router
 from .const import DOMAIN as DOMAIN, KEY_NET_NET_MODE as KEY_NET_NET_MODE
+from .entity import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

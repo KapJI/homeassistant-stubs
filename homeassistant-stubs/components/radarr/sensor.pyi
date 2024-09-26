@@ -1,6 +1,7 @@
 import dataclasses
-from . import RadarrConfigEntry as RadarrConfigEntry, RadarrEntity as RadarrEntity
+from . import RadarrConfigEntry as RadarrConfigEntry
 from .coordinator import RadarrDataUpdateCoordinator as RadarrDataUpdateCoordinator, T as T
+from .entity import RadarrEntity as RadarrEntity
 from _typeshed import Incomplete
 from aiopyarr import Diskspace as Diskspace, RootFolder as RootFolder
 from collections.abc import Callable as Callable

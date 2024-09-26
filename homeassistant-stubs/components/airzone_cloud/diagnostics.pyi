@@ -1,6 +1,6 @@
 from . import AirzoneCloudConfigEntry as AirzoneCloudConfigEntry
 from _typeshed import Incomplete
-from homeassistant.components.diagnostics.util import async_redact_data as async_redact_data
+from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any

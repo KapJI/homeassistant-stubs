@@ -1,7 +1,8 @@
-from . import HuaweiLteBaseEntity as HuaweiLteBaseEntity, Router as Router
+from . import Router as Router
 from .const import CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_TRACK_WIRED_CLIENTS as DEFAULT_TRACK_WIRED_CLIENTS, DOMAIN as DOMAIN, KEY_LAN_HOST_INFO as KEY_LAN_HOST_INFO, KEY_WLAN_HOST_LIST as KEY_WLAN_HOST_LIST, UPDATE_SIGNAL as UPDATE_SIGNAL
+from .entity import HuaweiLteBaseEntity as HuaweiLteBaseEntity
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -32,8 +33,6 @@ class HuaweiLteScannerEntity(HuaweiLteBaseEntity, ScannerEntity):
     def name(self) -> str: ...
     @property
     def _device_unique_id(self) -> str: ...
-    @property
-    def source_type(self) -> SourceType: ...
     @property
     def ip_address(self) -> str | None: ...
     @property

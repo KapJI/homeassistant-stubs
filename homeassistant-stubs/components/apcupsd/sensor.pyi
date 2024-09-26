@@ -1,8 +1,8 @@
-from .const import DOMAIN as DOMAIN, LAST_S_TEST as LAST_S_TEST
+from . import APCUPSdConfigEntry as APCUPSdConfigEntry
+from .const import LAST_S_TEST as LAST_S_TEST
 from .coordinator import APCUPSdCoordinator as APCUPSdCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -13,7 +13,7 @@ _LOGGER: Incomplete
 SENSORS: dict[str, SensorEntityDescription]
 INFERRED_UNITS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: APCUPSdConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def infer_unit(value: str) -> tuple[str, str | None]: ...
 
 class APCUPSdSensor(CoordinatorEntity[APCUPSdCoordinator], SensorEntity):

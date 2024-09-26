@@ -1,7 +1,6 @@
-from . import NotionEntity as NotionEntity
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SENSOR_BATTERY as SENSOR_BATTERY, SENSOR_DOOR as SENSOR_DOOR, SENSOR_GARAGE_DOOR as SENSOR_GARAGE_DOOR, SENSOR_LEAK as SENSOR_LEAK, SENSOR_MISSING as SENSOR_MISSING, SENSOR_SAFE as SENSOR_SAFE, SENSOR_SLIDING as SENSOR_SLIDING, SENSOR_SMOKE_CO as SENSOR_SMOKE_CO, SENSOR_WINDOW_HINGED as SENSOR_WINDOW_HINGED
 from .coordinator import NotionDataUpdateCoordinator as NotionDataUpdateCoordinator
-from .model import NotionEntityDescription as NotionEntityDescription
+from .entity import NotionEntity as NotionEntity, NotionEntityDescription as NotionEntityDescription
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription

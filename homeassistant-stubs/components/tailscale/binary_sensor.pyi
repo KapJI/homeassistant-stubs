@@ -1,5 +1,5 @@
-from . import TailscaleEntity as TailscaleEntity
 from .const import DOMAIN as DOMAIN
+from .entity import TailscaleEntity as TailscaleEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription

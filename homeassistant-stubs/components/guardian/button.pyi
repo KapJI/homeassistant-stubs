@@ -1,5 +1,6 @@
-from . import GuardianData as GuardianData, ValveControllerEntity as ValveControllerEntity, ValveControllerEntityDescription as ValveControllerEntityDescription
+from . import GuardianData as GuardianData
 from .const import API_SYSTEM_DIAGNOSTICS as API_SYSTEM_DIAGNOSTICS, DOMAIN as DOMAIN
+from .entity import ValveControllerEntity as ValveControllerEntity, ValveControllerEntityDescription as ValveControllerEntityDescription
 from .util import convert_exceptions_to_homeassistant_error as convert_exceptions_to_homeassistant_error
 from _typeshed import Incomplete
 from aioguardian import Client as Client

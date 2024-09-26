@@ -1,9 +1,9 @@
-from .deconz_device import DeconzDevice as DeconzDevice
+from .entity import DeconzDevice as DeconzDevice
 from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
-from homeassistant.components.number import DOMAIN as DOMAIN, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
+from homeassistant.components.number import DOMAIN as NUMBER_DOMAIN, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -27,7 +27,7 @@ ENTITY_DESCRIPTIONS: tuple[DeconzNumberDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzNumber(DeconzDevice[SensorResources], NumberEntity):
-    TYPE = DOMAIN
+    TYPE = NUMBER_DOMAIN
     entity_description: DeconzNumberDescription
     unique_id_suffix: Incomplete
     _name_suffix: Incomplete

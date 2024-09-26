@@ -1,6 +1,6 @@
-from . import PrusaLinkEntity as PrusaLinkEntity
 from .const import DOMAIN as DOMAIN
 from .coordinator import PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
+from .entity import PrusaLinkEntity as PrusaLinkEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

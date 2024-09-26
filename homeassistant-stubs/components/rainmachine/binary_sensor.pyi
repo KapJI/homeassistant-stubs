@@ -1,6 +1,6 @@
-from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineEntity as RainMachineEntity
+from . import RainMachineConfigEntry as RainMachineConfigEntry
 from .const import DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_CURRENT as DATA_RESTRICTIONS_CURRENT
-from .model import RainMachineEntityDescription as RainMachineEntityDescription
+from .entity import RainMachineEntity as RainMachineEntity, RainMachineEntityDescription as RainMachineEntityDescription
 from .util import EntityDomainReplacementStrategy as EntityDomainReplacementStrategy, async_finish_entity_domain_replacements as async_finish_entity_domain_replacements, key_exists as key_exists
 from _typeshed import Incomplete
 from dataclasses import dataclass

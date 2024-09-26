@@ -17,7 +17,6 @@ class LaundrifyPowerPlug(CoordinatorEntity[LaundrifyUpdateCoordinator], BinarySe
     _attr_device_class: Incomplete
     _attr_unique_id: str
     _attr_has_entity_name: bool
-    _attr_name: Incomplete
     _attr_translation_key: str
     _device: Incomplete
     _attr_device_info: Incomplete

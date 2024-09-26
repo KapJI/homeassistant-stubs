@@ -2,7 +2,7 @@ from .config_flow import CONF_SITE as CONF_SITE
 from .const import DOMAIN as DOMAIN
 from .controller import OmadaClientsCoordinator as OmadaClientsCoordinator, OmadaSiteController as OmadaSiteController
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -19,8 +19,6 @@ class OmadaClientScannerEntity(CoordinatorEntity[OmadaClientsCoordinator], Scann
     _client_id: Incomplete
     _attr_name: Incomplete
     def __init__(self, site_id: str, client_id: str, display_name: str, coordinator: OmadaClientsCoordinator) -> None: ...
-    @property
-    def source_type(self) -> SourceType: ...
     def _do_update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

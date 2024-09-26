@@ -1,5 +1,6 @@
-from .. import mysensors as mysensors
+from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import ATTR_GATEWAY_ID as ATTR_GATEWAY_ID, ATTR_NODE_ID as ATTR_NODE_ID, DOMAIN as DOMAIN, DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, MYSENSORS_GATEWAYS as MYSENSORS_GATEWAYS, MYSENSORS_NODE_DISCOVERY as MYSENSORS_NODE_DISCOVERY, NodeDiscoveryInfo as NodeDiscoveryInfo
+from .entity import MySensorNodeEntity as MySensorNodeEntity, MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -16,7 +17,7 @@ SENSORS: dict[str, SensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MyBatterySensor(mysensors.device.MySensorNodeEntity, SensorEntity):
+class MyBatterySensor(MySensorNodeEntity, SensorEntity):
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement = PERCENTAGE
@@ -28,7 +29,7 @@ class MyBatterySensor(mysensors.device.MySensorNodeEntity, SensorEntity):
     _attr_native_value: Incomplete
     def _async_update_callback(self) -> None: ...
 
-class MySensorsSensor(mysensors.device.MySensorsChildEntity, SensorEntity):
+class MySensorsSensor(MySensorsChildEntity, SensorEntity):
     _attr_force_update: bool
     entity_description: Incomplete
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...

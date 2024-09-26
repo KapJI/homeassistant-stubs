@@ -1,5 +1,5 @@
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
+from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import category_registry as cr
 from typing import Any

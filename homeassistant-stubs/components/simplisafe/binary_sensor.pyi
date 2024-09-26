@@ -1,5 +1,6 @@
-from . import SimpliSafe as SimpliSafe, SimpliSafeEntity as SimpliSafeEntity
+from . import SimpliSafe as SimpliSafe
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .entity import SimpliSafeEntity as SimpliSafeEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

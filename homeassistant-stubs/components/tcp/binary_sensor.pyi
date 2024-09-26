@@ -1,5 +1,6 @@
-from .common import TCP_PLATFORM_SCHEMA as TCP_PLATFORM_SCHEMA, TcpEntity as TcpEntity
+from .common import TCP_PLATFORM_SCHEMA as TCP_PLATFORM_SCHEMA
 from .const import CONF_VALUE_ON as CONF_VALUE_ON
+from .entity import TcpEntity as TcpEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant

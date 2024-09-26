@@ -15,6 +15,7 @@ from typing import Any
 _LOGGER: Incomplete
 NUMBERS_ONLY_RE: Incomplete
 VERSION_RE: Incomplete
+INVALID_END_CHARS: str
 MAX_VERSION_PART: Incomplete
 MAX_PORT: int
 VALID_VIDEO_CODECS: Incomplete

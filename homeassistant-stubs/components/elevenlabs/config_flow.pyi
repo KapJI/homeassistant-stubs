@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_MODEL as CONF_MODEL, CONF_VOICE as CONF_VOICE, DEFAULT_MODEL as DEFAULT_MODEL, DOMAIN as DOMAIN
+from .const import CONF_CONFIGURE_VOICE as CONF_CONFIGURE_VOICE, CONF_MODEL as CONF_MODEL, CONF_OPTIMIZE_LATENCY as CONF_OPTIMIZE_LATENCY, CONF_SIMILARITY as CONF_SIMILARITY, CONF_STABILITY as CONF_STABILITY, CONF_STYLE as CONF_STYLE, CONF_USE_SPEAKER_BOOST as CONF_USE_SPEAKER_BOOST, CONF_VOICE as CONF_VOICE, DEFAULT_MODEL as DEFAULT_MODEL, DEFAULT_OPTIMIZE_LATENCY as DEFAULT_OPTIMIZE_LATENCY, DEFAULT_SIMILARITY as DEFAULT_SIMILARITY, DEFAULT_STABILITY as DEFAULT_STABILITY, DEFAULT_STYLE as DEFAULT_STYLE, DEFAULT_USE_SPEAKER_BOOST as DEFAULT_USE_SPEAKER_BOOST, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
@@ -21,6 +21,10 @@ class ElevenLabsOptionsFlow(OptionsFlowWithConfigEntry):
     api_key: Incomplete
     voices: Incomplete
     models: Incomplete
+    model: Incomplete
+    voice: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def elevenlabs_config_option_schema(self) -> vol.Schema: ...
+    async def async_step_voice_settings(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    def elevenlabs_config_options_voice_schema(self) -> vol.Schema: ...

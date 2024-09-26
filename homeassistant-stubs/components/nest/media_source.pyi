@@ -11,8 +11,7 @@ from google_nest_sdm.google_nest_subscriber import GoogleNestSubscriber as Googl
 from google_nest_sdm.transcoder import Transcoder
 from homeassistant.components.ffmpeg import get_ffmpeg_manager as get_ffmpeg_manager
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
-from homeassistant.components.media_source.error import Unresolvable as Unresolvable
-from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT

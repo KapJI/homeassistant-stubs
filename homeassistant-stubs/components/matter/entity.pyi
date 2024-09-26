@@ -1,9 +1,7 @@
-import abc
 from .const import DOMAIN as DOMAIN, ID_TYPE_DEVICE_ID as ID_TYPE_DEVICE_ID
 from .discovery import MatterEntityInfo as MatterEntityInfo
 from .helpers import get_device_id as get_device_id
 from _typeshed import Incomplete
-from abc import abstractmethod
 from chip.clusters.Objects import ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -25,7 +23,7 @@ class MatterEntityDescription(EntityDescription):
     ha_to_native_value: Callable[[Any], Any] | None = ...
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., measurement_to_ha=..., ha_to_native_value=...) -> None: ...
 
-class MatterEntity(Entity, metaclass=abc.ABCMeta):
+class MatterEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _name_postfix: str | None
@@ -44,7 +42,6 @@ class MatterEntity(Entity, metaclass=abc.ABCMeta):
     @cached_property
     def name(self) -> str | UndefinedType | None: ...
     def _on_matter_event(self, event: EventType, data: Any = None) -> None: ...
-    @abstractmethod
     def _update_from_device(self) -> None: ...
     def get_matter_attribute_value(self, attribute: type[ClusterAttributeDescriptor], null_as_none: bool = True) -> Any: ...
     def get_matter_attribute_path(self, attribute: type[ClusterAttributeDescriptor]) -> str: ...

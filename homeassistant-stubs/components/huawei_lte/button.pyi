@@ -1,5 +1,5 @@
-from . import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from .const import DOMAIN as DOMAIN
+from .entity import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

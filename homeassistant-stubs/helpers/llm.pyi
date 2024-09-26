@@ -6,13 +6,13 @@ from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.components.climate.intent import INTENT_GET_TEMPERATURE as INTENT_GET_TEMPERATURE
-from homeassistant.components.conversation.trace import ConversationTraceEventType as ConversationTraceEventType, async_conversation_trace_append as async_conversation_trace_append
-from homeassistant.components.cover.intent import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
-from homeassistant.components.homeassistant.exposed_entities import async_should_expose as async_should_expose
+from homeassistant.components.climate import INTENT_GET_TEMPERATURE as INTENT_GET_TEMPERATURE
+from homeassistant.components.conversation import ConversationTraceEventType as ConversationTraceEventType, async_conversation_trace_append as async_conversation_trace_append
+from homeassistant.components.cover import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
+from homeassistant.components.homeassistant import async_should_expose as async_should_expose
 from homeassistant.components.intent import async_device_supports_timers as async_device_supports_timers
 from homeassistant.components.script import ATTR_VARIABLES as ATTR_VARIABLES
-from homeassistant.components.weather.intent import INTENT_GET_WEATHER as INTENT_GET_WEATHER
+from homeassistant.components.weather import INTENT_GET_WEATHER as INTENT_GET_WEATHER
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SERVICE as ATTR_SERVICE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

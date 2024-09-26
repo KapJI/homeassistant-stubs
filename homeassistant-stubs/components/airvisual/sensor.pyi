@@ -1,5 +1,6 @@
-from . import AirVisualEntity as AirVisualEntity
-from .const import CONF_CITY as CONF_CITY, DOMAIN as DOMAIN
+from . import AirVisualConfigEntry as AirVisualConfigEntry
+from .const import CONF_CITY as CONF_CITY
+from .entity import AirVisualEntity as AirVisualEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -33,7 +34,7 @@ STATE_POLLUTANT_LEVEL_HAZARDOUS: str
 POLLUTANT_LEVELS: Incomplete
 POLLUTANT_UNITS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirVisualConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirVisualGeographySensor(AirVisualEntity, SensorEntity):
     _attr_name: Incomplete

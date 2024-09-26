@@ -1,6 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from homeassistant.components.repairs import RepairsFlow as RepairsFlow
-from homeassistant.components.repairs.issue_handler import ConfirmRepairFlow as ConfirmRepairFlow
+from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 
 def migrate_notify_issue(hass: HomeAssistant, domain: str, integration_title: str, breaks_in_ha_version: str, service_name: str | None = None) -> None: ...

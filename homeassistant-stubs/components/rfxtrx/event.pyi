@@ -1,5 +1,6 @@
-from . import DeviceTuple as DeviceTuple, RfxtrxEntity as RfxtrxEntity, async_setup_platform_entry as async_setup_platform_entry
+from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_setup_platform_entry
 from .const import DEVICE_PACKET_TYPE_LIGHTING4 as DEVICE_PACKET_TYPE_LIGHTING4
+from .entity import RfxtrxEntity as RfxtrxEntity
 from RFXtrx import RFXtrxDevice as RFXtrxDevice, RFXtrxEvent as RFXtrxEvent
 from _typeshed import Incomplete
 from homeassistant.components.event import EventEntity as EventEntity

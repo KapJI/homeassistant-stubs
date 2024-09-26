@@ -1,12 +1,15 @@
+from . import KNXModule as KNXModule
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable
-from enum import Enum
-from homeassistant.components.climate import HVACAction as HVACAction, HVACMode as HVACMode
+from enum import Enum, StrEnum
+from homeassistant.components.climate import FAN_AUTO as FAN_AUTO, FAN_OFF as FAN_OFF, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import Platform as Platform
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final, TypedDict
 from xknx.telegram import Telegram
 
 DOMAIN: Final[str]
+KNX_MODULE_KEY: HassKey[KNXModule]
 KNX_ADDRESS: Final[str]
 CONF_INVERT: Final[str]
 CONF_KNX_EXPOSE: Final[str]
@@ -44,7 +47,6 @@ CONF_RESET_AFTER: Final[str]
 CONF_RESPOND_TO_READ: Final[str]
 CONF_STATE_ADDRESS: Final[str]
 CONF_SYNC_STATE: Final[str]
-DATA_KNX_CONFIG: Final[str]
 DATA_HASS_CONFIG: Final[str]
 ATTR_COUNTER: Final[str]
 ATTR_SOURCE: Final[str]
@@ -84,6 +86,10 @@ class ColorTempModes(Enum):
     ABSOLUTE = '7.600'
     ABSOLUTE_FLOAT = '9'
     RELATIVE = '5.001'
+
+class FanZeroMode(StrEnum):
+    OFF = FAN_OFF
+    AUTO = FAN_AUTO
 
 SUPPORTED_PLATFORMS_YAML: Final[Incomplete]
 SUPPORTED_PLATFORMS_UI: Final[Incomplete]

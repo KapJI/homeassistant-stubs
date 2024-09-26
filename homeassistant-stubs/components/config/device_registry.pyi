@@ -1,6 +1,6 @@
 from homeassistant import loader as loader
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.websocket_api.decorators import require_admin as require_admin
+from homeassistant.components.websocket_api import require_admin as require_admin
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceEntryDisabler as DeviceEntryDisabler

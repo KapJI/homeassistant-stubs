@@ -1,7 +1,6 @@
 from .config_flow import get_client_controller as get_client_controller
 from .const import CONF_ALLOW_INACTIVE_ZONES_TO_RUN as CONF_ALLOW_INACTIVE_ZONES_TO_RUN, CONF_DEFAULT_ZONE_RUN_TIME as CONF_DEFAULT_ZONE_RUN_TIME, CONF_DURATION as CONF_DURATION, CONF_USE_APP_RUN_TIMES as CONF_USE_APP_RUN_TIMES, DATA_API_VERSIONS as DATA_API_VERSIONS, DATA_MACHINE_FIRMWARE_UPDATE_STATUS as DATA_MACHINE_FIRMWARE_UPDATE_STATUS, DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_CURRENT as DATA_RESTRICTIONS_CURRENT, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import RainMachineDataUpdateCoordinator as RainMachineDataUpdateCoordinator
-from .model import RainMachineEntityDescription as RainMachineEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -10,8 +9,7 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_IP_ADDRES
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, UpdateFailed as UpdateFailed
+from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 from homeassistant.util.dt import as_timestamp as as_timestamp, utcnow as utcnow
 from homeassistant.util.network import is_ip_address as is_ip_address
 from regenmaschine.controller import Controller as Controller
@@ -70,18 +68,3 @@ async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry) 
 async def async_unload_entry(hass: HomeAssistant, entry: RainMachineConfigEntry) -> bool: ...
 async def async_migrate_entry(hass: HomeAssistant, entry: RainMachineConfigEntry) -> bool: ...
 async def async_reload_entry(hass: HomeAssistant, entry: RainMachineConfigEntry) -> None: ...
-
-class RainMachineEntity(CoordinatorEntity[RainMachineDataUpdateCoordinator]):
-    _attr_has_entity_name: bool
-    _attr_extra_state_attributes: Incomplete
-    _attr_unique_id: Incomplete
-    _entry: Incomplete
-    _data: Incomplete
-    _version_coordinator: Incomplete
-    entity_description: Incomplete
-    def __init__(self, entry: RainMachineConfigEntry, data: RainMachineData, description: RainMachineEntityDescription) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...
-    def _handle_coordinator_update(self) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
-    def update_from_latest_data(self) -> None: ...

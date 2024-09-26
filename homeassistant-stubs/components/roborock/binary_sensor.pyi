@@ -1,6 +1,6 @@
 from . import RoborockConfigEntry as RoborockConfigEntry
 from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
-from .device import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
+from .entity import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

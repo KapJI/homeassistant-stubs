@@ -1,7 +1,7 @@
 import dataclasses
 from . import OneWireConfigEntry as OneWireConfigEntry
 from .const import DEVICE_KEYS_0_3 as DEVICE_KEYS_0_3, DEVICE_KEYS_A_B as DEVICE_KEYS_A_B, OPTION_ENTRY_DEVICE_OPTIONS as OPTION_ENTRY_DEVICE_OPTIONS, OPTION_ENTRY_SENSOR_PRECISION as OPTION_ENTRY_SENSOR_PRECISION, PRECISION_MAPPING_FAMILY_28 as PRECISION_MAPPING_FAMILY_28, READ_MODE_FLOAT as READ_MODE_FLOAT, READ_MODE_INT as READ_MODE_INT
-from .onewire_entities import OneWireEntity as OneWireEntity, OneWireEntityDescription as OneWireEntityDescription
+from .entity import OneWireEntity as OneWireEntity, OneWireEntityDescription as OneWireEntityDescription
 from .onewirehub import OneWireHub as OneWireHub
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping

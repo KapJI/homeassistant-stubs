@@ -1,13 +1,13 @@
 from . import LinkPlayConfigEntry as LinkPlayConfigEntry
 from .const import DOMAIN as DOMAIN
-from .utils import get_info_from_project as get_info_from_project
+from .utils import MANUFACTURER_GENERIC as MANUFACTURER_GENERIC, get_info_from_project as get_info_from_project
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
-from homeassistant.components.media_player.browse_media import async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
@@ -24,6 +24,9 @@ EQUALIZER_MAP: dict[EqualizerMode, str]
 EQUALIZER_MAP_INV: dict[str, EqualizerMode]
 DEFAULT_FEATURES: MediaPlayerEntityFeature
 SEEKABLE_FEATURES: MediaPlayerEntityFeature
+SERVICE_PLAY_PRESET: str
+ATTR_PRESET_NUMBER: str
+SERVICE_PLAY_PRESET_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def exception_wrap(func: Callable[Concatenate[_LinkPlayEntityT, _P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[_LinkPlayEntityT, _P], Coroutine[Any, Any, _R]]: ...
@@ -47,9 +50,12 @@ class LinkPlayMediaPlayerEntity(MediaPlayerEntity):
     async def async_set_volume_level(self, volume: float) -> None: ...
     async def async_media_pause(self) -> None: ...
     async def async_media_play(self) -> None: ...
+    async def async_media_next_track(self) -> None: ...
+    async def async_media_previous_track(self) -> None: ...
     async def async_set_repeat(self, repeat: RepeatMode) -> None: ...
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
+    async def async_play_preset(self, preset_number: int) -> None: ...
     _attr_state: Incomplete
     _attr_volume_level: Incomplete
     _attr_is_volume_muted: Incomplete

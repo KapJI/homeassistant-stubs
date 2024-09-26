@@ -13,12 +13,13 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.typing import ConfigType
 from typing import Any, TypedDict
 
-__all__ = ['async_default_engine', 'async_get_media_source_audio', 'async_support_options', 'ATTR_AUDIO_OUTPUT', 'ATTR_PREFERRED_FORMAT', 'ATTR_PREFERRED_SAMPLE_RATE', 'ATTR_PREFERRED_SAMPLE_CHANNELS', 'CONF_LANG', 'DEFAULT_CACHE_DIR', 'generate_media_source_id', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SampleFormat', 'Provider', 'TtsAudioType', 'Voice']
+__all__ = ['async_default_engine', 'async_get_media_source_audio', 'async_support_options', 'ATTR_AUDIO_OUTPUT', 'ATTR_PREFERRED_FORMAT', 'ATTR_PREFERRED_SAMPLE_RATE', 'ATTR_PREFERRED_SAMPLE_CHANNELS', 'ATTR_PREFERRED_SAMPLE_BYTES', 'CONF_LANG', 'DEFAULT_CACHE_DIR', 'generate_media_source_id', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SampleFormat', 'Provider', 'TtsAudioType', 'Voice']
 
 ATTR_AUDIO_OUTPUT: str
 ATTR_PREFERRED_FORMAT: str
 ATTR_PREFERRED_SAMPLE_RATE: str
 ATTR_PREFERRED_SAMPLE_CHANNELS: str
+ATTR_PREFERRED_SAMPLE_BYTES: str
 CONF_LANG: str
 
 class TTSCache(TypedDict):

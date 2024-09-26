@@ -1,12 +1,9 @@
-from . import ImageEntity as ImageEntity
-from .const import DOMAIN as DOMAIN
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
-from homeassistant.components.media_source.error import Unresolvable as Unresolvable
-from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 
 async def async_get_media_source(hass: HomeAssistant) -> ImageMediaSource: ...
 

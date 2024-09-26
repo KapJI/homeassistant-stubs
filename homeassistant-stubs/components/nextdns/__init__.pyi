@@ -6,7 +6,7 @@ from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from nextdns import AnalyticsDnssec as AnalyticsDnssec, AnalyticsEncryption as AnalyticsEncryption, AnalyticsIpVersions as AnalyticsIpVersions, AnalyticsProtocols as AnalyticsProtocols, AnalyticsStatus as AnalyticsStatus, ConnectionStatus as ConnectionStatus, Settings as Settings
 

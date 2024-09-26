@@ -1,5 +1,5 @@
 import abc
-from .const import ATTR_AUTO as ATTR_AUTO, ATTR_ORDER as ATTR_ORDER, DOMAIN as DOMAIN, GROUP_ORDER as GROUP_ORDER, REG_KEY as REG_KEY
+from .const import ATTR_AUTO as ATTR_AUTO, ATTR_ORDER as ATTR_ORDER, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, GROUP_ORDER as GROUP_ORDER, REG_KEY as REG_KEY
 from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry, SingleStateType as SingleStateType
 from _typeshed import Incomplete
 from abc import abstractmethod

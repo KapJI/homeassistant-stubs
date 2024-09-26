@@ -22,7 +22,7 @@ from aiohttp.web_protocol import RequestHandler as RequestHandler
 from collections.abc import Collection
 from dataclasses import dataclass
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
+from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import frame as frame, storage as storage

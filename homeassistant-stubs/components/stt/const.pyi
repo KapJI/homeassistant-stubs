@@ -1,8 +1,12 @@
-from _typeshed import Incomplete
+from . import SpeechToTextEntity as SpeechToTextEntity
+from .legacy import Provider as Provider
 from enum import Enum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 
 DOMAIN: str
-DATA_PROVIDERS: Incomplete
+DATA_COMPONENT: HassKey[EntityComponent[SpeechToTextEntity]]
+DATA_PROVIDERS: HassKey[dict[str, Provider]]
 
 class AudioCodecs(str, Enum):
     PCM = 'pcm'

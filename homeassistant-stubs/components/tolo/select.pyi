@@ -1,5 +1,6 @@
-from . import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity, ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
 from .const import AromaTherapySlot as AromaTherapySlot, DOMAIN as DOMAIN, LampMode as LampMode
+from .coordinator import ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
+from .entity import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

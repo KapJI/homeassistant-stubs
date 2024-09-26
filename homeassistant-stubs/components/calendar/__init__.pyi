@@ -1,17 +1,16 @@
 import dataclasses
 import datetime
-from .const import CONF_EVENT as CONF_EVENT, CalendarEntityFeature as CalendarEntityFeature, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_DURATION as EVENT_DURATION, EVENT_END as EVENT_END, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_LOCATION as EVENT_LOCATION, EVENT_RECURRENCE_ID as EVENT_RECURRENCE_ID, EVENT_RECURRENCE_RANGE as EVENT_RECURRENCE_RANGE, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TIME_FIELDS as EVENT_TIME_FIELDS, EVENT_TYPES as EVENT_TYPES, EVENT_UID as EVENT_UID, LIST_EVENT_FIELDS as LIST_EVENT_FIELDS
+from .const import CONF_EVENT as CONF_EVENT, CalendarEntityFeature as CalendarEntityFeature, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_DURATION as EVENT_DURATION, EVENT_END as EVENT_END, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_LOCATION as EVENT_LOCATION, EVENT_RECURRENCE_ID as EVENT_RECURRENCE_ID, EVENT_RECURRENCE_RANGE as EVENT_RECURRENCE_RANGE, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TIME_FIELDS as EVENT_TIME_FIELDS, EVENT_TYPES as EVENT_TYPES, EVENT_UID as EVENT_UID, LIST_EVENT_FIELDS as LIST_EVENT_FIELDS
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable, Iterable
 from homeassistant.components import frontend as frontend, http as http, websocket_api as websocket_api
-from homeassistant.components.websocket_api import ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED
-from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
+from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
@@ -20,7 +19,6 @@ from homeassistant.util.json import JsonValueType as JsonValueType
 from typing import Any, Final
 
 _LOGGER: Incomplete
-DOMAIN: str
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
@@ -77,7 +75,11 @@ def _get_api_date(dt_or_d: datetime.datetime | datetime.date) -> dict[str, str]:
 def extract_offset(summary: str, offset_prefix: str) -> tuple[str, datetime.timedelta]: ...
 def is_offset_reached(start: datetime.datetime, offset_time: datetime.timedelta) -> bool: ...
 
+class CalendarEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+
 class CalendarEntity(Entity):
+    entity_description: CalendarEntityDescription
     _entity_component_unrecorded_attributes: Incomplete
     _alarm_unsubs: list[CALLBACK_TYPE] | None
     @property

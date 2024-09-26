@@ -1,5 +1,5 @@
 from .models import Blueprint as Blueprint
-from .schemas import is_blueprint_config as is_blueprint_config
+from .schemas import BLUEPRINT_SCHEMA as BLUEPRINT_SCHEMA, is_blueprint_config as is_blueprint_config
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant

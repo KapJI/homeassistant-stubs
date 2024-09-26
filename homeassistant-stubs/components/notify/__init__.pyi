@@ -1,5 +1,5 @@
 from .const import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_RECIPIENTS as ATTR_RECIPIENTS, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, DOMAIN as DOMAIN, NOTIFY_SERVICE_SCHEMA as NOTIFY_SERVICE_SCHEMA, SERVICE_NOTIFY as SERVICE_NOTIFY, SERVICE_PERSISTENT_NOTIFICATION as SERVICE_PERSISTENT_NOTIFICATION, SERVICE_SEND_MESSAGE as SERVICE_SEND_MESSAGE
-from .legacy import BaseNotificationService as BaseNotificationService, async_reload as async_reload, async_reset_platform as async_reset_platform, async_setup_legacy as async_setup_legacy, check_templates_warn as check_templates_warn
+from .legacy import BaseNotificationService as BaseNotificationService, async_reload as async_reload, async_reset_platform as async_reset_platform, async_setup_legacy as async_setup_legacy
 from .repairs import migrate_notify_issue as migrate_notify_issue
 from _typeshed import Incomplete
 from enum import IntFlag
@@ -10,11 +10,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 ATTR_TITLE_DEFAULT: str
+DATA_COMPONENT: HassKey[EntityComponent[NotifyEntity]]
 ENTITY_ID_FORMAT: Incomplete
 MIN_TIME_BETWEEN_SCANS: Incomplete
 _LOGGER: Incomplete

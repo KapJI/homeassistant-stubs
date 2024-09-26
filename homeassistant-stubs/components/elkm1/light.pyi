@@ -1,4 +1,5 @@
-from . import ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
+from . import ElkM1ConfigEntry as ElkM1ConfigEntry
+from .entity import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .models import ELKM1Data as ELKM1Data
 from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element

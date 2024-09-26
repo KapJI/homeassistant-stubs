@@ -1,5 +1,6 @@
-from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
+from . import ElkM1ConfigEntry as ElkM1ConfigEntry
 from .const import ATTR_CHANGED_BY_ID as ATTR_CHANGED_BY_ID, ATTR_CHANGED_BY_KEYPAD as ATTR_CHANGED_BY_KEYPAD, ATTR_CHANGED_BY_TIME as ATTR_CHANGED_BY_TIME, ELK_USER_CODE_SERVICE_SCHEMA as ELK_USER_CODE_SERVICE_SCHEMA
+from .entity import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from .models import ELKM1Data as ELKM1Data
 from _typeshed import Incomplete
 from elkm1_lib.areas import Area as Area

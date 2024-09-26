@@ -5,6 +5,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 from velbusaio.channels import Temperature as VelbusTemp
@@ -15,7 +16,6 @@ class VelbusClimate(VelbusEntity, ClimateEntity):
     _channel: VelbusTemp
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
-    _attr_hvac_mode: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
     _enable_turn_on_off_backwards_compatibility: bool
@@ -25,5 +25,8 @@ class VelbusClimate(VelbusEntity, ClimateEntity):
     def preset_mode(self) -> str | None: ...
     @property
     def current_temperature(self) -> int | None: ...
+    @property
+    def hvac_mode(self) -> HVACMode: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

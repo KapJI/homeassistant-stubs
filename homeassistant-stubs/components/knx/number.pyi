@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
-from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxYamlEntity as KnxYamlEntity
+from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxYamlEntity as KnxYamlEntity
 from .schema import NumberSchema as NumberSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries

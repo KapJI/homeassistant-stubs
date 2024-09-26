@@ -1,6 +1,6 @@
 from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, SensorType as SensorType
-from .device import MySensorsChildEntity as MySensorsChildEntity
+from .entity import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

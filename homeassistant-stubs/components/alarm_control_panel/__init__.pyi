@@ -10,9 +10,11 @@ from homeassistant.helpers.deprecation import all_with_deprecated_constants as a
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Final
 
 _LOGGER: Final[Incomplete]
+DATA_COMPONENT: HassKey[EntityComponent[AlarmControlPanelEntity]]
 ENTITY_ID_FORMAT: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 PLATFORM_SCHEMA_BASE: Final[Incomplete]

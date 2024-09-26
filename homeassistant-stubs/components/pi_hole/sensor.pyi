@@ -1,4 +1,5 @@
-from . import PiHoleConfigEntry as PiHoleConfigEntry, PiHoleEntity as PiHoleEntity
+from . import PiHoleConfigEntry as PiHoleConfigEntry
+from .entity import PiHoleEntity as PiHoleEntity
 from _typeshed import Incomplete
 from hole import Hole as Hole
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription

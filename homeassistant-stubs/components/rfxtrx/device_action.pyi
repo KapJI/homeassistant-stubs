@@ -2,7 +2,7 @@ from . import DATA_RFXOBJECT as DATA_RFXOBJECT, DOMAIN as DOMAIN
 from .helpers import async_get_device_object as async_get_device_object
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
+from homeassistant.components.device_automation import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_TYPE as CONF_TYPE
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType

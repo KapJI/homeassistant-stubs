@@ -1,5 +1,6 @@
-from . import HomeworksData as HomeworksData, HomeworksEntity as HomeworksEntity
+from . import HomeworksData as HomeworksData
 from .const import CONF_ADDR as CONF_ADDR, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_DIMMERS as CONF_DIMMERS, CONF_RATE as CONF_RATE, DOMAIN as DOMAIN
+from .entity import HomeworksEntity as HomeworksEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

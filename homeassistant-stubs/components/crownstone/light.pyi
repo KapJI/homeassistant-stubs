@@ -1,5 +1,5 @@
 from .const import CROWNSTONE_INCLUDE_TYPES as CROWNSTONE_INCLUDE_TYPES, CROWNSTONE_SUFFIX as CROWNSTONE_SUFFIX, DOMAIN as DOMAIN, SIG_CROWNSTONE_STATE_UPDATE as SIG_CROWNSTONE_STATE_UPDATE, SIG_UART_STATE_CHANGE as SIG_UART_STATE_CHANGE
-from .devices import CrownstoneBaseEntity as CrownstoneBaseEntity
+from .entity import CrownstoneEntity as CrownstoneEntity
 from .entry_manager import CrownstoneEntryManager as CrownstoneEntryManager
 from .helpers import map_from_to as map_from_to
 from _typeshed import Incomplete
@@ -17,7 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 def crownstone_state_to_hass(value: int) -> int: ...
 def hass_to_crownstone_state(value: int) -> int: ...
 
-class CrownstoneEntity(CrownstoneBaseEntity, LightEntity):
+class CrownstoneLightEntity(CrownstoneEntity, LightEntity):
     _attr_name: Incomplete
     _attr_translation_key: str
     usb: Incomplete

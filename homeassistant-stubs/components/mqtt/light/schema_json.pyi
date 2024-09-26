@@ -1,7 +1,7 @@
 from .. import subscription as subscription
 from ..config import DEFAULT_QOS as DEFAULT_QOS, DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
-from ..mixins import MqttEntity as MqttEntity
+from ..entity import MqttEntity as MqttEntity
 from ..models import ReceiveMessage as ReceiveMessage
 from ..schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from ..util import valid_subscribe_topic as valid_subscribe_topic

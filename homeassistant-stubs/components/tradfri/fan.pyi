@@ -1,6 +1,6 @@
-from .base_class import TradfriBaseEntity as TradfriBaseEntity
 from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, KEY_API as KEY_API
 from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
+from .entity import TradfriBaseEntity as TradfriBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature

@@ -1,19 +1,17 @@
-from .const import DOMAIN as DOMAIN
+from . import APCUPSdConfigEntry as APCUPSdConfigEntry
 from .coordinator import APCUPSdCoordinator as APCUPSdCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Final
 
 PARALLEL_UPDATES: int
-_LOGGER: Incomplete
 _DESCRIPTION: Incomplete
 _VALUE_ONLINE_MASK: Final[int]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: APCUPSdConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OnlineStatus(CoordinatorEntity[APCUPSdCoordinator], BinarySensorEntity):
     _attr_has_entity_name: bool

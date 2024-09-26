@@ -1,5 +1,5 @@
-from . import SlackEntity as SlackEntity
 from .const import ATTR_SNOOZE as ATTR_SNOOZE, DOMAIN as DOMAIN, SLACK_DATA as SLACK_DATA
+from .entity import SlackEntity as SlackEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
-from .base_platform import BaseSwitch as BaseSwitch
 from .const import CONF_FANS as CONF_FANS
+from .entity import BaseSwitch as BaseSwitch
 from .modbus import ModbusHub as ModbusHub
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.const import CONF_NAME as CONF_NAME

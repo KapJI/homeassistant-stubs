@@ -1,8 +1,8 @@
-from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
+from . import AmberConfigEntry as AmberConfigEntry
+from .const import ATTRIBUTION as ATTRIBUTION
 from .coordinator import AmberUpdateCoordinator as AmberUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -31,4 +31,4 @@ class AmberDemandWindowBinarySensor(AmberPriceGridSensor):
     @property
     def is_on(self) -> bool | None: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AmberConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

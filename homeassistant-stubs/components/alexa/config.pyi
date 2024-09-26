@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 from typing import Any
-from yarl import URL
+from yarl import URL as URL
 
 STORE_AUTHORIZED: str
 _LOGGER: Incomplete

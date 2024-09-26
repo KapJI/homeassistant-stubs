@@ -6,6 +6,8 @@ from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_IDENT
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.entity import Entity as Entity
 
+_LOGGER: Incomplete
+
 class MotionMountEntity(Entity):
     _attr_should_poll: bool
     _attr_has_entity_name: bool
@@ -18,3 +20,4 @@ class MotionMountEntity(Entity):
     def update_name(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
+    async def _ensure_connected(self) -> bool: ...

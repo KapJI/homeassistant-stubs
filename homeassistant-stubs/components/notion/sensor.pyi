@@ -1,7 +1,6 @@
-from . import NotionEntity as NotionEntity
 from .const import DOMAIN as DOMAIN, SENSOR_MOLD as SENSOR_MOLD, SENSOR_TEMPERATURE as SENSOR_TEMPERATURE
 from .coordinator import NotionDataUpdateCoordinator as NotionDataUpdateCoordinator
-from .model import NotionEntityDescription as NotionEntityDescription
+from .entity import NotionEntity as NotionEntity, NotionEntityDescription as NotionEntityDescription
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass

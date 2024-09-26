@@ -1,4 +1,6 @@
-from . import ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
+from . import ElkM1ConfigEntry as ElkM1ConfigEntry
+from .const import DOMAIN as DOMAIN
+from .entity import ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from _typeshed import Incomplete
 from elkm1_lib.const import ThermostatFan, ThermostatMode
 from elkm1_lib.elements import Element as Element
@@ -7,6 +9,7 @@ from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGE
 from homeassistant.const import PRECISION_WHOLE as PRECISION_WHOLE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from typing import Any
 
 SUPPORT_HVAC: Incomplete

@@ -1,5 +1,6 @@
-from . import EfergyConfigEntry as EfergyConfigEntry, EfergyEntity as EfergyEntity
+from . import EfergyConfigEntry as EfergyConfigEntry
 from .const import CONF_CURRENT_VALUES as CONF_CURRENT_VALUES, LOGGER as LOGGER
+from .entity import EfergyEntity as EfergyEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower

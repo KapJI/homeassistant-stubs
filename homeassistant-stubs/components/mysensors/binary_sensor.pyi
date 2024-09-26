@@ -1,5 +1,6 @@
-from .. import mysensors as mysensors
+from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
+from .entity import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -20,7 +21,7 @@ SENSORS: dict[str, MySensorsBinarySensorDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsBinarySensor(mysensors.device.MySensorsChildEntity, BinarySensorEntity):
+class MySensorsBinarySensor(MySensorsChildEntity, BinarySensorEntity):
     entity_description: MySensorsBinarySensorDescription
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @property

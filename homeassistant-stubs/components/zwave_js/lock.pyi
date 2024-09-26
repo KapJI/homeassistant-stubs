@@ -2,9 +2,8 @@ from .const import ATTR_AUTO_RELOCK_TIME as ATTR_AUTO_RELOCK_TIME, ATTR_BLOCK_TO
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from _typeshed import Incomplete
-from homeassistant.components.lock import LockEntity as LockEntity
+from homeassistant.components.lock import LockEntity as LockEntity, LockState as LockState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_LOCKED as STATE_LOCKED, STATE_UNLOCKED as STATE_UNLOCKED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -22,7 +21,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class ZWaveLock(ZWaveBaseEntity, LockEntity):
     @property
     def is_locked(self) -> bool | None: ...
-    async def _set_lock_state(self, target_state: str, **kwargs: Any) -> None: ...
+    async def _set_lock_state(self, target_state: LockState, **kwargs: Any) -> None: ...
     async def async_lock(self, **kwargs: Any) -> None: ...
     async def async_unlock(self, **kwargs: Any) -> None: ...
     async def async_set_lock_usercode(self, code_slot: int, usercode: str) -> None: ...

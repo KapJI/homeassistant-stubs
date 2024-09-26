@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
-from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
-from .knx_entity import KnxYamlEntity as KnxYamlEntity
+from .const import KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxYamlEntity as KnxYamlEntity
 from .schema import CoverSchema as CoverSchema
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

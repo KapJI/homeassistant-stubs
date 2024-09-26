@@ -1,5 +1,5 @@
 import asyncio
-from .const import CONF_CREDENTIALS as CONF_CREDENTIALS, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_START_OFF as CONF_START_OFF, DOMAIN as DOMAIN
+from .const import CONF_CREDENTIALS as CONF_CREDENTIALS, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_START_OFF as CONF_START_OFF, DOMAIN as DOMAIN, SIGNAL_CONNECTED as SIGNAL_CONNECTED, SIGNAL_DISCONNECTED as SIGNAL_DISCONNECTED
 from _typeshed import Incomplete
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,9 +7,7 @@ from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_IDENT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from pyatv.conf import AppleTV
 from pyatv.interface import AppleTV as AppleTVInterface, DeviceListener
 from typing import Any
@@ -19,8 +17,6 @@ DEFAULT_NAME_TV: str
 DEFAULT_NAME_HP: str
 BACKOFF_TIME_LOWER_LIMIT: int
 BACKOFF_TIME_UPPER_LIMIT: int
-SIGNAL_CONNECTED: str
-SIGNAL_DISCONNECTED: str
 PLATFORMS: Incomplete
 AUTH_EXCEPTIONS: Incomplete
 CONNECTION_TIMEOUT_EXCEPTIONS: Incomplete
@@ -29,19 +25,6 @@ AppleTvConfigEntry = ConfigEntry[AppleTVManager]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AppleTvConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-
-class AppleTVEntity(Entity):
-    _attr_should_poll: bool
-    _attr_has_entity_name: bool
-    _attr_name: Incomplete
-    atv: AppleTVInterface | None
-    manager: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    def __init__(self, name: str, identifier: str, manager: AppleTVManager) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
-    def async_device_connected(self, atv: AppleTVInterface) -> None: ...
-    def async_device_disconnected(self) -> None: ...
 
 class AppleTVManager(DeviceListener):
     atv: AppleTVInterface | None

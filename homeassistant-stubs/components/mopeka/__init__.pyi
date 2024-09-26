@@ -1,4 +1,4 @@
-from .const import CONF_MEDIUM_TYPE as CONF_MEDIUM_TYPE
+from .const import CONF_MEDIUM_TYPE as CONF_MEDIUM_TYPE, DEFAULT_MEDIUM_TYPE as DEFAULT_MEDIUM_TYPE
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode
 from homeassistant.components.bluetooth.passive_update_processor import PassiveBluetoothProcessorCoordinator as PassiveBluetoothProcessorCoordinator

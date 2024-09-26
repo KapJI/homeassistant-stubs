@@ -1,8 +1,8 @@
-from . import DOMAIN as DOMAIN, TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity
+from . import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 
 INTENT_LIST_ADD_ITEM: str
 

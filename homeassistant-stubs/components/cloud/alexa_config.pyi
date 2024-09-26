@@ -20,7 +20,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.setup import async_setup_component as async_setup_component
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
-from yarl import URL
+from yarl import URL as URL
 
 _LOGGER: Incomplete
 CLOUD_ALEXA: Incomplete

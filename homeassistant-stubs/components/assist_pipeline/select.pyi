@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, OPTION_PREFERRED as OPTION_PREFERRED
 from .pipeline import AssistDevice as AssistDevice, PipelineData as PipelineData, PipelineStorageCollection as PipelineStorageCollection
 from .vad import VadSensitivity as VadSensitivity
 from _typeshed import Incomplete
@@ -7,8 +7,6 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import collection as collection, restore_state as restore_state
-
-OPTION_PREFERRED: str
 
 def get_chosen_pipeline(hass: HomeAssistant, domain: str, unique_id_prefix: str) -> str | None: ...
 def get_vad_sensitivity(hass: HomeAssistant, domain: str, unique_id_prefix: str) -> VadSensitivity: ...

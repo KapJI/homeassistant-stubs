@@ -12,7 +12,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 COLOR_MODE_MAP: Incomplete
-DEFAULT_TRANSITION: float
 TRANSITION_BLOCKLIST: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

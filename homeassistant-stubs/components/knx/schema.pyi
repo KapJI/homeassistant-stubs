@@ -1,10 +1,10 @@
 import voluptuous as vol
-from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, ColorTempModes as ColorTempModes, KNX_ADDRESS as KNX_ADDRESS
+from .const import CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, ColorTempModes as ColorTempModes, FanZeroMode as FanZeroMode, KNX_ADDRESS as KNX_ADDRESS
 from .validation import backwards_compatible_xknx_climate_enum_member as backwards_compatible_xknx_climate_enum_member, dpt_base_type_validator as dpt_base_type_validator, ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_validator as sync_state_validator
 from _typeshed import Incomplete
 from abc import ABC
 from collections import OrderedDict
-from homeassistant.components.climate import HVACMode as HVACMode
+from homeassistant.components.climate import FAN_OFF as FAN_OFF, HVACMode as HVACMode
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.components.text import TextMode as TextMode
@@ -79,12 +79,18 @@ class ClimateSchema(KNXPlatformSchema):
     CONF_ON_OFF_INVERT: str
     CONF_MIN_TEMP: str
     CONF_MAX_TEMP: str
+    CONF_FAN_SPEED_ADDRESS: str
+    CONF_FAN_SPEED_STATE_ADDRESS: str
+    CONF_FAN_MAX_STEP: str
+    CONF_FAN_SPEED_MODE: str
+    CONF_FAN_ZERO_MODE: str
     DEFAULT_NAME: str
     DEFAULT_SETPOINT_SHIFT_MODE: str
     DEFAULT_SETPOINT_SHIFT_MAX: int
     DEFAULT_SETPOINT_SHIFT_MIN: int
     DEFAULT_TEMPERATURE_STEP: float
     DEFAULT_ON_OFF_INVERT: bool
+    DEFAULT_FAN_SPEED_MODE: str
     ENTITY_SCHEMA: Incomplete
 
 class CoverSchema(KNXPlatformSchema):

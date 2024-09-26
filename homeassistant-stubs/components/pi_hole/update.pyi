@@ -1,4 +1,5 @@
-from . import PiHoleConfigEntry as PiHoleConfigEntry, PiHoleEntity as PiHoleEntity
+from . import PiHoleConfigEntry as PiHoleConfigEntry
+from .entity import PiHoleEntity as PiHoleEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

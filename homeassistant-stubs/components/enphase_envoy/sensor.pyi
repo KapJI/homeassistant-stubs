@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
@@ -43,6 +43,8 @@ class EnvoyConsumptionSensorEntityDescription(SensorEntityDescription):
 
 CONSUMPTION_SENSORS: Incomplete
 CONSUMPTION_PHASE_SENSORS: Incomplete
+NET_CONSUMPTION_SENSORS: Incomplete
+NET_CONSUMPTION_PHASE_SENSORS: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyCTSensorEntityDescription(SensorEntityDescription):
@@ -110,12 +112,22 @@ class EnvoyConsumptionEntity(EnvoySystemSensorEntity):
     @property
     def native_value(self) -> int | None: ...
 
+class EnvoyNetConsumptionEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyConsumptionSensorEntityDescription
+    @property
+    def native_value(self) -> int | None: ...
+
 class EnvoyProductionPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyProductionSensorEntityDescription
     @property
     def native_value(self) -> int | None: ...
 
 class EnvoyConsumptionPhaseEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyConsumptionSensorEntityDescription
+    @property
+    def native_value(self) -> int | None: ...
+
+class EnvoyNetConsumptionPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyConsumptionSensorEntityDescription
     @property
     def native_value(self) -> int | None: ...

@@ -7,8 +7,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
@@ -22,11 +21,3 @@ class PiHoleData:
 
 async def async_setup_entry(hass: HomeAssistant, entry: PiHoleConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-
-class PiHoleEntity(CoordinatorEntity[DataUpdateCoordinator[None]]):
-    api: Incomplete
-    _name: Incomplete
-    _server_unique_id: Incomplete
-    def __init__(self, api: Hole, coordinator: DataUpdateCoordinator[None], name: str, server_unique_id: str) -> None: ...
-    @property
-    def device_info(self) -> DeviceInfo: ...

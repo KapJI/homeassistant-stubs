@@ -1,6 +1,6 @@
-from . import ValloxEntity as ValloxEntity
 from .const import DOMAIN as DOMAIN
 from .coordinator import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
+from .entity import ValloxEntity as ValloxEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription

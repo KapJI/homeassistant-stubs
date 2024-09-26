@@ -1,4 +1,5 @@
 from . import api as api
+from .const import DOMAIN as DOMAIN
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -13,3 +14,4 @@ AutomowerConfigEntry = ConfigEntry[AutomowerDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AutomowerConfigEntry) -> bool: ...
+def cleanup_removed_devices(hass: HomeAssistant, config_entry: ConfigEntry, available_devices: list[str]) -> None: ...

@@ -1,7 +1,7 @@
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_PAYLOAD_CLOSE as CONF_PAYLOAD_CLOSE, CONF_PAYLOAD_OPEN as CONF_PAYLOAD_OPEN, CONF_PAYLOAD_STOP as CONF_PAYLOAD_STOP, CONF_POSITION_CLOSED as CONF_POSITION_CLOSED, CONF_POSITION_OPEN as CONF_POSITION_OPEN, CONF_RETAIN as CONF_RETAIN, CONF_STATE_CLOSED as CONF_STATE_CLOSED, CONF_STATE_CLOSING as CONF_STATE_CLOSING, CONF_STATE_OPEN as CONF_STATE_OPEN, CONF_STATE_OPENING as CONF_STATE_OPENING, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DEFAULT_OPTIMISTIC as DEFAULT_OPTIMISTIC, DEFAULT_PAYLOAD_CLOSE as DEFAULT_PAYLOAD_CLOSE, DEFAULT_PAYLOAD_OPEN as DEFAULT_PAYLOAD_OPEN, DEFAULT_POSITION_CLOSED as DEFAULT_POSITION_CLOSED, DEFAULT_POSITION_OPEN as DEFAULT_POSITION_OPEN, DEFAULT_RETAIN as DEFAULT_RETAIN, PAYLOAD_NONE as PAYLOAD_NONE
-from .mixins import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
+from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic

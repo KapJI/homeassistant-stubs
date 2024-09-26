@@ -1,7 +1,7 @@
 from . import RoborockConfigEntry as RoborockConfigEntry
 from .const import DEFAULT_DRAWABLES as DEFAULT_DRAWABLES, DOMAIN as DOMAIN, DRAWABLES as DRAWABLES, IMAGE_CACHE_INTERVAL as IMAGE_CACHE_INTERVAL, MAP_SLEEP as MAP_SLEEP
 from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
-from .device import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
+from .entity import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.image import ImageEntity as ImageEntity

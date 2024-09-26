@@ -1,6 +1,6 @@
 from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
-from homeassistant.components.button import ButtonEntity as ButtonEntity, DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
+from homeassistant.components.button import ButtonEntity as ButtonEntity, SERVICE_PRESS as SERVICE_PRESS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

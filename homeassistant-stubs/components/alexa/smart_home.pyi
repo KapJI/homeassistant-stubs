@@ -14,7 +14,7 @@ from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SE
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
-from yarl import URL
+from yarl import URL as URL
 
 _LOGGER: Incomplete
 SMART_HOME_HTTP_ENDPOINT: str

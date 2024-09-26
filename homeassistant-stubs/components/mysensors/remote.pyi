@@ -1,6 +1,6 @@
 from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
-from .device import MySensorsChildEntity as MySensorsChildEntity
+from .entity import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_COMMAND as ATTR_COMMAND, RemoteEntity as RemoteEntity, RemoteEntityFeature as RemoteEntityFeature

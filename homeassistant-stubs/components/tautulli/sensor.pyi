@@ -1,6 +1,7 @@
-from . import TautulliConfigEntry as TautulliConfigEntry, TautulliEntity as TautulliEntity
+from . import TautulliConfigEntry as TautulliConfigEntry
 from .const import ATTR_TOP_USER as ATTR_TOP_USER, DOMAIN as DOMAIN
 from .coordinator import TautulliDataUpdateCoordinator as TautulliDataUpdateCoordinator
+from .entity import TautulliEntity as TautulliEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

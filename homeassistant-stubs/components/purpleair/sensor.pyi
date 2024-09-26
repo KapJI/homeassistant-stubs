@@ -1,6 +1,6 @@
-from . import PurpleAirEntity as PurpleAirEntity
 from .const import CONF_SENSOR_INDICES as CONF_SENSOR_INDICES, DOMAIN as DOMAIN
 from .coordinator import PurpleAirDataUpdateCoordinator as PurpleAirDataUpdateCoordinator
+from .entity import PurpleAirEntity as PurpleAirEntity
 from _typeshed import Incomplete
 from aiopurpleair.models.sensors import SensorModel as SensorModel
 from collections.abc import Callable as Callable

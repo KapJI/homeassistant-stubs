@@ -1,5 +1,6 @@
-from .. import mysensors as mysensors
+from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
+from .entity import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
@@ -18,7 +19,7 @@ OPERATION_LIST: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsHVAC(mysensors.device.MySensorsChildEntity, ClimateEntity):
+class MySensorsHVAC(MySensorsChildEntity, ClimateEntity):
     _attr_hvac_modes = OPERATION_LIST
     _enable_turn_on_off_backwards_compatibility: bool
     @property

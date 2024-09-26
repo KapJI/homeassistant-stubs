@@ -9,7 +9,7 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
 from dataclasses import dataclass
 from enum import Enum
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
+from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er

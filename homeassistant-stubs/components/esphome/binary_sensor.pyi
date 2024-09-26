@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entity import EsphomeAssistEntity as EsphomeAssistEntity, EsphomeEntity as EsphomeEntity, platform_async_setup_entry as platform_async_setup_entry
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry
 from _typeshed import Incomplete
@@ -19,5 +20,7 @@ class EsphomeBinarySensor(EsphomeEntity[BinarySensorInfo, BinarySensorState], Bi
 
 class EsphomeAssistInProgressBinarySensor(EsphomeAssistEntity, BinarySensorEntity):
     entity_description: Incomplete
+    async def async_added_to_hass(self) -> None: ...
+    async def async_will_remove_from_hass(self) -> None: ...
     @property
     def is_on(self) -> bool | None: ...

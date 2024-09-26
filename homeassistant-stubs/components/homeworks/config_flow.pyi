@@ -1,6 +1,6 @@
 import voluptuous as vol
-from . import DEFAULT_FADE_RATE as DEFAULT_FADE_RATE, calculate_unique_id as calculate_unique_id
 from .const import CONF_ADDR as CONF_ADDR, CONF_BUTTONS as CONF_BUTTONS, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_DIMMERS as CONF_DIMMERS, CONF_INDEX as CONF_INDEX, CONF_KEYPADS as CONF_KEYPADS, CONF_LED as CONF_LED, CONF_NUMBER as CONF_NUMBER, CONF_RATE as CONF_RATE, CONF_RELEASE_DELAY as CONF_RELEASE_DELAY, DEFAULT_BUTTON_NAME as DEFAULT_BUTTON_NAME, DEFAULT_KEYPAD_NAME as DEFAULT_KEYPAD_NAME, DEFAULT_LIGHT_NAME as DEFAULT_LIGHT_NAME, DOMAIN as DOMAIN
+from .util import calculate_unique_id as calculate_unique_id
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
@@ -14,6 +14,7 @@ from homeassistant.util import slugify as slugify
 from typing import Any
 
 _LOGGER: Incomplete
+DEFAULT_FADE_RATE: float
 CONTROLLER_EDIT: Incomplete
 LIGHT_EDIT: VolDictType
 BUTTON_EDIT: VolDictType

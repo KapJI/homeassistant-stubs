@@ -1,5 +1,6 @@
-from .. import mysensors as mysensors
+from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
+from .entity import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from enum import Enum
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity
@@ -18,7 +19,7 @@ class CoverState(Enum):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsCover(mysensors.device.MySensorsChildEntity, CoverEntity):
+class MySensorsCover(MySensorsChildEntity, CoverEntity):
     def get_cover_state(self) -> CoverState: ...
     @property
     def is_closed(self) -> bool: ...

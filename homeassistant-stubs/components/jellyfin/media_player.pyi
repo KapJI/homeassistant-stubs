@@ -5,8 +5,7 @@ from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, DOMAIN as DOMAIN, LOGGE
 from .coordinator import JellyfinDataUpdateCoordinator as JellyfinDataUpdateCoordinator
 from .entity import JellyfinEntity as JellyfinEntity
 from _typeshed import Incomplete
-from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityDescription as MediaPlayerEntityDescription, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.components.media_player.browse_media import BrowseMedia as BrowseMedia
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityDescription as MediaPlayerEntityDescription, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

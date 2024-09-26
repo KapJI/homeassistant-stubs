@@ -1,5 +1,5 @@
 from . import get_hub as get_hub
-from .base_platform import BaseSwitch as BaseSwitch
+from .entity import BaseSwitch as BaseSwitch
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity

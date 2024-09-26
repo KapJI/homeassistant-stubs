@@ -13,6 +13,7 @@ PRESSURE_UNITS: Incomplete
 VOLUME_UNITS: Incomplete
 WIND_SPEED_UNITS: Incomplete
 TEMPERATURE_UNITS: set[str]
+_VALID_BY_TYPE: dict[str, set[str] | set[str | None]]
 
 def _is_valid_unit(unit: str, unit_type: str) -> bool: ...
 

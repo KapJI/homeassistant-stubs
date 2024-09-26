@@ -3,7 +3,7 @@ from .const import CONF_STORED_TRACES as CONF_STORED_TRACES, DATA_TRACE as DATA_
 from .models import ActionTrace as ActionTrace, BaseTrace as BaseTrace, RestoredTrace as RestoredTrace
 from _typeshed import Incomplete
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder
 from homeassistant.helpers.storage import Store as Store
@@ -19,7 +19,6 @@ TRACE_CONFIG_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 TraceData = dict[str, LimitedSizeDict[str, BaseTrace]]
 
-def _get_data(hass: HomeAssistant) -> TraceData: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_get_trace(hass: HomeAssistant, key: str, run_id: str) -> dict[str, BaseTrace]: ...
 async def async_list_contexts(hass: HomeAssistant, key: str | None) -> dict[str, dict[str, str]]: ...

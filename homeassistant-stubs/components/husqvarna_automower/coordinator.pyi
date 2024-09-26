@@ -12,6 +12,7 @@ MAX_WS_RECONNECT_TIME: int
 SCAN_INTERVAL: Incomplete
 
 class AutomowerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, MowerAttributes]]):
+    config_entry: ConfigEntry
     api: Incomplete
     ws_connected: bool
     def __init__(self, hass: HomeAssistant, api: AutomowerSession, entry: ConfigEntry) -> None: ...

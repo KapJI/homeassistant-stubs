@@ -6,9 +6,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 _LOGGER: Final[Incomplete]
+DATA_COMPONENT: HassKey[EntityComponent[AirQualityEntity]]
 ENTITY_ID_FORMAT: Final[Incomplete]
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

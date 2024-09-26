@@ -1,9 +1,8 @@
+from . import AnthemavConfigEntry as AnthemavConfigEntry
 from .const import ANTHEMAV_UPDATE_SIGNAL as ANTHEMAV_UPDATE_SIGNAL, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from _typeshed import Incomplete
-from anthemav.connection import Connection as Connection
 from anthemav.protocol import AVR as AVR
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -12,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AnthemavConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AnthemAVR(MediaPlayerEntity):
     _attr_has_entity_name: bool

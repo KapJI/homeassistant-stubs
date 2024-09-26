@@ -1,6 +1,7 @@
 from . import importer as importer, models as models
 from .const import DOMAIN as DOMAIN
 from .errors import BlueprintException as BlueprintException, FailedToLoad as FailedToLoad, FileAlreadyExists as FileAlreadyExists
+from .schemas import BLUEPRINT_SCHEMA as BLUEPRINT_SCHEMA
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

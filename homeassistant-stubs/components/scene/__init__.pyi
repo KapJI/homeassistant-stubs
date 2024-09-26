@@ -6,9 +6,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Final
 
 DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[Scene]]
 STATES: Final[str]
 
 def _hass_domain_validator(config: dict[str, Any]) -> dict[str, Any]: ...

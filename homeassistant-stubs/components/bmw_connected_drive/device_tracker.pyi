@@ -4,7 +4,7 @@ from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from .entity import BMWBaseEntity as BMWBaseEntity
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
-from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
+from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -26,5 +26,3 @@ class BMWDeviceTracker(BMWBaseEntity, TrackerEntity):
     def latitude(self) -> float | None: ...
     @property
     def longitude(self) -> float | None: ...
-    @property
-    def source_type(self) -> SourceType: ...

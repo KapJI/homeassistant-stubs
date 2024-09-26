@@ -1,4 +1,4 @@
-from .const import CONF_HYSTERESIS as CONF_HYSTERESIS, CONF_LOWER as CONF_LOWER, CONF_UPPER as CONF_UPPER
+from .const import ATTR_HYSTERESIS as ATTR_HYSTERESIS, ATTR_LOWER as ATTR_LOWER, ATTR_POSITION as ATTR_POSITION, ATTR_SENSOR_VALUE as ATTR_SENSOR_VALUE, ATTR_TYPE as ATTR_TYPE, ATTR_UPPER as ATTR_UPPER, CONF_HYSTERESIS as CONF_HYSTERESIS, CONF_LOWER as CONF_LOWER, CONF_UPPER as CONF_UPPER, DEFAULT_HYSTERESIS as DEFAULT_HYSTERESIS, POSITION_ABOVE as POSITION_ABOVE, POSITION_BELOW as POSITION_BELOW, POSITION_IN_RANGE as POSITION_IN_RANGE, POSITION_UNKNOWN as POSITION_UNKNOWN, TYPE_LOWER as TYPE_LOWER, TYPE_RANGE as TYPE_RANGE, TYPE_UPPER as TYPE_UPPER
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA
@@ -10,24 +10,10 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, Final
 
 _LOGGER: Incomplete
-ATTR_HYSTERESIS: str
-ATTR_LOWER: str
-ATTR_POSITION: str
-ATTR_SENSOR_VALUE: str
-ATTR_TYPE: str
-ATTR_UPPER: str
-DEFAULT_NAME: str
-DEFAULT_HYSTERESIS: float
-POSITION_ABOVE: str
-POSITION_BELOW: str
-POSITION_IN_RANGE: str
-POSITION_UNKNOWN: str
-TYPE_LOWER: str
-TYPE_RANGE: str
-TYPE_UPPER: str
+DEFAULT_NAME: Final[str]
 PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
-from .base_platform import BasePlatform as BasePlatform
 from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_WRITE_COIL as CALL_TYPE_WRITE_COIL, CALL_TYPE_WRITE_REGISTER as CALL_TYPE_WRITE_REGISTER, CONF_STATE_CLOSED as CONF_STATE_CLOSED, CONF_STATE_CLOSING as CONF_STATE_CLOSING, CONF_STATE_OPEN as CONF_STATE_OPEN, CONF_STATE_OPENING as CONF_STATE_OPENING, CONF_STATUS_REGISTER as CONF_STATUS_REGISTER, CONF_STATUS_REGISTER_TYPE as CONF_STATUS_REGISTER_TYPE
+from .entity import BasePlatform as BasePlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from datetime import datetime

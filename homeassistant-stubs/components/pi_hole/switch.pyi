@@ -1,5 +1,6 @@
-from . import PiHoleConfigEntry as PiHoleConfigEntry, PiHoleEntity as PiHoleEntity
+from . import PiHoleConfigEntry as PiHoleConfigEntry
 from .const import SERVICE_DISABLE as SERVICE_DISABLE, SERVICE_DISABLE_ATTR_DURATION as SERVICE_DISABLE_ATTR_DURATION
+from .entity import PiHoleEntity as PiHoleEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.const import CONF_NAME as CONF_NAME

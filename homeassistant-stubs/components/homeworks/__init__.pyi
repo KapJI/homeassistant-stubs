@@ -8,7 +8,6 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, S
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, dispatcher_send as dispatcher_send
-from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util import slugify as slugify
 from pyhomeworks.pyhomeworks import Homeworks
@@ -19,7 +18,6 @@ PLATFORMS: list[Platform]
 CONF_COMMAND: str
 EVENT_BUTTON_PRESS: str
 EVENT_BUTTON_RELEASE: str
-DEFAULT_FADE_RATE: float
 KEYPAD_LEDSTATE_POLL_COOLDOWN: float
 CONFIG_SCHEMA: Incomplete
 SERVICE_SEND_COMMAND_SCHEMA: Incomplete
@@ -37,19 +35,6 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-def calculate_unique_id(controller_id: str, addr: str, idx: int) -> str: ...
-
-class HomeworksEntity(Entity):
-    _attr_has_entity_name: bool
-    _attr_should_poll: bool
-    _addr: Incomplete
-    _idx: Incomplete
-    _controller_id: Incomplete
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
-    _controller: Incomplete
-    _attr_extra_state_attributes: Incomplete
-    def __init__(self, controller: Homeworks, controller_id: str, addr: str, idx: int, name: str | None) -> None: ...
 
 class HomeworksKeypad:
     _addr: Incomplete

@@ -1,4 +1,5 @@
-from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
+from . import ElkM1ConfigEntry as ElkM1ConfigEntry
+from .entity import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from elkm1_lib.tasks import Task as Task
 from homeassistant.components.scene import Scene as Scene
 from homeassistant.core import HomeAssistant as HomeAssistant

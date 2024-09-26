@@ -1,5 +1,5 @@
 from .const import CHILD_CALLBACK as CHILD_CALLBACK, DevId as DevId, GatewayId as GatewayId, NODE_CALLBACK as NODE_CALLBACK
-from .device import get_mysensors_devices as get_mysensors_devices
+from .entity import get_mysensors_devices as get_mysensors_devices
 from .helpers import discover_mysensors_node as discover_mysensors_node, discover_mysensors_platform as discover_mysensors_platform, validate_set_msg as validate_set_msg
 from collections.abc import Callable as Callable
 from homeassistant.const import Platform as Platform

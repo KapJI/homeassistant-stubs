@@ -1,5 +1,5 @@
-from . import GuardianEntity as GuardianEntity
 from .const import LOGGER as LOGGER
+from .entity import GuardianEntity as GuardianEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Iterable
 from dataclasses import dataclass

@@ -1,6 +1,6 @@
-from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .const import DOMAIN as DOMAIN
 from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
+from .entity import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

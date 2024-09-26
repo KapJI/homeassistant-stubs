@@ -1,6 +1,7 @@
 import RFXtrx as rfxtrxmod
-from . import DEFAULT_OFF_DELAY as DEFAULT_OFF_DELAY, DeviceTuple as DeviceTuple, RfxtrxCommandEntity as RfxtrxCommandEntity, async_setup_platform_entry as async_setup_platform_entry
+from . import DEFAULT_OFF_DELAY as DEFAULT_OFF_DELAY, DeviceTuple as DeviceTuple, async_setup_platform_entry as async_setup_platform_entry
 from .const import CONF_OFF_DELAY as CONF_OFF_DELAY
+from .entity import RfxtrxCommandEntity as RfxtrxCommandEntity
 from _typeshed import Incomplete
 from homeassistant.components.siren import ATTR_TONE as ATTR_TONE, SirenEntity as SirenEntity, SirenEntityFeature as SirenEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

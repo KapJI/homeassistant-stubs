@@ -1,4 +1,4 @@
-from ..mixins import async_setup_entity_entry_helper as async_setup_entity_entry_helper
+from ..entity import async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .schema import CONF_SCHEMA as CONF_SCHEMA, MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from .schema_basic import DISCOVERY_SCHEMA_BASIC as DISCOVERY_SCHEMA_BASIC, MqttLight as MqttLight, PLATFORM_SCHEMA_MODERN_BASIC as PLATFORM_SCHEMA_MODERN_BASIC
 from .schema_json import DISCOVERY_SCHEMA_JSON as DISCOVERY_SCHEMA_JSON, MqttLightJson as MqttLightJson, PLATFORM_SCHEMA_MODERN_JSON as PLATFORM_SCHEMA_MODERN_JSON

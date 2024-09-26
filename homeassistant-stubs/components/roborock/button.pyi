@@ -1,6 +1,6 @@
 from . import RoborockConfigEntry as RoborockConfigEntry
 from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
-from .device import RoborockEntityV1 as RoborockEntityV1
+from .entity import RoborockEntityV1 as RoborockEntityV1
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription

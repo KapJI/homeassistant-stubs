@@ -32,8 +32,8 @@ ATTR_ZONE_TEMP: Final[str]
 ATTR_DURATION_UNTIL: Final[str]
 
 class EvoService(StrEnum):
-    REFRESH_SYSTEM: Final[str]
-    SET_SYSTEM_MODE: Final[str]
-    RESET_SYSTEM: Final[str]
-    SET_ZONE_OVERRIDE: Final[str]
-    RESET_ZONE_OVERRIDE: Final[str]
+    REFRESH_SYSTEM = 'refresh_system'
+    SET_SYSTEM_MODE = 'set_system_mode'
+    RESET_SYSTEM = 'reset_system'
+    SET_ZONE_OVERRIDE = 'set_zone_override'
+    RESET_ZONE_OVERRIDE = 'clear_zone_override'

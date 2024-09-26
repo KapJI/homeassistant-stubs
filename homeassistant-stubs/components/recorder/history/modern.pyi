@@ -1,4 +1,3 @@
-from ... import recorder as recorder
 from ..const import LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION
 from ..db_schema import SHARED_ATTR_OR_LEGACY_ATTRIBUTES as SHARED_ATTR_OR_LEGACY_ATTRIBUTES, StateAttributes as StateAttributes, States as States
 from ..filters import Filters as Filters
@@ -10,6 +9,7 @@ from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
 from homeassistant.const import COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, split_entity_id as split_entity_id
+from homeassistant.helpers.recorder import get_instance as get_instance
 from sqlalchemy import CompoundSelect as CompoundSelect, Select as Select, Subquery as Subquery
 from sqlalchemy.engine.row import Row as Row
 from sqlalchemy.orm.session import Session as Session

@@ -10,7 +10,7 @@ from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
 from datetime import timedelta
 from functools import cached_property as cached_property
-from homeassistant.components.device_tracker import DOMAIN as DOMAIN, ScannerEntity as ScannerEntity, SourceType as SourceType
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, ScannerEntityDescription as ScannerEntityDescription
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -32,7 +32,7 @@ def async_client_is_connected_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 def async_device_heartbeat_timedelta_fn(hub: UnifiHub, obj_id: str) -> timedelta: ...
 
 @dataclass(frozen=True, kw_only=True)
-class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT]):
+class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT], ScannerEntityDescription):
     heartbeat_timedelta_fn: Callable[[UnifiHub, str], timedelta]
     ip_address_fn: Callable[[aiounifi.Controller, str], str | None]
     is_connected_fn: Callable[[UnifiHub, str], bool]
@@ -58,8 +58,6 @@ class UnifiScannerEntity(UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
     def ip_address(self) -> str | None: ...
     @cached_property
     def mac_address(self) -> str: ...
-    @cached_property
-    def source_type(self) -> SourceType: ...
     @cached_property
     def unique_id(self) -> str: ...
     def _make_disconnected(self, *_: core_Event) -> None: ...

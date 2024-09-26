@@ -9,10 +9,14 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.util.hass_dict import HassKey as HassKey
+
+DATA_COMPONENT: HassKey[EntityComponent[BaseTrackerEntity]]
+DATA_KEY: HassKey[dict[str, tuple[str, str]]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -22,14 +26,26 @@ def _async_register_mac(hass: HomeAssistant, domain: str, mac: str, unique_id: s
 class BaseTrackerEntity(Entity):
     _attr_device_info: None
     _attr_entity_category: Incomplete
+    _attr_source_type: SourceType
     @cached_property
     def battery_level(self) -> int | None: ...
     @property
-    def source_type(self) -> SourceType | str: ...
+    def source_type(self) -> SourceType: ...
     @property
     def state_attributes(self) -> dict[str, StateType]: ...
 
-class TrackerEntity(BaseTrackerEntity):
+class TrackerEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+
+CACHED_TRACKER_PROPERTIES_WITH_ATTR_: Incomplete
+
+class TrackerEntity(BaseTrackerEntity, cached_properties=CACHED_TRACKER_PROPERTIES_WITH_ATTR_):
+    entity_description: TrackerEntityDescription
+    _attr_latitude: float | None
+    _attr_location_accuracy: int
+    _attr_location_name: str | None
+    _attr_longitude: float | None
+    _attr_source_type: SourceType
     @cached_property
     def should_poll(self) -> bool: ...
     @property
@@ -47,7 +63,17 @@ class TrackerEntity(BaseTrackerEntity):
     @property
     def state_attributes(self) -> dict[str, StateType]: ...
 
-class ScannerEntity(BaseTrackerEntity):
+class ScannerEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+
+CACHED_SCANNER_PROPERTIES_WITH_ATTR_: Incomplete
+
+class ScannerEntity(BaseTrackerEntity, cached_properties=CACHED_SCANNER_PROPERTIES_WITH_ATTR_):
+    entity_description: ScannerEntityDescription
+    _attr_hostname: str | None
+    _attr_ip_address: str | None
+    _attr_mac_address: str | None
+    _attr_source_type: SourceType
     @cached_property
     def ip_address(self) -> str | None: ...
     @cached_property

@@ -1,4 +1,4 @@
-from . import AirGradientConfigEntry as AirGradientConfigEntry, AirGradientMeasurementCoordinator as AirGradientMeasurementCoordinator
+from . import AirGradientConfigEntry as AirGradientConfigEntry, AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity
 from _typeshed import Incomplete
 from functools import cached_property as cached_property
@@ -12,9 +12,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AirGradientConfig
 
 class AirGradientUpdate(AirGradientEntity, UpdateEntity):
     _attr_device_class: Incomplete
-    coordinator: AirGradientMeasurementCoordinator
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AirGradientMeasurementCoordinator) -> None: ...
+    def __init__(self, coordinator: AirGradientCoordinator) -> None: ...
     @cached_property
     def should_poll(self) -> bool: ...
     @property

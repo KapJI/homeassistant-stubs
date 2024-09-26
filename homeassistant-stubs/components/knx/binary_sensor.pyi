@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
-from .const import ATTR_COUNTER as ATTR_COUNTER, ATTR_SOURCE as ATTR_SOURCE, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
-from .knx_entity import KnxYamlEntity as KnxYamlEntity
+from .const import ATTR_COUNTER as ATTR_COUNTER, ATTR_SOURCE as ATTR_SOURCE, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxYamlEntity as KnxYamlEntity
 from .schema import BinarySensorSchema as BinarySensorSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries

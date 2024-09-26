@@ -1,6 +1,6 @@
 from . import device_trigger as device_trigger
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .mixins import async_setup_non_entity_entry_helper as async_setup_non_entity_entry_helper
+from .entity import async_setup_non_entity_entry_helper as async_setup_non_entity_entry_helper
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant

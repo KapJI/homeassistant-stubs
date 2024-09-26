@@ -1,5 +1,5 @@
 import httpx
-from .const import DOMAIN as DOMAIN, IMAGE_TIMEOUT as IMAGE_TIMEOUT
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, IMAGE_TIMEOUT as IMAGE_TIMEOUT
 from _typeshed import Incomplete
 from aiohttp import web
 from dataclasses import dataclass

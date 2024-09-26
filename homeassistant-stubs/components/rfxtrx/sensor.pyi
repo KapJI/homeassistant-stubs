@@ -1,5 +1,6 @@
-from . import DeviceTuple as DeviceTuple, RfxtrxEntity as RfxtrxEntity, async_setup_platform_entry as async_setup_platform_entry, get_rfx_object as get_rfx_object
+from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_setup_platform_entry, get_rfx_object as get_rfx_object
 from .const import ATTR_EVENT as ATTR_EVENT
+from .entity import RfxtrxEntity as RfxtrxEntity
 from RFXtrx import RFXtrxDevice as RFXtrxDevice, RFXtrxEvent as RFXtrxEvent
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

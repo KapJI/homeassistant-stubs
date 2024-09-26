@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
-from .base_platform import BaseStructPlatform as BaseStructPlatform
 from .const import CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT
+from .entity import BaseStructPlatform as BaseStructPlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from datetime import datetime

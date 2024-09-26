@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .match import ADDRESS as ADDRESS, BluetoothCallbackMatcher as BluetoothCallbackMatcher, BluetoothCallbackMatcherIndex as BluetoothCallbackMatcherIndex, BluetoothCallbackMatcherWithCallback as BluetoothCallbackMatcherWithCallback, CALLBACK as CALLBACK, CONNECTABLE as CONNECTABLE, IntegrationMatcher as IntegrationMatcher, ble_device_matches as ble_device_matches
 from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from .storage import BluetoothStorage as BluetoothStorage
@@ -11,6 +12,7 @@ from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import discovery_flow as discovery_flow
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 
 _LOGGER: Incomplete
 
@@ -35,3 +37,4 @@ class HomeAssistantBluetoothManager(BluetoothManager):
     def _async_save_scanner_history(self, scanner: BaseHaScanner) -> None: ...
     def _async_unregister_scanner(self, scanner: BaseHaScanner, unregister: CALLBACK_TYPE) -> None: ...
     def async_register_scanner(self, scanner: BaseHaScanner, connection_slots: int | None = None) -> CALLBACK_TYPE: ...
+    def _handle_config_entry_removed(self, entry: config_entries.ConfigEntry) -> None: ...

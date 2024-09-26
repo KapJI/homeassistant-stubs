@@ -1,4 +1,4 @@
-from .const import ATTR_NEXT_EVENT as ATTR_NEXT_EVENT, CONF_ALL_DAYS as CONF_ALL_DAYS, CONF_FROM as CONF_FROM, CONF_TO as CONF_TO, DOMAIN as DOMAIN, LOGGER as LOGGER, WEEKDAY_TO_CONF as WEEKDAY_TO_CONF
+from .const import ATTR_NEXT_EVENT as ATTR_NEXT_EVENT, CONF_ALL_DAYS as CONF_ALL_DAYS, CONF_DATA as CONF_DATA, CONF_FROM as CONF_FROM, CONF_TO as CONF_TO, DOMAIN as DOMAIN, LOGGER as LOGGER, WEEKDAY_TO_CONF as WEEKDAY_TO_CONF
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -20,6 +20,7 @@ def deserialize_to_time(value: Any) -> Any: ...
 def serialize_to_time(value: Any) -> Any: ...
 
 BASE_SCHEMA: VolDictType
+CUSTOM_DATA_SCHEMA: Incomplete
 TIME_RANGE_SCHEMA: VolDictType
 STORAGE_TIME_RANGE_SCHEMA: Incomplete
 SCHEDULE_SCHEMA: VolDictType
@@ -49,6 +50,8 @@ class Schedule(CollectionEntity):
     _attr_icon: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
+    _unrecorded_attributes: Incomplete
+    _Entity__combined_unrecorded_attributes: Incomplete
     def __init__(self, config: ConfigType, editable: bool) -> None: ...
     @classmethod
     def from_storage(cls, config: ConfigType) -> Schedule: ...
@@ -59,3 +62,4 @@ class Schedule(CollectionEntity):
     async def async_added_to_hass(self) -> None: ...
     _attr_extra_state_attributes: Incomplete
     def _update(self, _: datetime | None = None) -> None: ...
+    def all_custom_data_keys(self) -> frozenset[str]: ...

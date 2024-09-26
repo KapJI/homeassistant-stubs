@@ -1,7 +1,7 @@
 from . import MikrotikConfigEntry as MikrotikConfigEntry
 from .coordinator import Device as Device, MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -17,8 +17,6 @@ class MikrotikDataUpdateCoordinatorTracker(CoordinatorEntity[MikrotikDataUpdateC
     def __init__(self, device: Device, coordinator: MikrotikDataUpdateCoordinator) -> None: ...
     @property
     def is_connected(self) -> bool: ...
-    @property
-    def source_type(self) -> SourceType: ...
     @property
     def hostname(self) -> str: ...
     @property

@@ -20,6 +20,7 @@ SENSOR_TYPES: dict[str, JellyfinSensorEntityDescription]
 async def async_setup_entry(hass: HomeAssistant, entry: JellyfinConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class JellyfinSensor(JellyfinEntity, SensorEntity):
+    _attr_has_entity_name: bool
     entity_description: JellyfinSensorEntityDescription
     @property
     def native_value(self) -> StateType: ...

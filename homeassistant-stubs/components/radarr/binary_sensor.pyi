@@ -1,5 +1,6 @@
-from . import RadarrConfigEntry as RadarrConfigEntry, RadarrEntity as RadarrEntity
+from . import RadarrConfigEntry as RadarrConfigEntry
 from .const import HEALTH_ISSUES as HEALTH_ISSUES
+from .entity import RadarrEntity as RadarrEntity
 from _typeshed import Incomplete
 from aiopyarr import Health
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription

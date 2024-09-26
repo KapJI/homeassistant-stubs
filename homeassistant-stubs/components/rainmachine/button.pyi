@@ -1,6 +1,6 @@
-from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineEntity as RainMachineEntity
+from . import RainMachineConfigEntry as RainMachineConfigEntry
 from .const import DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS
-from .model import RainMachineEntityDescription as RainMachineEntityDescription
+from .entity import RainMachineEntity as RainMachineEntity, RainMachineEntityDescription as RainMachineEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass

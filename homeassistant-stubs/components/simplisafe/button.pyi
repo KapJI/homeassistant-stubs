@@ -1,5 +1,6 @@
-from . import SimpliSafe as SimpliSafe, SimpliSafeEntity as SimpliSafeEntity
+from . import SimpliSafe as SimpliSafe
 from .const import DOMAIN as DOMAIN
+from .entity import SimpliSafeEntity as SimpliSafeEntity
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable

@@ -1,7 +1,7 @@
 from .const import POWER_PLUGS as POWER_PLUGS
-from .deconz_device import DeconzDevice as DeconzDevice
+from .entity import DeconzDevice as DeconzDevice
 from .hub import DeconzHub as DeconzHub
-from homeassistant.components.switch import DOMAIN as DOMAIN, SwitchEntity as SwitchEntity
+from homeassistant.components.switch import DOMAIN as SWITCH_DOMAIN, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +12,7 @@ from typing import Any
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzPowerPlug(DeconzDevice[Light], SwitchEntity):
-    TYPE = DOMAIN
+    TYPE = SWITCH_DOMAIN
     @property
     def is_on(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

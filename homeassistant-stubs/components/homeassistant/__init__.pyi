@@ -1,5 +1,5 @@
 from .const import DATA_EXPOSED_ENTITIES as DATA_EXPOSED_ENTITIES, DATA_STOP_HANDLER as DATA_STOP_HANDLER, DOMAIN as DOMAIN, SERVICE_HOMEASSISTANT_RESTART as SERVICE_HOMEASSISTANT_RESTART, SERVICE_HOMEASSISTANT_STOP as SERVICE_HOMEASSISTANT_STOP
-from .exposed_entities import ExposedEntities as ExposedEntities
+from .exposed_entities import ExposedEntities as ExposedEntities, async_should_expose as async_should_expose
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL

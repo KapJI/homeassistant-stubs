@@ -11,14 +11,16 @@ from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEnt
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Self
 
 DOMAIN: str
+DATA_COMPONENT: HassKey[EntityComponent[LightEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
-DATA_PROFILES: str
+DATA_PROFILES: HassKey[Profiles]
 
 class LightEntityFeature(IntFlag):
     EFFECT = 4
@@ -109,7 +111,7 @@ LIGHT_TURN_OFF_SCHEMA: VolDictType
 _LOGGER: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
-def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any] | VolDictType) -> None: ...
+def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any]) -> None: ...
 def filter_turn_off_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
 def filter_turn_on_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

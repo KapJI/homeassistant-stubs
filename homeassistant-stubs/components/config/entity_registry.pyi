@@ -1,8 +1,7 @@
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.websocket_api import ERR_NOT_FOUND as ERR_NOT_FOUND
-from homeassistant.components.websocket_api.decorators import require_admin as require_admin
+from homeassistant.components.websocket_api import ERR_NOT_FOUND as ERR_NOT_FOUND, require_admin as require_admin
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.json import json_dumps as json_dumps
 from typing import Any

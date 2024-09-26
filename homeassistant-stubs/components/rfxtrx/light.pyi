@@ -1,6 +1,7 @@
 import RFXtrx as rfxtrxmod
-from . import DeviceTuple as DeviceTuple, RfxtrxCommandEntity as RfxtrxCommandEntity, async_setup_platform_entry as async_setup_platform_entry
+from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_setup_platform_entry
 from .const import COMMAND_OFF_LIST as COMMAND_OFF_LIST, COMMAND_ON_LIST as COMMAND_ON_LIST
+from .entity import RfxtrxCommandEntity as RfxtrxCommandEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

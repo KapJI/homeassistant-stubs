@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
-from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxYamlEntity as KnxYamlEntity
+from .const import KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxYamlEntity as KnxYamlEntity
 from .schema import FanSchema as FanSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries

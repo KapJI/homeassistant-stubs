@@ -3,4 +3,4 @@ from homeassistant.const import Platform as Platform
 
 DOMAIN: str
 PLATFORMS: Incomplete
-CONF_SESSION: str
+DATA_SESSION: str

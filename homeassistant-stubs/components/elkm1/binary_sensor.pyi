@@ -1,4 +1,5 @@
-from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry
+from . import ElkM1ConfigEntry as ElkM1ConfigEntry
+from .entity import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity
 from _typeshed import Incomplete
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.zones import Zone as Zone

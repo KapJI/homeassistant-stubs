@@ -1,6 +1,6 @@
-from . import PrusaLinkEntity as PrusaLinkEntity
 from .const import DOMAIN as DOMAIN
 from .coordinator import JobUpdateCoordinator as JobUpdateCoordinator
+from .entity import PrusaLinkEntity as PrusaLinkEntity
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

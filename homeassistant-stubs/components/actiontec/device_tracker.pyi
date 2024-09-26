@@ -1,7 +1,7 @@
 from .const import LEASES_REGEX as LEASES_REGEX
 from .model import Device as Device
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import DOMAIN as DOMAIN, DeviceScanner as DeviceScanner
+from homeassistant.components.device_tracker import DeviceScanner as DeviceScanner
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType

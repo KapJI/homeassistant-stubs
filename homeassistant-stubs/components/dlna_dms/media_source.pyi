@@ -2,8 +2,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, PATH_OBJECT_ID_FLAG as PA
 from .dms import DidlPlayMedia as DidlPlayMedia, get_domain_data as get_domain_data
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
-from homeassistant.components.media_source.error import Unresolvable as Unresolvable
-from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 async def async_get_media_source(hass: HomeAssistant) -> DmsMediaSource: ...

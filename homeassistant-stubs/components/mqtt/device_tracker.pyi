@@ -1,14 +1,14 @@
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC
-from .mixins import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
+from .entity import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import device_tracker as device_tracker
-from homeassistant.components.device_tracker import SOURCE_TYPES as SOURCE_TYPES, SourceType as SourceType, TrackerEntity as TrackerEntity
+from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -53,4 +53,4 @@ class MqttDeviceTracker(MqttEntity, TrackerEntity):
     @property
     def location_name(self) -> str | None: ...
     @property
-    def source_type(self) -> SourceType | str: ...
+    def source_type(self) -> SourceType: ...

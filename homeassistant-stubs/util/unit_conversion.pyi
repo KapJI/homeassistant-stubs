@@ -15,6 +15,8 @@ _MIN_TO_SEC: int
 _HRS_TO_MINUTES: int
 _HRS_TO_SECS: Incomplete
 _DAYS_TO_SECS: Incomplete
+_WH_TO_J: int
+_WH_TO_CAL: Incomplete
 _POUND_TO_G: float
 _OUNCE_TO_G: Incomplete
 _STONE_TO_G: Incomplete

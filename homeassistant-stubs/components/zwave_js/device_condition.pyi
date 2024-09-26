@@ -4,7 +4,7 @@ from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as AT
 from .device_automation_helpers import CONF_SUBTYPE as CONF_SUBTYPE, CONF_VALUE_ID as CONF_VALUE_ID, NODE_STATUSES as NODE_STATUSES, async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation, generate_config_parameter_subtype as generate_config_parameter_subtype
 from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, check_type_schema_map as check_type_schema_map, get_value_state_schema as get_value_state_schema, get_zwave_value_from_config as get_zwave_value_from_config, remove_keys_with_empty_values as remove_keys_with_empty_values
 from _typeshed import Incomplete
-from homeassistant.components.device_automation.exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
+from homeassistant.components.device_automation import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from homeassistant.const import CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

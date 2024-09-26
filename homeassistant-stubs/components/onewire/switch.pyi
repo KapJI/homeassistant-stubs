@@ -1,6 +1,6 @@
 from . import OneWireConfigEntry as OneWireConfigEntry
 from .const import DEVICE_KEYS_0_3 as DEVICE_KEYS_0_3, DEVICE_KEYS_0_7 as DEVICE_KEYS_0_7, DEVICE_KEYS_A_B as DEVICE_KEYS_A_B, READ_MODE_BOOL as READ_MODE_BOOL
-from .onewire_entities import OneWireEntity as OneWireEntity, OneWireEntityDescription as OneWireEntityDescription
+from .entity import OneWireEntity as OneWireEntity, OneWireEntityDescription as OneWireEntityDescription
 from .onewirehub import OneWireHub as OneWireHub
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription

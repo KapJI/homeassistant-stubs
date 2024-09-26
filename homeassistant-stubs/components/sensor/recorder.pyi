@@ -5,23 +5,24 @@ from collections.abc import Callable as Callable, Iterable
 from homeassistant.components.recorder import get_instance as get_instance, history as history, statistics as statistics
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfIrradiance as UnitOfIrradiance, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfVolume as UnitOfVolume
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State, split_entity_id as split_entity_id
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import entity_sources as entity_sources
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
+from homeassistant.util.hass_dict import HassKey as HassKey
 from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
 _LOGGER: Incomplete
 DEFAULT_STATISTICS: Incomplete
 EQUIVALENT_UNITS: Incomplete
-SEEN_DIP: str
-WARN_DIP: str
-WARN_NEGATIVE: str
-WARN_UNSUPPORTED_UNIT: str
-WARN_UNSTABLE_UNIT: str
+SEEN_DIP: HassKey[set[str]]
+WARN_DIP: HassKey[set[str]]
+WARN_NEGATIVE: HassKey[set[str]]
+WARN_UNSUPPORTED_UNIT: HassKey[set[str]]
+WARN_UNSTABLE_UNIT: HassKey[set[str]]
 LINK_DEV_STATISTICS: str
 
 def _get_sensor_states(hass: HomeAssistant) -> list[State]: ...
@@ -39,4 +40,6 @@ def _last_reset_as_utc_isoformat(last_reset_s: Any, entity_id: str) -> str | Non
 def _timestamp_to_isoformat_or_none(timestamp: float | None) -> str | None: ...
 def compile_statistics(hass: HomeAssistant, session: Session, start: datetime.datetime, end: datetime.datetime) -> statistics.PlatformCompiledStatistics: ...
 def list_statistic_ids(hass: HomeAssistant, statistic_ids: list[str] | tuple[str] | None = None, statistic_type: str | None = None) -> dict: ...
+def _update_issues(report_issue: Callable[[str, str, dict[str, Any]], None], clear_issue: Callable[[str, str], None], sensor_states: list[State], metadatas: dict[str, tuple[int, StatisticMetaData]]) -> None: ...
+def update_statistics_issues(hass: HomeAssistant, session: Session) -> None: ...
 def validate_statistics(hass: HomeAssistant) -> dict[str, list[statistics.ValidationIssue]]: ...

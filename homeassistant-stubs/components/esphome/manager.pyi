@@ -3,12 +3,10 @@ from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_DE
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
-from .voice_assistant import VoiceAssistantAPIPipeline as VoiceAssistantAPIPipeline, VoiceAssistantPipeline as VoiceAssistantPipeline, VoiceAssistantUDPPipeline as VoiceAssistantUDPPipeline, handle_timer_event as handle_timer_event
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings
+from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
 from homeassistant.components import tag as tag, zeroconf as zeroconf
-from homeassistant.components.intent import async_register_timer_handler as async_register_timer_handler
-from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
@@ -34,7 +32,6 @@ class ESPHomeManager:
     cli: Incomplete
     device_id: Incomplete
     domain_data: Incomplete
-    voice_assistant_pipeline: Incomplete
     reconnect_logic: Incomplete
     zeroconf_instance: Incomplete
     entry_data: Incomplete
@@ -47,10 +44,6 @@ class ESPHomeManager:
     def _send_home_assistant_state_event(self, attribute: str | None, event: Event[EventStateChangedData]) -> None: ...
     def async_on_state_subscription(self, entity_id: str, attribute: str | None = None) -> None: ...
     def async_on_state_request(self, entity_id: str, attribute: str | None = None) -> None: ...
-    def _handle_pipeline_finished(self) -> None: ...
-    async def _handle_pipeline_start(self, conversation_id: str, flags: int, audio_settings: VoiceAssistantAudioSettings, wake_word_phrase: str | None) -> int | None: ...
-    async def _handle_pipeline_stop(self) -> None: ...
-    async def _handle_audio(self, data: bytes) -> None: ...
     async def on_connect(self) -> None: ...
     async def _on_connnect(self) -> None: ...
     async def on_disconnect(self, expected_disconnect: bool) -> None: ...

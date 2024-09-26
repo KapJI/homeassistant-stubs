@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .controller import OmadaSiteController as OmadaSiteController
-from .coordinator import OmadaCoordinator as OmadaCoordinator
+from .coordinator import OmadaCoordinator as OmadaCoordinator, OmadaDevicesCoordinator as OmadaDevicesCoordinator, POLL_DEVICES as POLL_DEVICES
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity
 from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
@@ -12,29 +12,30 @@ from tplink_omada_client import OmadaSiteClient as OmadaSiteClient
 from tplink_omada_client.devices import OmadaFirmwareUpdate as OmadaFirmwareUpdate, OmadaListDevice as OmadaListDevice
 from typing import Any, NamedTuple
 
-POLL_DELAY_IDLE: Incomplete
 POLL_DELAY_UPGRADE: int
 
 class FirmwareUpdateStatus(NamedTuple):
     device: OmadaListDevice
     firmware: OmadaFirmwareUpdate | None
 
-class OmadaFirmwareUpdateCoodinator(OmadaCoordinator[FirmwareUpdateStatus]):
-    def __init__(self, hass: HomeAssistant, omada_client: OmadaSiteClient) -> None: ...
-    update_interval: Incomplete
+class OmadaFirmwareUpdateCoordinator(OmadaCoordinator[FirmwareUpdateStatus]):
+    _devices_coordinator: Incomplete
+    _config_entry: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, omada_client: OmadaSiteClient, devices_coordinator: OmadaDevicesCoordinator) -> None: ...
     async def _get_firmware_updates(self) -> list[FirmwareUpdateStatus]: ...
     async def poll_update(self) -> dict[str, FirmwareUpdateStatus]: ...
+    def _handle_devices_update(self) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class OmadaDeviceUpdate(OmadaDeviceEntity[OmadaFirmwareUpdateCoodinator], UpdateEntity):
+class OmadaDeviceUpdate(OmadaDeviceEntity[OmadaFirmwareUpdateCoordinator], UpdateEntity):
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
     _attr_device_class: Incomplete
     _mac: Incomplete
     _omada_client: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: OmadaFirmwareUpdateCoodinator, device: OmadaListDevice) -> None: ...
+    def __init__(self, coordinator: OmadaFirmwareUpdateCoordinator, device: OmadaListDevice) -> None: ...
     def release_notes(self) -> str | None: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     _attr_installed_version: Incomplete

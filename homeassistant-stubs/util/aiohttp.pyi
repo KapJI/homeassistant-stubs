@@ -10,6 +10,12 @@ class MockStreamReader:
     def __init__(self, content: bytes) -> None: ...
     async def read(self, byte_count: int = -1) -> bytes: ...
 
+class MockPayloadWriter:
+    def enable_chunking(self) -> None: ...
+    async def write_headers(self, *args: Any, **kwargs: Any) -> None: ...
+
+_MOCK_PAYLOAD_WRITER: Incomplete
+
 class MockRequest:
     mock_source: str | None
     method: Incomplete
@@ -17,8 +23,12 @@ class MockRequest:
     status: Incomplete
     headers: Incomplete
     query_string: Incomplete
+    keep_alive: bool
+    version: Incomplete
     _content: Incomplete
+    _payload_writer: Incomplete
     def __init__(self, content: bytes, mock_source: str, method: str = 'GET', status: int = ..., headers: dict[str, str] | None = None, query_string: str | None = None, url: str = '') -> None: ...
+    async def _prepare_hook(self, response: Any) -> None: ...
     @property
     def query(self) -> MultiDict[str]: ...
     @property

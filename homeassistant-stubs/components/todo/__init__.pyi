@@ -1,6 +1,6 @@
 import dataclasses
 import datetime
-from .const import ATTR_DESCRIPTION as ATTR_DESCRIPTION, ATTR_DUE as ATTR_DUE, ATTR_DUE_DATE as ATTR_DUE_DATE, ATTR_DUE_DATETIME as ATTR_DUE_DATETIME, ATTR_ITEM as ATTR_ITEM, ATTR_RENAME as ATTR_RENAME, ATTR_STATUS as ATTR_STATUS, DOMAIN as DOMAIN, TodoItemStatus as TodoItemStatus, TodoListEntityFeature as TodoListEntityFeature, TodoServices as TodoServices
+from .const import ATTR_DESCRIPTION as ATTR_DESCRIPTION, ATTR_DUE as ATTR_DUE, ATTR_DUE_DATE as ATTR_DUE_DATE, ATTR_DUE_DATETIME as ATTR_DUE_DATETIME, ATTR_ITEM as ATTR_ITEM, ATTR_RENAME as ATTR_RENAME, ATTR_STATUS as ATTR_STATUS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, TodoItemStatus as TodoItemStatus, TodoListEntityFeature as TodoListEntityFeature, TodoServices as TodoServices
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from functools import cached_property as cached_property

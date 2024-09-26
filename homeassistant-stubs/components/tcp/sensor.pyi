@@ -1,4 +1,5 @@
-from .common import TCP_PLATFORM_SCHEMA as TCP_PLATFORM_SCHEMA, TcpEntity as TcpEntity
+from .common import TCP_PLATFORM_SCHEMA as TCP_PLATFORM_SCHEMA
+from .entity import TcpEntity as TcpEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.const import CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT

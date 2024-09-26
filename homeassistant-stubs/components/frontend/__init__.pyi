@@ -7,7 +7,7 @@ from collections.abc import Callable as Callable, Iterator
 from functools import cached_property as cached_property
 from homeassistant.components import onboarding as onboarding, websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, StaticPathConfig as StaticPathConfig
-from homeassistant.components.websocket_api.connection import ActiveConnection as ActiveConnection
+from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_PANELS_UPDATED as EVENT_PANELS_UPDATED, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback

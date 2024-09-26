@@ -1,5 +1,6 @@
-from . import RadarrConfigEntry as RadarrConfigEntry, RadarrEntity as RadarrEntity
+from . import RadarrConfigEntry as RadarrConfigEntry
 from .coordinator import CalendarUpdateCoordinator as CalendarUpdateCoordinator, RadarrEvent as RadarrEvent
+from .entity import RadarrEntity as RadarrEntity
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent

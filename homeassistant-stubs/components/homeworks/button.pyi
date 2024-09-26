@@ -1,5 +1,6 @@
-from . import HomeworksData as HomeworksData, HomeworksEntity as HomeworksEntity
+from . import HomeworksData as HomeworksData
 from .const import CONF_ADDR as CONF_ADDR, CONF_BUTTONS as CONF_BUTTONS, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_KEYPADS as CONF_KEYPADS, CONF_NUMBER as CONF_NUMBER, CONF_RELEASE_DELAY as CONF_RELEASE_DELAY, DOMAIN as DOMAIN
+from .entity import HomeworksEntity as HomeworksEntity
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

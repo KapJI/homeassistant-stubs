@@ -1,4 +1,5 @@
-from . import DATA_CHARGING as DATA_CHARGING, DATA_LEAF as DATA_LEAF, LeafEntity as LeafEntity
+from . import DATA_CHARGING as DATA_CHARGING, DATA_LEAF as DATA_LEAF
+from .entity import LeafEntity as LeafEntity
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.core import HomeAssistant as HomeAssistant

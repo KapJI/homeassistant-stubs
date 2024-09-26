@@ -1,6 +1,10 @@
+from . import TodoListEntity as TodoListEntity
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 
 DOMAIN: str
+DATA_COMPONENT: HassKey[EntityComponent[TodoListEntity]]
 ATTR_DUE: str
 ATTR_DUE_DATE: str
 ATTR_DUE_DATETIME: str

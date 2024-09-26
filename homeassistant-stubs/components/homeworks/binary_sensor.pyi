@@ -1,5 +1,6 @@
-from . import HomeworksData as HomeworksData, HomeworksEntity as HomeworksEntity, HomeworksKeypad as HomeworksKeypad
+from . import HomeworksData as HomeworksData, HomeworksKeypad as HomeworksKeypad
 from .const import CONF_ADDR as CONF_ADDR, CONF_BUTTONS as CONF_BUTTONS, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_KEYPADS as CONF_KEYPADS, CONF_LED as CONF_LED, CONF_NUMBER as CONF_NUMBER, DOMAIN as DOMAIN
+from .entity import HomeworksEntity as HomeworksEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

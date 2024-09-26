@@ -1,4 +1,4 @@
-from . import EvilGeniusEntity as EvilGeniusEntity
+from .entity import EvilGeniusEntity as EvilGeniusEntity
 from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
 from typing import Any, Concatenate
 

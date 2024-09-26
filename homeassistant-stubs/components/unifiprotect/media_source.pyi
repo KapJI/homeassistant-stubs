@@ -6,7 +6,7 @@ from datetime import date, datetime, timedelta
 from enum import Enum
 from homeassistant.components.camera import CameraImageView as CameraImageView
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
-from homeassistant.components.media_source.models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er

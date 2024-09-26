@@ -2,7 +2,7 @@ from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN
 from .coordinator import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, device_filter_out_from_trackers as device_filter_out_from_trackers
 from .entity import FritzDeviceBase as FritzDeviceBase
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -26,5 +26,3 @@ class FritzBoxTracker(FritzDeviceBase, ScannerEntity):
     def icon(self) -> str: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...
-    @property
-    def source_type(self) -> SourceType: ...

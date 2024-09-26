@@ -1,6 +1,7 @@
 import RFXtrx as rfxtrxmod
-from . import DeviceTuple as DeviceTuple, RfxtrxEntity as RfxtrxEntity, async_setup_platform_entry as async_setup_platform_entry, get_pt2262_cmd as get_pt2262_cmd
+from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_setup_platform_entry, get_pt2262_cmd as get_pt2262_cmd
 from .const import COMMAND_OFF_LIST as COMMAND_OFF_LIST, COMMAND_ON_LIST as COMMAND_ON_LIST, CONF_DATA_BITS as CONF_DATA_BITS, CONF_OFF_DELAY as CONF_OFF_DELAY, DEVICE_PACKET_TYPE_LIGHTING4 as DEVICE_PACKET_TYPE_LIGHTING4
+from .entity import RfxtrxEntity as RfxtrxEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

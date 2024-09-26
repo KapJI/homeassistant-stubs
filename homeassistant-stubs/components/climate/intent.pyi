@@ -1,9 +1,7 @@
-from . import DOMAIN as DOMAIN
+from . import DOMAIN as DOMAIN, INTENT_GET_TEMPERATURE as INTENT_GET_TEMPERATURE
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
-
-INTENT_GET_TEMPERATURE: str
 
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
 

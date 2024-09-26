@@ -142,23 +142,8 @@ class SynchronizeTask(RecorderTask):
     def __init__(self, event) -> None: ...
 
 @dataclass(slots=True)
-class PostSchemaMigrationTask(RecorderTask):
-    old_version: int
-    new_version: int
-    def run(self, instance: Recorder) -> None: ...
-    def __init__(self, old_version, new_version) -> None: ...
-
-@dataclass(slots=True)
-class StatisticsTimestampMigrationCleanupTask(RecorderTask):
-    def run(self, instance: Recorder) -> None: ...
-
-@dataclass(slots=True)
 class AdjustLRUSizeTask(RecorderTask):
     commit_before = ...
-    def run(self, instance: Recorder) -> None: ...
-
-@dataclass(slots=True)
-class EntityIDPostMigrationTask(RecorderTask):
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)

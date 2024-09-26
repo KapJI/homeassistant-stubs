@@ -1,7 +1,7 @@
 from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TITLE as ATTR_TITLE, BaseNotificationService as BaseNotificationService, DOMAIN as DOMAIN, NotifyEntity as NotifyEntity, SERVICE_SEND_MESSAGE as SERVICE_SEND_MESSAGE
+from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TITLE as ATTR_TITLE, BaseNotificationService as BaseNotificationService, NotifyEntity as NotifyEntity, SERVICE_SEND_MESSAGE as SERVICE_SEND_MESSAGE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ACTION as CONF_ACTION, CONF_ENTITIES as CONF_ENTITIES, CONF_SERVICE as CONF_SERVICE, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

@@ -3,7 +3,7 @@ from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoor
 from _typeshed import Incomplete
 from aioswitcher.device import SwitcherBase as SwitcherBase
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
+from homeassistant.const import CONF_TOKEN as CONF_TOKEN, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import device_registry as dr
 

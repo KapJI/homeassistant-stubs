@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
-from .const import CONF_INVERT as CONF_INVERT, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_SYNC_STATE as CONF_SYNC_STATE, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity
+from .const import CONF_INVERT as CONF_INVERT, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity
 from .schema import SwitchSchema as SwitchSchema
 from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_PASSIVE as CONF_GA_PASSIVE, CONF_GA_STATE as CONF_GA_STATE, CONF_GA_SWITCH as CONF_GA_SWITCH, CONF_GA_WRITE as CONF_GA_WRITE
 from _typeshed import Incomplete

@@ -1,31 +1,39 @@
-from . import RingData as RingData
-from .const import DOMAIN as DOMAIN
+from . import RingConfigEntry as RingConfigEntry
 from .coordinator import RingDataCoordinator as RingDataCoordinator
-from .entity import RingEntity as RingEntity, exception_wrap as exception_wrap
+from .entity import DeprecatedInfo as DeprecatedInfo, RingDeviceT as RingDeviceT, RingEntity as RingEntity, RingEntityDescription as RingEntityDescription, async_check_create_deprecated as async_check_create_deprecated, refresh_after as refresh_after
 from _typeshed import Incomplete
-from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from collections.abc import Callable as Callable, Coroutine, Sequence
+from dataclasses import dataclass
+from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from ring_doorbell import RingStickUpCam
-from typing import Any
+from typing import Any, Generic, Self
 
 _LOGGER: Incomplete
-SKIP_UPDATES_DELAY: Incomplete
+IN_HOME_CHIME_IS_PRESENT: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@dataclass(frozen=True, kw_only=True)
+class RingSwitchEntityDescription(SwitchEntityDescription, RingEntityDescription, Generic[RingDeviceT]):
+    exists_fn: Callable[[RingDeviceT], bool]
+    unique_id_fn: Callable[[Self, RingDeviceT], str] = ...
+    is_on_fn: Callable[[RingDeviceT], bool]
+    turn_on_fn: Callable[[RingDeviceT], Coroutine[Any, Any, None]]
+    turn_off_fn: Callable[[RingDeviceT], Coroutine[Any, Any, None]]
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=..., exists_fn, unique_id_fn=..., is_on_fn, turn_on_fn, turn_off_fn) -> None: ...
 
-class BaseRingSwitch(RingEntity[RingStickUpCam], SwitchEntity):
-    _device_type: Incomplete
-    _attr_unique_id: Incomplete
-    def __init__(self, device: RingStickUpCam, coordinator: RingDataCoordinator, device_type: str) -> None: ...
+SWITCHES: Sequence[RingSwitchEntityDescription[Any]]
 
-class SirenSwitch(BaseRingSwitch):
-    _attr_translation_key: str
+async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+
+class RingSwitch(RingEntity[RingDeviceT], SwitchEntity):
+    entity_description: RingSwitchEntityDescription[RingDeviceT]
     _no_updates_until: Incomplete
+    _attr_unique_id: Incomplete
     _attr_is_on: Incomplete
-    def __init__(self, device: RingStickUpCam, coordinator: RingDataCoordinator) -> None: ...
+    def __init__(self, device: RingDeviceT, coordinator: RingDataCoordinator, description: RingSwitchEntityDescription[RingDeviceT]) -> None: ...
+    _device: Incomplete
     def _handle_coordinator_update(self) -> None: ...
-    async def _async_set_switch(self, new_state: int) -> None: ...
+    async def _async_set_switch(self, switch_on: bool) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

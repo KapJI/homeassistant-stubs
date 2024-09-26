@@ -1,12 +1,10 @@
-from . import RingData as RingData
-from .const import DOMAIN as DOMAIN
+from . import RingConfigEntry as RingConfigEntry
 from .coordinator import RingDataCoordinator as RingDataCoordinator
 from .entity import RingEntity as RingEntity, exception_wrap as exception_wrap
 from _typeshed import Incomplete
 from aiohttp import web as web
 from homeassistant.components import ffmpeg as ffmpeg
 from homeassistant.components.camera import Camera as Camera
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -17,7 +15,7 @@ FORCE_REFRESH_INTERVAL: Incomplete
 MOTION_DETECTION_CAPABILITY: str
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RingCam(RingEntity[RingDoorBell], Camera):
     _attr_name: Incomplete

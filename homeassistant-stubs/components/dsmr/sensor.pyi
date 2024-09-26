@@ -1,5 +1,5 @@
 from . import DsmrConfigEntry as DsmrConfigEntry
-from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DEFAULT_PRECISION as DEFAULT_PRECISION, DEFAULT_RECONNECT_INTERVAL as DEFAULT_RECONNECT_INTERVAL, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DEVICE_NAME_ELECTRICITY as DEVICE_NAME_ELECTRICITY, DEVICE_NAME_GAS as DEVICE_NAME_GAS, DEVICE_NAME_WATER as DEVICE_NAME_WATER, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, LOGGER as LOGGER
+from .const import CONF_DSMR_VERSION as CONF_DSMR_VERSION, CONF_SERIAL_ID as CONF_SERIAL_ID, CONF_SERIAL_ID_GAS as CONF_SERIAL_ID_GAS, CONF_TIME_BETWEEN_UPDATE as CONF_TIME_BETWEEN_UPDATE, DEFAULT_PRECISION as DEFAULT_PRECISION, DEFAULT_RECONNECT_INTERVAL as DEFAULT_RECONNECT_INTERVAL, DEFAULT_TIME_BETWEEN_UPDATE as DEFAULT_TIME_BETWEEN_UPDATE, DEVICE_NAME_ELECTRICITY as DEVICE_NAME_ELECTRICITY, DEVICE_NAME_GAS as DEVICE_NAME_GAS, DEVICE_NAME_HEAT as DEVICE_NAME_HEAT, DEVICE_NAME_WATER as DEVICE_NAME_WATER, DOMAIN as DOMAIN, DSMR_PROTOCOL as DSMR_PROTOCOL, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator
 from dataclasses import dataclass
@@ -23,11 +23,13 @@ class DSMRSensorEntityDescription(SensorEntityDescription):
     dsmr_versions: set[str] | None = ...
     is_gas: bool = ...
     is_water: bool = ...
+    is_heat: bool = ...
     obis_reference: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., dsmr_versions=..., is_gas=..., is_water=..., obis_reference) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., dsmr_versions=..., is_gas=..., is_water=..., is_heat=..., obis_reference) -> None: ...
 
 class MbusDeviceType(IntEnum):
     GAS = 3
+    HEAT = 4
     WATER = 7
 
 SENSORS: tuple[DSMRSensorEntityDescription, ...]

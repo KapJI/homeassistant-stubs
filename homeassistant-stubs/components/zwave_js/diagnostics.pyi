@@ -1,8 +1,7 @@
 from .const import DATA_CLIENT as DATA_CLIENT, USER_AGENT as USER_AGENT
 from .helpers import ZwaveValueMatcher as ZwaveValueMatcher, get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry, get_state_key_from_unique_id as get_state_key_from_unique_id, get_value_id_from_unique_id as get_value_id_from_unique_id, value_matches_matcher as value_matches_matcher
 from _typeshed import Incomplete
-from homeassistant.components.diagnostics import REDACTED as REDACTED
-from homeassistant.components.diagnostics.util import async_redact_data as async_redact_data
+from homeassistant.components.diagnostics import REDACTED as REDACTED, async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant

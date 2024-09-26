@@ -1,5 +1,6 @@
-from . import LeafDataStore as LeafDataStore, LeafEntity as LeafEntity
+from . import LeafDataStore as LeafDataStore
 from .const import DATA_CHARGING as DATA_CHARGING, DATA_LEAF as DATA_LEAF, DATA_PLUGGED_IN as DATA_PLUGGED_IN
+from .entity import LeafEntity as LeafEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant

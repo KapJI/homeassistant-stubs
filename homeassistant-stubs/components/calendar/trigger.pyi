@@ -1,5 +1,6 @@
 import datetime
-from . import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent, DOMAIN as DOMAIN
+from . import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Coroutine
 from dataclasses import dataclass

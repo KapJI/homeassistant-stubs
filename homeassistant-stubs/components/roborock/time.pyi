@@ -1,7 +1,7 @@
 import datetime
-from . import RoborockConfigEntry as RoborockConfigEntry
+from . import DOMAIN as DOMAIN, RoborockConfigEntry as RoborockConfigEntry
 from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
-from .device import RoborockEntityV1 as RoborockEntityV1
+from .entity import RoborockEntityV1 as RoborockEntityV1
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -9,6 +9,7 @@ from datetime import time
 from homeassistant.components.time import TimeEntity as TimeEntity, TimeEntityDescription as TimeEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from roborock.command_cache import CacheableAttribute
 from roborock.version_1_apis.roborock_client_v1 import AttributeCache as AttributeCache

@@ -1,6 +1,6 @@
 from . import KNXModule as KNXModule
-from .const import DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS
-from .knx_entity import KnxYamlEntity as KnxYamlEntity
+from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxYamlEntity as KnxYamlEntity
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.notify import BaseNotificationService as BaseNotificationService, NotifyEntity as NotifyEntity, migrate_notify_issue as migrate_notify_issue

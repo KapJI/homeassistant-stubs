@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from arris_tg2492lg import ConnectBox, Device as Device
-from homeassistant.components.device_tracker import DOMAIN as DOMAIN, DeviceScanner as DeviceScanner
+from homeassistant.components.device_tracker import DeviceScanner as DeviceScanner
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

@@ -10,9 +10,11 @@ from homeassistant.helpers.deprecation import DeprecatedConstantEnum as Deprecat
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 
+DATA_COMPONENT: HassKey[EntityComponent[WaterHeaterEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

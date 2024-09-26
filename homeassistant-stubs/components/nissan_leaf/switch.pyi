@@ -1,5 +1,6 @@
-from . import LeafDataStore as LeafDataStore, LeafEntity as LeafEntity
+from . import LeafDataStore as LeafDataStore
 from .const import DATA_CLIMATE as DATA_CLIMATE, DATA_LEAF as DATA_LEAF
+from .entity import LeafEntity as LeafEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant

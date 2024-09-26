@@ -1,5 +1,6 @@
-from . import AppleTVEntity as AppleTVEntity, AppleTVManager as AppleTVManager, AppleTvConfigEntry as AppleTvConfigEntry
+from . import AppleTVManager as AppleTVManager, AppleTvConfigEntry as AppleTvConfigEntry
 from .browse_media import build_app_list as build_app_list
+from .entity import AppleTVEntity as AppleTVEntity
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components import media_source as media_source

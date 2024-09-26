@@ -1,6 +1,11 @@
+from . import CalendarEntity as CalendarEntity
 from _typeshed import Incomplete
 from enum import IntFlag
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 
+DOMAIN: str
+DATA_COMPONENT: HassKey[EntityComponent[CalendarEntity]]
 CONF_EVENT: str
 
 class CalendarEntityFeature(IntFlag):

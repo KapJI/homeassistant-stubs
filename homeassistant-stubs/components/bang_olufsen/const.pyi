@@ -36,6 +36,7 @@ class BangOlufsenModel(StrEnum):
     BEOSOUND_THEATRE = 'Beosound Theatre'
 
 class WebsocketNotification(StrEnum):
+    ACTIVE_LISTENING_MODE = 'active_listening_mode'
     PLAYBACK_ERROR = 'playback_error'
     PLAYBACK_METADATA = 'playback_metadata'
     PLAYBACK_PROGRESS = 'playback_progress'
@@ -44,6 +45,11 @@ class WebsocketNotification(StrEnum):
     SOFTWARE_UPDATE_STATE = 'software_update_state'
     SOURCE_CHANGE = 'source_change'
     VOLUME = 'volume'
+    BEOLINK = 'beolink'
+    BEOLINK_PEERS = 'beolinkPeers'
+    BEOLINK_LISTENERS = 'beolinkListeners'
+    BEOLINK_AVAILABLE_LISTENERS = 'beolinkAvailableListeners'
+    CONFIGURATION = 'configuration'
     NOTIFICATION = 'notification'
     REMOTE_MENU_CHANGED = 'remoteMenuChanged'
     ALL = 'all'

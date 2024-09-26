@@ -1,5 +1,5 @@
-from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
+from .entity import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .model import FritzEntityDescriptionMixinBase as FritzEntityDescriptionMixinBase
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

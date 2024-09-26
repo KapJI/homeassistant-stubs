@@ -1,7 +1,7 @@
 from . import AsusWrtConfigEntry as AsusWrtConfigEntry
 from .router import AsusWrtDevInfo as AsusWrtDevInfo, AsusWrtRouter as AsusWrtRouter
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, SourceType as SourceType
+from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -21,8 +21,6 @@ class AsusWrtDevice(ScannerEntity):
     def __init__(self, router: AsusWrtRouter, device: AsusWrtDevInfo) -> None: ...
     @property
     def is_connected(self) -> bool: ...
-    @property
-    def source_type(self) -> SourceType: ...
     @property
     def hostname(self) -> str | None: ...
     @property

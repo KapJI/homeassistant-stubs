@@ -1,7 +1,7 @@
 from . import BraviaTVCoordinator as BraviaTVCoordinator
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class BraviaTVEntity(CoordinatorEntity[BraviaTVCoordinator]):

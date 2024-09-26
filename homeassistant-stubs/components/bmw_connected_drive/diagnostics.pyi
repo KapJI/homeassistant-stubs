@@ -2,7 +2,7 @@ from . import BMWConfigEntry as BMWConfigEntry
 from .const import CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
-from homeassistant.components.diagnostics.util import async_redact_data as async_redact_data
+from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry

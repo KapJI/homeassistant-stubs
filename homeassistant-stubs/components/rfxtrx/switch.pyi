@@ -1,6 +1,7 @@
 import RFXtrx as rfxtrxmod
-from . import DOMAIN as DOMAIN, DeviceTuple as DeviceTuple, RfxtrxCommandEntity as RfxtrxCommandEntity, async_setup_platform_entry as async_setup_platform_entry, get_pt2262_cmd as get_pt2262_cmd
-from .const import COMMAND_OFF_LIST as COMMAND_OFF_LIST, COMMAND_ON_LIST as COMMAND_ON_LIST, CONF_DATA_BITS as CONF_DATA_BITS, DEVICE_PACKET_TYPE_LIGHTING4 as DEVICE_PACKET_TYPE_LIGHTING4
+from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_setup_platform_entry, get_pt2262_cmd as get_pt2262_cmd
+from .const import COMMAND_OFF_LIST as COMMAND_OFF_LIST, COMMAND_ON_LIST as COMMAND_ON_LIST, CONF_DATA_BITS as CONF_DATA_BITS, DEVICE_PACKET_TYPE_LIGHTING4 as DEVICE_PACKET_TYPE_LIGHTING4, DOMAIN as DOMAIN
+from .entity import RfxtrxCommandEntity as RfxtrxCommandEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

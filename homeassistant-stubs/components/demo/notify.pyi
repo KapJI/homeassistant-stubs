@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.components.notify import DOMAIN as DOMAIN, NotifyEntity as NotifyEntity, NotifyEntityFeature as NotifyEntityFeature
+from homeassistant.components.notify import NotifyEntity as NotifyEntity, NotifyEntityFeature as NotifyEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo

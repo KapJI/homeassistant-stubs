@@ -1,6 +1,6 @@
-from . import OpenUvEntity as OpenUvEntity
 from .const import DATA_PROTECTION_WINDOW as DATA_PROTECTION_WINDOW, DOMAIN as DOMAIN, LOGGER as LOGGER, TYPE_PROTECTION_WINDOW as TYPE_PROTECTION_WINDOW
 from .coordinator import OpenUvCoordinator as OpenUvCoordinator
+from .entity import OpenUvEntity as OpenUvEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

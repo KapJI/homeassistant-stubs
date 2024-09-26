@@ -2,7 +2,7 @@ from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, CONF_QOS as CONF_QOS, CONF_TOPIC as CONF_TOPIC
 from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload
-from .mixins import MqttDiscoveryDeviceUpdateMixin as MqttDiscoveryDeviceUpdateMixin, async_handle_schema_error as async_handle_schema_error, async_setup_non_entity_entry_helper as async_setup_non_entity_entry_helper, send_discovery_done as send_discovery_done, update_device as update_device
+from .entity import MqttDiscoveryDeviceUpdateMixin as MqttDiscoveryDeviceUpdateMixin, async_handle_schema_error as async_handle_schema_error, async_setup_non_entity_entry_helper as async_setup_non_entity_entry_helper, send_discovery_done as send_discovery_done, update_device as update_device
 from .models import DATA_MQTT as DATA_MQTT, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_DEVICE_INFO_SCHEMA as MQTT_ENTITY_DEVICE_INFO_SCHEMA
 from .subscription import EntitySubscription as EntitySubscription

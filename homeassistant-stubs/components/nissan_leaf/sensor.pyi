@@ -1,5 +1,6 @@
-from . import LeafDataStore as LeafDataStore, LeafEntity as LeafEntity
+from . import LeafDataStore as LeafDataStore
 from .const import DATA_BATTERY as DATA_BATTERY, DATA_CHARGING as DATA_CHARGING, DATA_LEAF as DATA_LEAF, DATA_RANGE_AC as DATA_RANGE_AC, DATA_RANGE_AC_OFF as DATA_RANGE_AC_OFF
+from .entity import LeafEntity as LeafEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOfLength

@@ -1,5 +1,6 @@
-from . import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, ElkM1ConfigEntry as ElkM1ConfigEntry, create_elk_entities as create_elk_entities
+from . import ElkM1ConfigEntry as ElkM1ConfigEntry
 from .const import ATTR_VALUE as ATTR_VALUE, ELK_USER_CODE_SERVICE_SCHEMA as ELK_USER_CODE_SERVICE_SCHEMA
+from .entity import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEntity, create_elk_entities as create_elk_entities
 from _typeshed import Incomplete
 from elkm1_lib.counters import Counter as Counter
 from elkm1_lib.elements import Element as Element

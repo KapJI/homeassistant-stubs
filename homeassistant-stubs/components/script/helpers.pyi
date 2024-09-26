@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
-from homeassistant.components.blueprint import DomainBlueprints as DomainBlueprints
+from homeassistant.components.blueprint import BLUEPRINT_SCHEMA as BLUEPRINT_SCHEMA, DomainBlueprints as DomainBlueprints
 from homeassistant.const import SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.singleton import singleton as singleton

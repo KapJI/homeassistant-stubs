@@ -6,8 +6,7 @@ from _typeshed import Incomplete
 from collections import OrderedDict
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
-from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo, is_hassio as is_hassio
-from homeassistant.components.hassio.addon_manager import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
+from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, HassioServiceInfo as HassioServiceInfo, is_hassio as is_hassio
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_DISCOVERY as CONF_DISCOVERY, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PAYLOAD as CONF_PAYLOAD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback

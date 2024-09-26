@@ -23,9 +23,10 @@ class SwitcherCoverEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], Cove
     _attr_name: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
+    _cover_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
+    def __init__(self, coordinator: SwitcherDataUpdateCoordinator, cover_id: int | None = None) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_cover_position: Incomplete
     _attr_is_closed: Incomplete

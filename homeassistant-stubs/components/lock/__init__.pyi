@@ -1,19 +1,21 @@
 import re
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, LockState as LockState
 from _typeshed import Incomplete
 from enum import IntFlag
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_JAMMED as STATE_JAMMED, STATE_LOCKED as STATE_LOCKED, STATE_LOCKING as STATE_LOCKING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNLOCKED as STATE_UNLOCKED, STATE_UNLOCKING as STATE_UNLOCKING
+from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, _DEPRECATED_STATE_JAMMED as _DEPRECATED_STATE_JAMMED, _DEPRECATED_STATE_LOCKED as _DEPRECATED_STATE_LOCKED, _DEPRECATED_STATE_LOCKING as _DEPRECATED_STATE_LOCKING, _DEPRECATED_STATE_UNLOCKED as _DEPRECATED_STATE_UNLOCKED, _DEPRECATED_STATE_UNLOCKING as _DEPRECATED_STATE_UNLOCKING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
+DATA_COMPONENT: HassKey[EntityComponent[LockEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

@@ -1,4 +1,5 @@
-from . import DATA_UPCLOUD as DATA_UPCLOUD, UpCloudServerEntity as UpCloudServerEntity
+from .const import DATA_UPCLOUD as DATA_UPCLOUD
+from .entity import UpCloudServerEntity as UpCloudServerEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

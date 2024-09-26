@@ -1,5 +1,5 @@
-from . import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
+from .entity import FritzBoxDeviceEntity as FritzBoxDeviceEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

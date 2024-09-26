@@ -3,6 +3,7 @@ from typing import Final
 
 DOMAIN: Final[str]
 LOGGER: Incomplete
+CONF_DATA: Final[str]
 CONF_FRIDAY: Final[str]
 CONF_FROM: Final[str]
 CONF_MONDAY: Final[str]

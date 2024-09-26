@@ -1,5 +1,5 @@
-from .. import ios as ios
-from .const import DOMAIN as DOMAIN
+from . import devices as devices
+from .const import ATTR_BATTERY as ATTR_BATTERY, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_BATTERY_STATE as ATTR_BATTERY_STATE, ATTR_BATTERY_STATE_FULL as ATTR_BATTERY_STATE_FULL, ATTR_BATTERY_STATE_UNKNOWN as ATTR_BATTERY_STATE_UNKNOWN, ATTR_BATTERY_STATE_UNPLUGGED as ATTR_BATTERY_STATE_UNPLUGGED, ATTR_DEVICE as ATTR_DEVICE, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_DEVICE_NAME as ATTR_DEVICE_NAME, ATTR_DEVICE_PERMANENT_ID as ATTR_DEVICE_PERMANENT_ID, ATTR_DEVICE_SYSTEM_VERSION as ATTR_DEVICE_SYSTEM_VERSION, ATTR_DEVICE_TYPE as ATTR_DEVICE_TYPE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

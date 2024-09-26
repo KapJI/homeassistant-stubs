@@ -1,6 +1,6 @@
-from .. import mysensors as mysensors
+from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, SensorType as SensorType
-from .device import MySensorsChildEntity as MySensorsChildEntity
+from .entity import MySensorsChildEntity as MySensorsChildEntity
 from .helpers import on_unload as on_unload
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
@@ -14,7 +14,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class MySensorsLight(mysensors.device.MySensorsChildEntity, LightEntity):
+class MySensorsLight(MySensorsChildEntity, LightEntity):
     _state: Incomplete
     def __init__(self, *args: Any) -> None: ...
     @property

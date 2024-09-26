@@ -1,4 +1,5 @@
-from .const import CONF_DIM_MODE as CONF_DIM_MODE, CONF_SK_NUM_TRIES as CONF_SK_NUM_TRIES, DIM_MODES as DIM_MODES, DOMAIN as DOMAIN
+from . import PchkConnectionManager as PchkConnectionManager
+from .const import CONF_ACKNOWLEDGE as CONF_ACKNOWLEDGE, CONF_DIM_MODE as CONF_DIM_MODE, CONF_SK_NUM_TRIES as CONF_SK_NUM_TRIES, DIM_MODES as DIM_MODES, DOMAIN as DOMAIN
 from .helpers import purge_device_registry as purge_device_registry, purge_entity_registry as purge_entity_registry
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -20,6 +21,7 @@ async def validate_connection(data: ConfigType) -> str | None: ...
 
 class LcnFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> config_entries.ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> config_entries.ConfigFlowResult: ...

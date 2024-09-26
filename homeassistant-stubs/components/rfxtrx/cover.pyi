@@ -1,6 +1,7 @@
 import RFXtrx as rfxtrxmod
-from . import DeviceTuple as DeviceTuple, RfxtrxCommandEntity as RfxtrxCommandEntity, async_setup_platform_entry as async_setup_platform_entry
+from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_setup_platform_entry
 from .const import COMMAND_OFF_LIST as COMMAND_OFF_LIST, COMMAND_ON_LIST as COMMAND_ON_LIST, CONF_VENETIAN_BLIND_MODE as CONF_VENETIAN_BLIND_MODE, CONST_VENETIAN_BLIND_MODE_EU as CONST_VENETIAN_BLIND_MODE_EU, CONST_VENETIAN_BLIND_MODE_US as CONST_VENETIAN_BLIND_MODE_US
+from .entity import RfxtrxCommandEntity as RfxtrxCommandEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

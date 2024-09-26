@@ -1,10 +1,10 @@
 from . import KNXModule as KNXModule
-from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, DATA_KNX_CONFIG as DATA_KNX_CONFIG, DOMAIN as DOMAIN
-from .knx_entity import KnxYamlEntity as KnxYamlEntity
+from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxYamlEntity as KnxYamlEntity
 from .schema import ClimateSchema as ClimateSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
-from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
+from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -27,6 +27,9 @@ class KNXClimate(KnxYamlEntity, ClimateEntity):
     _attr_entity_category: Incomplete
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
+    _fan_modes_percentages: Incomplete
+    fan_zero_mode: Incomplete
+    _attr_fan_modes: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_unique_id: Incomplete
     default_hvac_mode: Incomplete
@@ -53,6 +56,9 @@ class KNXClimate(KnxYamlEntity, ClimateEntity):
     @property
     def preset_mode(self) -> str | None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @property
+    def fan_mode(self) -> str: ...
+    async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     async def async_added_to_hass(self) -> None: ...

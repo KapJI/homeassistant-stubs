@@ -1,5 +1,5 @@
 from .const import ATTR_DURATION as ATTR_DURATION, ATTR_ROTATION as ATTR_ROTATION, CONF_ANGLE as CONF_ANGLE, CONF_GESTURE as CONF_GESTURE, LOGGER as LOGGER
-from .deconz_device import DeconzBase as DeconzBase
+from .entity import DeconzBase as DeconzBase
 from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_EVENT as CONF_EVENT, CONF_ID as CONF_ID, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_XY as CONF_XY

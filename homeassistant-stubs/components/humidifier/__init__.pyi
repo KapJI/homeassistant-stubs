@@ -1,18 +1,21 @@
-from .const import ATTR_ACTION as ATTR_ACTION, ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MAX_HUMIDITY as ATTR_MAX_HUMIDITY, ATTR_MIN_HUMIDITY as ATTR_MIN_HUMIDITY, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_AWAY as MODE_AWAY, MODE_NORMAL as MODE_NORMAL, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE, _DEPRECATED_DEVICE_CLASS_DEHUMIDIFIER as _DEPRECATED_DEVICE_CLASS_DEHUMIDIFIER, _DEPRECATED_DEVICE_CLASS_HUMIDIFIER as _DEPRECATED_DEVICE_CLASS_HUMIDIFIER, _DEPRECATED_SUPPORT_MODES as _DEPRECATED_SUPPORT_MODES
+from .const import ATTR_ACTION as ATTR_ACTION, ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MAX_HUMIDITY as ATTR_MAX_HUMIDITY, ATTR_MIN_HUMIDITY as ATTR_MIN_HUMIDITY, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_AWAY as MODE_AWAY, MODE_BABY as MODE_BABY, MODE_BOOST as MODE_BOOST, MODE_COMFORT as MODE_COMFORT, MODE_ECO as MODE_ECO, MODE_HOME as MODE_HOME, MODE_NORMAL as MODE_NORMAL, MODE_SLEEP as MODE_SLEEP, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE, _DEPRECATED_DEVICE_CLASS_DEHUMIDIFIER as _DEPRECATED_DEVICE_CLASS_DEHUMIDIFIER, _DEPRECATED_DEVICE_CLASS_HUMIDIFIER as _DEPRECATED_DEVICE_CLASS_HUMIDIFIER, _DEPRECATED_SUPPORT_MODES as _DEPRECATED_SUPPORT_MODES
 from _typeshed import Incomplete
 from enum import StrEnum
 from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.deprecation import all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
+DATA_COMPONENT: HassKey[EntityComponent[HumidifierEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
@@ -76,6 +79,8 @@ class HumidifierEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_AT
     def supported_features(self) -> HumidifierEntityFeature: ...
     @property
     def supported_features_compat(self) -> HumidifierEntityFeature: ...
+
+async def async_service_humidity_set(entity: HumidifierEntity, service_call: ServiceCall) -> None: ...
 
 __getattr__: Incomplete
 __dir__: Incomplete

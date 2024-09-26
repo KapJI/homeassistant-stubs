@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN, ValveState as ValveState
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from enum import IntFlag, StrEnum
@@ -7,10 +8,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
-DOMAIN: str
+DATA_COMPONENT: HassKey[EntityComponent[ValveEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

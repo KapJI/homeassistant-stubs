@@ -2,7 +2,7 @@ import logging
 import pathlib
 from .const import BLUEPRINT_FOLDER as BLUEPRINT_FOLDER, CONF_BLUEPRINT as CONF_BLUEPRINT, CONF_HOMEASSISTANT as CONF_HOMEASSISTANT, CONF_INPUT as CONF_INPUT, CONF_MIN_VERSION as CONF_MIN_VERSION, CONF_SOURCE_URL as CONF_SOURCE_URL, CONF_USE_BLUEPRINT as CONF_USE_BLUEPRINT, DOMAIN as DOMAIN
 from .errors import BlueprintException as BlueprintException, BlueprintInUse as BlueprintInUse, FailedToLoad as FailedToLoad, FileAlreadyExists as FileAlreadyExists, InvalidBlueprint as InvalidBlueprint, InvalidBlueprintInputs as InvalidBlueprintInputs, MissingInput as MissingInput
-from .schemas import BLUEPRINT_INSTANCE_FIELDS as BLUEPRINT_INSTANCE_FIELDS, BLUEPRINT_SCHEMA as BLUEPRINT_SCHEMA
+from .schemas import BLUEPRINT_INSTANCE_FIELDS as BLUEPRINT_INSTANCE_FIELDS
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import loader as loader
@@ -14,7 +14,7 @@ from typing import Any
 
 class Blueprint:
     domain: Incomplete
-    def __init__(self, data: dict[str, Any], *, path: str | None = None, expected_domain: str | None = None) -> None: ...
+    def __init__(self, data: dict[str, Any], *, path: str | None = None, expected_domain: str | None = None, schema: Callable[[Any], Any]) -> None: ...
     @property
     def name(self) -> str: ...
     @property
@@ -44,7 +44,8 @@ class DomainBlueprints:
     _reload_blueprint_consumers: Incomplete
     _blueprints: Incomplete
     _load_lock: Incomplete
-    def __init__(self, hass: HomeAssistant, domain: str, logger: logging.Logger, blueprint_in_use: Callable[[HomeAssistant, str], bool], reload_blueprint_consumers: Callable[[HomeAssistant, str], Awaitable[None]]) -> None: ...
+    _blueprint_schema: Incomplete
+    def __init__(self, hass: HomeAssistant, domain: str, logger: logging.Logger, blueprint_in_use: Callable[[HomeAssistant, str], bool], reload_blueprint_consumers: Callable[[HomeAssistant, str], Awaitable[None]], blueprint_schema: Callable[[Any], Any]) -> None: ...
     @property
     def blueprint_folder(self) -> pathlib.Path: ...
     async def async_reset_cache(self) -> None: ...

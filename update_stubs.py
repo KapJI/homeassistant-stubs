@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
 from pathlib import Path
 import platform
@@ -22,10 +23,16 @@ if TYPE_CHECKING:
     from github.Repository import Repository
 
 FIRST_SUPPORTED_VERSION = AwesomeVersion("2021.4.0b3")
+LOGGER = logging.getLogger(__name__)
 
 
 def main() -> int:
     """Run main function."""
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(levelname)s %(asctime)s: %(message)s",
+        datefmt="%H:%M:%S",
+    )
     parser = argparse.ArgumentParser(description="Generate typing stubs.")
     parser.add_argument(
         "--dry-run",
@@ -52,7 +59,7 @@ def main() -> int:
         if version not in current_versions and version in available_pypi_versions
     ]
     for version in missing_versions:
-        print(f"Missing version: {version}")
+        LOGGER.info("Missing version: %s", version)
 
     # Create new packages
     for i, version in enumerate(missing_versions):
@@ -77,7 +84,7 @@ def get_pypi_versions() -> list[str]:
 
 def get_available_versions(git_root: Path) -> list[str]:
     """Get list of available versions from git tags."""
-    print(f"Getting list of available versions in {git_root}...")
+    LOGGER.info("Getting list of available versions in %s...", git_root)
     subprocess.run(["git", "fetch", "origin"], cwd=git_root, check=True)
     result = subprocess.run(
         ["git", "tag"],
@@ -96,7 +103,7 @@ def get_available_versions(git_root: Path) -> list[str]:
         ]
     )
     for version in versions[-10:]:
-        print(f"Available version: {version.string}")
+        LOGGER.info("Available version: %s", version.string)
     return [version.string for version in versions]
 
 
@@ -116,7 +123,7 @@ def create_package(
     dry_run: bool,
 ) -> None:
     """Create package for given version and upload it to PyPI."""
-    print(f"Creating package for {version}...")
+    LOGGER.info("Creating package for %s...", version)
     if not update_dependency(repo_root, version):
         if latest:
             return
@@ -141,8 +148,8 @@ def update_dependency(repo_root: Path, version: str) -> bool:
         subprocess.run(
             ["uv", "add", f"homeassistant=={version}"], cwd=repo_root, check=True
         )
-    except subprocess.CalledProcessError as ex:
-        print(f"Failed to add dependency: {ex}")
+    except subprocess.CalledProcessError:
+        LOGGER.exception("Failed to add dependency")
         return False
     return True
 
@@ -154,14 +161,14 @@ def checkout_version(homeassistant_root: Path, version: str) -> None:
 
 def build_package(repo_root: Path, version: str) -> None:
     """Build new package with uv."""
-    print("Building package...")
+    LOGGER.info("Building package...")
     subprocess.run(["git", "tag", version], cwd=repo_root, check=True)
     subprocess.run(["uv", "build"], cwd=repo_root, check=True)
 
 
 def create_commit(repo_root: Path, version: str) -> None:
     """Create local commit."""
-    print(f"Creating commit for {version}...")
+    LOGGER.info("Creating commit for %s...", version)
     subprocess.run(
         [
             "git",
@@ -181,21 +188,21 @@ def create_commit(repo_root: Path, version: str) -> None:
 
 def push_commit(repo_root: Path, gh_admin_repo: Repository) -> None:
     """Push commit to Github."""
-    print("Disabling branch protection...")
+    LOGGER.info("Disabling branch protection...")
     branch = gh_admin_repo.get_branch("main")
     required_checks = branch.get_required_status_checks()
     branch.edit_required_status_checks(required_checks.strict, [])
 
-    print("Pushing new commit...")
+    LOGGER.info("Pushing new commit...")
     subprocess.run(["git", "push"], cwd=repo_root, check=True)
 
-    print("Re-enabling branch protection...")
+    LOGGER.info("Re-enabling branch protection...")
     branch.edit_required_status_checks(required_checks.strict, required_checks.contexts)
 
 
 def create_github_release(version: str, gh_repo: Repository) -> None:
     """Create new release on Github."""
-    print("Creating release...")
+    LOGGER.info("Creating release...")
     gh_repo.create_git_release(
         tag=version,
         name=version,
@@ -207,7 +214,7 @@ def create_github_release(version: str, gh_repo: Repository) -> None:
 
 def publish_package(repo_root: Path) -> None:
     """Publish new package on PyPI."""
-    print("Publishing package...")
+    LOGGER.info("Publishing package...")
     subprocess.run(
         [
             "uvx",
@@ -227,9 +234,9 @@ def get_typed_paths(homeassistant_root: Path) -> list[Path]:
     """Get list of strictly typed paths from Home Assistant config."""
     strict_path = homeassistant_root / ".strict-typing"
     if strict_path.is_file():
-        print("Use modern typed paths")
+        LOGGER.info("Use modern typed paths")
         return get_modern_typed_paths(homeassistant_root, strict_path)
-    print("Use old style typed paths")
+    LOGGER.info("Use old style typed paths")
     return get_old_typed_paths(homeassistant_root)
 
 
@@ -302,7 +309,7 @@ def get_old_typed_paths(homeassistant_root: Path) -> list[Path]:
 
 def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
     """Use stubgen to generate typing stubs for all typed paths."""
-    print("Generating stubs...")
+    LOGGER.info("Generating stubs...")
     command_args: list[str] = [
         "uv",
         "run",
@@ -322,7 +329,7 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
 
 def stubs_fixup(stubs_folder: Path) -> None:
     """Fix invalid syntax in generated files."""
-    print("Fixing stubs...")
+    LOGGER.info("Fixing stubs...")
 
     # Run the 'find' command and capture the output
     find_command = ["find", str(stubs_folder), "-name", "*.pyi", "-print0"]

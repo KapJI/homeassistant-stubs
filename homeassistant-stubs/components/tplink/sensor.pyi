@@ -1,5 +1,6 @@
 from . import TPLinkConfigEntry as TPLinkConfigEntry
 from .const import UNIT_MAPPING as UNIT_MAPPING
+from .deprecate import async_cleanup_deprecated as async_cleanup_deprecated
 from .entity import CoordinatedTPLinkFeatureEntity as CoordinatedTPLinkFeatureEntity, TPLinkFeatureEntityDescription as TPLinkFeatureEntityDescription
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -9,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 
 @dataclass(frozen=True, kw_only=True)
 class TPLinkSensorEntityDescription(SensorEntityDescription, TPLinkFeatureEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=...) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=...) -> None: ...
 
 SENSOR_DESCRIPTIONS: tuple[TPLinkSensorEntityDescription, ...]
 SENSOR_DESCRIPTIONS_MAP: Incomplete

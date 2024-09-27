@@ -1,4 +1,5 @@
 from . import TPLinkConfigEntry as TPLinkConfigEntry
+from .deprecate import DeprecatedInfo as DeprecatedInfo, async_cleanup_deprecated as async_cleanup_deprecated
 from .entity import CoordinatedTPLinkFeatureEntity as CoordinatedTPLinkFeatureEntity, TPLinkFeatureEntityDescription as TPLinkFeatureEntityDescription
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -9,7 +10,7 @@ from typing import Final
 
 @dataclass(frozen=True, kw_only=True)
 class TPLinkButtonEntityDescription(ButtonEntityDescription, TPLinkFeatureEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=...) -> None: ...
 
 BUTTON_DESCRIPTIONS: Final[Incomplete]
 BUTTON_DESCRIPTIONS_MAP: Incomplete

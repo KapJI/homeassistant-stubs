@@ -11,7 +11,7 @@ _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class TPLinkSwitchEntityDescription(SwitchEntityDescription, TPLinkFeatureEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=...) -> None: ...
 
 SWITCH_DESCRIPTIONS: tuple[TPLinkSwitchEntityDescription, ...]
 SWITCH_DESCRIPTIONS_MAP: Incomplete

@@ -19,8 +19,8 @@ _CONVERSATION_TIMEOUT_SEC: Final[Incomplete]
 _LOGGER: Incomplete
 
 class AssistSatelliteState(StrEnum):
-    LISTENING_WAKE_WORD = 'listening_wake_word'
-    LISTENING_COMMAND = 'listening_command'
+    IDLE = 'idle'
+    LISTENING = 'listening'
     PROCESSING = 'processing'
     RESPONDING = 'responding'
 

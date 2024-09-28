@@ -3,13 +3,15 @@ from .const import CONF_CONFIGURE_VOICE as CONF_CONFIGURE_VOICE, CONF_MODEL as C
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
 from typing import Any
 
 USER_STEP_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
-async def get_voices_models(api_key: str) -> tuple[dict[str, str], dict[str, str]]: ...
+async def get_voices_models(hass: HomeAssistant, api_key: str) -> tuple[dict[str, str], dict[str, str]]: ...
 
 class ElevenLabsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

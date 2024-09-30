@@ -30,6 +30,7 @@ class MoldIndicator(SensorEntity):
     _attr_state_class: Incomplete
     _state: Incomplete
     _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _indoor_temp_sensor: Incomplete
     _indoor_humidity_sensor: Incomplete
     _outdoor_temp_sensor: Incomplete
@@ -43,7 +44,7 @@ class MoldIndicator(SensorEntity):
     _indoor_hum: Incomplete
     _crit_temp: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, hass: HomeAssistant, name: str, is_metric: bool, indoor_temp_sensor: str, outdoor_temp_sensor: str, indoor_humidity_sensor: str, calib_factor: float) -> None: ...
+    def __init__(self, hass: HomeAssistant, name: str, is_metric: bool, indoor_temp_sensor: str, outdoor_temp_sensor: str, indoor_humidity_sensor: str, calib_factor: float, unique_id: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _update_sensor(self, entity: str, old_state: State | None, new_state: State | None) -> bool: ...
     @staticmethod

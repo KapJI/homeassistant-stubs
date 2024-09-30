@@ -27,6 +27,7 @@ class LocalTodoListEntity(TodoListEntity):
     _attr_should_poll: bool
     _store: Incomplete
     _calendar: Incomplete
+    _calendar_lock: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, store: LocalTodoListStore, calendar: Calendar, name: str, unique_id: str) -> None: ...

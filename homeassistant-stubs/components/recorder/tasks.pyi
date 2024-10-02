@@ -33,17 +33,19 @@ class ChangeStatisticsUnitTask(RecorderTask):
 
 @dataclass(slots=True)
 class ClearStatisticsTask(RecorderTask):
+    on_done: Callable[[], None] | None
     statistic_ids: list[str]
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, statistic_ids) -> None: ...
+    def __init__(self, on_done, statistic_ids) -> None: ...
 
 @dataclass(slots=True)
 class UpdateStatisticsMetadataTask(RecorderTask):
+    on_done: Callable[[], None] | None
     statistic_id: str
     new_statistic_id: str | None | UndefinedType
     new_unit_of_measurement: str | None | UndefinedType
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, statistic_id, new_statistic_id, new_unit_of_measurement) -> None: ...
+    def __init__(self, on_done, statistic_id, new_statistic_id, new_unit_of_measurement) -> None: ...
 
 @dataclass(slots=True)
 class UpdateStatesMetadataTask(RecorderTask):

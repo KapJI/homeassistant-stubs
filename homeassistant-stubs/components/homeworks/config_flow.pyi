@@ -2,6 +2,7 @@ import voluptuous as vol
 from .const import CONF_ADDR as CONF_ADDR, CONF_BUTTONS as CONF_BUTTONS, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_DIMMERS as CONF_DIMMERS, CONF_INDEX as CONF_INDEX, CONF_KEYPADS as CONF_KEYPADS, CONF_LED as CONF_LED, CONF_NUMBER as CONF_NUMBER, CONF_RATE as CONF_RATE, CONF_RELEASE_DELAY as CONF_RELEASE_DELAY, DEFAULT_BUTTON_NAME as DEFAULT_BUTTON_NAME, DEFAULT_KEYPAD_NAME as DEFAULT_KEYPAD_NAME, DEFAULT_LIGHT_NAME as DEFAULT_LIGHT_NAME, DOMAIN as DOMAIN
 from .util import calculate_unique_id as calculate_unique_id
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import async_get_hass as async_get_hass, callback as callback
@@ -52,8 +53,10 @@ DATA_SCHEMA_EDIT_LIGHT: Incomplete
 OPTIONS_FLOW: Incomplete
 
 class HomeworksConfigFlowHandler(ConfigFlow, domain=DOMAIN):
+    _context_entry: ConfigEntry
     async def _validate_edit_controller(self, user_input: dict[str, Any]) -> dict[str, Any]: ...
-    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reconfigure(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
+    async def async_step_reconfigure_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .entity import TailwindDoorEntity as TailwindDoorEntity
 from .typing import TailwindConfigEntry as TailwindConfigEntry
 from _typeshed import Incomplete

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
 from _typeshed import Incomplete
@@ -14,7 +14,6 @@ from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import SetValueResult as SetValueResult, Value as ZwaveValue
 
-EVENT_VALUE_UPDATED: str
 EVENT_VALUE_REMOVED: str
 EVENT_DEAD: str
 EVENT_ALIVE: str

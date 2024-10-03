@@ -164,6 +164,7 @@ def build_package(repo_root: Path, version: str) -> None:
     LOGGER.info("Building package...")
     subprocess.run(["git", "tag", version], cwd=repo_root, check=True)
     subprocess.run(["uv", "build"], cwd=repo_root, check=True)
+    subprocess.run(["git", "-d", "tag", version], cwd=repo_root, check=True)
 
 
 def create_commit(repo_root: Path, version: str) -> None:

@@ -228,6 +228,8 @@ def publish_package(repo_root: Path) -> None:
         cwd=repo_root,
         check=True,
     )
+    LOGGER.info("Removing all files in dist...")
+    shutil.rmtree("dist")
 
 
 def get_typed_paths(homeassistant_root: Path) -> list[Path]:

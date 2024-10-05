@@ -1,4 +1,4 @@
-from .const import ACCOUNT_HASH as ACCOUNT_HASH, DOMAIN as DOMAIN
+from .const import ACCOUNT_HASH as ACCOUNT_HASH, DOMAIN as DOMAIN, UPDATE_INTERVAL as UPDATE_INTERVAL
 from .coordinator import RitualsDataUpdateCoordinator as RitualsDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

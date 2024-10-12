@@ -4,7 +4,7 @@ from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordina
 from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, async_refresh_after as async_refresh_after
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
-from homeassistant.const import PRECISION_WHOLE as PRECISION_WHOLE
+from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -20,7 +20,7 @@ class TPLinkClimateEntity(CoordinatedTPLinkEntity, ClimateEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _attr_hvac_modes: Incomplete
-    _attr_precision = PRECISION_WHOLE
+    _attr_precision = PRECISION_TENTHS
     _enable_turn_on_off_backwards_compatibility: bool
     _state_feature: Incomplete
     _mode_feature: Incomplete

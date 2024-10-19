@@ -62,13 +62,11 @@ def main() -> int:
         LOGGER.info("Missing version: %s", version)
 
     # Create new packages
-    for i, version in enumerate(missing_versions):
-        latest = i + 1 == len(missing_versions)
+    for version in missing_versions:
         create_package(
             version,
             repo_root,
             homeassistant_root,
-            latest,
             args.dry_run,
         )
     return 0
@@ -119,16 +117,11 @@ def create_package(
     version: str,
     repo_root: Path,
     homeassistant_root: Path,
-    latest: bool,
     dry_run: bool,
 ) -> None:
     """Create package for given version and upload it to PyPI."""
     LOGGER.info("Creating package for %s...", version)
-    if not update_dependency(repo_root, version):
-        if latest:
-            return
-        # At this point package should be published.
-        sys.exit(1)
+    update_dependency(repo_root, version)
     checkout_version(homeassistant_root, version)
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
@@ -142,16 +135,11 @@ def create_package(
         publish_package(repo_root)
 
 
-def update_dependency(repo_root: Path, version: str) -> bool:
+def update_dependency(repo_root: Path, version: str) -> None:
     """Update version of homeassistant dependency."""
-    try:
-        subprocess.run(
-            ["uv", "add", f"homeassistant=={version}"], cwd=repo_root, check=True
-        )
-    except subprocess.CalledProcessError:
-        LOGGER.exception("Failed to add dependency")
-        return False
-    return True
+    subprocess.run(
+        ["uv", "add", f"homeassistant=={version}"], cwd=repo_root, check=True
+    )
 
 
 def checkout_version(homeassistant_root: Path, version: str) -> None:

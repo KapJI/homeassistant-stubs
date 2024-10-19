@@ -7,7 +7,7 @@ runs:
       uses: astral-sh/setup-uv@v3
       with:
         enable-cache: true
-        version: "0.4.22"
+        version: "0.4.24"
 
     - name: Set up Python
       shell: bash

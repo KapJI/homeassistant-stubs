@@ -3,21 +3,11 @@ name: "Common steps to install and cache dependencies"
 runs:
   using: "composite"
   steps:
-    - name: Set up Rust
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        profile: minimal
-        override: true
-
-    # - name: Install uv
-    #   uses: astral-sh/setup-uv@v3
-    #   with:
-    #     enable-cache: true
-    #     version: "0.4.23"
     - name: Install uv
-      shell: bash
-      run: cargo install --git https://github.com/astral-sh/uv --rev 6a81d302bbc03bcb5bad4e6da44f4a0472f102b4 uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        enable-cache: true
+        version: "0.4.22"
 
     - name: Set up Python
       shell: bash

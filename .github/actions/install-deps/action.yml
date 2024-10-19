@@ -10,7 +10,9 @@ runs:
 
     - name: Set up Python
       shell: bash
-      run: uv python install
+      run: |
+        uv python install
+        echo "PYTHON_VERSION=$(uv run python -c 'import platform; print(platform.python_version())')" >> "$GITHUB_ENV"
 
     - name: Install dependencies with uv
       shell: bash

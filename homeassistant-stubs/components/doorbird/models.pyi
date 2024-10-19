@@ -3,8 +3,6 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from typing import Any
 
-DoorBirdConfigEntry = ConfigEntry[DoorBirdData]
-
 @dataclass
 class DoorBirdData:
     door_station: ConfiguredDoorBird

@@ -54,9 +54,7 @@ class _EventEntityRegistryUpdatedData_Update(TypedDict):
     entity_id: str
     changes: dict[str, Any]
     old_entity_id: NotRequired[str]
-EventEntityRegistryUpdatedData = _EventEntityRegistryUpdatedData_CreateRemove | _EventEntityRegistryUpdatedData_Update
-EntityOptionsType = Mapping[str, Mapping[str, Any]]
-ReadOnlyEntityOptionsType = ReadOnlyDict[str, ReadOnlyDict[str, Any]]
+
 DISPLAY_DICT_OPTIONAL: Incomplete
 
 def _protect_entity_options(data: EntityOptionsType | None) -> ReadOnlyEntityOptionsType: ...

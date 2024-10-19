@@ -11,11 +11,8 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.group import expand_entity_ids as expand_entity_ids
 from typing import Any
 from zwave_js_server.const import CommandClass
-from zwave_js_server.model.endpoint import Endpoint
-from zwave_js_server.model.node import Node as ZwaveNode
 
 _LOGGER: Incomplete
-_NodeOrEndpointType = ZwaveNode | Endpoint
 TARGET_VALIDATORS: Incomplete
 
 def parameter_name_does_not_need_bitmask(val: dict[str, int | str | list[str]]) -> dict[str, int | str | list[str]]: ...

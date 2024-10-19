@@ -11,7 +11,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
-OTBRConfigEntry = ConfigEntry[OTBRData]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: OTBRConfigEntry) -> bool: ...

@@ -11,7 +11,6 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.sun import get_astral_location as get_astral_location, get_location_astral_event_next as get_location_astral_event_next
 from typing import Any
 
-SunConfigEntry = ConfigEntry[Sun]
 _LOGGER: Incomplete
 ENTITY_ID: str
 STATE_ATTR_AZIMUTH: str

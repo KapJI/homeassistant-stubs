@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 
-LidarrConfigEntry = ConfigEntry[LidarrData]
 PLATFORMS: Incomplete
 
 @dataclass(kw_only=True, slots=True)

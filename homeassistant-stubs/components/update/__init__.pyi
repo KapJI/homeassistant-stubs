@@ -21,6 +21,7 @@ class UpdateEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: UpdateDeviceClass | None
     entity_category: EntityCategory | None
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 class UpdateEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCachedProperties):
     _entity_component_unrecorded_attributes: Incomplete

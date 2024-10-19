@@ -6,7 +6,6 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 PLATFORMS: Incomplete
-IPPConfigEntry = ConfigEntry[IPPDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: IPPConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

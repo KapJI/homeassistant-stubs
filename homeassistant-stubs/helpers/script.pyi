@@ -26,7 +26,6 @@ from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType, SignalTypeFormat as SignalTypeFormat
-from types import MappingProxyType
 from typing import Any, Literal, TypedDict, overload
 
 SCRIPT_MODE_PARALLEL: str
@@ -143,8 +142,6 @@ class _QueuedScriptRun(_ScriptRun):
 def _schedule_stop_scripts_after_shutdown(hass: HomeAssistant) -> None: ...
 async def _async_stop_scripts_after_shutdown(hass: HomeAssistant, point_in_time: datetime) -> None: ...
 async def _async_stop_scripts_at_shutdown(hass: HomeAssistant, event: Event) -> None: ...
-_VarsType = dict[str, Any] | Mapping[str, Any] | MappingProxyType[str, Any]
-
 def _referenced_extract_ids(data: Any, key: str, found: set[str]) -> None: ...
 
 class _ChooseData(TypedDict):

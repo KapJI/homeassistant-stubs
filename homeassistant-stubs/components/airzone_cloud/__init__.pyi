@@ -5,7 +5,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 
 PLATFORMS: list[Platform]
-AirzoneCloudConfigEntry = ConfigEntry[AirzoneUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry) -> bool: ...

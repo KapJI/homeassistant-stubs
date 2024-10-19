@@ -10,7 +10,6 @@ from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, TEMPLATE_SENSOR_BASE_SCHEMA as TEMPLATE_SENSOR_BASE_SCHEMA
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
-ScrapeConfigEntry = ConfigEntry[ScrapeCoordinator]
 SENSOR_SCHEMA: Incomplete
 COMBINED_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete

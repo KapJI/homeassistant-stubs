@@ -15,7 +15,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 _LOGGER: Incomplete
-DevoloHomeNetworkConfigEntry = ConfigEntry[DevoloHomeNetworkData]
 
 @dataclass
 class DevoloHomeNetworkData:

@@ -6,7 +6,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 
 PLATFORMS: list[Platform]
-FGLairConfigEntry = ConfigEntry[FGLairCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: FGLairConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: FGLairConfigEntry) -> bool: ...

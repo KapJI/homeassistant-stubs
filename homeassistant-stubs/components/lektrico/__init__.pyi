@@ -5,7 +5,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 
 CHARGERS_PLATFORMS: list[Platform]
 LB_DEVICES_PLATFORMS: list[Platform]
-LektricoConfigEntry = ConfigEntry[LektricoDeviceDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

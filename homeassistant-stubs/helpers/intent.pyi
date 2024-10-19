@@ -5,7 +5,7 @@ from . import area_registry as area_registry, device_registry as device_registry
 from .typing import VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from abc import abstractmethod
-from collections.abc import Callable, Collection, Iterable
+from collections.abc import Collection, Iterable
 from dataclasses import dataclass
 from enum import Enum, StrEnum
 from functools import cached_property as cached_property
@@ -18,8 +18,6 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
-_SlotsType = dict[str, Any]
-_IntentSlotsType = dict[str | tuple[str, str], VolSchemaType | Callable[[Any], Any]]
 INTENT_TURN_OFF: str
 INTENT_TURN_ON: str
 INTENT_TOGGLE: str

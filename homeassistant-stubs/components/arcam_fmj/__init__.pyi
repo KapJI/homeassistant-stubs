@@ -6,7 +6,6 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 
-ArcamFmjConfigEntry = ConfigEntry[Client]
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
 

@@ -70,6 +70,7 @@ class EntityDescription(frozen_or_thawed=True, metaclass=FrozenOrThawed):
     translation_placeholders: Mapping[str, str] | None
     unit_of_measurement: str | None
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 @dataclasses.dataclass(frozen=True, slots=True)
 class CalculatedState:
@@ -242,6 +243,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
 
 class ToggleEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 TOGGLE_ENTITY_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 

@@ -10,8 +10,6 @@ from homeassistant.helpers.entity import Entity as Entity
 PREFIX_ANDROIDTV: str
 PREFIX_FIRETV: str
 _LOGGER: Incomplete
-_FuncType: Incomplete
-_ReturnFuncType: Incomplete
 
 def adb_decorator(override_available: bool = False) -> Callable[[_FuncType[_ADBDeviceT, _P, _R]], _ReturnFuncType[_ADBDeviceT, _P, _R]]: ...
 

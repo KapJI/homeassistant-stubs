@@ -11,7 +11,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-PiHoleConfigEntry = ConfigEntry[PiHoleData]
 
 @dataclass
 class PiHoleData:

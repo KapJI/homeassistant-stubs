@@ -1,14 +1,11 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from collections.abc import Callable
 from cryptography.hazmat.primitives.ciphers import Cipher as Cipher
 from homeassistant.components import bluetooth as bluetooth
 from homeassistant.components.bluetooth.match import BluetoothCallbackMatcher as BluetoothCallbackMatcher
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 _LOGGER: Incomplete
-UnavailableCallback: Incomplete
-Cancellable = Callable[[], None]
 
 def async_last_service_info(hass: HomeAssistant, irk: bytes) -> bluetooth.BluetoothServiceInfoBleak | None: ...
 

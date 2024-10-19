@@ -38,14 +38,11 @@ FINAL_WRITE_STAGE_SHUTDOWN_TIMEOUT: int
 CLOSE_STAGE_SHUTDOWN_TIMEOUT: int
 _SENTINEL: Incomplete
 _DataT = TypeVar('_DataT', bound=Mapping[str, Any], default=Mapping[str, Any])
-CALLBACK_TYPE = Callable[[], None]
 CORE_STORAGE_KEY: str
 CORE_STORAGE_VERSION: int
 CORE_STORAGE_MINOR_VERSION: int
 DOMAIN: str
 BLOCK_LOG_TIMEOUT: int
-ServiceResponse = JsonObjectType | None
-EntityServiceResponse = dict[str, ServiceResponse]
 
 class ConfigSource(enum.StrEnum):
     DEFAULT = 'default'

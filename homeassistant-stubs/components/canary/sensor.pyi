@@ -11,7 +11,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Final
 
-SensorTypeItem = tuple[str, str | None, str | None, SensorDeviceClass | None, list[str]]
 SENSOR_VALUE_PRECISION: Final[int]
 ATTR_AIR_QUALITY: Final[str]
 CANARY_PRO: Final[str]

@@ -7,7 +7,6 @@ from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload
 from .tag import MQTTTagScanner as MQTTTagScanner
 from _typeshed import Incomplete
 from collections import deque
-from collections.abc import Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
@@ -27,7 +26,6 @@ class PayloadSentinel(StrEnum):
 
 _LOGGER: Incomplete
 ATTR_THIS: str
-PublishPayloadType = str | bytes | int | float | None
 
 def convert_outgoing_mqtt_payload(payload: PublishPayloadType) -> PublishPayloadType: ...
 
@@ -48,7 +46,6 @@ class ReceiveMessage:
     subscribed_topic: str
     timestamp: float
     def __init__(self, topic, payload, qos, retain, subscribed_topic, timestamp) -> None: ...
-MessageCallbackType = Callable[[ReceiveMessage], None]
 
 class SubscriptionDebugInfo(TypedDict):
     messages: deque[ReceiveMessage]

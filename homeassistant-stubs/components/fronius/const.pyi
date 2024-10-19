@@ -4,7 +4,6 @@ from homeassistant.helpers.typing import StateType as StateType
 from typing import Final, NamedTuple, TypedDict
 
 DOMAIN: Final[str]
-SolarNetId = str
 SOLAR_NET_DISCOVERY_NEW: Final[str]
 SOLAR_NET_ID_POWER_FLOW: SolarNetId
 SOLAR_NET_ID_SYSTEM: SolarNetId

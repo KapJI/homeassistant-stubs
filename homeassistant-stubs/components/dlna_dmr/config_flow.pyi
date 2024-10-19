@@ -11,7 +11,6 @@ from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
 LOGGER: Incomplete
-FlowInput = Mapping[str, Any] | None
 
 class ConnectError(IntegrationError): ...
 

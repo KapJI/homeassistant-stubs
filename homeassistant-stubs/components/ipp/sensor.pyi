@@ -9,7 +9,6 @@ from homeassistant.const import ATTR_LOCATION as ATTR_LOCATION, EntityCategory a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.util.dt import utcnow as utcnow
 from pyipp import Marker as Marker, Printer as Printer
 from typing import Any
 

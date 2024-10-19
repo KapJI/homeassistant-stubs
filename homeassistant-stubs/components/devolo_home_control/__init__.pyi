@@ -1,5 +1,4 @@
 from .const import CONF_MYDEVOLO as CONF_MYDEVOLO, DEFAULT_MYDEVOLO as DEFAULT_MYDEVOLO, GATEWAY_SERIAL_PATTERN as GATEWAY_SERIAL_PATTERN, PLATFORMS as PLATFORMS
-from devolo_home_control_api.homecontrol import HomeControl
 from devolo_home_control_api.mydevolo import Mydevolo
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,8 +8,6 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from types import MappingProxyType
 from typing import Any
-
-DevoloHomeControlConfigEntry = ConfigEntry[list[HomeControl]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry) -> bool: ...

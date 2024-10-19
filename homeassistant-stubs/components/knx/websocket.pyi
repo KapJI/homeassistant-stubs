@@ -5,7 +5,6 @@ from .storage.const import CONF_DATA as CONF_DATA
 from .storage.entity_store_schema import CREATE_ENTITY_BASE_SCHEMA as CREATE_ENTITY_BASE_SCHEMA, UPDATE_ENTITY_BASE_SCHEMA as UPDATE_ENTITY_BASE_SCHEMA
 from .storage.entity_store_validation import EntityStoreValidationException as EntityStoreValidationException, EntityStoreValidationSuccess as EntityStoreValidationSuccess, validate_entity_data as validate_entity_data
 from .telegrams import SIGNAL_KNX_TELEGRAM as SIGNAL_KNX_TELEGRAM, TelegramDict as TelegramDict
-from collections.abc import Awaitable, Callable
 from homeassistant.components import panel_custom as panel_custom, websocket_api as websocket_api
 from homeassistant.components.http import StaticPathConfig as StaticPathConfig
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_PLATFORM as CONF_PLATFORM
@@ -13,15 +12,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from homeassistant.util.ulid import ulid_now as ulid_now
-from typing import Any, Final, overload
+from typing import Final, overload
 from xknx.telegram import Telegram as Telegram
 
 URL_BASE: Final[str]
 
 async def register_panel(hass: HomeAssistant) -> None: ...
-KnxWebSocketCommandHandler = Callable[[HomeAssistant, KNXModule, websocket_api.ActiveConnection, dict[str, Any]], None]
-KnxAsyncWebSocketCommandHandler = Callable[[HomeAssistant, KNXModule, websocket_api.ActiveConnection, dict[str, Any]], Awaitable[None]]
-
 @overload
 def provide_knx(func: KnxAsyncWebSocketCommandHandler) -> websocket_api.const.AsyncWebSocketCommandHandler: ...
 @overload

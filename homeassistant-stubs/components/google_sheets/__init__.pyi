@@ -7,7 +7,6 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAuth2Session, async_get_config_entry_implementation as async_get_config_entry_implementation
 from homeassistant.helpers.selector import ConfigEntrySelector as ConfigEntrySelector
 
-GoogleSheetsConfigEntry = ConfigEntry[OAuth2Session]
 DATA: str
 DATA_CONFIG_ENTRY: str
 WORKSHEET: str

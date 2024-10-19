@@ -1,6 +1,5 @@
 import abc
 from .storage import Store as Store
-from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections import UserDict
 from collections.abc import Mapping as Mapping, Sequence as Sequence, ValuesView
@@ -8,7 +7,6 @@ from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssi
 
 SAVE_DELAY: int
 SAVE_DELAY_LONG: int
-RegistryIndexType: Incomplete
 
 class BaseRegistryItems(UserDict[str, _DataT], ABC, metaclass=abc.ABCMeta):
     data: dict[str, _DataT]

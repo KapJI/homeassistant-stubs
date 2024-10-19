@@ -13,7 +13,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pywizlight import PilotParser as PilotParser
 
-WizConfigEntry = ConfigEntry[WizData]
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
 REQUEST_REFRESH_DELAY: float

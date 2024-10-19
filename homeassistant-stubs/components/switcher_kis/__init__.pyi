@@ -9,7 +9,6 @@ from homeassistant.helpers import device_registry as dr
 
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
-SwitcherConfigEntry = ConfigEntry[dict[str, SwitcherDataUpdateCoordinator]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SwitcherConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: SwitcherConfigEntry) -> bool: ...

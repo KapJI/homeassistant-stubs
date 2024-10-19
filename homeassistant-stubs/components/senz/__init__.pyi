@@ -1,7 +1,6 @@
 from .api import SENZConfigEntryAuth as SENZConfigEntryAuth
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from aiosenz import Thermostat
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,7 +12,6 @@ UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
-SENZDataUpdateCoordinator = DataUpdateCoordinator[dict[str, Thermostat]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

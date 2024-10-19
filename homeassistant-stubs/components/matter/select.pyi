@@ -10,8 +10,6 @@ from homeassistant.const import EntityCategory as EntityCategory, Platform as Pl
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-SelectCluster: Incomplete
-
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True)

@@ -2,8 +2,6 @@ from . import HomeKit as HomeKit
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 
-HomeKitConfigEntry = ConfigEntry[HomeKitEntryData]
-
 @dataclass
 class HomeKitEntryData:
     homekit: HomeKit

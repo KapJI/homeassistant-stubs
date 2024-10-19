@@ -34,7 +34,6 @@ class FloorRegistryStoreData(TypedDict):
 class EventFloorRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
     floor_id: str
-EventFloorRegistryUpdated = Event[EventFloorRegistryUpdatedData]
 
 @dataclass(slots=True, kw_only=True, frozen=True)
 class FloorEntry(NormalizedNameBaseRegistryEntry):

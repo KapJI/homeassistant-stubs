@@ -8,7 +8,7 @@ from .storage import Store as Store
 from .typing import ConfigType as ConfigType, VolDictType as VolDictType
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from collections.abc import Awaitable, Callable, Iterable
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import CONF_ID as CONF_ID
@@ -32,8 +32,6 @@ class CollectionChange:
     item: Any
     item_hash: str | None = ...
     def __init__(self, change_type, item_id, item, item_hash=...) -> None: ...
-ChangeListener = Callable[[str, str, dict], Awaitable[None]]
-ChangeSetListener = Callable[[Iterable[CollectionChange]], Awaitable[None]]
 
 class CollectionError(HomeAssistantError): ...
 

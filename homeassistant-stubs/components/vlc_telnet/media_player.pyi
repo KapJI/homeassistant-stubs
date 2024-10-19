@@ -2,7 +2,7 @@ from . import VlcConfigEntry as VlcConfigEntry
 from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from aiovlc.client import Client as Client
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASSIO as SOURCE_HASSIO

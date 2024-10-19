@@ -2,7 +2,7 @@ import abc
 from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import RingDataCoordinator as RingDataCoordinator, RingListenCoordinator as RingListenCoordinator
 from _typeshed import Incomplete
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.automation import automations_with_entity as automations_with_entity
 from homeassistant.components.script import scripts_with_entity as scripts_with_entity

@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 
 PLATFORMS: Incomplete
-VlcConfigEntry = ConfigEntry[VlcData]
 
 @dataclass
 class VlcData:

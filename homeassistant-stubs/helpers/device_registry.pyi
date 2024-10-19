@@ -81,7 +81,6 @@ class _EventDeviceRegistryUpdatedData_Update(TypedDict):
     action: Literal['update']
     device_id: str
     changes: dict[str, Any]
-EventDeviceRegistryUpdatedData = _EventDeviceRegistryUpdatedData_CreateRemove | _EventDeviceRegistryUpdatedData_Update
 
 class DeviceEntryType(StrEnum):
     SERVICE = 'service'

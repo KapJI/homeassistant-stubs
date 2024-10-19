@@ -1,4 +1,3 @@
-from _typeshed import Incomplete
 from chip.clusters.Objects import Cluster as Cluster, ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from dataclasses import dataclass
 from homeassistant.const import Platform as Platform
@@ -6,8 +5,6 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from matter_server.client.models.device_types import DeviceType as DeviceType
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from typing import Any, TypedDict
-
-SensorValueTypes: Incomplete
 
 class MatterDeviceInfo(TypedDict):
     unique_id: str

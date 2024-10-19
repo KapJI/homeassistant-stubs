@@ -1,5 +1,5 @@
 from collections.abc import Callable as Callable
-from datetime import datetime as datetime, timedelta
+from datetime import datetime, timedelta
 from typing import overload
 
 @overload

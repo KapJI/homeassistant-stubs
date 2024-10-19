@@ -12,7 +12,6 @@ from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, TypeGuard
 
-SunEventType: Incomplete
 _LOGGER: Incomplete
 ATTR_AFTER: str
 ATTR_BEFORE: str

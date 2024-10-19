@@ -12,7 +12,6 @@ from typing import Any
 
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
-GlancesConfigEntry = ConfigEntry[GlancesDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: GlancesConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: GlancesConfigEntry) -> bool: ...

@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
-MopekaConfigEntry = ConfigEntry[PassiveBluetoothProcessorCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: MopekaConfigEntry) -> bool: ...
 async def update_listener(hass: HomeAssistant, entry: MopekaConfigEntry) -> None: ...

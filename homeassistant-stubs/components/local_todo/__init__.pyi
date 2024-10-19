@@ -8,7 +8,6 @@ from homeassistant.util import slugify as slugify
 
 PLATFORMS: list[Platform]
 STORAGE_PATH: str
-LocalTodoConfigEntry = ConfigEntry[LocalTodoListStore]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LocalTodoConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

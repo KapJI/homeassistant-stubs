@@ -2,7 +2,7 @@ from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryDa
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

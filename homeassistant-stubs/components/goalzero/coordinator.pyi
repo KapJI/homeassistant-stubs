@@ -5,8 +5,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
-GoalZeroConfigEntry = ConfigEntry[GoalZeroDataUpdateCoordinator]
-
 class GoalZeroDataUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: GoalZeroConfigEntry
     api: Incomplete

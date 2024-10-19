@@ -15,7 +15,6 @@ TOKEN_REFRESH_CHECK_INTERVAL: Incomplete
 STALE_TOKEN_THRESHOLD: Incomplete
 NOTIFICATION_ID: str
 _LOGGER: Incomplete
-EnphaseConfigEntry = ConfigEntry[EnphaseUpdateCoordinator]
 
 class EnphaseUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     envoy_serial_number: str

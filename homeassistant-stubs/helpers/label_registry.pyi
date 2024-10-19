@@ -34,7 +34,6 @@ class LabelRegistryStoreData(TypedDict):
 class EventLabelRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
     label_id: str
-EventLabelRegistryUpdated = Event[EventLabelRegistryUpdatedData]
 
 @dataclass(slots=True, frozen=True, kw_only=True)
 class LabelEntry(NormalizedNameBaseRegistryEntry):

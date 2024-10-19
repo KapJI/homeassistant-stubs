@@ -5,9 +5,6 @@ from typing import Any
 
 _SENTINEL: Incomplete
 _LOGGER: Incomplete
-JsonValueType = dict[str, JsonValueType] | list[JsonValueType] | str | int | float | bool | None
-JsonArrayType = list[JsonValueType]
-JsonObjectType = dict[str, JsonValueType]
 JSON_ENCODE_EXCEPTIONS: Incomplete
 JSON_DECODE_EXCEPTIONS: Incomplete
 

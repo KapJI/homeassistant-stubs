@@ -10,7 +10,6 @@ from pyairvisual.node import NodeSamba
 
 PLATFORMS: Incomplete
 UPDATE_INTERVAL: Incomplete
-AirVisualProConfigEntry = ConfigEntry[AirVisualProData]
 
 @dataclass
 class AirVisualProData:

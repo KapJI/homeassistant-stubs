@@ -8,7 +8,6 @@ from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity,
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 
-FeedReaderConfigEntry = ConfigEntry[FeedReaderCoordinator]
 CONF_URLS: str
 MY_KEY: HassKey[StoredData]
 CONFIG_SCHEMA: Incomplete

@@ -33,7 +33,6 @@ class EventCategoryRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
     scope: str
     category_id: str
-EventCategoryRegistryUpdated = Event[EventCategoryRegistryUpdatedData]
 
 @dataclass(slots=True, kw_only=True, frozen=True)
 class CategoryEntry:

@@ -11,8 +11,6 @@ from pywemo import WeMoDevice as WeMoDevice
 from pywemo.subscribe import SubscriptionRegistry as SubscriptionRegistry
 
 _LOGGER: Incomplete
-ErrorStringKey: Incomplete
-OptionsFieldKey: Incomplete
 
 class OptionsValidationError(Exception):
     field_key: Incomplete

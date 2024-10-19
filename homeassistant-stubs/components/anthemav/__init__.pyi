@@ -6,7 +6,6 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 
-AnthemavConfigEntry: Incomplete
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
 

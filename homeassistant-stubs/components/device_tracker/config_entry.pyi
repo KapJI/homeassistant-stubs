@@ -36,6 +36,7 @@ class BaseTrackerEntity(Entity):
 
 class TrackerEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_TRACKER_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -65,6 +66,7 @@ class TrackerEntity(BaseTrackerEntity, cached_properties=CACHED_TRACKER_PROPERTI
 
 class ScannerEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_SCANNER_PROPERTIES_WITH_ATTR_: Incomplete
 

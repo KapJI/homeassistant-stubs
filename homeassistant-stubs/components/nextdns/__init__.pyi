@@ -10,8 +10,6 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from nextdns import AnalyticsDnssec as AnalyticsDnssec, AnalyticsEncryption as AnalyticsEncryption, AnalyticsIpVersions as AnalyticsIpVersions, AnalyticsProtocols as AnalyticsProtocols, AnalyticsStatus as AnalyticsStatus, ConnectionStatus as ConnectionStatus, Settings as Settings
 
-NextDnsConfigEntry = ConfigEntry[NextDnsData]
-
 @dataclass
 class NextDnsData:
     connection: NextDnsUpdateCoordinator[ConnectionStatus]

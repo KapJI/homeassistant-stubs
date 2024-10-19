@@ -5,9 +5,6 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSOR
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
-AddressType = tuple[int, int, bool]
-DeviceConnectionType: Incomplete
-InputType: Incomplete
 PATTERN_ADDRESS: Incomplete
 DOMAIN_LOOKUP: Incomplete
 

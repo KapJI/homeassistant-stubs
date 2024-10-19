@@ -4,7 +4,5 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_REAU
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 
-HomeWizardConfigEntry = ConfigEntry[HWEnergyDeviceUpdateCoordinator]
-
 async def async_setup_entry(hass: HomeAssistant, entry: HomeWizardConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: HomeWizardConfigEntry) -> bool: ...

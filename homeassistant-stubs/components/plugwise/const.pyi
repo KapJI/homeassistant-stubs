@@ -19,9 +19,6 @@ STRETCH: Final[str]
 STRETCH_USERNAME: Final[str]
 PLATFORMS: Final[list[str]]
 ZEROCONF_MAP: Final[dict[str, str]]
-NumberType: Incomplete
-SelectType: Incomplete
-SelectOptionsType: Incomplete
 DEFAULT_MAX_TEMP: Final[int]
 DEFAULT_MIN_TEMP: Final[int]
 DEFAULT_PORT: Final[int]

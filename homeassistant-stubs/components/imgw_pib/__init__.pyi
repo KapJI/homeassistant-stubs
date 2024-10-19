@@ -10,7 +10,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
-ImgwPibConfigEntry = ConfigEntry[ImgwPibData]
 
 @dataclass
 class ImgwPibData:

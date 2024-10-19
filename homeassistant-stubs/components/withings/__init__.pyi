@@ -19,7 +19,6 @@ PLATFORMS: Incomplete
 SUBSCRIBE_DELAY: Incomplete
 UNSUBSCRIBE_DELAY: Incomplete
 CONF_CLOUDHOOK_URL: str
-WithingsConfigEntry = ConfigEntry[WithingsData]
 
 @dataclass(slots=True)
 class WithingsData:

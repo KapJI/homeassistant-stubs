@@ -6,7 +6,7 @@ from .repairs import async_manage_legacy_subscription_issue as async_manage_lega
 from .subscription import async_subscription_info as async_subscription_info
 from _typeshed import Incomplete
 from aiohttp import web as web
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.homeassistant import exposed_entities as exposed_entities

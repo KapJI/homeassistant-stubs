@@ -11,7 +11,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from homeassistant.util.location import distance as distance
 
 _LOGGER: Incomplete
-ProximityConfigEntry = ConfigEntry[ProximityDataUpdateCoordinator]
 
 @dataclass
 class StateChangedData:

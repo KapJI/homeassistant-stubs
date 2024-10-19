@@ -9,7 +9,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-SystemMonitorConfigEntry = ConfigEntry[SystemMonitorData]
 
 @dataclass
 class SystemMonitorData:

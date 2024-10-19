@@ -11,7 +11,6 @@ from homeassistant.helpers.network import get_url as get_url
 
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
-TedeeConfigEntry = ConfigEntry[TedeeApiCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

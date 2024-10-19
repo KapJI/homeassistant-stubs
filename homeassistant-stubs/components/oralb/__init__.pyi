@@ -8,7 +8,6 @@ from oralb_ble import SensorUpdate as SensorUpdate
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
-OralBConfigEntry = ConfigEntry[ActiveBluetoothProcessorCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: OralBConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: OralBConfigEntry) -> bool: ...

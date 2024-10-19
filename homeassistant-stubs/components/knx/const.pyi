@@ -1,12 +1,10 @@
 from . import KNXModule as KNXModule
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable
 from enum import Enum, StrEnum
 from homeassistant.components.climate import FAN_AUTO as FAN_AUTO, FAN_OFF as FAN_OFF, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import Platform as Platform
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final, TypedDict
-from xknx.telegram import Telegram
 
 DOMAIN: Final[str]
 KNX_MODULE_KEY: HassKey[KNXModule]
@@ -50,8 +48,6 @@ CONF_SYNC_STATE: Final[str]
 DATA_HASS_CONFIG: Final[str]
 ATTR_COUNTER: Final[str]
 ATTR_SOURCE: Final[str]
-AsyncMessageCallbackType = Callable[[Telegram], Awaitable[None]]
-MessageCallbackType = Callable[[Telegram], None]
 SERVICE_KNX_SEND: Final[str]
 SERVICE_KNX_ATTR_PAYLOAD: Final[str]
 SERVICE_KNX_ATTR_TYPE: Final[str]

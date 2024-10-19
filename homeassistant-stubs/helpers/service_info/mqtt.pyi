@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 
-ReceivePayloadType = str | bytes
-
 @dataclass(slots=True)
 class MqttServiceInfo(BaseServiceInfo):
     topic: str

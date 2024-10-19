@@ -1,4 +1,2 @@
 from .coordinator import XiaomiActiveBluetoothProcessorCoordinator as XiaomiActiveBluetoothProcessorCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-
-XiaomiBLEConfigEntry = ConfigEntry[XiaomiActiveBluetoothProcessorCoordinator]

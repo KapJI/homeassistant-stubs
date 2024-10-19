@@ -53,7 +53,6 @@ class TimerEventType(StrEnum):
     UPDATED = 'updated'
     CANCELLED = 'cancelled'
     FINISHED = 'finished'
-TimerHandler = Callable[[TimerEventType, TimerInfo], None]
 
 class TimerNotFoundError(intent.IntentHandleError):
     def __init__(self) -> None: ...

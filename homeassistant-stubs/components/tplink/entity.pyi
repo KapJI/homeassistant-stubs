@@ -5,7 +5,7 @@ from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordina
 from .deprecate import DeprecatedInfo as DeprecatedInfo, async_check_create_deprecated as async_check_create_deprecated
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine, Mapping
+from collections.abc import Awaitable, Callable as Callable, Coroutine, Mapping
 from dataclasses import dataclass
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

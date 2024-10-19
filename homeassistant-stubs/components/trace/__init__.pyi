@@ -17,7 +17,6 @@ STORAGE_KEY: str
 STORAGE_VERSION: int
 TRACE_CONFIG_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
-TraceData = dict[str, LimitedSizeDict[str, BaseTrace]]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_get_trace(hass: HomeAssistant, key: str, run_id: str) -> dict[str, BaseTrace]: ...

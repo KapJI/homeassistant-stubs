@@ -13,7 +13,6 @@ CONF_TOPIC_IN_PREFIX: Final[str]
 CONF_TOPIC_OUT_PREFIX: Final[str]
 CONF_VERSION: Final[str]
 CONF_GATEWAY_TYPE: Final[str]
-ConfGatewayType: Incomplete
 CONF_GATEWAY_TYPE_SERIAL: ConfGatewayType
 CONF_GATEWAY_TYPE_TCP: ConfGatewayType
 CONF_GATEWAY_TYPE_MQTT: ConfGatewayType
@@ -40,10 +39,6 @@ class NodeDiscoveryInfo(TypedDict):
     node_id: int
 
 SERVICE_SEND_IR_CODE: Final[str]
-SensorType = str
-ValueType = str
-GatewayId = str
-DevId = tuple[GatewayId, int, int, int]
 BINARY_SENSOR_TYPES: dict[SensorType, set[ValueType]]
 CLIMATE_TYPES: dict[SensorType, set[ValueType]]
 COVER_TYPES: dict[SensorType, set[ValueType]]

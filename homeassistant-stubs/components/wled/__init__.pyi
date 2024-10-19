@@ -8,7 +8,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 
 PLATFORMS: Incomplete
-WLEDConfigEntry = ConfigEntry[WLEDDataUpdateCoordinator]
 WLED_KEY: HassKey[WLEDReleasesDataUpdateCoordinator]
 CONFIG_SCHEMA: Incomplete
 

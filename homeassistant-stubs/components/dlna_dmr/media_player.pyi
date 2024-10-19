@@ -4,7 +4,7 @@ from .data import EventListenAddr as EventListenAddr, get_domain_data as get_dom
 from _typeshed import Incomplete
 from async_upnp_client.client import UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
 from async_upnp_client.profiles.dlna import DmrDevice
-from collections.abc import Awaitable as Awaitable, Callable as Callable, Coroutine, Sequence
+from collections.abc import Awaitable, Callable as Callable, Coroutine, Sequence
 from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.components import media_source as media_source, ssdp as ssdp

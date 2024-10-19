@@ -7,7 +7,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 
 PLATFORMS: Incomplete
-BrotherConfigEntry = ConfigEntry[BrotherDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: BrotherConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: BrotherConfigEntry) -> bool: ...

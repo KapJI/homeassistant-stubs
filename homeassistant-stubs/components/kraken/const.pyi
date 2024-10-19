@@ -10,7 +10,7 @@ class KrakenResponseEntry(TypedDict):
     low: tuple[float, float]
     high: tuple[float, float]
     opening_price: float
-KrakenResponse = dict[str, KrakenResponseEntry]
+
 DEFAULT_SCAN_INTERVAL: int
 DEFAULT_TRACKED_ASSET_PAIR: str
 DISPATCH_CONFIG_UPDATED: str

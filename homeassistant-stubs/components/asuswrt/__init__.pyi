@@ -5,7 +5,6 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 
 PLATFORMS: Incomplete
-AsusWrtConfigEntry = ConfigEntry[AsusWrtRouter]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AsusWrtConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AsusWrtConfigEntry) -> bool: ...

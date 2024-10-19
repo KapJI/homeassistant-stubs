@@ -10,7 +10,6 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry
 
 _LOGGER: Incomplete
 PLATFORMS: list[Platform]
-AutomowerConfigEntry = ConfigEntry[AutomowerDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AutomowerConfigEntry) -> bool: ...

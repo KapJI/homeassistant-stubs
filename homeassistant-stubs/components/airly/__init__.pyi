@@ -8,7 +8,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
-AirlyConfigEntry = ConfigEntry[AirlyDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AirlyConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AirlyConfigEntry) -> bool: ...

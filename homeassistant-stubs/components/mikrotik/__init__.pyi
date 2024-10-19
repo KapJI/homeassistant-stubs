@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 
 PLATFORMS: Incomplete
-MikrotikConfigEntry = ConfigEntry[MikrotikDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MikrotikConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...

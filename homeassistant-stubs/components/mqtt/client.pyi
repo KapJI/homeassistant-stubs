@@ -34,8 +34,6 @@ MAX_WILDCARD_SUBSCRIBES_PER_CALL: int
 MAX_SUBSCRIBES_PER_CALL: int
 MAX_UNSUBSCRIBES_PER_CALL: int
 MAX_PACKETS_TO_READ: int
-SocketType: Incomplete
-SubscribePayloadType = str | bytes
 
 def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
 async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...

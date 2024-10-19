@@ -20,6 +20,7 @@ class TextEntityDescription(EntityDescription, frozen_or_thawed=True):
     mode: TextMode
     pattern: str | None
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., native_min=..., native_max=..., mode=..., pattern=...) -> None: ...
+    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., native_min=..., native_max=..., mode=..., pattern=...) -> None: ...
 
 class TextEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete

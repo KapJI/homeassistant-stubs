@@ -1,5 +1,4 @@
 from _typeshed import Incomplete
-from collections.abc import Callable
 from homeassistant.const import ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.entity import async_generate_entity_id as async_generate_entity_id
@@ -24,7 +23,6 @@ ENTITY_ID_FORMAT: Incomplete
 SERVICE_CONFIGURE: str
 STATE_CONFIGURE: str
 STATE_CONFIGURED: str
-ConfiguratorCallback = Callable[[list[dict[str, str]]], None]
 CONFIG_SCHEMA: Incomplete
 
 def async_request_config(hass: HomeAssistant, name: str, callback: ConfiguratorCallback | None = None, description: str | None = None, description_image: str | None = None, submit_caption: str | None = None, fields: list[dict[str, str]] | None = None, link_name: str | None = None, link_url: str | None = None, entity_picture: str | None = None) -> str: ...

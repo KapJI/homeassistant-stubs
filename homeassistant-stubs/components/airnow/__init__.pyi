@@ -7,7 +7,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-AirNowConfigEntry = ConfigEntry[AirNowDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AirNowConfigEntry) -> bool: ...
 async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

@@ -7,7 +7,6 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
-AirzoneConfigEntry = ConfigEntry[AirzoneUpdateCoordinator]
 
 async def _async_migrate_unique_ids(hass: HomeAssistant, entry: AirzoneConfigEntry, coordinator: AirzoneUpdateCoordinator) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry) -> bool: ...

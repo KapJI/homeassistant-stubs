@@ -9,7 +9,6 @@ from homeassistant.helpers.httpx_client import get_async_client as get_async_cli
 
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
-LaMarzoccoConfigEntry = ConfigEntry[LaMarzoccoUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

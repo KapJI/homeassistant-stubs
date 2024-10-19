@@ -51,7 +51,6 @@ class WaterSourceType(TypedDict):
     stat_cost: str | None
     entity_energy_price: str | None
     number_energy_price: float | None
-SourceType = GridSourceType | SolarSourceType | BatterySourceType | GasSourceType | WaterSourceType
 
 class DeviceConsumption(TypedDict):
     stat_consumption: str

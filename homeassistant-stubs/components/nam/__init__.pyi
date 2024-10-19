@@ -9,7 +9,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-NAMConfigEntry = ConfigEntry[NAMDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: NAMConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: NAMConfigEntry) -> bool: ...

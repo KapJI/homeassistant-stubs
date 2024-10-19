@@ -9,7 +9,6 @@ from typing import Any, overload
 
 _LOGGER: Incomplete
 DATA_DISPATCHER: str
-_DispatcherDataType: Incomplete
 
 @overload
 def dispatcher_connect(hass: HomeAssistant, signal: SignalType[Unpack[_Ts]], target: Callable[[Unpack[_Ts]], None]) -> Callable[[], None]: ...

@@ -1,7 +1,6 @@
 from . import indieauth as indieauth, login_flow as login_flow, mfa_setup_flow as mfa_setup_flow
 from _typeshed import Incomplete
 from aiohttp import web
-from collections.abc import Callable
 from homeassistant.auth import InvalidAuthError as InvalidAuthError
 from homeassistant.auth.models import Credentials as Credentials, RefreshToken as RefreshToken, TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN as TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN, User as User
 from homeassistant.components import websocket_api as websocket_api
@@ -18,8 +17,6 @@ from multidict import MultiDictProxy
 from typing import Any
 
 DOMAIN: str
-StoreResultType = Callable[[str, Credentials], str]
-RetrieveResultType = Callable[[str, str], Credentials | None]
 CONFIG_SCHEMA: Incomplete
 DELETE_CURRENT_TOKEN_DELAY: int
 

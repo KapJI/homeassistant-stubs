@@ -16,7 +16,6 @@ from typing import Final
 
 _LOGGER: Final[Incomplete]
 PLATFORMS: Final[Incomplete]
-FroniusConfigEntry = ConfigEntry[FroniusSolarNet]
 
 async def async_setup_entry(hass: HomeAssistant, entry: FroniusConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: FroniusConfigEntry) -> bool: ...

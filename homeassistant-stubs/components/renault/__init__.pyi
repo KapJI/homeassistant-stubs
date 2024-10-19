@@ -10,7 +10,6 @@ from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 CONFIG_SCHEMA: Incomplete
-RenaultConfigEntry = ConfigEntry[RenaultHub]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntry) -> bool: ...

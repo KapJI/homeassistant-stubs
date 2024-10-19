@@ -5,7 +5,6 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, 
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 
 PLATFORMS: list[Platform]
-MadVRConfigEntry = ConfigEntry[MadVRCoordinator]
 _LOGGER: Incomplete
 
 async def async_handle_unload(coordinator: MadVRCoordinator) -> None: ...

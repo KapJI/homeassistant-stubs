@@ -7,7 +7,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-SolarlogConfigEntry = ConfigEntry[SolarLogCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SolarlogConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: SolarlogConfigEntry) -> bool: ...

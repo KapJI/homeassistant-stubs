@@ -7,7 +7,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 
 _LOGGER: Incomplete
-FritzBoxCallMonitorConfigEntry = ConfigEntry[FritzBoxPhonebook]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: FritzBoxCallMonitorConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, config_entry: FritzBoxCallMonitorConfigEntry) -> bool: ...

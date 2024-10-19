@@ -22,13 +22,11 @@ jobs:
         with:
           path: ~/.cache/pre-commit/
           key: >
-            ${{ format('pre-commit-{0}-{1}',
+            ${{ format('pre-commit-{0}-py{1}-{2}',
+            runner.os,
             env.PYTHON_VERSION,
             hashFiles('.pre-commit-config.yaml')
             ) }}
-          restore-keys: |
-            pre-commit-${{ env.PYTHON_VERSION }}-
-            pre-commit-
 
       - name: Run pre-commit on all files
         run: |

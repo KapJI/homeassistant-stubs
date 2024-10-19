@@ -1,29 +1,19 @@
 name: "Common steps to install and cache dependencies"
 
-inputs:
-  python-version:
-    description: "Python version to set up"
-    required: false
-    default: "3.12"
-
 runs:
   using: "composite"
   steps:
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ inputs.python-version }}
-
     - name: Install uv
-      uses: yezz123/setup-uv@v4
-
-    - name: Cache project dependencies
-      uses: actions/cache@v4
+      uses: astral-sh/setup-uv@v3
       with:
-        path: ./.venv
-        key: deps-${{ runner.os }}-${{ inputs.python-version }}-${{ hashFiles('uv.lock') }}
-        restore-keys: |
-          deps-${{ runner.os }}-${{ inputs.python-version }}-
+        enable-cache: true
+        version: "0.4.22"
+
+    - name: Set up Python
+      shell: bash
+      run: |
+        uv python install
+        echo "PYTHON_VERSION=$(uv run python -c 'import platform; print(platform.python_version())')" >> "$GITHUB_ENV"
 
     - name: Install dependencies with uv
       shell: bash

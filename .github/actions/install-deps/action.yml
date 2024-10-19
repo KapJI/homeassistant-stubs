@@ -17,7 +17,7 @@ runs:
     #     version: "0.4.23"
     - name: Install uv
       shell: bash
-      run: cargo install --git https://github.com/astral-sh/uv --rev 7730861bc5c6fb58ad402a396479f2cba6946110 uv
+      run: cargo install --git https://github.com/astral-sh/uv --rev 6a81d302bbc03bcb5bad4e6da44f4a0472f102b4 uv
 
     - name: Set up Python
       shell: bash

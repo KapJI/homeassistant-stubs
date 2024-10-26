@@ -7,7 +7,7 @@ from typing import Any, Self
 
 ZONE_GLOBAL: str
 
-class _State(str, enum.Enum):
+class _State(enum.Enum):
     INIT = 'INIT'
     ACTIVE = 'ACTIVE'
     TIMEOUT = 'TIMEOUT'
@@ -46,6 +46,7 @@ class _GlobalTaskContext:
     _wait_zone: Incomplete
     _state: Incomplete
     _cool_down: Incomplete
+    _cancelling: int
     def __init__(self, manager: TimeoutManager, task: asyncio.Task[Any], timeout: float, cool_down: float) -> None: ...
     async def __aenter__(self) -> Self: ...
     async def __aexit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: TracebackType | None) -> bool | None: ...
@@ -68,6 +69,7 @@ class _ZoneTaskContext:
     _time_left: Incomplete
     _expiration_time: Incomplete
     _timeout_handler: Incomplete
+    _cancelling: int
     def __init__(self, zone: _ZoneTimeoutManager, task: asyncio.Task[Any], timeout: float) -> None: ...
     @property
     def state(self) -> _State: ...

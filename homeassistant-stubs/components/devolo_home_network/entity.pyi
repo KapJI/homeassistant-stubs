@@ -1,6 +1,7 @@
 from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator

@@ -49,7 +49,7 @@ dev-dependencies = [
 ]
 
 [tool.uv.sources]
-mypy = { git = "https://github.com/python/mypy", rev = "53134979cd4442b434637eef81557d4c0b2a5d00" }
+mypy = { git = "https://github.com/python/mypy", rev = "06a566b81993a711470aa9e80b9d86d1e666b029" }
 
 [tool.pylint.format]
 expected-line-ending-format = "LF"

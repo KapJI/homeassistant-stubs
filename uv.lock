@@ -806,7 +806,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant-stubs"
-version = "2024.10.5.dev1+g5a054217.d20241028"
+version = "2024.10.5.dev2+g0c2f1a82.d20241028"
 source = { editable = "." }
 dependencies = [
     { name = "homeassistant" },
@@ -830,7 +830,7 @@ requires-dist = [{ name = "homeassistant", specifier = "==2024.10.4" }]
 dev = [
     { name = "awesomeversion", specifier = ">=24.6.0" },
     { name = "codespell", specifier = ">=2.3.0" },
-    { name = "mypy", git = "https://github.com/python/mypy?rev=53134979cd4442b434637eef81557d4c0b2a5d00" },
+    { name = "mypy", git = "https://github.com/python/mypy?rev=06a566b81993a711470aa9e80b9d86d1e666b029" },
     { name = "pygithub", specifier = ">=2.4.0" },
     { name = "pylint", specifier = ">=3.3.1" },
     { name = "ruff", specifier = ">=0.7.0" },
@@ -1048,8 +1048,8 @@ wheels = [
 
 [[package]]
 name = "mypy"
-version = "1.14.0+dev.53134979cd4442b434637eef81557d4c0b2a5d00"
-source = { git = "https://github.com/python/mypy?rev=53134979cd4442b434637eef81557d4c0b2a5d00#53134979cd4442b434637eef81557d4c0b2a5d00" }
+version = "1.14.0+dev.06a566b81993a711470aa9e80b9d86d1e666b029"
+source = { git = "https://github.com/python/mypy?rev=06a566b81993a711470aa9e80b9d86d1e666b029#06a566b81993a711470aa9e80b9d86d1e666b029" }
 dependencies = [
     { name = "mypy-extensions" },
     { name = "typing-extensions" },

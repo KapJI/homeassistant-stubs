@@ -12,6 +12,7 @@ import platform
 import shutil
 import subprocess
 import sys
+import tempfile
 from typing import TYPE_CHECKING
 from urllib.request import urlopen
 
@@ -301,15 +302,20 @@ def get_old_typed_paths(homeassistant_root: Path) -> list[Path]:
 def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
     """Use stubgen to generate typing stubs for all typed paths."""
     LOGGER.info("Generating stubs...")
-    command_args: list[str] = [
-        "uv",
-        "run",
-        "stubgen",
-        "--include-private",
-        "-o",
-        str(repo_root),
-    ] + [str(folder) for folder in typed_paths]
-    subprocess.run(command_args, cwd=repo_root, check=True)
+    with tempfile.NamedTemporaryFile("w", delete_on_close=False) as f:
+        f.write("\n".join(map(str, typed_paths)))
+        f.close()
+        command_args: list[str] = [
+            "uv",
+            "run",
+            "stubgen",
+            "--include-private",
+            "-o",
+            str(repo_root),
+            f"@{f.name}",
+        ]
+        LOGGER.info("Running: %s", " ".join(command_args))
+        subprocess.run(command_args, cwd=repo_root, check=True)
     stubs_folder = repo_root / "homeassistant"
     new_stubs_folder = repo_root / "homeassistant-stubs"
     if new_stubs_folder.is_dir():

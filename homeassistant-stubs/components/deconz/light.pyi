@@ -35,7 +35,7 @@ class SetStateAttributes(TypedDict, total=False):
 def update_color_state(group: Group, lights: list[Light], override: bool = False) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class DeconzBaseLight(DeconzDevice[_LightDeviceT], LightEntity):
+class DeconzBaseLight[_LightDeviceT: Group | Light](DeconzDevice[_LightDeviceT], LightEntity):
     TYPE = LIGHT_DOMAIN
     _attr_color_mode: Incomplete
     api: Incomplete

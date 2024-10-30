@@ -9,6 +9,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from types import FrameType
 from typing import Any
 
+type KeyType = tuple[str, tuple[str, int], tuple[str, int, str] | None]
 CONF_MAX_ENTRIES: str
 CONF_FIRE_EVENT: str
 CONF_MESSAGE: str

@@ -3,7 +3,6 @@ import datetime
 from .const import ATTR_DESCRIPTION as ATTR_DESCRIPTION, ATTR_DUE as ATTR_DUE, ATTR_DUE_DATE as ATTR_DUE_DATE, ATTR_DUE_DATETIME as ATTR_DUE_DATETIME, ATTR_ITEM as ATTR_ITEM, ATTR_RENAME as ATTR_RENAME, ATTR_STATUS as ATTR_STATUS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, TodoItemStatus as TodoItemStatus, TodoListEntityFeature as TodoListEntityFeature, TodoServices as TodoServices
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
-from functools import cached_property as cached_property
 from homeassistant.components import frontend as frontend, websocket_api as websocket_api
 from homeassistant.components.websocket_api import ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -55,7 +54,6 @@ class TodoListEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _update_listeners: list[Callable[[list[JsonValueType] | None], None]] | None
     @property
     def state(self) -> int | None: ...
-    @cached_property
     def todo_items(self) -> list[TodoItem] | None: ...
     async def async_create_todo_item(self, item: TodoItem) -> None: ...
     async def async_update_todo_item(self, item: TodoItem) -> None: ...

@@ -4,10 +4,13 @@ from collections.abc import Callable, Mapping
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.util.hass_dict import HassKey as HassKey
+from types import MappingProxyType
 from typing import Any, Protocol
 
 PLATFORM: str
 DATA_FUNCTIONS: HassKey[dict[str, CheckTypeFunc]]
+type CheckTypeFunc = Callable[[HomeAssistant, str, dict | MappingProxyType, str, dict | MappingProxyType], bool | None]
+type ExtraCheckTypeFunc = Callable[[HomeAssistant, str, dict | MappingProxyType, Any, str, dict | MappingProxyType, Any], bool | None]
 
 class SignificantChangeProtocol(Protocol):
     def async_check_significant_change(self, hass: HomeAssistant, old_state: str, old_attrs: Mapping[str, Any], new_state: str, new_attrs: Mapping[str, Any]) -> bool | None: ...

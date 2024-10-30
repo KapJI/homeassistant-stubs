@@ -15,11 +15,11 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
-from typing import Any, TypedDict
+from typing import Any
 
 _LOGGER: Incomplete
 DEFAULT_NAME: str
-CONF_ENTITY_PICTURE: str
+CONF_DISPLAY_PRECISION: str
 CONF_LATEST_VERSION_TEMPLATE: str
 CONF_LATEST_VERSION_TOPIC: str
 CONF_PAYLOAD_INSTALL: str
@@ -28,26 +28,19 @@ CONF_RELEASE_URL: str
 CONF_TITLE: str
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
-
-class _MqttUpdatePayloadType(TypedDict, total=False):
-    installed_version: str
-    latest_version: str
-    title: str
-    release_summary: str
-    release_url: str
-    entity_picture: str
+MQTT_JSON_UPDATE_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
-    _entity_picture: str | None
     @property
     def entity_picture(self) -> str | None: ...
     @staticmethod
     def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
+    _attr_display_precision: Incomplete
     _attr_release_summary: Incomplete
     _attr_release_url: Incomplete
     _attr_title: Incomplete
@@ -55,6 +48,9 @@ class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
+    _attr_entity_picture: Incomplete
+    _attr_update_percentage: Incomplete
+    _attr_in_progress: Incomplete
     def _handle_state_message_received(self, msg: ReceiveMessage) -> None: ...
     def _handle_latest_version_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...

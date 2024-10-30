@@ -19,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class MatterLock(MatterEntity, LockEntity):
     _feature_map: int | None
     _optimistic_timer: asyncio.TimerHandle | None
+    _platform_translation_key: str
     @property
     def code_format(self) -> str | None: ...
     async def send_device_command(self, command: clusters.ClusterCommand, timed_request_timeout_ms: int = 1000) -> None: ...

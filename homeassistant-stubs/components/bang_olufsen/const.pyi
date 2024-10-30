@@ -1,5 +1,5 @@
 from enum import StrEnum
-from homeassistant.components.media_player import MediaPlayerState as MediaPlayerState, MediaType as MediaType
+from homeassistant.components.media_player import MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
 from mozart_api.models import Source, SourceArray
 from typing import Final
 
@@ -14,6 +14,8 @@ class BangOlufsenSource:
     TIDAL: Final[Source]
 
 BANG_OLUFSEN_STATES: dict[str, MediaPlayerState]
+BANG_OLUFSEN_REPEAT_FROM_HA: dict[RepeatMode, str]
+BANG_OLUFSEN_REPEAT_TO_HA: dict[str, RepeatMode]
 
 class BangOlufsenMediaType(StrEnum):
     FAVOURITE = 'favourite'

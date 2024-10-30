@@ -1,8 +1,11 @@
 from .connection import ActiveConnection as ActiveConnection
 from _typeshed import Incomplete
+from collections.abc import Awaitable, Callable
 from homeassistant.core import HomeAssistant as HomeAssistant
-from typing import Final
+from typing import Any, Final
 
+type WebSocketCommandHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
+type AsyncWebSocketCommandHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], Awaitable[None]]
 DOMAIN: Final[str]
 URL: Final[str]
 PENDING_MSG_PEAK: Final[int]

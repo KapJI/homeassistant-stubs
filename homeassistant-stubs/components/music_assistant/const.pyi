@@ -1,0 +1,12 @@
+from _typeshed import Incomplete
+
+DOMAIN: str
+DOMAIN_EVENT: Incomplete
+DEFAULT_NAME: str
+ATTR_IS_GROUP: str
+ATTR_GROUP_MEMBERS: str
+ATTR_GROUP_PARENTS: str
+ATTR_MASS_PLAYER_TYPE: str
+ATTR_ACTIVE_QUEUE: str
+ATTR_STREAM_TITLE: str
+LOGGER: Incomplete

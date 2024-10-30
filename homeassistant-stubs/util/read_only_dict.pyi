@@ -2,7 +2,7 @@ from typing import Any
 
 def _readonly(*args: Any, **kwargs: Any) -> Any: ...
 
-class ReadOnlyDict(dict[_KT, _VT]):
+class ReadOnlyDict[_KT, _VT](dict[_KT, _VT]):
     __setitem__ = _readonly
     __delitem__ = _readonly
     pop = _readonly

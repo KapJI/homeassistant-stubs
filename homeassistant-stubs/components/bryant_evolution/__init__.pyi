@@ -8,6 +8,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 
 PLATFORMS: list[Platform]
+type BryantEvolutionLocalClients = dict[tuple[int, int], BryantEvolutionLocalClient]
+type BryantEvolutionConfigEntry = ConfigEntry[BryantEvolutionLocalClients]
 _LOGGER: Incomplete
 
 async def _can_reach_device(client: BryantEvolutionLocalClient) -> bool: ...

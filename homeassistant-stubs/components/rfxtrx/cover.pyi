@@ -3,9 +3,8 @@ from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_se
 from .const import COMMAND_OFF_LIST as COMMAND_OFF_LIST, COMMAND_ON_LIST as COMMAND_ON_LIST, CONF_VENETIAN_BLIND_MODE as CONF_VENETIAN_BLIND_MODE, CONST_VENETIAN_BLIND_MODE_EU as CONST_VENETIAN_BLIND_MODE_EU, CONST_VENETIAN_BLIND_MODE_US as CONST_VENETIAN_BLIND_MODE_US
 from .entity import RfxtrxCommandEntity as RfxtrxCommandEntity
 from _typeshed import Incomplete
-from homeassistant.components.cover import CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
+from homeassistant.components.cover import CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, CoverState as CoverState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OPEN as STATE_OPEN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

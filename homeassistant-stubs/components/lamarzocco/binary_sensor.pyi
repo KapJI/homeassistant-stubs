@@ -1,4 +1,4 @@
-from . import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
+from .coordinator import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
 from .entity import LaMarzoccoEntity as LaMarzoccoEntity, LaMarzoccoEntityDescription as LaMarzoccoEntityDescription
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

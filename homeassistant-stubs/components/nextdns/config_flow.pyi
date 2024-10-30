@@ -1,7 +1,7 @@
 from .const import CONF_PROFILE_ID as CONF_PROFILE_ID, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_PROFILE_NAME as CONF_PROFILE_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -16,7 +16,6 @@ class NextDnsFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     nextdns: Incomplete
     api_key: Incomplete
-    entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_profiles(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

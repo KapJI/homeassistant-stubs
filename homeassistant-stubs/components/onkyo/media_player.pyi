@@ -1,31 +1,27 @@
 import asyncio
-from .receiver import Receiver as Receiver, ReceiverInfo as ReceiverInfo
+from . import OnkyoConfigEntry as OnkyoConfigEntry
+from .const import CONF_RECEIVER_MAX_VOLUME as CONF_RECEIVER_MAX_VOLUME, CONF_SOURCES as CONF_SOURCES, DOMAIN as DOMAIN, InputSource as InputSource, OPTION_MAX_VOLUME as OPTION_MAX_VOLUME, OPTION_VOLUME_RESOLUTION as OPTION_VOLUME_RESOLUTION, PYEISCP_COMMANDS as PYEISCP_COMMANDS, VolumeResolution as VolumeResolution, ZONES as ZONES
+from .receiver import Receiver as Receiver, async_discover as async_discover
+from .services import DATA_MP_ENTITIES as DATA_MP_ENTITIES
 from _typeshed import Incomplete
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.data_entry_flow import FlowResultType as FlowResultType
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Literal
 
 _LOGGER: Incomplete
-DOMAIN: str
-DATA_MP_ENTITIES: HassKey[list[dict[str, OnkyoMediaPlayer]]]
-CONF_SOURCES: str
-CONF_MAX_VOLUME: str
-CONF_RECEIVER_MAX_VOLUME: str
-DEFAULT_NAME: str
-SUPPORTED_MAX_VOLUME: int
-DEFAULT_RECEIVER_MAX_VOLUME: int
-ZONES: Incomplete
+CONF_MAX_VOLUME_DEFAULT: int
+CONF_RECEIVER_MAX_VOLUME_DEFAULT: int
+CONF_SOURCES_DEFAULT: Incomplete
+PLATFORM_SCHEMA: Incomplete
 SUPPORT_ONKYO_WO_VOLUME: Incomplete
 SUPPORT_ONKYO: Incomplete
-KNOWN_HOSTS: list[str]
-DEFAULT_SOURCES: Incomplete
 DEFAULT_PLAYABLE_SOURCES: Incomplete
-PLATFORM_SCHEMA: Incomplete
-ATTR_HDMI_OUTPUT: str
 ATTR_PRESET: str
 ATTR_AUDIO_INFORMATION: str
 ATTR_VIDEO_INFORMATION: str
@@ -33,12 +29,12 @@ ATTR_VIDEO_OUT: str
 AUDIO_VIDEO_INFORMATION_UPDATE_WAIT_TIME: int
 AUDIO_INFORMATION_MAPPING: Incomplete
 VIDEO_INFORMATION_MAPPING: Incomplete
-ACCEPTED_VALUES: Incomplete
-ONKYO_SELECT_OUTPUT_SCHEMA: Incomplete
-SERVICE_SELECT_HDMI_OUTPUT: str
+ISSUE_URL_PLACEHOLDER: str
+type InputLibValue = str | tuple[str, ...]
+_cmds: dict[str, InputLibValue]
 
-async def async_register_services(hass: HomeAssistant) -> None: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OnkyoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OnkyoMediaPlayer(MediaPlayerEntity):
     _attr_should_poll: bool
@@ -50,13 +46,14 @@ class OnkyoMediaPlayer(MediaPlayerEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _zone: Incomplete
+    _volume_resolution: Incomplete
+    _max_volume: Incomplete
     _source_mapping: Incomplete
     _reverse_mapping: Incomplete
-    _max_volume: Incomplete
-    _volume_resolution: Incomplete
+    _lib_mapping: Incomplete
     _attr_source_list: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def __init__(self, receiver: Receiver, sources: dict[str, str], zone: str, max_volume: int, volume_resolution: int) -> None: ...
+    def __init__(self, receiver: Receiver, zone: str, *, volume_resolution: VolumeResolution, max_volume: float, sources: dict[InputSource, str]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     @property
@@ -78,7 +75,7 @@ class OnkyoMediaPlayer(MediaPlayerEntity):
     _attr_is_volume_muted: Incomplete
     def process_update(self, update: tuple[str, str, Any]) -> None: ...
     _attr_source: Incomplete
-    def _parse_source(self, source_raw: str | int | tuple[str]) -> None: ...
+    def _parse_source(self, source_lib: InputLibValue) -> None: ...
     def _parse_audio_information(self, audio_information: tuple[str] | Literal['N/A']) -> None: ...
     def _parse_video_information(self, video_information: tuple[str] | Literal['N/A']) -> None: ...
     def _query_av_info_delayed(self) -> None: ...

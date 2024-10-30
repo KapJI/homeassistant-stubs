@@ -1,5 +1,5 @@
-from . import AirthingsBLEConfigEntry as AirthingsBLEConfigEntry, AirthingsBLEDataUpdateCoordinator as AirthingsBLEDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN, VOLUME_BECQUEREL as VOLUME_BECQUEREL, VOLUME_PICOCURIE as VOLUME_PICOCURIE
+from .coordinator import AirthingsBLEConfigEntry as AirthingsBLEConfigEntry, AirthingsBLEDataUpdateCoordinator as AirthingsBLEDataUpdateCoordinator
 from _typeshed import Incomplete
 from airthings_ble import AirthingsDevice as AirthingsDevice
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass

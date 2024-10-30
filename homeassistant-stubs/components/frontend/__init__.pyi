@@ -4,7 +4,6 @@ from .storage import async_setup_frontend_storage as async_setup_frontend_storag
 from _typeshed import Incomplete
 from aiohttp import web, web_urldispatcher
 from collections.abc import Callable as Callable, Iterator
-from functools import cached_property as cached_property
 from homeassistant.components import onboarding as onboarding, websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, StaticPathConfig as StaticPathConfig
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
@@ -101,9 +100,7 @@ class IndexView(web_urldispatcher.AbstractResource):
     hass: Incomplete
     _template_cache: Incomplete
     def __init__(self, repo_path: str | None, hass: HomeAssistant) -> None: ...
-    @cached_property
     def canonical(self) -> str: ...
-    @cached_property
     def _route(self) -> web_urldispatcher.ResourceRoute: ...
     def url_for(self, **kwargs: str) -> URL: ...
     async def resolve(self, request: web.Request) -> tuple[web_urldispatcher.UrlMappingMatchInfo | None, set[str]]: ...

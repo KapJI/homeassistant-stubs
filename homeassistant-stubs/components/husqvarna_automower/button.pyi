@@ -13,8 +13,6 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def _async_set_time(session: AutomowerSession, mower_id: str) -> None: ...
-
 @dataclass(frozen=True, kw_only=True)
 class AutomowerButtonEntityDescription(ButtonEntityDescription):
     available_fn: Callable[[MowerAttributes], bool] = ...
@@ -22,7 +20,7 @@ class AutomowerButtonEntityDescription(ButtonEntityDescription):
     press_fn: Callable[[AutomowerSession, str], Awaitable[Any]]
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_fn=..., exists_fn=..., press_fn) -> None: ...
 
-BUTTON_TYPES: tuple[AutomowerButtonEntityDescription, ...]
+MOWER_BUTTON_TYPES: tuple[AutomowerButtonEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

@@ -13,6 +13,7 @@ from typing import Any
 
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
+type RoborockConfigEntry = ConfigEntry[RoborockCoordinators]
 
 @dataclass
 class RoborockCoordinators:

@@ -7,8 +7,9 @@ from homeassistant.helpers import condition as condition, template as template
 from homeassistant.helpers.event import async_track_same_state as async_track_same_state, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import Any
 
-def validate_above_below(value: _T) -> _T: ...
+def validate_above_below[_T: dict[str, Any]](value: _T) -> _T: ...
 
 _TRIGGER_SCHEMA: Incomplete
 _LOGGER: Incomplete

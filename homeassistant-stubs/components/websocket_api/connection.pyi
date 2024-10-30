@@ -1,5 +1,6 @@
 from . import const as const, messages as messages
 from .http import WebSocketAdapter as WebSocketAdapter
+from .messages import error_message as error_message, event_message as event_message, message_to_json_bytes as message_to_json_bytes, result_message as result_message
 from .util import describe_request as describe_request
 from _typeshed import Incomplete
 from aiohttp import web as web
@@ -12,6 +13,8 @@ from homeassistant.util.json import JsonValueType as JsonValueType
 from typing import Any
 
 current_connection: Incomplete
+type MessageHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
+type BinaryHandler = Callable[[HomeAssistant, ActiveConnection, bytes], None]
 
 class ActiveConnection:
     __slots__: Incomplete

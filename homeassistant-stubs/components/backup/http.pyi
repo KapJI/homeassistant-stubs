@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .manager import BackupManager as BackupManager
+from .manager import BaseBackupManager as BaseBackupManager
 from aiohttp.web import FileResponse, Request as Request, Response
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

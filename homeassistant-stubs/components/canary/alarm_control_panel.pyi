@@ -2,9 +2,8 @@ from .const import DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN
 from .coordinator import CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
 from _typeshed import Incomplete
 from canary.model import Location as Location
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_ARMED_NIGHT as STATE_ALARM_ARMED_NIGHT, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -22,7 +21,7 @@ class CanaryAlarm(CoordinatorEntity[CanaryDataUpdateCoordinator], AlarmControlPa
     @property
     def location(self) -> Location: ...
     @property
-    def state(self) -> str | None: ...
+    def alarm_state(self) -> AlarmControlPanelState | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     def alarm_disarm(self, code: str | None = None) -> None: ...

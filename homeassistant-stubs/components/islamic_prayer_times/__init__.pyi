@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 
 PLATFORMS: Incomplete
 _LOGGER: Incomplete
+type IslamicPrayerTimesConfigEntry = ConfigEntry[IslamicPrayerDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: IslamicPrayerTimesConfigEntry) -> bool: ...
 async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...

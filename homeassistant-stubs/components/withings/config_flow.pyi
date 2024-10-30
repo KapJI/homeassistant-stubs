@@ -2,14 +2,13 @@ import logging
 from .const import DEFAULT_TITLE as DEFAULT_TITLE, DOMAIN as DOMAIN
 from collections.abc import Mapping
 from homeassistant.components.webhook import async_generate_id as async_generate_id
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_TOKEN as CONF_TOKEN, CONF_WEBHOOK_ID as CONF_WEBHOOK_ID
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
 
 class WithingsFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
-    reauth_entry: ConfigEntry | None
     @property
     def logger(self) -> logging.Logger: ...
     @property

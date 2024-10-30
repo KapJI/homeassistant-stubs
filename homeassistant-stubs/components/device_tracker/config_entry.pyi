@@ -1,7 +1,6 @@
 import asyncio
 from .const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, DOMAIN as DOMAIN, LOGGER as LOGGER, SourceType as SourceType
 from _typeshed import Incomplete
-from functools import cached_property as cached_property
 from homeassistant.components import zone as zone
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, EntityCategory as EntityCategory, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
@@ -27,7 +26,6 @@ class BaseTrackerEntity(Entity):
     _attr_device_info: None
     _attr_entity_category: Incomplete
     _attr_source_type: SourceType
-    @cached_property
     def battery_level(self) -> int | None: ...
     @property
     def source_type(self) -> SourceType: ...
@@ -47,17 +45,12 @@ class TrackerEntity(BaseTrackerEntity, cached_properties=CACHED_TRACKER_PROPERTI
     _attr_location_name: str | None
     _attr_longitude: float | None
     _attr_source_type: SourceType
-    @cached_property
     def should_poll(self) -> bool: ...
     @property
     def force_update(self) -> bool: ...
-    @cached_property
     def location_accuracy(self) -> int: ...
-    @cached_property
     def location_name(self) -> str | None: ...
-    @cached_property
     def latitude(self) -> float | None: ...
-    @cached_property
     def longitude(self) -> float | None: ...
     @property
     def state(self) -> str | None: ...
@@ -76,11 +69,8 @@ class ScannerEntity(BaseTrackerEntity, cached_properties=CACHED_SCANNER_PROPERTI
     _attr_ip_address: str | None
     _attr_mac_address: str | None
     _attr_source_type: SourceType
-    @cached_property
     def ip_address(self) -> str | None: ...
-    @cached_property
     def mac_address(self) -> str | None: ...
-    @cached_property
     def hostname(self) -> str | None: ...
     @property
     def state(self) -> str: ...

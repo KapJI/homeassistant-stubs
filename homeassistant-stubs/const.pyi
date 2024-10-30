@@ -1,5 +1,5 @@
 from .core import EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData
-from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, EnumWithDeprecatedMembers as EnumWithDeprecatedMembers, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
 from .util.hass_dict import HassKey as HassKey
@@ -336,16 +336,6 @@ STATE_PLAYING: Final[str]
 STATE_PAUSED: Final[str]
 STATE_IDLE: Final[str]
 STATE_STANDBY: Final[str]
-STATE_ALARM_DISARMED: Final[str]
-STATE_ALARM_ARMED_HOME: Final[str]
-STATE_ALARM_ARMED_AWAY: Final[str]
-STATE_ALARM_ARMED_NIGHT: Final[str]
-STATE_ALARM_ARMED_VACATION: Final[str]
-STATE_ALARM_ARMED_CUSTOM_BYPASS: Final[str]
-STATE_ALARM_PENDING: Final[str]
-STATE_ALARM_ARMING: Final[str]
-STATE_ALARM_DISARMING: Final[str]
-STATE_ALARM_TRIGGERED: Final[str]
 STATE_UNAVAILABLE: Final[str]
 STATE_OK: Final[str]
 STATE_PROBLEM: Final[str]
@@ -354,6 +344,16 @@ _DEPRECATED_STATE_UNLOCKED: Final[Incomplete]
 _DEPRECATED_STATE_LOCKING: Final[Incomplete]
 _DEPRECATED_STATE_UNLOCKING: Final[Incomplete]
 _DEPRECATED_STATE_JAMMED: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_DISARMED: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_ARMED_HOME: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_ARMED_AWAY: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_ARMED_NIGHT: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_ARMED_VACATION: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_ARMED_CUSTOM_BYPASS: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_PENDING: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_ARMING: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_DISARMING: Final[Incomplete]
+_DEPRECATED_STATE_ALARM_TRIGGERED: Final[Incomplete]
 ATTR_ATTRIBUTION: Final[str]
 ATTR_CREDENTIALS: Final[str]
 ATTR_NOW: Final[str]
@@ -509,6 +509,7 @@ class UnitOfLength(StrEnum):
     FEET = 'ft'
     YARDS = 'yd'
     MILES = 'mi'
+    NAUTICAL_MILES = 'nmi'
 
 _DEPRECATED_LENGTH_MILLIMETERS: Final[Incomplete]
 _DEPRECATED_LENGTH_CENTIMETERS: Final[Incomplete]
@@ -600,7 +601,10 @@ _DEPRECATED_MASS_MICROGRAMS: Final[Incomplete]
 _DEPRECATED_MASS_OUNCES: Final[Incomplete]
 _DEPRECATED_MASS_POUNDS: Final[Incomplete]
 
-class UnitOfConductivity(StrEnum):
+class UnitOfConductivity(StrEnum, deprecated={'SIEMENS': ('UnitOfConductivity.SIEMENS_PER_CM', '2025.11.0'), 'MICROSIEMENS': ('UnitOfConductivity.MICROSIEMENS_PER_CM', '2025.11.0'), 'MILLISIEMENS': ('UnitOfConductivity.MILLISIEMENS_PER_CM', '2025.11.0')}, metaclass=EnumWithDeprecatedMembers):
+    SIEMENS_PER_CM = 'S/cm'
+    MICROSIEMENS_PER_CM = 'µS/cm'
+    MILLISIEMENS_PER_CM = 'mS/cm'
     SIEMENS = 'S/cm'
     MICROSIEMENS = 'µS/cm'
     MILLISIEMENS = 'mS/cm'

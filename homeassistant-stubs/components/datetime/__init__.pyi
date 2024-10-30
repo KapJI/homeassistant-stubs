@@ -1,6 +1,5 @@
 from .const import ATTR_DATETIME as ATTR_DATETIME, DOMAIN as DOMAIN
 from datetime import datetime
-from functools import cached_property
 from homeassistant.helpers.entity import Entity, EntityDescription
 
 __all__ = ['ATTR_DATETIME', 'DOMAIN', 'DateTimeEntity', 'DateTimeEntityDescription']
@@ -14,13 +13,10 @@ class DateTimeEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_device_class: None
     _attr_state: None
     _attr_native_value: datetime | None
-    @cached_property
     def device_class(self) -> None: ...
-    @cached_property
     def state_attributes(self) -> None: ...
     @property
     def state(self) -> str | None: ...
-    @cached_property
     def native_value(self) -> datetime | None: ...
     def set_value(self, value: datetime) -> None: ...
     async def async_set_value(self, value: datetime) -> None: ...

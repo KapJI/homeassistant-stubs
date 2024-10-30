@@ -1,5 +1,5 @@
 from .const import DEFAULT_TITLE as DEFAULT_TITLE, DOMAIN as DOMAIN, LOGGER as LOGGER
-from .coordinator import WithingsActivityDataUpdateCoordinator as WithingsActivityDataUpdateCoordinator, WithingsBedPresenceDataUpdateCoordinator as WithingsBedPresenceDataUpdateCoordinator, WithingsDataUpdateCoordinator as WithingsDataUpdateCoordinator, WithingsGoalsDataUpdateCoordinator as WithingsGoalsDataUpdateCoordinator, WithingsMeasurementDataUpdateCoordinator as WithingsMeasurementDataUpdateCoordinator, WithingsSleepDataUpdateCoordinator as WithingsSleepDataUpdateCoordinator, WithingsWorkoutDataUpdateCoordinator as WithingsWorkoutDataUpdateCoordinator
+from .coordinator import WithingsActivityDataUpdateCoordinator as WithingsActivityDataUpdateCoordinator, WithingsBedPresenceDataUpdateCoordinator as WithingsBedPresenceDataUpdateCoordinator, WithingsDataUpdateCoordinator as WithingsDataUpdateCoordinator, WithingsDeviceDataUpdateCoordinator as WithingsDeviceDataUpdateCoordinator, WithingsGoalsDataUpdateCoordinator as WithingsGoalsDataUpdateCoordinator, WithingsMeasurementDataUpdateCoordinator as WithingsMeasurementDataUpdateCoordinator, WithingsSleepDataUpdateCoordinator as WithingsSleepDataUpdateCoordinator, WithingsWorkoutDataUpdateCoordinator as WithingsWorkoutDataUpdateCoordinator
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, Response as Response
 from aiowithings import WithingsClient
@@ -19,6 +19,7 @@ PLATFORMS: Incomplete
 SUBSCRIBE_DELAY: Incomplete
 UNSUBSCRIBE_DELAY: Incomplete
 CONF_CLOUDHOOK_URL: str
+type WithingsConfigEntry = ConfigEntry[WithingsData]
 
 @dataclass(slots=True)
 class WithingsData:
@@ -29,9 +30,10 @@ class WithingsData:
     goals_coordinator: WithingsGoalsDataUpdateCoordinator
     activity_coordinator: WithingsActivityDataUpdateCoordinator
     workout_coordinator: WithingsWorkoutDataUpdateCoordinator
+    device_coordinator: WithingsDeviceDataUpdateCoordinator
     coordinators: set[WithingsDataUpdateCoordinator] = ...
     def __post_init__(self) -> None: ...
-    def __init__(self, client, measurement_coordinator, sleep_coordinator, bed_presence_coordinator, goals_coordinator, activity_coordinator, workout_coordinator, coordinators=...) -> None: ...
+    def __init__(self, client, measurement_coordinator, sleep_coordinator, bed_presence_coordinator, goals_coordinator, activity_coordinator, workout_coordinator, device_coordinator, coordinators=...) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: WithingsConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: WithingsConfigEntry) -> bool: ...

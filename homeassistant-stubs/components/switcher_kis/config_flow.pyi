@@ -3,7 +3,7 @@ from .utils import async_discover_devices as async_discover_devices
 from _typeshed import Incomplete
 from aioswitcher.bridge import SwitcherBase as SwitcherBase
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
 from typing import Any, Final
 
@@ -12,7 +12,6 @@ CONFIG_SCHEMA: Final[Incomplete]
 
 class SwitcherFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    entry: ConfigEntry | None
     username: str | None
     token: str | None
     discovered_devices: dict[str, SwitcherBase]

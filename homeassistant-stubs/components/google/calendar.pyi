@@ -1,10 +1,10 @@
+import dataclasses
 from . import CONF_IGNORE_AVAILABILITY as CONF_IGNORE_AVAILABILITY, CONF_SEARCH as CONF_SEARCH, CONF_TRACK as CONF_TRACK, DEFAULT_CONF_OFFSET as DEFAULT_CONF_OFFSET, DOMAIN as DOMAIN, YAML_DEVICES as YAML_DEVICES, get_calendar_info as get_calendar_info, load_config as load_config, update_config as update_config
 from .api import get_feature_access as get_feature_access
 from .const import DATA_SERVICE as DATA_SERVICE, DATA_STORE as DATA_STORE, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, FeatureAccess as FeatureAccess
 from .coordinator import CalendarQueryUpdateCoordinator as CalendarQueryUpdateCoordinator, CalendarSyncUpdateCoordinator as CalendarSyncUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from dataclasses import dataclass
 from datetime import datetime, timedelta
 from gcal_sync.model import Calendar as Calendar, Event
 from homeassistant.components.calendar import CREATE_EVENT_SCHEMA as CREATE_EVENT_SCHEMA, CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEntityFeature as CalendarEntityFeature, CalendarEvent as CalendarEvent, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END as EVENT_END, EVENT_LOCATION as EVENT_LOCATION, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_SUMMARY as EVENT_SUMMARY, extract_offset as extract_offset, is_offset_reached as is_offset_reached
@@ -24,17 +24,18 @@ OPAQUE: str
 RRULE_PREFIX: str
 SERVICE_CREATE_EVENT: str
 
-@dataclass(frozen=True, kw_only=True)
+@dataclasses.dataclass(frozen=True, kw_only=True)
 class GoogleCalendarEntityDescription(CalendarEntityDescription):
-    name: str
-    entity_id: str
+    name: str | None
+    entity_id: str | None
     read_only: bool
     ignore_availability: bool
     offset: str | None
     search: str | None
     local_sync: bool
     device_id: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name, translation_key=..., translation_placeholders=..., unit_of_measurement=..., entity_id, read_only, ignore_availability, offset, search, local_sync, device_id) -> None: ...
+    working_location: bool = ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name, translation_key=..., translation_placeholders=..., unit_of_measurement=..., entity_id, read_only, ignore_availability, offset, search, local_sync, device_id, working_location=...) -> None: ...
 
 def _get_entity_descriptions(hass: HomeAssistant, config_entry: ConfigEntry, calendar_item: Calendar, calendar_info: Mapping[str, Any]) -> list[GoogleCalendarEntityDescription]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

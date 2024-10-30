@@ -21,6 +21,7 @@ SERVICE_SEEN_SCHEMA = _SERVICE_UID_SCHEMA
 SERVICE_MOVE_SCHEMA: Incomplete
 SERVICE_DELETE_SCHEMA = _SERVICE_UID_SCHEMA
 SERVICE_FETCH_TEXT_SCHEMA = _SERVICE_UID_SCHEMA
+type ImapConfigEntry = ConfigEntry[ImapDataUpdateCoordinator]
 
 async def async_get_imap_client(hass: HomeAssistant, entry_id: str) -> IMAP4_SSL: ...
 def raise_on_error(response: Response, translation_key: str) -> None: ...

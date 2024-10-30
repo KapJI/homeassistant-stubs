@@ -3,7 +3,7 @@ from .coordinator import P1MonitorDataUpdateCoordinator as P1MonitorDataUpdateCo
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

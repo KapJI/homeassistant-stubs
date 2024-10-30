@@ -6,7 +6,7 @@ from homeassistant.components.http.data_validator import RequestDataValidator as
 from typing import Any, Generic
 from typing_extensions import TypeVar
 
-_FlowManagerT = TypeVar('_FlowManagerT', bound=data_entry_flow.FlowManager[Any], default=data_entry_flow.FlowManager)
+_FlowManagerT = TypeVar('_FlowManagerT', bound=data_entry_flow.FlowManager[Any, Any], default=data_entry_flow.FlowManager)
 
 class _BaseFlowManagerView(HomeAssistantView, Generic[_FlowManagerT]):
     _flow_mgr: Incomplete

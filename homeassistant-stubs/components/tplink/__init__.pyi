@@ -16,6 +16,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from kasa import Credentials, Device
 
+type TPLinkConfigEntry = ConfigEntry[TPLinkData]
 DISCOVERY_INTERVAL: Incomplete
 CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete

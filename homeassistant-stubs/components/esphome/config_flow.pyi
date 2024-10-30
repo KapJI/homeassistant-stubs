@@ -4,11 +4,11 @@ from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from collections.abc import Mapping
 from homeassistant.components import dhcp as dhcp, zeroconf as zeroconf
-from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.helpers.service_info.mqtt import MqttServiceInfo as MqttServiceInfo
 from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
@@ -21,13 +21,14 @@ ZERO_NOISE_PSK: str
 
 class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    _reauth_entry: ConfigEntry
     _host: Incomplete
+    __name: Incomplete
     _port: Incomplete
     _password: Incomplete
     _noise_required: Incomplete
     _noise_psk: Incomplete
     _device_info: Incomplete
-    _reauth_entry: Incomplete
     _device_name: Incomplete
     def __init__(self) -> None: ...
     async def _async_step_user_base(self, user_input: dict[str, Any] | None = None, error: str | None = None) -> ConfigFlowResult: ...
@@ -35,7 +36,7 @@ class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @property
-    def _name(self) -> str | None: ...
+    def _name(self) -> str: ...
     @_name.setter
     def _name(self, value: str) -> None: ...
     async def _async_try_fetch_device_info(self) -> ConfigFlowResult: ...

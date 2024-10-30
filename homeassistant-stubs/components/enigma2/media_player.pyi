@@ -1,13 +1,10 @@
 from . import Enigma2ConfigEntry as Enigma2ConfigEntry
-from .const import CONF_DEEP_STANDBY as CONF_DEEP_STANDBY, CONF_MAC_ADDRESS as CONF_MAC_ADDRESS, CONF_SOURCE_BOUQUET as CONF_SOURCE_BOUQUET, CONF_USE_CHANNEL_ICON as CONF_USE_CHANNEL_ICON, DEFAULT_DEEP_STANDBY as DEFAULT_DEEP_STANDBY, DEFAULT_MAC_ADDRESS as DEFAULT_MAC_ADDRESS, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PASSWORD as DEFAULT_PASSWORD, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_SOURCE_BOUQUET as DEFAULT_SOURCE_BOUQUET, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DEFAULT_USE_CHANNEL_ICON as DEFAULT_USE_CHANNEL_ICON, DOMAIN as DOMAIN
 from .coordinator import Enigma2UpdateCoordinator as Enigma2UpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 ATTR_MEDIA_CURRENTLY_RECORDING: str
@@ -15,9 +12,7 @@ ATTR_MEDIA_DESCRIPTION: str
 ATTR_MEDIA_END_TIME: str
 ATTR_MEDIA_START_TIME: str
 _LOGGER: Incomplete
-PLATFORM_SCHEMA: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: Enigma2ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class Enigma2Device(CoordinatorEntity[Enigma2UpdateCoordinator], MediaPlayerEntity):

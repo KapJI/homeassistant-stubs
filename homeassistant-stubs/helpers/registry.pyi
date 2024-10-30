@@ -1,14 +1,16 @@
 import abc
 from .storage import Store as Store
 from abc import ABC, abstractmethod
-from collections import UserDict
+from collections import UserDict, defaultdict
 from collections.abc import Mapping as Mapping, Sequence as Sequence, ValuesView
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback
+from typing import Any, Literal
 
 SAVE_DELAY: int
 SAVE_DELAY_LONG: int
+type RegistryIndexType = defaultdict[str, dict[str, Literal[True]]]
 
-class BaseRegistryItems(UserDict[str, _DataT], ABC, metaclass=abc.ABCMeta):
+class BaseRegistryItems[_DataT](UserDict[str, _DataT], ABC, metaclass=abc.ABCMeta):
     data: dict[str, _DataT]
     def values(self) -> ValuesView[_DataT]: ...
     @abstractmethod
@@ -19,7 +21,7 @@ class BaseRegistryItems(UserDict[str, _DataT], ABC, metaclass=abc.ABCMeta):
     def _unindex_entry_value(self, key: str, value: str, index: RegistryIndexType) -> None: ...
     def __delitem__(self, key: str) -> None: ...
 
-class BaseRegistry(ABC, metaclass=abc.ABCMeta):
+class BaseRegistry[_StoreDataT: Mapping[str, Any] | Sequence[Any]](ABC, metaclass=abc.ABCMeta):
     hass: HomeAssistant
     _store: Store[_StoreDataT]
     def async_schedule_save(self) -> None: ...

@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -17,7 +17,6 @@ class LaCrosseViewConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     data: Incomplete
     locations: Incomplete
-    _reauth_entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_location(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

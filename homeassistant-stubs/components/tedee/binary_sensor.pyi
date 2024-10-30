@@ -1,4 +1,4 @@
-from . import TedeeConfigEntry as TedeeConfigEntry
+from .coordinator import TedeeConfigEntry as TedeeConfigEntry
 from .entity import TedeeDescriptionEntity as TedeeDescriptionEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

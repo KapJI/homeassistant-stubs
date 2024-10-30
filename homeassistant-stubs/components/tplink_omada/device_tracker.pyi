@@ -1,9 +1,8 @@
+from . import OmadaConfigEntry as OmadaConfigEntry
 from .config_flow import CONF_SITE as CONF_SITE
-from .const import DOMAIN as DOMAIN
-from .controller import OmadaClientsCoordinator as OmadaClientsCoordinator, OmadaSiteController as OmadaSiteController
+from .controller import OmadaClientsCoordinator as OmadaClientsCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -11,7 +10,7 @@ from tplink_omada_client.clients import OmadaWirelessClient
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OmadaClientScannerEntity(CoordinatorEntity[OmadaClientsCoordinator], ScannerEntity):
     _client_details: OmadaWirelessClient | None

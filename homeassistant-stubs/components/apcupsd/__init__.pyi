@@ -5,6 +5,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Final
 
+type APCUPSdConfigEntry = ConfigEntry[APCUPSdCoordinator]
 PLATFORMS: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: APCUPSdConfigEntry) -> bool: ...

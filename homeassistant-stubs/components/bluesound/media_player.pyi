@@ -1,21 +1,20 @@
-import voluptuous as vol
 from . import BluesoundConfigEntry as BluesoundConfigEntry
-from .const import ATTR_BLUESOUND_GROUP as ATTR_BLUESOUND_GROUP, ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN, INTEGRATION_TITLE as INTEGRATION_TITLE, SERVICE_CLEAR_TIMER as SERVICE_CLEAR_TIMER, SERVICE_JOIN as SERVICE_JOIN, SERVICE_SET_TIMER as SERVICE_SET_TIMER, SERVICE_UNJOIN as SERVICE_UNJOIN
+from .const import ATTR_BLUESOUND_GROUP as ATTR_BLUESOUND_GROUP, ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN, INTEGRATION_TITLE as INTEGRATION_TITLE
 from .utils import format_unique_id as format_unique_id
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_HOST as CONF_HOST, CONF_HOSTS as CONF_HOSTS, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_HOSTS as CONF_HOSTS, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResultType as FlowResultType
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from pyblu import Input as Input, Player as Player, Preset as Preset, Status as Status, SyncStatus as SyncStatus
-from typing import Any, NamedTuple
+from typing import Any
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -26,17 +25,8 @@ NODE_RETRY_INITIATION: Incomplete
 SYNC_STATUS_INTERVAL: Incomplete
 POLL_TIMEOUT: int
 PLATFORM_SCHEMA: Incomplete
-BS_SCHEMA: Incomplete
-BS_JOIN_SCHEMA: Incomplete
-
-class ServiceMethodDetails(NamedTuple):
-    method: str
-    schema: vol.Schema
-
-SERVICE_TO_METHOD: Incomplete
 
 async def _async_import(hass: HomeAssistant, config: ConfigType) -> None: ...
-def setup_services(hass: HomeAssistant) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: BluesoundConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None) -> None: ...
 
@@ -98,6 +88,8 @@ class BluesoundPlayer(MediaPlayerEntity):
     def id(self) -> str | None: ...
     @property
     def bluesound_device_name(self) -> str | None: ...
+    @property
+    def sync_status(self) -> SyncStatus: ...
     @property
     def source_list(self) -> list[str] | None: ...
     @property

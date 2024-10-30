@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
-from typing import Final, TypedDict
+from typing import Final, Literal, TypedDict
 
 ATTR_DEVICES: Final[str]
 ATTR_GATEWAY_ID: Final[str]
@@ -13,6 +13,7 @@ CONF_TOPIC_IN_PREFIX: Final[str]
 CONF_TOPIC_OUT_PREFIX: Final[str]
 CONF_VERSION: Final[str]
 CONF_GATEWAY_TYPE: Final[str]
+type ConfGatewayType = Literal['Serial', 'TCP', 'MQTT']
 CONF_GATEWAY_TYPE_SERIAL: ConfGatewayType
 CONF_GATEWAY_TYPE_TCP: ConfGatewayType
 CONF_GATEWAY_TYPE_MQTT: ConfGatewayType
@@ -39,6 +40,10 @@ class NodeDiscoveryInfo(TypedDict):
     node_id: int
 
 SERVICE_SEND_IR_CODE: Final[str]
+type SensorType = str
+type ValueType = str
+type GatewayId = str
+type DevId = tuple[GatewayId, int, int, int]
 BINARY_SENSOR_TYPES: dict[SensorType, set[ValueType]]
 CLIMATE_TYPES: dict[SensorType, set[ValueType]]
 COVER_TYPES: dict[SensorType, set[ValueType]]

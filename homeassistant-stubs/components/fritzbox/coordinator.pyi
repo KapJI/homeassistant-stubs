@@ -9,6 +9,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pyfritzhome import Fritzhome, FritzhomeDevice as FritzhomeDevice
 from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate
 
+type FritzboxConfigEntry = ConfigEntry[FritzboxDataUpdateCoordinator]
 @dataclass
 class FritzboxCoordinatorData:
     devices: dict[str, FritzhomeDevice]

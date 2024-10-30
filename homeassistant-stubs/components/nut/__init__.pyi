@@ -9,6 +9,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 NUT_FAKE_SERIAL: Incomplete
 _LOGGER: Incomplete
+type NutConfigEntry = ConfigEntry[NutRuntimeData]
 
 @dataclass
 class NutRuntimeData:

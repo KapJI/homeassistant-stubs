@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from aionanoleaf import Nanoleaf
 from collections.abc import Mapping
 from homeassistant.components import ssdp as ssdp, zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_TOKEN as CONF_TOKEN
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.json import save_json as save_json
@@ -15,7 +15,6 @@ CONFIG_FILE: Final[str]
 USER_SCHEMA: Final[Incomplete]
 
 class NanoleafConfigFlow(ConfigFlow, domain=DOMAIN):
-    reauth_entry: ConfigEntry | None
     nanoleaf: Nanoleaf
     discovery_conf: JsonObjectType
     device_id: str

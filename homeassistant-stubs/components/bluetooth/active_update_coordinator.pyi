@@ -10,7 +10,7 @@ from typing import Any
 POLL_DEFAULT_COOLDOWN: int
 POLL_DEFAULT_IMMEDIATE: bool
 
-class ActiveBluetoothDataUpdateCoordinator(PassiveBluetoothDataUpdateCoordinator):
+class ActiveBluetoothDataUpdateCoordinator[_T](PassiveBluetoothDataUpdateCoordinator):
     data: Incomplete
     _needs_poll_method: Incomplete
     _poll_method: Incomplete

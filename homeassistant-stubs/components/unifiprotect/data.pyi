@@ -13,6 +13,8 @@ from uiprotect.data import Camera, ModelType, NVR, ProtectAdoptableDeviceModel, 
 from uiprotect.websocket import WebsocketState
 
 _LOGGER: Incomplete
+type ProtectDeviceType = ProtectAdoptableDeviceModel | NVR
+type UFPConfigEntry = ConfigEntry[ProtectData]
 
 def async_last_update_was_successful(hass: HomeAssistant, entry: UFPConfigEntry) -> bool: ...
 def _async_dispatch_id(entry: UFPConfigEntry, dispatch: str) -> str: ...

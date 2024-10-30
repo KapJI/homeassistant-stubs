@@ -25,7 +25,6 @@ async def _async_console_is_offline(hass: HomeAssistant, entry: ConfigEntry) -> 
 
 class ProtectFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    entry: Incomplete
     _discovered_device: Incomplete
     def __init__(self) -> None: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...

@@ -1,6 +1,6 @@
 import aiohttp
 import datetime
-from .const import CONF_CALENDAR_ACCESS as CONF_CALENDAR_ACCESS, DATA_CONFIG as DATA_CONFIG, DEFAULT_FEATURE_ACCESS as DEFAULT_FEATURE_ACCESS, DOMAIN as DOMAIN, FeatureAccess as FeatureAccess
+from .const import CONF_CALENDAR_ACCESS as CONF_CALENDAR_ACCESS, DEFAULT_FEATURE_ACCESS as DEFAULT_FEATURE_ACCESS, FeatureAccess as FeatureAccess
 from _typeshed import Incomplete
 from gcal_sync.auth import AbstractAuth
 from homeassistant.components.application_credentials import AuthImplementation as AuthImplementation
@@ -44,7 +44,7 @@ class DeviceFlow:
     def _async_timeout(self, now: datetime.datetime) -> None: ...
     def _finish(self) -> None: ...
 
-def get_feature_access(hass: HomeAssistant, config_entry: ConfigEntry | None = None) -> FeatureAccess: ...
+def get_feature_access(config_entry: ConfigEntry) -> FeatureAccess: ...
 async def async_create_device_flow(hass: HomeAssistant, client_id: str, client_secret: str, access: FeatureAccess) -> DeviceFlow: ...
 
 class ApiAuthImpl(AbstractAuth):

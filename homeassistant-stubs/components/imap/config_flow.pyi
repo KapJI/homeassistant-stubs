@@ -4,7 +4,7 @@ from .errors import InvalidAuth as InvalidAuth, InvalidFolder as InvalidFolder
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
-from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector, TemplateSelectorConfig as TemplateSelectorConfig
@@ -24,7 +24,6 @@ async def validate_input(hass: HomeAssistant, user_input: dict[str, Any]) -> dic
 
 class IMAPConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _reauth_entry: ConfigEntry | None
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...

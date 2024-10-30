@@ -3,9 +3,8 @@ from .const import ATTR_ALARM_DURATION as ATTR_ALARM_DURATION, ATTR_ALARM_VOLUME
 from .entity import SimpliSafeEntity as SimpliSafeEntity
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_ARMING as STATE_ALARM_ARMING, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED, STATE_ALARM_PENDING as STATE_ALARM_PENDING, STATE_ALARM_TRIGGERED as STATE_ALARM_TRIGGERED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -29,7 +28,7 @@ class SimpliSafeAlarm(SimpliSafeEntity, AlarmControlPanelEntity):
     _attr_supported_features: Incomplete
     _last_event: Incomplete
     def __init__(self, simplisafe: SimpliSafe, system: SystemType) -> None: ...
-    _attr_state: Incomplete
+    _attr_alarm_state: Incomplete
     def _set_state_from_system_data(self) -> None: ...
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...
     async def async_alarm_arm_home(self, code: str | None = None) -> None: ...

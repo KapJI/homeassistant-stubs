@@ -4,11 +4,12 @@ import dataclasses
 from .const import LOGGER as LOGGER, SILABS_FLASHER_ADDON_SLUG as SILABS_FLASHER_ADDON_SLUG, SILABS_MULTIPROTOCOL_ADDON_SLUG as SILABS_MULTIPROTOCOL_ADDON_SLUG
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, hostname_from_addon_slug as hostname_from_addon_slug, is_hassio as is_hassio
+from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, hostname_from_addon_slug as hostname_from_addon_slug
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowManager as OptionsFlowManager
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.singleton import singleton as singleton

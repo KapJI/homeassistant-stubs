@@ -1,12 +1,13 @@
 import types
 from ..auth_store import AuthStore as AuthStore
 from ..const import MFA_SESSION_EXPIRATION as MFA_SESSION_EXPIRATION
-from ..models import AuthFlowResult as AuthFlowResult, Credentials as Credentials, RefreshToken as RefreshToken, User as User, UserMeta as UserMeta
+from ..models import AuthFlowContext as AuthFlowContext, AuthFlowResult as AuthFlowResult, Credentials as Credentials, RefreshToken as RefreshToken, User as User, UserMeta as UserMeta
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant import data_entry_flow as data_entry_flow, requirements as requirements
+from homeassistant import requirements as requirements
 from homeassistant.const import CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.data_entry_flow import FlowHandler as FlowHandler
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.util.decorator import Registry as Registry
@@ -34,7 +35,7 @@ class AuthProvider:
     def support_mfa(self) -> bool: ...
     async def async_credentials(self) -> list[Credentials]: ...
     def async_create_credentials(self, data: dict[str, str]) -> Credentials: ...
-    async def async_login_flow(self, context: dict[str, Any] | None) -> LoginFlow: ...
+    async def async_login_flow(self, context: AuthFlowContext | None) -> LoginFlow: ...
     async def async_get_or_create_credentials(self, flow_result: Mapping[str, str]) -> Credentials: ...
     async def async_user_meta_for_credentials(self, credentials: Credentials) -> UserMeta: ...
     async def async_initialize(self) -> None: ...
@@ -43,7 +44,7 @@ class AuthProvider:
 async def auth_provider_from_config(hass: HomeAssistant, store: AuthStore, config: dict[str, Any]) -> AuthProvider: ...
 async def load_auth_provider_module(hass: HomeAssistant, provider: str) -> types.ModuleType: ...
 
-class LoginFlow(data_entry_flow.FlowHandler[AuthFlowResult, tuple[str, str]]):
+class LoginFlow(FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]]):
     _flow_result = AuthFlowResult
     _auth_provider: Incomplete
     _auth_module_id: Incomplete

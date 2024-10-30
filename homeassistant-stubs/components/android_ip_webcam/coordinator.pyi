@@ -7,10 +7,11 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pydroid_ipcam import PyDroidIPCam as PyDroidIPCam
 
 _LOGGER: Incomplete
+type AndroidIPCamConfigEntry = ConfigEntry[AndroidIPCamDataUpdateCoordinator]
 
 class AndroidIPCamDataUpdateCoordinator(DataUpdateCoordinator[None]):
+    config_entry: AndroidIPCamConfigEntry
     hass: Incomplete
-    config_entry: Incomplete
     cam: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, cam: PyDroidIPCam) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, cam: PyDroidIPCam) -> None: ...
     async def _async_update_data(self) -> None: ...

@@ -1,9 +1,10 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.hassio import HassioAPIError as HassioAPIError, async_get_green_settings as async_get_green_settings, async_set_green_settings as async_set_green_settings, is_hassio as is_hassio
+from homeassistant.components.hassio import HassioAPIError as HassioAPIError, async_get_green_settings as async_get_green_settings, async_set_green_settings as async_set_green_settings
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from typing import Any
 
 _LOGGER: Incomplete

@@ -12,6 +12,7 @@ from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
+type UnifiConfigEntry = ConfigEntry[UnifiHub]
 SAVE_DELAY: int
 STORAGE_KEY: str
 STORAGE_VERSION: int

@@ -1,10 +1,10 @@
 from . import CONF_STUN_SERVER as CONF_STUN_SERVER, DATA_SERVER_URL as DATA_SERVER_URL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from typing import Any
 
 _LOGGER: Incomplete

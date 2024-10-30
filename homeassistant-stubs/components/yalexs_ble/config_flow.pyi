@@ -9,7 +9,7 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, Self
 
 _LOGGER: Incomplete
 
@@ -17,13 +17,17 @@ async def async_validate_lock_or_error(local_name: str, device: BLEDevice, key: 
 
 class YalexsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    _address: str | None
+    _local_name_is_unique: bool
+    active: bool
+    local_name: str | None
     _discovery_info: Incomplete
     _discovered_devices: Incomplete
     _lock_cfg: Incomplete
-    _reauth_entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
+    def is_matching(self, other_flow: Self) -> bool: ...
     async def async_step_integration_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_validate(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

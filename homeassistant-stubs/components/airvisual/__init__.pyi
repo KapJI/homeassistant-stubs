@@ -12,6 +12,7 @@ from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity,
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
+type AirVisualConfigEntry = ConfigEntry[DataUpdateCoordinator]
 DOMAIN_AIRVISUAL_PRO: str
 PLATFORMS: Incomplete
 DEFAULT_ATTRIBUTION: str

@@ -7,14 +7,14 @@ from switchbee.device import SwitchBeeBaseDevice as SwitchBeeBaseDevice
 
 _LOGGER: Incomplete
 
-class SwitchBeeEntity(CoordinatorEntity[SwitchBeeCoordinator]):
+class SwitchBeeEntity[_DeviceTypeT: SwitchBeeBaseDevice](CoordinatorEntity[SwitchBeeCoordinator]):
     _attr_has_entity_name: bool
     _device: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: _DeviceTypeT, coordinator: SwitchBeeCoordinator) -> None: ...
 
-class SwitchBeeDeviceEntity(SwitchBeeEntity[_DeviceTypeT]):
+class SwitchBeeDeviceEntity[_DeviceTypeT: SwitchBeeBaseDevice](SwitchBeeEntity[_DeviceTypeT]):
     _is_online: bool
     _attr_device_info: Incomplete
     def __init__(self, device: _DeviceTypeT, coordinator: SwitchBeeCoordinator) -> None: ...

@@ -2,15 +2,20 @@ from . import permissions as perm_mdl
 from .const import GROUP_ID_ADMIN as GROUP_ID_ADMIN
 from attr import Attribute
 from datetime import datetime, timedelta
-from functools import cached_property as cached_property
 from homeassistant.const import __version__ as __version__
-from homeassistant.data_entry_flow import FlowResult as FlowResult
+from homeassistant.data_entry_flow import FlowContext as FlowContext, FlowResult as FlowResult
+from ipaddress import IPv4Address, IPv6Address
 from typing import Any, NamedTuple
 
 TOKEN_TYPE_NORMAL: str
 TOKEN_TYPE_SYSTEM: str
 TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN: str
-AuthFlowResult = FlowResult[tuple[str, str]]
+
+class AuthFlowContext(FlowContext, total=False):
+    credential_only: bool
+    ip_address: IPv4Address | IPv6Address
+    redirect_uri: str
+AuthFlowResult = FlowResult[AuthFlowContext, tuple[str, str]]
 
 class Group:
     name: str | None
@@ -36,9 +41,7 @@ class User:
     groups: list[Group]
     credentials: list[Credentials]
     refresh_tokens: dict[str, RefreshToken]
-    @cached_property
     def permissions(self) -> perm_mdl.AbstractPermissions: ...
-    @cached_property
     def is_admin(self) -> bool: ...
     def invalidate_cache(self) -> None: ...
     def __init__(self, name, perm_lookup, id, is_owner, is_active, system_generated, local_only, groups, credentials, refresh_tokens) -> None: ...

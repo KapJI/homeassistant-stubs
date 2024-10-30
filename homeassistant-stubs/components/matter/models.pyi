@@ -1,3 +1,4 @@
+from chip.clusters import Objects as clusters
 from chip.clusters.Objects import Cluster as Cluster, ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from dataclasses import dataclass
 from homeassistant.const import Platform as Platform
@@ -6,6 +7,7 @@ from matter_server.client.models.device_types import DeviceType as DeviceType
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from typing import Any, TypedDict
 
+type SensorValueTypes = type[clusters.uint | int | clusters.Nullable | clusters.float32 | float]
 class MatterDeviceInfo(TypedDict):
     unique_id: str
     vendor_id: str

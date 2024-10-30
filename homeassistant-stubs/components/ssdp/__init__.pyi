@@ -75,6 +75,7 @@ class SsdpServiceInfo(BaseServiceInfo):
     def __init__(self, ssdp_usn, ssdp_st, upnp, ssdp_location=..., ssdp_nt=..., ssdp_udn=..., ssdp_ext=..., ssdp_server=..., ssdp_headers=..., ssdp_all_locations=..., x_homeassistant_matching_domains=...) -> None: ...
 
 SsdpChange: Incomplete
+type SsdpHassJobCallback = HassJob[[SsdpServiceInfo, SsdpChange], Coroutine[Any, Any, None] | None]
 SSDP_SOURCE_SSDP_CHANGE_MAPPING: Mapping[SsdpSource, SsdpChange]
 
 def _format_err(name: str, *args: Any) -> str: ...

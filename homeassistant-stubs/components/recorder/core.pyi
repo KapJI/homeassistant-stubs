@@ -4,10 +4,8 @@ from . import migration as migration, statistics as statistics
 from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG as MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import Base as Base, EventData as EventData, EventTypes as EventTypes, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
-from .migration import EntityIDMigration as EntityIDMigration, EventIDPostMigration as EventIDPostMigration, EventTypeIDMigration as EventTypeIDMigration, EventsContextIDMigration as EventsContextIDMigration, StatesContextIDMigration as StatesContextIDMigration
 from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
-from .queries import get_migration_changes as get_migration_changes
 from .table_managers.event_data import EventDataManager as EventDataManager
 from .table_managers.event_types import EventTypeManager as EventTypeManager
 from .table_managers.recorder_runs import RecorderRunsManager as RecorderRunsManager
@@ -16,11 +14,10 @@ from .table_managers.states import StatesManager as StatesManager
 from .table_managers.states_meta import StatesMetaManager as StatesMetaManager
 from .table_managers.statistics_meta import StatisticsMetaManager as StatisticsMetaManager
 from .tasks import AdjustLRUSizeTask as AdjustLRUSizeTask, AdjustStatisticsTask as AdjustStatisticsTask, ChangeStatisticsUnitTask as ChangeStatisticsUnitTask, ClearStatisticsTask as ClearStatisticsTask, CommitTask as CommitTask, CompileMissingStatisticsTask as CompileMissingStatisticsTask, DatabaseLockTask as DatabaseLockTask, ImportStatisticsTask as ImportStatisticsTask, KeepAliveTask as KeepAliveTask, PerodicCleanupTask as PerodicCleanupTask, PurgeTask as PurgeTask, RecorderTask as RecorderTask, StatisticsTask as StatisticsTask, StopTask as StopTask, SynchronizeTask as SynchronizeTask, UpdateStatesMetadataTask as UpdateStatesMetadataTask, UpdateStatisticsMetadataTask as UpdateStatisticsMetadataTask, WaitTask as WaitTask
-from .util import async_create_backup_failure_issue as async_create_backup_failure_issue, build_mysqldb_conv as build_mysqldb_conv, dburl_to_path as dburl_to_path, end_incomplete_runs as end_incomplete_runs, execute_stmt_lambda_element as execute_stmt_lambda_element, is_second_sunday as is_second_sunday, move_away_broken_database as move_away_broken_database, session_scope as session_scope, setup_connection_for_dialect as setup_connection_for_dialect, validate_or_move_away_sqlite_database as validate_or_move_away_sqlite_database, write_lock_db_sqlite as write_lock_db_sqlite
+from .util import async_create_backup_failure_issue as async_create_backup_failure_issue, build_mysqldb_conv as build_mysqldb_conv, dburl_to_path as dburl_to_path, end_incomplete_runs as end_incomplete_runs, is_second_sunday as is_second_sunday, move_away_broken_database as move_away_broken_database, session_scope as session_scope, setup_connection_for_dialect as setup_connection_for_dialect, validate_or_move_away_sqlite_database as validate_or_move_away_sqlite_database, write_lock_db_sqlite as write_lock_db_sqlite
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import datetime
-from functools import cached_property as cached_property
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
@@ -104,7 +101,6 @@ class Recorder(threading.Thread):
     def __init__(self, hass: HomeAssistant, auto_purge: bool, auto_repack: bool, keep_days: int, commit_interval: int, uri: str, db_max_retries: int, db_retry_wait: int, entity_filter: Callable[[str], bool] | None, exclude_event_types: set[EventType[Any] | str]) -> None: ...
     @property
     def backlog(self) -> int: ...
-    @cached_property
     def dialect_name(self) -> SupportedDialect | None: ...
     @property
     def _using_file_sqlite(self) -> bool: ...
@@ -118,7 +114,7 @@ class Recorder(threading.Thread):
     def async_initialize(self) -> None: ...
     def _async_keep_alive(self, now: datetime) -> None: ...
     def _async_commit(self, now: datetime) -> None: ...
-    def async_add_executor_job(self, target: Callable[..., _T], *args: Any) -> asyncio.Future[_T]: ...
+    def async_add_executor_job[_T](self, target: Callable[..., _T], *args: Any) -> asyncio.Future[_T]: ...
     def _async_check_queue(self, *_: Any) -> None: ...
     def _available_memory(self) -> int: ...
     def _reached_max_backlog(self) -> bool: ...

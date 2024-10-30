@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 
 PLATFORMS: Incomplete
+type CO2SignalConfigEntry = ConfigEntry[CO2SignalCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: CO2SignalConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: CO2SignalConfigEntry) -> bool: ...

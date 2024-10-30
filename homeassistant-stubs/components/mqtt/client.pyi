@@ -1,5 +1,7 @@
 import asyncio
 import paho.mqtt.client as mqtt
+import socket
+import ssl
 from .async_client import AsyncMQTTClient as AsyncMQTTClient
 from .const import CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_HEADERS as DEFAULT_WS_HEADERS, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, MQTT_CONNECTION_STATE as MQTT_CONNECTION_STATE, PROTOCOL_31 as PROTOCOL_31, PROTOCOL_5 as PROTOCOL_5, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
 from .models import DATA_MQTT as DATA_MQTT, MessageCallbackType as MessageCallbackType, MqttData as MqttData, PublishMessage as PublishMessage, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
@@ -34,6 +36,8 @@ MAX_WILDCARD_SUBSCRIBES_PER_CALL: int
 MAX_SUBSCRIBES_PER_CALL: int
 MAX_UNSUBSCRIBES_PER_CALL: int
 MAX_PACKETS_TO_READ: int
+type SocketType = socket.socket | ssl.SSLSocket | mqtt.WebsocketWrapper | Any
+type SubscribePayloadType = str | bytes
 
 def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
 async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...

@@ -4,6 +4,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from tesla_powerwall import BatteryResponse as BatteryResponse, DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregatesResponse as MetersAggregatesResponse, Powerwall as Powerwall, PowerwallStatusResponse as PowerwallStatusResponse, SiteInfoResponse as SiteInfoResponse, SiteMasterResponse as SiteMasterResponse
 from typing import TypedDict
 
+type PowerwallConfigEntry = ConfigEntry[PowerwallRuntimeData]
 @dataclass
 class PowerwallBaseInfo:
     gateway_din: str

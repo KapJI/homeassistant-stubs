@@ -1,4 +1,5 @@
 from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_WIFI_CLIENTS as CONNECTED_WIFI_CLIENTS, DOMAIN as DOMAIN, FIRMWARE_UPDATE_INTERVAL as FIRMWARE_UPDATE_INTERVAL, LAST_RESTART as LAST_RESTART, LONG_UPDATE_INTERVAL as LONG_UPDATE_INTERVAL, NEIGHBORING_WIFI_NETWORKS as NEIGHBORING_WIFI_NETWORKS, REGULAR_FIRMWARE as REGULAR_FIRMWARE, SHORT_UPDATE_INTERVAL as SHORT_UPDATE_INTERVAL, SWITCH_GUEST_WIFI as SWITCH_GUEST_WIFI, SWITCH_LEDS as SWITCH_LEDS
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from devolo_plc_api import Device
@@ -11,15 +12,16 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 from typing import Any
 
 _LOGGER: Incomplete
+type DevoloHomeNetworkConfigEntry = ConfigEntry[DevoloHomeNetworkData]
 
 @dataclass
 class DevoloHomeNetworkData:
     device: Device
-    coordinators: dict[str, DataUpdateCoordinator[Any]]
+    coordinators: dict[str, DevoloDataUpdateCoordinator[Any]]
     def __init__(self, device, coordinators) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry) -> bool: ...

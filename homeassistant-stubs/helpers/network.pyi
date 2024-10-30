@@ -1,3 +1,4 @@
+from .hassio import is_hassio as is_hassio
 from collections.abc import Callable as Callable
 from homeassistant.components import http as http
 from homeassistant.core import HomeAssistant as HomeAssistant

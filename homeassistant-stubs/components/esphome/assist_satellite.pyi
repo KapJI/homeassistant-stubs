@@ -12,7 +12,7 @@ from homeassistant.components.assist_pipeline import PipelineEvent as PipelineEv
 from homeassistant.components.intent import TimerEventType as TimerEventType, TimerInfo as TimerInfo, async_register_timer_handler as async_register_timer_handler
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any

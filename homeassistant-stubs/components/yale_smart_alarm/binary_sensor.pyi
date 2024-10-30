@@ -16,6 +16,13 @@ class YaleDoorSensor(YaleEntity, BinarySensorEntity):
     @property
     def is_on(self) -> bool: ...
 
+class YaleDoorBatterySensor(YaleEntity, BinarySensorEntity):
+    _attr_device_class: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: YaleDataUpdateCoordinator, data: dict) -> None: ...
+    @property
+    def is_on(self) -> bool: ...
+
 class YaleProblemSensor(YaleAlarmEntity, BinarySensorEntity):
     entity_description: BinarySensorEntityDescription
     _attr_unique_id: Incomplete

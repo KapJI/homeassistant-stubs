@@ -1,14 +1,13 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import AndroidIPCamDataUpdateCoordinator as AndroidIPCamDataUpdateCoordinator
+from .coordinator import AndroidIPCamConfigEntry as AndroidIPCamConfigEntry, AndroidIPCamDataUpdateCoordinator as AndroidIPCamDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.mjpeg import MjpegCamera as MjpegCamera, filter_urllib3_logging as filter_urllib3_logging
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, HTTP_BASIC_AUTHENTICATION as HTTP_BASIC_AUTHENTICATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class IPWebcamCamera(MjpegCamera):
     _attr_has_entity_name: bool

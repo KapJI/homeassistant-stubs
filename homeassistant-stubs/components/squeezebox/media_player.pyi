@@ -1,32 +1,30 @@
 from . import SqueezeboxConfigEntry as SqueezeboxConfigEntry
 from .browse_media import build_item_response as build_item_response, generate_playlist as generate_playlist, library_payload as library_payload, media_source_content_filter as media_source_content_filter
-from .const import DISCOVERY_TASK as DISCOVERY_TASK, DOMAIN as DOMAIN, KNOWN_PLAYERS as KNOWN_PLAYERS, SQUEEZEBOX_SOURCE_STRINGS as SQUEEZEBOX_SOURCE_STRINGS
+from .const import DISCOVERY_TASK as DISCOVERY_TASK, DOMAIN as DOMAIN, KNOWN_PLAYERS as KNOWN_PLAYERS, KNOWN_SERVERS as KNOWN_SERVERS, SIGNAL_PLAYER_DISCOVERED as SIGNAL_PLAYER_DISCOVERED, SQUEEZEBOX_SOURCE_STRINGS as SQUEEZEBOX_SOURCE_STRINGS
+from .coordinator import SqueezeBoxPlayerUpdateCoordinator as SqueezeBoxPlayerUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import SOURCE_INTEGRATION_DISCOVERY as SOURCE_INTEGRATION_DISCOVERY
-from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
+from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import discovery_flow as discovery_flow, entity_platform as entity_platform
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.start import async_at_start as async_at_start
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import utcnow as utcnow
-from pysqueezebox import Player as Player, Server as Server
+from pysqueezebox import Server as Server
 from typing import Any
 
 SERVICE_CALL_METHOD: str
 SERVICE_CALL_QUERY: str
 ATTR_QUERY_RESULT: str
-SIGNAL_PLAYER_REDISCOVERED: str
 _LOGGER: Incomplete
-DISCOVERY_INTERVAL: int
-KNOWN_SERVERS: str
 ATTR_PARAMETERS: str
 ATTR_OTHER_PLAYER: str
 ATTR_TO_PROPERTY: Incomplete
@@ -35,24 +33,25 @@ SQUEEZEBOX_MODE: Incomplete
 async def start_server_discovery(hass: HomeAssistant) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SqueezeBoxEntity(MediaPlayerEntity):
+class SqueezeBoxMediaPlayerEntity(CoordinatorEntity[SqueezeBoxPlayerUpdateCoordinator], MediaPlayerEntity):
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _last_update: datetime | None
-    _attr_available: bool
     _player: Incomplete
     _query_result: Incomplete
     _remove_dispatcher: Incomplete
+    _previous_media_position: int
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, player: Player, server: Server) -> None: ...
+    def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator) -> None: ...
+    def _handle_coordinator_update(self) -> None: ...
+    @property
+    def available(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
-    def rediscovered(self, unique_id: str, connected: bool) -> None: ...
     @property
     def state(self) -> MediaPlayerState | None: ...
-    async def async_update(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     @property
     def volume_level(self) -> float | None: ...

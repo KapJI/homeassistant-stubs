@@ -42,6 +42,7 @@ class NetatmoThermostat(NetatmoRoomEntity, ClimateEntity):
     _attr_supported_features = SUPPORT_FLAGS
     _attr_target_temperature_step = PRECISION_HALVES
     _attr_temperature_unit: Incomplete
+    _attr_translation_key: str
     _attr_name: Incomplete
     _away: bool | None
     _connected: bool | None

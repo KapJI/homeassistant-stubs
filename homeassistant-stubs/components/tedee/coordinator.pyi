@@ -14,18 +14,18 @@ from typing import Any
 SCAN_INTERVAL: Incomplete
 GET_LOCKS_INTERVAL_SECONDS: int
 _LOGGER: Incomplete
+type TedeeConfigEntry = ConfigEntry[TedeeApiCoordinator]
 
 class TedeeApiCoordinator(DataUpdateCoordinator[dict[int, TedeeLock]]):
-    config_entry: ConfigEntry
-    _bridge: Incomplete
+    config_entry: TedeeConfigEntry
+    bridge: TedeeBridge
     tedee_client: Incomplete
     _next_get_locks: Incomplete
     _locks_last_update: Incomplete
     new_lock_callbacks: Incomplete
     tedee_webhook_id: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
-    @property
-    def bridge(self) -> TedeeBridge: ...
+    def __init__(self, hass: HomeAssistant, entry: TedeeConfigEntry) -> None: ...
+    async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> dict[int, TedeeLock]: ...
     async def _async_update(self, update_fn: Callable[[], Awaitable[None]]) -> None: ...
     def webhook_received(self, message: dict[str, Any]) -> None: ...

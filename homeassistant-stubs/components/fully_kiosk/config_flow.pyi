@@ -10,6 +10,7 @@ from typing import Any
 
 class FullyKioskConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    host: str
     _discovered_device_info: Incomplete
     def __init__(self) -> None: ...
     async def _create_entry(self, host: str, user_input: dict[str, Any], errors: dict[str, str], description_placeholders: dict[str, str] | Any = None) -> ConfigFlowResult | None: ...

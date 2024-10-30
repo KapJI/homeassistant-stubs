@@ -8,7 +8,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
 from typing import Any, Concatenate
 
-def async_handle_api_call(function: Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]: ...
+def async_handle_api_call[_T: SensiboDeviceBaseEntity, **_P](function: Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]: ...
 
 class SensiboBaseEntity(CoordinatorEntity[SensiboDataUpdateCoordinator]):
     _attr_has_entity_name: bool

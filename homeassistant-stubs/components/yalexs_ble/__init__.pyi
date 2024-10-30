@@ -8,6 +8,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as Core
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
+type YALEXSBLEConfigEntry = ConfigEntry[YaleXSBLEData]
 PLATFORMS: list[Platform]
 
 async def async_setup_entry(hass: HomeAssistant, entry: YALEXSBLEConfigEntry) -> bool: ...

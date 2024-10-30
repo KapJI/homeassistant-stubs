@@ -6,13 +6,14 @@ from dataclasses import dataclass
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
 class SynologyDSMEntityDescription(EntityDescription):
     api_key: str
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_key) -> None: ...
 
-class SynologyDSMBaseEntity(CoordinatorEntity[_CoordinatorT]):
+class SynologyDSMBaseEntity[_CoordinatorT: SynologyDSMUpdateCoordinator[Any]](CoordinatorEntity[_CoordinatorT]):
     entity_description: SynologyDSMEntityDescription
     unique_id: str
     _attr_attribution = ATTRIBUTION

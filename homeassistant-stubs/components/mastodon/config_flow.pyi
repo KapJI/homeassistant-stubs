@@ -9,6 +9,8 @@ from typing import Any
 
 STEP_USER_DATA_SCHEMA: Incomplete
 
+def base_url_from_url(url: str) -> str: ...
+
 class MastodonConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int

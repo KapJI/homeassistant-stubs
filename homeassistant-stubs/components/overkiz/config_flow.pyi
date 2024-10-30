@@ -1,7 +1,7 @@
 from .const import CONF_API_TYPE as CONF_API_TYPE, CONF_HUB as CONF_HUB, DEFAULT_SERVER as DEFAULT_SERVER, DOMAIN as DOMAIN, LOGGER as LOGGER
 from collections.abc import Mapping
 from homeassistant.components import dhcp as dhcp, zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
@@ -14,7 +14,6 @@ class DeveloperModeDisabled(HomeAssistantError): ...
 
 class OverkizConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _reauth_entry: ConfigEntry | None
     _api_type: APIType
     _user: str | None
     _server: str

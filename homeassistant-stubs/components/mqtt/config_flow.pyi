@@ -6,13 +6,15 @@ from _typeshed import Incomplete
 from collections import OrderedDict
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
-from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, HassioServiceInfo as HassioServiceInfo, is_hassio as is_hassio
+from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_DISCOVERY as CONF_DISCOVERY, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PAYLOAD as CONF_PAYLOAD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, FileSelector as FileSelector, FileSelectorConfig as FileSelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
+from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from types import MappingProxyType
 from typing import Any
@@ -47,7 +49,6 @@ def update_password_from_user_input(entry_password: str | None, user_input: dict
 
 class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    entry: ConfigEntry | None
     _hassio_discovery: dict[str, Any] | None
     _addon_manager: AddonManager
     install_task: Incomplete

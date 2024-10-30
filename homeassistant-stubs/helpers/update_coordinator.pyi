@@ -2,11 +2,12 @@ import abc
 import logging
 from . import entity as entity, event as event
 from .debounce import Debouncer as Debouncer
+from .frame import report as report
+from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Generator
 from datetime import datetime, timedelta
-from functools import cached_property as cached_property
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -44,7 +45,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     last_update_success: bool
     last_exception: Incomplete
     _debounced_refresh: Incomplete
-    def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, update_interval: timedelta | None = None, update_method: Callable[[], Awaitable[_DataT]] | None = None, setup_method: Callable[[], Awaitable[None]] | None = None, request_refresh_debouncer: Debouncer[Coroutine[Any, Any, None]] | None = None, always_update: bool = True) -> None: ...
+    def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, config_entry: config_entries.ConfigEntry | None | UndefinedType = ..., name: str, update_interval: timedelta | None = None, update_method: Callable[[], Awaitable[_DataT]] | None = None, setup_method: Callable[[], Awaitable[None]] | None = None, request_refresh_debouncer: Debouncer[Coroutine[Any, Any, None]] | None = None, always_update: bool = True) -> None: ...
     async def async_register_shutdown(self) -> None: ...
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = None) -> Callable[[], None]: ...
     def async_update_listeners(self) -> None: ...
@@ -76,11 +77,10 @@ class TimestampDataUpdateCoordinator(DataUpdateCoordinator[_DataT]):
     last_update_success_time: datetime | None
     def _async_refresh_finished(self) -> None: ...
 
-class BaseCoordinatorEntity(entity.Entity, metaclass=abc.ABCMeta):
+class BaseCoordinatorEntity[_BaseDataUpdateCoordinatorT: BaseDataUpdateCoordinatorProtocol](entity.Entity, metaclass=abc.ABCMeta):
     coordinator: Incomplete
     coordinator_context: Incomplete
     def __init__(self, coordinator: _BaseDataUpdateCoordinatorT, context: Any = None) -> None: ...
-    @cached_property
     def should_poll(self) -> bool: ...
     async def async_added_to_hass(self) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

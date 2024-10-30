@@ -11,7 +11,7 @@ POLL_GATEWAY: int
 POLL_CLIENTS: int
 POLL_DEVICES: int
 
-class OmadaCoordinator(DataUpdateCoordinator[dict[str, _T]]):
+class OmadaCoordinator[_T](DataUpdateCoordinator[dict[str, _T]]):
     omada_client: Incomplete
     def __init__(self, hass: HomeAssistant, omada_client: OmadaSiteClient, name: str, poll_delay: int | None = 300) -> None: ...
     async def _async_update_data(self) -> dict[str, _T]: ...

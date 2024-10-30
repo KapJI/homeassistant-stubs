@@ -13,6 +13,7 @@ _LOGGER: Incomplete
 
 class HyperionConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    unique_id: str
     _data: Incomplete
     _request_token_task: Incomplete
     _auth_id: Incomplete

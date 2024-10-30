@@ -22,7 +22,7 @@ async def async_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None
 class UnifiUpdateEntityDescription(UpdateEntityDescription, UnifiEntityDescription[_HandlerT, _DataT]):
     control_fn: Callable[[aiounifi.Controller, str], Coroutine[Any, Any, None]]
     state_fn: Callable[[aiounifi.Controller, _DataT], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn=..., available_fn=..., name_fn=..., supported_fn=..., event_is_on=..., event_to_subscribe=..., should_poll=..., control_fn, state_fn) -> None: ...
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn=..., available_fn=..., name_fn=..., supported_fn=..., event_is_on=..., event_to_subscribe=..., should_poll=..., display_precision=..., control_fn, state_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiUpdateEntityDescription, ...]
 

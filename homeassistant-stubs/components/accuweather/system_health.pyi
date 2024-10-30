@@ -1,5 +1,5 @@
-from . import AccuWeatherConfigEntry as AccuWeatherConfigEntry
 from .const import DOMAIN as DOMAIN
+from .coordinator import AccuWeatherConfigEntry as AccuWeatherConfigEntry
 from homeassistant.components import system_health as system_health
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any

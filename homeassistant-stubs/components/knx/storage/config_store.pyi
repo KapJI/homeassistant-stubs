@@ -14,8 +14,8 @@ from typing import Any, Final, TypedDict
 _LOGGER: Incomplete
 STORAGE_VERSION: Final[int]
 STORAGE_KEY: Final[Incomplete]
-KNXPlatformStoreModel = dict[str, dict[str, Any]]
-KNXEntityStoreModel = dict[str, KNXPlatformStoreModel]
+type KNXPlatformStoreModel = dict[str, dict[str, Any]]
+type KNXEntityStoreModel = dict[str, KNXPlatformStoreModel]
 
 class KNXConfigStoreModel(TypedDict):
     entities: KNXEntityStoreModel

@@ -4,8 +4,8 @@ from .entity import BasePlatform as BasePlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.cover import CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.const import CONF_COVERS as CONF_COVERS, CONF_NAME as CONF_NAME, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.components.cover import CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, CoverState as CoverState
+from homeassistant.const import CONF_COVERS as CONF_COVERS, CONF_NAME as CONF_NAME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity

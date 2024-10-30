@@ -1,12 +1,11 @@
-from .const import DOMAIN as DOMAIN
-from .controller import OmadaGatewayCoordinator as OmadaGatewayCoordinator, OmadaSiteController as OmadaSiteController, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
+from . import OmadaConfigEntry as OmadaConfigEntry
+from .controller import OmadaGatewayCoordinator as OmadaGatewayCoordinator, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
 from .coordinator import OmadaCoordinator as OmadaCoordinator
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -18,7 +17,7 @@ TPort = TypeVar('TPort')
 TDevice = TypeVar('TDevice', bound='OmadaDevice')
 TCoordinator = TypeVar('TCoordinator', bound='OmadaCoordinator[Any]')
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def _get_switch_port_base_name(port: OmadaSwitchPortDetails) -> str: ...
 
 @dataclass(frozen=True, kw_only=True)
@@ -51,7 +50,6 @@ GATEWAY_PORT_STATUS_SWITCHES: list[OmadaGatewayPortStatusSwitchEntityDescription
 GATEWAY_PORT_CONFIG_SWITCHES: list[OmadaGatewayPortConfigSwitchEntityDescription]
 
 class OmadaDevicePortSwitchEntity(OmadaDeviceEntity[TCoordinator], SwitchEntity, Generic[TCoordinator, TDevice, TPort]):
-    _attr_has_entity_name: bool
     entity_description: OmadaDevicePortSwitchEntityDescription[TCoordinator, TDevice, TPort]
     _device: Incomplete
     _port_details: Incomplete

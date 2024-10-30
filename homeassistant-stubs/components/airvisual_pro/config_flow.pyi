@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD
 from typing import Any
 
@@ -19,8 +19,7 @@ async def async_validate_credentials(ip_address: str, password: str) -> Validati
 
 class AirVisualProFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _reauth_entry: Incomplete
-    def __init__(self) -> None: ...
+    _reauth_entry_data: Mapping[str, Any]
     async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

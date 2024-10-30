@@ -3,7 +3,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable
 from dataclasses import dataclass
 from enum import StrEnum
-from functools import cached_property as cached_property
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ID as ATTR_ID, ATTR_NAME as ATTR_NAME
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import intent as intent
@@ -39,7 +38,6 @@ class TimerInfo:
     def seconds_left(self) -> int: ...
     @property
     def created_seconds(self) -> int: ...
-    @cached_property
     def name_normalized(self) -> str: ...
     def cancel(self) -> None: ...
     def pause(self) -> None: ...
@@ -53,6 +51,7 @@ class TimerEventType(StrEnum):
     UPDATED = 'updated'
     CANCELLED = 'cancelled'
     FINISHED = 'finished'
+type TimerHandler = Callable[[TimerEventType, TimerInfo], None]
 
 class TimerNotFoundError(intent.IntentHandleError):
     def __init__(self) -> None: ...

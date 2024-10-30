@@ -19,5 +19,5 @@ class XiaomiActiveBluetoothProcessorCoordinator(ActiveBluetoothProcessorCoordina
     @property
     def sleepy_device(self) -> bool: ...
 
-class XiaomiPassiveBluetoothDataProcessor(PassiveBluetoothDataProcessor[_T, SensorUpdate]):
+class XiaomiPassiveBluetoothDataProcessor[_T](PassiveBluetoothDataProcessor[_T, SensorUpdate]):
     coordinator: XiaomiActiveBluetoothProcessorCoordinator

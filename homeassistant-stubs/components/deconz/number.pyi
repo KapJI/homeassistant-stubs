@@ -11,10 +11,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pydeconz.gateway import DeconzSession as DeconzSession
 from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
+from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
+from pydeconz.models.sensor.presence import Presence
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
-class DeconzNumberDescription(NumberEntityDescription):
+class DeconzNumberDescription[_T: (Presence, PydeconzSensorBase)](NumberEntityDescription):
     instance_check: type[_T]
     name_suffix: str
     set_fn: Callable[[DeconzSession, str, int], Coroutine[Any, Any, dict[str, Any]]]

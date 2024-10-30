@@ -16,5 +16,5 @@ class BTHomePassiveBluetoothProcessorCoordinator(PassiveBluetoothProcessorCoordi
     @property
     def sleepy_device(self) -> bool: ...
 
-class BTHomePassiveBluetoothDataProcessor(PassiveBluetoothDataProcessor[_T, SensorUpdate]):
+class BTHomePassiveBluetoothDataProcessor[_T](PassiveBluetoothDataProcessor[_T, SensorUpdate]):
     coordinator: BTHomePassiveBluetoothProcessorCoordinator

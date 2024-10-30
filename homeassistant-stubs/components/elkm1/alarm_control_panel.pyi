@@ -6,8 +6,7 @@ from _typeshed import Incomplete
 from elkm1_lib.areas import Area as Area
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
-from homeassistant.components.alarm_control_panel import ATTR_CHANGED_BY as ATTR_CHANGED_BY, AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, CodeFormat as CodeFormat
-from homeassistant.const import STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_ARMED_NIGHT as STATE_ALARM_ARMED_NIGHT, STATE_ALARM_ARMING as STATE_ALARM_ARMING, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED, STATE_ALARM_PENDING as STATE_ALARM_PENDING, STATE_ALARM_TRIGGERED as STATE_ALARM_TRIGGERED
+from homeassistant.components.alarm_control_panel import ATTR_CHANGED_BY as ATTR_CHANGED_BY, AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -41,7 +40,7 @@ class ElkArea(ElkAttachedEntity, AlarmControlPanelEntity, RestoreEntity):
     @property
     def code_format(self) -> CodeFormat | None: ...
     @property
-    def state(self) -> str | None: ...
+    def alarm_state(self) -> AlarmControlPanelState | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property

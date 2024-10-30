@@ -4,15 +4,15 @@ from .exceptions import CredentialsInvalid as CredentialsInvalid, UuidChanged as
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from typing import Any
 
 class DevoloHomeControlFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    _reauth_entry: ConfigEntry
     data_schema: Incomplete
-    _reauth_entry: Incomplete
     _url: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -1,5 +1,6 @@
 from .const import CONF_AUTO_OFF as CONF_AUTO_OFF, CONF_TIMER_MINUTES as CONF_TIMER_MINUTES, SERVICE_SET_AUTO_OFF_NAME as SERVICE_SET_AUTO_OFF_NAME, SERVICE_TURN_ON_WITH_TIMER_NAME as SERVICE_TURN_ON_WITH_TIMER_NAME, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
+from .entity import SwitcherEntity as SwitcherEntity
 from _typeshed import Incomplete
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from datetime import timedelta
@@ -7,11 +8,9 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 _LOGGER: Incomplete
@@ -22,12 +21,10 @@ SERVICE_TURN_ON_WITH_TIMER_SCHEMA: VolDictType
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SwitcherBaseSwitchEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], SwitchEntity):
-    _attr_has_entity_name: bool
+class SwitcherBaseSwitchEntity(SwitcherEntity, SwitchEntity):
     _attr_name: Incomplete
     control_result: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     async def _async_call_api(self, api: str, *args: Any) -> None: ...

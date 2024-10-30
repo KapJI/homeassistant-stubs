@@ -1,5 +1,5 @@
-from . import _get_camera_from_entity_id as _get_camera_from_entity_id
 from .const import DOMAIN as DOMAIN
+from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

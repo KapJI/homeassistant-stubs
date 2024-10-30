@@ -5,7 +5,7 @@ from bthome_ble import BTHomeBluetoothDeviceData as DeviceData
 from collections.abc import Mapping
 from homeassistant.components import onboarding as onboarding
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_discovered_service_info as async_discovered_service_info
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from typing import Any
 

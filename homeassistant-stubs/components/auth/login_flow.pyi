@@ -4,7 +4,7 @@ from aiohttp import web
 from collections.abc import Callable as Callable
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.auth import AuthManagerFlowManager as AuthManagerFlowManager, InvalidAuthError as InvalidAuthError
-from homeassistant.auth.models import AuthFlowResult as AuthFlowResult, Credentials as Credentials
+from homeassistant.auth.models import AuthFlowContext as AuthFlowContext, AuthFlowResult as AuthFlowResult, Credentials as Credentials
 from homeassistant.auth.providers.trusted_networks import TrustedNetworksAuthProvider as TrustedNetworksAuthProvider
 from homeassistant.components import onboarding as onboarding
 from homeassistant.components.http import KEY_HASS as KEY_HASS

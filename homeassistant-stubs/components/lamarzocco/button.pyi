@@ -1,9 +1,11 @@
-from . import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
+from .const import DOMAIN as DOMAIN
+from .coordinator import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
 from .entity import LaMarzoccoEntity as LaMarzoccoEntity, LaMarzoccoEntityDescription as LaMarzoccoEntityDescription
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from lmcloud.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
 from typing import Any

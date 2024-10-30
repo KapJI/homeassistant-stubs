@@ -36,6 +36,7 @@ class MatterClimate(MatterEntity, ClimateEntity):
     _attr_hvac_mode: HVACMode
     _feature_map: int | None
     _enable_turn_on_off_backwards_compatibility: bool
+    _platform_translation_key: str
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_current_temperature: Incomplete

@@ -14,7 +14,7 @@ from sfrbox_api.bridge import SFRBox as SFRBox
 from sfrbox_api.models import SystemInfo as SystemInfo
 from typing import Any, Concatenate
 
-def with_error_wrapping(func: Callable[Concatenate[SFRBoxButton, _P], Awaitable[_R]]) -> Callable[Concatenate[SFRBoxButton, _P], Coroutine[Any, Any, _R]]: ...
+def with_error_wrapping[**_P, _R](func: Callable[Concatenate[SFRBoxButton, _P], Awaitable[_R]]) -> Callable[Concatenate[SFRBoxButton, _P], Coroutine[Any, Any, _R]]: ...
 
 @dataclass(frozen=True, kw_only=True)
 class SFRBoxButtonEntityDescription(ButtonEntityDescription):

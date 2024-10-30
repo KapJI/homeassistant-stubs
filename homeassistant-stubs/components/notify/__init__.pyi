@@ -3,7 +3,6 @@ from .legacy import BaseNotificationService as BaseNotificationService, async_re
 from .repairs import migrate_notify_issue as migrate_notify_issue
 from _typeshed import Incomplete
 from enum import IntFlag
-from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
@@ -40,7 +39,6 @@ class NotifyEntity(RestoreEntity):
     _attr_device_class: None
     _attr_state: None
     __last_notified_isoformat: str | None
-    @cached_property
     def state(self) -> str | None: ...
     def __set_state(self, state: str | None) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...

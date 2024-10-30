@@ -9,6 +9,7 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 
 PLATFORMS: list[Platform]
+type MyUplinkConfigEntry = ConfigEntry[MyUplinkDataCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

@@ -1,4 +1,3 @@
-from . import FytaConfigEntry as FytaConfigEntry
 from .const import CONF_EXPIRATION as CONF_EXPIRATION, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -13,7 +12,6 @@ DATA_SCHEMA: Incomplete
 
 class FytaConfigFlow(ConfigFlow, domain=DOMAIN):
     credentials: Credentials
-    _entry: FytaConfigEntry | None
     VERSION: int
     MINOR_VERSION: int
     async def async_auth(self, user_input: Mapping[str, Any]) -> dict[str, str]: ...

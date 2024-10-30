@@ -1,7 +1,7 @@
 import logging
 from .const import CHANNEL_CREATION_HELP_URL as CHANNEL_CREATION_HELP_URL, CONF_CHANNELS as CONF_CHANNELS, DEFAULT_ACCESS as DEFAULT_ACCESS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
@@ -14,7 +14,6 @@ class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, doma
     _data: dict[str, Any]
     _title: str
     DOMAIN = DOMAIN
-    reauth_entry: ConfigEntry | None
     _youtube: YouTube | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> YouTubeOptionsFlowHandler: ...

@@ -1,31 +1,34 @@
 from . import auth_store as auth_store, jwt_wrapper as jwt_wrapper, models as models
 from .const import ACCESS_TOKEN_EXPIRATION as ACCESS_TOKEN_EXPIRATION, GROUP_ID_ADMIN as GROUP_ID_ADMIN, REFRESH_TOKEN_EXPIRATION as REFRESH_TOKEN_EXPIRATION
 from .mfa_modules import MultiFactorAuthModule as MultiFactorAuthModule, auth_mfa_module_from_config as auth_mfa_module_from_config
-from .models import AuthFlowResult as AuthFlowResult
+from .models import AuthFlowContext as AuthFlowContext, AuthFlowResult as AuthFlowResult
 from .providers import AuthProvider as AuthProvider, LoginFlow as LoginFlow, auth_provider_from_config as auth_provider_from_config
 from .providers.homeassistant import HassAuthProvider as HassAuthProvider
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
-from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.data_entry_flow import FlowHandler as FlowHandler, FlowManager as FlowManager, FlowResultType as FlowResultType
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from typing import Any
 
 EVENT_USER_ADDED: str
 EVENT_USER_UPDATED: str
 EVENT_USER_REMOVED: str
+type _MfaModuleDict = dict[str, MultiFactorAuthModule]
+type _ProviderKey = tuple[str, str | None]
+type _ProviderDict = dict[_ProviderKey, AuthProvider]
 
 class InvalidAuthError(Exception): ...
 class InvalidProvider(Exception): ...
 
 async def auth_manager_from_config(hass: HomeAssistant, provider_configs: list[dict[str, Any]], module_configs: list[dict[str, Any]]) -> AuthManager: ...
 
-class AuthManagerFlowManager(data_entry_flow.FlowManager[AuthFlowResult, tuple[str, str]]):
+class AuthManagerFlowManager(FlowManager[AuthFlowContext, AuthFlowResult, tuple[str, str]]):
     _flow_result = AuthFlowResult
     auth_manager: Incomplete
     def __init__(self, hass: HomeAssistant, auth_manager: AuthManager) -> None: ...
-    async def async_create_flow(self, handler_key: tuple[str, str], *, context: dict[str, Any] | None = None, data: dict[str, Any] | None = None) -> LoginFlow: ...
-    async def async_finish_flow(self, flow: data_entry_flow.FlowHandler[AuthFlowResult, tuple[str, str]], result: AuthFlowResult) -> AuthFlowResult: ...
+    async def async_create_flow(self, handler_key: tuple[str, str], *, context: AuthFlowContext | None = None, data: dict[str, Any] | None = None) -> LoginFlow: ...
+    async def async_finish_flow(self, flow: FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]], result: AuthFlowResult) -> AuthFlowResult: ...
 
 class AuthManager:
     hass: Incomplete

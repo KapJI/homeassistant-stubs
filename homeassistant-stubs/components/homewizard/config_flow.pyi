@@ -2,7 +2,7 @@ from .const import CONF_API_ENABLED as CONF_API_ENABLED, CONF_PRODUCT_NAME as CO
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import onboarding as onboarding, zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PATH as CONF_PATH
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -20,7 +20,6 @@ class DiscoveryData(NamedTuple):
 class HomeWizardConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovery: DiscoveryData
-    entry: ConfigEntry | None
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

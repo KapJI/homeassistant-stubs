@@ -1,6 +1,5 @@
 from _typeshed import Incomplete
 from enum import StrEnum
-from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -99,9 +98,7 @@ class BinarySensorEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     _attr_state: None
     async def async_internal_added_to_hass(self) -> None: ...
     def _default_to_device_class_name(self) -> bool: ...
-    @cached_property
     def device_class(self) -> BinarySensorDeviceClass | None: ...
-    @cached_property
     def is_on(self) -> bool | None: ...
     @property
     def state(self) -> Literal['on', 'off'] | None: ...

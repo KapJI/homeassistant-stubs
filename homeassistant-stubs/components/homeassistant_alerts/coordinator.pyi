@@ -1,10 +1,11 @@
 import dataclasses
 from .const import DOMAIN as DOMAIN, REQUEST_TIMEOUT as REQUEST_TIMEOUT, UPDATE_INTERVAL as UPDATE_INTERVAL
 from _typeshed import Incomplete
-from homeassistant.components.hassio import get_supervisor_info as get_supervisor_info, is_hassio as is_hassio
+from homeassistant.components.hassio import get_supervisor_info as get_supervisor_info
 from homeassistant.const import __version__ as __version__
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 _LOGGER: Incomplete

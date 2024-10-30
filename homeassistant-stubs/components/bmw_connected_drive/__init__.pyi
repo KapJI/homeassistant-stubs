@@ -12,6 +12,7 @@ SERVICE_SCHEMA: Incomplete
 DEFAULT_OPTIONS: Incomplete
 PLATFORMS: Incomplete
 SERVICE_UPDATE_STATE: str
+type BMWConfigEntry = ConfigEntry[BMWData]
 
 @dataclass
 class BMWData:

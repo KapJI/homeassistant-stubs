@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from aioasuswrt.asuswrt import AsusWrt as AsusWrtLegacy
 from aiohttp import ClientSession as ClientSession
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable, Coroutine
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODE as CONF_MODE, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -28,8 +28,10 @@ class WrtDevice(NamedTuple):
     connected_to: Incomplete
 
 _LOGGER: Incomplete
+type _FuncType[_T] = Callable[[_T], Awaitable[list[Any] | tuple[Any] | dict[str, Any]]]
+type _ReturnFuncType[_T] = Callable[[_T], Coroutine[Any, Any, dict[str, Any]]]
 
-def handle_errors_and_zip(exceptions: type[Exception] | tuple[type[Exception], ...], keys: list[str] | None) -> Callable[[_FuncType[_AsusWrtBridgeT]], _ReturnFuncType[_AsusWrtBridgeT]]: ...
+def handle_errors_and_zip[_AsusWrtBridgeT: AsusWrtBridge](exceptions: type[Exception] | tuple[type[Exception], ...], keys: list[str] | None) -> Callable[[_FuncType[_AsusWrtBridgeT]], _ReturnFuncType[_AsusWrtBridgeT]]: ...
 
 class AsusWrtBridge(ABC, metaclass=abc.ABCMeta):
     @staticmethod

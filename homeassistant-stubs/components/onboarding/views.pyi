@@ -10,6 +10,7 @@ from homeassistant.components.http import KEY_HASS as KEY_HASS, KEY_HASS_REFRESH
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from homeassistant.helpers.translation import async_get_translations as async_get_translations
 from homeassistant.setup import async_setup_component as async_setup_component

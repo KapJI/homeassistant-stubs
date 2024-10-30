@@ -1,33 +1,23 @@
 from . import JellyfinConfigEntry as JellyfinConfigEntry
 from .browse_media import build_item_response as build_item_response, build_root_response as build_root_response
 from .client_wrapper import get_artwork_url as get_artwork_url
-from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, LOGGER as LOGGER
 from .coordinator import JellyfinDataUpdateCoordinator as JellyfinDataUpdateCoordinator
-from .entity import JellyfinEntity as JellyfinEntity
+from .entity import JellyfinClientEntity as JellyfinClientEntity
 from _typeshed import Incomplete
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityDescription as MediaPlayerEntityDescription, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: JellyfinConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class JellyfinMediaPlayer(JellyfinEntity, MediaPlayerEntity):
-    session_id: Incomplete
-    session_data: Incomplete
-    device_id: Incomplete
-    device_name: Incomplete
-    client_name: Incomplete
-    app_version: Incomplete
-    capabilities: Incomplete
+class JellyfinMediaPlayer(JellyfinClientEntity, MediaPlayerEntity):
+    _attr_unique_id: Incomplete
     now_playing: Incomplete
     play_state: Incomplete
-    _attr_device_info: Incomplete
-    _attr_name: Incomplete
-    _attr_has_entity_name: bool
-    def __init__(self, coordinator: JellyfinDataUpdateCoordinator, session_id: str, session_data: dict[str, Any]) -> None: ...
+    def __init__(self, coordinator: JellyfinDataUpdateCoordinator, session_id: str) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_state: Incomplete
     _attr_is_volume_muted: Incomplete
@@ -51,8 +41,6 @@ class JellyfinMediaPlayer(JellyfinEntity, MediaPlayerEntity):
     def media_image_url(self) -> str | None: ...
     @property
     def supported_features(self) -> MediaPlayerEntityFeature: ...
-    @property
-    def available(self) -> bool: ...
     def media_seek(self, position: float) -> None: ...
     def media_pause(self) -> None: ...
     def media_play(self) -> None: ...

@@ -3,7 +3,7 @@ from .const import CONF_LANGUAGE_CODE as CONF_LANGUAGE_CODE, DEFAULT_NAME as DEF
 from .helpers import default_language_code as default_language_code
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
@@ -12,7 +12,6 @@ _LOGGER: Incomplete
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
-    reauth_entry: ConfigEntry | None
     @property
     def logger(self) -> logging.Logger: ...
     @property

@@ -18,7 +18,6 @@ async def validate_input(hass: HomeAssistant, api_key: str, train_from: str, tra
 
 class TVTrainConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    entry: ConfigEntry | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> TVTrainOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

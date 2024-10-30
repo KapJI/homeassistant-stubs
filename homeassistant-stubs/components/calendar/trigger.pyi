@@ -2,7 +2,7 @@ import datetime
 from . import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from collections.abc import Coroutine
+from collections.abc import Awaitable, Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_OFFSET as CONF_OFFSET, CONF_PLATFORM as CONF_PLATFORM
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
@@ -34,6 +34,8 @@ class Timespan:
     def next_upcoming(self, now: datetime.datetime, interval: datetime.timedelta) -> Timespan: ...
     def __str__(self) -> str: ...
     def __init__(self, start, end) -> None: ...
+type EventFetcher = Callable[[Timespan], Awaitable[list[CalendarEvent]]]
+type QueuedEventFetcher = Callable[[Timespan], Awaitable[list[QueuedCalendarEvent]]]
 
 def get_entity(hass: HomeAssistant, entity_id: str) -> CalendarEntity: ...
 def event_fetcher(hass: HomeAssistant, entity_id: str) -> EventFetcher: ...

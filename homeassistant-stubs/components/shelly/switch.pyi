@@ -1,7 +1,7 @@
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, MOTION_MODELS as MOTION_MODELS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockEntity as ShellyBlockEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellyRpcEntity as ShellyRpcEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_rpc_attribute_entities as async_setup_rpc_attribute_entities
-from .utils import async_remove_orphaned_virtual_entities as async_remove_orphaned_virtual_entities, async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, get_virtual_component_ids as get_virtual_component_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator, is_rpc_thermostat_mode as is_rpc_thermostat_mode
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, get_virtual_component_ids as get_virtual_component_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator, is_rpc_thermostat_mode as is_rpc_thermostat_mode
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from dataclasses import dataclass
@@ -24,6 +24,7 @@ class RpcSwitchDescription(RpcEntityDescription, SwitchEntityDescription):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., sub_key, value=..., available=..., removal_condition=..., extra_state_attributes=..., use_polling_coordinator=..., supported=..., unit=..., options_fn=...) -> None: ...
 
 RPC_VIRTUAL_SWITCH: Incomplete
+RPC_SCRIPT_SWITCH: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -58,6 +59,14 @@ class RpcRelaySwitch(ShellyRpcEntity, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class RpcVirtualSwitch(ShellyRpcAttributeEntity, SwitchEntity):
+    entity_description: RpcSwitchDescription
+    _attr_has_entity_name: bool
+    @property
+    def is_on(self) -> bool: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class RpcScriptSwitch(ShellyRpcAttributeEntity, SwitchEntity):
     entity_description: RpcSwitchDescription
     _attr_has_entity_name: bool
     @property

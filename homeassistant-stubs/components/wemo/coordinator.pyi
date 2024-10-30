@@ -9,8 +9,11 @@ from homeassistant.helpers.device_registry import CONNECTION_UPNP as CONNECTION_
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pywemo import WeMoDevice as WeMoDevice
 from pywemo.subscribe import SubscriptionRegistry as SubscriptionRegistry
+from typing import Literal
 
 _LOGGER: Incomplete
+type ErrorStringKey = Literal['long_press_requires_subscription']
+type OptionsFieldKey = Literal['enable_subscription', 'enable_long_press']
 
 class OptionsValidationError(Exception):
     field_key: Incomplete

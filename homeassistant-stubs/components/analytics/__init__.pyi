@@ -6,9 +6,11 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTA
 from homeassistant.core import Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 CONFIG_SCHEMA: Incomplete
+DATA_COMPONENT: HassKey[Analytics]
 
 async def async_setup(hass: HomeAssistant, _: ConfigType) -> bool: ...
 def websocket_analytics(hass: HomeAssistant, connection: websocket_api.connection.ActiveConnection, msg: dict[str, Any]) -> None: ...

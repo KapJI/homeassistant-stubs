@@ -11,7 +11,6 @@ DATA_SCHEMA_AUTH: Incomplete
 
 class YaleConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    entry: ConfigEntry | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> YaleOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

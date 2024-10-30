@@ -4,7 +4,7 @@ from .errors import AuthenticationError as AuthenticationError, CannotConnect as
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PATH as CONF_PATH, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PATH as CONF_PATH, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from typing import Any
 
@@ -13,7 +13,6 @@ DATA_SCHEMA: Incomplete
 class TransmissionFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    _reauth_entry: ConfigEntry | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> TransmissionOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

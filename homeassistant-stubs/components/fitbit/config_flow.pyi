@@ -4,7 +4,7 @@ from .const import DOMAIN as DOMAIN, OAUTH_SCOPES as OAUTH_SCOPES
 from .exceptions import FitbitApiException as FitbitApiException, FitbitAuthException as FitbitAuthException
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_TOKEN as CONF_TOKEN
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
@@ -13,7 +13,6 @@ _LOGGER: Incomplete
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
-    reauth_entry: ConfigEntry | None
     @property
     def logger(self) -> logging.Logger: ...
     @property

@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, NAME as NAME
-from .coordinator import TedeeApiCoordinator as TedeeApiCoordinator
+from .coordinator import TedeeApiCoordinator as TedeeApiCoordinator, TedeeConfigEntry as TedeeConfigEntry
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, Response as Response
 from collections.abc import Awaitable, Callable as Callable

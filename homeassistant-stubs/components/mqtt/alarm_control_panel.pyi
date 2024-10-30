@@ -8,9 +8,9 @@ from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplat
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_CODE as CONF_CODE, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_CUSTOM_BYPASS as STATE_ALARM_ARMED_CUSTOM_BYPASS, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_ARMED_NIGHT as STATE_ALARM_ARMED_NIGHT, STATE_ALARM_ARMED_VACATION as STATE_ALARM_ARMED_VACATION, STATE_ALARM_ARMING as STATE_ALARM_ARMING, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED, STATE_ALARM_DISARMING as STATE_ALARM_DISARMING, STATE_ALARM_PENDING as STATE_ALARM_PENDING, STATE_ALARM_TRIGGERED as STATE_ALARM_TRIGGERED
+from homeassistant.const import CONF_CODE as CONF_CODE, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -55,7 +55,7 @@ class MqttAlarm(MqttEntity, alarm.AlarmControlPanelEntity):
     _attr_code_format: Incomplete
     _attr_code_arm_required: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
-    _attr_state: Incomplete
+    _attr_alarm_state: Incomplete
     def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...

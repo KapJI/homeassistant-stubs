@@ -11,7 +11,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Generic, TypeVar
 
-T = TypeVar('T', bound=list[LidarrRootFolder] | LidarrQueue | str | LidarrAlbum)
+T = TypeVar('T', bound=list[LidarrRootFolder] | LidarrQueue | str | LidarrAlbum | int)
 
 class LidarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, Generic[T], metaclass=abc.ABCMeta):
     config_entry: ConfigEntry
@@ -33,3 +33,6 @@ class StatusDataUpdateCoordinator(LidarrDataUpdateCoordinator[str]):
 
 class WantedDataUpdateCoordinator(LidarrDataUpdateCoordinator[LidarrAlbum]):
     async def _fetch_data(self) -> LidarrAlbum: ...
+
+class AlbumsDataUpdateCoordinator(LidarrDataUpdateCoordinator[int]):
+    async def _fetch_data(self) -> int: ...

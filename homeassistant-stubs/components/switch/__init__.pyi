@@ -1,7 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from enum import StrEnum
-from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -44,7 +43,6 @@ CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 class SwitchEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: SwitchEntityDescription
     _attr_device_class: SwitchDeviceClass | None
-    @cached_property
     def device_class(self) -> SwitchDeviceClass | None: ...
 
 __getattr__: Incomplete

@@ -1,4 +1,3 @@
-from . import SmConfigEntry as SmConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -15,7 +14,6 @@ STEP_AUTH_DATA_SCHEMA: Incomplete
 class SmlightConfigFlow(ConfigFlow, domain=DOMAIN):
     client: Incomplete
     host: Incomplete
-    _reauth_entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

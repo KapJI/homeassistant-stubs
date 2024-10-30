@@ -13,6 +13,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers.storage import Store as Store
 from typing import Any, Final, TypedDict
 
+type ESPHomeConfigEntry = ConfigEntry[RuntimeEntryData]
 INFO_TO_COMPONENT_TYPE: Final[Incomplete]
 _SENTINEL: Incomplete
 SAVE_DELAY: int

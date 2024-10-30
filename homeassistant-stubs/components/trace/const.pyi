@@ -1,4 +1,4 @@
-from . import TraceData as TraceData
+from .models import TraceData as TraceData
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.util.hass_dict import HassKey as HassKey
 

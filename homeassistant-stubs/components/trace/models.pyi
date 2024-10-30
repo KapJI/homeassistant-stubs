@@ -3,8 +3,10 @@ from _typeshed import Incomplete
 from collections import deque
 from homeassistant.core import Context as Context
 from homeassistant.helpers.trace import TraceElement as TraceElement, script_execution_get as script_execution_get, trace_id_get as trace_id_get, trace_id_set as trace_id_set, trace_set_child_id as trace_set_child_id
+from homeassistant.util.limited_size_dict import LimitedSizeDict as LimitedSizeDict
 from typing import Any
 
+type TraceData = dict[str, LimitedSizeDict[str, BaseTrace]]
 class BaseTrace(abc.ABC, metaclass=abc.ABCMeta):
     context: Context
     key: str

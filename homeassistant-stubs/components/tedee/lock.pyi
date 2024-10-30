@@ -1,5 +1,5 @@
-from . import TedeeConfigEntry as TedeeConfigEntry
-from .coordinator import TedeeApiCoordinator as TedeeApiCoordinator
+from .const import DOMAIN as DOMAIN
+from .coordinator import TedeeApiCoordinator as TedeeApiCoordinator, TedeeConfigEntry as TedeeConfigEntry
 from .entity import TedeeEntity as TedeeEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature

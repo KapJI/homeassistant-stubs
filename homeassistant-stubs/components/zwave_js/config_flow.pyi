@@ -6,14 +6,16 @@ from .const import ADDON_SLUG as ADDON_SLUG, CONF_ADDON_DEVICE as CONF_ADDON_DEV
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.components import usb as usb
-from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, HassioServiceInfo as HassioServiceInfo, is_hassio as is_hassio
+from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from homeassistant.config_entries import ConfigEntriesFlowManager as ConfigEntriesFlowManager, ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowManager as OptionsFlowManager, SOURCE_USB as SOURCE_USB
+from homeassistant.config_entries import ConfigEntriesFlowManager as ConfigEntriesFlowManager, ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowContext as ConfigFlowContext, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowManager as OptionsFlowManager, SOURCE_USB as SOURCE_USB
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowManager as FlowManager
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.hassio import is_hassio as is_hassio
+from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 from zwave_js_server.version import VersionInfo as VersionInfo
@@ -54,7 +56,7 @@ class BaseZwaveJSFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
     def __init__(self) -> None: ...
     @property
     @abstractmethod
-    def flow_manager(self) -> FlowManager[ConfigFlowResult]: ...
+    def flow_manager(self) -> FlowManager[ConfigFlowContext, ConfigFlowResult]: ...
     async def async_step_install_addon(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_install_failed(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_start_addon(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -71,8 +73,8 @@ class BaseZwaveJSFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
 
 class ZWaveJSConfigFlow(BaseZwaveJSFlow, ConfigFlow, domain=DOMAIN):
     VERSION: int
+    _title: str
     use_addon: bool
-    _title: Incomplete
     _usb_discovery: bool
     def __init__(self) -> None: ...
     @property

@@ -12,7 +12,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_EVENT as CONF_EVENT, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR

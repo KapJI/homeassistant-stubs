@@ -6,7 +6,6 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
 from typing import Any
 
@@ -21,6 +20,5 @@ class Enigma2ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     OPTIONS_KEYS: Incomplete
     async def validate_user_input(self, user_input: dict[str, Any]) -> dict[str, str] | None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
-    async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...

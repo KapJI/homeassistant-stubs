@@ -7,7 +7,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components import cover as cover
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, CoverState as CoverState, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

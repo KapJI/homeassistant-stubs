@@ -13,7 +13,6 @@ class EvoDevice(Entity):
     _attr_should_poll: bool
     _evo_device: Incomplete
     _evo_broker: Incomplete
-    _evo_tcs: Incomplete
     _device_state_attrs: Incomplete
     def __init__(self, evo_broker: EvoBroker, evo_device: evo.ControlSystem | evo.HotWater | evo.Zone) -> None: ...
     async def async_refresh(self, payload: dict | None = None) -> None: ...
@@ -25,6 +24,7 @@ class EvoDevice(Entity):
 
 class EvoChild(EvoDevice):
     _evo_id: str
+    _evo_tcs: Incomplete
     _schedule: Incomplete
     _setpoints: Incomplete
     def __init__(self, evo_broker: EvoBroker, evo_device: evo.HotWater | evo.Zone) -> None: ...

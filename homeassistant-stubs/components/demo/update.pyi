@@ -18,13 +18,16 @@ class DemoUpdate(UpdateEntity):
     _attr_should_poll: bool
     _attr_installed_version: Incomplete
     _attr_device_class: Incomplete
+    _attr_display_precision: Incomplete
     _attr_latest_version: Incomplete
     _attr_release_summary: Incomplete
     _attr_release_url: Incomplete
     _attr_title: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, *, unique_id: str, device_name: str, title: str | None, installed_version: str | None, latest_version: str | None, release_summary: str | None = None, release_url: str | None = None, support_progress: bool = False, support_install: bool = True, support_release_notes: bool = False, device_class: UpdateDeviceClass | None = None) -> None: ...
-    _attr_in_progress: Incomplete
+    _update_steps: Incomplete
+    def __init__(self, *, unique_id: str, device_name: str, title: str | None, installed_version: str | None, latest_version: str | None, release_summary: str | None = None, release_url: str | None = None, support_progress: bool = False, support_install: bool = True, support_release_notes: bool = False, device_class: UpdateDeviceClass | None = None, display_precision: int = 0, update_steps: int = 100) -> None: ...
+    _attr_in_progress: bool
+    _attr_update_percentage: Incomplete
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     def release_notes(self) -> str | None: ...

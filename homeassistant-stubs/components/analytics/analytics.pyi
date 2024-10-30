@@ -9,6 +9,7 @@ from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integrations as async_get_integrations

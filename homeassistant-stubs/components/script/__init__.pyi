@@ -1,15 +1,14 @@
 import abc
 from .config import ScriptConfig as ScriptConfig, ValidationStatus as ValidationStatus
-from .const import ATTR_LAST_ACTION as ATTR_LAST_ACTION, ATTR_LAST_TRIGGERED as ATTR_LAST_TRIGGERED, ATTR_VARIABLES as ATTR_VARIABLES, CONF_FIELDS as CONF_FIELDS, CONF_TRACE as CONF_TRACE, DOMAIN as DOMAIN, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EVENT_SCRIPT_STARTED as EVENT_SCRIPT_STARTED, LOGGER as LOGGER
+from .const import ATTR_LAST_ACTION as ATTR_LAST_ACTION, ATTR_LAST_TRIGGERED as ATTR_LAST_TRIGGERED, ATTR_VARIABLES as ATTR_VARIABLES, CONF_FIELDS as CONF_FIELDS, CONF_REQUIRED as CONF_REQUIRED, CONF_TRACE as CONF_TRACE, DOMAIN as DOMAIN, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EVENT_SCRIPT_STARTED as EVENT_SCRIPT_STARTED, LOGGER as LOGGER
 from .helpers import async_get_blueprints as async_get_blueprints
 from .trace import trace_script as trace_script
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from functools import cached_property as cached_property
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.blueprint import CONF_USE_BLUEPRINT as CONF_USE_BLUEPRINT
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ALIAS as CONF_ALIAS, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_ICON as CONF_ICON, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PATH as CONF_PATH, CONF_SEQUENCE as CONF_SEQUENCE, CONF_VARIABLES as CONF_VARIABLES, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ALIAS as CONF_ALIAS, CONF_DEFAULT as CONF_DEFAULT, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_ICON as CONF_ICON, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PATH as CONF_PATH, CONF_SELECTOR as CONF_SELECTOR, CONF_SEQUENCE as CONF_SEQUENCE, CONF_VARIABLES as CONF_VARIABLES, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.helpers.config_validation import make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
@@ -17,6 +16,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_MAX, CONF_MAX as CONF_MAX, CONF_MAX_EXCEEDED as CONF_MAX_EXCEEDED, Script as Script, ScriptRunResult as ScriptRunResult, script_stack_cv as script_stack_cv
+from homeassistant.helpers.selector import selector as selector
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.trace import trace_get as trace_get, trace_path as trace_path
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -63,22 +63,17 @@ async def _async_process_config(hass: HomeAssistant, config: ConfigType, compone
 class BaseScriptEntity(ToggleEntity, ABC, metaclass=abc.ABCMeta):
     _entity_component_unrecorded_attributes: Incomplete
     raw_config: ConfigType | None
-    @cached_property
     @abstractmethod
     def referenced_labels(self) -> set[str]: ...
-    @cached_property
     @abstractmethod
     def referenced_floors(self) -> set[str]: ...
-    @cached_property
     @abstractmethod
     def referenced_areas(self) -> set[str]: ...
     @property
     @abstractmethod
     def referenced_blueprint(self) -> str | None: ...
-    @cached_property
     @abstractmethod
     def referenced_devices(self) -> set[str]: ...
-    @cached_property
     @abstractmethod
     def referenced_entities(self) -> set[str]: ...
 
@@ -91,17 +86,12 @@ class UnavailableScriptEntity(BaseScriptEntity):
     _validation_error: Incomplete
     _validation_status: Incomplete
     def __init__(self, key: str, raw_config: ConfigType | None, validation_error: str, validation_status: ValidationStatus) -> None: ...
-    @cached_property
     def referenced_labels(self) -> set[str]: ...
-    @cached_property
     def referenced_floors(self) -> set[str]: ...
-    @cached_property
     def referenced_areas(self) -> set[str]: ...
     @property
     def referenced_blueprint(self) -> str | None: ...
-    @cached_property
     def referenced_devices(self) -> set[str]: ...
-    @cached_property
     def referenced_entities(self) -> set[str]: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
@@ -124,17 +114,12 @@ class ScriptEntity(BaseScriptEntity, RestoreEntity):
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
     def is_on(self) -> bool: ...
-    @cached_property
     def referenced_labels(self) -> set[str]: ...
-    @cached_property
     def referenced_floors(self) -> set[str]: ...
-    @cached_property
     def referenced_areas(self) -> set[str]: ...
     @property
     def referenced_blueprint(self) -> str | None: ...
-    @cached_property
     def referenced_devices(self) -> set[str]: ...
-    @cached_property
     def referenced_entities(self) -> set[str]: ...
     def async_change_listener(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

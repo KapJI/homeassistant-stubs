@@ -15,7 +15,6 @@ from typing import Any
 _LOGGER: Incomplete
 PRESET_RESET: str
 PRESET_CUSTOM: str
-HA_HVAC_TO_TCS: Incomplete
 TCS_PRESET_TO_HA: Incomplete
 HA_PRESET_TO_TCS: Incomplete
 EVO_PRESET_TO_HA: Incomplete
@@ -26,10 +25,9 @@ STATE_ATTRS_ZONES: Incomplete
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class EvoClimateEntity(EvoDevice, ClimateEntity):
+    _attr_hvac_modes: Incomplete
     _attr_temperature_unit: Incomplete
     _enable_turn_on_off_backwards_compatibility: bool
-    @property
-    def hvac_modes(self) -> list[HVACMode]: ...
 
 class EvoZone(EvoChild, EvoClimateEntity):
     _attr_preset_modes: Incomplete
@@ -64,6 +62,7 @@ class EvoController(EvoClimateEntity):
     _evo_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
+    _evo_modes: Incomplete
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, evo_broker: EvoBroker, evo_device: evo.ControlSystem) -> None: ...

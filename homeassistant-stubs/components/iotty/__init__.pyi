@@ -9,6 +9,7 @@ from iottycloud.device import Device as Device
 
 _LOGGER: Incomplete
 PLATFORMS: list[Platform]
+type IottyConfigEntry = ConfigEntry[IottyConfigEntryData]
 
 @dataclass
 class IottyConfigEntryData:

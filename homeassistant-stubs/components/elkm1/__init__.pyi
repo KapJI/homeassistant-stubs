@@ -12,6 +12,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.network import is_ip_address as is_ip_address
 
+type ElkM1ConfigEntry = ConfigEntry[ELKM1Data]
 SYNC_TIMEOUT: int
 _LOGGER: Incomplete
 PLATFORMS: Incomplete

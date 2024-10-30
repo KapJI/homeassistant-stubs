@@ -10,7 +10,6 @@ from typing import Any
 
 class MikrotikFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _reauth_entry: ConfigEntry | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> MikrotikOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

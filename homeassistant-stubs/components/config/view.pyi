@@ -11,7 +11,7 @@ from homeassistant.util.yaml import dump as dump, load_yaml as load_yaml
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from typing import Any
 
-class BaseEditConfigView(HomeAssistantView):
+class BaseEditConfigView[_DataT: (dict[str, dict[str, Any]], list[dict[str, Any]])](HomeAssistantView):
     url: Incomplete
     name: Incomplete
     path: Incomplete
@@ -20,7 +20,7 @@ class BaseEditConfigView(HomeAssistantView):
     post_write_hook: Incomplete
     data_validator: Incomplete
     mutation_lock: Incomplete
-    def __init__(self, component: str, config_type: str, path: str, key_schema: Callable[[Any], str], data_schema: Callable[[dict[str, Any]], Any], *, post_write_hook: Callable[[str, str], Coroutine[Any, Any, None]] | None = None, data_validator: Callable[[HomeAssistant, str, dict[str, Any]], Coroutine[Any, Any, dict[str, Any] | None]] | None = None) -> None: ...
+    def __init__(self, component: str, config_type: str, path: str, key_schema: Callable[[Any], str], *, post_write_hook: Callable[[str, str], Coroutine[Any, Any, None]] | None = None, data_schema: Callable[[dict[str, Any]], Any] | None = None, data_validator: Callable[[HomeAssistant, str, dict[str, Any]], Coroutine[Any, Any, dict[str, Any] | None]] | None = None) -> None: ...
     def _empty_config(self) -> _DataT: ...
     def _get_value(self, hass: HomeAssistant, data: _DataT, config_key: str) -> dict[str, Any] | None: ...
     def _write_value(self, hass: HomeAssistant, data: _DataT, config_key: str, new_value: dict[str, Any]) -> None: ...

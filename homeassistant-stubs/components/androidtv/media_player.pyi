@@ -1,5 +1,5 @@
 from . import AndroidTVConfigEntry as AndroidTVConfigEntry
-from .const import CONF_APPS as CONF_APPS, CONF_EXCLUDE_UNNAMED_APPS as CONF_EXCLUDE_UNNAMED_APPS, CONF_GET_SOURCES as CONF_GET_SOURCES, CONF_SCREENCAP as CONF_SCREENCAP, CONF_TURN_OFF_COMMAND as CONF_TURN_OFF_COMMAND, CONF_TURN_ON_COMMAND as CONF_TURN_ON_COMMAND, DEFAULT_EXCLUDE_UNNAMED_APPS as DEFAULT_EXCLUDE_UNNAMED_APPS, DEFAULT_GET_SOURCES as DEFAULT_GET_SOURCES, DEFAULT_SCREENCAP as DEFAULT_SCREENCAP, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
+from .const import CONF_APPS as CONF_APPS, CONF_EXCLUDE_UNNAMED_APPS as CONF_EXCLUDE_UNNAMED_APPS, CONF_GET_SOURCES as CONF_GET_SOURCES, CONF_SCREENCAP_INTERVAL as CONF_SCREENCAP_INTERVAL, CONF_TURN_OFF_COMMAND as CONF_TURN_OFF_COMMAND, CONF_TURN_ON_COMMAND as CONF_TURN_ON_COMMAND, DEFAULT_EXCLUDE_UNNAMED_APPS as DEFAULT_EXCLUDE_UNNAMED_APPS, DEFAULT_GET_SOURCES as DEFAULT_GET_SOURCES, DEFAULT_SCREENCAP_INTERVAL as DEFAULT_SCREENCAP_INTERVAL, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
 from .entity import AndroidTVEntity as AndroidTVEntity, adb_decorator as adb_decorator
 from _typeshed import Incomplete
 from androidtv.setup_async import AndroidTVAsync as AndroidTVAsync, FireTVAsync as FireTVAsync
@@ -10,15 +10,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util import Throttle as Throttle
-from typing import Any
+from homeassistant.util.dt import utcnow as utcnow
 
 _LOGGER: Incomplete
 ATTR_ADB_RESPONSE: str
 ATTR_DEVICE_PATH: str
 ATTR_HDMI_INPUT: str
 ATTR_LOCAL_PATH: str
-MIN_TIME_BETWEEN_SCREENCAPS: Incomplete
 SERVICE_ADB_COMMAND: str
 SERVICE_DOWNLOAD: str
 SERVICE_LEARN_SENDEVENT: str
@@ -37,7 +35,8 @@ class ADBDevice(AndroidTVEntity, MediaPlayerEntity):
     _app_name_to_id: Incomplete
     _get_sources: Incomplete
     _exclude_unnamed_apps: Incomplete
-    _screencap: Incomplete
+    _screencap_delta: Incomplete
+    _last_screencap: Incomplete
     turn_on_command: Incomplete
     turn_off_command: Incomplete
     _attr_extra_state_attributes: Incomplete
@@ -47,7 +46,7 @@ class ADBDevice(AndroidTVEntity, MediaPlayerEntity):
     async def async_added_to_hass(self) -> None: ...
     async def _adb_screencap(self) -> bytes | None: ...
     async def _async_get_screencap(self, prev_app_id: str | None = None) -> None: ...
-    async def _adb_get_screencap(self, **kwargs: Any) -> None: ...
+    async def _adb_get_screencap(self, force: bool = False) -> None: ...
     async def async_get_media_image(self) -> tuple[bytes | None, str | None]: ...
     async def async_media_play(self) -> None: ...
     async def async_media_pause(self) -> None: ...

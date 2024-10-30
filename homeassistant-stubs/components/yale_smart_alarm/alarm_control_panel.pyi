@@ -3,12 +3,11 @@ from .const import DOMAIN as DOMAIN, STATE_MAP as STATE_MAP, YALE_ALL_ERRORS as 
 from .coordinator import YaleDataUpdateCoordinator as YaleDataUpdateCoordinator
 from .entity import YaleAlarmEntity as YaleAlarmEntity
 from _typeshed import Incomplete
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import StateType as StateType
 
 async def async_setup_entry(hass: HomeAssistant, entry: YaleConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -25,4 +24,4 @@ class YaleAlarmDevice(YaleAlarmEntity, AlarmControlPanelEntity):
     @property
     def available(self) -> bool: ...
     @property
-    def state(self) -> StateType: ...
+    def alarm_state(self) -> AlarmControlPanelState | None: ...

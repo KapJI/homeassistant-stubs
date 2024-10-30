@@ -10,8 +10,9 @@ from homeassistant.helpers import event as event
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_date, get_astral_event_next as get_astral_event_next
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, TypeGuard
+from typing import Any, Literal, TypeGuard
 
+type SunEventType = Literal['sunrise', 'sunset']
 _LOGGER: Incomplete
 ATTR_AFTER: str
 ATTR_BEFORE: str

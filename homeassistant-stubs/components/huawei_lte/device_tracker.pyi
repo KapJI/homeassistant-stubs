@@ -12,6 +12,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 _DEVICE_SCAN: Incomplete
+type _HostType = dict[str, Any]
 
 def _get_hosts(router: Router, ignore_subscriptions: bool = False) -> list[_HostType] | None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

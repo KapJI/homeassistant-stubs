@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SCAN_INTERVAL as SCAN_INTERVAL, SERVICE_PHASES as SERVICE_PHASES, SERVICE_SETTINGS as SERVICE_SETTINGS, SERVICE_SMARTMETER as SERVICE_SMARTMETER, SERVICE_WATERMETER as SERVICE_WATERMETER
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator

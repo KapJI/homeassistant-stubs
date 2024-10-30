@@ -1,7 +1,7 @@
 from .service_info.mqtt import MqttServiceInfo as MqttServiceInfo
 from .typing import DiscoveryInfoType as DiscoveryInfoType
 from _typeshed import Incomplete
-from collections.abc import Awaitable
+from collections.abc import Awaitable, Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import onboarding as onboarding
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
@@ -11,9 +11,10 @@ from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfSer
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 
+type DiscoveryFunctionType[_R] = Callable[[HomeAssistant], _R]
 _LOGGER: Incomplete
 
-class DiscoveryFlowHandler(config_entries.ConfigFlow):
+class DiscoveryFlowHandler[_R: Awaitable[bool] | bool](config_entries.ConfigFlow):
     VERSION: int
     _domain: Incomplete
     _title: Incomplete

@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import AndroidIPCamDataUpdateCoordinator as AndroidIPCamDataUpdateCoordinator
+from .coordinator import AndroidIPCamConfigEntry as AndroidIPCamConfigEntry, AndroidIPCamDataUpdateCoordinator as AndroidIPCamDataUpdateCoordinator
 from .entity import AndroidIPCamBaseEntity as AndroidIPCamBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -20,7 +18,7 @@ class AndroidIPWebcamSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCH_TYPES: tuple[AndroidIPWebcamSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class IPWebcamSettingSwitch(AndroidIPCamBaseEntity, SwitchEntity):
     entity_description: AndroidIPWebcamSwitchEntityDescription

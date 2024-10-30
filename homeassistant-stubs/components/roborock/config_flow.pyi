@@ -1,7 +1,7 @@
 from .const import CONF_BASE_URL as CONF_BASE_URL, CONF_ENTRY_CODE as CONF_ENTRY_CODE, CONF_USER_DATA as CONF_USER_DATA, DEFAULT_DRAWABLES as DEFAULT_DRAWABLES, DOMAIN as DOMAIN, DRAWABLES as DRAWABLES
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from roborock.containers import UserData as UserData
@@ -12,7 +12,6 @@ _LOGGER: Incomplete
 
 class RoborockFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    reauth_entry: ConfigEntry | None
     _username: Incomplete
     _client: Incomplete
     def __init__(self) -> None: ...

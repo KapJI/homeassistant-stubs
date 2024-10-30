@@ -10,6 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
+type NanoleafConfigEntry = ConfigEntry[NanoleafCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: NanoleafConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: NanoleafConfigEntry) -> bool: ...

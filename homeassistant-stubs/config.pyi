@@ -1,18 +1,14 @@
 import voluptuous as vol
-from . import auth as auth
-from .const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_HIDDEN as ATTR_HIDDEN, CONF_ALLOWLIST_EXTERNAL_DIRS as CONF_ALLOWLIST_EXTERNAL_DIRS, CONF_ALLOWLIST_EXTERNAL_URLS as CONF_ALLOWLIST_EXTERNAL_URLS, CONF_AUTH_MFA_MODULES as CONF_AUTH_MFA_MODULES, CONF_AUTH_PROVIDERS as CONF_AUTH_PROVIDERS, CONF_COUNTRY as CONF_COUNTRY, CONF_CURRENCY as CONF_CURRENCY, CONF_CUSTOMIZE as CONF_CUSTOMIZE, CONF_CUSTOMIZE_DOMAIN as CONF_CUSTOMIZE_DOMAIN, CONF_CUSTOMIZE_GLOB as CONF_CUSTOMIZE_GLOB, CONF_DEBUG as CONF_DEBUG, CONF_ELEVATION as CONF_ELEVATION, CONF_EXTERNAL_URL as CONF_EXTERNAL_URL, CONF_ID as CONF_ID, CONF_INTERNAL_URL as CONF_INTERNAL_URL, CONF_LANGUAGE as CONF_LANGUAGE, CONF_LATITUDE as CONF_LATITUDE, CONF_LEGACY_TEMPLATES as CONF_LEGACY_TEMPLATES, CONF_LONGITUDE as CONF_LONGITUDE, CONF_MEDIA_DIRS as CONF_MEDIA_DIRS, CONF_NAME as CONF_NAME, CONF_PACKAGES as CONF_PACKAGES, CONF_PLATFORM as CONF_PLATFORM, CONF_RADIUS as CONF_RADIUS, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_TIME_ZONE as CONF_TIME_ZONE, CONF_TYPE as CONF_TYPE, CONF_UNIT_SYSTEM as CONF_UNIT_SYSTEM, LEGACY_CONF_WHITELIST_EXTERNAL_DIRS as LEGACY_CONF_WHITELIST_EXTERNAL_DIRS, __version__ as __version__
-from .core import ConfigSource as ConfigSource, HomeAssistant as HomeAssistant, callback as callback
+from .const import CONF_PACKAGES as CONF_PACKAGES, CONF_PLATFORM as CONF_PLATFORM, __version__ as __version__
+from .core import HomeAssistant as HomeAssistant, callback as callback
+from .core_config import _PACKAGES_CONFIG_SCHEMA as _PACKAGES_CONFIG_SCHEMA, _PACKAGE_DEFINITION_SCHEMA as _PACKAGE_DEFINITION_SCHEMA
 from .exceptions import ConfigValidationError as ConfigValidationError, HomeAssistantError as HomeAssistantError
-from .generated.currencies import HISTORIC_CURRENCIES as HISTORIC_CURRENCIES
-from .helpers.entity_values import EntityValues as EntityValues
 from .helpers.translation import async_get_exception_message as async_get_exception_message
 from .helpers.typing import ConfigType as ConfigType
 from .loader import ComponentProtocol as ComponentProtocol, Integration as Integration, IntegrationNotFound as IntegrationNotFound
 from .requirements import RequirementsNotFound as RequirementsNotFound, async_get_integration_with_requirements as async_get_integration_with_requirements
 from .util.async_ import create_eager_task as create_eager_task
-from .util.hass_dict import HassKey as HassKey
 from .util.package import is_docker_env as is_docker_env
-from .util.unit_system import get_unit_system as get_unit_system, validate_unit_system as validate_unit_system
 from .util.yaml import SECRET_YAML as SECRET_YAML, Secrets as Secrets, YamlTypeError as YamlTypeError, load_yaml_dict as load_yaml_dict
 from .util.yaml.objects import NodeStrClass as NodeStrClass
 from _typeshed import Incomplete
@@ -27,7 +23,6 @@ RE_ASCII: Incomplete
 YAML_CONFIG_FILE: str
 VERSION_FILE: str
 CONFIG_DIR_NAME: str
-DATA_CUSTOMIZE: HassKey[EntityValues]
 AUTOMATION_CONFIG_PATH: str
 SCRIPT_CONFIG_PATH: str
 SCENE_CONFIG_PATH: str
@@ -68,21 +63,6 @@ class IntegrationConfigInfo:
     exception_info_list: list[ConfigExceptionInfo]
     def __init__(self, config, exception_info_list) -> None: ...
 
-def _no_duplicate_auth_provider(configs: Sequence[dict[str, Any]]) -> Sequence[dict[str, Any]]: ...
-def _no_duplicate_auth_mfa_module(configs: Sequence[dict[str, Any]]) -> Sequence[dict[str, Any]]: ...
-def _filter_bad_internal_external_urls(conf: dict) -> dict: ...
-
-PACKAGES_CONFIG_SCHEMA: Incomplete
-PACKAGE_DEFINITION_SCHEMA: Incomplete
-CUSTOMIZE_DICT_SCHEMA: Incomplete
-CUSTOMIZE_CONFIG_SCHEMA: Incomplete
-
-def _raise_issue_if_historic_currency(hass: HomeAssistant, currency: str) -> None: ...
-def _raise_issue_if_no_country(hass: HomeAssistant, country: str | None) -> None: ...
-def _validate_currency(data: Any) -> Any: ...
-
-CORE_CONFIG_SCHEMA: Incomplete
-
 def get_default_config_dir() -> str: ...
 async def async_ensure_config_exists(hass: HomeAssistant) -> bool: ...
 async def async_create_default_config(hass: HomeAssistant) -> bool: ...
@@ -100,7 +80,6 @@ def stringify_invalid(hass: HomeAssistant, exc: vol.Invalid, domain: str, config
 def humanize_error(hass: HomeAssistant, validation_error: vol.Invalid, domain: str, config: dict, link: str | None, max_sub_error_length: int = ...) -> str: ...
 def format_homeassistant_error(hass: HomeAssistant, exc: HomeAssistantError, domain: str, config: dict, link: str | None = None) -> str: ...
 def format_schema_error(hass: HomeAssistant, exc: vol.Invalid, domain: str, config: dict, link: str | None = None) -> str: ...
-async def async_process_ha_core_config(hass: HomeAssistant, config: dict) -> None: ...
 def _log_pkg_error(hass: HomeAssistant, package: str, component: str | None, config: dict, message: str) -> None: ...
 def _identify_config_schema(module: ComponentProtocol) -> str | None: ...
 def _validate_package_definition(name: str, conf: Any) -> None: ...

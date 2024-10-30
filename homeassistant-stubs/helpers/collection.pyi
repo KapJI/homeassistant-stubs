@@ -8,7 +8,7 @@ from .storage import Store as Store
 from .typing import ConfigType as ConfigType, VolDictType as VolDictType
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from collections.abc import Callable, Iterable
+from collections.abc import Awaitable, Callable, Iterable
 from dataclasses import dataclass
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import CONF_ID as CONF_ID
@@ -32,6 +32,8 @@ class CollectionChange:
     item: Any
     item_hash: str | None = ...
     def __init__(self, change_type, item_id, item, item_hash=...) -> None: ...
+type ChangeListener = Callable[[str, str, dict], Awaitable[None]]
+type ChangeSetListener = Callable[[Iterable[CollectionChange]], Awaitable[None]]
 
 class CollectionError(HomeAssistantError): ...
 
@@ -56,7 +58,7 @@ class CollectionEntity(Entity, metaclass=abc.ABCMeta):
     @abstractmethod
     async def async_update_config(self, config: ConfigType) -> None: ...
 
-class ObservableCollection(ABC):
+class ObservableCollection[_ItemT](ABC):
     id_manager: Incomplete
     data: Incomplete
     listeners: Incomplete
@@ -77,7 +79,7 @@ class YamlCollection(ObservableCollection[dict]):
 class SerializedStorageCollection(TypedDict):
     items: list[dict[str, Any]]
 
-class StorageCollection(ObservableCollection[_ItemT], metaclass=abc.ABCMeta):
+class StorageCollection[_ItemT, _StoreT: SerializedStorageCollection](ObservableCollection[_ItemT], metaclass=abc.ABCMeta):
     store: Incomplete
     def __init__(self, store: Store[_StoreT], id_manager: IDManager | None = None) -> None: ...
     @staticmethod
@@ -138,7 +140,7 @@ class _CollectionLifeCycle(Generic[_EntityT]):
 
 def sync_entity_lifecycle(hass: HomeAssistant, domain: str, platform: str, entity_component: EntityComponent[_EntityT], collection: StorageCollection | YamlCollection, entity_class: type[CollectionEntity]) -> None: ...
 
-class StorageCollectionWebsocket:
+class StorageCollectionWebsocket[_StorageCollectionT: StorageCollection]:
     storage_collection: Incomplete
     api_prefix: Incomplete
     model_name: Incomplete

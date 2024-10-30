@@ -43,7 +43,7 @@ SPRINKLER_TYPE_MAP: Incomplete
 SUN_EXPOSURE_MAP: Incomplete
 VEGETATION_MAP: Incomplete
 
-def raise_on_request_error(func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
+def raise_on_request_error[_T: RainMachineBaseSwitch, **_P](func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription):

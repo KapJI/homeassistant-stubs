@@ -29,6 +29,9 @@ def json_bytes_strip_null(data: Any) -> bytes: ...
 json_fragment = orjson.Fragment
 
 def json_dumps(data: Any) -> str: ...
+
+json_bytes_sorted: Incomplete
+
 def json_dumps_sorted(data: Any) -> str: ...
 
 JSON_DUMP: Final[Incomplete]

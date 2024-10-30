@@ -2,7 +2,7 @@ from _typeshed import Incomplete
 from aioesphomeapi import APIIntEnum as APIIntEnum
 from typing import overload
 
-class EsphomeEnumMapper:
+class EsphomeEnumMapper[_EnumT: APIIntEnum, _ValT]:
     _mapping: Incomplete
     _inverse: Incomplete
     def __init__(self, mapping: dict[_EnumT, _ValT]) -> None: ...

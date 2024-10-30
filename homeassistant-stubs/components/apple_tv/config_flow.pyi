@@ -13,7 +13,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.schema_config_entry_flow import SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
 from pyatv.const import Protocol
 from pyatv.interface import BaseConfig as BaseConfig, PairingHandler as PairingHandler
-from typing import Any
+from typing import Any, Self
 
 _LOGGER: Incomplete
 DEVICE_INPUT: str
@@ -28,8 +28,11 @@ async def device_scan(hass: HomeAssistant, identifier: str | None, loop: asyncio
 class AppleTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     scan_filter: str | None
+    all_identifiers: set[str]
     atv: BaseConfig | None
     atv_identifiers: list[str] | None
+    _host: str
+    host: str | None
     protocol: Protocol | None
     pairing: PairingHandler | None
     protocols_to_pair: deque[Protocol] | None
@@ -46,6 +49,7 @@ class AppleTVConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def _async_aggregate_discoveries(self, host: str, unique_id: str) -> None: ...
     def _async_check_and_update_in_progress(self, host: str, unique_id: str) -> None: ...
+    def is_matching(self, other_flow: Self) -> bool: ...
     async def async_found_zeroconf_device(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_find_device_wrapper(self, next_func: Callable[[], Awaitable[ConfigFlowResult]], allow_exist: bool = False) -> ConfigFlowResult: ...
     async def async_find_device(self, allow_exist: bool = False) -> None: ...

@@ -14,7 +14,7 @@ from typing import Any, Concatenate, Final
 _LOGGER: Incomplete
 SCAN_INTERVAL: Final[Incomplete]
 
-def catch_braviatv_errors(func: Callable[Concatenate[_BraviaTVCoordinatorT, _P], Awaitable[None]]) -> Callable[Concatenate[_BraviaTVCoordinatorT, _P], Coroutine[Any, Any, None]]: ...
+def catch_braviatv_errors[_BraviaTVCoordinatorT: BraviaTVCoordinator, **_P](func: Callable[Concatenate[_BraviaTVCoordinatorT, _P], Awaitable[None]]) -> Callable[Concatenate[_BraviaTVCoordinatorT, _P], Coroutine[Any, Any, None]]: ...
 
 class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     client: Incomplete

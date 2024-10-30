@@ -2,7 +2,7 @@ import voluptuous as vol
 from .addon import get_addon_manager as get_addon_manager
 from .const import ADDON_SLUG as ADDON_SLUG, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, HassioServiceInfo as HassioServiceInfo, is_hassio as is_hassio
+from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.components.onboarding import async_is_onboarded as async_is_onboarded
 from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
@@ -11,6 +11,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
+from homeassistant.helpers.hassio import is_hassio as is_hassio
+from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from typing import Any
 
 ADDON_SETUP_TIMEOUT: int

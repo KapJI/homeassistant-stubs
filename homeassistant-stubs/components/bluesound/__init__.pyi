@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .media_player import setup_services as setup_services
+from .services import setup_services as setup_services
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -18,6 +18,7 @@ class BluesoundRuntimeData:
     player: Player
     sync_status: SyncStatus
     def __init__(self, player, sync_status) -> None: ...
+type BluesoundConfigEntry = ConfigEntry[BluesoundRuntimeData]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: BluesoundConfigEntry) -> bool: ...

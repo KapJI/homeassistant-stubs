@@ -1,2 +1,4 @@
 from .coordinator import TailwindDataUpdateCoordinator as TailwindDataUpdateCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+
+type TailwindConfigEntry = ConfigEntry[TailwindDataUpdateCoordinator]

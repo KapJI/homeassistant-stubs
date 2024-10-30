@@ -5,11 +5,11 @@ from APsystemsEZ1 import ReturnOutputData as ReturnOutputData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 @dataclass(frozen=True, kw_only=True)

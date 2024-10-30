@@ -4,7 +4,7 @@ from collections.abc import Mapping
 from demetriek import CloudDevice as CloudDevice
 from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.components.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_SERIAL as ATTR_UPNP_SERIAL, SsdpServiceInfo as SsdpServiceInfo
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -21,7 +21,6 @@ class LaMetricFlowHandler(AbstractOAuth2FlowHandler, domain=DOMAIN):
     discovered_host: str
     discovered_serial: str
     discovered: bool
-    reauth_entry: ConfigEntry | None
     @property
     def logger(self) -> logging.Logger: ...
     @property

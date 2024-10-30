@@ -10,7 +10,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def _call_api(hass: HomeAssistant, target: Callable[[Unpack[_Ts]], Coroutine[Any, Any, _R]], *args: Unpack[_Ts], msg_suffix: str = '') -> _R: ...
+async def _call_api[*_Ts, _R](hass: HomeAssistant, target: Callable[[Unpack[_Ts]], Coroutine[Any, Any, _R]], *args: Unpack[_Ts], msg_suffix: str = '') -> _R: ...
 
 class RingDataCoordinator(DataUpdateCoordinator[RingDevices]):
     ring_api: Incomplete

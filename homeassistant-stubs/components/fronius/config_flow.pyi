@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, FroniusConfigEntryData as FroniusConfigEntryData
 from _typeshed import Incomplete
 from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -17,7 +17,6 @@ async def validate_host(hass: HomeAssistant, host: str) -> tuple[str, FroniusCon
 class FroniusConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     info: Incomplete
-    _entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...

@@ -28,6 +28,7 @@ CONF_LED: str
 CONF_KEYS: str
 CONF_TIME: str
 CONF_TIME_UNIT: str
+CONF_LOCK_TIME: str
 CONF_TABLE: str
 CONF_ROW: str
 CONF_TEXT: str

@@ -5,7 +5,7 @@ from .error import DuplicateWakeUpDetectedError as DuplicateWakeUpDetectedError,
 from .vad import AudioBuffer as AudioBuffer, VoiceActivityTimeout as VoiceActivityTimeout, VoiceCommandSegmenter as VoiceCommandSegmenter, chunk_samples as chunk_samples
 from _typeshed import Incomplete
 from collections import deque
-from collections.abc import AsyncGenerator, AsyncIterable
+from collections.abc import AsyncGenerator, AsyncIterable, Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components import conversation as conversation, media_source as media_source, stt as stt, tts as tts, wake_word as wake_word, websocket_api as websocket_api
@@ -62,6 +62,7 @@ class PipelineEvent:
     data: dict[str, Any] | None = ...
     timestamp: str = ...
     def __init__(self, type, data=..., timestamp=...) -> None: ...
+type PipelineEventCallback = Callable[[PipelineEvent], None]
 
 @dataclass(frozen=True)
 class Pipeline:

@@ -3,7 +3,7 @@ from collections.abc import Callable as Callable
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from logging import Logger
 
-class Debouncer:
+class Debouncer[_R_co]:
     hass: Incomplete
     logger: Incomplete
     _function: Incomplete

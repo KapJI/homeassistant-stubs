@@ -2,7 +2,7 @@ from .const import CONF_ASSOCIATION_DATA as CONF_ASSOCIATION_DATA, DOMAIN as DOM
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_discovered_service_info as async_discovered_service_info, async_last_service_info as async_last_service_info
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from typing import Any
 
@@ -11,7 +11,6 @@ STEP_ASSOCIATE_SCHEMA: Incomplete
 
 class DormkabaConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _reauth_entry: ConfigEntry | None
     _lock: Incomplete
     _discovered_devices: Incomplete
     _discovery_info: Incomplete

@@ -1,4 +1,4 @@
-from . import Camera as Camera, RtspToWebRtcProviderType as RtspToWebRtcProviderType
+from . import Camera as Camera
 from .prefs import CameraPreferences as CameraPreferences
 from _typeshed import Incomplete
 from enum import StrEnum
@@ -10,7 +10,6 @@ from typing import Final
 DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[Camera]]
 DATA_CAMERA_PREFS: HassKey[CameraPreferences]
-DATA_RTSP_TO_WEB_RTC: HassKey[dict[str, RtspToWebRtcProviderType]]
 PREF_PRELOAD_STREAM: Final[str]
 PREF_ORIENTATION: Final[str]
 SERVICE_RECORD: Final[str]

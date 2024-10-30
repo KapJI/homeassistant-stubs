@@ -1,5 +1,5 @@
 from .const import CONF_USE_BLUETOOTH as CONF_USE_BLUETOOTH, DOMAIN as DOMAIN
-from .coordinator import LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordinator
+from .coordinator import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry, LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import async_discovered_service_info as async_discovered_service_info
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

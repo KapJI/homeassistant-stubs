@@ -1,5 +1,4 @@
-from . import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
-from .coordinator import LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordinator
+from .coordinator import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry, LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordinator
 from .entity import LaMarzoccoBaseEntity as LaMarzoccoBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Iterator

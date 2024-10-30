@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote
 from collections.abc import Mapping
 from homeassistant.components import zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
@@ -20,12 +20,10 @@ STEP_PAIR_DATA_SCHEMA: Incomplete
 
 class AndroidTVRemoteConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    api: Incomplete
-    reauth_entry: Incomplete
-    host: Incomplete
-    name: Incomplete
-    mac: Incomplete
-    def __init__(self) -> None: ...
+    api: AndroidTVRemote
+    host: str
+    name: str
+    mac: str
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _async_start_pair(self) -> ConfigFlowResult: ...
     async def async_step_pair(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

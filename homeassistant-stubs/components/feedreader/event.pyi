@@ -11,6 +11,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 LOGGER: Incomplete
 ATTR_CONTENT: str
+ATTR_DESCRIPTION: str
 ATTR_LINK: str
 ATTR_TITLE: str
 

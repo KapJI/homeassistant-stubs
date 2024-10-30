@@ -4,8 +4,7 @@ from .entity import AutomowerControlEntity as AutomowerControlEntity, WorkAreaCo
 from _typeshed import Incomplete
 from aioautomower.model import StayOutZones as StayOutZones, Zone as Zone
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.const import Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
@@ -22,7 +21,7 @@ class AutomowerScheduleSwitchEntity(AutomowerControlEntity, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
-class AutomowerStayOutZoneSwitchEntity(AutomowerControlEntity, SwitchEntity):
+class StayOutZoneSwitchEntity(AutomowerControlEntity, SwitchEntity):
     _attr_translation_key: str
     coordinator: Incomplete
     stay_out_zone_uid: Incomplete
@@ -50,5 +49,3 @@ class WorkAreaSwitchEntity(WorkAreaControlEntity, SwitchEntity):
     def is_on(self) -> bool: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
-
-def async_remove_entities(hass: HomeAssistant, coordinator: AutomowerDataUpdateCoordinator, entry: AutomowerConfigEntry, mower_id: str) -> None: ...

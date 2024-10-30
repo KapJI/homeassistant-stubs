@@ -1,4 +1,4 @@
-from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems, normalize_name as normalize_name
+from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems
 from .registry import BaseRegistry as BaseRegistry
 from .singleton import singleton as singleton
 from .storage import Store as Store
@@ -7,7 +7,6 @@ from _typeshed import Incomplete
 from collections.abc import Iterable
 from dataclasses import dataclass
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.util import slugify as slugify
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -34,6 +33,7 @@ class FloorRegistryStoreData(TypedDict):
 class EventFloorRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']
     floor_id: str
+type EventFloorRegistryUpdated = Event[EventFloorRegistryUpdatedData]
 
 @dataclass(slots=True, kw_only=True, frozen=True)
 class FloorEntry(NormalizedNameBaseRegistryEntry):
@@ -41,7 +41,7 @@ class FloorEntry(NormalizedNameBaseRegistryEntry):
     floor_id: str
     icon: str | None = ...
     level: int | None = ...
-    def __init__(self, *, name, normalized_name, created_at=..., modified_at=..., aliases, floor_id, icon=..., level=...) -> None: ...
+    def __init__(self, *, name, created_at=..., modified_at=..., aliases, floor_id, icon=..., level=...) -> None: ...
 
 class FloorRegistryStore(Store[FloorRegistryStoreData]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> FloorRegistryStoreData: ...

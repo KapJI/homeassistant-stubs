@@ -84,6 +84,7 @@ class ClimateSchema(KNXPlatformSchema):
     CONF_FAN_MAX_STEP: str
     CONF_FAN_SPEED_MODE: str
     CONF_FAN_ZERO_MODE: str
+    CONF_HUMIDITY_STATE_ADDRESS: str
     DEFAULT_NAME: str
     DEFAULT_SETPOINT_SHIFT_MODE: str
     DEFAULT_SETPOINT_SHIFT_MAX: int

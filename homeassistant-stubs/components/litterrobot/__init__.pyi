@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from pylitterbot import Robot
 
+type LitterRobotConfigEntry = ConfigEntry[LitterRobotHub]
 PLATFORMS_BY_TYPE: Incomplete
 
 def get_platforms_for_robots(robots: list[Robot]) -> set[Platform]: ...

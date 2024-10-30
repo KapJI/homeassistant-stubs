@@ -1,12 +1,12 @@
 import pypck
-from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_ACKNOWLEDGE as CONF_ACKNOWLEDGE, CONF_DIM_MODE as CONF_DIM_MODE, CONF_SK_NUM_TRIES as CONF_SK_NUM_TRIES, CONNECTION as CONNECTION, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_ACKNOWLEDGE as CONF_ACKNOWLEDGE, CONF_DIM_MODE as CONF_DIM_MODE, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_SK_NUM_TRIES as CONF_SK_NUM_TRIES, CONF_TRANSITION as CONF_TRANSITION, CONNECTION as CONNECTION, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .helpers import AddressType as AddressType, InputType as InputType, async_update_config_entry as async_update_config_entry, generate_unique_id as generate_unique_id, import_lcn_config as import_lcn_config, register_lcn_address_devices as register_lcn_address_devices, register_lcn_host_device as register_lcn_host_device
 from .schemas import CONFIG_SCHEMA as CONFIG_SCHEMA
 from .services import SERVICES as SERVICES
 from .websocket import register_panel_and_ws_api as register_panel_and_ws_api
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType as ConfigType

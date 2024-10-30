@@ -1,7 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from enum import IntFlag
-from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -65,13 +64,10 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     _attr_activity_list: list[str] | None
     _attr_current_activity: str | None
     _attr_supported_features: RemoteEntityFeature
-    @cached_property
     def supported_features(self) -> RemoteEntityFeature: ...
     @property
     def supported_features_compat(self) -> RemoteEntityFeature: ...
-    @cached_property
     def current_activity(self) -> str | None: ...
-    @cached_property
     def activity_list(self) -> list[str] | None: ...
     @property
     def state_attributes(self) -> dict[str, Any] | None: ...

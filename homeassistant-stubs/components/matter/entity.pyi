@@ -5,7 +5,6 @@ from _typeshed import Incomplete
 from chip.clusters.Objects import ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from functools import cached_property as cached_property
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
@@ -27,6 +26,7 @@ class MatterEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _name_postfix: str | None
+    _platform_translation_key: str | None
     matter_client: Incomplete
     _endpoint: Incomplete
     _entity_info: Incomplete
@@ -36,10 +36,10 @@ class MatterEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_available: Incomplete
+    _attr_translation_key: Incomplete
     _attr_name: Incomplete
     def __init__(self, matter_client: MatterClient, endpoint: MatterEndpoint, entity_info: MatterEntityInfo) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    @cached_property
     def name(self) -> str | UndefinedType | None: ...
     def _on_matter_event(self, event: EventType, data: Any = None) -> None: ...
     def _update_from_device(self) -> None: ...

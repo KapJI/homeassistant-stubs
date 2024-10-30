@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
-from homeassistant.const import Platform as Platform, STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED
+from homeassistant.components.alarm_control_panel import AlarmControlPanelState as AlarmControlPanelState
+from homeassistant.const import Platform as Platform
 
 CONF_AREA_ID: str
 CONF_LOCK_CODE_DIGITS: str

@@ -27,7 +27,7 @@ class SmFwData:
     zb_firmware: list[Firmware] | None
     def __init__(self, info, esp_firmware, zb_firmware) -> None: ...
 
-class SmBaseDataUpdateCoordinator(DataUpdateCoordinator[_DataT], metaclass=abc.ABCMeta):
+class SmBaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=abc.ABCMeta):
     config_entry: SmConfigEntry
     client: Incomplete
     unique_id: Incomplete

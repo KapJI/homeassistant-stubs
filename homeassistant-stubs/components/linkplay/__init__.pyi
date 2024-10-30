@@ -1,4 +1,4 @@
-from .const import PLATFORMS as PLATFORMS
+from .const import CONTROLLER as CONTROLLER, CONTROLLER_KEY as CONTROLLER_KEY, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .utils import async_get_client_session as async_get_client_session
 from aiohttp import ClientSession as ClientSession
 from dataclasses import dataclass
@@ -12,6 +12,7 @@ from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
 class LinkPlayData:
     bridge: LinkPlayBridge
     def __init__(self, bridge) -> None: ...
+type LinkPlayConfigEntry = ConfigEntry[LinkPlayData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry) -> bool: ...

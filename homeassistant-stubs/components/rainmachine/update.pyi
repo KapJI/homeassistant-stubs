@@ -2,8 +2,9 @@ from . import RainMachineConfigEntry as RainMachineConfigEntry
 from .const import DATA_MACHINE_FIRMWARE_UPDATE_STATUS as DATA_MACHINE_FIRMWARE_UPDATE_STATUS
 from .entity import RainMachineEntity as RainMachineEntity, RainMachineEntityDescription as RainMachineEntityDescription
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from enum import Enum
-from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -18,6 +19,11 @@ class UpdateStates(Enum):
     REBOOT = 6
 
 UPDATE_STATE_MAP: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class RainMachineUpdateEntityDescription(UpdateEntityDescription, RainMachineEntityDescription):
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, display_precision=...) -> None: ...
+
 UPDATE_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

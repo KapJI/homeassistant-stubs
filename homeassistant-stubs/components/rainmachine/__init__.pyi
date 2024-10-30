@@ -54,6 +54,7 @@ SERVICE_PUSH_FLOW_METER_DATA_SCHEMA: Incomplete
 SERVICE_PUSH_WEATHER_DATA_SCHEMA: Incomplete
 SERVICE_RESTRICT_WATERING_SCHEMA: Incomplete
 COORDINATOR_UPDATE_INTERVAL_MAP: Incomplete
+type RainMachineConfigEntry = ConfigEntry[RainMachineData]
 
 @dataclass
 class RainMachineData:

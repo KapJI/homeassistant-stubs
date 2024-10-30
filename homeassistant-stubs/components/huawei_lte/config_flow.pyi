@@ -14,6 +14,8 @@ _LOGGER: Incomplete
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    manufacturer: str | None
+    url: str | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
     async def _async_show_user_form(self, user_input: dict[str, Any] | None = None, errors: dict[str, str] | None = None) -> ConfigFlowResult: ...

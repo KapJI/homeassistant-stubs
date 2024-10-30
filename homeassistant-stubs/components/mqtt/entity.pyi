@@ -2,9 +2,9 @@ import abc
 import voluptuous as vol
 from . import debug_info as debug_info, subscription as subscription
 from .client import async_publish as async_publish
-from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOVERY_TOPIC as ATTR_DISCOVERY_TOPIC, AVAILABILITY_ALL as AVAILABILITY_ALL, AVAILABILITY_ANY as AVAILABILITY_ANY, CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_AVAILABILITY_MODE as CONF_AVAILABILITY_MODE, CONF_AVAILABILITY_TEMPLATE as CONF_AVAILABILITY_TEMPLATE, CONF_AVAILABILITY_TOPIC as CONF_AVAILABILITY_TOPIC, CONF_CONFIGURATION_URL as CONF_CONFIGURATION_URL, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_ENABLED_BY_DEFAULT as CONF_ENABLED_BY_DEFAULT, CONF_ENCODING as CONF_ENCODING, CONF_HW_VERSION as CONF_HW_VERSION, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_JSON_ATTRS_TEMPLATE as CONF_JSON_ATTRS_TEMPLATE, CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_OBJECT_ID as CONF_OBJECT_ID, CONF_PAYLOAD_AVAILABLE as CONF_PAYLOAD_AVAILABLE, CONF_PAYLOAD_NOT_AVAILABLE as CONF_PAYLOAD_NOT_AVAILABLE, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_SCHEMA as CONF_SCHEMA, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, CONF_SUGGESTED_AREA as CONF_SUGGESTED_AREA, CONF_SW_VERSION as CONF_SW_VERSION, CONF_TOPIC as CONF_TOPIC, CONF_VIA_DEVICE as CONF_VIA_DEVICE, DEFAULT_ENCODING as DEFAULT_ENCODING, DOMAIN as DOMAIN, MQTT_CONNECTION_STATE as MQTT_CONNECTION_STATE
+from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOVERY_TOPIC as ATTR_DISCOVERY_TOPIC, AVAILABILITY_ALL as AVAILABILITY_ALL, AVAILABILITY_ANY as AVAILABILITY_ANY, CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_AVAILABILITY_MODE as CONF_AVAILABILITY_MODE, CONF_AVAILABILITY_TEMPLATE as CONF_AVAILABILITY_TEMPLATE, CONF_AVAILABILITY_TOPIC as CONF_AVAILABILITY_TOPIC, CONF_CONFIGURATION_URL as CONF_CONFIGURATION_URL, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_ENABLED_BY_DEFAULT as CONF_ENABLED_BY_DEFAULT, CONF_ENCODING as CONF_ENCODING, CONF_ENTITY_PICTURE as CONF_ENTITY_PICTURE, CONF_HW_VERSION as CONF_HW_VERSION, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_JSON_ATTRS_TEMPLATE as CONF_JSON_ATTRS_TEMPLATE, CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_OBJECT_ID as CONF_OBJECT_ID, CONF_PAYLOAD_AVAILABLE as CONF_PAYLOAD_AVAILABLE, CONF_PAYLOAD_NOT_AVAILABLE as CONF_PAYLOAD_NOT_AVAILABLE, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_SCHEMA as CONF_SCHEMA, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, CONF_SUGGESTED_AREA as CONF_SUGGESTED_AREA, CONF_SW_VERSION as CONF_SW_VERSION, CONF_TOPIC as CONF_TOPIC, CONF_VIA_DEVICE as CONF_VIA_DEVICE, DEFAULT_ENCODING as DEFAULT_ENCODING, DOMAIN as DOMAIN, MQTT_CONNECTION_STATE as MQTT_CONNECTION_STATE
 from .debug_info import log_message as log_message
-from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload, MQTT_DISCOVERY_DONE as MQTT_DISCOVERY_DONE, MQTT_DISCOVERY_NEW as MQTT_DISCOVERY_NEW, MQTT_DISCOVERY_UPDATED as MQTT_DISCOVERY_UPDATED, clear_discovery_hash as clear_discovery_hash, set_discovery_hash as set_discovery_hash
+from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload, MQTT_DISCOVERY_DONE as MQTT_DISCOVERY_DONE, MQTT_DISCOVERY_NEW as MQTT_DISCOVERY_NEW, MQTT_DISCOVERY_UPDATED as MQTT_DISCOVERY_UPDATED, clear_discovery_hash as clear_discovery_hash, get_origin_log_string as get_origin_log_string, get_origin_support_url as get_origin_support_url, set_discovery_hash as set_discovery_hash
 from .models import DATA_MQTT as DATA_MQTT, MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .subscription import EntitySubscription as EntitySubscription, async_prepare_subscribe_topics as async_prepare_subscribe_topics, async_subscribe_topics_internal as async_subscribe_topics_internal, async_unsubscribe_topics as async_unsubscribe_topics
 from .util import mqtt_config_entry_enabled as mqtt_config_entry_enabled
@@ -89,6 +89,7 @@ class MqttDiscoveryDeviceUpdateMixin(ABC, metaclass=abc.ABCMeta):
     _config_entry: Incomplete
     _config_entry_id: Incomplete
     _skip_device_removal: bool
+    _migrate_discovery: Incomplete
     _remove_discovery_updated: Incomplete
     _remove_device_updated: Incomplete
     def __init__(self, hass: HomeAssistant, discovery_data: DiscoveryInfoType, device_id: str | None, config_entry: ConfigEntry, log_name: str) -> None: ...
@@ -107,6 +108,7 @@ class MqttDiscoveryUpdateMixin(Entity):
     _remove_discovery_updated: Incomplete
     _removed_from_hass: bool
     _registry_hooks: Incomplete
+    _migrate_discovery: Incomplete
     def __init__(self, hass: HomeAssistant, discovery_data: DiscoveryInfoType | None, discovery_update: Callable[[MQTTDiscoveryPayload], Coroutine[Any, Any, None]] | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _async_remove_state_and_registry_entry(self) -> None: ...
@@ -157,6 +159,7 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     _attr_icon: Incomplete
+    _attr_entity_picture: Incomplete
     def _setup_common_attributes_from_config(self, config: ConfigType) -> None: ...
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @abstractmethod

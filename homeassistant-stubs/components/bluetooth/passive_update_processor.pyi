@@ -50,7 +50,7 @@ def deserialize_entity_description(descriptions_class: type[EntityDescription], 
 def serialize_entity_description(description: EntityDescription) -> dict[str, Any]: ...
 
 @dataclasses.dataclass(slots=True, frozen=False)
-class PassiveBluetoothDataUpdate:
+class PassiveBluetoothDataUpdate[_T]:
     devices: dict[str | None, DeviceInfo] = ...
     entity_descriptions: dict[PassiveBluetoothEntityKey, EntityDescription] = ...
     entity_names: dict[PassiveBluetoothEntityKey, str | None] = ...
@@ -63,7 +63,7 @@ class PassiveBluetoothDataUpdate:
 def async_register_coordinator_for_restore(hass: HomeAssistant, coordinator: PassiveBluetoothProcessorCoordinator[Any]) -> CALLBACK_TYPE: ...
 async def async_setup(hass: HomeAssistant) -> None: ...
 
-class PassiveBluetoothProcessorCoordinator(BasePassiveBluetoothCoordinator):
+class PassiveBluetoothProcessorCoordinator[_DataT](BasePassiveBluetoothCoordinator):
     _processors: Incomplete
     _update_method: Incomplete
     last_update_success: bool
@@ -78,7 +78,7 @@ class PassiveBluetoothProcessorCoordinator(BasePassiveBluetoothCoordinator):
     _available: bool
     def _async_handle_bluetooth_event(self, service_info: BluetoothServiceInfoBleak, change: BluetoothChange) -> None: ...
 
-class PassiveBluetoothDataProcessor:
+class PassiveBluetoothDataProcessor[_T, _DataT]:
     coordinator: PassiveBluetoothProcessorCoordinator[_DataT]
     data: PassiveBluetoothDataUpdate[_T]
     entity_names: dict[PassiveBluetoothEntityKey, str | None]
@@ -101,7 +101,7 @@ class PassiveBluetoothDataProcessor:
     def async_update_listeners(self, data: PassiveBluetoothDataUpdate[_T] | None, was_available: bool | None = None, changed_entity_keys: set[PassiveBluetoothEntityKey] | None = None) -> None: ...
     def async_handle_update(self, update: _DataT, was_available: bool | None = None) -> None: ...
 
-class PassiveBluetoothProcessorEntity(Entity):
+class PassiveBluetoothProcessorEntity[_PassiveBluetoothDataProcessorT: PassiveBluetoothDataProcessor[Any, Any]](Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     entity_description: Incomplete

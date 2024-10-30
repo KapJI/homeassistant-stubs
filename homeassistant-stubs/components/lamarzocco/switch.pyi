@@ -1,5 +1,5 @@
-from . import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
-from .coordinator import LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordinator
+from .const import DOMAIN as DOMAIN
+from .coordinator import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry, LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordinator
 from .entity import LaMarzoccoBaseEntity as LaMarzoccoBaseEntity, LaMarzoccoEntity as LaMarzoccoEntity, LaMarzoccoEntityDescription as LaMarzoccoEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from lmcloud.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
 from lmcloud.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig

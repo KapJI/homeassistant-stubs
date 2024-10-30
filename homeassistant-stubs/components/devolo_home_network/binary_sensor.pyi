@@ -1,5 +1,6 @@
 from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_TO_ROUTER as CONNECTED_TO_ROUTER
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -9,7 +10,6 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 PARALLEL_UPDATES: int
 
@@ -26,6 +26,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigE
 
 class DevoloBinarySensorEntity(DevoloCoordinatorEntity[LogicalNetwork], BinarySensorEntity):
     entity_description: Incomplete
-    def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DataUpdateCoordinator[LogicalNetwork], description: DevoloBinarySensorEntityDescription) -> None: ...
+    def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DevoloDataUpdateCoordinator[LogicalNetwork], description: DevoloBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

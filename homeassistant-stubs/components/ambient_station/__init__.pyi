@@ -11,6 +11,7 @@ from typing import Any
 PLATFORMS: Incomplete
 DATA_CONFIG: str
 DEFAULT_SOCKET_MIN_RETRY: int
+type AmbientStationConfigEntry = ConfigEntry[AmbientStation]
 
 def async_wm2_to_lx(value: float) -> int: ...
 def async_hydrate_station_data(data: dict[str, Any]) -> dict[str, Any]: ...

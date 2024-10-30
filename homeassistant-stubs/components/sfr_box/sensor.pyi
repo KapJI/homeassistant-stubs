@@ -15,7 +15,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from sfrbox_api.models import DslInfo, SystemInfo, WanInfo
 
 @dataclass(frozen=True, kw_only=True)
-class SFRBoxSensorEntityDescription(SensorEntityDescription):
+class SFRBoxSensorEntityDescription[_T](SensorEntityDescription):
     value_fn: Callable[[_T], StateType]
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
@@ -27,7 +27,7 @@ def _value_to_option(value: str | None) -> str | None: ...
 def _get_temperature(value: float | None) -> float | None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SFRBoxSensor(CoordinatorEntity[SFRDataUpdateCoordinator[_T]], SensorEntity):
+class SFRBoxSensor[_T](CoordinatorEntity[SFRDataUpdateCoordinator[_T]], SensorEntity):
     entity_description: SFRBoxSensorEntityDescription[_T]
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete

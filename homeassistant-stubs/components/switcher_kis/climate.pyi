@@ -1,6 +1,7 @@
 from . import SwitcherConfigEntry as SwitcherConfigEntry
 from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
+from .entity import SwitcherEntity as SwitcherEntity
 from .utils import get_breeze_remote_manager as get_breeze_remote_manager
 from _typeshed import Incomplete
 from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
@@ -9,10 +10,8 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 DEVICE_MODE_TO_HA: Incomplete
@@ -22,13 +21,11 @@ HA_TO_DEVICE_FAN: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: SwitcherConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SwitcherClimateEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator], ClimateEntity):
-    _attr_has_entity_name: bool
+class SwitcherClimateEntity(SwitcherEntity, ClimateEntity):
     _attr_name: Incomplete
     _enable_turn_on_off_backwards_compatibility: bool
     _remote: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: int

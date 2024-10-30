@@ -23,8 +23,8 @@ async def async_verify_supported_device(hass: HomeAssistant, host: str) -> bool:
 
 class DoorBirdConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    reauth_entry: ConfigEntry
     discovery_schema: Incomplete
-    reauth_entry: Incomplete
     def __init__(self) -> None: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

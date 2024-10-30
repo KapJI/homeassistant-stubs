@@ -1,16 +1,15 @@
-from .const import DOMAIN as DOMAIN
-from .controller import OmadaGatewayCoordinator as OmadaGatewayCoordinator, OmadaSiteController as OmadaSiteController
+from . import OmadaConfigEntry as OmadaConfigEntry
+from .controller import OmadaGatewayCoordinator as OmadaGatewayCoordinator
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGatewayPortConfig as OmadaGatewayPortConfig, OmadaGatewayPortStatus as OmadaGatewayPortStatus
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class GatewayPortBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -22,7 +21,6 @@ GATEWAY_PORT_SENSORS: list[GatewayPortBinarySensorEntityDescription]
 
 class OmadaGatewayPortBinarySensor(OmadaDeviceEntity[OmadaGatewayCoordinator], BinarySensorEntity):
     entity_description: GatewayPortBinarySensorEntityDescription
-    _attr_has_entity_name: bool
     _port_number: Incomplete
     _attr_unique_id: Incomplete
     _attr_translation_placeholders: Incomplete

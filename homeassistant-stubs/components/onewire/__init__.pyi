@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 
 _LOGGER: Incomplete
+type OneWireConfigEntry = ConfigEntry[OneWireHub]
 
 async def async_setup_entry(hass: HomeAssistant, entry: OneWireConfigEntry) -> bool: ...
 async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: OneWireConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...

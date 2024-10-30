@@ -9,6 +9,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
+type GiosConfigEntry = ConfigEntry[GiosData]
 
 @dataclass
 class GiosData:

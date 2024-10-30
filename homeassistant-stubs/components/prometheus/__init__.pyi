@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable
+from homeassistant.components.alarm_control_panel import AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.components.climate import ATTR_CURRENT_TEMPERATURE as ATTR_CURRENT_TEMPERATURE, ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_FAN_MODES as ATTR_FAN_MODES, ATTR_HVAC_ACTION as ATTR_HVAC_ACTION, ATTR_HVAC_MODES as ATTR_HVAC_MODES, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, HVACAction as HVACAction
 from homeassistant.components.cover import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION
 from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PRESET_MODE as ATTR_PRESET_MODE, ATTR_PRESET_MODES as ATTR_PRESET_MODES, DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE
@@ -8,7 +9,7 @@ from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.humidifier import ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_HUMIDITY as ATTR_HUMIDITY
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, PERCENTAGE as PERCENTAGE, STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_CUSTOM_BYPASS as STATE_ALARM_ARMED_CUSTOM_BYPASS, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_ARMED_NIGHT as STATE_ALARM_ARMED_NIGHT, STATE_ALARM_ARMED_VACATION as STATE_ALARM_ARMED_VACATION, STATE_ALARM_ARMING as STATE_ALARM_ARMING, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED, STATE_ALARM_DISARMING as STATE_ALARM_DISARMING, STATE_ALARM_PENDING as STATE_ALARM_PENDING, STATE_ALARM_TRIGGERED as STATE_ALARM_TRIGGERED, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, PERCENTAGE as PERCENTAGE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers import entityfilter as entityfilter
 from homeassistant.helpers.entity_registry import EVENT_ENTITY_REGISTRY_UPDATED as EVENT_ENTITY_REGISTRY_UPDATED, EventEntityRegistryUpdatedData as EventEntityRegistryUpdatedData
@@ -21,6 +22,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 API_ENDPOINT: str
+IGNORED_STATES: Incomplete
 DOMAIN: str
 CONF_FILTER: str
 CONF_REQUIRES_AUTH: str
@@ -31,6 +33,7 @@ CONF_COMPONENT_CONFIG_DOMAIN: str
 CONF_DEFAULT_METRIC: str
 CONF_OVERRIDE_METRIC: str
 COMPONENT_CONFIG_SCHEMA_ENTRY: Incomplete
+ALLOWED_METRIC_CHARS: Incomplete
 DEFAULT_NAMESPACE: str
 CONFIG_SCHEMA: Incomplete
 
@@ -49,13 +52,13 @@ class PrometheusMetrics:
     def handle_state_changed_event(self, event: Event[EventStateChangedData]) -> None: ...
     def handle_state(self, state: State) -> None: ...
     def handle_entity_registry_updated(self, event: Event[EventEntityRegistryUpdatedData]) -> None: ...
-    def _remove_labelsets(self, entity_id: str, friendly_name: str | None = None) -> None: ...
+    def _remove_labelsets(self, entity_id: str, friendly_name: str | None = None, ignored_metrics: set[MetricWrapperBase] | None = None) -> None: ...
     def _handle_attributes(self, state: State) -> None: ...
-    def _metric(self, metric: str, factory: type[_MetricBaseT], documentation: str, extra_labels: list[str] | None = None) -> _MetricBaseT: ...
+    def _metric[_MetricBaseT: MetricWrapperBase](self, metric: str, factory: type[_MetricBaseT], documentation: str, extra_labels: list[str] | None = None) -> _MetricBaseT: ...
     @staticmethod
     def _sanitize_metric_name(metric: str) -> str: ...
     @staticmethod
-    def state_as_number(state: State) -> float: ...
+    def state_as_number(state: State) -> float | None: ...
     @staticmethod
     def _labels(state: State) -> dict[str, Any]: ...
     def _battery(self, state: State) -> None: ...

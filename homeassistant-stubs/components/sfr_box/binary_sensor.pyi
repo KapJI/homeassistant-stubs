@@ -14,7 +14,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from sfrbox_api.models import DslInfo, FtthInfo, SystemInfo as SystemInfo, WanInfo
 
 @dataclass(frozen=True, kw_only=True)
-class SFRBoxBinarySensorEntityDescription(BinarySensorEntityDescription):
+class SFRBoxBinarySensorEntityDescription[_T](BinarySensorEntityDescription):
     value_fn: Callable[[_T], bool | None]
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
@@ -24,7 +24,7 @@ WAN_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[WanInfo], ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class SFRBoxBinarySensor(CoordinatorEntity[SFRDataUpdateCoordinator[_T]], BinarySensorEntity):
+class SFRBoxBinarySensor[_T](CoordinatorEntity[SFRDataUpdateCoordinator[_T]], BinarySensorEntity):
     entity_description: SFRBoxBinarySensorEntityDescription[_T]
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete

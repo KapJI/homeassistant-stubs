@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.start import async_at_started as async_at_started
 
 PLATFORMS: Incomplete
+type SpeedTestConfigEntry = ConfigEntry[SpeedTestDataCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: SpeedTestConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...

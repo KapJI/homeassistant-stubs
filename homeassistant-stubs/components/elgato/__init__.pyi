@@ -5,6 +5,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 PLATFORMS: Incomplete
+type ElgatorConfigEntry = ConfigEntry[ElgatoDataUpdateCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ElgatorConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ElgatorConfigEntry) -> bool: ...

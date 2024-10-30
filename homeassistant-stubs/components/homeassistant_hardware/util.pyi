@@ -2,9 +2,10 @@ from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDO
 from .silabs_multiprotocol_addon import WaitingAddonManager as WaitingAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components.hassio import AddonError as AddonError, AddonState as AddonState, is_hassio as is_hassio
+from homeassistant.components.hassio import AddonError as AddonError, AddonState as AddonState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.singleton import singleton as singleton
 from universal_silabs_flasher.const import ApplicationType
 

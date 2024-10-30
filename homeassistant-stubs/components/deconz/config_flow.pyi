@@ -3,11 +3,11 @@ from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import ssdp as ssdp
-from homeassistant.components.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
+from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from pydeconz.utils import DiscoveredBridge as DiscoveredBridge
 from typing import Any
 

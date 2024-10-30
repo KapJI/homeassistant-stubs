@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from sucks import VacBot as VacBot
 
 PLATFORMS: Incomplete
+type EcovacsConfigEntry = ConfigEntry[EcovacsController]
 
 async def async_setup_entry(hass: HomeAssistant, entry: EcovacsConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: EcovacsConfigEntry) -> bool: ...

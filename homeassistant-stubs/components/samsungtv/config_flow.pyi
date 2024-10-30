@@ -9,7 +9,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import format_mac as format_mac
-from typing import Any
+from typing import Any, Self
 
 DATA_SCHEMA: Incomplete
 
@@ -20,7 +20,6 @@ def _mac_is_same_with_incorrect_formatting(current_unformatted_mac: str, formatt
 class SamsungTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    _reauth_entry: Incomplete
     _host: str
     _mac: Incomplete
     _udn: Incomplete
@@ -54,6 +53,7 @@ class SamsungTVConfigFlow(ConfigFlow, domain=DOMAIN):
     def _async_update_existing_matching_entry(self) -> ConfigEntry | None: ...
     def _async_start_discovery_with_mac_address(self) -> None: ...
     def _async_abort_if_host_already_in_progress(self) -> None: ...
+    def is_matching(self, other_flow: Self) -> bool: ...
     def _abort_if_manufacturer_is_not_samsung(self) -> None: ...
     async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...

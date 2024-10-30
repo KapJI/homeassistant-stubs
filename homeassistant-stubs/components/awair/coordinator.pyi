@@ -11,6 +11,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from python_awair.air_data import AirData as AirData
 from python_awair.devices import AwairBaseDevice as AwairBaseDevice, AwairLocalDevice as AwairLocalDevice
 
+type AwairConfigEntry = ConfigEntry[AwairDataUpdateCoordinator]
 @dataclass
 class AwairResult:
     device: AwairBaseDevice

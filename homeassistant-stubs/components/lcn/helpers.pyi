@@ -1,3 +1,4 @@
+import pypck
 from .const import BINSENSOR_PORTS as BINSENSOR_PORTS, CONF_ACKNOWLEDGE as CONF_ACKNOWLEDGE, CONF_CLIMATES as CONF_CLIMATES, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_DIM_MODE as CONF_DIM_MODE, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_HARDWARE_SERIAL as CONF_HARDWARE_SERIAL, CONF_HARDWARE_TYPE as CONF_HARDWARE_TYPE, CONF_OUTPUT as CONF_OUTPUT, CONF_SCENES as CONF_SCENES, CONF_SK_NUM_TRIES as CONF_SK_NUM_TRIES, CONF_SOFTWARE_SERIAL as CONF_SOFTWARE_SERIAL, CONNECTION as CONNECTION, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, LED_PORTS as LED_PORTS, LOGICOP_PORTS as LOGICOP_PORTS, OUTPUT_PORTS as OUTPUT_PORTS, S0_INPUTS as S0_INPUTS, SETPOINTS as SETPOINTS, THRESHOLDS as THRESHOLDS, VARIABLES as VARIABLES
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -5,6 +6,9 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSOR
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
+type AddressType = tuple[int, int, bool]
+type DeviceConnectionType = pypck.module.ModuleConnection | pypck.module.GroupConnection
+type InputType = type[pypck.inputs.Input]
 PATTERN_ADDRESS: Incomplete
 DOMAIN_LOOKUP: Incomplete
 

@@ -8,6 +8,7 @@ from homeassistant.util.dt import async_get_time_zone as async_get_time_zone
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
+type FytaConfigEntry = ConfigEntry[FytaCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: FytaConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

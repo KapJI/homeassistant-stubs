@@ -1,12 +1,11 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import RAVEnDataCoordinator as RAVEnDataCoordinator
+from .coordinator import RAVEnConfigEntry as RAVEnConfigEntry, RAVEnDataCoordinator as RAVEnDataCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_MAC as CONF_MAC, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -19,7 +18,7 @@ class RAVEnSensorEntityDescription(SensorEntityDescription):
 SENSORS: Incomplete
 DIAGNOSTICS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RAVEnConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RAVEnSensor(CoordinatorEntity[RAVEnDataCoordinator], SensorEntity):
     _attr_has_entity_name: bool

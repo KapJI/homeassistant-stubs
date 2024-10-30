@@ -1,10 +1,8 @@
-from .const import DOMAIN as DOMAIN
-from .controller import OmadaSiteController as OmadaSiteController
+from . import OmadaConfigEntry as OmadaConfigEntry
 from .coordinator import OmadaCoordinator as OmadaCoordinator, OmadaDevicesCoordinator as OmadaDevicesCoordinator, POLL_DEVICES as POLL_DEVICES
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity
 from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -21,16 +19,15 @@ class FirmwareUpdateStatus(NamedTuple):
 class OmadaFirmwareUpdateCoordinator(OmadaCoordinator[FirmwareUpdateStatus]):
     _devices_coordinator: Incomplete
     _config_entry: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, omada_client: OmadaSiteClient, devices_coordinator: OmadaDevicesCoordinator) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: OmadaConfigEntry, omada_client: OmadaSiteClient, devices_coordinator: OmadaDevicesCoordinator) -> None: ...
     async def _get_firmware_updates(self) -> list[FirmwareUpdateStatus]: ...
     async def poll_update(self) -> dict[str, FirmwareUpdateStatus]: ...
     def _handle_devices_update(self) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OmadaDeviceUpdate(OmadaDeviceEntity[OmadaFirmwareUpdateCoordinator], UpdateEntity):
     _attr_supported_features: Incomplete
-    _attr_has_entity_name: bool
     _attr_device_class: Incomplete
     _mac: Incomplete
     _omada_client: Incomplete

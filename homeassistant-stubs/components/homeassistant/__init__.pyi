@@ -2,6 +2,7 @@ from .const import DATA_EXPOSED_ENTITIES as DATA_EXPOSED_ENTITIES, DATA_STOP_HAN
 from .exposed_entities import ExposedEntities as ExposedEntities, async_should_expose as async_should_expose
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
+from homeassistant import core_config as core_config
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.const import ATTR_ELEVATION as ATTR_ELEVATION, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, RESTART_EXIT_CODE as RESTART_EXIT_CODE, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_SAVE_PERSISTENT_STATES as SERVICE_SAVE_PERSISTENT_STATES, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON

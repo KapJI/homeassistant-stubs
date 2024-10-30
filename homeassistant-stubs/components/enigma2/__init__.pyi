@@ -4,6 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 
+type Enigma2ConfigEntry = ConfigEntry[Enigma2UpdateCoordinator]
 PLATFORMS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: Enigma2ConfigEntry) -> bool: ...

@@ -48,7 +48,6 @@ BATTERY_SENSOR: Incomplete
 MOTION_EVENT_SENSOR: Incomplete
 MOTION_SENSOR: Incomplete
 DOORBELL_EVENT_SENSOR: Incomplete
-DOORBELL_BINARY_SENSOR: Incomplete
 HUMIDITY_SENSOR: Incomplete
 
 def _has_all_unique_names_and_ports(bridges: list[dict[str, Any]]) -> list[dict[str, Any]]: ...

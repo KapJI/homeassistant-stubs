@@ -1,11 +1,13 @@
 import aiohttp
 import asyncio
 from . import alexa_config as alexa_config, google_config as google_config
-from .const import DISPATCHER_REMOTE_UPDATE as DISPATCHER_REMOTE_UPDATE, DOMAIN as DOMAIN
+from .const import DISPATCHER_REMOTE_UPDATE as DISPATCHER_REMOTE_UPDATE, DOMAIN as DOMAIN, PREF_ENABLE_CLOUD_ICE_SERVERS as PREF_ENABLE_CLOUD_ICE_SERVERS
 from .prefs import CloudPreferences as CloudPreferences
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from hass_nabucasa.client import CloudClient as Interface
 from homeassistant.components import google_assistant as google_assistant, persistent_notification as persistent_notification, webhook as webhook
+from homeassistant.components.camera.webrtc import async_register_ice_servers as async_register_ice_servers
 from homeassistant.core import Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import SERVER_SOFTWARE as SERVER_SOFTWARE
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
@@ -14,6 +16,7 @@ from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity,
 from homeassistant.util.aiohttp import MockRequest as MockRequest, serialize_response as serialize_response
 from pathlib import Path
 from typing import Any, Literal
+from webrtc_models import RTCIceServer as RTCIceServer
 
 _LOGGER: Incomplete
 VALID_REPAIR_TRANSLATION_KEYS: Incomplete
@@ -29,6 +32,7 @@ class CloudClient(Interface):
     _alexa_config_init_lock: Incomplete
     _google_config_init_lock: Incomplete
     _relayer_region: Incomplete
+    _cloud_ice_servers_listener: Incomplete
     def __init__(self, hass: HomeAssistant, prefs: CloudPreferences, websession: aiohttp.ClientSession, alexa_user_config: dict[str, Any], google_user_config: dict[str, Any]) -> None: ...
     @property
     def base_path(self) -> Path: ...

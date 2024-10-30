@@ -29,7 +29,7 @@ STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
 STORAGE_FIELDS: VolDictType
 
-def _none_to_empty_dict(value: _T | None) -> _T | dict[str, Any]: ...
+def _none_to_empty_dict[_T](value: _T | None) -> _T | dict[str, Any]: ...
 
 CONFIG_SCHEMA: Incomplete
 

@@ -20,6 +20,7 @@ SERVICE_REMOVE_TORRENT_SCHEMA: Incomplete
 SERVICE_START_TORRENT_SCHEMA: Incomplete
 SERVICE_STOP_TORRENT_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
+type TransmissionConfigEntry = ConfigEntry[TransmissionDataUpdateCoordinator]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: TransmissionConfigEntry) -> bool: ...

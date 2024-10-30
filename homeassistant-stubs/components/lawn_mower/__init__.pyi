@@ -1,6 +1,5 @@
 from .const import DOMAIN as DOMAIN, LawnMowerActivity as LawnMowerActivity, LawnMowerEntityFeature as LawnMowerEntityFeature, SERVICE_DOCK as SERVICE_DOCK, SERVICE_PAUSE as SERVICE_PAUSE, SERVICE_START_MOWING as SERVICE_START_MOWING
 from _typeshed import Incomplete
-from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
@@ -30,9 +29,7 @@ class LawnMowerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_supported_features: LawnMowerEntityFeature
     @property
     def state(self) -> str | None: ...
-    @cached_property
     def activity(self) -> LawnMowerActivity | None: ...
-    @cached_property
     def supported_features(self) -> LawnMowerEntityFeature: ...
     def start_mowing(self) -> None: ...
     async def async_start_mowing(self) -> None: ...

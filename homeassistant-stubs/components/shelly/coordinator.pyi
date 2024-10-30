@@ -6,7 +6,6 @@ from aioshelly.block_device import BlockDevice, BlockUpdateType
 from aioshelly.rpc_device import RpcDevice, RpcUpdateType
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
@@ -23,8 +22,9 @@ class ShellyEntryData:
     rpc: ShellyRpcCoordinator | None = ...
     rpc_poll: ShellyRpcPollingCoordinator | None = ...
     def __init__(self, platforms, block=..., rest=..., rpc=..., rpc_poll=...) -> None: ...
+type ShellyConfigEntry = ConfigEntry[ShellyEntryData]
 
-class ShellyCoordinatorBase(DataUpdateCoordinator[None]):
+class ShellyCoordinatorBase[_DeviceT: BlockDevice | RpcDevice](DataUpdateCoordinator[None]):
     entry: Incomplete
     device: Incomplete
     device_id: Incomplete
@@ -32,9 +32,7 @@ class ShellyCoordinatorBase(DataUpdateCoordinator[None]):
     _came_online_once: bool
     _debounced_reload: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ShellyConfigEntry, device: _DeviceT, update_interval: float) -> None: ...
-    @cached_property
     def model(self) -> str: ...
-    @cached_property
     def mac(self) -> str: ...
     @property
     def sw_version(self) -> str: ...

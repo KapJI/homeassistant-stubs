@@ -1,5 +1,6 @@
 from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import IMAGE_GUEST_WIFI as IMAGE_GUEST_WIFI, SWITCH_GUEST_WIFI as SWITCH_GUEST_WIFI
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -9,7 +10,6 @@ from homeassistant.components.image import ImageEntity as ImageEntity, ImageEnti
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 PARALLEL_UPDATES: int
 
@@ -27,6 +27,6 @@ class DevoloImageEntity(DevoloCoordinatorEntity[WifiGuestAccessGet], ImageEntity
     entity_description: Incomplete
     _attr_image_last_updated: Incomplete
     _data: Incomplete
-    def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DataUpdateCoordinator[WifiGuestAccessGet], description: DevoloImageEntityDescription) -> None: ...
+    def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DevoloDataUpdateCoordinator[WifiGuestAccessGet], description: DevoloImageEntityDescription) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     async def async_image(self) -> bytes | None: ...

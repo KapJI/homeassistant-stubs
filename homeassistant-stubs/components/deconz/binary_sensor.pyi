@@ -11,6 +11,15 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
+from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
+from pydeconz.models.sensor.alarm import Alarm
+from pydeconz.models.sensor.carbon_monoxide import CarbonMonoxide
+from pydeconz.models.sensor.fire import Fire
+from pydeconz.models.sensor.generic_flag import GenericFlag
+from pydeconz.models.sensor.open_close import OpenClose
+from pydeconz.models.sensor.presence import Presence
+from pydeconz.models.sensor.vibration import Vibration
+from pydeconz.models.sensor.water import Water
 
 ATTR_ORIENTATION: str
 ATTR_TILTANGLE: str
@@ -18,7 +27,7 @@ ATTR_VIBRATIONSTRENGTH: str
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
-class DeconzBinarySensorDescription(BinarySensorEntityDescription):
+class DeconzBinarySensorDescription[_T: (Alarm, CarbonMonoxide, Fire, GenericFlag, OpenClose, Presence, Vibration, Water, PydeconzSensorBase)](BinarySensorEntityDescription):
     instance_check: type[_T] | None = ...
     name_suffix: str = ...
     old_unique_id_suffix: str = ...

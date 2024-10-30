@@ -2,9 +2,8 @@ from . import AbodeSystem as AbodeSystem
 from .const import DOMAIN as DOMAIN
 from .entity import AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_ALARM_ARMED_AWAY as STATE_ALARM_ARMED_AWAY, STATE_ALARM_ARMED_HOME as STATE_ALARM_ARMED_HOME, STATE_ALARM_DISARMED as STATE_ALARM_DISARMED
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from jaraco.abode.devices.alarm import Alarm as Alarm
@@ -17,7 +16,7 @@ class AbodeAlarm(AbodeDevice, AlarmControlPanelEntity):
     _attr_supported_features: Incomplete
     _device: Alarm
     @property
-    def state(self) -> str | None: ...
+    def alarm_state(self) -> AlarmControlPanelState | None: ...
     def alarm_disarm(self, code: str | None = None) -> None: ...
     def alarm_arm_home(self, code: str | None = None) -> None: ...
     def alarm_arm_away(self, code: str | None = None) -> None: ...

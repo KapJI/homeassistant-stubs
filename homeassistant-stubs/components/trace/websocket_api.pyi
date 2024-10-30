@@ -1,4 +1,4 @@
-from .. import trace as trace
+from .util import async_get_trace as async_get_trace, async_list_contexts as async_list_contexts, async_list_traces as async_list_traces
 from _typeshed import Incomplete
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

@@ -1,4 +1,4 @@
-from .const import CONF_TRACKED_CUSTOM_INTEGRATIONS as CONF_TRACKED_CUSTOM_INTEGRATIONS, CONF_TRACKED_INTEGRATIONS as CONF_TRACKED_INTEGRATIONS, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_TRACKED_ADDONS as CONF_TRACKED_ADDONS, CONF_TRACKED_CUSTOM_INTEGRATIONS as CONF_TRACKED_CUSTOM_INTEGRATIONS, CONF_TRACKED_INTEGRATIONS as CONF_TRACKED_INTEGRATIONS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
 from homeassistant.core import callback as callback

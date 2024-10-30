@@ -13,6 +13,7 @@ from homeassistant.helpers.entity import SLOW_UPDATE_WARNING as SLOW_UPDATE_WARN
 PLATFORMS: Incomplete
 _API_TIMEOUT: Incomplete
 _LOGGER: Incomplete
+type BondConfigEntry = ConfigEntry[BondData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: BondConfigEntry) -> bool: ...

@@ -1,11 +1,11 @@
-from . import BangOlufsenData as BangOlufsenData
-from .const import BANG_OLUFSEN_STATES as BANG_OLUFSEN_STATES, BangOlufsenMediaType as BangOlufsenMediaType, BangOlufsenSource as BangOlufsenSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, HIDDEN_SOURCE_IDS as HIDDEN_SOURCE_IDS, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
+from . import BangOlufsenConfigEntry as BangOlufsenConfigEntry
+from .const import BANG_OLUFSEN_REPEAT_FROM_HA as BANG_OLUFSEN_REPEAT_FROM_HA, BANG_OLUFSEN_REPEAT_TO_HA as BANG_OLUFSEN_REPEAT_TO_HA, BANG_OLUFSEN_STATES as BANG_OLUFSEN_STATES, BangOlufsenMediaType as BangOlufsenMediaType, BangOlufsenSource as BangOlufsenSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, HIDDEN_SOURCE_IDS as HIDDEN_SOURCE_IDS, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
 from .entity import BangOlufsenEntity as BangOlufsenEntity
 from .util import get_serial_number_from_jid as get_serial_number_from_jid
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MODEL as CONF_MODEL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -18,20 +18,21 @@ from mozart_api.models import BeolinkLeader as BeolinkLeader, ListeningModeProps
 from mozart_api.mozart_client import MozartClient as MozartClient
 from typing import Any
 
+SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 BANG_OLUFSEN_FEATURES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BangOlufsenConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     _attr_icon: str
     _attr_name: Incomplete
     _attr_device_class: Incomplete
-    _attr_supported_features = BANG_OLUFSEN_FEATURES
     _beolink_jid: Incomplete
     _model: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
+    _attr_should_poll: bool
     _audio_sources: Incomplete
     _media_image: Incomplete
     _software_status: Incomplete
@@ -50,6 +51,9 @@ class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     _playback_state: Incomplete
     _attr_media_position_updated_at: Incomplete
     async def _initialize(self) -> None: ...
+    _attr_repeat: Incomplete
+    _attr_shuffle: Incomplete
+    async def async_update(self) -> None: ...
     _attr_source_list: Incomplete
     async def _async_update_sources(self) -> None: ...
     async def _async_update_playback_metadata_and_beolink(self, data: PlaybackContentMetadata) -> None: ...
@@ -65,6 +69,8 @@ class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     _attr_sound_mode: Incomplete
     _attr_sound_mode_list: Incomplete
     async def _async_update_sound_modes(self, active_sound_mode: ListeningModeProps | ListeningModeRef | None = None) -> None: ...
+    @property
+    def supported_features(self) -> MediaPlayerEntityFeature: ...
     @property
     def state(self) -> MediaPlayerState: ...
     @property
@@ -104,6 +110,8 @@ class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     async def async_media_seek(self, position: float) -> None: ...
     async def async_media_previous_track(self) -> None: ...
     async def async_clear_playlist(self) -> None: ...
+    async def async_set_repeat(self, repeat: RepeatMode) -> None: ...
+    async def async_set_shuffle(self, shuffle: bool) -> None: ...
     async def async_select_source(self, source: str) -> None: ...
     async def async_select_sound_mode(self, sound_mode: str) -> None: ...
     async def async_play_media(self, media_type: MediaType | str, media_id: str, announce: bool | None = None, **kwargs: Any) -> None: ...

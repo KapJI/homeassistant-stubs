@@ -8,7 +8,7 @@ from typing import Any
 _LOGGER: Incomplete
 _SCAN_INTERVAL: Incomplete
 
-class SFRDataUpdateCoordinator(DataUpdateCoordinator[_DataT | None]):
+class SFRDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT | None]):
     box: Incomplete
     _method: Incomplete
     def __init__(self, hass: HomeAssistant, box: SFRBox, name: str, method: Callable[[SFRBox], Coroutine[Any, Any, _DataT | None]]) -> None: ...

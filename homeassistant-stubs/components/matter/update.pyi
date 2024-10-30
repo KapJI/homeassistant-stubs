@@ -36,6 +36,7 @@ class MatterUpdate(MatterEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     _attr_installed_version: Incomplete
     _attr_in_progress: bool
+    _attr_update_percentage: Incomplete
     def _update_from_device(self) -> None: ...
     _attr_latest_version: Incomplete
     _attr_release_url: Incomplete

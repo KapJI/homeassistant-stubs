@@ -1,7 +1,6 @@
 from .const import DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
 from _typeshed import Incomplete
 from enum import StrEnum
-from functools import cached_property as cached_property
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -44,9 +43,7 @@ class ButtonEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_
     _attr_state: None
     __last_pressed_isoformat: str | None
     def _default_to_device_class_name(self) -> bool: ...
-    @cached_property
     def device_class(self) -> ButtonDeviceClass | None: ...
-    @cached_property
     def state(self) -> str | None: ...
     def __set_state(self, state: str | None) -> None: ...
     async def _async_press_action(self) -> None: ...

@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import AndroidIPCamDataUpdateCoordinator as AndroidIPCamDataUpdateCoordinator
+from .coordinator import AndroidIPCamConfigEntry as AndroidIPCamConfigEntry, AndroidIPCamDataUpdateCoordinator as AndroidIPCamDataUpdateCoordinator
 from .entity import AndroidIPCamBaseEntity as AndroidIPCamBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -20,7 +18,7 @@ class AndroidIPWebcamSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[AndroidIPWebcamSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class IPWebcamSensor(AndroidIPCamBaseEntity, SensorEntity):
     entity_description: AndroidIPWebcamSensorEntityDescription

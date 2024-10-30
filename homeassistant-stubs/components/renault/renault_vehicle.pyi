@@ -13,7 +13,7 @@ from typing import Any, Concatenate
 
 LOGGER: Incomplete
 
-def with_error_wrapping(func: Callable[Concatenate[RenaultVehicleProxy, _P], Awaitable[_R]]) -> Callable[Concatenate[RenaultVehicleProxy, _P], Coroutine[Any, Any, _R]]: ...
+def with_error_wrapping[**_P, _R](func: Callable[Concatenate[RenaultVehicleProxy, _P], Awaitable[_R]]) -> Callable[Concatenate[RenaultVehicleProxy, _P], Coroutine[Any, Any, _R]]: ...
 
 @dataclass
 class RenaultCoordinatorDescription:

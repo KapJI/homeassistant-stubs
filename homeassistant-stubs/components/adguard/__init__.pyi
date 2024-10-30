@@ -12,6 +12,7 @@ SERVICE_URL_SCHEMA: Incomplete
 SERVICE_ADD_URL_SCHEMA: Incomplete
 SERVICE_REFRESH_SCHEMA: Incomplete
 PLATFORMS: Incomplete
+type AdGuardConfigEntry = ConfigEntry[AdGuardData]
 
 @dataclass
 class AdGuardData:

@@ -1,14 +1,19 @@
 from . import SolarlogConfigEntry as SolarlogConfigEntry
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util import slugify as slugify
 from solarlog_cli.solarlog_models import SolarlogData
 
 _LOGGER: Incomplete
 
 class SolarLogCoordinator(DataUpdateCoordinator[SolarlogData]):
+    new_device_callbacks: Incomplete
+    _devices_last_update: Incomplete
     unique_id: Incomplete
     name: Incomplete
     host: Incomplete
@@ -16,4 +21,5 @@ class SolarLogCoordinator(DataUpdateCoordinator[SolarlogData]):
     def __init__(self, hass: HomeAssistant, entry: SolarlogConfigEntry) -> None: ...
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> SolarlogData: ...
+    def _async_add_remove_devices(self, data: SolarlogData) -> None: ...
     async def renew_authentication(self) -> bool: ...

@@ -49,7 +49,7 @@ class IntegrationMatcher:
     def async_clear_address(self, address: str) -> None: ...
     def match_domains(self, service_info: BluetoothServiceInfoBleak) -> set[str]: ...
 
-class BluetoothMatcherIndexBase:
+class BluetoothMatcherIndexBase[_T: (BluetoothMatcher, BluetoothCallbackMatcherWithCallback)]:
     __slots__: Incomplete
     local_name: Incomplete
     service_uuid: Incomplete

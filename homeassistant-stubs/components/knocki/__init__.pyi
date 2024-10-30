@@ -6,6 +6,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from knocki import Event as Event
 
 PLATFORMS: list[Platform]
+type KnockiConfigEntry = ConfigEntry[KnockiCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: KnockiConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: KnockiConfigEntry) -> bool: ...

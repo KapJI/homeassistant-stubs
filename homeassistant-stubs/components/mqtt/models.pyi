@@ -7,6 +7,7 @@ from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload
 from .tag import MQTTTagScanner as MQTTTagScanner
 from _typeshed import Incomplete
 from collections import deque
+from collections.abc import Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
@@ -26,6 +27,7 @@ class PayloadSentinel(StrEnum):
 
 _LOGGER: Incomplete
 ATTR_THIS: str
+type PublishPayloadType = str | bytes | int | float | None
 
 def convert_outgoing_mqtt_payload(payload: PublishPayloadType) -> PublishPayloadType: ...
 
@@ -46,6 +48,7 @@ class ReceiveMessage:
     subscribed_topic: str
     timestamp: float
     def __init__(self, topic, payload, qos, retain, subscribed_topic, timestamp) -> None: ...
+type MessageCallbackType = Callable[[ReceiveMessage], None]
 
 class SubscriptionDebugInfo(TypedDict):
     messages: deque[ReceiveMessage]
@@ -127,6 +130,14 @@ class MqttData:
     subscriptions_to_restore: set[Subscription] = ...
     tags: dict[str, dict[str, MQTTTagScanner]] = ...
     def __init__(self, client, config, debug_info_entities=..., debug_info_triggers=..., device_triggers=..., data_config_flow_lock=..., discovery_already_discovered=..., discovery_pending_discovered=..., discovery_registry_hooks=..., discovery_unsubscribe=..., integration_unsubscribe=..., last_discovery=..., platforms_loaded=..., reload_dispatchers=..., reload_handlers=..., reload_schema=..., state_write_requests=..., subscriptions_to_restore=..., tags=...) -> None: ...
+
+@dataclass(slots=True)
+class MqttComponentConfig:
+    component: str
+    object_id: str
+    node_id: str | None
+    discovery_payload: MQTTDiscoveryPayload
+    def __init__(self, component, object_id, node_id, discovery_payload) -> None: ...
 
 DATA_MQTT: HassKey[MqttData]
 DATA_MQTT_AVAILABLE: HassKey[asyncio.Future[bool]]

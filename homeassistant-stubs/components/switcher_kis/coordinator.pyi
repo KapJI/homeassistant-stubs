@@ -10,7 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 _LOGGER: Incomplete
 
 class SwitcherDataUpdateCoordinator(update_coordinator.DataUpdateCoordinator[SwitcherBase]):
-    entry: Incomplete
+    config_entry: ConfigEntry
     data: Incomplete
     token: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: SwitcherBase) -> None: ...

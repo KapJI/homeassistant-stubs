@@ -2,7 +2,7 @@ from .const import ATTR_CID as ATTR_CID, ATTR_MAC as ATTR_MAC, ATTR_MODEL as ATT
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import ssdp as ssdp
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PIN as CONF_PIN
 from homeassistant.helpers import instance_id as instance_id
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
@@ -13,7 +13,6 @@ class BraviaTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     client: Incomplete
     device_config: Incomplete
-    entry: Incomplete
     def __init__(self) -> None: ...
     def create_client(self) -> None: ...
     async def gen_instance_ids(self) -> tuple[str, str]: ...

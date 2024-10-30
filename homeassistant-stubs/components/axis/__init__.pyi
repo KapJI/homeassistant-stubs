@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 
 _LOGGER: Incomplete
+type AxisConfigEntry = ConfigEntry[AxisHub]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: AxisConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...

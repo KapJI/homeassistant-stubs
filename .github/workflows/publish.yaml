@@ -1,5 +1,8 @@
 name: Publish new packages
 
+concurrency: release
+environment: release
+
 on:
   schedule:
     - cron: "20 0,12 * * *"
@@ -27,5 +30,3 @@ jobs:
         env:
           ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TWINE_USERNAME: "__token__"
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}

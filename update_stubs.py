@@ -207,13 +207,8 @@ def publish_package(repo_root: Path) -> None:
     LOGGER.info("Publishing package...")
     subprocess.run(
         [
-            "uvx",
-            "twine",
-            "upload",
-            "--non-interactive",
-            "--disable-progress-bar",
-            "--skip-existing",
-            "dist/*",
+            "uv",
+            "publish",
         ],
         cwd=repo_root,
         check=True,
@@ -306,8 +301,6 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
         f.write("\n".join(map(str, typed_paths)))
         f.close()
         command_args: list[str] = [
-            "uv",
-            "run",
             "stubgen",
             "--include-private",
             "-o",

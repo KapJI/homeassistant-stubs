@@ -12,6 +12,8 @@ jobs:
     name: Generate and publish
     runs-on: ubuntu-latest
     environment: release
+    permissions:
+      id-token: write
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4

@@ -13,6 +13,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import tomllib
 from typing import TYPE_CHECKING
 from urllib.request import urlopen
 
@@ -47,20 +48,26 @@ def main() -> int:
     homeassistant_root = repo_root / "homeassistant_core"
 
     # Find which versions are missing
-    available_versions = get_available_versions(repo_root)
-    # For dry run, re-generate the last version
-    if args.dry_run:
-        available_versions = available_versions[:-1]
-    current_versions = set(available_versions)
+    available_stubs_versions = get_available_versions(repo_root)
+    available_stubs_versions_set = set(available_stubs_versions)
     homeassistant_versions = get_available_versions(homeassistant_root)
-    available_pypi_versions = set(get_pypi_versions())
+    homeassistant_pypi_versions = set(get_pypi_versions("homeassistant"))
     missing_versions = [
         version
         for version in homeassistant_versions
-        if version not in current_versions and version in available_pypi_versions
+        if version not in available_stubs_versions_set
+        and version in homeassistant_pypi_versions
     ]
+    # For dry run, re-generate the last version
+    if args.dry_run and not missing_versions:
+        missing_versions.append(available_stubs_versions[-1])
+
     for version in missing_versions:
         LOGGER.info("Missing version: %s", version)
+
+    stubs_pypi_versions = set(get_pypi_versions("homeassistant-stubs"))
+    last_pushed_version = get_last_pushed_version(repo_root)
+    LOGGER.info("Last pushed version: %s", last_pushed_version)
 
     # Create new packages
     for version in missing_versions:
@@ -69,25 +76,39 @@ def main() -> int:
             repo_root,
             homeassistant_root,
             args.dry_run,
+            last_pushed_version,
+            stubs_pypi_versions,
         )
+        last_pushed_version = version
     return 0
 
 
-def get_pypi_versions() -> list[str]:
+def get_last_pushed_version(repo_root: Path) -> AwesomeVersion:
+    """Get homeassistant version from pyproject.toml."""
+    with (repo_root / "pyproject.toml").open("rb") as f:
+        pyproject_data = tomllib.load(f)
+    dependencies = pyproject_data.get("project", {}).get("dependencies", [])
+    for dep in dependencies:
+        if dep.startswith("homeassistant=="):
+            return AwesomeVersion(dep.removeprefix("homeassistant=="))
+    raise KeyError("Can't find installed homeassistant version")
+
+
+def get_pypi_versions(package: str) -> list[AwesomeVersion]:
     """Get list of available versions on PyPI."""
-    url = "https://pypi.org/pypi/homeassistant/json"
+    url = f"https://pypi.org/pypi/{package}/json"
     with urlopen(url) as response:
         data = json.loads(response.read())
-    return list(data["releases"].keys())
+    return [AwesomeVersion(release) for release in data["releases"]]
 
 
-def get_available_versions(git_root: Path) -> list[str]:
+def get_available_versions(repo_root: Path) -> list[AwesomeVersion]:
     """Get list of available versions from git tags."""
-    LOGGER.info("Getting list of available versions in %s...", git_root)
-    subprocess.run(["git", "fetch", "origin"], cwd=git_root, check=True)
+    LOGGER.info("Getting list of available versions in %s...", repo_root)
+    subprocess.run(["git", "fetch", "origin"], cwd=repo_root, check=True)
     result = subprocess.run(
         ["git", "tag"],
-        cwd=git_root,
+        cwd=repo_root,
         check=True,
         capture_output=True,
         text=True,
@@ -102,8 +123,8 @@ def get_available_versions(git_root: Path) -> list[str]:
         ]
     )
     for version in versions[-10:]:
-        LOGGER.info("Available version: %s", version.string)
-    return [version.string for version in versions]
+        LOGGER.info("Available version: %s", version)
+    return versions
 
 
 def get_github_repo(token_name: str) -> Repository:
@@ -115,47 +136,56 @@ def get_github_repo(token_name: str) -> Repository:
 
 
 def create_package(
-    version: str,
+    version: AwesomeVersion,
     repo_root: Path,
     homeassistant_root: Path,
     dry_run: bool,
+    last_pushed_version: AwesomeVersion,
+    stubs_pypi_versions: set[AwesomeVersion],
 ) -> None:
     """Create package for given version and upload it to PyPI."""
     LOGGER.info("Creating package for %s...", version)
-    update_dependency(repo_root, version)
+    if last_pushed_version != version:
+        update_dependency(repo_root, version)
     checkout_version(homeassistant_root, version)
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
     if not dry_run:
-        create_commit(repo_root, version)
+        if version > last_pushed_version:
+            create_commit(repo_root, version)
+            push_commit(repo_root)
+        if version not in stubs_pypi_versions:
+            build_package(repo_root, version)
+            publish_package(repo_root)
         gh_repo = get_github_repo("GITHUB_TOKEN")
-        push_commit(repo_root)
         create_github_release(version, gh_repo)
-        build_package(repo_root, version)
-        publish_package(repo_root)
 
 
-def update_dependency(repo_root: Path, version: str) -> None:
+def update_dependency(repo_root: Path, version: AwesomeVersion) -> None:
     """Update version of homeassistant dependency."""
     subprocess.run(
         ["uv", "add", f"homeassistant=={version}"], cwd=repo_root, check=True
     )
 
 
-def checkout_version(homeassistant_root: Path, version: str) -> None:
+def checkout_version(homeassistant_root: Path, version: AwesomeVersion) -> None:
     """Checkout required version of Home Assistant repo."""
-    subprocess.run(["git", "checkout", version], cwd=homeassistant_root, check=True)
+    subprocess.run(
+        ["git", "checkout", version.string], cwd=homeassistant_root, check=True
+    )
 
 
-def build_package(repo_root: Path, version: str) -> None:
+def build_package(repo_root: Path, version: AwesomeVersion) -> None:
     """Build new package with uv."""
     LOGGER.info("Building package...")
-    subprocess.run(["git", "tag", version], cwd=repo_root, check=True)
+    subprocess.run(["git", "tag", version.string], cwd=repo_root, check=True)
     subprocess.run(["uv", "build"], cwd=repo_root, check=True)
-    subprocess.run(["git", "tag", "--delete", version], cwd=repo_root, check=True)
+    subprocess.run(
+        ["git", "tag", "--delete", version.string], cwd=repo_root, check=True
+    )
 
 
-def create_commit(repo_root: Path, version: str) -> None:
+def create_commit(repo_root: Path, version: AwesomeVersion) -> None:
     """Create local commit."""
     LOGGER.info("Creating commit for %s...", version)
     subprocess.run(
@@ -181,15 +211,15 @@ def push_commit(repo_root: Path) -> None:
     subprocess.run(["git", "push"], cwd=repo_root, check=True)
 
 
-def create_github_release(version: str, gh_repo: Repository) -> None:
+def create_github_release(version: AwesomeVersion, gh_repo: Repository) -> None:
     """Create new release on Github."""
     LOGGER.info("Creating release...")
     gh_repo.create_git_release(
-        tag=version,
-        name=version,
+        tag=version.string,
+        name=version.string,
         target_commitish="main",
         message=f"Generated for `homeassistant {version}`.",
-        prerelease=AwesomeVersion(version).modifier is not None,
+        prerelease=version.modifier is not None,
     )
 
 

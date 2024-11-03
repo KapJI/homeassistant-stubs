@@ -129,8 +129,7 @@ def create_package(
     if not dry_run:
         create_commit(repo_root, version)
         gh_repo = get_github_repo("GITHUB_TOKEN")
-        gh_admin_repo = get_github_repo("ADMIN_TOKEN")
-        push_commit(repo_root, gh_admin_repo)
+        push_commit(repo_root)
         create_github_release(version, gh_repo)
         build_package(repo_root, version)
         publish_package(repo_root)
@@ -176,18 +175,10 @@ def create_commit(repo_root: Path, version: str) -> None:
     )
 
 
-def push_commit(repo_root: Path, gh_admin_repo: Repository) -> None:
+def push_commit(repo_root: Path) -> None:
     """Push commit to Github."""
-    LOGGER.info("Disabling branch protection...")
-    branch = gh_admin_repo.get_branch("main")
-    required_checks = branch.get_required_status_checks()
-    branch.edit_required_status_checks(required_checks.strict, [])
-
     LOGGER.info("Pushing new commit...")
     subprocess.run(["git", "push"], cwd=repo_root, check=True)
-
-    LOGGER.info("Re-enabling branch protection...")
-    branch.edit_required_status_checks(required_checks.strict, required_checks.contexts)
 
 
 def create_github_release(version: str, gh_repo: Repository) -> None:

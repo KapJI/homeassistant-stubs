@@ -20,15 +20,17 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Prepare and install deps
         uses: ./.github/actions/install-deps
 
-      - name: Generate and publish new packages
+      - name: Configure git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          uv run python update_stubs.py
+
+      - name: Generate and publish new packages
+        run: uv run python update_stubs.py
         env:
-          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

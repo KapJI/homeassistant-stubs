@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN
 from .server import Server as Server
 from _typeshed import Incomplete
 from go2rtc_client.ws import ReceiveMessages as ReceiveMessages

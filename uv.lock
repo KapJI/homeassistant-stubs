@@ -42,7 +42,7 @@ wheels = [
 
 [[package]]
 name = "aiohasupervisor"
-version = "0.2.0"
+version = "0.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -50,9 +50,9 @@ dependencies = [
     { name = "orjson" },
     { name = "yarl" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5a/83/12d1ae48105d654ae1270fa21ff9920a840bc45b124f208744fee8cd82e8/aiohasupervisor-0.2.0.tar.gz", hash = "sha256:968123e766f2d6fea9c6f87b8570a491fd55b6f928065377b2b43db9d2a71682", size = 34747 }
+sdist = { url = "https://files.pythonhosted.org/packages/4b/c8/7eed41d183ae5290761b101651baf688014c4ecf4e398311dd2255a0e6b0/aiohasupervisor-0.2.1.tar.gz", hash = "sha256:a1242165fd255796c961dadfbb88fc1f0d45f8441f8af10f42899ab478b1cbd9", size = 34806 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/46/1d/d710612de4addd5945e43ce679161b2f1c8fa5bfc6e4d90fa9d8adf92d8e/aiohasupervisor-0.2.0-py3-none-any.whl", hash = "sha256:8e075ca1269db610aac00f930464cebff9b4d2d7479c56467131641a15b6c6d6", size = 33250 },
+    { url = "https://files.pythonhosted.org/packages/3e/48/3a96f8b3510d82260d0912929ef5337262659688659e1e2e87386deec8e8/aiohasupervisor-0.2.1-py3-none-any.whl", hash = "sha256:b1e17c916bc1cec13611f74851305c8901525612ac6261e6aba2b225f2b15016", size = 33420 },
 ]
 
 [[package]]
@@ -756,7 +756,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant"
-version = "2024.11.0b1"
+version = "2024.11.0b2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiodns" },
@@ -802,14 +802,14 @@ dependencies = [
     { name = "webrtc-models" },
     { name = "yarl" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cd/b3/8214b982c5f65cb7fa95c22bd4634295c6516f782b3c61b373aaf09b5979/homeassistant-2024.11.0b1.tar.gz", hash = "sha256:b065909446dbea049539a806062b60d1cd4b56bf934075399ee35eb4a884c87c", size = 23321862 }
+sdist = { url = "https://files.pythonhosted.org/packages/e5/ea/cbbfb608fe1e75de12ee64f8005d51920b5b656b518656d5f2f194d5c03b/homeassistant-2024.11.0b2.tar.gz", hash = "sha256:688105eca73abcd049f5ccef290acaa71ebc6a665bb808107a830e8da24f877a", size = 23344472 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ff/6a/eb2637f913d0014303629e7a0353357a616ec0acc7c5c894d68563957bbb/homeassistant-2024.11.0b1-py3-none-any.whl", hash = "sha256:460d05ba2c91d674509293db9533101f13e35904c9adf20136cd9d734a729657", size = 39888539 },
+    { url = "https://files.pythonhosted.org/packages/30/cc/014ef0c2f15c018297c031d3886f23308a8bfa311ff28e382676d8206d54/homeassistant-2024.11.0b2-py3-none-any.whl", hash = "sha256:bca9d63e05c05e5a7cd3f7938b9683cd183a68c5b00670ff726a1a31bef78e12", size = 39926514 },
 ]
 
 [[package]]
 name = "homeassistant-stubs"
-version = "2024.11.0b1.dev2+g17c363ac.d20241031"
+version = "2024.11.0b2.dev2+gd125450e.d20241103"
 source = { editable = "." }
 dependencies = [
     { name = "homeassistant" },
@@ -827,7 +827,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homeassistant", specifier = "==2024.11.0b1" }]
+requires-dist = [{ name = "homeassistant", specifier = "==2024.11.0b2" }]
 
 [package.metadata.requires-dev]
 dev = [
@@ -1746,15 +1746,15 @@ wheels = [
 
 [[package]]
 name = "webrtc-models"
-version = "0.1.0"
+version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mashumaro" },
     { name = "orjson" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/42/78/9c31171d761bcebb317b71c387954d6fb3b1d40925ee9324517b648b4061/webrtc_models-0.1.0.tar.gz", hash = "sha256:6ee366e56f3c16fb3346e6ac24b1e415c6d9029662a49426260b40da8d9f143b", size = 8896 }
+sdist = { url = "https://files.pythonhosted.org/packages/9c/60/542eef88b38f82cf5d7360d5c7a635bfe7aa02417eda1fb40fa0834a5732/webrtc_models-0.2.0.tar.gz", hash = "sha256:ec7b1009b14a6a82b05044b58e0e072eea46829b0c81729e2ddd6c822651c7b3", size = 8986 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b0/5b/4ca2624aa186a7451c7a1fe6bfeb52aef73a0f0cf52db0b1e8b1f2e00ada/webrtc_models-0.1.0-py3-none-any.whl", hash = "sha256:b6166ff6d063709ba21193f48f214b7d09fdc1adb5fdf41c403dc55154cece93", size = 6980 },
+    { url = "https://files.pythonhosted.org/packages/43/5b/098acd20b6e29558a79f75928a7c9f819f597eabef527a33f65aec2f6c32/webrtc_models-0.2.0-py3-none-any.whl", hash = "sha256:13b95076c7438817d6dac35a686b387458e9f621857342246849071e8b533cce", size = 7047 },
 ]
 
 [[package]]

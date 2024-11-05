@@ -26,6 +26,17 @@ dependencies = [
     "homeassistant==2024.11.0b5",
 ]
 
+[dependency-groups]
+dev = [
+    "awesomeversion>=24.6.0",
+    "codespell>=2.3.0",
+    "mypy>=1.13.0",
+    "pygithub>=2.4.0",
+    "pylint>=3.3.1",
+    "ruff>=0.7.0",
+    "types-requests>=2.31.0.6",
+]
+
 [project.urls]
 "Homepage" = "https://github.com/KapJI/homeassistant-stubs"
 "Bug Tracker" = "https://github.com/KapJI/homeassistant-stubs/issues"
@@ -36,17 +47,6 @@ packages = ["homeassistant-stubs"]
 
 [tool.hatch.version]
 source = "vcs"
-
-[tool.uv]
-dev-dependencies = [
-    "awesomeversion>=24.6.0",
-    "codespell>=2.3.0",
-    "mypy>=1.13.0",
-    "pygithub>=2.4.0",
-    "pylint>=3.3.1",
-    "ruff>=0.7.0",
-    "types-requests>=2.31.0.6",
-]
 
 [tool.uv.sources]
 mypy = { git = "https://github.com/python/mypy", rev = "06a566b81993a711470aa9e80b9d86d1e666b029" }

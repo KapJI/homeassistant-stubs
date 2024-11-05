@@ -40,6 +40,11 @@ class GetCurrentTimeIntentHandler(intent.IntentHandler):
     description: str
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
+class HelloIntentHandler(intent.IntentHandler):
+    intent_type: Incomplete
+    description: str
+    async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
+
 class IntentHandleView(http.HomeAssistantView):
     url: str
     name: str

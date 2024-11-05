@@ -31,8 +31,8 @@ AUDIO_INFORMATION_MAPPING: Incomplete
 VIDEO_INFORMATION_MAPPING: Incomplete
 ISSUE_URL_PLACEHOLDER: str
 type InputLibValue = str | tuple[str, ...]
-_cmds: dict[str, InputLibValue]
 
+def _input_lib_cmds(zone: str) -> dict[InputSource, InputLibValue]: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: OnkyoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -48,9 +48,10 @@ class OnkyoMediaPlayer(MediaPlayerEntity):
     _zone: Incomplete
     _volume_resolution: Incomplete
     _max_volume: Incomplete
-    _source_mapping: Incomplete
-    _reverse_mapping: Incomplete
+    _name_mapping: Incomplete
+    _reverse_name_mapping: Incomplete
     _lib_mapping: Incomplete
+    _reverse_lib_mapping: Incomplete
     _attr_source_list: Incomplete
     _attr_extra_state_attributes: Incomplete
     def __init__(self, receiver: Receiver, zone: str, *, volume_resolution: VolumeResolution, max_volume: float, sources: dict[InputSource, str]) -> None: ...

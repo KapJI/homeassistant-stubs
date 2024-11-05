@@ -18,7 +18,8 @@ def _get_camera_channels(hass: HomeAssistant, entry: UFPConfigEntry, data: Prote
 def _async_camera_entities(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> list[ProtectDeviceEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-_EMPTY_CAMERA_FEATURES: Incomplete
+_DISABLE_FEATURE: Incomplete
+_ENABLE_FEATURE: Incomplete
 
 class ProtectCamera(ProtectDeviceEntity, Camera):
     device: UFPCamera
@@ -31,8 +32,8 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     _attr_name: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     def __init__(self, data: ProtectData, camera: UFPCamera, channel: CameraChannel, is_default: bool, secure: bool, disable_stream: bool) -> None: ...
-    _stream_source: Incomplete
     _attr_supported_features: Incomplete
+    _stream_source: Incomplete
     def _async_set_stream_source(self) -> None: ...
     _attr_motion_detection_enabled: Incomplete
     _attr_is_recording: Incomplete

@@ -4,21 +4,23 @@ from .const import MEDIA_PLAYER_PREFIX as MEDIA_PLAYER_PREFIX, PLAYABLE_MEDIA_TY
 from .coordinator import SpotifyConfigEntry as SpotifyConfigEntry, SpotifyCoordinator as SpotifyCoordinator
 from .entity import SpotifyEntity as SpotifyEntity
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, BrowseMedia as BrowseMedia, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from spotifyaio import Device as Device, Item as Item, PlaybackState as PlaybackState
-from typing import Any
+from typing import Any, Concatenate
 
 _LOGGER: Incomplete
 SUPPORT_SPOTIFY: Incomplete
 REPEAT_MODE_MAPPING_TO_HA: Incomplete
 REPEAT_MODE_MAPPING_TO_SPOTIFY: Incomplete
+AFTER_REQUEST_SLEEP: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: SpotifyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 def ensure_item[_R](func: Callable[[SpotifyMediaPlayer, Item], _R]) -> Callable[[SpotifyMediaPlayer], _R | None]: ...
+def async_refresh_after[_T: SpotifyEntity, **_P](func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class SpotifyMediaPlayer(SpotifyEntity, MediaPlayerEntity):
     _attr_media_image_remotely_accessible: bool

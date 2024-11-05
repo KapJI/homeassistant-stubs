@@ -12,7 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ulid import ulid as ulid
 from typing import Any, Protocol
-from webrtc_models import RTCConfiguration, RTCIceServer as RTCIceServer
+from webrtc_models import RTCConfiguration, RTCIceCandidate, RTCIceServer as RTCIceServer
 
 _LOGGER: Incomplete
 DATA_WEBRTC_PROVIDERS: HassKey[set[CameraWebRTCProvider]]
@@ -38,7 +38,8 @@ class WebRTCAnswer(WebRTCMessage):
 
 @dataclass(frozen=True)
 class WebRTCCandidate(WebRTCMessage):
-    candidate: str
+    candidate: RTCIceCandidate
+    def as_dict(self) -> dict[str, Any]: ...
     def __init__(self, candidate) -> None: ...
 
 @dataclass(frozen=True)
@@ -65,7 +66,7 @@ class CameraWebRTCProvider(ABC, metaclass=abc.ABCMeta):
     @abstractmethod
     async def async_handle_async_webrtc_offer(self, camera: Camera, offer_sdp: str, session_id: str, send_message: WebRTCSendMessage) -> None: ...
     @abstractmethod
-    async def async_on_webrtc_candidate(self, session_id: str, candidate: str) -> None: ...
+    async def async_on_webrtc_candidate(self, session_id: str, candidate: RTCIceCandidate) -> None: ...
     def async_close_session(self, session_id: str) -> None: ...
 
 class CameraWebRTCLegacyProvider(Protocol):

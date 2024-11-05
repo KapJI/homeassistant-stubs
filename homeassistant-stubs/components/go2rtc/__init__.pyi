@@ -1,4 +1,4 @@
-from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN
+from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DEFAULT_URL as DEFAULT_URL, DOMAIN as DOMAIN
 from .server import Server as Server
 from _typeshed import Incomplete
 from go2rtc_client.ws import ReceiveMessages as ReceiveMessages
@@ -12,6 +12,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.package import is_docker_env as is_docker_env
+from webrtc_models import RTCIceCandidate
 
 _LOGGER: Incomplete
 _SUPPORTED_STREAMS: Incomplete
@@ -36,5 +37,5 @@ class WebRTCProvider(CameraWebRTCProvider):
     def domain(self) -> str: ...
     def async_is_supported(self, stream_source: str) -> bool: ...
     async def async_handle_async_webrtc_offer(self, camera: Camera, offer_sdp: str, session_id: str, send_message: WebRTCSendMessage) -> None: ...
-    async def async_on_webrtc_candidate(self, session_id: str, candidate: str) -> None: ...
+    async def async_on_webrtc_candidate(self, session_id: str, candidate: RTCIceCandidate) -> None: ...
     def async_close_session(self, session_id: str) -> None: ...

@@ -112,7 +112,8 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _create_stream_lock: Incomplete
     _webrtc_provider: Incomplete
     _legacy_webrtc_provider: Incomplete
-    _webrtc_sync_offer: Incomplete
+    _supports_native_sync_webrtc: Incomplete
+    _supports_native_async_webrtc: Incomplete
     def __init__(self) -> None: ...
     def entity_picture(self) -> str: ...
     def use_stream_for_stills(self) -> bool: ...

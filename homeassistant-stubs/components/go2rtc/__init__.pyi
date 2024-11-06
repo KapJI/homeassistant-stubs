@@ -1,4 +1,4 @@
-from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DEFAULT_URL as DEFAULT_URL, DOMAIN as DOMAIN
+from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_URL as HA_MANAGED_URL
 from .server import Server as Server
 from _typeshed import Incomplete
 from go2rtc_client.ws import ReceiveMessages as ReceiveMessages

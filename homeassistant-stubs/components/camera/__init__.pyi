@@ -103,6 +103,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_should_poll: bool
     _attr_state: None
     _attr_supported_features: CameraEntityFeature
+    __supports_stream: CameraEntityFeature | None
     _cache: Incomplete
     stream: Incomplete
     stream_options: Incomplete
@@ -161,6 +162,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def close_webrtc_session(self, session_id: str) -> None: ...
     def _invalidate_camera_capabilities_cache(self) -> None: ...
     def camera_capabilities(self) -> CameraCapabilities: ...
+    def async_write_ha_state(self) -> None: ...
 
 class CameraView(HomeAssistantView):
     requires_auth: bool

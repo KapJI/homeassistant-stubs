@@ -1,6 +1,7 @@
-from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_URL as HA_MANAGED_URL
+from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_RTSP_PORT as HA_MANAGED_RTSP_PORT, HA_MANAGED_URL as HA_MANAGED_URL
 from .server import Server as Server
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from go2rtc_client.ws import ReceiveMessages as ReceiveMessages
 from homeassistant.components.camera import Camera as Camera, CameraWebRTCProvider as CameraWebRTCProvider, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_register_webrtc_provider as async_register_webrtc_provider
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
@@ -17,8 +18,14 @@ from webrtc_models import RTCIceCandidate
 _LOGGER: Incomplete
 _SUPPORTED_STREAMS: Incomplete
 CONFIG_SCHEMA: Incomplete
-_DATA_GO2RTC: HassKey[str]
+_DATA_GO2RTC: HassKey[Go2RtcData]
 _RETRYABLE_ERRORS: Incomplete
+
+@dataclass(frozen=True)
+class Go2RtcData:
+    url: str
+    managed: bool
+    def __init__(self, url, managed) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def _remove_go2rtc_entries(hass: HomeAssistant) -> None: ...
@@ -28,11 +35,11 @@ async def _get_binary(hass: HomeAssistant) -> str | None: ...
 
 class WebRTCProvider(CameraWebRTCProvider):
     _hass: Incomplete
-    _url: Incomplete
+    _data: Incomplete
     _session: Incomplete
     _rest_client: Incomplete
     _sessions: Incomplete
-    def __init__(self, hass: HomeAssistant, url: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, data: Go2RtcData) -> None: ...
     @property
     def domain(self) -> str: ...
     def async_is_supported(self, stream_source: str) -> bool: ...

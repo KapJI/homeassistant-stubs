@@ -8,7 +8,6 @@ import json
 import logging
 import os
 from pathlib import Path
-import platform
 import shutil
 import subprocess
 import sys
@@ -335,25 +334,6 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
     if new_stubs_folder.is_dir():
         shutil.rmtree(new_stubs_folder)
     stubs_folder.rename(new_stubs_folder)
-    stubs_fixup(new_stubs_folder)
-
-
-def stubs_fixup(stubs_folder: Path) -> None:
-    """Fix invalid syntax in generated files."""
-    LOGGER.info("Fixing stubs...")
-
-    # Run the 'find' command and capture the output
-    find_command = ["find", str(stubs_folder), "-name", "*.pyi", "-print0"]
-    sed_command = ["xargs", "-0", "sed", "-i"]
-
-    # MacOS needs an additional empty argument
-    if platform.system() == "Darwin":
-        sed_command.append("")
-    sed_command.append("/def __mypy-replace/d")
-
-    with subprocess.Popen(find_command, stdout=subprocess.PIPE) as find_process:
-        # Pipe the output of 'find' into 'xargs sed'
-        subprocess.run(sed_command, stdin=find_process.stdout, check=True)
 
 
 if __name__ == "__main__":

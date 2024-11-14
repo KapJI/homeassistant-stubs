@@ -49,7 +49,7 @@ packages = ["homeassistant-stubs"]
 source = "vcs"
 
 [tool.uv.sources]
-mypy = { git = "https://github.com/python/mypy", rev = "06a566b81993a711470aa9e80b9d86d1e666b029" }
+mypy = { git = "https://github.com/python/mypy", rev = "3e52d0c1d37344a58c53d4b7a0920b4e38ebedff" }
 
 [tool.pylint.format]
 expected-line-ending-format = "LF"

@@ -1,6 +1,7 @@
 from . import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
+from .const import F_SERIES as F_SERIES
 from .entity import MyUplinkEntity as MyUplinkEntity, MyUplinkSystemEntity as MyUplinkSystemEntity
-from .helpers import find_matching_platform as find_matching_platform
+from .helpers import find_matching_platform as find_matching_platform, transform_model_series as transform_model_series
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import Platform as Platform

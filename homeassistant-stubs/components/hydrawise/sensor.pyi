@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import HydrawiseDataUpdateCoordinator as HydrawiseDataUpdateCoordinator
+from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
 from .entity import HydrawiseEntity as HydrawiseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -26,7 +26,8 @@ def _get_controller_daily_inactive_water_use(sensor: HydrawiseSensor) -> float |
 def _get_controller_daily_active_water_time(sensor: HydrawiseSensor) -> float: ...
 def _get_controller_daily_total_water_use(sensor: HydrawiseSensor) -> float | None: ...
 
-CONTROLLER_SENSORS: tuple[HydrawiseSensorEntityDescription, ...]
+WATER_USE_CONTROLLER_SENSORS: tuple[HydrawiseSensorEntityDescription, ...]
+WATER_USE_ZONE_SENSORS: tuple[HydrawiseSensorEntityDescription, ...]
 FLOW_CONTROLLER_SENSORS: tuple[HydrawiseSensorEntityDescription, ...]
 FLOW_ZONE_SENSORS: tuple[SensorEntityDescription, ...]
 ZONE_SENSORS: tuple[HydrawiseSensorEntityDescription, ...]

@@ -1,5 +1,5 @@
 from .const import DEFAULT_WATERING_TIME as DEFAULT_WATERING_TIME, DOMAIN as DOMAIN
-from .coordinator import HydrawiseDataUpdateCoordinator as HydrawiseDataUpdateCoordinator
+from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
 from .entity import HydrawiseEntity as HydrawiseEntity
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass

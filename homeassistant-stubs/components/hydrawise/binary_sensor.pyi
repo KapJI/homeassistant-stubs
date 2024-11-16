@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, SERVICE_RESUME as SERVICE_RESUME, SERVICE_START_WATERING as SERVICE_START_WATERING, SERVICE_SUSPEND as SERVICE_SUSPEND
-from .coordinator import HydrawiseDataUpdateCoordinator as HydrawiseDataUpdateCoordinator
+from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
 from .entity import HydrawiseEntity as HydrawiseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

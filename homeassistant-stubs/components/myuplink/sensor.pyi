@@ -1,6 +1,7 @@
 from . import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
+from .const import F_SERIES as F_SERIES
 from .entity import MyUplinkEntity as MyUplinkEntity
-from .helpers import find_matching_platform as find_matching_platform, skip_entity as skip_entity
+from .helpers import find_matching_platform as find_matching_platform, skip_entity as skip_entity, transform_model_series as transform_model_series
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import Platform as Platform, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate

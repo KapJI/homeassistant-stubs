@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import HydrawiseDataUpdateCoordinator as HydrawiseDataUpdateCoordinator
+from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
 from .entity import HydrawiseEntity as HydrawiseEntity
 from _typeshed import Incomplete
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature

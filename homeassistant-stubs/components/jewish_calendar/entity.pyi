@@ -1,10 +1,20 @@
-from .const import CONF_CANDLE_LIGHT_MINUTES as CONF_CANDLE_LIGHT_MINUTES, CONF_DIASPORA as CONF_DIASPORA, CONF_HAVDALAH_OFFSET_MINUTES as CONF_HAVDALAH_OFFSET_MINUTES, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass
+from hdate import Location as Location
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_LANGUAGE as CONF_LANGUAGE, CONF_LOCATION as CONF_LOCATION
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from typing import Any
+
+type JewishCalendarConfigEntry = ConfigEntry[JewishCalendarData]
+@dataclass
+class JewishCalendarData:
+    language: str
+    diaspora: bool
+    location: Location
+    candle_lighting_offset: int
+    havdalah_offset: int
+    def __init__(self, language, diaspora, location, candle_lighting_offset, havdalah_offset) -> None: ...
 
 class JewishCalendarEntity(Entity):
     _attr_has_entity_name: bool
@@ -13,7 +23,8 @@ class JewishCalendarEntity(Entity):
     _attr_device_info: Incomplete
     _location: Incomplete
     _hebrew: Incomplete
+    _language: Incomplete
     _candle_lighting_offset: Incomplete
     _havdalah_offset: Incomplete
     _diaspora: Incomplete
-    def __init__(self, config_entry: ConfigEntry, data: dict[str, Any], description: EntityDescription) -> None: ...
+    def __init__(self, config_entry: JewishCalendarConfigEntry, description: EntityDescription) -> None: ...

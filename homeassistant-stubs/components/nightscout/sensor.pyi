@@ -1,8 +1,8 @@
 from .const import ATTR_DELTA as ATTR_DELTA, ATTR_DEVICE as ATTR_DEVICE, ATTR_DIRECTION as ATTR_DIRECTION, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.sensor import SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_DATE as ATTR_DATE
+from homeassistant.const import ATTR_DATE as ATTR_DATE, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from py_nightscout import Api as NightscoutAPI
@@ -14,7 +14,8 @@ DEFAULT_NAME: str
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class NightscoutSensor(SensorEntity):
-    _attr_native_unit_of_measurement: str
+    _attr_device_class: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
     _attr_icon: str
     api: Incomplete
     _attr_unique_id: Incomplete

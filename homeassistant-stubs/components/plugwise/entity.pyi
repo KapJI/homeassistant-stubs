@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.const import ATTR_NAME as ATTR_NAME, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_HOST as CONF_HOST
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, CONNECTION_ZIGBEE as CONNECTION_ZIGBEE, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from plugwise.constants import DeviceData as DeviceData
+from plugwise.constants import GwEntityData as GwEntityData
 
 class PlugwiseEntity(CoordinatorEntity[PlugwiseDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -14,5 +14,5 @@ class PlugwiseEntity(CoordinatorEntity[PlugwiseDataUpdateCoordinator]):
     @property
     def available(self) -> bool: ...
     @property
-    def device(self) -> DeviceData: ...
+    def device(self) -> GwEntityData: ...
     async def async_added_to_hass(self) -> None: ...

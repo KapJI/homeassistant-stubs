@@ -19,6 +19,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsT
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_CODE_FORMAT: str
 CONF_PAYLOAD_LOCK: str
 CONF_PAYLOAD_UNLOCK: str

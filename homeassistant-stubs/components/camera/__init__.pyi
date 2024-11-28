@@ -17,16 +17,17 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, deprecated_function as deprecated_function, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Final
-from webrtc_models import RTCIceCandidate as RTCIceCandidate
+from webrtc_models import RTCIceCandidateInit as RTCIceCandidateInit
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Final[Incomplete]
@@ -115,6 +116,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _legacy_webrtc_provider: Incomplete
     _supports_native_sync_webrtc: Incomplete
     _supports_native_async_webrtc: Incomplete
+    _deprecate_attr_frontend_stream_type_logged: bool
     def __init__(self) -> None: ...
     def entity_picture(self) -> str: ...
     def use_stream_for_stills(self) -> bool: ...
@@ -158,7 +160,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def _async_get_supported_webrtc_provider[_T](self, fn: Callable[[HomeAssistant, Camera], Coroutine[None, None, _T | None]]) -> _T | None: ...
     def _async_get_webrtc_client_configuration(self) -> WebRTCClientConfiguration: ...
     def async_get_webrtc_client_configuration(self) -> WebRTCClientConfiguration: ...
-    async def async_on_webrtc_candidate(self, session_id: str, candidate: RTCIceCandidate) -> None: ...
+    async def async_on_webrtc_candidate(self, session_id: str, candidate: RTCIceCandidateInit) -> None: ...
     def close_webrtc_session(self, session_id: str) -> None: ...
     def _invalidate_camera_capabilities_cache(self) -> None: ...
     def camera_capabilities(self) -> CameraCapabilities: ...

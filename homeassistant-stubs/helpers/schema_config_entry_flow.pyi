@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable, Container, Coroutine, Mapping
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.data_entry_flow import UnknownHandler as UnknownHandler
 from typing import Any
@@ -69,10 +69,13 @@ class SchemaConfigFlowHandler(ConfigFlow, ABC, metaclass=abc.ABCMeta):
     def async_options_flow_finished(hass: HomeAssistant, options: Mapping[str, Any]) -> None: ...
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> ConfigFlowResult: ...
 
-class SchemaOptionsFlowHandler(OptionsFlowWithConfigEntry):
+class SchemaOptionsFlowHandler(OptionsFlow):
+    _options: Incomplete
     _common_handler: Incomplete
     _async_options_flow_finished: Incomplete
     def __init__(self, config_entry: ConfigEntry, options_flow: Mapping[str, SchemaFlowStep], async_options_flow_finished: Callable[[HomeAssistant, Mapping[str, Any]], None] | None = None, async_setup_preview: Callable[[HomeAssistant], Coroutine[Any, Any, None]] | None = None) -> None: ...
+    @property
+    def options(self) -> dict[str, Any]: ...
     @staticmethod
     def _async_step(step_id: str) -> Callable[[SchemaConfigFlowHandler, dict[str, Any] | None], Coroutine[Any, Any, ConfigFlowResult]]: ...
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> ConfigFlowResult: ...

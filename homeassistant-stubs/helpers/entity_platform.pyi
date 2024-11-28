@@ -54,6 +54,7 @@ class EntityPlatform:
     platform_translations: Incomplete
     object_id_component_translations: Incomplete
     object_id_platform_translations: Incomplete
+    default_language_platform_translations: Incomplete
     _tasks: Incomplete
     _setup_complete: bool
     _async_polling_timer: Incomplete

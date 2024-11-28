@@ -18,6 +18,7 @@ from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as Receiv
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 DEFAULT_PAYLOAD_ON: str
 DEFAULT_PAYLOAD_OFF: str

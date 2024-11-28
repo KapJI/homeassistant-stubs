@@ -15,7 +15,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 ATTR_COUNTER: str
 ATTR_REMAINING_PAGES: str
-UNIT_PAGES: str
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)

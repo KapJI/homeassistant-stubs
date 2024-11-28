@@ -1,6 +1,5 @@
 from .const import CONF_ALLOW_CLIP_SENSOR as CONF_ALLOW_CLIP_SENSOR, CONF_ALLOW_DECONZ_GROUPS as CONF_ALLOW_DECONZ_GROUPS, CONF_ALLOW_NEW_DEVICES as CONF_ALLOW_NEW_DEVICES, DEFAULT_ALLOW_CLIP_SENSOR as DEFAULT_ALLOW_CLIP_SENSOR, DEFAULT_ALLOW_DECONZ_GROUPS as DEFAULT_ALLOW_DECONZ_GROUPS, DEFAULT_ALLOW_NEW_DEVICES as DEFAULT_ALLOW_NEW_DEVICES, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, HASSIO_CONFIGURATION_URL as HASSIO_CONFIGURATION_URL, LOGGER as LOGGER
 from .hub import DeconzHub as DeconzHub
-from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import ssdp as ssdp
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_HASSIO as SOURCE_HASSIO
@@ -25,7 +24,7 @@ class DeconzFlowHandler(ConfigFlow, domain=DOMAIN):
     port: int
     api_key: str
     @staticmethod
-    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
+    def async_get_options_flow(config_entry: ConfigEntry) -> DeconzOptionsFlowHandler: ...
     bridge_id: str
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -39,8 +38,5 @@ class DeconzFlowHandler(ConfigFlow, domain=DOMAIN):
 
 class DeconzOptionsFlowHandler(OptionsFlow):
     gateway: DeconzHub
-    config_entry: Incomplete
-    options: Incomplete
-    def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_deconz_devices(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

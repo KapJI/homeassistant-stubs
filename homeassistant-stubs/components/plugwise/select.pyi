@@ -1,5 +1,5 @@
 from . import PlugwiseConfigEntry as PlugwiseConfigEntry
-from .const import LOCATION as LOCATION, SelectOptionsType as SelectOptionsType, SelectType as SelectType
+from .const import SelectOptionsType as SelectOptionsType, SelectType as SelectType
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
@@ -23,6 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, asy
 class PlugwiseSelectEntity(PlugwiseEntity, SelectEntity):
     entity_description: PlugwiseSelectEntityDescription
     _attr_unique_id: Incomplete
+    _location: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str, entity_description: PlugwiseSelectEntityDescription) -> None: ...
     @property
     def current_option(self) -> str: ...

@@ -11,9 +11,8 @@ from homeassistant.components.conversation import ConversationTraceEventType as 
 from homeassistant.components.cover import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
 from homeassistant.components.homeassistant import async_should_expose as async_should_expose
 from homeassistant.components.intent import async_device_supports_timers as async_device_supports_timers
-from homeassistant.components.script import ATTR_VARIABLES as ATTR_VARIABLES
 from homeassistant.components.weather import INTENT_GET_WEATHER as INTENT_GET_WEATHER
-from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SERVICE as ATTR_SERVICE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, SERVICE_TURN_ON as SERVICE_TURN_ON
+from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_SERVICE as ATTR_SERVICE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED
 from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import yaml as yaml
@@ -96,7 +95,7 @@ def _selector_serializer(schema: Any) -> Any: ...
 def _get_cached_script_parameters(hass: HomeAssistant, entity_id: str) -> tuple[str | None, vol.Schema]: ...
 
 class ScriptTool(Tool):
+    _object_id: Incomplete
     name: Incomplete
-    _entity_id: Incomplete
     def __init__(self, hass: HomeAssistant, script_entity_id: str) -> None: ...
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...

@@ -1,6 +1,6 @@
 import threading
 from _typeshed import Incomplete
-from homeassistant.helpers.frame import report as report
+from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.util.loop import raise_for_blocking_call as raise_for_blocking_call
 from sqlalchemy.pool import ConnectionPoolEntry as ConnectionPoolEntry, NullPool, SingletonThreadPool, StaticPool
 from typing import Any

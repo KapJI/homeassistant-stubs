@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from . import FullyKioskConfigEntry as FullyKioskConfigEntry
 from .coordinator import FullyKioskDataUpdateCoordinator as FullyKioskDataUpdateCoordinator
 from .entity import FullyKioskEntity as FullyKioskEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -23,7 +22,7 @@ class FullySensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[FullySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FullySensor(FullyKioskEntity, SensorEntity):
     entity_description: FullySensorEntityDescription

@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote
 from collections.abc import Mapping
 from homeassistant.components import zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
@@ -34,7 +34,7 @@ class AndroidTVRemoteConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> AndroidTVRemoteOptionsFlowHandler: ...
 
-class AndroidTVRemoteOptionsFlowHandler(OptionsFlowWithConfigEntry):
+class AndroidTVRemoteOptionsFlowHandler(OptionsFlow):
     _apps: Incomplete
     _conf_app_id: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...

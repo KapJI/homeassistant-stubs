@@ -4,7 +4,7 @@ import voluptuous as vol
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
-from .helpers.frame import report as report
+from .helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Container, Hashable, Iterable, Mapping
@@ -64,7 +64,7 @@ class FlowResult(TypedDict, Generic[_FlowContextT, _HandlerT], total=False):
     context: _FlowContextT
     data_schema: vol.Schema | None
     data: Mapping[str, Any]
-    description_placeholders: Mapping[str, str | None] | None
+    description_placeholders: Mapping[str, str] | None
     description: str | None
     errors: dict[str, str] | None
     extra: str
@@ -135,7 +135,7 @@ class FlowHandler(Generic[_FlowContextT, _FlowResultT, _HandlerT]):
     @property
     def show_advanced_options(self) -> bool: ...
     def add_suggested_values_to_schema(self, data_schema: vol.Schema, suggested_values: Mapping[str, Any] | None) -> vol.Schema: ...
-    def async_show_form(self, *, step_id: str | None = None, data_schema: vol.Schema | None = None, errors: dict[str, str] | None = None, description_placeholders: Mapping[str, str | None] | None = None, last_step: bool | None = None, preview: str | None = None) -> _FlowResultT: ...
+    def async_show_form(self, *, step_id: str | None = None, data_schema: vol.Schema | None = None, errors: dict[str, str] | None = None, description_placeholders: Mapping[str, str] | None = None, last_step: bool | None = None, preview: str | None = None) -> _FlowResultT: ...
     def async_create_entry(self, *, title: str | None = None, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
     def async_abort(self, *, reason: str, description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
     def async_external_step(self, *, step_id: str | None = None, url: str, description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...

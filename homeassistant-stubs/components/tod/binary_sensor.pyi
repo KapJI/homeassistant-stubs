@@ -25,11 +25,11 @@ def _is_sun_event(sun_event: time | SunEventType) -> TypeGuard[SunEventType]: ..
 
 class TodSensor(BinarySensorEntity):
     _attr_should_poll: bool
+    _time_before: datetime
+    _time_after: datetime
+    _next_update: datetime
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
-    _time_before: Incomplete
-    _time_after: Incomplete
-    _next_update: Incomplete
     _after_offset: Incomplete
     _before_offset: Incomplete
     _before: Incomplete

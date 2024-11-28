@@ -18,6 +18,7 @@ from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from typing import Any
 
+PARALLEL_UPDATES: int
 CONF_AVAILABLE_MODES_LIST: str
 CONF_DEVICE_CLASS: str
 CONF_MODE_COMMAND_TEMPLATE: str

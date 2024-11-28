@@ -19,6 +19,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 CONF_OFF_DELAY: str
 DEFAULT_PAYLOAD_OFF: str

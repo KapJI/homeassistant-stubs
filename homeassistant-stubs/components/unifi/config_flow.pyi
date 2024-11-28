@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from aiounifi.interfaces.sites import Sites as Sites
 from collections.abc import Mapping
 from homeassistant.components import ssdp as ssdp
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
@@ -21,7 +21,7 @@ class UnifiFlowHandler(ConfigFlow, domain=UNIFI_DOMAIN):
     VERSION: int
     sites: Sites
     @staticmethod
-    def async_get_options_flow(config_entry: ConfigEntry) -> UnifiOptionsFlowHandler: ...
+    def async_get_options_flow(config_entry: UnifiConfigEntry) -> UnifiOptionsFlowHandler: ...
     config: Incomplete
     reauth_schema: Incomplete
     def __init__(self) -> None: ...
@@ -32,7 +32,6 @@ class UnifiFlowHandler(ConfigFlow, domain=UNIFI_DOMAIN):
 
 class UnifiOptionsFlowHandler(OptionsFlow):
     hub: UnifiHub
-    config_entry: Incomplete
     options: Incomplete
     def __init__(self, config_entry: UnifiConfigEntry) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

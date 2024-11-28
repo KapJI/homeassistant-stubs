@@ -17,6 +17,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
+PARALLEL_UPDATES: int
 BATTERY: str
 FAN_SPEED: str
 STATE: str

@@ -1,10 +1,9 @@
-from .const import DOMAIN as DOMAIN
+from . import FullyKioskConfigEntry as FullyKioskConfigEntry
 from .coordinator import FullyKioskDataUpdateCoordinator as FullyKioskDataUpdateCoordinator
 from .entity import FullyKioskEntity as FullyKioskEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.notify import NotifyEntity as NotifyEntity, NotifyEntityDescription as NotifyEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -16,7 +15,7 @@ class FullyNotifyEntityDescription(NotifyEntityDescription):
 
 NOTIFIERS: tuple[FullyNotifyEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FullyNotifyEntity(FullyKioskEntity, NotifyEntity):
     entity_description: FullyNotifyEntityDescription

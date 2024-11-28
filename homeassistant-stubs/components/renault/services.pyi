@@ -4,6 +4,7 @@ from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 
 LOGGER: Incomplete
 ATTR_SCHEDULES: str

@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ID as CONF_ID, CONF_LOCATION as CONF_LOCATION
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
-from pytrafikverket.models import CameraInfoModel as CameraInfoModel
+from pytrafikverket import CameraInfoModel as CameraInfoModel
 from typing import Any
 
 class TVCameraConfigFlow(ConfigFlow, domain=DOMAIN):

@@ -16,6 +16,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_IMAGE_ENCODING: str
 DEFAULT_NAME: str
 MQTT_CAMERA_ATTRIBUTES_BLOCKED: Incomplete

@@ -1,6 +1,5 @@
 import voluptuous as vol
 from .const import CONF_IGNORED_ZONES as CONF_IGNORED_ZONES, CONF_TOLERANCE as CONF_TOLERANCE, CONF_TRACKED_ENTITIES as CONF_TRACKED_ENTITIES, DEFAULT_PROXIMITY_ZONE as DEFAULT_PROXIMITY_ZONE, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN
-from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_ZONE as CONF_ZONE, UnitOfLength as UnitOfLength
 from homeassistant.core import State as State, callback as callback
@@ -21,7 +20,5 @@ class ProximityConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class ProximityOptionsFlow(OptionsFlow):
-    config_entry: Incomplete
-    def __init__(self, config_entry: ConfigEntry) -> None: ...
     def _user_form_schema(self, user_input: dict[str, Any]) -> vol.Schema: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

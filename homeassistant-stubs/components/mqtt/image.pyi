@@ -19,6 +19,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_CONTENT_TYPE: str
 CONF_IMAGE_ENCODING: str
 CONF_IMAGE_TOPIC: str

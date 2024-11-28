@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from . import FullyKioskConfigEntry as FullyKioskConfigEntry
 from .coordinator import FullyKioskDataUpdateCoordinator as FullyKioskDataUpdateCoordinator
 from .entity import FullyKioskEntity as FullyKioskEntity
 from _typeshed import Incomplete
@@ -6,7 +6,6 @@ from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from fullykiosk import FullyKiosk as FullyKiosk
 from homeassistant.components.image import ImageEntity as ImageEntity, ImageEntityDescription as ImageEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -19,7 +18,7 @@ class FullyImageEntityDescription(ImageEntityDescription):
 
 IMAGES: tuple[FullyImageEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FullyImageEntity(FullyKioskEntity, ImageEntity):
     entity_description: FullyImageEntityDescription

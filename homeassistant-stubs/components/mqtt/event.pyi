@@ -17,6 +17,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads_object as json_loads_object
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_EVENT_TYPES: str
 MQTT_EVENT_ATTRIBUTES_BLOCKED: Incomplete
 DEFAULT_NAME: str

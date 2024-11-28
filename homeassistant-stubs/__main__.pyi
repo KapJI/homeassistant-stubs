@@ -1,4 +1,5 @@
 import argparse
+from .backup_restore import restore_backup as restore_backup
 from .const import REQUIRED_PYTHON_VER as REQUIRED_PYTHON_VER, RESTART_EXIT_CODE as RESTART_EXIT_CODE, __version__ as __version__
 
 FAULT_LOG_FILENAME: str

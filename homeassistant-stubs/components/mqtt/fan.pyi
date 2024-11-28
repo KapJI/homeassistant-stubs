@@ -20,6 +20,7 @@ from homeassistant.util.percentage import percentage_to_ranged_value as percenta
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from typing import Any
 
+PARALLEL_UPDATES: int
 CONF_DIRECTION_STATE_TOPIC: str
 CONF_DIRECTION_COMMAND_TOPIC: str
 CONF_DIRECTION_VALUE_TEMPLATE: str

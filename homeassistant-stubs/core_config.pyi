@@ -5,7 +5,7 @@ from .const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_FRIENDLY_NAME 
 from .core import HomeAssistant as HomeAssistant
 from .generated.currencies import HISTORIC_CURRENCIES as HISTORIC_CURRENCIES
 from .helpers.entity_values import EntityValues as EntityValues
-from .helpers.frame import report as report
+from .helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .helpers.storage import Store as Store
 from .helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from .util import location as location

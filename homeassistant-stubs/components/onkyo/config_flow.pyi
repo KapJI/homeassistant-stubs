@@ -1,7 +1,7 @@
 from .const import CONF_RECEIVER_MAX_VOLUME as CONF_RECEIVER_MAX_VOLUME, CONF_SOURCES as CONF_SOURCES, DOMAIN as DOMAIN, InputSource as InputSource, OPTION_INPUT_SOURCES as OPTION_INPUT_SOURCES, OPTION_MAX_VOLUME as OPTION_MAX_VOLUME, OPTION_MAX_VOLUME_DEFAULT as OPTION_MAX_VOLUME_DEFAULT, OPTION_VOLUME_RESOLUTION as OPTION_VOLUME_RESOLUTION, OPTION_VOLUME_RESOLUTION_DEFAULT as OPTION_VOLUME_RESOLUTION_DEFAULT, VOLUME_RESOLUTION_ALLOWED as VOLUME_RESOLUTION_ALLOWED
 from .receiver import ReceiverInfo as ReceiverInfo, async_discover as async_discover, async_interview as async_interview
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, Selector as Selector, TextSelector as TextSelector
@@ -25,6 +25,7 @@ class OnkyoConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
 
-class OnkyoOptionsFlowHandler(OptionsFlowWithConfigEntry):
+class OnkyoOptionsFlowHandler(OptionsFlow):
+    _input_sources: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

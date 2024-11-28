@@ -2,11 +2,10 @@ from .const import ATTR_FORMAT_QUERY as ATTR_FORMAT_QUERY, ATTR_URL as ATTR_URL,
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, MEDIA_PLAYER_PLAY_MEDIA_SCHEMA as MEDIA_PLAYER_PLAY_MEDIA_SCHEMA, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 

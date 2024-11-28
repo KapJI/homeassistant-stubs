@@ -12,8 +12,8 @@ STEP_USER_DATA_SCHEMA: Incomplete
 STEP_AUTH_DATA_SCHEMA: Incomplete
 
 class SmlightConfigFlow(ConfigFlow, domain=DOMAIN):
+    host: str
     client: Incomplete
-    host: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

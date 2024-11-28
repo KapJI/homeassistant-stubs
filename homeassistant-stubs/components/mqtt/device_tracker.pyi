@@ -17,6 +17,7 @@ from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as Receiv
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_PAYLOAD_HOME: str
 CONF_PAYLOAD_NOT_HOME: str
 CONF_SOURCE_TYPE: str

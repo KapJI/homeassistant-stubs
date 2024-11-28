@@ -4,12 +4,13 @@ from .ffmpeg_proxy import async_create_proxy_url as async_create_proxy_url
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, MediaPlayerEntityState, MediaPlayerInfo, MediaPlayerState as EspMediaPlayerState, MediaPlayerSupportedFormat as MediaPlayerSupportedFormat
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import callback as callback
 from typing import Any
 
 _LOGGER: Incomplete
 _STATES: EsphomeEnumMapper[EspMediaPlayerState, MediaPlayerState]
+ATTR_BYPASS_PROXY: str
 
 class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState], MediaPlayerEntity):
     _attr_device_class: Incomplete

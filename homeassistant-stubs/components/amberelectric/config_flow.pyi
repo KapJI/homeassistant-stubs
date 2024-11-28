@@ -1,6 +1,6 @@
 from .const import CONF_SITE_ID as CONF_SITE_ID, CONF_SITE_NAME as CONF_SITE_NAME, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from amberelectric.model.site import Site as Site
+from amberelectric.models.site import Site as Site
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_API_TOKEN as CONF_API_TOKEN
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode

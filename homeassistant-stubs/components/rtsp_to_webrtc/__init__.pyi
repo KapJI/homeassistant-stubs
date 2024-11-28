@@ -12,6 +12,7 @@ DATA_SERVER_URL: str
 DATA_UNSUB: str
 TIMEOUT: int
 CONF_STUN_SERVER: str
+_DEPRECATED: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

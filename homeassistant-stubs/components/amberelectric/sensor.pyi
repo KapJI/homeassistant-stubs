@@ -2,9 +2,8 @@ from . import AmberConfigEntry as AmberConfigEntry
 from .const import ATTRIBUTION as ATTRIBUTION
 from .coordinator import AmberUpdateCoordinator as AmberUpdateCoordinator, normalize_descriptor as normalize_descriptor
 from _typeshed import Incomplete
-from amberelectric.model.channel import ChannelType
-from amberelectric.model.current_interval import CurrentInterval as CurrentInterval
-from amberelectric.model.forecast_interval import ForecastInterval as ForecastInterval
+from amberelectric.models.current_interval import CurrentInterval as CurrentInterval
+from amberelectric.models.forecast_interval import ForecastInterval as ForecastInterval
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CURRENCY_DOLLAR as CURRENCY_DOLLAR, PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -23,7 +22,7 @@ class AmberSensor(CoordinatorEntity[AmberUpdateCoordinator], SensorEntity):
     entity_description: Incomplete
     channel_type: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AmberUpdateCoordinator, description: SensorEntityDescription, channel_type: ChannelType) -> None: ...
+    def __init__(self, coordinator: AmberUpdateCoordinator, description: SensorEntityDescription, channel_type: str) -> None: ...
 
 class AmberPriceSensor(AmberSensor):
     @property

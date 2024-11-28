@@ -6,9 +6,9 @@ from homeassistant.const import CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from lmcloud.client_bluetooth import LaMarzoccoBluetoothClient as LaMarzoccoBluetoothClient
-from lmcloud.client_cloud import LaMarzoccoCloudClient as LaMarzoccoCloudClient
-from lmcloud.client_local import LaMarzoccoLocalClient as LaMarzoccoLocalClient
+from pylamarzocco.client_bluetooth import LaMarzoccoBluetoothClient as LaMarzoccoBluetoothClient
+from pylamarzocco.client_cloud import LaMarzoccoCloudClient as LaMarzoccoCloudClient
+from pylamarzocco.client_local import LaMarzoccoLocalClient as LaMarzoccoLocalClient
 
 SCAN_INTERVAL: Incomplete
 FIRMWARE_UPDATE_INTERVAL: int

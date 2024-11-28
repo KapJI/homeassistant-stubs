@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import ssdp as ssdp
 from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.typing import VolDictType as VolDictType
@@ -14,9 +14,9 @@ _LOGGER: Incomplete
 
 class FritzBoxToolsFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    _host: str
     @staticmethod
-    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
-    _host: Incomplete
+    def async_get_options_flow(config_entry: ConfigEntry) -> FritzBoxToolsOptionsFlowHandler: ...
     _name: str
     _password: str
     _use_tls: bool
@@ -41,5 +41,5 @@ class FritzBoxToolsFlowHandler(ConfigFlow, domain=DOMAIN):
     def _show_setup_form_reconfigure(self, user_input: dict[str, Any], errors: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class FritzBoxToolsOptionsFlowHandler(OptionsFlowWithConfigEntry):
+class FritzBoxToolsOptionsFlowHandler(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

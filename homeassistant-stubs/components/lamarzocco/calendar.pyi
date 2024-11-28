@@ -6,7 +6,7 @@ from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from lmcloud.models import LaMarzoccoWakeUpSleepEntry as LaMarzoccoWakeUpSleepEntry
+from pylamarzocco.models import LaMarzoccoWakeUpSleepEntry as LaMarzoccoWakeUpSleepEntry
 
 CALENDAR_KEY: str
 DAY_OF_WEEK: Incomplete

@@ -10,6 +10,7 @@ from homeassistant.helpers.deprecation import all_with_deprecated_constants as a
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
+from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Final
@@ -42,9 +43,8 @@ class AlarmControlPanelEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_A
     _attr_supported_features: AlarmControlPanelEntityFeature
     _alarm_control_panel_option_default_code: str | None
     __alarm_legacy_state: bool
-    __alarm_legacy_state_reported: bool
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
-    def __setattr__(self, __name: str, /, __value: Any) -> None: ...
+    def __setattr__(self, name: str, value: Any, /) -> None: ...
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
     def _report_deprecated_alarm_state_handling(self) -> None: ...
     @property

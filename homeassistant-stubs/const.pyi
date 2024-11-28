@@ -424,6 +424,9 @@ _DEPRECATED_POWER_VOLT_AMPERE: Final[Incomplete]
 class UnitOfPower(StrEnum):
     WATT = 'W'
     KILO_WATT = 'kW'
+    MEGA_WATT = 'MW'
+    GIGA_WATT = 'GW'
+    TERA_WATT = 'TW'
     BTU_PER_HOUR = 'BTU/h'
 
 _DEPRECATED_POWER_WATT: Final[Incomplete]
@@ -443,6 +446,8 @@ class UnitOfEnergy(StrEnum):
     WATT_HOUR = 'Wh'
     KILO_WATT_HOUR = 'kWh'
     MEGA_WATT_HOUR = 'MWh'
+    GIGA_WATT_HOUR = 'GWh'
+    TERA_WATT_HOUR = 'TWh'
     CALORIE = 'cal'
     KILO_CALORIE = 'kcal'
     MEGA_CALORIE = 'Mcal'
@@ -460,6 +465,7 @@ _DEPRECATED_ELECTRIC_CURRENT_MILLIAMPERE: Final[Incomplete]
 _DEPRECATED_ELECTRIC_CURRENT_AMPERE: Final[Incomplete]
 
 class UnitOfElectricPotential(StrEnum):
+    MICROVOLT = 'µV'
     MILLIVOLT = 'mV'
     VOLT = 'V'
 
@@ -580,10 +586,24 @@ class UnitOfVolumeFlowRate(StrEnum):
     CUBIC_FEET_PER_MINUTE = 'ft³/min'
     LITERS_PER_MINUTE = 'L/min'
     GALLONS_PER_MINUTE = 'gal/min'
+    MILLILITERS_PER_SECOND = 'mL/s'
 
 _DEPRECATED_VOLUME_FLOW_RATE_CUBIC_METERS_PER_HOUR: Final[Incomplete]
 _DEPRECATED_VOLUME_FLOW_RATE_CUBIC_FEET_PER_MINUTE: Final[Incomplete]
-AREA_SQUARE_METERS: Final[str]
+
+class UnitOfArea(StrEnum):
+    SQUARE_METERS = 'm²'
+    SQUARE_CENTIMETERS = 'cm²'
+    SQUARE_KILOMETERS = 'km²'
+    SQUARE_MILLIMETERS = 'mm²'
+    SQUARE_INCHES = 'in²'
+    SQUARE_FEET = 'ft²'
+    SQUARE_YARDS = 'yd²'
+    SQUARE_MILES = 'mi²'
+    ACRES = 'ac'
+    HECTARES = 'ha'
+
+_DEPRECATED_AREA_SQUARE_METERS: Final[Incomplete]
 
 class UnitOfMass(StrEnum):
     GRAMS = 'g'
@@ -643,6 +663,10 @@ CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Final[str]
 CONCENTRATION_PARTS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_PARTS_PER_MILLION: Final[str]
 CONCENTRATION_PARTS_PER_BILLION: Final[str]
+
+class UnitOfBloodGlucoseConcentration(StrEnum):
+    MILLIGRAMS_PER_DECILITER = 'mg/dL'
+    MILLIMOLE_PER_LITER = 'mmol/L'
 
 class UnitOfSpeed(StrEnum):
     BEAUFORT = 'Beaufort'
@@ -808,6 +832,7 @@ CONTENT_TYPE_TEXT_PLAIN: Final[str]
 RESTART_EXIT_CODE: Final[int]
 UNIT_NOT_RECOGNIZED_TEMPLATE: Final[str]
 LENGTH: Final[str]
+AREA: Final[str]
 MASS: Final[str]
 PRESSURE: Final[str]
 VOLUME: Final[str]

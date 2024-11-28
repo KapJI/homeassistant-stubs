@@ -10,8 +10,8 @@ _LOGGER: Incomplete
 class EnhancedAudioChunk:
     audio: bytes
     timestamp_ms: int
-    is_speech: bool | None
-    def __init__(self, audio, timestamp_ms, is_speech) -> None: ...
+    speech_probability: float | None
+    def __init__(self, audio, timestamp_ms, speech_probability) -> None: ...
 
 class AudioEnhancer(ABC, metaclass=abc.ABCMeta):
     auto_gain: Incomplete
@@ -26,6 +26,5 @@ class MicroVadSpeexEnhancer(AudioEnhancer):
     noise_suppression: Incomplete
     auto_gain: Incomplete
     vad: Incomplete
-    threshold: float
     def __init__(self, auto_gain: int, noise_suppression: int, is_vad_enabled: bool) -> None: ...
     def enhance_chunk(self, audio: bytes, timestamp_ms: int) -> EnhancedAudioChunk: ...

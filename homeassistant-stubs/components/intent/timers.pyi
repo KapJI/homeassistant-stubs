@@ -104,6 +104,12 @@ class CancelTimerIntentHandler(intent.IntentHandler):
     slot_schema: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
+class CancelAllTimersIntentHandler(intent.IntentHandler):
+    intent_type: Incomplete
+    description: str
+    slot_schema: Incomplete
+    async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
+
 class IncreaseTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str

@@ -1,16 +1,15 @@
-from .const import DOMAIN as DOMAIN
+from . import FullyKioskConfigEntry as FullyKioskConfigEntry
 from .coordinator import FullyKioskDataUpdateCoordinator as FullyKioskDataUpdateCoordinator
 from .entity import FullyKioskEntity as FullyKioskEntity
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 ENTITY_TYPES: tuple[NumberEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FullyNumberEntity(FullyKioskEntity, NumberEntity):
     entity_description: Incomplete

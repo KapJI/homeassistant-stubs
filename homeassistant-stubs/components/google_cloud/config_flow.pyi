@@ -3,7 +3,7 @@ from .helpers import async_tts_voices as async_tts_voices, tts_options_schema as
 from _typeshed import Incomplete
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
 from homeassistant.components.tts import CONF_LANG as CONF_LANG
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import FileSelector as FileSelector, FileSelectorConfig as FileSelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from typing import Any
@@ -23,5 +23,5 @@ class GoogleCloudConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> GoogleCloudOptionsFlowHandler: ...
 
-class GoogleCloudOptionsFlowHandler(OptionsFlowWithConfigEntry):
+class GoogleCloudOptionsFlowHandler(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

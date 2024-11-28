@@ -6,7 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from lmcloud.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
+from pylamarzocco.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoBinarySensorEntityDescription(LaMarzoccoEntityDescription, BinarySensorEntityDescription):

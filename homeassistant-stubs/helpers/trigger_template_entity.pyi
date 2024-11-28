@@ -1,6 +1,6 @@
 import voluptuous as vol
 from .entity import Entity as Entity
-from .template import render_complex as render_complex
+from .template import TemplateStateFromEntityId as TemplateStateFromEntityId, render_complex as render_complex
 from .typing import ConfigType as ConfigType
 from _typeshed import Incomplete
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA, SensorEntity as SensorEntity

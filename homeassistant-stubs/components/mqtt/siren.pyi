@@ -19,6 +19,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsT
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads_object as json_loads_object
 from typing import Any
 
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 DEFAULT_PAYLOAD_ON: str
 DEFAULT_PAYLOAD_OFF: str

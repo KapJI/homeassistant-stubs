@@ -15,8 +15,8 @@ RESULT_SUCCESS: str
 
 class FritzboxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    _name: str
     _host: Incomplete
-    _name: Incomplete
     _password: Incomplete
     _username: Incomplete
     def __init__(self) -> None: ...

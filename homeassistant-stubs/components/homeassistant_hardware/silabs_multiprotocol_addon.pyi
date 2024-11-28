@@ -77,7 +77,6 @@ class OptionsFlowHandler(OptionsFlow, ABC, metaclass=abc.ABCMeta):
     start_task: Incomplete
     stop_task: Incomplete
     _zha_migration_mgr: Incomplete
-    config_entry: Incomplete
     original_addon_config: Incomplete
     revert_reason: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...

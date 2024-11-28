@@ -3,10 +3,11 @@ from .coordinator import LaMarzoccoUpdateCoordinator as LaMarzoccoUpdateCoordina
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from lmcloud.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
+from pylamarzocco.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoEntityDescription(EntityDescription):

@@ -8,8 +8,10 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from lmcloud.const import FirmwareType
+from pylamarzocco.const import FirmwareType
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoUpdateEntityDescription(LaMarzoccoEntityDescription, UpdateEntityDescription):

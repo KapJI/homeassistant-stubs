@@ -22,6 +22,7 @@ from homeassistant.util.unit_conversion import TemperatureConverter as Temperatu
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 CONF_FAN_MODE_COMMAND_TEMPLATE: str
 CONF_FAN_MODE_COMMAND_TOPIC: str

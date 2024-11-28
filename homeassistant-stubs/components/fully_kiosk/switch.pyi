@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from . import FullyKioskConfigEntry as FullyKioskConfigEntry
 from .coordinator import FullyKioskDataUpdateCoordinator as FullyKioskDataUpdateCoordinator
 from .entity import FullyKioskEntity as FullyKioskEntity
 from _typeshed import Incomplete
@@ -6,7 +6,6 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from fullykiosk import FullyKiosk as FullyKiosk
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -23,7 +22,7 @@ class FullySwitchEntityDescription(SwitchEntityDescription):
 
 SWITCHES: tuple[FullySwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FullySwitchEntity(FullyKioskEntity, SwitchEntity):
     entity_description: FullySwitchEntityDescription

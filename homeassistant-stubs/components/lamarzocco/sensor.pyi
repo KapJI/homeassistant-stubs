@@ -6,7 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from lmcloud.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
+from pylamarzocco.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoSensorEntityDescription(LaMarzoccoEntityDescription, SensorEntityDescription):

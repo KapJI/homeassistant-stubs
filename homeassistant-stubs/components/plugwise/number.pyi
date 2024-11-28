@@ -21,11 +21,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, asy
 
 class PlugwiseNumberEntity(PlugwiseEntity, NumberEntity):
     entity_description: PlugwiseNumberEntityDescription
-    device_id: Incomplete
-    _attr_unique_id: Incomplete
     _attr_mode: Incomplete
     _attr_native_max_value: Incomplete
     _attr_native_min_value: Incomplete
+    _attr_unique_id: Incomplete
+    device_id: Incomplete
     _attr_native_step: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str, description: PlugwiseNumberEntityDescription) -> None: ...
     @property

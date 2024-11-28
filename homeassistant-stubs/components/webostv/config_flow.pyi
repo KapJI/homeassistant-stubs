@@ -30,8 +30,6 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class OptionsFlowHandler(OptionsFlow):
-    config_entry: Incomplete
-    options: Incomplete
     host: Incomplete
     key: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...

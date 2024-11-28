@@ -1,7 +1,7 @@
 import voluptuous as vol
 from .const import CONF_CONFIGURE_VOICE as CONF_CONFIGURE_VOICE, CONF_MODEL as CONF_MODEL, CONF_OPTIMIZE_LATENCY as CONF_OPTIMIZE_LATENCY, CONF_SIMILARITY as CONF_SIMILARITY, CONF_STABILITY as CONF_STABILITY, CONF_STYLE as CONF_STYLE, CONF_USE_SPEAKER_BOOST as CONF_USE_SPEAKER_BOOST, CONF_VOICE as CONF_VOICE, DEFAULT_MODEL as DEFAULT_MODEL, DEFAULT_OPTIMIZE_LATENCY as DEFAULT_OPTIMIZE_LATENCY, DEFAULT_SIMILARITY as DEFAULT_SIMILARITY, DEFAULT_STABILITY as DEFAULT_STABILITY, DEFAULT_STYLE as DEFAULT_STYLE, DEFAULT_USE_SPEAKER_BOOST as DEFAULT_USE_SPEAKER_BOOST, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
@@ -19,7 +19,7 @@ class ElevenLabsConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
 
-class ElevenLabsOptionsFlow(OptionsFlowWithConfigEntry):
+class ElevenLabsOptionsFlow(OptionsFlow):
     api_key: Incomplete
     voices: Incomplete
     models: Incomplete

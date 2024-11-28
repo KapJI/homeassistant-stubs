@@ -4,14 +4,9 @@ from mozart_api.models import Source, SourceArray
 from typing import Final
 
 class BangOlufsenSource:
-    URI_STREAMER: Final[Source]
-    BLUETOOTH: Final[Source]
-    CHROMECAST: Final[Source]
     LINE_IN: Final[Source]
     SPDIF: Final[Source]
-    NET_RADIO: Final[Source]
-    DEEZER: Final[Source]
-    TIDAL: Final[Source]
+    URI_STREAMER: Final[Source]
 
 BANG_OLUFSEN_STATES: dict[str, MediaPlayerState]
 BANG_OLUFSEN_REPEAT_FROM_HA: dict[RepeatMode, str]

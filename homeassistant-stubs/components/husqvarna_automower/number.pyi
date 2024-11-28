@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 def _async_get_cutting_height(data: MowerAttributes) -> int: ...
 async def async_set_work_area_cutting_height(coordinator: AutomowerDataUpdateCoordinator, mower_id: str, cheight: float, work_area_id: int) -> None: ...

@@ -1,8 +1,7 @@
 from . import LinkPlayConfigEntry as LinkPlayConfigEntry, LinkPlayData as LinkPlayData
 from .const import CONTROLLER_KEY as CONTROLLER_KEY, DOMAIN as DOMAIN
-from .utils import MANUFACTURER_GENERIC as MANUFACTURER_GENERIC, get_info_from_project as get_info_from_project
+from .entity import LinkPlayBaseEntity as LinkPlayBaseEntity, exception_wrap as exception_wrap
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import Platform as Platform
@@ -14,7 +13,7 @@ from homeassistant.util.dt import utcnow as utcnow
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
 from linkplay.consts import EqualizerMode, LoopMode, PlayingMode, PlayingStatus
 from linkplay.controller import LinkPlayController as LinkPlayController
-from typing import Any, Concatenate
+from typing import Any
 
 _LOGGER: Incomplete
 STATE_MAP: dict[PlayingStatus, MediaPlayerState]
@@ -31,18 +30,14 @@ ATTR_PRESET_NUMBER: str
 SERVICE_PLAY_PRESET_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
-def exception_wrap[_LinkPlayEntityT: LinkPlayMediaPlayerEntity, **_P, _R](func: Callable[Concatenate[_LinkPlayEntityT, _P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[_LinkPlayEntityT, _P], Coroutine[Any, Any, _R]]: ...
 
-class LinkPlayMediaPlayerEntity(MediaPlayerEntity):
+class LinkPlayMediaPlayerEntity(LinkPlayBaseEntity, MediaPlayerEntity):
     _attr_sound_mode_list: Incomplete
     _attr_device_class: Incomplete
     _attr_media_content_type: Incomplete
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
-    _bridge: Incomplete
     _attr_unique_id: Incomplete
     _attr_source_list: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, bridge: LinkPlayBridge) -> None: ...
     _attr_available: bool
     async def async_update(self) -> None: ...

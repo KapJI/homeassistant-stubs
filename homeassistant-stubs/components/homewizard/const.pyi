@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.const import Platform as Platform
-from homewizard_energy.models import Data as Data, Device as Device, State as State, System as System
+from homewizard_energy.v1.models import Data as Data, Device as Device, State as State, System as System
 
 DOMAIN: str
 PLATFORMS: Incomplete

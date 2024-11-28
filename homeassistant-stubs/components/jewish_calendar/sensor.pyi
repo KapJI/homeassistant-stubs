@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .entity import JewishCalendarEntity as JewishCalendarEntity
+from .entity import JewishCalendarConfigEntry as JewishCalendarConfigEntry, JewishCalendarEntity as JewishCalendarEntity
 from _typeshed import Incomplete
 from datetime import date as Date
 from hdate import HDate
 from hdate.zmanim import Zmanim
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -16,12 +14,12 @@ _LOGGER: Incomplete
 INFO_SENSORS: tuple[SensorEntityDescription, ...]
 TIME_SENSORS: tuple[SensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class JewishCalendarSensor(JewishCalendarEntity, SensorEntity):
     _attr_entity_category: Incomplete
     _attrs: Incomplete
-    def __init__(self, config_entry: ConfigEntry, data: dict[str, Any], description: SensorEntityDescription) -> None: ...
+    def __init__(self, config_entry: JewishCalendarConfigEntry, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     async def async_update(self) -> None: ...
     def make_zmanim(self, date: Date) -> Zmanim: ...

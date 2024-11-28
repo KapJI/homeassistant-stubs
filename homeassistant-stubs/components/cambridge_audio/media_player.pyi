@@ -13,6 +13,7 @@ from typing import Any
 BASE_FEATURES: Incomplete
 PREAMP_FEATURES: Incomplete
 TRANSPORT_FEATURES: dict[TransportControl, MediaPlayerEntityFeature]
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

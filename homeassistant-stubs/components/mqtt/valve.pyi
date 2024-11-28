@@ -17,6 +17,7 @@ from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPT
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_REPORTS_POSITION: str
 DEFAULT_NAME: str
 MQTT_VALVE_ATTRIBUTES_BLOCKED: Incomplete

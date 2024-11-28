@@ -10,7 +10,7 @@ _LOGGER: Incomplete
 
 class ToloSaunaConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _discovered_host: str | None
+    _discovered_host: str
     @staticmethod
     def _check_device_availability(host: str) -> bool: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: str
 ATTR_ENDPOINTS: str
@@ -7,8 +8,8 @@ ATTR_STREAMS: str
 HLS_PROVIDER: str
 RECORDER_PROVIDER: str
 OUTPUT_FORMATS: Incomplete
-SEGMENT_CONTAINER_FORMAT: str
-RECORDER_CONTAINER_FORMAT: str
+SEGMENT_CONTAINER_FORMAT: Final[str]
+RECORDER_CONTAINER_FORMAT: Final[str]
 AUDIO_CODECS: Incomplete
 FORMAT_CONTENT_TYPE: Incomplete
 OUTPUT_IDLE_TIMEOUT: int

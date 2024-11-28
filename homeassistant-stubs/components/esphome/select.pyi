@@ -4,8 +4,10 @@ from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryDa
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, SelectInfo, SelectState
 from homeassistant.components.assist_pipeline.select import AssistPipelineSelect as AssistPipelineSelect, VadSensitivitySelect as VadSensitivitySelect
-from homeassistant.components.select import SelectEntity as SelectEntity
+from homeassistant.components.assist_satellite import AssistSatelliteConfiguration as AssistSatelliteConfiguration
+from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import restore_state as restore_state
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -22,3 +24,17 @@ class EsphomeAssistPipelineSelect(EsphomeAssistEntity, AssistPipelineSelect):
 
 class EsphomeVadSensitivitySelect(EsphomeAssistEntity, VadSensitivitySelect):
     def __init__(self, hass: HomeAssistant, entry_data: RuntimeEntryData) -> None: ...
+
+class EsphomeAssistSatelliteWakeWordSelect(EsphomeAssistEntity, SelectEntity, restore_state.RestoreEntity):
+    entity_description: Incomplete
+    _attr_should_poll: bool
+    _attr_current_option: str | None
+    _attr_options: list[str]
+    _attr_unique_id: Incomplete
+    _wake_words: Incomplete
+    def __init__(self, hass: HomeAssistant, entry_data: RuntimeEntryData) -> None: ...
+    @property
+    def available(self) -> bool: ...
+    async def async_added_to_hass(self) -> None: ...
+    async def async_select_option(self, option: str) -> None: ...
+    def async_satellite_config_updated(self, config: AssistSatelliteConfiguration) -> None: ...

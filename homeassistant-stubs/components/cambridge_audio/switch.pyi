@@ -1,4 +1,4 @@
-from .entity import CambridgeAudioEntity as CambridgeAudioEntity
+from .entity import CambridgeAudioEntity as CambridgeAudioEntity, command as command
 from _typeshed import Incomplete
 from aiostreammagic import StreamMagicClient as StreamMagicClient
 from collections.abc import Awaitable, Callable as Callable
@@ -9,6 +9,8 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class CambridgeAudioSwitchEntityDescription(SwitchEntityDescription):

@@ -39,7 +39,7 @@ class SwitcherSingleCoverEntity(SwitcherBaseCoverEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, cover_id: int) -> None: ...
 
-class SwitcherDualCoverEntity(SwitcherBaseCoverEntity):
+class SwitcherMultiCoverEntity(SwitcherBaseCoverEntity):
     _attr_translation_key: str
     _cover_id: Incomplete
     _attr_translation_placeholders: Incomplete

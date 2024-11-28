@@ -1,12 +1,12 @@
 from .coordinator import TedeeConfigEntry as TedeeConfigEntry
 from .entity import TedeeDescriptionEntity as TedeeDescriptionEntity
+from aiotedee import TedeeLock as TedeeLock
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pytedee_async import TedeeLock as TedeeLock
 
 @dataclass(frozen=True, kw_only=True)
 class TedeeSensorEntityDescription(SensorEntityDescription):

@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homewizard_energy.models import Data as Data, ExternalDevice
+from homewizard_energy.v1.models import Data as Data, ExternalDevice
 from typing import Final
 
 PARALLEL_UPDATES: int

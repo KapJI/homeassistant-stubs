@@ -18,6 +18,7 @@ from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPT
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 CONF_DISPLAY_PRECISION: str
 CONF_LATEST_VERSION_TEMPLATE: str

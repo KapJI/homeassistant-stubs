@@ -19,6 +19,7 @@ from homeassistant.util.percentage import percentage_to_ranged_value as percenta
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_GET_POSITION_TOPIC: str
 CONF_GET_POSITION_TEMPLATE: str
 CONF_SET_POSITION_TOPIC: str

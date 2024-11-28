@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import ImapDataUpdateCoordinator as ImapDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_USERNAME as CONF_USERNAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

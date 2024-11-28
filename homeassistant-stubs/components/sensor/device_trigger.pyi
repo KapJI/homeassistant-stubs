@@ -12,8 +12,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 DEVICE_CLASS_NONE: str
 CONF_APPARENT_POWER: str
 CONF_AQI: str
+CONF_AREA: str
 CONF_ATMOSPHERIC_PRESSURE: str
 CONF_BATTERY_LEVEL: str
+CONF_BLOOD_GLUCOSE_CONCENTRATION: str
 CONF_CO: str
 CONF_CO2: str
 CONF_CONDUCTIVITY: str

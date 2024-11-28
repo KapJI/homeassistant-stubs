@@ -19,6 +19,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CONF_MAX: str
 CONF_MIN: str
 CONF_PATTERN: str

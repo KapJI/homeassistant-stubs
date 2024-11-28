@@ -37,15 +37,14 @@ class _KnxLight(LightEntity):
     def xy_color(self) -> tuple[float, float] | None: ...
     @property
     def color_temp_kelvin(self) -> int | None: ...
-    @property
-    def color_mode(self) -> ColorMode: ...
-    @property
     def supported_color_modes(self) -> set[ColorMode]: ...
+    _attr_color_mode: Incomplete
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class KnxYamlLight(_KnxLight, KnxYamlEntity):
     _device: XknxLight
+    _attr_color_mode: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_entity_category: Incomplete
@@ -55,6 +54,7 @@ class KnxYamlLight(_KnxLight, KnxYamlEntity):
 
 class KnxUiLight(_KnxLight, KnxUiEntity):
     _device: XknxLight
+    _attr_color_mode: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     def __init__(self, knx_module: KNXModule, unique_id: str, config: ConfigType) -> None: ...

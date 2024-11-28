@@ -17,6 +17,7 @@ from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as Receiv
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 MQTT_SELECT_ATTRIBUTES_BLOCKED: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete

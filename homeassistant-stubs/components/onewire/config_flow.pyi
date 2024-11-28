@@ -1,7 +1,7 @@
 from .const import DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEVICE_SUPPORT_OPTIONS as DEVICE_SUPPORT_OPTIONS, DOMAIN as DOMAIN, INPUT_ENTRY_CLEAR_OPTIONS as INPUT_ENTRY_CLEAR_OPTIONS, INPUT_ENTRY_DEVICE_SELECTION as INPUT_ENTRY_DEVICE_SELECTION, OPTION_ENTRY_DEVICE_OPTIONS as OPTION_ENTRY_DEVICE_OPTIONS, OPTION_ENTRY_SENSOR_PRECISION as OPTION_ENTRY_SENSOR_PRECISION, PRECISION_MAPPING_FAMILY_28 as PRECISION_MAPPING_FAMILY_28
 from .onewirehub import CannotConnect as CannotConnect, OneWireHub as OneWireHub
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
@@ -19,10 +19,12 @@ class OneWireFlowHandler(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OnewireOptionsFlowHandler: ...
 
-class OnewireOptionsFlowHandler(OptionsFlowWithConfigEntry):
+class OnewireOptionsFlowHandler(OptionsFlow):
     configurable_devices: dict[str, str]
     devices_to_configure: dict[str, str]
     current_device: str
+    options: Incomplete
+    def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_device_selection(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_configure_device(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

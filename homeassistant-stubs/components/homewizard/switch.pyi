@@ -10,15 +10,17 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
+from homewizard_energy import HomeWizardEnergyV1 as HomeWizardEnergyV1
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class HomeWizardSwitchEntityDescription(SwitchEntityDescription):
     available_fn: Callable[[DeviceResponseEntry], bool]
     create_fn: Callable[[HWEnergyDeviceUpdateCoordinator], bool]
     is_on_fn: Callable[[DeviceResponseEntry], bool | None]
-    set_fn: Callable[[HomeWizardEnergy, bool], Awaitable[Any]]
+    set_fn: Callable[[HomeWizardEnergyV1, bool], Awaitable[Any]]
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_fn, create_fn, is_on_fn, set_fn) -> None: ...
 
 SWITCHES: Incomplete

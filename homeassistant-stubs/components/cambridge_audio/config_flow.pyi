@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
 class CambridgeAudioConfigFlow(ConfigFlow, domain=DOMAIN):

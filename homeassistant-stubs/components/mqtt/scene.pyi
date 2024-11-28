@@ -14,6 +14,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 DEFAULT_RETAIN: bool
 ENTITY_ID_FORMAT: Incomplete

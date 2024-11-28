@@ -12,8 +12,10 @@ from homeassistant.helpers.typing import StateType as StateType
 
 POWER_SENSORS: list[SensorEntityDescription]
 TIME_SENSORS: list[SensorEntityDescription]
+TEMPERATURE_SENSORS: list[SensorEntityDescription]
 POWER_PLUG_SENSORS = POWER_SENSORS
 WATER_HEATER_SENSORS: Incomplete
+THERMOSTAT_SENSORS = TEMPERATURE_SENSORS
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

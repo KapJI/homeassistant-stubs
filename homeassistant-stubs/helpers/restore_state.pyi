@@ -2,7 +2,6 @@ import abc
 from . import start as start
 from .entity import Entity as Entity
 from .event import async_track_time_interval as async_track_time_interval
-from .frame import report as report
 from .json import JSONEncoder as JSONEncoder
 from .singleton import singleton as singleton
 from .storage import Store as Store
@@ -47,8 +46,6 @@ def async_get(hass: HomeAssistant) -> RestoreStateData: ...
 class RestoreStateData:
     @classmethod
     async def async_save_persistent_states(cls, hass: HomeAssistant) -> None: ...
-    @classmethod
-    async def async_get_instance(cls, hass: HomeAssistant) -> RestoreStateData: ...
     hass: Incomplete
     store: Incomplete
     last_states: Incomplete

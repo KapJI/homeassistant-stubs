@@ -2,7 +2,7 @@ import abc
 import logging
 from . import entity as entity, event as event
 from .debounce import Debouncer as Debouncer
-from .frame import report as report
+from .frame import report_usage as report_usage
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import abstractmethod
@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any, Generic, Protocol
 from typing_extensions import TypeVar
@@ -21,7 +21,7 @@ REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
 _DataT = TypeVar('_DataT', default=dict[str, Any])
 _DataUpdateCoordinatorT = TypeVar('_DataUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]', default='DataUpdateCoordinator[dict[str, Any]]')
 
-class UpdateFailed(Exception): ...
+class UpdateFailed(HomeAssistantError): ...
 
 class BaseDataUpdateCoordinatorProtocol(Protocol):
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = None) -> Callable[[], None]: ...

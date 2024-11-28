@@ -18,6 +18,7 @@ from homeassistant.util.unit_conversion import TemperatureConverter as Temperatu
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 MQTT_WATER_HEATER_ATTRIBUTES_BLOCKED: Incomplete
 VALUE_TEMPLATE_KEYS: Incomplete

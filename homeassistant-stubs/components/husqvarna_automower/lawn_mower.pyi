@@ -11,6 +11,8 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+_LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DOCKED_ACTIVITIES: Incomplete
 MOWING_ACTIVITIES: Incomplete
 PAUSED_STATES: Incomplete
@@ -18,7 +20,6 @@ SUPPORT_STATE_SERVICES: Incomplete
 MOW: str
 PARK: str
 OVERRIDE_MODES: Incomplete
-_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

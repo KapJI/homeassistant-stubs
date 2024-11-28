@@ -9,10 +9,11 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from lmcloud.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
-from lmcloud.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
+from pylamarzocco.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
+from pylamarzocco.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
 from typing import Any
 
+PARALLEL_UPDATES: int
 STEAM_LEVEL_HA_TO_LM: Incomplete
 STEAM_LEVEL_LM_TO_HA: Incomplete
 PREBREW_MODE_HA_TO_LM: Incomplete

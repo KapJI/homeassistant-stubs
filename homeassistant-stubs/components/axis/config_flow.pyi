@@ -5,7 +5,7 @@ from .hub import AxisHub as AxisHub, get_axis_api as get_axis_api
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import dhcp as dhcp, ssdp as ssdp, zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithConfigEntry as OptionsFlowWithConfigEntry, SOURCE_IGNORE as SOURCE_IGNORE, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_IGNORE as SOURCE_IGNORE, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
@@ -35,7 +35,7 @@ class AxisFlowHandler(ConfigFlow, domain=AXIS_DOMAIN):
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def _process_discovered_device(self, discovery_info: dict[str, Any]) -> ConfigFlowResult: ...
 
-class AxisOptionsFlowHandler(OptionsFlowWithConfigEntry):
+class AxisOptionsFlowHandler(OptionsFlow):
     config_entry: AxisConfigEntry
     hub: AxisHub
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

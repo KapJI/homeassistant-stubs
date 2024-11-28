@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
+from typing import Final
 
 DOMAIN: str
 AUTH_RETRIES: int
@@ -34,3 +35,7 @@ PLATFORMS: Incomplete
 DISPATCH_ADD: str
 DISPATCH_ADOPT: str
 DISPATCH_CHANNELS: str
+EVENT_TYPE_FINGERPRINT_IDENTIFIED: Final[str]
+EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED: Final[str]
+EVENT_TYPE_NFC_SCANNED: Final[str]
+EVENT_TYPE_DOORBELL_RING: Final[str]

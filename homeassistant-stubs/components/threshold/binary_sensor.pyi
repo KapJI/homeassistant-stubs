@@ -14,6 +14,9 @@ from typing import Any, Final
 
 _LOGGER: Incomplete
 DEFAULT_NAME: Final[str]
+
+def no_missing_threshold(value: dict) -> dict: ...
+
 PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -22,6 +25,7 @@ def _threshold_type(lower: float | None, upper: float | None) -> str: ...
 
 class ThresholdSensor(BinarySensorEntity):
     _attr_should_poll: bool
+    _unrecorded_attributes: Incomplete
     _preview_callback: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

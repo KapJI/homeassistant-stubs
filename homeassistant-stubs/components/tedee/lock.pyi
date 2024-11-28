@@ -2,12 +2,14 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import TedeeApiCoordinator as TedeeApiCoordinator, TedeeConfigEntry as TedeeConfigEntry
 from .entity import TedeeEntity as TedeeEntity
 from _typeshed import Incomplete
+from aiotedee import TedeeLock as TedeeLock
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pytedee_async import TedeeLock as TedeeLock
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

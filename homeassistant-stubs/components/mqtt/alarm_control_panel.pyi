@@ -16,6 +16,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 _SUPPORTED_FEATURES: Incomplete
 CONF_CODE_ARM_REQUIRED: str
 CONF_CODE_DISARM_REQUIRED: str

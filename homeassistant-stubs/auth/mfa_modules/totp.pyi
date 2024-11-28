@@ -40,10 +40,10 @@ class TotpAuthModule(MultiFactorAuthModule):
     def _validate_2fa(self, user_id: str, code: str) -> bool: ...
 
 class TotpSetupFlow(SetupFlow):
-    _auth_module: Incomplete
-    _user: Incomplete
+    _auth_module: TotpAuthModule
     _ota_secret: str
-    _url: Incomplete
-    _image: Incomplete
+    _url: str
+    _image: str
+    _user: Incomplete
     def __init__(self, auth_module: TotpAuthModule, setup_schema: vol.Schema, user: User) -> None: ...
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> FlowResult: ...

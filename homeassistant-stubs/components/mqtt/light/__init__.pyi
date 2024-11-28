@@ -11,6 +11,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 def validate_mqtt_light_discovery(config_value: dict[str, Any]) -> ConfigType: ...
 def validate_mqtt_light_modern(config_value: dict[str, Any]) -> ConfigType: ...
 

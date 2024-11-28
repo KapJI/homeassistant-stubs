@@ -36,8 +36,7 @@ class CrownstoneConfigFlowHandler(BaseCrownstoneFlowHandler, ConfigFlow, domain=
     def async_create_new_entry(self) -> ConfigFlowResult: ...
 
 class CrownstoneOptionsFlowHandler(BaseCrownstoneFlowHandler, OptionsFlow):
-    entry: Incomplete
-    updated_options: Incomplete
+    options: Incomplete
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     cloud: Incomplete
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

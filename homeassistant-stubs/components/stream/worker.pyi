@@ -1,4 +1,6 @@
 import av
+import av.audio
+import av.container
 from . import redact_credentials as redact_credentials
 from .const import AUDIO_CODECS as AUDIO_CODECS, HLS_PROVIDER as HLS_PROVIDER, MAX_MISSING_DTS as MAX_MISSING_DTS, MAX_TIMESTAMP_GAP as MAX_TIMESTAMP_GAP, PACKETS_TO_WAIT_FOR_AUDIO as PACKETS_TO_WAIT_FOR_AUDIO, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT, SOURCE_TIMEOUT as SOURCE_TIMEOUT
 from .core import KeyFrameConverter as KeyFrameConverter, Part as Part, STREAM_SETTINGS_NON_LL_HLS as STREAM_SETTINGS_NON_LL_HLS, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
@@ -17,7 +19,7 @@ NEGATIVE_INF: Incomplete
 
 class StreamWorkerError(Exception): ...
 
-def redact_av_error_string(err: av.AVError) -> str: ...
+def redact_av_error_string(err: av.FFmpegError) -> str: ...
 
 class StreamEndedError(StreamWorkerError): ...
 
@@ -40,25 +42,25 @@ class StreamState:
     def diagnostics(self) -> Diagnostics: ...
 
 class StreamMuxer:
+    _segment_start_dts: int
+    _memory_file: BytesIO
+    _av_output: av.container.OutputContainer
+    _output_video_stream: av.VideoStream
+    _output_audio_stream: av.audio.AudioStream | None
+    _segment: Segment | None
+    _memory_file_pos: int
+    _part_start_dts: float
     _hass: Incomplete
-    _segment_start_dts: Incomplete
-    _memory_file: Incomplete
-    _av_output: Incomplete
     _input_video_stream: Incomplete
     _input_audio_stream: Incomplete
     _audio_bsf: Incomplete
     _audio_bsf_context: Incomplete
-    _output_video_stream: Incomplete
-    _output_audio_stream: Incomplete
-    _segment: Incomplete
-    _memory_file_pos: Incomplete
-    _part_start_dts: Incomplete
     _part_has_keyframe: bool
     _stream_settings: Incomplete
     _stream_state: Incomplete
     _start_time: Incomplete
-    def __init__(self, hass: HomeAssistant, video_stream: av.video.VideoStream, audio_stream: av.audio.stream.AudioStream | None, audio_bsf: av.BitStreamFilter | None, stream_state: StreamState, stream_settings: StreamSettings) -> None: ...
-    def make_new_av(self, memory_file: BytesIO, sequence: int, input_vstream: av.video.VideoStream, input_astream: av.audio.stream.AudioStream | None) -> tuple[av.container.OutputContainer, av.video.VideoStream, av.audio.stream.AudioStream | None]: ...
+    def __init__(self, hass: HomeAssistant, video_stream: av.VideoStream, audio_stream: av.audio.AudioStream | None, audio_bsf: str | None, stream_state: StreamState, stream_settings: StreamSettings) -> None: ...
+    def make_new_av(self, memory_file: BytesIO, sequence: int, input_vstream: av.VideoStream, input_astream: av.audio.AudioStream | None) -> tuple[av.container.OutputContainer, av.VideoStream, av.audio.AudioStream | None]: ...
     def reset(self, video_dts: int) -> None: ...
     def mux_packet(self, packet: av.Packet) -> None: ...
     def create_segment(self) -> None: ...
@@ -66,7 +68,7 @@ class StreamMuxer:
     def flush(self, packet: av.Packet, last_part: bool) -> None: ...
     def close(self) -> None: ...
 
-class PeekIterator(Iterator):
+class PeekIterator(Iterator[av.Packet]):
     _iterator: Incomplete
     _buffer: Incomplete
     _next: Incomplete
@@ -84,5 +86,5 @@ class TimestampValidator:
     def is_valid(self, packet: av.Packet) -> bool: ...
 
 def is_keyframe(packet: av.Packet) -> Any: ...
-def get_audio_bitstream_filter(packets: Iterator[av.Packet], audio_stream: Any) -> av.BitStreamFilterContext | None: ...
+def get_audio_bitstream_filter(packets: Iterator[av.Packet], audio_stream: Any) -> str | None: ...
 def stream_worker(source: str, pyav_options: dict[str, str], stream_settings: StreamSettings, stream_state: StreamState, keyframe_converter: KeyFrameConverter, quit_event: Event) -> None: ...

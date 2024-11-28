@@ -14,6 +14,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
+PARALLEL_UPDATES: int
 CONF_PAYLOAD_PRESS: str
 DEFAULT_NAME: str
 DEFAULT_PAYLOAD_PRESS: str

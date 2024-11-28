@@ -1,10 +1,11 @@
 import logging
+from .api import AsyncConfigFlowAuth as AsyncConfigFlowAuth
 from .const import DOMAIN as DOMAIN, NAME as NAME
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_NAME as CONF_NAME, CONF_TOKEN as CONF_TOKEN
-from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
+from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
 
 _LOGGER: Incomplete

@@ -6,6 +6,7 @@ from homeassistant.components.media_player import BrowseError as BrowseError, Br
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant
 from spotifyaio import Artist as Artist, BasePlaylist as BasePlaylist, SimplifiedAlbum as SimplifiedAlbum, SimplifiedTrack as SimplifiedTrack, SpotifyClient as SpotifyClient
+from spotifyaio.models import SimplifiedEpisode
 from typing import Any, TypedDict
 
 BROWSE_LIMIT: int
@@ -22,6 +23,7 @@ def _get_artist_item_payload(artist: Artist) -> ItemPayload: ...
 def _get_album_item_payload(album: SimplifiedAlbum) -> ItemPayload: ...
 def _get_playlist_item_payload(playlist: BasePlaylist) -> ItemPayload: ...
 def _get_track_item_payload(track: SimplifiedTrack, show_thumbnails: bool = True) -> ItemPayload: ...
+def _get_episode_item_payload(episode: SimplifiedEpisode) -> ItemPayload: ...
 
 class BrowsableMedia(StrEnum):
     CURRENT_USER_PLAYLISTS = 'current_user_playlists'
@@ -32,8 +34,6 @@ class BrowsableMedia(StrEnum):
     CURRENT_USER_RECENTLY_PLAYED = 'current_user_recently_played'
     CURRENT_USER_TOP_ARTISTS = 'current_user_top_artists'
     CURRENT_USER_TOP_TRACKS = 'current_user_top_tracks'
-    CATEGORIES = 'categories'
-    FEATURED_PLAYLISTS = 'featured_playlists'
     NEW_RELEASES = 'new_releases'
 
 LIBRARY_MAP: Incomplete

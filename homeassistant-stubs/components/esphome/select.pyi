@@ -6,6 +6,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, SelectInfo, SelectState
 from homeassistant.components.assist_pipeline.select import AssistPipelineSelect as AssistPipelineSelect, VadSensitivitySelect as VadSensitivitySelect
 from homeassistant.components.assist_satellite import AssistSatelliteConfiguration as AssistSatelliteConfiguration
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import restore_state as restore_state
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

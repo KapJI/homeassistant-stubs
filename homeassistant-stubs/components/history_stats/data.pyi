@@ -7,6 +7,7 @@ from homeassistant.core import Event as Event, EventStateChangedData as EventSta
 from homeassistant.helpers.template import Template as Template
 
 MIN_TIME_UTC: Incomplete
+_LOGGER: Incomplete
 
 @dataclass
 class HistoryStatsState:

@@ -22,9 +22,10 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     _previous_mode: str
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
+    _devices: Incomplete
+    _gateway: Incomplete
+    _gateway_data: Incomplete
     _location: Incomplete
-    cdr_gateway: Incomplete
-    gateway_data: Incomplete
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _attr_min_temp: Incomplete

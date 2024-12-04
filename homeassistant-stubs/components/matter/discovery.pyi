@@ -1,3 +1,4 @@
+from .const import FEATUREMAP_ATTRIBUTE_ID as FEATUREMAP_ATTRIBUTE_ID
 from .models import MatterDiscoverySchema as MatterDiscoverySchema, MatterEntityInfo as MatterEntityInfo
 from _typeshed import Incomplete
 from chip.clusters.Objects import ClusterAttributeDescriptor as ClusterAttributeDescriptor

@@ -6,8 +6,9 @@ from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
-from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
+from httpx import AsyncClient as AsyncClient
 from pylamarzocco.models import LaMarzoccoDeviceInfo as LaMarzoccoDeviceInfo
 from typing import Any
 
@@ -16,6 +17,7 @@ _LOGGER: Incomplete
 
 class LmConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    _client: AsyncClient
     _config: Incomplete
     _fleet: Incomplete
     _discovered: Incomplete

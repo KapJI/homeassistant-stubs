@@ -801,7 +801,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant"
-version = "2024.12.0b4"
+version = "2024.12.0b5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiodns" },
@@ -851,14 +851,14 @@ dependencies = [
     { name = "webrtc-models" },
     { name = "yarl" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/78/14/f6569169dbd0f920664774c643bc234b9fb2ea3079e32fedd51a5410d88d/homeassistant-2024.12.0b4.tar.gz", hash = "sha256:d3b174ca729ea69d54806f0e9e031902ad227e20eaeb605c5ebf449c29319662", size = 22591142 }
+sdist = { url = "https://files.pythonhosted.org/packages/b2/0f/fe19056d00ac4bae789aa0772721ea101638717a4b3a4b0cc0749efafc88/homeassistant-2024.12.0b5.tar.gz", hash = "sha256:df748f56b15081fefa619f037b7313f40eb4013fb9659afe9dd4dc50359819a8", size = 22605733 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/42/16/1aaf38a9793c086b144067c376a9dfa442c924f4af123b68c585277ec0f7/homeassistant-2024.12.0b4-py3-none-any.whl", hash = "sha256:c5fbae3c1c244e99e3431256689067122178143dc84b12dab07f2a8036905c03", size = 38836180 },
+    { url = "https://files.pythonhosted.org/packages/23/fc/0c78d54a38a207482eba0346751d6060f7ea3ab71b77ff9e79b3139f95f4/homeassistant-2024.12.0b5-py3-none-any.whl", hash = "sha256:441feb18c2bb632cc216301167d50f7a34e769fe2b2e1a417c2c4cad63a9391f", size = 38860941 },
 ]
 
 [[package]]
 name = "homeassistant-stubs"
-version = "2024.12.0b4.dev0+g99903390.d20241202"
+version = "2024.12.0b5.dev0+gc930b5fc.d20241204"
 source = { editable = "." }
 dependencies = [
     { name = "homeassistant" },
@@ -876,7 +876,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homeassistant", specifier = "==2024.12.0b4" }]
+requires-dist = [{ name = "homeassistant", specifier = "==2024.12.0b5" }]
 
 [package.metadata.requires-dev]
 dev = [
@@ -1334,11 +1334,11 @@ wheels = [
 
 [[package]]
 name = "pyjwt"
-version = "2.10.0"
+version = "2.10.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b5/05/324952ded002de746f87b21066b9373080bb5058f64cf01c4d62784b8186/pyjwt-2.10.0.tar.gz", hash = "sha256:7628a7eb7938959ac1b26e819a1df0fd3259505627b575e4bad6d08f76db695c", size = 87687 }
+sdist = { url = "https://files.pythonhosted.org/packages/e7/46/bd74733ff231675599650d3e47f361794b22ef3e3770998dda30d3b63726/pyjwt-2.10.1.tar.gz", hash = "sha256:3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953", size = 87785 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6f/1d/ef9b066e7ef60494c94173dc9f0b9adf5d9ec5f888109f5c669f53d4144b/PyJWT-2.10.0-py3-none-any.whl", hash = "sha256:543b77207db656de204372350926bed5a86201c4cbff159f623f79c7bb487a15", size = 23002 },
+    { url = "https://files.pythonhosted.org/packages/61/ad/689f02752eeec26aed679477e80e632ef1b682313be70793d798c1d5fc8f/PyJWT-2.10.1-py3-none-any.whl", hash = "sha256:dcdd193e30abefd5debf142f9adfcdd2b58004e644f25406ffaebd50bd98dacb", size = 22997 },
 ]
 
 [package.optional-dependencies]

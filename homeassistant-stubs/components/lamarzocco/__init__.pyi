@@ -5,7 +5,7 @@ from homeassistant.components.bluetooth import async_discovered_service_info as 
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
 
 PLATFORMS: Incomplete
 _LOGGER: Incomplete

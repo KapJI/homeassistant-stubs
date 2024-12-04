@@ -1,4 +1,4 @@
-from .const import LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from APsystemsEZ1 import APsystemsEZ1M as APsystemsEZ1M, ReturnAlarmInfo as ReturnAlarmInfo, ReturnOutputData as ReturnOutputData
 from _typeshed import Incomplete
 from dataclasses import dataclass

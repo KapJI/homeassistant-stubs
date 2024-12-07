@@ -14,7 +14,7 @@ from pynordpool import DeliveryPeriodData as DeliveryPeriodData
 
 PARALLEL_UPDATES: int
 
-def get_prices(data: DeliveryPeriodData) -> dict[str, tuple[float, float, float]]: ...
+def get_prices(data: DeliveryPeriodData) -> dict[str, tuple[float | None, float, float | None]]: ...
 def get_blockprices(data: DeliveryPeriodData) -> dict[str, dict[str, tuple[datetime, datetime, float, float, float]]]: ...
 
 @dataclass(frozen=True, kw_only=True)
@@ -24,7 +24,7 @@ class NordpoolDefaultSensorEntityDescription(SensorEntityDescription):
 
 @dataclass(frozen=True, kw_only=True)
 class NordpoolPricesSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[tuple[float, float, float]], float | None]
+    value_fn: Callable[[tuple[float | None, float, float | None]], float | None]
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)

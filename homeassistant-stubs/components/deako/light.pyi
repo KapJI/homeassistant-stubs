@@ -5,7 +5,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, C
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pydeako.deako import Deako as Deako
+from pydeako import Deako as Deako
 from typing import Any
 
 MODEL_SMART: str

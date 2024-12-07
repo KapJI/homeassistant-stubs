@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
-from pydeako.deako import Deako
+from pydeako import Deako
 
 _LOGGER: logging.Logger
 PLATFORMS: list[Platform]

@@ -25,6 +25,8 @@ class SwitchBotCloudAirConditioner(SwitchBotCloudEntity, ClimateEntity):
     _attr_hvac_mode: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_target_temperature: int
+    _attr_target_temperature_step: int
+    _attr_precision: int
     _attr_name: Incomplete
     _enable_turn_on_off_backwards_compatibility: bool
     async def _do_send_command(self, hvac_mode: HVACMode | None = None, fan_mode: str | None = None, temperature: float | None = None) -> None: ...

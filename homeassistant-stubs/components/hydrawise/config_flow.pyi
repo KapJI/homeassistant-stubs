@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import APP_ID as APP_ID, DOMAIN as DOMAIN, LOGGER as LOGGER
 from collections.abc import Callable as Callable, Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME

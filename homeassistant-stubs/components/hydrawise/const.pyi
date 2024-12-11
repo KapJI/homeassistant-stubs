@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 
 LOGGER: Incomplete
+APP_ID: Incomplete
 DOMAIN: str
 DEFAULT_WATERING_TIME: Incomplete
 MANUFACTURER: str

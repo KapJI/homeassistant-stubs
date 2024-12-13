@@ -9,6 +9,7 @@ from collections.abc import AsyncGenerator, AsyncIterable, Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components import conversation as conversation, media_source as media_source, stt as stt, tts as tts, wake_word as wake_word, websocket_api as websocket_api
+from homeassistant.const import MATCH_ALL as MATCH_ALL
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import intent as intent

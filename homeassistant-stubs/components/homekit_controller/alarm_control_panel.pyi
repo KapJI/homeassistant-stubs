@@ -17,6 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class HomeKitAlarmControlPanelEntity(HomeKitEntity, AlarmControlPanelEntity):
     _attr_supported_features: Incomplete
+    _attr_code_arm_required: bool
     def get_characteristic_types(self) -> list[str]: ...
     @property
     def alarm_state(self) -> AlarmControlPanelState: ...

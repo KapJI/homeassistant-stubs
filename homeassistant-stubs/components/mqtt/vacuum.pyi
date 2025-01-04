@@ -7,9 +7,9 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from homeassistant.components import vacuum as vacuum
-from homeassistant.components.vacuum import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED
+from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.json import json_dumps as json_dumps
@@ -21,7 +21,13 @@ PARALLEL_UPDATES: int
 BATTERY: str
 FAN_SPEED: str
 STATE: str
-POSSIBLE_STATES: dict[str, str]
+STATE_IDLE: str
+STATE_DOCKED: str
+STATE_ERROR: str
+STATE_PAUSED: str
+STATE_RETURNING: str
+STATE_CLEANING: str
+POSSIBLE_STATES: dict[str, VacuumActivity]
 CONF_SUPPORTED_FEATURES = ATTR_SUPPORTED_FEATURES
 CONF_PAYLOAD_TURN_ON: str
 CONF_PAYLOAD_TURN_OFF: str
@@ -77,7 +83,7 @@ class MqttStateVacuum(MqttEntity, StateVacuumEntity):
     _attr_fan_speed: Incomplete
     _attr_battery_level: Incomplete
     def _update_state_attributes(self, payload: dict[str, Any]) -> None: ...
-    _attr_state: Incomplete
+    _attr_activity: Incomplete
     def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...

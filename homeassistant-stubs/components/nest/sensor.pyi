@@ -1,10 +1,8 @@
-from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
+from .types import NestConfigEntry as NestConfigEntry
 from _typeshed import Incomplete
 from google_nest_sdm.device import Device as Device
-from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 _LOGGER: Incomplete
 DEVICE_TYPE_MAP: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensorBase(SensorEntity):
     _attr_should_poll: bool

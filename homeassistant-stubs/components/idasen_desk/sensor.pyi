@@ -1,16 +1,12 @@
-from . import DeskData as DeskData, IdasenDeskCoordinator as IdasenDeskCoordinator
-from .const import DOMAIN as DOMAIN
+from . import IdasenDeskConfigEntry as IdasenDeskConfigEntry, IdasenDeskCoordinator as IdasenDeskCoordinator
+from .entity import IdasenDeskEntity as IdasenDeskEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant import config_entries as config_entries
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfLength as UnitOfLength
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
 class IdasenDeskSensorDescription(SensorEntityDescription):
@@ -19,19 +15,10 @@ class IdasenDeskSensorDescription(SensorEntityDescription):
 
 SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IdasenDeskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class IdasenDeskSensor(CoordinatorEntity[IdasenDeskCoordinator], SensorEntity):
+class IdasenDeskSensor(IdasenDeskEntity, SensorEntity):
     entity_description: IdasenDeskSensorDescription
-    _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    _address: Incomplete
-    _desk: Incomplete
-    def __init__(self, address: str, device_info: DeviceInfo, coordinator: IdasenDeskCoordinator, description: IdasenDeskSensorDescription) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
+    def __init__(self, coordinator: IdasenDeskCoordinator, description: IdasenDeskSensorDescription) -> None: ...
     @property
-    def available(self) -> bool: ...
-    def _handle_coordinator_update(self, *args: Any) -> None: ...
-    _attr_native_value: Incomplete
-    def _update_native_value(self) -> None: ...
+    def native_value(self) -> float | None: ...

@@ -1,3 +1,4 @@
+from . import ImapConfigEntry as ImapConfigEntry
 from .const import CONF_CHARSET as CONF_CHARSET, CONF_CUSTOM_EVENT_DATA_TEMPLATE as CONF_CUSTOM_EVENT_DATA_TEMPLATE, CONF_EVENT_MESSAGE_DATA as CONF_EVENT_MESSAGE_DATA, CONF_FOLDER as CONF_FOLDER, CONF_MAX_MESSAGE_SIZE as CONF_MAX_MESSAGE_SIZE, CONF_SEARCH as CONF_SEARCH, CONF_SERVER as CONF_SERVER, CONF_SSL_CIPHER_LIST as CONF_SSL_CIPHER_LIST, DEFAULT_MAX_MESSAGE_SIZE as DEFAULT_MAX_MESSAGE_SIZE, DOMAIN as DOMAIN, MESSAGE_DATA_OPTIONS as MESSAGE_DATA_OPTIONS
 from .errors import InvalidAuth as InvalidAuth, InvalidFolder as InvalidFolder
 from _typeshed import Incomplete
@@ -5,7 +6,6 @@ from aioimaplib import IMAP4_SSL
 from collections.abc import Mapping
 from datetime import datetime, timedelta
 from email.message import Message
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, TemplateError as TemplateError
@@ -43,7 +43,7 @@ class ImapMessage:
     def text(self) -> str: ...
 
 class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
-    config_entry: ConfigEntry
+    config_entry: ImapConfigEntry
     custom_event_template: Template | None
     imap_client: Incomplete
     auth_errors: int
@@ -52,7 +52,7 @@ class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
     _diagnostics_data: Incomplete
     _event_data_keys: Incomplete
     _max_event_size: Incomplete
-    def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ConfigEntry, update_interval: timedelta | None) -> None: ...
+    def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ImapConfigEntry, update_interval: timedelta | None) -> None: ...
     async def async_start(self) -> None: ...
     async def _async_reconnect_if_needed(self) -> None: ...
     async def _async_process_event(self, last_message_uid: str) -> None: ...
@@ -64,14 +64,14 @@ class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
     def diagnostics_data(self) -> dict[str, Any]: ...
 
 class ImapPollingDataUpdateCoordinator(ImapDataUpdateCoordinator):
-    def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ImapConfigEntry) -> None: ...
     auth_errors: int
     async def _async_update_data(self) -> int | None: ...
 
 class ImapPushDataUpdateCoordinator(ImapDataUpdateCoordinator):
     _push_wait_task: Incomplete
     number_of_messages: Incomplete
-    def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ImapConfigEntry) -> None: ...
     async def _async_update_data(self) -> int | None: ...
     async def async_start(self) -> None: ...
     auth_errors: int

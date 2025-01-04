@@ -16,7 +16,6 @@ class SolarLogCoordinator(DataUpdateCoordinator[SolarlogData]):
     new_device_callbacks: Incomplete
     _devices_last_update: Incomplete
     unique_id: Incomplete
-    name: Incomplete
     host: Incomplete
     solarlog: Incomplete
     def __init__(self, hass: HomeAssistant, entry: SolarlogConfigEntry) -> None: ...

@@ -22,7 +22,6 @@ class TradfriAirPurifierFan(TradfriBaseEntity, FanEntity):
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _attr_speed_count = ATTR_MAX_FAN_STEPS
-    _enable_turn_on_off_backwards_compatibility: bool
     _device_control: Incomplete
     _device_data: Incomplete
     def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Command | list[Command]], Any], gateway_id: str) -> None: ...

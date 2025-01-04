@@ -17,7 +17,6 @@ class DemoClimate(ClimateEntity):
     _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_translation_key: str
-    _enable_turn_on_off_backwards_compatibility: bool
     _unique_id: Incomplete
     _attr_supported_features: Incomplete
     _target_temperature: Incomplete

@@ -19,7 +19,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class RabbitAirFanEntity(RabbitAirBaseEntity, FanEntity):
     _attr_supported_features: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_preset_modes: Incomplete
     _attr_speed_count: Incomplete
     def __init__(self, coordinator: RabbitAirDataUpdateCoordinator, entry: ConfigEntry) -> None: ...

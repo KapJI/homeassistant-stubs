@@ -12,7 +12,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_ad
 
 class BAFFan(BAFEntity, FanEntity):
     _attr_supported_features: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_preset_modes: Incomplete
     _attr_speed_count = SPEED_COUNT
     _attr_name: Incomplete

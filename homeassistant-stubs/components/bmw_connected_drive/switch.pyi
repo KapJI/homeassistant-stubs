@@ -11,6 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)

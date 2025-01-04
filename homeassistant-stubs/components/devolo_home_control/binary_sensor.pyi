@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigE
 class DevoloBinaryDeviceEntity(DevoloDeviceEntity, BinarySensorEntity):
     _binary_sensor_property: Incomplete
     _attr_device_class: Incomplete
-    _attr_name: Incomplete
+    _attr_translation_key: str
     _value: Incomplete
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: bool
@@ -27,6 +27,7 @@ class DevoloRemoteControl(DevoloDeviceEntity, BinarySensorEntity):
     _remote_control_property: Incomplete
     _key: Incomplete
     _attr_is_on: bool
-    _attr_name: Incomplete
+    _attr_translation_key: str
+    _attr_translation_placeholders: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str, key: int) -> None: ...
     def _sync(self, message: tuple) -> None: ...

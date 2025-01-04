@@ -1,4 +1,5 @@
 from . import DEVICE_UPDATE_INTERVAL as DEVICE_UPDATE_INTERVAL
+from .const import DOMAIN as DOMAIN
 from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData
 from _typeshed import Incomplete

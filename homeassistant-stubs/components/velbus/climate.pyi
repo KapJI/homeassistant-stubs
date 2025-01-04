@@ -1,8 +1,8 @@
+from . import VelbusConfigEntry as VelbusConfigEntry
 from .const import DOMAIN as DOMAIN, PRESET_MODES as PRESET_MODES
 from .entity import VelbusEntity as VelbusEntity, api_call as api_call
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
@@ -10,7 +10,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 from velbusaio.channels import Temperature as VelbusTemp
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+PARALLEL_UPDATES: int
+
+async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class VelbusClimate(VelbusEntity, ClimateEntity):
     _channel: VelbusTemp
@@ -18,7 +20,6 @@ class VelbusClimate(VelbusEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def target_temperature(self) -> float | None: ...
     @property

@@ -5,7 +5,8 @@ from _typeshed import Incomplete
 from demetriek import Chart, Goal as Goal, Simple
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ICON as CONF_ICON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.util.enum import try_parse_enum as try_parse_enum
 
 SERVICE_BASE_SCHEMA: Incomplete
 SERVICE_MESSAGE_SCHEMA: Incomplete

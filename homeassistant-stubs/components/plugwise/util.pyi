@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entity import PlugwiseEntity as PlugwiseEntity
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

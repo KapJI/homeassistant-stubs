@@ -1,4 +1,4 @@
-from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, CameraState as CameraState, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, StreamType as StreamType, _DEPRECATED_STREAM_TYPE_HLS as _DEPRECATED_STREAM_TYPE_HLS, _DEPRECATED_STREAM_TYPE_WEB_RTC as _DEPRECATED_STREAM_TYPE_WEB_RTC
+from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, CameraState as CameraState, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, StreamType as StreamType
 from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings
@@ -49,8 +49,6 @@ class CameraEntityFeature(IntFlag):
     ON_OFF = 1
     STREAM = 2
 
-_DEPRECATED_SUPPORT_ON_OFF: Final[Incomplete]
-_DEPRECATED_SUPPORT_STREAM: Final[Incomplete]
 DEFAULT_CONTENT_TYPE: Final[str]
 ENTITY_IMAGE_URL: Final[str]
 TOKEN_CHANGE_INTERVAL: Final[Incomplete]
@@ -121,8 +119,6 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def entity_picture(self) -> str: ...
     def use_stream_for_stills(self) -> bool: ...
     def supported_features(self) -> CameraEntityFeature: ...
-    @property
-    def supported_features_compat(self) -> CameraEntityFeature: ...
     def is_recording(self) -> bool: ...
     def is_streaming(self) -> bool: ...
     def brand(self) -> str | None: ...

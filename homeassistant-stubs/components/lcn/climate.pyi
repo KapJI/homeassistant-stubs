@@ -17,7 +17,6 @@ def add_lcn_entities(config_entry: ConfigEntry, async_add_entities: AddEntitiesC
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LcnClimate(LcnEntity, ClimateEntity):
-    _enable_turn_on_off_backwards_compatibility: bool
     variable: Incomplete
     setpoint: Incomplete
     unit: Incomplete

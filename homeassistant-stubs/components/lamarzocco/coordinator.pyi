@@ -1,29 +1,52 @@
+import abc
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Coroutine
+from abc import abstractmethod
+from collections.abc import Callable as Callable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pylamarzocco.client_bluetooth import LaMarzoccoBluetoothClient as LaMarzoccoBluetoothClient
-from pylamarzocco.client_cloud import LaMarzoccoCloudClient as LaMarzoccoCloudClient
-from pylamarzocco.client_local import LaMarzoccoLocalClient as LaMarzoccoLocalClient
+from pylamarzocco.clients.local import LaMarzoccoLocalClient as LaMarzoccoLocalClient
+from pylamarzocco.devices.machine import LaMarzoccoMachine as LaMarzoccoMachine
 
 SCAN_INTERVAL: Incomplete
-FIRMWARE_UPDATE_INTERVAL: int
-STATISTICS_UPDATE_INTERVAL: int
+FIRMWARE_UPDATE_INTERVAL: Incomplete
+STATISTICS_UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete
-type LaMarzoccoConfigEntry = ConfigEntry[LaMarzoccoUpdateCoordinator]
 
-class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None]):
+@dataclass
+class LaMarzoccoRuntimeData:
+    config_coordinator: LaMarzoccoConfigUpdateCoordinator
+    firmware_coordinator: LaMarzoccoFirmwareUpdateCoordinator
+    statistics_coordinator: LaMarzoccoStatisticsUpdateCoordinator
+    def __init__(self, config_coordinator, firmware_coordinator, statistics_coordinator) -> None: ...
+type LaMarzoccoConfigEntry = ConfigEntry[LaMarzoccoRuntimeData]
+
+class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABCMeta):
+    _default_update_interval = SCAN_INTERVAL
     config_entry: LaMarzoccoConfigEntry
-    local_connection_configured: Incomplete
     device: Incomplete
-    _last_firmware_data_update: Incomplete
-    _last_statistics_data_update: Incomplete
+    local_connection_configured: Incomplete
     _local_client: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: LaMarzoccoConfigEntry, cloud_client: LaMarzoccoCloudClient, local_client: LaMarzoccoLocalClient | None, bluetooth_client: LaMarzoccoBluetoothClient | None) -> None: ...
-    async def _async_setup(self) -> None: ...
+    new_device_callback: Incomplete
+    def __init__(self, hass: HomeAssistant, entry: LaMarzoccoConfigEntry, device: LaMarzoccoMachine, local_client: LaMarzoccoLocalClient | None = None) -> None: ...
     async def _async_update_data(self) -> None: ...
-    async def _async_handle_request[**_P](self, func: Callable[_P, Coroutine[None, None, None]], *args: _P.args, **kwargs: _P.kwargs) -> None: ...
+    @abstractmethod
+    async def _internal_async_update_data(self) -> None: ...
+
+class LaMarzoccoConfigUpdateCoordinator(LaMarzoccoUpdateCoordinator):
+    _scale_address: str | None
+    async def _async_connect_websocket(self) -> None: ...
+    async def _internal_async_update_data(self) -> None: ...
+    def _async_add_remove_scale(self) -> None: ...
+
+class LaMarzoccoFirmwareUpdateCoordinator(LaMarzoccoUpdateCoordinator):
+    _default_update_interval = FIRMWARE_UPDATE_INTERVAL
+    async def _internal_async_update_data(self) -> None: ...
+
+class LaMarzoccoStatisticsUpdateCoordinator(LaMarzoccoUpdateCoordinator):
+    _default_update_interval = STATISTICS_UPDATE_INTERVAL
+    async def _internal_async_update_data(self) -> None: ...

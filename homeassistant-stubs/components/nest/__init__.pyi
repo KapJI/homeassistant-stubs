@@ -1,8 +1,9 @@
 import abc
 from . import api as api
-from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, CONF_SUBSCRIBER_ID_IMPORTED as CONF_SUBSCRIBER_ID_IMPORTED, CONF_SUBSCRIPTION_NAME as CONF_SUBSCRIPTION_NAME, DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DATA_SDM as DATA_SDM, DATA_SUBSCRIBER as DATA_SUBSCRIBER, DOMAIN as DOMAIN
+from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, CONF_SUBSCRIBER_ID_IMPORTED as CONF_SUBSCRIBER_ID_IMPORTED, CONF_SUBSCRIPTION_NAME as CONF_SUBSCRIPTION_NAME, DATA_SDM as DATA_SDM, DOMAIN as DOMAIN
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, NEST_EVENT as NEST_EVENT
 from .media_source import EVENT_MEDIA_API_URL_FORMAT as EVENT_MEDIA_API_URL_FORMAT, EVENT_THUMBNAIL_URL_FORMAT as EVENT_THUMBNAIL_URL_FORMAT, async_get_media_event_store as async_get_media_event_store, async_get_media_source_devices as async_get_media_source_devices, async_get_transcoder as async_get_transcoder
+from .types import NestConfigEntry as NestConfigEntry, NestData as NestData
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from aiohttp import web
@@ -10,7 +11,6 @@ from collections.abc import Awaitable, Callable as Callable
 from google_nest_sdm.device import Device as Device
 from google_nest_sdm.event import EventMessage as EventMessage
 from google_nest_sdm.event_media import Media as Media
-from google_nest_sdm.traits import TraitType
 from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.components.camera import Image as Image, img_util as img_util
 from homeassistant.components.http import KEY_HASS_USER as KEY_HASS_USER
@@ -35,12 +35,12 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 class SignalUpdateCallback:
     _hass: Incomplete
     _config_reload_cb: Incomplete
-    _config_entry_id: Incomplete
-    def __init__(self, hass: HomeAssistant, config_reload_cb: Callable[[], Awaitable[None]], config_entry_id: str) -> None: ...
+    _config_entry: Incomplete
+    def __init__(self, hass: HomeAssistant, config_reload_cb: Callable[[], Awaitable[None]], config_entry: NestConfigEntry) -> None: ...
     async def async_handle_event(self, event_message: EventMessage) -> None: ...
-    def _supported_traits(self, device_id: str) -> list[TraitType]: ...
+    def _supported_traits(self, device_id: str) -> list[str]: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 

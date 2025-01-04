@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util.unit_system import UnitSystem as UnitSystem
 from typing import Any
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 ALLOWED_CONDITION_BASED_SERVICE_KEYS: Incomplete
 LOGGED_CONDITION_BASED_SERVICE_WARNINGS: set[str]

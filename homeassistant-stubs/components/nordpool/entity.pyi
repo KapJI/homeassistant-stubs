@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import NordPoolDataUpdateCoordinator as NordPoolDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 

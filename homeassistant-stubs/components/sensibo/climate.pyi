@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_SWING_MODE as ATTR_SWING_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
 from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
@@ -41,14 +41,13 @@ SENSIBO_TO_HA: Incomplete
 HA_TO_SENSIBO: Incomplete
 AC_STATE_TO_DATA: Incomplete
 
-def _find_valid_target_temp(target: int, valid_targets: list[int]) -> int: ...
+def _find_valid_target_temp(target: float, valid_targets: list[int]) -> int: ...
 async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
     _attr_name: Incomplete
     _attr_precision = PRECISION_TENTHS
     _attr_translation_key: str
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete

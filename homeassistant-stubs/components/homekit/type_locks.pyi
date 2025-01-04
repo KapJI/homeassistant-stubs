@@ -1,5 +1,6 @@
-from .accessories import HomeAccessory as HomeAccessory, TYPES as TYPES
+from .accessories import TYPES as TYPES
 from .const import CHAR_LOCK_CURRENT_STATE as CHAR_LOCK_CURRENT_STATE, CHAR_LOCK_TARGET_STATE as CHAR_LOCK_TARGET_STATE, SERV_LOCK as SERV_LOCK
+from .doorbell import HomeDoorbellAccessory as HomeDoorbellAccessory
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockState as LockState
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, STATE_UNKNOWN as STATE_UNKNOWN
@@ -13,7 +14,7 @@ VALID_TARGET_STATES: Incomplete
 HOMEKIT_TO_HASS: Incomplete
 STATE_TO_SERVICE: Incomplete
 
-class Lock(HomeAccessory):
+class Lock(HomeDoorbellAccessory):
     _code: Incomplete
     char_current_state: Incomplete
     char_target_state: Incomplete

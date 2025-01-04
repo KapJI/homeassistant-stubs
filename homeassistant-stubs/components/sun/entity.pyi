@@ -35,7 +35,6 @@ class Sun(Entity):
     _unrecorded_attributes: Incomplete
     _attr_name: str
     entity_id = ENTITY_ID
-    _no_platform_reported: bool
     location: Location
     elevation: Elevation
     next_rising: datetime
@@ -50,11 +49,11 @@ class Sun(Entity):
     _next_change: datetime
     hass: Incomplete
     phase: Incomplete
-    _state_info: Incomplete
     _config_listener: Incomplete
     _update_events_listener: Incomplete
     _update_sun_position_listener: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
     def update_location(self, _: Event | None = None, initial: bool = False) -> None: ...
     def remove_listeners(self) -> None: ...
     @property

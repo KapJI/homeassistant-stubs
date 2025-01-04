@@ -8,7 +8,7 @@ from deebot_client.capabilities import Capabilities
 from deebot_client.device import Device as Device
 from deebot_client.events import BatteryEvent as BatteryEvent, FanSpeedEvent as FanSpeedEvent, RoomsEvent as RoomsEvent, StateEvent as StateEvent
 from deebot_client.models import CleanAction, Room as Room
-from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -31,7 +31,7 @@ class EcovacsLegacyVacuum(EcovacsLegacyEntity, StateVacuumEntity):
     error: Incomplete
     def on_error(self, error: str) -> None: ...
     @property
-    def state(self) -> str | None: ...
+    def activity(self) -> VacuumActivity | None: ...
     @property
     def battery_level(self) -> int | None: ...
     @property
@@ -60,7 +60,7 @@ class EcovacsVacuum(EcovacsEntity[Capabilities], StateVacuumEntity):
     _attr_fan_speed_list: Incomplete
     def __init__(self, device: Device) -> None: ...
     _attr_battery_level: Incomplete
-    _attr_state: Incomplete
+    _attr_activity: Incomplete
     _attr_fan_speed: Incomplete
     async def async_added_to_hass(self) -> None: ...
     @property

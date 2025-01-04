@@ -11,6 +11,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from plugwise.constants import SwitchType as SwitchType
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True)
 class PlugwiseSwitchEntityDescription(SwitchEntityDescription):
     key: SwitchType

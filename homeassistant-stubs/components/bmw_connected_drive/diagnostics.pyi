@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from typing import Any
 
+PARALLEL_UPDATES: int
 TO_REDACT_INFO: Incomplete
 TO_REDACT_DATA: Incomplete
 

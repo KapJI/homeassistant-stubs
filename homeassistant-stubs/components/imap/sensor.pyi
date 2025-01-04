@@ -9,6 +9,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+PARALLEL_UPDATES: int
 IMAP_MAIL_COUNT_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ImapConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

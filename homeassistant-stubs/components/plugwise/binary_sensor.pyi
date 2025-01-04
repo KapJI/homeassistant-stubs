@@ -12,6 +12,7 @@ from plugwise.constants import BinarySensorType as BinarySensorType
 from typing import Any
 
 SEVERITIES: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True)
 class PlugwiseBinarySensorEntityDescription(BinarySensorEntityDescription):

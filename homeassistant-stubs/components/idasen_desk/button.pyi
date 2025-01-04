@@ -1,13 +1,11 @@
-from . import DeskData as DeskData, IdasenDeskCoordinator as IdasenDeskCoordinator
-from .const import DOMAIN as DOMAIN
+from . import IdasenDeskConfigEntry as IdasenDeskConfigEntry, IdasenDeskCoordinator as IdasenDeskCoordinator
+from .entity import IdasenDeskEntity as IdasenDeskEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Final
 
@@ -20,14 +18,11 @@ class IdasenDeskButtonDescription(ButtonEntityDescription):
 
 BUTTONS: Final[Incomplete]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IdasenDeskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class IdasenDeskButton(ButtonEntity):
+class IdasenDeskButton(IdasenDeskEntity, ButtonEntity):
     entity_description: IdasenDeskButtonDescription
-    _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    _address: Incomplete
-    _coordinator: Incomplete
-    def __init__(self, address: str, device_info: DeviceInfo, coordinator: IdasenDeskCoordinator, description: IdasenDeskButtonDescription) -> None: ...
+    def __init__(self, coordinator: IdasenDeskCoordinator, description: IdasenDeskButtonDescription) -> None: ...
     async def async_press(self) -> None: ...
+    @property
+    def available(self) -> bool: ...

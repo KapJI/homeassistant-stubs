@@ -10,6 +10,8 @@ from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as ST
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class PlugwiseSelectEntityDescription(SelectEntityDescription):
     key: SelectType

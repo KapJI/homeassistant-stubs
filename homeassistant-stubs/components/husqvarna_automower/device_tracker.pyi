@@ -6,6 +6,8 @@ from homeassistant.components.device_tracker import TrackerEntity as TrackerEnti
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AutomowerDeviceTrackerEntity(AutomowerBaseEntity, TrackerEntity):

@@ -11,7 +11,7 @@ from .helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedTy
 from .util import location as location
 from .util.hass_dict import HassKey as HassKey
 from .util.package import is_docker_env as is_docker_env
-from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system, validate_unit_system as validate_unit_system
+from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_METRIC as _CONF_UNIT_SYSTEM_METRIC, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from typing import Any, Final
@@ -40,6 +40,7 @@ _PACKAGE_DEFINITION_SCHEMA: Incomplete
 _CUSTOMIZE_DICT_SCHEMA: Incomplete
 _CUSTOMIZE_CONFIG_SCHEMA: Incomplete
 
+def _raise_issue_if_imperial_unit_system(hass: HomeAssistant, config: dict[str, Any]) -> dict[str, Any]: ...
 def _raise_issue_if_historic_currency(hass: HomeAssistant, currency: str) -> None: ...
 def _raise_issue_if_no_country(hass: HomeAssistant, country: str | None) -> None: ...
 def _validate_currency(data: Any) -> Any: ...

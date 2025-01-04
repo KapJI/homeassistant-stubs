@@ -1,6 +1,7 @@
 import datetime as dt
+from . import RokuConfigEntry as RokuConfigEntry
 from .browse_media import async_browse_media as async_browse_media
-from .const import ATTR_ARTIST_NAME as ATTR_ARTIST_NAME, ATTR_CONTENT_ID as ATTR_CONTENT_ID, ATTR_FORMAT as ATTR_FORMAT, ATTR_KEYWORD as ATTR_KEYWORD, ATTR_MEDIA_TYPE as ATTR_MEDIA_TYPE, ATTR_THUMBNAIL as ATTR_THUMBNAIL, DOMAIN as DOMAIN, SERVICE_SEARCH as SERVICE_SEARCH
+from .const import ATTR_ARTIST_NAME as ATTR_ARTIST_NAME, ATTR_CONTENT_ID as ATTR_CONTENT_ID, ATTR_FORMAT as ATTR_FORMAT, ATTR_KEYWORD as ATTR_KEYWORD, ATTR_MEDIA_TYPE as ATTR_MEDIA_TYPE, ATTR_THUMBNAIL as ATTR_THUMBNAIL, SERVICE_SEARCH as SERVICE_SEARCH
 from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .entity import RokuEntity as RokuEntity
 from .helpers import format_channel_name as format_channel_name, roku_exception_handler as roku_exception_handler
@@ -8,7 +9,6 @@ from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
@@ -22,8 +22,9 @@ ATTRS_TO_LAUNCH_PARAMS: Incomplete
 ATTRS_TO_PLAY_ON_ROKU_PARAMS: Incomplete
 ATTRS_TO_PLAY_ON_ROKU_AUDIO_PARAMS: Incomplete
 SEARCH_SCHEMA: VolDictType
+PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
     _attr_name: Incomplete

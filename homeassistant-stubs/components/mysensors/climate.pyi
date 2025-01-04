@@ -21,7 +21,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class MySensorsHVAC(MySensorsChildEntity, ClimateEntity):
     _attr_hvac_modes = OPERATION_LIST
-    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def supported_features(self) -> ClimateEntityFeature: ...
     @property

@@ -1,6 +1,6 @@
 from . import websocket_api as websocket_api
 from .const import DOMAIN as DOMAIN
-from .helpers import entities_may_have_state_changes_after as entities_may_have_state_changes_after, has_recorder_run_after as has_recorder_run_after
+from .helpers import entities_may_have_state_changes_after as entities_may_have_state_changes_after, has_states_before as has_states_before
 from _typeshed import Incomplete
 from aiohttp import web
 from datetime import datetime as dt

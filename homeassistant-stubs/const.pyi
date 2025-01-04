@@ -294,34 +294,6 @@ EVENT_LOVELACE_UPDATED: Final[str]
 EVENT_RECORDER_5MIN_STATISTICS_GENERATED: Final[str]
 EVENT_RECORDER_HOURLY_STATISTICS_GENERATED: Final[str]
 EVENT_SHOPPING_LIST_UPDATED: Final[str]
-_DEPRECATED_DEVICE_CLASS_AQI: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_BATTERY: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_CO: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_CO2: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_CURRENT: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_DATE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_ENERGY: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_FREQUENCY: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_GAS: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_HUMIDITY: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_ILLUMINANCE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_MONETARY: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_NITROGEN_DIOXIDE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_NITROGEN_MONOXIDE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_NITROUS_OXIDE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_OZONE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_PM1: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_PM10: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_PM25: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_POWER_FACTOR: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_POWER: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_PRESSURE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_SIGNAL_STRENGTH: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_SULPHUR_DIOXIDE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_TEMPERATURE: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_TIMESTAMP: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS: Final[Incomplete]
-_DEPRECATED_DEVICE_CLASS_VOLTAGE: Final[Incomplete]
 STATE_ON: Final[str]
 STATE_OFF: Final[str]
 STATE_HOME: Final[str]
@@ -419,19 +391,14 @@ ATTR_PERSONS: Final[str]
 class UnitOfApparentPower(StrEnum):
     VOLT_AMPERE = 'VA'
 
-_DEPRECATED_POWER_VOLT_AMPERE: Final[Incomplete]
-
 class UnitOfPower(StrEnum):
+    MILLIWATT = 'mW'
     WATT = 'W'
     KILO_WATT = 'kW'
     MEGA_WATT = 'MW'
     GIGA_WATT = 'GW'
     TERA_WATT = 'TW'
     BTU_PER_HOUR = 'BTU/h'
-
-_DEPRECATED_POWER_WATT: Final[Incomplete]
-_DEPRECATED_POWER_KILO_WATT: Final[Incomplete]
-_DEPRECATED_POWER_BTU_PER_HOUR: Final[Incomplete]
 
 class UnitOfReactivePower(StrEnum):
     VOLT_AMPERE_REACTIVE = 'var'
@@ -443,6 +410,7 @@ class UnitOfEnergy(StrEnum):
     KILO_JOULE = 'kJ'
     MEGA_JOULE = 'MJ'
     GIGA_JOULE = 'GJ'
+    MILLIWATT_HOUR = 'mWh'
     WATT_HOUR = 'Wh'
     KILO_WATT_HOUR = 'kWh'
     MEGA_WATT_HOUR = 'MWh'
@@ -453,24 +421,15 @@ class UnitOfEnergy(StrEnum):
     MEGA_CALORIE = 'Mcal'
     GIGA_CALORIE = 'Gcal'
 
-_DEPRECATED_ENERGY_KILO_WATT_HOUR: Final[Incomplete]
-_DEPRECATED_ENERGY_MEGA_WATT_HOUR: Final[Incomplete]
-_DEPRECATED_ENERGY_WATT_HOUR: Final[Incomplete]
-
 class UnitOfElectricCurrent(StrEnum):
     MILLIAMPERE = 'mA'
     AMPERE = 'A'
-
-_DEPRECATED_ELECTRIC_CURRENT_MILLIAMPERE: Final[Incomplete]
-_DEPRECATED_ELECTRIC_CURRENT_AMPERE: Final[Incomplete]
 
 class UnitOfElectricPotential(StrEnum):
     MICROVOLT = 'µV'
     MILLIVOLT = 'mV'
     VOLT = 'V'
 
-_DEPRECATED_ELECTRIC_POTENTIAL_MILLIVOLT: Final[Incomplete]
-_DEPRECATED_ELECTRIC_POTENTIAL_VOLT: Final[Incomplete]
 DEGREE: Final[str]
 CURRENCY_EURO: Final[str]
 CURRENCY_DOLLAR: Final[str]
@@ -480,10 +439,6 @@ class UnitOfTemperature(StrEnum):
     CELSIUS = '°C'
     FAHRENHEIT = '°F'
     KELVIN = 'K'
-
-_DEPRECATED_TEMP_CELSIUS: Final[Incomplete]
-_DEPRECATED_TEMP_FAHRENHEIT: Final[Incomplete]
-_DEPRECATED_TEMP_KELVIN: Final[Incomplete]
 
 class UnitOfTime(StrEnum):
     MICROSECONDS = 'μs'
@@ -496,16 +451,6 @@ class UnitOfTime(StrEnum):
     MONTHS = 'm'
     YEARS = 'y'
 
-_DEPRECATED_TIME_MICROSECONDS: Final[Incomplete]
-_DEPRECATED_TIME_MILLISECONDS: Final[Incomplete]
-_DEPRECATED_TIME_SECONDS: Final[Incomplete]
-_DEPRECATED_TIME_MINUTES: Final[Incomplete]
-_DEPRECATED_TIME_HOURS: Final[Incomplete]
-_DEPRECATED_TIME_DAYS: Final[Incomplete]
-_DEPRECATED_TIME_WEEKS: Final[Incomplete]
-_DEPRECATED_TIME_MONTHS: Final[Incomplete]
-_DEPRECATED_TIME_YEARS: Final[Incomplete]
-
 class UnitOfLength(StrEnum):
     MILLIMETERS = 'mm'
     CENTIMETERS = 'cm'
@@ -517,25 +462,11 @@ class UnitOfLength(StrEnum):
     MILES = 'mi'
     NAUTICAL_MILES = 'nmi'
 
-_DEPRECATED_LENGTH_MILLIMETERS: Final[Incomplete]
-_DEPRECATED_LENGTH_CENTIMETERS: Final[Incomplete]
-_DEPRECATED_LENGTH_METERS: Final[Incomplete]
-_DEPRECATED_LENGTH_KILOMETERS: Final[Incomplete]
-_DEPRECATED_LENGTH_INCHES: Final[Incomplete]
-_DEPRECATED_LENGTH_FEET: Final[Incomplete]
-_DEPRECATED_LENGTH_YARD: Final[Incomplete]
-_DEPRECATED_LENGTH_MILES: Final[Incomplete]
-
 class UnitOfFrequency(StrEnum):
     HERTZ = 'Hz'
     KILOHERTZ = 'kHz'
     MEGAHERTZ = 'MHz'
     GIGAHERTZ = 'GHz'
-
-_DEPRECATED_FREQUENCY_HERTZ: Final[Incomplete]
-_DEPRECATED_FREQUENCY_KILOHERTZ: Final[Incomplete]
-_DEPRECATED_FREQUENCY_MEGAHERTZ: Final[Incomplete]
-_DEPRECATED_FREQUENCY_GIGAHERTZ: Final[Incomplete]
 
 class UnitOfPressure(StrEnum):
     PA = 'Pa'
@@ -548,22 +479,9 @@ class UnitOfPressure(StrEnum):
     INHG = 'inHg'
     PSI = 'psi'
 
-_DEPRECATED_PRESSURE_PA: Final[Incomplete]
-_DEPRECATED_PRESSURE_HPA: Final[Incomplete]
-_DEPRECATED_PRESSURE_KPA: Final[Incomplete]
-_DEPRECATED_PRESSURE_BAR: Final[Incomplete]
-_DEPRECATED_PRESSURE_CBAR: Final[Incomplete]
-_DEPRECATED_PRESSURE_MBAR: Final[Incomplete]
-_DEPRECATED_PRESSURE_MMHG: Final[Incomplete]
-_DEPRECATED_PRESSURE_INHG: Final[Incomplete]
-_DEPRECATED_PRESSURE_PSI: Final[Incomplete]
-
 class UnitOfSoundPressure(StrEnum):
     DECIBEL = 'dB'
     WEIGHTED_DECIBEL_A = 'dBA'
-
-_DEPRECATED_SOUND_PRESSURE_DB: Final[Incomplete]
-_DEPRECATED_SOUND_PRESSURE_WEIGHTED_DBA: Final[Incomplete]
 
 class UnitOfVolume(StrEnum):
     CUBIC_FEET = 'ft³'
@@ -574,22 +492,12 @@ class UnitOfVolume(StrEnum):
     GALLONS = 'gal'
     FLUID_OUNCES = 'fl. oz.'
 
-_DEPRECATED_VOLUME_LITERS: Final[Incomplete]
-_DEPRECATED_VOLUME_MILLILITERS: Final[Incomplete]
-_DEPRECATED_VOLUME_CUBIC_METERS: Final[Incomplete]
-_DEPRECATED_VOLUME_CUBIC_FEET: Final[Incomplete]
-_DEPRECATED_VOLUME_GALLONS: Final[Incomplete]
-_DEPRECATED_VOLUME_FLUID_OUNCE: Final[Incomplete]
-
 class UnitOfVolumeFlowRate(StrEnum):
     CUBIC_METERS_PER_HOUR = 'm³/h'
     CUBIC_FEET_PER_MINUTE = 'ft³/min'
     LITERS_PER_MINUTE = 'L/min'
     GALLONS_PER_MINUTE = 'gal/min'
     MILLILITERS_PER_SECOND = 'mL/s'
-
-_DEPRECATED_VOLUME_FLOW_RATE_CUBIC_METERS_PER_HOUR: Final[Incomplete]
-_DEPRECATED_VOLUME_FLOW_RATE_CUBIC_FEET_PER_MINUTE: Final[Incomplete]
 
 class UnitOfArea(StrEnum):
     SQUARE_METERS = 'm²'
@@ -614,13 +522,6 @@ class UnitOfMass(StrEnum):
     POUNDS = 'lb'
     STONES = 'st'
 
-_DEPRECATED_MASS_GRAMS: Final[Incomplete]
-_DEPRECATED_MASS_KILOGRAMS: Final[Incomplete]
-_DEPRECATED_MASS_MILLIGRAMS: Final[Incomplete]
-_DEPRECATED_MASS_MICROGRAMS: Final[Incomplete]
-_DEPRECATED_MASS_OUNCES: Final[Incomplete]
-_DEPRECATED_MASS_POUNDS: Final[Incomplete]
-
 class UnitOfConductivity(StrEnum, deprecated={'SIEMENS': ('UnitOfConductivity.SIEMENS_PER_CM', '2025.11.0'), 'MICROSIEMENS': ('UnitOfConductivity.MICROSIEMENS_PER_CM', '2025.11.0'), 'MILLISIEMENS': ('UnitOfConductivity.MILLISIEMENS_PER_CM', '2025.11.0')}, metaclass=EnumWithDeprecatedMembers):
     SIEMENS_PER_CM = 'S/cm'
     MICROSIEMENS_PER_CM = 'µS/cm'
@@ -639,9 +540,6 @@ class UnitOfIrradiance(StrEnum):
     WATTS_PER_SQUARE_METER = 'W/m²'
     BTUS_PER_HOUR_SQUARE_FOOT = 'BTU/(h⋅ft²)'
 
-_DEPRECATED_IRRADIATION_WATTS_PER_SQUARE_METER: Final[Incomplete]
-_DEPRECATED_IRRADIATION_BTUS_PER_HOUR_SQUARE_FOOT: Final[Incomplete]
-
 class UnitOfVolumetricFlux(StrEnum):
     INCHES_PER_DAY = 'in/d'
     INCHES_PER_HOUR = 'in/h'
@@ -653,10 +551,6 @@ class UnitOfPrecipitationDepth(StrEnum):
     MILLIMETERS = 'mm'
     CENTIMETERS = 'cm'
 
-_DEPRECATED_PRECIPITATION_INCHES: Final[Incomplete]
-_DEPRECATED_PRECIPITATION_MILLIMETERS: Final[Incomplete]
-_DEPRECATED_PRECIPITATION_MILLIMETERS_PER_HOUR: Final[Incomplete]
-_DEPRECATED_PRECIPITATION_INCHES_PER_HOUR: Final[Incomplete]
 CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Final[str]
@@ -678,14 +572,6 @@ class UnitOfSpeed(StrEnum):
     MILES_PER_HOUR = 'mph'
     MILLIMETERS_PER_SECOND = 'mm/s'
 
-_DEPRECATED_SPEED_FEET_PER_SECOND: Final[Incomplete]
-_DEPRECATED_SPEED_METERS_PER_SECOND: Final[Incomplete]
-_DEPRECATED_SPEED_KILOMETERS_PER_HOUR: Final[Incomplete]
-_DEPRECATED_SPEED_KNOTS: Final[Incomplete]
-_DEPRECATED_SPEED_MILES_PER_HOUR: Final[Incomplete]
-_DEPRECATED_SPEED_MILLIMETERS_PER_DAY: Final[Incomplete]
-_DEPRECATED_SPEED_INCHES_PER_DAY: Final[Incomplete]
-_DEPRECATED_SPEED_INCHES_PER_HOUR: Final[Incomplete]
 SIGNAL_STRENGTH_DECIBELS: Final[str]
 SIGNAL_STRENGTH_DECIBELS_MILLIWATT: Final[str]
 
@@ -712,28 +598,6 @@ class UnitOfInformation(StrEnum):
     ZEBIBYTES = 'ZiB'
     YOBIBYTES = 'YiB'
 
-_DEPRECATED_DATA_BITS: Final[Incomplete]
-_DEPRECATED_DATA_KILOBITS: Final[Incomplete]
-_DEPRECATED_DATA_MEGABITS: Final[Incomplete]
-_DEPRECATED_DATA_GIGABITS: Final[Incomplete]
-_DEPRECATED_DATA_BYTES: Final[Incomplete]
-_DEPRECATED_DATA_KILOBYTES: Final[Incomplete]
-_DEPRECATED_DATA_MEGABYTES: Final[Incomplete]
-_DEPRECATED_DATA_GIGABYTES: Final[Incomplete]
-_DEPRECATED_DATA_TERABYTES: Final[Incomplete]
-_DEPRECATED_DATA_PETABYTES: Final[Incomplete]
-_DEPRECATED_DATA_EXABYTES: Final[Incomplete]
-_DEPRECATED_DATA_ZETTABYTES: Final[Incomplete]
-_DEPRECATED_DATA_YOTTABYTES: Final[Incomplete]
-_DEPRECATED_DATA_KIBIBYTES: Final[Incomplete]
-_DEPRECATED_DATA_MEBIBYTES: Final[Incomplete]
-_DEPRECATED_DATA_GIBIBYTES: Final[Incomplete]
-_DEPRECATED_DATA_TEBIBYTES: Final[Incomplete]
-_DEPRECATED_DATA_PEBIBYTES: Final[Incomplete]
-_DEPRECATED_DATA_EXBIBYTES: Final[Incomplete]
-_DEPRECATED_DATA_ZEBIBYTES: Final[Incomplete]
-_DEPRECATED_DATA_YOBIBYTES: Final[Incomplete]
-
 class UnitOfDataRate(StrEnum):
     BITS_PER_SECOND = 'bit/s'
     KILOBITS_PER_SECOND = 'kbit/s'
@@ -747,17 +611,6 @@ class UnitOfDataRate(StrEnum):
     MEBIBYTES_PER_SECOND = 'MiB/s'
     GIBIBYTES_PER_SECOND = 'GiB/s'
 
-_DEPRECATED_DATA_RATE_BITS_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_KILOBITS_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_MEGABITS_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_GIGABITS_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_BYTES_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_KILOBYTES_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_MEGABYTES_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_GIGABYTES_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_KIBIBYTES_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_MEBIBYTES_PER_SECOND: Final[Incomplete]
-_DEPRECATED_DATA_RATE_GIBIBYTES_PER_SECOND: Final[Incomplete]
 COMPRESSED_STATE_STATE: Final[str]
 COMPRESSED_STATE_ATTRIBUTES: Final[str]
 COMPRESSED_STATE_CONTEXT: Final[str]
@@ -851,8 +704,6 @@ class EntityCategory(StrEnum):
     CONFIG = 'config'
     DIAGNOSTIC = 'diagnostic'
 
-_DEPRECATED_ENTITY_CATEGORY_CONFIG: Final[Incomplete]
-_DEPRECATED_ENTITY_CATEGORY_DIAGNOSTIC: Final[Incomplete]
 ENTITY_CATEGORIES: Final[list[str]]
 CAST_APP_ID_HOMEASSISTANT_MEDIA: Final[str]
 CAST_APP_ID_HOMEASSISTANT_LOVELACE: Final[str]

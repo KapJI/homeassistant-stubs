@@ -21,7 +21,6 @@ class TPLinkClimateEntity(CoordinatedTPLinkEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_precision = PRECISION_TENTHS
-    _enable_turn_on_off_backwards_compatibility: bool
     _state_feature: Incomplete
     _mode_feature: Incomplete
     _temp_feature: Incomplete
@@ -38,5 +37,5 @@ class TPLinkClimateEntity(CoordinatedTPLinkEntity, ClimateEntity):
     _attr_target_temperature: Incomplete
     _attr_hvac_mode: Incomplete
     _attr_hvac_action: Incomplete
-    def _async_update_attrs(self) -> None: ...
+    def _async_update_attrs(self) -> bool: ...
     def _get_unique_id(self) -> str: ...

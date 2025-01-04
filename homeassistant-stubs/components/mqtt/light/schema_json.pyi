@@ -9,7 +9,7 @@ from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from .schema_basic import CONF_BRIGHTNESS_SCALE as CONF_BRIGHTNESS_SCALE, CONF_WHITE_SCALE as CONF_WHITE_SCALE, MQTT_LIGHT_ATTRIBUTES_BLOCKED as MQTT_LIGHT_ATTRIBUTES_BLOCKED
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_MODE as ATTR_COLOR_MODE, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, VALID_COLOR_MODES as VALID_COLOR_MODES, brightness_supported as brightness_supported, color_supported as color_supported, filter_supported_color_modes as filter_supported_color_modes, valid_supported_color_modes as valid_supported_color_modes
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_MODE as ATTR_COLOR_MODE, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DEFAULT_MAX_KELVIN as DEFAULT_MAX_KELVIN, DEFAULT_MIN_KELVIN as DEFAULT_MIN_KELVIN, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, VALID_COLOR_MODES as VALID_COLOR_MODES, brightness_supported as brightness_supported, color_supported as color_supported, filter_supported_color_modes as filter_supported_color_modes, valid_supported_color_modes as valid_supported_color_modes
 from homeassistant.const import CONF_BRIGHTNESS as CONF_BRIGHTNESS, CONF_COLOR_TEMP as CONF_COLOR_TEMP, CONF_EFFECT as CONF_EFFECT, CONF_HS as CONF_HS, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_RGB as CONF_RGB, CONF_XY as CONF_XY, STATE_ON as STATE_ON
 from homeassistant.core import async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
@@ -58,8 +58,8 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _deprecated_color_handling: bool
     @staticmethod
     def config_schema() -> VolSchemaType: ...
-    _attr_max_mireds: Incomplete
-    _attr_min_mireds: Incomplete
+    _attr_min_color_temp_kelvin: Incomplete
+    _attr_max_color_temp_kelvin: Incomplete
     _attr_effect_list: Incomplete
     _attr_assumed_state: Incomplete
     _attr_supported_features: Incomplete
@@ -67,7 +67,7 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _attr_color_mode: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_hs_color: Incomplete
-    _attr_color_temp: Incomplete
+    _attr_color_temp_kelvin: Incomplete
     _attr_rgb_color: Incomplete
     _attr_rgbw_color: Incomplete
     _attr_rgbww_color: Incomplete

@@ -20,7 +20,6 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class ModbusThermostat(BaseStructPlatform, RestoreEntity, ClimateEntity):
     _attr_supported_features: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _target_temperature_register: Incomplete
     _target_temperature_write_registers: Incomplete
     _unit: Incomplete

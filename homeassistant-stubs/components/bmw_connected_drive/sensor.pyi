@@ -10,6 +10,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
 @dataclass(frozen=True)

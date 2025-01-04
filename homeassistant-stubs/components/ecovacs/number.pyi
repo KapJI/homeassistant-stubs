@@ -21,7 +21,7 @@ ENTITY_DESCRIPTIONS: tuple[EcovacsNumberEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class EcovacsNumberEntity(EcovacsDescriptionEntity[CapabilitySet[EventT, int]], NumberEntity):
+class EcovacsNumberEntity(EcovacsDescriptionEntity[CapabilitySet[EventT, [int]]], NumberEntity):
     entity_description: EcovacsNumberEntityDescription
     _attr_native_value: Incomplete
     _attr_native_max_value: Incomplete

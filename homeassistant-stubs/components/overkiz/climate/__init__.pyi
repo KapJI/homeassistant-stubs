@@ -1,5 +1,4 @@
-from .. import HomeAssistantOverkizData as HomeAssistantOverkizData
-from ..const import DOMAIN as DOMAIN
+from .. import OverkizDataConfigEntry as OverkizDataConfigEntry
 from .atlantic_electrical_heater import AtlanticElectricalHeater as AtlanticElectricalHeater
 from .atlantic_electrical_heater_with_adjustable_temperature_setpoint import AtlanticElectricalHeaterWithAdjustableTemperatureSetpoint as AtlanticElectricalHeaterWithAdjustableTemperatureSetpoint
 from .atlantic_electrical_towel_dryer import AtlanticElectricalTowelDryer as AtlanticElectricalTowelDryer
@@ -10,12 +9,12 @@ from .atlantic_pass_apc_zone_control import AtlanticPassAPCZoneControl as Atlant
 from .atlantic_pass_apc_zone_control_zone import AtlanticPassAPCZoneControlZone as AtlanticPassAPCZoneControlZone
 from .hitachi_air_to_air_heat_pump_hlrrwifi import HitachiAirToAirHeatPumpHLRRWIFI as HitachiAirToAirHeatPumpHLRRWIFI
 from .hitachi_air_to_air_heat_pump_ovp import HitachiAirToAirHeatPumpOVP as HitachiAirToAirHeatPumpOVP
+from .hitachi_air_to_water_heating_zone import HitachiAirToWaterHeatingZone as HitachiAirToWaterHeatingZone
 from .somfy_heating_temperature_interface import SomfyHeatingTemperatureInterface as SomfyHeatingTemperatureInterface
 from .somfy_thermostat import SomfyThermostat as SomfyThermostat
 from .valve_heating_temperature_interface import ValveHeatingTemperatureInterface as ValveHeatingTemperatureInterface
 from _typeshed import Incomplete
 from enum import StrEnum
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
@@ -29,4 +28,4 @@ WIDGET_TO_CLIMATE_ENTITY: Incomplete
 WIDGET_AND_CONTROLLABLE_TO_CLIMATE_ENTITY: Incomplete
 WIDGET_AND_PROTOCOL_TO_CLIMATE_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

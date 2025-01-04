@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import deprecated_class as deprecated_class
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
@@ -36,9 +36,6 @@ class WaterHeaterEntityFeature(IntFlag):
     AWAY_MODE = 4
     ON_OFF = 8
 
-_DEPRECATED_SUPPORT_TARGET_TEMPERATURE: Incomplete
-_DEPRECATED_SUPPORT_OPERATION_MODE: Incomplete
-_DEPRECATED_SUPPORT_AWAY_MODE: Incomplete
 ATTR_MAX_TEMP: str
 ATTR_MIN_TEMP: str
 ATTR_AWAY_MODE: str
@@ -57,7 +54,11 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
-class WaterHeaterEntityEntityDescription(EntityDescription, frozen_or_thawed=True):
+class WaterHeaterEntityDescription(EntityDescription, frozen_or_thawed=True):
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+
+class WaterHeaterEntityEntityDescription(WaterHeaterEntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
     def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
@@ -65,7 +66,7 @@ CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
 class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
-    entity_description: WaterHeaterEntityEntityDescription
+    entity_description: WaterHeaterEntityDescription
     _attr_current_operation: str | None
     _attr_current_temperature: float | None
     _attr_is_away_mode_on: bool | None
@@ -114,12 +115,6 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def max_temp(self) -> float: ...
     @property
     def supported_features(self) -> WaterHeaterEntityFeature: ...
-    @property
-    def supported_features_compat(self) -> WaterHeaterEntityFeature: ...
 
 async def async_service_away_mode(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...
 async def async_service_temperature_set(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

@@ -26,4 +26,8 @@ class SwitchBotCloudRemoteSwitch(SwitchBotCloudSwitch):
 class SwitchBotCloudPlugSwitch(SwitchBotCloudSwitch):
     _attr_device_class: Incomplete
 
+class SwitchBotCloudRelaySwitchSwitch(SwitchBotCloudSwitch):
+    _attr_is_on: Incomplete
+    def _handle_coordinator_update(self) -> None: ...
+
 def _async_make_entity(api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator) -> SwitchBotCloudSwitch: ...

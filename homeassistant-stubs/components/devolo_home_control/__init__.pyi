@@ -1,4 +1,4 @@
-from .const import CONF_MYDEVOLO as CONF_MYDEVOLO, DEFAULT_MYDEVOLO as DEFAULT_MYDEVOLO, GATEWAY_SERIAL_PATTERN as GATEWAY_SERIAL_PATTERN, PLATFORMS as PLATFORMS
+from .const import GATEWAY_SERIAL_PATTERN as GATEWAY_SERIAL_PATTERN, PLATFORMS as PLATFORMS
 from devolo_home_control_api.homecontrol import HomeControl
 from devolo_home_control_api.mydevolo import Mydevolo
 from homeassistant.components import zeroconf as zeroconf

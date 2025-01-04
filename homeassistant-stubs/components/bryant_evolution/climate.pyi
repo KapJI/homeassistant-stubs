@@ -22,7 +22,6 @@ class BryantEvolutionClimate(ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_fan_modes: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _client: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

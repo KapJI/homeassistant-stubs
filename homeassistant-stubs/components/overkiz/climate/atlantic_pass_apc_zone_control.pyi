@@ -10,7 +10,6 @@ HVAC_MODE_TO_OVERKIZ: Incomplete
 class AtlanticPassAPCZoneControl(OverkizEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_hvac_modes: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property

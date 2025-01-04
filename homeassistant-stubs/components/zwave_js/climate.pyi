@@ -26,7 +26,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
     _attr_precision = PRECISION_TENTHS
-    _enable_turn_on_off_backwards_compatibility: bool
     _hvac_modes: Incomplete
     _hvac_presets: Incomplete
     _unit_value: Incomplete

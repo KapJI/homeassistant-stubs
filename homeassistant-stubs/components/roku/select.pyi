@@ -1,16 +1,16 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
+from . import RokuConfigEntry as RokuConfigEntry
 from .entity import RokuEntity as RokuEntity
 from .helpers import format_channel_name as format_channel_name, roku_exception_handler as roku_exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from rokuecp import Roku as Roku
 from rokuecp.models import Device as RokuDevice
+
+PARALLEL_UPDATES: int
 
 def _get_application_name(device: RokuDevice) -> str | None: ...
 def _get_applications(device: RokuDevice) -> list[str]: ...
@@ -29,7 +29,7 @@ class RokuSelectEntityDescription(SelectEntityDescription):
 ENTITIES: tuple[RokuSelectEntityDescription, ...]
 CHANNEL_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RokuSelectEntity(RokuEntity, SelectEntity):
     entity_description: RokuSelectEntityDescription

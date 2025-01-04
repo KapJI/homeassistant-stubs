@@ -13,7 +13,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ToloFan(ToloSaunaCoordinatorEntity, FanEntity):
     _attr_translation_key: str
     _attr_supported_features: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry) -> None: ...
     @property

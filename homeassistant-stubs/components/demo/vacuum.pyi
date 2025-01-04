@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.vacuum import ATTR_CLEANED_AREA as ATTR_CLEANED_AREA, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import ATTR_CLEANED_AREA as ATTR_CLEANED_AREA, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import event as event
@@ -25,13 +25,11 @@ class StateDemoVacuum(StateVacuumEntity):
     _attr_translation_key: str
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
-    _state: Incomplete
+    _attr_activity: Incomplete
     _fan_speed: Incomplete
     _cleaned_area: int
     _battery_level: int
     def __init__(self, name: str, supported_features: VacuumEntityFeature) -> None: ...
-    @property
-    def state(self) -> str: ...
     @property
     def battery_level(self) -> int: ...
     @property

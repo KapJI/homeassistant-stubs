@@ -4,14 +4,13 @@ from .entity import FluxOnOffEntity as FluxOnOffEntity
 from .util import _effect_brightness as _effect_brightness, _flux_color_mode_to_hass as _flux_color_mode_to_hass, _hass_color_modes as _hass_color_modes, _min_rgb_brightness as _min_rgb_brightness, _min_rgbw_brightness as _min_rgbw_brightness, _min_rgbwc_brightness as _min_rgbwc_brightness, _str_to_multi_color_effect as _str_to_multi_color_effect
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_WHITE as ATTR_WHITE, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_WHITE as ATTR_WHITE, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.const import CONF_EFFECT as CONF_EFFECT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from homeassistant.util.color import color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin
 from typing import Any, Final
 
 _LOGGER: Incomplete
@@ -34,8 +33,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
 class FluxLight(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], LightEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
-    _attr_min_mireds: Incomplete
-    _attr_max_mireds: Incomplete
+    _attr_min_color_temp_kelvin: Incomplete
+    _attr_max_color_temp_kelvin: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
     _custom_effect_colors: Incomplete
@@ -45,7 +44,7 @@ class FluxLight(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], Li
     @property
     def brightness(self) -> int: ...
     @property
-    def color_temp(self) -> int: ...
+    def color_temp_kelvin(self) -> int: ...
     @property
     def rgb_color(self) -> tuple[int, int, int]: ...
     @property

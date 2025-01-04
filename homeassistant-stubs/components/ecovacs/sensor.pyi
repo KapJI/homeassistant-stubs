@@ -1,7 +1,7 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .const import LEGACY_SUPPORTED_LIFESPANS as LEGACY_SUPPORTED_LIFESPANS, SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
 from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity, EcovacsLegacyEntity as EcovacsLegacyEntity, EventT as EventT
-from .util import get_supported_entitites as get_supported_entitites
+from .util import get_name_key as get_name_key, get_options as get_options, get_supported_entitites as get_supported_entitites
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

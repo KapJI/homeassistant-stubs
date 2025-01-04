@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODEL as MODEL
 from .coordinator import YaleDataUpdateCoordinator as YaleDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity

@@ -1,5 +1,5 @@
 from . import configure_mydevolo as configure_mydevolo
-from .const import CONF_MYDEVOLO as CONF_MYDEVOLO, DEFAULT_MYDEVOLO as DEFAULT_MYDEVOLO, DOMAIN as DOMAIN, SUPPORTED_MODEL_TYPES as SUPPORTED_MODEL_TYPES
+from .const import DOMAIN as DOMAIN, SUPPORTED_MODEL_TYPES as SUPPORTED_MODEL_TYPES
 from .exceptions import CredentialsInvalid as CredentialsInvalid, UuidChanged as UuidChanged
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -13,7 +13,6 @@ class DevoloHomeControlFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: ConfigEntry
     data_schema: Incomplete
-    _url: Incomplete
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...

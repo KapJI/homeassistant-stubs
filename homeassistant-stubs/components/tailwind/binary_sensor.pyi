@@ -1,5 +1,5 @@
+from .coordinator import TailwindConfigEntry as TailwindConfigEntry
 from .entity import TailwindDoorEntity as TailwindDoorEntity
-from .typing import TailwindConfigEntry as TailwindConfigEntry
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from gotailwind import TailwindDoor as TailwindDoor

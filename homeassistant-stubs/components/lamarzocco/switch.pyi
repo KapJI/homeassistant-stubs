@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pylamarzocco.lm_machine import LaMarzoccoMachine as LaMarzoccoMachine
+from pylamarzocco.devices.machine import LaMarzoccoMachine as LaMarzoccoMachine
 from pylamarzocco.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
 from typing import Any
 

@@ -11,13 +11,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pyenphase import EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
+from pyenphase import EnvoyACBPower as EnvoyACBPower, EnvoyBatteryAggregate as EnvoyBatteryAggregate, EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
 from pyenphase.models.meters import CtMeterStatus, CtState as CtState, CtStatusFlags as CtStatusFlags, CtType, EnvoyMeterData as EnvoyMeterData
 
 ICON: str
 _LOGGER: Incomplete
 INVERTERS_KEY: str
 LAST_REPORTED_KEY: str
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyInverterSensorEntityDescription(SensorEntityDescription):
@@ -91,6 +92,21 @@ class EnvoyEnchargeAggregateSensorEntityDescription(SensorEntityDescription):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 ENCHARGE_AGGREGATE_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyAcbBatterySensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[EnvoyACBPower], int | str]
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
+
+ACB_BATTERY_POWER_SENSORS: Incomplete
+ACB_BATTERY_ENERGY_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyAggregateBatterySensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[EnvoyBatteryAggregate], int]
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
+
+AGGREGATE_BATTERY_SENSORS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -200,3 +216,21 @@ class EnvoyEnpowerEntity(EnvoySensorBaseEntity):
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyEnpowerSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> datetime.datetime | int | float | None: ...
+
+class EnvoyAcbBatteryPowerEntity(EnvoySensorBaseEntity):
+    entity_description: EnvoyAcbBatterySensorEntityDescription
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyAcbBatterySensorEntityDescription) -> None: ...
+    @property
+    def native_value(self) -> int | str | None: ...
+
+class EnvoyAcbBatteryEnergyEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyAcbBatterySensorEntityDescription
+    @property
+    def native_value(self) -> int | str: ...
+
+class AggregateBatteryEntity(EnvoySystemSensorEntity):
+    entity_description: EnvoyAggregateBatterySensorEntityDescription
+    @property
+    def native_value(self) -> int: ...

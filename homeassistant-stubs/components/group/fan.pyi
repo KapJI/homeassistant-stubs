@@ -21,7 +21,6 @@ def async_create_preview_fan(hass: HomeAssistant, name: str, validated_config: d
 
 class FanGroup(GroupEntity, FanEntity):
     _attr_available: bool
-    _enable_turn_on_off_backwards_compatibility: bool
     _entity_ids: Incomplete
     _fans: Incomplete
     _percentage: Incomplete

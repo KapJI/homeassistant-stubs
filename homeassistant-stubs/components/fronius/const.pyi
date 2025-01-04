@@ -28,12 +28,12 @@ class InverterStatusCodeOption(StrEnum):
     IDLE = 'idle'
     READY = 'ready'
     SLEEPING = 'sleeping'
-    UNKNOWN = 'unknown'
-    INVALID = 'invalid'
 
 _INVERTER_STATUS_CODES: Final[dict[int, InverterStatusCodeOption]]
 
-def get_inverter_status_message(code: StateType) -> InverterStatusCodeOption: ...
+def get_inverter_status_message(code: StateType) -> InverterStatusCodeOption | None: ...
+
+INVERTER_ERROR_CODES: Final[dict[int, str]]
 
 class MeterLocationCodeOption(StrEnum):
     FEED_IN = 'feed_in'

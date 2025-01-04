@@ -3,11 +3,11 @@ from .const import DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, RADIO_DEVICE as RADIO
 from .hardware import BOARD_NAME as BOARD_NAME
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from homeassistant.components.hassio import HassioAPIError as HassioAPIError, async_get_yellow_settings as async_get_yellow_settings, async_reboot_host as async_reboot_host, async_set_yellow_settings as async_set_yellow_settings
+from homeassistant.components.hassio import HassioAPIError as HassioAPIError, async_get_yellow_settings as async_get_yellow_settings, async_set_yellow_settings as async_set_yellow_settings, get_supervisor_client as get_supervisor_client
 from homeassistant.components.homeassistant_hardware.firmware_config_flow import BaseFirmwareConfigFlow as BaseFirmwareConfigFlow, BaseFirmwareOptionsFlow as BaseFirmwareOptionsFlow
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import OptionsFlowHandler as MultiprotocolOptionsFlowHandler, SerialPortSettings as MultiprotocolSerialPortSettings
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_HARDWARE as SOURCE_HARDWARE
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers import discovery_flow as discovery_flow, selector as selector
 from typing import Any
 
@@ -26,6 +26,8 @@ class HomeAssistantYellowConfigFlow(BaseFirmwareConfigFlow, domain=DOMAIN):
 
 class BaseHomeAssistantYellowOptionsFlow(OptionsFlow, ABC, metaclass=abc.ABCMeta):
     _hw_settings: dict[str, bool] | None
+    _supervisor_client: Incomplete
+    def __init__(self, hass: HomeAssistant, *args: Any, **kwargs: Any) -> None: ...
     @abstractmethod
     async def async_step_main_menu(self, _: None = None) -> ConfigFlowResult: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -47,7 +49,7 @@ class HomeAssistantYellowMultiPanOptionsFlowHandler(BaseHomeAssistantYellowOptio
 class HomeAssistantYellowOptionsFlowHandler(BaseHomeAssistantYellowOptionsFlow, BaseFirmwareOptionsFlow):
     _hardware_name: Incomplete
     _device: Incomplete
-    def __init__(self, *args: Any, **kwargs: Any) -> None: ...
+    def __init__(self, hass: HomeAssistant, *args: Any, **kwargs: Any) -> None: ...
     async def async_step_main_menu(self, _: None = None) -> ConfigFlowResult: ...
     async def async_step_firmware_settings(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def _async_flow_finished(self) -> ConfigFlowResult: ...

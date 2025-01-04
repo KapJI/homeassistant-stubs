@@ -1,11 +1,9 @@
-from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
+from .types import NestConfigEntry as NestConfigEntry
 from _typeshed import Incomplete
 from google_nest_sdm.device import Device as Device
-from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from google_nest_sdm.thermostat_traits import ThermostatEcoTrait, ThermostatTemperatureSetpointTrait
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_OFF as FAN_OFF, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -27,7 +25,7 @@ MIN_TEMP: int
 MAX_TEMP: int
 MIN_TEMP_RANGE: float
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ThermostatEntity(ClimateEntity):
     _attr_min_temp = MIN_TEMP
@@ -35,7 +33,6 @@ class ThermostatEntity(ClimateEntity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _attr_name: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _device: Incomplete
     _device_info: Incomplete
     _attr_unique_id: Incomplete

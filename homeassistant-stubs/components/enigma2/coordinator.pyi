@@ -13,6 +13,7 @@ LOGGER: Incomplete
 
 class Enigma2UpdateCoordinator(DataUpdateCoordinator[OpenWebIfStatus]):
     device: OpenWebIfDevice
+    unique_id: str | None
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
     async def _async_setup(self) -> None: ...

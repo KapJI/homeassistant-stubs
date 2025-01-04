@@ -24,7 +24,6 @@ class AirzoneClimate(AirzoneZoneEntity, ClimateEntity):
     _attr_name: Incomplete
     _speeds: dict[int, str]
     _speeds_reverse: dict[str, int]
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: Incomplete

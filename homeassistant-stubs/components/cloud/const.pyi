@@ -9,6 +9,7 @@ from typing import Any
 DOMAIN: str
 DATA_CLOUD: HassKey[Cloud[CloudClient]]
 DATA_PLATFORMS_SETUP: HassKey[dict[str, asyncio.Event]]
+EVENT_CLOUD_EVENT: str
 REQUEST_TIMEOUT: int
 PREF_ENABLE_ALEXA: str
 PREF_ENABLE_GOOGLE: str
@@ -60,3 +61,4 @@ MODE_PROD: str
 DISPATCHER_REMOTE_UPDATE: SignalType[Any]
 STT_ENTITY_UNIQUE_ID: str
 TTS_ENTITY_UNIQUE_ID: str
+LOGIN_MFA_TIMEOUT: int

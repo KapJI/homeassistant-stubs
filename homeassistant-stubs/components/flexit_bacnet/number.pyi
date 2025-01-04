@@ -12,6 +12,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+_MAX_FAN_SETPOINT: int
+_MIN_FAN_SETPOINT: int
+
 @dataclass(kw_only=True, frozen=True)
 class FlexitNumberEntityDescription(NumberEntityDescription):
     native_value_fn: Callable[[FlexitBACnet], float]

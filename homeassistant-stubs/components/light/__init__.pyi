@@ -1,65 +1,40 @@
 import dataclasses
+from .const import COLOR_MODES_BRIGHTNESS as COLOR_MODES_BRIGHTNESS, COLOR_MODES_COLOR as COLOR_MODES_COLOR, ColorMode as ColorMode, DATA_COMPONENT as DATA_COMPONENT, DATA_PROFILES as DATA_PROFILES, DEFAULT_MAX_KELVIN as DEFAULT_MAX_KELVIN, DEFAULT_MIN_KELVIN as DEFAULT_MIN_KELVIN, DOMAIN as DOMAIN, LightEntityFeature as LightEntityFeature, SCAN_INTERVAL as SCAN_INTERVAL, VALID_COLOR_MODES as VALID_COLOR_MODES
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from enum import IntFlag, StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Self
+from typing import Any, Final, Self
 
-DOMAIN: str
-DATA_COMPONENT: HassKey[EntityComponent[LightEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
-SCAN_INTERVAL: Incomplete
-DATA_PROFILES: HassKey[Profiles]
-
-class LightEntityFeature(IntFlag):
-    EFFECT = 4
-    FLASH = 8
-    TRANSITION = 32
-
-SUPPORT_BRIGHTNESS: int
-SUPPORT_COLOR_TEMP: int
-SUPPORT_EFFECT: int
-SUPPORT_FLASH: int
-SUPPORT_COLOR: int
-SUPPORT_TRANSITION: int
+_DEPRECATED_SUPPORT_BRIGHTNESS: Final[Incomplete]
+_DEPRECATED_SUPPORT_COLOR_TEMP: Final[Incomplete]
+_DEPRECATED_SUPPORT_EFFECT: Final[Incomplete]
+_DEPRECATED_SUPPORT_FLASH: Final[Incomplete]
+_DEPRECATED_SUPPORT_COLOR: Final[Incomplete]
+_DEPRECATED_SUPPORT_TRANSITION: Final[Incomplete]
 ATTR_COLOR_MODE: str
 ATTR_SUPPORTED_COLOR_MODES: str
-
-class ColorMode(StrEnum):
-    UNKNOWN = 'unknown'
-    ONOFF = 'onoff'
-    BRIGHTNESS = 'brightness'
-    COLOR_TEMP = 'color_temp'
-    HS = 'hs'
-    XY = 'xy'
-    RGB = 'rgb'
-    RGBW = 'rgbw'
-    RGBWW = 'rgbww'
-    WHITE = 'white'
-
-COLOR_MODE_UNKNOWN: str
-COLOR_MODE_ONOFF: str
-COLOR_MODE_BRIGHTNESS: str
-COLOR_MODE_COLOR_TEMP: str
-COLOR_MODE_HS: str
-COLOR_MODE_XY: str
-COLOR_MODE_RGB: str
-COLOR_MODE_RGBW: str
-COLOR_MODE_RGBWW: str
-COLOR_MODE_WHITE: str
-VALID_COLOR_MODES: Incomplete
-COLOR_MODES_BRIGHTNESS: Incomplete
-COLOR_MODES_COLOR: Incomplete
+_DEPRECATED_COLOR_MODE_UNKNOWN: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_ONOFF: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_BRIGHTNESS: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_COLOR_TEMP: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_HS: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_XY: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_RGB: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_RGBW: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_RGBWW: Final[Incomplete]
+_DEPRECATED_COLOR_MODE_WHITE: Final[Incomplete]
 
 def filter_supported_color_modes(color_modes: Iterable[ColorMode]) -> set[ColorMode]: ...
 def valid_supported_color_modes(color_modes: Iterable[ColorMode | str]) -> set[ColorMode | str]: ...
@@ -74,15 +49,15 @@ ATTR_RGBW_COLOR: str
 ATTR_RGBWW_COLOR: str
 ATTR_XY_COLOR: str
 ATTR_HS_COLOR: str
-ATTR_COLOR_TEMP: str
-ATTR_KELVIN: str
-ATTR_MIN_MIREDS: str
-ATTR_MAX_MIREDS: str
 ATTR_COLOR_TEMP_KELVIN: str
 ATTR_MIN_COLOR_TEMP_KELVIN: str
 ATTR_MAX_COLOR_TEMP_KELVIN: str
 ATTR_COLOR_NAME: str
 ATTR_WHITE: str
+_DEPRECATED_ATTR_COLOR_TEMP: Final[Incomplete]
+_DEPRECATED_ATTR_KELVIN: Final[Incomplete]
+_DEPRECATED_ATTR_MIN_MIREDS: Final[Incomplete]
+_DEPRECATED_ATTR_MAX_MIREDS: Final[Incomplete]
 ATTR_BRIGHTNESS: str
 ATTR_BRIGHTNESS_PCT: str
 ATTR_BRIGHTNESS_STEP: str
@@ -152,21 +127,21 @@ class LightEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: LightEntityDescription
     _attr_brightness: int | None
     _attr_color_mode: ColorMode | str | None
-    _attr_color_temp: int | None
     _attr_color_temp_kelvin: int | None
     _attr_effect_list: list[str] | None
     _attr_effect: str | None
     _attr_hs_color: tuple[float, float] | None
     _attr_max_color_temp_kelvin: int | None
     _attr_min_color_temp_kelvin: int | None
-    _attr_max_mireds: int
-    _attr_min_mireds: int
     _attr_rgb_color: tuple[int, int, int] | None
     _attr_rgbw_color: tuple[int, int, int, int] | None
     _attr_rgbww_color: tuple[int, int, int, int, int] | None
     _attr_supported_color_modes: set[ColorMode] | set[str] | None
     _attr_supported_features: LightEntityFeature
     _attr_xy_color: tuple[float, float] | None
+    _attr_color_temp: Final[int | None]
+    _attr_max_mireds: Final[int]
+    _attr_min_mireds: Final[int]
     __color_mode_reported: bool
     def brightness(self) -> int | None: ...
     def color_mode(self) -> ColorMode | str | None: ...
@@ -201,7 +176,8 @@ class LightEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def _light_internal_supported_color_modes(self) -> set[ColorMode] | set[str]: ...
     def supported_color_modes(self) -> set[ColorMode] | set[str] | None: ...
     def supported_features(self) -> LightEntityFeature: ...
-    _deprecated_supported_features_reported: bool
-    @property
-    def supported_features_compat(self) -> LightEntityFeature: ...
     def __should_report_light_issue(self) -> bool: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

@@ -1,4 +1,4 @@
-from . import BMWConfigEntry as BMWConfigEntry, DOMAIN as DOMAIN
+from . import BMWConfigEntry as BMWConfigEntry
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
@@ -8,6 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, S
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
+PARALLEL_UPDATES: int
 ATTR_LOCATION_ATTRIBUTES: Incomplete
 POI_SCHEMA: Incomplete
 _LOGGER: Incomplete

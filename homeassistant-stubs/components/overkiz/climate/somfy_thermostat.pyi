@@ -22,7 +22,6 @@ class SomfyThermostat(OverkizEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
     _attr_translation_key = DOMAIN
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_min_temp: float
     _attr_max_temp: float
     temperature_device: Incomplete

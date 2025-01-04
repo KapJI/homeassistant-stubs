@@ -37,8 +37,6 @@ class EsphomeLight(EsphomeEntity[LightInfo, LightState], LightEntity):
     _attr_supported_features: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
-    _attr_min_mireds: Incomplete
-    _attr_max_mireds: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...

@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, _DEPRECATED_STATE_JAMMED as _DEPRECATED_STATE_JAMMED, _DEPRECATED_STATE_LOCKED as _DEPRECATED_STATE_LOCKED, _DEPRECATED_STATE_LOCKING as _DEPRECATED_STATE_LOCKING, _DEPRECATED_STATE_UNLOCKED as _DEPRECATED_STATE_UNLOCKED, _DEPRECATED_STATE_UNLOCKING as _DEPRECATED_STATE_UNLOCKING
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
@@ -27,7 +27,6 @@ LOCK_SERVICE_SCHEMA: Incomplete
 class LockEntityFeature(IntFlag):
     OPEN = 1
 
-_DEPRECATED_SUPPORT_OPEN: Incomplete
 PROP_TO_ATTR: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

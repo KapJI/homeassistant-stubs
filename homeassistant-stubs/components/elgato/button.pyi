@@ -1,5 +1,4 @@
-from . import ElgatorConfigEntry as ElgatorConfigEntry
-from .coordinator import ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
+from .coordinator import ElgatoConfigEntry as ElgatoConfigEntry, ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
 from .entity import ElgatoEntity as ElgatoEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
@@ -12,6 +11,8 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class ElgatoButtonEntityDescription(ButtonEntityDescription):
     press_fn: Callable[[Elgato], Awaitable[Any]]
@@ -19,7 +20,7 @@ class ElgatoButtonEntityDescription(ButtonEntityDescription):
 
 BUTTONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ElgatorConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ElgatoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElgatoButtonEntity(ElgatoEntity, ButtonEntity):
     entity_description: ElgatoButtonEntityDescription

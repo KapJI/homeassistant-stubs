@@ -10,15 +10,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from tesla_powerwall import MeterResponse, MeterType as MeterType
-from typing import Generic, TypeVar
 
 _METER_DIRECTION_EXPORT: str
 _METER_DIRECTION_IMPORT: str
-_ValueParamT = TypeVar('_ValueParamT')
-_ValueT = TypeVar('_ValueT', bound=float | int | str | None)
+type _ValueType = float | int | str | None
 
 @dataclass(frozen=True, kw_only=True)
-class PowerwallSensorEntityDescription(SensorEntityDescription, Generic[_ValueParamT, _ValueT]):
+class PowerwallSensorEntityDescription[_ValueParamT, _ValueT: _ValueType](SensorEntityDescription):
     value_fn: Callable[[_ValueParamT], _ValueT]
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
@@ -88,7 +86,7 @@ class PowerWallImportSensor(PowerWallEnergyDirectionSensor):
     @property
     def native_value(self) -> float | None: ...
 
-class PowerWallBatterySensor(BatteryEntity, SensorEntity, Generic[_ValueT]):
+class PowerWallBatterySensor[_ValueT: _ValueType](BatteryEntity, SensorEntity):
     entity_description: PowerwallSensorEntityDescription[BatteryResponse, _ValueT]
     _attr_translation_key: Incomplete
     _attr_unique_id: Incomplete

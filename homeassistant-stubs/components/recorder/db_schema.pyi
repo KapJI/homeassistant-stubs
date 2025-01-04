@@ -13,7 +13,7 @@ from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.interfaces import Dialect as Dialect
 from sqlalchemy.orm import DeclarativeBase, Mapped as Mapped
 from sqlalchemy.types import TypeDecorator as TypeDecorator
-from typing import Any, Self
+from typing import Any, Final, Self
 
 class Base(DeclarativeBase): ...
 class LegacyBase(DeclarativeBase): ...
@@ -44,7 +44,8 @@ METADATA_ID_LAST_UPDATED_INDEX_TS: str
 EVENTS_CONTEXT_ID_BIN_INDEX: str
 STATES_CONTEXT_ID_BIN_INDEX: str
 LEGACY_STATES_EVENT_ID_INDEX: str
-LEGACY_STATES_ENTITY_ID_LAST_UPDATED_INDEX: str
+LEGACY_STATES_ENTITY_ID_LAST_UPDATED_TS_INDEX: str
+LEGACY_MAX_LENGTH_EVENT_CONTEXT_ID: Final[int]
 CONTEXT_ID_BIN_MAX_LENGTH: int
 MYSQL_COLLATE: str
 MYSQL_DEFAULT_CHARSET: str
@@ -110,6 +111,12 @@ class Events(Base):
     def from_event(event: Event) -> Events: ...
     def to_native(self, validate_entity_id: bool = True) -> Event | None: ...
 
+class LegacyEvents(LegacyBase):
+    __table_args__: Incomplete
+    __tablename__ = TABLE_EVENTS
+    event_id: Mapped[int]
+    context_id: Mapped[str | None]
+
 class EventData(Base):
     __table_args__: Incomplete
     __tablename__ = TABLE_EVENT_DATA
@@ -163,6 +170,14 @@ class States(Base):
     def from_event(event: Event[EventStateChangedData]) -> States: ...
     def to_native(self, validate_entity_id: bool = True) -> State | None: ...
 
+class LegacyStates(LegacyBase):
+    __table_args__: Incomplete
+    __tablename__ = TABLE_STATES
+    state_id: Mapped[int]
+    entity_id: Mapped[str | None]
+    last_updated_ts: Mapped[float | None]
+    context_id: Mapped[str | None]
+
 class StateAttributes(Base):
     __table_args__: Incomplete
     __tablename__ = TABLE_STATE_ATTRIBUTES
@@ -199,9 +214,9 @@ class StatisticsBase:
     sum: Mapped[float | None]
     duration: timedelta
     @classmethod
-    def from_stats(cls, metadata_id: int, stats: StatisticData) -> Self: ...
+    def from_stats(cls, metadata_id: int, stats: StatisticData, now_timestamp: float | None = None) -> Self: ...
     @classmethod
-    def from_stats_ts(cls, metadata_id: int, stats: StatisticDataTimestamp) -> Self: ...
+    def from_stats_ts(cls, metadata_id: int, stats: StatisticDataTimestamp, now_timestamp: float | None = None) -> Self: ...
 
 class Statistics(Base, StatisticsBase):
     duration: Incomplete

@@ -2,9 +2,9 @@ from .const import ACTION as ACTION, ALERTS as ALERTS, ERRORS as ERRORS, MODE as
 from .entity import NeatoEntity as NeatoEntity
 from .hub import NeatoHub as NeatoHub
 from _typeshed import Incomplete
-from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_MODE as ATTR_MODE, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED
+from homeassistant.const import ATTR_MODE as ATTR_MODE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -54,7 +54,7 @@ class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
     _robot_boundaries: Incomplete
     _robot_stats: Incomplete
     def __init__(self, neato: NeatoHub, robot: Robot, mapdata: dict[str, Any] | None, persistent_maps: dict[str, Any] | None) -> None: ...
-    _attr_state: Incomplete
+    _attr_activity: Incomplete
     _attr_battery_level: Incomplete
     def update(self) -> None: ...
     @property

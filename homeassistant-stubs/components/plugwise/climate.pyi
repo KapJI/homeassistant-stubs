@@ -7,20 +7,19 @@ from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
-    _enable_turn_on_off_backwards_compatibility: bool
     _previous_mode: str
-    _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     _devices: Incomplete
     _gateway: Incomplete

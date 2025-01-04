@@ -2,11 +2,24 @@ from .const import ATTR_SETTINGS as ATTR_SETTINGS, CONF_EXTRA_PART_WAIT_TIME as 
 from .core import Orientation as Orientation, StreamOutput, StreamSettings
 from _typeshed import Incomplete
 from collections.abc import Callable, Mapping
+from enum import IntEnum
 from homeassistant.components.camera import DynamicStreamSettings
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import HomeAssistantError
 from typing import Any
 
 __all__ = ['ATTR_SETTINGS', 'CONF_EXTRA_PART_WAIT_TIME', 'CONF_RTSP_TRANSPORT', 'CONF_USE_WALLCLOCK_AS_TIMESTAMPS', 'DOMAIN', 'FORMAT_CONTENT_TYPE', 'HLS_PROVIDER', 'OUTPUT_FORMATS', 'RTSP_TRANSPORTS', 'SOURCE_TIMEOUT', 'Stream', 'create_stream', 'Orientation']
+
+class StreamClientError(IntEnum):
+    BadRequest = 400
+    Unauthorized = 401
+    Forbidden = 403
+    NotFound = 404
+    Other = 4
+
+class StreamOpenClientError(HomeAssistantError):
+    stream_client_error: Incomplete
+    def __init__(self, *args: Any, stream_client_error: StreamClientError, **kwargs: Any) -> None: ...
 
 def create_stream(hass: HomeAssistant, stream_source: str, options: Mapping[str, str | bool | float], dynamic_stream_settings: DynamicStreamSettings, stream_label: str | None = None) -> Stream: ...
 

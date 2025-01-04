@@ -11,7 +11,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class FanSwitch(BaseToggleEntity, FanEntity):
     _attr_supported_features: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def is_on(self) -> bool | None: ...
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...

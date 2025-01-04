@@ -1,10 +1,10 @@
+from . import CambridgeAudioConfigEntry as CambridgeAudioConfigEntry, media_browser as media_browser
 from .const import CAMBRIDGE_MEDIA_TYPE_AIRABLE as CAMBRIDGE_MEDIA_TYPE_AIRABLE, CAMBRIDGE_MEDIA_TYPE_INTERNET_RADIO as CAMBRIDGE_MEDIA_TYPE_INTERNET_RADIO, CAMBRIDGE_MEDIA_TYPE_PRESET as CAMBRIDGE_MEDIA_TYPE_PRESET, DOMAIN as DOMAIN
 from .entity import CambridgeAudioEntity as CambridgeAudioEntity, command as command
 from _typeshed import Incomplete
 from aiostreammagic import StreamMagicClient as StreamMagicClient, TransportControl
 from datetime import datetime
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,7 +15,7 @@ PREAMP_FEATURES: Incomplete
 TRANSPORT_FEATURES: dict[TransportControl, MediaPlayerEntityFeature]
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CambridgeAudioDevice(CambridgeAudioEntity, MediaPlayerEntity):
     _attr_name: Incomplete
@@ -70,3 +70,4 @@ class CambridgeAudioDevice(CambridgeAudioEntity, MediaPlayerEntity):
     async def async_set_shuffle(self, shuffle: bool) -> None: ...
     async def async_set_repeat(self, repeat: RepeatMode) -> None: ...
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
+    async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...

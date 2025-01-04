@@ -1,5 +1,5 @@
-from . import TwenteMilieuConfigEntry as TwenteMilieuConfigEntry
 from .const import WASTE_TYPE_TO_DESCRIPTION as WASTE_TYPE_TO_DESCRIPTION
+from .coordinator import TwenteMilieuConfigEntry as TwenteMilieuConfigEntry
 from .entity import TwenteMilieuEntity as TwenteMilieuEntity
 from _typeshed import Incomplete
 from datetime import datetime

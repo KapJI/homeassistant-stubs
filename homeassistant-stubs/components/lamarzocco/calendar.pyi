@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pylamarzocco.models import LaMarzoccoWakeUpSleepEntry as LaMarzoccoWakeUpSleepEntry
 
+PARALLEL_UPDATES: int
 CALENDAR_KEY: str
 DAY_OF_WEEK: Incomplete
 

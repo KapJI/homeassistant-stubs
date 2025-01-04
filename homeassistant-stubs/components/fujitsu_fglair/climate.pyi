@@ -26,7 +26,6 @@ class FGLairDevice(CoordinatorEntity[FGLairCoordinator], ClimateEntity):
     _attr_target_temperature_step: float
     _attr_has_entity_name: bool
     _attr_name: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_supported_features: Incomplete

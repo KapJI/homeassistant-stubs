@@ -84,6 +84,12 @@ class ServiceNotFound(ServiceValidationError):
     generate_message: bool
     def __init__(self, domain: str, service: str) -> None: ...
 
+class ServiceNotSupported(ServiceValidationError):
+    domain: Incomplete
+    service: Incomplete
+    generate_message: bool
+    def __init__(self, domain: str, service: str, entity_id: str) -> None: ...
+
 class MaxLengthExceeded(HomeAssistantError):
     value: Incomplete
     property_name: Incomplete

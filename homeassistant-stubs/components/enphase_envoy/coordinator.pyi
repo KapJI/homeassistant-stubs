@@ -1,5 +1,5 @@
 import datetime
-from .const import INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS
+from .const import DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
@@ -20,8 +20,8 @@ type EnphaseConfigEntry = ConfigEntry[EnphaseUpdateCoordinator]
 class EnphaseUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     envoy_serial_number: str
     envoy_firmware: str
+    config_entry: EnphaseConfigEntry
     envoy: Incomplete
-    entry: Incomplete
     username: Incomplete
     password: Incomplete
     _setup_complete: bool

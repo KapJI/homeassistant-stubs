@@ -1,10 +1,10 @@
+from . import CambridgeAudioConfigEntry as CambridgeAudioConfigEntry
 from .entity import CambridgeAudioEntity as CambridgeAudioEntity, command as command
 from _typeshed import Incomplete
 from aiostreammagic import StreamMagicClient as StreamMagicClient
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -24,7 +24,7 @@ def _audio_output_value_fn(client: StreamMagicClient) -> str | None: ...
 
 CONTROL_ENTITIES: tuple[CambridgeAudioSelectEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CambridgeAudioSelect(CambridgeAudioEntity, SelectEntity):
     entity_description: CambridgeAudioSelectEntityDescription

@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.components.media_player import MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
 from mozart_api.models import Source, SourceArray
@@ -65,3 +66,5 @@ VALID_MEDIA_TYPES: Final[tuple]
 FALLBACK_SOURCES: Final[SourceArray]
 BANG_OLUFSEN_WEBSOCKET_EVENT: Final[str]
 CONNECTION_STATUS: Final[str]
+BEOLINK_JOIN_SOURCES_TO_UPPER: Incomplete
+BEOLINK_JOIN_SOURCES: Incomplete

@@ -2,12 +2,12 @@ from . import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN, EXECUTION_TIME_DELAY as EXECUTION_TIME_DELAY
 from _typeshed import Incomplete
 from aioautomower.model import MowerAttributes as MowerAttributes, WorkArea as WorkArea
-from collections.abc import Awaitable, Callable as Callable, Coroutine
+from collections.abc import Callable, Coroutine
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, Concatenate
 
 _LOGGER: Incomplete
 ERROR_ACTIVITIES: Incomplete
@@ -15,7 +15,8 @@ ERROR_STATES: Incomplete
 
 def _check_error_free(mower_attributes: MowerAttributes) -> bool: ...
 def _work_area_translation_key(work_area_id: int, key: str) -> str: ...
-def handle_sending_exception(poll_after_sending: bool = False) -> Callable[[Callable[..., Awaitable[Any]]], Callable[..., Coroutine[Any, Any, None]]]: ...
+type _FuncType[_T, **_P, _R] = Callable[Concatenate[_T, _P], Coroutine[Any, Any, _R]]
+def handle_sending_exception[_Entity: AutomowerBaseEntity, **_P](poll_after_sending: bool = False) -> Callable[[_FuncType[_Entity, _P, Any]], _FuncType[_Entity, _P, None]]: ...
 
 class AutomowerBaseEntity(CoordinatorEntity[AutomowerDataUpdateCoordinator]):
     _attr_has_entity_name: bool

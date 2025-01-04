@@ -8,6 +8,8 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class TedeeSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[TedeeLock], float | None]

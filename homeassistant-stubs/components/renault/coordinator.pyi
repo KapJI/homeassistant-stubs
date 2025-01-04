@@ -7,10 +7,11 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from renault_api.kamereon.models import KamereonVehicleDataAttributes
 from typing import TypeVar
 
-T = TypeVar('T', bound=KamereonVehicleDataAttributes | None)
+T = TypeVar('T', bound=KamereonVehicleDataAttributes)
 _PARALLEL_SEMAPHORE: Incomplete
 
 class RenaultDataUpdateCoordinator(DataUpdateCoordinator[T]):
+    update_method: Callable[[], Awaitable[T]]
     access_denied: bool
     not_supported: bool
     _has_already_worked: bool

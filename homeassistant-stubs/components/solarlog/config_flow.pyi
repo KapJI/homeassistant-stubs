@@ -1,12 +1,9 @@
-from .const import CONF_HAS_PWD as CONF_HAS_PWD, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import CONF_HAS_PWD as CONF_HAS_PWD, DEFAULT_HOST as DEFAULT_HOST, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD
-from homeassistant.util import slugify as slugify
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD
 from typing import Any
-
-_LOGGER: Incomplete
 
 class SolarLogConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

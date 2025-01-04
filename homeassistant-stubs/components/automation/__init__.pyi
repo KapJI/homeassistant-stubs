@@ -13,7 +13,6 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as A
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError
 from homeassistant.helpers import condition as condition
-from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
@@ -22,7 +21,7 @@ from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_
 from homeassistant.helpers.script_variables import ScriptVariables as ScriptVariables
 from homeassistant.helpers.service import ReloadServiceHelper as ReloadServiceHelper, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.trace import TraceElement as TraceElement, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_get as trace_get, trace_path as trace_path
-from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerData as TriggerData, TriggerInfo as TriggerInfo, async_initialize_triggers as async_initialize_triggers
+from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
@@ -44,10 +43,6 @@ SERVICE_TRIGGER: str
 class IfAction(Protocol):
     config: list[ConfigType]
     def __call__(self, variables: Mapping[str, Any] | None = None) -> bool: ...
-
-_DEPRECATED_AutomationActionType: Incomplete
-_DEPRECATED_AutomationTriggerData: Incomplete
-_DEPRECATED_AutomationTriggerInfo: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 def _automations_with_x(hass: HomeAssistant, referenced_id: str, property_name: str) -> list[str]: ...
@@ -169,7 +164,3 @@ async def _async_process_if(hass: HomeAssistant, name: str, config: dict[str, An
 def _trigger_extract_devices(trigger_conf: dict) -> list[str]: ...
 def _trigger_extract_entities(trigger_conf: dict) -> list[str]: ...
 def websocket_config(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

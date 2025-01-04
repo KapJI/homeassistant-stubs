@@ -2,16 +2,13 @@ from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .entity import SwitcherEntity as SwitcherEntity
 from _typeshed import Incomplete
-from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
-_LOGGER: Incomplete
 API_SET_LIGHT: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -24,7 +21,6 @@ class SwitcherBaseLightEntity(SwitcherEntity, LightEntity):
     def _handle_coordinator_update(self) -> None: ...
     @property
     def is_on(self) -> bool: ...
-    async def _async_call_api(self, api: str, *args: Any) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 

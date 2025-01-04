@@ -82,7 +82,6 @@ class MqttFan(MqttEntity, FanEntity):
     _optimistic_preset_mode: bool
     _payload: dict[str, Any]
     _speed_range: tuple[int, int]
-    _enable_turn_on_off_backwards_compatibility: bool
     @staticmethod
     def config_schema() -> VolSchemaType: ...
     _attr_preset_modes: Incomplete

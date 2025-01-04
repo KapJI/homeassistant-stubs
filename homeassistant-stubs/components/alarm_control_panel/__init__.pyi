@@ -1,12 +1,11 @@
 import asyncio
-from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat, DOMAIN as DOMAIN, _DEPRECATED_FORMAT_NUMBER as _DEPRECATED_FORMAT_NUMBER, _DEPRECATED_FORMAT_TEXT as _DEPRECATED_FORMAT_TEXT, _DEPRECATED_SUPPORT_ALARM_ARM_AWAY as _DEPRECATED_SUPPORT_ALARM_ARM_AWAY, _DEPRECATED_SUPPORT_ALARM_ARM_CUSTOM_BYPASS as _DEPRECATED_SUPPORT_ALARM_ARM_CUSTOM_BYPASS, _DEPRECATED_SUPPORT_ALARM_ARM_HOME as _DEPRECATED_SUPPORT_ALARM_ARM_HOME, _DEPRECATED_SUPPORT_ALARM_ARM_NIGHT as _DEPRECATED_SUPPORT_ALARM_ARM_NIGHT, _DEPRECATED_SUPPORT_ALARM_ARM_VACATION as _DEPRECATED_SUPPORT_ALARM_ARM_VACATION, _DEPRECATED_SUPPORT_ALARM_TRIGGER as _DEPRECATED_SUPPORT_ALARM_TRIGGER
+from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_ALARM_ARM_AWAY as SERVICE_ALARM_ARM_AWAY, SERVICE_ALARM_ARM_CUSTOM_BYPASS as SERVICE_ALARM_ARM_CUSTOM_BYPASS, SERVICE_ALARM_ARM_HOME as SERVICE_ALARM_ARM_HOME, SERVICE_ALARM_ARM_NIGHT as SERVICE_ALARM_ARM_NIGHT, SERVICE_ALARM_ARM_VACATION as SERVICE_ALARM_ARM_VACATION, SERVICE_ALARM_DISARM as SERVICE_ALARM_DISARM, SERVICE_ALARM_TRIGGER as SERVICE_ALARM_TRIGGER
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.config_validation import make_entity_service_schema as make_entity_service_schema
-from homeassistant.helpers.deprecation import all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
@@ -81,7 +80,3 @@ class AlarmControlPanelEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_A
     async def async_internal_added_to_hass(self) -> None: ...
     def async_registry_entry_updated(self) -> None: ...
     def _async_read_entity_options(self) -> None: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

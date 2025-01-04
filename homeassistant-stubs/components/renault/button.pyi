@@ -7,6 +7,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class RenaultButtonEntityDescription(ButtonEntityDescription):
     async_press: Callable[[RenaultButtonEntity], Coroutine[Any, Any, Any]]

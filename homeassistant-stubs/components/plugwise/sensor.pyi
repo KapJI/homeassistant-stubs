@@ -9,6 +9,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from plugwise.constants import SensorType as SensorType
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True)
 class PlugwiseSensorEntityDescription(SensorEntityDescription):
     key: SensorType

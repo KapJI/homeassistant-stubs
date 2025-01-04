@@ -14,6 +14,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 ATTR_WORK_AREA_ID_ASSIGNMENT: str
 ERROR_KEY_LIST: Incomplete
 ERROR_STATES: Incomplete

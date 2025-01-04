@@ -1,6 +1,6 @@
 from . import BluesoundConfigEntry as BluesoundConfigEntry
 from .const import ATTR_BLUESOUND_GROUP as ATTR_BLUESOUND_GROUP, ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN, INTEGRATION_TITLE as INTEGRATION_TITLE
-from .utils import format_unique_id as format_unique_id
+from .utils import dispatcher_join_signal as dispatcher_join_signal, dispatcher_unjoin_signal as dispatcher_unjoin_signal, format_unique_id as format_unique_id
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components import media_source as media_source
@@ -10,7 +10,9 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_HOSTS as CONF_HOSTS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResultType as FlowResultType
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from pyblu import Input as Input, Player as Player, Preset as Preset, Status as Status, SyncStatus as SyncStatus
@@ -20,6 +22,10 @@ _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 DATA_BLUESOUND = DOMAIN
 DEFAULT_PORT: int
+SERVICE_CLEAR_TIMER: str
+SERVICE_JOIN: str
+SERVICE_SET_TIMER: str
+SERVICE_UNJOIN: str
 NODE_OFFLINE_CHECK_TIMEOUT: int
 NODE_RETRY_INITIATION: Incomplete
 SYNC_STATUS_INTERVAL: Incomplete
@@ -44,13 +50,12 @@ class BluesoundPlayer(MediaPlayerEntity):
     _status: Incomplete
     _inputs: Incomplete
     _presets: Incomplete
-    _muted: bool
-    _master: Incomplete
-    _is_master: bool
     _group_name: Incomplete
     _group_list: Incomplete
     _bluesound_device_name: Incomplete
     _player: Incomplete
+    _is_leader: bool
+    _leader: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, host: str, port: int, player: Player, sync_status: SyncStatus) -> None: ...
@@ -97,18 +102,18 @@ class BluesoundPlayer(MediaPlayerEntity):
     @property
     def supported_features(self) -> MediaPlayerEntityFeature: ...
     @property
-    def is_master(self) -> bool: ...
+    def is_leader(self) -> bool: ...
     @property
     def is_grouped(self) -> bool: ...
     @property
     def shuffle(self) -> bool: ...
     async def async_join(self, master: str) -> None: ...
+    async def async_unjoin(self) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     def rebuild_bluesound_group(self) -> list[str]: ...
-    async def async_unjoin(self) -> None: ...
-    async def async_add_slave(self, slave_device: BluesoundPlayer) -> None: ...
-    async def async_remove_slave(self, slave_device: BluesoundPlayer) -> None: ...
+    async def async_add_follower(self, host: str, port: int) -> None: ...
+    async def async_remove_follower(self, host: str, port: int) -> None: ...
     async def async_increase_timer(self) -> int: ...
     async def async_clear_timer(self) -> None: ...
     async def async_set_shuffle(self, shuffle: bool) -> None: ...

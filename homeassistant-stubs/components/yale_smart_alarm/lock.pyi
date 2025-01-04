@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockState as LockState
 from homeassistant.const import ATTR_CODE as ATTR_CODE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 from yalesmartalarmclient import YaleLock as YaleLock, YaleLockState

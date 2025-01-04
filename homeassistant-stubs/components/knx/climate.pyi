@@ -23,7 +23,6 @@ class KNXClimate(KnxYamlEntity, ClimateEntity):
     _device: XknxClimate
     _attr_temperature_unit: Incomplete
     _attr_translation_key: str
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_entity_category: Incomplete
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete

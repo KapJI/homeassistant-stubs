@@ -10,22 +10,24 @@ from homeassistant.components.sensor import EntityCategory as EntityCategory, Se
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util import slugify as slugify
-from pynordpool import DeliveryPeriodData as DeliveryPeriodData
 
 PARALLEL_UPDATES: int
 
-def get_prices(data: DeliveryPeriodData) -> dict[str, tuple[float | None, float, float | None]]: ...
-def get_blockprices(data: DeliveryPeriodData) -> dict[str, dict[str, tuple[datetime, datetime, float, float, float]]]: ...
+def validate_prices(func: Callable[[NordpoolPriceSensor], dict[str, tuple[float | None, float, float | None]]], entity: NordpoolPriceSensor, area: str, index: int) -> float | None: ...
+def get_prices(entity: NordpoolPriceSensor) -> dict[str, tuple[float | None, float, float | None]]: ...
+def get_min_max_price(entity: NordpoolPriceSensor, func: Callable[[float, float], float]) -> tuple[float, datetime, datetime]: ...
+def get_blockprices(entity: NordpoolBlockPriceSensor) -> dict[str, dict[str, tuple[datetime, datetime, float, float, float]]]: ...
 
 @dataclass(frozen=True, kw_only=True)
 class NordpoolDefaultSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[DeliveryPeriodData], str | float | datetime | None]
+    value_fn: Callable[[NordpoolSensor], str | float | datetime | None]
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class NordpoolPricesSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[tuple[float | None, float, float | None]], float | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
+    value_fn: Callable[[NordpoolPriceSensor], float | None]
+    extra_fn: Callable[[NordpoolPriceSensor], dict[str, str] | None]
+    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn, extra_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class NordpoolBlockPricesSensorEntityDescription(SensorEntityDescription):
@@ -50,6 +52,8 @@ class NordpoolPriceSensor(NordpoolBaseEntity, SensorEntity):
     def __init__(self, coordinator: NordPoolDataUpdateCoordinator, entity_description: NordpoolPricesSensorEntityDescription, area: str, currency: str) -> None: ...
     @property
     def native_value(self) -> float | None: ...
+    @property
+    def extra_state_attributes(self) -> dict[str, str] | None: ...
 
 class NordpoolBlockPriceSensor(NordpoolBaseEntity, SensorEntity):
     entity_description: NordpoolBlockPricesSensorEntityDescription

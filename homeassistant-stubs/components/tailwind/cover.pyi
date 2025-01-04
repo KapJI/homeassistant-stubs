@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .coordinator import TailwindConfigEntry as TailwindConfigEntry
 from .entity import TailwindDoorEntity as TailwindDoorEntity
-from .typing import TailwindConfigEntry as TailwindConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant

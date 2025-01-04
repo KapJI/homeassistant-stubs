@@ -31,7 +31,6 @@ class WemoHumidifier(WemoBinaryStateEntity, FanEntity):
     _attr_supported_features: Incomplete
     wemo: Humidifier
     _last_fan_on_mode: FanMode
-    _enable_turn_on_off_backwards_compatibility: bool
     def __init__(self, coordinator: DeviceCoordinator) -> None: ...
     @property
     def icon(self) -> str: ...

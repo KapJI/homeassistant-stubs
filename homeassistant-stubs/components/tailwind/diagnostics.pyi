@@ -1,4 +1,4 @@
-from .typing import TailwindConfigEntry as TailwindConfigEntry
+from .coordinator import TailwindConfigEntry as TailwindConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

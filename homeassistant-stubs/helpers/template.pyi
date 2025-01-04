@@ -4,7 +4,7 @@ from .deprecation import deprecated_function as deprecated_function
 from .singleton import singleton as singleton
 from .translation import async_translate_state as async_translate_state
 from .typing import TemplateVarsType as TemplateVarsType
-from _typeshed import Incomplete
+from _typeshed import Incomplete, OptExcInfo as OptExcInfo
 from collections.abc import Callable as Callable, Generator, Iterable
 from contextlib import AbstractContextManager
 from contextvars import ContextVar

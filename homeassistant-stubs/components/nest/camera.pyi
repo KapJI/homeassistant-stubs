@@ -1,15 +1,13 @@
 import datetime
-from .const import DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo
+from .types import NestConfigEntry as NestConfigEntry
 from _typeshed import Incomplete
 from abc import ABC
 from collections.abc import Awaitable, Callable as Callable
 from google_nest_sdm.camera_traits import CameraLiveStreamTrait, RtspStream as RtspStream, WebRtcStream as WebRtcStream
 from google_nest_sdm.device import Device as Device
-from google_nest_sdm.device_manager import DeviceManager as DeviceManager
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature, WebRTCAnswer as WebRTCAnswer, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCSendMessage as WebRTCSendMessage
 from homeassistant.components.stream import CONF_EXTRA_PART_WAIT_TIME as CONF_EXTRA_PART_WAIT_TIME
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -24,7 +22,7 @@ MIN_REFRESH_BACKOFF_INTERVAL: Incomplete
 MAX_REFRESH_BACKOFF_INTERVAL: Incomplete
 BACKOFF_MULTIPLIER: float
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class StreamRefresh:
     _hass: Incomplete

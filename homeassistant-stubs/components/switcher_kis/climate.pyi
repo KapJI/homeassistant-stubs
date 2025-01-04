@@ -4,7 +4,6 @@ from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoor
 from .entity import SwitcherEntity as SwitcherEntity
 from .utils import get_breeze_remote_manager as get_breeze_remote_manager
 from _typeshed import Incomplete
-from aioswitcher.api import SwitcherBaseResponse as SwitcherBaseResponse
 from aioswitcher.api.remotes import SwitcherBreezeRemote as SwitcherBreezeRemote
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACMode as HVACMode, SWING_OFF as SWING_OFF, SWING_VERTICAL as SWING_VERTICAL
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
@@ -14,6 +13,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+API_CONTROL_BREEZE_DEVICE: str
 DEVICE_MODE_TO_HA: Incomplete
 HA_TO_DEVICE_MODE: Incomplete
 DEVICE_FAN_TO_HA: Incomplete
@@ -23,7 +23,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: SwitcherConfigEnt
 
 class SwitcherClimateEntity(SwitcherEntity, ClimateEntity):
     _attr_name: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _remote: Incomplete
     _attr_unique_id: Incomplete
     _attr_min_temp: Incomplete

@@ -13,6 +13,8 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import as_utc as as_utc, parse_datetime as parse_datetime
 from typing import Any, Generic
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class RenaultSensorEntityDescription(SensorEntityDescription, RenaultDataEntityDescription, Generic[T]):
     data_key: str

@@ -26,6 +26,7 @@ CAMERA_SCHEMA: Incomplete
 HUMIDIFIER_SCHEMA: Incomplete
 COVER_SCHEMA: Incomplete
 CODE_SCHEMA: Incomplete
+LOCK_SCHEMA: Incomplete
 MEDIA_PLAYER_SCHEMA: Incomplete
 SWITCH_TYPE_SCHEMA: Incomplete
 SENSOR_SCHEMA: Incomplete

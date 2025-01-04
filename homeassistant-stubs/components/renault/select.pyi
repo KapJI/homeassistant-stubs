@@ -7,6 +7,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.typing import StateType as StateType
 from renault_api.kamereon.models import KamereonVehicleBatteryStatusData
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class RenaultSelectEntityDescription(SelectEntityDescription, RenaultDataEntityDescription):
     data_key: str

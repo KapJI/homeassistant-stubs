@@ -1,13 +1,14 @@
-from .const import DOMAIN as DOMAIN
+from . import VelbusConfigEntry as VelbusConfigEntry
 from .entity import VelbusEntity as VelbusEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from velbusaio.channels import ButtonCounter as ButtonCounter, LightSensor as LightSensor, SensorNumber as SensorNumber, Temperature as Temperature
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+PARALLEL_UPDATES: int
+
+async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class VelbusSensor(VelbusEntity, SensorEntity):
     _channel: ButtonCounter | Temperature | LightSensor | SensorNumber

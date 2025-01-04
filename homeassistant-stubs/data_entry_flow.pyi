@@ -3,7 +3,6 @@ import asyncio
 import voluptuous as vol
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
-from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from _typeshed import Incomplete
@@ -25,14 +24,6 @@ class FlowResultType(StrEnum):
     SHOW_PROGRESS_DONE = 'progress_done'
     MENU = 'menu'
 
-_DEPRECATED_RESULT_TYPE_FORM: Incomplete
-_DEPRECATED_RESULT_TYPE_CREATE_ENTRY: Incomplete
-_DEPRECATED_RESULT_TYPE_ABORT: Incomplete
-_DEPRECATED_RESULT_TYPE_EXTERNAL_STEP: Incomplete
-_DEPRECATED_RESULT_TYPE_EXTERNAL_STEP_DONE: Incomplete
-_DEPRECATED_RESULT_TYPE_SHOW_PROGRESS: Incomplete
-_DEPRECATED_RESULT_TYPE_SHOW_PROGRESS_DONE: Incomplete
-_DEPRECATED_RESULT_TYPE_MENU: Incomplete
 EVENT_DATA_ENTRY_FLOW_PROGRESSED: str
 FLOW_NOT_COMPLETE_STEPS: Incomplete
 STEP_ID_OPTIONAL_STEPS: Incomplete
@@ -159,7 +150,3 @@ class section:
     options: Incomplete
     def __init__(self, schema: vol.Schema, options: SectionConfig | None = None) -> None: ...
     def __call__(self, value: Any) -> Any: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from starlink_grpc import AlertDict as AlertDict, LocationDict as LocationDict, ObstructionDict as ObstructionDict, StatusDict as StatusDict
+from starlink_grpc import AlertDict as AlertDict, LocationDict as LocationDict, ObstructionDict as ObstructionDict, PowerDict as PowerDict, StatusDict as StatusDict, UsageDict as UsageDict
 
 _LOGGER: Incomplete
 
@@ -14,7 +14,9 @@ class StarlinkData:
     status: StatusDict
     obstruction: ObstructionDict
     alert: AlertDict
-    def __init__(self, location, sleep, status, obstruction, alert) -> None: ...
+    usage: UsageDict
+    consumption: PowerDict
+    def __init__(self, location, sleep, status, obstruction, alert, usage, consumption) -> None: ...
 
 class StarlinkUpdateCoordinator(DataUpdateCoordinator[StarlinkData]):
     channel_context: Incomplete

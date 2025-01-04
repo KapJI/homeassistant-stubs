@@ -14,7 +14,6 @@ class BAFAutoComfort(BAFEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_translation_key: str
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_hvac_mode: Incomplete
     _attr_hvac_action: Incomplete
     _attr_target_temperature: Incomplete

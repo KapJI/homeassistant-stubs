@@ -4,7 +4,6 @@ from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -43,9 +42,6 @@ class RemoteEntityFeature(IntFlag):
     DELETE_COMMAND = 2
     ACTIVITY = 4
 
-_DEPRECATED_SUPPORT_LEARN_COMMAND: Incomplete
-_DEPRECATED_SUPPORT_DELETE_COMMAND: Incomplete
-_DEPRECATED_SUPPORT_ACTIVITY: Incomplete
 REMOTE_SERVICE_ACTIVITY_SCHEMA: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
@@ -65,8 +61,6 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     _attr_current_activity: str | None
     _attr_supported_features: RemoteEntityFeature
     def supported_features(self) -> RemoteEntityFeature: ...
-    @property
-    def supported_features_compat(self) -> RemoteEntityFeature: ...
     def current_activity(self) -> str | None: ...
     def activity_list(self) -> list[str] | None: ...
     @property
@@ -77,7 +71,3 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     async def async_learn_command(self, **kwargs: Any) -> None: ...
     def delete_command(self, **kwargs: Any) -> None: ...
     async def async_delete_command(self, **kwargs: Any) -> None: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

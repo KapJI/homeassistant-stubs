@@ -1,5 +1,5 @@
 from . import FroniusConfigEntry as FroniusConfigEntry
-from .const import DOMAIN as DOMAIN, InverterStatusCodeOption as InverterStatusCodeOption, MeterLocationCodeOption as MeterLocationCodeOption, OhmPilotStateCodeOption as OhmPilotStateCodeOption, SOLAR_NET_DISCOVERY_NEW as SOLAR_NET_DISCOVERY_NEW, get_inverter_status_message as get_inverter_status_message, get_meter_location_description as get_meter_location_description, get_ohmpilot_state_message as get_ohmpilot_state_message
+from .const import DOMAIN as DOMAIN, INVERTER_ERROR_CODES as INVERTER_ERROR_CODES, InverterStatusCodeOption as InverterStatusCodeOption, MeterLocationCodeOption as MeterLocationCodeOption, OhmPilotStateCodeOption as OhmPilotStateCodeOption, SOLAR_NET_DISCOVERY_NEW as SOLAR_NET_DISCOVERY_NEW, get_inverter_status_message as get_inverter_status_message, get_meter_location_description as get_meter_location_description, get_ohmpilot_state_message as get_ohmpilot_state_message
 from .coordinator import FroniusCoordinatorBase as FroniusCoordinatorBase, FroniusInverterUpdateCoordinator as FroniusInverterUpdateCoordinator, FroniusLoggerUpdateCoordinator as FroniusLoggerUpdateCoordinator, FroniusMeterUpdateCoordinator as FroniusMeterUpdateCoordinator, FroniusOhmpilotUpdateCoordinator as FroniusOhmpilotUpdateCoordinator, FroniusPowerFlowUpdateCoordinator as FroniusPowerFlowUpdateCoordinator, FroniusStorageUpdateCoordinator as FroniusStorageUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -14,6 +14,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, Final
 
+PARALLEL_UPDATES: int
 ENERGY_VOLT_AMPERE_REACTIVE_HOUR: Final[str]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: FroniusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

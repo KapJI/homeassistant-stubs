@@ -1,12 +1,15 @@
-from .const import DOMAIN as DOMAIN, STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING
+import asyncio
+from .const import DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, _DEPRECATED_STATE_CLEANING as _DEPRECATED_STATE_CLEANING, _DEPRECATED_STATE_DOCKED as _DEPRECATED_STATE_DOCKED, _DEPRECATED_STATE_ERROR as _DEPRECATED_STATE_ERROR, _DEPRECATED_STATE_RETURNING as _DEPRECATED_STATE_RETURNING
 from _typeshed import Incomplete
 from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_IDLE as STATE_IDLE, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
+from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
@@ -34,8 +37,9 @@ SERVICE_START_PAUSE: str
 SERVICE_START: str
 SERVICE_PAUSE: str
 SERVICE_STOP: str
-STATES: Incomplete
 DEFAULT_NAME: str
+_DEPRECATED_STATE_IDLE: Incomplete
+_DEPRECATED_STATE_PAUSED: Incomplete
 
 class VacuumEntityFeature(IntFlag):
     TURN_ON = 1
@@ -86,8 +90,13 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     _attr_battery_level: int | None
     _attr_fan_speed: str | None
     _attr_fan_speed_list: list[str]
-    _attr_state: str | None
+    _attr_activity: VacuumActivity | None
     _attr_supported_features: VacuumEntityFeature
+    __vacuum_legacy_state: bool
+    def __init_subclass__(cls, **kwargs: Any) -> None: ...
+    def __setattr__(self, name: str, value: Any) -> None: ...
+    def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
+    def _report_deprecated_activity_handling(self) -> None: ...
     def battery_level(self) -> int | None: ...
     @property
     def battery_icon(self) -> str: ...
@@ -97,10 +106,10 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     def fan_speed_list(self) -> list[str]: ...
     @property
     def state_attributes(self) -> dict[str, Any]: ...
-    def state(self) -> str | None: ...
-    def supported_features(self) -> VacuumEntityFeature: ...
     @property
-    def supported_features_compat(self) -> VacuumEntityFeature: ...
+    def state(self) -> str | None: ...
+    def activity(self) -> VacuumActivity | None: ...
+    def supported_features(self) -> VacuumEntityFeature: ...
     def stop(self, **kwargs: Any) -> None: ...
     async def async_stop(self, **kwargs: Any) -> None: ...
     def return_to_base(self, **kwargs: Any) -> None: ...

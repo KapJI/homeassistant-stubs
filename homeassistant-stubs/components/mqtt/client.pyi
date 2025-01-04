@@ -37,7 +37,7 @@ MAX_SUBSCRIBES_PER_CALL: int
 MAX_UNSUBSCRIBES_PER_CALL: int
 MAX_PACKETS_TO_READ: int
 type SocketType = socket.socket | ssl.SSLSocket | mqtt.WebsocketWrapper | Any
-type SubscribePayloadType = str | bytes
+type SubscribePayloadType = str | bytes | bytearray
 
 def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
 async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...

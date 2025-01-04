@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from homeassistant.components import onboarding as onboarding, zeroconf as zeroconf
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PORT as CONF_PORT
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any

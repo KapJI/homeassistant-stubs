@@ -7,13 +7,14 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import NamedTuple
 
+type EasyEnergyConfigEntry = ConfigEntry[EasyEnergyDataUpdateCoordinator]
 class EasyEnergyData(NamedTuple):
     energy_today: Electricity
     energy_tomorrow: Electricity | None
     gas_today: Gas | None
 
 class EasyEnergyDataUpdateCoordinator(DataUpdateCoordinator[EasyEnergyData]):
-    config_entry: ConfigEntry
+    config_entry: EasyEnergyConfigEntry
     easyenergy: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: EasyEnergyConfigEntry) -> None: ...
     async def _async_update_data(self) -> EasyEnergyData: ...

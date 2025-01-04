@@ -18,7 +18,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class ISYFanEntity(ISYNodeEntity, FanEntity):
     _attr_supported_features: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     @property
     def percentage(self) -> int | None: ...
     @property

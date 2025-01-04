@@ -11,6 +11,8 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pyenphase import EnvoyEncharge as EnvoyEncharge, EnvoyEnpower as EnvoyEnpower
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnchargeBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[EnvoyEncharge], bool]

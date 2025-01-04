@@ -3,5 +3,4 @@ from typing import Final
 
 DOMAIN: Final[str]
 LOGGER: Incomplete
-CONF_PROVINCE: Final[str]
-PROVINCES: Final[Incomplete]
+SCAN_INTERVAL: Incomplete

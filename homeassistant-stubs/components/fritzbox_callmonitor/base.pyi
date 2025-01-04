@@ -1,15 +1,26 @@
 from .const import REGEX_NUMBER as REGEX_NUMBER, UNKNOWN_NAME as UNKNOWN_NAME
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from fritzconnection.lib.fritzphonebook import FritzPhonebook
 from homeassistant.util import Throttle as Throttle
 
 _LOGGER: Incomplete
 MIN_TIME_PHONEBOOK_UPDATE: Incomplete
 
+@dataclass
+class Contact:
+    name: str
+    numbers: list[str]
+    vip: bool
+    def __init__(self, name: str, numbers: list[str] | None = None, category: str | None = None) -> None: ...
+
+unknown_contact: Incomplete
+
 class FritzBoxPhonebook:
     fph: FritzPhonebook
     phonebook_dict: dict[str, list[str]]
-    number_dict: dict[str, str]
+    contacts: list[Contact]
+    number_dict: dict[str, Contact]
     host: Incomplete
     username: Incomplete
     password: Incomplete
@@ -19,4 +30,4 @@ class FritzBoxPhonebook:
     def init_phonebook(self) -> None: ...
     def update_phonebook(self) -> None: ...
     def get_phonebook_ids(self) -> list[int]: ...
-    def get_name(self, number: str) -> str: ...
+    def get_contact(self, number: str) -> Contact: ...

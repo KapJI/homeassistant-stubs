@@ -17,7 +17,6 @@ _PRESETS: EsphomeEnumMapper[ClimatePreset, str]
 class EsphomeClimateEntity(EsphomeEntity[ClimateInfo, ClimateState], ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_translation_key: str
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_precision: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_fan_modes: Incomplete

@@ -8,7 +8,7 @@ from ..util import valid_publish_topic as valid_publish_topic, valid_subscribe_t
 from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_MODE as ATTR_COLOR_MODE, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_EFFECT_LIST as ATTR_EFFECT_LIST, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_MAX_MIREDS as ATTR_MAX_MIREDS, ATTR_MIN_MIREDS as ATTR_MIN_MIREDS, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_SUPPORTED_COLOR_MODES as ATTR_SUPPORTED_COLOR_MODES, ATTR_WHITE as ATTR_WHITE, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, valid_supported_color_modes as valid_supported_color_modes
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_MODE as ATTR_COLOR_MODE, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_EFFECT_LIST as ATTR_EFFECT_LIST, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_MAX_COLOR_TEMP_KELVIN as ATTR_MAX_COLOR_TEMP_KELVIN, ATTR_MIN_COLOR_TEMP_KELVIN as ATTR_MIN_COLOR_TEMP_KELVIN, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_SUPPORTED_COLOR_MODES as ATTR_SUPPORTED_COLOR_MODES, ATTR_WHITE as ATTR_WHITE, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DEFAULT_MAX_KELVIN as DEFAULT_MAX_KELVIN, DEFAULT_MIN_KELVIN as DEFAULT_MIN_KELVIN, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, _DEPRECATED_ATTR_COLOR_TEMP as _DEPRECATED_ATTR_COLOR_TEMP, _DEPRECATED_ATTR_MAX_MIREDS as _DEPRECATED_ATTR_MAX_MIREDS, _DEPRECATED_ATTR_MIN_MIREDS as _DEPRECATED_ATTR_MIN_MIREDS, valid_supported_color_modes as valid_supported_color_modes
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, STATE_ON as STATE_ON
 from homeassistant.core import callback as callback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -82,7 +82,7 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _optimistic: bool
     _optimistic_brightness: bool
     _optimistic_color_mode: bool
-    _optimistic_color_temp: bool
+    _optimistic_color_temp_kelvin: bool
     _optimistic_effect: bool
     _optimistic_hs_color: bool
     _optimistic_rgb_color: bool
@@ -91,8 +91,8 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _optimistic_xy_color: bool
     @staticmethod
     def config_schema() -> VolSchemaType: ...
-    _attr_min_mireds: Incomplete
-    _attr_max_mireds: Incomplete
+    _attr_min_color_temp_kelvin: Incomplete
+    _attr_max_color_temp_kelvin: Incomplete
     _attr_effect_list: Incomplete
     _attr_assumed_state: Incomplete
     _attr_color_mode: Incomplete
@@ -112,7 +112,7 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _attr_rgbww_color: Incomplete
     def _rgbww_received(self, msg: ReceiveMessage) -> None: ...
     def _color_mode_received(self, msg: ReceiveMessage) -> None: ...
-    _attr_color_temp: Incomplete
+    _attr_color_temp_kelvin: Incomplete
     def _color_temp_received(self, msg: ReceiveMessage) -> None: ...
     _attr_effect: Incomplete
     def _effect_received(self, msg: ReceiveMessage) -> None: ...

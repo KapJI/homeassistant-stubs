@@ -1,4 +1,4 @@
-from .const import CONF_PROVINCE as CONF_PROVINCE, DOMAIN as DOMAIN
+from .const import CONF_CATEGORIES as CONF_CATEGORIES, CONF_PROVINCE as CONF_PROVINCE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from datetime import datetime
 from holidays import HolidayBase as HolidayBase
@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 
-def _get_obj_holidays_and_language(country: str, province: str | None, language: str) -> tuple[HolidayBase, str]: ...
+def _get_obj_holidays_and_language(country: str, province: str | None, language: str, selected_categories: list[str] | None) -> tuple[HolidayBase, str]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class HolidayCalendarEntity(CalendarEntity):
@@ -23,10 +23,11 @@ class HolidayCalendarEntity(CalendarEntity):
     _province: Incomplete
     _location: Incomplete
     _language: Incomplete
+    _categories: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _obj_holidays: Incomplete
-    def __init__(self, name: str, country: str, province: str | None, language: str, obj_holidays: HolidayBase, unique_id: str) -> None: ...
+    def __init__(self, name: str, country: str, province: str | None, language: str, categories: list[str] | None, obj_holidays: HolidayBase, unique_id: str) -> None: ...
     def get_next_interval(self, now: datetime) -> datetime: ...
     def _update_state_and_setup_listener(self) -> None: ...
     def point_in_time_listener(self, time_date: datetime) -> None: ...

@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, GET_MAPS_SERVICE_NAME as GET_MAPS_SERVICE_N
 from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
 from .entity import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from _typeshed import Incomplete
-from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -21,7 +21,7 @@ class RoborockVacuum(RoborockCoordinatedEntityV1, StateVacuumEntity):
     _attr_fan_speed_list: Incomplete
     def __init__(self, coordinator: RoborockDataUpdateCoordinator) -> None: ...
     @property
-    def state(self) -> str | None: ...
+    def activity(self) -> VacuumActivity | None: ...
     @property
     def battery_level(self) -> int | None: ...
     @property

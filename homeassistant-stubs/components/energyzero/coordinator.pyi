@@ -7,6 +7,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import NamedTuple
 
+type EnergyZeroConfigEntry = ConfigEntry[EnergyZeroDataUpdateCoordinator]
 class EnergyZeroData(NamedTuple):
     energy_today: Electricity
     energy_tomorrow: Electricity | None
@@ -15,5 +16,5 @@ class EnergyZeroData(NamedTuple):
 class EnergyZeroDataUpdateCoordinator(DataUpdateCoordinator[EnergyZeroData]):
     config_entry: ConfigEntry
     energyzero: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: EnergyZeroConfigEntry) -> None: ...
     async def _async_update_data(self) -> EnergyZeroData: ...

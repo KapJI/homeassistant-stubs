@@ -21,7 +21,6 @@ class SomfyHeatingTemperatureInterface(OverkizEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_min_temp: float
     _attr_max_temp: float
-    _enable_turn_on_off_backwards_compatibility: bool
     temperature_device: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property

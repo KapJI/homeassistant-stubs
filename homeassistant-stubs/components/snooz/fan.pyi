@@ -23,7 +23,6 @@ class SnoozFan(FanEntity, RestoreEntity):
     _attr_should_poll: bool
     _is_on: bool | None
     _percentage: int | None
-    _enable_turn_on_off_backwards_compatibility: bool
     _device: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

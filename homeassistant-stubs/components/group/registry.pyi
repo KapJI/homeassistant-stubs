@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from homeassistant.components.alarm_control_panel import AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.components.climate import HVACMode as HVACMode
 from homeassistant.components.lock import LockState as LockState
-from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING
+from homeassistant.components.vacuum import VacuumActivity as VacuumActivity
 from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_ELECTRIC as STATE_ELECTRIC, STATE_GAS as STATE_GAS, STATE_HEAT_PUMP as STATE_HEAT_PUMP, STATE_HIGH_DEMAND as STATE_HIGH_DEMAND, STATE_PERFORMANCE as STATE_PERFORMANCE
 from homeassistant.const import Platform as Platform, STATE_CLOSED as STATE_CLOSED, STATE_HOME as STATE_HOME, STATE_IDLE as STATE_IDLE, STATE_NOT_HOME as STATE_NOT_HOME, STATE_OFF as STATE_OFF, STATE_OK as STATE_OK, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING, STATE_PROBLEM as STATE_PROBLEM
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

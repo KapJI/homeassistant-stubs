@@ -1,6 +1,5 @@
 from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 
 class HVACMode(StrEnum):
     OFF = 'off'
@@ -11,13 +10,6 @@ class HVACMode(StrEnum):
     DRY = 'dry'
     FAN_ONLY = 'fan_only'
 
-_DEPRECATED_HVAC_MODE_OFF: Incomplete
-_DEPRECATED_HVAC_MODE_HEAT: Incomplete
-_DEPRECATED_HVAC_MODE_COOL: Incomplete
-_DEPRECATED_HVAC_MODE_HEAT_COOL: Incomplete
-_DEPRECATED_HVAC_MODE_AUTO: Incomplete
-_DEPRECATED_HVAC_MODE_DRY: Incomplete
-_DEPRECATED_HVAC_MODE_FAN_ONLY: Incomplete
 HVAC_MODES: Incomplete
 PRESET_NONE: str
 PRESET_ECO: str
@@ -55,12 +47,6 @@ class HVACAction(StrEnum):
     OFF = 'off'
     PREHEATING = 'preheating'
 
-_DEPRECATED_CURRENT_HVAC_OFF: Incomplete
-_DEPRECATED_CURRENT_HVAC_HEAT: Incomplete
-_DEPRECATED_CURRENT_HVAC_COOL: Incomplete
-_DEPRECATED_CURRENT_HVAC_DRY: Incomplete
-_DEPRECATED_CURRENT_HVAC_IDLE: Incomplete
-_DEPRECATED_CURRENT_HVAC_FAN: Incomplete
 CURRENT_HVAC_ACTIONS: Incomplete
 ATTR_AUX_HEAT: str
 ATTR_CURRENT_HUMIDITY: str
@@ -110,14 +96,3 @@ class ClimateEntityFeature(IntFlag):
     TURN_OFF = 128
     TURN_ON = 256
     SWING_HORIZONTAL_MODE = 512
-
-_DEPRECATED_SUPPORT_TARGET_TEMPERATURE: Incomplete
-_DEPRECATED_SUPPORT_TARGET_TEMPERATURE_RANGE: Incomplete
-_DEPRECATED_SUPPORT_TARGET_HUMIDITY: Incomplete
-_DEPRECATED_SUPPORT_FAN_MODE: Incomplete
-_DEPRECATED_SUPPORT_PRESET_MODE: Incomplete
-_DEPRECATED_SUPPORT_SWING_MODE: Incomplete
-_DEPRECATED_SUPPORT_AUX_HEAT: Incomplete
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

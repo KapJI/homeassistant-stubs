@@ -1,14 +1,15 @@
-from .const import DOMAIN as DOMAIN
+from . import VelbusConfigEntry as VelbusConfigEntry
 from .entity import VelbusEntity as VelbusEntity, api_call as api_call
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 from velbusaio.channels import Blind as VelbusBlind
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+PARALLEL_UPDATES: int
+
+async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class VelbusCover(VelbusEntity, CoverEntity):
     _channel: VelbusBlind

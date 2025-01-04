@@ -1,14 +1,11 @@
-import asyncio
 from _typeshed import Incomplete
 from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -31,10 +28,6 @@ class FanEntityFeature(IntFlag):
     TURN_OFF = 16
     TURN_ON = 32
 
-_DEPRECATED_SUPPORT_SET_SPEED: Incomplete
-_DEPRECATED_SUPPORT_OSCILLATE: Incomplete
-_DEPRECATED_SUPPORT_DIRECTION: Incomplete
-_DEPRECATED_SUPPORT_PRESET_MODE: Incomplete
 SERVICE_INCREASE_SPEED: str
 SERVICE_DECREASE_SPEED: str
 SERVICE_OSCILLATE: str
@@ -74,10 +67,6 @@ class FanEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_preset_modes: list[str] | None
     _attr_speed_count: int
     _attr_supported_features: FanEntityFeature
-    __mod_supported_features: FanEntityFeature
-    _enable_turn_on_off_backwards_compatibility: bool
-    def __getattribute__(self, name: str) -> Any: ...
-    def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
     def set_percentage(self, percentage: int) -> None: ...
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def async_increase_speed(self, percentage_step: int | None = None) -> None: ...
@@ -109,7 +98,3 @@ class FanEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def supported_features(self) -> FanEntityFeature: ...
     def preset_mode(self) -> str | None: ...
     def preset_modes(self) -> list[str] | None: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

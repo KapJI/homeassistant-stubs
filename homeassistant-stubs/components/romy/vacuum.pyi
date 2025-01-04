@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import RomyVacuumCoordinator as RomyVacuumCoordinator
 from .entity import RomyEntity as RomyEntity
 from _typeshed import Incomplete
-from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -28,7 +28,7 @@ class RomyVacuumEntity(RomyEntity, StateVacuumEntity):
     def __init__(self, coordinator: RomyVacuumCoordinator) -> None: ...
     _attr_fan_speed: Incomplete
     _attr_battery_level: Incomplete
-    _attr_state: Incomplete
+    _attr_activity: Incomplete
     def _handle_coordinator_update(self) -> None: ...
     async def async_start(self, **kwargs: Any) -> None: ...
     async def async_stop(self, **kwargs: Any) -> None: ...

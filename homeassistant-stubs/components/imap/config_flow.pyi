@@ -1,9 +1,10 @@
+from . import ImapConfigEntry as ImapConfigEntry
 from .const import CONF_CHARSET as CONF_CHARSET, CONF_CUSTOM_EVENT_DATA_TEMPLATE as CONF_CUSTOM_EVENT_DATA_TEMPLATE, CONF_ENABLE_PUSH as CONF_ENABLE_PUSH, CONF_EVENT_MESSAGE_DATA as CONF_EVENT_MESSAGE_DATA, CONF_FOLDER as CONF_FOLDER, CONF_MAX_MESSAGE_SIZE as CONF_MAX_MESSAGE_SIZE, CONF_SEARCH as CONF_SEARCH, CONF_SERVER as CONF_SERVER, CONF_SSL_CIPHER_LIST as CONF_SSL_CIPHER_LIST, DEFAULT_MAX_MESSAGE_SIZE as DEFAULT_MAX_MESSAGE_SIZE, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, MAX_MESSAGE_SIZE_LIMIT as MAX_MESSAGE_SIZE_LIMIT, MESSAGE_DATA_OPTIONS as MESSAGE_DATA_OPTIONS
 from .coordinator import connect_to_server as connect_to_server
 from .errors import InvalidAuth as InvalidAuth, InvalidFolder as InvalidFolder
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
@@ -28,7 +29,7 @@ class IMAPConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     @staticmethod
-    def async_get_options_flow(config_entry: ConfigEntry) -> ImapOptionsFlow: ...
+    def async_get_options_flow(config_entry: ImapConfigEntry) -> ImapOptionsFlow: ...
 
 class ImapOptionsFlow(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -20,7 +20,6 @@ class ValveHeatingTemperatureInterface(OverkizEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
-    _enable_turn_on_off_backwards_compatibility: bool
     temperature_device: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete

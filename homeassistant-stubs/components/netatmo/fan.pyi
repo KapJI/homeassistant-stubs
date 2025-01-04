@@ -23,7 +23,6 @@ class NetatmoFan(NetatmoModuleEntity, FanEntity):
     _attr_configuration_url = CONF_URL_CONTROL
     _attr_name: Incomplete
     device: NaModules.Fan
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_unique_id: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

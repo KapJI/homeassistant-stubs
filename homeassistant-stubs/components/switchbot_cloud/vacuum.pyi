@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, VACUUM_FAN_SPEED_MAX as VACUUM_FAN_SPEED_MA
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
-from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +12,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-VACUUM_SWITCHBOT_STATE_TO_HA_STATE: dict[str, str]
+VACUUM_SWITCHBOT_STATE_TO_HA_STATE: dict[str, VacuumActivity]
 VACUUM_FAN_SPEED_TO_SWITCHBOT_FAN_SPEED: dict[str, str]
 
 class SwitchBotCloudVacuum(SwitchBotCloudEntity, StateVacuumEntity):
@@ -26,7 +26,7 @@ class SwitchBotCloudVacuum(SwitchBotCloudEntity, StateVacuumEntity):
     async def async_start(self) -> None: ...
     _attr_battery_level: Incomplete
     _attr_available: Incomplete
-    _attr_state: Incomplete
+    _attr_activity: Incomplete
     def _handle_coordinator_update(self) -> None: ...
 
 def _async_make_entity(api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator) -> SwitchBotCloudVacuum: ...

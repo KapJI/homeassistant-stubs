@@ -14,7 +14,8 @@ type FritzboxConfigEntry = ConfigEntry[FritzboxDataUpdateCoordinator]
 class FritzboxCoordinatorData:
     devices: dict[str, FritzhomeDevice]
     templates: dict[str, FritzhomeTemplate]
-    def __init__(self, devices, templates) -> None: ...
+    supported_color_properties: dict[str, tuple[dict, list]]
+    def __init__(self, devices, templates, supported_color_properties) -> None: ...
 
 class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorData]):
     config_entry: FritzboxConfigEntry

@@ -1,6 +1,6 @@
 import abc
 from . import FroniusSolarNet as FroniusSolarNet
-from .const import FroniusDeviceInfo as FroniusDeviceInfo, SOLAR_NET_ID_POWER_FLOW as SOLAR_NET_ID_POWER_FLOW, SOLAR_NET_ID_SYSTEM as SOLAR_NET_ID_SYSTEM, SolarNetId as SolarNetId
+from .const import DOMAIN as DOMAIN, FroniusDeviceInfo as FroniusDeviceInfo, SOLAR_NET_ID_POWER_FLOW as SOLAR_NET_ID_POWER_FLOW, SOLAR_NET_ID_SYSTEM as SOLAR_NET_ID_SYSTEM, SolarNetId as SolarNetId
 from .sensor import FroniusSensorEntityDescription as FroniusSensorEntityDescription, INVERTER_ENTITY_DESCRIPTIONS as INVERTER_ENTITY_DESCRIPTIONS, LOGGER_ENTITY_DESCRIPTIONS as LOGGER_ENTITY_DESCRIPTIONS, METER_ENTITY_DESCRIPTIONS as METER_ENTITY_DESCRIPTIONS, OHMPILOT_ENTITY_DESCRIPTIONS as OHMPILOT_ENTITY_DESCRIPTIONS, POWER_FLOW_ENTITY_DESCRIPTIONS as POWER_FLOW_ENTITY_DESCRIPTIONS, STORAGE_ENTITY_DESCRIPTIONS as STORAGE_ENTITY_DESCRIPTIONS, _FroniusSensorEntity as _FroniusSensorEntity
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod

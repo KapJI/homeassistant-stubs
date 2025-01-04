@@ -1,12 +1,10 @@
-from . import HomeAssistantOverkizData as HomeAssistantOverkizData
-from .const import DOMAIN as DOMAIN
+from . import OverkizDataConfigEntry as OverkizDataConfigEntry
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityDescription as AlarmControlPanelEntityDescription, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
@@ -49,7 +47,7 @@ def _state_alarm_panel_controller(select_state: Callable[[str], OverkizStateType
 ALARM_DESCRIPTIONS: list[OverkizAlarmDescription]
 SUPPORTED_DEVICES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class OverkizAlarmControlPanel(OverkizDescriptiveEntity, AlarmControlPanelEntity):
     entity_description: OverkizAlarmDescription

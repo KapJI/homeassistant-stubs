@@ -22,7 +22,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry,
 class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_target_temperature_step: Incomplete
     _attr_hvac_modes: Incomplete
     def _init_attributes(self) -> None: ...
@@ -30,7 +29,6 @@ class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete
     _attr_hvac_action: Incomplete
-    _attr_fan_mode: Incomplete
     _attr_hvac_mode: Incomplete
     _attr_max_temp: Incomplete
     _attr_min_temp: Incomplete
@@ -43,6 +41,9 @@ class AirzoneDeviceClimate(AirzoneClimate, metaclass=abc.ABCMeta):
     _attr_supported_features: Incomplete
     _speeds: dict[int, str]
     _speeds_reverse: dict[str, int]
+    def _init_attributes(self) -> None: ...
+    _attr_fan_mode: Incomplete
+    def _async_update_attrs(self) -> None: ...
     _attr_fan_modes: Incomplete
     def _initialize_fan_speeds(self) -> None: ...
     async def async_turn_on(self) -> None: ...

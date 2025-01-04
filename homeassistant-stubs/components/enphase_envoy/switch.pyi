@@ -12,6 +12,8 @@ from pyenphase import Envoy as Envoy, EnvoyDryContactStatus as EnvoyDryContactSt
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnpowerSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[EnvoyEnpower], bool]

@@ -1,9 +1,8 @@
-from .const import ATTR_AVAILABLE_TONES as ATTR_AVAILABLE_TONES, ATTR_DURATION as ATTR_DURATION, ATTR_TONE as ATTR_TONE, ATTR_VOLUME_LEVEL as ATTR_VOLUME_LEVEL, DOMAIN as DOMAIN, SirenEntityFeature as SirenEntityFeature, _DEPRECATED_SUPPORT_DURATION as _DEPRECATED_SUPPORT_DURATION, _DEPRECATED_SUPPORT_TONES as _DEPRECATED_SUPPORT_TONES, _DEPRECATED_SUPPORT_TURN_OFF as _DEPRECATED_SUPPORT_TURN_OFF, _DEPRECATED_SUPPORT_TURN_ON as _DEPRECATED_SUPPORT_TURN_ON, _DEPRECATED_SUPPORT_VOLUME_SET as _DEPRECATED_SUPPORT_VOLUME_SET
+from .const import ATTR_AVAILABLE_TONES as ATTR_AVAILABLE_TONES, ATTR_DURATION as ATTR_DURATION, ATTR_TONE as ATTR_TONE, ATTR_VOLUME_LEVEL as ATTR_VOLUME_LEVEL, DOMAIN as DOMAIN, SirenEntityFeature as SirenEntityFeature
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
-from homeassistant.helpers.deprecation import all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
@@ -43,7 +42,3 @@ class SirenEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def capability_attributes(self) -> dict[str, Any] | None: ...
     def available_tones(self) -> list[int | str] | dict[int, str] | None: ...
     def supported_features(self) -> SirenEntityFeature: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

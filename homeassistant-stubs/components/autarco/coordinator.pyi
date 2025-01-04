@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from autarco import AccountSite as AccountSite, Autarco as Autarco, Battery as Battery, Inverter as Inverter, Site as Site, Solar as Solar
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import NamedTuple
 

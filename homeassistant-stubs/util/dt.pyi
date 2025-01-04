@@ -1,6 +1,7 @@
 import datetime as dt
 import zoneinfo
 from _typeshed import Incomplete
+from homeassistant.helpers.deprecation import deprecated_function as deprecated_function
 from typing import Any, Literal, overload
 
 DATE_STR_FORMAT: str

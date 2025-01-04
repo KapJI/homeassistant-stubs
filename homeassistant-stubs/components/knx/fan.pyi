@@ -20,7 +20,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 
 class KNXFan(KnxYamlEntity, FanEntity):
     _device: XknxFan
-    _enable_turn_on_off_backwards_compatibility: bool
     _step_range: Incomplete
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete

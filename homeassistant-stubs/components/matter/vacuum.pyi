@@ -4,9 +4,9 @@ from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from chip.clusters import Objects as clusters
 from enum import IntEnum
-from homeassistant.components.vacuum import STATE_CLEANING as STATE_CLEANING, STATE_DOCKED as STATE_DOCKED, STATE_ERROR as STATE_ERROR, STATE_RETURNING as STATE_RETURNING, StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import Platform as Platform, STATE_IDLE as STATE_IDLE
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -39,7 +39,7 @@ class MatterVacuum(MatterEntity, StateVacuumEntity):
     async def async_pause(self) -> None: ...
     async def _send_device_command(self, command: clusters.ClusterCommand) -> None: ...
     _attr_battery_level: Incomplete
-    _attr_state: Incomplete
+    _attr_activity: Incomplete
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
     def _calculate_features(self) -> None: ...

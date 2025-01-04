@@ -14,6 +14,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 def entity_used_in(hass: HomeAssistant, entity_id: str) -> list[str]: ...
 

@@ -2,12 +2,12 @@ from .const import POWER_PLUGS as POWER_PLUGS
 from .entity import DeconzDevice as DeconzDevice
 from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP as ATTR_COLOR_TEMP, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DOMAIN as LIGHT_DOMAIN, EFFECT_COLORLOOP as EFFECT_COLORLOOP, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DEFAULT_MAX_KELVIN as DEFAULT_MAX_KELVIN, DEFAULT_MIN_KELVIN as DEFAULT_MIN_KELVIN, DOMAIN as LIGHT_DOMAIN, EFFECT_COLORLOOP as EFFECT_COLORLOOP, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util.color import color_hs_to_xy as color_hs_to_xy
+from homeassistant.util.color import color_hs_to_xy as color_hs_to_xy, color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin
 from pydeconz.interfaces.groups import GroupHandler as GroupHandler
 from pydeconz.interfaces.lights import LightHandler as LightHandler
 from pydeconz.models.event import EventType as EventType
@@ -38,6 +38,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class DeconzBaseLight[_LightDeviceT: Group | Light](DeconzDevice[_LightDeviceT], LightEntity):
     TYPE = LIGHT_DOMAIN
     _attr_color_mode: Incomplete
+    _attr_min_color_temp_kelvin = DEFAULT_MIN_KELVIN
+    _attr_max_color_temp_kelvin = DEFAULT_MAX_KELVIN
     api: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect_list: Incomplete
@@ -47,7 +49,7 @@ class DeconzBaseLight[_LightDeviceT: Group | Light](DeconzDevice[_LightDeviceT],
     @property
     def brightness(self) -> int | None: ...
     @property
-    def color_temp(self) -> int | None: ...
+    def color_temp_kelvin(self) -> int | None: ...
     @property
     def hs_color(self) -> tuple[float, float] | None: ...
     @property
@@ -61,9 +63,9 @@ class DeconzBaseLight[_LightDeviceT: Group | Light](DeconzDevice[_LightDeviceT],
 
 class DeconzLight(DeconzBaseLight[Light]):
     @property
-    def max_mireds(self) -> int: ...
+    def min_color_temp_kelvin(self) -> int: ...
     @property
-    def min_mireds(self) -> int: ...
+    def max_color_temp_kelvin(self) -> int: ...
     def async_update_callback(self) -> None: ...
 
 class DeconzGroup(DeconzBaseLight[Group]):

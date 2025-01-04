@@ -1,4 +1,4 @@
-from .const import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_MIN_DUR as CONF_MIN_DUR, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_DUR as CONF_MIN_DUR, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from datetime import datetime, timedelta
@@ -20,8 +20,6 @@ _LOGGER: Incomplete
 DEFAULT_NAME: str
 CONF_INITIAL_HVAC_MODE: str
 CONF_KEEP_ALIVE: str
-CONF_MIN_TEMP: str
-CONF_MAX_TEMP: str
 CONF_PRECISION: str
 CONF_TARGET_TEMP: str
 CONF_TEMP_STEP: str
@@ -35,7 +33,6 @@ async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], un
 
 class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_should_poll: bool
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_name: Incomplete
     heater_entity_id: Incomplete
     sensor_entity_id: Incomplete

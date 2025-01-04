@@ -15,7 +15,6 @@ from typing import Any
 CACHE_SIZE: int
 
 class EventTypeManager(BaseLRUTableManager[EventTypes]):
-    active: bool
     _non_existent_event_types: Incomplete
     def __init__(self, recorder: Recorder) -> None: ...
     def load(self, events: list[Event], session: Session) -> None: ...

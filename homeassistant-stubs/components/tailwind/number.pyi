@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
+from .coordinator import TailwindConfigEntry as TailwindConfigEntry
 from .entity import TailwindEntity as TailwindEntity
-from .typing import TailwindConfigEntry as TailwindConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass

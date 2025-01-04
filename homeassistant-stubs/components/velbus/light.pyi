@@ -1,8 +1,7 @@
-from .const import DOMAIN as DOMAIN
+from . import VelbusConfigEntry as VelbusConfigEntry
 from .entity import VelbusEntity as VelbusEntity, api_call as api_call
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_FLASH as ATTR_FLASH, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
@@ -10,7 +9,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any
 from velbusaio.channels import Button as VelbusButton, Channel as VelbusChannel, Dimmer as VelbusDimmer
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+PARALLEL_UPDATES: int
+
+async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class VelbusLight(VelbusEntity, LightEntity):
     _channel: VelbusDimmer

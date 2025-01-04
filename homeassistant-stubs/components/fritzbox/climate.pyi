@@ -29,7 +29,6 @@ class FritzboxThermostat(FritzBoxDeviceEntity, ClimateEntity):
     _attr_precision = PRECISION_HALVES
     _attr_temperature_unit: Incomplete
     _attr_translation_key: str
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_supported_features: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete

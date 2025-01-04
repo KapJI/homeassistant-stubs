@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -16,9 +17,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, a
 class BMWDeviceTracker(BMWBaseEntity, TrackerEntity):
     _attr_force_update: bool
     _attr_translation_key: str
-    _attr_icon: str
-    _attr_unique_id: Incomplete
     _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     def __init__(self, coordinator: BMWDataUpdateCoordinator, vehicle: MyBMWVehicle) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...

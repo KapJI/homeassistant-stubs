@@ -40,9 +40,10 @@ class GetCurrentTimeIntentHandler(intent.IntentHandler):
     description: str
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
-class HelloIntentHandler(intent.IntentHandler):
+class RespondIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
+    slot_schema: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class IntentHandleView(http.HomeAssistantView):

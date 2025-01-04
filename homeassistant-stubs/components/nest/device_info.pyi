@@ -1,7 +1,8 @@
-from .const import CONNECTIVITY_TRAIT_OFFLINE as CONNECTIVITY_TRAIT_OFFLINE, DATA_DEVICE_MANAGER as DATA_DEVICE_MANAGER, DOMAIN as DOMAIN
+from .const import CONNECTIVITY_TRAIT_OFFLINE as CONNECTIVITY_TRAIT_OFFLINE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from google_nest_sdm.device import Device as Device
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 

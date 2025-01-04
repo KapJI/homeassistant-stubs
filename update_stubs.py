@@ -162,9 +162,10 @@ def create_package(
 
 def update_dependency(repo_root: Path, version: AwesomeVersion) -> None:
     """Update version of homeassistant dependency."""
-    subprocess.run(
-        ["uv", "add", f"homeassistant=={version}"], cwd=repo_root, check=True
-    )
+    args = ["uv", "add", f"homeassistant=={version}"]
+    if version.modifier is not None:
+        args.append("--prerelease=allow")
+    subprocess.run(args, cwd=repo_root, check=True)
 
 
 def checkout_version(homeassistant_root: Path, version: AwesomeVersion) -> None:

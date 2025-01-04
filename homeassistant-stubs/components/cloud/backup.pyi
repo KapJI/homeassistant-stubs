@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from typing import Any, Self
 
+_LOGGER: Incomplete
 _STORAGE_BACKUP: str
 
 async def _b64md5(stream: AsyncIterator[bytes]) -> str: ...

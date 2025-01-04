@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
-from .host import ReolinkHost as ReolinkHost
-from .util import ReolinkConfigEntry as ReolinkConfigEntry
+from .util import get_host as get_host
+from .views import async_generate_playback_proxy_url as async_generate_playback_proxy_url
 from _typeshed import Incomplete
 from homeassistant.components.camera import DynamicStreamSettings as DynamicStreamSettings
 from homeassistant.components.media_player import MediaClass as MediaClass, MediaType as MediaType
@@ -13,7 +13,6 @@ _LOGGER: Incomplete
 
 async def async_get_media_source(hass: HomeAssistant) -> ReolinkVODMediaSource: ...
 def res_name(stream: str) -> str: ...
-def get_host(hass: HomeAssistant, config_entry_id: str) -> ReolinkHost: ...
 
 class ReolinkVODMediaSource(MediaSource):
     name: str

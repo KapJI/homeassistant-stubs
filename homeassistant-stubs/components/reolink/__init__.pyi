@@ -3,6 +3,7 @@ from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkExc
 from .host import ReolinkHost as ReolinkHost
 from .services import async_setup_services as async_setup_services
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, get_device_uid_and_ch as get_device_uid_and_ch
+from .views import PlaybackProxyView as PlaybackProxyView
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform

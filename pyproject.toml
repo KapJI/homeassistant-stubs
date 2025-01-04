@@ -30,7 +30,7 @@ dependencies = [
 dev = [
     "awesomeversion>=24.6.0",
     "codespell>=2.3.0",
-    "mypy>=1.13.0",
+    "mypy>=1.14.1",
     "pygithub>=2.4.0",
     "pylint>=3.3.1",
     "ruff>=0.7.0",
@@ -51,8 +51,8 @@ source = "vcs"
 [tool.uv]
 prerelease = "allow"
 
-[tool.uv.sources]
-mypy = { git = "https://github.com/python/mypy", rev = "3e52d0c1d37344a58c53d4b7a0920b4e38ebedff" }
+# [tool.uv.sources]
+# mypy = { git = "https://github.com/python/mypy", rev = "3e52d0c1d37344a58c53d4b7a0920b4e38ebedff" }
 
 [tool.pylint.format]
 expected-line-ending-format = "LF"

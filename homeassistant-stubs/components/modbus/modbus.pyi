@@ -7,7 +7,6 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, S
 from homeassistant.helpers.discovery import async_load_platform as async_load_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
-from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from pymodbus.pdu import ModbusPDU as ModbusPDU
 from typing import Any, NamedTuple

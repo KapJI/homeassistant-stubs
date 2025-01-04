@@ -3,8 +3,11 @@ from .modbus import ModbusHub as ModbusHub, async_modbus_setup as async_modbus_s
 from .validators import duplicate_fan_mode_validator as duplicate_fan_mode_validator, duplicate_swing_mode_validator as duplicate_swing_mode_validator, hvac_fixedsize_reglist_validator as hvac_fixedsize_reglist_validator, nan_validator as nan_validator, register_int_list_validator as register_int_list_validator, struct_validator as struct_validator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS
-from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_COMMAND_OFF as CONF_COMMAND_OFF, CONF_COMMAND_ON as CONF_COMMAND_ON, CONF_COUNT as CONF_COUNT, CONF_COVERS as CONF_COVERS, CONF_DELAY as CONF_DELAY, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_HOST as CONF_HOST, CONF_LIGHTS as CONF_LIGHTS, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_OFFSET as CONF_OFFSET, CONF_PORT as CONF_PORT, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_SENSORS as CONF_SENSORS, CONF_SLAVE as CONF_SLAVE, CONF_STRUCTURE as CONF_STRUCTURE, CONF_SWITCHES as CONF_SWITCHES, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_TIMEOUT as CONF_TIMEOUT, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_COMMAND_OFF as CONF_COMMAND_OFF, CONF_COMMAND_ON as CONF_COMMAND_ON, CONF_COUNT as CONF_COUNT, CONF_COVERS as CONF_COVERS, CONF_DELAY as CONF_DELAY, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_HOST as CONF_HOST, CONF_LIGHTS as CONF_LIGHTS, CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_OFFSET as CONF_OFFSET, CONF_PORT as CONF_PORT, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_SENSORS as CONF_SENSORS, CONF_SLAVE as CONF_SLAVE, CONF_STRUCTURE as CONF_STRUCTURE, CONF_SWITCHES as CONF_SWITCHES, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_TIMEOUT as CONF_TIMEOUT, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
+from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
+from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete
@@ -26,4 +29,3 @@ CONFIG_SCHEMA: Incomplete
 
 def get_hub(hass: HomeAssistant, name: str) -> ModbusHub: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-async def async_reset_platform(hass: HomeAssistant, integration_name: str) -> None: ...

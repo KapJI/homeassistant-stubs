@@ -813,7 +813,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant"
-version = "2025.1.0b1"
+version = "2025.1.0b2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiodns" },
@@ -864,14 +864,14 @@ dependencies = [
     { name = "webrtc-models" },
     { name = "yarl" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/83/53/2ed6464b41b53b905f0f9f6ef57c4757e13ba46cdbb7d25c957317fc3250/homeassistant-2025.1.0b1.tar.gz", hash = "sha256:37a123e4e539016fcf976ab7676ca1994b7ac97fadc8b10c4bc2f5e3ea2f7bb0", size = 23047652 }
+sdist = { url = "https://files.pythonhosted.org/packages/35/3f/7533b1b42aeda7e5d993d9c8764462b59f8b8b0043016f549f4492c07683/homeassistant-2025.1.0b2.tar.gz", hash = "sha256:574f0bc3ad8bc5b33860a69db86997fa3452009ff9041d69d123d718df75d3aa", size = 23042035 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/37/14/93497f41dc6fa74ab6cf3e1742c844d178de6577cdb71339f00c87778bd3/homeassistant-2025.1.0b1-py3-none-any.whl", hash = "sha256:a520b31b50e07c677c2243466e08db6f68dd8a79cb56bf9993a7f14040f09cf4", size = 39490795 },
+    { url = "https://files.pythonhosted.org/packages/09/74/d130bb9c5cf845750d2dbefef45ab20275cd1742eed72ffa74909e561e0b/homeassistant-2025.1.0b2-py3-none-any.whl", hash = "sha256:91254d3db88ee168d34d7785f93d66c8aa8682d707fc7e05b55c6d17183d7608", size = 39493348 },
 ]
 
 [[package]]
 name = "homeassistant-stubs"
-version = "2024.12.6.dev2+g3023b101.d20250104"
+version = "2024.12.6.dev3+ga822f3d0.d20250104"
 source = { editable = "." }
 dependencies = [
     { name = "homeassistant" },
@@ -889,7 +889,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homeassistant", specifier = "==2025.1.0b1" }]
+requires-dist = [{ name = "homeassistant", specifier = "==2025.1.0b2" }]
 
 [package.metadata.requires-dev]
 dev = [
@@ -960,14 +960,14 @@ wheels = [
 
 [[package]]
 name = "jinja2"
-version = "3.1.4"
+version = "3.1.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markupsafe" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ed/55/39036716d19cab0747a5020fc7e907f362fbf48c984b14e62127f7e68e5d/jinja2-3.1.4.tar.gz", hash = "sha256:4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369", size = 240245 }
+sdist = { url = "https://files.pythonhosted.org/packages/af/92/b3130cbbf5591acf9ade8708c365f3238046ac7cb8ccba6e81abccb0ccff/jinja2-3.1.5.tar.gz", hash = "sha256:8fefff8dc3034e27bb80d67c671eb8a9bc424c0ef4c0826edbff304cceff43bb", size = 244674 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/31/80/3a54838c3fb461f6fec263ebf3a3a41771bd05190238de3486aae8540c36/jinja2-3.1.4-py3-none-any.whl", hash = "sha256:bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d", size = 133271 },
+    { url = "https://files.pythonhosted.org/packages/bd/0f/2ba5fbcd631e3e88689309dbe978c5769e883e4b84ebfe7da30b43275c5a/jinja2-3.1.5-py3-none-any.whl", hash = "sha256:aba0f4dc9ed8013c424088f68a5c226f7d6097ed89b246d7749c2ec4175c6adb", size = 134596 },
 ]
 
 [[package]]

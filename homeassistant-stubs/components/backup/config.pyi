@@ -1,6 +1,6 @@
 from .const import LOGGER as LOGGER
 from .manager import BackupManager as BackupManager, ManagerBackup as ManagerBackup
-from .models import Folder as Folder
+from .models import BackupManagerError as BackupManagerError, Folder as Folder
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from cronsim import CronSim

@@ -1,3 +1,4 @@
+from .system_info import is_official_image as is_official_image
 from _typeshed import Incomplete
 
 _LOGGER: Incomplete

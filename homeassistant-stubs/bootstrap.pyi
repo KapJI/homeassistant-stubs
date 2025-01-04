@@ -7,7 +7,7 @@ from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers import area_registry as area_registry, category_registry as category_registry, device_registry as device_registry, entity as entity, entity_registry as entity_registry, floor_registry as floor_registry, issue_registry as issue_registry, label_registry as label_registry, recorder as recorder, restore_state as restore_state, template as template, translation as translation
 from .helpers.dispatcher import async_dispatcher_send_internal as async_dispatcher_send_internal
 from .helpers.storage import get_internal_store_manager as get_internal_store_manager
-from .helpers.system_info import async_get_system_info as async_get_system_info, is_official_image as is_official_image
+from .helpers.system_info import async_get_system_info as async_get_system_info
 from .helpers.typing import ConfigType as ConfigType
 from .runner import RuntimeConfig as RuntimeConfig
 from .setup import _setup_started as _setup_started, async_get_setup_timings as async_get_setup_timings, async_notify_setup_error as async_notify_setup_error, async_set_domains_to_be_loaded as async_set_domains_to_be_loaded, async_setup_component as async_setup_component
@@ -15,6 +15,7 @@ from .util.async_ import create_eager_task as create_eager_task
 from .util.hass_dict import HassKey as HassKey
 from .util.logging import async_activate_log_queue_handler as async_activate_log_queue_handler
 from .util.package import async_get_user_site as async_get_user_site, is_docker_env as is_docker_env, is_virtual_env as is_virtual_env
+from .util.system_info import is_official_image as is_official_image
 from _typeshed import Incomplete
 from anyio._backends import _asyncio as _asyncio
 from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler

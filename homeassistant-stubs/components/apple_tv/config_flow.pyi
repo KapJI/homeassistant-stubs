@@ -28,7 +28,6 @@ async def device_scan(hass: HomeAssistant, identifier: str | None, loop: asyncio
 class AppleTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     scan_filter: str | None
-    all_identifiers: set[str]
     atv: BaseConfig | None
     atv_identifiers: list[str] | None
     _host: str
@@ -39,6 +38,7 @@ class AppleTVConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...
     credentials: Incomplete
+    all_identifiers: Incomplete
     def __init__(self) -> None: ...
     @property
     def device_identifier(self) -> str | None: ...

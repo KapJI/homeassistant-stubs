@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import StrEnum
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any, Self
 
 @dataclass(frozen=True, kw_only=True)
@@ -33,3 +34,5 @@ class AgentBackup:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Self: ...
     def __init__(self, *, addons, backup_id, date, database_included, extra_metadata, folders, homeassistant_included, homeassistant_version, name, protected, size) -> None: ...
+
+class BackupManagerError(HomeAssistantError): ...

@@ -5,12 +5,12 @@ from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.package import is_docker_env as is_docker_env, is_virtual_env as is_virtual_env
+from homeassistant.util.system_info import is_official_image as is_official_image
 from typing import Any
 
 _LOGGER: Incomplete
 _DATA_MAC_VER: str
 
-def is_official_image() -> bool: ...
 async def async_get_mac_ver(hass: HomeAssistant) -> str: ...
 
 cached_get_user: Incomplete

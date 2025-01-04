@@ -3,5 +3,4 @@ from homeassistant.components.media_player import MediaPlayerEntityFeature as Me
 
 DOMAIN: str
 RUSSOUND_RIO_EXCEPTIONS: Incomplete
-CONNECT_TIMEOUT: int
 MP_FEATURES_BY_FLAG: Incomplete

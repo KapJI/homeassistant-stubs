@@ -1,4 +1,4 @@
-from .const import CONNECT_TIMEOUT as CONNECT_TIMEOUT, DOMAIN as DOMAIN, RUSSOUND_RIO_EXCEPTIONS as RUSSOUND_RIO_EXCEPTIONS
+from .const import DOMAIN as DOMAIN, RUSSOUND_RIO_EXCEPTIONS as RUSSOUND_RIO_EXCEPTIONS
 from _typeshed import Incomplete
 from aiorussound import RussoundClient
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

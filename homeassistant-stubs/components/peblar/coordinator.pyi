@@ -6,8 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from peblar import Peblar as Peblar, PeblarApi as PeblarApi, PeblarEVInterface as PeblarEVInterface, PeblarMeter as PeblarMeter, PeblarSystem as PeblarSystem, PeblarUserConfiguration, PeblarVersions as PeblarVersions
-from tests.components.peblar.conftest import PeblarSystemInformation as PeblarSystemInformation
+from peblar import Peblar as Peblar, PeblarApi as PeblarApi, PeblarEVInterface as PeblarEVInterface, PeblarMeter as PeblarMeter, PeblarSystem as PeblarSystem, PeblarSystemInformation as PeblarSystemInformation, PeblarUserConfiguration, PeblarVersions as PeblarVersions
 from typing import Any, Concatenate
 
 @dataclass(kw_only=True)

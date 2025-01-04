@@ -558,6 +558,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cronsim"
+version = "2.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/5b/d8/cfb8d51a51f6076ffa09902c02978c7db9764cca78f4ee832e691d20f44b/cronsim-2.6.tar.gz", hash = "sha256:5aab98716ef90ab5ac6be294b2c3965dbf76dc869f048846a0af74ebb506c10d", size = 20315 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8c/dd/9c40c4e0f4d3cb6cf52eb335e9cc1fa140c1f3a87146fb6987f465b069da/cronsim-2.6-py3-none-any.whl", hash = "sha256:5e153ff8ed64da7ee8d5caac470dbeda8024ab052c3010b1be149772b4801835", size = 13500 },
+]
+
+[[package]]
 name = "cryptography"
 version = "44.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -804,7 +813,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant"
-version = "2025.1.0b0"
+version = "2025.1.0b1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiodns" },
@@ -822,6 +831,7 @@ dependencies = [
     { name = "bcrypt" },
     { name = "certifi" },
     { name = "ciso8601" },
+    { name = "cronsim" },
     { name = "cryptography" },
     { name = "fnv-hash-fast" },
     { name = "hass-nabucasa" },
@@ -854,14 +864,14 @@ dependencies = [
     { name = "webrtc-models" },
     { name = "yarl" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/47/29/5aaba3f8905b426bb1177d84ad519182ae5b5a90ebabb9ea9013c0faf2df/homeassistant-2025.1.0b0.tar.gz", hash = "sha256:7d2c74691b3d5fe1b8bdd1d99d8e8ace0ac7c1ed503853b66d24dfee126b5280", size = 23005277 }
+sdist = { url = "https://files.pythonhosted.org/packages/83/53/2ed6464b41b53b905f0f9f6ef57c4757e13ba46cdbb7d25c957317fc3250/homeassistant-2025.1.0b1.tar.gz", hash = "sha256:37a123e4e539016fcf976ab7676ca1994b7ac97fadc8b10c4bc2f5e3ea2f7bb0", size = 23047652 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ac/71/a1432653530ce45b3ec286bc6b9d501f88947c6301cfcde72685d694850e/homeassistant-2025.1.0b0-py3-none-any.whl", hash = "sha256:096037df5ec1419ceab87888a7deb34d31f5612f0d15d5ad2f012be75a54bb78", size = 39438783 },
+    { url = "https://files.pythonhosted.org/packages/37/14/93497f41dc6fa74ab6cf3e1742c844d178de6577cdb71339f00c87778bd3/homeassistant-2025.1.0b1-py3-none-any.whl", hash = "sha256:a520b31b50e07c677c2243466e08db6f68dd8a79cb56bf9993a7f14040f09cf4", size = 39490795 },
 ]
 
 [[package]]
 name = "homeassistant-stubs"
-version = "2024.12.6.dev1+g3451a86a.d20250104"
+version = "2024.12.6.dev2+g3023b101.d20250104"
 source = { editable = "." }
 dependencies = [
     { name = "homeassistant" },
@@ -879,7 +889,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homeassistant", specifier = "==2025.1.0b0" }]
+requires-dist = [{ name = "homeassistant", specifier = "==2025.1.0b1" }]
 
 [package.metadata.requires-dev]
 dev = [

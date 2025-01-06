@@ -51,8 +51,12 @@ source = "vcs"
 [tool.uv]
 prerelease = "allow"
 
-# [tool.uv.sources]
-# mypy = { git = "https://github.com/python/mypy", rev = "3e52d0c1d37344a58c53d4b7a0920b4e38ebedff" }
+[tool.uv.sources]
+# https://github.com/python/mypy/pull/18418  Preserve dataclass_transform decorator
+# https://github.com/python/mypy/pull/18420  Improve self annotations
+# https://github.com/python/mypy/pull/18421  Fix UnpackType for 3.11+
+# 39d884cd08f3bfa4bc19e203f95c0c69988cfc67   Add --preserve-decorators option
+mypy = { git = "https://github.com/python/mypy", rev = "39d884cd08f3bfa4bc19e203f95c0c69988cfc67" }
 
 [tool.pylint.format]
 expected-line-ending-format = "LF"

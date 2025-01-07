@@ -19,9 +19,9 @@ _LOGGER: Incomplete
 class LmConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _client: ClientSession
-    _config: Incomplete
-    _fleet: Incomplete
-    _discovered: Incomplete
+    _config: dict[str, Any]
+    _fleet: dict[str, LaMarzoccoDeviceInfo]
+    _discovered: dict[str, str]
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_machine_selection(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -12,11 +12,11 @@ class LegacyLazyState(State):
     _row: Incomplete
     entity_id: Incomplete
     state: Incomplete
-    _attributes: Incomplete
-    _last_updated_ts: Incomplete
-    _last_changed_ts: Incomplete
-    _last_reported_ts: Incomplete
-    _context: Incomplete
+    _attributes: dict[str, Any] | None
+    _last_updated_ts: float | None
+    _last_changed_ts: float | None
+    _last_reported_ts: float | None
+    _context: Context | None
     attr_cache: Incomplete
     def __init__(self, row: Row, attr_cache: dict[str, dict[str, Any]], start_time: datetime | None, entity_id: str | None = None) -> None: ...
     @property

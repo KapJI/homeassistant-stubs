@@ -48,10 +48,10 @@ class Sun(Entity):
     rising: bool
     _next_change: datetime
     hass: Incomplete
-    phase: Incomplete
-    _config_listener: Incomplete
-    _update_events_listener: Incomplete
-    _update_sun_position_listener: Incomplete
+    phase: str | None
+    _config_listener: CALLBACK_TYPE | None
+    _update_events_listener: CALLBACK_TYPE | None
+    _update_sun_position_listener: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def update_location(self, _: Event | None = None, initial: bool = False) -> None: ...

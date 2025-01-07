@@ -58,14 +58,14 @@ class TimerStorageCollection(collection.DictStorageCollection):
 
 class Timer(collection.CollectionEntity, RestoreEntity):
     editable: bool
-    _config: Incomplete
-    _state: Incomplete
+    _config: dict
+    _state: str
     _configured_duration: Incomplete
-    _running_duration: Incomplete
-    _remaining: Incomplete
-    _end: Incomplete
-    _listener: Incomplete
-    _restore: Incomplete
+    _running_duration: timedelta
+    _remaining: timedelta | None
+    _end: datetime | None
+    _listener: Callable[[], None] | None
+    _restore: bool
     _attr_should_poll: bool
     _attr_force_update: bool
     def __init__(self, config: ConfigType) -> None: ...

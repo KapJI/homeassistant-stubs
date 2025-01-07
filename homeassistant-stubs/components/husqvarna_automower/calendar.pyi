@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, as
 class AutomowerCalendarEntity(AutomowerBaseEntity, CalendarEntity):
     _attr_name: str | None
     _attr_unique_id: Incomplete
-    _event: Incomplete
+    _event: CalendarEvent | None
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator) -> None: ...
     @property
     def event(self) -> CalendarEvent | None: ...

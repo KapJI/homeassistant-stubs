@@ -18,7 +18,7 @@ CONF_EXPIRES_AT: str
 
 class FitbitApi(ABC, metaclass=abc.ABCMeta):
     _hass: Incomplete
-    _profile: Incomplete
+    _profile: FitbitProfile | None
     _unit_system: Incomplete
     def __init__(self, hass: HomeAssistant, unit_system: FitbitUnitSystem | None = None) -> None: ...
     @abstractmethod

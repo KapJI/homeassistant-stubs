@@ -32,7 +32,7 @@ class ISYAuxControlIndexSelectEntity(ISYAuxControlEntity, SelectEntity):
 
 class ISYBacklightSelectEntity(ISYAuxControlEntity, SelectEntity, RestoreEntity):
     _assumed_state: bool
-    _memory_change_handler: Incomplete
+    _memory_change_handler: EventListener | None
     _attr_current_option: Incomplete
     def __init__(self, node: Node, control: str, unique_id: str, description: SelectEntityDescription, device_info: DeviceInfo | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...

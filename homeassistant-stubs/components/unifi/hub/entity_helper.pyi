@@ -22,8 +22,8 @@ class UnifiEntityHelper:
 class UnifiEntityHeartbeat:
     CHECK_HEARTBEAT_INTERVAL: Incomplete
     hass: Incomplete
-    _cancel_heartbeat_check: Incomplete
-    _heartbeat_time: Incomplete
+    _cancel_heartbeat_check: CALLBACK_TYPE | None
+    _heartbeat_time: dict[str, datetime]
     def __init__(self, hass: HomeAssistant) -> None: ...
     def reset(self) -> None: ...
     def initialize(self) -> None: ...
@@ -37,8 +37,8 @@ class UnifiDeviceCommand:
     COMMAND_DELAY: int
     hass: Incomplete
     api: Incomplete
-    _command_queue: Incomplete
-    _cancel_command: Incomplete
+    _command_queue: dict[str, dict[int, str]]
+    _cancel_command: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, api: aiounifi.Controller) -> None: ...
     def reset(self) -> None: ...
     def queue_poe_command(self, device_id: str, port_idx: int, poe_mode: str) -> None: ...

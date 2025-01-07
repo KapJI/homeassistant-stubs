@@ -14,7 +14,7 @@ _LOGGER: Incomplete
 class GlancesDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: ConfigEntry
     hass: Incomplete
-    host: Incomplete
+    host: str
     api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: Glances) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

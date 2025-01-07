@@ -11,8 +11,8 @@ from typing import Any
 
 class FritzDeviceBase(CoordinatorEntity[AvmWrapper]):
     _avm_wrapper: Incomplete
-    _mac: Incomplete
-    _name: Incomplete
+    _mac: str
+    _name: str
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
     def name(self) -> str: ...
@@ -28,9 +28,8 @@ class FritzDeviceBase(CoordinatorEntity[AvmWrapper]):
 class FritzBoxBaseEntity:
     _avm_wrapper: Incomplete
     _device_name: Incomplete
+    mac_address: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_name: str) -> None: ...
-    @property
-    def mac_address(self) -> str: ...
     @property
     def device_info(self) -> DeviceInfo: ...
 

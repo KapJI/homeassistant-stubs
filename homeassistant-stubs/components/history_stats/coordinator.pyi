@@ -14,8 +14,8 @@ UPDATE_INTERVAL: Incomplete
 class HistoryStatsUpdateCoordinator(DataUpdateCoordinator[HistoryStatsState]):
     _history_stats: Incomplete
     _subscriber_count: int
-    _at_start_listener: Incomplete
-    _track_events_listener: Incomplete
+    _at_start_listener: CALLBACK_TYPE | None
+    _track_events_listener: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, history_stats: HistoryStats, config_entry: ConfigEntry | None, name: str) -> None: ...
     def async_setup_state_listener(self) -> CALLBACK_TYPE: ...
     def _async_remove_listener(self) -> None: ...

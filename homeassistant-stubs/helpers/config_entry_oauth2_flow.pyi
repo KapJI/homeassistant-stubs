@@ -63,8 +63,8 @@ class LocalOAuth2Implementation(AbstractOAuth2Implementation):
 class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
     DOMAIN: str
     VERSION: int
-    external_data: Incomplete
-    flow_impl: Incomplete
+    external_data: Any
+    flow_impl: AbstractOAuth2Implementation
     def __init__(self) -> None: ...
     @property
     @abstractmethod

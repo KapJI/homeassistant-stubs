@@ -11,10 +11,10 @@ LOGGER: Incomplete
 
 class DlnaDmsFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = CONFIG_VERSION
-    _discoveries: Incomplete
-    _location: Incomplete
-    _usn: Incomplete
-    _name: Incomplete
+    _discoveries: dict[str, ssdp.SsdpServiceInfo]
+    _location: str | None
+    _usn: str | None
+    _name: str | None
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> ConfigFlowResult: ...

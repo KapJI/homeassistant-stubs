@@ -1,7 +1,6 @@
 import asyncio
 import enum
 from .async_ import run_callback_threadsafe as run_callback_threadsafe
-from _typeshed import Incomplete
 from types import TracebackType
 from typing import Any, Self
 
@@ -14,8 +13,8 @@ class _State(enum.Enum):
     EXIT = 'EXIT'
 
 class _GlobalFreezeContext:
-    _loop: Incomplete
-    _manager: Incomplete
+    _loop: asyncio.AbstractEventLoop
+    _manager: TimeoutManager
     def __init__(self, manager: TimeoutManager) -> None: ...
     async def __aenter__(self) -> Self: ...
     async def __aexit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: TracebackType | None) -> bool | None: ...
@@ -25,8 +24,8 @@ class _GlobalFreezeContext:
     def _exit(self) -> None: ...
 
 class _ZoneFreezeContext:
-    _loop: Incomplete
-    _zone: Incomplete
+    _loop: asyncio.AbstractEventLoop
+    _zone: _ZoneTimeoutManager
     def __init__(self, zone: _ZoneTimeoutManager) -> None: ...
     async def __aenter__(self) -> Self: ...
     async def __aexit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: TracebackType | None) -> bool | None: ...
@@ -36,16 +35,16 @@ class _ZoneFreezeContext:
     def _exit(self) -> None: ...
 
 class _GlobalTaskContext:
-    _loop: Incomplete
-    _manager: Incomplete
-    _task: Incomplete
-    _time_left: Incomplete
-    _expiration_time: Incomplete
-    _timeout_handler: Incomplete
-    _on_wait_task: Incomplete
-    _wait_zone: Incomplete
-    _state: Incomplete
-    _cool_down: Incomplete
+    _loop: asyncio.AbstractEventLoop
+    _manager: TimeoutManager
+    _task: asyncio.Task[Any]
+    _time_left: float
+    _expiration_time: float | None
+    _timeout_handler: asyncio.Handle | None
+    _on_wait_task: asyncio.Task | None
+    _wait_zone: asyncio.Event
+    _state: _State
+    _cool_down: float
     _cancelling: int
     def __init__(self, manager: TimeoutManager, task: asyncio.Task[Any], timeout: float, cool_down: float) -> None: ...
     async def __aenter__(self) -> Self: ...
@@ -62,13 +61,13 @@ class _GlobalTaskContext:
     async def _on_wait(self) -> None: ...
 
 class _ZoneTaskContext:
-    _loop: Incomplete
-    _zone: Incomplete
-    _task: Incomplete
-    _state: Incomplete
-    _time_left: Incomplete
-    _expiration_time: Incomplete
-    _timeout_handler: Incomplete
+    _loop: asyncio.AbstractEventLoop
+    _zone: _ZoneTimeoutManager
+    _task: asyncio.Task[Any]
+    _state: _State
+    _time_left: float
+    _expiration_time: float | None
+    _timeout_handler: asyncio.Handle | None
     _cancelling: int
     def __init__(self, zone: _ZoneTimeoutManager, task: asyncio.Task[Any], timeout: float) -> None: ...
     @property
@@ -82,10 +81,10 @@ class _ZoneTaskContext:
     def reset(self) -> None: ...
 
 class _ZoneTimeoutManager:
-    _manager: Incomplete
-    _zone: Incomplete
-    _tasks: Incomplete
-    _freezes: Incomplete
+    _manager: TimeoutManager
+    _zone: str
+    _tasks: list[_ZoneTaskContext]
+    _freezes: list[_ZoneFreezeContext]
     def __init__(self, manager: TimeoutManager, zone: str) -> None: ...
     def __repr__(self) -> str: ...
     @property
@@ -102,10 +101,10 @@ class _ZoneTimeoutManager:
     def reset(self) -> None: ...
 
 class TimeoutManager:
-    _loop: Incomplete
-    _zones: Incomplete
-    _globals: Incomplete
-    _freezes: Incomplete
+    _loop: asyncio.AbstractEventLoop
+    _zones: dict[str, _ZoneTimeoutManager]
+    _globals: list[_GlobalTaskContext]
+    _freezes: list[_GlobalFreezeContext]
     def __init__(self) -> None: ...
     @property
     def zones_done(self) -> bool: ...

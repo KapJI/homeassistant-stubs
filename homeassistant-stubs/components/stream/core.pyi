@@ -1,3 +1,4 @@
+import asyncio
 import datetime
 import numpy as np
 from . import Stream as Stream
@@ -77,7 +78,7 @@ class IdleTimer:
     _hass: Incomplete
     _timeout: Incomplete
     _callback: Incomplete
-    _unsub: Incomplete
+    _unsub: CALLBACK_TYPE | None
     idle: bool
     def __init__(self, hass: HomeAssistant, timeout: int, idle_callback: Callable[[], Coroutine[Any, Any, None]]) -> None: ...
     def start(self) -> None: ...
@@ -92,7 +93,7 @@ class StreamOutput:
     dynamic_stream_settings: Incomplete
     _event: Incomplete
     _part_event: Incomplete
-    _segments: Incomplete
+    _segments: deque[Segment]
     def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings, deque_maxlen: int | None = None) -> None: ...
     @property
     def name(self) -> str | None: ...
@@ -121,13 +122,13 @@ class StreamView(HomeAssistantView):
 TRANSFORM_IMAGE_FUNCTION: Incomplete
 
 class KeyFrameConverter:
-    _packet: Incomplete
-    _event: Incomplete
+    _packet: Packet | None
+    _event: asyncio.Event
     _hass: Incomplete
-    _image: Incomplete
+    _image: bytes | None
     _turbojpeg: Incomplete
     _lock: Incomplete
-    _codec_context: Incomplete
+    _codec_context: VideoCodecContext | None
     _stream_settings: Incomplete
     _dynamic_stream_settings: Incomplete
     def __init__(self, hass: HomeAssistant, stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings) -> None: ...

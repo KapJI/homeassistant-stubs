@@ -22,18 +22,18 @@ class AlexaDirective:
     entity_id: str | None
     endpoint: AlexaEntity
     instance: str | None
-    _directive: Incomplete
-    namespace: Incomplete
-    name: Incomplete
-    payload: Incomplete
-    has_endpoint: Incomplete
+    _directive: dict[str, Any]
+    namespace: str
+    name: str
+    payload: dict[str, Any]
+    has_endpoint: bool
     def __init__(self, request: dict[str, Any]) -> None: ...
     def load_entity(self, hass: HomeAssistant, config: AbstractConfig) -> None: ...
     def response(self, name: str = 'Response', namespace: str = 'Alexa', payload: dict[str, Any] | None = None) -> AlexaResponse: ...
     def error(self, namespace: str = 'Alexa', error_type: str = 'INTERNAL_ERROR', error_message: str = '', payload: dict[str, Any] | None = None) -> AlexaResponse: ...
 
 class AlexaResponse:
-    _response: Incomplete
+    _response: dict[str, Any]
     def __init__(self, name: str, namespace: str, payload: dict[str, Any] | None = None) -> None: ...
     @property
     def name(self) -> str: ...

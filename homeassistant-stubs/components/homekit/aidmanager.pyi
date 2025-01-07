@@ -18,10 +18,10 @@ def _generate_aids(unique_id: str | None, entity_id: str) -> Generator[int]: ...
 
 class AccessoryAidStorage:
     hass: Incomplete
-    allocations: Incomplete
-    allocated_aids: Incomplete
+    allocations: dict[str, int]
+    allocated_aids: set[int]
     _entry_id: Incomplete
-    store: Incomplete
+    store: Store | None
     _entity_registry: Incomplete
     def __init__(self, hass: HomeAssistant, entry_id: str) -> None: ...
     async def async_initialize(self) -> None: ...

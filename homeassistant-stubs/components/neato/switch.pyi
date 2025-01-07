@@ -22,8 +22,8 @@ class NeatoConnectedSwitch(NeatoEntity, SwitchEntity):
     _attr_available: bool
     _attr_entity_category: Incomplete
     type: Incomplete
-    _state: Incomplete
-    _schedule_state: Incomplete
+    _state: dict[str, Any] | None
+    _schedule_state: str | None
     _clean_state: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, neato: NeatoHub, robot: Robot, switch_type: str) -> None: ...

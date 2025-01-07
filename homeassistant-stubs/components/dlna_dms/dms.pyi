@@ -15,6 +15,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
+from propcache import cached_property
 from typing import Any
 
 class DlnaDmsData:
@@ -77,6 +78,7 @@ class DmsDeviceSource:
     def _didl_to_media_source(self, item: didl_lite.DidlObject, browsed_children: DmsDevice.BrowseResult | None = None) -> BrowseMediaSource: ...
     def _didl_thumbnail_url(self, item: didl_lite.DidlObject) -> str | None: ...
     def _make_identifier(self, action: Action, object_id: str) -> str: ...
+    @cached_property
     def _sort_criteria(self) -> list[str]: ...
 
 class Action(StrEnum):

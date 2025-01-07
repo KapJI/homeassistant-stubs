@@ -22,7 +22,7 @@ class HyperionSensor(SensorEntity):
     entity_description: Incomplete
     _client: Incomplete
     _attr_native_value: Incomplete
-    _client_callbacks: Incomplete
+    _client_callbacks: dict[str, Any]
     _attr_device_info: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, hyperion_client: client.HyperionClient, entity_description: SensorEntityDescription) -> None: ...
     @property

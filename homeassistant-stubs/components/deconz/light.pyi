@@ -40,8 +40,8 @@ class DeconzBaseLight[_LightDeviceT: Group | Light](DeconzDevice[_LightDeviceT],
     _attr_color_mode: Incomplete
     _attr_min_color_temp_kelvin = DEFAULT_MIN_KELVIN
     _attr_max_color_temp_kelvin = DEFAULT_MAX_KELVIN
-    api: Incomplete
-    _attr_supported_color_modes: Incomplete
+    api: GroupHandler | LightHandler
+    _attr_supported_color_modes: set[ColorMode]
     _attr_effect_list: Incomplete
     def __init__(self, device: _LightDeviceT, hub: DeconzHub) -> None: ...
     @property

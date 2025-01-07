@@ -18,9 +18,9 @@ class ISYEntity(Entity):
     _attr_name: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    _attrs: Incomplete
-    _change_handler: Incomplete
-    _control_handler: Incomplete
+    _attrs: dict[str, Any]
+    _change_handler: EventListener | None
+    _control_handler: EventListener | None
     def __init__(self, node: Node | Group | Variable | Program, device_info: DeviceInfo | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def async_on_update(self, event: NodeProperty) -> None: ...
@@ -57,8 +57,8 @@ class ISYAuxControlEntity(Entity):
     _attr_has_entity_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _change_handler: Incomplete
-    _availability_handler: Incomplete
+    _change_handler: EventListener
+    _availability_handler: EventListener
     def __init__(self, node: Node, control: str, unique_id: str, description: EntityDescription, device_info: DeviceInfo | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def async_on_update(self, event: NodeProperty | NodeChangedEvent, key: str) -> None: ...

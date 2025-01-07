@@ -1,4 +1,5 @@
 import abc
+import datetime as dt
 from _typeshed import Incomplete
 from collections import deque
 from homeassistant.core import Context as Context
@@ -19,19 +20,19 @@ class BaseTrace(abc.ABC, metaclass=abc.ABCMeta):
 
 class ActionTrace(BaseTrace):
     _domain: str | None
-    _trace: Incomplete
+    _trace: dict[str, deque[TraceElement]] | None
     _config: Incomplete
     _blueprint_inputs: Incomplete
-    context: Incomplete
-    _error: Incomplete
+    context: Context
+    _error: Exception | None
     _state: str
-    _script_execution: Incomplete
-    run_id: Incomplete
-    _timestamp_finish: Incomplete
-    _timestamp_start: Incomplete
+    _script_execution: str | None
+    run_id: str
+    _timestamp_finish: dt.datetime | None
+    _timestamp_start: dt.datetime
     key: Incomplete
-    _dict: Incomplete
-    _short_dict: Incomplete
+    _dict: dict[str, Any] | None
+    _short_dict: dict[str, Any] | None
     def __init__(self, item_id: str | None, config: dict[str, Any] | None, blueprint_inputs: dict[str, Any] | None, context: Context) -> None: ...
     def set_trace(self, trace: dict[str, deque[TraceElement]] | None) -> None: ...
     def set_error(self, ex: Exception) -> None: ...

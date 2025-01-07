@@ -1,5 +1,4 @@
 from .typing import ConfigType as ConfigType
-from _typeshed import Incomplete
 from collections import OrderedDict
 from homeassistant import loader as loader
 from homeassistant.config import CONF_PACKAGES as CONF_PACKAGES, YAML_CONFIG_FILE as YAML_CONFIG_FILE, config_per_platform as config_per_platform, extract_domain_configs as extract_domain_configs, format_homeassistant_error as format_homeassistant_error, format_schema_error as format_schema_error, load_yaml_config_file as load_yaml_config_file, merge_packages_config as merge_packages_config
@@ -15,8 +14,8 @@ class CheckConfigError(NamedTuple):
     config: ConfigType | None
 
 class HomeAssistantConfig(OrderedDict):
-    errors: Incomplete
-    warnings: Incomplete
+    errors: list[CheckConfigError]
+    warnings: list[CheckConfigError]
     def __init__(self) -> None: ...
     def add_error(self, message: str, domain: str | None = None, config: ConfigType | None = None) -> Self: ...
     @property

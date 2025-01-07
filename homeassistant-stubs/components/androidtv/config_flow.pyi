@@ -31,10 +31,10 @@ class AndroidTVFlowHandler(ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
 
 class OptionsFlowHandler(OptionsFlow):
-    _apps: Incomplete
-    _state_det_rules: Incomplete
-    _conf_app_id: Incomplete
-    _conf_rule_id: Incomplete
+    _apps: dict[str, Any]
+    _state_det_rules: dict[str, Any]
+    _conf_app_id: str | None
+    _conf_rule_id: str | None
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     def _save_config(self, data: dict[str, Any]) -> ConfigFlowResult: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

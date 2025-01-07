@@ -1,4 +1,5 @@
 import abc
+import asyncio
 from . import silabs_multiprotocol_addon as silabs_multiprotocol_addon
 from .const import ZHA_DOMAIN as ZHA_DOMAIN
 from .util import get_otbr_addon_manager as get_otbr_addon_manager, get_zha_device_path as get_zha_device_path, get_zigbee_flasher_addon_manager as get_zigbee_flasher_addon_manager
@@ -11,6 +12,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from typing import Any
+from universal_silabs_flasher.const import ApplicationType
 
 _LOGGER: Incomplete
 STEP_PICK_FIRMWARE_THREAD: str
@@ -19,12 +21,12 @@ STEP_PICK_FIRMWARE_ZIGBEE: str
 class BaseFirmwareInstallFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
     _failed_addon_name: str
     _failed_addon_reason: str
-    _probed_firmware_type: Incomplete
-    _device: Incomplete
+    _probed_firmware_type: ApplicationType | None
+    _device: str | None
     _hardware_name: str
-    addon_install_task: Incomplete
-    addon_start_task: Incomplete
-    addon_uninstall_task: Incomplete
+    addon_install_task: asyncio.Task | None
+    addon_start_task: asyncio.Task | None
+    addon_uninstall_task: asyncio.Task | None
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     def _get_translation_placeholders(self) -> dict[str, str]: ...
     async def _async_set_addon_config(self, config: dict, addon_manager: AddonManager) -> None: ...

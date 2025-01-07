@@ -27,15 +27,15 @@ class FroniusSolarNet:
     config_entry: Incomplete
     coordinator_lock: Incomplete
     fronius: Incomplete
-    host: Incomplete
+    host: str
     solar_net_device_id: Incomplete
-    system_device_info: Incomplete
-    inverter_coordinators: Incomplete
-    logger_coordinator: Incomplete
-    meter_coordinator: Incomplete
-    ohmpilot_coordinator: Incomplete
-    power_flow_coordinator: Incomplete
-    storage_coordinator: Incomplete
+    system_device_info: DeviceInfo | None
+    inverter_coordinators: list[FroniusInverterUpdateCoordinator]
+    logger_coordinator: FroniusLoggerUpdateCoordinator | None
+    meter_coordinator: FroniusMeterUpdateCoordinator | None
+    ohmpilot_coordinator: FroniusOhmpilotUpdateCoordinator | None
+    power_flow_coordinator: FroniusPowerFlowUpdateCoordinator | None
+    storage_coordinator: FroniusStorageUpdateCoordinator | None
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, fronius: Fronius) -> None: ...
     async def init_devices(self) -> None: ...
     async def _create_solar_net_device(self) -> DeviceInfo: ...

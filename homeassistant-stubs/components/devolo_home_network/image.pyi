@@ -24,7 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigE
 
 class DevoloImageEntity(DevoloCoordinatorEntity[WifiGuestAccessGet], ImageEntity):
     _attr_content_type: str
-    entity_description: Incomplete
+    entity_description: DevoloImageEntityDescription
     _attr_image_last_updated: Incomplete
     _data: Incomplete
     def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DevoloDataUpdateCoordinator[WifiGuestAccessGet], description: DevoloImageEntityDescription) -> None: ...

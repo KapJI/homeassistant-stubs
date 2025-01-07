@@ -45,11 +45,11 @@ class CalendarEventListener:
     _hass: Incomplete
     _job: Incomplete
     _trigger_data: Incomplete
-    _unsub_event: Incomplete
-    _unsub_refresh: Incomplete
+    _unsub_event: CALLBACK_TYPE | None
+    _unsub_refresh: CALLBACK_TYPE | None
     _fetcher: Incomplete
     _timespan: Incomplete
-    _events: Incomplete
+    _events: list[QueuedCalendarEvent]
     def __init__(self, hass: HomeAssistant, job: HassJob[..., Coroutine[Any, Any, None]], trigger_data: dict[str, Any], fetcher: QueuedEventFetcher) -> None: ...
     async def async_attach(self) -> None: ...
     def async_detach(self) -> None: ...

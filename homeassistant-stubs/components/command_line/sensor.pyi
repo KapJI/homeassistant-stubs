@@ -1,3 +1,4 @@
+import asyncio
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, CONF_JSON_ATTRIBUTES as CONF_JSON_ATTRIBUTES, CONF_JSON_ATTRIBUTES_PATH as CONF_JSON_ATTRIBUTES_PATH, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
 from .utils import async_check_output_or_log as async_check_output_or_log
 from _typeshed import Incomplete
@@ -22,13 +23,13 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 class CommandSensor(ManualTriggerSensorEntity):
     _attr_should_poll: bool
     data: Incomplete
-    _attr_extra_state_attributes: Incomplete
+    _attr_extra_state_attributes: dict[str, Any]
     _json_attributes: Incomplete
     _json_attributes_path: Incomplete
     _attr_native_value: Incomplete
     _value_template: Incomplete
     _scan_interval: Incomplete
-    _process_updates: Incomplete
+    _process_updates: asyncio.Lock | None
     def __init__(self, data: CommandSensorData, config: ConfigType, value_template: Template | None, json_attributes: list[str] | None, json_attributes_path: str | None, scan_interval: timedelta) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
@@ -38,7 +39,7 @@ class CommandSensor(ManualTriggerSensorEntity):
     async def async_update(self) -> None: ...
 
 class CommandSensorData:
-    value: Incomplete
+    value: str | None
     hass: Incomplete
     command: Incomplete
     timeout: Incomplete

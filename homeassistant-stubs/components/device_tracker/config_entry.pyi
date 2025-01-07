@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.hass_dict import HassKey as HassKey
+from propcache import cached_property
 
 DATA_COMPONENT: HassKey[EntityComponent[BaseTrackerEntity]]
 DATA_KEY: HassKey[dict[str, tuple[str, str]]]
@@ -26,6 +27,7 @@ class BaseTrackerEntity(Entity):
     _attr_device_info: None
     _attr_entity_category: Incomplete
     _attr_source_type: SourceType
+    @cached_property
     def battery_level(self) -> int | None: ...
     @property
     def source_type(self) -> SourceType: ...
@@ -34,7 +36,6 @@ class BaseTrackerEntity(Entity):
 
 class TrackerEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_TRACKER_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -45,12 +46,17 @@ class TrackerEntity(BaseTrackerEntity, cached_properties=CACHED_TRACKER_PROPERTI
     _attr_location_name: str | None
     _attr_longitude: float | None
     _attr_source_type: SourceType
+    @cached_property
     def should_poll(self) -> bool: ...
     @property
     def force_update(self) -> bool: ...
+    @cached_property
     def location_accuracy(self) -> int: ...
+    @cached_property
     def location_name(self) -> str | None: ...
+    @cached_property
     def latitude(self) -> float | None: ...
+    @cached_property
     def longitude(self) -> float | None: ...
     @property
     def state(self) -> str | None: ...
@@ -59,7 +65,6 @@ class TrackerEntity(BaseTrackerEntity, cached_properties=CACHED_TRACKER_PROPERTI
 
 class ScannerEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_SCANNER_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -69,8 +74,11 @@ class ScannerEntity(BaseTrackerEntity, cached_properties=CACHED_SCANNER_PROPERTI
     _attr_ip_address: str | None
     _attr_mac_address: str | None
     _attr_source_type: SourceType
+    @cached_property
     def ip_address(self) -> str | None: ...
+    @cached_property
     def mac_address(self) -> str | None: ...
+    @cached_property
     def hostname(self) -> str | None: ...
     @property
     def state(self) -> str: ...

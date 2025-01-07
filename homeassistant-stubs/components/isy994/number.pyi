@@ -35,7 +35,7 @@ class ISYVariableNumberEntity(NumberEntity):
     _init_entity: bool
     _node: Variable
     entity_description: NumberEntityDescription
-    _change_handler: Incomplete
+    _change_handler: EventListener | None
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, node: Variable, unique_id: str, description: NumberEntityDescription, device_info: DeviceInfo, init_entity: bool = False) -> None: ...
@@ -49,7 +49,7 @@ class ISYVariableNumberEntity(NumberEntity):
 
 class ISYBacklightNumberEntity(ISYAuxControlEntity, RestoreNumber):
     _assumed_state: bool
-    _memory_change_handler: Incomplete
+    _memory_change_handler: EventListener | None
     _attr_native_value: int
     def __init__(self, node: Node, control: str, unique_id: str, description: NumberEntityDescription, device_info: DeviceInfo | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...

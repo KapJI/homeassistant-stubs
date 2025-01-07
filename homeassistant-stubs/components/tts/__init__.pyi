@@ -10,6 +10,7 @@ from homeassistant.components.http import HomeAssistantView
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.typing import ConfigType
+from propcache import cached_property
 from typing import Any, TypedDict
 
 __all__ = ['async_default_engine', 'async_get_media_source_audio', 'async_support_options', 'ATTR_AUDIO_OUTPUT', 'ATTR_PREFERRED_FORMAT', 'ATTR_PREFERRED_SAMPLE_RATE', 'ATTR_PREFERRED_SAMPLE_CHANNELS', 'ATTR_PREFERRED_SAMPLE_BYTES', 'CONF_LANG', 'DEFAULT_CACHE_DIR', 'generate_media_source_id', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SampleFormat', 'Provider', 'TtsAudioType', 'Voice']
@@ -39,9 +40,13 @@ class TextToSpeechEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH
     _attr_supported_options: list[str] | None
     @property
     def state(self) -> str | None: ...
+    @cached_property
     def supported_languages(self) -> list[str]: ...
+    @cached_property
     def default_language(self) -> str: ...
+    @cached_property
     def supported_options(self) -> list[str] | None: ...
+    @cached_property
     def default_options(self) -> Mapping[str, Any] | None: ...
     def async_get_supported_voices(self, language: str) -> list[Voice] | None: ...
     async def async_internal_added_to_hass(self) -> None: ...
@@ -52,14 +57,14 @@ class TextToSpeechEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH
 
 class SpeechManager:
     hass: Incomplete
-    providers: Incomplete
+    providers: dict[str, Provider]
     use_cache: Incomplete
     cache_dir: Incomplete
     time_memory: Incomplete
-    file_cache: Incomplete
-    mem_cache: Incomplete
-    filename_to_token: Incomplete
-    token_to_filename: Incomplete
+    file_cache: dict[str, str]
+    mem_cache: dict[str, TTSCache]
+    filename_to_token: dict[str, str]
+    token_to_filename: dict[str, str]
     def __init__(self, hass: HomeAssistant, use_cache: bool, cache_dir: str, time_memory: int) -> None: ...
     def _init_cache(self) -> dict[str, str]: ...
     async def async_init_cache(self) -> None: ...

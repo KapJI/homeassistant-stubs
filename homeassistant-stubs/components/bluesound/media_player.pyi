@@ -2,6 +2,7 @@ from . import BluesoundConfigEntry as BluesoundConfigEntry
 from .const import ATTR_BLUESOUND_GROUP as ATTR_BLUESOUND_GROUP, ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN, INTEGRATION_TITLE as INTEGRATION_TITLE
 from .utils import dispatcher_join_signal as dispatcher_join_signal, dispatcher_unjoin_signal as dispatcher_unjoin_signal, format_unique_id as format_unique_id
 from _typeshed import Incomplete
+from asyncio import Task
 from datetime import datetime
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
@@ -42,20 +43,20 @@ class BluesoundPlayer(MediaPlayerEntity):
     _attr_name: Incomplete
     host: Incomplete
     port: Incomplete
-    _poll_status_loop_task: Incomplete
-    _poll_sync_status_loop_task: Incomplete
+    _poll_status_loop_task: Task[None] | None
+    _poll_sync_status_loop_task: Task[None] | None
     _id: Incomplete
-    _last_status_update: Incomplete
+    _last_status_update: datetime | None
     _sync_status: Incomplete
-    _status: Incomplete
-    _inputs: Incomplete
-    _presets: Incomplete
-    _group_name: Incomplete
-    _group_list: Incomplete
+    _status: Status | None
+    _inputs: list[Input]
+    _presets: list[Preset]
+    _group_name: str | None
+    _group_list: list[str]
     _bluesound_device_name: Incomplete
     _player: Incomplete
     _is_leader: bool
-    _leader: Incomplete
+    _leader: BluesoundPlayer | None
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, host: str, port: int, player: Player, sync_status: SyncStatus) -> None: ...

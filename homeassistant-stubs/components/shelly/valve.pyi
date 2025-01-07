@@ -22,7 +22,7 @@ class BlockShellyValve(ShellyBlockAttributeEntity, ValveEntity):
     entity_description: BlockValveDescription
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
-    control_result: Incomplete
+    control_result: dict[str, Any] | None
     _attr_is_closed: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockValveDescription) -> None: ...
     @property

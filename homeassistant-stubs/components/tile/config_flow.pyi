@@ -12,8 +12,8 @@ STEP_USER_SCHEMA: Incomplete
 
 class TileFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _password: Incomplete
-    _username: Incomplete
+    _password: str | None
+    _username: str | None
     def __init__(self) -> None: ...
     async def _async_verify(self, step_id: str, schema: vol.Schema) -> ConfigFlowResult: ...
     async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...

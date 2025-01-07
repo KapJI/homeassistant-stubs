@@ -39,8 +39,8 @@ def _hk_hvac_mode_from_state(state: State) -> int | None: ...
 
 class Thermostat(HomeAccessory):
     _unit: Incomplete
-    chars: Incomplete
-    fan_chars: Incomplete
+    chars: list[str]
+    fan_chars: list[str]
     char_current_heat_cool: Incomplete
     char_target_heat_cool: Incomplete
     char_current_temp: Incomplete
@@ -50,7 +50,7 @@ class Thermostat(HomeAccessory):
     char_heating_thresh_temp: Incomplete
     char_target_humidity: Incomplete
     char_current_humidity: Incomplete
-    ordered_fan_speeds: Incomplete
+    ordered_fan_speeds: list[str]
     fan_modes: Incomplete
     swing_on_mode: Incomplete
     char_active: Incomplete

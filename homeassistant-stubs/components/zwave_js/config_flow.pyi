@@ -1,4 +1,5 @@
 import abc
+import asyncio
 import voluptuous as vol
 from . import disconnect_client as disconnect_client
 from .addon import get_addon_manager as get_addon_manager
@@ -40,19 +41,19 @@ def get_usb_ports() -> dict[str, str]: ...
 async def async_get_usb_ports(hass: HomeAssistant) -> dict[str, str]: ...
 
 class BaseZwaveJSFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
-    s0_legacy_key: Incomplete
-    s2_access_control_key: Incomplete
-    s2_authenticated_key: Incomplete
-    s2_unauthenticated_key: Incomplete
-    lr_s2_access_control_key: Incomplete
-    lr_s2_authenticated_key: Incomplete
-    usb_path: Incomplete
-    ws_address: Incomplete
+    s0_legacy_key: str | None
+    s2_access_control_key: str | None
+    s2_authenticated_key: str | None
+    s2_unauthenticated_key: str | None
+    lr_s2_access_control_key: str | None
+    lr_s2_authenticated_key: str | None
+    usb_path: str | None
+    ws_address: str | None
     restart_addon: bool
     integration_created_addon: bool
-    install_task: Incomplete
-    start_task: Incomplete
-    version_info: Incomplete
+    install_task: asyncio.Task | None
+    start_task: asyncio.Task | None
+    version_info: VersionInfo | None
     def __init__(self) -> None: ...
     @property
     @abstractmethod
@@ -104,8 +105,8 @@ class ZWaveJSConfigFlow(BaseZwaveJSFlow, ConfigFlow, domain=DOMAIN):
     def _async_create_entry_from_vars(self) -> ConfigFlowResult: ...
 
 class OptionsFlowHandler(BaseZwaveJSFlow, OptionsFlow):
-    original_addon_config: Incomplete
-    revert_reason: Incomplete
+    original_addon_config: dict[str, Any] | None
+    revert_reason: str | None
     def __init__(self) -> None: ...
     @property
     def flow_manager(self) -> OptionsFlowManager: ...

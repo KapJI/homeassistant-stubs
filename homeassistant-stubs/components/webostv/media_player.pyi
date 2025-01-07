@@ -41,7 +41,7 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _paused: bool
     _turn_on: Incomplete
     _current_source: Incomplete
-    _source_list: Incomplete
+    _source_list: dict
     _supported_features: Incomplete
     def __init__(self, entry: ConfigEntry, client: WebOsClient) -> None: ...
     async def async_added_to_hass(self) -> None: ...

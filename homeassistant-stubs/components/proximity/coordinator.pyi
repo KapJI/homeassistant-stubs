@@ -30,15 +30,15 @@ DEFAULT_PROXIMITY_DATA: dict[str, str | int | None]
 
 class ProximityDataUpdateCoordinator(DataUpdateCoordinator[ProximityData]):
     config_entry: ProximityConfigEntry
-    ignored_zone_ids: Incomplete
-    tracked_entities: Incomplete
-    tolerance: Incomplete
-    proximity_zone_id: Incomplete
-    proximity_zone_name: Incomplete
-    unit_of_measurement: Incomplete
-    entity_mapping: Incomplete
+    ignored_zone_ids: list[str]
+    tracked_entities: list[str]
+    tolerance: int
+    proximity_zone_id: str
+    proximity_zone_name: str
+    unit_of_measurement: str
+    entity_mapping: dict[str, list[str]]
     data: Incomplete
-    state_change_data: Incomplete
+    state_change_data: StateChangedData | None
     def __init__(self, hass: HomeAssistant, friendly_name: str, config: ConfigType) -> None: ...
     def async_add_entity_mapping(self, tracked_entity_id: str, entity_id: str) -> None: ...
     async def async_check_proximity_state_change(self, event: Event[EventStateChangedData]) -> None: ...

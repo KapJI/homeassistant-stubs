@@ -46,18 +46,18 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class ManualAlarm(AlarmControlPanelEntity, RestoreEntity):
     _attr_should_poll: bool
-    _state: Incomplete
+    _state: AlarmControlPanelState
     _hass: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _code: Incomplete
     _attr_code_arm_required: Incomplete
     _disarm_after_trigger: Incomplete
-    _previous_state: Incomplete
-    _state_ts: Incomplete
-    _delay_time_by_state: Incomplete
-    _trigger_time_by_state: Incomplete
-    _arming_time_by_state: Incomplete
+    _previous_state: AlarmControlPanelState
+    _state_ts: datetime.datetime
+    _delay_time_by_state: dict[AlarmControlPanelState, Any]
+    _trigger_time_by_state: dict[AlarmControlPanelState, Any]
+    _arming_time_by_state: dict[AlarmControlPanelState, Any]
     _attr_supported_features: Incomplete
     def __init__(self, hass: HomeAssistant, name: str, unique_id: str | None, code: str | None, code_template: Template | None, code_arm_required: bool, disarm_after_trigger: bool, config: dict[str, Any]) -> None: ...
     @property

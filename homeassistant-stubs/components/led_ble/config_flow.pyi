@@ -9,8 +9,8 @@ _LOGGER: Incomplete
 
 class LedBleConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _discovery_info: Incomplete
-    _discovered_devices: Incomplete
+    _discovery_info: BluetoothServiceInfoBleak | None
+    _discovered_devices: dict[str, BluetoothServiceInfoBleak]
     def __init__(self) -> None: ...
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

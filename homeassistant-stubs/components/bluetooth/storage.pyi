@@ -1,4 +1,3 @@
-from _typeshed import Incomplete
 from bluetooth_adapters import DiscoveredDeviceAdvertisementData as DiscoveredDeviceAdvertisementData, DiscoveredDeviceAdvertisementDataDict as DiscoveredDeviceAdvertisementDataDict, DiscoveryStorageType as DiscoveryStorageType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
@@ -8,8 +7,8 @@ REMOTE_SCANNER_STORAGE_KEY: str
 SCANNER_SAVE_DELAY: int
 
 class BluetoothStorage:
-    _store: Incomplete
-    _data: Incomplete
+    _store: Store[DiscoveryStorageType]
+    _data: DiscoveryStorageType
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_setup(self) -> None: ...
     def scanners(self) -> list[str]: ...

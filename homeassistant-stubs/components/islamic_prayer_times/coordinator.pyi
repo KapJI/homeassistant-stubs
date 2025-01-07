@@ -14,7 +14,7 @@ class IslamicPrayerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, datetim
     config_entry: ConfigEntry
     latitude: Incomplete
     longitude: Incomplete
-    event_unsub: Incomplete
+    event_unsub: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     @property
     def calc_method(self) -> str: ...

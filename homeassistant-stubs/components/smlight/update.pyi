@@ -32,8 +32,8 @@ class SmUpdateEntity(SmEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     _attr_unique_id: Incomplete
     _finished_event: Incomplete
-    _firmware: Incomplete
-    _unload: Incomplete
+    _firmware: Firmware | None
+    _unload: list[Callable]
     def __init__(self, coordinator: SmFirmwareUpdateCoordinator, description: SmUpdateEntityDescription) -> None: ...
     @property
     def installed_version(self) -> str | None: ...

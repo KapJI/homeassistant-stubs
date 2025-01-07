@@ -15,8 +15,8 @@ PLATFORM_SCHEMA: Incomplete
 async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> TTSNotificationService: ...
 
 class TTSNotificationService(BaseNotificationService):
-    _target: Incomplete
-    _tts_service: Incomplete
+    _target: str | None
+    _tts_service: str | None
     _media_player: Incomplete
     _language: Incomplete
     def __init__(self, config: ConfigType) -> None: ...

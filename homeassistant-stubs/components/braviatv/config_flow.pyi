@@ -1,5 +1,4 @@
 from .const import ATTR_CID as ATTR_CID, ATTR_MAC as ATTR_MAC, ATTR_MODEL as ATTR_MODEL, CONF_NICKNAME as CONF_NICKNAME, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN, NICKNAME_PREFIX as NICKNAME_PREFIX
-from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import ssdp as ssdp
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
@@ -7,12 +6,13 @@ from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_HOST as C
 from homeassistant.helpers import instance_id as instance_id
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.util.network import is_host_valid as is_host_valid
+from pybravia import BraviaClient
 from typing import Any
 
 class BraviaTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    client: Incomplete
-    device_config: Incomplete
+    client: BraviaClient | None
+    device_config: dict[str, Any]
     def __init__(self) -> None: ...
     def create_client(self) -> None: ...
     async def gen_instance_ids(self) -> tuple[str, str]: ...

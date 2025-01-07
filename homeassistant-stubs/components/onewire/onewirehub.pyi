@@ -6,6 +6,7 @@ from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_MANUF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from pyownet import protocol
 
 DEVICE_COUPLERS: Incomplete
 DEVICE_MANUFACTURER: Incomplete
@@ -15,8 +16,8 @@ def _is_known_device(device_family: str, device_type: str | None) -> bool: ...
 
 class OneWireHub:
     hass: Incomplete
-    owproxy: Incomplete
-    devices: Incomplete
+    owproxy: protocol._Proxy | None
+    devices: list[OWDeviceDescription] | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def connect(self, host: str, port: int) -> None: ...
     async def initialize(self, config_entry: ConfigEntry) -> None: ...

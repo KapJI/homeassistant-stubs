@@ -7,6 +7,7 @@ from collections.abc import Callable as Callable, Iterator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from io import StringIO
 from pathlib import Path
+from propcache import cached_property
 from typing import Any, TextIO, overload
 from yaml import SafeLoader as FastestAvailableSafeLoader
 
@@ -18,7 +19,7 @@ class YamlTypeError(HomeAssistantError): ...
 
 class Secrets:
     config_dir: Incomplete
-    _cache: Incomplete
+    _cache: dict[Path, dict[str, str]]
     def __init__(self, config_dir: Path) -> None: ...
     def get(self, requester_path: str, secret: str) -> str: ...
     def _load_secret_yaml(self, secret_dir: Path) -> dict[str, str]: ...
@@ -26,7 +27,9 @@ class Secrets:
 class _LoaderMixin:
     name: str
     stream: Any
+    @cached_property
     def get_name(self) -> str: ...
+    @cached_property
     def get_stream_name(self) -> str: ...
 
 class FastSafeLoader(FastestAvailableSafeLoader, _LoaderMixin):

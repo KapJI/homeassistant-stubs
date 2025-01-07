@@ -21,8 +21,8 @@ async def validate_input(hass: HomeAssistant, data: dict[str, str]) -> dict[str,
 
 class PowerwallConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    ip_address: Incomplete
-    title: Incomplete
+    ip_address: str | None
+    title: str | None
     def __init__(self) -> None: ...
     async def _async_powerwall_is_offline(self, entry: ConfigEntry) -> bool: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...

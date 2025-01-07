@@ -1,3 +1,4 @@
+import asyncio
 from .const import ATTR_ALARM_DURATION as ATTR_ALARM_DURATION, ATTR_ALARM_VOLUME as ATTR_ALARM_VOLUME, ATTR_CHIME_VOLUME as ATTR_CHIME_VOLUME, ATTR_ENTRY_DELAY_AWAY as ATTR_ENTRY_DELAY_AWAY, ATTR_ENTRY_DELAY_HOME as ATTR_ENTRY_DELAY_HOME, ATTR_EXIT_DELAY_AWAY as ATTR_EXIT_DELAY_AWAY, ATTR_EXIT_DELAY_HOME as ATTR_EXIT_DELAY_HOME, ATTR_LAST_EVENT_INFO as ATTR_LAST_EVENT_INFO, ATTR_LAST_EVENT_SENSOR_NAME as ATTR_LAST_EVENT_SENSOR_NAME, ATTR_LAST_EVENT_SENSOR_TYPE as ATTR_LAST_EVENT_SENSOR_TYPE, ATTR_LAST_EVENT_TIMESTAMP as ATTR_LAST_EVENT_TIMESTAMP, ATTR_LIGHT as ATTR_LIGHT, ATTR_SYSTEM_ID as ATTR_SYSTEM_ID, ATTR_VOICE_PROMPT_VOLUME as ATTR_VOICE_PROMPT_VOLUME, DISPATCHER_TOPIC_WEBSOCKET_EVENT as DISPATCHER_TOPIC_WEBSOCKET_EVENT, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
@@ -13,6 +14,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from simplipy import API
 from simplipy.system import SystemNotification as SystemNotification
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
+from typing import Any
 
 ATTR_CATEGORY: str
 ATTR_LAST_EVENT_CHANGED_BY: str
@@ -47,13 +49,13 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class SimpliSafe:
     _api: Incomplete
     _hass: Incomplete
-    _system_notifications: Incomplete
-    _websocket_reconnect_task: Incomplete
+    _system_notifications: dict[int, set[SystemNotification]]
+    _websocket_reconnect_task: asyncio.Task | None
     entry: Incomplete
-    initial_event_to_use: Incomplete
-    subscription_data: Incomplete
-    systems: Incomplete
-    coordinator: Incomplete
+    initial_event_to_use: dict[int, dict[str, Any]]
+    subscription_data: dict[int, Any]
+    systems: dict[int, SystemType]
+    coordinator: DataUpdateCoordinator[None] | None
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: API) -> None: ...
     def _async_process_new_notifications(self, system: SystemType) -> None: ...
     async def _async_start_websocket_loop(self) -> None: ...

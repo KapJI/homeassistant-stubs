@@ -8,11 +8,11 @@ from typing import Any
 
 class TraceElement:
     __slots__: Incomplete
-    _child_key: Incomplete
-    _child_run_id: Incomplete
-    _error: Incomplete
-    path: Incomplete
-    _result: Incomplete
+    _child_key: str | None
+    _child_run_id: str | None
+    _error: BaseException | None
+    path: str
+    _result: dict[str, Any] | None
     reuse_by_child: bool
     _timestamp: Incomplete
     _last_variables: Incomplete
@@ -55,4 +55,4 @@ class StopReason:
 def script_execution_set(reason: str, response: ServiceResponse = None) -> None: ...
 def script_execution_get() -> str | None: ...
 def trace_path(suffix: str | list[str]) -> Generator[None]: ...
-def async_trace_path[*_Ts](suffix: str | list[str]) -> Callable[[Callable[[Unpack[_Ts]], Coroutine[Any, Any, None]]], Callable[[Unpack[_Ts]], Coroutine[Any, Any, None]]]: ...
+def async_trace_path[*_Ts](suffix: str | list[str]) -> Callable[[Callable[[*_Ts], Coroutine[Any, Any, None]]], Callable[[*_Ts], Coroutine[Any, Any, None]]]: ...

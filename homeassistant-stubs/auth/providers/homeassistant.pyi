@@ -27,7 +27,7 @@ class InvalidUsername(InvalidUser): ...
 class Data:
     hass: Incomplete
     _store: Incomplete
-    _data: Incomplete
+    _data: dict[str, list[dict[str, str]]] | None
     is_legacy: bool
     def __init__(self, hass: HomeAssistant) -> None: ...
     def normalize_username(self, username: str, *, force_normalize: bool = False) -> str: ...
@@ -46,7 +46,7 @@ class Data:
 
 class HassAuthProvider(AuthProvider):
     DEFAULT_TITLE: str
-    data: Incomplete
+    data: Data | None
     _init_lock: Incomplete
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     async def async_initialize(self) -> None: ...

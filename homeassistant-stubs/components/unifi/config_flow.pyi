@@ -1,3 +1,4 @@
+import voluptuous as vol
 from . import UnifiConfigEntry as UnifiConfigEntry
 from .const import CONF_ALLOW_BANDWIDTH_SENSORS as CONF_ALLOW_BANDWIDTH_SENSORS, CONF_ALLOW_UPTIME_SENSORS as CONF_ALLOW_UPTIME_SENSORS, CONF_BLOCK_CLIENT as CONF_BLOCK_CLIENT, CONF_CLIENT_SOURCE as CONF_CLIENT_SOURCE, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_DPI_RESTRICTIONS as CONF_DPI_RESTRICTIONS, CONF_IGNORE_WIRED_BUG as CONF_IGNORE_WIRED_BUG, CONF_SITE_ID as CONF_SITE_ID, CONF_SSID_FILTER as CONF_SSID_FILTER, CONF_TRACK_CLIENTS as CONF_TRACK_CLIENTS, CONF_TRACK_DEVICES as CONF_TRACK_DEVICES, CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_DPI_RESTRICTIONS as DEFAULT_DPI_RESTRICTIONS, DOMAIN as UNIFI_DOMAIN
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
@@ -22,8 +23,8 @@ class UnifiFlowHandler(ConfigFlow, domain=UNIFI_DOMAIN):
     sites: Sites
     @staticmethod
     def async_get_options_flow(config_entry: UnifiConfigEntry) -> UnifiOptionsFlowHandler: ...
-    config: Incomplete
-    reauth_schema: Incomplete
+    config: dict[str, Any]
+    reauth_schema: dict[vol.Marker, Any]
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_site(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

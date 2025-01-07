@@ -56,7 +56,7 @@ class EcovacsVacuum(EcovacsEntity[Capabilities], StateVacuumEntity):
     _unrecorded_attributes: Incomplete
     _attr_supported_features: Incomplete
     entity_description: Incomplete
-    _rooms: Incomplete
+    _rooms: list[Room]
     _attr_fan_speed_list: Incomplete
     def __init__(self, device: Device) -> None: ...
     _attr_battery_level: Incomplete

@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from collections import defaultdict
 from collections.abc import Iterable
 from enum import StrEnum
 from homeassistant.components import automation as automation, group as group, person as person, script as script, websocket_api as websocket_api
@@ -39,7 +40,7 @@ class Searcher:
     _device_registry: Incomplete
     _entity_registry: Incomplete
     _entity_sources: Incomplete
-    results: Incomplete
+    results: defaultdict[ItemType, set[str]]
     def __init__(self, hass: HomeAssistant, entity_sources: dict[str, EntityInfo]) -> None: ...
     def async_search(self, item_type: ItemType, item_id: str) -> dict[str, set[str]]: ...
     def _add(self, item_type: ItemType, item_id: str | Iterable[str] | None) -> None: ...

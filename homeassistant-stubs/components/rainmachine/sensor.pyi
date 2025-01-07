@@ -40,8 +40,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, 
 
 class TimeRemainingSensor(RainMachineEntity, RestoreSensor):
     entity_description: RainMachineSensorCompletionTimerDescription
-    _current_run_state: Incomplete
-    _previous_run_state: Incomplete
+    _current_run_state: RunStates | None
+    _previous_run_state: RunStates | None
     def __init__(self, entry: ConfigEntry, data: RainMachineData, description: RainMachineSensorCompletionTimerDescription) -> None: ...
     @property
     def activity_data(self) -> dict[str, Any]: ...

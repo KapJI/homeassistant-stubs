@@ -17,7 +17,7 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _host: str
     _name: str
-    _uuid: Incomplete
+    _uuid: str | None
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...

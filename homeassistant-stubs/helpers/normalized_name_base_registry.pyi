@@ -1,5 +1,4 @@
 from .registry import BaseRegistryItems as BaseRegistryItems
-from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.util import slugify as slugify
@@ -16,7 +15,7 @@ class NormalizedNameBaseRegistryEntry:
 def normalize_name(name: str) -> str: ...
 
 class NormalizedNameBaseRegistryItems[_VT: NormalizedNameBaseRegistryEntry](BaseRegistryItems[_VT]):
-    _normalized_names: Incomplete
+    _normalized_names: dict[str, _VT]
     def __init__(self) -> None: ...
     def _unindex_entry(self, key: str, replacement_entry: _VT | None = None) -> None: ...
     def _index_entry(self, key: str, entry: _VT) -> None: ...

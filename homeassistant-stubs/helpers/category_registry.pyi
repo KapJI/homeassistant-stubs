@@ -49,7 +49,7 @@ class CategoryRegistryStore(Store[CategoryRegistryStoreData]):
 
 class CategoryRegistry(BaseRegistry[CategoryRegistryStoreData]):
     hass: Incomplete
-    categories: Incomplete
+    categories: dict[str, dict[str, CategoryEntry]]
     _store: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_get_category(self, *, scope: str, category_id: str) -> CategoryEntry | None: ...

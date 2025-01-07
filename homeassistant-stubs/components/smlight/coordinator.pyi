@@ -30,7 +30,7 @@ class SmFwData:
 class SmBaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=abc.ABCMeta):
     config_entry: SmConfigEntry
     client: Incomplete
-    unique_id: Incomplete
+    unique_id: str | None
     legacy_api: int
     def __init__(self, hass: HomeAssistant, host: str, client: Api2) -> None: ...
     async def _async_setup(self) -> None: ...

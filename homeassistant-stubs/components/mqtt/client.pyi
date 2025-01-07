@@ -7,6 +7,7 @@ from .const import CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF
 from .models import DATA_MQTT as DATA_MQTT, MessageCallbackType as MessageCallbackType, MqttData as MqttData, PublishMessage as PublishMessage, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .util import EnsureJobAfterCooldown as EnsureJobAfterCooldown, get_file_path as get_file_path, mqtt_config_entry_enabled as mqtt_config_entry_enabled
 from _typeshed import Incomplete
+from collections import defaultdict
 from collections.abc import AsyncGenerator, Callable as Callable, Coroutine, Iterable
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -71,24 +72,24 @@ class MQTT:
     loop: Incomplete
     config_entry: Incomplete
     conf: Incomplete
-    _simple_subscriptions: Incomplete
-    _wildcard_subscriptions: Incomplete
-    _retained_topics: Incomplete
+    _simple_subscriptions: defaultdict[str, set[Subscription]]
+    _wildcard_subscriptions: dict[Subscription, None]
+    _retained_topics: defaultdict[Subscription, set[str]]
     connected: bool
     _ha_started: Incomplete
-    _cleanup_on_unload: Incomplete
+    _cleanup_on_unload: list[Callable[[], None]]
     _connection_lock: Incomplete
-    _pending_operations: Incomplete
+    _pending_operations: dict[int, asyncio.Future[None]]
     _subscribe_debouncer: Incomplete
-    _misc_timer: Incomplete
-    _reconnect_task: Incomplete
+    _misc_timer: asyncio.TimerHandle | None
+    _reconnect_task: asyncio.Task | None
     _should_reconnect: bool
-    _available_future: Incomplete
-    _max_qos: Incomplete
-    _pending_subscriptions: Incomplete
+    _available_future: asyncio.Future[bool] | None
+    _max_qos: defaultdict[str, int]
+    _pending_subscriptions: dict[str, int]
     _unsubscribe_debouncer: Incomplete
-    _pending_unsubscribes: Incomplete
-    _socket_buffersize: Incomplete
+    _pending_unsubscribes: set[str]
+    _socket_buffersize: int | None
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, conf: ConfigType) -> None: ...
     def _async_ha_started(self, _hass: HomeAssistant) -> None: ...
     async def _async_ha_stop(self, _event: Event) -> None: ...

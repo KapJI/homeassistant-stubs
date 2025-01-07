@@ -22,8 +22,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AppleTvConfigEntr
 
 class AppleTvMediaPlayer(AppleTVEntity, MediaPlayerEntity, PowerListener, AudioListener, PushListener):
     _attr_supported_features = SUPPORT_APPLE_TV
-    _playing: Incomplete
-    _app_list: Incomplete
+    _playing: Playing | None
+    _app_list: dict[str, str]
     def __init__(self, name: str, identifier: str, manager: AppleTVManager) -> None: ...
     def async_device_connected(self, atv: AppleTV) -> None: ...
     async def _update_app_list(self) -> None: ...

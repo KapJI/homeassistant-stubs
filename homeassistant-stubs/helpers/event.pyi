@@ -120,8 +120,8 @@ class _TrackStateChangeFiltered:
     hass: Incomplete
     _action: Incomplete
     _action_as_hassjob: Incomplete
-    _listeners: Incomplete
-    _last_track_states: Incomplete
+    _listeners: dict[str, Callable[[], None]]
+    _last_track_states: TrackStates
     def __init__(self, hass: HomeAssistant, track_states: TrackStates, action: Callable[[Event[EventStateChangedData]], Any]) -> None: ...
     def async_setup(self) -> None: ...
     @property
@@ -144,11 +144,11 @@ class TrackTemplateResultInfo:
     _job: Incomplete
     _track_templates: Incomplete
     _has_super_template: Incomplete
-    _last_result: Incomplete
+    _last_result: dict[Template, bool | str | TemplateError]
     _rate_limit: Incomplete
-    _info: Incomplete
-    _track_state_changes: Incomplete
-    _time_listeners: Incomplete
+    _info: dict[Template, RenderInfo]
+    _track_state_changes: _TrackStateChangeFiltered | None
+    _time_listeners: dict[Template, Callable[[], None]]
     def __init__(self, hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, has_super_template: bool = False) -> None: ...
     def __repr__(self) -> str: ...
     def async_setup(self, strict: bool = False, log_fn: Callable[[int, str], None] | None = None) -> None: ...

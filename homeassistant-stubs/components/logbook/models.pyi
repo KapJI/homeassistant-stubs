@@ -8,6 +8,7 @@ from homeassistant.core import Context as Context, Event as Event, State as Stat
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.json import json_loads as json_loads
 from homeassistant.util.ulid import ulid_to_bytes as ulid_to_bytes
+from propcache import cached_property
 from sqlalchemy.engine.row import Row as Row
 from typing import Any, Final, NamedTuple
 
@@ -22,11 +23,17 @@ class LazyEventPartialState:
     row: Incomplete
     data: Incomplete
     def __init__(self, row: Row | EventAsRow, event_data_cache: dict[str, dict[str, Any]]) -> None: ...
+    @cached_property
     def event_type(self) -> EventType[Any] | str | None: ...
+    @cached_property
     def entity_id(self) -> str | None: ...
+    @cached_property
     def state(self) -> str | None: ...
+    @cached_property
     def context_id(self) -> str | None: ...
+    @cached_property
     def context_user_id(self) -> str | None: ...
+    @cached_property
     def context_parent_id(self) -> str | None: ...
 
 ROW_ID_POS: Final[int]

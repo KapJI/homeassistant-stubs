@@ -10,7 +10,7 @@ async def verify_redirect_uri(hass: HomeAssistant, client_id: str, redirect_uri:
 
 class LinkTagParser(HTMLParser):
     rel: Incomplete
-    found: Incomplete
+    found: list[str | None]
     def __init__(self, rel: str) -> None: ...
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None: ...
 

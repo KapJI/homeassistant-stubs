@@ -1,3 +1,4 @@
+import asyncio
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
 from .utils import async_call_shell_with_timeout as async_call_shell_with_timeout, async_check_output_or_log as async_check_output_or_log
 from _typeshed import Incomplete
@@ -27,7 +28,7 @@ class CommandSwitch(ManualTriggerEntity, SwitchEntity):
     _value_template: Incomplete
     _timeout: Incomplete
     _scan_interval: Incomplete
-    _process_updates: Incomplete
+    _process_updates: asyncio.Lock | None
     def __init__(self, config: ConfigType, object_id: str, command_on: str, command_off: str, command_state: str | None, value_template: Template | None, timeout: int, scan_interval: timedelta) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _switch(self, command: str) -> bool: ...

@@ -5,19 +5,20 @@ from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from mozart_api.models import PlaybackContentMetadata, PlaybackProgress, RenderingState, Source, VolumeState
 from mozart_api.mozart_client import MozartClient as MozartClient
 
 class BangOlufsenBase:
     _client: Incomplete
-    entry: Incomplete
-    _host: Incomplete
-    _unique_id: Incomplete
-    _playback_metadata: Incomplete
-    _playback_progress: Incomplete
-    _playback_source: Incomplete
-    _playback_state: Incomplete
-    _source_change: Incomplete
-    _volume: Incomplete
+    entry: ConfigEntry
+    _host: str
+    _unique_id: str
+    _playback_metadata: PlaybackContentMetadata
+    _playback_progress: PlaybackProgress
+    _playback_source: Source
+    _playback_state: RenderingState
+    _source_change: Source
+    _volume: VolumeState
     def __init__(self, entry: ConfigEntry, client: MozartClient) -> None: ...
 
 class BangOlufsenEntity(Entity, BangOlufsenBase):

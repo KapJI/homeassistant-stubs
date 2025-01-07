@@ -13,7 +13,7 @@ class DemoRemote(RemoteEntity):
     _attr_should_poll: bool
     _attr_name: Incomplete
     _attr_is_on: Incomplete
-    _last_command_sent: Incomplete
+    _last_command_sent: str | None
     def __init__(self, name: str | None, state: bool) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

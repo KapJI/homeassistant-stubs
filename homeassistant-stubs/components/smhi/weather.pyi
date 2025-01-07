@@ -35,8 +35,8 @@ class SmhiWeather(WeatherEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
     _attr_unique_id: Incomplete
-    _forecast_daily: Incomplete
-    _forecast_hourly: Incomplete
+    _forecast_daily: list[SmhiForecast] | None
+    _forecast_hourly: list[SmhiForecast] | None
     _fail_count: int
     _smhi_api: Incomplete
     _attr_device_info: Incomplete

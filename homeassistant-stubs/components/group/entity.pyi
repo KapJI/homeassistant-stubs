@@ -37,17 +37,17 @@ class Group(Entity):
     _registry: GroupIntegrationRegistry
     hass: Incomplete
     _attr_name: Incomplete
-    _state: Incomplete
+    _state: str | None
     _attr_icon: Incomplete
     _entity_ids: Incomplete
-    _on_off: Incomplete
-    _assumed: Incomplete
-    _on_states: Incomplete
+    _on_off: dict[str, bool]
+    _assumed: dict[str, bool]
+    _on_states: set[str]
     created_by_service: Incomplete
     mode: Incomplete
     _order: Incomplete
     _assumed_state: bool
-    _async_unsub_state_changed: Incomplete
+    _async_unsub_state_changed: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, order: int | None) -> None: ...
     @staticmethod
     def async_create_group_entity(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None) -> Group: ...

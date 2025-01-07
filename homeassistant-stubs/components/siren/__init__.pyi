@@ -7,6 +7,7 @@ from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEnt
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.util.hass_dict import HassKey as HassKey
+from propcache import cached_property
 from typing import Any, TypedDict
 
 _LOGGER: Incomplete
@@ -27,9 +28,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class SirenEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
-    available_tones: list[int | str] | dict[int, str] | None
+    available_tones: list[int | str] | dict[int, str] | None = ...
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_tones=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_tones=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -40,5 +40,7 @@ class SirenEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_supported_features: SirenEntityFeature
     @property
     def capability_attributes(self) -> dict[str, Any] | None: ...
+    @cached_property
     def available_tones(self) -> list[int | str] | dict[int, str] | None: ...
+    @cached_property
     def supported_features(self) -> SirenEntityFeature: ...

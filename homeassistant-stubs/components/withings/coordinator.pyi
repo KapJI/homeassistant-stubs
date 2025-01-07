@@ -19,7 +19,7 @@ class WithingsDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metac
     coordinator_name: str
     name: Incomplete
     _client: Incomplete
-    notification_categories: Incomplete
+    notification_categories: set[NotificationCategory]
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...
     update_interval: Incomplete
     def webhook_subscription_listener(self, connected: bool) -> None: ...
@@ -31,7 +31,7 @@ class WithingsDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metac
 class WithingsMeasurementDataUpdateCoordinator(WithingsDataUpdateCoordinator[dict[tuple[MeasurementType, MeasurementPosition | None], float]]):
     coordinator_name: str
     notification_categories: Incomplete
-    _previous_data: Incomplete
+    _previous_data: dict[tuple[MeasurementType, MeasurementPosition | None], float]
     def __init__(self, hass: HomeAssistant, client: WithingsClient) -> None: ...
     _last_valid_update: Incomplete
     async def _internal_update_data(self) -> dict[tuple[MeasurementType, MeasurementPosition | None], float]: ...

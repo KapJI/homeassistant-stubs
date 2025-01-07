@@ -21,11 +21,11 @@ class ElevenLabsConfigFlow(ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry: ElevenLabsConfigEntry) -> OptionsFlow: ...
 
 class ElevenLabsOptionsFlow(OptionsFlow):
-    api_key: Incomplete
-    voices: Incomplete
-    models: Incomplete
-    model: Incomplete
-    voice: Incomplete
+    api_key: str
+    voices: dict[str, str]
+    models: dict[str, str]
+    model: str | None
+    voice: str | None
     def __init__(self, config_entry: ElevenLabsConfigEntry) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def elevenlabs_config_option_schema(self) -> vol.Schema: ...

@@ -13,10 +13,10 @@ PLATFORM_SCHEMA: Final[Incomplete]
 def get_scanner(hass: HomeAssistant, config: ConfigType) -> ActiontecDeviceScanner | None: ...
 
 class ActiontecDeviceScanner(DeviceScanner):
-    host: Incomplete
-    username: Incomplete
-    password: Incomplete
-    last_results: Incomplete
+    host: str
+    username: str
+    password: str
+    last_results: list[Device]
     success_init: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
     def scan_devices(self) -> list[str]: ...

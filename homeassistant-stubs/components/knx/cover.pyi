@@ -17,7 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 
 class KNXCover(KnxYamlEntity, CoverEntity):
     _device: XknxCover
-    _unsubscribe_auto_updater: Incomplete
+    _unsubscribe_auto_updater: Callable[[], None] | None
     _attr_entity_category: Incomplete
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete

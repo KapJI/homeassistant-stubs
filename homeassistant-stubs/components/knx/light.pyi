@@ -11,6 +11,7 @@ from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from propcache import cached_property
 from typing import Any
 from xknx import XKNX as XKNX
 from xknx.devices.light import Light as XknxLight
@@ -37,6 +38,7 @@ class _KnxLight(LightEntity):
     def xy_color(self) -> tuple[float, float] | None: ...
     @property
     def color_temp_kelvin(self) -> int | None: ...
+    @cached_property
     def supported_color_modes(self) -> set[ColorMode]: ...
     _attr_color_mode: Incomplete
     async def async_turn_on(self, **kwargs: Any) -> None: ...
@@ -45,8 +47,8 @@ class _KnxLight(LightEntity):
 class KnxYamlLight(_KnxLight, KnxYamlEntity):
     _device: XknxLight
     _attr_color_mode: Incomplete
-    _attr_max_color_temp_kelvin: Incomplete
-    _attr_min_color_temp_kelvin: Incomplete
+    _attr_max_color_temp_kelvin: int
+    _attr_min_color_temp_kelvin: int
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
@@ -55,6 +57,6 @@ class KnxYamlLight(_KnxLight, KnxYamlEntity):
 class KnxUiLight(_KnxLight, KnxUiEntity):
     _device: XknxLight
     _attr_color_mode: Incomplete
-    _attr_max_color_temp_kelvin: Incomplete
-    _attr_min_color_temp_kelvin: Incomplete
+    _attr_max_color_temp_kelvin: int
+    _attr_min_color_temp_kelvin: int
     def __init__(self, knx_module: KNXModule, unique_id: str, config: ConfigType) -> None: ...

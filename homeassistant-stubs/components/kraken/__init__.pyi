@@ -18,8 +18,8 @@ class KrakenData:
     _hass: Incomplete
     _config_entry: Incomplete
     _api: Incomplete
-    tradable_asset_pairs: Incomplete
-    coordinator: Incomplete
+    tradable_asset_pairs: dict[str, str]
+    coordinator: DataUpdateCoordinator[KrakenResponse | None] | None
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
     async def async_update(self) -> KrakenResponse | None: ...
     def _get_kraken_data(self) -> KrakenResponse: ...

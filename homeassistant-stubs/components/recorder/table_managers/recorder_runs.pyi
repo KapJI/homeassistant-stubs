@@ -5,8 +5,8 @@ from sqlalchemy.orm.session import Session as Session
 
 class RecorderRunsManager:
     _recording_start: Incomplete
-    _current_run_info: Incomplete
-    _first_run: Incomplete
+    _current_run_info: RecorderRuns | None
+    _first_run: RecorderRuns | None
     def __init__(self) -> None: ...
     @property
     def recording_start(self) -> datetime: ...

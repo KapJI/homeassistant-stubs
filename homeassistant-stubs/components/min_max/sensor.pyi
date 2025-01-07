@@ -49,18 +49,18 @@ class MinMaxSensor(SensorEntity):
     _sensor_attr: Incomplete
     _unit_of_measurement: Incomplete
     _unit_of_measurement_mismatch: bool
-    min_value: Incomplete
-    max_value: Incomplete
-    mean: Incomplete
-    last: Incomplete
-    median: Incomplete
-    range: Incomplete
-    sum: Incomplete
-    min_entity_id: Incomplete
-    max_entity_id: Incomplete
-    last_entity_id: Incomplete
+    min_value: float | None
+    max_value: float | None
+    mean: float | None
+    last: float | None
+    median: float | None
+    range: float | None
+    sum: float | None
+    min_entity_id: str | None
+    max_entity_id: str | None
+    last_entity_id: str | None
     count_sensors: Incomplete
-    states: Incomplete
+    states: dict[str, Any]
     def __init__(self, entity_ids: list[str], name: str | None, sensor_type: str, round_digits: int, unique_id: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

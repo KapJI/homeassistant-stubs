@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from . import block_async_io as block_async_io, config_entries as config_entries, core as core, loader as loader, requirements as requirements
 from .components import http as http
@@ -63,7 +64,7 @@ class _WatchPendingSetups:
     _hass: Incomplete
     _setup_started: Incomplete
     _duration_count: int
-    _handle: Incomplete
+    _handle: asyncio.TimerHandle | None
     _previous_was_empty: bool
     _loop: Incomplete
     def __init__(self, hass: core.HomeAssistant, setup_started: dict[tuple[str, str | None], float]) -> None: ...

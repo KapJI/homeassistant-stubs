@@ -2,9 +2,11 @@ import re
 from .models import BluetoothCallback as BluetoothCallback, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from _typeshed import Incomplete
 from bleak.backends.scanner import AdvertisementData as AdvertisementData
+from collections import defaultdict
 from dataclasses import dataclass
 from homeassistant.core import callback as callback
 from homeassistant.loader import BluetoothMatcher as BluetoothMatcher, BluetoothMatcherOptional as BluetoothMatcherOptional
+from lru import LRU
 from typing import Final, TypedDict
 
 MAX_REMEMBER_ADDRESSES: Final[int]
@@ -41,8 +43,8 @@ def seen_all_fields(previous_match: IntegrationMatchHistory, advertisement_data:
 class IntegrationMatcher:
     __slots__: Incomplete
     _integration_matchers: Incomplete
-    _matched: Incomplete
-    _matched_connectable: Incomplete
+    _matched: LRU[str, IntegrationMatchHistory]
+    _matched_connectable: LRU[str, IntegrationMatchHistory]
     _index: Incomplete
     def __init__(self, integration_matchers: list[BluetoothMatcher]) -> None: ...
     def async_setup(self) -> None: ...
@@ -51,13 +53,13 @@ class IntegrationMatcher:
 
 class BluetoothMatcherIndexBase[_T: (BluetoothMatcher, BluetoothCallbackMatcherWithCallback)]:
     __slots__: Incomplete
-    local_name: Incomplete
-    service_uuid: Incomplete
-    service_data_uuid: Incomplete
-    manufacturer_id: Incomplete
-    service_uuid_set: Incomplete
-    service_data_uuid_set: Incomplete
-    manufacturer_id_set: Incomplete
+    local_name: defaultdict[str, list[_T]]
+    service_uuid: defaultdict[str, list[_T]]
+    service_data_uuid: defaultdict[str, list[_T]]
+    manufacturer_id: defaultdict[int, list[_T]]
+    service_uuid_set: set[str]
+    service_data_uuid_set: set[str]
+    manufacturer_id_set: set[int]
     def __init__(self) -> None: ...
     def add(self, matcher: _T) -> bool: ...
     def remove(self, matcher: _T) -> bool: ...
@@ -68,8 +70,8 @@ class BluetoothMatcherIndex(BluetoothMatcherIndexBase[BluetoothMatcher]): ...
 
 class BluetoothCallbackMatcherIndex(BluetoothMatcherIndexBase[BluetoothCallbackMatcherWithCallback]):
     __slots__: Incomplete
-    address: Incomplete
-    connectable: Incomplete
+    address: defaultdict[str, list[BluetoothCallbackMatcherWithCallback]]
+    connectable: list[BluetoothCallbackMatcherWithCallback]
     def __init__(self) -> None: ...
     def add_callback_matcher(self, matcher: BluetoothCallbackMatcherWithCallback) -> None: ...
     def remove_callback_matcher(self, matcher: BluetoothCallbackMatcherWithCallback) -> None: ...

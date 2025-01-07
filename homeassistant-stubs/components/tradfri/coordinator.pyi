@@ -12,7 +12,7 @@ SCAN_INTERVAL: int
 class TradfriDeviceDataUpdateCoordinator(DataUpdateCoordinator[Device]):
     api: Incomplete
     device: Incomplete
-    _exception: Incomplete
+    _exception: Exception | None
     def __init__(self, hass: HomeAssistant, *, api: Callable[[Command | list[Command]], Any], device: Device) -> None: ...
     last_update_success: bool
     async def set_hub_available(self, available: bool) -> None: ...

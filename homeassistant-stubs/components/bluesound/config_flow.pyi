@@ -14,9 +14,9 @@ _LOGGER: Incomplete
 class BluesoundConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    _host: Incomplete
+    _host: str | None
     _port: Incomplete
-    _sync_status: Incomplete
+    _sync_status: SyncStatus | None
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...

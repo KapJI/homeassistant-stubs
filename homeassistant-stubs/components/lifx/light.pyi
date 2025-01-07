@@ -1,3 +1,4 @@
+import aiolifx_effects as aiolifx_effects_module
 from .const import ATTR_DURATION as ATTR_DURATION, ATTR_INFRARED as ATTR_INFRARED, ATTR_POWER as ATTR_POWER, ATTR_ZONES as ATTR_ZONES, DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, INFRARED_BRIGHTNESS as INFRARED_BRIGHTNESS, LIFX_CEILING_PRODUCT_IDS as LIFX_CEILING_PRODUCT_IDS, _LOGGER as _LOGGER
 from .coordinator import FirmwareEffect as FirmwareEffect, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .entity import LIFXEntity as LIFXEntity
@@ -32,8 +33,8 @@ class LIFXLight(LIFXEntity, LightEntity):
     _attr_name: Incomplete
     mac_addr: Incomplete
     manager: Incomplete
-    effects_conductor: Incomplete
-    postponed_update: Incomplete
+    effects_conductor: aiolifx_effects_module.Conductor
+    postponed_update: CALLBACK_TYPE | None
     entry: Incomplete
     _attr_unique_id: Incomplete
     _attr_min_color_temp_kelvin: Incomplete

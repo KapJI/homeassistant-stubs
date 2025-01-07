@@ -1,3 +1,4 @@
+import asyncio
 import voluptuous as vol
 from .addon import get_addon_manager as get_addon_manager
 from .const import ADDON_SLUG as ADDON_SLUG, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN, LOGGER as LOGGER
@@ -28,10 +29,10 @@ def build_ws_address(host: str, port: int) -> str: ...
 class MatterConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _running_in_background: bool
-    ws_address: Incomplete
+    ws_address: str | None
     integration_created_addon: bool
-    install_task: Incomplete
-    start_task: Incomplete
+    install_task: asyncio.Task | None
+    start_task: asyncio.Task | None
     use_addon: bool
     def __init__(self) -> None: ...
     async def async_step_install_addon(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

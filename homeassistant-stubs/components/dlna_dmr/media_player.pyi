@@ -36,7 +36,7 @@ class DlnaDmrEntity(MediaPlayerEntity):
     _attr_sound_mode: Incomplete
     _attr_name: Incomplete
     mac_address: Incomplete
-    _background_setup_task: Incomplete
+    _background_setup_task: asyncio.Task[None] | None
     _updated_registry: bool
     _config_entry: Incomplete
     _attr_device_info: Incomplete

@@ -18,8 +18,8 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
 class Isy994ConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    discovered_conf: Incomplete
-    _existing_entry: Incomplete
+    discovered_conf: dict[str, str]
+    _existing_entry: ConfigEntry | None
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...

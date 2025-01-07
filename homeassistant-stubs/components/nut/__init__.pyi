@@ -42,9 +42,9 @@ class PyNUTData:
     _host: Incomplete
     _alias: Incomplete
     _client: Incomplete
-    ups_list: Incomplete
-    _status: Incomplete
-    _device_info: Incomplete
+    ups_list: dict[str, str] | None
+    _status: dict[str, str] | None
+    _device_info: NUTDeviceInfo | None
     def __init__(self, host: str, port: int, alias: str | None, username: str | None, password: str | None, persistent: bool = True) -> None: ...
     @property
     def status(self) -> dict[str, str] | None: ...

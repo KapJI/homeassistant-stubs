@@ -26,7 +26,7 @@ class AnalyticsData:
     def __init__(self, onboarded, preferences, uuid) -> None: ...
 
 class Analytics:
-    hass: Incomplete
+    hass: HomeAssistant
     session: Incomplete
     _data: Incomplete
     _store: Incomplete

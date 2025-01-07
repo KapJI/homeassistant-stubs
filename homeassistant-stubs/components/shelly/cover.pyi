@@ -15,7 +15,7 @@ def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, 
 class BlockShellyCover(ShellyBlockEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
-    control_result: Incomplete
+    control_result: dict[str, Any] | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
     @property
     def is_closed(self) -> bool: ...

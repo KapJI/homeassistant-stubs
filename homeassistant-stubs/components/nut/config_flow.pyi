@@ -20,10 +20,10 @@ def _format_host_port_alias(user_input: Mapping[str, Any]) -> str: ...
 
 class NutConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    nut_config: Incomplete
-    ups_list: Incomplete
-    title: Incomplete
-    reauth_entry: Incomplete
+    nut_config: dict[str, Any]
+    ups_list: dict[str, str] | None
+    title: str | None
+    reauth_entry: ConfigEntry | None
     def __init__(self) -> None: ...
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

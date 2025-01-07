@@ -27,14 +27,14 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     _supports_rgbw: bool
     _supports_color_temp: bool
     _supports_dimming: bool
-    _color_mode: Incomplete
-    _hs_color: Incomplete
-    _rgbw_color: Incomplete
-    _color_temp: Incomplete
+    _color_mode: str | None
+    _hs_color: tuple[float, float] | None
+    _rgbw_color: tuple[int, int, int, int] | None
+    _color_temp: int | None
     _warm_white: Incomplete
     _cold_white: Incomplete
-    _supported_color_modes: Incomplete
-    _target_brightness: Incomplete
+    _supported_color_modes: set[ColorMode]
+    _target_brightness: Value | None
     _attr_name: Incomplete
     _current_color: Incomplete
     _target_color: Incomplete
@@ -67,8 +67,8 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     def _calculate_color_values(self) -> None: ...
 
 class ZwaveColorOnOffLight(ZwaveLight):
-    _last_on_color: Incomplete
-    _last_brightness: Incomplete
+    _last_on_color: dict[ColorComponent, int] | None
+    _last_brightness: int | None
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def brightness(self) -> int | None: ...

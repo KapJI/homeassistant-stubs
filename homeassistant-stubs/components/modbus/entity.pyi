@@ -20,11 +20,11 @@ class BasePlatform(Entity, metaclass=abc.ABCMeta):
     _slave: Incomplete
     _address: Incomplete
     _input_type: Incomplete
-    _value: Incomplete
+    _value: str | None
     _scan_interval: Incomplete
     _call_active: bool
-    _cancel_timer: Incomplete
-    _cancel_call: Incomplete
+    _cancel_timer: Callable[[], None] | None
+    _cancel_call: Callable[[], None] | None
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_should_poll: bool
@@ -45,12 +45,12 @@ class BasePlatform(Entity, metaclass=abc.ABCMeta):
 class BaseStructPlatform(BasePlatform, RestoreEntity, metaclass=abc.ABCMeta):
     _swap: Incomplete
     _data_type: Incomplete
-    _structure: Incomplete
+    _structure: str
     _scale: Incomplete
     _offset: Incomplete
     _slave_count: Incomplete
     _slave_size: Incomplete
-    _value_is_int: Incomplete
+    _value_is_int: bool
     _precision: Incomplete
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, config: dict) -> None: ...
     def _swap_registers(self, registers: list[int], slave_count: int) -> list[int]: ...

@@ -1,3 +1,4 @@
+import asyncio
 from .addon import get_addon_manager as get_addon_manager
 from .client import MqttClientSetup as MqttClientSetup
 from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_DISCOVERY as DEFAULT_DISCOVERY, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PREFIX as DEFAULT_PREFIX, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, SUPPORTED_PROTOCOLS as SUPPORTED_PROTOCOLS, TRANSPORT_TCP as TRANSPORT_TCP, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
@@ -51,8 +52,8 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _hassio_discovery: dict[str, Any] | None
     _addon_manager: AddonManager
-    install_task: Incomplete
-    start_task: Incomplete
+    install_task: asyncio.Task | None
+    start_task: asyncio.Task | None
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> MQTTOptionsFlowHandler: ...
@@ -74,7 +75,7 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_hassio_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class MQTTOptionsFlowHandler(OptionsFlow):
-    broker_config: Incomplete
+    broker_config: dict[str, Any]
     def __init__(self) -> None: ...
     async def async_step_init(self, user_input: None = None) -> ConfigFlowResult: ...
     async def async_step_broker(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

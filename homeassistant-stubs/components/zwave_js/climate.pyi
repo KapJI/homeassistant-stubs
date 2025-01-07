@@ -26,13 +26,13 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
     _attr_precision = PRECISION_TENTHS
-    _hvac_modes: Incomplete
-    _hvac_presets: Incomplete
-    _unit_value: Incomplete
-    _last_hvac_mode_id_before_off: Incomplete
+    _hvac_modes: dict[HVACMode, int | None]
+    _hvac_presets: dict[str, int | None]
+    _unit_value: ZwaveValue | None
+    _last_hvac_mode_id_before_off: int | None
     _current_mode: Incomplete
-    _supports_resume: Incomplete
-    _setpoint_values: Incomplete
+    _supports_resume: bool
+    _setpoint_values: dict[ThermostatSetpointType, ZwaveValue | None]
     _operating_state: Incomplete
     _current_temp: Incomplete
     _current_humidity: Incomplete

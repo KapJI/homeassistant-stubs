@@ -1,6 +1,5 @@
 import dataclasses
 from .const import DOMAIN as DOMAIN
-from _typeshed import Incomplete
 from bthome_ble import BTHomeBluetoothDeviceData as DeviceData
 from collections.abc import Mapping
 from homeassistant.components import onboarding as onboarding
@@ -20,9 +19,9 @@ def _title(discovery_info: BluetoothServiceInfoBleak, device: DeviceData) -> str
 
 class BTHomeConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _discovery_info: Incomplete
-    _discovered_device: Incomplete
-    _discovered_devices: Incomplete
+    _discovery_info: BluetoothServiceInfoBleak | None
+    _discovered_device: DeviceData | None
+    _discovered_devices: dict[str, Discovery]
     def __init__(self) -> None: ...
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
     async def async_step_get_encryption_key(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from homeassistant.const import __version__ as __version__
 from homeassistant.data_entry_flow import FlowContext as FlowContext, FlowResult as FlowResult
 from ipaddress import IPv4Address, IPv6Address
+from propcache import cached_property
 from typing import Any, NamedTuple
 
 TOKEN_TYPE_NORMAL: str
@@ -41,7 +42,9 @@ class User:
     groups: list[Group]
     credentials: list[Credentials]
     refresh_tokens: dict[str, RefreshToken]
+    @cached_property
     def permissions(self) -> perm_mdl.AbstractPermissions: ...
+    @cached_property
     def is_admin(self) -> bool: ...
     def invalidate_cache(self) -> None: ...
     def __init__(self, name, perm_lookup, id, is_owner, is_active, system_generated, local_only, groups, credentials, refresh_tokens) -> None: ...

@@ -73,7 +73,7 @@ class MqttStateVacuum(MqttEntity, StateVacuumEntity):
     _set_fan_speed_topic: str | None
     _send_command_topic: str | None
     _payloads: dict[str, str | None]
-    _state_attrs: Incomplete
+    _state_attrs: dict[str, Any]
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> VolSchemaType: ...

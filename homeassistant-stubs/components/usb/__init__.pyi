@@ -1,11 +1,14 @@
 import dataclasses
 from .models import USBDevice
 from _typeshed import Incomplete
+from collections.abc import Coroutine
 from homeassistant.core import CALLBACK_TYPE, Event, HomeAssistant
 from homeassistant.data_entry_flow import BaseServiceInfo
+from homeassistant.helpers.debounce import Debouncer
 from homeassistant.loader import USBMatcher
 from pyudev import Device, MonitorObserver
 from serial.tools.list_ports_common import ListPortInfo
+from typing import Any
 
 __all__ = ['async_is_plugged_in', 'async_register_scan_request_callback', 'USBCallbackMatcher', 'UsbServiceInfo']
 
@@ -27,12 +30,12 @@ class UsbServiceInfo(BaseServiceInfo):
 class USBDiscovery:
     hass: Incomplete
     usb: Incomplete
-    seen: Incomplete
+    seen: set[tuple[str, ...]]
     observer_active: bool
-    _request_debouncer: Incomplete
-    _request_callbacks: Incomplete
+    _request_debouncer: Debouncer[Coroutine[Any, Any, None]] | None
+    _request_callbacks: list[CALLBACK_TYPE]
     initial_scan_done: bool
-    _initial_scan_callbacks: Incomplete
+    _initial_scan_callbacks: list[CALLBACK_TYPE]
     def __init__(self, hass: HomeAssistant, usb: list[USBMatcher]) -> None: ...
     async def async_setup(self) -> None: ...
     async def async_start(self, event: Event) -> None: ...

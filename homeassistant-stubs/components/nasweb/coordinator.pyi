@@ -12,7 +12,7 @@ from webio_api import WebioAPI as WebioAPI
 _LOGGER: Incomplete
 
 class NotificationCoordinator:
-    _coordinators: Incomplete
+    _coordinators: dict[str, NASwebCoordinator]
     def __init__(self) -> None: ...
     def add_coordinator(self, serial: str, coordinator: NASwebCoordinator) -> None: ...
     def remove_coordinator(self, serial: str) -> None: ...
@@ -24,10 +24,10 @@ class NASwebCoordinator(BaseDataUpdateCoordinatorProtocol):
     _hass: Incomplete
     name: Incomplete
     webio_api: Incomplete
-    _last_update: Incomplete
+    _last_update: float | None
     _job: Incomplete
-    _unsub_last_update_check: Incomplete
-    _listeners: Incomplete
+    _unsub_last_update_check: CALLBACK_TYPE | None
+    _listeners: dict[CALLBACK_TYPE, tuple[CALLBACK_TYPE, object | None]]
     def __init__(self, hass: HomeAssistant, webio_api: WebioAPI, name: str = 'NASweb[default]') -> None: ...
     def is_connection_confirmed(self) -> bool: ...
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = None) -> Callable[[], None]: ...

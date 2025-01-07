@@ -50,7 +50,7 @@ class KNXSensor(KnxYamlEntity, SensorEntity):
 
 class KNXSystemSensor(SensorEntity):
     _attr_has_entity_name: bool
-    entity_description: Incomplete
+    entity_description: KNXSystemEntityDescription
     knx: Incomplete
     _attr_device_info: Incomplete
     _attr_should_poll: Incomplete

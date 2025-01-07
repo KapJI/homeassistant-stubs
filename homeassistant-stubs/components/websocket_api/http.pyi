@@ -1,3 +1,4 @@
+import asyncio
 import datetime as dt
 import logging
 from .auth import AUTH_REQUIRED_MESSAGE as AUTH_REQUIRED_MESSAGE, AuthPhase as AuthPhase
@@ -9,6 +10,7 @@ from .util import describe_request as describe_request
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.http_websocket import WebSocketWriter as WebSocketWriter
+from collections import deque
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -35,17 +37,17 @@ class WebSocketHandler:
     __slots__: Incomplete
     _hass: Incomplete
     _loop: Incomplete
-    _request: Incomplete
+    _request: web.Request
     _wsock: Incomplete
-    _handle_task: Incomplete
-    _writer_task: Incomplete
+    _handle_task: asyncio.Task | None
+    _writer_task: asyncio.Task | None
     _closing: bool
     _authenticated: bool
     _logger: Incomplete
-    _peak_checker_unsub: Incomplete
-    _connection: Incomplete
-    _message_queue: Incomplete
-    _ready_future: Incomplete
+    _peak_checker_unsub: Callable[[], None] | None
+    _connection: ActiveConnection | None
+    _message_queue: deque[bytes]
+    _ready_future: asyncio.Future[int] | None
     _release_ready_queue_size: int
     def __init__(self, hass: HomeAssistant, request: web.Request) -> None: ...
     def __repr__(self) -> str: ...

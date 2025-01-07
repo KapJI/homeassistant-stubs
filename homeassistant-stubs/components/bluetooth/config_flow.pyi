@@ -16,10 +16,10 @@ def adapter_display_info(adapter: str, details: AdapterDetails) -> str: ...
 
 class BluetoothConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _adapter: Incomplete
-    _details: Incomplete
-    _adapters: Incomplete
-    _placeholders: Incomplete
+    _adapter: str | None
+    _details: AdapterDetails | None
+    _adapters: dict[str, AdapterDetails]
+    _placeholders: dict[str, str]
     def __init__(self) -> None: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
     def _async_set_adapter_info(self, adapter: str, details: AdapterDetails) -> None: ...

@@ -36,9 +36,9 @@ class VirtualMemory(NamedTuple):
 class SystemMonitorCoordinator(TimestampDataUpdateCoordinator[SensorData]):
     _psutil: Incomplete
     _arguments: Incomplete
-    boot_time: Incomplete
+    boot_time: datetime | None
     _initial_update: bool
-    update_subscribers: Incomplete
+    update_subscribers: dict[tuple[str, str], set[str]]
     def __init__(self, hass: HomeAssistant, psutil_wrapper: ha_psutil.PsutilWrapper, arguments: list[str]) -> None: ...
     def set_subscribers_tuples(self, arguments: list[str]) -> dict[tuple[str, str], set[str]]: ...
     async def _async_update_data(self) -> SensorData: ...

@@ -19,8 +19,8 @@ async def _async_get_component_icons(hass: HomeAssistant, components: set[str], 
 class _IconsCache:
     __slots__: Incomplete
     _hass: Incomplete
-    _loaded: Incomplete
-    _cache: Incomplete
+    _loaded: set[str]
+    _cache: dict[str, dict[str, Any]]
     _lock: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_fetch(self, category: str, components: set[str]) -> dict[str, dict[str, Any]]: ...

@@ -1,6 +1,7 @@
 from .const import CONF_NICKNAME as CONF_NICKNAME, CONF_USE_PSK as CONF_USE_PSK, DOMAIN as DOMAIN, LEGACY_CLIENT_ID as LEGACY_CLIENT_ID, NICKNAME_PREFIX as NICKNAME_PREFIX, SourceType as SourceType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
+from datetime import datetime
 from homeassistant.components.media_player import MediaType as MediaType
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PIN as CONF_PIN
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -22,19 +23,19 @@ class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     use_psk: Incomplete
     client_id: Incomplete
     nickname: Incomplete
-    source: Incomplete
-    source_list: Incomplete
-    source_map: Incomplete
-    media_title: Incomplete
-    media_channel: Incomplete
-    media_content_id: Incomplete
-    media_content_type: Incomplete
-    media_uri: Incomplete
-    media_duration: Incomplete
-    media_position: Incomplete
-    media_position_updated_at: Incomplete
-    volume_level: Incomplete
-    volume_target: Incomplete
+    source: str | None
+    source_list: list[str]
+    source_map: dict[str, dict]
+    media_title: str | None
+    media_channel: str | None
+    media_content_id: str | None
+    media_content_type: MediaType | None
+    media_uri: str | None
+    media_duration: int | None
+    media_position: int | None
+    media_position_updated_at: datetime | None
+    volume_level: float | None
+    volume_target: str | None
     volume_muted: bool
     is_on: bool
     connected: bool

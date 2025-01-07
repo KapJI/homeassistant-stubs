@@ -17,7 +17,7 @@ class MotionMountPresets(MotionMountEntity, SelectEntity):
     _attr_should_poll: bool
     _attr_translation_key: str
     _attr_unique_id: Incomplete
-    _presets: Incomplete
+    _presets: list[motionmount.Preset]
     def __init__(self, mm: motionmount.MotionMount, config_entry: ConfigEntry) -> None: ...
     _attr_options: Incomplete
     def _update_options(self, presets: list[motionmount.Preset]) -> None: ...

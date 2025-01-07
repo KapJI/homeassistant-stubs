@@ -12,8 +12,8 @@ _LOGGER: Incomplete
 
 class RoborockFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _username: Incomplete
-    _client: Incomplete
+    _username: str | None
+    _client: RoborockApiClient | None
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _request_code(self) -> dict: ...

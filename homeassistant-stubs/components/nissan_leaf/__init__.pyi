@@ -29,13 +29,13 @@ class LeafDataStore:
     leaf: Incomplete
     car_config: Incomplete
     force_miles: Incomplete
-    data: Incomplete
-    next_update: Incomplete
-    last_check: Incomplete
+    data: dict[str, Any]
+    next_update: datetime | None
+    last_check: datetime | None
     request_in_progress: bool
-    last_battery_response: Incomplete
-    last_climate_response: Incomplete
-    _remove_listener: Incomplete
+    last_battery_response: datetime | None
+    last_climate_response: datetime | None
+    _remove_listener: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, leaf: Leaf, car_config: dict[str, Any]) -> None: ...
     async def async_update_data(self, now: datetime) -> None: ...
     def get_next_interval(self) -> datetime: ...

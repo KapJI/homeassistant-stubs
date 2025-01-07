@@ -5,6 +5,7 @@ from .const import ATTR_PREFIXES as ATTR_PREFIXES, CONF_PHONEBOOK as CONF_PHONEB
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import StrEnum
+from fritzconnection.core.fritzmonitor import FritzMonitor
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
@@ -31,8 +32,8 @@ class FritzBoxCallSensor(SensorEntity):
     _prefixes: Incomplete
     _host: Incomplete
     _port: Incomplete
-    _monitor: Incomplete
-    _attributes: Incomplete
+    _monitor: FritzBoxCallMonitor | None
+    _attributes: dict[str, str | list[str] | bool]
     _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete
@@ -52,7 +53,7 @@ class FritzBoxCallSensor(SensorEntity):
 class FritzBoxCallMonitor:
     host: Incomplete
     port: Incomplete
-    connection: Incomplete
+    connection: FritzMonitor | None
     stopped: Incomplete
     _sensor: Incomplete
     def __init__(self, host: str, port: int, sensor: FritzBoxCallSensor) -> None: ...

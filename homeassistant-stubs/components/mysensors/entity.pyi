@@ -22,10 +22,10 @@ MYSENSORS_PLATFORM_DEVICES: str
 
 class MySensorNodeEntity(Entity, metaclass=abc.ABCMeta):
     hass: HomeAssistant
-    gateway_id: Incomplete
-    gateway: Incomplete
-    node_id: Incomplete
-    _debouncer: Incomplete
+    gateway_id: GatewayId
+    gateway: BaseAsyncGateway
+    node_id: int
+    _debouncer: Debouncer | None
     def __init__(self, gateway_id: GatewayId, gateway: BaseAsyncGateway, node_id: int) -> None: ...
     @property
     def _node(self) -> Sensor: ...
@@ -48,10 +48,10 @@ def get_mysensors_devices(hass: HomeAssistant, domain: Platform) -> dict[DevId, 
 
 class MySensorsChildEntity(MySensorNodeEntity):
     _attr_should_poll: bool
-    child_id: Incomplete
-    value_type: Incomplete
+    child_id: int
+    value_type: int
     child_type: Incomplete
-    _values: Incomplete
+    _values: dict[int, Any]
     def __init__(self, gateway_id: GatewayId, gateway: BaseAsyncGateway, node_id: int, child_id: int, value_type: int) -> None: ...
     @property
     def dev_id(self) -> DevId: ...

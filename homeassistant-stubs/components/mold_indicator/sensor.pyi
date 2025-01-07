@@ -38,13 +38,13 @@ class MoldIndicator(SensorEntity):
     _is_metric: Incomplete
     _attr_available: bool
     _entities: Incomplete
-    _dewpoint: Incomplete
-    _indoor_temp: Incomplete
-    _outdoor_temp: Incomplete
-    _indoor_hum: Incomplete
-    _crit_temp: Incomplete
+    _dewpoint: float | None
+    _indoor_temp: float | None
+    _outdoor_temp: float | None
+    _indoor_hum: float | None
+    _crit_temp: float | None
     _attr_device_info: Incomplete
-    _preview_callback: Incomplete
+    _preview_callback: Callable[[str, Mapping[str, Any]], None] | None
     def __init__(self, hass: HomeAssistant, name: str, is_metric: bool, indoor_temp_sensor: str, outdoor_temp_sensor: str, indoor_humidity_sensor: str, calib_factor: float, unique_id: str | None) -> None: ...
     def async_start_preview(self, preview_callback: Callable[[str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...
     async def async_added_to_hass(self) -> None: ...

@@ -10,7 +10,7 @@ from switchbee.device import SwitchBeeBaseDevice
 _LOGGER: Incomplete
 
 class SwitchBeeCoordinator(DataUpdateCoordinator[Mapping[int, SwitchBeeBaseDevice]]):
-    api: Incomplete
+    api: CentralUnitPolling | CentralUnitWsRPC
     _reconnect_counts: int
     unique_id: Incomplete
     def __init__(self, hass: HomeAssistant, swb_api: CentralUnitPolling | CentralUnitWsRPC) -> None: ...

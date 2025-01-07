@@ -13,7 +13,7 @@ DEFAULT_MAX_TEMP: float
 class DomesticHotWaterProduction(OverkizEntity, WaterHeaterEntity):
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete
-    operation_mode_to_overkiz: Incomplete
+    operation_mode_to_overkiz: dict[str, str]
     _attr_operation_list: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property

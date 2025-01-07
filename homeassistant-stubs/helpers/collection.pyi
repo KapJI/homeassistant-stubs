@@ -42,7 +42,7 @@ class ItemNotFound(CollectionError):
     def __init__(self, item_id: str) -> None: ...
 
 class IDManager:
-    collections: Incomplete
+    collections: list[dict[str, Any]]
     def __init__(self) -> None: ...
     def add_collection(self, collection: dict[str, Any]) -> None: ...
     def has_id(self, item_id: str) -> bool: ...
@@ -60,9 +60,9 @@ class CollectionEntity(Entity, metaclass=abc.ABCMeta):
 
 class ObservableCollection[_ItemT](ABC):
     id_manager: Incomplete
-    data: Incomplete
-    listeners: Incomplete
-    change_set_listeners: Incomplete
+    data: dict[str, _ItemT]
+    listeners: list[ChangeListener]
+    change_set_listeners: list[ChangeSetListener]
     def __init__(self, id_manager: IDManager | None) -> None: ...
     def async_items(self) -> list[_ItemT]: ...
     def async_add_listener(self, listener: ChangeListener) -> Callable[[], None]: ...
@@ -146,8 +146,8 @@ class StorageCollectionWebsocket[_StorageCollectionT: StorageCollection]:
     model_name: Incomplete
     create_schema: Incomplete
     update_schema: Incomplete
-    _remove_subscription: Incomplete
-    _subscribers: Incomplete
+    _remove_subscription: CALLBACK_TYPE | None
+    _subscribers: set[tuple[websocket_api.ActiveConnection, int]]
     def __init__(self, storage_collection: _StorageCollectionT, api_prefix: str, model_name: str, create_schema: VolDictType, update_schema: VolDictType) -> None: ...
     @property
     def item_id_key(self) -> str: ...

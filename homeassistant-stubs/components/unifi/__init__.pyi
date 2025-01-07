@@ -25,9 +25,9 @@ async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: Un
 
 class UnifiWirelessClients:
     hass: Incomplete
-    data: Incomplete
-    wireless_clients: Incomplete
-    _store: Incomplete
+    data: dict[str, dict[str, list[str]] | list[str]]
+    wireless_clients: set[str]
+    _store: Store
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_load(self) -> None: ...
     def is_wireless(self, client: Client) -> bool: ...

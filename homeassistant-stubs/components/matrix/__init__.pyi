@@ -49,14 +49,14 @@ class MatrixBot:
     _client: AsyncClient
     hass: Incomplete
     _session_filepath: Incomplete
-    _access_tokens: Incomplete
+    _access_tokens: JsonObjectType
     _homeserver: Incomplete
     _verify_tls: Incomplete
     _mx_id: Incomplete
     _password: Incomplete
-    _listening_rooms: Incomplete
-    _word_commands: Incomplete
-    _expression_commands: Incomplete
+    _listening_rooms: dict[RoomAnyID, RoomID]
+    _word_commands: dict[RoomID, dict[WordCommand, ConfigCommand]]
+    _expression_commands: dict[RoomID, list[ConfigCommand]]
     _unparsed_commands: Incomplete
     def __init__(self, hass: HomeAssistant, config_file: str, homeserver: str, verify_ssl: bool, username: str, password: str, listening_rooms: list[RoomAnyID], commands: list[ConfigCommand]) -> None: ...
     def _load_commands(self, commands: list[ConfigCommand]) -> None: ...

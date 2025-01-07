@@ -24,7 +24,7 @@ class HyperionCamera(Camera):
     _instance_name: Incomplete
     _client: Incomplete
     _image_cond: Incomplete
-    _image: Incomplete
+    _image: bytes | None
     _image_stream_clients: int
     _client_callbacks: Incomplete
     _attr_device_info: Incomplete

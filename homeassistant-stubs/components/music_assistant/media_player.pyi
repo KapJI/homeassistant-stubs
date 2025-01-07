@@ -36,7 +36,7 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_icon: Incomplete
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
-    _prev_time: int
+    _prev_time: float
     def __init__(self, mass: MusicAssistantClient, player_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

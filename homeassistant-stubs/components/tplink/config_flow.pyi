@@ -20,8 +20,8 @@ class TPLinkConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION = CONF_CONFIG_ENTRY_MINOR_VERSION
     host: str | None
     port: int | None
-    _discovered_devices: Incomplete
-    _discovered_device: Incomplete
+    _discovered_devices: dict[str, Device]
+    _discovered_device: Device | None
     def __init__(self) -> None: ...
     async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...

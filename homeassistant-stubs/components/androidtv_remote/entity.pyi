@@ -7,6 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from typing import Any
 
 class AndroidTVRemoteBaseEntity(Entity):
     _attr_name: Incomplete
@@ -15,7 +16,7 @@ class AndroidTVRemoteBaseEntity(Entity):
     _api: Incomplete
     _host: Incomplete
     _name: Incomplete
-    _apps: Incomplete
+    _apps: dict[str, Any]
     _attr_unique_id: Incomplete
     _attr_is_on: Incomplete
     _attr_device_info: Incomplete

@@ -9,6 +9,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from xknx import XKNX as XKNX
+from xknx.devices import ExposeSensor
 
 _LOGGER: Incomplete
 
@@ -17,13 +18,13 @@ def create_knx_exposure(hass: HomeAssistant, xknx: XKNX, config: ConfigType) -> 
 class KNXExposeSensor:
     hass: Incomplete
     xknx: Incomplete
-    entity_id: Incomplete
-    expose_attribute: Incomplete
+    entity_id: str
+    expose_attribute: str | None
     expose_default: Incomplete
-    expose_type: Incomplete
-    value_template: Incomplete
-    _remove_listener: Incomplete
-    device: Incomplete
+    expose_type: int | str
+    value_template: Template | None
+    _remove_listener: Callable[[], None] | None
+    device: ExposeSensor
     def __init__(self, hass: HomeAssistant, xknx: XKNX, config: ConfigType) -> None: ...
     def async_register(self) -> None: ...
     def _init_expose_state(self) -> None: ...

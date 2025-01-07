@@ -27,12 +27,12 @@ class CloudClient(Interface):
     _websession: Incomplete
     google_user_config: Incomplete
     alexa_user_config: Incomplete
-    _alexa_config: Incomplete
-    _google_config: Incomplete
+    _alexa_config: alexa_config.CloudAlexaConfig | None
+    _google_config: google_config.CloudGoogleConfig | None
     _alexa_config_init_lock: Incomplete
     _google_config_init_lock: Incomplete
-    _relayer_region: Incomplete
-    _cloud_ice_servers_listener: Incomplete
+    _relayer_region: str | None
+    _cloud_ice_servers_listener: Callable[[], None] | None
     def __init__(self, hass: HomeAssistant, prefs: CloudPreferences, websession: aiohttp.ClientSession, alexa_user_config: dict[str, Any], google_user_config: dict[str, Any]) -> None: ...
     @property
     def base_path(self) -> Path: ...

@@ -49,7 +49,7 @@ class DSMREntity(SensorEntity):
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _entry: Incomplete
-    telegram: Incomplete
+    telegram: Telegram | None
     _attr_device_info: Incomplete
     _mbus_id: Incomplete
     _attr_unique_id: Incomplete

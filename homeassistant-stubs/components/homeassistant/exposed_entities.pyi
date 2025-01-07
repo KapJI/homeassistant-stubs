@@ -43,8 +43,8 @@ class ExposedEntities:
     _assistants: dict[str, AssistantPreferences]
     entities: dict[str, ExposedEntity]
     _hass: Incomplete
-    _listeners: Incomplete
-    _store: Incomplete
+    _listeners: dict[str, list[Callable[[], None]]]
+    _store: Store[SerializedExposedEntities]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_initialize(self) -> None: ...
     def async_listen_entity_updates(self, assistant: str, listener: Callable[[], None]) -> CALLBACK_TYPE: ...

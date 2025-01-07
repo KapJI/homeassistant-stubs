@@ -22,14 +22,14 @@ ZERO_NOISE_PSK: str
 class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: ConfigEntry
-    _host: Incomplete
-    __name: Incomplete
-    _port: Incomplete
-    _password: Incomplete
-    _noise_required: Incomplete
-    _noise_psk: Incomplete
-    _device_info: Incomplete
-    _device_name: Incomplete
+    _host: str | None
+    __name: str | None
+    _port: int | None
+    _password: str | None
+    _noise_required: bool | None
+    _noise_psk: str | None
+    _device_info: DeviceInfo | None
+    _device_name: str | None
     def __init__(self) -> None: ...
     async def _async_step_user_base(self, user_input: dict[str, Any] | None = None, error: str | None = None) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -22,7 +22,7 @@ class HomeAssistantBluetoothManager(BluetoothManager):
     storage: Incomplete
     _integration_matcher: Incomplete
     _callback_index: Incomplete
-    _cancel_logging_listener: Incomplete
+    _cancel_logging_listener: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, integration_matcher: IntegrationMatcher, bluetooth_adapters: BluetoothAdapters, storage: BluetoothStorage, slot_manager: BleakSlotManager) -> None: ...
     _debug: Incomplete
     def _async_logging_changed(self, event: Event | None = None) -> None: ...

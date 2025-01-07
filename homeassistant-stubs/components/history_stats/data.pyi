@@ -26,8 +26,8 @@ class HistoryStats:
     hass: Incomplete
     entity_id: Incomplete
     _period: Incomplete
-    _state: Incomplete
-    _history_current_period: Incomplete
+    _state: HistoryStatsState
+    _history_current_period: list[HistoryState]
     _previous_run_before_start: bool
     _entity_states: Incomplete
     _duration: Incomplete

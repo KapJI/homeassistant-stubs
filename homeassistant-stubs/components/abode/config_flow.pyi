@@ -11,10 +11,10 @@ class AbodeFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     data_schema: Incomplete
     mfa_data_schema: Incomplete
-    _mfa_code: Incomplete
-    _password: Incomplete
+    _mfa_code: str | None
+    _password: str | None
     _polling: bool
-    _username: Incomplete
+    _username: str | None
     def __init__(self) -> None: ...
     async def _async_abode_login(self, step_id: str) -> ConfigFlowResult: ...
     async def _async_abode_mfa_login(self) -> ConfigFlowResult: ...

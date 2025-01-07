@@ -14,8 +14,8 @@ _LOGGER: Incomplete
 REMOTE_KEYS: Incomplete
 
 class RemoteInputSelectAccessory(HomeAccessory, ABC, metaclass=abc.ABCMeta):
-    _mapped_sources_list: Incomplete
-    _mapped_sources: Incomplete
+    _mapped_sources_list: list[str]
+    _mapped_sources: dict[str, str]
     source_key: Incomplete
     source_list_key: Incomplete
     sources: Incomplete

@@ -38,9 +38,9 @@ class PairedSensorManager:
     _client: Incomplete
     _entry: Incomplete
     _hass: Incomplete
-    _paired_uids: Incomplete
+    _paired_uids: set[str]
     _sensor_pair_dump_coordinator: Incomplete
-    coordinators: Incomplete
+    coordinators: dict[str, GuardianDataUpdateCoordinator]
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, client: Client, api_lock: asyncio.Lock, sensor_pair_dump_coordinator: GuardianDataUpdateCoordinator) -> None: ...
     async def async_initialize(self) -> None: ...
     async def async_pair_sensor(self, uid: str) -> None: ...

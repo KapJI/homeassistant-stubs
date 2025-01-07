@@ -41,9 +41,9 @@ class WaitingAddonManager(AddonManager):
     async def async_uninstall_addon_waiting(self) -> None: ...
 
 class MultiprotocolAddonManager(WaitingAddonManager):
-    _channel: Incomplete
-    _platforms: Incomplete
-    _store: Incomplete
+    _channel: int | None
+    _platforms: dict[str, MultipanProtocol]
+    _store: Store[dict[str, Any]]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_setup(self) -> None: ...
     async def _register_multipan_platform(self, hass: HomeAssistant, integration_domain: str, platform: MultipanProtocol) -> None: ...
@@ -73,12 +73,12 @@ def get_zigbee_socket() -> str: ...
 def is_multiprotocol_url(url: str) -> bool: ...
 
 class OptionsFlowHandler(OptionsFlow, ABC, metaclass=abc.ABCMeta):
-    install_task: Incomplete
-    start_task: Incomplete
-    stop_task: Incomplete
-    _zha_migration_mgr: Incomplete
-    original_addon_config: Incomplete
-    revert_reason: Incomplete
+    install_task: asyncio.Task | None
+    start_task: asyncio.Task | None
+    stop_task: asyncio.Task | None
+    _zha_migration_mgr: ZhaMultiPANMigrationHelper | None
+    original_addon_config: dict[str, Any] | None
+    revert_reason: str | None
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     @abstractmethod
     async def _async_serial_port_settings(self) -> SerialPortSettings: ...

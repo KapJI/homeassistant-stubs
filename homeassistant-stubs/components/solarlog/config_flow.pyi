@@ -1,5 +1,4 @@
 from .const import CONF_HAS_PWD as CONF_HAS_PWD, DEFAULT_HOST as DEFAULT_HOST, DOMAIN as DOMAIN
-from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD
@@ -8,8 +7,8 @@ from typing import Any
 class SolarLogConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    _errors: Incomplete
-    _user_input: Incomplete
+    _errors: dict
+    _user_input: dict
     def __init__(self) -> None: ...
     def _parse_url(self, host: str) -> str: ...
     async def _test_connection(self, host: str) -> bool: ...

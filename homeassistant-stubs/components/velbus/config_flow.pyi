@@ -1,5 +1,4 @@
 from .const import DOMAIN as DOMAIN
-from _typeshed import Incomplete
 from homeassistant.components import usb as usb
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
@@ -8,7 +7,7 @@ from typing import Any
 
 class VelbusConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _errors: Incomplete
+    _errors: dict[str, str]
     _device: str
     _title: str
     def __init__(self) -> None: ...

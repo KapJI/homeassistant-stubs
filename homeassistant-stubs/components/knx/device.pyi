@@ -10,7 +10,7 @@ from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
 class KNXInterfaceDevice:
     hass: Incomplete
     device_registry: Incomplete
-    gateway_descriptor: Incomplete
+    gateway_descriptor: GatewayDescriptor | None
     xknx: Incomplete
     device: Incomplete
     device_info: Incomplete

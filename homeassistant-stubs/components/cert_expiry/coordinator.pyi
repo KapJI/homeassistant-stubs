@@ -11,7 +11,7 @@ _LOGGER: Incomplete
 class CertExpiryDataUpdateCoordinator(DataUpdateCoordinator[datetime | None]):
     host: Incomplete
     port: Incomplete
-    cert_error: Incomplete
+    cert_error: ValidationFailure | None
     is_cert_valid: bool
     def __init__(self, hass: HomeAssistant, host: str, port: int) -> None: ...
     async def _async_update_data(self) -> datetime | None: ...

@@ -31,7 +31,7 @@ class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABC
     device: Incomplete
     local_connection_configured: Incomplete
     _local_client: Incomplete
-    new_device_callback: Incomplete
+    new_device_callback: list[Callable]
     def __init__(self, hass: HomeAssistant, entry: LaMarzoccoConfigEntry, device: LaMarzoccoMachine, local_client: LaMarzoccoLocalClient | None = None) -> None: ...
     async def _async_update_data(self) -> None: ...
     @abstractmethod

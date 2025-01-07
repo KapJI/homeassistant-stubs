@@ -37,10 +37,10 @@ class CloudAlexaConfig(alexa_config.AbstractConfig):
     _prefs: Incomplete
     _cloud: Incomplete
     _token: Incomplete
-    _token_valid: Incomplete
+    _token_valid: datetime | None
     _cur_entity_prefs: Incomplete
-    _alexa_sync_unsub: Incomplete
-    _endpoint: Incomplete
+    _alexa_sync_unsub: Callable[[], None] | None
+    _endpoint: str | URL | None
     def __init__(self, hass: HomeAssistant, config: dict, cloud_user: str, prefs: CloudPreferences, cloud: Cloud[CloudClient]) -> None: ...
     @property
     def enabled(self) -> bool: ...

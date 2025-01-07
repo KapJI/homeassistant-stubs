@@ -33,7 +33,7 @@ def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, 
 class BlockSleepingMotionSwitch(ShellySleepingBlockAttributeEntity, RestoreEntity, SwitchEntity):
     entity_description: BlockSwitchDescription
     _attr_translation_key: str
-    last_state: Incomplete
+    last_state: State | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockSwitchDescription, entry: RegistryEntry | None = None) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
@@ -42,7 +42,7 @@ class BlockSleepingMotionSwitch(ShellySleepingBlockAttributeEntity, RestoreEntit
     async def async_added_to_hass(self) -> None: ...
 
 class BlockRelaySwitch(ShellyBlockEntity, SwitchEntity):
-    control_result: Incomplete
+    control_result: dict[str, Any] | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
     @property
     def is_on(self) -> bool: ...

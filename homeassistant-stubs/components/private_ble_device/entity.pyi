@@ -16,7 +16,7 @@ class BasePrivateDeviceEntity(Entity, metaclass=abc.ABCMeta):
     _attr_device_info: Incomplete
     _entry: Incomplete
     _irk: Incomplete
-    _last_info: Incomplete
+    _last_info: bluetooth.BluetoothServiceInfoBleak | None
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @abstractmethod

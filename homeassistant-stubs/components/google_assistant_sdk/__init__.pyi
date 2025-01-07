@@ -1,6 +1,7 @@
 from .const import CONF_LANGUAGE_CODE as CONF_LANGUAGE_CODE, DATA_MEM_STORAGE as DATA_MEM_STORAGE, DATA_SESSION as DATA_SESSION, DOMAIN as DOMAIN, SUPPORTED_LANGUAGE_CODES as SUPPORTED_LANGUAGE_CODES
 from .helpers import GoogleAssistantSDKAudioView as GoogleAssistantSDKAudioView, InMemoryStorage as InMemoryStorage, async_send_text_commands as async_send_text_commands, best_matching_language_code as best_matching_language_code
 from _typeshed import Incomplete
+from gassist_text import TextAssistant
 from homeassistant.components import conversation as conversation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_NAME as CONF_NAME, Platform as Platform
@@ -24,9 +25,9 @@ async def async_setup_service(hass: HomeAssistant) -> None: ...
 class GoogleAssistantConversationAgent(conversation.AbstractConversationAgent):
     hass: Incomplete
     entry: Incomplete
-    assistant: Incomplete
-    session: Incomplete
-    language: Incomplete
+    assistant: TextAssistant | None
+    session: OAuth2Session | None
+    language: str | None
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     @property
     def supported_languages(self) -> list[str]: ...

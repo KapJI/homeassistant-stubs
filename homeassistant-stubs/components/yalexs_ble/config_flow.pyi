@@ -10,6 +10,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, Self
+from yalexs_ble import ValidatedLockConfig
 
 _LOGGER: Incomplete
 
@@ -21,9 +22,9 @@ class YalexsConfigFlow(ConfigFlow, domain=DOMAIN):
     _local_name_is_unique: bool
     active: bool
     local_name: str | None
-    _discovery_info: Incomplete
-    _discovered_devices: Incomplete
-    _lock_cfg: Incomplete
+    _discovery_info: BluetoothServiceInfoBleak | None
+    _discovered_devices: dict[str, BluetoothServiceInfoBleak]
+    _lock_cfg: ValidatedLockConfig | None
     def __init__(self) -> None: ...
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...

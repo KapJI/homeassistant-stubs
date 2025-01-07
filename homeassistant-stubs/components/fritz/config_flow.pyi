@@ -20,7 +20,7 @@ class FritzBoxToolsFlowHandler(ConfigFlow, domain=DOMAIN):
     _name: str
     _password: str
     _use_tls: bool
-    _port: Incomplete
+    _port: int | None
     _username: str
     _model: str
     def __init__(self) -> None: ...

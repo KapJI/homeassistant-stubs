@@ -21,12 +21,12 @@ class DeconzHub:
     available: bool
     ignore_state_updates: bool
     signal_reachable: Incomplete
-    deconz_ids: Incomplete
-    entities: Incomplete
-    events: Incomplete
-    clip_sensors: Incomplete
-    deconz_groups: Incomplete
-    ignored_devices: Incomplete
+    deconz_ids: dict[str, str]
+    entities: dict[str, set[str]]
+    events: list[DeconzAlarmEvent | DeconzEvent | DeconzPresenceEvent | DeconzRelativeRotaryEvent]
+    clip_sensors: set[tuple[Callable[[EventType, str], None], str]]
+    deconz_groups: set[tuple[Callable[[EventType, str], None], str]]
+    ignored_devices: set[tuple[Callable[[EventType, str], None], str]]
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: DeconzSession) -> None: ...
     @staticmethod
     def get_hub(hass: HomeAssistant, config_entry: ConfigEntry) -> DeconzHub: ...

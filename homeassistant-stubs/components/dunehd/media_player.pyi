@@ -18,8 +18,8 @@ class DuneHDPlayerEntity(MediaPlayerEntity):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _player: Incomplete
-    _media_title: Incomplete
-    _state: Incomplete
+    _media_title: str | None
+    _state: dict[str, Any]
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, player: DuneHDPlayer, name: str, unique_id: str) -> None: ...

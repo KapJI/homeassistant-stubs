@@ -12,10 +12,10 @@ PLATFORM_SCHEMA: Incomplete
 def get_scanner(hass: HomeAssistant, config: ConfigType) -> ArubaDeviceScanner | None: ...
 
 class ArubaDeviceScanner(DeviceScanner):
-    host: Incomplete
-    username: Incomplete
-    password: Incomplete
-    last_results: Incomplete
+    host: str
+    username: str
+    password: str
+    last_results: dict[str, dict[str, str]]
     success_init: Incomplete
     def __init__(self, config: dict[str, Any]) -> None: ...
     def scan_devices(self) -> list[str]: ...

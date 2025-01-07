@@ -11,7 +11,7 @@ from typing import Any
 
 class CountryFixFlow(RepairsFlow):
     entry: Incomplete
-    country: Incomplete
+    country: str | None
     def __init__(self, entry: ConfigEntry, country: str | None) -> None: ...
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
     async def async_step_country(self, user_input: dict[str, Any] | None = None) -> data_entry_flow.FlowResult: ...
@@ -19,8 +19,8 @@ class CountryFixFlow(RepairsFlow):
 
 class HolidayFixFlow(RepairsFlow):
     entry: Incomplete
-    country: Incomplete
-    named_holiday: Incomplete
+    country: str | None
+    named_holiday: str
     def __init__(self, entry: ConfigEntry, country: str | None, named_holiday: str) -> None: ...
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
     async def async_step_fix_remove_holiday(self, user_input: dict[str, Any] | None = None) -> data_entry_flow.FlowResult: ...

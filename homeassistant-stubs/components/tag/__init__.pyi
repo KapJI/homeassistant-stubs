@@ -62,7 +62,7 @@ class TagEntity(Entity):
     _attr_name: Incomplete
     _tag_id: Incomplete
     _attr_unique_id: Incomplete
-    _last_device_id: Incomplete
+    _last_device_id: str | None
     _last_scanned: Incomplete
     def __init__(self, entity_update_handlers: dict[str, Callable[[str | None, str | None], None]], name: str, tag_id: str, last_scanned: str | None, device_id: str | None) -> None: ...
     def async_handle_event(self, device_id: str | None, last_scanned: str | None) -> None: ...

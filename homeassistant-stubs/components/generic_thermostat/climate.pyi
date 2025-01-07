@@ -48,7 +48,7 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     _temp_target_temperature_step: Incomplete
     _attr_hvac_modes: Incomplete
     _active: bool
-    _cur_temp: Incomplete
+    _cur_temp: float | None
     _temp_lock: Incomplete
     _min_temp: Incomplete
     _max_temp: Incomplete

@@ -18,7 +18,7 @@ def async_get_simplisafe_oauth_values() -> SimpliSafeOAuthValues: ...
 
 class SimpliSafeFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _oauth_values: Incomplete
+    _oauth_values: SimpliSafeOAuthValues
     _reauth: bool
     def __init__(self) -> None: ...
     @staticmethod

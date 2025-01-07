@@ -10,8 +10,8 @@ from typing import Any
 _LOGGER: Incomplete
 
 class AcaiaConfigFlow(ConfigFlow, domain=DOMAIN):
-    _discovered: Incomplete
-    _discovered_devices: Incomplete
+    _discovered: dict[str, Any]
+    _discovered_devices: dict[str, str]
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...

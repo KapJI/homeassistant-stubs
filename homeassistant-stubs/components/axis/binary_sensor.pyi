@@ -35,6 +35,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AxisConfigEntry, 
 class AxisBinarySensor(AxisEventEntity, BinarySensorEntity):
     entity_description: AxisBinarySensorDescription
     _attr_is_on: Incomplete
-    cancel_scheduled_update: Incomplete
+    cancel_scheduled_update: Callable[[], None] | None
     def __init__(self, hub: AxisHub, description: AxisBinarySensorDescription, event: Event) -> None: ...
     def async_event_callback(self, event: Event) -> None: ...

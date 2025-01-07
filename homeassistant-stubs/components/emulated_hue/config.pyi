@@ -37,21 +37,21 @@ _LOGGER: Incomplete
 class Config:
     hass: Incomplete
     type: Incomplete
-    numbers: Incomplete
-    store: Incomplete
-    cached_states: Incomplete
-    _exposed_cache: Incomplete
-    host_ip_addr: Incomplete
-    listen_port: Incomplete
-    upnp_bind_multicast: Incomplete
+    numbers: dict[str, str]
+    store: storage.Store | None
+    cached_states: dict[str, list]
+    _exposed_cache: dict[str, bool]
+    host_ip_addr: str
+    listen_port: int
+    upnp_bind_multicast: bool
     off_maps_to_on_domains: Incomplete
-    expose_by_default: Incomplete
+    expose_by_default: bool
     exposed_domains: Incomplete
-    advertise_ip: Incomplete
-    advertise_port: Incomplete
-    entities: Incomplete
+    advertise_ip: str
+    advertise_port: int
+    entities: dict[str, dict[str, str]]
     _entities_with_hidden_attr_in_config: Incomplete
-    lights_all_dimmable: Incomplete
+    lights_all_dimmable: bool
     track_domains: Incomplete
     def __init__(self, hass: HomeAssistant, conf: ConfigType, local_ip: str) -> None: ...
     async def async_setup(self) -> None: ...

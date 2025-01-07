@@ -9,12 +9,13 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from pyatmo import DeviceType, Home as Home, Module as Module, Room as Room
 from pyatmo.modules.base_class import NetatmoBase as NetatmoBase
+from typing import Any
 
 class NetatmoBaseEntity(Entity):
     _attr_attribution = DEFAULT_ATTRIBUTION
     _attr_has_entity_name: bool
     data_handler: Incomplete
-    _publishers: Incomplete
+    _publishers: list[dict[str, Any]]
     _attr_extra_state_attributes: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler) -> None: ...
     async def async_added_to_hass(self) -> None: ...

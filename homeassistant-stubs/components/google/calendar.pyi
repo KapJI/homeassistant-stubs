@@ -46,7 +46,7 @@ class GoogleCalendarEntity(CoordinatorEntity[CalendarSyncUpdateCoordinator | Cal
     calendar_id: Incomplete
     _ignore_availability: Incomplete
     _offset: Incomplete
-    _event: Incomplete
+    _event: CalendarEvent | None
     entity_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_supported_features: Incomplete

@@ -41,12 +41,12 @@ def resolve_slot_data(key: str, request: dict[str, Any]) -> dict[str, str]: ...
 
 class AlexaIntentResponse:
     hass: Incomplete
-    speech: Incomplete
-    card: Incomplete
-    reprompt: Incomplete
-    session_attributes: Incomplete
+    speech: dict[str, Any] | None
+    card: dict[str, Any] | None
+    reprompt: dict[str, Any] | None
+    session_attributes: dict[str, Any]
     should_end_session: bool
-    variables: Incomplete
+    variables: dict[str, Any]
     def __init__(self, hass: HomeAssistant, intent_info: dict[str, Any] | None) -> None: ...
     def add_card(self, card_type: CardType, title: str, content: str) -> None: ...
     def add_speech(self, speech_type: SpeechType, text: str) -> None: ...

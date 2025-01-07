@@ -4,6 +4,7 @@ from .storage.keyring import DEFAULT_KNX_KEYRING_FILENAME as DEFAULT_KNX_KEYRING
 from .validation import ia_validator as ia_validator, ip_v4_validator as ip_v4_validator
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
+from collections.abc import AsyncGenerator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
@@ -11,7 +12,7 @@ from homeassistant.helpers import selector as selector
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, VolDictType as VolDictType
 from typing import Any, Final
 from xknx import XKNX
-from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor
+from xknx.io.gateway_scanner import GatewayDescriptor as GatewayDescriptor, GatewayScanner
 from xknx.secure.keyring import Keyring as Keyring, XMLInterface as XMLInterface
 
 CONF_KNX_GATEWAY: Final[str]
@@ -28,14 +29,14 @@ _PORT_SELECTOR: Incomplete
 class KNXCommonFlow(ABC, ConfigEntryBaseFlow, metaclass=abc.ABCMeta):
     initial_data: Incomplete
     new_entry_data: Incomplete
-    new_title: Incomplete
-    _keyring: Incomplete
-    _found_gateways: Incomplete
-    _found_tunnels: Incomplete
-    _selected_tunnel: Incomplete
-    _tunnel_endpoints: Incomplete
-    _gatewayscanner: Incomplete
-    _async_scan_gen: Incomplete
+    new_title: str | None
+    _keyring: Keyring | None
+    _found_gateways: list[GatewayDescriptor]
+    _found_tunnels: list[GatewayDescriptor]
+    _selected_tunnel: GatewayDescriptor | None
+    _tunnel_endpoints: list[XMLInterface]
+    _gatewayscanner: GatewayScanner | None
+    _async_scan_gen: AsyncGenerator[GatewayDescriptor] | None
     def __init__(self, initial_data: KNXConfigEntryData) -> None: ...
     @property
     def _xknx(self) -> XKNX: ...

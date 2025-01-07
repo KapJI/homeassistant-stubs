@@ -28,8 +28,8 @@ class TriggerBaseEntity(Entity):
     hass: Incomplete
     _config: Incomplete
     _static_rendered: Incomplete
-    _to_render_simple: Incomplete
-    _to_render_complex: Incomplete
+    _to_render_simple: list[str]
+    _to_render_complex: list[str]
     _rendered: Incomplete
     _parse_result: Incomplete
     _attr_device_class: Incomplete

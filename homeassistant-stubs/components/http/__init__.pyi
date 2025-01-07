@@ -120,9 +120,9 @@ class HomeAssistantHTTP:
     server_port: Incomplete
     trusted_proxies: Incomplete
     ssl_profile: Incomplete
-    runner: Incomplete
-    site: Incomplete
-    context: Incomplete
+    runner: web.AppRunner | None
+    site: HomeAssistantTCPSite | None
+    context: ssl.SSLContext | None
     def __init__(self, hass: HomeAssistant, ssl_certificate: str | None, ssl_peer_certificate: str | None, ssl_key: str | None, server_host: list[str] | None, server_port: int, trusted_proxies: list[IPv4Network | IPv6Network], ssl_profile: str) -> None: ...
     async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool, use_x_frame_options: bool) -> None: ...
     def register_view(self, view: HomeAssistantView | type[HomeAssistantView]) -> None: ...

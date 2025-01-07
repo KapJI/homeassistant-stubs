@@ -6,6 +6,7 @@ from homeassistant.const import ATTR_NAME as ATTR_NAME, CONF_API_TOKEN as CONF_A
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from typing import Any
 
 type BlueCurrentConfigEntry = ConfigEntry[Connector]
 PLATFORMS: Incomplete
@@ -23,8 +24,8 @@ class Connector:
     config: Incomplete
     hass: Incomplete
     client: Incomplete
-    charge_points: Incomplete
-    grid: Incomplete
+    charge_points: dict[str, dict]
+    grid: dict[str, Any]
     def __init__(self, hass: HomeAssistant, config: BlueCurrentConfigEntry, client: Client) -> None: ...
     async def on_data(self, message: dict) -> None: ...
     async def handle_charge_point_data(self, charge_points_data: list) -> None: ...

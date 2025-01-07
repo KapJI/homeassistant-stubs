@@ -2,7 +2,7 @@ from .json import json_loads as json_loads
 from _typeshed import Incomplete
 from aiohttp import web as web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
-from multidict import MultiDict
+from multidict import CIMultiDict, MultiDict
 from typing import Any
 
 class MockStreamReader:
@@ -21,7 +21,7 @@ class MockRequest:
     method: Incomplete
     url: Incomplete
     status: Incomplete
-    headers: Incomplete
+    headers: CIMultiDict[str]
     query_string: Incomplete
     keep_alive: bool
     version: Incomplete

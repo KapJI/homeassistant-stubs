@@ -13,7 +13,7 @@ from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
 type _DeviceType = PydeconzGroup | PydeconzLightBase | PydeconzSensorBase | PydeconzScene
 class DeconzBase[_DeviceT: _DeviceType]:
     unique_id_suffix: str | None
-    _device: Incomplete
+    _device: _DeviceT
     hub: Incomplete
     def __init__(self, device: _DeviceT, hub: DeconzHub) -> None: ...
     @property

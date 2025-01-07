@@ -1,3 +1,4 @@
+import asyncio
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
 from .sensor import CommandSensorData as CommandSensorData
 from _typeshed import Incomplete
@@ -26,7 +27,7 @@ class CommandBinarySensor(ManualTriggerEntity, BinarySensorEntity):
     _payload_off: Incomplete
     _value_template: Incomplete
     _scan_interval: Incomplete
-    _process_updates: Incomplete
+    _process_updates: asyncio.Lock | None
     def __init__(self, data: CommandSensorData, config: ConfigType, payload_on: str, payload_off: str, value_template: Template | None, scan_interval: timedelta) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _update_entity_state(self, now: datetime | None = None) -> None: ...

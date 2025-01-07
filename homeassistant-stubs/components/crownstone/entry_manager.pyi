@@ -12,6 +12,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from typing import Any
 
 _LOGGER: Incomplete
 
@@ -21,8 +22,8 @@ class CrownstoneEntryManager:
     sse: CrownstoneSSEAsync
     hass: Incomplete
     config_entry: Incomplete
-    listeners: Incomplete
-    usb_sphere_id: Incomplete
+    listeners: dict[str, Any]
+    usb_sphere_id: str | None
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
     async def async_setup(self) -> bool: ...
     async def async_process_events(self, sse_client: CrownstoneSSEAsync) -> None: ...

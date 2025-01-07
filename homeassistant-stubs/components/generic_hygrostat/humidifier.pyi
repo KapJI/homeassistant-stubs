@@ -37,7 +37,7 @@ class GenericHygrostat(HumidifierEntity, RestoreEntity):
     _state: Incomplete
     _saved_target_humidity: Incomplete
     _active: bool
-    _cur_humidity: Incomplete
+    _cur_humidity: float | None
     _humidity_lock: Incomplete
     _min_humidity: Incomplete
     _max_humidity: Incomplete
@@ -45,7 +45,7 @@ class GenericHygrostat(HumidifierEntity, RestoreEntity):
     _away_humidity: Incomplete
     _away_fixed: Incomplete
     _sensor_stale_duration: Incomplete
-    _remove_stale_tracking: Incomplete
+    _remove_stale_tracking: Callable[[], None] | None
     _is_away: bool
     _attr_action: Incomplete
     _attr_unique_id: Incomplete

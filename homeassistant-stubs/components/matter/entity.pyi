@@ -12,6 +12,7 @@ from homeassistant.helpers.typing import UndefinedType as UndefinedType
 from matter_server.client import MatterClient as MatterClient
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from matter_server.common.models import EventType
+from propcache import cached_property
 from typing import Any
 
 LOGGER: Incomplete
@@ -31,8 +32,8 @@ class MatterEntity(Entity):
     _endpoint: Incomplete
     _entity_info: Incomplete
     entity_description: Incomplete
-    _unsubscribes: Incomplete
-    _attributes_map: Incomplete
+    _unsubscribes: list[Callable]
+    _attributes_map: dict[type, str]
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_available: Incomplete
@@ -40,6 +41,7 @@ class MatterEntity(Entity):
     _attr_name: Incomplete
     def __init__(self, matter_client: MatterClient, endpoint: MatterEndpoint, entity_info: MatterEntityInfo) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    @cached_property
     def name(self) -> str | UndefinedType | None: ...
     def _on_matter_event(self, event: EventType, data: Any = None) -> None: ...
     def _on_featuremap_update(self, event: EventType, data: tuple[int, str, int] | None) -> None: ...

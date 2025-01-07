@@ -34,9 +34,9 @@ class ReolinkUpdateBaseEntity(CoordinatorEntity[DataUpdateCoordinator[None]], Up
     _attr_release_url: str
     _channel: Incomplete
     _host: Incomplete
-    _cancel_update: Incomplete
-    _cancel_resume: Incomplete
-    _cancel_progress: Incomplete
+    _cancel_update: CALLBACK_TYPE | None
+    _cancel_resume: CALLBACK_TYPE | None
+    _cancel_progress: CALLBACK_TYPE | None
     _installing: bool
     _reolink_data: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int | None, coordinator: DataUpdateCoordinator[None]) -> None: ...

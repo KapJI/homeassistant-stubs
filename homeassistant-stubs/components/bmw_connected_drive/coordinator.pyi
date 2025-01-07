@@ -14,7 +14,7 @@ type BMWConfigEntry = ConfigEntry[BMWDataUpdateCoordinator]
 class BMWDataUpdateCoordinator(DataUpdateCoordinator[None]):
     account: MyBMWAccount
     config_entry: BMWConfigEntry
-    read_only: Incomplete
+    read_only: bool
     last_update_success: bool
     def __init__(self, hass: HomeAssistant, *, config_entry: BMWConfigEntry) -> None: ...
     async def _async_update_data(self) -> None: ...

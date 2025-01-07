@@ -45,7 +45,7 @@ class AmcrestBinarySensor(BinarySensorEntity):
     _signal_name: Incomplete
     _api: Incomplete
     _channel: Incomplete
-    entity_description: Incomplete
+    entity_description: AmcrestSensorEntityDescription
     _attr_name: Incomplete
     _attr_should_poll: Incomplete
     def __init__(self, name: str, device: AmcrestDevice, entity_description: AmcrestSensorEntityDescription) -> None: ...

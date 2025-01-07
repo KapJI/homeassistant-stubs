@@ -28,11 +28,11 @@ def generate_config_title(structures: Iterable[Structure]) -> str | None: ...
 class NestFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     VERSION: int
-    _data: Incomplete
-    _structure_config_title: Incomplete
-    _admin_client: Incomplete
-    _eligible_topics: Incomplete
-    _eligible_subscriptions: Incomplete
+    _data: dict[str, Any]
+    _structure_config_title: str | None
+    _admin_client: AdminClient | None
+    _eligible_topics: EligibleTopics | None
+    _eligible_subscriptions: EligibleSubscriptions | None
     def __init__(self) -> None: ...
     @property
     def logger(self) -> logging.Logger: ...

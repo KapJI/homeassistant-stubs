@@ -22,9 +22,9 @@ async def validate_input(hass: HomeAssistant, host: str, username: str, password
 class EnphaseConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _reauth_entry: ConfigEntry
-    ip_address: Incomplete
+    ip_address: str | None
     username: Incomplete
-    protovers: Incomplete
+    protovers: str | None
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: EnphaseConfigEntry) -> EnvoyOptionsFlowHandler: ...

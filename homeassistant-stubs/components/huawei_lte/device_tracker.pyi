@@ -26,7 +26,7 @@ class HuaweiLteScannerEntity(HuaweiLteBaseEntity, ScannerEntity):
     _ip_address: str | None
     _is_connected: bool
     _hostname: str | None
-    _extra_state_attributes: Incomplete
+    _extra_state_attributes: dict[str, Any]
     _mac_address: Incomplete
     def __init__(self, router: Router, mac_address: str) -> None: ...
     @property

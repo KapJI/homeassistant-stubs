@@ -49,9 +49,9 @@ class Zone(collection.CollectionEntity):
     editable: bool
     _attr_should_poll: bool
     _config: Incomplete
-    _attrs: Incomplete
-    _remove_listener: Incomplete
-    _persons_in_zone: Incomplete
+    _attrs: dict | None
+    _remove_listener: Callable[[], None] | None
+    _persons_in_zone: set[str]
     def __init__(self, config: ConfigType) -> None: ...
     _attr_name: Incomplete
     _case_folded_name: Incomplete

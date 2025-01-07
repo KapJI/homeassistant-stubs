@@ -1,4 +1,6 @@
 import asyncio
+import psutil_home_assistant as ha_psutil
+import queue
 import threading
 from . import migration as migration, statistics as statistics
 from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG as MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
@@ -26,6 +28,7 @@ from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from homeassistant.util.event_type import EventType as EventType
+from propcache import cached_property
 from sqlalchemy.engine import Engine as Engine
 from sqlalchemy.engine.interfaces import DBAPIConnection as DBAPIConnection
 from sqlalchemy.orm.session import Session as Session
@@ -49,26 +52,26 @@ MAX_DB_EXECUTOR_WORKERS: Incomplete
 class Recorder(threading.Thread):
     stop_requested: bool
     hass: Incomplete
-    thread_id: Incomplete
-    recorder_and_worker_thread_ids: Incomplete
+    thread_id: int | None
+    recorder_and_worker_thread_ids: set[int]
     auto_purge: Incomplete
     auto_repack: Incomplete
     keep_days: Incomplete
     is_running: bool
-    _hass_started: Incomplete
+    _hass_started: asyncio.Future[object]
     commit_interval: Incomplete
-    _queue: Incomplete
+    _queue: queue.SimpleQueue[RecorderTask | Event]
     db_url: Incomplete
     db_max_retries: Incomplete
     db_retry_wait: Incomplete
-    database_engine: Incomplete
-    async_db_connected: Incomplete
-    async_db_ready: Incomplete
+    database_engine: DatabaseEngine | None
+    async_db_connected: asyncio.Future[bool]
+    async_db_ready: asyncio.Future[bool]
     async_recorder_ready: Incomplete
     _queue_watch: Incomplete
-    engine: Incomplete
-    max_backlog: Incomplete
-    _psutil: Incomplete
+    engine: Engine | None
+    max_backlog: int
+    _psutil: ha_psutil.PsutilWrapper | None
     entity_filter: Incomplete
     exclude_event_types: Incomplete
     schema_version: int
@@ -81,26 +84,27 @@ class Recorder(threading.Thread):
     states_meta_manager: Incomplete
     state_attributes_manager: Incomplete
     statistics_meta_manager: Incomplete
-    event_session: Incomplete
-    _get_session: Incomplete
-    _completed_first_database_setup: Incomplete
+    event_session: Session | None
+    _get_session: Callable[[], Session] | None
+    _completed_first_database_setup: bool | None
     migration_in_progress: bool
     migration_is_live: bool
     use_legacy_events_index: bool
-    _database_lock_task: Incomplete
-    _db_executor: Incomplete
-    _event_listener: Incomplete
-    _queue_watcher: Incomplete
-    _keep_alive_listener: Incomplete
-    _commit_listener: Incomplete
-    _periodic_listener: Incomplete
-    _nightly_listener: Incomplete
-    _dialect_name: Incomplete
+    _database_lock_task: DatabaseLockTask | None
+    _db_executor: DBInterruptibleThreadPoolExecutor | None
+    _event_listener: CALLBACK_TYPE | None
+    _queue_watcher: CALLBACK_TYPE | None
+    _keep_alive_listener: CALLBACK_TYPE | None
+    _commit_listener: CALLBACK_TYPE | None
+    _periodic_listener: CALLBACK_TYPE | None
+    _nightly_listener: CALLBACK_TYPE | None
+    _dialect_name: SupportedDialect | None
     enabled: bool
     max_bind_vars: Incomplete
     def __init__(self, hass: HomeAssistant, auto_purge: bool, auto_repack: bool, keep_days: int, commit_interval: int, uri: str, db_max_retries: int, db_retry_wait: int, entity_filter: Callable[[str], bool] | None, exclude_event_types: set[EventType[Any] | str]) -> None: ...
     @property
     def backlog(self) -> int: ...
+    @cached_property
     def dialect_name(self) -> SupportedDialect | None: ...
     @property
     def _using_file_sqlite(self) -> bool: ...

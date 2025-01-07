@@ -1,6 +1,7 @@
 import voluptuous as vol
 from .const import CONF_BALANCING_AUTHORITY as CONF_BALANCING_AUTHORITY, CONF_BALANCING_AUTHORITY_ABBREV as CONF_BALANCING_AUTHORITY_ABBREV, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
+from aiowatttime import Client
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_PASSWORD as CONF_PASSWORD, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, CONF_USERNAME as CONF_USERNAME
@@ -20,8 +21,8 @@ def get_unique_id(data: dict[str, Any]) -> str: ...
 
 class WattTimeConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _client: Incomplete
-    _data: Incomplete
+    _client: Client | None
+    _data: dict[str, Any]
     def __init__(self) -> None: ...
     async def _async_validate_credentials(self, username: str, password: str, error_step_id: str, error_schema: vol.Schema) -> ConfigFlowResult: ...
     @staticmethod

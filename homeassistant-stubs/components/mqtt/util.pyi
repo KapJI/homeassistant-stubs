@@ -22,8 +22,8 @@ class EnsureJobAfterCooldown:
     _loop: Incomplete
     _timeout: Incomplete
     _callback: Incomplete
-    _task: Incomplete
-    _timer: Incomplete
+    _task: asyncio.Task | None
+    _timer: asyncio.TimerHandle | None
     _next_execute_time: float
     def __init__(self, timeout: float, callback_job: Callable[[], Coroutine[Any, None, None]]) -> None: ...
     def set_timeout(self, timeout: float) -> None: ...

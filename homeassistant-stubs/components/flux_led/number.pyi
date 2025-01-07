@@ -5,6 +5,7 @@ from .entity import FluxEntity as FluxEntity
 from .util import _effect_brightness as _effect_brightness
 from _typeshed import Incomplete
 from abc import abstractmethod
+from collections.abc import Coroutine
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import EFFECT_RANDOM as EFFECT_RANDOM
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberMode as NumberMode
@@ -14,6 +15,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import Any
 
 _LOGGER: Incomplete
 DEBOUNCE_TIME: int
@@ -35,8 +37,8 @@ class FluxConfigNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], 
     _attr_native_min_value: int
     _attr_native_step: int
     _attr_mode: Incomplete
-    _debouncer: Incomplete
-    _pending_value: Incomplete
+    _debouncer: Debouncer[Coroutine[Any, Any, None]] | None
+    _pending_value: int | None
     def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, key: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...

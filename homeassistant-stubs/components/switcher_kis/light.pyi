@@ -27,14 +27,14 @@ class SwitcherBaseLightEntity(SwitcherEntity, LightEntity):
 class SwitcherSingleLightEntity(SwitcherBaseLightEntity):
     _attr_name: Incomplete
     _light_id: Incomplete
-    control_result: Incomplete
+    control_result: bool | None
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, light_id: int) -> None: ...
 
 class SwitcherMultiLightEntity(SwitcherBaseLightEntity):
     _attr_translation_key: str
     _light_id: Incomplete
-    control_result: Incomplete
+    control_result: bool | None
     _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, light_id: int) -> None: ...

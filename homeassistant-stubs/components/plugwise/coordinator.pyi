@@ -13,8 +13,8 @@ class PlugwiseDataUpdateCoordinator(DataUpdateCoordinator[PlugwiseData]):
     _connected: bool
     config_entry: ConfigEntry
     api: Incomplete
-    _current_devices: Incomplete
-    new_devices: Incomplete
+    _current_devices: set[str]
+    new_devices: set[str]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def _connect(self) -> None: ...
     async def _async_update_data(self) -> PlugwiseData: ...

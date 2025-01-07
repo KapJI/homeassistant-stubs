@@ -20,7 +20,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class ISYLightEntity(ISYNodeEntity, LightEntity, RestoreEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
-    _last_brightness: Incomplete
+    _last_brightness: int | None
     _restore_light_state: Incomplete
     def __init__(self, node: Node, restore_light_state: bool, device_info: DeviceInfo | None = None) -> None: ...
     @property

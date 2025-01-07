@@ -1,6 +1,7 @@
 from .const import CONF_ROUND_DIGITS as CONF_ROUND_DIGITS, CONF_TIME_WINDOW as CONF_TIME_WINDOW, CONF_UNIT as CONF_UNIT, CONF_UNIT_PREFIX as CONF_UNIT_PREFIX, CONF_UNIT_TIME as CONF_UNIT_TIME
 from _typeshed import Incomplete
-from datetime import timedelta
+from datetime import datetime, timedelta
+from decimal import Decimal
 from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, RestoreSensor as RestoreSensor, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTime as UnitOfTime
@@ -30,7 +31,7 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
     _sensor_source_id: Incomplete
     _round_digits: Incomplete
     _attr_native_value: Incomplete
-    _state_list: Incomplete
+    _state_list: list[tuple[datetime, datetime, Decimal]]
     _attr_name: Incomplete
     _attr_extra_state_attributes: Incomplete
     _unit_template: Incomplete

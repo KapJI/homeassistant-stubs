@@ -38,7 +38,7 @@ async def async_validate_coordinates(hass: HomeAssistant, api_key: str, latitude
 
 class PurpleAirConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _flow_data: Incomplete
+    _flow_data: dict[str, Any]
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> PurpleAirOptionsFlowHandler: ...
@@ -49,7 +49,7 @@ class PurpleAirConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class PurpleAirOptionsFlowHandler(OptionsFlow):
-    _flow_data: Incomplete
+    _flow_data: dict[str, Any]
     def __init__(self) -> None: ...
     @property
     def settings_schema(self) -> vol.Schema: ...

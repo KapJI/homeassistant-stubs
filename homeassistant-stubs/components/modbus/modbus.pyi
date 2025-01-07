@@ -8,6 +8,7 @@ from homeassistant.helpers.discovery import async_load_platform as async_load_pl
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from pymodbus.client import AsyncModbusSerialClient, AsyncModbusTcpClient, AsyncModbusUdpClient
 from pymodbus.pdu import ModbusPDU as ModbusPDU
 from typing import Any, NamedTuple
 
@@ -27,15 +28,15 @@ PB_CALL: Incomplete
 async def async_modbus_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class ModbusHub:
-    _client: Incomplete
-    _async_cancel_listener: Incomplete
+    _client: AsyncModbusSerialClient | AsyncModbusTcpClient | AsyncModbusUdpClient | None
+    _async_cancel_listener: Callable[[], None] | None
     _in_error: bool
     _lock: Incomplete
     hass: Incomplete
     name: Incomplete
     _config_type: Incomplete
     _config_delay: Incomplete
-    _pb_request: Incomplete
+    _pb_request: dict[str, RunEntry]
     _pb_class: Incomplete
     _pb_params: Incomplete
     _msg_wait: Incomplete

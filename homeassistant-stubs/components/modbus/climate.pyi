@@ -33,17 +33,17 @@ class ModbusThermostat(BaseStructPlatform, RestoreEntity, ClimateEntity):
     _hvac_mode_register: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_hvac_mode: Incomplete
-    _hvac_mode_mapping: Incomplete
+    _hvac_mode_mapping: list[tuple[int, HVACMode]]
     _hvac_mode_write_registers: Incomplete
     _fan_mode_register: Incomplete
     _attr_fan_modes: Incomplete
     _attr_fan_mode: Incomplete
-    _fan_mode_mapping_to_modbus: Incomplete
-    _fan_mode_mapping_from_modbus: Incomplete
+    _fan_mode_mapping_to_modbus: dict[str, int]
+    _fan_mode_mapping_from_modbus: dict[int, str]
     _swing_mode_register: Incomplete
     _attr_swing_modes: Incomplete
     _attr_swing_mode: Incomplete
-    _swing_mode_modbus_mapping: Incomplete
+    _swing_mode_modbus_mapping: list[tuple[int, str]]
     _hvac_onoff_register: Incomplete
     _hvac_onoff_write_registers: Incomplete
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, config: dict[str, Any]) -> None: ...

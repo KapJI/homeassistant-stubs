@@ -20,7 +20,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 
 class KNXFan(KnxYamlEntity, FanEntity):
     _device: XknxFan
-    _step_range: Incomplete
+    _step_range: tuple[int, int] | None
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...

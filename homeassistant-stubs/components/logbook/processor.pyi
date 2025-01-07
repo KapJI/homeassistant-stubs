@@ -39,7 +39,7 @@ class EventProcessor:
     entity_ids: Incomplete
     device_ids: Incomplete
     context_id: Incomplete
-    filters: Incomplete
+    filters: Filters | None
     logbook_run: Incomplete
     context_augmenter: Incomplete
     def __init__(self, hass: HomeAssistant, event_types: tuple[EventType[Any] | str, ...], entity_ids: list[str] | None = None, device_ids: list[str] | None = None, context_id: str | None = None, timestamp: bool = False, include_entity_name: bool = True) -> None: ...
@@ -65,13 +65,13 @@ def _rows_ids_match(row: Row | EventAsRow, other_row: Row | EventAsRow) -> bool:
 
 class EntityNameCache:
     _hass: Incomplete
-    _names: Incomplete
+    _names: dict[str, str]
     def __init__(self, hass: HomeAssistant) -> None: ...
     def get(self, entity_id: str) -> str: ...
 
 class EventCache:
     _event_data_cache: Incomplete
-    event_cache: Incomplete
+    event_cache: dict[Row | EventAsRow, LazyEventPartialState]
     def __init__(self, event_data_cache: dict[str, dict[str, Any]]) -> None: ...
     def get(self, row: EventAsRow | Row) -> LazyEventPartialState: ...
     def clear(self) -> None: ...

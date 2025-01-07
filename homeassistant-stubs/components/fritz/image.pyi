@@ -20,7 +20,7 @@ class FritzGuestWifiQRImage(FritzBoxBaseEntity, ImageEntity):
     _attr_should_poll: bool
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    _current_qr_bytes: Incomplete
+    _current_qr_bytes: bytes | None
     def __init__(self, hass: HomeAssistant, avm_wrapper: AvmWrapper, device_friendly_name: str, ssid: str) -> None: ...
     async def _fetch_image(self) -> bytes: ...
     _attr_image_last_updated: Incomplete

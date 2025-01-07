@@ -13,7 +13,7 @@ PLATFORM_SCHEMA: Incomplete
 def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> ClickatellNotificationService: ...
 
 class ClickatellNotificationService(BaseNotificationService):
-    api_key: Incomplete
-    recipient: Incomplete
+    api_key: str
+    recipient: str
     def __init__(self, config: ConfigType) -> None: ...
     def send_message(self, message: str = '', **kwargs: Any) -> None: ...

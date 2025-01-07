@@ -29,11 +29,11 @@ class SingleStateType:
 
 class GroupIntegrationRegistry:
     hass: Incomplete
-    on_off_mapping: Incomplete
-    off_on_mapping: Incomplete
-    on_states_by_domain: Incomplete
+    on_off_mapping: dict[str, str]
+    off_on_mapping: dict[str, str]
+    on_states_by_domain: dict[str, set[str]]
     exclude_domains: Incomplete
-    state_group_mapping: Incomplete
+    state_group_mapping: dict[str, SingleStateType]
     def __init__(self, hass: HomeAssistant) -> None: ...
     def exclude_domain(self, domain: str) -> None: ...
     def on_off_states(self, domain: Platform | str, on_states: set[str], default_on_state: str, off_state: str) -> None: ...

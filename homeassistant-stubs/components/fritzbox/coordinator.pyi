@@ -22,8 +22,8 @@ class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorDat
     configuration_url: str
     fritz: Fritzhome
     has_templates: bool
-    new_devices: Incomplete
-    new_templates: Incomplete
+    new_devices: set[str]
+    new_templates: set[str]
     data: Incomplete
     def __init__(self, hass: HomeAssistant, name: str) -> None: ...
     async def async_setup(self) -> None: ...

@@ -21,9 +21,9 @@ class TedeeApiCoordinator(DataUpdateCoordinator[dict[int, TedeeLock]]):
     bridge: TedeeBridge
     tedee_client: Incomplete
     _next_get_locks: Incomplete
-    _locks_last_update: Incomplete
-    new_lock_callbacks: Incomplete
-    tedee_webhook_id: Incomplete
+    _locks_last_update: set[int]
+    new_lock_callbacks: list[Callable[[int], None]]
+    tedee_webhook_id: int | None
     def __init__(self, hass: HomeAssistant, entry: TedeeConfigEntry) -> None: ...
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> dict[int, TedeeLock]: ...

@@ -32,7 +32,7 @@ class EsphomeAssistSatelliteWakeWordSelect(EsphomeAssistEntity, SelectEntity, re
     _attr_current_option: str | None
     _attr_options: list[str]
     _attr_unique_id: Incomplete
-    _wake_words: Incomplete
+    _wake_words: dict[str, str]
     def __init__(self, hass: HomeAssistant, entry_data: RuntimeEntryData) -> None: ...
     @property
     def available(self) -> bool: ...

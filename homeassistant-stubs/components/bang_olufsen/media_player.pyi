@@ -14,7 +14,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.util.dt import utcnow as utcnow
-from mozart_api.models import BeolinkLeader as BeolinkLeader, ListeningModeProps as ListeningModeProps, ListeningModeRef as ListeningModeRef, PlaybackContentMetadata as PlaybackContentMetadata, PlaybackError as PlaybackError, PlaybackProgress, RenderingState as RenderingState, Source, VolumeState as VolumeState
+from mozart_api.models import Art, BeolinkLeader as BeolinkLeader, ListeningModeProps as ListeningModeProps, ListeningModeRef as ListeningModeRef, PlaybackContentMetadata as PlaybackContentMetadata, PlaybackError as PlaybackError, PlaybackProgress, RenderingState as RenderingState, SoftwareUpdateStatus, Source, VolumeState as VolumeState
 from mozart_api.mozart_client import MozartClient as MozartClient
 from typing import Any
 
@@ -28,21 +28,21 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: BangOlufsenConfig
 class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     _attr_name: Incomplete
     _attr_device_class: Incomplete
-    _beolink_jid: Incomplete
-    _model: Incomplete
+    _beolink_jid: str
+    _model: str
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_should_poll: bool
-    _audio_sources: Incomplete
-    _media_image: Incomplete
-    _software_status: Incomplete
-    _sources: Incomplete
-    _state: Incomplete
-    _video_sources: Incomplete
-    _sound_modes: Incomplete
-    _beolink_sources: Incomplete
-    _remote_leader: Incomplete
-    _beolink_attributes: Incomplete
+    _audio_sources: dict[str, str]
+    _media_image: Art
+    _software_status: SoftwareUpdateStatus
+    _sources: dict[str, str]
+    _state: str
+    _video_sources: dict[str, str]
+    _sound_modes: dict[str, int]
+    _beolink_sources: dict[str, bool]
+    _remote_leader: BeolinkLeader | None
+    _beolink_attributes: dict[str, dict[str, dict[str, str]]]
     def __init__(self, entry: ConfigEntry, client: MozartClient) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _volume: Incomplete

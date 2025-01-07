@@ -10,8 +10,8 @@ from typing import Any
 LOGGER: Incomplete
 
 class LookinFlowHandler(ConfigFlow, domain=DOMAIN):
-    _host: Incomplete
-    _name: Incomplete
+    _host: str | None
+    _name: str | None
     def __init__(self) -> None: ...
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

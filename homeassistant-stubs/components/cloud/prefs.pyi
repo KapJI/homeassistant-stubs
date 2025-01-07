@@ -23,8 +23,8 @@ class CloudPreferences:
     _prefs: dict[str, Any]
     _hass: Incomplete
     _store: Incomplete
-    _listeners: Incomplete
-    last_updated: Incomplete
+    _listeners: list[Callable[[CloudPreferences], Coroutine[Any, Any, None]]]
+    last_updated: set[str]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_initialize(self) -> None: ...
     def async_listen_updates(self, listener: Callable[[CloudPreferences], Coroutine[Any, Any, None]]) -> Callable[[], None]: ...

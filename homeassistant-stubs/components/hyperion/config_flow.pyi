@@ -1,3 +1,4 @@
+import asyncio
 from . import create_hyperion_client as create_hyperion_client
 from .const import CONF_AUTH_ID as CONF_AUTH_ID, CONF_CREATE_TOKEN as CONF_CREATE_TOKEN, CONF_EFFECT_HIDE_LIST as CONF_EFFECT_HIDE_LIST, CONF_EFFECT_SHOW_LIST as CONF_EFFECT_SHOW_LIST, CONF_PRIORITY as CONF_PRIORITY, DEFAULT_ORIGIN as DEFAULT_ORIGIN, DEFAULT_PRIORITY as DEFAULT_PRIORITY, DOMAIN as DOMAIN
 from _typeshed import Incomplete
@@ -14,11 +15,11 @@ _LOGGER: Incomplete
 class HyperionConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     unique_id: str
-    _data: Incomplete
-    _request_token_task: Incomplete
-    _auth_id: Incomplete
+    _data: dict[str, Any]
+    _request_token_task: asyncio.Task | None
+    _auth_id: str | None
     _require_confirm: bool
-    _port_ui: Incomplete
+    _port_ui: int
     def __init__(self) -> None: ...
     def _create_client(self, raw_connection: bool = False) -> client.HyperionClient: ...
     async def _advance_to_auth_step_if_necessary(self, hyperion_client: client.HyperionClient) -> ConfigFlowResult: ...

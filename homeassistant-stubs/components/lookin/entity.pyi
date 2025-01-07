@@ -42,8 +42,8 @@ class LookinCoordinatorEntity(LookinDeviceMixIn, LookinEntityMixIn, CoordinatorE
     async def _async_send_command(self, command: str, signal: str = 'FF') -> None: ...
 
 class LookinPowerEntity(LookinCoordinatorEntity):
-    _power_on_command: Incomplete
-    _power_off_command: Incomplete
+    _power_on_command: str
+    _power_off_command: str
     def __init__(self, coordinator: LookinDataUpdateCoordinator[Remote], uuid: str, device: Remote | Climate, lookin_data: LookinData) -> None: ...
 
 class LookinPowerPushRemoteEntity(LookinPowerEntity, metaclass=abc.ABCMeta):

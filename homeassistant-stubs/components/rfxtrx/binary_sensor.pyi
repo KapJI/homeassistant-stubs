@@ -25,7 +25,7 @@ class RfxtrxBinarySensor(RfxtrxEntity, BinarySensorEntity):
     entity_description: Incomplete
     _data_bits: Incomplete
     _off_delay: Incomplete
-    _delay_listener: Incomplete
+    _delay_listener: CALLBACK_TYPE | None
     _cmd_on: Incomplete
     _cmd_off: Incomplete
     def __init__(self, device: rfxtrxmod.RFXtrxDevice, device_id: DeviceTuple, entity_description: BinarySensorEntityDescription, off_delay: float | None = None, data_bits: int | None = None, cmd_on: int | None = None, cmd_off: int | None = None, event: rfxtrxmod.RFXtrxEvent | None = None) -> None: ...

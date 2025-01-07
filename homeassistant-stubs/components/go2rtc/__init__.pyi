@@ -1,7 +1,7 @@
 from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_URL as HA_MANAGED_URL, RECOMMENDED_VERSION as RECOMMENDED_VERSION
 from .server import Server as Server
 from _typeshed import Incomplete
-from go2rtc_client.ws import ReceiveMessages as ReceiveMessages
+from go2rtc_client.ws import Go2RtcWsClient, ReceiveMessages as ReceiveMessages
 from homeassistant.components.camera import Camera as Camera, CameraWebRTCProvider as CameraWebRTCProvider, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_register_webrtc_provider as async_register_webrtc_provider
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
 from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -31,7 +31,7 @@ class WebRTCProvider(CameraWebRTCProvider):
     _url: Incomplete
     _session: Incomplete
     _rest_client: Incomplete
-    _sessions: Incomplete
+    _sessions: dict[str, Go2RtcWsClient]
     def __init__(self, hass: HomeAssistant, url: str) -> None: ...
     @property
     def domain(self) -> str: ...

@@ -12,7 +12,7 @@ class BondDevice:
     props: Incomplete
     state: Incomplete
     _attrs: Incomplete
-    _supported_actions: Incomplete
+    _supported_actions: set[str]
     def __init__(self, device_id: str, attrs: dict[str, Any], props: dict[str, Any], state: dict[str, Any]) -> None: ...
     def __repr__(self) -> str: ...
     @property
@@ -43,11 +43,11 @@ class BondDevice:
     def supports_set_brightness(self) -> bool: ...
 
 class BondHub:
-    bond: Incomplete
+    bond: Bond
     host: Incomplete
-    _bridge: Incomplete
-    _version: Incomplete
-    _devices: Incomplete
+    _bridge: dict[str, Any]
+    _version: dict[str, Any]
+    _devices: list[BondDevice]
     def __init__(self, bond: Bond, host: str) -> None: ...
     async def setup(self, max_devices: int | None = None) -> None: ...
     @property

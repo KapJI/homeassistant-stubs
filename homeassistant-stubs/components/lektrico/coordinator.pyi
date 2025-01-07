@@ -12,8 +12,8 @@ SCAN_INTERVAL: Incomplete
 class LektricoDeviceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: ConfigEntry
     device: Incomplete
-    serial_number: Incomplete
-    board_revision: Incomplete
-    device_type: Incomplete
+    serial_number: str
+    board_revision: str
+    device_type: str
     def __init__(self, hass: HomeAssistant, device_name: str) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

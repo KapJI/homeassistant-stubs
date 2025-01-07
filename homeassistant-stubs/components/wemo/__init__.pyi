@@ -33,10 +33,10 @@ async def async_wemo_dispatcher_connect(hass: HomeAssistant, dispatch: DispatchC
 
 class WemoDispatcher:
     _config_entry: Incomplete
-    _added_serial_numbers: Incomplete
-    _failed_serial_numbers: Incomplete
-    _dispatch_backlog: Incomplete
-    _dispatch_callbacks: Incomplete
+    _added_serial_numbers: set[str]
+    _failed_serial_numbers: set[str]
+    _dispatch_backlog: dict[Platform, list[DeviceCoordinator]]
+    _dispatch_callbacks: dict[Platform, DispatchCallback]
     def __init__(self, config_entry: ConfigEntry) -> None: ...
     async def async_add_unique_device(self, hass: HomeAssistant, wemo: pywemo.WeMoDevice) -> None: ...
     async def async_connect_platform(self, platform: Platform, dispatch: DispatchCallback) -> None: ...
@@ -47,10 +47,10 @@ class WemoDiscovery:
     MAX_SECONDS_BETWEEN_SCANS: int
     _hass: Incomplete
     _wemo_dispatcher: Incomplete
-    _stop: Incomplete
+    _stop: CALLBACK_TYPE | None
     _scan_delay: int
     _static_config: Incomplete
-    _discover_job: Incomplete
+    _discover_job: HassJob[[datetime], None] | None
     _entry: Incomplete
     def __init__(self, hass: HomeAssistant, wemo_dispatcher: WemoDispatcher, static_config: Sequence[HostPortTuple], entry: ConfigEntry) -> None: ...
     async def async_discover_and_schedule(self, event_time: datetime | None = None) -> None: ...

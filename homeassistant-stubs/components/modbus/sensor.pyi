@@ -19,7 +19,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     _count: Incomplete
-    _coordinator: Incomplete
+    _coordinator: DataUpdateCoordinator[list[float] | None] | None
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     _attr_device_class: Incomplete

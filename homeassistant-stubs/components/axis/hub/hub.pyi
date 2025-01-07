@@ -8,6 +8,7 @@ from _typeshed import Incomplete
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from typing import Any
 
 class AxisHub:
     hass: Incomplete
@@ -18,7 +19,7 @@ class AxisHub:
     fw_version: Incomplete
     product_type: Incomplete
     unique_id: Incomplete
-    additional_diagnostics: Incomplete
+    additional_diagnostics: dict[str, Any]
     def __init__(self, hass: HomeAssistant, config_entry: AxisConfigEntry, api: axis.AxisDevice) -> None: ...
     @property
     def available(self) -> bool: ...

@@ -7,9 +7,9 @@ from typing import Any
 class Device:
     _mac: Incomplete
     _params: Incomplete
-    _last_seen: Incomplete
-    _attrs: Incomplete
-    _wireless_params: Incomplete
+    _last_seen: datetime | None
+    _attrs: dict[str, Any]
+    _wireless_params: dict[str, Any]
     def __init__(self, mac: str, params: dict[str, Any]) -> None: ...
     @property
     def name(self) -> str: ...

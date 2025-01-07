@@ -20,7 +20,7 @@ class DescriptionXmlView(HomeAssistantView):
     def get(self, request: web.Request) -> web.Response: ...
 
 class UPNPResponderProtocol(asyncio.Protocol):
-    transport: Incomplete
+    transport: asyncio.DatagramTransport | None
     _loop: Incomplete
     _sock: Incomplete
     advertise_ip: Incomplete

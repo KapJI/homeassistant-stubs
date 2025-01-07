@@ -11,6 +11,6 @@ class ESPHomeDashboardCoordinator(DataUpdateCoordinator[dict[str, ConfiguredDevi
     addon_slug: Incomplete
     url: Incomplete
     api: Incomplete
-    supports_update: Incomplete
+    supports_update: bool | None
     def __init__(self, hass: HomeAssistant, addon_slug: str, url: str, session: aiohttp.ClientSession) -> None: ...
     async def _async_update_data(self) -> dict: ...

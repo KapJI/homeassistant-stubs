@@ -1,7 +1,8 @@
 from _typeshed import Incomplete
 from async_upnp_client.const import AddressTupleVXType as AddressTupleVXType, DeviceOrServiceType as DeviceOrServiceType, SsdpSource
-from async_upnp_client.server import UpnpServerDevice, UpnpServerService as UpnpServerService
-from async_upnp_client.ssdp_listener import SsdpDevice as SsdpDevice
+from async_upnp_client.description_cache import DescriptionCache
+from async_upnp_client.server import UpnpServer, UpnpServerDevice, UpnpServerService as UpnpServerService
+from async_upnp_client.ssdp_listener import SsdpDevice as SsdpDevice, SsdpListener
 from async_upnp_client.utils import CaseInsensitiveDict
 from collections.abc import Callable as Callable, Coroutine, Mapping
 from dataclasses import dataclass
@@ -89,18 +90,18 @@ def _async_process_callbacks(hass: HomeAssistant, callbacks: list[SsdpHassJobCal
 def _async_headers_match(headers: CaseInsensitiveDict, lower_match_dict: dict[str, str]) -> bool: ...
 
 class IntegrationMatchers:
-    _match_by_key: Incomplete
+    _match_by_key: dict[str, dict[str, list[tuple[str, dict[str, str]]]]] | None
     def __init__(self) -> None: ...
     def async_setup(self, integration_matchers: dict[str, list[dict[str, str]]]) -> None: ...
     def async_matching_domains(self, info_with_desc: CaseInsensitiveDict) -> set[str]: ...
 
 class Scanner:
     hass: Incomplete
-    _cancel_scan: Incomplete
-    _ssdp_listeners: Incomplete
+    _cancel_scan: Callable[[], None] | None
+    _ssdp_listeners: list[SsdpListener]
     _device_tracker: Incomplete
-    _callbacks: Incomplete
-    _description_cache: Incomplete
+    _callbacks: list[tuple[SsdpHassJobCallback, dict[str, str]]]
+    _description_cache: DescriptionCache | None
     integration_matchers: Incomplete
     def __init__(self, hass: HomeAssistant, integration_matchers: IntegrationMatchers) -> None: ...
     @property
@@ -137,7 +138,7 @@ async def _async_find_next_available_port(source: AddressTupleVXType) -> int: ..
 
 class Server:
     hass: Incomplete
-    _upnp_servers: Incomplete
+    _upnp_servers: list[UpnpServer]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_start(self) -> None: ...
     async def _async_get_instance_udn(self) -> str: ...

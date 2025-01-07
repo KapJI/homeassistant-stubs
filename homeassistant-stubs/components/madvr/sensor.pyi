@@ -24,7 +24,7 @@ SENSORS: tuple[MadvrSensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: MadVRConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class MadvrSensor(MadVREntity, SensorEntity):
-    entity_description: Incomplete
+    entity_description: MadvrSensorEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MadVRCoordinator, description: MadvrSensorEntityDescription) -> None: ...
     @property

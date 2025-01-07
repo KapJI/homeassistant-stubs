@@ -11,7 +11,7 @@ class WLEDDataUpdateCoordinator(DataUpdateCoordinator[WLEDDevice]):
     keep_main_light: bool
     config_entry: ConfigEntry
     wled: Incomplete
-    unsub: Incomplete
+    unsub: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry) -> None: ...
     @property
     def has_main_light(self) -> bool: ...

@@ -13,6 +13,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.json import JsonValueType as JsonValueType
+from propcache import cached_property
 from typing import Any
 
 _LOGGER: Incomplete
@@ -54,6 +55,7 @@ class TodoListEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _update_listeners: list[Callable[[list[JsonValueType] | None], None]] | None
     @property
     def state(self) -> int | None: ...
+    @cached_property
     def todo_items(self) -> list[TodoItem] | None: ...
     async def async_create_todo_item(self, item: TodoItem) -> None: ...
     async def async_update_todo_item(self, item: TodoItem) -> None: ...

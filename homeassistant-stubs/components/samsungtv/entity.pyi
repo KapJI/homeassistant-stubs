@@ -12,8 +12,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 class SamsungTVEntity(CoordinatorEntity[SamsungTVDataUpdateCoordinator], Entity):
     _attr_has_entity_name: bool
     _bridge: Incomplete
-    _mac: Incomplete
-    _host: Incomplete
+    _mac: str | None
+    _host: str | None
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _turn_on_action: Incomplete

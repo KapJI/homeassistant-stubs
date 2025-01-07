@@ -18,8 +18,8 @@ OPTIONS_FLOW: Incomplete
 
 class AirVisualFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _entry_data_for_reauth: Incomplete
-    _geo_id: Incomplete
+    _entry_data_for_reauth: Mapping[str, Any]
+    _geo_id: str | None
     def __init__(self) -> None: ...
     @property
     def geography_coords_schema(self) -> vol.Schema: ...

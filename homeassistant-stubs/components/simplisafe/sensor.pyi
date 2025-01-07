@@ -16,7 +16,7 @@ class SimplisafeFreezeSensor(SimpliSafeEntity, SensorEntity):
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
-    _device: Incomplete
+    _device: SensorV3
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, sensor: SensorV3) -> None: ...
     _attr_native_value: Incomplete
     def async_update_from_rest_api(self) -> None: ...

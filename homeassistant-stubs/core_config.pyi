@@ -61,30 +61,30 @@ class _ComponentSet(set[str]):
 class Config:
     _store: Config._ConfigStore
     hass: Incomplete
-    latitude: int
-    longitude: int
+    latitude: float
+    longitude: float
     elevation: int
-    radius: Incomplete
+    radius: int
     debug: bool
     location_name: str
     time_zone: str
-    units: Incomplete
-    internal_url: Incomplete
-    external_url: Incomplete
+    units: UnitSystem
+    internal_url: str | None
+    external_url: str | None
     currency: str
-    country: Incomplete
+    country: str | None
     language: str
-    config_source: Incomplete
+    config_source: ConfigSource
     skip_pip: bool
-    skip_pip_packages: Incomplete
-    top_level_components: Incomplete
-    all_components: Incomplete
-    components: Incomplete
-    api: Incomplete
-    config_dir: Incomplete
-    allowlist_external_dirs: Incomplete
-    allowlist_external_urls: Incomplete
-    media_dirs: Incomplete
+    skip_pip_packages: list[str]
+    top_level_components: set[str]
+    all_components: set[str]
+    components: _ComponentSet
+    api: ApiConfig | None
+    config_dir: str
+    allowlist_external_dirs: set[str]
+    allowlist_external_urls: set[str]
+    media_dirs: dict[str, str]
     recovery_mode: bool
     legacy_templates: bool
     safe_mode: bool
@@ -103,7 +103,7 @@ class Config:
     async def async_load(self) -> None: ...
     async def _async_store(self) -> None: ...
     class _ConfigStore(Store[dict[str, Any]]):
-        _original_unit_system: Incomplete
+        _original_unit_system: str | None
         def __init__(self, hass: HomeAssistant) -> None: ...
         async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
         async def async_save(self, data: dict[str, Any]) -> None: ...

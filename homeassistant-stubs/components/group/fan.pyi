@@ -22,12 +22,12 @@ def async_create_preview_fan(hass: HomeAssistant, name: str, validated_config: d
 class FanGroup(GroupEntity, FanEntity):
     _attr_available: bool
     _entity_ids: Incomplete
-    _fans: Incomplete
+    _fans: dict[int, set[str]]
     _percentage: Incomplete
     _oscillating: Incomplete
     _direction: Incomplete
     _speed_count: int
-    _is_on: bool
+    _is_on: bool | None
     _attr_name: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete

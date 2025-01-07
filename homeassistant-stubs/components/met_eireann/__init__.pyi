@@ -19,8 +19,8 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
 class MetEireannWeatherData:
     _config: Incomplete
     _weather_data: Incomplete
-    current_weather_data: Incomplete
-    daily_forecast: Incomplete
-    hourly_forecast: Incomplete
+    current_weather_data: dict[str, Any]
+    daily_forecast: list[dict[str, Any]]
+    hourly_forecast: list[dict[str, Any]]
     def __init__(self, config: MappingProxyType[str, Any], weather_data: meteireann.WeatherData) -> None: ...
     async def fetch_data(self) -> Self: ...

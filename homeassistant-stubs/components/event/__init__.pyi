@@ -5,6 +5,7 @@ from datetime import datetime
 from enum import StrEnum
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
+from propcache import cached_property
 from typing import Any, Self
 
 __all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'EventDeviceClass', 'EventEntity', 'EventEntityDescription']
@@ -18,10 +19,9 @@ class EventDeviceClass(StrEnum):
     MOTION = 'motion'
 
 class EventEntityDescription(EntityDescription, frozen_or_thawed=True):
-    device_class: EventDeviceClass | None
-    event_types: list[str] | None
+    device_class: EventDeviceClass | None = ...
+    event_types: list[str] | None = ...
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., event_types=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., event_types=...) -> None: ...
 
 @dataclass
 class EventExtraStoredData(ExtraStoredData):
@@ -41,7 +41,9 @@ class EventEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     __last_event_triggered: datetime | None
     __last_event_type: str | None
     __last_event_attributes: dict[str, Any] | None
+    @cached_property
     def device_class(self) -> EventDeviceClass | None: ...
+    @cached_property
     def event_types(self) -> list[str]: ...
     def _trigger_event(self, event_type: str, event_attributes: dict[str, Any] | None = None) -> None: ...
     def _default_to_device_class_name(self) -> bool: ...

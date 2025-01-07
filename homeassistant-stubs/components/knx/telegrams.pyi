@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .project import KNXProject as KNXProject
 from _typeshed import Incomplete
+from collections import deque
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.storage import Store as Store
@@ -37,8 +38,8 @@ class Telegrams:
     project: Incomplete
     _history_store: Incomplete
     _xknx_telegram_cb_handle: Incomplete
-    recent_telegrams: Incomplete
-    last_ga_telegrams: Incomplete
+    recent_telegrams: deque[TelegramDict]
+    last_ga_telegrams: dict[str, TelegramDict]
     def __init__(self, hass: HomeAssistant, xknx: XKNX, project: KNXProject, log_size: int) -> None: ...
     async def load_history(self) -> None: ...
     async def save_history(self) -> None: ...

@@ -1,3 +1,4 @@
+import asyncio
 from . import ImapConfigEntry as ImapConfigEntry
 from .const import CONF_CHARSET as CONF_CHARSET, CONF_CUSTOM_EVENT_DATA_TEMPLATE as CONF_CUSTOM_EVENT_DATA_TEMPLATE, CONF_EVENT_MESSAGE_DATA as CONF_EVENT_MESSAGE_DATA, CONF_FOLDER as CONF_FOLDER, CONF_MAX_MESSAGE_SIZE as CONF_MAX_MESSAGE_SIZE, CONF_SEARCH as CONF_SEARCH, CONF_SERVER as CONF_SERVER, CONF_SSL_CIPHER_LIST as CONF_SSL_CIPHER_LIST, DEFAULT_MAX_MESSAGE_SIZE as DEFAULT_MAX_MESSAGE_SIZE, DOMAIN as DOMAIN, MESSAGE_DATA_OPTIONS as MESSAGE_DATA_OPTIONS
 from .errors import InvalidAuth as InvalidAuth, InvalidFolder as InvalidFolder
@@ -47,11 +48,11 @@ class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
     custom_event_template: Template | None
     imap_client: Incomplete
     auth_errors: int
-    _last_message_uid: Incomplete
-    _last_message_id: Incomplete
-    _diagnostics_data: Incomplete
-    _event_data_keys: Incomplete
-    _max_event_size: Incomplete
+    _last_message_uid: str | None
+    _last_message_id: str | None
+    _diagnostics_data: dict[str, Any]
+    _event_data_keys: list[str]
+    _max_event_size: int
     def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ImapConfigEntry, update_interval: timedelta | None) -> None: ...
     async def async_start(self) -> None: ...
     async def _async_reconnect_if_needed(self) -> None: ...
@@ -69,8 +70,8 @@ class ImapPollingDataUpdateCoordinator(ImapDataUpdateCoordinator):
     async def _async_update_data(self) -> int | None: ...
 
 class ImapPushDataUpdateCoordinator(ImapDataUpdateCoordinator):
-    _push_wait_task: Incomplete
-    number_of_messages: Incomplete
+    _push_wait_task: asyncio.Task[None] | None
+    number_of_messages: int | None
     def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ImapConfigEntry) -> None: ...
     async def _async_update_data(self) -> int | None: ...
     async def async_start(self) -> None: ...

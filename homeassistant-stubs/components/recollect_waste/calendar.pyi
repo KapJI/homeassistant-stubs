@@ -17,7 +17,7 @@ class ReCollectWasteCalendar(ReCollectWasteEntity, CalendarEntity):
     _attr_name: Incomplete
     _attr_translation_key: str
     _attr_unique_id: Incomplete
-    _event: Incomplete
+    _event: CalendarEvent | None
     def __init__(self, coordinator: DataUpdateCoordinator[list[PickupEvent]], entry: ConfigEntry) -> None: ...
     @property
     def event(self) -> CalendarEvent | None: ...

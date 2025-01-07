@@ -55,7 +55,7 @@ class AmcrestChecker(ApiWrapper):
     _wrap_login_err: bool
     _wrap_event_flag: Incomplete
     _async_wrap_event_flag: Incomplete
-    _unsub_recheck: Incomplete
+    _unsub_recheck: Callable[[], None] | None
     def __init__(self, hass: HomeAssistant, name: str, host: str, port: int, user: str, password: str) -> None: ...
     @property
     def available(self) -> bool: ...

@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.util import Throttle as Throttle
 from jaraco.abode.devices.base import Device as Device
 from jaraco.abode.devices.camera import Camera as AbodeCam
+from requests.models import Response
 from typing import Any
 
 MIN_TIME_BETWEEN_UPDATES: Incomplete
@@ -20,7 +21,7 @@ class AbodeCamera(AbodeDevice, Camera):
     _device: AbodeCam
     _attr_name: Incomplete
     _event: Incomplete
-    _response: Incomplete
+    _response: Response | None
     def __init__(self, data: AbodeSystem, device: Device, event: Event) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def capture(self) -> bool: ...

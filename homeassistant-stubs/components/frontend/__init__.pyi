@@ -18,6 +18,7 @@ from homeassistant.helpers.translation import async_get_translations as async_ge
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
+from propcache import cached_property
 from typing import Any, TypedDict
 from yarl import URL
 
@@ -98,9 +99,11 @@ def _async_render_index_cached(template: jinja2.Template, **kwargs: Any) -> str:
 class IndexView(web_urldispatcher.AbstractResource):
     repo_path: Incomplete
     hass: Incomplete
-    _template_cache: Incomplete
+    _template_cache: jinja2.Template | None
     def __init__(self, repo_path: str | None, hass: HomeAssistant) -> None: ...
+    @cached_property
     def canonical(self) -> str: ...
+    @cached_property
     def _route(self) -> web_urldispatcher.ResourceRoute: ...
     def url_for(self, **kwargs: str) -> URL: ...
     async def resolve(self, request: web.Request) -> tuple[web_urldispatcher.UrlMappingMatchInfo | None, set[str]]: ...

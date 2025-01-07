@@ -19,8 +19,8 @@ class AmazonPollyProvider(Provider):
     supported_langs: Incomplete
     all_voices: Incomplete
     all_engines: Incomplete
-    default_voice: Incomplete
-    default_engine: Incomplete
+    default_voice: str
+    default_engine: str
     name: str
     def __init__(self, polly_client: boto3.client, config: ConfigType, supported_languages: list[str], all_voices: dict[str, dict[str, str]], all_engines: dict[str, set[str]]) -> None: ...
     @property

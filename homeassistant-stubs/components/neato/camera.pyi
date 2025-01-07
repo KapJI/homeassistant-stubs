@@ -20,11 +20,11 @@ class NeatoCleaningMap(NeatoEntity, Camera):
     neato: Incomplete
     _mapdata: Incomplete
     _available: Incomplete
-    _robot_serial: Incomplete
+    _robot_serial: str
     _attr_unique_id: Incomplete
-    _generated_at: Incomplete
-    _image_url: Incomplete
-    _image: Incomplete
+    _generated_at: str | None
+    _image_url: str | None
+    _image: bytes | None
     def __init__(self, neato: NeatoHub, robot: Robot, mapdata: dict[str, Any] | None) -> None: ...
     def camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     def update(self) -> None: ...

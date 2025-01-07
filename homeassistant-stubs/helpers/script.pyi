@@ -25,6 +25,7 @@ from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType, SignalTypeFormat as SignalTypeFormat
+from propcache import cached_property
 from types import MappingProxyType
 from typing import Any, Literal, TypedDict, overload
 
@@ -93,7 +94,7 @@ class _ScriptRun:
     _started: bool
     _stop: Incomplete
     _stopped: Incomplete
-    _conversation_response: Incomplete
+    _conversation_response: str | None | UndefinedType
     def __init__(self, hass: HomeAssistant, script: Script, variables: dict[str, Any], context: Context | None, log_exceptions: bool) -> None: ...
     def _changed(self) -> None: ...
     async def _async_get_condition(self, config: ConfigType) -> ConditionCheckerType: ...
@@ -173,18 +174,18 @@ class Script:
     _change_listener_job: Incomplete
     script_mode: Incomplete
     _log_exceptions: Incomplete
-    last_action: Incomplete
-    last_triggered: Incomplete
-    _runs: Incomplete
+    last_action: str | None
+    last_triggered: datetime | None
+    _runs: list[_ScriptRun]
     max_runs: Incomplete
     _max_exceeded: Incomplete
     _queue_lck: Incomplete
-    _config_cache: Incomplete
-    _repeat_script: Incomplete
-    _choose_data: Incomplete
-    _if_data: Incomplete
-    _parallel_scripts: Incomplete
-    _sequence_scripts: Incomplete
+    _config_cache: dict[frozenset[tuple[str, str]], ConditionCheckerType]
+    _repeat_script: dict[int, Script]
+    _choose_data: dict[int, _ChooseData]
+    _if_data: dict[int, _IfData]
+    _parallel_scripts: dict[int, list[Script]]
+    _sequence_scripts: dict[int, Script]
     variables: Incomplete
     _variables_dynamic: Incomplete
     _copy_variables_on_run: Incomplete
@@ -204,14 +205,19 @@ class Script:
     def runs(self) -> int: ...
     @property
     def supports_max(self) -> bool: ...
+    @cached_property
     def referenced_labels(self) -> set[str]: ...
+    @cached_property
     def referenced_floors(self) -> set[str]: ...
+    @cached_property
     def referenced_areas(self) -> set[str]: ...
     @staticmethod
     def _find_referenced_target(target: Literal['area_id', 'floor_id', 'label_id'], referenced: set[str], sequence: Sequence[dict[str, Any]]) -> None: ...
+    @cached_property
     def referenced_devices(self) -> set[str]: ...
     @staticmethod
     def _find_referenced_devices(referenced: set[str], sequence: Sequence[dict[str, Any]]) -> None: ...
+    @cached_property
     def referenced_entities(self) -> set[str]: ...
     @staticmethod
     def _find_referenced_entities(referenced: set[str], sequence: Sequence[dict[str, Any]]) -> None: ...

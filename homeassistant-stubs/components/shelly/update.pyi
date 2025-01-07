@@ -36,7 +36,7 @@ class RestUpdateEntity(ShellyRestAttributeEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     entity_description: RestUpdateDescription
     _attr_release_url: Incomplete
-    _in_progress_old_version: Incomplete
+    _in_progress_old_version: str | None
     def __init__(self, block_coordinator: ShellyBlockCoordinator, attribute: str, description: RestUpdateDescription) -> None: ...
     @property
     def installed_version(self) -> str | None: ...
@@ -51,7 +51,7 @@ class RpcUpdateEntity(ShellyRpcAttributeEntity, UpdateEntity):
     _attr_supported_features: Incomplete
     entity_description: RpcUpdateDescription
     _ota_in_progress: bool
-    _ota_progress_percentage: Incomplete
+    _ota_progress_percentage: int | None
     _attr_release_url: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcUpdateDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...

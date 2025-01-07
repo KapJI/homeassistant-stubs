@@ -31,7 +31,7 @@ class SwitchBeeClimateEntity(SwitchBeeDeviceEntity[SwitchBeeThermostat], Climate
     _attr_supported_features: Incomplete
     def __init__(self, device: SwitchBeeThermostat, coordinator: SwitchBeeCoordinator) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
-    _attr_hvac_mode: Incomplete
+    _attr_hvac_mode: HVACMode
     _attr_fan_mode: Incomplete
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete

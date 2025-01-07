@@ -1,3 +1,4 @@
+import threading
 from .const import ATTR_SETTINGS as ATTR_SETTINGS, CONF_EXTRA_PART_WAIT_TIME as CONF_EXTRA_PART_WAIT_TIME, CONF_RTSP_TRANSPORT as CONF_RTSP_TRANSPORT, CONF_USE_WALLCLOCK_AS_TIMESTAMPS as CONF_USE_WALLCLOCK_AS_TIMESTAMPS, DOMAIN as DOMAIN, FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER, OUTPUT_FORMATS as OUTPUT_FORMATS, RTSP_TRANSPORTS as RTSP_TRANSPORTS, SOURCE_TIMEOUT as SOURCE_TIMEOUT
 from .core import Orientation as Orientation, StreamOutput, StreamSettings
 from _typeshed import Incomplete
@@ -30,15 +31,15 @@ class Stream:
     _stream_settings: Incomplete
     _stream_label: Incomplete
     dynamic_stream_settings: Incomplete
-    access_token: Incomplete
+    access_token: str | None
     _start_stop_lock: Incomplete
-    _thread: Incomplete
+    _thread: threading.Thread | None
     _thread_quit: Incomplete
-    _outputs: Incomplete
+    _outputs: dict[str, StreamOutput]
     _fast_restart_once: bool
     _keyframe_converter: Incomplete
     _available: bool
-    _update_callback: Incomplete
+    _update_callback: Callable[[], None] | None
     _logger: Incomplete
     _diagnostics: Incomplete
     def __init__(self, hass: HomeAssistant, source: str, pyav_options: dict[str, str], stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings, stream_label: str | None = None) -> None: ...

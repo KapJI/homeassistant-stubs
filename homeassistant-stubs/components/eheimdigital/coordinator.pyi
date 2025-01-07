@@ -15,8 +15,8 @@ type AsyncSetupDeviceEntitiesCallback = Callable[[str], Coroutine[Any, Any, None
 class EheimDigitalUpdateCoordinator(DataUpdateCoordinator[dict[str, EheimDigitalDevice]]):
     config_entry: ConfigEntry
     hub: Incomplete
-    known_devices: Incomplete
-    platform_callbacks: Incomplete
+    known_devices: set[str]
+    platform_callbacks: set[AsyncSetupDeviceEntitiesCallback]
     def __init__(self, hass: HomeAssistant) -> None: ...
     def add_platform_callback(self, async_setup_device_entities: AsyncSetupDeviceEntitiesCallback) -> None: ...
     async def _async_device_found(self, device_address: str, device_type: EheimDeviceType) -> None: ...

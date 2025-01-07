@@ -25,8 +25,8 @@ class SpotifyCoordinator(DataUpdateCoordinator[SpotifyCoordinatorData]):
     current_user: UserProfile
     config_entry: SpotifyConfigEntry
     client: Incomplete
-    _playlist: Incomplete
-    _checked_playlist_id: Incomplete
+    _playlist: Playlist | None
+    _checked_playlist_id: str | None
     def __init__(self, hass: HomeAssistant, client: SpotifyClient) -> None: ...
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> SpotifyCoordinatorData: ...

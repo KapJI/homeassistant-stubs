@@ -13,7 +13,7 @@ CONF_EXCLUDE_ENTITIES: str
 CONF_ENTITY_GLOBS: str
 
 class EntityFilter:
-    empty_filter: Incomplete
+    empty_filter: bool
     config: Incomplete
     _include_e: Incomplete
     _exclude_e: Incomplete

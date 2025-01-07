@@ -22,7 +22,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class RestBinarySensor(ManualTriggerEntity, RestEntity, BinarySensorEntity):
     _previous_data: Incomplete
-    _value_template: Incomplete
+    _value_template: Template | None
     def __init__(self, hass: HomeAssistant, coordinator: DataUpdateCoordinator[None] | None, rest: RestData, config: ConfigType, trigger_entity_config: ConfigType) -> None: ...
     @property
     def available(self) -> bool: ...

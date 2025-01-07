@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
+from propcache import cached_property
 from typing import Any
 
 _LOGGER: Incomplete
@@ -51,7 +52,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class RemoteEntityDescription(ToggleEntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -60,8 +60,11 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     _attr_activity_list: list[str] | None
     _attr_current_activity: str | None
     _attr_supported_features: RemoteEntityFeature
+    @cached_property
     def supported_features(self) -> RemoteEntityFeature: ...
+    @cached_property
     def current_activity(self) -> str | None: ...
+    @cached_property
     def activity_list(self) -> list[str] | None: ...
     @property
     def state_attributes(self) -> dict[str, Any] | None: ...

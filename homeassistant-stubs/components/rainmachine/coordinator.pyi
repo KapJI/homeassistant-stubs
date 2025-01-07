@@ -14,7 +14,7 @@ SIGNAL_REBOOT_REQUESTED: str
 class RainMachineDataUpdateCoordinator(DataUpdateCoordinator[dict]):
     config_entry: RainMachineConfigEntry
     _rebooting: bool
-    _signal_handler_unsubs: Incomplete
+    _signal_handler_unsubs: list[Callable[[], None]]
     signal_reboot_completed: Incomplete
     signal_reboot_requested: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: RainMachineConfigEntry, name: str, api_category: str, update_interval: timedelta, update_method: Callable[[], Coroutine[Any, Any, dict]]) -> None: ...

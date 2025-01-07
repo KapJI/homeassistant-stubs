@@ -9,7 +9,7 @@ from python_opensky import OpenSky, StateVector as StateVector
 class OpenSkyDataUpdateCoordinator(DataUpdateCoordinator[int]):
     config_entry: ConfigEntry
     _opensky: Incomplete
-    _previously_tracked: Incomplete
+    _previously_tracked: set[str] | None
     _bounding_box: Incomplete
     _altitude: Incomplete
     def __init__(self, hass: HomeAssistant, opensky: OpenSky) -> None: ...

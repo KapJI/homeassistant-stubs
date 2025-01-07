@@ -1,6 +1,7 @@
 import av
 import av.audio
 import av.container
+import av.stream
 from . import redact_credentials as redact_credentials
 from .const import AUDIO_CODECS as AUDIO_CODECS, HLS_PROVIDER as HLS_PROVIDER, MAX_MISSING_DTS as MAX_MISSING_DTS, MAX_TIMESTAMP_GAP as MAX_TIMESTAMP_GAP, PACKETS_TO_WAIT_FOR_AUDIO as PACKETS_TO_WAIT_FOR_AUDIO, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT, SOURCE_TIMEOUT as SOURCE_TIMEOUT
 from .core import KeyFrameConverter as KeyFrameConverter, Part as Part, STREAM_SETTINGS_NON_LL_HLS as STREAM_SETTINGS_NON_LL_HLS, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
@@ -8,6 +9,7 @@ from .diagnostics import Diagnostics as Diagnostics
 from .fmp4utils import read_init as read_init
 from .hls import HlsStreamOutput as HlsStreamOutput
 from _typeshed import Incomplete
+from collections import deque
 from collections.abc import Callable as Callable, Generator, Iterator, Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant
 from io import BytesIO
@@ -26,7 +28,7 @@ class StreamEndedError(StreamWorkerError): ...
 class StreamState:
     _stream_id: int
     hass: Incomplete
-    _outputs_callback: Incomplete
+    _outputs_callback: Callable[[], Mapping[str, StreamOutput]]
     _sequence: int
     _diagnostics: Incomplete
     def __init__(self, hass: HomeAssistant, outputs_callback: Callable[[], Mapping[str, StreamOutput]], diagnostics: Diagnostics) -> None: ...
@@ -54,7 +56,7 @@ class StreamMuxer:
     _input_video_stream: Incomplete
     _input_audio_stream: Incomplete
     _audio_bsf: Incomplete
-    _audio_bsf_context: Incomplete
+    _audio_bsf_context: av.BitStreamFilterContext | None
     _part_has_keyframe: bool
     _stream_settings: Incomplete
     _stream_state: Incomplete
@@ -70,7 +72,7 @@ class StreamMuxer:
 
 class PeekIterator(Iterator[av.Packet]):
     _iterator: Incomplete
-    _buffer: Incomplete
+    _buffer: deque[av.Packet]
     _next: Incomplete
     def __init__(self, iterator: Iterator[av.Packet]) -> None: ...
     def __iter__(self) -> Self: ...
@@ -79,7 +81,7 @@ class PeekIterator(Iterator[av.Packet]):
     def peek(self) -> Generator[av.Packet]: ...
 
 class TimestampValidator:
-    _last_dts: Incomplete
+    _last_dts: dict[av.stream.Stream, int | float]
     _missing_dts: int
     _max_dts_gap: Incomplete
     def __init__(self, inv_video_time_base: int, inv_audio_time_base: int) -> None: ...

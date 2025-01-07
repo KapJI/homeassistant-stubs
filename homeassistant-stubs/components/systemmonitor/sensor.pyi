@@ -55,11 +55,11 @@ class SystemMonitorSensor(CoordinatorEntity[SystemMonitorCoordinator], SensorEnt
     entity_description: SysMonitorSensorEntityDescription
     argument: str
     _attr_translation_placeholders: Incomplete
-    _attr_unique_id: Incomplete
+    _attr_unique_id: str
     _attr_entity_registry_enabled_default: Incomplete
     _attr_device_info: Incomplete
-    value: Incomplete
-    update_time: Incomplete
+    value: int | None
+    update_time: float | None
     _attr_native_value: Incomplete
     def __init__(self, coordinator: SystemMonitorCoordinator, sensor_description: SysMonitorSensorEntityDescription, entry_id: str, argument: str, legacy_enabled: bool = False) -> None: ...
     async def async_added_to_hass(self) -> None: ...

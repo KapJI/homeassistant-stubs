@@ -16,7 +16,7 @@ def handle_error(func: Callable[[Command | list[Command]], Any]) -> Callable[[Co
 class TradfriBaseEntity(CoordinatorEntity[TradfriDeviceDataUpdateCoordinator], metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
     _gateway_id: Incomplete
-    _device: Incomplete
+    _device: Device
     _device_id: Incomplete
     _api: Incomplete
     _attr_device_info: Incomplete

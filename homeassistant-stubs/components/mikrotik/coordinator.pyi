@@ -17,9 +17,9 @@ class MikrotikData:
     hass: Incomplete
     config_entry: Incomplete
     api: Incomplete
-    _host: Incomplete
-    all_devices: Incomplete
-    devices: Incomplete
+    _host: str
+    all_devices: dict[str, dict[str, Any]]
+    devices: dict[str, Device]
     support_capsman: bool
     support_wireless: bool
     support_wifiwave2: bool
@@ -45,7 +45,7 @@ class MikrotikData:
 
 class MikrotikDataUpdateCoordinator(DataUpdateCoordinator[None]):
     hass: Incomplete
-    config_entry: Incomplete
+    config_entry: ConfigEntry
     _mk_data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: librouteros.Api) -> None: ...
     @property

@@ -1,3 +1,4 @@
+import asyncio
 from . import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
 from .const import CONF_APP_ICON as CONF_APP_ICON, CONF_APP_NAME as CONF_APP_NAME
 from .entity import AndroidTVRemoteBaseEntity as AndroidTVRemoteBaseEntity
@@ -17,7 +18,7 @@ class AndroidTVRemoteMediaPlayerEntity(AndroidTVRemoteBaseEntity, MediaPlayerEnt
     _attr_assumed_state: bool
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
-    _channel_set_task: Incomplete
+    _channel_set_task: asyncio.Task | None
     def __init__(self, api: AndroidTVRemote, config_entry: AndroidTVRemoteConfigEntry) -> None: ...
     _attr_app_id: Incomplete
     _attr_app_name: Incomplete

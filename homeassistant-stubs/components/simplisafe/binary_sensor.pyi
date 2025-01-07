@@ -18,7 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class TriggeredBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
-    _device: Incomplete
+    _device: SensorV3
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, sensor: SensorV3, device_class: BinarySensorDeviceClass) -> None: ...
     _attr_is_on: Incomplete
     def async_update_from_rest_api(self) -> None: ...
@@ -27,7 +27,7 @@ class BatteryBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
-    _device: Incomplete
+    _device: DeviceV3
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, device: DeviceV3) -> None: ...
     _attr_is_on: Incomplete
     def async_update_from_rest_api(self) -> None: ...

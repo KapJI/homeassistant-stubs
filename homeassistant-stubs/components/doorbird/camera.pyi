@@ -18,7 +18,7 @@ class DoorBirdCamera(DoorBirdEntity, Camera):
     _url: Incomplete
     _stream_url: Incomplete
     _attr_translation_key: Incomplete
-    _last_image: Incomplete
+    _last_image: bytes | None
     _attr_supported_features: Incomplete
     _interval: Incomplete
     _last_update: Incomplete

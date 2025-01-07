@@ -26,7 +26,7 @@ def _threshold_type(lower: float | None, upper: float | None) -> str: ...
 class ThresholdSensor(BinarySensorEntity):
     _attr_should_poll: bool
     _unrecorded_attributes: Incomplete
-    _preview_callback: Incomplete
+    _preview_callback: Callable[[str, Mapping[str, Any]], None] | None
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _entity_id: Incomplete
@@ -34,10 +34,10 @@ class ThresholdSensor(BinarySensorEntity):
     _threshold_lower: Incomplete
     _threshold_upper: Incomplete
     threshold_type: Incomplete
-    _hysteresis: Incomplete
+    _hysteresis: float
     _attr_device_class: Incomplete
     _state_position: Incomplete
-    sensor_value: Incomplete
+    sensor_value: float | None
     def __init__(self, entity_id: str, name: str, lower: float | None, upper: float | None, hysteresis: float, device_class: BinarySensorDeviceClass | None, unique_id: str | None, device_info: DeviceInfo | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _async_setup_sensor(self) -> None: ...

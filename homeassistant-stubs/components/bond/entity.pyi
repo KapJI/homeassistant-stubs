@@ -29,7 +29,7 @@ class BondEntity(Entity, metaclass=abc.ABCMeta):
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_assumed_state: Incomplete
-    _bpup_polling_fallback: Incomplete
+    _bpup_polling_fallback: CALLBACK_TYPE | None
     _async_update_if_bpup_not_alive_job: Incomplete
     def __init__(self, data: BondData, device: BondDevice, sub_device: str | None = None, sub_device_id: str | None = None) -> None: ...
     @property

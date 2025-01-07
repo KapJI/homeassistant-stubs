@@ -32,8 +32,8 @@ class AsusWrtSensorDataHandler:
 class AsusWrtDevInfo:
     _mac: Incomplete
     _name: Incomplete
-    _ip_address: Incomplete
-    _last_activity: Incomplete
+    _ip_address: str | None
+    _last_activity: datetime | None
     _connected: bool
     def __init__(self, mac: str, name: str | None = None) -> None: ...
     def update(self, dev_info: WrtDevice | None = None, consider_home: int = 0) -> None: ...
@@ -51,14 +51,14 @@ class AsusWrtDevInfo:
 class AsusWrtRouter:
     hass: Incomplete
     _entry: Incomplete
-    _devices: Incomplete
+    _devices: dict[str, AsusWrtDevInfo]
     _connected_devices: int
     _connect_error: bool
-    _sensors_data_handler: Incomplete
-    _sensors_coordinator: Incomplete
-    _on_close: Incomplete
-    _options: Incomplete
-    _api: Incomplete
+    _sensors_data_handler: AsusWrtSensorDataHandler | None
+    _sensors_coordinator: dict[str, Any]
+    _on_close: list[Callable]
+    _options: dict[str, Any]
+    _api: AsusWrtBridge
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     def _migrate_entities_unique_id(self) -> None: ...
     async def setup(self) -> None: ...

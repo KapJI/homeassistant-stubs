@@ -20,8 +20,8 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class ModbusBinarySensor(BasePlatform, RestoreEntity, BinarySensorEntity):
     _count: Incomplete
-    _coordinator: Incomplete
-    _result: Incomplete
+    _coordinator: DataUpdateCoordinator[list[int] | None] | None
+    _result: list[int]
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, entry: dict[str, Any], slave_count: int) -> None: ...
     async def async_setup_slaves(self, hass: HomeAssistant, slave_count: int, entry: dict[str, Any]) -> list[SlaveSensor]: ...
     _attr_is_on: Incomplete

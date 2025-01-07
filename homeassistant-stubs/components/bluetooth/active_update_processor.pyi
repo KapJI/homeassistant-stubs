@@ -13,9 +13,9 @@ POLL_DEFAULT_IMMEDIATE: bool
 class ActiveBluetoothProcessorCoordinator[_DataT](PassiveBluetoothProcessorCoordinator[_DataT]):
     _needs_poll_method: Incomplete
     _poll_method: Incomplete
-    _last_poll: Incomplete
+    _last_poll: float | None
     last_poll_successful: bool
-    _last_service_info: Incomplete
+    _last_service_info: BluetoothServiceInfoBleak | None
     _debounced_poll: Incomplete
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, address: str, mode: BluetoothScanningMode, update_method: Callable[[BluetoothServiceInfoBleak], _DataT], needs_poll_method: Callable[[BluetoothServiceInfoBleak, float | None], bool], poll_method: Callable[[BluetoothServiceInfoBleak], Coroutine[Any, Any, _DataT]] | None = None, poll_debouncer: Debouncer[Coroutine[Any, Any, None]] | None = None, connectable: bool = True) -> None: ...
     def needs_poll(self, service_info: BluetoothServiceInfoBleak) -> bool: ...

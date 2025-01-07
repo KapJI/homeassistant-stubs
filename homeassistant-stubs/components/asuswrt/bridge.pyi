@@ -37,9 +37,9 @@ class AsusWrtBridge(ABC, metaclass=abc.ABCMeta):
     @staticmethod
     def get_bridge(hass: HomeAssistant, conf: dict[str, Any], options: dict[str, Any] | None = None) -> AsusWrtBridge: ...
     _host: Incomplete
-    _firmware: Incomplete
-    _label_mac: Incomplete
-    _model: Incomplete
+    _firmware: str | None
+    _label_mac: str | None
+    _model: str | None
     def __init__(self, host: str) -> None: ...
     @property
     def host(self) -> str: ...
@@ -62,8 +62,8 @@ class AsusWrtBridge(ABC, metaclass=abc.ABCMeta):
     async def async_get_available_sensors(self) -> dict[str, dict[str, Any]]: ...
 
 class AsusWrtLegacyBridge(AsusWrtBridge):
-    _protocol: Incomplete
-    _api: Incomplete
+    _protocol: str
+    _api: AsusWrtLegacy
     def __init__(self, conf: dict[str, Any], options: dict[str, Any] | None = None) -> None: ...
     @staticmethod
     def _get_api(conf: dict[str, Any], options: dict[str, Any] | None = None) -> AsusWrtLegacy: ...
@@ -87,7 +87,7 @@ class AsusWrtLegacyBridge(AsusWrtBridge):
     async def _get_temperatures(self) -> Any: ...
 
 class AsusWrtHttpBridge(AsusWrtBridge):
-    _api: Incomplete
+    _api: AsusWrtHttp
     def __init__(self, conf: dict[str, Any], session: ClientSession) -> None: ...
     @staticmethod
     def _get_api(conf: dict[str, Any], session: ClientSession) -> AsusWrtHttp: ...

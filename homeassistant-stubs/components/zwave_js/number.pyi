@@ -19,7 +19,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ZwaveNumberEntity(ZWaveBaseEntity, NumberEntity):
-    _target_value: Incomplete
+    _target_value: Value | None
     _attr_name: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property

@@ -15,7 +15,7 @@ def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, 
 
 class BlockShellyLight(ShellyBlockEntity, LightEntity):
     _attr_supported_color_modes: set[str]
-    control_result: Incomplete
+    control_result: dict[str, Any] | None
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...

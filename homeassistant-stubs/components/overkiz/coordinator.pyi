@@ -16,9 +16,9 @@ EVENT_HANDLERS: Registry[str, Callable[[OverkizDataUpdateCoordinator, Event], Co
 class OverkizDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     data: Incomplete
     client: Incomplete
-    devices: Incomplete
+    devices: dict[str, Device]
     is_stateless: Incomplete
-    executions: Incomplete
+    executions: dict[str, dict[str, str]]
     areas: Incomplete
     config_entry_id: Incomplete
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, client: OverkizClient, devices: list[Device], places: Place | None, update_interval: timedelta | None = None, config_entry_id: str) -> None: ...

@@ -27,7 +27,7 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     channel: Incomplete
     _secure: Incomplete
     _disable_stream: Incomplete
-    _last_image: Incomplete
+    _last_image: bytes | None
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_entity_registry_enabled_default: Incomplete

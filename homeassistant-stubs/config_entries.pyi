@@ -28,11 +28,12 @@ from .util.decorator import Registry as Registry
 from .util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from .util.enum import try_parse_enum as try_parse_enum
 from _typeshed import Incomplete
-from collections import UserDict
+from collections import UserDict, defaultdict
 from collections.abc import Callable, Coroutine, Generator, Iterable, Mapping, ValuesView
 from contextvars import ContextVar
 from datetime import datetime
 from enum import Enum, StrEnum
+from propcache import cached_property
 from types import MappingProxyType
 from typing import Any, Generic, Self
 from typing_extensions import TypeVar
@@ -173,8 +174,10 @@ class ConfigEntry(Generic[_DataT]):
     @property
     def supports_reconfigure(self) -> bool: ...
     def clear_state_cache(self) -> None: ...
+    @cached_property
     def as_json_fragment(self) -> json_fragment: ...
     def clear_storage_cache(self) -> None: ...
+    @cached_property
     def as_storage_fragment(self) -> json_fragment: ...
     async def async_setup(self, hass: HomeAssistant, *, integration: loader.Integration | None = None) -> None: ...
     async def __async_setup_with_context(self, hass: HomeAssistant, integration: loader.Integration | None) -> None: ...
@@ -206,8 +209,8 @@ class ConfigEntriesFlowManager(data_entry_flow.FlowManager[ConfigFlowContext, Co
     _flow_result = ConfigFlowResult
     config_entries: Incomplete
     _hass_config: Incomplete
-    _pending_import_flows: Incomplete
-    _initialize_futures: Incomplete
+    _pending_import_flows: defaultdict[str, dict[str, asyncio.Future[None]]]
+    _initialize_futures: defaultdict[str, set[asyncio.Future[None]]]
     _discovery_debouncer: Incomplete
     def __init__(self, hass: HomeAssistant, config_entries: ConfigEntries, hass_config: ConfigType) -> None: ...
     async def async_wait_import_flow_initialized(self, handler: str) -> None: ...
@@ -225,8 +228,8 @@ class ConfigEntriesFlowManager(data_entry_flow.FlowManager[ConfigFlowContext, Co
 
 class ConfigEntryItems(UserDict[str, ConfigEntry]):
     _hass: Incomplete
-    _domain_index: Incomplete
-    _domain_unique_id_index: Incomplete
+    _domain_index: dict[str, list[ConfigEntry]]
+    _domain_unique_id_index: dict[str, dict[str, list[ConfigEntry]]]
     def __init__(self, hass: HomeAssistant) -> None: ...
     def values(self) -> ValuesView[ConfigEntry]: ...
     def __setitem__(self, entry_id: str, entry: ConfigEntry) -> None: ...
@@ -356,9 +359,9 @@ class OptionsFlowWithConfigEntry(OptionsFlow):
 
 class EntityRegistryDisabledHandler:
     hass: Incomplete
-    registry: Incomplete
-    changed: Incomplete
-    _remove_call_later: Incomplete
+    registry: er.EntityRegistry | None
+    changed: set[str]
+    _remove_call_later: Callable[[], None] | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_setup(self) -> None: ...
     def _handle_entry_updated(self, event: Event[er.EventEntityRegistryUpdatedData]) -> None: ...

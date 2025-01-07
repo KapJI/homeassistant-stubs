@@ -29,6 +29,6 @@ class NextDnsSensor(CoordinatorEntity[NextDnsUpdateCoordinator[CoordinatorDataT]
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete
-    entity_description: Incomplete
+    entity_description: NextDnsSensorEntityDescription
     def __init__(self, coordinator: NextDnsUpdateCoordinator[CoordinatorDataT], description: NextDnsSensorEntityDescription) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

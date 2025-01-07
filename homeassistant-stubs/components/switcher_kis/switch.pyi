@@ -22,7 +22,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class SwitcherBaseSwitchEntity(SwitcherEntity, SwitchEntity):
     _attr_name: Incomplete
-    control_result: Incomplete
+    control_result: bool | None
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
     def _handle_coordinator_update(self) -> None: ...

@@ -52,8 +52,8 @@ class QueueDataUpdateCoordinator(RadarrDataUpdateCoordinator):
 
 class CalendarUpdateCoordinator(RadarrDataUpdateCoordinator[None]):
     _update_interval: Incomplete
-    event: Incomplete
-    _events: Incomplete
+    event: RadarrEvent | None
+    _events: list[RadarrEvent]
     def __init__(self, hass: HomeAssistant, host_configuration: PyArrHostConfiguration, api_client: RadarrClient) -> None: ...
     async def _fetch_data(self) -> None: ...
     async def async_get_events(self, start_date: datetime, end_date: datetime) -> list[RadarrEvent]: ...

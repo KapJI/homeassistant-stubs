@@ -12,8 +12,8 @@ STEP_USER_DATA_SCHEMA: Incomplete
 
 class RidwellConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _password: Incomplete
-    _username: Incomplete
+    _password: str | None
+    _username: str | None
     def __init__(self) -> None: ...
     async def _async_validate(self, error_step_id: str, error_schema: vol.Schema) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

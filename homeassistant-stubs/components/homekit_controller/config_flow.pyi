@@ -27,13 +27,13 @@ def ensure_pin_format(pin: str, allow_insecure_setup_codes: Any = None) -> str: 
 
 class HomekitControllerFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    model: Incomplete
-    hkid: Incomplete
-    name: Incomplete
-    category: Incomplete
-    devices: Incomplete
-    controller: Incomplete
-    finish_pairing: Incomplete
+    model: str | None
+    hkid: str | None
+    name: str | None
+    category: Categories | None
+    devices: dict[str, AbstractDiscovery]
+    controller: Controller | None
+    finish_pairing: FinishPairing | None
     pairing: bool
     _device_paired: bool
     def __init__(self) -> None: ...

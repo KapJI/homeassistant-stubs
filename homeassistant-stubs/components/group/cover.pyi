@@ -27,8 +27,8 @@ class CoverGroup(GroupEntity, CoverEntity):
     _attr_is_closing: bool | None
     _attr_current_cover_position: int | None
     _entity_ids: Incomplete
-    _covers: Incomplete
-    _tilts: Incomplete
+    _covers: dict[str, set[str]]
+    _tilts: dict[str, set[str]]
     _attr_name: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete

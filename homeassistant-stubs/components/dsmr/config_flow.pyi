@@ -14,7 +14,7 @@ class DSMRConnection:
     _port: Incomplete
     _dsmr_version: Incomplete
     _protocol: Incomplete
-    _telegram: Incomplete
+    _telegram: dict[str, DSMRObject]
     _equipment_identifier: Incomplete
     def __init__(self, host: str | None, port: int, dsmr_version: str, protocol: str) -> None: ...
     def equipment_identifier(self) -> str | None: ...

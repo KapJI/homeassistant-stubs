@@ -69,14 +69,14 @@ class AlexaCapabilityResource:
     def serialize_labels(self, resources: list[str]) -> dict[str, list[dict[str, Any]]]: ...
 
 class AlexaModeResource(AlexaCapabilityResource):
-    _supported_modes: Incomplete
-    _mode_ordered: Incomplete
+    _supported_modes: list[dict[str, Any]]
+    _mode_ordered: bool
     def __init__(self, labels: list[str], ordered: bool = False) -> None: ...
     def add_mode(self, value: str, labels: list[str]) -> None: ...
     def serialize_configuration(self) -> dict[str, Any]: ...
 
 class AlexaPresetResource(AlexaCapabilityResource):
-    _presets: Incomplete
+    _presets: list[dict[str, Any]]
     _minimum_value: Incomplete
     _maximum_value: Incomplete
     _precision: Incomplete
@@ -103,8 +103,8 @@ class AlexaSemantics:
     DIRECTIVE_TOGGLE_TURN_OFF: str
     DIRECTIVE_MODE_SET_MODE: str
     DIRECTIVE_MODE_ADJUST_MODE: str
-    _action_mappings: Incomplete
-    _state_mappings: Incomplete
+    _action_mappings: list[dict[str, Any]]
+    _state_mappings: list[dict[str, Any]]
     def __init__(self) -> None: ...
     def _add_action_mapping(self, semantics: dict[str, Any]) -> None: ...
     def _add_state_mapping(self, semantics: dict[str, Any]) -> None: ...

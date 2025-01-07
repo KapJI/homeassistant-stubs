@@ -1,3 +1,4 @@
+import datetime
 from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN
 from .coordinator import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, device_filter_out_from_trackers as device_filter_out_from_trackers
 from .entity import FritzDeviceBase as FritzDeviceBase
@@ -14,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 def _async_add_entities(avm_wrapper: AvmWrapper, async_add_entities: AddEntitiesCallback, data_fritz: FritzData) -> None: ...
 
 class FritzBoxTracker(FritzDeviceBase, ScannerEntity):
-    _last_activity: Incomplete
+    _last_activity: datetime.datetime | None
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
     def is_connected(self) -> bool: ...

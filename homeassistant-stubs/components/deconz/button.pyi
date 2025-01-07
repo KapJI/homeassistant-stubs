@@ -23,7 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class DeconzSceneButton(DeconzSceneMixin, ButtonEntity):
     TYPE = BUTTON_DOMAIN
-    entity_description: Incomplete
+    entity_description: DeconzButtonDescription
     _attr_name: Incomplete
     def __init__(self, device: PydeconzScene, hub: DeconzHub, description: DeconzButtonDescription) -> None: ...
     async def async_press(self) -> None: ...

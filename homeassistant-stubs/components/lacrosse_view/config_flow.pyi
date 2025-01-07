@@ -15,8 +15,8 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> list[Loca
 
 class LaCrosseViewConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    data: Incomplete
-    locations: Incomplete
+    data: dict[str, str]
+    locations: list[Location]
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_location(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

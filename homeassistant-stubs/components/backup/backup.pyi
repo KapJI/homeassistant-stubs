@@ -16,7 +16,7 @@ class CoreLocalBackupAgent(LocalBackupAgent):
     name: str
     _hass: Incomplete
     _backup_dir: Incomplete
-    _backups: Incomplete
+    _backups: dict[str, AgentBackup]
     _loaded_backups: bool
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def _load_backups(self) -> None: ...

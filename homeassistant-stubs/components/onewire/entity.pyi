@@ -21,8 +21,8 @@ class OneWireEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _device_file: Incomplete
-    _state: Incomplete
-    _value_raw: Incomplete
+    _state: StateType
+    _value_raw: float | None
     _owproxy: Incomplete
     def __init__(self, description: OneWireEntityDescription, device_id: str, device_info: DeviceInfo, device_file: str, owproxy: protocol._Proxy) -> None: ...
     @property

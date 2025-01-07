@@ -13,7 +13,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
 class OneWireFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    onewire_config: Incomplete
+    onewire_config: dict[str, Any]
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod

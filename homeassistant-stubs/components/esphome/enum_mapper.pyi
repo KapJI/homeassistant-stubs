@@ -4,7 +4,7 @@ from typing import overload
 
 class EsphomeEnumMapper[_EnumT: APIIntEnum, _ValT]:
     _mapping: Incomplete
-    _inverse: Incomplete
+    _inverse: dict[_ValT, _EnumT]
     def __init__(self, mapping: dict[_EnumT, _ValT]) -> None: ...
     @overload
     def from_esphome(self, value: _EnumT) -> _ValT: ...

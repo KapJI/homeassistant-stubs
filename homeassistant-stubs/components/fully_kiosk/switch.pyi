@@ -27,8 +27,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: FullyKioskConfigE
 class FullySwitchEntity(FullyKioskEntity, SwitchEntity):
     entity_description: FullySwitchEntityDescription
     _attr_unique_id: Incomplete
-    _turned_on_subscription: Incomplete
-    _turned_off_subscription: Incomplete
+    _turned_on_subscription: CALLBACK_TYPE | None
+    _turned_off_subscription: CALLBACK_TYPE | None
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator, description: FullySwitchEntityDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

@@ -35,7 +35,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry
 
 class BlockSleepingNumber(ShellySleepingBlockAttributeEntity, RestoreNumber):
     entity_description: BlockNumberDescription
-    restored_data: Incomplete
+    restored_data: NumberExtraStoredData | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockNumberDescription, entry: RegistryEntry | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

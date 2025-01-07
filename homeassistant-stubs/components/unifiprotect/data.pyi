@@ -1,6 +1,7 @@
 from .const import AUTH_RETRIES as AUTH_RETRIES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_MAX_MEDIA as CONF_MAX_MEDIA, DEFAULT_MAX_MEDIA as DEFAULT_MAX_MEDIA, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DISPATCH_ADD as DISPATCH_ADD, DISPATCH_ADOPT as DISPATCH_ADOPT, DISPATCH_CHANNELS as DISPATCH_CHANNELS, DOMAIN as DOMAIN
 from .utils import async_get_devices_by_type as async_get_devices_by_type
 from _typeshed import Incomplete
+from collections import defaultdict
 from collections.abc import Callable as Callable, Generator, Iterable
 from datetime import datetime, timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -23,9 +24,9 @@ class ProtectData:
     _entry: Incomplete
     _hass: Incomplete
     _update_interval: Incomplete
-    _subscriptions: Incomplete
-    _pending_camera_ids: Incomplete
-    _unsubs: Incomplete
+    _subscriptions: defaultdict[str, set[Callable[[ProtectDeviceType], None]]]
+    _pending_camera_ids: set[str]
+    _unsubs: list[CALLBACK_TYPE]
     _auth_failures: int
     last_update_success: bool
     api: Incomplete

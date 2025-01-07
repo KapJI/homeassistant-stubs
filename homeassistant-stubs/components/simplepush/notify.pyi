@@ -11,9 +11,9 @@ _LOGGER: Incomplete
 async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> SimplePushNotificationService | None: ...
 
 class SimplePushNotificationService(BaseNotificationService):
-    _device_key: Incomplete
-    _event: Incomplete
-    _password: Incomplete
-    _salt: Incomplete
+    _device_key: str
+    _event: str | None
+    _password: str | None
+    _salt: str | None
     def __init__(self, config: dict[str, Any]) -> None: ...
     def send_message(self, message: str, **kwargs: Any) -> None: ...

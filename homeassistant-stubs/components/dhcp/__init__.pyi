@@ -1,7 +1,9 @@
 import aiodhcpwatcher
+import asyncio
 import re
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from aiodiscover import DiscoverHosts
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
@@ -47,14 +49,14 @@ class WatcherBase:
     hass: Incomplete
     _integration_matchers: Incomplete
     _address_data: Incomplete
-    _unsub: Incomplete
+    _unsub: Callable[[], None] | None
     def __init__(self, hass: HomeAssistant, address_data: dict[str, dict[str, str]], integration_matchers: DhcpMatchers) -> None: ...
     def async_stop(self) -> None: ...
     def async_process_client(self, ip_address: str, hostname: str, unformatted_mac_address: str, force: bool = False) -> None: ...
 
 class NetworkWatcher(WatcherBase):
-    _discover_hosts: Incomplete
-    _discover_task: Incomplete
+    _discover_hosts: DiscoverHosts | None
+    _discover_task: asyncio.Task | None
     def __init__(self, hass: HomeAssistant, address_data: dict[str, dict[str, str]], integration_matchers: DhcpMatchers) -> None: ...
     def async_stop(self) -> None: ...
     _unsub: Incomplete

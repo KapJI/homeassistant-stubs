@@ -16,10 +16,10 @@ class IIDStorage(Store):
 
 class AccessoryIIDStorage:
     hass: Incomplete
-    allocations: Incomplete
-    allocated_iids: Incomplete
+    allocations: dict[str, dict[str, int]]
+    allocated_iids: dict[str, list[int]]
     entry_id: Incomplete
-    store: Incomplete
+    store: IIDStorage | None
     def __init__(self, hass: HomeAssistant, entry_id: str) -> None: ...
     async def async_initialize(self) -> None: ...
     def get_or_allocate_iid(self, aid: int, service_uuid: UUID, service_unique_id: str | None, char_uuid: UUID | None, char_unique_id: str | None) -> int: ...

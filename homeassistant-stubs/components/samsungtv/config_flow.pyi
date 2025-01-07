@@ -9,6 +9,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import format_mac as format_mac
+from samsungtvws.encrypted.authenticator import SamsungTVEncryptedWSAsyncAuthenticator
 from typing import Any, Self
 
 DATA_SCHEMA: Incomplete
@@ -21,21 +22,21 @@ class SamsungTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     _host: str
-    _mac: Incomplete
-    _udn: Incomplete
-    _upnp_udn: Incomplete
-    _ssdp_rendering_control_location: Incomplete
-    _ssdp_main_tv_agent_location: Incomplete
-    _manufacturer: Incomplete
-    _model: Incomplete
-    _connect_result: Incomplete
-    _method: Incomplete
-    _name: Incomplete
+    _mac: str | None
+    _udn: str | None
+    _upnp_udn: str | None
+    _ssdp_rendering_control_location: str | None
+    _ssdp_main_tv_agent_location: str | None
+    _manufacturer: str | None
+    _model: str | None
+    _connect_result: str | None
+    _method: str | None
+    _name: str | None
     _title: str
-    _id: Incomplete
-    _bridge: Incomplete
-    _device_info: Incomplete
-    _authenticator: Incomplete
+    _id: int | None
+    _bridge: SamsungTVBridge | None
+    _device_info: dict[str, Any] | None
+    _authenticator: SamsungTVEncryptedWSAsyncAuthenticator | None
     def __init__(self) -> None: ...
     def _base_config_entry(self) -> dict[str, Any]: ...
     def _get_entry_from_bridge(self) -> ConfigFlowResult: ...

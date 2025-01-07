@@ -17,7 +17,7 @@ class AbstractConfig(ABC, metaclass=abc.ABCMeta):
     _unsub_proactive_report: CALLBACK_TYPE | None
     hass: Incomplete
     _enable_proactive_mode_lock: Incomplete
-    _on_deinitialize: Incomplete
+    _on_deinitialize: list[CALLBACK_TYPE]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_initialize(self) -> None: ...
     def async_deinitialize(self) -> None: ...
@@ -51,9 +51,9 @@ class AbstractConfig(ABC, metaclass=abc.ABCMeta):
 class AlexaConfigStore:
     _STORAGE_VERSION: int
     _STORAGE_KEY = DOMAIN
-    _data: Incomplete
+    _data: dict[str, Any] | None
     _hass: Incomplete
-    _store: Incomplete
+    _store: Store
     def __init__(self, hass: HomeAssistant) -> None: ...
     @property
     def authorized(self) -> bool: ...

@@ -18,7 +18,7 @@ from homeassistant.setup import async_when_setup_or_start as async_when_setup_or
 from ipaddress import IPv4Address, IPv6Address
 from typing import Any, Final
 from zeroconf import ServiceStateChange
-from zeroconf.asyncio import AsyncServiceInfo
+from zeroconf.asyncio import AsyncServiceBrowser, AsyncServiceInfo
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -72,7 +72,7 @@ class ZeroconfDiscovery:
     zeroconf_types: Incomplete
     homekit_model_lookups: Incomplete
     homekit_model_matchers: Incomplete
-    async_service_browser: Incomplete
+    async_service_browser: AsyncServiceBrowser | None
     def __init__(self, hass: HomeAssistant, zeroconf: HaZeroconf, zeroconf_types: dict[str, list[ZeroconfMatcher]], homekit_model_lookups: dict[str, HomeKitDiscoveredIntegration], homekit_model_matchers: dict[re.Pattern, HomeKitDiscoveredIntegration]) -> None: ...
     async def async_setup(self) -> None: ...
     async def async_stop(self) -> None: ...

@@ -31,7 +31,7 @@ class DeviceCoordinator(DataUpdateCoordinator[None]):
     options: Options | None
     hass: Incomplete
     wemo: Incomplete
-    device_id: Incomplete
+    device_id: str | None
     device_info: Incomplete
     supports_long_press: Incomplete
     update_lock: Incomplete

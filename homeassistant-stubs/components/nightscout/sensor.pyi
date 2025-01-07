@@ -6,6 +6,7 @@ from homeassistant.const import ATTR_DATE as ATTR_DATE, UnitOfBloodGlucoseConcen
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from py_nightscout import Api as NightscoutAPI
+from typing import Any
 
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
@@ -20,7 +21,7 @@ class NightscoutSensor(SensorEntity):
     api: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
-    _attr_extra_state_attributes: Incomplete
+    _attr_extra_state_attributes: dict[str, Any]
     def __init__(self, api: NightscoutAPI, name: str, unique_id: str | None) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete

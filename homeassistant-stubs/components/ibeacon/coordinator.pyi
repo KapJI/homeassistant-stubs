@@ -25,21 +25,21 @@ class IBeaconCoordinator:
     _entry: Incomplete
     _dev_reg: Incomplete
     _ibeacon_parser: Incomplete
-    _ignore_addresses: Incomplete
-    _ignore_uuids: Incomplete
-    _last_ibeacon_advertisement_by_unique_id: Incomplete
-    _transient_seen_count: Incomplete
-    _group_ids_by_address: Incomplete
-    _unique_ids_by_address: Incomplete
-    _unique_ids_by_group_id: Incomplete
-    _addresses_by_group_id: Incomplete
-    _unavailable_trackers: Incomplete
-    _group_ids_random_macs: Incomplete
-    _last_seen_by_group_id: Incomplete
-    _unavailable_group_ids: Incomplete
-    _major_minor_by_uuid: Incomplete
+    _ignore_addresses: set[str]
+    _ignore_uuids: set[str]
+    _last_ibeacon_advertisement_by_unique_id: dict[str, iBeaconAdvertisement]
+    _transient_seen_count: dict[str, int]
+    _group_ids_by_address: dict[str, set[str]]
+    _unique_ids_by_address: dict[str, set[str]]
+    _unique_ids_by_group_id: dict[str, set[str]]
+    _addresses_by_group_id: dict[str, set[str]]
+    _unavailable_trackers: dict[str, CALLBACK_TYPE]
+    _group_ids_random_macs: set[str]
+    _last_seen_by_group_id: dict[str, bluetooth.BluetoothServiceInfoBleak]
+    _unavailable_group_ids: set[str]
+    _major_minor_by_uuid: dict[str, set[tuple[int, int]]]
     _allow_nameless_uuids: Incomplete
-    _ignored_nameless_by_uuid: Incomplete
+    _ignored_nameless_by_uuid: dict[str, set[str]]
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, registry: DeviceRegistry) -> None: ...
     def async_device_id_seen(self, device_id: str) -> bool: ...
     def _async_handle_unavailable(self, service_info: bluetooth.BluetoothServiceInfoBleak) -> None: ...

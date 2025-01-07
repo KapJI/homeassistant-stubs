@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass_or_none as async_get_hass_or_none
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import Integration as Integration, async_get_issue_integration as async_get_issue_integration, async_suggest_report_issue as async_suggest_report_issue
+from propcache import cached_property
 from types import FrameType
 
 _LOGGER: Incomplete
@@ -18,8 +19,11 @@ class IntegrationFrame:
     module: str | None
     relative_filename: str
     frame: FrameType
+    @cached_property
     def line_number(self) -> int: ...
+    @cached_property
     def filename(self) -> str: ...
+    @cached_property
     def line(self) -> str: ...
     def __init__(self, *, custom_integration, integration, module, relative_filename, frame) -> None: ...
 

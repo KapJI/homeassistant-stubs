@@ -8,7 +8,7 @@ from typing import Any
 class PushBulletNotificationProvider(Listener):
     hass: Incomplete
     pushbullet: Incomplete
-    data: Incomplete
+    data: dict[str, Any]
     daemon: bool
     def __init__(self, hass: HomeAssistant, pushbullet: PushBullet) -> None: ...
     def update_data(self, data: dict[str, Any]) -> None: ...

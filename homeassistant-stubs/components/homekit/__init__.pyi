@@ -8,6 +8,7 @@ from .type_triggers import DeviceTriggerAccessory as DeviceTriggerAccessory
 from .util import accessory_friendly_name as accessory_friendly_name, async_dismiss_setup_message as async_dismiss_setup_message, async_port_is_available as async_port_is_available, async_show_setup_message as async_show_setup_message, get_persist_fullpath_for_entry_id as get_persist_fullpath_for_entry_id, remove_state_files_for_entry_id as remove_state_files_for_entry_id, state_needs_accessory_mode as state_needs_accessory_mode, validate_entity_config as validate_entity_config
 from _typeshed import Incomplete
 from aiohttp import web
+from collections import defaultdict
 from collections.abc import Iterable
 from homeassistant.components import device_automation as device_automation, network as network, zeroconf as zeroconf
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
@@ -74,20 +75,20 @@ class HomeKit:
     _port: Incomplete
     _ip_address: Incomplete
     _filter: Incomplete
-    _config: Incomplete
+    _config: defaultdict[str, dict[str, Any]]
     _exclude_accessory_mode: Incomplete
     _advertise_ips: Incomplete
     _entry_id: Incomplete
     _entry_title: Incomplete
     _homekit_mode: Incomplete
     _devices: Incomplete
-    aid_storage: Incomplete
-    iid_storage: Incomplete
+    aid_storage: AccessoryAidStorage | None
+    iid_storage: AccessoryIIDStorage | None
     status: Incomplete
-    driver: Incomplete
-    bridge: Incomplete
+    driver: HomeDriver | None
+    bridge: HomeBridge | None
     _reset_lock: Incomplete
-    _cancel_reload_dispatcher: Incomplete
+    _cancel_reload_dispatcher: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, name: str, port: int, ip_address: str | None, entity_filter: EntityFilter, exclude_accessory_mode: bool, entity_config: dict[str, Any], homekit_mode: str, advertise_ips: list[str], entry_id: str, entry_title: str, devices: list[str] | None = None) -> None: ...
     def setup(self, async_zeroconf_instance: AsyncZeroconf, uuid: str) -> bool: ...
     async def async_reset_accessories(self, entity_ids: Iterable[str]) -> None: ...

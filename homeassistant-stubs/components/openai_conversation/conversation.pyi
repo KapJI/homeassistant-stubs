@@ -23,7 +23,7 @@ class OpenAIConversationEntity(conversation.ConversationEntity, conversation.Abs
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     entry: Incomplete
-    history: Incomplete
+    history: dict[str, list[ChatCompletionMessageParam]]
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_supported_features: Incomplete

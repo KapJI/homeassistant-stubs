@@ -24,11 +24,11 @@ def none_or_int(value: str | None, base: int) -> int | None: ...
 class RfxtrxOptionsFlow(OptionsFlow):
     _device_registry: dr.DeviceRegistry
     _device_entries: list[dr.DeviceEntry]
-    _global_options: Incomplete
-    _selected_device: Incomplete
-    _selected_device_entry_id: Incomplete
-    _selected_device_event_code: Incomplete
-    _selected_device_object: Incomplete
+    _global_options: dict[str, Any]
+    _selected_device: dict[str, Any]
+    _selected_device_entry_id: str | None
+    _selected_device_event_code: str | None
+    _selected_device_object: rfxtrxmod.RFXtrxEvent | None
     def __init__(self) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_prompt_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

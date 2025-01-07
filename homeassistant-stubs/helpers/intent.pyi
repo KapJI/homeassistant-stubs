@@ -14,6 +14,7 @@ from homeassistant.core import Context as Context, HomeAssistant as HomeAssistan
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
+from propcache import cached_property
 from typing import Any
 
 _LOGGER: Incomplete
@@ -141,6 +142,7 @@ class IntentHandler:
     def slot_schema(self) -> dict | None: ...
     def async_can_handle(self, intent_obj: Intent) -> bool: ...
     def async_validate_slots(self, slots: _SlotsType) -> _SlotsType: ...
+    @cached_property
     def _slot_schema(self) -> vol.Schema: ...
     async def async_handle(self, intent_obj: Intent) -> IntentResponse: ...
     def __repr__(self) -> str: ...
@@ -157,9 +159,10 @@ class DynamicServiceIntentHandler(IntentHandler, metaclass=abc.ABCMeta):
     description: Incomplete
     platforms: Incomplete
     device_classes: Incomplete
-    required_slots: Incomplete
-    optional_slots: Incomplete
+    required_slots: _IntentSlotsType
+    optional_slots: _IntentSlotsType
     def __init__(self, intent_type: str, speech: str | None = None, required_slots: _IntentSlotsType | None = None, optional_slots: _IntentSlotsType | None = None, required_domains: set[str] | None = None, required_features: int | None = None, required_states: set[str] | None = None, description: str | None = None, platforms: set[str] | None = None, device_classes: set[type[StrEnum]] | None = None) -> None: ...
+    @cached_property
     def slot_schema(self) -> dict: ...
     @abstractmethod
     def get_domain_and_service(self, intent_obj: Intent, state: State) -> tuple[str, str]: ...
@@ -225,16 +228,16 @@ class IntentResponseTarget:
 class IntentResponse:
     language: Incomplete
     intent: Incomplete
-    speech: Incomplete
-    reprompt: Incomplete
-    card: Incomplete
-    error_code: Incomplete
-    intent_targets: Incomplete
-    success_results: Incomplete
-    failed_results: Incomplete
-    matched_states: Incomplete
-    unmatched_states: Incomplete
-    speech_slots: Incomplete
+    speech: dict[str, dict[str, Any]]
+    reprompt: dict[str, dict[str, Any]]
+    card: dict[str, dict[str, str]]
+    error_code: IntentResponseErrorCode | None
+    intent_targets: list[IntentResponseTarget]
+    success_results: list[IntentResponseTarget]
+    failed_results: list[IntentResponseTarget]
+    matched_states: list[State]
+    unmatched_states: list[State]
+    speech_slots: dict[str, Any]
     response_type: Incomplete
     def __init__(self, language: str, intent: Intent | None = None) -> None: ...
     def async_set_speech(self, speech: str, speech_type: str = 'plain', extra_data: Any | None = None) -> None: ...

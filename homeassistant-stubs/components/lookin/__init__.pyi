@@ -21,8 +21,8 @@ def _async_remote_updater(lookin_protocol: LookInHttpProtocol, uuid: str) -> Cal
 
 class LookinUDPManager:
     _lock: Incomplete
-    _listener: Incomplete
-    _subscriptions: Incomplete
+    _listener: Callable | None
+    _subscriptions: LookinUDPSubscriptions | None
     def __init__(self) -> None: ...
     async def async_get_subscriptions(self) -> LookinUDPSubscriptions: ...
     async def async_stop(self) -> None: ...

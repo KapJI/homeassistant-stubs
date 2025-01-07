@@ -9,6 +9,8 @@ from homeassistant.util import json as json_util
 from homeassistant.util.file import WriteError as WriteError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from json import JSONEncoder
+from pathlib import Path
+from propcache import cached_property
 from typing import Any
 
 MAX_LOAD_CONCURRENTLY: int
@@ -23,11 +25,11 @@ def get_internal_store_manager(hass: HomeAssistant) -> _StoreManager: ...
 
 class _StoreManager:
     _hass: Incomplete
-    _invalidated: Incomplete
-    _files: Incomplete
-    _data_preload: Incomplete
-    _storage_path: Incomplete
-    _cancel_cleanup: Incomplete
+    _invalidated: set[str]
+    _files: set[str] | None
+    _data_preload: dict[str, json_util.JsonValueType]
+    _storage_path: Path
+    _cancel_cleanup: asyncio.TimerHandle | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_initialize(self) -> None: ...
     def async_invalidate(self, key: str) -> None: ...
@@ -45,17 +47,18 @@ class Store[_T: Mapping[str, Any] | Sequence[Any]]:
     key: Incomplete
     hass: Incomplete
     _private: Incomplete
-    _data: Incomplete
-    _delay_handle: Incomplete
-    _unsub_final_write_listener: Incomplete
+    _data: dict[str, Any] | None
+    _delay_handle: asyncio.TimerHandle | None
+    _unsub_final_write_listener: CALLBACK_TYPE | None
     _write_lock: Incomplete
-    _load_future: Incomplete
+    _load_future: asyncio.Future[_T | None] | None
     _encoder: Incomplete
     _atomic_writes: Incomplete
     _read_only: Incomplete
     _next_write_time: float
     _manager: Incomplete
     def __init__(self, hass: HomeAssistant, version: int, key: str, private: bool = False, *, atomic_writes: bool = False, encoder: type[JSONEncoder] | None = None, minor_version: int = 1, read_only: bool = False) -> None: ...
+    @cached_property
     def path(self): ...
     def make_read_only(self) -> None: ...
     async def async_load(self) -> _T | None: ...

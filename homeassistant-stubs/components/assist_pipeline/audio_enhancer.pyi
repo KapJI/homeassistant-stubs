@@ -3,6 +3,8 @@ from .const import BYTES_PER_CHUNK as BYTES_PER_CHUNK
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from pymicro_vad import MicroVad
+from pyspeex_noise import AudioProcessor
 
 _LOGGER: Incomplete
 
@@ -22,9 +24,9 @@ class AudioEnhancer(ABC, metaclass=abc.ABCMeta):
     def enhance_chunk(self, audio: bytes, timestamp_ms: int) -> EnhancedAudioChunk: ...
 
 class MicroVadSpeexEnhancer(AudioEnhancer):
-    audio_processor: Incomplete
+    audio_processor: AudioProcessor | None
     noise_suppression: Incomplete
     auto_gain: Incomplete
-    vad: Incomplete
+    vad: MicroVad | None
     def __init__(self, auto_gain: int, noise_suppression: int, is_vad_enabled: bool) -> None: ...
     def enhance_chunk(self, audio: bytes, timestamp_ms: int) -> EnhancedAudioChunk: ...

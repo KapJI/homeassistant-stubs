@@ -14,7 +14,7 @@ class LD2410BLECoordinator(DataUpdateCoordinator[None]):
     _ld2410_ble: Incomplete
     connected: bool
     _last_update_time: Incomplete
-    _debounce_cancel: Incomplete
+    _debounce_cancel: CALLBACK_TYPE | None
     _debounced_update_job: Incomplete
     def __init__(self, hass: HomeAssistant, ld2410_ble: LD2410BLE) -> None: ...
     def _async_handle_debounced_update(self, _now: datetime) -> None: ...

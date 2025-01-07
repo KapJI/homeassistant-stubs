@@ -36,7 +36,7 @@ class LaCrosseSensor(SensorEntity):
     entity_id: Incomplete
     _config: Incomplete
     _expire_after: Incomplete
-    _expiration_trigger: Incomplete
+    _expiration_trigger: CALLBACK_TYPE | None
     _attr_name: Incomplete
     def __init__(self, hass: HomeAssistant, lacrosse: pylacrosse.LaCrosse, device_id: str, name: str, expire_after: int | None, config: ConfigType) -> None: ...
     @property

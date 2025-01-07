@@ -10,8 +10,8 @@ from typing import Any
 _LOGGER: Incomplete
 
 class Fan(HomeAccessory):
-    chars: Incomplete
-    preset_modes: Incomplete
+    chars: list[str]
+    preset_modes: list[str] | None
     char_active: Incomplete
     char_direction: Incomplete
     char_speed: Incomplete

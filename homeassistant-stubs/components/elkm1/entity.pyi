@@ -21,7 +21,7 @@ class ElkEntity(Entity):
     _element: Incomplete
     _mac: Incomplete
     _prefix: Incomplete
-    _temperature_unit: Incomplete
+    _temperature_unit: str
     _unique_id: Incomplete
     _attr_name: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: ELKM1Data) -> None: ...

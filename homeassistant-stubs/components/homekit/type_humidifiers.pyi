@@ -21,7 +21,7 @@ BASE_VALID_VALUES: Incomplete
 VALID_VALUES_BY_DEVICE_CLASS: Incomplete
 
 class HumidifierDehumidifier(HomeAccessory):
-    chars: Incomplete
+    chars: list[str]
     _hk_device_class: Incomplete
     _target_humidity_char_name: Incomplete
     char_current_humidifier_dehumidifier: Incomplete

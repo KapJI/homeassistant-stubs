@@ -37,8 +37,8 @@ class NestEventMediaStore(EventMediaStore):
     _subscriber: Incomplete
     _store: Incomplete
     _media_path: Incomplete
-    _data: Incomplete
-    _devices: Incomplete
+    _data: dict[str, Any] | None
+    _devices: Mapping[str, str] | None
     def __init__(self, hass: HomeAssistant, subscriber: GoogleNestSubscriber, store: Store[dict[str, Any]], media_path: str) -> None: ...
     async def async_load(self) -> dict | None: ...
     async def async_save(self, data: dict) -> None: ...

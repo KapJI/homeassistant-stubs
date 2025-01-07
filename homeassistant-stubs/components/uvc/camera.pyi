@@ -30,8 +30,8 @@ class UnifiVideoCamera(Camera):
     _uuid: Incomplete
     _attr_name: Incomplete
     _password: Incomplete
-    _connect_addr: Incomplete
-    _camera: Incomplete
+    _connect_addr: str | None
+    _camera: UVCCameraClient | None
     def __init__(self, camera: UVCRemote, uuid: str, name: str, password: str) -> None: ...
     @property
     def supported_features(self) -> CameraEntityFeature: ...

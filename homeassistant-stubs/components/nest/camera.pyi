@@ -26,7 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry, async_a
 
 class StreamRefresh:
     _hass: Incomplete
-    _unsub: Incomplete
+    _unsub: Callable[[], None] | None
     _min_refresh_interval: Incomplete
     _refresh_cb: Incomplete
     def __init__(self, hass: HomeAssistant, expires_at: datetime.datetime, refresh_cb: Callable[[], Awaitable[datetime.datetime | None]]) -> None: ...
@@ -51,7 +51,7 @@ class NestRTSPEntity(NestCameraBaseEntity):
     _rtsp_stream: RtspStream | None
     _rtsp_live_stream_trait: CameraLiveStreamTrait
     _create_stream_url_lock: Incomplete
-    _refresh_unsub: Incomplete
+    _refresh_unsub: Callable[[], None] | None
     def __init__(self, device: Device) -> None: ...
     @property
     def use_stream_for_stills(self) -> bool: ...
@@ -63,8 +63,8 @@ class NestRTSPEntity(NestCameraBaseEntity):
     async def async_will_remove_from_hass(self) -> None: ...
 
 class NestWebRTCEntity(NestCameraBaseEntity):
-    _webrtc_sessions: Incomplete
-    _refresh_unsub: Incomplete
+    _webrtc_sessions: dict[str, WebRtcStream]
+    _refresh_unsub: dict[str, Callable[[], None]]
     def __init__(self, device: Device) -> None: ...
     async def _async_refresh_stream(self, session_id: str) -> datetime.datetime | None: ...
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...

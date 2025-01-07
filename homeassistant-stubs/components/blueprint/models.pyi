@@ -42,7 +42,7 @@ class DomainBlueprints:
     logger: Incomplete
     _blueprint_in_use: Incomplete
     _reload_blueprint_consumers: Incomplete
-    _blueprints: Incomplete
+    _blueprints: dict[str, Blueprint | None]
     _load_lock: Incomplete
     _blueprint_schema: Incomplete
     def __init__(self, hass: HomeAssistant, domain: str, logger: logging.Logger, blueprint_in_use: Callable[[HomeAssistant, str], bool], reload_blueprint_consumers: Callable[[HomeAssistant, str], Awaitable[None]], blueprint_schema: Callable[[Any], Any]) -> None: ...

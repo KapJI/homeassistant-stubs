@@ -18,7 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarCon
 
 class JewishCalendarSensor(JewishCalendarEntity, SensorEntity):
     _attr_entity_category: Incomplete
-    _attrs: Incomplete
+    _attrs: dict[str, str]
     def __init__(self, config_entry: JewishCalendarConfigEntry, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     async def async_update(self) -> None: ...

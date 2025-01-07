@@ -19,7 +19,7 @@ class LMSStatusDataUpdateCoordinator(DataUpdateCoordinator):
 class SqueezeBoxPlayerUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     player: Incomplete
     available: bool
-    _remove_dispatcher: Incomplete
+    _remove_dispatcher: Callable | None
     server_uuid: Incomplete
     def __init__(self, hass: HomeAssistant, player: Player, server_uuid: str) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

@@ -1,6 +1,7 @@
 from . import PLATFORMS as PLATFORMS
 from .const import ATTR_GRADIENT as ATTR_GRADIENT, ATTR_INVERT as ATTR_INVERT, ATTR_MIN_GRADIENT as ATTR_MIN_GRADIENT, ATTR_SAMPLE_COUNT as ATTR_SAMPLE_COUNT, ATTR_SAMPLE_DURATION as ATTR_SAMPLE_DURATION, CONF_INVERT as CONF_INVERT, CONF_MAX_SAMPLES as CONF_MAX_SAMPLES, CONF_MIN_GRADIENT as CONF_MIN_GRADIENT, CONF_MIN_SAMPLES as CONF_MIN_SAMPLES, CONF_SAMPLE_DURATION as CONF_SAMPLE_DURATION, DEFAULT_MAX_SAMPLES as DEFAULT_MAX_SAMPLES, DEFAULT_MIN_GRADIENT as DEFAULT_MIN_GRADIENT, DEFAULT_MIN_SAMPLES as DEFAULT_MIN_SAMPLES, DEFAULT_SAMPLE_DURATION as DEFAULT_SAMPLE_DURATION, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections import deque
 from collections.abc import Mapping
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -37,7 +38,7 @@ class SensorTrend(BinarySensorEntity, RestoreEntity):
     _sample_duration: Incomplete
     _min_gradient: Incomplete
     _min_samples: Incomplete
-    samples: Incomplete
+    samples: deque
     _attr_name: Incomplete
     _attr_device_class: Incomplete
     _attr_unique_id: Incomplete

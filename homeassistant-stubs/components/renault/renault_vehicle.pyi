@@ -28,7 +28,7 @@ class RenaultVehicleProxy:
     _vehicle: Incomplete
     _details: Incomplete
     _device_info: Incomplete
-    coordinators: Incomplete
+    coordinators: dict[str, RenaultDataUpdateCoordinator]
     hvac_target_temperature: int
     _scan_interval: Incomplete
     def __init__(self, hass: HomeAssistant, vehicle: RenaultVehicle, details: models.KamereonVehicleDetails, scan_interval: timedelta) -> None: ...

@@ -16,7 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 def _cc_and_label(value: Value) -> str: ...
 
 class ZwaveEventEntity(ZWaveBaseEntity, EventEntity):
-    states: Incomplete
+    states: dict[int, str]
     _attr_event_types: Incomplete
     _attr_name: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...

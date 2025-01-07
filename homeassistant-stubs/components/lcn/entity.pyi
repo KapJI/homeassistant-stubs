@@ -13,9 +13,9 @@ class LcnEntity(Entity):
     device_connection: DeviceConnectionType
     config: Incomplete
     config_entry: Incomplete
-    address: Incomplete
-    _unregister_for_inputs: Incomplete
-    _name: Incomplete
+    address: AddressType
+    _unregister_for_inputs: Callable | None
+    _name: str
     def __init__(self, config: ConfigType, config_entry: ConfigEntry) -> None: ...
     @property
     def unique_id(self) -> str: ...

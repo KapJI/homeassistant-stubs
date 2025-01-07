@@ -15,8 +15,8 @@ class MatterAdapter:
     matter_client: Incomplete
     hass: Incomplete
     config_entry: Incomplete
-    platform_handlers: Incomplete
-    discovered_entities: Incomplete
+    platform_handlers: dict[Platform, AddEntitiesCallback]
+    discovered_entities: set[str]
     def __init__(self, hass: HomeAssistant, matter_client: MatterClient, config_entry: ConfigEntry) -> None: ...
     def register_platform_handler(self, platform: Platform, add_entities: AddEntitiesCallback) -> None: ...
     async def setup_nodes(self) -> None: ...

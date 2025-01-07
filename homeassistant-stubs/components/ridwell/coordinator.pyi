@@ -12,7 +12,7 @@ UPDATE_INTERVAL: Incomplete
 
 class RidwellDataUpdateCoordinator(DataUpdateCoordinator[dict[str, list[RidwellPickupEvent]]]):
     config_entry: ConfigEntry
-    accounts: Incomplete
+    accounts: dict[str, RidwellAccount]
     dashboard_url: str
     user_id: str
     def __init__(self, hass: HomeAssistant, *, name: str) -> None: ...

@@ -39,7 +39,7 @@ class DriverEvents:
     config_entry: Incomplete
     dev_reg: Incomplete
     hass: Incomplete
-    platform_setup_tasks: Incomplete
+    platform_setup_tasks: dict[str, asyncio.Task]
     ready: Incomplete
     controller_events: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
@@ -49,10 +49,10 @@ class DriverEvents:
 class ControllerEvents:
     hass: Incomplete
     config_entry: Incomplete
-    discovered_value_ids: Incomplete
+    discovered_value_ids: dict[str, set[str]]
     driver_events: Incomplete
     dev_reg: Incomplete
-    registered_unique_ids: Incomplete
+    registered_unique_ids: dict[str, dict[Platform, set[str]]]
     node_events: Incomplete
     def __init__(self, hass: HomeAssistant, driver_events: DriverEvents) -> None: ...
     def remove_device(self, device: dr.DeviceEntry) -> None: ...

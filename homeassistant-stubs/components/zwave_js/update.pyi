@@ -13,7 +13,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData
-from typing import Any
+from typing import Any, Final
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.node.firmware import NodeFirmwareUpdateInfo, NodeFirmwareUpdateProgress as NodeFirmwareUpdateProgress, NodeFirmwareUpdateResult as NodeFirmwareUpdateResult
@@ -41,14 +41,14 @@ class ZWaveNodeFirmwareUpdate(UpdateEntity):
     _attr_should_poll: bool
     driver: Incomplete
     node: Incomplete
-    _latest_version_firmware: Incomplete
-    _status_unsub: Incomplete
-    _poll_unsub: Incomplete
-    _progress_unsub: Incomplete
-    _finished_unsub: Incomplete
+    _latest_version_firmware: NodeFirmwareUpdateInfo | None
+    _status_unsub: Callable[[], None] | None
+    _poll_unsub: Callable[[], None] | None
+    _progress_unsub: Callable[[], None] | None
+    _finished_unsub: Callable[[], None] | None
     _finished_event: Incomplete
-    _result: Incomplete
-    _delay: Incomplete
+    _result: NodeFirmwareUpdateResult | None
+    _delay: Final[timedelta]
     _attr_name: str
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete

@@ -48,19 +48,19 @@ class EntityPlatform:
     scan_interval: Incomplete
     scan_interval_seconds: Incomplete
     entity_namespace: Incomplete
-    config_entry: Incomplete
-    entities: Incomplete
-    component_translations: Incomplete
-    platform_translations: Incomplete
-    object_id_component_translations: Incomplete
-    object_id_platform_translations: Incomplete
-    default_language_platform_translations: Incomplete
-    _tasks: Incomplete
+    config_entry: config_entries.ConfigEntry | None
+    entities: dict[str, Entity]
+    component_translations: dict[str, str]
+    platform_translations: dict[str, str]
+    object_id_component_translations: dict[str, str]
+    object_id_platform_translations: dict[str, str]
+    default_language_platform_translations: dict[str, str]
+    _tasks: list[asyncio.Task[None]]
     _setup_complete: bool
-    _async_polling_timer: Incomplete
-    _async_cancel_retry_setup: Incomplete
-    _process_updates: Incomplete
-    parallel_updates: Incomplete
+    _async_polling_timer: asyncio.TimerHandle | None
+    _async_cancel_retry_setup: CALLBACK_TYPE | None
+    _process_updates: asyncio.Lock | None
+    parallel_updates: asyncio.Semaphore | None
     _update_in_sequence: bool
     parallel_updates_created: Incomplete
     domain_entities: Incomplete

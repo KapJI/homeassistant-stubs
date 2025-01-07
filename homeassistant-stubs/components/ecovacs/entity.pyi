@@ -20,7 +20,7 @@ class EcovacsEntity(Entity, Generic[CapabilityEntity]):
     _attr_unique_id: Incomplete
     _device: Incomplete
     _capability: Incomplete
-    _subscribed_events: Incomplete
+    _subscribed_events: set[type[Event]]
     def __init__(self, device: Device, capability: CapabilityEntity, **kwargs: Any) -> None: ...
     @property
     def device_info(self) -> DeviceInfo | None: ...
@@ -42,10 +42,10 @@ class EcovacsLegacyEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     device: Incomplete
-    error: Incomplete
+    error: str | None
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _event_listeners: Incomplete
+    _event_listeners: list[EventListener]
     def __init__(self, device: VacBot) -> None: ...
     @property
     def available(self) -> bool: ...

@@ -16,8 +16,8 @@ LOGGER: Incomplete
 class RenaultHub:
     _hass: Incomplete
     _client: Incomplete
-    _account: Incomplete
-    _vehicles: Incomplete
+    _account: RenaultAccount | None
+    _vehicles: dict[str, RenaultVehicleProxy]
     def __init__(self, hass: HomeAssistant, locale: str) -> None: ...
     async def attempt_login(self, username: str, password: str) -> bool: ...
     async def async_initialise(self, config_entry: ConfigEntry) -> None: ...

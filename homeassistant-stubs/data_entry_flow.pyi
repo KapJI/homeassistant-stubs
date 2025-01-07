@@ -6,6 +6,7 @@ from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from _typeshed import Incomplete
+from collections import defaultdict
 from collections.abc import Callable as Callable, Container, Hashable, Iterable, Mapping
 from dataclasses import dataclass
 from enum import StrEnum
@@ -80,10 +81,10 @@ def _map_error_to_schema_errors(schema_errors: dict[str, Any], error: vol.Invali
 class FlowManager(abc.ABC, Generic[_FlowContextT, _FlowResultT, _HandlerT], metaclass=abc.ABCMeta):
     _flow_result: type[_FlowResultT]
     hass: Incomplete
-    _preview: Incomplete
-    _progress: Incomplete
-    _handler_progress_index: Incomplete
-    _init_data_process_index: Incomplete
+    _preview: set[_HandlerT]
+    _progress: dict[str, FlowHandler[_FlowContextT, _FlowResultT, _HandlerT]]
+    _handler_progress_index: defaultdict[_HandlerT, set[FlowHandler[_FlowContextT, _FlowResultT, _HandlerT]]]
+    _init_data_process_index: defaultdict[type, set[FlowHandler[_FlowContextT, _FlowResultT, _HandlerT]]]
     def __init__(self, hass: HomeAssistant) -> None: ...
     @abc.abstractmethod
     async def async_create_flow(self, handler_key: _HandlerT, *, context: _FlowContextT | None = None, data: dict[str, Any] | None = None) -> FlowHandler[_FlowContextT, _FlowResultT, _HandlerT]: ...
@@ -147,6 +148,6 @@ class SectionConfig(TypedDict, total=False):
 class section:
     CONFIG_SCHEMA: Incomplete
     schema: Incomplete
-    options: Incomplete
+    options: SectionConfig
     def __init__(self, schema: vol.Schema, options: SectionConfig | None = None) -> None: ...
     def __call__(self, value: Any) -> Any: ...

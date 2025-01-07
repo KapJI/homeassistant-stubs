@@ -1,14 +1,13 @@
 from ..db_schema import States as States
 from ..queries import find_oldest_state as find_oldest_state
 from ..util import execute_stmt_lambda_element as execute_stmt_lambda_element
-from _typeshed import Incomplete
 from sqlalchemy.orm.session import Session as Session
 
 class StatesManager:
-    _pending: Incomplete
-    _last_committed_id: Incomplete
-    _last_reported: Incomplete
-    _oldest_ts: Incomplete
+    _pending: dict[str, States]
+    _last_committed_id: dict[str, int]
+    _last_reported: dict[int, float]
+    _oldest_ts: float | None
     def __init__(self) -> None: ...
     @property
     def oldest_ts(self) -> float | None: ...

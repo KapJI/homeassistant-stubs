@@ -43,7 +43,7 @@ def init_entity_id_from_config(hass: HomeAssistant, entity: Entity, config: Conf
 class MqttAttributesMixin(Entity):
     _attributes_extra_blocked: frozenset[str]
     _attr_tpl: Callable[[ReceivePayloadType], ReceivePayloadType] | None
-    _attributes_sub_state: Incomplete
+    _attributes_sub_state: dict[str, EntitySubscription]
     _attributes_config: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
@@ -56,14 +56,14 @@ class MqttAttributesMixin(Entity):
     def _attributes_message_received(self, msg: ReceiveMessage) -> None: ...
 
 class MqttAvailabilityMixin(Entity):
-    _availability_sub_state: Incomplete
-    _available: Incomplete
+    _availability_sub_state: dict[str, EntitySubscription]
+    _available: dict[str, str | bool]
     _available_latest: bool
     def __init__(self, config: ConfigType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def availability_prepare_discovery_update(self, config: DiscoveryInfoType) -> None: ...
     async def availability_discovery_update(self, config: DiscoveryInfoType) -> None: ...
-    _avail_topics: Incomplete
+    _avail_topics: dict[str, dict[str, Any]]
     _avail_config: Incomplete
     def _availability_setup_from_config(self, config: ConfigType) -> None: ...
     def _availability_prepare_subscribe_topics(self) -> None: ...
@@ -89,7 +89,7 @@ class MqttDiscoveryDeviceUpdateMixin(ABC, metaclass=abc.ABCMeta):
     _config_entry: Incomplete
     _config_entry_id: Incomplete
     _skip_device_removal: bool
-    _migrate_discovery: Incomplete
+    _migrate_discovery: str | None
     _remove_discovery_updated: Incomplete
     _remove_device_updated: Incomplete
     def __init__(self, hass: HomeAssistant, discovery_data: DiscoveryInfoType, device_id: str | None, config_entry: ConfigEntry, log_name: str) -> None: ...
@@ -105,10 +105,10 @@ class MqttDiscoveryDeviceUpdateMixin(ABC, metaclass=abc.ABCMeta):
 class MqttDiscoveryUpdateMixin(Entity):
     _discovery_data: Incomplete
     _discovery_update: Incomplete
-    _remove_discovery_updated: Incomplete
+    _remove_discovery_updated: Callable[[], None] | None
     _removed_from_hass: bool
     _registry_hooks: Incomplete
-    _migrate_discovery: Incomplete
+    _migrate_discovery: str | None
     def __init__(self, hass: HomeAssistant, discovery_data: DiscoveryInfoType | None, discovery_update: Callable[[MQTTDiscoveryPayload], Coroutine[Any, Any, None]] | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _async_remove_state_and_registry_entry(self) -> None: ...
@@ -139,11 +139,11 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
     _default_name: str | None
     _entity_id_format: str
     hass: Incomplete
-    _config: Incomplete
+    _config: ConfigType
     _attr_unique_id: Incomplete
-    _sub_state: Incomplete
+    _sub_state: dict[str, EntitySubscription]
     _discovery: Incomplete
-    _subscriptions: Incomplete
+    _subscriptions: dict[str, dict[str, Any]]
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     def _init_entity_id(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...

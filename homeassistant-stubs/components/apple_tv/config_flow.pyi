@@ -37,8 +37,8 @@ class AppleTVConfigFlow(ConfigFlow, domain=DOMAIN):
     protocols_to_pair: deque[Protocol] | None
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...
-    credentials: Incomplete
-    all_identifiers: Incomplete
+    credentials: dict[int, str | None]
+    all_identifiers: set[str]
     def __init__(self) -> None: ...
     @property
     def device_identifier(self) -> str | None: ...

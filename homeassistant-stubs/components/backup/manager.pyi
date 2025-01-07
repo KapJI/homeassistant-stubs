@@ -133,20 +133,20 @@ class IncorrectPasswordError(BackupReaderWriterError): ...
 
 class BackupManager:
     hass: Incomplete
-    platforms: Incomplete
-    backup_agent_platforms: Incomplete
-    backup_agents: Incomplete
-    local_backup_agents: Incomplete
+    platforms: dict[str, BackupPlatformProtocol]
+    backup_agent_platforms: dict[str, BackupAgentPlatformProtocol]
+    backup_agents: dict[str, BackupAgent]
+    local_backup_agents: dict[str, LocalBackupAgent]
     config: Incomplete
     _reader_writer: Incomplete
     known_backups: Incomplete
     store: Incomplete
-    _backup_task: Incomplete
-    _backup_finish_task: Incomplete
-    remove_next_backup_event: Incomplete
-    remove_next_delete_event: Incomplete
-    last_event: Incomplete
-    _backup_event_subscriptions: Incomplete
+    _backup_task: asyncio.Task[WrittenBackup] | None
+    _backup_finish_task: asyncio.Task[None] | None
+    remove_next_backup_event: Callable[[], None] | None
+    remove_next_delete_event: Callable[[], None] | None
+    last_event: ManagerStateEvent
+    _backup_event_subscriptions: list[Callable[[ManagerStateEvent], None]]
     def __init__(self, hass: HomeAssistant, reader_writer: BackupReaderWriter) -> None: ...
     async def async_setup(self) -> None: ...
     @property
@@ -178,7 +178,7 @@ class BackupManager:
     def _update_issue_after_agent_upload(self, agent_errors: dict[str, Exception]) -> None: ...
 
 class KnownBackups:
-    _backups: Incomplete
+    _backups: dict[str, KnownBackup]
     _manager: Incomplete
     def __init__(self, manager: BackupManager) -> None: ...
     def load(self, stored_backups: list[StoredKnownBackup]) -> None: ...

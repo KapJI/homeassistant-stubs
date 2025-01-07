@@ -40,8 +40,8 @@ class ISYAuxSensorEntity(ISYSensorEntity):
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
-    _change_handler: Incomplete
-    _availability_handler: Incomplete
+    _change_handler: EventListener
+    _availability_handler: EventListener
     _attr_name: Incomplete
     def __init__(self, node: Node, control: str, enabled_default: bool, unique_id: str, device_info: DeviceInfo | None = None) -> None: ...
     @property

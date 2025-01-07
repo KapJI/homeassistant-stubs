@@ -14,7 +14,7 @@ MODE_FRIENDLY_NAME: Incomplete
 MEDIA_PLAYER_OFF_STATES: Incomplete
 
 class MediaPlayer(HomeAccessory):
-    chars: Incomplete
+    chars: dict[str, Characteristic | None]
     def __init__(self, *args: Any) -> None: ...
     def generate_service_name(self, mode: str) -> str: ...
     def set_on_off(self, value: bool) -> None: ...
@@ -24,7 +24,7 @@ class MediaPlayer(HomeAccessory):
     def async_update_state(self, new_state: State) -> None: ...
 
 class TelevisionMediaPlayer(RemoteInputSelectAccessory):
-    chars_speaker: Incomplete
+    chars_speaker: list[str]
     _supports_play_pause: Incomplete
     char_mute: Incomplete
     char_volume_selector: Incomplete

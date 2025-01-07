@@ -51,10 +51,10 @@ class PrometheusMetrics:
     _override_metric: Incomplete
     _default_metric: Incomplete
     _filter: Incomplete
-    _sensor_metric_handlers: Incomplete
+    _sensor_metric_handlers: list[Callable[[State, str | None], str | None]]
     metrics_prefix: Incomplete
-    _metrics: Incomplete
-    _metrics_by_entity_id: Incomplete
+    _metrics: dict[str, MetricWrapperBase]
+    _metrics_by_entity_id: dict[str, set[MetricNameWithLabelValues]]
     _climate_units: Incomplete
     def __init__(self, entity_filter: entityfilter.EntityFilter, namespace: str, climate_units: UnitOfTemperature, component_config: EntityValues, override_metric: str | None, default_metric: str | None) -> None: ...
     def handle_state_changed_event(self, event: Event[EventStateChangedData]) -> None: ...

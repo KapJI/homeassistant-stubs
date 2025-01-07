@@ -1,3 +1,4 @@
+import collections
 import httpx
 from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, IMAGE_TIMEOUT as IMAGE_TIMEOUT
 from _typeshed import Incomplete
@@ -14,6 +15,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType, VolDictType as VolDictType
+from propcache import cached_property
 from typing import Final
 
 _LOGGER: Incomplete
@@ -35,7 +37,6 @@ IMAGE_SERVICE_SNAPSHOT: VolDictType
 
 class ImageEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 @dataclass
 class Image:
@@ -62,12 +63,15 @@ class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_state: None
     _cached_image: Image | None
     _client: Incomplete
-    access_tokens: Incomplete
+    access_tokens: collections.deque
     def __init__(self, hass: HomeAssistant, verify_ssl: bool = False) -> None: ...
+    @cached_property
     def content_type(self) -> str: ...
     @property
     def entity_picture(self) -> str | None: ...
+    @cached_property
     def image_last_updated(self) -> datetime | None: ...
+    @cached_property
     def image_url(self) -> str | None | UndefinedType: ...
     def image(self) -> bytes | None: ...
     async def _fetch_url(self, url: str) -> httpx.Response | None: ...

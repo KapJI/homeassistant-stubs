@@ -25,11 +25,11 @@ class GoogleHybridAuth(AuthImplementation):
 class DeviceFlow:
     _hass: Incomplete
     _oauth_flow: Incomplete
-    _device_flow_info: Incomplete
-    _exchange_task_unsub: Incomplete
-    _timeout_unsub: Incomplete
-    _listener: Incomplete
-    _creds: Incomplete
+    _device_flow_info: DeviceFlowInfo
+    _exchange_task_unsub: CALLBACK_TYPE | None
+    _timeout_unsub: CALLBACK_TYPE | None
+    _listener: CALLBACK_TYPE | None
+    _creds: Credentials | None
     def __init__(self, hass: HomeAssistant, oauth_flow: OAuth2WebServerFlow, device_flow_info: DeviceFlowInfo) -> None: ...
     @property
     def verification_url(self) -> str: ...

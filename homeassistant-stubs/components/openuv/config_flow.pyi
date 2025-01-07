@@ -26,7 +26,7 @@ class OpenUvData:
 
 class OpenUvFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _reauth_data: Incomplete
+    _reauth_data: Mapping[str, Any]
     def __init__(self) -> None: ...
     @property
     def step_user_schema(self) -> vol.Schema: ...

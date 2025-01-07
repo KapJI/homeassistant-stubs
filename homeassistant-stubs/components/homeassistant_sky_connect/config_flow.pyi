@@ -19,8 +19,8 @@ class SkyConnectTranslationMixin(ConfigEntryBaseFlow, TranslationPlaceholderProt
 class HomeAssistantSkyConnectConfigFlow(SkyConnectTranslationMixin, firmware_config_flow.BaseFirmwareConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    _usb_info: Incomplete
-    _hw_variant: Incomplete
+    _usb_info: usb.UsbServiceInfo | None
+    _hw_variant: HardwareVariant | None
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...

@@ -22,9 +22,9 @@ class ReolinkOptionsFlowHandler(OptionsFlow):
 
 class ReolinkFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _host: Incomplete
+    _host: str | None
     _username: str
-    _password: Incomplete
+    _password: str | None
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ReolinkConfigEntry) -> ReolinkOptionsFlowHandler: ...

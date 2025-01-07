@@ -1,10 +1,13 @@
+import asyncio
 from . import SamsungTVConfigEntry as SamsungTVConfigEntry
 from .bridge import SamsungTVWSBridge as SamsungTVWSBridge
 from .const import CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, LOGGER as LOGGER
 from .coordinator import SamsungTVDataUpdateCoordinator as SamsungTVDataUpdateCoordinator
 from .entity import SamsungTVEntity as SamsungTVEntity
 from _typeshed import Incomplete
+from async_upnp_client.aiohttp import AiohttpNotifyServer
 from async_upnp_client.client import UpnpDevice as UpnpDevice, UpnpService as UpnpService, UpnpStateVariable as UpnpStateVariable
+from async_upnp_client.profiles.dlna import DmrDevice
 from collections.abc import Sequence
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -23,14 +26,14 @@ class SamsungTVDevice(SamsungTVEntity, MediaPlayerEntity):
     _attr_source_list: list[str]
     _attr_name: Incomplete
     _attr_device_class: Incomplete
-    _ssdp_rendering_control_location: Incomplete
+    _ssdp_rendering_control_location: str | None
     _playing: bool
     _attr_is_volume_muted: bool
-    _app_list: Incomplete
-    _app_list_event: Incomplete
+    _app_list: dict[str, str] | None
+    _app_list_event: asyncio.Event
     _attr_supported_features: Incomplete
-    _dmr_device: Incomplete
-    _upnp_server: Incomplete
+    _dmr_device: DmrDevice | None
+    _upnp_server: AiohttpNotifyServer | None
     def __init__(self, coordinator: SamsungTVDataUpdateCoordinator) -> None: ...
     @property
     def supported_features(self) -> MediaPlayerEntityFeature: ...

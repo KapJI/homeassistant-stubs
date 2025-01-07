@@ -1,3 +1,4 @@
+import asyncio
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers import singleton as singleton
@@ -30,9 +31,9 @@ def _install_requirements_if_missing(requirements: list[str], kwargs: dict[str, 
 class RequirementsManager:
     hass: Incomplete
     pip_lock: Incomplete
-    integrations_with_reqs: Incomplete
-    install_failure_history: Incomplete
-    is_installed_cache: Incomplete
+    integrations_with_reqs: dict[str, Integration | asyncio.Future[Integration]]
+    install_failure_history: set[str]
+    is_installed_cache: set[str]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_get_integration_with_requirements(self, domain: str, done: set[str] | None = None) -> Integration: ...
     async def _async_process_integration(self, integration: Integration, done: set[str]) -> None: ...

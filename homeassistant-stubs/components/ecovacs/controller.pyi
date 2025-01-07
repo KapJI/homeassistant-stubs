@@ -17,15 +17,15 @@ _LOGGER: Incomplete
 
 class EcovacsController:
     _hass: Incomplete
-    _devices: Incomplete
-    _legacy_devices: Incomplete
+    _devices: list[Device]
+    _legacy_devices: list[VacBot]
     _device_id: Incomplete
     _continent: Incomplete
     _authenticator: Incomplete
     _api_client: Incomplete
     _mqtt_config_fn: Incomplete
-    _mqtt_client: Incomplete
-    _added_legacy_entities: Incomplete
+    _mqtt_client: MqttClient | None
+    _added_legacy_entities: set[str]
     def __init__(self, hass: HomeAssistant, config: Mapping[str, Any]) -> None: ...
     async def initialize(self) -> None: ...
     async def teardown(self) -> None: ...

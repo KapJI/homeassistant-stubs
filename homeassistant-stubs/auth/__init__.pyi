@@ -36,8 +36,8 @@ class AuthManager:
     _providers: Incomplete
     _mfa_modules: Incomplete
     login_flow: Incomplete
-    _revoke_callbacks: Incomplete
-    _expire_callback: Incomplete
+    _revoke_callbacks: dict[str, set[CALLBACK_TYPE]]
+    _expire_callback: CALLBACK_TYPE | None
     _remove_expired_job: Incomplete
     def __init__(self, hass: HomeAssistant, store: auth_store.AuthStore, providers: _ProviderDict, mfa_modules: _MfaModuleDict) -> None: ...
     async def async_setup(self) -> None: ...

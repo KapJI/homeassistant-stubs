@@ -3,6 +3,7 @@ from .const import CONF_SESSION_ID as CONF_SESSION_ID, ENCRYPTED_WEBSOCKET_PORT 
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Mapping
+from datetime import datetime
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_METHOD as CONF_METHOD, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TIMEOUT as CONF_TIMEOUT, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_component as entity_component
@@ -10,6 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from samsungctl import Remote
 from samsungtvws.async_remote import SamsungTVWSAsyncRemote
+from samsungtvws.async_rest import SamsungTVAsyncRest
 from samsungtvws.command import SamsungTVCommand
 from samsungtvws.encrypted.command import SamsungTVEncryptedCommand
 from samsungtvws.encrypted.remote import SamsungTVEncryptedWSAsyncRemote
@@ -32,13 +34,13 @@ class SamsungTVBridge(ABC, metaclass=abc.ABCMeta):
     port: Incomplete
     method: Incomplete
     host: Incomplete
-    token: Incomplete
-    session_id: Incomplete
+    token: str | None
+    session_id: str | None
     auth_failed: bool
-    _reauth_callback: Incomplete
-    _update_config_entry: Incomplete
-    _app_list_callback: Incomplete
-    _end_of_power_off: Incomplete
+    _reauth_callback: CALLBACK_TYPE | None
+    _update_config_entry: Callable[[Mapping[str, Any]], None] | None
+    _app_list_callback: Callable[[dict[str, str]], None] | None
+    _end_of_power_off: datetime | None
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: int | None = None) -> None: ...
     def register_reauth_callback(self, func: CALLBACK_TYPE) -> None: ...
     def register_update_config_entry_callback(self, func: Callable[[Mapping[str, Any]], None]) -> None: ...
@@ -65,7 +67,7 @@ class SamsungTVBridge(ABC, metaclass=abc.ABCMeta):
 
 class SamsungTVLegacyBridge(SamsungTVBridge):
     config: Incomplete
-    _remote: Incomplete
+    _remote: Remote | None
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: int | None) -> None: ...
     async def async_is_on(self) -> bool: ...
     def _is_on(self) -> bool: ...
@@ -82,7 +84,7 @@ class SamsungTVLegacyBridge(SamsungTVBridge):
     def _close_remote(self) -> None: ...
 
 class SamsungTVWSBaseBridge[_RemoteT: (SamsungTVWSAsyncRemote, SamsungTVEncryptedWSAsyncRemote), _CommandT: (SamsungTVCommand, SamsungTVEncryptedCommand)](SamsungTVBridge, metaclass=abc.ABCMeta):
-    _remote: Incomplete
+    _remote: _RemoteT | None
     _remote_lock: Incomplete
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: int | None = None) -> None: ...
     async def async_is_on(self) -> bool: ...
@@ -94,8 +96,8 @@ class SamsungTVWSBaseBridge[_RemoteT: (SamsungTVWSAsyncRemote, SamsungTVEncrypte
 
 class SamsungTVWSBridge(SamsungTVWSBaseBridge[SamsungTVWSAsyncRemote, SamsungTVCommand]):
     token: Incomplete
-    _rest_api: Incomplete
-    _device_info: Incomplete
+    _rest_api: SamsungTVAsyncRest | None
+    _device_info: dict[str, Any] | None
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: int | None = None, entry_data: Mapping[str, Any] | None = None) -> None: ...
     def _get_device_spec(self, key: str) -> Any | None: ...
     async def async_is_on(self) -> bool: ...
@@ -112,12 +114,12 @@ class SamsungTVWSBridge(SamsungTVWSBaseBridge[SamsungTVWSAsyncRemote, SamsungTVC
 
 class SamsungTVEncryptedBridge(SamsungTVWSBaseBridge[SamsungTVEncryptedWSAsyncRemote, SamsungTVEncryptedCommand]):
     _power_off_warning_logged: bool
-    _model: Incomplete
-    _short_model: Incomplete
+    _model: str | None
+    _short_model: str | None
     token: Incomplete
     session_id: Incomplete
-    _rest_api_port: Incomplete
-    _device_info: Incomplete
+    _rest_api_port: int | None
+    _device_info: dict[str, Any] | None
     def __init__(self, hass: HomeAssistant, method: str, host: str, port: int | None = None, entry_data: Mapping[str, Any] | None = None) -> None: ...
     port: Incomplete
     async def async_try_connect(self) -> str: ...

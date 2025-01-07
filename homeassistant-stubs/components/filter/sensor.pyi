@@ -1,5 +1,6 @@
 from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
+from collections import Counter, deque
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
@@ -56,7 +57,7 @@ class SensorFilter(SensorEntity):
     _attr_unique_id: Incomplete
     _entity: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    _state: Incomplete
+    _state: StateType
     _filters: Incomplete
     _attr_icon: Incomplete
     _attr_device_class: Incomplete
@@ -85,7 +86,7 @@ class _State:
     def __init__(self, last_updated, state) -> None: ...
 
 class Filter:
-    states: Incomplete
+    states: deque[FilterState]
     window_unit: Incomplete
     filter_precision: Incomplete
     _name: Incomplete
@@ -108,13 +109,13 @@ class Filter:
 class RangeFilter(Filter, SensorEntity):
     _lower_bound: Incomplete
     _upper_bound: Incomplete
-    _stats_internal: Incomplete
+    _stats_internal: Counter
     def __init__(self, *, entity: str, precision: int | None = None, lower_bound: float | None = None, upper_bound: float | None = None) -> None: ...
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
 
 class OutlierFilter(Filter, SensorEntity):
     _radius: Incomplete
-    _stats_internal: Incomplete
+    _stats_internal: Counter
     _store_raw: bool
     def __init__(self, *, window_size: int, entity: str, radius: float, precision: int | None = None) -> None: ...
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
@@ -126,7 +127,7 @@ class LowPassFilter(Filter, SensorEntity):
 
 class TimeSMAFilter(Filter, SensorEntity):
     _time_window: Incomplete
-    last_leak: Incomplete
+    last_leak: FilterState | None
     queue: Incomplete
     def __init__(self, *, window_size: timedelta, entity: str, type: str, precision: int = ...) -> None: ...
     def _leak(self, left_boundary: datetime) -> None: ...
@@ -140,7 +141,7 @@ class ThrottleFilter(Filter, SensorEntity):
 
 class TimeThrottleFilter(Filter, SensorEntity):
     _time_window: Incomplete
-    _last_emitted_at: Incomplete
+    _last_emitted_at: datetime | None
     _only_numbers: bool
     def __init__(self, *, window_size: timedelta, entity: str, precision: int | None = None) -> None: ...
     _skip_processing: bool

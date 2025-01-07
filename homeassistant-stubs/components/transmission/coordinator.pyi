@@ -13,11 +13,11 @@ class TransmissionDataUpdateCoordinator(DataUpdateCoordinator[SessionStats]):
     config_entry: ConfigEntry
     api: Incomplete
     host: Incomplete
-    _session: Incomplete
-    _all_torrents: Incomplete
-    _completed_torrents: Incomplete
-    _started_torrents: Incomplete
-    torrents: Incomplete
+    _session: transmission_rpc.Session | None
+    _all_torrents: list[transmission_rpc.Torrent]
+    _completed_torrents: list[transmission_rpc.Torrent]
+    _started_torrents: list[transmission_rpc.Torrent]
+    torrents: list[transmission_rpc.Torrent]
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: transmission_rpc.Client) -> None: ...
     @property
     def limit(self) -> int: ...

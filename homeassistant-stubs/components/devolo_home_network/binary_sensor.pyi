@@ -2,7 +2,6 @@ from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_TO_ROUTER as CONNECTED_TO_ROUTER
 from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from devolo_plc_api.plcnet_api import LogicalNetwork
@@ -25,7 +24,7 @@ SENSOR_TYPES: dict[str, DevoloBinarySensorEntityDescription]
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DevoloBinarySensorEntity(DevoloCoordinatorEntity[LogicalNetwork], BinarySensorEntity):
-    entity_description: Incomplete
+    entity_description: DevoloBinarySensorEntityDescription
     def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DevoloDataUpdateCoordinator[LogicalNetwork], description: DevoloBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

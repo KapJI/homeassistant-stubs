@@ -20,13 +20,13 @@ class DemoCover(CoverEntity):
     _position: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
-    _set_position: Incomplete
-    _set_tilt_position: Incomplete
+    _set_position: int | None
+    _set_tilt_position: int | None
     _tilt_position: Incomplete
     _requested_closing: bool
     _requested_closing_tilt: bool
-    _unsub_listener_cover: Incomplete
-    _unsub_listener_cover_tilt: Incomplete
+    _unsub_listener_cover: CALLBACK_TYPE | None
+    _unsub_listener_cover_tilt: CALLBACK_TYPE | None
     _is_opening: bool
     _is_closing: bool
     _closed: bool

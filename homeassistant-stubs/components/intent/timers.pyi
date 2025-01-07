@@ -1,3 +1,4 @@
+import asyncio
 from .const import TIMER_DATA as TIMER_DATA
 from _typeshed import Incomplete
 from collections.abc import Callable
@@ -7,6 +8,7 @@ from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ID as ATT
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import intent as intent
 from homeassistant.util import ulid as ulid
+from propcache import cached_property
 from typing import Any
 
 _LOGGER: Incomplete
@@ -38,6 +40,7 @@ class TimerInfo:
     def seconds_left(self) -> int: ...
     @property
     def created_seconds(self) -> int: ...
+    @cached_property
     def name_normalized(self) -> str: ...
     def cancel(self) -> None: ...
     def pause(self) -> None: ...
@@ -64,9 +67,9 @@ class TimersNotSupportedError(intent.IntentHandleError):
 
 class TimerManager:
     hass: Incomplete
-    timers: Incomplete
-    timer_tasks: Incomplete
-    handlers: Incomplete
+    timers: dict[str, TimerInfo]
+    timer_tasks: dict[str, asyncio.Task]
+    handlers: dict[str, TimerHandler]
     def __init__(self, hass: HomeAssistant) -> None: ...
     def register_handler(self, device_id: str, handler: TimerHandler) -> Callable[[], None]: ...
     def start_timer(self, device_id: str | None, hours: int | None, minutes: int | None, seconds: int | None, language: str, name: str | None = None, conversation_command: str | None = None, conversation_agent_id: str | None = None) -> str: ...

@@ -18,6 +18,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, GPSType as GP
 from homeassistant.setup import SetupPhases as SetupPhases, async_notify_setup_error as async_notify_setup_error, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.yaml import dump as dump
+from propcache import cached_property
 from types import ModuleType
 from typing import Any, Final, Protocol
 
@@ -45,6 +46,7 @@ class DeviceTrackerPlatform:
     name: str
     platform: ModuleType
     config: dict
+    @cached_property
     def type(self) -> str | None: ...
     async def async_setup_legacy(self, hass: HomeAssistant, tracker: DeviceTracker, discovery_info: dict[str, Any] | None = None) -> None: ...
     def __init__(self, name, platform, config) -> None: ...
@@ -61,7 +63,7 @@ async def get_tracker(hass: HomeAssistant, config: ConfigType) -> DeviceTracker:
 
 class DeviceTracker:
     hass: Incomplete
-    devices: Incomplete
+    devices: dict[str, Device]
     mac_to_dev: Incomplete
     consider_home: Incomplete
     track_new: Incomplete
@@ -92,10 +94,10 @@ class Device(RestoreEntity):
     mac: Incomplete
     track: Incomplete
     config_name: Incomplete
-    config_picture: Incomplete
+    config_picture: str | None
     _icon: Incomplete
-    source_type: Incomplete
-    _attributes: Incomplete
+    source_type: SourceType | str | None
+    _attributes: dict[str, Any]
     def __init__(self, hass: HomeAssistant, consider_home: timedelta, track: bool, dev_id: str, mac: str | None, name: str | None = None, picture: str | None = None, gravatar: str | None = None, icon: str | None = None) -> None: ...
     @property
     def name(self) -> str: ...

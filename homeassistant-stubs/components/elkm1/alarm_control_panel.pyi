@@ -28,11 +28,11 @@ class ElkArea(ElkAttachedEntity, AlarmControlPanelEntity, RestoreEntity):
     _attr_supported_features: Incomplete
     _element: Area
     _elk: Incomplete
-    _changed_by_keypad: Incomplete
-    _changed_by_time: Incomplete
-    _changed_by_id: Incomplete
-    _changed_by: Incomplete
-    _state: Incomplete
+    _changed_by_keypad: str | None
+    _changed_by_time: str | None
+    _changed_by_id: int | None
+    _changed_by: str | None
+    _state: AlarmControlPanelState | None
     def __init__(self, element: Element, elk: Elk, elk_data: ELKM1Data) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _watch_keypad(self, keypad: Element, changeset: dict[str, Any]) -> None: ...

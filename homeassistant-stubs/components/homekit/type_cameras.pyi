@@ -28,7 +28,7 @@ CONFIG_DEFAULTS: Incomplete
 class Camera(HomeDoorbellAccessory, PyhapCamera):
     _ffmpeg: Incomplete
     _char_motion_detected: Incomplete
-    linked_motion_sensor: Incomplete
+    linked_motion_sensor: str | None
     motion_is_event: bool
     def __init__(self, hass: HomeAssistant, driver: HomeDriver, name: str, entity_id: str, aid: int, config: dict[str, Any]) -> None: ...
     def run(self) -> None: ...

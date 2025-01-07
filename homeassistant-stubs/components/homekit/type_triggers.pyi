@@ -11,7 +11,7 @@ _LOGGER: Incomplete
 
 class DeviceTriggerAccessory(HomeAccessory):
     _device_triggers: Incomplete
-    _remove_triggers: Incomplete
+    _remove_triggers: CALLBACK_TYPE | None
     triggers: Incomplete
     def __init__(self, *args: Any, device_triggers: list[dict[str, Any]] | None = None, device_id: str | None = None) -> None: ...
     def _remove_triggers_if_configured(self) -> None: ...

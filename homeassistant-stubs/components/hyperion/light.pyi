@@ -1,7 +1,7 @@
 from . import get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
 from .const import CONF_EFFECT_HIDE_LIST as CONF_EFFECT_HIDE_LIST, CONF_INSTANCE_CLIENTS as CONF_INSTANCE_CLIENTS, CONF_PRIORITY as CONF_PRIORITY, DEFAULT_ORIGIN as DEFAULT_ORIGIN, DEFAULT_PRIORITY as DEFAULT_PRIORITY, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_LIGHT as TYPE_HYPERION_LIGHT
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Sequence
+from collections.abc import Callable as Callable, Mapping, Sequence
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -42,11 +42,11 @@ class HyperionLight(LightEntity):
     _options: Incomplete
     _client: Incomplete
     _brightness: int
-    _rgb_color: Incomplete
-    _effect: Incomplete
-    _static_effect_list: Incomplete
-    _effect_list: Incomplete
-    _client_callbacks: Incomplete
+    _rgb_color: Sequence[int]
+    _effect: str
+    _static_effect_list: list[str]
+    _effect_list: list[str]
+    _client_callbacks: Mapping[str, Callable[[dict[str, Any]], None]]
     _attr_device_info: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, options: MappingProxyType[str, Any], hyperion_client: client.HyperionClient) -> None: ...
     def _compute_unique_id(self, server_id: str, instance_num: int) -> str: ...

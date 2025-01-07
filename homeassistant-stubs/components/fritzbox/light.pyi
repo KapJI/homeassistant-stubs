@@ -11,7 +11,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, asy
 
 class FritzboxLight(FritzBoxDeviceEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
-    _supported_hs: Incomplete
+    _supported_hs: dict[int, list[int]]
     _attr_max_color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     def __init__(self, coordinator: FritzboxDataUpdateCoordinator, ain: str) -> None: ...

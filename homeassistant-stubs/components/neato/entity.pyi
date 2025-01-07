@@ -7,5 +7,5 @@ from pybotvac import Robot as Robot
 class NeatoEntity(Entity):
     _attr_has_entity_name: bool
     robot: Incomplete
-    _attr_device_info: Incomplete
+    _attr_device_info: DeviceInfo
     def __init__(self, robot: Robot) -> None: ...

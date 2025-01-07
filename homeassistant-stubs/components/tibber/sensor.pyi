@@ -1,3 +1,4 @@
+import datetime
 import tibber
 from .const import MANUFACTURER as MANUFACTURER
 from .coordinator import TibberDataCoordinator as TibberDataCoordinator
@@ -33,8 +34,8 @@ class TibberSensor(SensorEntity):
     _attr_has_entity_name: bool
     _tibber_home: Incomplete
     _home_name: Incomplete
-    _device_name: Incomplete
-    _model: Incomplete
+    _device_name: str | None
+    _model: str | None
     def __init__(self, *args: Any, tibber_home: tibber.TibberHome, **kwargs: Any) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
@@ -42,7 +43,7 @@ class TibberSensor(SensorEntity):
 class TibberSensorElPrice(TibberSensor):
     _attr_state_class: Incomplete
     _attr_translation_key: str
-    _last_updated: Incomplete
+    _last_updated: datetime.datetime | None
     _spread_load_constant: Incomplete
     _attr_available: bool
     _attr_extra_state_attributes: Incomplete
@@ -80,7 +81,7 @@ class TibberSensorRT(TibberSensor, CoordinatorEntity['TibberRtDataCoordinator'])
 class TibberRtEntityCreator:
     _async_add_entities: Incomplete
     _tibber_home: Incomplete
-    _added_sensors: Incomplete
+    _added_sensors: set[str]
     _entity_registry: Incomplete
     def __init__(self, async_add_entities: AddEntitiesCallback, tibber_home: tibber.TibberHome, entity_registry: er.EntityRegistry) -> None: ...
     def _migrate_unique_id(self, sensor_description: SensorEntityDescription) -> None: ...

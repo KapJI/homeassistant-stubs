@@ -1,7 +1,9 @@
+import asyncio
 from .const import CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
 from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkSetupException as ReolinkSetupException, ReolinkWebhookException as ReolinkWebhookException, UserNotAdmin as UserNotAdmin
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request
+from collections import defaultdict
 from collections.abc import Mapping
 from homeassistant.components import webhook as webhook
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
@@ -28,15 +30,15 @@ BATTERY_WAKE_UPDATE_INTERVAL: int
 _LOGGER: Incomplete
 
 class ReolinkHost:
-    _hass: Incomplete
+    _hass: HomeAssistant
     _unique_id: str
     _api: Incomplete
-    last_wake: int
-    update_cmd: Incomplete
-    firmware_ch_list: Incomplete
+    last_wake: float
+    update_cmd: defaultdict[str, defaultdict[int | None, int]]
+    firmware_ch_list: list[int | None]
     starting: bool
     credential_errors: int
-    webhook_id: Incomplete
+    webhook_id: str | None
     _onvif_push_supported: bool
     _onvif_long_poll_supported: bool
     _base_url: str
@@ -44,13 +46,13 @@ class ReolinkHost:
     _webhook_reachable: bool
     _long_poll_received: bool
     _long_poll_error: bool
-    _cancel_poll: Incomplete
-    _cancel_tcp_push_check: Incomplete
-    _cancel_onvif_check: Incomplete
-    _cancel_long_poll_check: Incomplete
+    _cancel_poll: CALLBACK_TYPE | None
+    _cancel_tcp_push_check: CALLBACK_TYPE | None
+    _cancel_onvif_check: CALLBACK_TYPE | None
+    _cancel_long_poll_check: CALLBACK_TYPE | None
     _poll_job: Incomplete
     _fast_poll_error: bool
-    _long_poll_task: Incomplete
+    _long_poll_task: asyncio.Task | None
     _lost_subscription: bool
     def __init__(self, hass: HomeAssistant, config: Mapping[str, Any], options: Mapping[str, Any]) -> None: ...
     def async_register_update_cmd(self, cmd: str, channel: int | None = None) -> None: ...

@@ -9,13 +9,13 @@ from yalesmartalarmclient import YaleLock as YaleLock
 
 class YaleEntity(CoordinatorEntity[YaleDataUpdateCoordinator]):
     _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
+    _attr_unique_id: str
+    _attr_device_info: DeviceInfo
     def __init__(self, coordinator: YaleDataUpdateCoordinator, data: dict) -> None: ...
 
 class YaleLockEntity(CoordinatorEntity[YaleDataUpdateCoordinator]):
     _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
+    _attr_unique_id: str
     _attr_device_info: Incomplete
     lock_data: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator, lock: YaleLock) -> None: ...

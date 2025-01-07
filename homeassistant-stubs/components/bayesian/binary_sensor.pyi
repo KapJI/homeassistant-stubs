@@ -41,13 +41,13 @@ class BayesianBinarySensor(BinarySensorEntity):
     _probability_threshold: Incomplete
     _attr_device_class: Incomplete
     _attr_is_on: bool
-    _callbacks: Incomplete
+    _callbacks: list[TrackTemplateResultInfo]
     prior: Incomplete
     probability: Incomplete
-    current_observations: Incomplete
+    current_observations: OrderedDict[UUID, Observation]
     observations_by_entity: Incomplete
     observations_by_template: Incomplete
-    observation_handlers: Incomplete
+    observation_handlers: dict[str, Callable[[Observation, bool], bool | None]]
     def __init__(self, name: str, unique_id: str | None, prior: float, observations: list[ConfigType], probability_threshold: float, device_class: BinarySensorDeviceClass | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _recalculate_and_write_state(self) -> None: ...

@@ -1,5 +1,4 @@
 from .const import DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER
-from _typeshed import Incomplete
 from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PASSWORD as CONF_PASSWORD, CONF_SSL as CONF_SSL, CONF_VERIFY_SSL as CONF_VERIFY_SSL
@@ -11,7 +10,7 @@ from typing import Any
 class FullyKioskConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     host: str
-    _discovered_device_info: Incomplete
+    _discovered_device_info: dict[str, Any]
     def __init__(self) -> None: ...
     async def _create_entry(self, host: str, user_input: dict[str, Any], errors: dict[str, str], description_placeholders: dict[str, str] | Any = None) -> ConfigFlowResult | None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

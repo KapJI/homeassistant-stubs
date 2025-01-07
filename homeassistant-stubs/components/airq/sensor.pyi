@@ -22,7 +22,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirQConfigEntry, async_a
 
 class AirQSensor(CoordinatorEntity, SensorEntity):
     _attr_has_entity_name: bool
-    entity_description: Incomplete
+    entity_description: AirQEntityDescription
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete

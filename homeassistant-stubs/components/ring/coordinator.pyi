@@ -10,10 +10,10 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def _call_api[*_Ts, _R](hass: HomeAssistant, target: Callable[[Unpack[_Ts]], Coroutine[Any, Any, _R]], *args: Unpack[_Ts], msg_suffix: str = '') -> _R: ...
+async def _call_api[*_Ts, _R](hass: HomeAssistant, target: Callable[[*_Ts], Coroutine[Any, Any, _R]], *args: *_Ts, msg_suffix: str = '') -> _R: ...
 
 class RingDataCoordinator(DataUpdateCoordinator[RingDevices]):
-    ring_api: Incomplete
+    ring_api: Ring
     first_call: bool
     def __init__(self, hass: HomeAssistant, ring_api: Ring) -> None: ...
     async def _async_update_data(self) -> RingDevices: ...
@@ -22,10 +22,10 @@ class RingListenCoordinator(BaseDataUpdateCoordinatorProtocol):
     config_entry: config_entries.ConfigEntry
     hass: Incomplete
     logger: Incomplete
-    ring_api: Incomplete
+    ring_api: Ring
     event_listener: Incomplete
-    _listeners: Incomplete
-    _listen_callback_id: Incomplete
+    _listeners: dict[CALLBACK_TYPE, tuple[CALLBACK_TYPE, object | None]]
+    _listen_callback_id: int | None
     start_timeout: int
     def __init__(self, hass: HomeAssistant, ring_api: Ring, listen_credentials: dict[str, Any] | None, listen_credentials_updater: Callable[[dict[str, Any]], None]) -> None: ...
     alerts: Incomplete

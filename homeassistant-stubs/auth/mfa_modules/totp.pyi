@@ -23,7 +23,7 @@ def _generate_secret_and_qr_code(username: str) -> tuple[str, str, str]: ...
 class TotpAuthModule(MultiFactorAuthModule):
     DEFAULT_TITLE: str
     MAX_RETRY_TIME: int
-    _users: Incomplete
+    _users: dict[str, str] | None
     _user_store: Incomplete
     _init_lock: Incomplete
     def __init__(self, hass: HomeAssistant, config: dict[str, Any]) -> None: ...

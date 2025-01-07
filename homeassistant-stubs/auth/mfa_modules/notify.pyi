@@ -37,7 +37,7 @@ type _UsersDict = dict[str, NotifySetting]
 
 class NotifyAuthModule(MultiFactorAuthModule):
     DEFAULT_TITLE: str
-    _user_settings: Incomplete
+    _user_settings: _UsersDict | None
     _user_store: Incomplete
     _include: Incomplete
     _exclude: Incomplete
@@ -60,10 +60,10 @@ class NotifyAuthModule(MultiFactorAuthModule):
 
 class NotifySetupFlow(SetupFlow[NotifyAuthModule]):
     _available_notify_services: Incomplete
-    _secret: Incomplete
-    _count: Incomplete
-    _notify_service: Incomplete
-    _target: Incomplete
+    _secret: str | None
+    _count: int | None
+    _notify_service: str | None
+    _target: str | None
     def __init__(self, auth_module: NotifyAuthModule, setup_schema: vol.Schema, user_id: str, available_notify_services: list[str]) -> None: ...
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> FlowResult: ...
     async def async_step_setup(self, user_input: dict[str, str] | None = None) -> FlowResult: ...

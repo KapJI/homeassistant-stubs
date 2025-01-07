@@ -25,8 +25,8 @@ async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> HubInfo:
 
 class TpLinkOmadaConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _omada_opts: Incomplete
-    _sites: Incomplete
+    _omada_opts: dict[str, Any]
+    _sites: list[OmadaSite]
     _controller_name: str
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

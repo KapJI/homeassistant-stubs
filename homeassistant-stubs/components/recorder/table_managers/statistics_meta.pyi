@@ -3,6 +3,7 @@ from ..db_schema import StatisticsMeta as StatisticsMeta
 from ..models import StatisticMetaData as StatisticMetaData
 from ..util import execute_stmt_lambda_element as execute_stmt_lambda_element
 from _typeshed import Incomplete
+from lru import LRU
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
 from typing import Final, Literal
@@ -22,7 +23,7 @@ def _generate_get_metadata_stmt(statistic_ids: set[str] | None = None, statistic
 
 class StatisticsMetaManager:
     recorder: Incomplete
-    _stat_id_to_id_meta: Incomplete
+    _stat_id_to_id_meta: LRU[str, tuple[int, StatisticMetaData]]
     def __init__(self, recorder: Recorder) -> None: ...
     def _clear_cache(self, statistic_ids: list[str]) -> None: ...
     def _get_from_database(self, session: Session, statistic_ids: set[str] | None = None, statistic_type: Literal['mean', 'sum'] | None = None, statistic_source: str | None = None) -> dict[str, tuple[int, StatisticMetaData]]: ...

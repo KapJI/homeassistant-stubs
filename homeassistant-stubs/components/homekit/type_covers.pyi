@@ -26,7 +26,7 @@ class GarageDoorOpener(HomeAccessory):
     def async_update_state(self, new_state: State) -> None: ...
 
 class OpeningDeviceBase(HomeAccessory):
-    features: Incomplete
+    features: int
     _supports_stop: Incomplete
     chars: Incomplete
     _supports_tilt: Incomplete

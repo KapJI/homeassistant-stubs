@@ -50,7 +50,7 @@ class FritzBoxBaseSwitch(FritzBoxBaseEntity, SwitchEntity):
     _attr_is_on: Incomplete
     _name: Incomplete
     _unique_id: Incomplete
-    _attributes: Incomplete
+    _attributes: dict[str, str | None]
     _is_available: bool
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, switch_info: SwitchInfo) -> None: ...
     @property

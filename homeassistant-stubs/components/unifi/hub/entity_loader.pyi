@@ -20,8 +20,8 @@ class UnifiEntityLoader:
     wireless_clients: Incomplete
     _dataUpdateCoordinator: Incomplete
     _update_listener: Incomplete
-    platforms: Incomplete
-    known_objects: Incomplete
+    platforms: list[tuple[AddEntitiesCallback, type[UnifiEntity], tuple[UnifiEntityDescription, ...], bool]]
+    known_objects: set[tuple[str, str]]
     def __init__(self, hub: UnifiHub) -> None: ...
     async def initialize(self) -> None: ...
     async def _refresh_data(self, updaters: Sequence[Callable[[], Coroutine[Any, Any, None]]]) -> None: ...

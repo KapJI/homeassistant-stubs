@@ -27,8 +27,8 @@ class SpeedtestSensor(CoordinatorEntity[SpeedTestDataCoordinator], SensorEntity)
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
-    _state: Incomplete
-    _attrs: Incomplete
+    _state: StateType
+    _attrs: dict[str, Any]
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SpeedTestDataCoordinator, description: SpeedtestSensorEntityDescription) -> None: ...
     @property

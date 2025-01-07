@@ -14,11 +14,11 @@ class JellyfinServerEntity(JellyfinEntity):
 
 class JellyfinClientEntity(JellyfinEntity):
     session_id: Incomplete
-    device_id: Incomplete
-    device_name: Incomplete
-    client_name: Incomplete
-    app_version: Incomplete
-    capabilities: Incomplete
+    device_id: str
+    device_name: str
+    client_name: str
+    app_version: str
+    capabilities: dict[str, Any]
     _attr_device_info: Incomplete
     _attr_name: Incomplete
     _attr_has_entity_name: bool

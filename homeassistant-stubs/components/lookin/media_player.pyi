@@ -19,7 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class LookinMedia(LookinPowerPushRemoteEntity, MediaPlayerEntity):
     _attr_should_poll: bool
     _attr_device_class: Incomplete
-    _source_list: Incomplete
+    _source_list: dict[str, str] | None
     def __init__(self, coordinator: LookinDataUpdateCoordinator, uuid: str, device: Remote, lookin_data: LookinData, device_class: MediaPlayerDeviceClass) -> None: ...
     @property
     def source_list(self) -> list[str]: ...

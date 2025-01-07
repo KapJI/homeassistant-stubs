@@ -13,7 +13,7 @@ class BasePassiveBluetoothCoordinator(ABC, metaclass=abc.ABCMeta):
     logger: Incomplete
     address: Incomplete
     connectable: Incomplete
-    _on_stop: Incomplete
+    _on_stop: list[CALLBACK_TYPE]
     mode: Incomplete
     _last_unavailable_time: float
     _last_name: Incomplete

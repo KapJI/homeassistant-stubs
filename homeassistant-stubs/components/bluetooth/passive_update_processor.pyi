@@ -64,10 +64,10 @@ def async_register_coordinator_for_restore(hass: HomeAssistant, coordinator: Pas
 async def async_setup(hass: HomeAssistant) -> None: ...
 
 class PassiveBluetoothProcessorCoordinator[_DataT](BasePassiveBluetoothCoordinator):
-    _processors: Incomplete
+    _processors: list[PassiveBluetoothDataProcessor[Any, _DataT]]
     _update_method: Incomplete
     last_update_success: bool
-    restore_data: Incomplete
+    restore_data: dict[str, RestoredPassiveBluetoothDataUpdate]
     restore_key: Incomplete
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, address: str, mode: BluetoothScanningMode, update_method: Callable[[BluetoothServiceInfoBleak], _DataT], connectable: bool = False) -> None: ...
     @property
@@ -86,8 +86,8 @@ class PassiveBluetoothDataProcessor[_T, _DataT]:
     entity_descriptions: dict[PassiveBluetoothEntityKey, EntityDescription]
     devices: dict[str | None, DeviceInfo]
     restore_key: str | None
-    _listeners: Incomplete
-    _entity_key_listeners: Incomplete
+    _listeners: list[Callable[[PassiveBluetoothDataUpdate[_T] | None], None]]
+    _entity_key_listeners: dict[PassiveBluetoothEntityKey, list[Callable[[PassiveBluetoothDataUpdate[_T] | None], None]]]
     update_method: Incomplete
     last_update_success: bool
     def __init__(self, update_method: Callable[[_DataT], PassiveBluetoothDataUpdate[_T]], restore_key: str | None = None) -> None: ...

@@ -72,21 +72,21 @@ class IntegrationSensor(RestoreSensor):
     _attr_unique_id: Incomplete
     _sensor_source_id: Incomplete
     _round_digits: Incomplete
-    _state: Incomplete
+    _state: Decimal | None
     _method: Incomplete
     _attr_name: Incomplete
     _unit_prefix_string: Incomplete
-    _unit_of_measurement: Incomplete
+    _unit_of_measurement: str | None
     _unit_prefix: Incomplete
     _unit_time: Incomplete
     _unit_time_str: Incomplete
     _attr_icon: str
-    _source_entity: Incomplete
-    _last_valid_state: Incomplete
+    _source_entity: str
+    _last_valid_state: Decimal | None
     _attr_device_info: Incomplete
-    _max_sub_interval: Incomplete
-    _max_sub_interval_exceeded_callback: Incomplete
-    _last_integration_time: Incomplete
+    _max_sub_interval: timedelta | None
+    _max_sub_interval_exceeded_callback: CALLBACK_TYPE
+    _last_integration_time: datetime
     _last_integration_trigger: Incomplete
     _attr_suggested_display_precision: Incomplete
     def __init__(self, *, integration_method: str, name: str | None, round_digits: int | None, source_entity: str, unique_id: str | None, unit_prefix: str | None, unit_time: UnitOfTime, max_sub_interval: timedelta | None, device_info: DeviceInfo | None = None) -> None: ...

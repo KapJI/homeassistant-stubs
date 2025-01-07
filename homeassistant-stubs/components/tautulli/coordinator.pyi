@@ -11,8 +11,8 @@ class TautulliDataUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: TautulliConfigEntry
     host_configuration: Incomplete
     api_client: Incomplete
-    activity: Incomplete
-    home_stats: Incomplete
-    users: Incomplete
+    activity: PyTautulliApiActivity | None
+    home_stats: list[PyTautulliApiHomeStats] | None
+    users: list[PyTautulliApiUser] | None
     def __init__(self, hass: HomeAssistant, host_configuration: PyTautulliHostConfiguration, api_client: PyTautulli) -> None: ...
     async def _async_update_data(self) -> None: ...

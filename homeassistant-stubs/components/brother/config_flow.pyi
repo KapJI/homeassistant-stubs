@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, PRINTER_TYPES as PRINTER_TYPES
 from _typeshed import Incomplete
+from brother import Brother
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.components.snmp import async_get_snmp_engine as async_get_snmp_engine
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
@@ -16,8 +17,8 @@ async def validate_input(hass: HomeAssistant, user_input: dict[str, Any], expect
 
 class BrotherConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    brother: Incomplete
-    host: Incomplete
+    brother: Brother
+    host: str | None
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...

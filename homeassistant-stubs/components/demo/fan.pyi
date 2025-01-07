@@ -20,11 +20,11 @@ class BaseDemoFan(FanEntity):
     hass: Incomplete
     _unique_id: Incomplete
     _attr_supported_features: Incomplete
-    _percentage: Incomplete
+    _percentage: int | None
     _preset_modes: Incomplete
-    _preset_mode: Incomplete
-    _oscillating: Incomplete
-    _direction: Incomplete
+    _preset_mode: str | None
+    _oscillating: bool | None
+    _direction: str | None
     _attr_name: Incomplete
     def __init__(self, hass: HomeAssistant, unique_id: str, name: str, supported_features: FanEntityFeature, preset_modes: list[str] | None) -> None: ...
     @property

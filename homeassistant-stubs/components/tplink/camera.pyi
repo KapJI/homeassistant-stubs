@@ -30,10 +30,10 @@ class TPLinkCameraEntity(CoordinatedTPLinkEntity, Camera):
     entity_description: TPLinkCameraEntityDescription
     _camera_module: Incomplete
     _video_url: Incomplete
-    _image: Incomplete
+    _image: bytes | None
     _ffmpeg_manager: Incomplete
     _image_lock: Incomplete
-    _last_update: int
+    _last_update: float
     _camera_credentials: Incomplete
     _can_stream: bool
     _http_mpeg_stream_running: bool

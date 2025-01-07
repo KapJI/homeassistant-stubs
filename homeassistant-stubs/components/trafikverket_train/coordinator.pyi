@@ -3,7 +3,7 @@ from .const import CONF_FILTER_PRODUCT as CONF_FILTER_PRODUCT, CONF_FROM as CONF
 from .util import next_departuredate as next_departuredate
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, time
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_WEEKDAY as CONF_WEEKDAY
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -38,9 +38,9 @@ class TVDataUpdateCoordinator(DataUpdateCoordinator[TrainData]):
     from_station: StationInfoModel
     to_station: StationInfoModel
     _train_api: Incomplete
-    _time: Incomplete
-    _weekdays: Incomplete
-    _filter_product: Incomplete
+    _time: time | None
+    _weekdays: list[str]
+    _filter_product: str | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> TrainData: ...

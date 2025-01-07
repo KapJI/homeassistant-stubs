@@ -116,24 +116,24 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class StatisticsSensor(SensorEntity):
     _attr_should_poll: bool
     _attr_icon = ICON
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
-    _source_entity_id: Incomplete
+    _attr_name: str
+    _attr_unique_id: str | None
+    _source_entity_id: str
     _attr_device_info: Incomplete
-    is_binary: Incomplete
-    _state_characteristic: Incomplete
-    _samples_max_buffer_size: Incomplete
-    _samples_max_age: Incomplete
-    samples_keep_last: Incomplete
-    _precision: Incomplete
-    _percentile: Incomplete
+    is_binary: bool
+    _state_characteristic: str
+    _samples_max_buffer_size: int | None
+    _samples_max_age: float | None
+    samples_keep_last: bool
+    _precision: int
+    _percentile: int
     _attr_available: bool
-    states: Incomplete
-    ages: Incomplete
+    states: deque[float | bool]
+    ages: deque[float]
     _attr_extra_state_attributes: Incomplete
-    _state_characteristic_fn: Incomplete
-    _update_listener: Incomplete
-    _preview_callback: Incomplete
+    _state_characteristic_fn: Callable[[deque[bool | float], deque[float], int], float | int | datetime | None]
+    _update_listener: CALLBACK_TYPE | None
+    _preview_callback: Callable[[str, Mapping[str, Any]], None] | None
     def __init__(self, hass: HomeAssistant, source_entity_id: str, name: str, unique_id: str | None, state_characteristic: str, samples_max_buffer_size: int | None, samples_max_age: timedelta | None, samples_keep_last: bool, precision: int, percentile: int) -> None: ...
     async def async_start_preview(self, preview_callback: Callable[[str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...
     def _async_handle_new_state(self, reported_state: State | None) -> None: ...

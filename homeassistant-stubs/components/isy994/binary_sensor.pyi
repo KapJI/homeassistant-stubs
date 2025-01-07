@@ -26,8 +26,8 @@ class ISYBinarySensorEntity(ISYNodeEntity, BinarySensorEntity):
     def is_on(self) -> bool | None: ...
 
 class ISYInsteonBinarySensorEntity(ISYBinarySensorEntity):
-    _negative_node: Incomplete
-    _heartbeat_device: Incomplete
+    _negative_node: Node | None
+    _heartbeat_device: ISYBinarySensorHeartbeat | None
     _computed_state: Incomplete
     _status_was_unknown: bool
     def __init__(self, node: Node, force_device_class: BinarySensorDeviceClass | None = None, unknown_state: bool | None = None, device_info: DeviceInfo | None = None) -> None: ...
@@ -44,8 +44,8 @@ class ISYInsteonBinarySensorEntity(ISYBinarySensorEntity):
 class ISYBinarySensorHeartbeat(ISYNodeEntity, BinarySensorEntity, RestoreEntity):
     _attr_device_class: Incomplete
     _parent_device: Incomplete
-    _heartbeat_timer: Incomplete
-    _computed_state: Incomplete
+    _heartbeat_timer: CALLBACK_TYPE | None
+    _computed_state: bool | None
     def __init__(self, node: Node, parent_device: ISYInsteonBinarySensorEntity | ISYBinarySensorEntity | ISYBinarySensorHeartbeat | ISYBinarySensorProgramEntity, device_info: DeviceInfo | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     def _heartbeat_node_control_handler(self, event: NodeProperty) -> None: ...

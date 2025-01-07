@@ -14,8 +14,8 @@ async def async_get_network(hass: HomeAssistant) -> Network: ...
 
 class Network:
     _store: Incomplete
-    _data: Incomplete
-    adapters: Incomplete
+    _data: dict[str, list[str]]
+    adapters: list[Adapter]
     def __init__(self, hass: HomeAssistant) -> None: ...
     @property
     def configured_adapters(self) -> list[str]: ...

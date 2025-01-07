@@ -6,6 +6,7 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
+from propcache import cached_property
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[LawnMowerEntity]]
@@ -19,7 +20,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 
 class LawnMowerEntityEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -29,7 +29,9 @@ class LawnMowerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_supported_features: LawnMowerEntityFeature
     @property
     def state(self) -> str | None: ...
+    @cached_property
     def activity(self) -> LawnMowerActivity | None: ...
+    @cached_property
     def supported_features(self) -> LawnMowerEntityFeature: ...
     def start_mowing(self) -> None: ...
     async def async_start_mowing(self) -> None: ...

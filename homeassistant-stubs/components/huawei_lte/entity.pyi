@@ -13,7 +13,7 @@ class HuaweiLteBaseEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     router: Incomplete
-    _unsub_handlers: Incomplete
+    _unsub_handlers: list[Callable]
     def __init__(self, router: Router) -> None: ...
     @property
     def _device_unique_id(self) -> str: ...

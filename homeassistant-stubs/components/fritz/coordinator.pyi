@@ -3,7 +3,10 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, ValuesView
 from dataclasses import dataclass
 from datetime import datetime
+from fritzconnection import FritzConnection
+from fritzconnection.lib.fritzhosts import FritzHosts
 from fritzconnection.lib.fritzstatus import FritzStatus
+from fritzconnection.lib.fritzwlan import FritzGuestWLAN
 from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
@@ -56,29 +59,29 @@ class UpdateCoordinatorDataType(TypedDict):
 
 class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     config_entry: ConfigEntry
-    _devices: Incomplete
-    _options: Incomplete
-    _unique_id: Incomplete
-    connection: Incomplete
-    fritz_guest_wifi: Incomplete
-    fritz_hosts: Incomplete
-    fritz_status: Incomplete
+    _devices: dict[str, FritzDevice]
+    _options: MappingProxyType[str, Any] | None
+    _unique_id: str | None
+    connection: FritzConnection
+    fritz_guest_wifi: FritzGuestWLAN
+    fritz_hosts: FritzHosts
+    fritz_status: FritzStatus
     hass: Incomplete
     host: Incomplete
     mesh_role: Incomplete
-    device_conn_type: Incomplete
+    device_conn_type: str | None
     device_is_router: bool
     password: Incomplete
     port: Incomplete
     username: Incomplete
     use_tls: Incomplete
     has_call_deflections: bool
-    _model: Incomplete
-    _current_firmware: Incomplete
-    _latest_firmware: Incomplete
+    _model: str | None
+    _current_firmware: str | None
+    _latest_firmware: str | None
     _update_available: bool
-    _release_url: Incomplete
-    _entity_update_functions: Incomplete
+    _release_url: str | None
+    _entity_update_functions: dict[str, Callable[[FritzStatus, StateType], Any]]
     def __init__(self, hass: HomeAssistant, password: str, port: int, username: str = ..., host: str = ..., use_tls: bool = ...) -> None: ...
     async def async_setup(self, options: MappingProxyType[str, Any] | None = None) -> None: ...
     def setup(self) -> None: ...
@@ -144,14 +147,14 @@ class FritzData:
 
 class FritzDevice:
     _connected: bool
-    _connected_to: Incomplete
-    _connection_type: Incomplete
-    _ip_address: Incomplete
-    _last_activity: Incomplete
+    _connected_to: str | None
+    _connection_type: str | None
+    _ip_address: str | None
+    _last_activity: datetime | None
     _mac: Incomplete
     _name: Incomplete
-    _ssid: Incomplete
-    _wan_access: bool
+    _ssid: str | None
+    _wan_access: bool | None
     def __init__(self, mac: str, name: str) -> None: ...
     def update(self, dev_info: Device, consider_home: float) -> None: ...
     @property

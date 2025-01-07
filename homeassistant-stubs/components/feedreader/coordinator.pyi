@@ -15,13 +15,13 @@ _LOGGER: Incomplete
 class FeedReaderCoordinator(DataUpdateCoordinator[list[feedparser.FeedParserDict] | None]):
     config_entry: ConfigEntry
     url: Incomplete
-    feed_author: Incomplete
-    feed_version: Incomplete
+    feed_author: str | None
+    feed_version: str | None
     _max_entries: Incomplete
     _storage: Incomplete
-    _last_entry_timestamp: Incomplete
+    _last_entry_timestamp: struct_time | None
     _event_type: Incomplete
-    _feed: Incomplete
+    _feed: feedparser.FeedParserDict | None
     _feed_id: Incomplete
     def __init__(self, hass: HomeAssistant, url: str, max_entries: int, storage: StoredData) -> None: ...
     def _log_no_entries(self) -> None: ...
@@ -33,9 +33,9 @@ class FeedReaderCoordinator(DataUpdateCoordinator[list[feedparser.FeedParserDict
     def _publish_new_entries(self) -> None: ...
 
 class StoredData:
-    _data: Incomplete
+    _data: dict[str, struct_time]
     hass: Incomplete
-    _store: Incomplete
+    _store: Store[dict[str, str]]
     is_initialized: bool
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_setup(self) -> None: ...

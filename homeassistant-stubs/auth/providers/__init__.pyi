@@ -49,13 +49,13 @@ async def load_auth_provider_module(hass: HomeAssistant, provider: str) -> types
 class LoginFlow(FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]], Generic[_AuthProviderT]):
     _flow_result = AuthFlowResult
     _auth_provider: Incomplete
-    _auth_module_id: Incomplete
+    _auth_module_id: str | None
     _auth_manager: Incomplete
-    available_mfa_modules: Incomplete
+    available_mfa_modules: dict[str, str]
     created_at: Incomplete
     invalid_mfa_times: int
-    user: Incomplete
-    credential: Incomplete
+    user: User | None
+    credential: Credentials | None
     def __init__(self, auth_provider: _AuthProviderT) -> None: ...
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> AuthFlowResult: ...
     async def async_step_select_mfa_module(self, user_input: dict[str, str] | None = None) -> AuthFlowResult: ...

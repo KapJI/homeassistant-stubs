@@ -10,7 +10,7 @@ from typing import Any
 CONFIG_SCHEMA: Incomplete
 
 class EheimDigitalConfigFlow(ConfigFlow, domain=DOMAIN):
-    data: Incomplete
+    data: dict[str, Any]
     main_device_added_event: Incomplete
     def __init__(self) -> None: ...
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...

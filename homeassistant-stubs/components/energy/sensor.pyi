@@ -38,7 +38,7 @@ SOURCE_ADAPTERS: Final[Incomplete]
 class SensorManager:
     manager: Incomplete
     async_add_entities: Incomplete
-    current_entities: Incomplete
+    current_entities: dict[tuple[str, str | None, str], EnergyCostSensor]
     def __init__(self, manager: EnergyManager, async_add_entities: AddEntitiesCallback) -> None: ...
     async def async_start(self) -> None: ...
     async def _process_manager_data(self) -> None: ...
@@ -56,8 +56,8 @@ class EnergyCostSensor(SensorEntity):
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
     _config: Incomplete
-    _last_energy_sensor_state: Incomplete
-    add_finished: Incomplete
+    _last_energy_sensor_state: State | None
+    add_finished: asyncio.Future[None]
     def __init__(self, adapter: SourceAdapter, config: Mapping[str, Any]) -> None: ...
     _attr_native_value: float
     _attr_last_reset: Incomplete

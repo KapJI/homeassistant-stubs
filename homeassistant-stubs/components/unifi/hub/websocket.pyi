@@ -1,4 +1,5 @@
 import aiounifi
+import asyncio
 from ..const import LOGGER as LOGGER
 from _typeshed import Incomplete
 from datetime import datetime
@@ -13,8 +14,8 @@ class UnifiWebsocket:
     hass: Incomplete
     api: Incomplete
     signal: Incomplete
-    ws_task: Incomplete
-    _cancel_websocket_check: Incomplete
+    ws_task: asyncio.Task | None
+    _cancel_websocket_check: CALLBACK_TYPE | None
     available: bool
     def __init__(self, hass: HomeAssistant, api: aiounifi.Controller, signal: str) -> None: ...
     def start(self) -> None: ...

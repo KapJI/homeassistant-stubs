@@ -40,7 +40,7 @@ class SystemMonitorSensor(CoordinatorEntity[SystemMonitorCoordinator], BinarySen
     _attr_entity_category: Incomplete
     entity_description: SysMonitorBinarySensorEntityDescription
     _attr_translation_placeholders: Incomplete
-    _attr_unique_id: Incomplete
+    _attr_unique_id: str
     _attr_device_info: Incomplete
     argument: Incomplete
     def __init__(self, coordinator: SystemMonitorCoordinator, sensor_description: SysMonitorBinarySensorEntityDescription, entry_id: str, argument: str) -> None: ...

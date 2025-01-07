@@ -17,8 +17,8 @@ COLOR_MODES_WITH_WHITES: Incomplete
 
 class Light(HomeAccessory):
     chars: Incomplete
-    _event_timer: Incomplete
-    _pending_events: Incomplete
+    _event_timer: CALLBACK_TYPE | None
+    _pending_events: dict[str, Any]
     color_modes: Incomplete
     _previous_color_mode: Incomplete
     color_supported: Incomplete

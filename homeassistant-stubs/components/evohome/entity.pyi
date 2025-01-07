@@ -13,7 +13,7 @@ class EvoDevice(Entity):
     _attr_should_poll: bool
     _evo_device: Incomplete
     _evo_broker: Incomplete
-    _device_state_attrs: Incomplete
+    _device_state_attrs: dict[str, Any]
     def __init__(self, evo_broker: EvoBroker, evo_device: evo.ControlSystem | evo.HotWater | evo.Zone) -> None: ...
     async def async_refresh(self, payload: dict | None = None) -> None: ...
     async def async_tcs_svc_request(self, service: str, data: dict[str, Any]) -> None: ...
@@ -25,8 +25,8 @@ class EvoDevice(Entity):
 class EvoChild(EvoDevice):
     _evo_id: str
     _evo_tcs: Incomplete
-    _schedule: Incomplete
-    _setpoints: Incomplete
+    _schedule: dict[str, Any]
+    _setpoints: dict[str, Any]
     def __init__(self, evo_broker: EvoBroker, evo_device: evo.HotWater | evo.Zone) -> None: ...
     @property
     def current_temperature(self) -> float | None: ...

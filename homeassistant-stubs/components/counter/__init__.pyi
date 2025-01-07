@@ -44,8 +44,8 @@ class CounterStorageCollection(collection.DictStorageCollection):
 class Counter(collection.CollectionEntity, RestoreEntity):
     _attr_should_poll: bool
     editable: bool
-    _config: Incomplete
-    _state: Incomplete
+    _config: ConfigType
+    _state: int | None
     def __init__(self, config: ConfigType) -> None: ...
     @classmethod
     def from_storage(cls, config: ConfigType) -> Self: ...

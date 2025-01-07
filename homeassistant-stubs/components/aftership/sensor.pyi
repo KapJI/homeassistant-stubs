@@ -18,8 +18,8 @@ class AfterShipSensor(SensorEntity):
     _attr_attribution = ATTRIBUTION
     _attr_native_unit_of_measurement: str
     _attr_translation_key: str
-    _attributes: Incomplete
-    _state: Incomplete
+    _attributes: dict[str, Any]
+    _state: int | None
     aftership: Incomplete
     _attr_name: Incomplete
     def __init__(self, aftership: AfterShip, name: str) -> None: ...

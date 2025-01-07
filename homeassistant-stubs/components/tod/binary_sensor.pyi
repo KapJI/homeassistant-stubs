@@ -34,7 +34,7 @@ class TodSensor(BinarySensorEntity):
     _before_offset: Incomplete
     _before: Incomplete
     _after: Incomplete
-    _unsub_update: Incomplete
+    _unsub_update: Callable[[], None] | None
     def __init__(self, name: str, after: time, after_offset: timedelta, before: time, before_offset: timedelta, unique_id: str | None) -> None: ...
     @property
     def is_on(self) -> bool: ...

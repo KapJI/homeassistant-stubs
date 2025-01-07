@@ -27,7 +27,7 @@ class AlertEntity(Entity):
     _next_delay: int
     _firing: bool
     _ack: bool
-    _cancel: Incomplete
+    _cancel: Callable[[], None] | None
     _send_done_message: bool
     entity_id: Incomplete
     def __init__(self, hass: HomeAssistant, entity_id: str, name: str, watched_entity_id: str, state: str, repeat: list[float], skip_first: bool, message_template: Template | None, done_message_template: Template | None, notifiers: list[str], can_ack: bool, title_template: Template | None, data: dict[Any, Any]) -> None: ...

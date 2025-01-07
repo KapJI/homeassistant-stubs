@@ -18,14 +18,14 @@ def _async_device_info(device: AIOWifiLedBulb, entry: config_entries.ConfigEntry
 class FluxBaseEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
-    _device: Incomplete
+    _device: AIOWifiLedBulb
     entry: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> None: ...
 
 class FluxEntity(CoordinatorEntity[FluxLedUpdateCoordinator]):
     _attr_has_entity_name: bool
-    _device: Incomplete
+    _device: AIOWifiLedBulb
     _responding: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

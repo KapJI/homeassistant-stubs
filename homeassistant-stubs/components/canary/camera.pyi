@@ -22,15 +22,15 @@ _LOGGER: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CanaryCamera(CoordinatorEntity[CanaryDataUpdateCoordinator], Camera):
-    _ffmpeg: Incomplete
+    _ffmpeg: FFmpegManager
     _ffmpeg_arguments: Incomplete
     _location_id: Incomplete
     _device: Incomplete
-    _live_stream_session: Incomplete
+    _live_stream_session: LiveStreamSession | None
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _image: Incomplete
+    _image: bytes | None
     _expires_at: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: CanaryDataUpdateCoordinator, location_id: str, device: Device, ffmpeg_args: str) -> None: ...
     @property

@@ -45,7 +45,7 @@ class DemoYoutubePlayer(AbstractDemoPlayer):
     _attr_media_content_id: Incomplete
     _attr_media_title: Incomplete
     _attr_media_duration: Incomplete
-    _progress: Incomplete
+    _progress: int | None
     _progress_updated_at: Incomplete
     def __init__(self, name: str, youtube_id: str, media_title: str, duration: int) -> None: ...
     @property
@@ -66,7 +66,7 @@ class DemoMusicPlayer(AbstractDemoPlayer):
     _attr_supported_features = MUSIC_PLAYER_SUPPORT
     tracks: Incomplete
     _cur_track: int
-    _attr_group_members: Incomplete
+    _attr_group_members: list[str]
     _attr_repeat: Incomplete
     def __init__(self, name: str = 'Walkman') -> None: ...
     @property

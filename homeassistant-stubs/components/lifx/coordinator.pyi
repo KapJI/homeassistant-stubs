@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from propcache import cached_property
 from typing import Any
 
 LIGHT_UPDATE_INTERVAL: int
@@ -32,7 +33,7 @@ class SkyType(IntEnum):
 
 class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
     connection: Incomplete
-    device: Incomplete
+    device: Light
     lock: Incomplete
     active_effect: Incomplete
     _update_rssi: bool
@@ -46,12 +47,17 @@ class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
     def rssi_uom(self) -> str: ...
     @property
     def current_infrared_brightness(self) -> str | None: ...
+    @cached_property
     def serial_number(self) -> str: ...
+    @cached_property
     def mac_address(self) -> str: ...
     @property
     def label(self) -> str: ...
+    @cached_property
     def is_extended_multizone(self) -> bool: ...
+    @cached_property
     def is_legacy_multizone(self) -> bool: ...
+    @cached_property
     def is_matrix(self) -> bool: ...
     async def diagnostics(self) -> dict[str, Any]: ...
     def async_get_entity_id(self, platform: Platform, key: str) -> str | None: ...

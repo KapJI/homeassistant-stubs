@@ -33,10 +33,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_a
 class RingCam(RingEntity[RingDoorBell], Camera):
     entity_description: Incomplete
     _ffmpeg_manager: Incomplete
-    _last_event: Incomplete
-    _last_video_id: Incomplete
-    _video_url: Incomplete
-    _images: Incomplete
+    _last_event: dict[str, Any] | None
+    _last_video_id: int | None
+    _video_url: str | None
+    _images: dict[tuple[int | None, int | None], bytes]
     _expires_at: Incomplete
     _attr_unique_id: Incomplete
     _attr_motion_detection_enabled: Incomplete

@@ -15,10 +15,10 @@ PLATFORM_SCHEMA: Incomplete
 def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> ClicksendNotificationService | None: ...
 
 class ClicksendNotificationService(BaseNotificationService):
-    username: Incomplete
-    api_key: Incomplete
-    recipients: Incomplete
-    sender: Incomplete
+    username: str
+    api_key: str
+    recipients: list[str]
+    sender: str
     def __init__(self, config: ConfigType) -> None: ...
     def send_message(self, message: str = '', **kwargs: Any) -> None: ...
 

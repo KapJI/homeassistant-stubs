@@ -26,11 +26,11 @@ class EntityComponent(Generic[_EntityT]):
     hass: Incomplete
     domain: Incomplete
     scan_interval: Incomplete
-    config: Incomplete
-    _platforms: Incomplete
+    config: ConfigType | None
+    _platforms: dict[str | tuple[str, timedelta | None, str | None], EntityPlatform]
     async_add_entities: Incomplete
     add_entities: Incomplete
-    _entities: Incomplete
+    _entities: dict[str, entity.Entity]
     def __init__(self, logger: logging.Logger, domain: str, hass: HomeAssistant, scan_interval: timedelta = ...) -> None: ...
     @property
     def entities(self) -> Iterable[_EntityT]: ...

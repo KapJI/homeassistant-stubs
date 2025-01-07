@@ -27,12 +27,12 @@ class KNXClimate(KnxYamlEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _fan_modes_percentages: Incomplete
-    fan_zero_mode: Incomplete
+    fan_zero_mode: str
     _attr_fan_modes: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_unique_id: Incomplete
-    default_hvac_mode: Incomplete
-    _last_hvac_mode: Incomplete
+    default_hvac_mode: HVACMode
+    _last_hvac_mode: HVACMode
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     @property
     def current_temperature(self) -> float | None: ...

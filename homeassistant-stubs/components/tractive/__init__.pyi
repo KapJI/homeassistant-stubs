@@ -1,4 +1,5 @@
 import aiotractive
+import asyncio
 from .const import ATTR_ACTIVITY_LABEL as ATTR_ACTIVITY_LABEL, ATTR_CALORIES as ATTR_CALORIES, ATTR_DAILY_GOAL as ATTR_DAILY_GOAL, ATTR_MINUTES_ACTIVE as ATTR_MINUTES_ACTIVE, ATTR_MINUTES_DAY_SLEEP as ATTR_MINUTES_DAY_SLEEP, ATTR_MINUTES_NIGHT_SLEEP as ATTR_MINUTES_NIGHT_SLEEP, ATTR_MINUTES_REST as ATTR_MINUTES_REST, ATTR_SLEEP_LABEL as ATTR_SLEEP_LABEL, ATTR_TRACKER_STATE as ATTR_TRACKER_STATE, CLIENT_ID as CLIENT_ID, RECONNECT_INTERVAL as RECONNECT_INTERVAL, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE, SWITCH_KEY_MAP as SWITCH_KEY_MAP, TRACKER_HARDWARE_STATUS_UPDATED as TRACKER_HARDWARE_STATUS_UPDATED, TRACKER_POSITION_UPDATED as TRACKER_POSITION_UPDATED, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED, TRACKER_WELLNESS_STATUS_UPDATED as TRACKER_WELLNESS_STATUS_UPDATED
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -39,7 +40,7 @@ class TractiveClient:
     _user_id: Incomplete
     _last_hw_time: int
     _last_pos_time: int
-    _listen_task: Incomplete
+    _listen_task: asyncio.Task | None
     _config_entry: Incomplete
     def __init__(self, hass: HomeAssistant, client: aiotractive.Tractive, user_id: str, config_entry: ConfigEntry) -> None: ...
     @property

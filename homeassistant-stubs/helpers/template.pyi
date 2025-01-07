@@ -1,4 +1,6 @@
+import collections.abc
 import jinja2
+import weakref
 from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, issue_registry as issue_registry, label_registry as label_registry
 from .deprecation import deprecated_function as deprecated_function
 from .singleton import singleton as singleton
@@ -21,6 +23,7 @@ from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from jinja2.sandbox import ImmutableSandboxedEnvironment
 from lru import LRU
+from propcache import under_cached_property
 from types import CodeType, TracebackType
 from typing import Any, Literal, NoReturn, Self, overload
 
@@ -78,17 +81,17 @@ def _cached_parse_result(render_result: str) -> Any: ...
 class RenderInfo:
     __slots__: Incomplete
     template: Incomplete
-    filter_lifecycle: Incomplete
-    filter: Incomplete
-    _result: Incomplete
+    filter_lifecycle: Callable[[str], bool]
+    filter: Callable[[str], bool]
+    _result: str | None
     is_static: bool
-    exception: Incomplete
+    exception: TemplateError | None
     all_states: bool
     all_states_lifecycle: bool
-    domains: Incomplete
-    domains_lifecycle: Incomplete
-    entities: Incomplete
-    rate_limit: Incomplete
+    domains: collections.abc.Set[str]
+    domains_lifecycle: collections.abc.Set[str]
+    entities: collections.abc.Set[str]
+    rate_limit: float | None
     has_time: bool
     def __init__(self, template: Template) -> None: ...
     def __repr__(self) -> str: ...
@@ -102,16 +105,16 @@ class RenderInfo:
 
 class Template:
     __slots__: Incomplete
-    template: Incomplete
-    _compiled_code: Incomplete
-    _compiled: Incomplete
+    template: str
+    _compiled_code: CodeType | None
+    _compiled: jinja2.Template | None
     hass: Incomplete
     is_static: Incomplete
-    _exc_info: Incomplete
-    _limited: Incomplete
-    _strict: Incomplete
-    _log_fn: Incomplete
-    _hash_cache: Incomplete
+    _exc_info: OptExcInfo | None
+    _limited: bool | None
+    _strict: bool | None
+    _log_fn: Callable[[int, str], None] | None
+    _hash_cache: int
     _renders: int
     def __init__(self, template: str, hass: HomeAssistant | None = None) -> None: ...
     @property
@@ -176,10 +179,11 @@ class TemplateStateBase(State):
     _hass: Incomplete
     _collect: Incomplete
     _entity_id: Incomplete
-    _cache: Incomplete
+    _cache: dict[str, Any]
     def __init__(self, hass: HomeAssistant, collect: bool, entity_id: str) -> None: ...
     def _collect_state(self) -> None: ...
     def __getitem__(self, item: str) -> Any: ...
+    @under_cached_property
     def entity_id(self) -> str: ...
     @property
     def state(self) -> str: ...
@@ -358,7 +362,7 @@ class HassLoader(jinja2.BaseLoader):
 
 class TemplateEnvironment(ImmutableSandboxedEnvironment):
     hass: Incomplete
-    template_cache: Incomplete
+    template_cache: weakref.WeakValueDictionary[str | jinja2.nodes.Template, CodeType | None]
     loader: Incomplete
     def __init__(self, hass: HomeAssistant | None, limited: bool | None = False, strict: bool | None = False, log_fn: Callable[[int, str], None] | None = None) -> None: ...
     def is_safe_callable(self, obj): ...

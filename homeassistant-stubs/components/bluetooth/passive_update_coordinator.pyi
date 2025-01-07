@@ -1,7 +1,6 @@
 import logging
 from . import BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from .update_coordinator import BasePassiveBluetoothCoordinator as BasePassiveBluetoothCoordinator
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
@@ -11,7 +10,7 @@ from typing_extensions import TypeVar
 _PassiveBluetoothDataUpdateCoordinatorT = TypeVar('_PassiveBluetoothDataUpdateCoordinatorT', bound='PassiveBluetoothDataUpdateCoordinator', default='PassiveBluetoothDataUpdateCoordinator')
 
 class PassiveBluetoothDataUpdateCoordinator(BasePassiveBluetoothCoordinator, BaseDataUpdateCoordinatorProtocol):
-    _listeners: Incomplete
+    _listeners: dict[CALLBACK_TYPE, tuple[CALLBACK_TYPE, object | None]]
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, address: str, mode: BluetoothScanningMode, connectable: bool = False) -> None: ...
     @property
     def available(self) -> bool: ...

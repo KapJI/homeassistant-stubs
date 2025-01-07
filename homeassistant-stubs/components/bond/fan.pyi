@@ -19,9 +19,9 @@ PRESET_MODE_BREEZE: str
 async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class BondFan(BondEntity, FanEntity):
-    _power: Incomplete
-    _speed: Incomplete
-    _direction: Incomplete
+    _power: bool | None
+    _speed: int | None
+    _direction: int | None
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, data: BondData, device: BondDevice) -> None: ...

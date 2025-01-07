@@ -52,7 +52,7 @@ class RpcSensor(ShellyRpcAttributeEntity, SensorEntity):
 
 class BlockSleepingSensor(ShellySleepingBlockAttributeEntity, RestoreSensor):
     entity_description: BlockSensorDescription
-    restored_data: Incomplete
+    restored_data: SensorExtraStoredData | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockSensorDescription, entry: RegistryEntry | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
@@ -62,7 +62,7 @@ class BlockSleepingSensor(ShellySleepingBlockAttributeEntity, RestoreSensor):
 
 class RpcSleepingSensor(ShellySleepingRpcAttributeEntity, RestoreSensor):
     entity_description: RpcSensorDescription
-    restored_data: Incomplete
+    restored_data: SensorExtraStoredData | None
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription, entry: RegistryEntry | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

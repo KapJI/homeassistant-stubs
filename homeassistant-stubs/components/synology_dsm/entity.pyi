@@ -19,17 +19,17 @@ class SynologyDSMBaseEntity[_CoordinatorT: SynologyDSMUpdateCoordinator[Any]](Co
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     _api: Incomplete
-    _attr_unique_id: Incomplete
+    _attr_unique_id: str
     _attr_device_info: Incomplete
     def __init__(self, api: SynoApi, coordinator: _CoordinatorT, description: SynologyDSMEntityDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 
 class SynologyDSMDeviceEntity(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoordinator]):
     _device_id: Incomplete
-    _device_name: Incomplete
-    _device_manufacturer: Incomplete
-    _device_model: Incomplete
-    _device_firmware: Incomplete
+    _device_name: str | None
+    _device_manufacturer: str | None
+    _device_model: str | None
+    _device_firmware: str | None
     _device_type: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMEntityDescription, device_id: str | None = None) -> None: ...

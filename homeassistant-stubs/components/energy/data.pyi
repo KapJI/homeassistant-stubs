@@ -84,8 +84,8 @@ DEVICE_CONSUMPTION_SCHEMA: Incomplete
 class EnergyManager:
     _hass: Incomplete
     _store: Incomplete
-    data: Incomplete
-    _update_listeners: Incomplete
+    data: EnergyPreferences | None
+    _update_listeners: list[Callable[[], Awaitable]]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_initialize(self) -> None: ...
     @staticmethod

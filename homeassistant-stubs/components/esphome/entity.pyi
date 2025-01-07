@@ -57,7 +57,7 @@ class EsphomeEntity(Entity, Generic[_InfoT, _StateT]):
 class EsphomeAssistEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
-    _entry_data: Incomplete
+    _entry_data: RuntimeEntryData
     _device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

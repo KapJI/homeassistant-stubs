@@ -7,6 +7,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, H
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.singleton import singleton as singleton
 from homeassistant.helpers.storage import Store as Store
+from typing import Any
 
 _LOGGER: Incomplete
 KEY_DASHBOARD_MANAGER: str
@@ -18,10 +19,10 @@ async def async_get_or_create_dashboard_manager(hass: HomeAssistant) -> ESPHomeD
 
 class ESPHomeDashboardManager:
     _hass: Incomplete
-    _store: Incomplete
-    _data: Incomplete
-    _current_dashboard: Incomplete
-    _cancel_shutdown: Incomplete
+    _store: Store[dict[str, Any]]
+    _data: dict[str, Any] | None
+    _current_dashboard: ESPHomeDashboardCoordinator | None
+    _cancel_shutdown: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_setup(self) -> None: ...
     def async_get(self) -> ESPHomeDashboardCoordinator | None: ...

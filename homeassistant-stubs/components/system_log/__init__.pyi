@@ -36,7 +36,7 @@ class LogEntry:
     level: Incomplete
     message: Incomplete
     exception: str
-    root_cause: Incomplete
+    root_cause: tuple[str, int, str] | None
     source: Incomplete
     count: int
     key: Incomplete

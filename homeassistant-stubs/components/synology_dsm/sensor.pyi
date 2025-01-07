@@ -3,7 +3,6 @@ from .const import CONF_VOLUMES as CONF_VOLUMES, DOMAIN as DOMAIN, ENTITY_UNIT_L
 from .coordinator import SynologyDSMCentralUpdateCoordinator as SynologyDSMCentralUpdateCoordinator
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMDeviceEntity as SynologyDSMDeviceEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
 from .models import SynologyDSMData as SynologyDSMData
-from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -42,8 +41,8 @@ class SynoDSMStorageSensor(SynologyDSMDeviceEntity, SynoDSMSensor):
     def native_value(self) -> StateType: ...
 
 class SynoDSMInfoSensor(SynoDSMSensor):
-    _previous_uptime: Incomplete
-    _last_boot: Incomplete
+    _previous_uptime: str | None
+    _last_boot: datetime | None
     def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType | datetime: ...

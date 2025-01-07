@@ -19,8 +19,9 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Final
 from xknx.core import XknxConnectionState
 from xknx.core.telegram_queue import TelegramQueue as TelegramQueue
+from xknx.dpt import DPTBase
 from xknx.io import ConnectionConfig
-from xknx.telegram import Telegram as Telegram
+from xknx.telegram import AddressFilter, Telegram as Telegram
 from xknx.telegram.address import DeviceGroupAddress as DeviceGroupAddress
 
 _LOGGER: Incomplete
@@ -38,17 +39,17 @@ class KNXModule:
     hass: Incomplete
     config_yaml: Incomplete
     connected: bool
-    exposures: Incomplete
-    service_exposures: Incomplete
+    exposures: list[KNXExposeSensor | KNXExposeTime]
+    service_exposures: dict[str, KNXExposeSensor | KNXExposeTime]
     entry: Incomplete
     project: Incomplete
     config_store: Incomplete
     xknx: Incomplete
     telegrams: Incomplete
     interface_device: Incomplete
-    _address_filter_transcoder: Incomplete
-    group_address_transcoder: Incomplete
-    knx_event_callback: Incomplete
+    _address_filter_transcoder: dict[AddressFilter, type[DPTBase]]
+    group_address_transcoder: dict[DeviceGroupAddress, type[DPTBase]]
+    knx_event_callback: TelegramQueue.Callback
     def __init__(self, hass: HomeAssistant, config: ConfigType, entry: ConfigEntry) -> None: ...
     async def start(self) -> None: ...
     async def stop(self, event: Event | None = None) -> None: ...

@@ -5,6 +5,7 @@ from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.storage import Store as Store
+from typing import Any
 
 _LOGGER: Incomplete
 LWA_TOKEN_URI: str
@@ -18,8 +19,8 @@ class Auth:
     hass: Incomplete
     client_id: Incomplete
     client_secret: Incomplete
-    _prefs: Incomplete
-    _store: Incomplete
+    _prefs: dict[str, Any] | None
+    _store: Store
     _get_token_lock: Incomplete
     def __init__(self, hass: HomeAssistant, client_id: str, client_secret: str) -> None: ...
     async def async_do_auth(self, accept_grant_code: str) -> str | None: ...

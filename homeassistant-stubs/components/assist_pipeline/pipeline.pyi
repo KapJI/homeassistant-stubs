@@ -212,7 +212,7 @@ class PipelineStorageCollectionWebsocket(StorageCollectionWebsocket[PipelineStor
     async def ws_set_preferred_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 
 class PipelineRuns:
-    _pipeline_runs: Incomplete
+    _pipeline_runs: dict[str, dict[str, PipelineRun]]
     _pipeline_store: Incomplete
     def __init__(self, pipeline_store: PipelineStorageCollection) -> None: ...
     def add_run(self, pipeline_run: PipelineRun) -> None: ...
@@ -234,10 +234,10 @@ class AssistDevice:
 
 class PipelineData:
     pipeline_store: Incomplete
-    pipeline_debug: Incomplete
-    pipeline_devices: Incomplete
+    pipeline_debug: dict[str, LimitedSizeDict[str, PipelineRunDebug]]
+    pipeline_devices: dict[str, AssistDevice]
     pipeline_runs: Incomplete
-    device_audio_queues: Incomplete
+    device_audio_queues: dict[str, DeviceAudioQueue]
     def __init__(self, pipeline_store: PipelineStorageCollection) -> None: ...
 
 @dataclass(slots=True)

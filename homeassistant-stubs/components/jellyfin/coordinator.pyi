@@ -9,13 +9,13 @@ from typing import Any
 class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]]]):
     config_entry: ConfigEntry
     api_client: Incomplete
-    server_id: Incomplete
-    server_name: Incomplete
-    server_version: Incomplete
-    client_device_id: Incomplete
-    user_id: Incomplete
-    session_ids: Incomplete
-    remote_session_ids: Incomplete
-    device_ids: Incomplete
+    server_id: str
+    server_name: str
+    server_version: str | None
+    client_device_id: str
+    user_id: str
+    session_ids: set[str]
+    remote_session_ids: set[str]
+    device_ids: set[str]
     def __init__(self, hass: HomeAssistant, api_client: JellyfinClient, system_info: dict[str, Any], user_id: str) -> None: ...
     async def _async_update_data(self) -> dict[str, dict[str, Any]]: ...

@@ -15,8 +15,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: JellyfinConfigEntry, asy
 
 class JellyfinMediaPlayer(JellyfinClientEntity, MediaPlayerEntity):
     _attr_unique_id: Incomplete
-    now_playing: Incomplete
-    play_state: Incomplete
+    now_playing: dict[str, Any] | None
+    play_state: dict[str, Any] | None
     def __init__(self, coordinator: JellyfinDataUpdateCoordinator, session_id: str) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     _attr_state: Incomplete

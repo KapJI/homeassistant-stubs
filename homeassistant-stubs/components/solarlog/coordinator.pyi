@@ -13,8 +13,8 @@ from solarlog_cli.solarlog_models import SolarlogData
 _LOGGER: Incomplete
 
 class SolarLogCoordinator(DataUpdateCoordinator[SolarlogData]):
-    new_device_callbacks: Incomplete
-    _devices_last_update: Incomplete
+    new_device_callbacks: list[Callable[[int], None]]
+    _devices_last_update: set[tuple[int, str]]
     unique_id: Incomplete
     host: Incomplete
     solarlog: Incomplete

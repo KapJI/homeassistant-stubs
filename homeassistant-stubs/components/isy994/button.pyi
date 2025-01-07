@@ -23,7 +23,7 @@ class ISYNodeButtonEntity(ButtonEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _node_enabled: Incomplete
-    _availability_handler: Incomplete
+    _availability_handler: EventListener | None
     def __init__(self, node: Node | ISY | NetworkCommand, name: str, unique_id: str, device_info: DeviceInfo, entity_category: EntityCategory | None = None) -> None: ...
     @property
     def available(self) -> bool: ...

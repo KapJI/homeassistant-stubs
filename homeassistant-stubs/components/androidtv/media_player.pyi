@@ -3,6 +3,7 @@ from .const import CONF_APPS as CONF_APPS, CONF_EXCLUDE_UNNAMED_APPS as CONF_EXC
 from .entity import AndroidTVEntity as AndroidTVEntity, adb_decorator as adb_decorator
 from _typeshed import Incomplete
 from androidtv.setup_async import AndroidTVAsync as AndroidTVAsync, FireTVAsync as FireTVAsync
+from datetime import datetime, timedelta
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND
@@ -29,16 +30,16 @@ class ADBDevice(AndroidTVEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
     _attr_name: Incomplete
     _entry_id: Incomplete
-    _media_image: Incomplete
+    _media_image: tuple[bytes | None, str | None]
     _attr_media_image_hash: Incomplete
-    _app_id_to_name: Incomplete
-    _app_name_to_id: Incomplete
+    _app_id_to_name: dict[str, str]
+    _app_name_to_id: dict[str, str]
     _get_sources: Incomplete
     _exclude_unnamed_apps: Incomplete
-    _screencap_delta: Incomplete
-    _last_screencap: Incomplete
-    turn_on_command: Incomplete
-    turn_off_command: Incomplete
+    _screencap_delta: timedelta | None
+    _last_screencap: datetime | None
+    turn_on_command: str | None
+    turn_off_command: str | None
     _attr_extra_state_attributes: Incomplete
     _failed_connect_count: int
     def __init__(self, entry: AndroidTVConfigEntry) -> None: ...

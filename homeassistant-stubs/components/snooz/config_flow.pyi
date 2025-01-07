@@ -1,5 +1,5 @@
+import asyncio
 from .const import DOMAIN as DOMAIN
-from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfo as BluetoothServiceInfo, async_discovered_service_info as async_discovered_service_info, async_process_advertisements as async_process_advertisements
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
@@ -17,9 +17,9 @@ class DiscoveredSnooz:
 
 class SnoozConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _discovery: Incomplete
-    _discovered_devices: Incomplete
-    _pairing_task: Incomplete
+    _discovery: DiscoveredSnooz | None
+    _discovered_devices: dict[str, DiscoveredSnooz]
+    _pairing_task: asyncio.Task | None
     def __init__(self) -> None: ...
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfo) -> ConfigFlowResult: ...
     async def async_step_bluetooth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

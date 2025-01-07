@@ -1,16 +1,17 @@
+import voluptuous as vol
 from . import const as const, messages as messages
 from .http import WebSocketAdapter as WebSocketAdapter
 from .messages import error_message as error_message, event_message as event_message, message_to_json_bytes as message_to_json_bytes, result_message as result_message
 from .util import describe_request as describe_request
 from _typeshed import Incomplete
 from aiohttp import web as web
-from collections.abc import Callable
+from collections.abc import Callable, Hashable
 from homeassistant.auth.models import RefreshToken as RefreshToken, User as User
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from homeassistant.helpers.http import current_request as current_request
 from homeassistant.util.json import JsonValueType as JsonValueType
-from typing import Any
+from typing import Any, Literal
 
 current_connection: Incomplete
 type MessageHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
@@ -23,12 +24,12 @@ class ActiveConnection:
     send_message: Incomplete
     user: Incomplete
     refresh_token_id: Incomplete
-    subscriptions: Incomplete
+    subscriptions: dict[Hashable, Callable[[], Any]]
     last_id: int
     can_coalesce: bool
-    supported_features: Incomplete
-    handlers: Incomplete
-    binary_handlers: Incomplete
+    supported_features: dict[str, float]
+    handlers: dict[str, tuple[MessageHandler, vol.Schema | Literal[False]]]
+    binary_handlers: list[BinaryHandler | None]
     def __init__(self, logger: WebSocketAdapter, hass: HomeAssistant, send_message: Callable[[bytes | str | dict[str, Any]], None], user: User, refresh_token: RefreshToken) -> None: ...
     def __repr__(self) -> str: ...
     def set_supported_features(self, features: dict[str, float]) -> None: ...

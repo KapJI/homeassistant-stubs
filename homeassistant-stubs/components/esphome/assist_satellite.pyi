@@ -31,10 +31,10 @@ class EsphomeAssistSatellite(EsphomeAssistEntity, assist_satellite.AssistSatelli
     entry_data: Incomplete
     cli: Incomplete
     _is_running: bool
-    _pipeline_task: Incomplete
-    _audio_queue: Incomplete
-    _tts_streaming_task: Incomplete
-    _udp_server: Incomplete
+    _pipeline_task: asyncio.Task | None
+    _audio_queue: asyncio.Queue[bytes | None]
+    _tts_streaming_task: asyncio.Task | None
+    _udp_server: VoiceAssistantUDPServer | None
     _satellite_config: Incomplete
     def __init__(self, config_entry: ConfigEntry, entry_data: RuntimeEntryData) -> None: ...
     @property

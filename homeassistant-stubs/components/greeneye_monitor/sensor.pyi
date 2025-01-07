@@ -21,7 +21,7 @@ class GEMSensor(SensorEntity):
     _monitor_serial_number: Incomplete
     _attr_name: Incomplete
     _sensor_type: Incomplete
-    _sensor: Incomplete
+    _sensor: UnderlyingSensorType
     _number: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, monitor: greeneye.monitor.Monitor, name: str, sensor_type: str, sensor: UnderlyingSensorType, number: int) -> None: ...
@@ -31,7 +31,7 @@ class GEMSensor(SensorEntity):
 class CurrentSensor(GEMSensor):
     _attr_native_unit_of_measurement: Incomplete
     _attr_device_class: Incomplete
-    _sensor: Incomplete
+    _sensor: greeneye.monitor.Channel
     _net_metering: Incomplete
     def __init__(self, monitor: greeneye.monitor.Monitor, number: int, name: str, net_metering: bool) -> None: ...
     @property
@@ -41,7 +41,7 @@ class CurrentSensor(GEMSensor):
 
 class PulseCounter(GEMSensor):
     _attr_icon = COUNTER_ICON
-    _sensor: Incomplete
+    _sensor: greeneye.monitor.PulseCounter
     _counted_quantity_per_pulse: Incomplete
     _time_unit: Incomplete
     _attr_native_unit_of_measurement: Incomplete
@@ -55,7 +55,7 @@ class PulseCounter(GEMSensor):
 
 class TemperatureSensor(GEMSensor):
     _attr_device_class: Incomplete
-    _sensor: Incomplete
+    _sensor: greeneye.monitor.TemperatureSensor
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, monitor: greeneye.monitor.Monitor, number: int, name: str, unit: str) -> None: ...
     @property
@@ -64,7 +64,7 @@ class TemperatureSensor(GEMSensor):
 class VoltageSensor(GEMSensor):
     _attr_native_unit_of_measurement: Incomplete
     _attr_device_class: Incomplete
-    _sensor: Incomplete
+    _sensor: greeneye.monitor.VoltageSensor
     def __init__(self, monitor: greeneye.monitor.Monitor, number: int, name: str) -> None: ...
     @property
     def native_value(self) -> float | None: ...

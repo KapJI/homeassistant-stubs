@@ -18,7 +18,7 @@ def _create_raw_value(xknx: XKNX, config: ConfigType) -> RawValue: ...
 
 class KNXSelect(KnxYamlEntity, SelectEntity, RestoreEntity):
     _device: RawValue
-    _option_payloads: Incomplete
+    _option_payloads: dict[str, int]
     _attr_options: Incomplete
     _attr_current_option: Incomplete
     _attr_entity_category: Incomplete

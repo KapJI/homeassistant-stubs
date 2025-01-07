@@ -15,7 +15,7 @@ _LOGGER: Incomplete
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     _exchange_finished_task: asyncio.Task[bool] | None
-    _device_flow: Incomplete
+    _device_flow: DeviceFlow | None
     _web_auth: bool
     def __init__(self) -> None: ...
     @property

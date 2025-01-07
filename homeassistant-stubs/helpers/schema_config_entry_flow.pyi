@@ -33,7 +33,7 @@ class SchemaCommonFlowHandler:
     _flow: Incomplete
     _handler: Incomplete
     _options: Incomplete
-    _flow_state: Incomplete
+    _flow_state: dict[str, Any]
     def __init__(self, handler: SchemaConfigFlowHandler | SchemaOptionsFlowHandler, flow: Mapping[str, SchemaFlowStep], options: dict[str, Any] | None) -> None: ...
     @property
     def parent_handler(self) -> SchemaConfigFlowHandler | SchemaOptionsFlowHandler: ...

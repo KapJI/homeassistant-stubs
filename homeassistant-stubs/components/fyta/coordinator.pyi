@@ -14,8 +14,8 @@ _LOGGER: Incomplete
 class FytaCoordinator(DataUpdateCoordinator[dict[int, Plant]]):
     config_entry: FytaConfigEntry
     fyta: Incomplete
-    _plants_last_update: Incomplete
-    new_device_callbacks: Incomplete
+    _plants_last_update: set[int]
+    new_device_callbacks: list[Callable[[int], None]]
     def __init__(self, hass: HomeAssistant, fyta: FytaConnector) -> None: ...
     data: Incomplete
     async def _async_update_data(self) -> dict[int, Plant]: ...

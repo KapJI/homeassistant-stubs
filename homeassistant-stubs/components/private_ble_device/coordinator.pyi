@@ -14,14 +14,14 @@ def async_last_service_info(hass: HomeAssistant, irk: bytes) -> bluetooth.Blueto
 
 class PrivateDevicesCoordinator:
     hass: Incomplete
-    _irks: Incomplete
-    _unavailable_callbacks: Incomplete
-    _service_info_callbacks: Incomplete
-    _mac_to_irk: Incomplete
-    _irk_to_mac: Incomplete
-    _ignored: Incomplete
-    _unavailability_trackers: Incomplete
-    _listener_cancel: Incomplete
+    _irks: dict[bytes, Cipher]
+    _unavailable_callbacks: dict[bytes, list[UnavailableCallback]]
+    _service_info_callbacks: dict[bytes, list[bluetooth.BluetoothCallback]]
+    _mac_to_irk: dict[str, bytes]
+    _irk_to_mac: dict[bytes, str]
+    _ignored: dict[str, Cancellable]
+    _unavailability_trackers: dict[bytes, Cancellable]
+    _listener_cancel: Cancellable | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     def _async_ensure_started(self) -> None: ...
     def _async_ensure_stopped(self) -> None: ...

@@ -31,11 +31,11 @@ class HomeAccessory(Accessory):
     driver: HomeDriver
     _reload_on_change_attrs: Incomplete
     config: Incomplete
-    device_id: Incomplete
+    device_id: str | None
     category: Incomplete
     entity_id: Incomplete
     hass: Incomplete
-    _subscriptions: Incomplete
+    _subscriptions: list[CALLBACK_TYPE]
     _char_battery: Incomplete
     _char_charging: Incomplete
     _char_low_battery: Incomplete

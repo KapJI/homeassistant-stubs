@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pybotvac.robot import Robot as Robot
+from typing import Any
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -20,9 +21,9 @@ class NeatoSensor(NeatoEntity, SensorEntity):
     _attr_entity_category: Incomplete
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_available: bool
-    _robot_serial: Incomplete
+    _robot_serial: str
     _attr_unique_id: Incomplete
-    _state: Incomplete
+    _state: dict[str, Any] | None
     def __init__(self, neato: NeatoHub, robot: Robot) -> None: ...
     def update(self) -> None: ...
     @property

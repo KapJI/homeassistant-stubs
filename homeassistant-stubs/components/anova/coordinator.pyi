@@ -12,6 +12,6 @@ class AnovaCoordinator(DataUpdateCoordinator[APCUpdate]):
     config_entry: ConfigEntry
     device_unique_id: Incomplete
     anova_device: Incomplete
-    device_info: Incomplete
+    device_info: DeviceInfo | None
     sensor_data_set: bool
     def __init__(self, hass: HomeAssistant, anova_device: APCWifiDevice) -> None: ...

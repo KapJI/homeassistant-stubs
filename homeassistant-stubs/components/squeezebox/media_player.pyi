@@ -39,8 +39,8 @@ class SqueezeBoxMediaPlayerEntity(CoordinatorEntity[SqueezeBoxPlayerUpdateCoordi
     _attr_name: Incomplete
     _last_update: datetime | None
     _player: Incomplete
-    _query_result: Incomplete
-    _remove_dispatcher: Incomplete
+    _query_result: bool | dict
+    _remove_dispatcher: Callable | None
     _previous_media_position: int
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

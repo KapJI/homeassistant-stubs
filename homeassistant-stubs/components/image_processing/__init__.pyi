@@ -47,11 +47,10 @@ class FaceInformation(TypedDict, total=False):
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class ImageProcessingEntityDescription(EntityDescription, frozen_or_thawed=True):
-    device_class: ImageProcessingDeviceClass | None
-    camera_entity: str | None
-    confidence: float | None
+    device_class: ImageProcessingDeviceClass | None = ...
+    camera_entity: str | None = ...
+    confidence: float | None = ...
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., camera_entity=..., confidence=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., camera_entity=..., confidence=...) -> None: ...
 
 class ImageProcessingEntity(Entity):
     entity_description: ImageProcessingEntityDescription
@@ -71,7 +70,7 @@ class ImageProcessingEntity(Entity):
 
 class ImageProcessingFaceEntity(ImageProcessingEntity):
     _attr_device_class: Incomplete
-    faces: Incomplete
+    faces: list[FaceInformation]
     total_faces: int
     def __init__(self) -> None: ...
     @property

@@ -92,7 +92,7 @@ class ReloadServiceHelper[_T]:
     _service_func: Incomplete
     _service_running: bool
     _service_condition: Incomplete
-    _pending_reload_targets: Incomplete
+    _pending_reload_targets: set[_T]
     _reload_targets_func: Incomplete
     def __init__(self, service_func: Callable[[ServiceCall], Coroutine[Any, Any, Any]], reload_targets_func: Callable[[ServiceCall], set[_T]]) -> None: ...
     async def execute_service(self, service_call: ServiceCall) -> None: ...

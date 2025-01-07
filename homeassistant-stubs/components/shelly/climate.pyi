@@ -4,6 +4,7 @@ from .entity import ShellyRpcEntity as ShellyRpcEntity
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
+from collections.abc import Mapping
 from dataclasses import dataclass
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
@@ -36,12 +37,12 @@ class BlockSleepingClimate(CoordinatorEntity[ShellyBlockCoordinator], RestoreEnt
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
-    block: Incomplete
-    control_result: Incomplete
-    device_block: Incomplete
-    last_state: Incomplete
-    last_state_attributes: Incomplete
-    _preset_modes: Incomplete
+    block: Block | None
+    control_result: dict[str, Any] | None
+    device_block: Block | None
+    last_state: State | None
+    last_state_attributes: Mapping[str, Any]
+    _preset_modes: list[str]
     _last_target_temp: Incomplete
     _attr_name: Incomplete
     _unique_id: Incomplete
@@ -83,7 +84,7 @@ class RpcClimate(ShellyRpcEntity, ClimateEntity):
     _id: Incomplete
     _thermostat_type: Incomplete
     _attr_hvac_modes: Incomplete
-    _humidity_key: Incomplete
+    _humidity_key: str | None
     def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
     @property
     def target_temperature(self) -> float | None: ...

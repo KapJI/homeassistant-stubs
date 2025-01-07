@@ -51,7 +51,7 @@ class IssueRegistryStore(Store[dict[str, list[dict[str, Any]]]]):
 
 class IssueRegistry(BaseRegistry):
     hass: Incomplete
-    issues: Incomplete
+    issues: dict[tuple[str, str], IssueEntry]
     _store: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
     def async_get_issue(self, domain: str, issue_id: str) -> IssueEntry | None: ...

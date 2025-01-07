@@ -29,17 +29,17 @@ PLATFORM_SCHEMA: Incomplete
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class RestSwitch(ManualTriggerEntity, SwitchEntity):
-    _resource: Incomplete
-    _state_resource: Incomplete
-    _method: Incomplete
-    _headers: Incomplete
-    _params: Incomplete
+    _resource: str
+    _state_resource: str
+    _method: str
+    _headers: dict[str, template.Template] | None
+    _params: dict[str, template.Template] | None
     _auth: Incomplete
-    _body_on: Incomplete
-    _body_off: Incomplete
-    _is_on_template: Incomplete
-    _timeout: Incomplete
-    _verify_ssl: Incomplete
+    _body_on: template.Template
+    _body_off: template.Template
+    _is_on_template: template.Template | None
+    _timeout: int
+    _verify_ssl: bool
     def __init__(self, hass: HomeAssistant, config: ConfigType, trigger_entity_config: ConfigType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: bool

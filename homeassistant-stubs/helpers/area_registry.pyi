@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
+from propcache import cached_property as under_cached_property
 from typing import Any, Literal, TypedDict
 
 DATA_REGISTRY: HassKey[AreaRegistry]
@@ -46,6 +47,7 @@ class AreaEntry(NormalizedNameBaseRegistryEntry):
     labels: set[str] = ...
     picture: str | None
     _cache: dict[str, Any] = ...
+    @under_cached_property
     def json_fragment(self) -> json_fragment: ...
     def __init__(self, *, name, created_at=..., modified_at=..., aliases, floor_id, icon, id, labels=..., picture) -> None: ...
 
@@ -53,8 +55,8 @@ class AreaRegistryStore(Store[AreasRegistryStoreData]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> AreasRegistryStoreData: ...
 
 class AreaRegistryItems(NormalizedNameBaseRegistryItems[AreaEntry]):
-    _labels_index: Incomplete
-    _floors_index: Incomplete
+    _labels_index: RegistryIndexType
+    _floors_index: RegistryIndexType
     def __init__(self) -> None: ...
     def _index_entry(self, key: str, entry: AreaEntry) -> None: ...
     def _unindex_entry(self, key: str, replacement_entry: AreaEntry | None = None) -> None: ...

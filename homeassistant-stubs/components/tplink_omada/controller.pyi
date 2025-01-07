@@ -8,7 +8,7 @@ class OmadaSiteController:
     _gateway_coordinator: OmadaGatewayCoordinator | None
     _hass: Incomplete
     _omada_client: Incomplete
-    _switch_port_coordinators: Incomplete
+    _switch_port_coordinators: dict[str, OmadaSwitchPortCoordinator]
     _devices_coordinator: Incomplete
     _clients_coordinator: Incomplete
     def __init__(self, hass: HomeAssistant, omada_client: OmadaSiteClient) -> None: ...

@@ -1,3 +1,4 @@
+import asyncio
 from . import AmcrestDevice as AmcrestDevice
 from .const import CAMERAS as CAMERAS, CAMERA_WEB_SESSION_TIMEOUT as CAMERA_WEB_SESSION_TIMEOUT, COMM_TIMEOUT as COMM_TIMEOUT, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, RESOLUTION_TO_STREAM as RESOLUTION_TO_STREAM, SERVICE_UPDATE as SERVICE_UPDATE, SNAPSHOT_TIMEOUT as SNAPSHOT_TIMEOUT
 from .helpers import log_update_error as log_update_error, service_signal as service_signal
@@ -68,14 +69,14 @@ class AmcrestCam(Camera):
     _control_light: Incomplete
     _is_recording: bool
     _motion_detection_enabled: bool
-    _brand: Incomplete
-    _model: Incomplete
-    _audio_enabled: Incomplete
-    _motion_recording_enabled: Incomplete
-    _color_bw: Incomplete
-    _rtsp_url: Incomplete
-    _snapshot_task: Incomplete
-    _unsub_dispatcher: Incomplete
+    _brand: str | None
+    _model: str | None
+    _audio_enabled: bool | None
+    _motion_recording_enabled: bool | None
+    _color_bw: str | None
+    _rtsp_url: str | None
+    _snapshot_task: asyncio.tasks.Task | None
+    _unsub_dispatcher: list[Callable[[], None]]
     def __init__(self, name: str, device: AmcrestDevice, ffmpeg: FFmpegManager) -> None: ...
     def _check_snapshot_ok(self) -> None: ...
     async def _async_get_image(self) -> bytes | None: ...

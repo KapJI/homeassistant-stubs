@@ -20,11 +20,11 @@ DEFAULT_SAVE_DELAY: int
 class AuthStore:
     hass: Incomplete
     _loaded: bool
-    _users: Incomplete
-    _groups: Incomplete
-    _perm_lookup: Incomplete
+    _users: dict[str, models.User]
+    _groups: dict[str, models.Group]
+    _perm_lookup: PermissionLookup
     _store: Incomplete
-    _token_id_to_user_id: Incomplete
+    _token_id_to_user_id: dict[str, str]
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def async_get_groups(self) -> list[models.Group]: ...
     async def async_get_group(self, group_id: str) -> models.Group | None: ...

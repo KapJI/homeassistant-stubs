@@ -24,7 +24,7 @@ class AmbientStation:
     _entry_setup_complete: bool
     _hass: Incomplete
     _ws_reconnect_delay: Incomplete
-    stations: Incomplete
+    stations: dict[str, dict]
     websocket: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, websocket: Websocket) -> None: ...
     async def ws_connect(self) -> None: ...

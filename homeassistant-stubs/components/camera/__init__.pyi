@@ -1,3 +1,5 @@
+import asyncio
+import collections
 from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, CameraState as CameraState, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, StreamType as StreamType
 from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
@@ -26,6 +28,7 @@ from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
+from propcache import cached_property, under_cached_property
 from typing import Any, Final
 from webrtc_models import RTCIceCandidateInit as RTCIceCandidateInit
 
@@ -60,7 +63,6 @@ CAMERA_SERVICE_RECORD: VolDictType
 
 class CameraEntityDescription(EntityDescription, frozen_or_thawed=True):
     def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
-    def __replace__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 class Image:
     content_type: str
@@ -103,27 +105,38 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_state: None
     _attr_supported_features: CameraEntityFeature
     __supports_stream: CameraEntityFeature | None
-    _cache: Incomplete
-    stream: Incomplete
-    stream_options: Incomplete
-    content_type: Incomplete
-    access_tokens: Incomplete
+    _cache: dict[str, Any]
+    stream: Stream | None
+    stream_options: dict[str, str | bool | float]
+    content_type: str
+    access_tokens: collections.deque
     _warned_old_signature: bool
-    _create_stream_lock: Incomplete
-    _webrtc_provider: Incomplete
-    _legacy_webrtc_provider: Incomplete
+    _create_stream_lock: asyncio.Lock | None
+    _webrtc_provider: CameraWebRTCProvider | None
+    _legacy_webrtc_provider: CameraWebRTCLegacyProvider | None
     _supports_native_sync_webrtc: Incomplete
     _supports_native_async_webrtc: Incomplete
     _deprecate_attr_frontend_stream_type_logged: bool
     def __init__(self) -> None: ...
+    @cached_property
     def entity_picture(self) -> str: ...
+    @cached_property
     def use_stream_for_stills(self) -> bool: ...
+    @cached_property
     def supported_features(self) -> CameraEntityFeature: ...
+    @property
+    def supported_features_compat(self) -> CameraEntityFeature: ...
+    @cached_property
     def is_recording(self) -> bool: ...
+    @cached_property
     def is_streaming(self) -> bool: ...
+    @cached_property
     def brand(self) -> str | None: ...
+    @cached_property
     def motion_detection_enabled(self) -> bool: ...
+    @cached_property
     def model(self) -> str | None: ...
+    @cached_property
     def frame_interval(self) -> float: ...
     @property
     def frontend_stream_type(self) -> StreamType | None: ...
@@ -139,6 +152,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def handle_async_mjpeg_stream(self, request: web.Request) -> web.StreamResponse | None: ...
     @property
     def state(self) -> str: ...
+    @cached_property
     def is_on(self) -> bool: ...
     def turn_off(self) -> None: ...
     async def async_turn_off(self) -> None: ...
@@ -159,6 +173,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def async_on_webrtc_candidate(self, session_id: str, candidate: RTCIceCandidateInit) -> None: ...
     def close_webrtc_session(self, session_id: str) -> None: ...
     def _invalidate_camera_capabilities_cache(self) -> None: ...
+    @under_cached_property
     def camera_capabilities(self) -> CameraCapabilities: ...
     def async_write_ha_state(self) -> None: ...
 

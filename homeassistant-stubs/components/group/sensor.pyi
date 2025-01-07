@@ -57,16 +57,16 @@ class SensorGroup(GroupEntity, SensorEntity):
     _configured_state_class: Incomplete
     _configured_device_class: Incomplete
     _configured_unit_of_measurement: Incomplete
-    _valid_units: Incomplete
+    _valid_units: set[str | None]
     _can_convert: bool
     _attr_name: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     _ignore_non_numeric: Incomplete
     mode: Incomplete
-    _state_calc: Incomplete
-    _state_incorrect: Incomplete
-    _extra_state_attribute: Incomplete
+    _state_calc: Callable[[list[tuple[str, float, State]]], tuple[dict[str, str | None], float | None]]
+    _state_incorrect: set[str]
+    _extra_state_attribute: dict[str, Any]
     def __init__(self, hass: HomeAssistant, unique_id: str | None, name: str, entity_ids: list[str], ignore_non_numeric: bool, sensor_type: str, unit_of_measurement: str | None, state_class: SensorStateClass | None, device_class: SensorDeviceClass | None) -> None: ...
     _attr_state_class: Incomplete
     _attr_device_class: Incomplete

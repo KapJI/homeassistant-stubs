@@ -1,6 +1,7 @@
 import asyncio
 from .const import HA_MANAGED_API_PORT as HA_MANAGED_API_PORT, HA_MANAGED_URL as HA_MANAGED_URL
 from _typeshed import Incomplete
+from collections import deque
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -25,12 +26,12 @@ def _create_temp_file(api_ip: str) -> str: ...
 class Server:
     _hass: Incomplete
     _binary: Incomplete
-    _log_buffer: Incomplete
-    _process: Incomplete
+    _log_buffer: deque[str]
+    _process: asyncio.subprocess.Process | None
     _startup_complete: Incomplete
     _api_ip: Incomplete
-    _watchdog_task: Incomplete
-    _watchdog_tasks: Incomplete
+    _watchdog_task: asyncio.Task | None
+    _watchdog_tasks: list[asyncio.Task]
     def __init__(self, hass: HomeAssistant, binary: str, *, enable_ui: bool = False) -> None: ...
     async def start(self) -> None: ...
     async def _start(self) -> None: ...

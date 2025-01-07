@@ -26,10 +26,10 @@ class SynologyDSMFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SynologyDSMOptionsFlowHandler: ...
-    saved_user_input: Incomplete
-    discovered_conf: Incomplete
-    reauth_conf: Incomplete
-    reauth_reason: Incomplete
+    saved_user_input: dict[str, Any]
+    discovered_conf: dict[str, Any]
+    reauth_conf: Mapping[str, Any]
+    reauth_reason: str | None
     def __init__(self) -> None: ...
     def _show_form(self, step_id: str, user_input: dict[str, Any] | None = None, errors: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_validate_input_create_entry(self, user_input: dict[str, Any], step_id: str) -> ConfigFlowResult: ...

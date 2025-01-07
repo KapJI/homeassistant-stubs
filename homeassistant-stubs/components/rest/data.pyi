@@ -22,10 +22,10 @@ class RestData:
     _timeout: Incomplete
     _verify_ssl: Incomplete
     _ssl_cipher_list: Incomplete
-    _async_client: Incomplete
-    data: Incomplete
-    last_exception: Incomplete
-    headers: Incomplete
+    _async_client: httpx.AsyncClient | None
+    data: str | None
+    last_exception: Exception | None
+    headers: httpx.Headers | None
     def __init__(self, hass: HomeAssistant, method: str, resource: str, encoding: str, auth: httpx.DigestAuth | tuple[str, str] | None, headers: dict[str, str] | None, params: dict[str, str] | None, data: str | None, verify_ssl: bool, ssl_cipher_list: str, timeout: int = ...) -> None: ...
     def set_payload(self, payload: str) -> None: ...
     @property

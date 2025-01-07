@@ -17,13 +17,13 @@ class ConnectError(IntegrationError): ...
 
 class DlnaDmrFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
-    _discoveries: Incomplete
-    _location: Incomplete
-    _udn: Incomplete
-    _device_type: Incomplete
-    _name: Incomplete
-    _mac: Incomplete
-    _options: Incomplete
+    _discoveries: dict[str, ssdp.SsdpServiceInfo]
+    _location: str | None
+    _udn: str | None
+    _device_type: str | None
+    _name: str | None
+    _mac: str | None
+    _options: dict[str, Any]
     def __init__(self) -> None: ...
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...

@@ -81,7 +81,7 @@ class ShellyRpcEntity(CoordinatorEntity[ShellyRpcCoordinator]):
 class ShellyBlockAttributeEntity(ShellyBlockEntity, Entity):
     entity_description: BlockEntityDescription
     attribute: Incomplete
-    _attr_unique_id: Incomplete
+    _attr_unique_id: str
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockEntityDescription) -> None: ...
     @property
@@ -113,8 +113,8 @@ class ShellyRpcAttributeEntity(ShellyRpcEntity, Entity):
     _last_value: Incomplete
     _id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
-    option_map: Incomplete
-    reversed_option_map: Incomplete
+    option_map: dict[str, str]
+    reversed_option_map: dict[str, str]
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
     @property
     def sub_status(self) -> Any: ...
@@ -124,10 +124,10 @@ class ShellyRpcAttributeEntity(ShellyRpcEntity, Entity):
     def available(self) -> bool: ...
 
 class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity):
-    last_state: Incomplete
+    last_state: State | None
     coordinator: Incomplete
     attribute: Incomplete
-    block: Incomplete
+    block: Block | None
     entity_description: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
@@ -138,7 +138,7 @@ class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity):
 
 class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity):
     entity_description: RpcEntityDescription
-    last_state: Incomplete
+    last_state: State | None
     coordinator: Incomplete
     key: Incomplete
     attribute: Incomplete

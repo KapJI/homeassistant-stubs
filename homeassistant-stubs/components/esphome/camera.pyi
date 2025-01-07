@@ -1,3 +1,4 @@
+import asyncio
 from .entity import EsphomeEntity as EsphomeEntity, platform_async_setup_entry as platform_async_setup_entry
 from _typeshed import Incomplete
 from aioesphomeapi import CameraInfo, CameraState
@@ -10,7 +11,7 @@ from typing import Any
 
 class EsphomeCamera(Camera, EsphomeEntity[CameraInfo, CameraState]):
     _loop: Incomplete
-    _image_futures: Incomplete
+    _image_futures: list[asyncio.Future[bool | None]]
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     def _set_futures(self, result: bool) -> None: ...
     def _on_device_update(self) -> None: ...

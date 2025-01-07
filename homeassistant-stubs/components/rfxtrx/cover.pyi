@@ -18,7 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class RfxtrxCover(RfxtrxCommandEntity, CoverEntity):
     _device: rfxtrxmod.RollerTrolDevice | rfxtrxmod.RfyDevice | rfxtrxmod.LightingDevice
     _venetian_blind_mode: Incomplete
-    _attr_is_closed: bool
+    _attr_is_closed: bool | None
     _attr_supported_features: Incomplete
     def __init__(self, device: rfxtrxmod.RFXtrxDevice, device_id: DeviceTuple, event: rfxtrxmod.RFXtrxEvent = None, venetian_blind_mode: str | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...

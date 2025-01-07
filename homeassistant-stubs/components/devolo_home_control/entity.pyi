@@ -17,9 +17,9 @@ class DevoloDeviceEntity(Entity):
     _attr_should_poll: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    subscriber: Incomplete
+    subscriber: Subscriber | None
     sync_callback: Incomplete
-    _value: Incomplete
+    _value: float
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

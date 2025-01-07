@@ -4,6 +4,7 @@ from collections.abc import AsyncIterator, Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from pathlib import Path
+from propcache import cached_property
 from typing import Any, Protocol
 
 class BackupAgentError(HomeAssistantError): ...
@@ -14,6 +15,7 @@ class BackupAgentUnreachableError(BackupAgentError):
 class BackupAgent(abc.ABC, metaclass=abc.ABCMeta):
     domain: str
     name: str
+    @cached_property
     def agent_id(self) -> str: ...
     @abc.abstractmethod
     async def async_download_backup(self, backup_id: str, **kwargs: Any) -> AsyncIterator[bytes]: ...

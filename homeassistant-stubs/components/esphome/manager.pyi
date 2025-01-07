@@ -4,7 +4,7 @@ from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, UserService as UserService
+from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, ReconnectLogic, UserService as UserService
 from homeassistant.components import tag as tag, zeroconf as zeroconf
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
@@ -30,9 +30,9 @@ class ESPHomeManager:
     password: Incomplete
     entry: Incomplete
     cli: Incomplete
-    device_id: Incomplete
+    device_id: str | None
     domain_data: Incomplete
-    reconnect_logic: Incomplete
+    reconnect_logic: ReconnectLogic | None
     zeroconf_instance: Incomplete
     entry_data: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ESPHomeConfigEntry, host: str, password: str | None, cli: APIClient, zeroconf_instance: zeroconf.HaZeroconf, domain_data: DomainData) -> None: ...

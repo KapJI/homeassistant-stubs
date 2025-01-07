@@ -52,8 +52,9 @@ source = "vcs"
 prerelease = "allow"
 
 [tool.uv.sources]
-# ddff8dab9ab70bf5ece09650d6b195bf434f7f15   Add --preserve-decorators option
-mypy = { git = "https://github.com/python/mypy", rev = "ddff8dab9ab70bf5ece09650d6b195bf434f7f15" }
+# https://github.com/python/mypy/pull/18430  Improve dataclass init signatures
+# 276189d69ec75cd597516140f4de6909abbc4e8a   Add --preserve-decorators option
+mypy = { git = "https://github.com/python/mypy", rev = "276189d69ec75cd597516140f4de6909abbc4e8a" }
 
 [tool.pylint.format]
 expected-line-ending-format = "LF"

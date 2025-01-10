@@ -18,7 +18,6 @@ from typing import Any, Final
 class SmUpdateEntityDescription(UpdateEntityDescription):
     installed_version: Callable[[Info], str | None]
     fw_list: Callable[[SmFwData], list[Firmware] | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., display_precision=..., installed_version, fw_list) -> None: ...
 
 UPDATE_ENTITIES: Final[Incomplete]
 

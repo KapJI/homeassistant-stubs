@@ -14,13 +14,11 @@ class HistoryStatsState:
     seconds_matched: float | None
     match_count: int | None
     period: tuple[datetime.datetime, datetime.datetime]
-    def __init__(self, seconds_matched, match_count, period) -> None: ...
 
 @dataclass
 class HistoryState:
     state: str
     last_changed: float
-    def __init__(self, state, last_changed) -> None: ...
 
 class HistoryStats:
     hass: Incomplete

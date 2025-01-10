@@ -22,14 +22,12 @@ class BlockingCall:
     strict: bool
     strict_core: bool
     skip_for_tests: bool
-    def __init__(self, original_func, object, function, check_allowed, strict, strict_core, skip_for_tests) -> None: ...
 
 _BLOCKING_CALLS: tuple[BlockingCall, ...]
 
 @dataclass(slots=True)
 class BlockedCalls:
     calls: set[BlockingCall]
-    def __init__(self, calls) -> None: ...
 
 _BLOCKED_CALLS: Incomplete
 

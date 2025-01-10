@@ -18,14 +18,12 @@ class ReolinkSelectEntityDescription(SelectEntityDescription, ReolinkChannelEnti
     get_options: list[str] | Callable[[Host, int], list[str]]
     method: Callable[[Host, int, str], Any]
     value: Callable[[Host, int], str] | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., options=..., get_options, method, value=...) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkChimeSelectEntityDescription(SelectEntityDescription, ReolinkChimeEntityDescription):
     get_options: list[str]
     method: Callable[[Chime, str], Any]
     value: Callable[[Chime], str]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., options=..., get_options, method, value) -> None: ...
 
 def _get_quick_reply_id(api: Host, ch: int, mess: str) -> int: ...
 

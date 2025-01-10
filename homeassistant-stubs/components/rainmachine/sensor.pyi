@@ -27,12 +27,10 @@ TYPE_ZONE_RUN_COMPLETION_TIME: str
 @dataclass(frozen=True, kw_only=True)
 class RainMachineSensorDataDescription(SensorEntityDescription, RainMachineEntityDescription):
     data_key: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., data_key) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineSensorCompletionTimerDescription(SensorEntityDescription, RainMachineEntityDescription):
     uid: int
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., uid) -> None: ...
 
 SENSOR_DESCRIPTIONS: Incomplete
 

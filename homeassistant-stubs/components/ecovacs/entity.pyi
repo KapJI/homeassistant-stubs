@@ -36,7 +36,6 @@ class EcovacsDescriptionEntity(EcovacsEntity[CapabilityEntity]):
 @dataclass(kw_only=True, frozen=True)
 class EcovacsCapabilityEntityDescription(EntityDescription, Generic[CapabilityEntity]):
     capability_fn: Callable[[Capabilities], CapabilityEntity | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., capability_fn) -> None: ...
 
 class EcovacsLegacyEntity(Entity):
     _attr_has_entity_name: bool

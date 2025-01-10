@@ -13,7 +13,6 @@ class EnhancedAudioChunk:
     audio: bytes
     timestamp_ms: int
     speech_probability: float | None
-    def __init__(self, audio, timestamp_ms, speech_probability) -> None: ...
 
 class AudioEnhancer(ABC, metaclass=abc.ABCMeta):
     auto_gain: Incomplete

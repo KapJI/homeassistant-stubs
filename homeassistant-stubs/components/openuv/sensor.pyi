@@ -19,7 +19,6 @@ EXPOSURE_TYPE_MAP: Incomplete
 class UvLabel:
     value: str
     minimum_index: int
-    def __init__(self, value, minimum_index) -> None: ...
 
 UV_LABEL_DEFINITIONS: Incomplete
 
@@ -28,7 +27,6 @@ def get_uv_label(uv_index: int) -> str: ...
 @dataclass(frozen=True, kw_only=True)
 class OpenUvSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[dict[str, Any]], int | str]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 SENSOR_DESCRIPTIONS: Incomplete
 

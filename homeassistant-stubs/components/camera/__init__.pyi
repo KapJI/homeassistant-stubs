@@ -61,8 +61,7 @@ CAMERA_SERVICE_SNAPSHOT: VolDictType
 CAMERA_SERVICE_PLAY_STREAM: VolDictType
 CAMERA_SERVICE_RECORD: VolDictType
 
-class CameraEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+class CameraEntityDescription(EntityDescription, frozen_or_thawed=True): ...
 
 class Image:
     content_type: str
@@ -76,7 +75,6 @@ class Image:
 @dataclass(frozen=True)
 class CameraCapabilities:
     frontend_stream_types: set[StreamType]
-    def __init__(self, frontend_stream_types) -> None: ...
 
 async def async_request_stream(hass: HomeAssistant, entity_id: str, fmt: str) -> str: ...
 async def _async_get_image(camera: Camera, timeout: int = 10, width: int | None = None, height: int | None = None) -> Image: ...

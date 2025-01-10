@@ -10,10 +10,8 @@ class SpeechMetadata:
     sample_rate: AudioSampleRates
     channel: AudioChannels
     def __post_init__(self) -> None: ...
-    def __init__(self, language, format, codec, bit_rate, sample_rate, channel) -> None: ...
 
 @dataclass
 class SpeechResult:
     text: str | None
     result: SpeechResultState
-    def __init__(self, text, result) -> None: ...

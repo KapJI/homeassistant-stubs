@@ -7,4 +7,3 @@ class LD2410BLEData:
     title: str
     device: LD2410BLE
     coordinator: LD2410BLECoordinator
-    def __init__(self, title, device, coordinator) -> None: ...

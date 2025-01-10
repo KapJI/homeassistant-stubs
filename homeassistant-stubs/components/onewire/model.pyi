@@ -8,4 +8,3 @@ class OWDeviceDescription:
     id: str
     path: str
     type: str | None
-    def __init__(self, device_info, family, id, path, type) -> None: ...

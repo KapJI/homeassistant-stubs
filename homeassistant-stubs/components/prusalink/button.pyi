@@ -17,12 +17,10 @@ T = TypeVar('T', PrinterStatus, LegacyPrinterStatus, JobInfo)
 @dataclass(frozen=True)
 class PrusaLinkButtonEntityDescriptionMixin(Generic[T]):
     press_fn: Callable[[PrusaLink], Callable[[int], Coroutine[Any, Any, None]]]
-    def __init__(self, press_fn) -> None: ...
 
 @dataclass(frozen=True)
 class PrusaLinkButtonEntityDescription(ButtonEntityDescription, PrusaLinkButtonEntityDescriptionMixin[T], Generic[T]):
     available_fn: Callable[[T], bool] = ...
-    def __init__(self, press_fn, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_fn=...) -> None: ...
 
 BUTTONS: dict[str, tuple[PrusaLinkButtonEntityDescription, ...]]
 

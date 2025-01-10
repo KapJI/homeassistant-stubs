@@ -16,7 +16,6 @@ class StarlinkData:
     alert: AlertDict
     usage: UsageDict
     consumption: PowerDict
-    def __init__(self, location, sleep, status, obstruction, alert, usage, consumption) -> None: ...
 
 class StarlinkUpdateCoordinator(DataUpdateCoordinator[StarlinkData]):
     channel_context: Incomplete

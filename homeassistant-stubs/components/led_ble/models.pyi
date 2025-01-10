@@ -7,4 +7,3 @@ class LEDBLEData:
     title: str
     device: LEDBLE
     coordinator: DataUpdateCoordinator[None]
-    def __init__(self, title, device, coordinator) -> None: ...

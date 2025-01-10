@@ -21,13 +21,11 @@ class Trackables:
     tracker_details: dict
     hw_info: dict
     pos_report: dict
-    def __init__(self, tracker, trackable, tracker_details, hw_info, pos_report) -> None: ...
 
 @dataclass(slots=True)
 class TractiveData:
     client: TractiveClient
     trackables: list[Trackables]
-    def __init__(self, client, trackables) -> None: ...
 type TractiveConfigEntry = ConfigEntry[TractiveData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry) -> bool: ...

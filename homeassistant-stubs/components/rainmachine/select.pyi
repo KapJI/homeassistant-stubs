@@ -15,19 +15,16 @@ from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_S
 @dataclass(frozen=True, kw_only=True)
 class RainMachineSelectDescription(SelectEntityDescription, RainMachineEntityDescription):
     data_key: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, options=..., data_key) -> None: ...
 
 @dataclass
 class FreezeProtectionSelectOption:
     api_value: float
     imperial_label: str
     metric_label: str
-    def __init__(self, api_value, imperial_label, metric_label) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class FreezeProtectionSelectDescription(RainMachineSelectDescription):
     extended_options: list[FreezeProtectionSelectOption]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, options=..., data_key, extended_options) -> None: ...
 
 TYPE_FREEZE_PROTECTION_TEMPERATURE: str
 SELECT_DESCRIPTIONS: Incomplete

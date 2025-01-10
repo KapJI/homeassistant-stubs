@@ -16,7 +16,6 @@ UPDATE_INTERVAL: Incomplete
 @dataclass
 class IottyData:
     devices: list[Device]
-    def __init__(self, devices) -> None: ...
 
 class IottyDataUpdateCoordinator(DataUpdateCoordinator[IottyData]):
     config_entry: ConfigEntry

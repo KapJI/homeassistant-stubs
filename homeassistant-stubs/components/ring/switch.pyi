@@ -20,7 +20,6 @@ class RingSwitchEntityDescription(SwitchEntityDescription, RingEntityDescription
     is_on_fn: Callable[[RingDeviceT], bool]
     turn_on_fn: Callable[[RingDeviceT], Coroutine[Any, Any, None]]
     turn_off_fn: Callable[[RingDeviceT], Coroutine[Any, Any, None]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=..., exists_fn, unique_id_fn=..., is_on_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 SWITCHES: Sequence[RingSwitchEntityDescription[Any]]
 

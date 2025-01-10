@@ -2,7 +2,7 @@ from .const import CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN, CONF_USER_UUID as C
 from .util import async_get_client_with_credentials as async_get_client_with_credentials
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -15,8 +15,7 @@ REAUTH_SCHEMA: Incomplete
 class CredentialsValidationResult:
     user_uuid: str | None = ...
     refresh_token: str | None = ...
-    errors: dict[str, Any] = ...
-    def __init__(self, *, user_uuid=..., refresh_token=..., errors=...) -> None: ...
+    errors: dict[str, Any] = field(default_factory=dict)
 
 async def async_validate_credentials(hass: HomeAssistant, username: str, password: str) -> CredentialsValidationResult: ...
 

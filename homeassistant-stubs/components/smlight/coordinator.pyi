@@ -18,14 +18,12 @@ from pysmlight.web import Firmware as Firmware
 class SmData:
     sensors: Sensors
     info: Info
-    def __init__(self, sensors, info) -> None: ...
 
 @dataclass
 class SmFwData:
     info: Info
     esp_firmware: list[Firmware] | None
     zb_firmware: list[Firmware] | None
-    def __init__(self, info, esp_firmware, zb_firmware) -> None: ...
 
 class SmBaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=abc.ABCMeta):
     config_entry: SmConfigEntry

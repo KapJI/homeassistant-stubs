@@ -39,13 +39,11 @@ class LLMContext:
     language: str | None
     assistant: str | None
     device_id: str | None
-    def __init__(self, platform, context, user_prompt, language, assistant, device_id) -> None: ...
 
 @dataclass(slots=True)
 class ToolInput:
     tool_name: str
     tool_args: dict[str, Any]
-    def __init__(self, tool_name, tool_args) -> None: ...
 
 class Tool(metaclass=abc.ABCMeta):
     name: str
@@ -63,7 +61,6 @@ class APIInstance:
     tools: list[Tool]
     custom_serializer: Callable[[Any], Any] | None = ...
     async def async_call_tool(self, tool_input: ToolInput) -> JsonObjectType: ...
-    def __init__(self, api, api_prompt, llm_context, tools, custom_serializer=...) -> None: ...
 
 @dataclass(slots=True, kw_only=True)
 class API(ABC, metaclass=abc.ABCMeta):
@@ -72,7 +69,6 @@ class API(ABC, metaclass=abc.ABCMeta):
     name: str
     @abstractmethod
     async def async_get_api_instance(self, llm_context: LLMContext) -> APIInstance: ...
-    def __init__(self, *, hass, id, name) -> None: ...
 
 class IntentTool(Tool):
     name: Incomplete

@@ -12,12 +12,10 @@ from typing import Any, Generic
 @dataclass(frozen=True)
 class RequiredKeysMixin(Generic[_RobotT]):
     set_fn: Callable[[_RobotT, bool], Coroutine[Any, Any, bool]]
-    def __init__(self, set_fn) -> None: ...
 
 @dataclass(frozen=True)
 class RobotSwitchEntityDescription(SwitchEntityDescription, RequiredKeysMixin[_RobotT]):
     entity_category: EntityCategory = ...
-    def __init__(self, set_fn, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
 
 ROBOT_SWITCHES: Incomplete
 

@@ -18,7 +18,6 @@ class OnboardingData:
     listeners: list[Callable[[], None]]
     onboarded: bool
     steps: OnboardingStoreData
-    def __init__(self, listeners, onboarded, steps) -> None: ...
 
 class OnboardingStoreData(TypedDict):
     done: list[str]

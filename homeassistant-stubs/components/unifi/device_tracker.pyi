@@ -37,7 +37,6 @@ class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT], 
     ip_address_fn: Callable[[aiounifi.Controller, str], str | None]
     is_connected_fn: Callable[[UnifiHub, str], bool]
     hostname_fn: Callable[[aiounifi.Controller, str], str | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_handler_fn, device_info_fn, object_fn, unique_id_fn, allowed_fn=..., available_fn=..., name_fn=..., supported_fn=..., event_is_on=..., event_to_subscribe=..., should_poll=..., heartbeat_timedelta_fn, ip_address_fn, is_connected_fn, hostname_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 

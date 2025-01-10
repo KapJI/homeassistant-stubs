@@ -24,4 +24,3 @@ class HERETravelTimeConfig:
     route_mode: str
     arrival: time | None
     departure: time | None
-    def __init__(self, destination_latitude, destination_longitude, destination_entity_id, origin_latitude, origin_longitude, origin_entity_id, travel_mode, route_mode, arrival, departure) -> None: ...

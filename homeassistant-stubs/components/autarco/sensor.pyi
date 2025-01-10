@@ -16,21 +16,18 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 @dataclass(frozen=True, kw_only=True)
 class AutarcoBatterySensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Battery], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 SENSORS_BATTERY: tuple[AutarcoBatterySensorEntityDescription, ...]
 
 @dataclass(frozen=True, kw_only=True)
 class AutarcoSolarSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Solar], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 SENSORS_SOLAR: tuple[AutarcoSolarSensorEntityDescription, ...]
 
 @dataclass(frozen=True, kw_only=True)
 class AutarcoInverterSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Inverter], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 SENSORS_INVERTER: tuple[AutarcoInverterSensorEntityDescription, ...]
 

@@ -18,7 +18,6 @@ class MastodonData:
     instance: dict
     account: dict
     coordinator: MastodonCoordinator
-    def __init__(self, client, instance, account, coordinator) -> None: ...
 type MastodonConfigEntry = ConfigEntry[MastodonData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: MastodonConfigEntry) -> bool: ...

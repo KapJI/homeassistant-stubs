@@ -8,7 +8,7 @@ from aiohttp import web
 from av import Packet as Packet, VideoCodecContext as VideoCodecContext
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine, Iterable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import IntEnum
 from homeassistant.components.camera import DynamicStreamSettings as DynamicStreamSettings
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
@@ -37,7 +37,6 @@ class StreamSettings:
     part_target_duration: float
     hls_advance_part_limit: int
     hls_part_timeout: float
-    def __init__(self, ll_hls, min_segment_duration, part_target_duration, hls_advance_part_limit, hls_part_timeout) -> None: ...
 
 STREAM_SETTINGS_NON_LL_HLS: Incomplete
 
@@ -46,7 +45,6 @@ class Part:
     duration: float
     has_keyframe: bool
     data: bytes
-    def __init__(self, duration, has_keyframe, data) -> None: ...
 
 @dataclass(slots=True)
 class Segment:
@@ -56,9 +54,9 @@ class Segment:
     start_time: datetime.datetime
     _stream_outputs: Iterable[StreamOutput]
     duration: float = ...
-    parts: list[Part] = ...
-    hls_playlist_template: list[str] = ...
-    hls_playlist_parts: list[str] = ...
+    parts: list[Part] = field(default_factory=list)
+    hls_playlist_template: list[str] = field(default_factory=list)
+    hls_playlist_parts: list[str] = field(default_factory=list)
     hls_num_parts_rendered: int = ...
     hls_playlist_complete: bool = ...
     def __post_init__(self) -> None: ...
@@ -72,7 +70,6 @@ class Segment:
     def get_data(self) -> bytes: ...
     def _render_hls_template(self, last_stream_id: int, render_parts: bool) -> str: ...
     def render_hls(self, last_stream_id: int, render_parts: bool, add_hint: bool) -> str: ...
-    def __init__(self, sequence, init, stream_id, start_time, _stream_outputs, duration=..., parts=..., hls_playlist_template=..., hls_playlist_parts=..., hls_num_parts_rendered=..., hls_playlist_complete=...) -> None: ...
 
 class IdleTimer:
     _hass: Incomplete

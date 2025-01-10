@@ -1,6 +1,6 @@
 from .const import CONF_POLLING as CONF_POLLING, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DATE as ATTR_DATE, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TIME as ATTR_TIME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
@@ -33,9 +33,8 @@ PLATFORMS: Incomplete
 class AbodeSystem:
     abode: Abode
     polling: bool
-    entity_ids: set[str | None] = ...
+    entity_ids: set[str | None] = field(default_factory=set)
     logout_listener: CALLBACK_TYPE | None = ...
-    def __init__(self, abode, polling, entity_ids=..., logout_listener=...) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

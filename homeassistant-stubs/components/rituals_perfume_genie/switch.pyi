@@ -16,7 +16,6 @@ class RitualsSwitchEntityDescription(SwitchEntityDescription):
     is_on_fn: Callable[[Diffuser], bool]
     turn_on_fn: Callable[[Diffuser], Awaitable[None]]
     turn_off_fn: Callable[[Diffuser], Awaitable[None]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., is_on_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

@@ -13,7 +13,6 @@ WAIT_FOR_PAIRING_TIMEOUT: int
 class DiscoveredSnooz:
     info: BluetoothServiceInfo
     device: SnoozAdvertisementData
-    def __init__(self, info, device) -> None: ...
 
 class SnoozConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

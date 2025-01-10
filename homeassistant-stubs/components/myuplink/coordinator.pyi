@@ -13,7 +13,6 @@ class CoordinatorData:
     devices: dict[str, Device]
     points: dict[str, dict[str, DevicePoint]]
     time: datetime
-    def __init__(self, systems, devices, points, time) -> None: ...
 
 class MyUplinkDataCoordinator(DataUpdateCoordinator[CoordinatorData]):
     api: Incomplete

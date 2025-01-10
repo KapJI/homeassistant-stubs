@@ -24,29 +24,25 @@ class AssistSatelliteState(StrEnum):
     PROCESSING = 'processing'
     RESPONDING = 'responding'
 
-class AssistSatelliteEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+class AssistSatelliteEntityDescription(EntityDescription, frozen_or_thawed=True): ...
 
 @dataclass(frozen=True)
 class AssistSatelliteWakeWord:
     id: str
     wake_word: str
     trained_languages: list[str]
-    def __init__(self, id, wake_word, trained_languages) -> None: ...
 
 @dataclass
 class AssistSatelliteConfiguration:
     available_wake_words: list[AssistSatelliteWakeWord]
     active_wake_words: list[str]
     max_active_wake_words: int
-    def __init__(self, available_wake_words, active_wake_words, max_active_wake_words) -> None: ...
 
 @dataclass
 class AssistSatelliteAnnouncement:
     message: str
     media_id: str
     media_id_source: Literal['url', 'media_id', 'tts']
-    def __init__(self, message, media_id, media_id_source) -> None: ...
 
 class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     entity_description: AssistSatelliteEntityDescription

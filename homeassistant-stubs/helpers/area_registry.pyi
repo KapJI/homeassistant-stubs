@@ -6,7 +6,7 @@ from .storage import Store as Store
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
@@ -44,12 +44,11 @@ class AreaEntry(NormalizedNameBaseRegistryEntry):
     floor_id: str | None
     icon: str | None
     id: str
-    labels: set[str] = ...
+    labels: set[str] = field(default_factory=set)
     picture: str | None
-    _cache: dict[str, Any] = ...
+    _cache: dict[str, Any] = field(default_factory=dict, compare=False, init=False)
     @under_cached_property
     def json_fragment(self) -> json_fragment: ...
-    def __init__(self, *, name, created_at=..., modified_at=..., aliases, floor_id, icon, id, labels=..., picture) -> None: ...
 
 class AreaRegistryStore(Store[AreasRegistryStoreData]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> AreasRegistryStoreData: ...

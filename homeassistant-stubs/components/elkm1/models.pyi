@@ -10,4 +10,3 @@ class ELKM1Data:
     auto_configure: bool
     config: dict[str, Any]
     keypads: dict[str, Any]
-    def __init__(self, elk, prefix, mac, auto_configure, config, keypads) -> None: ...

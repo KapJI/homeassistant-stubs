@@ -15,7 +15,6 @@ from typing import Final
 @dataclass(frozen=True, kw_only=True)
 class QswButtonDescription(ButtonEntityDescription):
     press_action: Callable[[QnapQswApi], Awaitable[bool]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., press_action) -> None: ...
 
 BUTTON_TYPES: Final[tuple[QswButtonDescription, ...]]
 

@@ -23,7 +23,6 @@ class GroupAddressInfo:
     dpt_main: int | None
     dpt_sub: int | None
     transcoder: type[DPTBase] | None
-    def __init__(self, address, name, description, dpt_main, dpt_sub, transcoder) -> None: ...
 
 def _create_group_address_info(ga_model: GroupAddressModel) -> GroupAddressInfo: ...
 

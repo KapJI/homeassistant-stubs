@@ -36,7 +36,6 @@ class _ColumnTypesForDialect:
     big_int_type: str
     timestamp_type: str
     context_bin_type: str
-    def __init__(self, big_int_type, timestamp_type, context_bin_type) -> None: ...
 
 _MYSQL_COLUMN_TYPES: Incomplete
 _POSTGRESQL_COLUMN_TYPES: Incomplete
@@ -58,7 +57,6 @@ class SchemaValidationStatus:
     non_live_data_migration_needed: bool
     schema_errors: set[str]
     start_version: int
-    def __init__(self, *, current_version, initial_version, migration_needed, non_live_data_migration_needed, schema_errors, start_version) -> None: ...
 
 def _schema_is_current(current_version: int) -> bool: ...
 def validate_db_schema(hass: HomeAssistant, instance: Recorder, session_maker: Callable[[], Session]) -> SchemaValidationStatus | None: ...
@@ -263,18 +261,15 @@ class MigrationTask(RecorderTask):
     migrator: BaseRunTimeMigration
     commit_before = ...
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, migrator) -> None: ...
 
 @dataclass(slots=True)
 class CommitBeforeMigrationTask(MigrationTask):
     commit_before = ...
-    def __init__(self, migrator) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class DataMigrationStatus:
     needs_migrate: bool
     migration_done: bool
-    def __init__(self, *, needs_migrate, migration_done) -> None: ...
 
 class BaseMigration(ABC, metaclass=abc.ABCMeta):
     index_to_drop: tuple[str, str, type[DeclarativeBase]] | None

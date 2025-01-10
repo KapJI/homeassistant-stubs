@@ -24,12 +24,10 @@ SENSOR_KIND_UPTIME: str
 @dataclass(frozen=True, kw_only=True)
 class PairedSensorDescription(SensorEntityDescription):
     value_fn: Callable[[dict[str, Any]], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ValveControllerSensorDescription(SensorEntityDescription, ValveControllerEntityDescription):
     value_fn: Callable[[dict[str, Any]], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 PAIRED_SENSOR_DESCRIPTIONS: Incomplete
 VALVE_CONTROLLER_DESCRIPTIONS: Incomplete

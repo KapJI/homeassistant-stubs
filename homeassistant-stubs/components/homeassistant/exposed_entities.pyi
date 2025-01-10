@@ -27,13 +27,11 @@ DEFAULT_EXPOSED_ASSISTANT: Incomplete
 class AssistantPreferences:
     expose_new: bool
     def to_json(self) -> dict[str, Any]: ...
-    def __init__(self, expose_new) -> None: ...
 
 @dataclasses.dataclass(frozen=True)
 class ExposedEntity:
     assistants: dict[str, dict[str, Any]]
     def to_json(self) -> dict[str, Any]: ...
-    def __init__(self, assistants) -> None: ...
 
 class SerializedExposedEntities(TypedDict):
     assistants: dict[str, dict[str, Any]]

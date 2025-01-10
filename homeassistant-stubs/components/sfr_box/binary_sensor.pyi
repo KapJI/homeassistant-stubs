@@ -16,7 +16,6 @@ from sfrbox_api.models import DslInfo, FtthInfo, SystemInfo as SystemInfo, WanIn
 @dataclass(frozen=True, kw_only=True)
 class SFRBoxBinarySensorEntityDescription[_T](BinarySensorEntityDescription):
     value_fn: Callable[[_T], bool | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
 DSL_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[DslInfo], ...]
 FTTH_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[FtthInfo], ...]

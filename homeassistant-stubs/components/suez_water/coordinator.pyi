@@ -15,14 +15,12 @@ class SuezWaterAggregatedAttributes:
     this_year_overall: dict[str, float]
     history: dict[str, float]
     highest_monthly_consumption: float
-    def __init__(self, this_month_consumption, previous_month_consumption, last_year_overall, this_year_overall, history, highest_monthly_consumption) -> None: ...
 
 @dataclass
 class SuezWaterData:
     aggregated_value: float
     aggregated_attr: SuezWaterAggregatedAttributes
     price: float
-    def __init__(self, aggregated_value, aggregated_attr, price) -> None: ...
 type SuezWaterConfigEntry = ConfigEntry[SuezWaterCoordinator]
 
 class SuezWaterCoordinator(DataUpdateCoordinator[SuezWaterData]):

@@ -16,7 +16,6 @@ _SIGNAL_STATE: str
 @dataclass(frozen=True, kw_only=True)
 class MadvrBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[MadVRCoordinator], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
 BINARY_SENSORS: tuple[MadvrBinarySensorEntityDescription, ...]
 

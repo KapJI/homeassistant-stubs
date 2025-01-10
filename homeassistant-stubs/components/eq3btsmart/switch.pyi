@@ -15,7 +15,6 @@ from typing import Any
 class Eq3SwitchEntityDescription(SwitchEntityDescription):
     toggle_func: Callable[[Thermostat], Callable[[bool], Awaitable[None]]]
     value_func: Callable[[Status], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., toggle_func, value_func) -> None: ...
 
 SWITCH_ENTITY_DESCRIPTIONS: Incomplete
 

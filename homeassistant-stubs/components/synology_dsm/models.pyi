@@ -8,4 +8,3 @@ class SynologyDSMData:
     coordinator_central: SynologyDSMCentralUpdateCoordinator
     coordinator_cameras: SynologyDSMCameraUpdateCoordinator | None
     coordinator_switches: SynologyDSMSwitchUpdateCoordinator | None
-    def __init__(self, api, coordinator_central, coordinator_cameras, coordinator_switches) -> None: ...

@@ -18,7 +18,6 @@ class FullySwitchEntityDescription(SwitchEntityDescription):
     is_on_fn: Callable[[dict[str, Any]], Any]
     mqtt_on_event: str | None
     mqtt_off_event: str | None
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., on_action, off_action, is_on_fn, mqtt_on_event, mqtt_off_event) -> None: ...
 
 SWITCHES: tuple[FullySwitchEntityDescription, ...]
 

@@ -21,13 +21,11 @@ class HomeWizardSensorEntityDescription(SensorEntityDescription):
     enabled_fn: Callable[[Data], bool] = ...
     has_fn: Callable[[Data], bool]
     value_fn: Callable[[Data], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., enabled_fn=..., has_fn, value_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class HomeWizardExternalSensorEntityDescription(SensorEntityDescription):
     suggested_device_class: SensorDeviceClass
     device_name: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., suggested_device_class, device_name) -> None: ...
 
 def to_percentage(value: float | None) -> float | None: ...
 

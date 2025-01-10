@@ -8,7 +8,6 @@ class FitbitProfile:
     encoded_id: str
     display_name: str
     locale: str | None
-    def __init__(self, encoded_id, display_name, locale) -> None: ...
 
 @dataclass
 class FitbitDevice:
@@ -17,7 +16,6 @@ class FitbitDevice:
     battery_level: int
     battery: str
     type: str
-    def __init__(self, id, device_version, battery_level, battery, type) -> None: ...
 
 @dataclass
 class FitbitConfig:
@@ -26,6 +24,5 @@ class FitbitConfig:
     scopes: set[FitbitScope]
     def is_explicit_enable(self, key: str) -> bool: ...
     def is_allowed_resource(self, scope: FitbitScope | None, key: str) -> bool: ...
-    def __init__(self, clock_format, monitored_resources, scopes) -> None: ...
 
 def config_from_entry_data(data: Mapping[str, Any]) -> FitbitConfig: ...

@@ -15,21 +15,18 @@ class PeblarRuntimeData:
     system_information: PeblarSystemInformation
     user_configuration_coordinator: PeblarUserConfigurationDataUpdateCoordinator
     version_coordinator: PeblarVersionDataUpdateCoordinator
-    def __init__(self, *, data_coordinator, system_information, user_configuration_coordinator, version_coordinator) -> None: ...
 type PeblarConfigEntry = ConfigEntry[PeblarRuntimeData]
 
 @dataclass(kw_only=True, frozen=True)
 class PeblarVersionInformation:
     current: PeblarVersions
     available: PeblarVersions
-    def __init__(self, *, current, available) -> None: ...
 
 @dataclass(kw_only=True)
 class PeblarData:
     ev: PeblarEVInterface
     meter: PeblarMeter
     system: PeblarSystem
-    def __init__(self, *, ev, meter, system) -> None: ...
 
 def _coordinator_exception_handler[_DataUpdateCoordinatorT: PeblarDataUpdateCoordinator | PeblarVersionDataUpdateCoordinator | PeblarUserConfigurationDataUpdateCoordinator, **_P](func: Callable[Concatenate[_DataUpdateCoordinatorT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_DataUpdateCoordinatorT, _P], Coroutine[Any, Any, Any]]: ...
 

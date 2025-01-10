@@ -25,7 +25,6 @@ def _process_group_platform(hass: HomeAssistant, domain: str, platform: GroupPro
 class SingleStateType:
     on_state: str
     off_state: str
-    def __init__(self, on_state, off_state) -> None: ...
 
 class GroupIntegrationRegistry:
     hass: Incomplete

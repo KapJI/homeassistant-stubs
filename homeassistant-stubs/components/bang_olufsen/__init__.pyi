@@ -13,7 +13,6 @@ from mozart_api.mozart_client import MozartClient
 class BangOlufsenData:
     websocket: BangOlufsenWebsocket
     client: MozartClient
-    def __init__(self, websocket, client) -> None: ...
 type BangOlufsenConfigEntry = ConfigEntry[BangOlufsenData]
 
 PLATFORMS: Incomplete

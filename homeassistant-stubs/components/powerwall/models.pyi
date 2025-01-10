@@ -14,7 +14,6 @@ class PowerwallBaseInfo:
     serial_numbers: list[str]
     url: str
     batteries: dict[str, BatteryResponse]
-    def __init__(self, gateway_din, site_info, status, device_type, serial_numbers, url, batteries) -> None: ...
 
 @dataclass
 class PowerwallData:
@@ -25,7 +24,6 @@ class PowerwallData:
     grid_status: GridStatus
     backup_reserve: float | None
     batteries: dict[str, BatteryResponse]
-    def __init__(self, charge, site_master, meters, grid_services_active, grid_status, backup_reserve, batteries) -> None: ...
 
 class PowerwallRuntimeData(TypedDict):
     coordinator: DataUpdateCoordinator[PowerwallData] | None

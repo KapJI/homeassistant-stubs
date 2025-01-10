@@ -13,4 +13,3 @@ class ClimateExtraAttributes(TypedDict, total=False):
 @dataclass(frozen=True)
 class FritzEntityDescriptionMixinBase:
     suitable: Callable[[FritzhomeDevice], bool]
-    def __init__(self, suitable) -> None: ...

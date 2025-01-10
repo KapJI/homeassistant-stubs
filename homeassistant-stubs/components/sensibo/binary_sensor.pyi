@@ -15,12 +15,10 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class SensiboMotionBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[MotionSensor], bool | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class SensiboDeviceBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[SensiboDevice], bool | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
 FILTER_CLEAN_REQUIRED_DESCRIPTION: Incomplete
 MOTION_SENSOR_TYPES: tuple[SensiboMotionBinarySensorEntityDescription, ...]

@@ -18,7 +18,6 @@ from typing import Any, Final
 class ShellyButtonDescription[_ShellyCoordinatorT: ShellyBlockCoordinator | ShellyRpcCoordinator](ButtonEntityDescription):
     press_action: Callable[[_ShellyCoordinatorT], Coroutine[Any, Any, None]]
     supported: Callable[[_ShellyCoordinatorT], bool] = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., press_action, supported=...) -> None: ...
 
 BUTTONS: Final[list[ShellyButtonDescription[Any]]]
 

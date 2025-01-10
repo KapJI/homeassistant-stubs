@@ -18,7 +18,6 @@ class StarlinkTimeEntityDescription(TimeEntityDescription):
     value_fn: Callable[[StarlinkData, tzinfo], time | None]
     update_fn: Callable[[StarlinkUpdateCoordinator, time], Awaitable[None]]
     available_fn: Callable[[StarlinkData], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, update_fn, available_fn) -> None: ...
 
 class StarlinkTimeEntity(StarlinkEntity, TimeEntity):
     entity_description: StarlinkTimeEntityDescription

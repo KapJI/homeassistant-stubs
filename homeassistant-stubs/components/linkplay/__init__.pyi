@@ -11,7 +11,6 @@ from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
 @dataclass
 class LinkPlayData:
     bridge: LinkPlayBridge
-    def __init__(self, bridge) -> None: ...
 type LinkPlayConfigEntry = ConfigEntry[LinkPlayData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry) -> bool: ...

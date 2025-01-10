@@ -16,7 +16,6 @@ class Discovery:
     name: str
     discovery_info: BluetoothServiceInfo
     device: AirthingsDevice
-    def __init__(self, name, discovery_info, device) -> None: ...
 
 def get_name(device: AirthingsDevice) -> str: ...
 

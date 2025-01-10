@@ -22,21 +22,18 @@ from typing import Any, Protocol, TypedDict
 @dataclass(frozen=True, kw_only=True, slots=True)
 class NewBackup:
     backup_job_id: str
-    def __init__(self, *, backup_job_id) -> None: ...
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class ManagerBackup(AgentBackup):
     agent_ids: list[str]
     failed_agent_ids: list[str]
     with_automatic_settings: bool | None
-    def __init__(self, *, addons, backup_id, date, database_included, extra_metadata, folders, homeassistant_included, homeassistant_version, name, protected, size, agent_ids, failed_agent_ids, with_automatic_settings) -> None: ...
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class WrittenBackup:
     backup: AgentBackup
     open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]]
     release_stream: Callable[[], Coroutine[Any, Any, None]]
-    def __init__(self, *, backup, open_stream, release_stream) -> None: ...
 
 class BackupManagerState(StrEnum):
     IDLE = 'idle'
@@ -88,33 +85,28 @@ class RestoreBackupState(StrEnum):
 @dataclass(frozen=True, kw_only=True, slots=True)
 class ManagerStateEvent:
     manager_state: BackupManagerState
-    def __init__(self, *, manager_state) -> None: ...
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class IdleEvent(ManagerStateEvent):
     manager_state: BackupManagerState = ...
-    def __init__(self, *, manager_state=...) -> None: ...
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class CreateBackupEvent(ManagerStateEvent):
     manager_state: BackupManagerState = ...
     stage: CreateBackupStage | None
     state: CreateBackupState
-    def __init__(self, *, manager_state=..., stage, state) -> None: ...
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class ReceiveBackupEvent(ManagerStateEvent):
     manager_state: BackupManagerState = ...
     stage: ReceiveBackupStage | None
     state: ReceiveBackupState
-    def __init__(self, *, manager_state=..., stage, state) -> None: ...
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class RestoreBackupEvent(ManagerStateEvent):
     manager_state: BackupManagerState = ...
     stage: RestoreBackupStage | None
     state: RestoreBackupState
-    def __init__(self, *, manager_state=..., stage, state) -> None: ...
 
 class BackupPlatformProtocol(Protocol):
     async def async_pre_backup(self, hass: HomeAssistant) -> None: ...
@@ -192,7 +184,6 @@ class KnownBackup:
     backup_id: str
     failed_agent_ids: list[str]
     def to_dict(self) -> StoredKnownBackup: ...
-    def __init__(self, *, backup_id, failed_agent_ids) -> None: ...
 
 class StoredKnownBackup(TypedDict):
     backup_id: str

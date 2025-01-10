@@ -71,7 +71,6 @@ class StaticPathConfig:
     url_path: str
     path: str
     cache_headers: bool = ...
-    def __init__(self, url_path, path, cache_headers=...) -> None: ...
 
 _STATIC_CLASSES: Incomplete
 

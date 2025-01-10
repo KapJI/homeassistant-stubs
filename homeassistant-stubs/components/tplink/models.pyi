@@ -8,4 +8,3 @@ class TPLinkData:
     children_coordinators: list[TPLinkDataUpdateCoordinator]
     camera_credentials: Credentials | None
     live_view: bool | None
-    def __init__(self, parent_coordinator, children_coordinators, camera_credentials, live_view) -> None: ...

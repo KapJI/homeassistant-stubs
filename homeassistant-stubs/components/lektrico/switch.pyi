@@ -14,7 +14,6 @@ from typing import Any
 class LektricoSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[dict[str, Any]], bool]
     set_value_fn: Callable[[Device, dict[Any, Any], bool], Coroutine[Any, Any, Any]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, set_value_fn) -> None: ...
 
 SWITCHS_FOR_ALL_CHARGERS: tuple[LektricoSwitchEntityDescription, ...]
 SWITCHS_FOR_3_PHASE_CHARGERS: tuple[LektricoSwitchEntityDescription, ...]

@@ -9,4 +9,3 @@ class AnovaData:
     api_jwt: str
     coordinators: list[AnovaCoordinator]
     api: AnovaApi
-    def __init__(self, api_jwt, coordinators, api) -> None: ...

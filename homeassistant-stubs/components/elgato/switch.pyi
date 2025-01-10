@@ -18,7 +18,6 @@ class ElgatoSwitchEntityDescription(SwitchEntityDescription):
     has_fn: Callable[[ElgatoData], bool] = ...
     is_on_fn: Callable[[ElgatoData], bool | None]
     set_fn: Callable[[Elgato, bool], Awaitable[Any]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., has_fn=..., is_on_fn, set_fn) -> None: ...
 
 SWITCHES: Incomplete
 

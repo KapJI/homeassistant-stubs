@@ -17,12 +17,10 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class ReolinkSensorEntityDescription(SensorEntityDescription, ReolinkChannelEntityDescription):
     value: Callable[[Host, int], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkHostSensorEntityDescription(SensorEntityDescription, ReolinkHostEntityDescription):
     value: Callable[[Host], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value) -> None: ...
 
 SENSORS: Incomplete
 HOST_SENSORS: Incomplete

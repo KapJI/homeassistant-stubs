@@ -12,7 +12,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 @dataclass(frozen=True, kw_only=True)
 class NotionEntityDescription:
     listener_kind: ListenerKind
-    def __init__(self, *, listener_kind) -> None: ...
 
 class NotionEntity(CoordinatorEntity[NotionDataUpdateCoordinator]):
     _attr_has_entity_name: bool

@@ -16,14 +16,12 @@ _LOGGER: Incomplete
 class DoorbirdEvent:
     event: str
     event_type: str
-    def __init__(self, event, event_type) -> None: ...
 
 @dataclass(slots=True)
 class DoorbirdEventConfig:
     events: list[DoorbirdEvent]
     schedule: list[DoorBirdScheduleEntry]
     unconfigured_favorites: defaultdict[str, list[str]]
-    def __init__(self, events, schedule, unconfigured_favorites) -> None: ...
 
 class ConfiguredDoorBird:
     _hass: Incomplete

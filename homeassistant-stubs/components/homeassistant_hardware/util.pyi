@@ -20,6 +20,5 @@ class FirmwareGuess:
     is_running: bool
     firmware_type: ApplicationType
     source: str
-    def __init__(self, *, is_running, firmware_type, source) -> None: ...
 
 async def guess_firmware_type(hass: HomeAssistant, device_path: str) -> FirmwareGuess: ...

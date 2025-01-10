@@ -33,7 +33,6 @@ class DeconzBinarySensorDescription[_T: (Alarm, CarbonMonoxide, Fire, GenericFla
     old_unique_id_suffix: str = ...
     update_key: str
     value_fn: Callable[[_T], bool | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., instance_check=..., name_suffix=..., old_unique_id_suffix=..., update_key, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[DeconzBinarySensorDescription, ...]
 

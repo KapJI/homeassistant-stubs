@@ -7,4 +7,3 @@ class WizData:
     coordinator: DataUpdateCoordinator[float | None]
     bulb: wizlight
     scenes: list
-    def __init__(self, coordinator, bulb, scenes) -> None: ...

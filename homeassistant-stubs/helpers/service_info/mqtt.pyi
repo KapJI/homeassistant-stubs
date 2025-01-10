@@ -10,4 +10,3 @@ class MqttServiceInfo(BaseServiceInfo):
     retain: bool
     subscribed_topic: str
     timestamp: float
-    def __init__(self, topic, payload, qos, retain, subscribed_topic, timestamp) -> None: ...

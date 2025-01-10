@@ -19,7 +19,6 @@ class KaleidescapeDeviceInfo:
     name: str
     model: str
     server_only: bool
-    def __init__(self, host, serial, name, model, server_only) -> None: ...
 
 class UnsupportedError(HomeAssistantError): ...
 

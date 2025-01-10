@@ -18,7 +18,6 @@ class PeblarNumberEntityDescription(NumberEntityDescription):
     native_max_value_fn: Callable[[PeblarRuntimeData], int]
     set_value_fn: Callable[[PeblarApi, float], Awaitable[Any]]
     value_fn: Callable[[PeblarData], int | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., native_max_value_fn, set_value_fn, value_fn) -> None: ...
 
 DESCRIPTIONS: Incomplete
 

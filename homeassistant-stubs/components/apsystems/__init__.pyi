@@ -11,7 +11,6 @@ PLATFORMS: list[Platform]
 class ApSystemsData:
     coordinator: ApSystemsDataCoordinator
     device_id: str
-    def __init__(self, coordinator, device_id) -> None: ...
 type ApSystemsConfigEntry = ConfigEntry[ApSystemsData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ApSystemsConfigEntry) -> bool: ...

@@ -15,7 +15,6 @@ from py_dormakaba_dkey.commands import Notifications as Notifications
 @dataclass(frozen=True, kw_only=True)
 class DormakabaDkeyBinarySensorDescription(BinarySensorEntityDescription):
     is_on: Callable[[Notifications], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., is_on) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

@@ -6,4 +6,3 @@ class BAFDiscovery:
     name: str
     uuid: str
     model: str
-    def __init__(self, ip_address, name, uuid, model) -> None: ...

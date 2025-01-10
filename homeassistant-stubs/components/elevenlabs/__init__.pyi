@@ -15,7 +15,6 @@ async def get_model_by_id(client: AsyncElevenLabs, model_id: str) -> Model | Non
 class ElevenLabsData:
     client: AsyncElevenLabs
     model: Model
-    def __init__(self, *, client, model) -> None: ...
 type ElevenLabsConfigEntry = ConfigEntry[ElevenLabsData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ElevenLabsConfigEntry) -> bool: ...

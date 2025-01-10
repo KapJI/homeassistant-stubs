@@ -29,14 +29,12 @@ class ChangeStatisticsUnitTask(RecorderTask):
     new_unit_of_measurement: str
     old_unit_of_measurement: str
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, statistic_id, new_unit_of_measurement, old_unit_of_measurement) -> None: ...
 
 @dataclass(slots=True)
 class ClearStatisticsTask(RecorderTask):
     on_done: Callable[[], None] | None
     statistic_ids: list[str]
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, on_done, statistic_ids) -> None: ...
 
 @dataclass(slots=True)
 class UpdateStatisticsMetadataTask(RecorderTask):
@@ -45,14 +43,12 @@ class UpdateStatisticsMetadataTask(RecorderTask):
     new_statistic_id: str | None | UndefinedType
     new_unit_of_measurement: str | None | UndefinedType
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, on_done, statistic_id, new_statistic_id, new_unit_of_measurement) -> None: ...
 
 @dataclass(slots=True)
 class UpdateStatesMetadataTask(RecorderTask):
     entity_id: str
     new_entity_id: str
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, entity_id, new_entity_id) -> None: ...
 
 @dataclass(slots=True)
 class PurgeTask(RecorderTask):
@@ -60,14 +56,12 @@ class PurgeTask(RecorderTask):
     repack: bool
     apply_filter: bool
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, purge_before, repack, apply_filter) -> None: ...
 
 @dataclass(slots=True)
 class PurgeEntitiesTask(RecorderTask):
     entity_filter: Callable[[str], bool]
     purge_before: datetime
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, entity_filter, purge_before) -> None: ...
 
 @dataclass(slots=True)
 class PerodicCleanupTask(RecorderTask):
@@ -78,7 +72,6 @@ class StatisticsTask(RecorderTask):
     start: datetime
     fire_events: bool
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, start, fire_events) -> None: ...
 
 @dataclass(slots=True)
 class CompileMissingStatisticsTask(RecorderTask):
@@ -90,7 +83,6 @@ class ImportStatisticsTask(RecorderTask):
     statistics: Iterable[StatisticData]
     table: type[Statistics | StatisticsShortTerm]
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, metadata, statistics, table) -> None: ...
 
 @dataclass(slots=True)
 class AdjustStatisticsTask(RecorderTask):
@@ -99,7 +91,6 @@ class AdjustStatisticsTask(RecorderTask):
     sum_adjustment: float
     adjustment_unit: str
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, statistic_id, start_time, sum_adjustment, adjustment_unit) -> None: ...
 
 @dataclass(slots=True)
 class WaitTask(RecorderTask):
@@ -112,7 +103,6 @@ class DatabaseLockTask(RecorderTask):
     database_unlock: threading.Event
     queue_overflow: bool
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, database_locked, database_unlock, queue_overflow) -> None: ...
 
 @dataclass(slots=True)
 class StopTask(RecorderTask):
@@ -135,13 +125,11 @@ class AddRecorderPlatformTask(RecorderTask):
     platform: Any
     commit_before = ...
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, domain, platform) -> None: ...
 
 @dataclass(slots=True)
 class SynchronizeTask(RecorderTask):
     event: asyncio.Event
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, event) -> None: ...
 
 @dataclass(slots=True)
 class AdjustLRUSizeTask(RecorderTask):
@@ -152,4 +140,3 @@ class AdjustLRUSizeTask(RecorderTask):
 class RefreshEventTypesTask(RecorderTask):
     event_types: list[EventType[Any] | str]
     def run(self, instance: Recorder) -> None: ...
-    def __init__(self, event_types) -> None: ...

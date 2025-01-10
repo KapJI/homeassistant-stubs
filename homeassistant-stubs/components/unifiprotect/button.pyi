@@ -17,7 +17,6 @@ _LOGGER: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class ProtectButtonEntityDescription(ProtectSetableKeysMixin[T], ButtonEntityDescription):
     ufp_press: str | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., ufp_required_field=..., ufp_value=..., ufp_value_fn=..., ufp_enabled=..., ufp_perm=..., has_required=..., get_ufp_enabled=..., ufp_set_method=..., ufp_set_method_fn=..., ufp_press=...) -> None: ...
 
 DEVICE_CLASS_CHIME_BUTTON: Final[str]
 ALL_DEVICE_BUTTONS: tuple[ProtectButtonEntityDescription, ...]

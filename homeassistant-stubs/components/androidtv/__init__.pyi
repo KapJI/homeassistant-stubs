@@ -24,7 +24,6 @@ _LOGGER: Incomplete
 class AndroidTVRuntimeData:
     aftv: AndroidTVAsync | FireTVAsync
     dev_opt: dict[str, Any]
-    def __init__(self, aftv, dev_opt) -> None: ...
 AndroidTVConfigEntry = ConfigEntry[AndroidTVRuntimeData]
 
 def get_androidtv_mac(dev_props: dict[str, Any]) -> str | None: ...

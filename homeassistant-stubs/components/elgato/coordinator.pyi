@@ -15,7 +15,6 @@ class ElgatoData:
     info: Info
     settings: Settings
     state: State
-    def __init__(self, battery, info, settings, state) -> None: ...
 
 class ElgatoDataUpdateCoordinator(DataUpdateCoordinator[ElgatoData]):
     config_entry: ElgatoConfigEntry

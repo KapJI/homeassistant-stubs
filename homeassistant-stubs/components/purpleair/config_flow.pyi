@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from aiopurpleair import API
 from aiopurpleair.endpoints.sensors import NearbySensorResult as NearbySensorResult
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
@@ -30,8 +30,7 @@ def async_get_remove_sensor_schema(sensors: list[SelectOptionDict]) -> vol.Schem
 @dataclass
 class ValidationResult:
     data: Any = ...
-    errors: dict[str, Any] = ...
-    def __init__(self, data=..., errors=...) -> None: ...
+    errors: dict[str, Any] = field(default_factory=dict)
 
 async def async_validate_api_key(hass: HomeAssistant, api_key: str) -> ValidationResult: ...
 async def async_validate_coordinates(hass: HomeAssistant, api_key: str, latitude: float, longitude: float, distance: float) -> ValidationResult: ...

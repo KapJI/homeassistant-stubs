@@ -4,7 +4,7 @@ from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsTy
 from _typeshed import Incomplete
 from collections import defaultdict
 from collections.abc import Callable, Coroutine
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_ENABLED as CONF_ENABLED, CONF_ID as CONF_ID, CONF_PLATFORM as CONF_PLATFORM, CONF_VARIABLES as CONF_VARIABLES
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
@@ -38,9 +38,8 @@ class TriggerInfo(TypedDict):
 
 @dataclass(slots=True)
 class PluggableActionsEntry:
-    plugs: set[PluggableAction] = ...
-    actions: dict[object, tuple[HassJob[[dict[str, Any], Context | None], Coroutine[Any, Any, None]], dict[str, Any]]] = ...
-    def __init__(self, plugs=..., actions=...) -> None: ...
+    plugs: set[PluggableAction] = field(default_factory=set)
+    actions: dict[object, tuple[HassJob[[dict[str, Any], Context | None], Coroutine[Any, Any, None]], dict[str, Any]]] = field(default_factory=dict)
 
 class PluggableAction:
     _entry: PluggableActionsEntry | None

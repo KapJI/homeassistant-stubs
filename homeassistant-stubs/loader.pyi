@@ -33,7 +33,6 @@ BASE_PRELOAD_PLATFORMS: Incomplete
 class BlockedIntegration:
     lowest_good_version: AwesomeVersion | None
     reason: str
-    def __init__(self, lowest_good_version, reason) -> None: ...
 
 BLOCKED_CUSTOM_INTEGRATIONS: dict[str, BlockedIntegration]
 DATA_COMPONENTS: HassKey[dict[str, ModuleType | ComponentProtocol]]
@@ -86,7 +85,6 @@ class USBMatcher(USBMatcherRequired, USBMatcherOptional): ...
 class HomeKitDiscoveredIntegration:
     domain: str
     always_discover: bool
-    def __init__(self, domain, always_discover) -> None: ...
 
 class ZeroconfMatcher(TypedDict, total=False):
     domain: str

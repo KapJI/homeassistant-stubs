@@ -17,12 +17,10 @@ T = TypeVar('T', PrinterStatus, LegacyPrinterStatus, JobInfo, PrinterInfo)
 @dataclass(frozen=True)
 class PrusaLinkBinarySensorEntityDescriptionMixin(Generic[T]):
     value_fn: Callable[[T], bool]
-    def __init__(self, value_fn) -> None: ...
 
 @dataclass(frozen=True)
 class PrusaLinkBinarySensorEntityDescription(BinarySensorEntityDescription, PrusaLinkBinarySensorEntityDescriptionMixin[T], Generic[T]):
     available_fn: Callable[[T], bool] = ...
-    def __init__(self, value_fn, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_fn=...) -> None: ...
 
 BINARY_SENSORS: dict[str, tuple[PrusaLinkBinarySensorEntityDescription, ...]]
 

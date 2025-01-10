@@ -21,18 +21,15 @@ def get_blockprices(entity: NordpoolBlockPriceSensor) -> dict[str, dict[str, tup
 @dataclass(frozen=True, kw_only=True)
 class NordpoolDefaultSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[NordpoolSensor], str | float | datetime | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class NordpoolPricesSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[NordpoolPriceSensor], float | None]
     extra_fn: Callable[[NordpoolPriceSensor], dict[str, str] | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn, extra_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class NordpoolBlockPricesSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[tuple[datetime, datetime, float, float, float]], float | datetime | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 DEFAULT_SENSOR_TYPES: tuple[NordpoolDefaultSensorEntityDescription, ...]
 PRICES_SENSOR_TYPES: tuple[NordpoolPricesSensorEntityDescription, ...]

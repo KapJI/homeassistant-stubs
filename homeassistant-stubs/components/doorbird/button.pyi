@@ -15,7 +15,6 @@ IR_RELAY: str
 @dataclass(frozen=True, kw_only=True)
 class DoorbirdButtonEntityDescription(ButtonEntityDescription):
     press_action: Callable[[ConfiguredDoorBird, str], Coroutine[Any, Any, bool | None]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., press_action) -> None: ...
 
 RELAY_ENTITY_DESCRIPTION: Incomplete
 BUTTON_DESCRIPTIONS: tuple[DoorbirdButtonEntityDescription, ...]

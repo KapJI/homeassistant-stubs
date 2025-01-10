@@ -25,7 +25,6 @@ class TrainData:
     product_filter: str | None
     departure_time_next: datetime | None
     departure_time_next_next: datetime | None
-    def __init__(self, departure_time, departure_state, cancelled, delayed_time, planned_time, estimated_time, actual_time, other_info, deviation, product_filter, departure_time_next, departure_time_next_next) -> None: ...
 
 _LOGGER: Incomplete
 TIME_BETWEEN_UPDATES: Incomplete

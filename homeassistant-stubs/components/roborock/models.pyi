@@ -10,18 +10,15 @@ class RoborockHassDeviceInfo:
     product: HomeDataProduct
     props: DeviceProp
     def as_dict(self) -> dict[str, dict[str, Any]]: ...
-    def __init__(self, device, network_info, product, props) -> None: ...
 
 @dataclass
 class RoborockA01HassDeviceInfo:
     device: HomeDataDevice
     product: HomeDataProduct
     def as_dict(self) -> dict[str, dict[str, Any]]: ...
-    def __init__(self, device, product) -> None: ...
 
 @dataclass
 class RoborockMapInfo:
     flag: int
     name: str
     rooms: dict[int, str]
-    def __init__(self, flag, name, rooms) -> None: ...

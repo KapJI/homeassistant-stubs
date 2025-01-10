@@ -12,7 +12,6 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class ReolinkCameraEntityDescription(CameraEntityDescription, ReolinkChannelEntityDescription):
     stream: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., stream) -> None: ...
 
 CAMERA_ENTITIES: Incomplete
 

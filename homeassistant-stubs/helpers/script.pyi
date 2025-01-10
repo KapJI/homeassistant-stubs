@@ -160,7 +160,6 @@ class ScriptRunResult:
     conversation_response: str | None | UndefinedType
     service_response: ServiceResponse
     variables: dict[str, Any]
-    def __init__(self, conversation_response, service_response, variables) -> None: ...
 
 class Script:
     top_level: Incomplete

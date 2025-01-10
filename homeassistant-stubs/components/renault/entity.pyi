@@ -9,11 +9,9 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 @dataclass(frozen=True)
 class RenaultDataRequiredKeysMixin:
     coordinator: str
-    def __init__(self, coordinator) -> None: ...
 
 @dataclass(frozen=True)
-class RenaultDataEntityDescription(EntityDescription, RenaultDataRequiredKeysMixin):
-    def __init__(self, coordinator, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+class RenaultDataEntityDescription(EntityDescription, RenaultDataRequiredKeysMixin): ...
 
 class RenaultEntity(Entity):
     _attr_has_entity_name: bool

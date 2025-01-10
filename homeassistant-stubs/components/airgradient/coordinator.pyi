@@ -10,7 +10,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 class AirGradientData:
     measures: Measures
     config: Config
-    def __init__(self, measures, config) -> None: ...
 
 class AirGradientCoordinator(DataUpdateCoordinator[AirGradientData]):
     config_entry: AirGradientConfigEntry

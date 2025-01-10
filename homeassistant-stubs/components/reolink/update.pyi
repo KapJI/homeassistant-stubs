@@ -18,12 +18,9 @@ POLL_AFTER_INSTALL: int
 POLL_PROGRESS: int
 
 @dataclass(frozen=True, kw_only=True)
-class ReolinkUpdateEntityDescription(UpdateEntityDescription, ReolinkChannelEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., display_precision=...) -> None: ...
-
+class ReolinkUpdateEntityDescription(UpdateEntityDescription, ReolinkChannelEntityDescription): ...
 @dataclass(frozen=True, kw_only=True)
-class ReolinkHostUpdateEntityDescription(UpdateEntityDescription, ReolinkHostEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., display_precision=...) -> None: ...
+class ReolinkHostUpdateEntityDescription(UpdateEntityDescription, ReolinkHostEntityDescription): ...
 
 UPDATE_ENTITIES: Incomplete
 HOST_UPDATE_ENTITIES: Incomplete

@@ -14,7 +14,6 @@ from typing import Any
 class LektricoSelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[dict[str, Any]], str]
     set_value_fn: Callable[[Device, int], Coroutine[Any, Any, dict[Any, Any]]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., value_fn, set_value_fn) -> None: ...
 
 LB_MODE_OPTIONS: Incomplete
 SELECTS: tuple[LektricoSelectEntityDescription, ...]

@@ -18,13 +18,11 @@ PARALLEL_UPDATES: int
 class EnvoyRelaySelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[EnvoyDryContactSettings], str]
     update_fn: Callable[[Envoy, EnvoyDryContactSettings, str], Coroutine[Any, Any, dict[str, Any]]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., value_fn, update_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyStorageSettingsSelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[EnvoyStorageSettings], str]
     update_fn: Callable[[Envoy, str], Awaitable[dict[str, Any]]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., value_fn, update_fn) -> None: ...
 
 RELAY_MODE_MAP: Incomplete
 REVERSE_RELAY_MODE_MAP: Incomplete

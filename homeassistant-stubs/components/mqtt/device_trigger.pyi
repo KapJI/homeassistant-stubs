@@ -7,7 +7,7 @@ from .models import DATA_MQTT as DATA_MQTT
 from .schemas import MQTT_ENTITY_DEVICE_INFO_SCHEMA as MQTT_ENTITY_DEVICE_INFO_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_PLATFORM as CONF_PLATFORM, CONF_TYPE as CONF_TYPE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
@@ -34,7 +34,6 @@ class TriggerInstance:
     trigger: Trigger
     remove: CALLBACK_TYPE | None = ...
     async def async_attach_trigger(self) -> None: ...
-    def __init__(self, action, trigger_info, trigger, remove=...) -> None: ...
 
 @dataclass(slots=True, kw_only=True)
 class Trigger:
@@ -48,11 +47,10 @@ class Trigger:
     topic: str | None
     type: str
     value_template: str | None
-    trigger_instances: list[TriggerInstance] = ...
+    trigger_instances: list[TriggerInstance] = field(default_factory=list)
     async def add_trigger(self, action: TriggerActionType, trigger_info: TriggerInfo) -> Callable[[], None]: ...
     async def update_trigger(self, config: ConfigType) -> None: ...
     def detach_trigger(self) -> None: ...
-    def __init__(self, *, device_id, discovery_data=..., discovery_id=..., hass, payload, qos, subtype, topic, type, value_template, trigger_instances=...) -> None: ...
 
 class MqttDeviceTrigger(MqttDiscoveryDeviceUpdateMixin):
     _config: Incomplete

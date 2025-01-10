@@ -17,19 +17,16 @@ PARALLEL_UPDATES: int
 class ReolinkSwitchEntityDescription(SwitchEntityDescription, ReolinkChannelEntityDescription):
     method: Callable[[Host, int, bool], Any]
     value: Callable[[Host, int], bool | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., method, value) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkNVRSwitchEntityDescription(SwitchEntityDescription, ReolinkHostEntityDescription):
     method: Callable[[Host, bool], Any]
     value: Callable[[Host], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., method, value) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkChimeSwitchEntityDescription(SwitchEntityDescription, ReolinkChimeEntityDescription):
     method: Callable[[Chime, bool], Any]
     value: Callable[[Chime], bool | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., method, value) -> None: ...
 
 SWITCH_ENTITIES: Incomplete
 NVR_SWITCH_ENTITIES: Incomplete

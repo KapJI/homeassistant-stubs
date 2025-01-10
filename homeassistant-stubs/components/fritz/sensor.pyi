@@ -37,7 +37,6 @@ def _retrieve_link_attenuation_received_state(status: FritzStatus, last_value: s
 @dataclass(frozen=True, kw_only=True)
 class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescription):
     is_suitable: Callable[[ConnectionInfo], bool] = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., is_suitable=...) -> None: ...
 
 SENSOR_TYPES: tuple[FritzSensorEntityDescription, ...]
 

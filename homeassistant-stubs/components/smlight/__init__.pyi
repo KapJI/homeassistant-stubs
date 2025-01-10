@@ -11,7 +11,6 @@ PLATFORMS: list[Platform]
 class SmlightData:
     data: SmDataUpdateCoordinator
     firmware: SmFirmwareUpdateCoordinator
-    def __init__(self, *, data, firmware) -> None: ...
 type SmConfigEntry = ConfigEntry[SmlightData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry) -> bool: ...

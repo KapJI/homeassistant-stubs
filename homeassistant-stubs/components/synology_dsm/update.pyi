@@ -12,8 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Final
 
 @dataclass(frozen=True, kw_only=True)
-class SynologyDSMUpdateEntityEntityDescription(UpdateEntityDescription, SynologyDSMEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_key, display_precision=...) -> None: ...
+class SynologyDSMUpdateEntityEntityDescription(UpdateEntityDescription, SynologyDSMEntityDescription): ...
 
 UPDATE_ENTITIES: Final[Incomplete]
 

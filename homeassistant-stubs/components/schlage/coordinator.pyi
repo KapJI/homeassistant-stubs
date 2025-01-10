@@ -13,12 +13,10 @@ from pyschlage.log import LockLog as LockLog
 class LockData:
     lock: Lock
     logs: list[LockLog]
-    def __init__(self, lock, logs) -> None: ...
 
 @dataclass
 class SchlageData:
     locks: dict[str, LockData]
-    def __init__(self, locks) -> None: ...
 
 class SchlageDataUpdateCoordinator(DataUpdateCoordinator[SchlageData]):
     config_entry: ConfigEntry

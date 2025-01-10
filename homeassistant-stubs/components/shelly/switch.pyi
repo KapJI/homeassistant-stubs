@@ -14,14 +14,12 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
-class BlockSwitchDescription(BlockEntityDescription, SwitchEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., unit_fn=..., value=..., available=..., removal_condition=..., extra_state_attributes=...) -> None: ...
+class BlockSwitchDescription(BlockEntityDescription, SwitchEntityDescription): ...
 
 MOTION_SWITCH: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
-class RpcSwitchDescription(RpcEntityDescription, SwitchEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., sub_key, value=..., available=..., removal_condition=..., extra_state_attributes=..., use_polling_coordinator=..., supported=..., unit=..., options_fn=...) -> None: ...
+class RpcSwitchDescription(RpcEntityDescription, SwitchEntityDescription): ...
 
 RPC_VIRTUAL_SWITCH: Incomplete
 RPC_SCRIPT_SWITCH: Incomplete

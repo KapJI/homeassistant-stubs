@@ -8,4 +8,3 @@ class MetOfficeData:
     now: Forecast
     forecast: list[Timestep]
     site: Site
-    def __init__(self, now, forecast, site) -> None: ...

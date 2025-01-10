@@ -12,7 +12,6 @@ from typing import Any, Final
 @dataclass(frozen=True, kw_only=True)
 class AirzoneSwitchDescription(SwitchEntityDescription):
     api_param: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_param) -> None: ...
 
 ZONE_SWITCH_TYPES: Final[tuple[AirzoneSwitchDescription, ...]]
 

@@ -31,7 +31,6 @@ class SourceAdapter:
     total_money_key: Literal['stat_cost', 'stat_compensation']
     name_suffix: str
     entity_id_suffix: str
-    def __init__(self, source_type, flow_type, stat_energy_key, total_money_key, name_suffix, entity_id_suffix) -> None: ...
 
 SOURCE_ADAPTERS: Final[Incomplete]
 

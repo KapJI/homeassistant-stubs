@@ -19,21 +19,18 @@ class ReolinkNumberEntityDescription(NumberEntityDescription, ReolinkChannelEnti
     method: Callable[[Host, int, float], Any]
     mode: NumberMode = ...
     value: Callable[[Host, int], float | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., get_max_value=..., get_min_value=..., method, value) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkHostNumberEntityDescription(NumberEntityDescription, ReolinkHostEntityDescription):
     method: Callable[[Host, float], Any]
     mode: NumberMode = ...
     value: Callable[[Host], float | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., method, value) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkChimeNumberEntityDescription(NumberEntityDescription, ReolinkChimeEntityDescription):
     method: Callable[[Chime, float], Any]
     mode: NumberMode = ...
     value: Callable[[Chime], float | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., max_value=..., min_value=..., mode=..., native_max_value=..., native_min_value=..., native_step=..., native_unit_of_measurement=..., step=..., method, value) -> None: ...
 
 NUMBER_ENTITIES: Incomplete
 HOST_NUMBER_ENTITIES: Incomplete

@@ -35,14 +35,12 @@ FRAME_SEPARATOR: Incomplete
 LAST_FRAME_MARKER: Incomplete
 IMAGE_SERVICE_SNAPSHOT: VolDictType
 
-class ImageEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+class ImageEntityDescription(EntityDescription, frozen_or_thawed=True): ...
 
 @dataclass
 class Image:
     content_type: str
     content: bytes
-    def __init__(self, content_type, content) -> None: ...
 
 class ImageContentTypeError(HomeAssistantError): ...
 

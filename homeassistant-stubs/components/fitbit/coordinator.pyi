@@ -21,4 +21,3 @@ class FitbitDeviceCoordinator(DataUpdateCoordinator[dict[str, FitbitDevice]]):
 class FitbitData:
     api: FitbitApi
     device_coordinator: FitbitDeviceCoordinator | None
-    def __init__(self, api, device_coordinator) -> None: ...

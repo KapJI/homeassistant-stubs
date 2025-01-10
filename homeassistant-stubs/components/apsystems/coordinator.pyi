@@ -9,7 +9,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 class ApSystemsSensorData:
     output_data: ReturnOutputData
     alarm_info: ReturnAlarmInfo
-    def __init__(self, output_data, alarm_info) -> None: ...
 
 class ApSystemsDataCoordinator(DataUpdateCoordinator[ApSystemsSensorData]):
     api: Incomplete

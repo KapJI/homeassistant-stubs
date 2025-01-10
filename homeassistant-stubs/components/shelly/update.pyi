@@ -19,13 +19,11 @@ LOGGER: Incomplete
 class RpcUpdateDescription(RpcEntityDescription, UpdateEntityDescription):
     latest_version: Callable[[dict], Any]
     beta: bool
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., display_precision=..., sub_key, value=..., available=..., removal_condition=..., extra_state_attributes=..., use_polling_coordinator=..., supported=..., unit=..., options_fn=..., latest_version, beta) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class RestUpdateDescription(RestEntityDescription, UpdateEntityDescription):
     latest_version: Callable[[dict], Any]
     beta: bool
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., display_precision=..., value=..., extra_state_attributes=..., latest_version, beta) -> None: ...
 
 REST_UPDATES: Final[Incomplete]
 RPC_UPDATES: Final[Incomplete]

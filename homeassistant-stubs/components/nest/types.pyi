@@ -7,5 +7,4 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 class NestData:
     subscriber: GoogleNestSubscriber
     device_manager: DeviceManager
-    def __init__(self, subscriber, device_manager) -> None: ...
 type NestConfigEntry = ConfigEntry[NestData]

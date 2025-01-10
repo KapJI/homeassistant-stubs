@@ -16,12 +16,10 @@ from homeassistant.helpers.typing import StateType as StateType
 @dataclass(frozen=True, kw_only=True)
 class AirGradientMeasurementSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Measures], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class AirGradientConfigSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Config], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 MEASUREMENT_SENSOR_TYPES: tuple[AirGradientMeasurementSensorEntityDescription, ...]
 CONFIG_SENSOR_TYPES: tuple[AirGradientConfigSensorEntityDescription, ...]

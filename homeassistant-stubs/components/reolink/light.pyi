@@ -18,13 +18,11 @@ class ReolinkLightEntityDescription(LightEntityDescription, ReolinkChannelEntity
     is_on_fn: Callable[[Host, int], bool]
     set_brightness_fn: Callable[[Host, int, int], Any] | None = ...
     turn_on_off_fn: Callable[[Host, int, bool], Any]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., get_brightness_fn=..., is_on_fn, set_brightness_fn=..., turn_on_off_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkHostLightEntityDescription(LightEntityDescription, ReolinkHostEntityDescription):
     is_on_fn: Callable[[Host], bool]
     turn_on_off_fn: Callable[[Host, bool], Any]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., is_on_fn, turn_on_off_fn) -> None: ...
 
 LIGHT_ENTITIES: Incomplete
 HOST_LIGHT_ENTITIES: Incomplete

@@ -18,7 +18,6 @@ from typing import Generic
 @dataclass(kw_only=True, frozen=True)
 class EcovacsSensorEntityDescription(EcovacsCapabilityEntityDescription, SensorEntityDescription, Generic[EventT]):
     value_fn: Callable[[EventT], StateType]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., capability_fn, value_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSensorEntityDescription, ...]
 
@@ -26,14 +25,12 @@ ENTITY_DESCRIPTIONS: tuple[EcovacsSensorEntityDescription, ...]
 class EcovacsLifespanSensorEntityDescription(SensorEntityDescription):
     component: LifeSpan
     value_fn: Callable[[LifeSpanEvent], int | float]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., component, value_fn) -> None: ...
 
 LIFESPAN_ENTITY_DESCRIPTIONS: Incomplete
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsLegacyLifespanSensorEntityDescription(SensorEntityDescription):
     component: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., component) -> None: ...
 
 LEGACY_LIFESPAN_SENSORS: Incomplete
 

@@ -18,13 +18,11 @@ class StateChangedData:
     entity_id: str
     old_state: State | None
     new_state: State | None
-    def __init__(self, entity_id, old_state, new_state) -> None: ...
 
 @dataclass
 class ProximityData:
     proximity: dict[str, str | int | None]
     entities: dict[str, dict[str, str | int | None]]
-    def __init__(self, proximity, entities) -> None: ...
 
 DEFAULT_PROXIMITY_DATA: dict[str, str | int | None]
 

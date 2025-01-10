@@ -10,7 +10,6 @@ from typing import Any
 class PlayMedia:
     url: str
     mime_type: str
-    def __init__(self, url, mime_type) -> None: ...
 
 class BrowseMediaSource(BrowseMedia):
     domain: Incomplete
@@ -28,7 +27,6 @@ class MediaSourceItem:
     def async_media_source(self) -> MediaSource: ...
     @classmethod
     def from_uri(cls, hass: HomeAssistant, uri: str, target_media_player: str | None) -> MediaSourceItem: ...
-    def __init__(self, hass, domain, identifier, target_media_player) -> None: ...
 
 class MediaSource(ABC):
     name: str | None

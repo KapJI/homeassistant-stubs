@@ -28,7 +28,6 @@ def process_wifi(strength: StateType) -> str | None: ...
 class NetatmoSensorEntityDescription(SensorEntityDescription):
     netatmo_name: str
     value_fn: Callable[[StateType], StateType] = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., netatmo_name, value_fn=...) -> None: ...
 
 SENSOR_TYPES: tuple[NetatmoSensorEntityDescription, ...]
 SENSOR_TYPES_KEYS: Incomplete
@@ -36,7 +35,6 @@ SENSOR_TYPES_KEYS: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class NetatmoPublicWeatherSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[PublicWeatherArea], dict[str, Any]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 PUBLIC_WEATHER_STATION_TYPES: tuple[NetatmoPublicWeatherSensorEntityDescription, ...]
 BATTERY_SENSOR_DESCRIPTION: Incomplete

@@ -14,11 +14,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, 
 @dataclass(frozen=True)
 class RequiredKeysMixin(Generic[_RobotT]):
     press_fn: Callable[[_RobotT], Coroutine[Any, Any, bool]]
-    def __init__(self, press_fn) -> None: ...
 
 @dataclass(frozen=True)
-class RobotButtonEntityDescription(ButtonEntityDescription, RequiredKeysMixin[_RobotT]):
-    def __init__(self, press_fn, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+class RobotButtonEntityDescription(ButtonEntityDescription, RequiredKeysMixin[_RobotT]): ...
 
 LITTER_ROBOT_BUTTON: Incomplete
 FEEDER_ROBOT_BUTTON: Incomplete

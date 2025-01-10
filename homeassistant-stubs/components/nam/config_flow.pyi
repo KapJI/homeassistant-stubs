@@ -14,7 +14,6 @@ from typing import Any
 class NamConfig:
     mac_address: str
     auth_enabled: bool
-    def __init__(self, mac_address, auth_enabled) -> None: ...
 
 _LOGGER: Incomplete
 AUTH_SCHEMA: Incomplete

@@ -14,7 +14,6 @@ class AnalyticsData:
     addons: dict[str, int]
     core_integrations: dict[str, int]
     custom_integrations: dict[str, int]
-    def __init__(self, active_installations, reports_integrations, addons, core_integrations, custom_integrations) -> None: ...
 
 class HomeassistantAnalyticsDataUpdateCoordinator(DataUpdateCoordinator[AnalyticsData]):
     config_entry: AnalyticsInsightsConfigEntry

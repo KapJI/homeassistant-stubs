@@ -13,11 +13,9 @@ from typing import Final
 @dataclass(frozen=True)
 class FritzEntityDescriptionMixinBinarySensor(FritzEntityDescriptionMixinBase):
     is_on: Callable[[FritzhomeDevice], bool | None]
-    def __init__(self, suitable, is_on) -> None: ...
 
 @dataclass(frozen=True)
-class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescriptionMixinBinarySensor):
-    def __init__(self, suitable, is_on, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescriptionMixinBinarySensor): ...
 
 BINARY_SENSOR_TYPES: Final[tuple[FritzBinarySensorEntityDescription, ...]]
 

@@ -16,7 +16,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 @dataclass(frozen=True)
 class MatterButtonEntityDescription(ButtonEntityDescription, MatterEntityDescription):
     command: Callable[[], Any] | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., measurement_to_ha=..., ha_to_native_value=..., command=...) -> None: ...
 
 class MatterCommandButton(MatterEntity, ButtonEntity):
     entity_description: MatterButtonEntityDescription

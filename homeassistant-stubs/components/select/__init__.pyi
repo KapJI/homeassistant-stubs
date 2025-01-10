@@ -11,7 +11,6 @@ PLATFORM_SCHEMA_BASE: Incomplete
 
 class SelectEntityDescription(EntityDescription, frozen_or_thawed=True):
     options: list[str] | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=...) -> None: ...
 
 class SelectEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete

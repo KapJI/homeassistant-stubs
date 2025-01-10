@@ -25,7 +25,6 @@ SCAN_INTERVAL: Incomplete
 class TrafikverketSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[dict[str, Any]], StateType | datetime]
     info_fn: Callable[[dict[str, Any]], StateType | list] | None
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn, info_fn) -> None: ...
 
 SENSOR_TYPES: tuple[TrafikverketSensorEntityDescription, ...]
 

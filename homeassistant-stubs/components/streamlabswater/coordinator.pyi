@@ -12,7 +12,6 @@ class StreamlabsData:
     daily_usage: float
     monthly_usage: float
     yearly_usage: float
-    def __init__(self, is_away, name, daily_usage, monthly_usage, yearly_usage) -> None: ...
 
 class StreamlabsCoordinator(DataUpdateCoordinator[dict[str, StreamlabsData]]):
     client: Incomplete

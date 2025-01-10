@@ -13,7 +13,6 @@ def _add_ulp_user_infos(bootstrap: Bootstrap, event_data: dict[str, str], ulp_id
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectEventEntityDescription(ProtectEventMixin, EventEntityDescription):
     entity_class: type[ProtectDeviceEntity]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., event_types=..., ufp_required_field=..., ufp_value=..., ufp_value_fn=..., ufp_enabled=..., ufp_perm=..., has_required=..., get_ufp_enabled=..., ufp_event_obj=..., ufp_obj_type=..., entity_class) -> None: ...
 
 class ProtectDeviceRingEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
     entity_description: ProtectEventEntityDescription

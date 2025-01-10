@@ -16,14 +16,12 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnchargeBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[EnvoyEncharge], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
 ENCHARGE_SENSORS: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnpowerBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[EnvoyEnpower], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
 ENPOWER_SENSORS: Incomplete
 

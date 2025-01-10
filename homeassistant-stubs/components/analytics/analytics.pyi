@@ -23,7 +23,6 @@ class AnalyticsData:
     uuid: str | None
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> AnalyticsData: ...
-    def __init__(self, onboarded, preferences, uuid) -> None: ...
 
 class Analytics:
     hass: HomeAssistant

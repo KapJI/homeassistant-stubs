@@ -17,7 +17,6 @@ SCAN_INTERVAL_SETTINGS: Incomplete
 class IronOSCoordinators:
     live_data: IronOSLiveDataCoordinator
     settings: IronOSSettingsCoordinator
-    def __init__(self, live_data, settings) -> None: ...
 
 class IronOSBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT]):
     device_info: DeviceInfoResponse

@@ -15,7 +15,6 @@ class HomeAssistantOverkizData:
     coordinator: OverkizDataUpdateCoordinator
     platforms: defaultdict[Platform, list[Device]]
     scenarios: list[Scenario]
-    def __init__(self, coordinator, platforms, scenarios) -> None: ...
 type OverkizDataConfigEntry = ConfigEntry[HomeAssistantOverkizData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry) -> bool: ...

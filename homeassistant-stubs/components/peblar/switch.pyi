@@ -18,7 +18,6 @@ class PeblarSwitchEntityDescription(SwitchEntityDescription):
     has_fn: Callable[[PeblarRuntimeData], bool] = ...
     is_on_fn: Callable[[PeblarData], bool]
     set_fn: Callable[[PeblarApi, bool], Awaitable[Any]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., has_fn=..., is_on_fn, set_fn) -> None: ...
 
 DESCRIPTIONS: Incomplete
 

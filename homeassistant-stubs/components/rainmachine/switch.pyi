@@ -46,19 +46,16 @@ VEGETATION_MAP: Incomplete
 def raise_on_request_error[_T: RainMachineBaseSwitch, **_P](func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 @dataclass(frozen=True, kw_only=True)
-class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category) -> None: ...
+class RainMachineSwitchDescription(SwitchEntityDescription, RainMachineEntityDescription): ...
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineActivitySwitchDescription(RainMachineSwitchDescription):
     kind: str
     uid: int
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, kind, uid) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineRestrictionSwitchDescription(RainMachineSwitchDescription):
     data_key: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, data_key) -> None: ...
 
 TYPE_RESTRICTIONS_FREEZE_PROTECT_ENABLED: str
 TYPE_RESTRICTIONS_HOT_DAYS_EXTRA_WATERING: str

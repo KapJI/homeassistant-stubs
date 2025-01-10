@@ -83,7 +83,6 @@ class FilterState:
 class _State:
     last_updated: datetime
     state: str | float | int
-    def __init__(self, last_updated, state) -> None: ...
 
 class Filter:
     states: deque[FilterState]

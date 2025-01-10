@@ -17,7 +17,6 @@ class RingData:
     devices: RingDevices
     devices_coordinator: RingDataCoordinator
     listen_coordinator: RingListenCoordinator
-    def __init__(self, api, devices, devices_coordinator, listen_coordinator) -> None: ...
 type RingConfigEntry = ConfigEntry[RingData]
 
 def get_auth_user_agent() -> str: ...

@@ -13,12 +13,9 @@ from uiprotect.data.nvr import UOSDisk as UOSDisk
 _KEY_DOOR: str
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class ProtectBinaryEntityDescription(ProtectEntityDescription, BinarySensorEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., ufp_required_field=..., ufp_value=..., ufp_value_fn=..., ufp_enabled=..., ufp_perm=..., has_required=..., get_ufp_enabled=...) -> None: ...
-
+class ProtectBinaryEntityDescription(ProtectEntityDescription, BinarySensorEntityDescription): ...
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class ProtectBinaryEventEntityDescription(ProtectEventMixin, BinarySensorEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., ufp_required_field=..., ufp_value=..., ufp_value_fn=..., ufp_enabled=..., ufp_perm=..., has_required=..., get_ufp_enabled=..., ufp_event_obj=..., ufp_obj_type=...) -> None: ...
+class ProtectBinaryEventEntityDescription(ProtectEventMixin, BinarySensorEntityDescription): ...
 
 MOUNT_DEVICE_CLASS_MAP: Incomplete
 CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...]

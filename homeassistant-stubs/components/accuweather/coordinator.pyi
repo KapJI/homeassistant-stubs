@@ -16,7 +16,6 @@ _LOGGER: Incomplete
 class AccuWeatherData:
     coordinator_observation: AccuWeatherObservationDataUpdateCoordinator
     coordinator_daily_forecast: AccuWeatherDailyForecastDataUpdateCoordinator
-    def __init__(self, coordinator_observation, coordinator_daily_forecast) -> None: ...
 type AccuWeatherConfigEntry = ConfigEntry[AccuWeatherData]
 
 class AccuWeatherObservationDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):

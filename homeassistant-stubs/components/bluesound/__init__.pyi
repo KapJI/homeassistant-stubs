@@ -16,7 +16,6 @@ PLATFORMS: Incomplete
 class BluesoundRuntimeData:
     player: Player
     sync_status: SyncStatus
-    def __init__(self, player, sync_status) -> None: ...
 type BluesoundConfigEntry = ConfigEntry[BluesoundRuntimeData]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

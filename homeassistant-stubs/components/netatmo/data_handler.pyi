@@ -34,7 +34,6 @@ class NetatmoDevice:
     device: pyatmo.modules.Module
     parent_id: str
     signal_name: str
-    def __init__(self, data_handler, device, parent_id, signal_name) -> None: ...
 
 @dataclass
 class NetatmoHome:
@@ -42,7 +41,6 @@ class NetatmoHome:
     home: pyatmo.Home
     parent_id: str
     signal_name: str
-    def __init__(self, data_handler, home, parent_id, signal_name) -> None: ...
 
 @dataclass
 class NetatmoRoom:
@@ -50,7 +48,6 @@ class NetatmoRoom:
     room: pyatmo.Room
     parent_id: str
     signal_name: str
-    def __init__(self, data_handler, room, parent_id, signal_name) -> None: ...
 
 @dataclass
 class NetatmoPublisher:
@@ -60,7 +57,6 @@ class NetatmoPublisher:
     subscriptions: set[CALLBACK_TYPE | None]
     method: str
     kwargs: dict
-    def __init__(self, name, interval, next_scan, subscriptions, method, kwargs) -> None: ...
 
 class NetatmoDataHandler:
     account: pyatmo.AsyncAccount

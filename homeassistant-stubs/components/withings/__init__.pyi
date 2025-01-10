@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from aiohttp.web import Request as Request, Response as Response
 from aiowithings import WithingsClient
 from collections.abc import Awaitable, Callable as Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.components import cloud as cloud
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -31,9 +31,8 @@ class WithingsData:
     activity_coordinator: WithingsActivityDataUpdateCoordinator
     workout_coordinator: WithingsWorkoutDataUpdateCoordinator
     device_coordinator: WithingsDeviceDataUpdateCoordinator
-    coordinators: set[WithingsDataUpdateCoordinator] = ...
+    coordinators: set[WithingsDataUpdateCoordinator] = field(default_factory=set)
     def __post_init__(self) -> None: ...
-    def __init__(self, client, measurement_coordinator, sleep_coordinator, bed_presence_coordinator, goals_coordinator, activity_coordinator, workout_coordinator, device_coordinator, coordinators=...) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: WithingsConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: WithingsConfigEntry) -> bool: ...

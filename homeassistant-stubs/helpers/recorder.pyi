@@ -1,7 +1,7 @@
 import asyncio
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Generator
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.components.recorder import Recorder as Recorder
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -14,9 +14,8 @@ DATA_INSTANCE: HassKey[Recorder]
 
 @dataclass(slots=True)
 class RecorderData:
-    recorder_platforms: dict[str, Any] = ...
-    db_connected: asyncio.Future[bool] = ...
-    def __init__(self, recorder_platforms=..., db_connected=...) -> None: ...
+    recorder_platforms: dict[str, Any] = field(default_factory=dict)
+    db_connected: asyncio.Future[bool] = field(default_factory=asyncio.Future)
 
 def async_migration_in_progress(hass: HomeAssistant) -> bool: ...
 def async_migration_is_live(hass: HomeAssistant) -> bool: ...

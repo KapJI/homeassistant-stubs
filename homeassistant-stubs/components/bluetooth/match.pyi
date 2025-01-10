@@ -36,7 +36,6 @@ class IntegrationMatchHistory:
     manufacturer_data: bool
     service_data: set[str]
     service_uuids: set[str]
-    def __init__(self, manufacturer_data, service_data, service_uuids) -> None: ...
 
 def seen_all_fields(previous_match: IntegrationMatchHistory, advertisement_data: AdvertisementData) -> bool: ...
 

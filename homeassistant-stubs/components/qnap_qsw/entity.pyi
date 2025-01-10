@@ -26,12 +26,10 @@ class QswDataEntity(CoordinatorEntity[QswDataCoordinator]):
 @dataclass(frozen=True)
 class QswEntityDescriptionMixin:
     subkey: str
-    def __init__(self, subkey) -> None: ...
 
 @dataclass(frozen=True)
 class QswEntityDescription(EntityDescription, QswEntityDescriptionMixin):
     attributes: dict[str, list[str]] | None = ...
-    def __init__(self, subkey, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., attributes=...) -> None: ...
 
 class QswSensorEntity(QswDataEntity):
     entity_description: QswEntityDescription

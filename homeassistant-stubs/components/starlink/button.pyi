@@ -15,7 +15,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 @dataclass(frozen=True, kw_only=True)
 class StarlinkButtonEntityDescription(ButtonEntityDescription):
     press_fn: Callable[[StarlinkUpdateCoordinator], Awaitable[None]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., press_fn) -> None: ...
 
 class StarlinkButtonEntity(StarlinkEntity, ButtonEntity):
     entity_description: StarlinkButtonEntityDescription

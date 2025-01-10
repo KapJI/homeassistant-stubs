@@ -17,7 +17,6 @@ class NestEventEntityDescription(EventEntityDescription):
     trait_types: list[TraitType]
     api_event_types: list[EventType]
     event_types: list[str]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., event_types, trait_types, api_event_types) -> None: ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

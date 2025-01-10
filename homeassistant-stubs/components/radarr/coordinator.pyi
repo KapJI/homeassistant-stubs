@@ -19,11 +19,9 @@ T = TypeVar('T', bound=SystemStatus | list[RootFolder] | list[Health] | int | No
 @dataclass
 class RadarrEventMixIn:
     release_type: str
-    def __init__(self, release_type) -> None: ...
 
 @dataclass
-class RadarrEvent(CalendarEvent, RadarrEventMixIn):
-    def __init__(self, release_type, start, end, summary, description=..., location=..., uid=..., recurrence_id=..., rrule=...) -> None: ...
+class RadarrEvent(CalendarEvent, RadarrEventMixIn): ...
 
 class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, Generic[T], metaclass=abc.ABCMeta):
     config_entry: RadarrConfigEntry

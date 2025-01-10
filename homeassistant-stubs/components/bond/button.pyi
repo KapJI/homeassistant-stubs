@@ -16,7 +16,6 @@ class BondButtonEntityDescription(ButtonEntityDescription):
     name: str | None = ...
     mutually_exclusive: Action | None
     argument: int | None
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., mutually_exclusive, argument) -> None: ...
 
 STOP_BUTTON: Incomplete
 BUTTONS: tuple[BondButtonEntityDescription, ...]

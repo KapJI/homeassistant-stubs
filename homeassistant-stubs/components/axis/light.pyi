@@ -12,8 +12,7 @@ from typing import Any
 def light_name_fn(hub: AxisHub, event: Event) -> str: ...
 
 @dataclass(frozen=True, kw_only=True)
-class AxisLightDescription(AxisEventDescription, LightEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., event_topic, name_fn=..., supported_fn=...) -> None: ...
+class AxisLightDescription(AxisEventDescription, LightEntityDescription): ...
 
 ENTITY_DESCRIPTIONS: Incomplete
 

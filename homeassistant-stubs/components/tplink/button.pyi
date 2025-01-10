@@ -9,8 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Final
 
 @dataclass(frozen=True, kw_only=True)
-class TPLinkButtonEntityDescription(ButtonEntityDescription, TPLinkFeatureEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=..., available_fn=...) -> None: ...
+class TPLinkButtonEntityDescription(ButtonEntityDescription, TPLinkFeatureEntityDescription): ...
 
 BUTTON_DESCRIPTIONS: Final[Incomplete]
 BUTTON_DESCRIPTIONS_MAP: Incomplete

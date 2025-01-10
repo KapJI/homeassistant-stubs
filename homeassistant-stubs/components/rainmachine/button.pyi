@@ -15,7 +15,6 @@ from regenmaschine.controller import Controller as Controller
 @dataclass(frozen=True, kw_only=True)
 class RainMachineButtonDescription(ButtonEntityDescription, RainMachineEntityDescription):
     push_action: Callable[[Controller], Awaitable]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, push_action) -> None: ...
 
 BUTTON_KIND_REBOOT: str
 

@@ -12,4 +12,3 @@ class LookinData:
     devices: list[dict[str, Any]]
     lookin_protocol: LookInHttpProtocol
     device_coordinators: dict[str, LookinDataUpdateCoordinator[Remote]]
-    def __init__(self, host, lookin_udp_subs, lookin_device, meteo_coordinator, devices, lookin_protocol, device_coordinators) -> None: ...

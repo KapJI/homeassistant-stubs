@@ -20,7 +20,6 @@ class RoborockSwitchDescription(SwitchEntityDescription):
     cache_key: CacheableAttribute
     update_value: Callable[[AttributeCache, bool], Coroutine[Any, Any, None]]
     attribute: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cache_key, update_value, attribute) -> None: ...
 
 SWITCH_DESCRIPTIONS: list[RoborockSwitchDescription]
 

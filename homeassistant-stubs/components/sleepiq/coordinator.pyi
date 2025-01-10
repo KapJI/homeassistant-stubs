@@ -23,4 +23,3 @@ class SleepIQData:
     data_coordinator: SleepIQDataUpdateCoordinator
     pause_coordinator: SleepIQPauseUpdateCoordinator
     client: AsyncSleepIQ
-    def __init__(self, data_coordinator, pause_coordinator, client) -> None: ...

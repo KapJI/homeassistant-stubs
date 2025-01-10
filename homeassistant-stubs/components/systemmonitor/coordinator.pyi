@@ -24,7 +24,6 @@ class SensorData:
     processes: list[Process]
     temperatures: dict[str, list[shwtemp]]
     def as_dict(self) -> dict[str, Any]: ...
-    def __init__(self, *, disk_usage, swap, memory, io_counters, addresses, load, cpu_percent, boot_time, processes, temperatures) -> None: ...
 
 class VirtualMemory(NamedTuple):
     total: float

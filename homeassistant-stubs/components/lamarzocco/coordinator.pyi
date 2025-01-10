@@ -22,7 +22,6 @@ class LaMarzoccoRuntimeData:
     config_coordinator: LaMarzoccoConfigUpdateCoordinator
     firmware_coordinator: LaMarzoccoFirmwareUpdateCoordinator
     statistics_coordinator: LaMarzoccoStatisticsUpdateCoordinator
-    def __init__(self, config_coordinator, firmware_coordinator, statistics_coordinator) -> None: ...
 type LaMarzoccoConfigEntry = ConfigEntry[LaMarzoccoRuntimeData]
 
 class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABCMeta):

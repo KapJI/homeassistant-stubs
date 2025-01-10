@@ -9,4 +9,3 @@ class SpotifyData:
     coordinator: SpotifyCoordinator
     session: OAuth2Session
     devices: DataUpdateCoordinator[list[Device]]
-    def __init__(self, coordinator, session, devices) -> None: ...

@@ -1,16 +1,15 @@
 from .registry import BaseRegistryItems as BaseRegistryItems
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
-from homeassistant.util import slugify as slugify
+from homeassistant.util import dt as dt_util, slugify as slugify
 
 @dataclass(slots=True, frozen=True, kw_only=True)
 class NormalizedNameBaseRegistryEntry:
     name: str
-    normalized_name: str = ...
-    created_at: datetime = ...
-    modified_at: datetime = ...
+    normalized_name: str = field(init=False)
+    created_at: datetime = field(default_factory=dt_util.utcnow)
+    modified_at: datetime = field(default_factory=dt_util.utcnow)
     def __post_init__(self) -> None: ...
-    def __init__(self, *, name, created_at=..., modified_at=...) -> None: ...
 
 def normalize_name(name: str) -> str: ...
 

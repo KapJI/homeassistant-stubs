@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, MAIN_SCAN_INTERVAL as MAIN_SCAN_INTERVAL, WATER_USE_SCAN_INTERVAL as WATER_USE_SCAN_INTERVAL
 from _typeshed import Incomplete
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util.dt import now as now
@@ -10,17 +10,15 @@ from pydrawise.schema import Controller as Controller, ControllerWaterUseSummary
 @dataclass
 class HydrawiseData:
     user: User
-    controllers: dict[int, Controller] = ...
-    zones: dict[int, Zone] = ...
-    sensors: dict[int, Sensor] = ...
-    daily_water_summary: dict[int, ControllerWaterUseSummary] = ...
-    def __init__(self, user, controllers=..., zones=..., sensors=..., daily_water_summary=...) -> None: ...
+    controllers: dict[int, Controller] = field(default_factory=dict)
+    zones: dict[int, Zone] = field(default_factory=dict)
+    sensors: dict[int, Sensor] = field(default_factory=dict)
+    daily_water_summary: dict[int, ControllerWaterUseSummary] = field(default_factory=dict)
 
 @dataclass
 class HydrawiseUpdateCoordinators:
     main: HydrawiseMainDataUpdateCoordinator
     water_use: HydrawiseWaterUseDataUpdateCoordinator
-    def __init__(self, main, water_use) -> None: ...
 
 class HydrawiseDataUpdateCoordinator(DataUpdateCoordinator[HydrawiseData]):
     api: Hydrawise

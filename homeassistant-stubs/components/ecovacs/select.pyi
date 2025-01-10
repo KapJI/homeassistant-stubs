@@ -16,7 +16,6 @@ from typing import Any, Generic
 class EcovacsSelectEntityDescription(SelectEntityDescription, EcovacsCapabilityEntityDescription, Generic[EventT]):
     current_option_fn: Callable[[EventT], str | None]
     options_fn: Callable[[CapabilitySetTypes], list[str]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., capability_fn, options=..., current_option_fn, options_fn) -> None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSelectEntityDescription, ...]
 

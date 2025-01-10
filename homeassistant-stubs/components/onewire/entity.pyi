@@ -10,7 +10,6 @@ from typing import Any
 @dataclass(frozen=True)
 class OneWireEntityDescription(EntityDescription):
     read_mode: str | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., read_mode=...) -> None: ...
 
 _LOGGER: Incomplete
 

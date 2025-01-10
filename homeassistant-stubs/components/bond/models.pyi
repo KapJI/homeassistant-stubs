@@ -6,4 +6,3 @@ from dataclasses import dataclass
 class BondData:
     hub: BondHub
     bpup_subs: BPUPSubscriptions
-    def __init__(self, hub, bpup_subs) -> None: ...

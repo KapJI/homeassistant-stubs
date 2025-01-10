@@ -33,14 +33,12 @@ class DhcpServiceInfo(BaseServiceInfo):
     ip: str
     hostname: str
     macaddress: str
-    def __init__(self, ip, hostname, macaddress) -> None: ...
 
 @dataclass(slots=True)
 class DhcpMatchers:
     registered_devices_domains: set[str]
     no_oui_matchers: dict[str, list[DHCPMatcher]]
     oui_matchers: dict[str, list[DHCPMatcher]]
-    def __init__(self, registered_devices_domains, no_oui_matchers, oui_matchers) -> None: ...
 
 def async_index_integration_matchers(integration_matchers: list[DHCPMatcher]) -> DhcpMatchers: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

@@ -21,12 +21,10 @@ SENSOR_KIND_MOVED: str
 @dataclass(frozen=True, kw_only=True)
 class PairedSensorBinarySensorDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[dict[str, Any]], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., is_on_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ValveControllerBinarySensorDescription(BinarySensorEntityDescription, ValveControllerEntityDescription):
     is_on_fn: Callable[[dict[str, Any]], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, is_on_fn) -> None: ...
 
 PAIRED_SENSOR_DESCRIPTIONS: Incomplete
 VALVE_CONTROLLER_DESCRIPTIONS: Incomplete

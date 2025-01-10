@@ -3,7 +3,7 @@ from .const import DATA_FFMPEG_PROXY as DATA_FFMPEG_PROXY
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.abc import AbstractStreamWriter as AbstractStreamWriter, BaseRequest as BaseRequest
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -24,13 +24,11 @@ class FFmpegConversionInfo:
     width: int | None
     proc: asyncio.subprocess.Process | None = ...
     is_finished: bool = ...
-    def __init__(self, convert_id, media_url, media_format, rate, channels, width, proc=..., is_finished=...) -> None: ...
 
 @dataclass
 class FFmpegProxyData:
-    conversions: dict[str, list[FFmpegConversionInfo]] = ...
+    conversions: dict[str, list[FFmpegConversionInfo]] = field(default_factory=Incomplete)
     def async_create_proxy_url(self, device_id: str, media_url: str, media_format: str, rate: int | None, channels: int | None, width: int | None) -> str: ...
-    def __init__(self, conversions=...) -> None: ...
 
 class FFmpegConvertResponse(web.StreamResponse):
     hass: Incomplete

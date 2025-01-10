@@ -21,7 +21,6 @@ class SensiboDeviceSwitchEntityDescription(SwitchEntityDescription):
     command_on: str
     command_off: str
     data_key: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, extra_fn, command_on, command_off, data_key) -> None: ...
 
 DEVICE_SWITCH_TYPES: tuple[SensiboDeviceSwitchEntityDescription, ...]
 PURE_SWITCH_TYPES: tuple[SensiboDeviceSwitchEntityDescription, ...]

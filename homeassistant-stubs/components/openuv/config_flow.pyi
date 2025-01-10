@@ -22,7 +22,6 @@ class OpenUvData:
     elevation: float
     @property
     def unique_id(self) -> str: ...
-    def __init__(self, api_key, latitude, longitude, elevation) -> None: ...
 
 class OpenUvFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int

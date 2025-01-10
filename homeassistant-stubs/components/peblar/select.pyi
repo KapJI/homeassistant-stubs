@@ -17,7 +17,6 @@ PARALLEL_UPDATES: int
 class PeblarSelectEntityDescription(SelectEntityDescription):
     current_fn: Callable[[PeblarUserConfiguration], str | None]
     select_fn: Callable[[Peblar, str], Awaitable[Any]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., current_fn, select_fn) -> None: ...
 
 DESCRIPTIONS: Incomplete
 

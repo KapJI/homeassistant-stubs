@@ -15,7 +15,6 @@ type CookidooConfigEntry = ConfigEntry[CookidooDataUpdateCoordinator]
 class CookidooData:
     ingredient_items: list[CookidooIngredientItem]
     additional_items: list[CookidooAdditionalItem]
-    def __init__(self, ingredient_items, additional_items) -> None: ...
 
 class CookidooDataUpdateCoordinator(DataUpdateCoordinator[CookidooData]):
     config_entry: CookidooConfigEntry

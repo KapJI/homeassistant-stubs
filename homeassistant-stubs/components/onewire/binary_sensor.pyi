@@ -9,8 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
 @dataclass(frozen=True)
-class OneWireBinarySensorEntityDescription(OneWireEntityDescription, BinarySensorEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., read_mode=...) -> None: ...
+class OneWireBinarySensorEntityDescription(OneWireEntityDescription, BinarySensorEntityDescription): ...
 
 DEVICE_BINARY_SENSORS: dict[str, tuple[OneWireBinarySensorEntityDescription, ...]]
 HOBBYBOARD_EF: dict[str, tuple[OneWireBinarySensorEntityDescription, ...]]

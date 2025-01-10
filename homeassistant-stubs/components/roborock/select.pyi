@@ -20,7 +20,6 @@ class RoborockSelectDescription(SelectEntityDescription):
     options_lambda: Callable[[Status], list[str] | None]
     parameter_lambda: Callable[[str, Status], list[int]]
     protocol_listener: RoborockDataProtocol | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., api_command, value_fn, options_lambda, parameter_lambda, protocol_listener=...) -> None: ...
 
 SELECT_DESCRIPTIONS: list[RoborockSelectDescription]
 

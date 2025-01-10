@@ -22,7 +22,6 @@ class RoborockTimeDescription(TimeEntityDescription):
     cache_key: CacheableAttribute
     update_value: Callable[[AttributeCache, datetime.time], Coroutine[Any, Any, None]]
     get_value: Callable[[AttributeCache], datetime.time]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cache_key, update_value, get_value) -> None: ...
 
 TIME_DESCRIPTIONS: list[RoborockTimeDescription]
 

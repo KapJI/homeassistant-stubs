@@ -19,21 +19,18 @@ class EnvoyEnpowerSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[EnvoyEnpower], bool]
     turn_on_fn: Callable[[Envoy], Coroutine[Any, Any, dict[str, Any]]]
     turn_off_fn: Callable[[Envoy], Coroutine[Any, Any, dict[str, Any]]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyDryContactSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[EnvoyDryContactStatus], bool]
     turn_on_fn: Callable[[Envoy, str], Coroutine[Any, Any, dict[str, Any]]]
     turn_off_fn: Callable[[Envoy, str], Coroutine[Any, Any, dict[str, Any]]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyStorageSettingsSwitchEntityDescription(SwitchEntityDescription):
     value_fn: Callable[[EnvoyStorageSettings], bool]
     turn_on_fn: Callable[[Envoy], Awaitable[dict[str, Any]]]
     turn_off_fn: Callable[[Envoy], Awaitable[dict[str, Any]]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, turn_on_fn, turn_off_fn) -> None: ...
 
 ENPOWER_GRID_SWITCH: Incomplete
 RELAY_STATE_SWITCH: Incomplete

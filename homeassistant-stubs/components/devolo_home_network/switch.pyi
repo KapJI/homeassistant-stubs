@@ -21,7 +21,6 @@ class DevoloSwitchEntityDescription[_DataT: _DataType](SwitchEntityDescription):
     is_on_func: Callable[[_DataT], bool]
     turn_on_func: Callable[[Device], Awaitable[bool]]
     turn_off_func: Callable[[Device], Awaitable[bool]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., is_on_func, turn_on_func, turn_off_func) -> None: ...
 
 SWITCH_TYPES: dict[str, DevoloSwitchEntityDescription[Any]]
 

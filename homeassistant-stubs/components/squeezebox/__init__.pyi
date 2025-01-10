@@ -19,7 +19,6 @@ PLATFORMS: Incomplete
 class SqueezeboxData:
     coordinator: LMSStatusDataUpdateCoordinator
     server: Server
-    def __init__(self, coordinator, server) -> None: ...
 type SqueezeboxConfigEntry = ConfigEntry[SqueezeboxData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry) -> bool: ...

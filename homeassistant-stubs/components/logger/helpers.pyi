@@ -26,13 +26,11 @@ class LoggerSetting:
     level: str
     persistence: str
     type: str
-    def __init__(self, level, persistence, type) -> None: ...
 
 @dataclass(slots=True)
 class LoggerDomainConfig:
     overrides: dict[str, Any]
     settings: LoggerSettings
-    def __init__(self, overrides, settings) -> None: ...
 
 class LogPersistance(StrEnum):
     NONE = 'none'

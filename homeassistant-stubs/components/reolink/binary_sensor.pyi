@@ -15,7 +15,6 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class ReolinkBinarySensorEntityDescription(BinarySensorEntityDescription, ReolinkChannelEntityDescription):
     value: Callable[[Host, int], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., cmd_key=..., cmd_id=..., supported=..., value) -> None: ...
 
 BINARY_PUSH_SENSORS: Incomplete
 BINARY_SENSORS: Incomplete

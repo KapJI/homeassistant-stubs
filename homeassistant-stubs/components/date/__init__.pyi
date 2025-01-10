@@ -5,8 +5,7 @@ from propcache import cached_property
 
 __all__ = ['DOMAIN', 'DateEntity', 'DateEntityDescription']
 
-class DateEntityDescription(EntityDescription, frozen_or_thawed=True):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=...) -> None: ...
+class DateEntityDescription(EntityDescription, frozen_or_thawed=True): ...
 
 class DateEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: DateEntityDescription

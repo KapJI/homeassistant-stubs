@@ -5,7 +5,7 @@ from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Awaitable, Callable, Iterable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -30,33 +30,28 @@ class WebRTCMessage:
 @dataclass(frozen=True)
 class WebRTCSession(WebRTCMessage):
     session_id: str
-    def __init__(self, session_id) -> None: ...
 
 @dataclass(frozen=True)
 class WebRTCAnswer(WebRTCMessage):
     answer: str
-    def __init__(self, answer) -> None: ...
 
 @dataclass(frozen=True)
 class WebRTCCandidate(WebRTCMessage):
     candidate: RTCIceCandidate | RTCIceCandidateInit
     def as_dict(self) -> dict[str, Any]: ...
-    def __init__(self, candidate) -> None: ...
 
 @dataclass(frozen=True)
 class WebRTCError(WebRTCMessage):
     code: str
     message: str
-    def __init__(self, code, message) -> None: ...
 type WebRTCSendMessage = Callable[[WebRTCMessage], None]
 
 @dataclass(kw_only=True)
 class WebRTCClientConfiguration:
-    configuration: RTCConfiguration = ...
+    configuration: RTCConfiguration = field(default_factory=RTCConfiguration)
     data_channel: str | None = ...
     get_candidates_upfront: bool = ...
     def to_frontend_dict(self) -> dict[str, Any]: ...
-    def __init__(self, *, configuration=..., data_channel=..., get_candidates_upfront=...) -> None: ...
 
 class CameraWebRTCProvider(ABC, metaclass=abc.ABCMeta):
     @property

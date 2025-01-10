@@ -16,7 +16,6 @@ class TriggerModelData:
     event_class: str
     event_types: list[str]
     triggers: list[str]
-    def __init__(self, event_class, event_types, triggers) -> None: ...
 
 TRIGGER_MODEL_DATA: Incomplete
 MODEL_DATA: Incomplete

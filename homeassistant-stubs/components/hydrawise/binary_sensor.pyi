@@ -17,7 +17,6 @@ from pydrawise import Zone as Zone
 class HydrawiseBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[HydrawiseBinarySensor], bool | None]
     always_available: bool = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn, always_available=...) -> None: ...
 
 CONTROLLER_BINARY_SENSORS: tuple[HydrawiseBinarySensorEntityDescription, ...]
 RAIN_SENSOR_BINARY_SENSOR: tuple[HydrawiseBinarySensorEntityDescription, ...]

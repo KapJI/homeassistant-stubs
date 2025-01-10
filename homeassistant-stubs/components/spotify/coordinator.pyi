@@ -17,7 +17,6 @@ class SpotifyCoordinatorData:
     position_updated_at: datetime | None
     playlist: Playlist | None
     dj_playlist: bool = ...
-    def __init__(self, current_playback, position_updated_at, playlist, dj_playlist=...) -> None: ...
 
 SPOTIFY_DJ_PLAYLIST_URI: str
 

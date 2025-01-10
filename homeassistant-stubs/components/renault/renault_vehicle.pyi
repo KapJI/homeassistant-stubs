@@ -21,7 +21,6 @@ class RenaultCoordinatorDescription:
     key: str
     update_method: Callable[[RenaultVehicle], Callable[[], Awaitable[models.KamereonVehicleDataAttributes]]]
     requires_electricity: bool = ...
-    def __init__(self, endpoint, key, update_method, requires_electricity=...) -> None: ...
 
 class RenaultVehicleProxy:
     hass: Incomplete

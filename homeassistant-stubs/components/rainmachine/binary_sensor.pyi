@@ -20,7 +20,6 @@ TYPE_WEEKDAY: str
 @dataclass(frozen=True, kw_only=True)
 class RainMachineBinarySensorDescription(BinarySensorEntityDescription, RainMachineEntityDescription):
     data_key: str
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., api_category, data_key) -> None: ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 

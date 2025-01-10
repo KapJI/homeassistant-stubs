@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD
 from typing import Any
@@ -12,8 +12,7 @@ STEP_USER_SCHEMA: Incomplete
 @dataclass
 class ValidationResult:
     serial_number: str | None = ...
-    errors: dict[str, Any] = ...
-    def __init__(self, serial_number=..., errors=...) -> None: ...
+    errors: dict[str, Any] = field(default_factory=dict)
 
 async def async_validate_credentials(ip_address: str, password: str) -> ValidationResult: ...
 

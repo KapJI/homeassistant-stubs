@@ -20,7 +20,6 @@ class NextDnsData:
     protocols: NextDnsUpdateCoordinator[AnalyticsProtocols]
     settings: NextDnsUpdateCoordinator[Settings]
     status: NextDnsUpdateCoordinator[AnalyticsStatus]
-    def __init__(self, connection, dnssec, encryption, ip_versions, protocols, settings, status) -> None: ...
 
 PLATFORMS: Incomplete
 COORDINATORS: list[tuple[str, type[NextDnsUpdateCoordinator], timedelta]]

@@ -14,12 +14,10 @@ PARALLEL_UPDATES: int
 @dataclass(kw_only=True, frozen=True)
 class AcaiaSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[AcaiaScale], int | float | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn) -> None: ...
 
 @dataclass(kw_only=True, frozen=True)
 class AcaiaDynamicUnitSensorEntityDescription(AcaiaSensorEntityDescription):
     unit_fn: Callable[[AcaiaDeviceState], str] | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., value_fn, unit_fn=...) -> None: ...
 
 SENSORS: tuple[AcaiaSensorEntityDescription, ...]
 RESTORE_SENSORS: tuple[AcaiaSensorEntityDescription, ...]

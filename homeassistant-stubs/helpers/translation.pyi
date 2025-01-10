@@ -22,7 +22,6 @@ async def _async_get_component_strings(hass: HomeAssistant, languages: Iterable[
 class _TranslationsCacheData:
     loaded: dict[str, set[str]]
     cache: dict[str, dict[str, dict[str, dict[str, str]]]]
-    def __init__(self, loaded, cache) -> None: ...
 
 class _TranslationCache:
     __slots__: Incomplete

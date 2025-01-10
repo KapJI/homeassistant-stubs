@@ -14,7 +14,6 @@ class JewishCalendarData:
     location: Location
     candle_lighting_offset: int
     havdalah_offset: int
-    def __init__(self, language, diaspora, location, candle_lighting_offset, havdalah_offset) -> None: ...
 
 class JewishCalendarEntity(Entity):
     _attr_has_entity_name: bool

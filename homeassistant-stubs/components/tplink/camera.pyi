@@ -17,8 +17,7 @@ from kasa.smartcam.modules import Camera as CameraModule
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
-class TPLinkCameraEntityDescription(CameraEntityDescription, TPLinkModuleEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=..., available_fn=...) -> None: ...
+class TPLinkCameraEntityDescription(CameraEntityDescription, TPLinkModuleEntityDescription): ...
 
 CAMERA_DESCRIPTIONS: tuple[TPLinkCameraEntityDescription, ...]
 

@@ -15,7 +15,6 @@ _LOGGER: Incomplete
 class LinearDevice:
     name: str
     subdevices: dict[str, dict[str, str]]
-    def __init__(self, name, subdevices) -> None: ...
 
 class LinearUpdateCoordinator(DataUpdateCoordinator[dict[str, LinearDevice]]):
     _devices: list[dict[str, Any]] | None

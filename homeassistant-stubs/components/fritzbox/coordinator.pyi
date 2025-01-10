@@ -15,7 +15,6 @@ class FritzboxCoordinatorData:
     devices: dict[str, FritzhomeDevice]
     templates: dict[str, FritzhomeTemplate]
     supported_color_properties: dict[str, tuple[dict, list]]
-    def __init__(self, devices, templates, supported_color_properties) -> None: ...
 
 class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorData]):
     config_entry: FritzboxConfigEntry

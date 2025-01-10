@@ -12,7 +12,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 @dataclass(frozen=True, kw_only=True)
 class SchlageBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[LockData], bool]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., value_fn) -> None: ...
 
 _DESCRIPTIONS: tuple[SchlageBinarySensorEntityDescription]
 

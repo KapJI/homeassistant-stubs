@@ -9,8 +9,7 @@ from kasa import Device as Device, Feature
 from typing import Final
 
 @dataclass(frozen=True, kw_only=True)
-class TPLinkSelectEntityDescription(SelectEntityDescription, TPLinkFeatureEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., deprecated_info=..., available_fn=..., options=...) -> None: ...
+class TPLinkSelectEntityDescription(SelectEntityDescription, TPLinkFeatureEntityDescription): ...
 
 SELECT_DESCRIPTIONS: Final[Incomplete]
 SELECT_DESCRIPTIONS_MAP: Incomplete

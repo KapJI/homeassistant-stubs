@@ -16,7 +16,6 @@ TIME_BETWEEN_UPDATES: Incomplete
 class CameraData:
     data: CameraInfoModel
     image: bytes | None
-    def __init__(self, data, image) -> None: ...
 
 class TVDataUpdateCoordinator(DataUpdateCoordinator[CameraData]):
     session: Incomplete

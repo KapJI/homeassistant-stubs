@@ -10,4 +10,3 @@ class DomainData:
     ftth: SFRDataUpdateCoordinator[FtthInfo]
     system: SFRDataUpdateCoordinator[SystemInfo]
     wan: SFRDataUpdateCoordinator[WanInfo]
-    def __init__(self, box, dsl, ftth, system, wan) -> None: ...

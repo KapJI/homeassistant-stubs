@@ -13,7 +13,6 @@ _LOGGER: Incomplete
 class MonzoData:
     accounts: list[dict[str, Any]]
     pots: list[dict[str, Any]]
-    def __init__(self, accounts, pots) -> None: ...
 
 class MonzoCoordinator(DataUpdateCoordinator[MonzoData]):
     api: Incomplete

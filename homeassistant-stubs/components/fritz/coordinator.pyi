@@ -1,7 +1,7 @@
 from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles, SERVICE_SET_GUEST_WIFI_PW as SERVICE_SET_GUEST_WIFI_PW
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, ValuesView
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from fritzconnection import FritzConnection
 from fritzconnection.lib.fritzhosts import FritzHosts
@@ -36,7 +36,6 @@ class Device:
     name: str
     ssid: str | None
     wan_access: bool | None = ...
-    def __init__(self, connected, connected_to, connection_type, ip_address, name, ssid, wan_access=...) -> None: ...
 
 class Interface(TypedDict):
     device: str
@@ -140,10 +139,9 @@ class AvmWrapper(FritzBoxTools):
 
 @dataclass
 class FritzData:
-    tracked: dict = ...
-    profile_switches: dict = ...
-    wol_buttons: dict = ...
-    def __init__(self, tracked=..., profile_switches=..., wol_buttons=...) -> None: ...
+    tracked: dict = field(default_factory=dict)
+    profile_switches: dict = field(default_factory=dict)
+    wol_buttons: dict = field(default_factory=dict)
 
 class FritzDevice:
     _connected: bool
@@ -191,4 +189,3 @@ class ConnectionInfo:
     mesh_role: MeshRoles
     wan_enabled: bool
     ipv6_active: bool
-    def __init__(self, connection, mesh_role, wan_enabled, ipv6_active) -> None: ...

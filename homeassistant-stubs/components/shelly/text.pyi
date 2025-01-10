@@ -9,8 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Final
 
 @dataclass(frozen=True, kw_only=True)
-class RpcTextDescription(RpcEntityDescription, TextEntityDescription):
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., native_min=..., native_max=..., mode=..., pattern=..., sub_key, value=..., available=..., removal_condition=..., extra_state_attributes=..., use_polling_coordinator=..., supported=..., unit=..., options_fn=...) -> None: ...
+class RpcTextDescription(RpcEntityDescription, TextEntityDescription): ...
 
 RPC_TEXT_ENTITIES: Final[Incomplete]
 

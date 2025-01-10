@@ -8,7 +8,7 @@ from .tag import MQTTTagScanner as MQTTTagScanner
 from _typeshed import Incomplete
 from collections import deque
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
@@ -37,7 +37,6 @@ class PublishMessage:
     payload: PublishPayloadType
     qos: int
     retain: bool
-    def __init__(self, topic, payload, qos, retain) -> None: ...
 
 @dataclass(slots=True, frozen=True, eq=False)
 class ReceiveMessage:
@@ -47,7 +46,6 @@ class ReceiveMessage:
     retain: bool
     subscribed_topic: str
     timestamp: float
-    def __init__(self, topic, payload, qos, retain, subscribed_topic, timestamp) -> None: ...
 type MessageCallbackType = Callable[[ReceiveMessage], None]
 
 class SubscriptionDebugInfo(TypedDict):
@@ -112,24 +110,23 @@ class EntityTopicState:
 class MqttData:
     client: MQTT
     config: list[ConfigType]
-    debug_info_entities: dict[str, EntityDebugInfo] = ...
-    debug_info_triggers: dict[tuple[str, str], TriggerDebugInfo] = ...
-    device_triggers: dict[str, Trigger] = ...
-    data_config_flow_lock: asyncio.Lock = ...
-    discovery_already_discovered: set[tuple[str, str]] = ...
-    discovery_pending_discovered: dict[tuple[str, str], PendingDiscovered] = ...
-    discovery_registry_hooks: dict[tuple[str, str], CALLBACK_TYPE] = ...
-    discovery_unsubscribe: list[CALLBACK_TYPE] = ...
-    integration_unsubscribe: dict[str, CALLBACK_TYPE] = ...
+    debug_info_entities: dict[str, EntityDebugInfo] = field(default_factory=dict)
+    debug_info_triggers: dict[tuple[str, str], TriggerDebugInfo] = field(default_factory=dict)
+    device_triggers: dict[str, Trigger] = field(default_factory=dict)
+    data_config_flow_lock: asyncio.Lock = field(default_factory=asyncio.Lock)
+    discovery_already_discovered: set[tuple[str, str]] = field(default_factory=set)
+    discovery_pending_discovered: dict[tuple[str, str], PendingDiscovered] = field(default_factory=dict)
+    discovery_registry_hooks: dict[tuple[str, str], CALLBACK_TYPE] = field(default_factory=dict)
+    discovery_unsubscribe: list[CALLBACK_TYPE] = field(default_factory=list)
+    integration_unsubscribe: dict[str, CALLBACK_TYPE] = field(default_factory=dict)
     last_discovery: float = ...
-    platforms_loaded: set[Platform | str] = ...
-    reload_dispatchers: list[CALLBACK_TYPE] = ...
-    reload_handlers: dict[str, CALLBACK_TYPE] = ...
-    reload_schema: dict[str, VolSchemaType] = ...
-    state_write_requests: EntityTopicState = ...
-    subscriptions_to_restore: set[Subscription] = ...
-    tags: dict[str, dict[str, MQTTTagScanner]] = ...
-    def __init__(self, client, config, debug_info_entities=..., debug_info_triggers=..., device_triggers=..., data_config_flow_lock=..., discovery_already_discovered=..., discovery_pending_discovered=..., discovery_registry_hooks=..., discovery_unsubscribe=..., integration_unsubscribe=..., last_discovery=..., platforms_loaded=..., reload_dispatchers=..., reload_handlers=..., reload_schema=..., state_write_requests=..., subscriptions_to_restore=..., tags=...) -> None: ...
+    platforms_loaded: set[Platform | str] = field(default_factory=set)
+    reload_dispatchers: list[CALLBACK_TYPE] = field(default_factory=list)
+    reload_handlers: dict[str, CALLBACK_TYPE] = field(default_factory=dict)
+    reload_schema: dict[str, VolSchemaType] = field(default_factory=dict)
+    state_write_requests: EntityTopicState = field(default_factory=EntityTopicState)
+    subscriptions_to_restore: set[Subscription] = field(default_factory=set)
+    tags: dict[str, dict[str, MQTTTagScanner]] = field(default_factory=dict)
 
 @dataclass(slots=True)
 class MqttComponentConfig:
@@ -137,7 +134,6 @@ class MqttComponentConfig:
     object_id: str
     node_id: str | None
     discovery_payload: MQTTDiscoveryPayload
-    def __init__(self, component, object_id, node_id, discovery_payload) -> None: ...
 
 DATA_MQTT: HassKey[MqttData]
 DATA_MQTT_AVAILABLE: HassKey[asyncio.Future[bool]]

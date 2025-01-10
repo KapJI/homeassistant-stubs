@@ -13,7 +13,6 @@ class Discovery:
     title: str
     discovery_info: BluetoothServiceInfoBleak
     device: DeviceData
-    def __init__(self, title, discovery_info, device) -> None: ...
 
 def _title(discovery_info: BluetoothServiceInfoBleak, device: DeviceData) -> str: ...
 

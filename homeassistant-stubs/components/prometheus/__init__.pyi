@@ -44,7 +44,6 @@ def setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 class MetricNameWithLabelValues:
     metric_name: str
     label_values: tuple[str, ...]
-    def __init__(self, metric_name, label_values) -> None: ...
 
 class PrometheusMetrics:
     _component_config: Incomplete

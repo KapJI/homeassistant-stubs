@@ -8,4 +8,3 @@ class HassioServiceInfo(BaseServiceInfo):
     name: str
     slug: str
     uuid: str
-    def __init__(self, config, name, slug, uuid) -> None: ...

@@ -6,4 +6,3 @@ from .coordinator import RuuviGatewayUpdateCoordinator as RuuviGatewayUpdateCoor
 class RuuviGatewayRuntimeData:
     update_coordinator: RuuviGatewayUpdateCoordinator
     scanner: RuuviGatewayScanner
-    def __init__(self, update_coordinator, scanner) -> None: ...

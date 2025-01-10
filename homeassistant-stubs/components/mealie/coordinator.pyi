@@ -18,7 +18,6 @@ class MealieData:
     mealplan_coordinator: MealieMealplanCoordinator
     shoppinglist_coordinator: MealieShoppingListCoordinator
     statistics_coordinator: MealieStatisticsCoordinator
-    def __init__(self, client, mealplan_coordinator, shoppinglist_coordinator, statistics_coordinator) -> None: ...
 type MealieConfigEntry = ConfigEntry[MealieData]
 
 class MealieDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=abc.ABCMeta):
@@ -40,7 +39,6 @@ class MealieMealplanCoordinator(MealieDataUpdateCoordinator[dict[MealplanEntryTy
 class ShoppingListData:
     shopping_list: ShoppingList
     items: list[ShoppingItem]
-    def __init__(self, shopping_list, items) -> None: ...
 
 class MealieShoppingListCoordinator(MealieDataUpdateCoordinator[dict[str, ShoppingListData]]):
     _name: str

@@ -21,7 +21,6 @@ class IronOSSelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[SettingsDataResponse], str | None]
     characteristic: CharSetting
     raw_value_fn: Callable[[str], Any] | None = ...
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., options=..., value_fn, characteristic, raw_value_fn=...) -> None: ...
 
 class PinecilSelect(StrEnum):
     MIN_DC_VOLTAGE_CELLS = 'min_dc_voltage_cells'

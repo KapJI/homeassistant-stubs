@@ -18,7 +18,6 @@ _LOGGER: Incomplete
 class SmSwitchEntityDescription(SwitchEntityDescription):
     setting: Settings
     state_fn: Callable[[Sensors], bool | None]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., setting, state_fn) -> None: ...
 
 SWITCHES: list[SmSwitchEntityDescription]
 

@@ -15,7 +15,6 @@ BACKFLUSH_ENABLED_DURATION: int
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoButtonEntityDescription(LaMarzoccoEntityDescription, ButtonEntityDescription):
     press_fn: Callable[[LaMarzoccoUpdateCoordinator], Coroutine[Any, Any, None]]
-    def __init__(self, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., available_fn=..., supported_fn=..., press_fn) -> None: ...
 
 async def async_backflush_and_update(coordinator: LaMarzoccoUpdateCoordinator) -> None: ...
 

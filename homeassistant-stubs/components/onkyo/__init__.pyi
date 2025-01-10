@@ -16,7 +16,6 @@ CONFIG_SCHEMA: Incomplete
 class OnkyoData:
     receiver: Receiver
     sources: dict[InputSource, str]
-    def __init__(self, receiver, sources) -> None: ...
 type OnkyoConfigEntry = ConfigEntry[OnkyoData]
 
 async def async_setup(hass: HomeAssistant, _: ConfigType) -> bool: ...

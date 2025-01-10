@@ -18,13 +18,11 @@ def get_modified_description(description: LidarrSensorEntityDescription[T], moun
 @dataclasses.dataclass(frozen=True)
 class LidarrSensorEntityDescriptionMixIn(Generic[T]):
     value_fn: Callable[[T, str], str | int]
-    def __init__(self, value_fn) -> None: ...
 
 @dataclasses.dataclass(frozen=True)
 class LidarrSensorEntityDescription(SensorEntityDescription, LidarrSensorEntityDescriptionMixIn[T], Generic[T]):
     attributes_fn: Callable[[T], dict[str, str] | None] = ...
     description_fn: Callable[[LidarrSensorEntityDescription[T], LidarrRootFolder], tuple[LidarrSensorEntityDescription[T], str] | None] | None = ...
-    def __init__(self, value_fn, *, key, device_class=..., entity_category=..., entity_registry_enabled_default=..., entity_registry_visible_default=..., force_update=..., icon=..., has_entity_name=..., name=..., translation_key=..., translation_placeholders=..., unit_of_measurement=..., last_reset=..., native_unit_of_measurement=..., options=..., state_class=..., suggested_display_precision=..., suggested_unit_of_measurement=..., attributes_fn=..., description_fn=...) -> None: ...
 
 SENSOR_TYPES: dict[str, LidarrSensorEntityDescription[Any]]
 

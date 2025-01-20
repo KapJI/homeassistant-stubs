@@ -52,9 +52,8 @@ source = "vcs"
 prerelease = "allow"
 
 [tool.uv.sources]
-# https://github.com/python/mypy/pull/18430  Improve dataclass init signatures
-# 276189d69ec75cd597516140f4de6909abbc4e8a   Add --preserve-decorators option
-mypy = { git = "https://github.com/python/mypy", rev = "276189d69ec75cd597516140f4de6909abbc4e8a" }
+# https://github.com/python/mypy/pull/18489  Include simple decorators in stub files
+mypy = { git = "https://github.com/python/mypy", rev = "a4ea153c4a979e833d5d56766b5a44199f77ea4d" }
 
 [tool.pylint.format]
 expected-line-ending-format = "LF"

@@ -324,8 +324,6 @@ def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
         command_args: list[str] = [
             "stubgen",
             "--include-private",
-            "--preserve-decorators",
-            "propcache.cached_property:propcache.under_cached_property",
             "-o",
             str(repo_root),
             f"@{f.name}",

@@ -33,8 +33,10 @@ class QswEntityDescription(EntityDescription, QswEntityDescriptionMixin):
 
 class QswSensorEntity(QswDataEntity):
     entity_description: QswEntityDescription
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class QswFirmwareEntity(CoordinatorEntity[QswFirmwareCoordinator]):

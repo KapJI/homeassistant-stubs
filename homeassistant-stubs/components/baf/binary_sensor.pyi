@@ -19,4 +19,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_ad
 class BAFBinarySensor(BAFDescriptionEntity, BinarySensorEntity):
     entity_description: BAFBinarySensorDescription
     _attr_is_on: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...

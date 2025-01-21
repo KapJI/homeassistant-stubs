@@ -21,6 +21,7 @@ class TriggeredBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _device: SensorV3
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, sensor: SensorV3, device_class: BinarySensorDeviceClass) -> None: ...
     _attr_is_on: Incomplete
+    @callback
     def async_update_from_rest_api(self) -> None: ...
 
 class BatteryBinarySensor(SimpliSafeEntity, BinarySensorEntity):
@@ -30,4 +31,5 @@ class BatteryBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _device: DeviceV3
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, device: DeviceV3) -> None: ...
     _attr_is_on: Incomplete
+    @callback
     def async_update_from_rest_api(self) -> None: ...

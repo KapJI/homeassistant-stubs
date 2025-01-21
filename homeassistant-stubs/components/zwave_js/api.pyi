@@ -82,51 +82,206 @@ async def _async_get_node(hass: HomeAssistant, connection: ActiveConnection, msg
 def async_get_node(orig_func: Callable[[HomeAssistant, ActiveConnection, dict[str, Any], Node], Coroutine[Any, Any, None]]) -> Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], Coroutine[Any, Any, None]]: ...
 def async_handle_failed_command[**_P](orig_func: Callable[Concatenate[HomeAssistant, ActiveConnection, dict[str, Any], _P], Coroutine[Any, Any, None]]) -> Callable[Concatenate[HomeAssistant, ActiveConnection, dict[str, Any], _P], Coroutine[Any, Any, None]]: ...
 def node_status(node: Node) -> dict[str, Any]: ...
+@callback
 def async_register_api(hass: HomeAssistant) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_network_status(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.async_response
+@async_get_node
 async def websocket_subscribe_node_status(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.async_response
+@async_get_node
 async def websocket_node_status(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.async_response
+@async_get_node
 async def websocket_node_metadata(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.async_response
+@async_get_node
 async def websocket_node_alerts(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_add_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_cancel_secure_bootstrap_s2(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_subscribe_s2_inclusion(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_grant_security_classes(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_validate_dsk_and_enter_pin(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_provision_smart_start_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_unprovision_smart_start_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_get_provisioning_entries(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_parse_qr_code_string(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_try_parse_dsk_from_qr_code_string(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_supports_feature(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_stop_inclusion(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_stop_exclusion(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_remove_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_replace_failed_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_remove_failed_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_begin_rebuilding_routes(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_entry
 async def websocket_subscribe_rebuild_routes_progress(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_stop_rebuilding_routes(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_rebuild_node_routes(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_refresh_node_info(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_refresh_node_values(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_refresh_node_cc_values(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_set_config_parameter(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_node
 async def websocket_get_config_parameters(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_set_raw_config_parameter(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_get_raw_config_parameter(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
 def filename_is_present_if_logging_to_file(obj: dict) -> dict: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_subscribe_log_updates(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_update_log_config(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_entry
 async def websocket_get_log_config(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_update_data_collection_preference(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_data_collection_status(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_abort_firmware_update(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_is_node_firmware_update_in_progress(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
 def _get_node_firmware_update_progress_dict(progress: NodeFirmwareUpdateProgress) -> dict[str, int | float]: ...
 def _get_controller_firmware_update_progress_dict(progress: ControllerFirmwareUpdateProgress) -> dict[str, int | float]: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_node
 async def websocket_subscribe_firmware_update_status(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_get_node_firmware_update_capabilities(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_is_any_ota_firmware_update_in_progress(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
 
 class FirmwareUploadView(HomeAssistantView):
@@ -134,15 +289,43 @@ class FirmwareUploadView(HomeAssistantView):
     name: str
     _dev_reg: Incomplete
     def __init__(self, dev_reg: dr.DeviceRegistry) -> None: ...
+    @require_admin
     async def post(self, request: web.Request, device_id: str) -> web.Response: ...
 
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_check_for_config_updates(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_install_config_update(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
 def _get_controller_statistics_dict(statistics: ControllerStatistics) -> dict[str, int]: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_entry
 async def websocket_subscribe_controller_statistics(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
 def _get_node_statistics_dict(hass: HomeAssistant, statistics: NodeStatistics) -> dict[str, Any]: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_node
 async def websocket_subscribe_node_statistics(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_hard_reset_controller(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_node_capabilities(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_node
 async def websocket_invoke_cc_api(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@callback
+@websocket_api.require_admin
 def websocket_get_integration_settings(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...

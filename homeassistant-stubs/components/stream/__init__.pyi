@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable, Mapping
 from enum import IntEnum
 from homeassistant.components.camera import DynamicStreamSettings
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError
 from typing import Any
 
@@ -51,6 +51,7 @@ class Stream:
     @property
     def available(self) -> bool: ...
     def set_update_callback(self, update_callback: Callable[[], None]) -> None: ...
+    @callback
     def _async_update_state(self, available: bool) -> None: ...
     async def start(self) -> None: ...
     def update_source(self, new_source: str) -> None: ...

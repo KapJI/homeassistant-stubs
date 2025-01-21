@@ -8,7 +8,7 @@ from homeassistant.helpers.config_validation import make_entity_service_schema a
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Final, TypedDict
+from typing import Any, Final, TypedDict, final
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -74,7 +74,9 @@ class ImageProcessingFaceEntity(ImageProcessingEntity):
     def __init__(self) -> None: ...
     @property
     def state(self) -> str | int | None: ...
+    @final
     @property
     def state_attributes(self) -> dict[str, Any]: ...
     def process_faces(self, faces: list[FaceInformation], total: int) -> None: ...
+    @callback
     def async_process_faces(self, faces: list[FaceInformation], total: int) -> None: ...

@@ -17,6 +17,7 @@ from homeassistant.helpers.network import is_cloud_connection as is_cloud_connec
 from homeassistant.util.network import is_local as is_local
 from typing import Any
 
+@callback
 def async_setup(hass: HomeAssistant, store_result: Callable[[str, Credentials], str]) -> None: ...
 
 class WellKnownOAuthInfoView(HomeAssistantView):
@@ -44,11 +45,13 @@ class LoginFlowIndexView(LoginFlowBaseView):
     url: str
     name: str
     async def get(self, request: web.Request) -> web.Response: ...
+    @log_invalid_auth
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
 class LoginFlowResourceView(LoginFlowBaseView):
     url: str
     name: str
     async def get(self, request: web.Request) -> web.Response: ...
+    @log_invalid_auth
     async def post(self, request: web.Request, data: dict[str, Any], flow_id: str) -> web.Response: ...
     async def delete(self, request: web.Request, flow_id: str) -> web.Response: ...

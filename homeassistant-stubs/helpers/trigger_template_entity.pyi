@@ -52,6 +52,7 @@ class TriggerBaseEntity(Entity):
 
 class ManualTriggerEntity(TriggerBaseEntity):
     def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
+    @callback
     def _process_manual_data(self, value: Any | None = None) -> None: ...
 
 class ManualTriggerSensorEntity(ManualTriggerEntity, SensorEntity):

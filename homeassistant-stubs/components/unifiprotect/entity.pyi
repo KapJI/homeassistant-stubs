@@ -19,11 +19,14 @@ class PermRequired(int, Enum):
     WRITE = 2
     DELETE = 3
 
+@callback
 def _async_device_entities(data: ProtectData, klass: type[BaseProtectEntity], model_type: ModelType, descs: Sequence[ProtectEntityDescription], unadopted_descs: Sequence[ProtectEntityDescription] | None = None, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[BaseProtectEntity]: ...
 
 _ALL_MODEL_TYPES: Incomplete
 
+@callback
 def _combine_model_descs(model_type: ModelType, model_descriptions: dict[ModelType, Sequence[ProtectEntityDescription]] | None, all_descs: Sequence[ProtectEntityDescription] | None) -> list[ProtectEntityDescription]: ...
+@callback
 def async_all_device_entities(data: ProtectData, klass: type[BaseProtectEntity], model_descriptions: dict[ModelType, Sequence[ProtectEntityDescription]] | None = None, all_descs: Sequence[ProtectEntityDescription] | None = None, unadopted_descs: list[ProtectEntityDescription] | None = None, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[BaseProtectEntity]: ...
 
 class BaseProtectEntity(Entity):
@@ -40,9 +43,12 @@ class BaseProtectEntity(Entity):
     _state_getters: Incomplete
     def __init__(self, data: ProtectData, device: ProtectDeviceType, description: EntityDescription | None = None) -> None: ...
     async def async_update(self) -> None: ...
+    @callback
     def _async_set_device_info(self) -> None: ...
     _attr_available: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @callback
     def _async_updated_event(self, device: ProtectDeviceType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 
@@ -54,11 +60,13 @@ class ProtectIsOnEntity(BaseProtectEntity):
 
 class ProtectDeviceEntity(BaseProtectEntity):
     _attr_device_info: Incomplete
+    @callback
     def _async_set_device_info(self) -> None: ...
 
 class ProtectNVREntity(BaseProtectEntity):
     device: NVR
     _attr_device_info: Incomplete
+    @callback
     def _async_set_device_info(self) -> None: ...
 
 class EventEntityMixin(ProtectDeviceEntity):
@@ -66,10 +74,14 @@ class EventEntityMixin(ProtectDeviceEntity):
     _unrecorded_attributes: Incomplete
     _event: Event | None
     _event_end: datetime | None
+    @callback
     def _set_event_done(self) -> None: ...
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _set_event_attrs(self, event: Event) -> None: ...
+    @callback
     def _async_event_with_immediate_end(self) -> None: ...
+    @callback
     def _event_already_ended(self, prev_event: Event | None, prev_event_end: datetime | None) -> bool: ...
 
 @dataclass(frozen=True, kw_only=True)

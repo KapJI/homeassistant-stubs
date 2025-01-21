@@ -12,6 +12,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: SchlageConfigEntr
 class SchlageLockEntity(SchlageEntity, LockEntity):
     _attr_name: Incomplete
     def __init__(self, coordinator: SchlageDataUpdateCoordinator, device_id: str) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_locked: Incomplete
     _attr_is_jammed: Incomplete

@@ -7,7 +7,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache import cached_property
-from typing import Any
+from typing import Any, final
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -30,6 +30,7 @@ class GeolocationEvent(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_distance: float | None
     _attr_latitude: float | None
     _attr_longitude: float | None
+    @final
     @property
     def state(self) -> float | None: ...
     @cached_property
@@ -40,5 +41,6 @@ class GeolocationEvent(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def latitude(self) -> float | None: ...
     @cached_property
     def longitude(self) -> float | None: ...
+    @final
     @property
     def state_attributes(self) -> dict[str, Any]: ...

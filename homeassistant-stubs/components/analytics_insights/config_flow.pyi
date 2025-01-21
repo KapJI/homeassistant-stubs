@@ -11,6 +11,7 @@ INTEGRATION_TYPES_WITHOUT_ANALYTICS: Incomplete
 
 class HomeassistantAnalyticsConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: AnalyticsInsightsConfigEntry) -> HomeassistantAnalyticsOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

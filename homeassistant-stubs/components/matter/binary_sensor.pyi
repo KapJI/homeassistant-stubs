@@ -19,6 +19,7 @@ class MatterBinarySensorEntityDescription(BinarySensorEntityDescription, MatterE
 class MatterBinarySensor(MatterEntity, BinarySensorEntity):
     entity_description: MatterBinarySensorEntityDescription
     _attr_is_on: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

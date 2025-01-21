@@ -26,4 +26,5 @@ class HardwareInfo:
     url: str | None
 
 class HardwareProtocol(Protocol):
+    @callback
     def async_info(self, hass: HomeAssistant) -> list[HardwareInfo]: ...

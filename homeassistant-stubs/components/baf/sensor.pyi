@@ -22,4 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_ad
 class BAFSensor(BAFDescriptionEntity, SensorEntity):
     entity_description: BAFSensorDescription
     _attr_native_value: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...

@@ -22,6 +22,7 @@ class APCUPSdSensor(CoordinatorEntity[APCUPSdCoordinator], SensorEntity):
     entity_description: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: APCUPSdCoordinator, description: SensorEntityDescription) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     _attr_native_unit_of_measurement: Incomplete

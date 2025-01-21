@@ -11,6 +11,7 @@ from http import HTTPStatus
 _LOGGER: Incomplete
 FLASH_BRIEFINGS_API_ENDPOINT: str
 
+@callback
 def async_setup(hass: HomeAssistant, flash_briefing_config: ConfigType) -> None: ...
 
 class AlexaFlashBriefingView(http.HomeAssistantView):
@@ -19,4 +20,5 @@ class AlexaFlashBriefingView(http.HomeAssistantView):
     name: str
     flash_briefings: Incomplete
     def __init__(self, hass: HomeAssistant, flash_briefings: ConfigType) -> None: ...
+    @callback
     def get(self, request: http.HomeAssistantRequest, briefing_id: str) -> StreamResponse | tuple[bytes, HTTPStatus]: ...

@@ -49,6 +49,7 @@ class BaseFirmwareInstallFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
 
 class BaseFirmwareConfigFlow(BaseFirmwareInstallFlow, ConfigFlow, metaclass=abc.ABCMeta):
     @staticmethod
+    @callback
     @abstractmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
     async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

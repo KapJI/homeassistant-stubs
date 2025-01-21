@@ -9,6 +9,7 @@ from typing import Any
 BACKOFF_TIME: int
 MAX_RETRIES: int
 
+@callback
 def async_manage_legacy_subscription_issue(hass: HomeAssistant, subscription_info: dict[str, Any]) -> None: ...
 
 class LegacySubscriptionRepairFlow(RepairsFlow):

@@ -18,4 +18,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 
 class OpenUvBinarySensor(OpenUvEntity, BinarySensorEntity):
     _attr_is_on: bool
+    @callback
     def _handle_coordinator_update(self) -> None: ...

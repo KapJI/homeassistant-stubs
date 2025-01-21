@@ -15,6 +15,7 @@ _LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@callback
 def async_create_preview_lock(hass: HomeAssistant, name: str, validated_config: dict[str, Any]) -> LockGroup: ...
 
 class LockGroup(GroupEntity, LockEntity):
@@ -35,4 +36,5 @@ class LockGroup(GroupEntity, LockEntity):
     _attr_is_open: Incomplete
     _attr_is_unlocking: Incomplete
     _attr_is_locked: Incomplete
+    @callback
     def async_update_group_state(self) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache import cached_property
-from typing import Any, TypedDict
+from typing import Any, TypedDict, final
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[SirenEntity]]
@@ -37,6 +37,7 @@ class SirenEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: SirenEntityDescription
     _attr_available_tones: list[int | str] | dict[int, str] | None
     _attr_supported_features: SirenEntityFeature
+    @final
     @property
     def capability_attributes(self) -> dict[str, Any] | None: ...
     @cached_property

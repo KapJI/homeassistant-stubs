@@ -19,8 +19,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry,
 
 class AirzoneBaseSwitch(AirzoneEntity, SwitchEntity, metaclass=abc.ABCMeta):
     entity_description: AirzoneSwitchDescription
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_on: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneZoneSwitch(AirzoneZoneEntity, AirzoneBaseSwitch):

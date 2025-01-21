@@ -33,12 +33,15 @@ FORECAST_SENSOR_DESCRIPTIONS: Incomplete
 INDEX_SENSOR_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@callback
 def calculate_trend(indices: list[float]) -> str: ...
 
 class ForecastSensor(IQVIAEntity, SensorEntity):
     _attr_native_value: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...
 
 class IndexSensor(IQVIAEntity, SensorEntity):
     _attr_native_value: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...

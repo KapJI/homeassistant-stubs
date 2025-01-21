@@ -24,12 +24,14 @@ class Hub(SurePetcareBinarySensor):
     def available(self) -> bool: ...
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class Pet(SurePetcareBinarySensor):
     _attr_device_class: Incomplete
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class DeviceConnectivity(SurePetcareBinarySensor):
@@ -40,4 +42,5 @@ class DeviceConnectivity(SurePetcareBinarySensor):
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...

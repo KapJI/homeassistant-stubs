@@ -16,6 +16,7 @@ class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, doma
     DOMAIN = DOMAIN
     _youtube: YouTube | None
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> YouTubeOptionsFlowHandler: ...
     @property
     def logger(self) -> logging.Logger: ...

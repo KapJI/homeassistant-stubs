@@ -18,6 +18,7 @@ class SwitcherBaseCoverEntity(SwitcherEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _cover_id: int
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_cover_position: Incomplete
     _attr_is_closed: Incomplete

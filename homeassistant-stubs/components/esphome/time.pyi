@@ -6,6 +6,7 @@ from homeassistant.components.time import TimeEntity as TimeEntity
 
 class EsphomeTime(EsphomeEntity[TimeInfo, TimeState], TimeEntity):
     @property
+    @esphome_state_property
     def native_value(self) -> time | None: ...
     async def async_set_value(self, value: time) -> None: ...
 

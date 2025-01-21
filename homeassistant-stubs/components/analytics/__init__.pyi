@@ -13,5 +13,9 @@ CONFIG_SCHEMA: Incomplete
 DATA_COMPONENT: HassKey[Analytics]
 
 async def async_setup(hass: HomeAssistant, _: ConfigType) -> bool: ...
+@callback
+@websocket_api.require_admin
 def websocket_analytics(hass: HomeAssistant, connection: websocket_api.connection.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_analytics_preferences(hass: HomeAssistant, connection: websocket_api.connection.ActiveConnection, msg: dict[str, Any]) -> None: ...

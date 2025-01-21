@@ -20,6 +20,7 @@ class SureBattery(SurePetcareEntity, SensorEntity):
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class Felaqua(SurePetcareEntity, SensorEntity):
@@ -30,4 +31,5 @@ class Felaqua(SurePetcareEntity, SensorEntity):
     _attr_entity_picture: Incomplete
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
     _attr_native_value: Incomplete
+    @callback
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...

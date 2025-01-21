@@ -18,21 +18,25 @@ class ProtectDeviceRingEventEntity(EventEntityMixin, ProtectDeviceEntity, EventE
     entity_description: ProtectEventEntityDescription
     _event: Incomplete
     _event_end: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectDeviceNFCEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
     entity_description: ProtectEventEntityDescription
     _event: Incomplete
     _event_end: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectDeviceFingerprintEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
     entity_description: ProtectEventEntityDescription
     _event: Incomplete
     _event_end: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 EVENT_DESCRIPTIONS: tuple[ProtectEventEntityDescription, ...]
 
+@callback
 def _async_event_entities(data: ProtectData, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[ProtectDeviceEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

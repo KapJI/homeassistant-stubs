@@ -5,6 +5,9 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as Core
 from homeassistant.util.event_type import EventType as EventType
 from typing import Any
 
+@callback
 def _async_at_core_state(hass: HomeAssistant, at_start_cb: Callable[[HomeAssistant], Coroutine[Any, Any, None] | None], event_type: EventType[NoEventData], check_state: Callable[[HomeAssistant], bool]) -> CALLBACK_TYPE: ...
+@callback
 def async_at_start(hass: HomeAssistant, at_start_cb: Callable[[HomeAssistant], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...
+@callback
 def async_at_started(hass: HomeAssistant, at_start_cb: Callable[[HomeAssistant], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...

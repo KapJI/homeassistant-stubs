@@ -16,7 +16,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType, VolDictType as VolDictType
 from propcache import cached_property
-from typing import Final
+from typing import Final, final
 
 _LOGGER: Incomplete
 SERVICE_SNAPSHOT: Final[str]
@@ -76,9 +76,12 @@ class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def _async_load_image_from_url(self, url: str) -> Image | None: ...
     async def async_image(self) -> bytes | None: ...
     @property
+    @final
     def state(self) -> str | None: ...
+    @final
     @property
     def state_attributes(self) -> dict[str, str | None]: ...
+    @callback
     def async_update_token(self) -> None: ...
 
 class ImageView(HomeAssistantView):

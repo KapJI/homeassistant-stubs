@@ -25,17 +25,57 @@ type KnxAsyncWebSocketCommandHandler = Callable[[HomeAssistant, KNXModule, webso
 def provide_knx(func: KnxAsyncWebSocketCommandHandler) -> websocket_api.const.AsyncWebSocketCommandHandler: ...
 @overload
 def provide_knx(func: KnxWebSocketCommandHandler) -> websocket_api.const.WebSocketCommandHandler: ...
+@websocket_api.require_admin
+@provide_knx
+@callback
 def ws_info(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@provide_knx
 async def ws_get_knx_project(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@provide_knx
 async def ws_project_file_process(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@provide_knx
 async def ws_project_file_remove(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@provide_knx
+@callback
 def ws_group_monitor_info(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@provide_knx
+@callback
 def ws_group_telegrams(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@callback
 def ws_subscribe_telegram(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@callback
 def ws_validate_entity(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@provide_knx
 async def ws_create_entity(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@provide_knx
 async def ws_update_entity(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@provide_knx
 async def ws_delete_entity(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@provide_knx
+@callback
 def ws_get_entity_entries(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@provide_knx
+@callback
 def ws_get_entity_config(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@provide_knx
+@callback
 def ws_create_device(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...

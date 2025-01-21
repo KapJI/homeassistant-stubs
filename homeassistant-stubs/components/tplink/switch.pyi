@@ -19,7 +19,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry
 
 class TPLinkSwitch(CoordinatedTPLinkFeatureEntity, SwitchEntity):
     entity_description: TPLinkSwitchEntityDescription
+    @async_refresh_after
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @async_refresh_after
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
+    @callback
     def _async_update_attrs(self) -> bool: ...

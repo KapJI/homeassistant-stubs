@@ -18,9 +18,11 @@ class SwitchBotCloudSwitch(SwitchBotCloudEntity, SwitchEntity):
     _attr_is_on: bool
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
 
 class SwitchBotCloudRemoteSwitch(SwitchBotCloudSwitch):
+    @callback
     def _handle_coordinator_update(self) -> None: ...
 
 class SwitchBotCloudPlugSwitch(SwitchBotCloudSwitch):
@@ -28,6 +30,8 @@ class SwitchBotCloudPlugSwitch(SwitchBotCloudSwitch):
 
 class SwitchBotCloudRelaySwitchSwitch(SwitchBotCloudSwitch):
     _attr_is_on: Incomplete
+    @callback
     def _handle_coordinator_update(self) -> None: ...
 
+@callback
 def _async_make_entity(api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator) -> SwitchBotCloudSwitch: ...

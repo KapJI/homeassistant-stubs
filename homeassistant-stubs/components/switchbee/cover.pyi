@@ -25,6 +25,7 @@ class SwitchBeeCoverEntity(SwitchBeeDeviceEntity[SwitchBeeShutter], CoverEntity)
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool | None
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_cover_position: Incomplete
     def _update_from_coordinator(self) -> None: ...

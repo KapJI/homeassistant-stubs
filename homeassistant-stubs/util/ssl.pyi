@@ -1,6 +1,7 @@
 import ssl
 from _typeshed import Incomplete
 from enum import StrEnum
+from functools import cache
 
 class SSLCipherList(StrEnum):
     PYTHON_DEFAULT = 'python_default'
@@ -10,7 +11,9 @@ class SSLCipherList(StrEnum):
 
 SSL_CIPHER_LISTS: Incomplete
 
+@cache
 def _client_context_no_verify(ssl_cipher_list: SSLCipherList) -> ssl.SSLContext: ...
+@cache
 def _client_context(ssl_cipher_list: SSLCipherList = ...) -> ssl.SSLContext: ...
 
 _DEFAULT_SSL_CONTEXT: Incomplete

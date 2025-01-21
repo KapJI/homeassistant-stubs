@@ -6,7 +6,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from typing import Any
 
+@callback
 def async_register_websocket_commands(hass: HomeAssistant) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_network_adapters(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_network_adapters_configure(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@callback
+@websocket_api.require_admin
 def websocket_network_url(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...

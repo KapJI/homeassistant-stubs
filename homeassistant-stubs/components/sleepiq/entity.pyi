@@ -23,7 +23,9 @@ class SleepIQBedEntity[_SleepIQCoordinatorT: _DataCoordinatorType](CoordinatorEn
     bed: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: _SleepIQCoordinatorT, bed: SleepIQBed) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
+    @callback
     @abstractmethod
     def _async_update_attrs(self) -> None: ...
 

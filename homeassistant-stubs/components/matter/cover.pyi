@@ -38,6 +38,7 @@ class MatterCover(MatterEntity, CoverEntity):
     _attr_current_cover_tilt_position: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

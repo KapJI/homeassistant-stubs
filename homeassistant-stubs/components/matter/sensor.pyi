@@ -23,12 +23,14 @@ class MatterSensorEntityDescription(SensorEntityDescription, MatterEntityDescrip
 class MatterSensor(MatterEntity, SensorEntity):
     entity_description: MatterSensorEntityDescription
     _attr_native_value: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
 
 class MatterOperationalStateSensor(MatterSensor):
     states_map: dict[int, str]
     _attr_options: Incomplete
     _attr_native_value: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

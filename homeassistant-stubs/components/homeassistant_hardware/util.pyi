@@ -12,7 +12,9 @@ from universal_silabs_flasher.const import ApplicationType
 _LOGGER: Incomplete
 
 def get_zha_device_path(config_entry: ConfigEntry) -> str | None: ...
+@callback
 def get_otbr_addon_manager(hass: HomeAssistant) -> WaitingAddonManager: ...
+@callback
 def get_zigbee_flasher_addon_manager(hass: HomeAssistant) -> WaitingAddonManager: ...
 
 @dataclass(slots=True, kw_only=True)

@@ -9,4 +9,5 @@ from typing import Any
 
 EVENT_TO_NAME: dict[EventType[Any] | str, str]
 
+@callback
 def async_describe_events(hass: HomeAssistant, async_describe_event: Callable[[str, EventType[NoEventData] | str, Callable[[Event], dict[str, str]]], None]) -> None: ...

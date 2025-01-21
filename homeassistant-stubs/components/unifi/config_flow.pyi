@@ -22,6 +22,7 @@ class UnifiFlowHandler(ConfigFlow, domain=UNIFI_DOMAIN):
     VERSION: int
     sites: Sites
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: UnifiConfigEntry) -> UnifiOptionsFlowHandler: ...
     config: dict[str, Any]
     reauth_schema: dict[vol.Marker, Any]

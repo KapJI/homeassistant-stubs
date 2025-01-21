@@ -10,7 +10,9 @@ DEFAULT_PORT: int
 DATA_SCHEMA: Incomplete
 UNIQUE_ID: str
 
+@callback
 def async_get_pin_from_discovery_hostname(hostname: str) -> str: ...
+@callback
 def async_get_pin_from_uid(uid: str) -> str: ...
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]: ...
 

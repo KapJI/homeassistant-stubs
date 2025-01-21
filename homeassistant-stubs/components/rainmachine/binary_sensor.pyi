@@ -28,9 +28,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, 
 class CurrentRestrictionsBinarySensor(RainMachineEntity, BinarySensorEntity):
     entity_description: RainMachineBinarySensorDescription
     _attr_is_on: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...
 
 class ProvisionSettingsBinarySensor(RainMachineEntity, BinarySensorEntity):
     entity_description: RainMachineBinarySensorDescription
     _attr_is_on: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...

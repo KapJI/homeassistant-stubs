@@ -9,6 +9,7 @@ class IslamicPrayerFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> IslamicPrayerOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

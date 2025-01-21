@@ -4,5 +4,6 @@ from typing import Any, Final
 
 API_ENDPOINT: Final[str]
 
+@callback
 def async_register(hass: HomeAssistant, register: system_health.SystemHealthRegistration) -> None: ...
 async def system_health_info(hass: HomeAssistant) -> dict[str, Any]: ...

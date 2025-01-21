@@ -26,6 +26,7 @@ _CLOUD_ERRORS: dict[type[Exception], tuple[HTTPStatus, str]]
 
 class MFAExpiredOrNotStarted(auth.CloudError): ...
 
+@callback
 def async_setup(hass: HomeAssistant) -> None: ...
 def _handle_cloud_errors[_HassViewT: HomeAssistantView, **_P](handler: Callable[Concatenate[_HassViewT, web.Request, _P], Awaitable[web.Response]]) -> Callable[Concatenate[_HassViewT, web.Request, _P], Coroutine[Any, Any, web.Response]]: ...
 def _ws_handle_cloud_errors(handler: Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], Coroutine[None, None, None]]) -> Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], Coroutine[None, None, None]]: ...
@@ -34,6 +35,8 @@ def _process_cloud_exception(exc: Exception, where: str) -> tuple[HTTPStatus, st
 class GoogleActionsSyncView(HomeAssistantView):
     url: str
     name: str
+    @require_admin
+    @_handle_cloud_errors
     async def post(self, request: web.Request) -> web.Response: ...
 
 class CloudLoginView(HomeAssistantView):
@@ -41,44 +44,99 @@ class CloudLoginView(HomeAssistantView):
     _mfa_tokens_set_time: float
     url: str
     name: str
+    @require_admin
+    @_handle_cloud_errors
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
 class CloudLogoutView(HomeAssistantView):
     url: str
     name: str
+    @require_admin
+    @_handle_cloud_errors
     async def post(self, request: web.Request) -> web.Response: ...
 
 class CloudRegisterView(HomeAssistantView):
     url: str
     name: str
+    @require_admin
+    @_handle_cloud_errors
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
 class CloudResendConfirmView(HomeAssistantView):
     url: str
     name: str
+    @require_admin
+    @_handle_cloud_errors
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
 class CloudForgotPasswordView(HomeAssistantView):
     url: str
     name: str
+    @require_admin
+    @_handle_cloud_errors
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_cloud_remove_data(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.async_response
 async def websocket_cloud_status(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 def _require_cloud_login(handler: Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], None]) -> Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], None]: ...
+@_require_cloud_login
+@websocket_api.async_response
 async def websocket_subscription(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 def validate_language_voice(value: tuple[str, str]) -> tuple[str, str]: ...
+@_require_cloud_login
+@websocket_api.async_response
 async def websocket_update_prefs(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def websocket_hook_create(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def websocket_hook_delete(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def _account_data(hass: HomeAssistant, cloud: Cloud[CloudClient]) -> dict[str, Any]: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def websocket_remote_connect(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def websocket_remote_disconnect(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def google_assistant_get(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def google_assistant_list(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def google_assistant_update(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def alexa_get(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
+@_ws_handle_cloud_errors
 async def alexa_list(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@_require_cloud_login
+@websocket_api.async_response
 async def alexa_sync(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.async_response
 async def thingtalk_convert(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 def tts_info(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

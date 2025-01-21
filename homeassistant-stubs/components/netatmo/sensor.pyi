@@ -49,6 +49,7 @@ class NetatmoWeatherSensor(NetatmoWeatherModuleEntity, SensorEntity):
     @property
     def available(self) -> bool: ...
     _attr_native_value: Incomplete
+    @callback
     def async_update_callback(self) -> None: ...
 
 class NetatmoClimateBatterySensor(NetatmoModuleEntity, SensorEntity):
@@ -60,6 +61,7 @@ class NetatmoClimateBatterySensor(NetatmoModuleEntity, SensorEntity):
     def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete
+    @callback
     def async_update_callback(self) -> None: ...
 
 class NetatmoSensor(NetatmoModuleEntity, SensorEntity):
@@ -69,6 +71,7 @@ class NetatmoSensor(NetatmoModuleEntity, SensorEntity):
     def __init__(self, netatmo_device: NetatmoDevice, description: NetatmoSensorEntityDescription) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete
+    @callback
     def async_update_callback(self) -> None: ...
 
 class NetatmoRoomSensor(NetatmoRoomEntity, SensorEntity):
@@ -76,6 +79,7 @@ class NetatmoRoomSensor(NetatmoRoomEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, netatmo_room: NetatmoRoom, description: NetatmoSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @callback
     def async_update_callback(self) -> None: ...
 
 class NetatmoPublicSensor(NetatmoBaseEntity, SensorEntity):
@@ -92,4 +96,5 @@ class NetatmoPublicSensor(NetatmoBaseEntity, SensorEntity):
     async def async_config_update_callback(self, area: NetatmoArea) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete
+    @callback
     def async_update_callback(self) -> None: ...

@@ -6,4 +6,5 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as A
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
+@callback
 def async_describe_events(hass: HomeAssistant, async_describe_event: Callable[[str, str, Callable[[LazyEventPartialState], dict[str, Any]]], None]) -> None: ...

@@ -13,6 +13,7 @@ STEP_HW_SETTINGS_SCHEMA: Incomplete
 class HomeAssistantGreenConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> HomeAssistantGreenOptionsFlow: ...
     async def async_step_system(self, data: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

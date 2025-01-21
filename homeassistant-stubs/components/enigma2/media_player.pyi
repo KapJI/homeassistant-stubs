@@ -46,4 +46,5 @@ class Enigma2Device(CoordinatorEntity[Enigma2UpdateCoordinator], MediaPlayerEnti
     _attr_source_list: Incomplete
     _attr_state: Incomplete
     _attr_volume_level: Incomplete
+    @callback
     def _handle_coordinator_update(self) -> None: ...

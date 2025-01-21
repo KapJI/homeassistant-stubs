@@ -15,4 +15,5 @@ class VelbusButton(VelbusEntity, ButtonEntity):
     _channel: VelbusaioButton | VelbusaioButtonCounter
     _attr_entity_registry_enabled_default: bool
     _attr_entity_category: Incomplete
+    @api_call
     async def async_press(self) -> None: ...

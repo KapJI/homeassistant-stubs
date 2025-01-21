@@ -24,6 +24,8 @@ class BaseRegistryItems[_DataT](UserDict[str, _DataT], ABC, metaclass=abc.ABCMet
 class BaseRegistry[_StoreDataT: Mapping[str, Any] | Sequence[Any]](ABC, metaclass=abc.ABCMeta):
     hass: HomeAssistant
     _store: Store[_StoreDataT]
+    @callback
     def async_schedule_save(self) -> None: ...
+    @callback
     @abstractmethod
     def _data_to_save(self) -> _StoreDataT: ...

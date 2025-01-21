@@ -15,6 +15,7 @@ class AirVisualProMeasurementDescription(SensorEntityDescription):
 
 SENSOR_DESCRIPTIONS: Incomplete
 
+@callback
 def async_get_aqi_locale(settings: dict[str, Any]) -> str: ...
 async def async_setup_entry(hass: HomeAssistant, entry: AirVisualProConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

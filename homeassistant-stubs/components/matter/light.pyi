@@ -44,6 +44,7 @@ class MatterLight(MatterEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_hs_color: Incomplete
     _attr_xy_color: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
     def _check_transition_blocklist(self) -> None: ...
 

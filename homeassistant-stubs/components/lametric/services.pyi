@@ -12,5 +12,6 @@ SERVICE_BASE_SCHEMA: Incomplete
 SERVICE_MESSAGE_SCHEMA: Incomplete
 SERVICE_CHART_SCHEMA: Incomplete
 
+@callback
 def async_setup_services(hass: HomeAssistant) -> None: ...
 async def async_send_notification(coordinator: LaMetricDataUpdateCoordinator, call: ServiceCall, frames: list[Chart | Goal | Simple]) -> None: ...

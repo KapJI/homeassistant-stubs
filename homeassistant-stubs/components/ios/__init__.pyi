@@ -79,6 +79,7 @@ class iOSPushConfigView(HomeAssistantView):
     name: str
     push_config: Incomplete
     def __init__(self, push_config: dict[str, Any]) -> None: ...
+    @callback
     def get(self, request: web.Request) -> web.Response: ...
 
 class iOSConfigView(HomeAssistantView):
@@ -86,6 +87,7 @@ class iOSConfigView(HomeAssistantView):
     name: str
     config: Incomplete
     def __init__(self, config: dict[str, Any]) -> None: ...
+    @callback
     def get(self, request: web.Request) -> web.Response: ...
 
 class iOSIdentifyDeviceView(HomeAssistantView):

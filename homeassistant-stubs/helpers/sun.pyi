@@ -12,8 +12,17 @@ DATA_LOCATION_CACHE: HassKey[dict[tuple[str, str, str, float, float], astral.loc
 ELEVATION_AGNOSTIC_EVENTS: Incomplete
 type _AstralSunEventCallable = Callable[..., datetime.datetime]
 
+@callback
+@bind_hass
 def get_astral_location(hass: HomeAssistant) -> tuple[astral.location.Location, astral.Elevation]: ...
+@callback
+@bind_hass
 def get_astral_event_next(hass: HomeAssistant, event: str, utc_point_in_time: datetime.datetime | None = None, offset: datetime.timedelta | None = None) -> datetime.datetime: ...
+@callback
 def get_location_astral_event_next(location: astral.location.Location, elevation: astral.Elevation, event: str, utc_point_in_time: datetime.datetime | None = None, offset: datetime.timedelta | None = None) -> datetime.datetime: ...
+@callback
+@bind_hass
 def get_astral_event_date(hass: HomeAssistant, event: str, date: datetime.date | datetime.datetime | None = None) -> datetime.datetime | None: ...
+@callback
+@bind_hass
 def is_up(hass: HomeAssistant, utc_point_in_time: datetime.datetime | None = None) -> bool: ...

@@ -18,6 +18,7 @@ class JellyfinMediaPlayer(JellyfinClientEntity, MediaPlayerEntity):
     now_playing: dict[str, Any] | None
     play_state: dict[str, Any] | None
     def __init__(self, coordinator: JellyfinDataUpdateCoordinator, session_id: str) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_state: Incomplete
     _attr_is_volume_muted: Incomplete
@@ -36,6 +37,7 @@ class JellyfinMediaPlayer(JellyfinClientEntity, MediaPlayerEntity):
     _attr_media_position: Incomplete
     _attr_media_position_updated_at: Incomplete
     _attr_media_image_remotely_accessible: bool
+    @callback
     def _update_from_session_data(self) -> None: ...
     @property
     def media_image_url(self) -> str | None: ...

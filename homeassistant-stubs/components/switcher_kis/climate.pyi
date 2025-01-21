@@ -31,6 +31,7 @@ class SwitcherClimateEntity(SwitcherEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, remote: SwitcherBreezeRemote) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete

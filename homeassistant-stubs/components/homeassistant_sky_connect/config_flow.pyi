@@ -23,6 +23,7 @@ class HomeAssistantSkyConnectConfigFlow(SkyConnectTranslationMixin, firmware_con
     _hw_variant: HardwareVariant | None
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
     _device: Incomplete
     _hardware_name: Incomplete

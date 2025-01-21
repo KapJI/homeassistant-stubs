@@ -8,12 +8,18 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.util import location as location, unit_system as unit_system
 from typing import Any
 
+@callback
 def async_setup(hass: HomeAssistant) -> bool: ...
 
 class CheckConfigView(HomeAssistantView):
     url: str
     name: str
+    @require_admin
     async def post(self, request: web.Request) -> web.Response: ...
 
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_update_config(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_detect_config(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

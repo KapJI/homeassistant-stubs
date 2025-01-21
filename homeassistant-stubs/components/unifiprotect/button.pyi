@@ -25,6 +25,7 @@ SENSOR_BUTTONS: tuple[ProtectButtonEntityDescription, ...]
 CHIME_BUTTONS: tuple[ProtectButtonEntityDescription, ...]
 _MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
+@callback
 def _async_remove_adopt_button(hass: HomeAssistant, device: ProtectAdoptableDeviceModel) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
@@ -34,4 +35,5 @@ class ProtectButton(ProtectDeviceEntity, ButtonEntity):
 
 class ProtectAdoptButton(ProtectButton):
     _attr_available: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...

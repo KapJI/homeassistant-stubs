@@ -9,4 +9,5 @@ from typing import Final
 ALLOWED_CORS_HEADERS: Final[list[str]]
 VALID_CORS_TYPES: Final[Incomplete]
 
+@callback
 def setup_cors(app: Application, origins: list[str]) -> None: ...

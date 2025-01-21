@@ -25,6 +25,7 @@ class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_target_temperature_step: Incomplete
     _attr_hvac_modes: Incomplete
     def _init_attributes(self) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete
@@ -35,6 +36,7 @@ class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_target_temperature_high: Incomplete
     _attr_target_temperature_low: Incomplete
     _attr_target_temperature: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneDeviceClimate(AirzoneClimate, metaclass=abc.ABCMeta):
@@ -43,6 +45,7 @@ class AirzoneDeviceClimate(AirzoneClimate, metaclass=abc.ABCMeta):
     _speeds_reverse: dict[str, int]
     def _init_attributes(self) -> None: ...
     _attr_fan_mode: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
     _attr_fan_modes: Incomplete
     def _initialize_fan_speeds(self) -> None: ...

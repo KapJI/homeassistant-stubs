@@ -18,6 +18,7 @@ class MatterNumber(MatterEntity, NumberEntity):
     entity_description: MatterNumberEntityDescription
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_value: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

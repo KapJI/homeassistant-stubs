@@ -21,6 +21,7 @@ class ShellyButtonDescription[_ShellyCoordinatorT: ShellyBlockCoordinator | Shel
 
 BUTTONS: Final[list[ShellyButtonDescription[Any]]]
 
+@callback
 def async_migrate_unique_ids(coordinator: ShellyRpcCoordinator | ShellyBlockCoordinator, entity_entry: er.RegistryEntry) -> dict[str, Any] | None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

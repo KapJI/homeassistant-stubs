@@ -40,7 +40,9 @@ class MinecraftServerSensorEntity(MinecraftServerEntity, SensorEntity):
     entity_description: MinecraftServerSensorEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MinecraftServerCoordinator, description: MinecraftServerSensorEntityDescription, config_entry: ConfigEntry) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _update_properties(self) -> None: ...

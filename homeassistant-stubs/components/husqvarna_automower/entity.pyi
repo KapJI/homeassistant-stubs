@@ -13,7 +13,9 @@ _LOGGER: Incomplete
 ERROR_ACTIVITIES: Incomplete
 ERROR_STATES: Incomplete
 
+@callback
 def _check_error_free(mower_attributes: MowerAttributes) -> bool: ...
+@callback
 def _work_area_translation_key(work_area_id: int, key: str) -> str: ...
 type _FuncType[_T, **_P, _R] = Callable[Concatenate[_T, _P], Coroutine[Any, Any, _R]]
 def handle_sending_exception[_Entity: AutomowerBaseEntity, **_P](poll_after_sending: bool = False) -> Callable[[_FuncType[_Entity, _P, Any]], _FuncType[_Entity, _P, None]]: ...

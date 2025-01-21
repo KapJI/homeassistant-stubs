@@ -22,6 +22,7 @@ class RabbitAirFanEntity(RabbitAirBaseEntity, FanEntity):
     _attr_preset_modes: Incomplete
     _attr_speed_count: Incomplete
     def __init__(self, coordinator: RabbitAirDataUpdateCoordinator, entry: ConfigEntry) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_percentage: int
     _attr_preset_mode: Incomplete

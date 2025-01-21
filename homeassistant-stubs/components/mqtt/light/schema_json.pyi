@@ -76,7 +76,9 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _attr_is_on: bool
     _attr_brightness: Incomplete
     _attr_effect: Incomplete
+    @callback
     def _state_received(self, msg: ReceiveMessage) -> None: ...
+    @callback
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
     @property

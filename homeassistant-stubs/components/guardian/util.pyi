@@ -16,5 +16,7 @@ class EntityDomainReplacementStrategy:
     old_domain: str
     old_unique_id: str
 
+@callback
 def async_finish_entity_domain_replacements(hass: HomeAssistant, entry: ConfigEntry, entity_replacement_strategies: Iterable[EntityDomainReplacementStrategy]) -> None: ...
+@callback
 def convert_exceptions_to_homeassistant_error[_GuardianEntityT: GuardianEntity, **_P](func: Callable[Concatenate[_GuardianEntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_GuardianEntityT, _P], Coroutine[Any, Any, None]]: ...

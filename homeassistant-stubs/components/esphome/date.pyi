@@ -6,6 +6,7 @@ from homeassistant.components.date import DateEntity as DateEntity
 
 class EsphomeDate(EsphomeEntity[DateInfo, DateState], DateEntity):
     @property
+    @esphome_state_property
     def native_value(self) -> date | None: ...
     async def async_set_value(self, value: date) -> None: ...
 

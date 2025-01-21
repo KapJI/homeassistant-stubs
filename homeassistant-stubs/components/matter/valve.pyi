@@ -26,9 +26,11 @@ class MatterValve(MatterEntity, ValveEntity):
     _attr_is_closing: bool
     _attr_is_closed: bool
     _attr_current_valve_position: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
     _attr_reports_position: bool
+    @callback
     def _calculate_features(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

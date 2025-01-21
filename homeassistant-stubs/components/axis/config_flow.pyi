@@ -21,6 +21,7 @@ PROTOCOL_CHOICES: Incomplete
 class AxisFlowHandler(ConfigFlow, domain=AXIS_DOMAIN):
     VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> AxisOptionsFlowHandler: ...
     config: dict[str, Any]
     discovery_schema: VolDictType | None

@@ -13,6 +13,7 @@ class TedeeEntity(CoordinatorEntity[TedeeApiCoordinator]):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, lock: TedeeLock, coordinator: TedeeApiCoordinator, key: str) -> None: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
 
 class TedeeDescriptionEntity(TedeeEntity):

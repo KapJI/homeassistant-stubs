@@ -64,4 +64,5 @@ class EventAsRow(NamedTuple):
     data: Mapping[str, Any]
     context: Context
 
+@callback
 def async_event_to_row(event: Event) -> EventAsRow: ...

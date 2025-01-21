@@ -20,6 +20,7 @@ SUPPORTED_DECONZ_PRESENCE_EVENTS: Incomplete
 RELATIVE_ROTARY_DECONZ_TO_EVENT: Incomplete
 
 async def async_setup_events(hub: DeconzHub) -> None: ...
+@callback
 def async_unload_events(hub: DeconzHub) -> None: ...
 
 class DeconzEventBase(DeconzBase):
@@ -28,22 +29,28 @@ class DeconzEventBase(DeconzBase):
     device_id: str | None
     event_id: Incomplete
     def __init__(self, device: AncillaryControl | Presence | RelativeRotary | Switch, hub: DeconzHub) -> None: ...
+    @callback
     def async_will_remove_from_hass(self) -> None: ...
+    @callback
     def async_update_callback(self) -> None: ...
     async def async_update_device_registry(self) -> None: ...
 
 class DeconzEvent(DeconzEventBase):
     _device: Switch
+    @callback
     def async_update_callback(self) -> None: ...
 
 class DeconzAlarmEvent(DeconzEventBase):
     _device: AncillaryControl
+    @callback
     def async_update_callback(self) -> None: ...
 
 class DeconzPresenceEvent(DeconzEventBase):
     _device: Presence
+    @callback
     def async_update_callback(self) -> None: ...
 
 class DeconzRelativeRotaryEvent(DeconzEventBase):
     _device: RelativeRotary
+    @callback
     def async_update_callback(self) -> None: ...

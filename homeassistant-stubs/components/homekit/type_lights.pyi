@@ -1,5 +1,6 @@
 from .accessories import HomeAccessory as HomeAccessory, TYPES as TYPES
 from .const import CHAR_BRIGHTNESS as CHAR_BRIGHTNESS, CHAR_COLOR_TEMPERATURE as CHAR_COLOR_TEMPERATURE, CHAR_HUE as CHAR_HUE, CHAR_ON as CHAR_ON, CHAR_SATURATION as CHAR_SATURATION, PROP_MAX_VALUE as PROP_MAX_VALUE, PROP_MIN_VALUE as PROP_MIN_VALUE, SERV_LIGHTBULB as SERV_LIGHTBULB
+from .util import get_min_max as get_min_max
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_BRIGHTNESS_PCT as ATTR_BRIGHTNESS_PCT, ATTR_COLOR_MODE as ATTR_COLOR_MODE, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_MAX_COLOR_TEMP_KELVIN as ATTR_MAX_COLOR_TEMP_KELVIN, ATTR_MIN_COLOR_TEMP_KELVIN as ATTR_MIN_COLOR_TEMP_KELVIN, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_SUPPORTED_COLOR_MODES as ATTR_SUPPORTED_COLOR_MODES, ATTR_WHITE as ATTR_WHITE, ColorMode as ColorMode, brightness_supported as brightness_supported, color_supported as color_supported, color_temp_supported as color_temp_supported
@@ -29,12 +30,13 @@ class Light(HomeAccessory):
     brightness_supported: Incomplete
     char_on: Incomplete
     char_brightness: Incomplete
-    min_mireds: Incomplete
     max_mireds: Incomplete
     char_color_temp: Incomplete
     char_hue: Incomplete
     char_saturation: Incomplete
     def __init__(self, *args: Any) -> None: ...
     def _set_chars(self, char_values: dict[str, Any]) -> None: ...
+    @callback
     def _async_send_events(self, _now: datetime) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...

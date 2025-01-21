@@ -14,6 +14,7 @@ DECONZ_MANUFACTURERURL: str
 CONF_SERIAL: str
 CONF_MANUAL_INPUT: str
 
+@callback
 def get_master_hub(hass: HomeAssistant) -> DeconzHub: ...
 
 class DeconzFlowHandler(ConfigFlow, domain=DOMAIN):
@@ -24,6 +25,7 @@ class DeconzFlowHandler(ConfigFlow, domain=DOMAIN):
     port: int
     api_key: str
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> DeconzOptionsFlowHandler: ...
     bridge_id: str
     def __init__(self) -> None: ...

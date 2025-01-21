@@ -8,6 +8,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MikrotikConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@callback
 def update_items(coordinator: MikrotikDataUpdateCoordinator, async_add_entities: AddEntitiesCallback, tracked: dict[str, MikrotikDataUpdateCoordinatorTracker]) -> None: ...
 
 class MikrotikDataUpdateCoordinatorTracker(CoordinatorEntity[MikrotikDataUpdateCoordinator], ScannerEntity):

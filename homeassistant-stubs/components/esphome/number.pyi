@@ -15,9 +15,12 @@ class EsphomeNumber(EsphomeEntity[NumberInfo, NumberState], NumberEntity):
     _attr_native_step: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_mode: Incomplete
+    @callback
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
+    @esphome_float_state_property
     def native_value(self) -> float | None: ...
+    @convert_api_error_ha_error
     async def async_set_native_value(self, value: float) -> None: ...
 
 async_setup_entry: Incomplete

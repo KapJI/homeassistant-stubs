@@ -8,6 +8,7 @@ from typing import Any
 
 PLATFORM_SCHEMA = SCENE_PLATFORM_SCHEMA
 
+@callback
 def async_setup(hass: HomeAssistant) -> bool: ...
 
 class EditSceneConfigView(EditIdBasedConfigView):

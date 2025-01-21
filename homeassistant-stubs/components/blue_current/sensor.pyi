@@ -21,12 +21,14 @@ class ChargePointSensor(ChargepointEntity, SensorEntity):
     def __init__(self, connector: Connector, sensor: SensorEntityDescription, evse_id: str) -> None: ...
     has_value: bool
     _attr_native_value: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...
 
 class ChargePointTimestampSensor(ChargePointSensor):
     _attr_device_class: Incomplete
     has_value: bool
     _attr_native_value: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...
 
 class GridSensor(BlueCurrentEntity, SensorEntity):
@@ -36,4 +38,5 @@ class GridSensor(BlueCurrentEntity, SensorEntity):
     def __init__(self, connector: Connector, sensor: SensorEntityDescription) -> None: ...
     has_value: bool
     _attr_native_value: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...

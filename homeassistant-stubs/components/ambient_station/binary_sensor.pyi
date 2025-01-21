@@ -65,4 +65,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmbientStationConfigEntr
 class AmbientWeatherBinarySensor(AmbientWeatherEntity, BinarySensorEntity):
     entity_description: AmbientBinarySensorDescription
     _attr_is_on: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...

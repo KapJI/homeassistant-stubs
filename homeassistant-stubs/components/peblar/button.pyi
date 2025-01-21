@@ -23,4 +23,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async
 
 class PeblarButtonEntity(PeblarEntity[PeblarUserConfigurationDataUpdateCoordinator], ButtonEntity):
     entity_description: PeblarButtonEntityDescription
+    @peblar_exception_handler
     async def async_press(self) -> None: ...

@@ -17,8 +17,10 @@ class WizSensor(WizEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, wiz_data: WizData, name: str, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class WizPowerSensor(WizSensor):
     _attr_native_value: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...

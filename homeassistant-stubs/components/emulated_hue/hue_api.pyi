@@ -73,6 +73,7 @@ class HueAllGroupsStateView(HomeAssistantView):
     requires_auth: bool
     config: Incomplete
     def __init__(self, config: Config) -> None: ...
+    @core.callback
     def get(self, request: web.Request, username: str) -> web.Response: ...
 
 class HueGroupView(HomeAssistantView):
@@ -81,6 +82,7 @@ class HueGroupView(HomeAssistantView):
     requires_auth: bool
     config: Incomplete
     def __init__(self, config: Config) -> None: ...
+    @core.callback
     def put(self, request: web.Request, username: str) -> web.Response: ...
 
 class HueAllLightsStateView(HomeAssistantView):
@@ -89,6 +91,7 @@ class HueAllLightsStateView(HomeAssistantView):
     requires_auth: bool
     config: Incomplete
     def __init__(self, config: Config) -> None: ...
+    @core.callback
     def get(self, request: web.Request, username: str) -> web.Response: ...
 
 class HueFullStateView(HomeAssistantView):
@@ -97,6 +100,7 @@ class HueFullStateView(HomeAssistantView):
     requires_auth: bool
     config: Incomplete
     def __init__(self, config: Config) -> None: ...
+    @core.callback
     def get(self, request: web.Request, username: str) -> web.Response: ...
 
 class HueConfigView(HomeAssistantView):
@@ -106,6 +110,7 @@ class HueConfigView(HomeAssistantView):
     requires_auth: bool
     config: Incomplete
     def __init__(self, config: Config) -> None: ...
+    @core.callback
     def get(self, request: web.Request, username: str = '') -> web.Response: ...
 
 class HueOneLightStateView(HomeAssistantView):
@@ -114,6 +119,7 @@ class HueOneLightStateView(HomeAssistantView):
     requires_auth: bool
     config: Incomplete
     def __init__(self, config: Config) -> None: ...
+    @core.callback
     def get(self, request: web.Request, username: str, entity_id: str) -> web.Response: ...
 
 class HueOneLightChangeView(HomeAssistantView):

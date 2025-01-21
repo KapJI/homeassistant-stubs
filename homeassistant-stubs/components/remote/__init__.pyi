@@ -10,7 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache import cached_property
-from typing import Any
+from typing import Any, final
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -45,6 +45,7 @@ class RemoteEntityFeature(IntFlag):
 
 REMOTE_SERVICE_ACTIVITY_SCHEMA: Incomplete
 
+@bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -65,6 +66,7 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     def current_activity(self) -> str | None: ...
     @cached_property
     def activity_list(self) -> list[str] | None: ...
+    @final
     @property
     def state_attributes(self) -> dict[str, Any] | None: ...
     def send_command(self, command: Iterable[str], **kwargs: Any) -> None: ...

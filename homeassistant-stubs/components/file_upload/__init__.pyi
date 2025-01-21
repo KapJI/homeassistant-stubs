@@ -2,6 +2,7 @@ import asyncio
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Iterator
+from contextlib import contextmanager
 from dataclasses import dataclass
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
@@ -18,6 +19,7 @@ MAX_SIZE: Incomplete
 TEMP_DIR_NAME: Incomplete
 CONFIG_SCHEMA: Incomplete
 
+@contextmanager
 def process_uploaded_file(hass: HomeAssistant, file_id: str) -> Iterator[Path]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
@@ -35,6 +37,7 @@ class FileUploadView(HomeAssistantView):
     url: str
     name: str
     _upload_lock: asyncio.Lock | None
+    @callback
     def _get_upload_lock(self) -> asyncio.Lock: ...
     async def post(self, request: web.Request) -> web.Response: ...
     async def _upload_file(self, request: web.Request) -> web.Response: ...

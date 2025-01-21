@@ -14,6 +14,7 @@ _LOGGER: Incomplete
 class NetatmoFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
     @property
     def logger(self) -> logging.Logger: ...

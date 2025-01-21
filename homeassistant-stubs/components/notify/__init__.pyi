@@ -12,7 +12,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache import cached_property
-from typing import Any
+from typing import Any, final, override
 
 ATTR_TITLE_DEFAULT: str
 DATA_COMPONENT: HassKey[EntityComponent[NotifyEntity]]
@@ -39,9 +39,12 @@ class NotifyEntity(RestoreEntity):
     _attr_state: None
     __last_notified_isoformat: str | None
     @cached_property
+    @final
+    @override
     def state(self) -> str | None: ...
     def __set_state(self, state: str | None) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
+    @final
     async def _async_send_message(self, **kwargs: Any) -> None: ...
     def send_message(self, message: str, title: str | None = None) -> None: ...
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...

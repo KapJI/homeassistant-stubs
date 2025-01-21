@@ -27,6 +27,8 @@ class SwitchBotCloudVacuum(SwitchBotCloudEntity, StateVacuumEntity):
     _attr_battery_level: Incomplete
     _attr_available: Incomplete
     _attr_activity: Incomplete
+    @callback
     def _handle_coordinator_update(self) -> None: ...
 
+@callback
 def _async_make_entity(api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator) -> SwitchBotCloudVacuum: ...

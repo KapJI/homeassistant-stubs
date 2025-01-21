@@ -24,4 +24,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: TVCameraConfigEntry, asy
 class TrafikverketCameraSensor(TrafikverketCameraNonCameraEntity, SensorEntity):
     entity_description: TVCameraSensorEntityDescription
     _attr_native_value: Incomplete
+    @callback
     def _update_attr(self) -> None: ...

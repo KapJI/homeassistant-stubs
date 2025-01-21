@@ -6,6 +6,7 @@ from homeassistant.const import CONF_ID as CONF_ID, SERVICE_RELOAD as SERVICE_RE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
+@callback
 def async_setup(hass: HomeAssistant) -> bool: ...
 
 class EditAutomationConfigView(EditIdBasedConfigView):

@@ -7,7 +7,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Final
+from typing import Any, Final, final
 
 DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[Scene]]
@@ -26,7 +26,9 @@ class Scene(RestoreEntity):
     _attr_should_poll: bool
     __last_activated: str | None
     @property
+    @final
     def state(self) -> str | None: ...
+    @final
     async def _async_activate(self, **kwargs: Any) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
     def activate(self, **kwargs: Any) -> None: ...

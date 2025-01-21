@@ -44,6 +44,7 @@ NOTIFICATION_SENSOR_MAPPINGS: tuple[NotificationZWaveJSEntityDescription, ...]
 PROPERTY_SENSOR_MAPPINGS: dict[str, PropertyZWaveJSEntityDescription]
 BOOLEAN_SENSOR_MAPPINGS: dict[int, BinarySensorEntityDescription]
 
+@callback
 def is_valid_notification_binary_sensor(info: ZwaveDiscoveryInfo) -> bool | NotificationZWaveJSEntityDescription: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

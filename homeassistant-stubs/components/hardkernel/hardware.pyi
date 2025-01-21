@@ -7,4 +7,5 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 BOARD_NAMES: Incomplete
 
+@callback
 def async_info(hass: HomeAssistant) -> list[HardwareInfo]: ...

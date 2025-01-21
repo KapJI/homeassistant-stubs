@@ -21,9 +21,13 @@ ERROR_STATES: Incomplete
 RESTRICTED_REASONS: list
 STATE_NO_WORK_AREA_ACTIVE: str
 
+@callback
 def _get_work_area_names(data: MowerAttributes) -> list[str]: ...
+@callback
 def _get_current_work_area_name(data: MowerAttributes) -> str: ...
+@callback
 def _get_current_work_area_dict(data: MowerAttributes) -> Mapping[str, Any]: ...
+@callback
 def _get_error_string(data: MowerAttributes) -> str: ...
 
 @dataclass(frozen=True, kw_only=True)

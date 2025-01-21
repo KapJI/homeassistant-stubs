@@ -21,11 +21,13 @@ BINARY_SENSOR_SERVICE_MAP: dict[str, SI]
 class TemperatureSensor(HomeAccessory):
     char_temp: Incomplete
     def __init__(self, *args: Any) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class HumiditySensor(HomeAccessory):
     char_humidity: Incomplete
     def __init__(self, *args: Any) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class AirQualitySensor(HomeAccessory):
@@ -33,30 +35,35 @@ class AirQualitySensor(HomeAccessory):
     char_quality: Incomplete
     char_density: Incomplete
     def create_services(self) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class PM10Sensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
     def create_services(self) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class PM25Sensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
     def create_services(self) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class NitrogenDioxideSensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
     def create_services(self) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class VolatileOrganicCompoundsSensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
     def create_services(self) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class CarbonMonoxideSensor(HomeAccessory):
@@ -65,6 +72,7 @@ class CarbonMonoxideSensor(HomeAccessory):
     char_peak: Incomplete
     char_detected: Incomplete
     def __init__(self, *args: Any) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class CarbonDioxideSensor(HomeAccessory):
@@ -73,15 +81,18 @@ class CarbonDioxideSensor(HomeAccessory):
     char_peak: Incomplete
     char_detected: Incomplete
     def __init__(self, *args: Any) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class LightSensor(HomeAccessory):
     char_light: Incomplete
     def __init__(self, *args: Any) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...
 
 class BinarySensor(HomeAccessory):
     format: Incomplete
     char_detected: Incomplete
     def __init__(self, *args: Any) -> None: ...
+    @callback
     def async_update_state(self, new_state: State) -> None: ...

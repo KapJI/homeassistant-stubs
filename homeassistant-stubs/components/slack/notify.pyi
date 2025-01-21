@@ -37,7 +37,9 @@ class MessageT(TypedDict, total=False):
     thread_ts: str
 
 async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> SlackNotificationService | None: ...
+@callback
 def _async_get_filename_from_url(url: str) -> str: ...
+@callback
 def _async_sanitize_channel_names(channel_list: list[str]) -> list[str]: ...
 
 class SlackNotificationService(BaseNotificationService):

@@ -9,5 +9,6 @@ from typing import Any
 TO_REDACT_CONFIG: Incomplete
 TO_REDACT_DATA: Incomplete
 
+@callback
 def async_redact_meter_macs(data: dict) -> dict: ...
 async def async_get_config_entry_diagnostics(hass: HomeAssistant, config_entry: RAVEnConfigEntry) -> Mapping[str, Any]: ...

@@ -1,5 +1,6 @@
 import aiohttp
 from _typeshed import Incomplete
+from functools import lru_cache
 from typing import Any, NamedTuple
 
 WHOAMI_URL: str
@@ -25,6 +26,7 @@ class LocationInfo(NamedTuple):
     use_metric: bool
 
 async def async_detect_location_info(session: aiohttp.ClientSession) -> LocationInfo | None: ...
+@lru_cache
 def distance(lat1: float | None, lon1: float | None, lat2: float, lon2: float) -> float | None: ...
 def vincenty(point1: tuple[float, float], point2: tuple[float, float], miles: bool = False) -> float | None: ...
 async def _get_whoami(session: aiohttp.ClientSession) -> dict[str, Any] | None: ...

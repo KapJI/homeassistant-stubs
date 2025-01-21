@@ -40,8 +40,10 @@ class MatterVacuum(MatterEntity, StateVacuumEntity):
     async def _send_device_command(self, command: clusters.ClusterCommand) -> None: ...
     _attr_battery_level: Incomplete
     _attr_activity: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
+    @callback
     def _calculate_features(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

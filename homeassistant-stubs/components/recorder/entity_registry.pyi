@@ -6,5 +6,6 @@ from homeassistant.helpers.start import async_at_start as async_at_start
 
 _LOGGER: Incomplete
 
+@callback
 def async_setup(hass: HomeAssistant) -> None: ...
 def update_states_metadata(instance: Recorder, entity_id: str, new_entity_id: str) -> None: ...

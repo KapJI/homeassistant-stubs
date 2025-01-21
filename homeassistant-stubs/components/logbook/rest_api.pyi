@@ -11,6 +11,7 @@ from homeassistant.exceptions import InvalidEntityFormatError as InvalidEntityFo
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
+@callback
 def async_setup(hass: HomeAssistant, conf: ConfigType, filters: Filters | None, entities_filter: Callable[[str], bool] | None) -> None: ...
 
 class LogbookView(HomeAssistantView):

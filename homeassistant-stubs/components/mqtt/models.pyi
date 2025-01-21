@@ -85,6 +85,7 @@ class MqttCommandTemplate:
     _command_template: Incomplete
     _entity: Incomplete
     def __init__(self, command_template: template.Template | None, *, entity: Entity | None = None) -> None: ...
+    @callback
     def async_render(self, value: PublishPayloadType = None, variables: TemplateVarsType = None) -> PublishPayloadType: ...
 
 class MqttValueTemplateException(TemplateError):
@@ -98,12 +99,15 @@ class MqttValueTemplate:
     _config_attributes: Incomplete
     _entity: Incomplete
     def __init__(self, value_template: template.Template | None, *, entity: Entity | None = None, config_attributes: TemplateVarsType = None) -> None: ...
+    @callback
     def async_render_with_possible_json_value(self, payload: ReceivePayloadType, default: ReceivePayloadType | PayloadSentinel = ..., variables: TemplateVarsType = None) -> ReceivePayloadType: ...
 
 class EntityTopicState:
     subscribe_calls: dict[str, Entity]
     def __init__(self) -> None: ...
+    @callback
     def process_write_state_requests(self, msg: MQTTMessage) -> None: ...
+    @callback
     def write_state_request(self, entity: Entity) -> None: ...
 
 @dataclass

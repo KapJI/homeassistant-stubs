@@ -13,6 +13,7 @@ from typing import Any
 WEMO_OFF: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@callback
 def async_setup_bridge(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, coordinator: DeviceCoordinator) -> None: ...
 
 class WemoLight(WemoEntity, LightEntity):

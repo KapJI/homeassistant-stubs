@@ -16,6 +16,7 @@ _InfoT = TypeVar('_InfoT', bound=EntityInfo)
 _EntityT = TypeVar('_EntityT', bound='EsphomeEntity[Any,Any]')
 _StateT = TypeVar('_StateT', bound=EntityState)
 
+@callback
 def async_static_info_updated(hass: HomeAssistant, entry_data: RuntimeEntryData, platform: entity_platform.EntityPlatform, async_add_entities: AddEntitiesCallback, info_type: type[_InfoT], entity_type: type[_EntityT], state_type: type[_StateT], infos: list[EntityInfo]) -> None: ...
 async def platform_async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, async_add_entities: AddEntitiesCallback, *, info_type: type[_InfoT], entity_type: type[_EntityT], state_type: type[_StateT]) -> None: ...
 def esphome_state_property[_R, _EntityT: EsphomeEntity[Any, Any]](func: Callable[[_EntityT], _R]) -> Callable[[_EntityT], _R | None]: ...
@@ -45,13 +46,18 @@ class EsphomeEntity(Entity, Generic[_InfoT, _StateT]):
     _attr_name: Incomplete
     _attr_entity_category: Incomplete
     _attr_icon: Incomplete
+    @callback
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
+    @callback
     def _update_state_from_entry_data(self) -> None: ...
+    @callback
     def _on_state_update(self) -> None: ...
     _api_version: Incomplete
     _client: Incomplete
     _attr_available: Incomplete
+    @callback
     def _on_entry_data_changed(self) -> None: ...
+    @callback
     def _on_device_update(self) -> None: ...
 
 class EsphomeAssistEntity(Entity):

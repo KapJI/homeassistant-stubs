@@ -10,6 +10,7 @@ RE_API_KEY: Incomplete
 class ForecastSolarFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> ForecastSolarOptionFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

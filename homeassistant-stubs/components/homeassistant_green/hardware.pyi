@@ -9,4 +9,5 @@ DOCUMENTATION_URL: str
 MANUFACTURER: str
 MODEL: str
 
+@callback
 def async_info(hass: HomeAssistant) -> list[HardwareInfo]: ...

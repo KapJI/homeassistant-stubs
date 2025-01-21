@@ -4,6 +4,7 @@ from .coordinator import SystemMonitorCoordinator as SystemMonitorCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from functools import lru_cache
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -22,6 +23,7 @@ SENSOR_TYPE_DEVICE_CLASS: int
 SENSOR_TYPE_MANDATORY_ARG: int
 SIGNAL_SYSTEMMONITOR_UPDATE: str
 
+@lru_cache
 def get_cpu_icon() -> Literal['mdi:cpu-64-bit', 'mdi:cpu-32-bit']: ...
 def get_process(entity: SystemMonitorSensor) -> bool: ...
 

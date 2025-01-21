@@ -10,5 +10,7 @@ STORAGE_REFRESH_TOKEN: str
 TO_REDACT_LWA: Incomplete
 TO_REDACT_AUTH: Incomplete
 
+@callback
 def async_redact_lwa_params(lwa_params: dict[str, str]) -> dict[str, str]: ...
+@callback
 def async_redact_auth_data(mapping: Mapping[Any, Any]) -> dict[str, str]: ...

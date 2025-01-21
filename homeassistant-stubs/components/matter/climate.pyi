@@ -45,10 +45,13 @@ class MatterClimate(MatterEntity, ClimateEntity):
     _attr_target_temperature_low: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
     _attr_hvac_modes: list[HVACMode]
     _attr_supported_features: Incomplete
+    @callback
     def _calculate_features(self) -> None: ...
+    @callback
     def _get_temperature_in_degrees(self, attribute: type[clusters.ClusterAttributeDescriptor]) -> float | None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

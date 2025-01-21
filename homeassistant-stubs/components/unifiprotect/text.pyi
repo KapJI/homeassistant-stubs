@@ -24,5 +24,6 @@ class ProtectDeviceText(ProtectDeviceEntity, TextEntity):
     entity_description: ProtectTextEntityDescription
     _state_attrs: Incomplete
     _attr_native_value: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     async def async_set_value(self, value: str) -> None: ...

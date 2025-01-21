@@ -14,6 +14,7 @@ from typing import Any
 
 VALUE_TO_STATE: Incomplete
 
+@callback
 def async_setup_lock_services(hass: HomeAssistant) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

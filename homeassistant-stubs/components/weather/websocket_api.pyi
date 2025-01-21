@@ -7,6 +7,9 @@ from typing import Any
 
 FORECAST_TYPE_TO_FLAG: Incomplete
 
+@callback
 def async_setup(hass: HomeAssistant) -> None: ...
+@callback
 def ws_convertible_units(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.async_response
 async def ws_subscribe_forecast(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

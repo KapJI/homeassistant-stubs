@@ -6,5 +6,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 
+@bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

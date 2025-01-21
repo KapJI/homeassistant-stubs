@@ -9,6 +9,7 @@ from homeassistant.util.ssl import SSLCipherList as SSLCipherList
 
 _LOGGER: Incomplete
 
+@callback
 def async_generate_playback_proxy_url(config_entry_id: str, channel: int, filename: str, stream_res: str, vod_type: str) -> str: ...
 
 class PlaybackProxyView(HomeAssistantView):

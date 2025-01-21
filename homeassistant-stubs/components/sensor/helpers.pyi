@@ -5,4 +5,5 @@ from homeassistant.core import callback as callback
 
 _LOGGER: Incomplete
 
+@callback
 def async_parse_date_datetime(value: str, entity_id: str, device_class: SensorDeviceClass | str | None) -> datetime | date | None: ...

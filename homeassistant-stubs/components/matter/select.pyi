@@ -21,6 +21,7 @@ class MatterSelectEntity(MatterEntity, SelectEntity):
     entity_description: MatterSelectEntityDescription
     async def async_select_option(self, option: str) -> None: ...
     _attr_current_option: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
 
 class MatterModeSelectEntity(MatterSelectEntity):
@@ -28,6 +29,7 @@ class MatterModeSelectEntity(MatterSelectEntity):
     _attr_options: Incomplete
     _attr_current_option: Incomplete
     _attr_name: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

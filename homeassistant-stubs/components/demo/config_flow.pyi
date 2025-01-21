@@ -13,6 +13,7 @@ CONF_MULTISELECT: str
 class DemoConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
     async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...
 

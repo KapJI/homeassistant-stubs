@@ -23,6 +23,7 @@ class TractiveSensor(TractiveEntity, SensorEntity):
     _attr_available: bool
     def __init__(self, client: TractiveClient, item: Trackables, description: TractiveSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @callback
     def handle_status_update(self, event: dict[str, Any]) -> None: ...
 
 SENSOR_TYPES: tuple[TractiveSensorEntityDescription, ...]

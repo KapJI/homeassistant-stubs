@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from functools import lru_cache
 from homeassistant.const import CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfInformation as UnitOfInformation, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
@@ -44,12 +45,15 @@ class BaseUnitConverter:
     @classmethod
     def convert(cls, value: float, from_unit: str | None, to_unit: str | None) -> float: ...
     @classmethod
+    @lru_cache
     def converter_factory(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float], float]: ...
     @classmethod
     def _get_from_to_ratio(cls, from_unit: str | None, to_unit: str | None) -> tuple[float, float]: ...
     @classmethod
+    @lru_cache
     def converter_factory_allow_none(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float | None], float | None]: ...
     @classmethod
+    @lru_cache
     def get_unit_ratio(cls, from_unit: str | None, to_unit: str | None) -> float: ...
 
 class DataRateConverter(BaseUnitConverter):
@@ -117,8 +121,10 @@ class SpeedConverter(BaseUnitConverter):
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
     @classmethod
+    @lru_cache
     def converter_factory(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float], float]: ...
     @classmethod
+    @lru_cache
     def converter_factory_allow_none(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float | None], float | None]: ...
     @classmethod
     def _converter_factory(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float], float]: ...
@@ -132,8 +138,10 @@ class TemperatureConverter(BaseUnitConverter):
     VALID_UNITS: Incomplete
     _UNIT_CONVERSION: Incomplete
     @classmethod
+    @lru_cache
     def converter_factory(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float], float]: ...
     @classmethod
+    @lru_cache
     def converter_factory_allow_none(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float | None], float | None]: ...
     @classmethod
     def _converter_factory(cls, from_unit: str | None, to_unit: str | None) -> Callable[[float], float]: ...

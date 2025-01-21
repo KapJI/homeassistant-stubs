@@ -8,7 +8,7 @@ from homeassistant.components.remote import RemoteEntityFeature as RemoteEntityF
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass
 from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SERVICE as ATTR_SERVICE, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature, __version__ as __version__
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, split_entity_id as split_entity_id
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as ha_callback, split_entity_id as split_entity_id
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.util.decorator import Registry as Registry
@@ -17,6 +17,7 @@ from pyhap.accessory_driver import AccessoryDriver
 from pyhap.characteristic import Characteristic
 from pyhap.iid_manager import IIDManager
 from pyhap.service import Service as Service
+from pyhap.util import callback as pyhap_callback
 from typing import Any
 from uuid import UUID
 
@@ -47,15 +48,26 @@ class HomeAccessory(Accessory):
     def _update_available_from_state(self, new_state: State | None) -> None: ...
     @property
     def available(self) -> bool: ...
+    @ha_callback
+    @pyhap_callback
     def run(self) -> None: ...
+    @ha_callback
     def async_update_event_state_callback(self, event: Event[EventStateChangedData]) -> None: ...
+    @ha_callback
     def async_update_state_callback(self, new_state: State | None) -> None: ...
+    @ha_callback
     def async_update_linked_battery_callback(self, event: Event[EventStateChangedData]) -> None: ...
+    @ha_callback
     def async_update_linked_battery_charging_callback(self, event: Event[EventStateChangedData]) -> None: ...
+    @ha_callback
     def async_update_battery(self, battery_level: Any, battery_charging: Any) -> None: ...
+    @ha_callback
     def async_update_state(self, new_state: State) -> None: ...
+    @ha_callback
     def async_call_service(self, domain: str, service: str, service_data: dict[str, Any] | None, value: Any | None = None) -> None: ...
+    @ha_callback
     def async_reload(self) -> None: ...
+    @ha_callback
     def async_stop(self) -> None: ...
     async def stop(self) -> None: ...
 
@@ -72,7 +84,9 @@ class HomeDriver(AccessoryDriver):
     _entry_title: Incomplete
     iid_storage: Incomplete
     def __init__(self, hass: HomeAssistant, entry_id: str, bridge_name: str, entry_title: str, iid_storage: AccessoryIIDStorage, **kwargs: Any) -> None: ...
+    @pyhap_callback
     def pair(self, client_username_bytes: bytes, client_public: str, client_permissions: int) -> bool: ...
+    @pyhap_callback
     def unpair(self, client_uuid: UUID) -> None: ...
 
 class HomeIIDManager(IIDManager):

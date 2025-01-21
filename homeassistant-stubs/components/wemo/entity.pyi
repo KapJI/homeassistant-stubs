@@ -1,3 +1,4 @@
+import contextlib
 from .coordinator import DeviceCoordinator as DeviceCoordinator
 from _typeshed import Incomplete
 from collections.abc import Generator
@@ -22,6 +23,7 @@ class WemoEntity(CoordinatorEntity[DeviceCoordinator]):
     def unique_id(self) -> str: ...
     @property
     def device_info(self) -> DeviceInfo: ...
+    @contextlib.contextmanager
     def _wemo_call_wrapper(self, message: str) -> Generator[None]: ...
 
 class WemoBinaryStateEntity(WemoEntity):

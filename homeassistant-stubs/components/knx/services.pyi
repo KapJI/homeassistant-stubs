@@ -10,7 +10,9 @@ from homeassistant.helpers.service import async_register_admin_service as async_
 
 _LOGGER: Incomplete
 
+@callback
 def register_knx_services(hass: HomeAssistant) -> None: ...
+@callback
 def get_knx_module(hass: HomeAssistant) -> KNXModule: ...
 
 SERVICE_KNX_EVENT_REGISTER_SCHEMA: Incomplete

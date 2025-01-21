@@ -17,8 +17,10 @@ ZONE_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class AirzoneSensor(AirzoneEntity, SensorEntity):
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneHotWaterSensor(AirzoneHotWaterEntity, AirzoneSensor):

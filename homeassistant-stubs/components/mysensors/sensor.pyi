@@ -27,6 +27,7 @@ class MyBatterySensor(MySensorNodeEntity, SensorEntity):
     @property
     def name(self) -> str: ...
     _attr_native_value: Incomplete
+    @callback
     def _async_update_callback(self) -> None: ...
 
 class MySensorsSensor(MySensorsChildEntity, SensorEntity):

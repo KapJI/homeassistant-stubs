@@ -15,4 +15,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class MySensorsDeviceTracker(MySensorsChildEntity, TrackerEntity):
     _attr_latitude: Incomplete
     _attr_longitude: Incomplete
+    @callback
     def _async_update(self) -> None: ...

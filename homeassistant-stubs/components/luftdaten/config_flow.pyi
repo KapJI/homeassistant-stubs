@@ -6,5 +6,6 @@ from typing import Any
 
 class SensorCommunityFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @callback
     def _show_form(self, errors: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

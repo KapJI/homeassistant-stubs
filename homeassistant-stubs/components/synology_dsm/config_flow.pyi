@@ -25,6 +25,7 @@ def format_synology_mac(mac: str) -> str: ...
 class SynologyDSMFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> SynologyDSMOptionsFlowHandler: ...
     saved_user_input: dict[str, Any]
     discovered_conf: dict[str, Any]

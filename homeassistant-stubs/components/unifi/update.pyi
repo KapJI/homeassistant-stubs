@@ -30,9 +30,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry,
 class UnifiDeviceUpdateEntity(UnifiEntity[_HandlerT, _DataT], UpdateEntity):
     entity_description: UnifiUpdateEntityDescription[_HandlerT, _DataT]
     _attr_supported_features: Incomplete
+    @callback
     def async_initiate_state(self) -> None: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     _attr_in_progress: Incomplete
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
+    @callback
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

@@ -19,6 +19,7 @@ _LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@callback
 def async_create_preview_light(hass: HomeAssistant, name: str, validated_config: dict[str, Any]) -> LightGroup: ...
 
 FORWARDED_ATTRIBUTES: Incomplete
@@ -50,4 +51,5 @@ class LightGroup(GroupEntity, LightEntity):
     _attr_effect_list: Incomplete
     _attr_effect: Incomplete
     _attr_supported_features: Incomplete
+    @callback
     def async_update_group_state(self) -> None: ...

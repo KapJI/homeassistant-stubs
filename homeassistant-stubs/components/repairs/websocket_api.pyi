@@ -10,9 +10,13 @@ from homeassistant.exceptions import Unauthorized as Unauthorized
 from homeassistant.helpers.data_entry_flow import FlowManagerIndexView as FlowManagerIndexView, FlowManagerResourceView as FlowManagerResourceView
 from typing import Any
 
+@callback
 def async_setup(hass: HomeAssistant) -> None: ...
+@callback
 def ws_get_issue_data(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@callback
 def ws_ignore_issue(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@callback
 def ws_list_issues(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 
 class RepairsFlowIndexView(FlowManagerIndexView):

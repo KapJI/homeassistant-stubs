@@ -6,6 +6,7 @@ from homeassistant.const import SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 
+@callback
 def async_setup(hass: HomeAssistant) -> bool: ...
 
 class EditScriptConfigView(EditKeyBasedConfigView):

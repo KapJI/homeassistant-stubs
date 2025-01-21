@@ -8,4 +8,5 @@ _LOGGER: Incomplete
 FILTERS: Final[Incomplete]
 UNSAFE_URL_BYTES: Incomplete
 
+@callback
 def setup_security_filter(app: Application) -> None: ...

@@ -12,6 +12,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 
+@callback
 def async_wlan_qr_code_image_fn(hub: UnifiHub, wlan: Wlan) -> bytes: ...
 
 @dataclass(frozen=True, kw_only=True)
@@ -31,4 +32,5 @@ class UnifiImageEntity(UnifiEntity[HandlerT, ApiItemT], ImageEntity):
     def __init__(self, obj_id: str, hub: UnifiHub, description: UnifiEntityDescription[HandlerT, ApiItemT]) -> None: ...
     def image(self) -> bytes | None: ...
     _attr_image_last_updated: Incomplete
+    @callback
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

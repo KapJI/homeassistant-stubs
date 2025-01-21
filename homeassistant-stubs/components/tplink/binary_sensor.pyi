@@ -18,4 +18,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry
 class TPLinkBinarySensorEntity(CoordinatedTPLinkFeatureEntity, BinarySensorEntity):
     entity_description: TPLinkBinarySensorEntityDescription
     _attr_is_on: Incomplete
+    @callback
     def _async_update_attrs(self) -> bool: ...

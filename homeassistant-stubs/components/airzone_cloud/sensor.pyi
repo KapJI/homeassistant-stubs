@@ -18,8 +18,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry,
 class AirzoneSensor(AirzoneEntity, SensorEntity, metaclass=abc.ABCMeta):
     @property
     def available(self) -> bool: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneAidooSensor(AirzoneAidooEntity, AirzoneSensor):

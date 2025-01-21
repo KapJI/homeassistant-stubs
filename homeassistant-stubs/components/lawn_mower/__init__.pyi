@@ -7,6 +7,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache import cached_property
+from typing import final
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[LawnMowerEntity]]
@@ -26,6 +27,7 @@ class LawnMowerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: LawnMowerEntityEntityDescription
     _attr_activity: LawnMowerActivity | None
     _attr_supported_features: LawnMowerEntityFeature
+    @final
     @property
     def state(self) -> str | None: ...
     @cached_property

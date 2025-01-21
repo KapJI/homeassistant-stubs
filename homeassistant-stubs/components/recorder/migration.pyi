@@ -21,7 +21,7 @@ from sqlalchemy.orm import DeclarativeBase as DeclarativeBase
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.schema import AddConstraint
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
-from typing import Any
+from typing import Any, final
 
 LIVE_MIGRATION_MIN_SCHEMA_VERSION: int
 MIGRATION_NOTE_OFFLINE: str
@@ -94,6 +94,7 @@ class _SchemaVersionMigrator(ABC, metaclass=abc.ABCMeta):
     def __init__(self, instance: Recorder, hass: HomeAssistant, engine: Engine, session_maker: Callable[[], Session], old_version: int) -> None: ...
     @classmethod
     def get_migrator(cls, target_version: int) -> type[_SchemaVersionMigrator]: ...
+    @final
     def apply_update(self) -> None: ...
     @abstractmethod
     def _apply_update(self) -> None: ...

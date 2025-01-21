@@ -44,7 +44,9 @@ VIEWER_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 _MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@callback
 def _async_event_entities(data: ProtectData, ufp_device: Camera | None = None) -> list[ProtectDeviceEntity]: ...
+@callback
 def _async_nvr_entities(data: ProtectData) -> list[BaseProtectEntity]: ...
 
 class BaseProtectSensor(BaseProtectEntity, SensorEntity):
@@ -64,7 +66,9 @@ class ProtectLicensePlateEventSensor(ProtectEventSensor):
     device: Camera
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _set_event_done(self) -> None: ...
     _event: Incomplete
     _event_end: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...

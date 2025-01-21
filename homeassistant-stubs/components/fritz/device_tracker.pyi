@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+@callback
 def _async_add_entities(avm_wrapper: AvmWrapper, async_add_entities: AddEntitiesCallback, data_fritz: FritzData) -> None: ...
 
 class FritzBoxTracker(FritzDeviceBase, ScannerEntity):

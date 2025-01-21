@@ -6,6 +6,9 @@ from typing import Any
 
 _NUMERIC_DEVICE_CLASSES: Incomplete
 
+@callback
 def async_setup(hass: HomeAssistant) -> None: ...
+@callback
 def ws_device_class_units(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@callback
 def ws_numeric_device_classes(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

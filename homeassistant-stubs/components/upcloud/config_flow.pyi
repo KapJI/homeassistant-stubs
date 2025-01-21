@@ -12,8 +12,10 @@ class UpCloudConfigFlow(ConfigFlow, domain=DOMAIN):
     username: str
     password: str
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @callback
     def _async_show_form(self, step_id: str, user_input: dict[str, Any] | None = None, errors: dict[str, str] | None = None) -> ConfigFlowResult: ...
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> UpCloudOptionsFlow: ...
 
 class UpCloudOptionsFlow(OptionsFlow):

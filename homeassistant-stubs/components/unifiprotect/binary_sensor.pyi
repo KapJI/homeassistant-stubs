@@ -36,6 +36,7 @@ class MountableProtectDeviceBinarySensor(ProtectDeviceBinarySensor):
     device: Sensor
     _state_attrs: Incomplete
     _attr_device_class: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
@@ -45,6 +46,7 @@ class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
     def __init__(self, data: ProtectData, device: NVR, description: ProtectBinaryEntityDescription, disk: UOSDisk) -> None: ...
     _attr_available: bool
     _attr_is_on: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
@@ -52,13 +54,17 @@ class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     _state_attrs: Incomplete
     _attr_is_on: bool
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _set_event_done(self) -> None: ...
     _event: Incomplete
     _event_end: Incomplete
+    @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 MODEL_DESCRIPTIONS_WITH_CLASS: Incomplete
 
+@callback
 def _async_event_entities(data: ProtectData, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[ProtectDeviceEntity]: ...
+@callback
 def _async_nvr_entities(data: ProtectData) -> list[BaseProtectEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

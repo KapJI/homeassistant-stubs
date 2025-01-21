@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 
 _LOGGER: Incomplete
 
+@callback
 def async_setup_recorder(hass: HomeAssistant) -> None: ...
 
 class RecorderOutput(StreamOutput):

@@ -21,9 +21,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, asyn
 
 class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity):
     entity_description: AirzoneBinarySensorEntityDescription
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneSystemBinarySensor(AirzoneSystemEntity, AirzoneBinarySensor):

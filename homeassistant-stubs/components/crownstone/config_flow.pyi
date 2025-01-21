@@ -28,6 +28,7 @@ class BaseCrownstoneFlowHandler(ConfigEntryBaseFlow):
 class CrownstoneConfigFlowHandler(BaseCrownstoneFlowHandler, ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> CrownstoneOptionsFlowHandler: ...
     login_info: dict[str, Any]
     def __init__(self) -> None: ...

@@ -17,6 +17,7 @@ class DescriptionXmlView(HomeAssistantView):
     requires_auth: bool
     config: Incomplete
     def __init__(self, config: Config) -> None: ...
+    @core.callback
     def get(self, request: web.Request) -> web.Response: ...
 
 class UPNPResponderProtocol(asyncio.Protocol):

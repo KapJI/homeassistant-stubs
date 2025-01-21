@@ -48,6 +48,7 @@ class TimeRemainingSensor(RainMachineEntity, RestoreSensor):
     _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
     def calculate_seconds_remaining(self) -> int: ...
+    @callback
     def update_from_latest_data(self) -> None: ...
 
 class ProgramTimeRemainingSensor(TimeRemainingSensor):
@@ -58,6 +59,7 @@ class ProgramTimeRemainingSensor(TimeRemainingSensor):
 class ProvisionSettingsSensor(RainMachineEntity, SensorEntity):
     entity_description: RainMachineSensorDataDescription
     _attr_native_value: Incomplete
+    @callback
     def update_from_latest_data(self) -> None: ...
 
 class ZoneTimeRemainingSensor(TimeRemainingSensor):

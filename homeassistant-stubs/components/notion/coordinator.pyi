@@ -19,6 +19,7 @@ DATA_SENSORS: str
 DATA_USER_PREFERENCES: str
 DEFAULT_SCAN_INTERVAL: Incomplete
 
+@callback
 def _async_register_new_bridge(hass: HomeAssistant, entry: ConfigEntry, bridge: Bridge) -> None: ...
 
 @dataclass

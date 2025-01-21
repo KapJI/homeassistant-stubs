@@ -9,9 +9,21 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any
 
+@callback
 def async_setup(hass: HomeAssistant) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
 async def websocket_info(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 def async_get_otbr_data(orig_func: Callable[[HomeAssistant, websocket_api.ActiveConnection, dict, OTBRData], Coroutine[Any, Any, None]]) -> Callable[[HomeAssistant, websocket_api.ActiveConnection, dict], Coroutine[Any, Any, None]]: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_otbr_data
 async def websocket_create_network(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict, data: OTBRData) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_otbr_data
 async def websocket_set_network(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict, data: OTBRData) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_otbr_data
 async def websocket_set_channel(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict, data: OTBRData) -> None: ...

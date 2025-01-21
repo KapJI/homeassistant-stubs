@@ -15,9 +15,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, asyn
 
 class EsphomeSelect(EsphomeEntity[SelectInfo, SelectState], SelectEntity):
     _attr_options: Incomplete
+    @callback
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
+    @esphome_state_property
     def current_option(self) -> str | None: ...
+    @convert_api_error_ha_error
     async def async_select_option(self, option: str) -> None: ...
 
 class EsphomeAssistPipelineSelect(EsphomeAssistEntity, AssistPipelineSelect):

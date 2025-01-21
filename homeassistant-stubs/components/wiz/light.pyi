@@ -29,5 +29,6 @@ class WizBulbEntity(WizToggleEntity, LightEntity):
     _attr_rgbww_color: Incomplete
     _attr_rgbw_color: Incomplete
     _attr_effect: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

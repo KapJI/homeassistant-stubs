@@ -30,9 +30,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry,
 class AirzoneBaseSelect(AirzoneEntity, SelectEntity, metaclass=abc.ABCMeta):
     entity_description: AirzoneSelectDescription
     values_dict: dict[str, str]
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     def _get_current_option(self) -> str | None: ...
     _attr_current_option: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneZoneSelect(AirzoneZoneEntity, AirzoneBaseSelect):

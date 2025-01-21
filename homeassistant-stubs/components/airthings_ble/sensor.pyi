@@ -15,6 +15,7 @@ from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 _LOGGER: Incomplete
 SENSORS_MAPPING_TEMPLATE: dict[str, SensorEntityDescription]
 
+@callback
 def async_migrate(hass: HomeAssistant, address: str, sensor_name: str) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: AirthingsBLEConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

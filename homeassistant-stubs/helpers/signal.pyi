@@ -8,4 +8,6 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 _LOGGER: Incomplete
 KEY_HA_STOP: HassKey[asyncio.Task[None]]
 
+@callback
+@bind_hass
 def async_register_signal_handling(hass: HomeAssistant) -> None: ...

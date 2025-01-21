@@ -9,6 +9,7 @@ from typing import Any
 
 PATHS_WITHOUT_AUTH: Incomplete
 
+@callback
 def async_process_play_media_url(hass: HomeAssistant, media_content_id: str, *, allow_relative_url: bool = False, for_supervisor_network: bool = False) -> str: ...
 
 class BrowseMedia:

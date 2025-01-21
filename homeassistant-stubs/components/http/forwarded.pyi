@@ -6,4 +6,5 @@ from ipaddress import IPv4Network, IPv6Network
 
 _LOGGER: Incomplete
 
+@callback
 def async_setup_forwarded(app: Application, use_x_forwarded_for: bool | None, trusted_proxies: list[IPv4Network | IPv6Network]) -> None: ...

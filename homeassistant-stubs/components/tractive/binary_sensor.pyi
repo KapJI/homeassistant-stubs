@@ -14,6 +14,7 @@ class TractiveBinarySensor(TractiveEntity, BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, client: TractiveClient, item: Trackables, description: BinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
+    @callback
     def handle_status_update(self, event: dict[str, Any]) -> None: ...
 
 SENSOR_TYPE: Incomplete

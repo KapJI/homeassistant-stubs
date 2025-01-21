@@ -24,9 +24,11 @@ class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity, metaclass=abc.ABCMe
     entity_description: AirzoneBinarySensorEntityDescription
     @property
     def available(self) -> bool: ...
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
 
 class AirzoneAidooBinarySensor(AirzoneAidooEntity, AirzoneBinarySensor):

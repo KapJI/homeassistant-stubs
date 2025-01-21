@@ -9,5 +9,6 @@ from typing import Any
 
 _LOGGER: Incomplete
 
+@bind_hass
 async def async_reproduce_state(hass: HomeAssistant, states: State | Iterable[State], *, context: Context | None = None, reproduce_options: dict[str, Any] | None = None) -> None: ...
 def state_as_number(state: State) -> float: ...

@@ -23,5 +23,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_ad
 class BAFNumber(BAFDescriptionEntity, NumberEntity):
     entity_description: BAFNumberDescription
     _attr_native_value: Incomplete
+    @callback
     def _async_update_attrs(self) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...

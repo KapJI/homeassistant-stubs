@@ -24,5 +24,6 @@ LEGACY_URL: str
 PANEL_DIR: str
 CONFIG_SCHEMA: Incomplete
 
+@bind_hass
 async def async_register_panel(hass: HomeAssistant, frontend_url_path: str, webcomponent_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, js_url: str | None = None, module_url: str | None = None, embed_iframe: bool = ..., trust_external: bool = ..., config: ConfigType | None = None, require_admin: bool = False, config_panel_domain: str | None = None) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

@@ -7,6 +7,7 @@ from typing import Any
 class SpeedTestFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
+    @callback
     def async_get_options_flow(config_entry: SpeedTestConfigEntry) -> SpeedTestOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

@@ -5,4 +5,5 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 
 DOCUMENTATION_URL: str
 
+@callback
 def async_info(hass: HomeAssistant) -> list[HardwareInfo]: ...

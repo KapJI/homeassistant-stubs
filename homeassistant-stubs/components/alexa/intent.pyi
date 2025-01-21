@@ -24,6 +24,7 @@ class CardType(enum.StrEnum):
     simple = 'Simple'
     link_account = 'LinkAccount'
 
+@callback
 def async_setup(hass: HomeAssistant) -> None: ...
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
 

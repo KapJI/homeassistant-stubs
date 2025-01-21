@@ -39,10 +39,12 @@ class MatterFan(MatterEntity, FanEntity):
     _attr_percentage: int
     _attr_current_direction: Incomplete
     _attr_oscillating: Incomplete
+    @callback
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
     _attr_speed_count: Incomplete
     _attr_preset_modes: Incomplete
+    @callback
     def _calculate_features(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

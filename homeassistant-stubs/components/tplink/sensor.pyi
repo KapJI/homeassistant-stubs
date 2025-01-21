@@ -21,4 +21,5 @@ class TPLinkSensorEntity(CoordinatedTPLinkFeatureEntity, SensorEntity):
     _attr_suggested_display_precision: Incomplete
     _attr_native_value: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    @callback
     def _async_update_attrs(self) -> bool: ...

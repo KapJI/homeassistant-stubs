@@ -18,6 +18,7 @@ class SwitcherBaseLightEntity(SwitcherEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     control_result: bool | None
     _light_id: int
+    @callback
     def _handle_coordinator_update(self) -> None: ...
     @property
     def is_on(self) -> bool: ...

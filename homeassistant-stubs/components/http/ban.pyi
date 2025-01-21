@@ -1,7 +1,7 @@
 from .const import KEY_HASS as KEY_HASS
 from .view import HomeAssistantView as HomeAssistantView
 from _typeshed import Incomplete
-from aiohttp.web import Application as Application, Request as Request, Response as Response, StreamResponse as StreamResponse
+from aiohttp.web import Application as Application, Request as Request, Response as Response, StreamResponse as StreamResponse, middleware
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from datetime import datetime
 from homeassistant.config import load_yaml_config_file as load_yaml_config_file
@@ -22,10 +22,13 @@ IP_BANS_FILE: Final[str]
 ATTR_BANNED_AT: Final[str]
 SCHEMA_IP_BAN_ENTRY: Final[Incomplete]
 
+@callback
 def setup_bans(hass: HomeAssistant, app: Application, login_threshold: int) -> None: ...
+@middleware
 async def ban_middleware(request: Request, handler: Callable[[Request], Awaitable[StreamResponse]]) -> StreamResponse: ...
 def log_invalid_auth[_HassViewT: HomeAssistantView, **_P](func: Callable[Concatenate[_HassViewT, Request, _P], Awaitable[Response]]) -> Callable[Concatenate[_HassViewT, Request, _P], Coroutine[Any, Any, Response]]: ...
 async def process_wrong_login(request: Request) -> None: ...
+@callback
 def process_success_login(request: Request) -> None: ...
 
 class IpBan:

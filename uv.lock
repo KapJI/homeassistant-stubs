@@ -871,7 +871,6 @@ wheels = [
 
 [[package]]
 name = "homeassistant-stubs"
-version = "2025.1.2.dev1+geb4da928.d20250110"
 source = { editable = "." }
 dependencies = [
     { name = "homeassistant" },

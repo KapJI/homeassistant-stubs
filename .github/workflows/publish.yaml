@@ -32,6 +32,6 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Generate and publish new packages
-        run: uv run python update_stubs.py
+        run: UV_BIN_PATH=$(which uv) uv run python update_stubs.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -43,6 +43,11 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    uv_bin = os.environ.get("UV_BIN_PATH")
+    if uv_bin is None:
+        LOGGER.error("Path to outer uv binary is not set in UV_BIN_PATH")
+        return 1
+
     repo_root = Path(__file__).resolve().parent
     homeassistant_root = repo_root / "homeassistant_core"
 
@@ -77,6 +82,7 @@ def main() -> int:
             args.dry_run,
             last_pushed_version,
             stubs_pypi_versions,
+            uv_bin,
         )
         last_pushed_version = version
     return 0
@@ -141,11 +147,12 @@ def create_package(
     dry_run: bool,
     last_pushed_version: AwesomeVersion,
     stubs_pypi_versions: set[AwesomeVersion],
+    uv_bin: str,
 ) -> None:
     """Create package for given version and upload it to PyPI."""
     LOGGER.info("Creating package for %s...", version)
     if last_pushed_version != version:
-        update_dependency(repo_root, version)
+        update_dependency(repo_root, version, uv_bin)
     checkout_version(homeassistant_root, version)
     typed_paths = get_typed_paths(homeassistant_root)
     generate_stubs(typed_paths, repo_root)
@@ -154,15 +161,15 @@ def create_package(
             create_commit(repo_root, version)
             push_commit(repo_root)
         if version not in stubs_pypi_versions:
-            build_package(repo_root, version)
-            publish_package(repo_root)
+            build_package(repo_root, version, uv_bin)
+            publish_package(repo_root, uv_bin)
         gh_repo = get_github_repo("GITHUB_TOKEN")
         create_github_release(version, gh_repo)
 
 
-def update_dependency(repo_root: Path, version: AwesomeVersion) -> None:
+def update_dependency(repo_root: Path, version: AwesomeVersion, uv_bin: str) -> None:
     """Update version of homeassistant dependency."""
-    args = ["uv", "add", f"homeassistant=={version}"]
+    args = [uv_bin, "add", f"homeassistant=={version}"]
     if version.modifier is not None:
         args.append("--prerelease=allow")
     subprocess.run(args, cwd=repo_root, check=True)
@@ -175,11 +182,11 @@ def checkout_version(homeassistant_root: Path, version: AwesomeVersion) -> None:
     )
 
 
-def build_package(repo_root: Path, version: AwesomeVersion) -> None:
+def build_package(repo_root: Path, version: AwesomeVersion, uv_bin: str) -> None:
     """Build new package with uv."""
     LOGGER.info("Building package...")
     subprocess.run(["git", "tag", version.string], cwd=repo_root, check=True)
-    subprocess.run(["uv", "build"], cwd=repo_root, check=True)
+    subprocess.run([uv_bin, "build"], cwd=repo_root, check=True)
     subprocess.run(
         ["git", "tag", "--delete", version.string], cwd=repo_root, check=True
     )
@@ -223,12 +230,12 @@ def create_github_release(version: AwesomeVersion, gh_repo: Repository) -> None:
     )
 
 
-def publish_package(repo_root: Path) -> None:
+def publish_package(repo_root: Path, uv_bin: str) -> None:
     """Publish new package on PyPI."""
     LOGGER.info("Publishing package...")
     subprocess.run(
         [
-            "uv",
+            uv_bin,
             "publish",
         ],
         cwd=repo_root,

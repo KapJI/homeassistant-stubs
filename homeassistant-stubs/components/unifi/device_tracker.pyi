@@ -13,7 +13,7 @@ from homeassistant.components.device_tracker import ScannerEntity as ScannerEnti
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any
 
 LOGGER: Incomplete

@@ -6,8 +6,8 @@ from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from homeassistant.components.calendar import SERVICE_GET_EVENTS as SERVICE_GET_EVENTS
 from homeassistant.components.climate import INTENT_GET_TEMPERATURE as INTENT_GET_TEMPERATURE
-from homeassistant.components.conversation import ConversationTraceEventType as ConversationTraceEventType, async_conversation_trace_append as async_conversation_trace_append
 from homeassistant.components.cover import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
 from homeassistant.components.homeassistant import async_should_expose as async_should_expose
 from homeassistant.components.intent import async_device_supports_timers as async_device_supports_timers
@@ -15,12 +15,11 @@ from homeassistant.components.weather import INTENT_GET_WEATHER as INTENT_GET_WE
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_SERVICE as ATTR_SERVICE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED
 from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.util import yaml as yaml
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import JsonObjectType as JsonObjectType
 from typing import Any
 
-SCRIPT_PARAMETERS_CACHE: HassKey[dict[str, tuple[str | None, vol.Schema]]]
+ACTION_PARAMETERS_CACHE: HassKey[dict[str, dict[str, tuple[str | None, vol.Schema]]]]
 LLM_API_ASSIST: str
 BASE_PROMPT: str
 DEFAULT_INSTRUCTIONS_PROMPT: str
@@ -30,7 +29,7 @@ def async_render_no_api_prompt(hass: HomeAssistant) -> str: ...
 @callback
 def _async_get_apis(hass: HomeAssistant) -> dict[str, API]: ...
 @callback
-def async_register_api(hass: HomeAssistant, api: API) -> None: ...
+def async_register_api(hass: HomeAssistant, api: API) -> Callable[[], None]: ...
 async def async_get_api(hass: HomeAssistant, api_id: str, llm_context: LLMContext) -> APIInstance: ...
 @callback
 def async_get_apis(hass: HomeAssistant) -> list[API]: ...
@@ -94,10 +93,21 @@ class AssistAPI(API):
 
 def _get_exposed_entities(hass: HomeAssistant, assistant: str) -> dict[str, dict[str, Any]]: ...
 def _selector_serializer(schema: Any) -> Any: ...
-def _get_cached_script_parameters(hass: HomeAssistant, entity_id: str) -> tuple[str | None, vol.Schema]: ...
+def _get_cached_action_parameters(hass: HomeAssistant, domain: str, action: str) -> tuple[str | None, vol.Schema]: ...
 
-class ScriptTool(Tool):
-    _object_id: Incomplete
+class ActionTool(Tool):
+    _domain: Incomplete
+    _action: Incomplete
+    name: Incomplete
+    def __init__(self, hass: HomeAssistant, domain: str, action: str) -> None: ...
+    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
+
+class ScriptTool(ActionTool):
     name: Incomplete
     def __init__(self, hass: HomeAssistant, script_entity_id: str) -> None: ...
+
+class CalendarGetEventsTool(Tool):
+    name: str
+    description: str
+    parameters: Incomplete
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...

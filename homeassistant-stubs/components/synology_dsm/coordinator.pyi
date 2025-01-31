@@ -16,8 +16,8 @@ _LOGGER: Incomplete
 def async_re_login_on_expired[_T: SynologyDSMUpdateCoordinator[Any], **_P, _R](func: Callable[Concatenate[_T, _P], Awaitable[_R]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, _R]]: ...
 
 class SynologyDSMUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT]):
+    config_entry: ConfigEntry
     api: Incomplete
-    entry: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: SynoApi, update_interval: timedelta) -> None: ...
 
 class SynologyDSMSwitchUpdateCoordinator(SynologyDSMUpdateCoordinator[dict[str, dict[str, Any]]]):

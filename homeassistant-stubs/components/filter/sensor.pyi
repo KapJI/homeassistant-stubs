@@ -1,10 +1,11 @@
-from . import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import CONF_FILTERS as CONF_FILTERS, CONF_FILTER_LOWER_BOUND as CONF_FILTER_LOWER_BOUND, CONF_FILTER_NAME as CONF_FILTER_NAME, CONF_FILTER_PRECISION as CONF_FILTER_PRECISION, CONF_FILTER_RADIUS as CONF_FILTER_RADIUS, CONF_FILTER_TIME_CONSTANT as CONF_FILTER_TIME_CONSTANT, CONF_FILTER_UPPER_BOUND as CONF_FILTER_UPPER_BOUND, CONF_FILTER_WINDOW_SIZE as CONF_FILTER_WINDOW_SIZE, CONF_TIME_SMA_TYPE as CONF_TIME_SMA_TYPE, DEFAULT_FILTER_RADIUS as DEFAULT_FILTER_RADIUS, DEFAULT_FILTER_TIME_CONSTANT as DEFAULT_FILTER_TIME_CONSTANT, DEFAULT_PRECISION as DEFAULT_PRECISION, DEFAULT_WINDOW_SIZE as DEFAULT_WINDOW_SIZE, DOMAIN as DOMAIN, FILTER_NAME_LOWPASS as FILTER_NAME_LOWPASS, FILTER_NAME_OUTLIER as FILTER_NAME_OUTLIER, FILTER_NAME_RANGE as FILTER_NAME_RANGE, FILTER_NAME_THROTTLE as FILTER_NAME_THROTTLE, FILTER_NAME_TIME_SMA as FILTER_NAME_TIME_SMA, FILTER_NAME_TIME_THROTTLE as FILTER_NAME_TIME_THROTTLE, PLATFORMS as PLATFORMS, TIME_SMA_LAST as TIME_SMA_LAST, WINDOW_SIZE_UNIT_NUMBER_EVENTS as WINDOW_SIZE_UNIT_NUMBER_EVENTS, WINDOW_SIZE_UNIT_TIME as WINDOW_SIZE_UNIT_TIME
 from _typeshed import Incomplete
 from collections import Counter, deque
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,30 +16,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.util.decorator import Registry as Registry
 
 _LOGGER: Incomplete
-FILTER_NAME_RANGE: str
-FILTER_NAME_LOWPASS: str
-FILTER_NAME_OUTLIER: str
-FILTER_NAME_THROTTLE: str
-FILTER_NAME_TIME_THROTTLE: str
-FILTER_NAME_TIME_SMA: str
 FILTERS: Registry[str, type[Filter]]
-CONF_FILTERS: str
-CONF_FILTER_NAME: str
-CONF_FILTER_WINDOW_SIZE: str
-CONF_FILTER_PRECISION: str
-CONF_FILTER_RADIUS: str
-CONF_FILTER_TIME_CONSTANT: str
-CONF_FILTER_LOWER_BOUND: str
-CONF_FILTER_UPPER_BOUND: str
-CONF_TIME_SMA_TYPE: str
-TIME_SMA_LAST: str
-WINDOW_SIZE_UNIT_NUMBER_EVENTS: int
-WINDOW_SIZE_UNIT_TIME: int
-DEFAULT_WINDOW_SIZE: int
-DEFAULT_PRECISION: int
-DEFAULT_FILTER_RADIUS: float
-DEFAULT_FILTER_TIME_CONSTANT: int
-NAME_TEMPLATE: str
 ICON: str
 FILTER_SCHEMA: Incomplete
 FILTER_OUTLIER_SCHEMA: Incomplete
@@ -50,6 +28,7 @@ FILTER_TIME_THROTTLE_SCHEMA: Incomplete
 PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class SensorFilter(SensorEntity):
     _attr_should_poll: bool

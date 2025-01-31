@@ -18,7 +18,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, GPSType as GP
 from homeassistant.setup import SetupPhases as SetupPhases, async_notify_setup_error as async_notify_setup_error, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.yaml import dump as dump
-from propcache import cached_property
+from propcache.api import cached_property
 from types import ModuleType
 from typing import Any, Final, Protocol, final
 

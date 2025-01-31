@@ -18,7 +18,7 @@ from homeassistant.helpers.translation import async_get_translations as async_ge
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, TypedDict
 from yarl import URL
 

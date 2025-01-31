@@ -3,11 +3,11 @@ from . import PyNUTData as PyNUTData
 from .const import DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_BASE as CONF_BASE, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any
 
 _LOGGER: Incomplete
@@ -25,7 +25,7 @@ class NutConfigFlow(ConfigFlow, domain=DOMAIN):
     title: str | None
     reauth_entry: ConfigEntry | None
     def __init__(self) -> None: ...
-    async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_ups(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def _host_port_alias_already_configured(self, user_input: dict[str, Any]) -> bool: ...

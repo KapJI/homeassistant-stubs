@@ -1,13 +1,12 @@
 import upcloud_api
 from .const import DOMAIN as DOMAIN
-from .coordinator import UpCloudDataUpdateCoordinator as UpCloudDataUpdateCoordinator
+from .coordinator import UpCloudConfigEntry as UpCloudConfigEntry, UpCloudDataUpdateCoordinator as UpCloudDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PROBLEM as STATE_PROBLEM
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-_LOGGER: Incomplete
 ATTR_CORE_NUMBER: str
 ATTR_HOSTNAME: str
 ATTR_MEMORY_AMOUNT: str
@@ -18,8 +17,9 @@ DEFAULT_COMPONENT_NAME: str
 STATE_MAP: Incomplete
 
 class UpCloudServerEntity(CoordinatorEntity[UpCloudDataUpdateCoordinator]):
+    config_entry: Incomplete
     uuid: Incomplete
-    def __init__(self, coordinator: UpCloudDataUpdateCoordinator, uuid: str) -> None: ...
+    def __init__(self, config_entry: UpCloudConfigEntry, uuid: str) -> None: ...
     @property
     def _server(self) -> upcloud_api.Server: ...
     @property

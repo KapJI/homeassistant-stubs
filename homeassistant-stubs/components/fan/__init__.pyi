@@ -10,7 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, final
 
 _LOGGER: Incomplete

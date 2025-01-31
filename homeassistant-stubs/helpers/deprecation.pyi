@@ -1,7 +1,7 @@
 import functools
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from enum import Enum, EnumType, _EnumDict
+from enum import EnumType, IntEnum, IntFlag, StrEnum, _EnumDict
 from typing import Any, NamedTuple
 
 def deprecated_substitute[_ObjectT: object](substitute_name: str) -> Callable[[Callable[[_ObjectT], Any]], Callable[[_ObjectT], Any]]: ...
@@ -18,7 +18,7 @@ class DeprecatedConstant(NamedTuple):
     breaks_in_ha_version: str | None
 
 class DeprecatedConstantEnum(NamedTuple):
-    enum: Enum
+    enum: StrEnum | IntEnum | IntFlag
     breaks_in_ha_version: str | None
 
 class DeprecatedAlias(NamedTuple):

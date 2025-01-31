@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from datetime import date
 from homeassistant.helpers.entity import Entity, EntityDescription
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import final
 
 __all__ = ['DOMAIN', 'DateEntity', 'DateEntityDescription']

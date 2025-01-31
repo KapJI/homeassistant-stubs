@@ -5,7 +5,7 @@ from .domain_data import DomainData as DomainData
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, ReconnectLogic, UserService as UserService
-from homeassistant.components import tag as tag, zeroconf as zeroconf
+from homeassistant.components import bluetooth as bluetooth, tag as tag, zeroconf as zeroconf
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError

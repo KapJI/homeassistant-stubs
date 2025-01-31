@@ -42,6 +42,7 @@ class AssistSatelliteConfiguration:
 class AssistSatelliteAnnouncement:
     message: str
     media_id: str
+    original_media_id: str
     media_id_source: Literal['url', 'media_id', 'tts']
 
 class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
@@ -89,3 +90,4 @@ class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     def _resolve_pipeline(self) -> str | None: ...
     @callback
     def _resolve_vad_sensitivity(self) -> float: ...
+    async def _resolve_announcement_media_id(self, message: str, media_id: str | None) -> AssistSatelliteAnnouncement: ...

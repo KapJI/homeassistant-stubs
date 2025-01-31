@@ -10,7 +10,7 @@ from homeassistant.util.file import WriteError as WriteError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from json import JSONEncoder
 from pathlib import Path
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any
 
 MAX_LOAD_CONCURRENTLY: int

@@ -13,7 +13,7 @@ from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.interfaces import Dialect as Dialect
 from sqlalchemy.orm import DeclarativeBase, Mapped as Mapped
 from sqlalchemy.types import TypeDecorator as TypeDecorator
-from typing import Any, Final, Self
+from typing import Any, Final, Protocol, Self
 
 class Base(DeclarativeBase): ...
 class LegacyBase(DeclarativeBase): ...
@@ -79,8 +79,11 @@ BIG_INTEGER_SQL: str
 CONTEXT_BINARY_TYPE: Incomplete
 TIMESTAMP_TYPE = DOUBLE_TYPE
 
+class _LiteralProcessorType(Protocol):
+    def __call__(self, value: Any) -> str: ...
+
 class JSONLiteral(JSON):
-    def literal_processor(self, dialect: Dialect) -> Callable[[Any], str]: ...
+    def literal_processor(self, dialect: Dialect) -> _LiteralProcessorType: ...
 
 EVENT_ORIGIN_ORDER: Incomplete
 

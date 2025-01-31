@@ -1,9 +1,8 @@
-from .const import DATA_COORDINATOR as DATA_COORDINATOR, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
-from .coordinator import CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from .coordinator import CanaryConfigEntry as CanaryConfigEntry, CanaryDataUpdateCoordinator as CanaryDataUpdateCoordinator
 from _typeshed import Incomplete
 from canary.model import Device as Device, Location as Location
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -21,7 +20,7 @@ STATE_AIR_QUALITY_NORMAL: Final[str]
 STATE_AIR_QUALITY_ABNORMAL: Final[str]
 STATE_AIR_QUALITY_VERY_ABNORMAL: Final[str]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CanaryConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class CanarySensor(CoordinatorEntity[CanaryDataUpdateCoordinator], SensorEntity):
     _sensor_type: Incomplete

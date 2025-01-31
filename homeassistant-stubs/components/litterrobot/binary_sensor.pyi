@@ -1,4 +1,4 @@
-from . import LitterRobotConfigEntry as LitterRobotConfigEntry
+from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
 from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -9,18 +9,15 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pylitterbot import Robot
 from typing import Generic
 
-@dataclass(frozen=True)
-class RequiredKeysMixin(Generic[_RobotT]):
+@dataclass(frozen=True, kw_only=True)
+class RobotBinarySensorEntityDescription(BinarySensorEntityDescription, Generic[_RobotT]):
     is_on_fn: Callable[[_RobotT], bool]
 
-@dataclass(frozen=True)
-class RobotBinarySensorEntityDescription(BinarySensorEntityDescription, RequiredKeysMixin[_RobotT]): ...
+BINARY_SENSOR_MAP: dict[type[Robot], tuple[RobotBinarySensorEntityDescription, ...]]
+
+async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class LitterRobotBinarySensorEntity(LitterRobotEntity[_RobotT], BinarySensorEntity):
     entity_description: RobotBinarySensorEntityDescription[_RobotT]
     @property
     def is_on(self) -> bool: ...
-
-BINARY_SENSOR_MAP: dict[type[Robot], tuple[RobotBinarySensorEntityDescription, ...]]
-
-async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

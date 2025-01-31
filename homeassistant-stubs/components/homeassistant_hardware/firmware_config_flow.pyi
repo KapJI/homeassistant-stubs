@@ -2,17 +2,15 @@ import abc
 import asyncio
 from . import silabs_multiprotocol_addon as silabs_multiprotocol_addon
 from .const import ZHA_DOMAIN as ZHA_DOMAIN
-from .util import get_otbr_addon_manager as get_otbr_addon_manager, get_zha_device_path as get_zha_device_path, get_zigbee_flasher_addon_manager as get_zigbee_flasher_addon_manager
+from .util import ApplicationType as ApplicationType, get_otbr_addon_manager as get_otbr_addon_manager, get_zha_device_path as get_zha_device_path, get_zigbee_flasher_addon_manager as get_zigbee_flasher_addon_manager, probe_silabs_firmware_type as probe_silabs_firmware_type
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
-from homeassistant.components.zha.repairs.wrong_silabs_firmware import probe_silabs_firmware_type as probe_silabs_firmware_type
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from typing import Any
-from universal_silabs_flasher.const import ApplicationType
 
 _LOGGER: Incomplete
 STEP_PICK_FIRMWARE_THREAD: str

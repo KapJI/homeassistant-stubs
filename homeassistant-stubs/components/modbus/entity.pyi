@@ -16,32 +16,40 @@ from typing import Any
 _LOGGER: Incomplete
 
 class BasePlatform(Entity, metaclass=abc.ABCMeta):
+    _value: str | None
+    _attr_should_poll: bool
+    _attr_available: bool
+    _attr_unit_of_measurement: Incomplete
     _hub: Incomplete
     _slave: Incomplete
     _address: Incomplete
     _input_type: Incomplete
-    _value: str | None
     _scan_interval: Incomplete
-    _call_active: bool
     _cancel_timer: Callable[[], None] | None
     _cancel_call: Callable[[], None] | None
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
-    _attr_should_poll: bool
     _attr_device_class: Incomplete
-    _attr_available: bool
-    _attr_unit_of_measurement: Incomplete
     _min_value: Incomplete
     _max_value: Incomplete
     _nan_value: Incomplete
     _zero_suppress: Incomplete
+    _update_lock: Incomplete
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, entry: dict[str, Any]) -> None: ...
     @abstractmethod
+    async def _async_update(self) -> None: ...
     async def async_update(self, now: datetime | None = None) -> None: ...
+    async def _async_update_write_state(self) -> None: ...
+    async def _async_update_if_not_in_progress(self, now: datetime | None = None) -> None: ...
     @callback
     def async_run(self) -> None: ...
     @callback
-    def async_hold(self, update: bool = True) -> None: ...
+    def _async_schedule_future_update(self, delay: float) -> None: ...
+    @callback
+    def _async_cancel_future_pending_update(self) -> None: ...
+    def _async_cancel_update_polling(self) -> None: ...
+    @callback
+    def async_hold(self) -> None: ...
     async def async_base_added_to_hass(self) -> None: ...
 
 class BaseStructPlatform(BasePlatform, RestoreEntity, metaclass=abc.ABCMeta):
@@ -75,5 +83,4 @@ class BaseSwitch(BasePlatform, ToggleEntity, RestoreEntity):
     _attr_available: bool
     async def async_turn(self, command: int) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    _call_active: bool
-    async def async_update(self, now: datetime | None = None) -> None: ...
+    async def _async_update(self) -> None: ...

@@ -1,7 +1,7 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import AirGradientCoordinator as AirGradientCoordinator
-from .entity import AirGradientEntity as AirGradientEntity
+from .entity import AirGradientEntity as AirGradientEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from airgradient import AirGradientClient as AirGradientClient, Config as Config
 from collections.abc import Awaitable, Callable as Callable
@@ -10,6 +10,8 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AirGradientNumberEntityDescription(NumberEntityDescription):
@@ -27,4 +29,5 @@ class AirGradientNumber(AirGradientEntity, NumberEntity):
     def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientNumberEntityDescription) -> None: ...
     @property
     def native_value(self) -> int | None: ...
+    @exception_handler
     async def async_set_native_value(self, value: float) -> None: ...

@@ -22,7 +22,7 @@ from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
-from propcache import cached_property
+from propcache.api import cached_property
 from types import ModuleType
 from typing import Any, Literal, Protocol, TypedDict
 

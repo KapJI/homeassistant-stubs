@@ -13,6 +13,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class AirGradientMeasurementSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Measures], StateType]

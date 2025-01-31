@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
@@ -14,7 +14,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from pyenphase import EnvoyACBPower as EnvoyACBPower, EnvoyBatteryAggregate as EnvoyBatteryAggregate, EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
 from pyenphase.models.meters import CtMeterStatus, CtState as CtState, CtStatusFlags as CtStatusFlags, CtType, EnvoyMeterData as EnvoyMeterData
 
-ICON: str
 _LOGGER: Incomplete
 INVERTERS_KEY: str
 LAST_REPORTED_KEY: str
@@ -103,7 +102,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntr
 class EnvoySensorBaseEntity(EnvoyBaseEntity, SensorEntity): ...
 
 class EnvoySystemSensorEntity(EnvoySensorBaseEntity):
-    _attr_icon = ICON
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: SensorEntityDescription) -> None: ...
@@ -169,7 +167,6 @@ class EnvoyStorageCTPhaseEntity(EnvoySystemSensorEntity):
     def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
 
 class EnvoyInverterEntity(EnvoySensorBaseEntity):
-    _attr_icon = ICON
     entity_description: EnvoyInverterSensorEntityDescription
     _serial_number: Incomplete
     _attr_unique_id: Incomplete

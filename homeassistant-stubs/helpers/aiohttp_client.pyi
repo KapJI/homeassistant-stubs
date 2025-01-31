@@ -5,15 +5,17 @@ from .json import json_dumps as json_dumps
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
+from aiohttp_asyncmdnsresolver.api import AsyncMDNSResolver
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
+from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ssl as ssl_util
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import json_loads as json_loads
-from typing import Any
+from typing import Any, Self
 
 DATA_CONNECTOR: HassKey[dict[tuple[bool, int, str], aiohttp.BaseConnector]]
 DATA_CLIENTSESSION: HassKey[dict[tuple[bool, int, str], aiohttp.ClientSession]]
@@ -25,6 +27,13 @@ MAXIMUM_CONNECTIONS_PER_HOST: int
 
 class HassClientResponse(aiohttp.ClientResponse):
     async def json(self, *args: Any, loads: JSONDecoder = ..., **kwargs: Any) -> Any: ...
+
+class ChunkAsyncStreamIterator:
+    __slots__: Incomplete
+    _stream: Incomplete
+    def __init__(self, stream: aiohttp.StreamReader) -> None: ...
+    def __aiter__(self) -> Self: ...
+    async def __anext__(self) -> bytes: ...
 
 @callback
 @bind_hass
@@ -50,3 +59,5 @@ class HomeAssistantTCPConnector(aiohttp.TCPConnector):
 
 @callback
 def _async_get_connector(hass: HomeAssistant, verify_ssl: bool = True, family: socket.AddressFamily = ..., ssl_cipher: ssl_util.SSLCipherList = ...) -> aiohttp.BaseConnector: ...
+@callback
+def _async_make_resolver(hass: HomeAssistant) -> AsyncMDNSResolver: ...

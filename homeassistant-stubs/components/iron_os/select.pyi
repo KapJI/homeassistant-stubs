@@ -1,5 +1,4 @@
 from . import IronOSConfigEntry as IronOSConfigEntry
-from .const import DOMAIN as DOMAIN
 from .coordinator import IronOSCoordinators as IronOSCoordinators
 from .entity import IronOSBaseEntity as IronOSBaseEntity
 from _typeshed import Incomplete
@@ -9,10 +8,8 @@ from enum import Enum, StrEnum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pynecil import CharSetting, SettingsDataResponse as SettingsDataResponse
-from typing import Any
 
 PARALLEL_UPDATES: int
 
@@ -20,7 +17,7 @@ PARALLEL_UPDATES: int
 class IronOSSelectEntityDescription(SelectEntityDescription):
     value_fn: Callable[[SettingsDataResponse], str | None]
     characteristic: CharSetting
-    raw_value_fn: Callable[[str], Any] | None = ...
+    raw_value_fn: Callable[[str], Enum]
 
 class PinecilSelect(StrEnum):
     MIN_DC_VOLTAGE_CELLS = 'min_dc_voltage_cells'
@@ -31,6 +28,7 @@ class PinecilSelect(StrEnum):
     DESC_SCROLL_SPEED = 'desc_scroll_speed'
     LOCKING_MODE = 'locking_mode'
     LOGO_DURATION = 'logo_duration'
+    USB_PD_MODE = 'usb_pd_mode'
 
 def enum_to_str(enum: Enum | None) -> str | None: ...
 

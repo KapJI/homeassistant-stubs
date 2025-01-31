@@ -12,17 +12,15 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from types import ModuleType
-from typing import Any, Generic
-from typing_extensions import TypeVar
+from typing import Any
 
 DEFAULT_SCAN_INTERVAL: Incomplete
 DATA_INSTANCES: str
-_EntityT = TypeVar('_EntityT', bound=entity.Entity, default=entity.Entity)
 
 @bind_hass
 async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None: ...
 
-class EntityComponent(Generic[_EntityT]):
+class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
     logger: Incomplete
     hass: Incomplete
     domain: Incomplete

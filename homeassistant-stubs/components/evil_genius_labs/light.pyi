@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import EvilGeniusUpdateCoordinator as EvilGeniusUpdateCoordinator
+from .coordinator import EvilGeniusConfigEntry as EvilGeniusConfigEntry, EvilGeniusUpdateCoordinator as EvilGeniusUpdateCoordinator
 from .entity import EvilGeniusEntity as EvilGeniusEntity
 from .util import update_when_done as update_when_done
 from _typeshed import Incomplete
 from homeassistant.components import light as light
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -13,7 +11,7 @@ from typing import Any
 HA_NO_EFFECT: str
 FIB_NO_EFFECT: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EvilGeniusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class EvilGeniusLight(EvilGeniusEntity, LightEntity):
     _attr_name: Incomplete

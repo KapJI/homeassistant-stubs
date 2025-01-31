@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass_or_none as async_get_hass_or_none
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import Integration as Integration, async_get_issue_integration as async_get_issue_integration, async_suggest_report_issue as async_suggest_report_issue
-from propcache import cached_property
+from propcache.api import cached_property
 from types import FrameType
 
 _LOGGER: Incomplete

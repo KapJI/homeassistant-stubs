@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, NOT_CALIBRATED_ISSUE_ID as NOT_CALIBRATED_ISSUE_ID, RPC_THERMOSTAT_SETTINGS as RPC_THERMOSTAT_SETTINGS, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
+from .const import BLU_TRV_TEMPERATURE_SETTINGS as BLU_TRV_TEMPERATURE_SETTINGS, BLU_TRV_TIMEOUT as BLU_TRV_TIMEOUT, DOMAIN as DOMAIN, LOGGER as LOGGER, NOT_CALIBRATED_ISSUE_ID as NOT_CALIBRATED_ISSUE_ID, RPC_THERMOSTAT_SETTINGS as RPC_THERMOSTAT_SETTINGS, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import ShellyRpcEntity as ShellyRpcEntity
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator
@@ -10,7 +10,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
@@ -101,3 +101,26 @@ class RpcClimate(ShellyRpcEntity, ClimateEntity):
     def hvac_action(self) -> HVACAction: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+
+class RpcBluTrvClimate(ShellyRpcEntity, ClimateEntity):
+    _attr_max_temp: Incomplete
+    _attr_min_temp: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_hvac_modes: Incomplete
+    _attr_hvac_mode: Incomplete
+    _attr_target_temperature_step: Incomplete
+    _attr_temperature_unit: Incomplete
+    _attr_has_entity_name: bool
+    _id: Incomplete
+    _config: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    _attr_name: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
+    @property
+    def target_temperature(self) -> float | None: ...
+    @property
+    def current_temperature(self) -> float | None: ...
+    @property
+    def hvac_action(self) -> HVACAction: ...
+    async def async_set_temperature(self, **kwargs: Any) -> None: ...

@@ -10,6 +10,7 @@ from spotifyaio import PlaybackState as PlaybackState, Playlist as Playlist, Spo
 
 _LOGGER: Incomplete
 type SpotifyConfigEntry = ConfigEntry[SpotifyData]
+UPDATE_INTERVAL: Incomplete
 
 @dataclass
 class SpotifyCoordinatorData:
@@ -28,4 +29,5 @@ class SpotifyCoordinator(DataUpdateCoordinator[SpotifyCoordinatorData]):
     _checked_playlist_id: str | None
     def __init__(self, hass: HomeAssistant, client: SpotifyClient) -> None: ...
     async def _async_setup(self) -> None: ...
+    update_interval: Incomplete
     async def _async_update_data(self) -> SpotifyCoordinatorData: ...

@@ -3,7 +3,7 @@ import psutil_home_assistant as ha_psutil
 import queue
 import threading
 from . import migration as migration, statistics as statistics
-from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG as MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
+from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG as MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import Base as Base, EventData as EventData, EventTypes as EventTypes, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
 from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect
@@ -28,7 +28,7 @@ from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from homeassistant.util.event_type import EventType as EventType
-from propcache import cached_property
+from propcache.api import cached_property
 from sqlalchemy.engine import Engine as Engine
 from sqlalchemy.engine.interfaces import DBAPIConnection as DBAPIConnection
 from sqlalchemy.orm.session import Session as Session

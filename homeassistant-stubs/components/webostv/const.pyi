@@ -3,7 +3,6 @@ from homeassistant.const import Platform as Platform
 
 DOMAIN: str
 PLATFORMS: Incomplete
-DATA_CONFIG_ENTRY: str
 DATA_HASS_CONFIG: str
 DEFAULT_NAME: str
 ATTR_BUTTON: str

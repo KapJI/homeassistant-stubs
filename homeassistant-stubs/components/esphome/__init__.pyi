@@ -5,6 +5,7 @@ from .ffmpeg_proxy import FFmpegProxyData as FFmpegProxyData, FFmpegProxyView as
 from .manager import ESPHomeManager as ESPHomeManager, cleanup_instance as cleanup_instance
 from _typeshed import Incomplete
 from homeassistant.components import ffmpeg as ffmpeg, zeroconf as zeroconf
+from homeassistant.components.bluetooth import async_remove_scanner as async_remove_scanner
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType

@@ -4,7 +4,6 @@ from .entity import MatterEntity as MatterEntity
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
-from chip.clusters import Objects as clusters
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription, LockEntityFeature as LockEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, Platform as Platform
@@ -22,7 +21,6 @@ class MatterLock(MatterEntity, LockEntity):
     _platform_translation_key: str
     @property
     def code_format(self) -> str | None: ...
-    async def send_device_command(self, command: clusters.ClusterCommand, timed_request_timeout_ms: int = 1000) -> None: ...
     _attr_is_locking: bool
     async def async_lock(self, **kwargs: Any) -> None: ...
     _attr_is_unlocking: bool

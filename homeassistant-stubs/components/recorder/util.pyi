@@ -1,5 +1,5 @@
 from . import Recorder as Recorder
-from .const import DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS, DOMAIN as DOMAIN, SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS, SQLITE_MODERN_MAX_BIND_VARS as SQLITE_MODERN_MAX_BIND_VARS, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
+from .const import DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS, DOMAIN as DOMAIN, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import RecorderRuns as RecorderRuns, TABLES_TO_CHECK as TABLES_TO_CHECK, TABLE_RECORDER_RUNS as TABLE_RECORDER_RUNS, TABLE_SCHEMA_CHANGES as TABLE_SCHEMA_CHANGES
 from .models import DatabaseEngine as DatabaseEngine, DatabaseOptimizer as DatabaseOptimizer, StatisticPeriod as StatisticPeriod, UnsupportedDialect as UnsupportedDialect, process_timestamp as process_timestamp
 from _typeshed import Incomplete
@@ -41,8 +41,6 @@ MARIADB_WITH_FIXED_IN_QUERIES_108: Incomplete
 MIN_VERSION_MYSQL: Incomplete
 MIN_VERSION_PGSQL: Incomplete
 MIN_VERSION_SQLITE: Incomplete
-UPCOMING_MIN_VERSION_SQLITE: Incomplete
-MIN_VERSION_SQLITE_MODERN_BIND_VARS: Incomplete
 MAX_RESTART_TIME: Incomplete
 RETRYABLE_MYSQL_ERRORS: Incomplete
 FIRST_POSSIBLE_SUNDAY: int
@@ -62,10 +60,6 @@ def execute_on_connection(dbapi_connection: DBAPIConnection, statement: str) -> 
 def query_on_connection(dbapi_connection: DBAPIConnection, statement: str) -> Any: ...
 def _fail_unsupported_dialect(dialect_name: str) -> NoReturn: ...
 def _raise_if_version_unsupported(server_version: str, dialect_name: str, minimum_version: str) -> NoReturn: ...
-@callback
-def _async_delete_issue_deprecated_version(hass: HomeAssistant, dialect_name: str) -> None: ...
-@callback
-def _async_create_issue_deprecated_version(hass: HomeAssistant, server_version: AwesomeVersion, dialect_name: str, min_version: AwesomeVersion) -> None: ...
 def _extract_version_from_server_response_or_raise(server_response: str) -> AwesomeVersion: ...
 def _extract_version_from_server_response(server_response: str) -> AwesomeVersion | None: ...
 def _datetime_or_none(value: str) -> datetime | None: ...

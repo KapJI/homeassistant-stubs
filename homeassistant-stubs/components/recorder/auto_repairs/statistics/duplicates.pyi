@@ -1,5 +1,5 @@
 from ... import Recorder as Recorder
-from ...const import SQLITE_MAX_BIND_VARS as SQLITE_MAX_BIND_VARS
+from ...const import DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS
 from ...db_schema import Statistics as Statistics, StatisticsBase as StatisticsBase, StatisticsMeta as StatisticsMeta, StatisticsShortTerm as StatisticsShortTerm
 from ...util import database_job_retry_wrapper as database_job_retry_wrapper, execute as execute
 from _typeshed import Incomplete

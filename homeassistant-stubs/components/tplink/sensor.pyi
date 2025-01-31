@@ -1,16 +1,21 @@
 from . import TPLinkConfigEntry as TPLinkConfigEntry
 from .const import UNIT_MAPPING as UNIT_MAPPING
-from .deprecate import async_cleanup_deprecated as async_cleanup_deprecated
 from .entity import CoordinatedTPLinkFeatureEntity as CoordinatedTPLinkFeatureEntity, TPLinkFeatureEntityDescription as TPLinkFeatureEntityDescription
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.const import UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
-class TPLinkSensorEntityDescription(SensorEntityDescription, TPLinkFeatureEntityDescription): ...
+class TPLinkSensorEntityDescription(SensorEntityDescription, TPLinkFeatureEntityDescription):
+    convert_fn: Callable[[Any], Any] | None = ...
 
+PARALLEL_UPDATES: int
+_TOTAL_SECONDS_METHOD_CALLER: Incomplete
 SENSOR_DESCRIPTIONS: tuple[TPLinkSensorEntityDescription, ...]
 SENSOR_DESCRIPTIONS_MAP: Incomplete
 

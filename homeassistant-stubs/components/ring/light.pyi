@@ -10,6 +10,7 @@ from ring_doorbell import RingStickUpCam
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 SKIP_UPDATES_DELAY: Incomplete
 
 class OnOffState(StrEnum):

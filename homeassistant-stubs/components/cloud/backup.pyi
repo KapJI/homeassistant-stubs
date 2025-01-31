@@ -1,13 +1,13 @@
 from .client import CloudClient as CloudClient
 from .const import DATA_CLOUD as DATA_CLOUD, DOMAIN as DOMAIN, EVENT_CLOUD_EVENT as EVENT_CLOUD_EVENT
 from _typeshed import Incomplete
-from aiohttp import StreamReader as StreamReader
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components.backup import AgentBackup as AgentBackup, BackupAgent as BackupAgent, BackupAgentError as BackupAgentError
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.aiohttp_client import ChunkAsyncStreamIterator as ChunkAsyncStreamIterator
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from typing import Any, Self
+from typing import Any
 
 _LOGGER: Incomplete
 _STORAGE_BACKUP: str
@@ -20,16 +20,10 @@ async def async_get_backup_agents(hass: HomeAssistant, **kwargs: Any) -> list[Ba
 @callback
 def async_register_backup_agents_listener(hass: HomeAssistant, *, listener: Callable[[], None], **kwargs: Any) -> Callable[[], None]: ...
 
-class ChunkAsyncStreamIterator:
-    __slots__: Incomplete
-    _stream: Incomplete
-    def __init__(self, stream: StreamReader) -> None: ...
-    def __aiter__(self) -> Self: ...
-    async def __anext__(self) -> bytes: ...
-
 class CloudBackupAgent(BackupAgent):
     domain = DOMAIN
     name = DOMAIN
+    unique_id = DOMAIN
     _cloud: Incomplete
     _hass: Incomplete
     def __init__(self, hass: HomeAssistant, cloud: Cloud[CloudClient]) -> None: ...

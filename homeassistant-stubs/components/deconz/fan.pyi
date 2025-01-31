@@ -1,8 +1,8 @@
+from . import DeconzConfigEntry as DeconzConfigEntry
 from .entity import DeconzDevice as DeconzDevice
 from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from homeassistant.components.fan import DOMAIN as FAN_DOMAIN, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item
@@ -12,7 +12,7 @@ from typing import Any
 
 ORDERED_NAMED_FAN_SPEEDS: list[LightFanSpeed]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: DeconzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzFan(DeconzDevice[Light], FanEntity):
     TYPE = FAN_DOMAIN

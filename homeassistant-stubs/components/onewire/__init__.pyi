@@ -1,13 +1,13 @@
-from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
-from .onewirehub import CannotConnect as CannotConnect, OneWireHub as OneWireHub
+from .const import DOMAIN as DOMAIN
+from .onewirehub import OneWireConfigEntry as OneWireConfigEntry, OneWireHub as OneWireHub
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 
 _LOGGER: Incomplete
-type OneWireConfigEntry = ConfigEntry[OneWireHub]
+_PLATFORMS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: OneWireConfigEntry) -> bool: ...
 async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: OneWireConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...

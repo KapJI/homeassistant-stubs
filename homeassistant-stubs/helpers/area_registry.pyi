@@ -7,11 +7,12 @@ from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from dataclasses import dataclass, field
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from propcache import cached_property as under_cached_property
+from propcache.api import cached_property as under_cached_property
 from typing import Any, Literal, TypedDict
 
 DATA_REGISTRY: HassKey[AreaRegistry]
@@ -23,11 +24,13 @@ STORAGE_VERSION_MINOR: int
 class _AreaStoreData(TypedDict):
     aliases: list[str]
     floor_id: str | None
+    humidity_entity_id: str | None
     icon: str | None
     id: str
     labels: list[str]
     name: str
     picture: str | None
+    temperature_entity_id: str | None
     created_at: str
     modified_at: str
 
@@ -42,10 +45,12 @@ class EventAreaRegistryUpdatedData(TypedDict):
 class AreaEntry(NormalizedNameBaseRegistryEntry):
     aliases: set[str]
     floor_id: str | None
+    humidity_entity_id: str | None
     icon: str | None
     id: str
     labels: set[str] = field(default_factory=set)
     picture: str | None
+    temperature_entity_id: str | None
     _cache: dict[str, Any] = field(default_factory=dict, compare=False, init=False)
     @under_cached_property
     def json_fragment(self) -> json_fragment: ...
@@ -78,13 +83,13 @@ class AreaRegistry(BaseRegistry[AreasRegistryStoreData]):
     def async_get_or_create(self, name: str) -> AreaEntry: ...
     def _generate_id(self, name: str) -> str: ...
     @callback
-    def async_create(self, name: str, *, aliases: set[str] | None = None, floor_id: str | None = None, icon: str | None = None, labels: set[str] | None = None, picture: str | None = None) -> AreaEntry: ...
+    def async_create(self, name: str, *, aliases: set[str] | None = None, floor_id: str | None = None, humidity_entity_id: str | None = None, icon: str | None = None, labels: set[str] | None = None, picture: str | None = None, temperature_entity_id: str | None = None) -> AreaEntry: ...
     @callback
     def async_delete(self, area_id: str) -> None: ...
     @callback
-    def async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ...) -> AreaEntry: ...
+    def async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., humidity_entity_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ..., temperature_entity_id: str | None | UndefinedType = ...) -> AreaEntry: ...
     @callback
-    def _async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ...) -> AreaEntry: ...
+    def _async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., humidity_entity_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ..., temperature_entity_id: str | None | UndefinedType = ...) -> AreaEntry: ...
     async def async_load(self) -> None: ...
     @callback
     def _data_to_save(self) -> AreasRegistryStoreData: ...
@@ -98,3 +103,5 @@ async def async_load(hass: HomeAssistant) -> None: ...
 def async_entries_for_floor(registry: AreaRegistry, floor_id: str) -> list[AreaEntry]: ...
 @callback
 def async_entries_for_label(registry: AreaRegistry, label_id: str) -> list[AreaEntry]: ...
+def _validate_temperature_entity(hass: HomeAssistant, entity_id: str) -> None: ...
+def _validate_humidity_entity(hass: HomeAssistant, entity_id: str) -> None: ...

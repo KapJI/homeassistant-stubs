@@ -1,5 +1,4 @@
 from _typeshed import Incomplete
-from homeassistant.const import Platform as Platform
 
 DEFAULT_HOST: str
 DEFAULT_PORT: int
@@ -20,4 +19,3 @@ MANUFACTURER_EDS: str
 READ_MODE_BOOL: str
 READ_MODE_FLOAT: str
 READ_MODE_INT: str
-PLATFORMS: Incomplete

@@ -26,7 +26,7 @@ from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType, SignalTypeFormat as SignalTypeFormat
-from propcache import cached_property
+from propcache.api import cached_property
 from types import MappingProxyType
 from typing import Any, Literal, TypedDict, overload
 

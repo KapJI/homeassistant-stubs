@@ -8,7 +8,6 @@ from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.components import usb as usb
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigEntriesFlowManager as ConfigEntriesFlowManager, ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowContext as ConfigFlowContext, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowManager as OptionsFlowManager, SOURCE_USB as SOURCE_USB
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -17,6 +16,8 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
+from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 from zwave_js_server.version import VersionInfo as VersionInfo
@@ -88,7 +89,7 @@ class ZWaveJSConfigFlow(BaseZwaveJSFlow, ConfigFlow, domain=DOMAIN):
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict | None = None) -> ConfigFlowResult: ...
     usb_path: Incomplete
-    async def async_step_usb(self, discovery_info: usb.UsbServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_usb(self, discovery_info: UsbServiceInfo) -> ConfigFlowResult: ...
     async def async_step_usb_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_manual(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> ConfigFlowResult: ...

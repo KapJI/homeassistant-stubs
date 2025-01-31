@@ -14,9 +14,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
-from propcache import cached_property
-from typing import Any, Final, Generic, Literal, Required, TypedDict, final
-from typing_extensions import TypeVar
+from propcache.api import cached_property
+from typing import Any, Final, Generic, Literal, Required, TypeVar, TypedDict, final
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Incomplete

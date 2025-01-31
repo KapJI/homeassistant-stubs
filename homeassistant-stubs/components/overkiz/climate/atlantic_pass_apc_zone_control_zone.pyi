@@ -4,7 +4,7 @@ from .atlantic_pass_apc_heating_zone import AtlanticPassAPCHeatingZone as Atlant
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES
-from propcache import cached_property
+from propcache.api import cached_property
 from pyoverkiz.enums import OverkizCommandParam, OverkizState
 from typing import Any
 

@@ -5,13 +5,13 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.deprecation import deprecated_class as deprecated_class
+from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, final
 
 DATA_COMPONENT: HassKey[EntityComponent[WaterHeaterEntity]]
@@ -56,8 +56,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ..
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 
 class WaterHeaterEntityDescription(EntityDescription, frozen_or_thawed=True): ...
-class WaterHeaterEntityEntityDescription(WaterHeaterEntityDescription, frozen_or_thawed=True): ...
 
+_DEPRECATED_WaterHeaterEntityEntityDescription: Incomplete
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
 class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
@@ -125,3 +125,7 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
 
 async def async_service_away_mode(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...
 async def async_service_temperature_set(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

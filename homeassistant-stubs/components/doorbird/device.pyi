@@ -7,7 +7,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.util import slugify as slugify
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any
 
 _LOGGER: Incomplete

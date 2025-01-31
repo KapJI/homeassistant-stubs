@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any
 
 LIGHT_UPDATE_INTERVAL: int

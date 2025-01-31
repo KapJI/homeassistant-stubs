@@ -1,3 +1,4 @@
+from . import DeconzConfigEntry as DeconzConfigEntry
 from .const import ATTR_DARK as ATTR_DARK, ATTR_ON as ATTR_ON
 from .entity import DeconzDevice as DeconzDevice
 from .hub import DeconzHub as DeconzHub
@@ -5,7 +6,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription, DOMAIN as BINARY_SENSOR_DOMAIN
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -36,7 +36,7 @@ class DeconzBinarySensorDescription[_T: (Alarm, CarbonMonoxide, Fire, GenericFla
 
 ENTITY_DESCRIPTIONS: tuple[DeconzBinarySensorDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: DeconzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzBinarySensor(DeconzDevice[SensorResources], BinarySensorEntity):
     TYPE = BINARY_SENSOR_DOMAIN

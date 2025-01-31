@@ -3,10 +3,10 @@ from .const import CONF_AUTO_CONFIGURE as CONF_AUTO_CONFIGURE, DISCOVER_SCAN_TIM
 from .discovery import _short_mac as _short_mac, async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_update_entry_from_discovery as async_update_entry_from_discovery
 from _typeshed import Incomplete
 from elkm1_lib.discovery import ElkSystem
-from homeassistant.components import dhcp as dhcp
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PREFIX as CONF_PREFIX, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType, VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
 from homeassistant.util.network import is_ip_address as is_ip_address
@@ -37,7 +37,7 @@ class Elkm1ConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovered_device: ElkSystem | None
     _discovered_devices: dict[str, ElkSystem]
     def __init__(self) -> None: ...
-    async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
     async def _async_handle_discovery(self) -> ConfigFlowResult: ...
     def is_matching(self, other_flow: Self) -> bool: ...

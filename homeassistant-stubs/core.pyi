@@ -27,9 +27,8 @@ from _typeshed import Incomplete
 from collections import UserDict, defaultdict
 from collections.abc import Callable, Collection, Coroutine, Iterable, KeysView, Mapping, ValuesView
 from dataclasses import dataclass
-from propcache import cached_property, under_cached_property
-from typing import Any, Final, Generic, NotRequired, Self, TypedDict, overload
-from typing_extensions import TypeVar
+from propcache.api import cached_property, under_cached_property
+from typing import Any, Final, Generic, NotRequired, Self, TypeVar, TypedDict, overload
 
 STOPPING_STAGE_SHUTDOWN_TIMEOUT: int
 STOP_STAGE_SHUTDOWN_TIMEOUT: int

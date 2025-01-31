@@ -1,21 +1,24 @@
 from . import OnboardingData as OnboardingData, OnboardingStorage as OnboardingStorage, OnboardingStoreData as OnboardingStoreData
 from .const import DEFAULT_AREAS as DEFAULT_AREAS, DOMAIN as DOMAIN, STEPS as STEPS, STEP_ANALYTICS as STEP_ANALYTICS, STEP_CORE_CONFIG as STEP_CORE_CONFIG, STEP_INTEGRATION as STEP_INTEGRATION, STEP_USER as STEP_USER
 from _typeshed import Incomplete
-from aiohttp import web as web
+from aiohttp import web
+from collections.abc import Callable as Callable, Coroutine
 from homeassistant.auth.const import GROUP_ID_ADMIN as GROUP_ID_ADMIN
 from homeassistant.auth.providers.homeassistant import HassAuthProvider as HassAuthProvider
 from homeassistant.components import person as person
 from homeassistant.components.auth import indieauth as indieauth
+from homeassistant.components.backup import BackupManager as BackupManager, Folder as Folder, IncorrectPasswordError as IncorrectPasswordError, http as backup_http
 from homeassistant.components.http import KEY_HASS as KEY_HASS, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from homeassistant.helpers.translation import async_get_translations as async_get_translations
 from homeassistant.setup import async_setup_component as async_setup_component
 from homeassistant.util.async_ import create_eager_task as create_eager_task
-from typing import Any
+from typing import Any, Concatenate
 
 async def async_setup(hass: HomeAssistant, data: OnboardingStoreData, store: OnboardingStorage) -> None: ...
 
@@ -70,6 +73,31 @@ class AnalyticsOnboardingView(_BaseOnboardingView):
     name: str
     step = STEP_ANALYTICS
     async def post(self, request: web.Request) -> web.Response: ...
+
+class BackupOnboardingView(HomeAssistantView):
+    requires_auth: bool
+    _data: Incomplete
+    def __init__(self, data: OnboardingStoreData) -> None: ...
+
+def with_backup_manager[_ViewT: BackupOnboardingView, **_P](func: Callable[Concatenate[_ViewT, BackupManager, web.Request, _P], Coroutine[Any, Any, web.Response]]) -> Callable[Concatenate[_ViewT, web.Request, _P], Coroutine[Any, Any, web.Response]]: ...
+
+class BackupInfoView(BackupOnboardingView):
+    url: str
+    name: str
+    @with_backup_manager
+    async def get(self, manager: BackupManager, request: web.Request) -> web.Response: ...
+
+class RestoreBackupView(BackupOnboardingView):
+    url: str
+    name: str
+    @with_backup_manager
+    async def post(self, manager: BackupManager, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+
+class UploadBackupView(BackupOnboardingView, backup_http.UploadBackupView):
+    url: str
+    name: str
+    @with_backup_manager
+    async def post(self, manager: BackupManager, request: web.Request) -> web.Response: ...
 
 @callback
 def _async_get_hass_provider(hass: HomeAssistant) -> HassAuthProvider: ...

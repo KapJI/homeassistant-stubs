@@ -3,7 +3,6 @@ from .const import CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as C
 from .entity import BaseStructPlatform as BaseStructPlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
-from datetime import datetime
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, RestoreSensor as RestoreSensor, SensorEntity as SensorEntity
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -29,7 +28,7 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     async def async_added_to_hass(self) -> None: ...
     _cancel_call: Incomplete
     _attr_available: bool
-    async def async_update(self, now: datetime | None = None) -> None: ...
+    async def _async_update(self) -> None: ...
 
 class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[float] | None]], RestoreSensor, SensorEntity):
     _idx: Incomplete

@@ -12,14 +12,12 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.util.decorator import Registry as Registry
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Generic
-from typing_extensions import TypeVar
+from typing import Any
 
 _LOGGER: Incomplete
 DATA_REQS: HassKey[set[str]]
 AUTH_PROVIDERS: Registry[str, type[AuthProvider]]
 AUTH_PROVIDER_SCHEMA: Incomplete
-_AuthProviderT = TypeVar('_AuthProviderT', bound='AuthProvider', default='AuthProvider')
 
 class AuthProvider:
     DEFAULT_TITLE: str
@@ -48,7 +46,7 @@ class AuthProvider:
 async def auth_provider_from_config(hass: HomeAssistant, store: AuthStore, config: dict[str, Any]) -> AuthProvider: ...
 async def load_auth_provider_module(hass: HomeAssistant, provider: str) -> types.ModuleType: ...
 
-class LoginFlow(FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]], Generic[_AuthProviderT]):
+class LoginFlow[_AuthProviderT: AuthProvider = AuthProvider](FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]]):
     _flow_result = AuthFlowResult
     _auth_provider: Incomplete
     _auth_module_id: str | None

@@ -8,7 +8,6 @@ from homeassistant.config import load_yaml_config_file as load_yaml_config_file
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.hassio import get_supervisor_ip as get_supervisor_ip, is_hassio as is_hassio
-from homeassistant.util import yaml as yaml
 from ipaddress import IPv4Address, IPv6Address
 from typing import Any, Concatenate, Final
 

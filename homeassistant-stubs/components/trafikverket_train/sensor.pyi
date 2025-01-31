@@ -15,6 +15,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import Any
 
 ATTR_PRODUCT_FILTER: str
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class TrafikverketSensorEntityDescription(SensorEntityDescription):

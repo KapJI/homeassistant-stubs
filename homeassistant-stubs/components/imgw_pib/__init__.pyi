@@ -1,4 +1,4 @@
-from .const import CONF_STATION_ID as CONF_STATION_ID
+from .const import CONF_STATION_ID as CONF_STATION_ID, DOMAIN as DOMAIN
 from .coordinator import ImgwPibDataUpdateCoordinator as ImgwPibDataUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass

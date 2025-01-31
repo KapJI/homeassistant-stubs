@@ -7,22 +7,26 @@ from google_nest_sdm.admin_client import AdminClient as AdminClient, EligibleSub
 from google_nest_sdm.structure import Structure as Structure
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
+from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.util import get_random_string as get_random_string
 from typing import Any
 
 DATA_FLOW_IMPL: str
+TOPIC_FORMAT: str
 SUBSCRIPTION_FORMAT: str
-SUBSCRIPTION_RAND_LENGTH: int
+RAND_LENGTH: int
 MORE_INFO_URL: str
 CLOUD_CONSOLE_URL: str
 SDM_API_URL: str
 PUBSUB_API_URL: str
 DEVICE_ACCESS_CONSOLE_URL: str
 DEVICE_ACCESS_CONSOLE_EDIT_URL: str
+CREATE_NEW_TOPIC_KEY: str
 CREATE_NEW_SUBSCRIPTION_KEY: str
 _LOGGER: Incomplete
 
 def _generate_subscription_id(cloud_project_id: str) -> str: ...
+def _generate_topic_id(cloud_project_id: str) -> str: ...
 def generate_config_title(structures: Iterable[Structure]) -> str | None: ...
 
 class NestFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
@@ -46,7 +50,7 @@ class NestFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain
     async def async_step_create_cloud_project(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_cloud_project(self, user_input: dict | None = None) -> ConfigFlowResult: ...
     async def async_step_device_project(self, user_input: dict | None = None) -> ConfigFlowResult: ...
-    async def async_step_pubsub(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_pubsub_topic(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_pubsub_topic_confirm(self, user_input: dict | None = None) -> ConfigFlowResult: ...
     async def async_step_pubsub_subscription(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _async_finish(self) -> ConfigFlowResult: ...

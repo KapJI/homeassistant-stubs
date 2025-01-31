@@ -8,7 +8,7 @@ from homeassistant.core import Context as Context, Event as Event, State as Stat
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.json import json_loads as json_loads
 from homeassistant.util.ulid import ulid_to_bytes as ulid_to_bytes
-from propcache import cached_property
+from propcache.api import cached_property
 from sqlalchemy.engine.row import Row as Row
 from typing import Any, Final, NamedTuple
 

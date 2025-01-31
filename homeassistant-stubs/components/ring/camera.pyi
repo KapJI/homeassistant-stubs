@@ -15,6 +15,7 @@ from ring_doorbell import RingDoorBell
 from ring_doorbell.webrtcstream import RingWebRtcMessage as RingWebRtcMessage
 from typing import Any, Generic
 
+PARALLEL_UPDATES: int
 FORCE_REFRESH_INTERVAL: Incomplete
 MOTION_DETECTION_CAPABILITY: str
 _LOGGER: Incomplete

@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from homeassistant.const import __version__ as __version__
 from homeassistant.data_entry_flow import FlowContext as FlowContext, FlowResult as FlowResult
 from ipaddress import IPv4Address, IPv6Address
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, NamedTuple
 
 TOKEN_TYPE_NORMAL: str

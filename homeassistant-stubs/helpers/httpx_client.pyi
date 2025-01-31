@@ -7,6 +7,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList, client_context as client_context, create_no_verify_ssl_context as create_no_verify_ssl_context
+from types import TracebackType
 from typing import Any, Self
 
 KEEP_ALIVE_TIMEOUT: int
@@ -23,7 +24,7 @@ def get_async_client(hass: HomeAssistant, verify_ssl: bool = True) -> httpx.Asyn
 
 class HassHttpXAsyncClient(httpx.AsyncClient):
     async def __aenter__(self) -> Self: ...
-    async def __aexit__(self, *args: object) -> None: ...
+    async def __aexit__(self, exc_type: type[BaseException] | None = None, exc_value: BaseException | None = None, traceback: TracebackType | None = None) -> None: ...
 
 @callback
 def create_async_httpx_client(hass: HomeAssistant, verify_ssl: bool = True, auto_cleanup: bool = True, ssl_cipher_list: SSLCipherList = ..., **kwargs: Any) -> httpx.AsyncClient: ...

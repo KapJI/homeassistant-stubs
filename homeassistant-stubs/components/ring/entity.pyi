@@ -14,8 +14,7 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, CoordinatorEntity as CoordinatorEntity
 from ring_doorbell import RingDevices as RingDevices, RingGeneric
-from typing import Any, Concatenate, Generic
-from typing_extensions import TypeVar
+from typing import Any, Concatenate, Generic, TypeVar
 
 RingDeviceT = TypeVar('RingDeviceT', bound=RingGeneric, default=RingGeneric)
 _RingCoordinatorT = TypeVar('_RingCoordinatorT', bound=RingDataCoordinator | RingListenCoordinator)

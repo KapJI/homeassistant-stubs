@@ -37,6 +37,7 @@ class ReolinkHost:
     update_cmd: defaultdict[str, defaultdict[int | None, int]]
     firmware_ch_list: list[int | None]
     starting: bool
+    privacy_mode: bool | None
     credential_errors: int
     webhook_id: str | None
     _onvif_push_supported: bool
@@ -53,7 +54,9 @@ class ReolinkHost:
     _poll_job: Incomplete
     _fast_poll_error: bool
     _long_poll_task: asyncio.Task | None
+    _lost_subscription_start: bool
     _lost_subscription: bool
+    cancel_refresh_privacy_mode: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, config: Mapping[str, Any], options: Mapping[str, Any]) -> None: ...
     @callback
     def async_register_update_cmd(self, cmd: str, channel: int | None = None) -> None: ...

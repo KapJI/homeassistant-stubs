@@ -1,5 +1,5 @@
 from . import IronOSConfigEntry as IronOSConfigEntry
-from .const import DOMAIN as DOMAIN, MAX_TEMP as MAX_TEMP, MIN_TEMP as MIN_TEMP
+from .const import MAX_TEMP as MAX_TEMP, MIN_TEMP as MIN_TEMP
 from .coordinator import IronOSCoordinators as IronOSCoordinators
 from .entity import IronOSBaseEntity as IronOSBaseEntity
 from _typeshed import Incomplete
@@ -9,7 +9,6 @@ from enum import StrEnum
 from homeassistant.components.number import DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from pynecil import CharSetting, LiveDataResponse as LiveDataResponse, SettingsDataResponse as SettingsDataResponse
 

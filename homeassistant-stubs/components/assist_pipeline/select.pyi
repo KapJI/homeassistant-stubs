@@ -1,5 +1,5 @@
-from .const import DOMAIN as DOMAIN, OPTION_PREFERRED as OPTION_PREFERRED
-from .pipeline import AssistDevice as AssistDevice, PipelineData as PipelineData, PipelineStorageCollection as PipelineStorageCollection
+from .const import OPTION_PREFERRED as OPTION_PREFERRED
+from .pipeline import AssistDevice as AssistDevice, KEY_ASSIST_PIPELINE as KEY_ASSIST_PIPELINE
 from .vad import VadSensitivity as VadSensitivity
 from _typeshed import Incomplete
 from collections.abc import Iterable

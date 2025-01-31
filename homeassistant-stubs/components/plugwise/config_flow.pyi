@@ -1,11 +1,11 @@
 import voluptuous as vol
 from .const import DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FLOW_SMILE as FLOW_SMILE, FLOW_STRETCH as FLOW_STRETCH, SMILE as SMILE, STRETCH as STRETCH, STRETCH_USERNAME as STRETCH_USERNAME, ZEROCONF_MAP as ZEROCONF_MAP
 from _typeshed import Incomplete
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_USER as SOURCE_USER
 from homeassistant.const import ATTR_CONFIGURATION_URL as ATTR_CONFIGURATION_URL, CONF_BASE as CONF_BASE, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from plugwise import Smile
 from typing import Any, Self
 

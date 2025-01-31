@@ -14,14 +14,12 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.util.dt import utcnow as utcnow
-from propcache import cached_property
-from typing import Any, Generic, Protocol
-from typing_extensions import TypeVar
+from propcache.api import cached_property
+from typing import Any, Generic, Protocol, TypeVar
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
 _DataT = TypeVar('_DataT', default=dict[str, Any])
-_DataUpdateCoordinatorT = TypeVar('_DataUpdateCoordinatorT', bound='DataUpdateCoordinator[Any]', default='DataUpdateCoordinator[dict[str, Any]]')
 
 class UpdateFailed(HomeAssistantError): ...
 
@@ -101,7 +99,7 @@ class BaseCoordinatorEntity[_BaseDataUpdateCoordinatorT: BaseDataUpdateCoordinat
     @abstractmethod
     async def async_update(self) -> None: ...
 
-class CoordinatorEntity(BaseCoordinatorEntity[_DataUpdateCoordinatorT]):
+class CoordinatorEntity[_DataUpdateCoordinatorT: DataUpdateCoordinator[Any] = DataUpdateCoordinator[dict[str, Any]]](BaseCoordinatorEntity[_DataUpdateCoordinatorT]):
     def __init__(self, coordinator: _DataUpdateCoordinatorT, context: Any = None) -> None: ...
     @property
     def available(self) -> bool: ...

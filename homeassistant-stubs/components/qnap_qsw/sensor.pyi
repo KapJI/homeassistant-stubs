@@ -5,11 +5,9 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
-from homeassistant.components.automation import automations_with_entity as automations_with_entity
-from homeassistant.components.script import scripts_with_entity as scripts_with_entity
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED
@@ -22,7 +20,6 @@ class QswSensorEntityDescription(SensorEntityDescription, QswEntityDescription):
     sep_key: str = ...
     value_fn: Callable[[str], datetime | StateType] = ...
 
-DEPRECATED_UPTIME_SECONDS: Incomplete
 SENSOR_TYPES: Final[tuple[QswSensorEntityDescription, ...]]
 LACP_PORT_SENSOR_TYPES: Final[tuple[QswSensorEntityDescription, ...]]
 PORT_SENSOR_TYPES: Final[tuple[QswSensorEntityDescription, ...]]

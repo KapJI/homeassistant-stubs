@@ -1,7 +1,7 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import AirGradientCoordinator as AirGradientCoordinator
-from .entity import AirGradientEntity as AirGradientEntity
+from .entity import AirGradientEntity as AirGradientEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from airgradient import AirGradientClient as AirGradientClient
 from collections.abc import Awaitable, Callable as Callable
@@ -10,6 +10,8 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AirGradientButtonEntityDescription(ButtonEntityDescription):
@@ -24,4 +26,5 @@ class AirGradientButton(AirGradientEntity, ButtonEntity):
     entity_description: AirGradientButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientButtonEntityDescription) -> None: ...
+    @exception_handler
     async def async_press(self) -> None: ...

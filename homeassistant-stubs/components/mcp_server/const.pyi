@@ -1,0 +1,2 @@
+DOMAIN: str
+TITLE: str

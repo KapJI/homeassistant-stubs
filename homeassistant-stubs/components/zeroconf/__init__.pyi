@@ -2,20 +2,19 @@ import re
 from .models import HaAsyncZeroconf as HaAsyncZeroconf, HaZeroconf as HaZeroconf
 from .usage import install_multiple_zeroconf_catcher as install_multiple_zeroconf_catcher
 from _typeshed import Incomplete
-from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.components import network as network
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow, instance_id as instance_id
+from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.discovery_flow import DiscoveryKey as DiscoveryKey
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as _ZeroconfServiceInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import HomeKitDiscoveredIntegration as HomeKitDiscoveredIntegration, ZeroconfMatcher as ZeroconfMatcher, async_get_homekit as async_get_homekit, async_get_zeroconf as async_get_zeroconf, bind_hass as bind_hass
 from homeassistant.setup import async_when_setup_or_start as async_when_setup_or_start
-from ipaddress import IPv4Address, IPv6Address
 from typing import Any, Final
 from zeroconf import ServiceStateChange
 from zeroconf.asyncio import AsyncServiceBrowser, AsyncServiceInfo
@@ -37,28 +36,17 @@ MAX_NAME_LEN: int
 ATTR_DOMAIN: Final[str]
 ATTR_NAME: Final[str]
 ATTR_PROPERTIES: Final[str]
-ATTR_PROPERTIES_ID: Final[str]
+_DEPRECATED_ATTR_PROPERTIES_ID: Incomplete
 CONFIG_SCHEMA: Incomplete
-
-@dataclass(slots=True)
-class ZeroconfServiceInfo(BaseServiceInfo):
-    ip_address: IPv4Address | IPv6Address
-    ip_addresses: list[IPv4Address | IPv6Address]
-    port: int | None
-    hostname: str
-    type: str
-    name: str
-    properties: dict[str, Any]
-    @property
-    def host(self) -> str: ...
-    @property
-    def addresses(self) -> list[str]: ...
+_DEPRECATED_ZeroconfServiceInfo: Incomplete
 
 @bind_hass
 async def async_get_instance(hass: HomeAssistant) -> HaZeroconf: ...
 @bind_hass
 async def async_get_async_instance(hass: HomeAssistant) -> HaAsyncZeroconf: ...
-async def _async_get_instance(hass: HomeAssistant, **zcargs: Any) -> HaAsyncZeroconf: ...
+@callback
+def async_get_async_zeroconf(hass: HomeAssistant) -> HaAsyncZeroconf: ...
+def _async_get_instance(hass: HomeAssistant, **zcargs: Any) -> HaAsyncZeroconf: ...
 @callback
 def _async_zc_has_functional_dual_stack() -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -90,8 +78,12 @@ class ZeroconfDiscovery:
     def _async_process_service_update(self, async_service_info: AsyncServiceInfo, service_type: str, name: str) -> None: ...
 
 def async_get_homekit_discovery(homekit_model_lookups: dict[str, HomeKitDiscoveredIntegration], homekit_model_matchers: dict[re.Pattern, HomeKitDiscoveredIntegration], props: dict[str, Any]) -> HomeKitDiscoveredIntegration | None: ...
-def info_from_service(service: AsyncServiceInfo) -> ZeroconfServiceInfo | None: ...
+def info_from_service(service: AsyncServiceInfo) -> _ZeroconfServiceInfo | None: ...
 def _suppress_invalid_properties(properties: dict) -> None: ...
 def _truncate_location_name_to_valid(location_name: str) -> str: ...
 def _compile_fnmatch(pattern: str) -> re.Pattern: ...
 def _memorized_fnmatch(name: str, pattern: str) -> bool: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

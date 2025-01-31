@@ -2,10 +2,11 @@ from . import async_discover_devices as async_discover_devices, create_async_tpl
 from .const import CONF_AES_KEYS as CONF_AES_KEYS, CONF_CAMERA_CREDENTIALS as CONF_CAMERA_CREDENTIALS, CONF_CONFIG_ENTRY_MINOR_VERSION as CONF_CONFIG_ENTRY_MINOR_VERSION, CONF_CONNECTION_PARAMETERS as CONF_CONNECTION_PARAMETERS, CONF_CREDENTIALS_HASH as CONF_CREDENTIALS_HASH, CONF_LIVE_VIEW as CONF_LIVE_VIEW, CONF_USES_HTTP as CONF_USES_HTTP, CONNECT_TIMEOUT as CONNECT_TIMEOUT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.components import dhcp as dhcp, ffmpeg as ffmpeg, stream as stream
+from homeassistant.components import ffmpeg as ffmpeg, stream as stream
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from kasa import Credentials, Device
 from typing import Any, Self
@@ -23,7 +24,7 @@ class TPLinkConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovered_devices: dict[str, Device]
     _discovered_device: Device | None
     def __init__(self) -> None: ...
-    async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
     @callback
     def _get_config_updates(self, entry: ConfigEntry, host: str, device: Device | None) -> dict | None: ...

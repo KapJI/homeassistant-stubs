@@ -35,6 +35,7 @@ class BangOlufsenModel(StrEnum):
 
 class WebsocketNotification(StrEnum):
     ACTIVE_LISTENING_MODE = 'active_listening_mode'
+    BUTTON = 'button'
     PLAYBACK_ERROR = 'playback_error'
     PLAYBACK_METADATA = 'playback_metadata'
     PLAYBACK_PROGRESS = 'playback_progress'
@@ -64,7 +65,12 @@ ATTR_FRIENDLY_NAME: Final[str]
 BANG_OLUFSEN_ON: Final[str]
 VALID_MEDIA_TYPES: Final[tuple]
 FALLBACK_SOURCES: Final[SourceArray]
+MODEL_SUPPORT_DEVICE_BUTTONS: Final[str]
+MODEL_SUPPORT_MAP: Incomplete
 BANG_OLUFSEN_WEBSOCKET_EVENT: Final[str]
+EVENT_TRANSLATION_MAP: dict[str, str]
 CONNECTION_STATUS: Final[str]
+DEVICE_BUTTONS: Final[list[str]]
+DEVICE_BUTTON_EVENTS: Final[list[str]]
 BEOLINK_JOIN_SOURCES_TO_UPPER: Incomplete
 BEOLINK_JOIN_SOURCES: Incomplete

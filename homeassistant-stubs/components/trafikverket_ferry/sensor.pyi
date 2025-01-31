@@ -20,6 +20,7 @@ ATTR_TO: str
 ATTR_MODIFIED_TIME: str
 ATTR_OTHER_INFO: str
 SCAN_INTERVAL: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class TrafikverketSensorEntityDescription(SensorEntityDescription):

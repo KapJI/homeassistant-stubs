@@ -8,14 +8,15 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from powerfox import Device as Device, PowerMeter, WaterMeter
+from powerfox import Device as Device, HeatMeter, PowerMeter, WaterMeter
 
 @dataclass(frozen=True, kw_only=True)
-class PowerfoxSensorEntityDescription[T: (PowerMeter, WaterMeter)](SensorEntityDescription):
+class PowerfoxSensorEntityDescription[T: (PowerMeter, WaterMeter, HeatMeter)](SensorEntityDescription):
     value_fn: Callable[[T], float | int | None]
 
 SENSORS_POWER: tuple[PowerfoxSensorEntityDescription[PowerMeter], ...]
 SENSORS_WATER: tuple[PowerfoxSensorEntityDescription[WaterMeter], ...]
+SENSORS_HEAT: tuple[PowerfoxSensorEntityDescription[HeatMeter], ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: PowerfoxConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 

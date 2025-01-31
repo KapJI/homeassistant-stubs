@@ -1,8 +1,7 @@
-from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN, HOP_COORDINATOR as HOP_COORDINATOR
-from .coordinator import ElectricKiwiHOPDataCoordinator as ElectricKiwiHOPDataCoordinator
+from .const import ATTRIBUTION as ATTRIBUTION
+from .coordinator import ElectricKiwiConfigEntry as ElectricKiwiConfigEntry, ElectricKiwiHOPDataCoordinator as ElectricKiwiHOPDataCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +11,7 @@ _LOGGER: Incomplete
 ATTR_EK_HOP_SELECT: str
 HOP_SELECT: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ElectricKiwiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElectricKiwiSelectHOPEntity(CoordinatorEntity[ElectricKiwiHOPDataCoordinator], SelectEntity):
     entity_description: SelectEntityDescription

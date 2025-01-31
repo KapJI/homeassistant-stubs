@@ -1,10 +1,10 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_USER as SOURCE_USER
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any
 
 CONFIG_SCHEMA: Incomplete

@@ -3,7 +3,6 @@ from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_
 from .entity import BasePlatform as BasePlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
-from datetime import datetime
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -26,9 +25,8 @@ class ModbusBinarySensor(BasePlatform, RestoreEntity, BinarySensorEntity):
     async def async_setup_slaves(self, hass: HomeAssistant, slave_count: int, entry: dict[str, Any]) -> list[SlaveSensor]: ...
     _attr_is_on: Incomplete
     async def async_added_to_hass(self) -> None: ...
-    _call_active: bool
     _attr_available: bool
-    async def async_update(self, now: datetime | None = None) -> None: ...
+    async def _async_update(self) -> None: ...
 
 class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreEntity, BinarySensorEntity):
     _attr_name: Incomplete

@@ -7,13 +7,13 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from pydrawise import Hydrawise as Hydrawise, Zone as Zone
+from pydrawise import HydrawiseBase as HydrawiseBase, Zone as Zone
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
 class HydrawiseSwitchEntityDescription(SwitchEntityDescription):
-    turn_on_fn: Callable[[Hydrawise, Zone], Coroutine[Any, Any, None]]
-    turn_off_fn: Callable[[Hydrawise, Zone], Coroutine[Any, Any, None]]
+    turn_on_fn: Callable[[HydrawiseBase, Zone], Coroutine[Any, Any, None]]
+    turn_off_fn: Callable[[HydrawiseBase, Zone], Coroutine[Any, Any, None]]
     value_fn: Callable[[Zone], bool]
 
 SWITCH_TYPES: tuple[HydrawiseSwitchEntityDescription, ...]

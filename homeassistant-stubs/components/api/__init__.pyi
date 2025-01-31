@@ -1,7 +1,7 @@
-import homeassistant.core as ha
 from _typeshed import Incomplete
 from aiohttp import web
 from functools import lru_cache
+from homeassistant import core as ha
 from homeassistant.auth.models import User as User
 from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, KEY_HASS_USER as KEY_HASS_USER, require_admin as require_admin

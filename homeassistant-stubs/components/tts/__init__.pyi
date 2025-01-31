@@ -10,10 +10,10 @@ from homeassistant.components.http import HomeAssistantView
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.typing import ConfigType
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, TypedDict, final
 
-__all__ = ['async_default_engine', 'async_get_media_source_audio', 'async_support_options', 'ATTR_AUDIO_OUTPUT', 'ATTR_PREFERRED_FORMAT', 'ATTR_PREFERRED_SAMPLE_RATE', 'ATTR_PREFERRED_SAMPLE_CHANNELS', 'ATTR_PREFERRED_SAMPLE_BYTES', 'CONF_LANG', 'DEFAULT_CACHE_DIR', 'generate_media_source_id', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SampleFormat', 'Provider', 'TtsAudioType', 'Voice']
+__all__ = ['ATTR_AUDIO_OUTPUT', 'ATTR_PREFERRED_FORMAT', 'ATTR_PREFERRED_SAMPLE_BYTES', 'ATTR_PREFERRED_SAMPLE_CHANNELS', 'ATTR_PREFERRED_SAMPLE_RATE', 'CONF_LANG', 'DEFAULT_CACHE_DIR', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'Provider', 'SampleFormat', 'TtsAudioType', 'Voice', 'async_default_engine', 'async_get_media_source_audio', 'async_support_options', 'generate_media_source_id']
 
 ATTR_AUDIO_OUTPUT: str
 ATTR_PREFERRED_FORMAT: str

@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entry_data import RuntimeEntryData as RuntimeEntryData
 from aioesphomeapi import APIClient as APIClient, DeviceInfo as DeviceInfo
 from homeassistant.components.bluetooth import async_register_scanner as async_register_scanner

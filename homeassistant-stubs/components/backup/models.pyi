@@ -16,7 +16,7 @@ class Folder(StrEnum):
     MEDIA = 'media'
 
 @dataclass(frozen=True, kw_only=True)
-class AgentBackup:
+class BaseBackup:
     addons: list[AddonInfo]
     backup_id: str
     date: str
@@ -26,11 +26,18 @@ class AgentBackup:
     homeassistant_included: bool
     homeassistant_version: str | None
     name: str
+    def as_frontend_json(self) -> dict: ...
+
+@dataclass(frozen=True, kw_only=True)
+class AgentBackup(BaseBackup):
     protected: bool
     size: int
     def as_dict(self) -> dict: ...
-    def as_frontend_json(self) -> dict: ...
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Self: ...
 
-class BackupManagerError(HomeAssistantError): ...
+class BackupError(HomeAssistantError):
+    error_code: str
+
+class BackupManagerError(BackupError):
+    error_code: str

@@ -1,22 +1,17 @@
+import datetime as dt
 from . import RussoundConfigEntry as RussoundConfigEntry
-from .const import DOMAIN as DOMAIN, MP_FEATURES_BY_FLAG as MP_FEATURES_BY_FLAG
 from .entity import RussoundBaseEntity as RussoundBaseEntity, command as command
 from _typeshed import Incomplete
 from aiorussound import Controller as Controller
 from aiorussound.models import Source as Source
 from aiorussound.rio import ZoneControlSurface as ZoneControlSurface
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.data_entry_flow import FlowResultType as FlowResultType
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: RussoundConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class RussoundZoneDevice(RussoundBaseEntity, MediaPlayerEntity):
@@ -47,7 +42,15 @@ class RussoundZoneDevice(RussoundBaseEntity, MediaPlayerEntity):
     @property
     def media_image_url(self) -> str | None: ...
     @property
+    def media_duration(self) -> int | None: ...
+    @property
+    def media_position(self) -> int | None: ...
+    @property
+    def media_position_updated_at(self) -> dt.datetime: ...
+    @property
     def volume_level(self) -> float: ...
+    @property
+    def is_volume_muted(self) -> bool: ...
     @command
     async def async_turn_off(self) -> None: ...
     @command
@@ -60,3 +63,7 @@ class RussoundZoneDevice(RussoundBaseEntity, MediaPlayerEntity):
     async def async_volume_up(self) -> None: ...
     @command
     async def async_volume_down(self) -> None: ...
+    @command
+    async def async_mute_volume(self, mute: bool) -> None: ...
+    @command
+    async def async_media_seek(self, position: float) -> None: ...

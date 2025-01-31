@@ -3,13 +3,11 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from slack import WebClient as WebClient
+from slack_sdk.web.async_client import AsyncWebClient as AsyncWebClient
 
 class SlackEntity(Entity):
-    _attr_attribution: str
-    _attr_has_entity_name: bool
-    _client: Incomplete
+    _client: AsyncWebClient
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, data: dict[str, str | WebClient], description: EntityDescription, entry: ConfigEntry) -> None: ...
+    def __init__(self, data: dict[str, AsyncWebClient], description: EntityDescription, entry: ConfigEntry) -> None: ...

@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, final, override
 
 ATTR_TITLE_DEFAULT: str

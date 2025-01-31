@@ -1,6 +1,6 @@
 from .. import subscription as subscription
 from ..config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
-from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
+from ..const import CONF_COLOR_TEMP_KELVIN as CONF_COLOR_TEMP_KELVIN, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_MAX_KELVIN as CONF_MAX_KELVIN, CONF_MIN_KELVIN as CONF_MIN_KELVIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
 from ..entity import MqttEntity as MqttEntity
 from ..models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from ..schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -46,6 +46,7 @@ class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     _topics: dict[str, str | None]
     @staticmethod
     def config_schema() -> VolSchemaType: ...
+    _color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     _attr_effect_list: Incomplete

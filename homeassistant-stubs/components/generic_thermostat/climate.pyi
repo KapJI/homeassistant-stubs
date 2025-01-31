@@ -59,6 +59,7 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _presets: Incomplete
+    _presets_inv: Incomplete
     def __init__(self, hass: HomeAssistant, name: str, heater_entity_id: str, sensor_entity_id: str, min_temp: float | None, max_temp: float | None, target_temp: float | None, ac_mode: bool | None, min_cycle_duration: timedelta | None, cold_tolerance: float, hot_tolerance: float, keep_alive: timedelta | None, initial_hvac_mode: HVACMode | None, presets: dict[str, float], precision: float | None, target_temperature_step: float | None, unit: UnitOfTemperature, unique_id: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property

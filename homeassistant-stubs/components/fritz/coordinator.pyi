@@ -1,4 +1,4 @@
-from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles, SERVICE_SET_GUEST_WIFI_PW as SERVICE_SET_GUEST_WIFI_PW
+from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, ValuesView
 from dataclasses import dataclass, field
@@ -9,19 +9,22 @@ from fritzconnection.lib.fritzstatus import FritzStatus
 from fritzconnection.lib.fritzwlan import FritzGuestWLAN
 from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util.hass_dict import HassKey as HassKey
 from types import MappingProxyType
 from typing import Any, TypedDict
 
 _LOGGER: Incomplete
+FRITZ_DATA_KEY: HassKey[FritzData]
+type FritzConfigEntry = ConfigEntry[AvmWrapper]
 
-def _is_tracked(mac: str, current_devices: ValuesView) -> bool: ...
-def device_filter_out_from_trackers(mac: str, device: FritzDevice, current_devices: ValuesView) -> bool: ...
+def _is_tracked(mac: str, current_devices: ValuesView[set[str]]) -> bool: ...
+def device_filter_out_from_trackers(mac: str, device: FritzDevice, current_devices: ValuesView[set[str]]) -> bool: ...
 def _ha_is_stopping(activity: str) -> None: ...
 
 class ClassSetupMissing(Exception):
@@ -57,7 +60,7 @@ class UpdateCoordinatorDataType(TypedDict):
     entity_states: dict[str, StateType | bool]
 
 class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
-    config_entry: ConfigEntry
+    config_entry: FritzConfigEntry
     _devices: dict[str, FritzDevice]
     _options: MappingProxyType[str, Any] | None
     _unique_id: str | None
@@ -81,7 +84,7 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     _update_available: bool
     _release_url: str | None
     _entity_update_functions: dict[str, Callable[[FritzStatus, StateType], Any]]
-    def __init__(self, hass: HomeAssistant, password: str, port: int, username: str = ..., host: str = ..., use_tls: bool = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: FritzConfigEntry, password: str, port: int, username: str = ..., host: str = ..., use_tls: bool = ...) -> None: ...
     async def async_setup(self, options: MappingProxyType[str, Any] | None = None) -> None: ...
     def setup(self) -> None: ...
     async def async_register_entity_updates(self, key: str, update_fn: Callable[[FritzStatus, StateType], Any]) -> Callable[[], None]: ...
@@ -120,7 +123,6 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     async def async_trigger_reconnect(self) -> None: ...
     async def async_trigger_set_guest_password(self, password: str | None, length: int) -> None: ...
     async def async_trigger_cleanup(self) -> None: ...
-    async def service_fritzbox(self, service_call: ServiceCall, config_entry: ConfigEntry) -> None: ...
 
 class AvmWrapper(FritzBoxTools):
     async def _async_service_call(self, service_name: str, service_suffix: str, action_name: str, **kwargs: Any) -> dict: ...
@@ -139,9 +141,9 @@ class AvmWrapper(FritzBoxTools):
 
 @dataclass
 class FritzData:
-    tracked: dict = field(default_factory=dict)
-    profile_switches: dict = field(default_factory=dict)
-    wol_buttons: dict = field(default_factory=dict)
+    tracked: dict[str, set[str]] = field(default_factory=dict)
+    profile_switches: dict[str, set[str]] = field(default_factory=dict)
+    wol_buttons: dict[str, set[str]] = field(default_factory=dict)
 
 class FritzDevice:
     _connected: bool

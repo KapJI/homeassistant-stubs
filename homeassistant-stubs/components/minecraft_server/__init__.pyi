@@ -1,4 +1,3 @@
-import homeassistant.helpers.entity_registry as er
 from .api import MinecraftServer as MinecraftServer, MinecraftServerAddressError as MinecraftServerAddressError, MinecraftServerType as MinecraftServerType
 from .const import DOMAIN as DOMAIN, KEY_LATENCY as KEY_LATENCY, KEY_MOTD as KEY_MOTD
 from .coordinator import MinecraftServerCoordinator as MinecraftServerCoordinator
@@ -7,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.helpers import entity_registry as er
 from typing import Any
 
 PLATFORMS: Incomplete

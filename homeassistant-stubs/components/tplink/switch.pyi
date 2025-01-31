@@ -12,6 +12,7 @@ _LOGGER: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class TPLinkSwitchEntityDescription(SwitchEntityDescription, TPLinkFeatureEntityDescription): ...
 
+PARALLEL_UPDATES: int
 SWITCH_DESCRIPTIONS: tuple[TPLinkSwitchEntityDescription, ...]
 SWITCH_DESCRIPTIONS_MAP: Incomplete
 

@@ -1,4 +1,4 @@
-from . import LitterRobotConfigEntry as LitterRobotConfigEntry
+from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
 from .entity import LitterRobotEntity as LitterRobotEntity, _RobotT as _RobotT
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
@@ -10,13 +10,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any, Generic
 
-@dataclass(frozen=True)
-class RequiredKeysMixin(Generic[_RobotT]):
+@dataclass(frozen=True, kw_only=True)
+class RobotTimeEntityDescription(TimeEntityDescription, Generic[_RobotT]):
     value_fn: Callable[[_RobotT], time | None]
     set_fn: Callable[[_RobotT, time], Coroutine[Any, Any, bool]]
-
-@dataclass(frozen=True)
-class RobotTimeEntityDescription(TimeEntityDescription, RequiredKeysMixin[_RobotT]): ...
 
 def _as_local_time(start: datetime | None) -> time | None: ...
 

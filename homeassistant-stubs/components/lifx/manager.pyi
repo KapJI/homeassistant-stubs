@@ -2,6 +2,7 @@ from .const import ATTR_THEME as ATTR_THEME, DATA_LIFX_MANAGER as DATA_LIFX_MANA
 from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator, Light as Light
 from .util import convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk
 from _typeshed import Incomplete
+from aiolifx_themes.themes import Theme
 from collections.abc import Callable as Callable
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_BRIGHTNESS_PCT as ATTR_BRIGHTNESS_PCT, ATTR_COLOR_NAME as ATTR_COLOR_NAME, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, COLOR_GROUP as COLOR_GROUP, VALID_BRIGHTNESS as VALID_BRIGHTNESS, VALID_BRIGHTNESS_PCT as VALID_BRIGHTNESS_PCT
 from homeassistant.const import ATTR_MODE as ATTR_MODE
@@ -17,6 +18,7 @@ SERVICE_EFFECT_MOVE: str
 SERVICE_EFFECT_PULSE: str
 SERVICE_EFFECT_SKY: str
 SERVICE_EFFECT_STOP: str
+SERVICE_PAINT_THEME: str
 ATTR_CHANGE: str
 ATTR_CLOUD_SATURATION_MIN: str
 ATTR_CLOUD_SATURATION_MAX: str
@@ -49,6 +51,7 @@ EFFECT_SKY_DEFAULT_SKY_TYPE: str
 EFFECT_SKY_DEFAULT_CLOUD_SATURATION_MIN: int
 EFFECT_SKY_DEFAULT_CLOUD_SATURATION_MAX: int
 EFFECT_SKY_SKY_TYPES: Incomplete
+PAINT_THEME_DEFAULT_TRANSITION: int
 PULSE_MODE_BLINK: str
 PULSE_MODE_BREATHE: str
 PULSE_MODE_PING: str
@@ -64,7 +67,8 @@ HSBK_SCHEMA: Incomplete
 LIFX_EFFECT_MORPH_SCHEMA: Incomplete
 LIFX_EFFECT_MOVE_SCHEMA: Incomplete
 LIFX_EFFECT_SKY_SCHEMA: Incomplete
-SERVICES: Incomplete
+LIFX_PAINT_THEME_SCHEMA: Incomplete
+SERVICES_SCHEMA: Incomplete
 
 class LIFXManager:
     hass: Incomplete
@@ -77,4 +81,15 @@ class LIFXManager:
     def async_register_entity(self, entity_id: str, entry_id: str) -> Callable[[], None]: ...
     @callback
     def async_setup(self) -> None: ...
+    @staticmethod
+    def build_theme(theme_name: str = 'exciting', palette: list | None = None) -> Theme: ...
+    async def _start_effect_flame(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    async def _start_paint_theme(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    async def _start_effect_morph(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    async def _start_effect_move(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    async def _start_effect_pulse(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    async def _start_effect_colorloop(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    async def _start_effect_sky(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    async def _start_effect_stop(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    _effect_dispatch: Incomplete
     async def start_effect(self, entity_ids: set[str], service: str, **kwargs: Any) -> None: ...

@@ -26,7 +26,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from homeassistant.util.hass_dict import HassKey as HassKey
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, Protocol
 
 DATA_COMPONENT: HassKey[EntityComponent[BaseAutomationEntity]]

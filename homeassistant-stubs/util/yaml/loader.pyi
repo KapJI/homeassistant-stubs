@@ -7,7 +7,7 @@ from collections.abc import Callable as Callable, Iterator
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from io import StringIO
 from pathlib import Path
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, TextIO, overload
 from yaml import SafeLoader as FastestAvailableSafeLoader
 

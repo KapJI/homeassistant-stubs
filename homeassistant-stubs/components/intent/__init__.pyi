@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant, State
 from homeassistant.helpers import intent
 from typing import Any, Protocol
 
-__all__ = ['async_register_timer_handler', 'async_device_supports_timers', 'TimerInfo', 'TimerEventType', 'DOMAIN']
+__all__ = ['DOMAIN', 'TimerEventType', 'TimerInfo', 'async_device_supports_timers', 'async_register_timer_handler']
 
 class IntentPlatformProtocol(Protocol):
     async def async_setup_intents(self, hass: HomeAssistant) -> None: ...

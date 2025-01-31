@@ -30,7 +30,7 @@ class ReolinkHostCoordinatorEntity(CoordinatorEntity[DataUpdateCoordinator[None]
     _attr_has_entity_name: bool
     entity_description: ReolinkEntityDescription
     _host: Incomplete
-    _attr_unique_id: Incomplete
+    _attr_unique_id: str
     _conf_url: Incomplete
     _dev_id: Incomplete
     _attr_device_info: Incomplete

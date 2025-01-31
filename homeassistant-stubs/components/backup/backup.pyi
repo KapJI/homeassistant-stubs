@@ -14,6 +14,7 @@ async def async_get_backup_agents(hass: HomeAssistant, **kwargs: Any) -> list[Ba
 class CoreLocalBackupAgent(LocalBackupAgent):
     domain = DOMAIN
     name: str
+    unique_id: str
     _hass: Incomplete
     _backup_dir: Incomplete
     _backups: dict[str, AgentBackup]

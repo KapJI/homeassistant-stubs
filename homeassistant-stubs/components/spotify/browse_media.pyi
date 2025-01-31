@@ -6,7 +6,7 @@ from homeassistant.components.media_player import BrowseError as BrowseError, Br
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant
 from spotifyaio import Artist as Artist, BasePlaylist as BasePlaylist, SimplifiedAlbum as SimplifiedAlbum, SimplifiedTrack as SimplifiedTrack, SpotifyClient as SpotifyClient
-from spotifyaio.models import SimplifiedEpisode
+from spotifyaio.models import SimplifiedEpisode as SimplifiedEpisode
 from typing import Any, TypedDict
 
 BROWSE_LIMIT: int

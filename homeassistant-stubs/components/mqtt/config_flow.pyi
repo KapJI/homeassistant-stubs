@@ -1,7 +1,7 @@
 import asyncio
 from .addon import get_addon_manager as get_addon_manager
 from .client import MqttClientSetup as MqttClientSetup
-from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_DISCOVERY as DEFAULT_DISCOVERY, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PREFIX as DEFAULT_PREFIX, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, SUPPORTED_PROTOCOLS as SUPPORTED_PROTOCOLS, TRANSPORT_TCP as TRANSPORT_TCP, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
+from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONFIG_ENTRY_MINOR_VERSION as CONFIG_ENTRY_MINOR_VERSION, CONFIG_ENTRY_VERSION as CONFIG_ENTRY_VERSION, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_DISCOVERY as DEFAULT_DISCOVERY, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PREFIX as DEFAULT_PREFIX, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, SUPPORTED_PROTOCOLS as SUPPORTED_PROTOCOLS, TRANSPORT_TCP as TRANSPORT_TCP, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
 from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, get_file_path as get_file_path, valid_birth_will as valid_birth_will, valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from collections import OrderedDict
@@ -50,7 +50,8 @@ PWD_NOT_CHANGED: str
 def update_password_from_user_input(entry_password: str | None, user_input: dict[str, Any]) -> dict[str, Any]: ...
 
 class FlowHandler(ConfigFlow, domain=DOMAIN):
-    VERSION: int
+    VERSION = CONFIG_ENTRY_VERSION
+    MINOR_VERSION = CONFIG_ENTRY_MINOR_VERSION
     _hassio_discovery: dict[str, Any] | None
     _addon_manager: AddonManager
     install_task: asyncio.Task | None
@@ -77,10 +78,7 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_hassio_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class MQTTOptionsFlowHandler(OptionsFlow):
-    broker_config: dict[str, Any]
-    def __init__(self) -> None: ...
     async def async_step_init(self, user_input: None = None) -> ConfigFlowResult: ...
-    async def async_step_broker(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 async def _get_uploaded_file(hass: HomeAssistant, id: str) -> str: ...

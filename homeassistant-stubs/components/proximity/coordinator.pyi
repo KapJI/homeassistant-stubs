@@ -6,7 +6,6 @@ from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE a
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util.location import distance as distance
 
@@ -37,7 +36,7 @@ class ProximityDataUpdateCoordinator(DataUpdateCoordinator[ProximityData]):
     entity_mapping: dict[str, list[str]]
     data: Incomplete
     state_change_data: StateChangedData | None
-    def __init__(self, hass: HomeAssistant, friendly_name: str, config: ConfigType) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ProximityConfigEntry) -> None: ...
     @callback
     def async_add_entity_mapping(self, tracked_entity_id: str, entity_id: str) -> None: ...
     async def async_check_proximity_state_change(self, event: Event[EventStateChangedData]) -> None: ...

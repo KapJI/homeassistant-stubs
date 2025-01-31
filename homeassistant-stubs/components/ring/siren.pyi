@@ -12,6 +12,7 @@ from ring_doorbell import RingGeneric as RingGeneric
 from typing import Any, Generic
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RingSirenEntityDescription(SirenEntityDescription, RingEntityDescription, Generic[RingDeviceT]):

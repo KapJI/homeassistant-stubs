@@ -1,11 +1,10 @@
-from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, MeshRoles as MeshRoles
-from .coordinator import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, _is_tracked as _is_tracked
+from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, DOMAIN as DOMAIN, MeshRoles as MeshRoles
+from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData, FritzDevice as FritzDevice, _is_tracked as _is_tracked
 from .entity import FritzDeviceBase as FritzDeviceBase
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
@@ -21,7 +20,7 @@ class FritzButtonDescription(ButtonEntityDescription):
 
 BUTTONS: Final[Incomplete]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzButton(ButtonEntity):
     entity_description: FritzButtonDescription

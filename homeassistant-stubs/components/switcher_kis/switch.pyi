@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -15,6 +16,7 @@ from typing import Any
 _LOGGER: Incomplete
 API_CONTROL_DEVICE: str
 API_SET_AUTO_SHUTDOWN: str
+API_SET_CHILD_LOCK: str
 SERVICE_SET_AUTO_OFF_SCHEMA: VolDictType
 SERVICE_TURN_ON_WITH_TIMER_SCHEMA: VolDictType
 
@@ -42,3 +44,30 @@ class SwitcherWaterHeaterSwitchEntity(SwitcherBaseSwitchEntity):
     async def async_set_auto_off_service(self, auto_off: timedelta) -> None: ...
     control_result: bool
     async def async_turn_on_with_timer_service(self, timer_minutes: int) -> None: ...
+
+class SwitchereShutterChildLockBaseSwitchEntity(SwitcherEntity, SwitchEntity):
+    _attr_device_class: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_icon: str
+    _cover_id: int
+    control_result: bool | None
+    def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
+    @callback
+    def _handle_coordinator_update(self) -> None: ...
+    @property
+    def is_on(self) -> bool: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class SwitchereShutterChildLockSingleSwitchEntity(SwitchereShutterChildLockBaseSwitchEntity):
+    _attr_translation_key: str
+    _cover_id: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: SwitcherDataUpdateCoordinator, cover_id: int) -> None: ...
+
+class SwitchereShutterChildLockMultiSwitchEntity(SwitchereShutterChildLockBaseSwitchEntity):
+    _attr_translation_key: str
+    _cover_id: Incomplete
+    _attr_translation_placeholders: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: SwitcherDataUpdateCoordinator, cover_id: int) -> None: ...

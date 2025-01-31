@@ -3,10 +3,6 @@ import voluptuous as vol
 from . import data_entry_flow as data_entry_flow, loader as loader
 from .components import persistent_notification as persistent_notification
 from .components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
-from .components.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from .components.ssdp import SsdpServiceInfo as SsdpServiceInfo
-from .components.usb import UsbServiceInfo as UsbServiceInfo
-from .components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from .const import CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from .core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback
 from .data_entry_flow import FLOW_NOT_COMPLETE_STEPS as FLOW_NOT_COMPLETE_STEPS, FlowContext as FlowContext, FlowResult as FlowResult
@@ -18,8 +14,12 @@ from .helpers.dispatcher import SignalType as SignalType, async_dispatcher_send_
 from .helpers.event import RANDOM_MICROSECOND_MAX as RANDOM_MICROSECOND_MAX, RANDOM_MICROSECOND_MIN as RANDOM_MICROSECOND_MIN, async_call_later as async_call_later
 from .helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .helpers.json import json_bytes as json_bytes, json_bytes_sorted as json_bytes_sorted, json_fragment as json_fragment
+from .helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from .helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from .helpers.service_info.mqtt import MqttServiceInfo as MqttServiceInfo
+from .helpers.service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
+from .helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
+from .helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from .helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from .setup import DATA_SETUP_DONE as DATA_SETUP_DONE, SetupPhases as SetupPhases, async_pause_setup as async_pause_setup, async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component, async_start_setup as async_start_setup
@@ -34,10 +34,9 @@ from contextvars import ContextVar
 from datetime import datetime
 from enum import Enum, StrEnum
 from functools import cache
-from propcache import cached_property
+from propcache.api import cached_property
 from types import MappingProxyType
-from typing import Any, Generic, Self
-from typing_extensions import TypeVar
+from typing import Any, Self
 
 _LOGGER: Incomplete
 SOURCE_BLUETOOTH: str
@@ -65,7 +64,6 @@ SAVE_DELAY: int
 DISCOVERY_COOLDOWN: int
 ISSUE_UNIQUE_ID_COLLISION: str
 UNIQUE_ID_COLLISION_TITLE_LIMIT: int
-_DataT = TypeVar('_DataT', default=Any)
 
 class ConfigEntryState(Enum):
     LOADED = ('loaded', True)
@@ -134,7 +132,7 @@ class ConfigFlowResult(FlowResult[ConfigFlowContext, str], total=False):
 
 def _validate_item(*, disabled_by: ConfigEntryDisabler | Any | None = None) -> None: ...
 
-class ConfigEntry(Generic[_DataT]):
+class ConfigEntry[_DataT = Any]:
     entry_id: str
     domain: str
     title: str

@@ -1,4 +1,5 @@
 from . import SensiboConfigEntry as SensiboConfigEntry
+from .const import LOGGER as LOGGER
 from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordinator
 from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, SensiboMotionBaseEntity as SensiboMotionBaseEntity
 from _typeshed import Incomplete

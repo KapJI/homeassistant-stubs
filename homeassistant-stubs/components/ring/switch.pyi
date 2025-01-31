@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any, Generic, Self
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 IN_HOME_CHIME_IS_PRESENT: Incomplete
 
 @dataclass(frozen=True, kw_only=True)

@@ -5,7 +5,7 @@ from homeassistant.components.sensor import async_update_suggested_units as asyn
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import check_config as check_config
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.util import location as location, unit_system as unit_system
+from homeassistant.util import unit_system as unit_system
 from typing import Any
 
 @callback

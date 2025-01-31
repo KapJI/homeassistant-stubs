@@ -9,6 +9,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from ring_doorbell import RingCapability, RingEvent as RingAlert
 from typing import Generic
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class RingEventEntityDescription(EventEntityDescription, Generic[RingDeviceT]):
     capability: RingCapability

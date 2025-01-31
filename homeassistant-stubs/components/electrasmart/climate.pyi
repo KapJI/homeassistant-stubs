@@ -1,10 +1,10 @@
+from . import ElectraSmartConfigEntry as ElectraSmartConfigEntry
 from .const import API_DELAY as API_DELAY, CONSECUTIVE_FAILURE_THRESHOLD as CONSECUTIVE_FAILURE_THRESHOLD, DOMAIN as DOMAIN, PRESET_NONE as PRESET_NONE, PRESET_SHABAT as PRESET_SHABAT, SCAN_INTERVAL_SEC as SCAN_INTERVAL_SEC, UNAVAILABLE_THRESH_SEC as UNAVAILABLE_THRESH_SEC
 from _typeshed import Incomplete
 from electrasmart.api import ElectraAPI as ElectraAPI
 from electrasmart.device import ElectraAirConditioner as ElectraAirConditioner
 from electrasmart.device.const import MAX_TEMP, MIN_TEMP
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACMode as HVACMode, SWING_BOTH as SWING_BOTH, SWING_HORIZONTAL as SWING_HORIZONTAL, SWING_OFF as SWING_OFF, SWING_VERTICAL as SWING_VERTICAL
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -22,7 +22,7 @@ _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ElectraSmartConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElectraClimateEntity(ClimateEntity):
     _attr_fan_modes = ELECTRA_FAN_MODES

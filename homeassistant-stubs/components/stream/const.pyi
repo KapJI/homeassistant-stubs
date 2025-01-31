@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from enum import IntEnum
 from typing import Final
 
 DOMAIN: str
@@ -28,8 +29,15 @@ STREAM_RESTART_RESET_TIME: int
 CONF_LL_HLS: str
 CONF_PART_DURATION: str
 CONF_SEGMENT_DURATION: str
-CONF_PREFER_TCP: str
+ATTR_PREFER_TCP: str
 CONF_RTSP_TRANSPORT: str
 RTSP_TRANSPORTS: Incomplete
 CONF_USE_WALLCLOCK_AS_TIMESTAMPS: str
 CONF_EXTRA_PART_WAIT_TIME: str
+
+class StreamClientError(IntEnum):
+    BadRequest = 400
+    Unauthorized = 401
+    Forbidden = 403
+    NotFound = 404
+    Other = 4

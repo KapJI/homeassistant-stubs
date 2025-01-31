@@ -1,7 +1,7 @@
 from .const import ATTR_DATETIME as ATTR_DATETIME, DOMAIN as DOMAIN
 from datetime import datetime
 from homeassistant.helpers.entity import Entity, EntityDescription
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import final
 
 __all__ = ['ATTR_DATETIME', 'DOMAIN', 'DateTimeEntity', 'DateTimeEntityDescription']

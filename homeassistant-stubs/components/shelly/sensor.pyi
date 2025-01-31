@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorExtraStoredData as SensorExtraStoredData, SensorStateClass as SensorStateClass
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
@@ -19,6 +20,17 @@ class BlockSensorDescription(BlockEntityDescription, SensorEntityDescription): .
 class RpcSensorDescription(RpcEntityDescription, SensorEntityDescription): ...
 @dataclass(frozen=True, kw_only=True)
 class RestSensorDescription(RestEntityDescription, SensorEntityDescription): ...
+
+class RpcSensor(ShellyRpcAttributeEntity, SensorEntity):
+    entity_description: RpcSensorDescription
+    _attr_options: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSensorDescription) -> None: ...
+    @property
+    def native_value(self) -> StateType: ...
+
+class RpcBluTrvSensor(RpcSensor):
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSensorDescription) -> None: ...
 
 SENSORS: dict[tuple[str, str], BlockSensorDescription]
 REST_SENSORS: Final[Incomplete]
@@ -35,13 +47,6 @@ class BlockSensor(ShellyBlockAttributeEntity, SensorEntity):
 
 class RestSensor(ShellyRestAttributeEntity, SensorEntity):
     entity_description: RestSensorDescription
-    @property
-    def native_value(self) -> StateType: ...
-
-class RpcSensor(ShellyRpcAttributeEntity, SensorEntity):
-    entity_description: RpcSensorDescription
-    _attr_options: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSensorDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
 

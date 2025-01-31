@@ -1,9 +1,13 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import CookidooConfigEntry as CookidooConfigEntry, CookidooDataUpdateCoordinator as CookidooDataUpdateCoordinator
-from homeassistant.const import CONF_COUNTRY as CONF_COUNTRY, CONF_EMAIL as CONF_EMAIL, CONF_LANGUAGE as CONF_LANGUAGE, CONF_PASSWORD as CONF_PASSWORD, Platform as Platform
+from .helpers import cookidoo_from_config_entry as cookidoo_from_config_entry
+from _typeshed import Incomplete
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 
 PLATFORMS: list[Platform]
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: CookidooConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: CookidooConfigEntry) -> bool: ...
+async def async_migrate_entry(hass: HomeAssistant, config_entry: CookidooConfigEntry) -> bool: ...

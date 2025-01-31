@@ -9,7 +9,6 @@ from homeassistant import loader as loader
 from homeassistant.const import CONF_DEFAULT as CONF_DEFAULT, CONF_DOMAIN as CONF_DOMAIN, CONF_NAME as CONF_NAME, CONF_PATH as CONF_PATH, __version__ as __version__
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.util import yaml as yaml
 from typing import Any
 
 class Blueprint:

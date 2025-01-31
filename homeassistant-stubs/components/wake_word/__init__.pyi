@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.restore_state import RestoreEntity
 from typing import final
 
-__all__ = ['async_default_entity', 'async_get_wake_word_detection_entity', 'DetectionResult', 'DOMAIN', 'WakeWord', 'WakeWordDetectionEntity']
+__all__ = ['DOMAIN', 'DetectionResult', 'WakeWord', 'WakeWordDetectionEntity', 'async_default_entity', 'async_get_wake_word_detection_entity']
 
 @callback
 def async_default_entity(hass: HomeAssistant) -> str | None: ...

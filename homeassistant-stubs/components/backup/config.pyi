@@ -1,3 +1,4 @@
+import datetime as dt
 from .const import LOGGER as LOGGER
 from .manager import BackupManager as BackupManager, ManagerBackup as ManagerBackup
 from .models import BackupManagerError as BackupManagerError, Folder as Folder
@@ -14,9 +15,11 @@ from typing import Self, TypedDict
 
 CRON_PATTERN_DAILY: str
 CRON_PATTERN_WEEKLY: str
+DEFAULT_BACKUP_TIME: Incomplete
 BACKUP_START_TIME_JITTER: Incomplete
 
 class StoredBackupConfig(TypedDict):
+    agents: dict[str, StoredAgentConfig]
     create_backup: StoredCreateBackupConfig
     last_attempted_automatic_backup: str | None
     last_completed_automatic_backup: str | None
@@ -25,6 +28,7 @@ class StoredBackupConfig(TypedDict):
 
 @dataclass(kw_only=True)
 class BackupConfigData:
+    agents: dict[str, AgentConfig]
     create_backup: CreateBackupConfig
     last_attempted_automatic_backup: datetime | None = ...
     last_completed_automatic_backup: datetime | None = ...
@@ -39,7 +43,18 @@ class BackupConfig:
     _manager: Incomplete
     def __init__(self, hass: HomeAssistant, manager: BackupManager) -> None: ...
     def load(self, stored_config: StoredBackupConfig) -> None: ...
-    async def update(self, *, create_backup: CreateBackupParametersDict | UndefinedType = ..., retention: RetentionParametersDict | UndefinedType = ..., schedule: ScheduleState | UndefinedType = ...) -> None: ...
+    async def update(self, *, agents: dict[str, AgentParametersDict] | UndefinedType = ..., create_backup: CreateBackupParametersDict | UndefinedType = ..., retention: RetentionParametersDict | UndefinedType = ..., schedule: ScheduleParametersDict | UndefinedType = ...) -> None: ...
+
+@dataclass(kw_only=True)
+class AgentConfig:
+    protected: bool
+    def to_dict(self) -> StoredAgentConfig: ...
+
+class StoredAgentConfig(TypedDict):
+    protected: bool
+
+class AgentParametersDict(TypedDict, total=False):
+    protected: bool
 
 @dataclass(kw_only=True)
 class RetentionConfig:
@@ -61,7 +76,30 @@ class RetentionParametersDict(TypedDict, total=False):
     days: int | None
 
 class StoredBackupSchedule(TypedDict):
+    days: list[Day]
+    recurrence: ScheduleRecurrence
     state: ScheduleState
+    time: str | None
+
+class ScheduleParametersDict(TypedDict, total=False):
+    days: list[Day]
+    recurrence: ScheduleRecurrence
+    state: ScheduleState
+    time: dt.time | None
+
+class Day(StrEnum):
+    MONDAY = 'mon'
+    TUESDAY = 'tue'
+    WEDNESDAY = 'wed'
+    THURSDAY = 'thu'
+    FRIDAY = 'fri'
+    SATURDAY = 'sat'
+    SUNDAY = 'sun'
+
+class ScheduleRecurrence(StrEnum):
+    NEVER = 'never'
+    DAILY = 'daily'
+    CUSTOM_DAYS = 'custom_days'
 
 class ScheduleState(StrEnum):
     NEVER = 'never'
@@ -76,8 +114,13 @@ class ScheduleState(StrEnum):
 
 @dataclass(kw_only=True)
 class BackupSchedule:
+    days: list[Day] = field(default_factory=list)
+    recurrence: ScheduleRecurrence = ...
     state: ScheduleState = ...
+    time: dt.time | None = ...
     cron_event: CronSim | None = field(init=False, default=None)
+    next_automatic_backup: datetime | None = field(init=False, default=None)
+    next_automatic_backup_additional = ...
     @callback
     def apply(self, manager: BackupManager) -> None: ...
     @callback

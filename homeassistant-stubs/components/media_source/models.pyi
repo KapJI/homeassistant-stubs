@@ -1,6 +1,5 @@
 from .const import DOMAIN as DOMAIN, URI_SCHEME as URI_SCHEME, URI_SCHEME_REGEX as URI_SCHEME_REGEX
 from _typeshed import Incomplete
-from abc import ABC
 from dataclasses import dataclass
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -29,7 +28,7 @@ class MediaSourceItem:
     @classmethod
     def from_uri(cls, hass: HomeAssistant, uri: str, target_media_player: str | None) -> MediaSourceItem: ...
 
-class MediaSource(ABC):
+class MediaSource:
     name: str | None
     domain: Incomplete
     def __init__(self, domain: str) -> None: ...

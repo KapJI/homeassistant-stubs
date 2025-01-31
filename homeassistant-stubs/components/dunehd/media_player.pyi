@@ -1,8 +1,8 @@
+from . import DuneHDConfigEntry as DuneHDConfigEntry
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -12,7 +12,7 @@ from typing import Any, Final
 CONF_SOURCES: Final[str]
 DUNEHD_PLAYER_SUPPORT: Final[MediaPlayerEntityFeature]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DuneHDConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DuneHDPlayerEntity(MediaPlayerEntity):
     _attr_has_entity_name: bool

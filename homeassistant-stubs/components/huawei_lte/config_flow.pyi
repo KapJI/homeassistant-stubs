@@ -2,10 +2,10 @@ from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_TRACK_WIRED_CLIE
 from .utils import get_device_macs as get_device_macs, non_verifying_requests_session as non_verifying_requests_session
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.components import ssdp as ssdp
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import callback as callback
+from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_MANUFACTURER as ATTR_UPNP_MANUFACTURER, ATTR_UPNP_PRESENTATION_URL as ATTR_UPNP_PRESENTATION_URL, ATTR_UPNP_SERIAL as ATTR_UPNP_SERIAL, ATTR_UPNP_UDN as ATTR_UPNP_UDN, SsdpServiceInfo as SsdpServiceInfo
 from huawei_lte_api.Connection import Connection
 from huawei_lte_api.Session import GetResponseType as GetResponseType
 from typing import Any
@@ -25,7 +25,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     @staticmethod
     def _disconnect(conn: Connection) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
-    async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_ssdp(self, discovery_info: SsdpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

@@ -5,10 +5,10 @@ from homeassistant.components import websocket_api
 from homeassistant.const import EntityCategory
 from homeassistant.helpers.entity import ABCCachedProperties, EntityDescription
 from homeassistant.helpers.restore_state import RestoreEntity
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, final
 
-__all__ = ['ATTR_BACKUP', 'ATTR_INSTALLED_VERSION', 'ATTR_LATEST_VERSION', 'ATTR_VERSION', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SERVICE_INSTALL', 'SERVICE_SKIP', 'UpdateDeviceClass', 'UpdateEntity', 'UpdateEntityDescription', 'UpdateEntityFeature']
+__all__ = ['ATTR_BACKUP', 'ATTR_INSTALLED_VERSION', 'ATTR_LATEST_VERSION', 'ATTR_VERSION', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'SERVICE_INSTALL', 'SERVICE_SKIP', 'UpdateDeviceClass', 'UpdateEntity', 'UpdateEntityDescription', 'UpdateEntityFeature']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

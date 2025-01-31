@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from switchbot_api import Device as Device, SwitchBotAPI as SwitchBotAPI
 
@@ -21,8 +21,9 @@ TEMPERATURE_DESCRIPTION: Incomplete
 HUMIDITY_DESCRIPTION: Incomplete
 BATTERY_DESCRIPTION: Incomplete
 POWER_DESCRIPTION: Incomplete
-VOLATGE_DESCRIPTION: Incomplete
-CURRENT_DESCRIPTION: Incomplete
+VOLTAGE_DESCRIPTION: Incomplete
+CURRENT_DESCRIPTION_IN_MA: Incomplete
+CURRENT_DESCRIPTION_IN_A: Incomplete
 CO2_DESCRIPTION: Incomplete
 SENSOR_DESCRIPTIONS_BY_DEVICE_TYPES: Incomplete
 
@@ -33,5 +34,4 @@ class SwitchBotCloudSensor(SwitchBotCloudEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
-    @callback
-    def _handle_coordinator_update(self) -> None: ...
+    def _set_attributes(self) -> None: ...

@@ -13,6 +13,7 @@ _LOGGER: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class TPLinkNumberEntityDescription(NumberEntityDescription, TPLinkFeatureEntityDescription): ...
 
+PARALLEL_UPDATES: int
 NUMBER_DESCRIPTIONS: Final[Incomplete]
 NUMBER_DESCRIPTIONS_MAP: Incomplete
 

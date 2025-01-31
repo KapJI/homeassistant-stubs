@@ -5,10 +5,10 @@ from collections.abc import Callable
 from homeassistant.core import callback
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, Self, final
 
-__all__ = ['ATTR_MAX', 'ATTR_MIN', 'ATTR_STEP', 'ATTR_VALUE', 'DEFAULT_MAX_VALUE', 'DEFAULT_MIN_VALUE', 'DEFAULT_STEP', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'NumberDeviceClass', 'NumberEntity', 'NumberEntityDescription', 'NumberExtraStoredData', 'NumberMode', 'RestoreNumber']
+__all__ = ['ATTR_MAX', 'ATTR_MIN', 'ATTR_STEP', 'ATTR_VALUE', 'DEFAULT_MAX_VALUE', 'DEFAULT_MIN_VALUE', 'DEFAULT_STEP', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'NumberDeviceClass', 'NumberEntity', 'NumberEntityDescription', 'NumberExtraStoredData', 'NumberMode', 'RestoreNumber']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

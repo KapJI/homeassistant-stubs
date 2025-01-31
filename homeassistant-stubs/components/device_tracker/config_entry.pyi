@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import final
 
 DATA_COMPONENT: HassKey[EntityComponent[BaseTrackerEntity]]

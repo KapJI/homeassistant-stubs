@@ -3,8 +3,7 @@ from aiohttp import web as web
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
-from typing import Any, Generic
-from typing_extensions import TypeVar
+from typing import Any, Generic, TypeVar
 
 _FlowManagerT = TypeVar('_FlowManagerT', bound=data_entry_flow.FlowManager[Any, Any], default=data_entry_flow.FlowManager)
 

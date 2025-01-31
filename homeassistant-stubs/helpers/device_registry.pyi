@@ -18,7 +18,7 @@ from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcn
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
-from propcache import cached_property as under_cached_property
+from propcache.api import cached_property as under_cached_property
 from typing import Any, Literal, TypedDict
 from yarl import URL
 

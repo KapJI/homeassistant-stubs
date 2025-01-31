@@ -1,5 +1,5 @@
 import logging
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, UPDATE_INTERVAL as UPDATE_INTERVAL
+from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from datetime import timedelta
@@ -14,18 +14,20 @@ from typing import Any
 EVENT_HANDLERS: Registry[str, Callable[[OverkizDataUpdateCoordinator, Event], Coroutine[Any, Any, None]]]
 
 class OverkizDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
+    _default_update_interval: timedelta
     data: Incomplete
     client: Incomplete
     devices: dict[str, Device]
-    is_stateless: Incomplete
     executions: dict[str, dict[str, str]]
     areas: Incomplete
     config_entry_id: Incomplete
-    def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, client: OverkizClient, devices: list[Device], places: Place | None, update_interval: timedelta | None = None, config_entry_id: str) -> None: ...
+    is_stateless: Incomplete
+    def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, client: OverkizClient, devices: list[Device], places: Place | None, update_interval: timedelta, config_entry_id: str) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> dict[str, Device]: ...
     async def _get_devices(self) -> dict[str, Device]: ...
     def _places_to_area(self, place: Place) -> dict[str, str]: ...
+    def set_update_interval(self, update_interval: timedelta) -> None: ...
 
 async def on_device_available(coordinator: OverkizDataUpdateCoordinator, event: Event) -> None: ...
 async def on_device_unavailable_disabled(coordinator: OverkizDataUpdateCoordinator, event: Event) -> None: ...

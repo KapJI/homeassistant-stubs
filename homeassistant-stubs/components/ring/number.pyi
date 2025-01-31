@@ -11,6 +11,8 @@ from homeassistant.helpers.typing import StateType as StateType
 from ring_doorbell import RingGeneric as RingGeneric
 from typing import Any, Generic
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)

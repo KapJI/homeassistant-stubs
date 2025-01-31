@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import Platform as Platform, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import Platform as Platform, UnitOfArea as UnitOfArea, UnitOfTemperature as UnitOfTemperature
 from typing import Final
 
 DOMAIN: str

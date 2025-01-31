@@ -1,13 +1,13 @@
 from . import async_last_update_was_successful as async_last_update_was_successful
-from .const import DOMAIN as DOMAIN
+from .const import CONFIG_ENTRY_COOKIE as CONFIG_ENTRY_COOKIE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.components import dhcp as dhcp
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.util.network import is_ip_address as is_ip_address
 from tesla_powerwall import Powerwall, SiteInfoResponse as SiteInfoResponse
 from typing import Any
@@ -25,7 +25,7 @@ class PowerwallConfigFlow(ConfigFlow, domain=DOMAIN):
     title: str | None
     def __init__(self) -> None: ...
     async def _async_powerwall_is_offline(self, entry: ConfigEntry) -> bool: ...
-    async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def _async_try_connect(self, user_input: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, str] | None, dict[str, str]]: ...
     async def async_step_confirm_discovery(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

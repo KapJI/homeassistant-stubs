@@ -3,12 +3,12 @@ from .const import CONF_CUSTOM_EFFECT_COLORS as CONF_CUSTOM_EFFECT_COLORS, CONF_
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_name_from_discovery as async_name_from_discovery, async_populate_data_from_discovery as async_populate_data_from_discovery, async_update_entry_from_discovery as async_update_entry_from_discovery
 from .util import format_as_flux_mac as format_as_flux_mac, mac_matches_by_one as mac_matches_by_one
 from flux_led.scanner import FluxLEDDiscovery
-from homeassistant.components import dhcp as dhcp
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_IGNORE as SOURCE_IGNORE
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, Self
 
@@ -22,7 +22,7 @@ class FluxLedConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> FluxLedOptionsFlow: ...
-    async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
     async def _async_set_discovered_mac(self, device: FluxLEDDiscovery, allow_update_mac: bool) -> None: ...
     async def _async_handle_discovery(self) -> ConfigFlowResult: ...

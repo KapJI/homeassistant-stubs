@@ -1,13 +1,13 @@
+from .service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from .service_info.mqtt import MqttServiceInfo as MqttServiceInfo
+from .service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
+from .service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from .typing import DiscoveryInfoType as DiscoveryInfoType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import onboarding as onboarding
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
-from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from homeassistant.components.ssdp import SsdpServiceInfo as SsdpServiceInfo
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

@@ -1,10 +1,10 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_HOST as CONF_HOST, CONF_TYPE as CONF_TYPE
 from homeassistant.core import callback as callback
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any
 
 STEP_USER_DATA_SCHEMA: Incomplete

@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from ring_doorbell import RingOther
 
+PARALLEL_UPDATES: int
 BUTTON_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...

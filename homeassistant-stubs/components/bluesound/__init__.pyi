@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from .coordinator import BluesoundCoordinator as BluesoundCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -16,6 +17,7 @@ PLATFORMS: Incomplete
 class BluesoundRuntimeData:
     player: Player
     sync_status: SyncStatus
+    coordinator: BluesoundCoordinator
 type BluesoundConfigEntry = ConfigEntry[BluesoundRuntimeData]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

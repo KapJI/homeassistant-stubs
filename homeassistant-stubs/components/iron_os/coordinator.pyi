@@ -2,11 +2,13 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import timedelta
+from enum import Enum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pynecil import DeviceInfoResponse as DeviceInfoResponse, IronOSUpdate as IronOSUpdate, LatestRelease, LiveDataResponse, Pynecil as Pynecil, SettingsDataResponse
+from pynecil import CharSetting as CharSetting, DeviceInfoResponse as DeviceInfoResponse, IronOSUpdate as IronOSUpdate, LatestRelease, LiveDataResponse, Pynecil as Pynecil, SettingsDataResponse
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -40,3 +42,4 @@ class IronOSFirmwareUpdateCoordinator(DataUpdateCoordinator[LatestRelease]):
 class IronOSSettingsCoordinator(IronOSBaseCoordinator[SettingsDataResponse]):
     def __init__(self, hass: HomeAssistant, device: Pynecil) -> None: ...
     async def _async_update_data(self) -> SettingsDataResponse: ...
+    async def write(self, characteristic: CharSetting, value: bool | Enum | float) -> None: ...

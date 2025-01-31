@@ -6,11 +6,11 @@ from .hub import UnifiHub as UnifiHub, get_unifi_api as get_unifi_api
 from _typeshed import Incomplete
 from aiounifi.interfaces.sites import Sites as Sites
 from collections.abc import Mapping
-from homeassistant.components import ssdp as ssdp
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_MODEL_DESCRIPTION as ATTR_UPNP_MODEL_DESCRIPTION, ATTR_UPNP_SERIAL as ATTR_UPNP_SERIAL, SsdpServiceInfo as SsdpServiceInfo
 from typing import Any
 
 DEFAULT_PORT: int
@@ -30,7 +30,7 @@ class UnifiFlowHandler(ConfigFlow, domain=UNIFI_DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_site(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
-    async def async_step_ssdp(self, discovery_info: ssdp.SsdpServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_ssdp(self, discovery_info: SsdpServiceInfo) -> ConfigFlowResult: ...
 
 class UnifiOptionsFlowHandler(OptionsFlow):
     hub: UnifiHub

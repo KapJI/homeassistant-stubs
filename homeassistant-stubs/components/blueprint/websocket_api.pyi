@@ -6,7 +6,6 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.util import yaml as yaml
 from typing import Any
 
 @callback

@@ -7,10 +7,11 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, H
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.singleton import singleton as singleton
 from homeassistant.helpers.storage import Store as Store
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
-KEY_DASHBOARD_MANAGER: str
+KEY_DASHBOARD_MANAGER: HassKey[ESPHomeDashboardManager]
 STORAGE_KEY: str
 STORAGE_VERSION: int
 

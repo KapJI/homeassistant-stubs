@@ -1,6 +1,6 @@
 from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, HOME_LOCATION_NAME as HOME_LOCATION_NAME
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as CONF_LOCATION, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as CONF_LOCATION, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.selector import LocationSelector as LocationSelector

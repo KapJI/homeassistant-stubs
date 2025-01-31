@@ -3,8 +3,8 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import FytaCoordinator as FytaCoordinator
 from _typeshed import Incomplete
 from fyta_cli.fyta_models import Plant as Plant
-from homeassistant.components.sensor import SensorEntityDescription as SensorEntityDescription
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class FytaPlantEntity(CoordinatorEntity[FytaCoordinator]):
@@ -13,7 +13,7 @@ class FytaPlantEntity(CoordinatorEntity[FytaCoordinator]):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     entity_description: Incomplete
-    def __init__(self, coordinator: FytaCoordinator, entry: FytaConfigEntry, description: SensorEntityDescription, plant_id: int) -> None: ...
+    def __init__(self, coordinator: FytaCoordinator, entry: FytaConfigEntry, description: EntityDescription, plant_id: int) -> None: ...
     @property
     def plant(self) -> Plant: ...
     @property

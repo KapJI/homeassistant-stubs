@@ -10,6 +10,7 @@ from typing import Final
 @dataclass(frozen=True, kw_only=True)
 class TPLinkBinarySensorEntityDescription(BinarySensorEntityDescription, TPLinkFeatureEntityDescription): ...
 
+PARALLEL_UPDATES: int
 BINARY_SENSOR_DESCRIPTIONS: Final[Incomplete]
 BINARYSENSOR_DESCRIPTIONS_MAP: Incomplete
 

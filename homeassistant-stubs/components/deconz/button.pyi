@@ -1,9 +1,9 @@
+from . import DeconzConfigEntry as DeconzConfigEntry
 from .entity import DeconzDevice as DeconzDevice, DeconzSceneMixin as DeconzSceneMixin
 from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription, DOMAIN as BUTTON_DOMAIN
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -18,7 +18,7 @@ class DeconzButtonDescription(ButtonEntityDescription):
 
 ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: DeconzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DeconzSceneButton(DeconzSceneMixin, ButtonEntity):
     TYPE = BUTTON_DOMAIN

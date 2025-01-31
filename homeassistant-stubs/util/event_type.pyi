@@ -1,6 +1,5 @@
 from collections.abc import Mapping
-from typing import Any, Generic
-from typing_extensions import TypeVar
+from typing import Any, Generic, TypeVar
 
 __all__ = ['EventType']
 

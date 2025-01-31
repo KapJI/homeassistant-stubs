@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType, VolDictType as VolDictType
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Final, final
 
 _LOGGER: Incomplete

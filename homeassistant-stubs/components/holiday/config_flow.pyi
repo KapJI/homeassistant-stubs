@@ -4,13 +4,15 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_COUNTRY as CONF_COUNTRY
 from homeassistant.core import callback as callback
-from homeassistant.helpers.selector import CountrySelector as CountrySelector, CountrySelectorConfig as CountrySelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
+from homeassistant.helpers.selector import CountrySelector as CountrySelector, CountrySelectorConfig as CountrySelectorConfig, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from typing import Any
 
 SUPPORTED_COUNTRIES: Incomplete
 
+def get_optional_provinces(country: str) -> list[Any]: ...
 def get_optional_categories(country: str) -> list[str]: ...
 def get_options_schema(country: str) -> vol.Schema: ...
+def get_entry_name(language: str, country: str, province: str | None) -> str: ...
 
 class HolidayConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

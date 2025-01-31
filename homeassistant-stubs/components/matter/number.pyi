@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform, UnitOfLength as UnitOfLength, UnitOfTime as UnitOfTime
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform, UnitOfLength as UnitOfLength, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 

@@ -11,6 +11,7 @@ class ApSystemsSensorData:
     alarm_info: ReturnAlarmInfo
 
 class ApSystemsDataCoordinator(DataUpdateCoordinator[ApSystemsSensorData]):
+    device_version: str
     api: Incomplete
     def __init__(self, hass: HomeAssistant, api: APsystemsEZ1M) -> None: ...
     async def _async_setup(self) -> None: ...

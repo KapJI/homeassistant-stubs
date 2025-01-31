@@ -1,10 +1,10 @@
 from .const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ITEM_NUMBER as ATTR_ITEM_NUMBER, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, ATTR_TYPE_NUMBER as ATTR_TYPE_NUMBER, COMPATIBLE_MODELS as COMPATIBLE_MODELS, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, DEFAULT_MODEL as DEFAULT_MODEL, DOMAIN as DOMAIN
 from .util import get_serial_number_from_jid as get_serial_number_from_jid
 from _typeshed import Incomplete
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.util.ssl import get_default_context as get_default_context
 from mozart_api.mozart_client import MozartClient
 from typing import Any, TypedDict

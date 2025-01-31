@@ -1,4 +1,3 @@
-import homeassistant.helpers.device_registry as dr
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
 from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_METHOD_NAME as ATTR_METHOD_NAME, ATTR_PARAMETERS as ATTR_PARAMETERS, ATTR_WAIT_FOR_RESULT as ATTR_WAIT_FOR_RESULT, CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, CONF_INSTALLER_MODE as CONF_INSTALLER_MODE, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, USER_AGENT as USER_AGENT
 from .helpers import async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, get_device_id as get_device_id
@@ -10,6 +9,7 @@ from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_INVALID_FORMAT as ERR_INVALID_FORMAT, ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED, ERR_UNKNOWN_ERROR as ERR_UNKNOWN_ERROR
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from typing import Any, Concatenate, Literal

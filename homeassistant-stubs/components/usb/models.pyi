@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-@dataclass
+@dataclass(slots=True, frozen=True, kw_only=True)
 class USBDevice:
     device: str
     vid: str

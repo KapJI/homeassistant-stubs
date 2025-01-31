@@ -1,9 +1,7 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import AvmWrapper as AvmWrapper
+from .coordinator import AvmWrapper as AvmWrapper, FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseEntity as FritzBoxBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.image import ImageEntity as ImageEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -11,7 +9,7 @@ from homeassistant.util import slugify as slugify
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzGuestWifiQRImage(FritzBoxBaseEntity, ImageEntity):
     _attr_content_type: str

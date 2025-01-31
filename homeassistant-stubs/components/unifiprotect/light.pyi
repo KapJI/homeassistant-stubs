@@ -1,7 +1,7 @@
 from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from _typeshed import Incomplete
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
+from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any

@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, Final, Self, final
 
 ENTITY_ID_FORMAT: Incomplete

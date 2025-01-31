@@ -19,7 +19,7 @@ from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
-from propcache import cached_property as under_cached_property
+from propcache.api import cached_property as under_cached_property
 from typing import Any, Literal, NotRequired, TypedDict
 
 DATA_REGISTRY: HassKey[EntityRegistry]
@@ -161,7 +161,7 @@ class EntityRegistryItems(BaseRegistryItems[RegistryEntry]):
     def get_entries_for_area_id(self, area_id: str) -> list[RegistryEntry]: ...
     def get_entries_for_label(self, label: str) -> list[RegistryEntry]: ...
 
-def _validate_item(hass: HomeAssistant, domain: str, platform: str, *, disabled_by: RegistryEntryDisabler | None | UndefinedType = None, entity_category: EntityCategory | None | UndefinedType = None, hidden_by: RegistryEntryHider | None | UndefinedType = None, report_non_string_unique_id: bool = True, unique_id: str | Hashable | UndefinedType | Any) -> None: ...
+def _validate_item(hass: HomeAssistant, domain: str, platform: str, *, config_entry_id: str | None | UndefinedType = None, device_id: str | None | UndefinedType = None, disabled_by: RegistryEntryDisabler | None | UndefinedType = None, entity_category: EntityCategory | None | UndefinedType = None, hidden_by: RegistryEntryHider | None | UndefinedType = None, report_non_string_unique_id: bool = True, unique_id: str | Hashable | UndefinedType | Any) -> None: ...
 
 class EntityRegistry(BaseRegistry):
     deleted_entities: dict[tuple[str, str, str], DeletedRegistryEntry]

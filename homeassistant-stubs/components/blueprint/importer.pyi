@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from homeassistant.util import yaml as yaml
 
 COMMUNITY_TOPIC_PATTERN: Incomplete
 COMMUNITY_CODE_BLOCK: Incomplete

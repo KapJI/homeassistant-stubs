@@ -1,6 +1,6 @@
 import abc
 from . import api as api
-from .const import CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, CONF_SUBSCRIBER_ID_IMPORTED as CONF_SUBSCRIBER_ID_IMPORTED, CONF_SUBSCRIPTION_NAME as CONF_SUBSCRIPTION_NAME, DATA_SDM as DATA_SDM, DOMAIN as DOMAIN
+from .const import CONF_CLOUD_PROJECT_ID as CONF_CLOUD_PROJECT_ID, CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, CONF_SUBSCRIBER_ID_IMPORTED as CONF_SUBSCRIBER_ID_IMPORTED, CONF_SUBSCRIPTION_NAME as CONF_SUBSCRIPTION_NAME, DATA_SDM as DATA_SDM, DOMAIN as DOMAIN
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, NEST_EVENT as NEST_EVENT
 from .media_source import EVENT_MEDIA_API_URL_FORMAT as EVENT_MEDIA_API_URL_FORMAT, EVENT_THUMBNAIL_URL_FORMAT as EVENT_THUMBNAIL_URL_FORMAT, async_get_media_event_store as async_get_media_event_store, async_get_media_source_devices as async_get_media_source_devices, async_get_transcoder as async_get_transcoder
 from .types import NestConfigEntry as NestConfigEntry, NestData as NestData
@@ -15,7 +15,6 @@ from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.components.camera import Image as Image, img_util as img_util
 from homeassistant.components.http import KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS, CONF_SENSORS as CONF_SENSORS, CONF_STRUCTURE as CONF_STRUCTURE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
@@ -41,8 +40,8 @@ class SignalUpdateCallback:
     def _supported_traits(self, device_id: str) -> list[str]: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+async def async_unload_entry(hass: HomeAssistant, entry: NestConfigEntry) -> bool: ...
+async def async_remove_entry(hass: HomeAssistant, entry: NestConfigEntry) -> None: ...
 
 class NestEventViewBase(HomeAssistantView, ABC, metaclass=abc.ABCMeta):
     hass: Incomplete

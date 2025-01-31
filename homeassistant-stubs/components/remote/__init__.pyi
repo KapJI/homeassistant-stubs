@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, final
 
 _LOGGER: Incomplete

@@ -1,10 +1,9 @@
-from .const import DATA_FRITZ as DATA_FRITZ, DOMAIN as DOMAIN, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK, WIFI_STANDARD as WIFI_STANDARD
-from .coordinator import AvmWrapper as AvmWrapper, FritzData as FritzData, FritzDevice as FritzDevice, SwitchInfo as SwitchInfo, device_filter_out_from_trackers as device_filter_out_from_trackers
+from .const import DOMAIN as DOMAIN, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK, WIFI_STANDARD as WIFI_STANDARD
+from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData, FritzDevice as FritzDevice, SwitchInfo as SwitchInfo, device_filter_out_from_trackers as device_filter_out_from_trackers
 from .entity import FritzBoxBaseEntity as FritzBoxBaseEntity, FritzDeviceBase as FritzDeviceBase
 from _typeshed import Incomplete
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
@@ -22,7 +21,7 @@ async def _async_port_entities_list(avm_wrapper: AvmWrapper, device_friendly_nam
 async def _async_wifi_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str) -> list[FritzBoxWifiSwitch]: ...
 async def _async_profile_entities_list(avm_wrapper: AvmWrapper, data_fritz: FritzData) -> list[FritzBoxProfileSwitch]: ...
 async def async_all_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str, data_fritz: FritzData, local_ip: str) -> list[Entity]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzBoxBaseCoordinatorSwitch(CoordinatorEntity[AvmWrapper], SwitchEntity):
     entity_description: SwitchEntityDescription

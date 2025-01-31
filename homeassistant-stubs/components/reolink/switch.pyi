@@ -29,9 +29,9 @@ class ReolinkChimeSwitchEntityDescription(SwitchEntityDescription, ReolinkChimeE
     value: Callable[[Chime], bool | None]
 
 SWITCH_ENTITIES: Incomplete
+AVAILABILITY_SWITCH_ENTITIES: Incomplete
 NVR_SWITCH_ENTITIES: Incomplete
 CHIME_SWITCH_ENTITIES: Incomplete
-DEPRECATED_HDR: Incomplete
 DEPRECATED_NVR_SWITCHES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
@@ -45,6 +45,10 @@ class ReolinkSwitchEntity(ReolinkChannelCoordinatorEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class ReolinkAvailabilitySwitchEntity(ReolinkSwitchEntity):
+    @property
+    def available(self) -> bool: ...
 
 class ReolinkNVRSwitchEntity(ReolinkHostCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkNVRSwitchEntityDescription

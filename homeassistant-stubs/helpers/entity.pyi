@@ -19,7 +19,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, I
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue, bind_hass as bind_hass
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from homeassistant.util.frozen_dataclass_compat import FrozenOrThawed as FrozenOrThawed
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, Final, Literal, NotRequired, TypedDict, final
 
 timer = time.time

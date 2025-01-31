@@ -1,6 +1,6 @@
 from .. import subscription as subscription
 from ..config import DEFAULT_QOS as DEFAULT_QOS, DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
-from ..const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from ..const import CONF_COLOR_TEMP_KELVIN as CONF_COLOR_TEMP_KELVIN, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_MAX_KELVIN as CONF_MAX_KELVIN, CONF_MIN_KELVIN as CONF_MIN_KELVIN, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from ..entity import MqttEntity as MqttEntity
 from ..models import ReceiveMessage as ReceiveMessage
 from ..schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -58,6 +58,7 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _deprecated_color_handling: bool
     @staticmethod
     def config_schema() -> VolSchemaType: ...
+    _color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     _attr_effect_list: Incomplete

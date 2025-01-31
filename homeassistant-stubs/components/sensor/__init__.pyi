@@ -10,10 +10,10 @@ from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.entity_platform import EntityPlatform
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from homeassistant.helpers.typing import StateType, UndefinedType
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, Self, final, override
 
-__all__ = ['ATTR_LAST_RESET', 'ATTR_OPTIONS', 'ATTR_STATE_CLASS', 'CONF_STATE_CLASS', 'DEVICE_CLASS_STATE_CLASSES', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'RestoreSensor', 'SensorDeviceClass', 'SensorEntity', 'SensorEntityDescription', 'SensorExtraStoredData', 'SensorStateClass']
+__all__ = ['ATTR_LAST_RESET', 'ATTR_OPTIONS', 'ATTR_STATE_CLASS', 'CONF_STATE_CLASS', 'DEVICE_CLASS_STATE_CLASSES', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'RestoreSensor', 'SensorDeviceClass', 'SensorEntity', 'SensorEntityDescription', 'SensorExtraStoredData', 'SensorStateClass']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

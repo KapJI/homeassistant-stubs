@@ -15,6 +15,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from pytrafikverket.models import WeatherStationInfoModel as WeatherStationInfoModel
 
 PRECIPITATION_TYPE: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class TrafikverketSensorEntityDescription(SensorEntityDescription):

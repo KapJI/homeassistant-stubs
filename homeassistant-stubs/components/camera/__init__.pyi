@@ -28,7 +28,7 @@ from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
-from propcache import cached_property, under_cached_property
+from propcache.api import cached_property, under_cached_property
 from typing import Any, Final, final
 from webrtc_models import RTCIceCandidateInit as RTCIceCandidateInit
 

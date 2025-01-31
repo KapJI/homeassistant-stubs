@@ -3,8 +3,10 @@ from .util import get_hardware_variant as get_hardware_variant, get_usb_service_
 from _typeshed import Incomplete
 from homeassistant.components import usb as usb
 from homeassistant.components.homeassistant_hardware import firmware_config_flow as firmware_config_flow, silabs_multiprotocol_addon as silabs_multiprotocol_addon
+from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigFlowContext as ConfigFlowContext, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
+from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
 from typing import Any, Protocol
 
 _LOGGER: Incomplete
@@ -19,7 +21,7 @@ class SkyConnectTranslationMixin(ConfigEntryBaseFlow, TranslationPlaceholderProt
 class HomeAssistantSkyConnectConfigFlow(SkyConnectTranslationMixin, firmware_config_flow.BaseFirmwareConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    _usb_info: usb.UsbServiceInfo | None
+    _usb_info: UsbServiceInfo | None
     _hw_variant: HardwareVariant | None
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @staticmethod
@@ -27,7 +29,7 @@ class HomeAssistantSkyConnectConfigFlow(SkyConnectTranslationMixin, firmware_con
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
     _device: Incomplete
     _hardware_name: Incomplete
-    async def async_step_usb(self, discovery_info: usb.UsbServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_usb(self, discovery_info: UsbServiceInfo) -> ConfigFlowResult: ...
     def _async_flow_finished(self) -> ConfigFlowResult: ...
 
 class HomeAssistantSkyConnectMultiPanOptionsFlowHandler(silabs_multiprotocol_addon.OptionsFlowHandler):

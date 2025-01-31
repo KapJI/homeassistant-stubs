@@ -11,7 +11,7 @@ from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any
 from xknx import XKNX as XKNX
 from xknx.devices.light import Light as XknxLight

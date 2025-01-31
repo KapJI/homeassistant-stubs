@@ -1,10 +1,8 @@
-from .const import DOMAIN as DOMAIN
+from . import DuotecnoConfigEntry as DuotecnoConfigEntry
 from .entity import DuotecnoEntity as DuotecnoEntity, api_call as api_call
 from _typeshed import Incomplete
-from duotecno.controller import PyDuotecno as PyDuotecno
 from duotecno.unit import SensUnit as SensUnit
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -15,7 +13,7 @@ HVACMODE_REVERSE: Final[Incomplete]
 PRESETMODES: Final[Incomplete]
 PRESETMODES_REVERSE: Final[Incomplete]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DuotecnoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class DuotecnoClimate(DuotecnoEntity, ClimateEntity):
     _unit: SensUnit

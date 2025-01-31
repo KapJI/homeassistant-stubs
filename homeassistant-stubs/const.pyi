@@ -429,6 +429,8 @@ class UnitOfElectricPotential(StrEnum):
     MICROVOLT = 'µV'
     MILLIVOLT = 'mV'
     VOLT = 'V'
+    KILOVOLT = 'kV'
+    MEGAVOLT = 'MV'
 
 DEGREE: Final[str]
 CURRENCY_EURO: Final[str]

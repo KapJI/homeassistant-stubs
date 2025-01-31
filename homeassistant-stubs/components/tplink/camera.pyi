@@ -1,7 +1,7 @@
-from . import TPLinkConfigEntry as TPLinkConfigEntry, legacy_device_id as legacy_device_id
+from . import TPLinkConfigEntry as TPLinkConfigEntry
 from .const import CONF_CAMERA_CREDENTIALS as CONF_CAMERA_CREDENTIALS
 from .coordinator import TPLinkDataUpdateCoordinator as TPLinkDataUpdateCoordinator
-from .entity import CoordinatedTPLinkEntity as CoordinatedTPLinkEntity, TPLinkModuleEntityDescription as TPLinkModuleEntityDescription
+from .entity import CoordinatedTPLinkModuleEntity as CoordinatedTPLinkModuleEntity, TPLinkModuleEntityDescription as TPLinkModuleEntityDescription
 from _typeshed import Incomplete
 from aiohttp import web as web
 from dataclasses import dataclass
@@ -11,10 +11,10 @@ from homeassistant.config_entries import ConfigFlowContext as ConfigFlowContext
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from kasa import Credentials as Credentials, Device as Device
-from kasa.smartcam.modules import Camera as CameraModule
+from kasa import Device as Device
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class TPLinkCameraEntityDescription(CameraEntityDescription, TPLinkModuleEntityDescription): ...
@@ -23,21 +23,21 @@ CAMERA_DESCRIPTIONS: tuple[TPLinkCameraEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
-class TPLinkCameraEntity(CoordinatedTPLinkEntity, Camera):
+class TPLinkCameraEntity(CoordinatedTPLinkModuleEntity, Camera):
     IMAGE_INTERVAL: Incomplete
     _attr_supported_features: Incomplete
     entity_description: TPLinkCameraEntityDescription
+    _ffmpeg_manager: ffmpeg.FFmpegManager
     _camera_module: Incomplete
+    _camera_credentials: Incomplete
     _video_url: Incomplete
     _image: bytes | None
-    _ffmpeg_manager: Incomplete
     _image_lock: Incomplete
     _last_update: float
-    _camera_credentials: Incomplete
     _can_stream: bool
     _http_mpeg_stream_running: bool
-    def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkCameraEntityDescription, *, camera_module: CameraModule, parent: Device | None = None, ffmpeg_manager: ffmpeg.FFmpegManager, camera_credentials: Credentials | None) -> None: ...
-    def _get_unique_id(self) -> str: ...
+    def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkCameraEntityDescription, *, parent: Device | None = None) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
     _attr_is_on: Incomplete
     @callback
     def _async_update_attrs(self) -> bool: ...

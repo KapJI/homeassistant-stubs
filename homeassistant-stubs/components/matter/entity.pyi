@@ -2,20 +2,23 @@ from .const import DOMAIN as DOMAIN, FEATUREMAP_ATTRIBUTE_ID as FEATUREMAP_ATTRI
 from .discovery import MatterEntityInfo as MatterEntityInfo
 from .helpers import get_device_id as get_device_id
 from _typeshed import Incomplete
-from chip.clusters.Objects import ClusterAttributeDescriptor as ClusterAttributeDescriptor
-from collections.abc import Callable as Callable
+from chip.clusters.Objects import ClusterAttributeDescriptor as ClusterAttributeDescriptor, ClusterCommand as ClusterCommand
+from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.core import callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.typing import UndefinedType as UndefinedType
 from matter_server.client import MatterClient as MatterClient
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from matter_server.common.models import EventType
-from propcache import cached_property
-from typing import Any
+from propcache.api import cached_property
+from typing import Any, Concatenate
 
 LOGGER: Incomplete
+
+def catch_matter_error[_R, **P](func: Callable[Concatenate[MatterEntity, P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[MatterEntity, P], Coroutine[Any, Any, _R]]: ...
 
 @dataclass(frozen=True)
 class MatterEntityDescription(EntityDescription):
@@ -52,3 +55,7 @@ class MatterEntity(Entity):
     def get_matter_attribute_value(self, attribute: type[ClusterAttributeDescriptor], null_as_none: bool = True) -> Any: ...
     @callback
     def get_matter_attribute_path(self, attribute: type[ClusterAttributeDescriptor]) -> str: ...
+    @catch_matter_error
+    async def send_device_command(self, command: ClusterCommand, **kwargs: Any) -> None: ...
+    @catch_matter_error
+    async def write_attribute(self, value: Any, matter_attribute: type[ClusterAttributeDescriptor] | None = None) -> Any: ...

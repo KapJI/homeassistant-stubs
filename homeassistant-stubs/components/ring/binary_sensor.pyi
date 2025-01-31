@@ -12,6 +12,8 @@ from homeassistant.helpers.event import async_call_at as async_call_at
 from ring_doorbell import RingCapability, RingEvent as RingEvent
 from typing import Any, Generic
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class RingBinarySensorEntityDescription(BinarySensorEntityDescription, RingEntityDescription, Generic[RingDeviceT]):
     capability: RingCapability

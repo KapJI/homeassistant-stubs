@@ -2,10 +2,11 @@ from .const import DEFAULT_NAME as DEFAULT_NAME, DISCOVER_SCAN_TIMEOUT as DISCOV
 from .discovery import async_discover_devices as async_discover_devices
 from .utils import _short_mac as _short_mac, name_from_bulb_type_and_mac as name_from_bulb_type_and_mac
 from _typeshed import Incomplete
-from homeassistant.components import dhcp as dhcp, onboarding as onboarding
+from homeassistant.components import onboarding as onboarding
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.util.network import is_ip_address as is_ip_address
 from pywizlight.discovery import DiscoveredBulb
 from typing import Any
@@ -19,7 +20,7 @@ class WizConfigFlow(ConfigFlow, domain=DOMAIN):
     _name: str
     _discovered_devices: dict[str, DiscoveredBulb]
     def __init__(self) -> None: ...
-    async def async_step_dhcp(self, discovery_info: dhcp.DhcpServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: dict[str, str]) -> ConfigFlowResult: ...
     async def _async_handle_discovery(self) -> ConfigFlowResult: ...
     async def _async_connect_discovered_or_abort(self) -> None: ...

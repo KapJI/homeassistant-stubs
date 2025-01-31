@@ -14,6 +14,7 @@ from synology_dsm.api.core.upgrade import SynoCoreUpgrade
 from synology_dsm.api.core.utilization import SynoCoreUtilization
 from synology_dsm.api.dsm.information import SynoDSMInformation
 from synology_dsm.api.dsm.network import SynoDSMNetwork as SynoDSMNetwork
+from synology_dsm.api.file_station import SynoFileStation
 from synology_dsm.api.photos import SynoPhotos as SynoPhotos
 from synology_dsm.api.storage.storage import SynoStorage
 from synology_dsm.api.surveillance_station import SynoSurveillanceStation
@@ -25,20 +26,22 @@ class SynoApi:
     _hass: Incomplete
     _entry: Incomplete
     config_url: Incomplete
+    file_station: SynoFileStation | None
     information: SynoDSMInformation | None
     network: SynoDSMNetwork | None
+    photos: SynoPhotos | None
     security: SynoCoreSecurity | None
     storage: SynoStorage | None
-    photos: SynoPhotos | None
     surveillance_station: SynoSurveillanceStation | None
     system: SynoCoreSystem | None
     upgrade: SynoCoreUpgrade | None
     utilisation: SynoCoreUtilization | None
     _fetching_entities: dict[str, set[str]]
+    _with_file_station: bool
     _with_information: bool
+    _with_photos: bool
     _with_security: bool
     _with_storage: bool
-    _with_photos: bool
     _with_surveillance_station: bool
     _with_system: bool
     _with_upgrade: bool

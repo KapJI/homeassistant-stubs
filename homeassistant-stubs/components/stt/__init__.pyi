@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.restore_state import RestoreEntity
 from typing import final
 
-__all__ = ['async_get_provider', 'async_get_speech_to_text_engine', 'async_get_speech_to_text_entity', 'AudioBitRates', 'AudioChannels', 'AudioCodecs', 'AudioFormats', 'AudioSampleRates', 'DOMAIN', 'Provider', 'SpeechToTextEntity', 'SpeechMetadata', 'SpeechResult', 'SpeechResultState']
+__all__ = ['DOMAIN', 'AudioBitRates', 'AudioChannels', 'AudioCodecs', 'AudioFormats', 'AudioSampleRates', 'Provider', 'SpeechMetadata', 'SpeechResult', 'SpeechResultState', 'SpeechToTextEntity', 'async_get_provider', 'async_get_speech_to_text_engine', 'async_get_speech_to_text_entity']
 
 @callback
 def async_get_speech_to_text_entity(hass: HomeAssistant, entity_id: str) -> SpeechToTextEntity | None: ...

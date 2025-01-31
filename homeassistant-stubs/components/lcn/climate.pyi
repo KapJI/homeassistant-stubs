@@ -1,4 +1,4 @@
-from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_LOCKABLE as CONF_LOCKABLE, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_SETPOINT as CONF_SETPOINT, DOMAIN as DOMAIN
+from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_LOCKABLE as CONF_LOCKABLE, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_SETPOINT as CONF_SETPOINT, CONF_TARGET_VALUE_LOCKED as CONF_TARGET_VALUE_LOCKED, DOMAIN as DOMAIN
 from .entity import LcnEntity as LcnEntity
 from .helpers import InputType as InputType
 from _typeshed import Incomplete
@@ -22,6 +22,7 @@ class LcnClimate(LcnEntity, ClimateEntity):
     unit: Incomplete
     regulator_id: Incomplete
     is_lockable: Incomplete
+    target_value_locked: Incomplete
     _max_temp: Incomplete
     _min_temp: Incomplete
     _current_temperature: Incomplete

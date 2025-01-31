@@ -3,6 +3,7 @@ from homeassistant.components.climate import PRESET_AWAY as PRESET_AWAY, PRESET_
 from typing import Final
 
 DOMAIN: Final[str]
+CONF_CONFIG_ENTRY: Final[str]
 CONF_INTERFACE: Final[str]
 CONF_MEMO_TEXT: Final[str]
 SERVICE_SCAN: Final[str]

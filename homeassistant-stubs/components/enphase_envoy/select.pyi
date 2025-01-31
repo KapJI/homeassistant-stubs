@@ -21,7 +21,7 @@ class EnvoyRelaySelectEntityDescription(SelectEntityDescription):
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyStorageSettingsSelectEntityDescription(SelectEntityDescription):
-    value_fn: Callable[[EnvoyStorageSettings], str]
+    value_fn: Callable[[EnvoyStorageSettings], str | None]
     update_fn: Callable[[Envoy, str], Awaitable[dict[str, Any]]]
 
 RELAY_MODE_MAP: Incomplete
@@ -59,5 +59,5 @@ class EnvoyStorageSettingsSelectEntity(EnvoyBaseEntity, SelectEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyStorageSettingsSelectEntityDescription) -> None: ...
     @property
-    def current_option(self) -> str: ...
+    def current_option(self) -> str | None: ...
     async def async_select_option(self, option: str) -> None: ...

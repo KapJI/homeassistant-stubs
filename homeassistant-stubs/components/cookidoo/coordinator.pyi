@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from cookidoo_api import Cookidoo as Cookidoo, CookidooAdditionalItem as CookidooAdditionalItem, CookidooIngredientItem as CookidooIngredientItem
+from cookidoo_api import Cookidoo as Cookidoo, CookidooAdditionalItem as CookidooAdditionalItem, CookidooIngredientItem as CookidooIngredientItem, CookidooSubscription as CookidooSubscription, CookidooUserInfo as CookidooUserInfo
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL
@@ -15,9 +15,11 @@ type CookidooConfigEntry = ConfigEntry[CookidooDataUpdateCoordinator]
 class CookidooData:
     ingredient_items: list[CookidooIngredientItem]
     additional_items: list[CookidooAdditionalItem]
+    subscription: CookidooSubscription | None
 
 class CookidooDataUpdateCoordinator(DataUpdateCoordinator[CookidooData]):
     config_entry: CookidooConfigEntry
+    user: CookidooUserInfo
     cookidoo: Incomplete
     def __init__(self, hass: HomeAssistant, cookidoo: Cookidoo, entry: CookidooConfigEntry) -> None: ...
     async def _async_setup(self) -> None: ...

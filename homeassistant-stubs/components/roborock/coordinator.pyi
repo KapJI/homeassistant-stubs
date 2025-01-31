@@ -1,13 +1,15 @@
 from .const import DOMAIN as DOMAIN
 from .models import RoborockA01HassDeviceInfo as RoborockA01HassDeviceInfo, RoborockHassDeviceInfo as RoborockHassDeviceInfo, RoborockMapInfo as RoborockMapInfo
+from .roborock_storage import RoborockMapStorage as RoborockMapStorage
 from _typeshed import Incomplete
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import slugify as slugify
-from propcache import cached_property
+from propcache.api import cached_property
 from roborock import HomeDataRoom as HomeDataRoom
 from roborock.containers import HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, NetworkInfo as NetworkInfo
 from roborock.roborock_message import RoborockDyadDataProtocol, RoborockZeoProtocol
@@ -20,6 +22,7 @@ SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 
 class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceProp]):
+    config_entry: ConfigEntry
     roborock_device_info: Incomplete
     api: RoborockLocalClientV1 | RoborockMqttClientV1
     cloud_api: Incomplete
@@ -27,14 +30,15 @@ class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceProp]):
     current_map: int | None
     maps: dict[int, RoborockMapInfo]
     _home_data_rooms: Incomplete
+    map_storage: Incomplete
     def __init__(self, hass: HomeAssistant, device: HomeDataDevice, device_networking: NetworkInfo, product_info: HomeDataProduct, cloud_api: RoborockMqttClientV1, home_data_rooms: list[HomeDataRoom]) -> None: ...
-    async def verify_api(self) -> None: ...
+    async def _async_setup(self) -> None: ...
+    async def _verify_api(self) -> None: ...
     async def release(self) -> None: ...
     async def _update_device_prop(self) -> None: ...
     async def _async_update_data(self) -> DeviceProp: ...
     def _set_current_map(self) -> None: ...
-    async def get_maps(self) -> None: ...
-    async def get_rooms(self) -> None: ...
+    async def set_current_map_rooms(self) -> None: ...
     @cached_property
     def duid(self) -> str: ...
     @cached_property

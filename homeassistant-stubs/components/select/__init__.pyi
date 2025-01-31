@@ -2,10 +2,10 @@ from .const import ATTR_CYCLE as ATTR_CYCLE, ATTR_OPTION as ATTR_OPTION, ATTR_OP
 from _typeshed import Incomplete
 from homeassistant.core import callback
 from homeassistant.helpers.entity import Entity, EntityDescription
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, final
 
-__all__ = ['ATTR_CYCLE', 'ATTR_OPTION', 'ATTR_OPTIONS', 'DOMAIN', 'PLATFORM_SCHEMA_BASE', 'PLATFORM_SCHEMA', 'SelectEntity', 'SelectEntityDescription', 'SERVICE_SELECT_FIRST', 'SERVICE_SELECT_LAST', 'SERVICE_SELECT_NEXT', 'SERVICE_SELECT_OPTION', 'SERVICE_SELECT_PREVIOUS']
+__all__ = ['ATTR_CYCLE', 'ATTR_OPTION', 'ATTR_OPTIONS', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'SERVICE_SELECT_FIRST', 'SERVICE_SELECT_LAST', 'SERVICE_SELECT_NEXT', 'SERVICE_SELECT_OPTION', 'SERVICE_SELECT_PREVIOUS', 'SelectEntity', 'SelectEntityDescription']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

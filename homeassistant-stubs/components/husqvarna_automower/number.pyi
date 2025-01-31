@@ -1,4 +1,4 @@
-from . import AutomowerConfigEntry as AutomowerConfigEntry, remove_work_area_entities as remove_work_area_entities
+from . import AutomowerConfigEntry as AutomowerConfigEntry
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerControlEntity as AutomowerControlEntity, WorkAreaControlEntity as WorkAreaControlEntity, _work_area_translation_key as _work_area_translation_key, handle_sending_exception as handle_sending_exception
 from _typeshed import Incomplete

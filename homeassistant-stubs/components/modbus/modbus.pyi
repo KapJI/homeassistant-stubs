@@ -8,20 +8,24 @@ from homeassistant.helpers.discovery import async_load_platform as async_load_pl
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.hass_dict import HassKey as HassKey
 from pymodbus.client import AsyncModbusSerialClient, AsyncModbusTcpClient, AsyncModbusUdpClient
 from pymodbus.pdu import ModbusPDU as ModbusPDU
 from typing import Any, NamedTuple
 
 _LOGGER: Incomplete
+DATA_MODBUS_HUBS: HassKey[dict[str, ModbusHub]]
 
 class ConfEntry(NamedTuple):
     call_type: Incomplete
     attr: Incomplete
     func_name: Incomplete
+    value_attr_name: Incomplete
 
 class RunEntry(NamedTuple):
     attr: Incomplete
     func: Incomplete
+    value_attr_name: Incomplete
 
 PB_CALL: Incomplete
 

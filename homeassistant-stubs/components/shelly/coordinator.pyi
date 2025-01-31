@@ -7,13 +7,14 @@ from aioshelly.block_device import BlockDevice, BlockUpdateType
 from aioshelly.rpc_device import RpcDevice, RpcUpdateType
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
+from homeassistant.components.bluetooth import async_remove_scanner as async_remove_scanner
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any
 
 @dataclass

@@ -2,7 +2,6 @@ from .entity import MatterEntity as MatterEntity
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
-from chip.clusters import Objects as clusters
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
@@ -18,7 +17,6 @@ class MatterValve(MatterEntity, ValveEntity):
     _feature_map: int | None
     entity_description: ValveEntityDescription
     _platform_translation_key: str
-    async def send_device_command(self, command: clusters.ClusterCommand) -> None: ...
     async def async_open_valve(self) -> None: ...
     async def async_close_valve(self) -> None: ...
     async def async_set_valve_position(self, position: int) -> None: ...

@@ -19,6 +19,7 @@ class StarlinkData:
 
 class StarlinkUpdateCoordinator(DataUpdateCoordinator[StarlinkData]):
     channel_context: Incomplete
+    history_stats_start: Incomplete
     timezone: Incomplete
     def __init__(self, hass: HomeAssistant, name: str, url: str) -> None: ...
     def _get_starlink_data(self) -> StarlinkData: ...

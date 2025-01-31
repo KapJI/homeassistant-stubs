@@ -5,9 +5,6 @@ from collections.abc import Callable as Callable, Generator
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
 from typing import Any
-from typing_extensions import TypeVar
-
-_PassiveBluetoothDataUpdateCoordinatorT = TypeVar('_PassiveBluetoothDataUpdateCoordinatorT', bound='PassiveBluetoothDataUpdateCoordinator', default='PassiveBluetoothDataUpdateCoordinator')
 
 class PassiveBluetoothDataUpdateCoordinator(BasePassiveBluetoothCoordinator, BaseDataUpdateCoordinatorProtocol):
     _listeners: dict[CALLBACK_TYPE, tuple[CALLBACK_TYPE, object | None]]
@@ -25,7 +22,7 @@ class PassiveBluetoothDataUpdateCoordinator(BasePassiveBluetoothCoordinator, Bas
     @callback
     def _async_handle_bluetooth_event(self, service_info: BluetoothServiceInfoBleak, change: BluetoothChange) -> None: ...
 
-class PassiveBluetoothCoordinatorEntity(BaseCoordinatorEntity[_PassiveBluetoothDataUpdateCoordinatorT]):
+class PassiveBluetoothCoordinatorEntity[_PassiveBluetoothDataUpdateCoordinatorT: PassiveBluetoothDataUpdateCoordinator = PassiveBluetoothDataUpdateCoordinator](BaseCoordinatorEntity[_PassiveBluetoothDataUpdateCoordinatorT]):
     async def async_update(self) -> None: ...
     @property
     def available(self) -> bool: ...

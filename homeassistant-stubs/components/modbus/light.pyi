@@ -1,6 +1,5 @@
 from . import get_hub as get_hub
 from .entity import BaseSwitch as BaseSwitch
-from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.const import CONF_LIGHTS as CONF_LIGHTS, CONF_NAME as CONF_NAME

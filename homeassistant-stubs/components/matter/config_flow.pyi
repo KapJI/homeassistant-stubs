@@ -5,7 +5,6 @@ from .const import ADDON_SLUG as ADDON_SLUG, CONF_INTEGRATION_CREATED_ADDON as C
 from _typeshed import Incomplete
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.components.onboarding import async_is_onboarded as async_is_onboarded
-from homeassistant.components.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -14,6 +13,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any
 
 ADDON_SETUP_TIMEOUT: int

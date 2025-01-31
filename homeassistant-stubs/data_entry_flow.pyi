@@ -10,8 +10,7 @@ from collections import defaultdict
 from collections.abc import Callable as Callable, Container, Hashable, Iterable, Mapping
 from dataclasses import dataclass
 from enum import StrEnum
-from typing import Any, Generic, Required, TypedDict
-from typing_extensions import TypeVar
+from typing import Any, Generic, Required, TypeVar, TypedDict
 
 _LOGGER: Incomplete
 

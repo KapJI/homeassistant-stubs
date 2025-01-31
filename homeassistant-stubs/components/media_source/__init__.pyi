@@ -9,7 +9,7 @@ from homeassistant.helpers.typing import UndefinedType
 from homeassistant.loader import bind_hass
 from typing import Protocol
 
-__all__ = ['DOMAIN', 'is_media_source_id', 'generate_media_source_id', 'async_browse_media', 'async_resolve_media', 'BrowseMediaSource', 'PlayMedia', 'MediaSourceItem', 'Unresolvable', 'MediaSource', 'MediaSourceError', 'MEDIA_CLASS_MAP', 'MEDIA_MIME_TYPES']
+__all__ = ['DOMAIN', 'MEDIA_CLASS_MAP', 'MEDIA_MIME_TYPES', 'BrowseMediaSource', 'MediaSource', 'MediaSourceError', 'MediaSourceItem', 'PlayMedia', 'Unresolvable', 'async_browse_media', 'async_resolve_media', 'generate_media_source_id', 'is_media_source_id']
 
 class MediaSourceProtocol(Protocol):
     async def async_get_media_source(self, hass: HomeAssistant) -> MediaSource: ...

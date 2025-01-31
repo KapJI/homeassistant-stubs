@@ -1,5 +1,4 @@
 from . import HomeWizardConfigEntry as HomeWizardConfigEntry
-from .const import DeviceResponseEntry as DeviceResponseEntry
 from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator
 from .entity import HomeWizardEntity as HomeWizardEntity
 from .helpers import homewizard_exception_handler as homewizard_exception_handler
@@ -10,7 +9,8 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homewizard_energy import HomeWizardEnergyV1 as HomeWizardEnergyV1
+from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
+from homewizard_energy.models import CombinedModels as DeviceResponseEntry
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -18,9 +18,9 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class HomeWizardSwitchEntityDescription(SwitchEntityDescription):
     available_fn: Callable[[DeviceResponseEntry], bool]
-    create_fn: Callable[[HWEnergyDeviceUpdateCoordinator], bool]
+    create_fn: Callable[[DeviceResponseEntry], bool]
     is_on_fn: Callable[[DeviceResponseEntry], bool | None]
-    set_fn: Callable[[HomeWizardEnergyV1, bool], Awaitable[Any]]
+    set_fn: Callable[[HomeWizardEnergy, bool], Awaitable[Any]]
 
 SWITCHES: Incomplete
 

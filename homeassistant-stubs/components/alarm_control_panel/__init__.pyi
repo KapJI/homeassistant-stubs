@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatfo
 from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, Final, final
 
 _LOGGER: Final[Incomplete]

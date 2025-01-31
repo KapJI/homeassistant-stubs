@@ -13,6 +13,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pydiscovergy.models import Reading as Reading
 
+PARALLEL_UPDATES: int
+
 def _get_and_scale(reading: Reading, key: str, scale: int) -> datetime | float | None: ...
 
 @dataclass(frozen=True, kw_only=True)

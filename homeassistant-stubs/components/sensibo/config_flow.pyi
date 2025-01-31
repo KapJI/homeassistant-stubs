@@ -1,4 +1,4 @@
-from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .util import NoDevicesError as NoDevicesError, NoUsernameError as NoUsernameError, async_validate_api as async_validate_api
 from _typeshed import Incomplete
 from collections.abc import Mapping

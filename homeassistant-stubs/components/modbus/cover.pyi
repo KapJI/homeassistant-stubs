@@ -3,7 +3,6 @@ from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_WRITE_COIL as CAL
 from .entity import BasePlatform as BasePlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
-from datetime import datetime
 from homeassistant.components.cover import CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature, CoverState as CoverState
 from homeassistant.const import CONF_COVERS as CONF_COVERS, CONF_NAME as CONF_NAME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -37,4 +36,4 @@ class ModbusCover(BasePlatform, CoverEntity, RestoreEntity):
     _attr_available: Incomplete
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
-    async def async_update(self, now: datetime | None = None) -> None: ...
+    async def _async_update(self) -> None: ...

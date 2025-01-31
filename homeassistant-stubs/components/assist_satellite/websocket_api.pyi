@@ -1,10 +1,8 @@
 from .connection_test import CONNECTION_TEST_URL_BASE as CONNECTION_TEST_URL_BASE
 from .const import AssistSatelliteEntityFeature as AssistSatelliteEntityFeature, CONNECTION_TEST_DATA as CONNECTION_TEST_DATA, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
-from .entity import AssistSatelliteEntity as AssistSatelliteEntity
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from typing import Any
 
 CONNECTION_TEST_TIMEOUT: int

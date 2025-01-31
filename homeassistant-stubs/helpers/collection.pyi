@@ -7,7 +7,7 @@ from .json import json_bytes as json_bytes
 from .storage import Store as Store
 from .typing import ConfigType as ConfigType, VolDictType as VolDictType
 from _typeshed import Incomplete
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from collections.abc import Awaitable, Callable, Iterable
 from dataclasses import dataclass
 from homeassistant.components import websocket_api as websocket_api
@@ -15,15 +15,13 @@ from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import slugify as slugify
-from typing import Any, Generic, TypedDict
-from typing_extensions import TypeVar
+from typing import Any, TypedDict
 
 STORAGE_VERSION: int
 SAVE_DELAY: int
 CHANGE_ADDED: str
 CHANGE_UPDATED: str
 CHANGE_REMOVED: str
-_EntityT = TypeVar('_EntityT', bound=Entity, default=Entity)
 
 @dataclass(slots=True)
 class CollectionChange:
@@ -57,7 +55,7 @@ class CollectionEntity(Entity, metaclass=abc.ABCMeta):
     @abstractmethod
     async def async_update_config(self, config: ConfigType) -> None: ...
 
-class ObservableCollection[_ItemT](ABC):
+class ObservableCollection[_ItemT]:
     id_manager: Incomplete
     data: dict[str, _ItemT]
     listeners: list[ChangeListener]
@@ -129,7 +127,7 @@ class IDLessCollection(YamlCollection):
 _GROUP_BY_KEY: Incomplete
 
 @dataclass(slots=True, frozen=True)
-class _CollectionLifeCycle(Generic[_EntityT]):
+class _CollectionLifeCycle[_EntityT: Entity = Entity]:
     domain: str
     platform: str
     entity_component: EntityComponent[_EntityT]
@@ -147,7 +145,7 @@ class _CollectionLifeCycle(Generic[_EntityT]):
     async def _collection_changed(self, change_set: Iterable[CollectionChange]) -> None: ...
 
 @callback
-def sync_entity_lifecycle(hass: HomeAssistant, domain: str, platform: str, entity_component: EntityComponent[_EntityT], collection: StorageCollection | YamlCollection, entity_class: type[CollectionEntity]) -> None: ...
+def sync_entity_lifecycle[_EntityT: Entity = Entity](hass: HomeAssistant, domain: str, platform: str, entity_component: EntityComponent[_EntityT], collection: StorageCollection | YamlCollection, entity_class: type[CollectionEntity]) -> None: ...
 
 class StorageCollectionWebsocket[_StorageCollectionT: StorageCollection]:
     storage_collection: Incomplete

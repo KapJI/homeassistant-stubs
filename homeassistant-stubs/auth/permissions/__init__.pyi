@@ -4,7 +4,7 @@ from .types import PolicyType as PolicyType
 from _typeshed import Incomplete
 from collections.abc import Callable
 
-__all__ = ['POLICY_SCHEMA', 'merge_policies', 'PermissionLookup', 'PolicyType', 'AbstractPermissions', 'PolicyPermissions', 'OwnerPermissions']
+__all__ = ['POLICY_SCHEMA', 'AbstractPermissions', 'OwnerPermissions', 'PermissionLookup', 'PolicyPermissions', 'PolicyType', 'merge_policies']
 
 POLICY_SCHEMA: Incomplete
 

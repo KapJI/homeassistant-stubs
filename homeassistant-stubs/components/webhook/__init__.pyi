@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.network import get_url as get_url, is_cloud_connection as is_cloud_connection
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util import network as network
 from homeassistant.util.aiohttp import MockRequest as MockRequest, MockStreamReader as MockStreamReader, serialize_response as serialize_response
 from typing import Any
 

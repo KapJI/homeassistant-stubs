@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE
 from homeassistant.core import Context as Context, State as State
-from propcache import cached_property
+from propcache.api import cached_property
 from sqlalchemy.engine.row import Row as Row
 from typing import Any
 

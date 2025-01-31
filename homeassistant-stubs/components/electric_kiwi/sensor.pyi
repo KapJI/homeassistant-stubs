@@ -1,12 +1,11 @@
-from .const import ACCOUNT_COORDINATOR as ACCOUNT_COORDINATOR, ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN, HOP_COORDINATOR as HOP_COORDINATOR
-from .coordinator import ElectricKiwiAccountDataCoordinator as ElectricKiwiAccountDataCoordinator, ElectricKiwiHOPDataCoordinator as ElectricKiwiHOPDataCoordinator
+from .const import ATTRIBUTION as ATTRIBUTION
+from .coordinator import ElectricKiwiAccountDataCoordinator as ElectricKiwiAccountDataCoordinator, ElectricKiwiConfigEntry as ElectricKiwiConfigEntry, ElectricKiwiHOPDataCoordinator as ElectricKiwiHOPDataCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from electrickiwi_api.model import AccountBalance as AccountBalance, Hop as Hop
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CURRENCY_DOLLAR as CURRENCY_DOLLAR, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -33,7 +32,7 @@ def _check_and_move_time(hop: Hop, time: str) -> datetime: ...
 
 HOP_SENSOR_TYPES: tuple[ElectricKiwiHOPSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ElectricKiwiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class ElectricKiwiAccountEntity(CoordinatorEntity[ElectricKiwiAccountDataCoordinator], SensorEntity):
     entity_description: ElectricKiwiAccountSensorEntityDescription

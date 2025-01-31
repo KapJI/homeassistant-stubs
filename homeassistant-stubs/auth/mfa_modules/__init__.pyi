@@ -9,14 +9,12 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.util.decorator import Registry as Registry
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Generic
-from typing_extensions import TypeVar
+from typing import Any
 
 MULTI_FACTOR_AUTH_MODULES: Registry[str, type[MultiFactorAuthModule]]
 MULTI_FACTOR_AUTH_MODULE_SCHEMA: Incomplete
 DATA_REQS: HassKey[set[str]]
 _LOGGER: Incomplete
-_MultiFactorAuthModuleT = TypeVar('_MultiFactorAuthModuleT', bound='MultiFactorAuthModule', default='MultiFactorAuthModule')
 
 class MultiFactorAuthModule:
     DEFAULT_TITLE: str
@@ -38,7 +36,7 @@ class MultiFactorAuthModule:
     async def async_is_user_setup(self, user_id: str) -> bool: ...
     async def async_validate(self, user_id: str, user_input: dict[str, Any]) -> bool: ...
 
-class SetupFlow(data_entry_flow.FlowHandler, Generic[_MultiFactorAuthModuleT]):
+class SetupFlow[_MultiFactorAuthModuleT: MultiFactorAuthModule = MultiFactorAuthModule](data_entry_flow.FlowHandler):
     _auth_module: Incomplete
     _setup_schema: Incomplete
     _user_id: Incomplete

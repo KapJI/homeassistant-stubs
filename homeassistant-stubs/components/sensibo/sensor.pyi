@@ -15,6 +15,8 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
+def _smart_type_name(_type: str | None) -> str | None: ...
+
 @dataclass(frozen=True, kw_only=True)
 class SensiboMotionSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[MotionSensor], StateType]

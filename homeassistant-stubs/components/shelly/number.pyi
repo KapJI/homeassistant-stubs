@@ -1,4 +1,4 @@
-from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, LOGGER as LOGGER, VIRTUAL_NUMBER_MODE_MAP as VIRTUAL_NUMBER_MODE_MAP
+from .const import BLU_TRV_TIMEOUT as BLU_TRV_TIMEOUT, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, LOGGER as LOGGER, VIRTUAL_NUMBER_MODE_MAP as VIRTUAL_NUMBER_MODE_MAP
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc
 from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_device_entry_gen as get_device_entry_gen, get_virtual_component_ids as get_virtual_component_ids
@@ -7,9 +7,10 @@ from aioshelly.block_device import Block as Block
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberExtraStoredData as NumberExtraStoredData, NumberMode as NumberMode, RestoreNumber as RestoreNumber
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any, Final
@@ -25,6 +26,24 @@ class RpcNumberDescription(RpcEntityDescription, NumberEntityDescription):
     min_fn: Callable[[dict], float] | None = ...
     step_fn: Callable[[dict], float] | None = ...
     mode_fn: Callable[[dict], NumberMode] | None = ...
+    method: str
+    method_params_fn: Callable[[int, float], dict]
+
+class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
+    entity_description: RpcNumberDescription
+    _attr_native_max_value: Incomplete
+    _attr_native_min_value: Incomplete
+    _attr_native_step: Incomplete
+    _attr_mode: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcNumberDescription) -> None: ...
+    @property
+    def native_value(self) -> float | None: ...
+    async def async_set_native_value(self, value: float) -> None: ...
+
+class RpcBluTrvNumber(RpcNumber):
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcNumberDescription) -> None: ...
+    async def async_set_native_value(self, value: float) -> None: ...
 
 NUMBERS: dict[tuple[str, str], BlockNumberDescription]
 RPC_NUMBERS: Final[Incomplete]
@@ -40,14 +59,3 @@ class BlockSleepingNumber(ShellySleepingBlockAttributeEntity, RestoreNumber):
     def native_value(self) -> float | None: ...
     async def async_set_native_value(self, value: float) -> None: ...
     async def _set_state_full_path(self, path: str, params: Any) -> Any: ...
-
-class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
-    entity_description: RpcNumberDescription
-    _attr_native_max_value: Incomplete
-    _attr_native_min_value: Incomplete
-    _attr_native_step: Incomplete
-    _attr_mode: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcNumberDescription) -> None: ...
-    @property
-    def native_value(self) -> float | None: ...
-    async def async_set_native_value(self, value: float) -> None: ...

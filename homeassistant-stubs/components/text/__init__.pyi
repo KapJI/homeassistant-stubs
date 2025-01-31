@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
-from propcache import cached_property
+from propcache.api import cached_property
 from typing import Any, final
 
 __all__ = ['DOMAIN', 'TextEntity', 'TextEntityDescription', 'TextMode']

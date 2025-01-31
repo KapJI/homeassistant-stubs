@@ -11,6 +11,7 @@ from typing import Final
 @dataclass(frozen=True, kw_only=True)
 class TPLinkSelectEntityDescription(SelectEntityDescription, TPLinkFeatureEntityDescription): ...
 
+PARALLEL_UPDATES: int
 SELECT_DESCRIPTIONS: Final[Incomplete]
 SELECT_DESCRIPTIONS_MAP: Incomplete
 

@@ -1,11 +1,11 @@
 from .const import DOMAIN as DOMAIN, FroniusConfigEntryData as FroniusConfigEntryData
 from _typeshed import Incomplete
-from homeassistant.components.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from typing import Any, Final
 
 _LOGGER: Final[Incomplete]

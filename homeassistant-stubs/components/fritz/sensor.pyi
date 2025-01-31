@@ -1,5 +1,5 @@
-from .const import DOMAIN as DOMAIN, DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
-from .coordinator import AvmWrapper as AvmWrapper, ConnectionInfo as ConnectionInfo
+from .const import DSL_CONNECTION as DSL_CONNECTION, UPTIME_DEVIATION as UPTIME_DEVIATION
+from .coordinator import ConnectionInfo as ConnectionInfo, FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -40,7 +39,7 @@ class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescripti
 
 SENSOR_TYPES: tuple[FritzSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
 
 class FritzBoxSensor(FritzBoxBaseCoordinatorEntity, SensorEntity):
     entity_description: FritzSensorEntityDescription

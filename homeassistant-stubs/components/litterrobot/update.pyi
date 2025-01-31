@@ -1,4 +1,4 @@
-from . import LitterRobotConfigEntry as LitterRobotConfigEntry
+from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
 from .entity import LitterRobotEntity as LitterRobotEntity
 from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature

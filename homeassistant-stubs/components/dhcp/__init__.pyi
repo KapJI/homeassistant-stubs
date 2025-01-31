@@ -10,8 +10,8 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components.device_tracker import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
-from homeassistant.data_entry_flow import BaseServiceInfo as BaseServiceInfo
 from homeassistant.helpers import discovery_flow as discovery_flow
+from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.helpers.discovery_flow import DiscoveryKey as DiscoveryKey
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -27,12 +27,7 @@ IP_ADDRESS: Final[str]
 REGISTERED_DEVICES: Final[str]
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
-
-@dataclass(slots=True)
-class DhcpServiceInfo(BaseServiceInfo):
-    ip: str
-    hostname: str
-    macaddress: str
+_DEPRECATED_DhcpServiceInfo: Incomplete
 
 @dataclass(slots=True)
 class DhcpMatchers:
@@ -98,3 +93,7 @@ class RediscoveryWatcher(WatcherBase):
 
 def _compile_fnmatch(pattern: str) -> re.Pattern: ...
 def _memorized_fnmatch(name: str, pattern: str) -> bool: ...
+
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

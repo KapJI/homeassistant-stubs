@@ -7,7 +7,6 @@ from homeassistant.components.number import NumberEntity as NumberEntity
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
 
 PARALLEL_UPDATES: int
 

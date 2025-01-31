@@ -13,6 +13,9 @@ class BackupAgentUnreachableError(BackupAgentError):
     error_code: str
     _message: str
 
+class BackupNotFound(BackupAgentError):
+    error_code: str
+
 class BackupAgent(abc.ABC, metaclass=abc.ABCMeta):
     domain: str
     name: str
@@ -33,6 +36,8 @@ class BackupAgent(abc.ABC, metaclass=abc.ABCMeta):
 class LocalBackupAgent(BackupAgent, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_backup_path(self, backup_id: str) -> Path: ...
+    @abc.abstractmethod
+    def get_new_backup_path(self, backup: AgentBackup) -> Path: ...
 
 class BackupAgentPlatformProtocol(Protocol):
     async def async_get_backup_agents(self, hass: HomeAssistant, **kwargs: Any) -> list[BackupAgent]: ...

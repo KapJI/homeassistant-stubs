@@ -10,3 +10,4 @@ CONNECTION_TEST_DATA: HassKey[dict[str, asyncio.Event]]
 
 class AssistSatelliteEntityFeature(IntFlag):
     ANNOUNCE = 1
+    START_CONVERSATION = 2

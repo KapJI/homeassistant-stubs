@@ -13,14 +13,14 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Home Automation",
     "Topic :: Software Development",
     "Typing :: Typed",
 ]
 keywords = ["homeassistant", "typing", "pep484"]
 # Forbid 3.14 because of home-assistant-bluetooth package.
-requires-python = ">=3.12,<3.14"
+requires-python = ">=3.13,<3.14"
 dynamic = ["version"]
 dependencies = [
     "homeassistant==2025.1.4",
@@ -81,7 +81,7 @@ disable = [
 ]
 
 [tool.pylint.main]
-py-version = "3.12"
+py-version = "3.13"
 load-plugins = [
     "pylint.extensions.code_style",
     "pylint.extensions.typing",
@@ -202,7 +202,7 @@ mark-parentheses = false
 max-complexity = 25
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.13"
 show_error_codes = true
 strict = true
 disallow_any_explicit = true

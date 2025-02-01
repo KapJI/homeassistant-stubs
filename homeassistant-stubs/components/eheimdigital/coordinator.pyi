@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from collections.abc import Callable, Coroutine
+from collections.abc import Callable
 from eheimdigital.device import EheimDigitalDevice
 from eheimdigital.types import EheimDeviceType as EheimDeviceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,9 +9,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
 
-type AsyncSetupDeviceEntitiesCallback = Callable[[str], Coroutine[Any, Any, None]]
+type AsyncSetupDeviceEntitiesCallback = Callable[[str | dict[str, EheimDigitalDevice]], None]
 class EheimDigitalUpdateCoordinator(DataUpdateCoordinator[dict[str, EheimDigitalDevice]]):
     config_entry: ConfigEntry
     hub: Incomplete

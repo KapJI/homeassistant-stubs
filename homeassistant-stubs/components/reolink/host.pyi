@@ -1,6 +1,7 @@
 import asyncio
-from .const import CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
+from .const import CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
 from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkSetupException as ReolinkSetupException, ReolinkWebhookException as ReolinkWebhookException, UserNotAdmin as UserNotAdmin
+from .util import get_store as get_store
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request
 from collections import defaultdict
@@ -13,6 +14,7 @@ from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
+from homeassistant.helpers.storage import Store as Store
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList
 from reolink_aio.api import Host
 from reolink_aio.enums import SubType
@@ -31,6 +33,8 @@ _LOGGER: Incomplete
 
 class ReolinkHost:
     _hass: HomeAssistant
+    _config_entry_id: Incomplete
+    _config: Incomplete
     _unique_id: str
     _api: Incomplete
     last_wake: float
@@ -57,7 +61,7 @@ class ReolinkHost:
     _lost_subscription_start: bool
     _lost_subscription: bool
     cancel_refresh_privacy_mode: CALLBACK_TYPE | None
-    def __init__(self, hass: HomeAssistant, config: Mapping[str, Any], options: Mapping[str, Any]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: Mapping[str, Any], options: Mapping[str, Any], config_entry_id: str | None = None) -> None: ...
     @callback
     def async_register_update_cmd(self, cmd: str, channel: int | None = None) -> None: ...
     @callback

@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Coroutine
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from roborock import HomeDataRoom as HomeDataRoom

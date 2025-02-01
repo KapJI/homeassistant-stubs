@@ -10,6 +10,7 @@ from typing import Any, Concatenate
 
 _LOGGER: Incomplete
 UPLOAD_CHUNK_SIZE: Incomplete
+MAX_RETRIES: int
 
 async def async_get_backup_agents(hass: HomeAssistant) -> list[BackupAgent]: ...
 @callback

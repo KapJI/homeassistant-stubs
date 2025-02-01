@@ -4,6 +4,7 @@ from .coordinator import EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoor
 from .entity import EheimDigitalEntity as EheimDigitalEntity
 from _typeshed import Incomplete
 from eheimdigital.classic_led_ctrl import EheimDigitalClassicLEDControl
+from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ColorMode as ColorMode, EFFECT_OFF as EFFECT_OFF, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

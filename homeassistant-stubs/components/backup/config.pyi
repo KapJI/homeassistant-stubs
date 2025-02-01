@@ -3,7 +3,6 @@ from .const import LOGGER as LOGGER
 from .manager import BackupManager as BackupManager, ManagerBackup as ManagerBackup
 from .models import BackupManagerError as BackupManagerError, Folder as Folder
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from cronsim import CronSim
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -158,5 +157,5 @@ class CreateBackupParametersDict(TypedDict, total=False):
     name: str | None
     password: str | None
 
-async def _delete_filtered_backups(manager: BackupManager, backup_filter: Callable[[dict[str, ManagerBackup]], dict[str, ManagerBackup]]) -> None: ...
+def _automatic_backups_filter(backups: dict[str, ManagerBackup]) -> dict[str, ManagerBackup]: ...
 async def delete_backups_exceeding_configured_count(manager: BackupManager) -> None: ...

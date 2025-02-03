@@ -723,7 +723,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant"
-version = "2025.2.0b6"
+version = "2025.2.0b7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiodns" },
@@ -776,9 +776,9 @@ dependencies = [
     { name = "yarl" },
     { name = "zeroconf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/12/28/7b000d9aace39db50e6b2d93452b4ad06bd30d0d3cd5d04d687fa4282a35/homeassistant-2025.2.0b6.tar.gz", hash = "sha256:40ad2263ccc5b80286e48daaa7491bfc396cace531a8f80e3126164610e56216", size = 23809330 }
+sdist = { url = "https://files.pythonhosted.org/packages/29/8c/3cc3ae1490abcf12d9dc38faf8dbb8b29af2ff01464d4199727f87270452/homeassistant-2025.2.0b7.tar.gz", hash = "sha256:2b085b38297fafc34adb2c1647883271da407a0402fc1472a22716cf99a53ee0", size = 23818631 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2b/8c/fa5f955363910d986400d4a21a8234411a8ba62a2f4b813f7fefa889cb55/homeassistant-2025.2.0b6-py3-none-any.whl", hash = "sha256:64fc653216cf44a383ece04e0f723d48dae23c8609df8cd51693f65d71997ad6", size = 40673289 },
+    { url = "https://files.pythonhosted.org/packages/cf/fc/9fc1a9db406581ca7f9ce08dd2888e4de5c881670905d83ffcf28464ef5c/homeassistant-2025.2.0b7-py3-none-any.whl", hash = "sha256:2de1a56c94a3066b694aa77ae063e4cc3f245af200842b40a5ea58901f83f0a6", size = 40682757 },
 ]
 
 [[package]]
@@ -800,7 +800,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homeassistant", specifier = "==2025.2.0b6" }]
+requires-dist = [{ name = "homeassistant", specifier = "==2025.2.0b7" }]
 
 [package.metadata.requires-dev]
 dev = [

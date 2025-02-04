@@ -1,16 +1,17 @@
 import aiohttp
 import asyncio
 import tarfile
+import threading
 from .const import BUF_SIZE as BUF_SIZE, LOGGER as LOGGER
 from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, Folder as Folder
 from _typeshed import Incomplete
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
+from concurrent.futures import Future
 from dataclasses import dataclass
 from homeassistant.backup_restore import password_to_key as password_to_key
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.json import JsonObjectType as JsonObjectType, json_loads_object as json_loads_object
-from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from pathlib import Path
 from typing import Any, IO, Self
 
@@ -39,22 +40,28 @@ def suggested_filename(backup: AgentBackup) -> str: ...
 def validate_password(path: Path, password: str | None) -> bool: ...
 
 class AsyncIteratorReader:
+    _aborted: bool
     _hass: Incomplete
     _stream: Incomplete
     _buffer: bytes | None
+    _next_future: Future[bytes | None] | None
     _pos: int
     def __init__(self, hass: HomeAssistant, stream: AsyncIterator[bytes]) -> None: ...
     async def _next(self) -> bytes | None: ...
+    def abort(self) -> None: ...
     def read(self, n: int = -1, /) -> bytes: ...
     def close(self) -> None: ...
 
 class AsyncIteratorWriter:
+    _aborted: bool
     _hass: Incomplete
     _pos: int
     _queue: asyncio.Queue[bytes | None]
+    _write_future: Future[bytes | None] | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     def __aiter__(self) -> Self: ...
     async def __anext__(self) -> bytes: ...
+    def abort(self) -> None: ...
     def tell(self) -> int: ...
     def write(self, s: bytes, /) -> int: ...
 
@@ -68,7 +75,9 @@ def _encrypt_backup(input_tar: tarfile.TarFile, output_tar: tarfile.TarFile, pas
 class _CipherWorkerStatus:
     done: asyncio.Event
     error: Exception | None = ...
-    thread: ThreadWithException
+    reader: AsyncIteratorReader
+    thread: threading.Thread
+    writer: AsyncIteratorWriter
 
 class _CipherBackupStreamer:
     _cipher_func: Callable[[IO[bytes], IO[bytes], str | None, Callable[[Exception | None], None], int, list[bytes]], None]

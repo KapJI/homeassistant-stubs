@@ -1,20 +1,14 @@
 import abc
-from .models import AgentBackup as AgentBackup, BackupError as BackupError
+from .models import AgentBackup as AgentBackup, BackupAgentError as BackupAgentError
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from pathlib import Path
 from propcache.api import cached_property
 from typing import Any, Protocol
 
-class BackupAgentError(BackupError):
-    error_code: str
-
 class BackupAgentUnreachableError(BackupAgentError):
     error_code: str
     _message: str
-
-class BackupNotFound(BackupAgentError):
-    error_code: str
 
 class BackupAgent(abc.ABC, metaclass=abc.ABCMeta):
     domain: str

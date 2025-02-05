@@ -2,6 +2,7 @@ from . import util as util
 from .agent import BackupAgent as BackupAgent
 from .const import DATA_MANAGER as DATA_MANAGER
 from .manager import BackupManager as BackupManager
+from .models import BackupNotFound as BackupNotFound
 from aiohttp.web import FileResponse, Request as Request, Response, StreamResponse
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, require_admin as require_admin
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

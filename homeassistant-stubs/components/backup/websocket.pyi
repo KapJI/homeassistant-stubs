@@ -1,7 +1,7 @@
 from .config import Day as Day, ScheduleRecurrence as ScheduleRecurrence
 from .const import DATA_MANAGER as DATA_MANAGER, LOGGER as LOGGER
 from .manager import DecryptOnDowloadNotSupported as DecryptOnDowloadNotSupported, IncorrectPasswordError as IncorrectPasswordError, ManagerStateEvent as ManagerStateEvent
-from .models import Folder as Folder
+from .models import BackupNotFound as BackupNotFound, Folder as Folder
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any

@@ -26,7 +26,6 @@ class BaseBackup:
     homeassistant_included: bool
     homeassistant_version: str | None
     name: str
-    def as_frontend_json(self) -> dict: ...
 
 @dataclass(frozen=True, kw_only=True)
 class AgentBackup(BaseBackup):
@@ -39,5 +38,14 @@ class AgentBackup(BaseBackup):
 class BackupError(HomeAssistantError):
     error_code: str
 
+class BackupAgentError(BackupError):
+    error_code: str
+
 class BackupManagerError(BackupError):
+    error_code: str
+
+class BackupReaderWriterError(BackupError):
+    error_code: str
+
+class BackupNotFound(BackupAgentError, BackupManagerError):
     error_code: str

@@ -4,7 +4,7 @@ import asyncio
 from .agent import BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupAgentPlatformProtocol as BackupAgentPlatformProtocol, LocalBackupAgent as LocalBackupAgent
 from .config import BackupConfig as BackupConfig, delete_backups_exceeding_configured_count as delete_backups_exceeding_configured_count
 from .const import BUF_SIZE as BUF_SIZE, DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN, EXCLUDE_DATABASE_FROM_BACKUP as EXCLUDE_DATABASE_FROM_BACKUP, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER
-from .models import AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BaseBackup as BaseBackup, Folder as Folder
+from .models import AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
 from .store import BackupStore as BackupStore
 from .util import AsyncIteratorReader as AsyncIteratorReader, DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, make_backup_dir as make_backup_dir, read_backup as read_backup, validate_password as validate_password, validate_password_stream as validate_password_stream
 from _typeshed import Incomplete
@@ -129,9 +129,6 @@ class BackupReaderWriter(abc.ABC, metaclass=abc.ABCMeta):
     async def async_restore_backup(self, backup_id: str, *, agent_id: str, on_progress: Callable[[RestoreBackupEvent], None], open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], password: str | None, restore_addons: list[str] | None, restore_database: bool, restore_folders: list[Folder] | None, restore_homeassistant: bool) -> None: ...
     @abc.abstractmethod
     async def async_resume_restore_progress_after_restart(self, *, on_progress: Callable[[RestoreBackupEvent | IdleEvent], None]) -> None: ...
-
-class BackupReaderWriterError(BackupError):
-    error_code: str
 
 class IncorrectPasswordError(BackupReaderWriterError):
     error_code: str

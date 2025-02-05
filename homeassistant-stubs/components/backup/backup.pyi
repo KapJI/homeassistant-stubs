@@ -1,6 +1,6 @@
-from .agent import BackupAgent as BackupAgent, BackupNotFound as BackupNotFound, LocalBackupAgent as LocalBackupAgent
+from .agent import BackupAgent as BackupAgent, LocalBackupAgent as LocalBackupAgent
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
-from .models import AgentBackup as AgentBackup
+from .models import AgentBackup as AgentBackup, BackupNotFound as BackupNotFound
 from .util import read_backup as read_backup, suggested_filename as suggested_filename
 from _typeshed import Incomplete
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine

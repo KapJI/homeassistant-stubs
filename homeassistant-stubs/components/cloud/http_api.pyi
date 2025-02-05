@@ -5,7 +5,7 @@ from .google_config import CLOUD_GOOGLE as CLOUD_GOOGLE
 from .repairs import async_manage_legacy_subscription_issue as async_manage_legacy_subscription_issue
 from .subscription import async_subscription_info as async_subscription_info
 from _typeshed import Incomplete
-from aiohttp import web as web
+from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from hass_nabucasa import Cloud as Cloud, auth
 from homeassistant.components import websocket_api as websocket_api
@@ -75,6 +75,12 @@ class CloudForgotPasswordView(HomeAssistantView):
     @require_admin
     @_handle_cloud_errors
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+
+class DownloadSupportPackageView(HomeAssistantView):
+    url: str
+    name: str
+    def _generate_markdown(self, hass_info: dict[str, Any], domains_info: dict[str, dict[str, str]]) -> str: ...
+    async def get(self, request: web.Request) -> web.Response: ...
 
 @websocket_api.require_admin
 @websocket_api.async_response

@@ -39,7 +39,8 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     always_update: Incomplete
     data: _DataT
     _microsecond: Incomplete
-    _listeners: dict[CALLBACK_TYPE, tuple[CALLBACK_TYPE, object | None]]
+    _listeners: dict[int, tuple[CALLBACK_TYPE, object | None]]
+    _last_listener_id: int
     _unsub_refresh: CALLBACK_TYPE | None
     _unsub_shutdown: CALLBACK_TYPE | None
     _request_refresh_task: asyncio.TimerHandle | None
@@ -50,6 +51,8 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     async def async_register_shutdown(self) -> None: ...
     @callback
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = None) -> Callable[[], None]: ...
+    @callback
+    def __async_remove_listener_internal(self, listener_id: int) -> None: ...
     @callback
     def async_update_listeners(self) -> None: ...
     async def async_shutdown(self) -> None: ...

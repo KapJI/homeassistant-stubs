@@ -22,7 +22,7 @@ class OneDriveBackupAgent(BackupAgent):
     _hass: Incomplete
     _entry: Incomplete
     _client: Incomplete
-    _token_provider: Incomplete
+    _token_function: Incomplete
     _folder_id: Incomplete
     name: Incomplete
     unique_id: Incomplete

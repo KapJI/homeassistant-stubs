@@ -1,5 +1,4 @@
 import logging
-from .api import OneDriveConfigFlowAccessTokenProvider as OneDriveConfigFlowAccessTokenProvider
 from .const import DOMAIN as DOMAIN, OAUTH_SCOPES as OAUTH_SCOPES
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH

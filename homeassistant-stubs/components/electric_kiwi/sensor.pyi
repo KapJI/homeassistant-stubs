@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
-from electrickiwi_api.model import AccountBalance as AccountBalance, Hop as Hop
+from electrickiwi_api.model import AccountSummary as AccountSummary, Hop as Hop
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CURRENCY_DOLLAR as CURRENCY_DOLLAR, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -20,7 +20,9 @@ ATTR_HOP_PERCENTAGE: str
 
 @dataclass(frozen=True, kw_only=True)
 class ElectricKiwiAccountSensorEntityDescription(SensorEntityDescription):
-    value_func: Callable[[AccountBalance], float | datetime]
+    value_func: Callable[[AccountSummary], float | datetime]
+
+def _get_hop_percentage(account_balance: AccountSummary) -> float: ...
 
 ACCOUNT_SENSOR_TYPES: tuple[ElectricKiwiAccountSensorEntityDescription, ...]
 

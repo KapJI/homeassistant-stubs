@@ -1,11 +1,15 @@
 import logging
+from . import api as api
 from .const import DOMAIN as DOMAIN, SCOPE_VALUES as SCOPE_VALUES
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
 
 class ElectricKiwiOauth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
+    VERSION: int
+    MINOR_VERSION: int
     DOMAIN = DOMAIN
     @property
     def logger(self) -> logging.Logger: ...

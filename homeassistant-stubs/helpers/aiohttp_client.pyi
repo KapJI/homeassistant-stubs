@@ -5,7 +5,7 @@ from .json import json_dumps as json_dumps
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
-from aiohttp_asyncmdnsresolver.api import AsyncMDNSResolver
+from aiohttp_asyncmdnsresolver.api import AsyncDualMDNSResolver
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
@@ -60,4 +60,4 @@ class HomeAssistantTCPConnector(aiohttp.TCPConnector):
 @callback
 def _async_get_connector(hass: HomeAssistant, verify_ssl: bool = True, family: socket.AddressFamily = ..., ssl_cipher: ssl_util.SSLCipherList = ...) -> aiohttp.BaseConnector: ...
 @callback
-def _async_make_resolver(hass: HomeAssistant) -> AsyncMDNSResolver: ...
+def _async_make_resolver(hass: HomeAssistant) -> AsyncDualMDNSResolver: ...

@@ -2,6 +2,9 @@ from .const import AssistSatelliteEntityFeature as AssistSatelliteEntityFeature,
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
+from typing import Final
+
+EXCLUDED_DOMAINS: Final[set[str]]
 
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
 

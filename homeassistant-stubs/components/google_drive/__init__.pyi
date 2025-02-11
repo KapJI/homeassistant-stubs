@@ -2,7 +2,7 @@ from .api import AsyncConfigEntryAuth as AsyncConfigEntryAuth, DriveClient as Dr
 from .const import DOMAIN as DOMAIN
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import instance_id as instance_id
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -14,4 +14,6 @@ type GoogleDriveConfigEntry = ConfigEntry[DriveClient]
 
 async def async_setup_entry(hass: HomeAssistant, entry: GoogleDriveConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: GoogleDriveConfigEntry) -> bool: ...
-def _notify_backup_listeners(hass: HomeAssistant) -> None: ...
+def _async_notify_backup_listeners(hass: HomeAssistant) -> None: ...
+@callback
+def _async_notify_backup_listeners_soon(hass: HomeAssistant) -> None: ...

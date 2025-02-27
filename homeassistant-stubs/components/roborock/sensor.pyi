@@ -1,6 +1,5 @@
 import datetime
-from . import RoborockConfigEntry as RoborockConfigEntry
-from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01
+from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01
 from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -8,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from roborock.roborock_message import RoborockDataProtocol, RoborockDyadDataProtocol, RoborockZeoProtocol
 from roborock.roborock_typing import DeviceProp as DeviceProp
@@ -27,7 +26,7 @@ def _dock_error_value_fn(properties: DeviceProp) -> str | None: ...
 SENSOR_DESCRIPTIONS: Incomplete
 A01_SENSOR_DESCRIPTIONS: list[RoborockSensorDescriptionA01]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RoborockSensorEntity(RoborockCoordinatedEntityV1, SensorEntity):
     entity_description: RoborockSensorDescription

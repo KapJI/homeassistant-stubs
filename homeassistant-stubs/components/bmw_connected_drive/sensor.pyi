@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfLength as UnitOfLength, UnitOfPressure as UnitOfPressure, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -21,7 +21,7 @@ class BMWSensorEntityDescription(SensorEntityDescription):
 TIRES: Incomplete
 SENSOR_TYPES: list[BMWSensorEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BMWSensor(BMWBaseEntity, SensorEntity):
     entity_description: BMWSensorEntityDescription

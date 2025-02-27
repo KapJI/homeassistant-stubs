@@ -8,7 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tesla_powerwall import MeterResponse, MeterType as MeterType
 
 _METER_DIRECTION_EXPORT: str
@@ -31,7 +31,7 @@ def _get_instant_current(battery: BatteryResponse) -> float | None: ...
 
 BATTERY_INSTANT_SENSORS: list[PowerwallSensorEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: PowerwallConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PowerwallConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PowerWallChargeSensor(PowerWallEntity, SensorEntity):
     _attr_translation_key: str

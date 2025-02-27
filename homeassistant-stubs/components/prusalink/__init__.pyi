@@ -1,6 +1,6 @@
 from .config_flow import ConfigFlow as ConfigFlow
 from .const import DOMAIN as DOMAIN
-from .coordinator import InfoUpdateCoordinator as InfoUpdateCoordinator, JobUpdateCoordinator as JobUpdateCoordinator, LegacyStatusCoordinator as LegacyStatusCoordinator, StatusCoordinator as StatusCoordinator
+from .coordinator import InfoUpdateCoordinator as InfoUpdateCoordinator, JobUpdateCoordinator as JobUpdateCoordinator, LegacyStatusCoordinator as LegacyStatusCoordinator, PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator, StatusCoordinator as StatusCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

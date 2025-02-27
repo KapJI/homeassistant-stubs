@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_MODE as ATTR_MODE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pybotvac import Robot as Robot
 from typing import Any
 
@@ -28,7 +28,7 @@ ATTR_NAVIGATION: str
 ATTR_CATEGORY: str
 ATTR_ZONE: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
     _attr_supported_features: Incomplete

@@ -5,7 +5,7 @@ from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ACTION as CONF_ACTION, CONF_ENTITIES as CONF_ENTITIES, CONF_SERVICE as CONF_SERVICE, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
@@ -24,7 +24,7 @@ class GroupNotifyPlatform(BaseNotificationService):
     def __init__(self, hass: HomeAssistant, entities: list[dict[str, Any]]) -> None: ...
     async def async_send_message(self, message: str = '', **kwargs: Any) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
 def async_create_preview_notify(hass: HomeAssistant, name: str, validated_config: dict[str, Any]) -> NotifyGroup: ...
 

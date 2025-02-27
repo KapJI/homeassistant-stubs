@@ -27,6 +27,7 @@ class Options:
     def __post_init__(self) -> None: ...
 
 class DeviceCoordinator(DataUpdateCoordinator[None]):
+    config_entry: ConfigEntry
     options: Options | None
     hass: Incomplete
     wemo: Incomplete
@@ -34,7 +35,7 @@ class DeviceCoordinator(DataUpdateCoordinator[None]):
     device_info: Incomplete
     supports_long_press: Incomplete
     update_lock: Incomplete
-    def __init__(self, hass: HomeAssistant, wemo: WeMoDevice) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, wemo: WeMoDevice) -> None: ...
     @callback
     def async_setup(self, device_id: str) -> None: ...
     def subscription_callback(self, _device: WeMoDevice, event_type: str, params: str) -> None: ...

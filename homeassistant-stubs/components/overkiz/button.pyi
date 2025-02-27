@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyoverkiz.types import StateType as OverkizStateType
 
 @dataclass(frozen=True)
@@ -16,7 +16,7 @@ class OverkizButtonDescription(ButtonEntityDescription):
 BUTTON_DESCRIPTIONS: list[OverkizButtonDescription]
 SUPPORTED_COMMANDS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OverkizButton(OverkizDescriptiveEntity, ButtonEntity):
     entity_description: OverkizButtonDescription

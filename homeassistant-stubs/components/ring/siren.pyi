@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.siren import ATTR_TONE as ATTR_TONE, SirenEntity as SirenEntity, SirenEntityDescription as SirenEntityDescription, SirenEntityFeature as SirenEntityFeature, SirenTurnOnServiceParameters as SirenTurnOnServiceParameters
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingGeneric as RingGeneric
 from typing import Any, Generic
 
@@ -24,7 +24,7 @@ class RingSirenEntityDescription(SirenEntityDescription, RingEntityDescription, 
 
 SIRENS: tuple[RingSirenEntityDescription[Any], ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RingSiren(RingEntity[RingDeviceT], SirenEntity):
     entity_description: RingSirenEntityDescription[RingDeviceT]

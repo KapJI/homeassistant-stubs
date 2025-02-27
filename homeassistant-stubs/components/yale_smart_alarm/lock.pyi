@@ -7,13 +7,13 @@ from homeassistant.components.lock import LockEntity as LockEntity, LockState as
 from homeassistant.const import ATTR_CODE as ATTR_CODE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 from yalesmartalarmclient import YaleLock as YaleLock, YaleLockState
 
 LOCK_STATE_MAP: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: YaleConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: YaleConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class YaleDoorlock(YaleLockEntity, LockEntity):
     _attr_name: Incomplete

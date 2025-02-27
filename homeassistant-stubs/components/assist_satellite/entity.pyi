@@ -12,11 +12,10 @@ from homeassistant.components.assist_pipeline import AudioSettings as AudioSetti
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import Context as Context, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity as entity
+from homeassistant.helpers import chat_session as chat_session, entity as entity
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from typing import Any, Final, Literal, final
+from typing import Any, Literal, final
 
-_CONVERSATION_TIMEOUT_SEC: Final[Incomplete]
 _LOGGER: Incomplete
 
 class AssistSatelliteState(StrEnum):
@@ -53,7 +52,6 @@ class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     _attr_pipeline_entity_id: str | None
     _attr_vad_sensitivity_entity_id: str | None
     _conversation_id: str | None
-    _conversation_id_time: float | None
     _run_has_tts: bool
     _is_announcing: bool
     _extra_system_prompt: str | None

@@ -11,7 +11,7 @@ from homeassistant.const import ATTR_ID as ATTR_ID, EntityCategory as EntityCate
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any, Concatenate
 
@@ -61,7 +61,7 @@ TYPE_RESTRICTIONS_FREEZE_PROTECT_ENABLED: str
 TYPE_RESTRICTIONS_HOT_DAYS_EXTRA_WATERING: str
 RESTRICTIONS_SWITCH_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RainMachineBaseSwitch(RainMachineEntity, SwitchEntity):
     entity_description: RainMachineSwitchDescription

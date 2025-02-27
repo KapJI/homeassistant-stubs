@@ -1,4 +1,4 @@
-from . import ImgwPibConfigEntry as ImgwPibConfigEntry
+from .coordinator import ImgwPibConfigEntry as ImgwPibConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

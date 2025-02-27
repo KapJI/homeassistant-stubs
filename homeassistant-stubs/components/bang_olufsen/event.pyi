@@ -6,9 +6,11 @@ from homeassistant.components.event import EventDeviceClass as EventDeviceClass,
 from homeassistant.const import CONF_MODEL as CONF_MODEL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BangOlufsenConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+PARALLEL_UPDATES: int
+
+async def async_setup_entry(hass: HomeAssistant, config_entry: BangOlufsenConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BangOlufsenButtonEvent(BangOlufsenEntity, EventEntity):
     _attr_device_class: Incomplete

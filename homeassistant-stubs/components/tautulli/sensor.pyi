@@ -1,6 +1,5 @@
-from . import TautulliConfigEntry as TautulliConfigEntry
 from .const import ATTR_TOP_USER as ATTR_TOP_USER, DOMAIN as DOMAIN
-from .coordinator import TautulliDataUpdateCoordinator as TautulliDataUpdateCoordinator
+from .coordinator import TautulliConfigEntry as TautulliConfigEntry, TautulliDataUpdateCoordinator as TautulliDataUpdateCoordinator
 from .entity import TautulliEntity as TautulliEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -10,7 +9,7 @@ from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from pytautulli import PyTautulliApiActivity as PyTautulliApiActivity, PyTautulliApiHomeStats as PyTautulliApiHomeStats, PyTautulliApiSession as PyTautulliApiSession, PyTautulliApiUser as PyTautulliApiUser
 
@@ -29,7 +28,7 @@ class TautulliSessionSensorEntityDescription(SensorEntityDescription):
 SESSION_SENSOR_TYPES: tuple[TautulliSessionSensorEntityDescription, ...]
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: TautulliConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TautulliConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TautulliSensor(TautulliEntity, SensorEntity):
     entity_description: TautulliSensorEntityDescription

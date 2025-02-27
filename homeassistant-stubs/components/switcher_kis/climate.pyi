@@ -10,7 +10,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemp
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 API_CONTROL_BREEZE_DEVICE: str
@@ -19,7 +19,7 @@ HA_TO_DEVICE_MODE: Incomplete
 DEVICE_FAN_TO_HA: Incomplete
 HA_TO_DEVICE_FAN: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: SwitcherConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: SwitcherConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitcherClimateEntity(SwitcherEntity, ClimateEntity):
     _attr_name: Incomplete

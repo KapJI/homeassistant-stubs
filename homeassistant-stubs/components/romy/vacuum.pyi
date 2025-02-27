@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 FAN_SPEED_NONE: str
@@ -18,7 +18,7 @@ FAN_SPEED_AUTO: str
 FAN_SPEEDS: list[str]
 SUPPORT_ROMY_ROBOT: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RomyVacuumEntity(RomyEntity, StateVacuumEntity):
     _attr_supported_features = SUPPORT_ROMY_ROBOT

@@ -14,7 +14,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity import generate_entity_id as generate_entity_id
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -37,7 +37,7 @@ class GoogleCalendarEntityDescription(CalendarEntityDescription):
     working_location: bool = ...
 
 def _get_entity_descriptions(hass: HomeAssistant, config_entry: ConfigEntry, calendar_item: Calendar, calendar_info: Mapping[str, Any]) -> list[GoogleCalendarEntityDescription]: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class GoogleCalendarEntity(CoordinatorEntity[CalendarSyncUpdateCoordinator | CalendarQueryUpdateCoordinator], CalendarEntity):
     entity_description: GoogleCalendarEntityDescription

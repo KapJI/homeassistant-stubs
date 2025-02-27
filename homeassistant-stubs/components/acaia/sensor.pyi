@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorExtraStoredData as SensorExtraStoredData, SensorStateClass as SensorStateClass
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfMass as UnitOfMass, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -22,7 +22,7 @@ class AcaiaDynamicUnitSensorEntityDescription(AcaiaSensorEntityDescription):
 SENSORS: tuple[AcaiaSensorEntityDescription, ...]
 RESTORE_SENSORS: tuple[AcaiaSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AcaiaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AcaiaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AcaiaSensor(AcaiaEntity, SensorEntity):
     entity_description: AcaiaDynamicUnitSensorEntityDescription

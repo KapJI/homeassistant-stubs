@@ -3,11 +3,11 @@ from _typeshed import Incomplete
 from canary.model import Location as Location
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: CanaryConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CanaryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CanaryAlarm(CoordinatorEntity[CanaryDataUpdateCoordinator], AlarmControlPanelEntity):
     _attr_supported_features: Incomplete

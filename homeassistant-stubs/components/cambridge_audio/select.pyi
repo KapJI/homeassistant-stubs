@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -23,7 +23,7 @@ def _audio_output_value_fn(client: StreamMagicClient) -> str | None: ...
 
 CONTROL_ENTITIES: tuple[CambridgeAudioSelectEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CambridgeAudioSelect(CambridgeAudioEntity, SelectEntity):
     entity_description: CambridgeAudioSelectEntityDescription

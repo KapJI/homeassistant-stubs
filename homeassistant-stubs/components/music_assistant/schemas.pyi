@@ -8,7 +8,7 @@ from typing import Any
 
 MEDIA_ITEM_SCHEMA: Incomplete
 
-def media_item_dict_from_mass_item(mass: MusicAssistantClient, item: MediaItemType | ItemMapping | None) -> dict[str, Any] | None: ...
+def media_item_dict_from_mass_item(mass: MusicAssistantClient, item: MediaItemType | ItemMapping) -> dict[str, Any]: ...
 
 SEARCH_RESULT_SCHEMA: Incomplete
 LIBRARY_RESULTS_SCHEMA: Incomplete

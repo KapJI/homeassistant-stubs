@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from types import MappingProxyType
 from typing import Any
 
@@ -16,7 +16,7 @@ _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 def to_voice_settings(options: MappingProxyType[str, Any]) -> VoiceSettings: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ElevenLabsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElevenLabsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElevenLabsTTSEntity(TextToSpeechEntity):
     _attr_supported_options: Incomplete

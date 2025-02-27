@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class BAFNumberDescription(NumberEntityDescription):
@@ -18,7 +18,7 @@ AUTO_COMFORT_NUMBER_DESCRIPTIONS: Incomplete
 FAN_NUMBER_DESCRIPTIONS: Incomplete
 LIGHT_NUMBER_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BAFNumber(BAFDescriptionEntity, NumberEntity):
     entity_description: BAFNumberDescription

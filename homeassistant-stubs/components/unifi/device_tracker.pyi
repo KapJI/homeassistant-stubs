@@ -12,7 +12,7 @@ from datetime import timedelta
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity, ScannerEntityDescription as ScannerEntityDescription
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from propcache.api import cached_property
 from typing import Any
 
@@ -45,7 +45,7 @@ ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 
 @callback
 def async_update_unique_id(hass: HomeAssistant, config_entry: UnifiConfigEntry) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class UnifiScannerEntity(UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
     entity_description: UnifiTrackerEntityDescription

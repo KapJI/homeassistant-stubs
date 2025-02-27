@@ -6,12 +6,12 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components.notify import NotifyEntity as NotifyEntity
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from xknx import XKNX as XKNX
 from xknx.devices import Notification as XknxNotification
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _create_notification_instance(xknx: XKNX, config: ConfigType) -> XknxNotification: ...
 
 class KNXNotify(KnxYamlEntity, NotifyEntity):

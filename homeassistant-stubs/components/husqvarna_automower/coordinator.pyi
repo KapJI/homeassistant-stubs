@@ -1,9 +1,9 @@
-from . import AutomowerConfigEntry as AutomowerConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aioautomower.model import MowerAttributes
 from aioautomower.session import AutomowerSession as AutomowerSession
 from collections.abc import Callable as Callable
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -12,6 +12,7 @@ _LOGGER: Incomplete
 MAX_WS_RECONNECT_TIME: int
 SCAN_INTERVAL: Incomplete
 DEFAULT_RECONNECT_TIME: int
+type AutomowerConfigEntry = ConfigEntry[AutomowerDataUpdateCoordinator]
 
 class AutomowerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, MowerAttributes]]):
     config_entry: AutomowerConfigEntry
@@ -24,7 +25,7 @@ class AutomowerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, MowerAttrib
     _devices_last_update: set[str]
     _zones_last_update: dict[str, set[str]]
     _areas_last_update: dict[str, set[int]]
-    def __init__(self, hass: HomeAssistant, api: AutomowerSession) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: AutomowerConfigEntry, api: AutomowerSession) -> None: ...
     async def _async_update_data(self) -> dict[str, MowerAttributes]: ...
     @callback
     def callback(self, ws_data: dict[str, MowerAttributes]) -> None: ...

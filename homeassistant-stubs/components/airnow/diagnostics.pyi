@@ -1,4 +1,4 @@
-from . import AirNowConfigEntry as AirNowConfigEntry
+from .coordinator import AirNowConfigEntry as AirNowConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_UNIQUE_ID as CONF_UNIQUE_ID

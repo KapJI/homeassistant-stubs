@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingCapability, RingEvent as RingAlert
 from typing import Generic
 
@@ -17,7 +17,7 @@ class RingEventEntityDescription(EventEntityDescription, Generic[RingDeviceT]):
 
 EVENT_DESCRIPTIONS: tuple[RingEventEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RingEvent(RingBaseEntity[RingListenCoordinator, RingDeviceT], EventEntity):
     entity_description: RingEventEntityDescription[RingDeviceT]

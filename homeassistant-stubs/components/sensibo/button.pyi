@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -17,7 +17,7 @@ class SensiboButtonEntityDescription(ButtonEntityDescription):
 
 DEVICE_BUTTON_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SensiboDeviceButton(SensiboDeviceBaseEntity, ButtonEntity):
     entity_description: SensiboButtonEntityDescription

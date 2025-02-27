@@ -6,12 +6,12 @@ from aiotedee import TedeeLock as TedeeLock
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TedeeLockEntity(TedeeEntity, LockEntity):
     _attr_name: Incomplete

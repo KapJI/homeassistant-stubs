@@ -1,13 +1,12 @@
-from . import TransmissionConfigEntry as TransmissionConfigEntry
 from .const import DOMAIN as DOMAIN
-from .coordinator import TransmissionDataUpdateCoordinator as TransmissionDataUpdateCoordinator
+from .coordinator import TransmissionConfigEntry as TransmissionConfigEntry, TransmissionDataUpdateCoordinator as TransmissionDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -19,7 +18,7 @@ class TransmissionSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCH_TYPES: tuple[TransmissionSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: TransmissionConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: TransmissionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TransmissionSwitch(CoordinatorEntity[TransmissionDataUpdateCoordinator], SwitchEntity):
     entity_description: TransmissionSwitchEntityDescription

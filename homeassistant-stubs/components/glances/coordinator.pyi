@@ -10,11 +10,12 @@ from homeassistant.util.dt import parse_duration as parse_duration, utcnow as ut
 from typing import Any
 
 _LOGGER: Incomplete
+type GlancesConfigEntry = ConfigEntry[GlancesDataUpdateCoordinator]
 
 class GlancesDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
-    config_entry: ConfigEntry
+    config_entry: GlancesConfigEntry
     hass: Incomplete
     host: str
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: Glances) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: GlancesConfigEntry, api: Glances) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

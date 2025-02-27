@@ -4,12 +4,12 @@ from .entity import YaleLockEntity as YaleLockEntity
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from yalesmartalarmclient import YaleLock as YaleLock
 
 VOLUME_OPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: YaleConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: YaleConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class YaleLockVolumeSelect(YaleLockEntity, SelectEntity):
     _attr_translation_key: str

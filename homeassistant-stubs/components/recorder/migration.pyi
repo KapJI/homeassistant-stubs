@@ -1,7 +1,7 @@
 import abc
 from . import Recorder as Recorder
 from .auto_repairs.statistics.duplicates import delete_statistics_duplicates as delete_statistics_duplicates, delete_statistics_meta_duplicates as delete_statistics_meta_duplicates
-from .const import CONTEXT_ID_AS_BINARY_SCHEMA_VERSION as CONTEXT_ID_AS_BINARY_SCHEMA_VERSION, EVENT_TYPE_IDS_SCHEMA_VERSION as EVENT_TYPE_IDS_SCHEMA_VERSION, LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION as LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION, STATES_META_SCHEMA_VERSION as STATES_META_SCHEMA_VERSION, SupportedDialect as SupportedDialect
+from .const import CONTEXT_ID_AS_BINARY_SCHEMA_VERSION as CONTEXT_ID_AS_BINARY_SCHEMA_VERSION, EVENT_TYPE_IDS_SCHEMA_VERSION as EVENT_TYPE_IDS_SCHEMA_VERSION, LEGACY_STATES_EVENT_FOREIGN_KEYS_FIXED_SCHEMA_VERSION as LEGACY_STATES_EVENT_FOREIGN_KEYS_FIXED_SCHEMA_VERSION, LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION as LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION, STATES_META_SCHEMA_VERSION as STATES_META_SCHEMA_VERSION, SupportedDialect as SupportedDialect
 from .db_schema import BIG_INTEGER_SQL as BIG_INTEGER_SQL, Base as Base, CONTEXT_ID_BIN_MAX_LENGTH as CONTEXT_ID_BIN_MAX_LENGTH, DOUBLE_PRECISION_TYPE_SQL as DOUBLE_PRECISION_TYPE_SQL, EventTypes as EventTypes, Events as Events, LEGACY_STATES_ENTITY_ID_LAST_UPDATED_TS_INDEX as LEGACY_STATES_ENTITY_ID_LAST_UPDATED_TS_INDEX, LEGACY_STATES_EVENT_ID_INDEX as LEGACY_STATES_EVENT_ID_INDEX, LegacyBase as LegacyBase, MYSQL_COLLATE as MYSQL_COLLATE, MYSQL_DEFAULT_CHARSET as MYSQL_DEFAULT_CHARSET, MigrationChanges as MigrationChanges, SCHEMA_VERSION as SCHEMA_VERSION, STATISTICS_TABLES as STATISTICS_TABLES, SchemaChanges as SchemaChanges, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm, TABLE_STATES as TABLE_STATES
 from .models import process_timestamp as process_timestamp
 from .models.time import datetime_to_timestamp_or_none as datetime_to_timestamp_or_none
@@ -342,7 +342,7 @@ class EntityIDMigration(BaseMigrationWithQuery, BaseOffLineMigration):
 
 class EventIDPostMigration(BaseRunTimeMigration):
     migration_id: str
-    max_initial_schema_version: Incomplete
+    max_initial_schema_version = LEGACY_STATES_EVENT_FOREIGN_KEYS_FIXED_SCHEMA_VERSION
     task = MigrationTask
     migration_version: int
     def migrate_data_impl(self, instance: Recorder) -> DataMigrationStatus: ...

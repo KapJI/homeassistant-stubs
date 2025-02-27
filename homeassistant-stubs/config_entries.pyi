@@ -23,6 +23,7 @@ from .helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServic
 from .helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from .setup import DATA_SETUP_DONE as DATA_SETUP_DONE, SetupPhases as SetupPhases, async_pause_setup as async_pause_setup, async_process_deps_reqs as async_process_deps_reqs, async_setup_component as async_setup_component, async_start_setup as async_start_setup
+from .util import ulid as ulid_util
 from .util.async_ import create_eager_task as create_eager_task
 from .util.decorator import Registry as Registry
 from .util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
@@ -31,12 +32,13 @@ from _typeshed import Incomplete
 from collections import UserDict, defaultdict
 from collections.abc import Callable, Coroutine, Generator, Iterable, Mapping, ValuesView
 from contextvars import ContextVar
+from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum, StrEnum
 from functools import cache
 from propcache.api import cached_property
 from types import MappingProxyType
-from typing import Any, Self
+from typing import Any, Self, TypedDict
 
 _LOGGER: Incomplete
 SOURCE_BLUETOOTH: str
@@ -73,6 +75,7 @@ class ConfigEntryState(Enum):
     NOT_LOADED = ('not_loaded', True)
     FAILED_UNLOAD = ('failed_unload', False)
     SETUP_IN_PROGRESS = ('setup_in_progress', False)
+    UNLOAD_IN_PROGRESS = ('unload_in_progress', False)
     _recoverable: bool
     def __new__(cls, value: str, recoverable: bool) -> Self: ...
     @property
@@ -109,6 +112,7 @@ CONN_CLASS_UNKNOWN: str
 
 class ConfigError(HomeAssistantError): ...
 class UnknownEntry(ConfigError): ...
+class UnknownSubEntry(ConfigError): ...
 class OperationNotAllowed(ConfigError): ...
 type UpdateListenerType = Callable[[HomeAssistant, ConfigEntry], Coroutine[Any, Any, None]]
 
@@ -128,9 +132,35 @@ class ConfigFlowContext(FlowContext, total=False):
 class ConfigFlowResult(FlowResult[ConfigFlowContext, str], total=False):
     minor_version: int
     options: Mapping[str, Any]
+    subentries: Iterable[ConfigSubentryData]
     version: int
 
 def _validate_item(*, disabled_by: ConfigEntryDisabler | Any | None = None) -> None: ...
+
+class ConfigSubentryData(TypedDict):
+    data: Mapping[str, Any]
+    subentry_type: str
+    title: str
+    unique_id: str | None
+
+class ConfigSubentryDataWithId(ConfigSubentryData):
+    subentry_id: str
+
+class SubentryFlowContext(FlowContext, total=False):
+    entry_id: str
+    subentry_id: str
+
+class SubentryFlowResult(FlowResult[SubentryFlowContext, tuple[str, str]], total=False):
+    unique_id: str | None
+
+@dataclass(frozen=True, kw_only=True)
+class ConfigSubentry:
+    data: MappingProxyType[str, Any]
+    subentry_id: str = field(default_factory=ulid_util.ulid_now)
+    subentry_type: str
+    title: str
+    unique_id: str | None
+    def as_dict(self) -> ConfigSubentryDataWithId: ...
 
 class ConfigEntry[_DataT = Any]:
     entry_id: str
@@ -139,6 +169,7 @@ class ConfigEntry[_DataT = Any]:
     data: MappingProxyType[str, Any]
     runtime_data: _DataT
     options: MappingProxyType[str, Any]
+    subentries: MappingProxyType[str, ConfigSubentry]
     unique_id: str | None
     state: ConfigEntryState
     reason: str | None
@@ -154,9 +185,11 @@ class ConfigEntry[_DataT = Any]:
     supports_remove_device: bool | None
     _supports_options: bool | None
     _supports_reconfigure: bool | None
+    _supported_subentry_types: dict[str, dict[str, bool]] | None
     update_listeners: list[UpdateListenerType]
     _async_cancel_retry_setup: Callable[[], Any] | None
     _on_unload: list[Callable[[], Coroutine[Any, Any, None] | None]] | None
+    _on_state_change: list[CALLBACK_TYPE] | None
     setup_lock: asyncio.Lock
     _reauth_lock: asyncio.Lock
     _tasks: set[asyncio.Future[Any]]
@@ -166,13 +199,15 @@ class ConfigEntry[_DataT = Any]:
     created_at: datetime
     modified_at: datetime
     discovery_keys: MappingProxyType[str, tuple[DiscoveryKey, ...]]
-    def __init__(self, *, created_at: datetime | None = None, data: Mapping[str, Any], disabled_by: ConfigEntryDisabler | None = None, discovery_keys: MappingProxyType[str, tuple[DiscoveryKey, ...]], domain: str, entry_id: str | None = None, minor_version: int, modified_at: datetime | None = None, options: Mapping[str, Any] | None, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, source: str, state: ConfigEntryState = ..., title: str, unique_id: str | None, version: int) -> None: ...
+    def __init__(self, *, created_at: datetime | None = None, data: Mapping[str, Any], disabled_by: ConfigEntryDisabler | None = None, discovery_keys: MappingProxyType[str, tuple[DiscoveryKey, ...]], domain: str, entry_id: str | None = None, minor_version: int, modified_at: datetime | None = None, options: Mapping[str, Any] | None, pref_disable_new_entities: bool | None = None, pref_disable_polling: bool | None = None, source: str, state: ConfigEntryState = ..., subentries_data: Iterable[ConfigSubentryData | ConfigSubentryDataWithId] | None, title: str, unique_id: str | None, version: int) -> None: ...
     def __repr__(self) -> str: ...
     def __setattr__(self, key: str, value: Any) -> None: ...
     @property
     def supports_options(self) -> bool: ...
     @property
     def supports_reconfigure(self) -> bool: ...
+    @property
+    def supported_subentry_types(self) -> dict[str, dict[str, bool]]: ...
     def clear_state_cache(self) -> None: ...
     @cached_property
     def as_json_fragment(self) -> json_fragment: ...
@@ -198,6 +233,9 @@ class ConfigEntry[_DataT = Any]:
     @callback
     def async_on_unload(self, func: Callable[[], Coroutine[Any, Any, None] | None]) -> None: ...
     async def _async_process_on_unload(self, hass: HomeAssistant) -> None: ...
+    @callback
+    def async_on_state_change(self, func: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
+    def _async_process_on_state_change(self) -> None: ...
     @callback
     def async_start_reauth(self, hass: HomeAssistant, context: ConfigFlowContext | None = None, data: dict[str, Any] | None = None) -> None: ...
     async def _async_init_reauth(self, hass: HomeAssistant, context: ConfigFlowContext | None = None, data: dict[str, Any] | None = None) -> None: ...
@@ -263,6 +301,7 @@ class ConfigEntries:
     hass: Incomplete
     flow: Incomplete
     options: Incomplete
+    subentries: Incomplete
     _hass_config: Incomplete
     _entries: Incomplete
     _store: Incomplete
@@ -300,6 +339,17 @@ class ConfigEntries:
     @callback
     def async_update_entry(self, entry: ConfigEntry, *, data: Mapping[str, Any] | UndefinedType = ..., discovery_keys: MappingProxyType[str, tuple[DiscoveryKey, ...]] | UndefinedType = ..., minor_version: int | UndefinedType = ..., options: Mapping[str, Any] | UndefinedType = ..., pref_disable_new_entities: bool | UndefinedType = ..., pref_disable_polling: bool | UndefinedType = ..., title: str | UndefinedType = ..., unique_id: str | None | UndefinedType = ..., version: int | UndefinedType = ...) -> bool: ...
     @callback
+    def _async_update_entry(self, entry: ConfigEntry, *, data: Mapping[str, Any] | UndefinedType = ..., discovery_keys: MappingProxyType[str, tuple[DiscoveryKey, ...]] | UndefinedType = ..., minor_version: int | UndefinedType = ..., options: Mapping[str, Any] | UndefinedType = ..., pref_disable_new_entities: bool | UndefinedType = ..., pref_disable_polling: bool | UndefinedType = ..., subentries: dict[str, ConfigSubentry] | UndefinedType = ..., title: str | UndefinedType = ..., unique_id: str | None | UndefinedType = ..., version: int | UndefinedType = ...) -> bool: ...
+    @callback
+    def _async_save_and_notify(self, entry: ConfigEntry) -> None: ...
+    @callback
+    def async_add_subentry(self, entry: ConfigEntry, subentry: ConfigSubentry) -> bool: ...
+    @callback
+    def async_remove_subentry(self, entry: ConfigEntry, subentry_id: str) -> bool: ...
+    @callback
+    def async_update_subentry(self, entry: ConfigEntry, subentry: ConfigSubentry, *, data: Mapping[str, Any] | UndefinedType = ..., title: str | UndefinedType = ..., unique_id: str | None | UndefinedType = ...) -> bool: ...
+    def _raise_if_subentry_unique_id_exists(self, entry: ConfigEntry, unique_id: str | None) -> None: ...
+    @callback
     def _async_dispatch(self, change_type: ConfigEntryChange, entry: ConfigEntry) -> None: ...
     async def async_forward_entry_setups(self, entry: ConfigEntry, platforms: Iterable[Platform | str]) -> None: ...
     async def _async_forward_entry_setups_locked(self, entry: ConfigEntry, platforms: Iterable[Platform | str]) -> None: ...
@@ -331,6 +381,9 @@ class ConfigFlow(ConfigEntryBaseFlow):
     @classmethod
     @callback
     def async_supports_options_flow(cls, config_entry: ConfigEntry) -> bool: ...
+    @classmethod
+    @callback
+    def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
     @callback
     def _async_abort_entries_match(self, match_dict: dict[str, Any] | None = None) -> None: ...
     @callback
@@ -363,7 +416,7 @@ class ConfigFlow(ConfigEntryBaseFlow):
     async def async_step_usb(self, discovery_info: UsbServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     @callback
-    def async_create_entry(self, *, title: str, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None, options: Mapping[str, Any] | None = None) -> ConfigFlowResult: ...
+    def async_create_entry(self, *, title: str, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None, options: Mapping[str, Any] | None = None, subentries: Iterable[ConfigSubentryData] | None = None) -> ConfigFlowResult: ...
     @callback
     def async_update_reload_and_abort(self, entry: ConfigEntry, *, unique_id: str | None | UndefinedType = ..., title: str | UndefinedType = ..., data: Mapping[str, Any] | UndefinedType = ..., data_updates: Mapping[str, Any] | UndefinedType = ..., options: Mapping[str, Any] | UndefinedType = ..., reason: str | UndefinedType = ..., reload_even_if_entry_is_unchanged: bool = True) -> ConfigFlowResult: ...
     @callback
@@ -378,9 +431,33 @@ class ConfigFlow(ConfigEntryBaseFlow):
     @callback
     def _get_reconfigure_entry(self) -> ConfigEntry: ...
 
-class OptionsFlowManager(data_entry_flow.FlowManager[ConfigFlowContext, ConfigFlowResult]):
-    _flow_result = ConfigFlowResult
+class _ConfigSubFlowManager:
+    hass: HomeAssistant
     def _async_get_config_entry(self, config_entry_id: str) -> ConfigEntry: ...
+
+class ConfigSubentryFlowManager(data_entry_flow.FlowManager[SubentryFlowContext, SubentryFlowResult, tuple[str, str]], _ConfigSubFlowManager):
+    _flow_result = SubentryFlowResult
+    async def async_create_flow(self, handler_key: tuple[str, str], *, context: FlowContext | None = None, data: dict[str, Any] | None = None) -> ConfigSubentryFlow: ...
+    async def async_finish_flow(self, flow: data_entry_flow.FlowHandler[SubentryFlowContext, SubentryFlowResult, tuple[str, str]], result: SubentryFlowResult) -> SubentryFlowResult: ...
+
+class ConfigSubentryFlow(data_entry_flow.FlowHandler[SubentryFlowContext, SubentryFlowResult, tuple[str, str]]):
+    _flow_result = SubentryFlowResult
+    handler: tuple[str, str]
+    @callback
+    def async_create_entry(self, *, title: str | None = None, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None, unique_id: str | None = None) -> SubentryFlowResult: ...
+    @callback
+    def async_update_and_abort(self, entry: ConfigEntry, subentry: ConfigSubentry, *, unique_id: str | None | UndefinedType = ..., title: str | UndefinedType = ..., data: Mapping[str, Any] | UndefinedType = ..., data_updates: Mapping[str, Any] | UndefinedType = ...) -> SubentryFlowResult: ...
+    @property
+    def _reconfigure_entry_id(self) -> str: ...
+    @callback
+    def _get_reconfigure_entry(self) -> ConfigEntry: ...
+    @property
+    def _reconfigure_subentry_id(self) -> str: ...
+    @callback
+    def _get_reconfigure_subentry(self) -> ConfigSubentry: ...
+
+class OptionsFlowManager(data_entry_flow.FlowManager[ConfigFlowContext, ConfigFlowResult], _ConfigSubFlowManager):
+    _flow_result = ConfigFlowResult
     async def async_create_flow(self, handler_key: str, *, context: ConfigFlowContext | None = None, data: dict[str, Any] | None = None) -> OptionsFlow: ...
     async def async_finish_flow(self, flow: data_entry_flow.FlowHandler[ConfigFlowContext, ConfigFlowResult], result: ConfigFlowResult) -> ConfigFlowResult: ...
     async def _async_setup_preview(self, flow: data_entry_flow.FlowHandler[ConfigFlowContext, ConfigFlowResult]) -> None: ...

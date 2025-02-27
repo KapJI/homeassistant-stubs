@@ -13,11 +13,9 @@ from homeassistant.components.http.data_validator import RequestDataValidator as
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from homeassistant.helpers.translation import async_get_translations as async_get_translations
 from homeassistant.setup import async_setup_component as async_setup_component
-from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any, Concatenate
 
 async def async_setup(hass: HomeAssistant, data: OnboardingStoreData, store: OnboardingStorage) -> None: ...

@@ -1,6 +1,5 @@
-from . import TechnoVEConfigEntry as TechnoVEConfigEntry
 from .const import DOMAIN as DOMAIN
-from .coordinator import TechnoVEDataUpdateCoordinator as TechnoVEDataUpdateCoordinator
+from .coordinator import TechnoVEConfigEntry as TechnoVEConfigEntry, TechnoVEDataUpdateCoordinator as TechnoVEDataUpdateCoordinator
 from .entity import TechnoVEEntity as TechnoVEEntity
 from .helpers import technove_exception_handler as technove_exception_handler
 from _typeshed import Incomplete
@@ -10,7 +9,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from technove import Station as TechnoVEStation
 from typing import Any
 
@@ -27,7 +26,7 @@ class TechnoVESwitchDescription(SwitchEntityDescription):
 
 SWITCHES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: TechnoVEConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TechnoVEConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TechnoVESwitchEntity(TechnoVEEntity, SwitchEntity):
     entity_description: TechnoVESwitchDescription

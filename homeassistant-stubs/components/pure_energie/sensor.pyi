@@ -1,6 +1,5 @@
-from . import PureEnergieConfigEntry as PureEnergieConfigEntry
 from .const import DOMAIN as DOMAIN
-from .coordinator import PureEnergieData as PureEnergieData, PureEnergieDataUpdateCoordinator as PureEnergieDataUpdateCoordinator
+from .coordinator import PureEnergieConfigEntry as PureEnergieConfigEntry, PureEnergieData as PureEnergieData, PureEnergieDataUpdateCoordinator as PureEnergieDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -8,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CONF_HOST as CONF_HOST, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 @dataclass(frozen=True, kw_only=True)
@@ -17,7 +16,7 @@ class PureEnergieSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[PureEnergieSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: PureEnergieConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PureEnergieConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PureEnergieSensorEntity(CoordinatorEntity[PureEnergieDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywizlight import wizlight as wizlight
 
 @dataclass(frozen=True, kw_only=True)
@@ -21,7 +21,7 @@ async def _async_set_ratio(device: wizlight, ratio: int) -> None: ...
 
 NUMBERS: tuple[WizNumberEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WizSpeedNumber(WizEntity, NumberEntity):
     entity_description: WizNumberEntityDescription

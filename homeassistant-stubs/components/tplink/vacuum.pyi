@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from kasa import Device as Device
 from kasa.smart.modules.clean import Clean as Clean
 from typing import Any
@@ -18,7 +18,7 @@ class TPLinkVacuumEntityDescription(StateVacuumEntityDescription, TPLinkModuleEn
 
 VACUUM_DESCRIPTIONS: tuple[TPLinkVacuumEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TPLinkVacuumEntity(CoordinatedTPLinkModuleEntity, StateVacuumEntity):
     _attr_supported_features: Incomplete

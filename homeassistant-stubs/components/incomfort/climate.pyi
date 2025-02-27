@@ -1,19 +1,18 @@
-from . import InComfortConfigEntry as InComfortConfigEntry
 from .const import CONF_LEGACY_SETPOINT_STATUS as CONF_LEGACY_SETPOINT_STATUS, DOMAIN as DOMAIN
-from .coordinator import InComfortDataCoordinator as InComfortDataCoordinator
+from .coordinator import InComfortConfigEntry as InComfortConfigEntry, InComfortDataCoordinator as InComfortDataCoordinator
 from .entity import IncomfortEntity as IncomfortEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from incomfortclient import Heater as InComfortHeater, Room as InComfortRoom
 from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: InComfortConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: InComfortConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class InComfortClimate(IncomfortEntity, ClimateEntity):
     _attr_entity_category: Incomplete

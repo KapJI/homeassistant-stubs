@@ -14,6 +14,7 @@ class ToloSaunaData(NamedTuple):
     settings: ToloSettings
 
 class ToloSaunaUpdateCoordinator(DataUpdateCoordinator[ToloSaunaData]):
+    config_entry: ConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> ToloSaunaData: ...

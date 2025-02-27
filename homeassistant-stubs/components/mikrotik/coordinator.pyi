@@ -12,6 +12,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 _LOGGER: Incomplete
+type MikrotikConfigEntry = ConfigEntry[MikrotikDataUpdateCoordinator]
 
 class MikrotikData:
     hass: Incomplete
@@ -44,10 +45,9 @@ class MikrotikData:
     def command(self, cmd: str, params: dict[str, Any] | None = None, suppress_errors: bool = False) -> list[dict[str, Any]]: ...
 
 class MikrotikDataUpdateCoordinator(DataUpdateCoordinator[None]):
-    hass: Incomplete
-    config_entry: ConfigEntry
+    config_entry: MikrotikConfigEntry
     _mk_data: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: librouteros.Api) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: MikrotikConfigEntry, api: librouteros.Api) -> None: ...
     @property
     def host(self) -> str: ...
     @property

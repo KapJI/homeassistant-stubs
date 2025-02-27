@@ -14,7 +14,7 @@ from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, A
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
@@ -40,6 +40,11 @@ CONF_PRESET_MODE_COMMAND_TOPIC: str
 CONF_PRESET_MODE_VALUE_TEMPLATE: str
 CONF_PRESET_MODE_COMMAND_TEMPLATE: str
 CONF_PRESET_MODES_LIST: str
+CONF_SWING_HORIZONTAL_MODE_COMMAND_TEMPLATE: str
+CONF_SWING_HORIZONTAL_MODE_COMMAND_TOPIC: str
+CONF_SWING_HORIZONTAL_MODE_LIST: str
+CONF_SWING_HORIZONTAL_MODE_STATE_TEMPLATE: str
+CONF_SWING_HORIZONTAL_MODE_STATE_TOPIC: str
 CONF_SWING_MODE_COMMAND_TEMPLATE: str
 CONF_SWING_MODE_COMMAND_TOPIC: str
 CONF_SWING_MODE_LIST: str
@@ -69,7 +74,7 @@ PLATFORM_SCHEMA_MODERN: Incomplete
 _DISCOVERY_SCHEMA_BASE: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MqttTemperatureControlEntity(MqttEntity, ABC, metaclass=abc.ABCMeta):
     _attr_target_temperature_low: float | None
@@ -93,6 +98,7 @@ class MqttTemperatureControlEntity(MqttEntity, ABC, metaclass=abc.ABCMeta):
 class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _attr_fan_mode: str | None
     _attr_hvac_mode: HVACMode | None
+    _attr_swing_horizontal_mode: str | None
     _attr_swing_mode: str | None
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
@@ -109,6 +115,7 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _attr_max_humidity: Incomplete
     _attr_precision: Incomplete
     _attr_fan_modes: Incomplete
+    _attr_swing_horizontal_modes: Incomplete
     _attr_swing_modes: Incomplete
     _attr_target_temperature_step: Incomplete
     _topic: Incomplete
@@ -133,6 +140,7 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     def _prepare_subscribe_topics(self) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_humidity(self, humidity: float) -> None: ...
+    async def async_set_swing_horizontal_mode(self, swing_horizontal_mode: str) -> None: ...
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

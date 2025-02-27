@@ -17,12 +17,18 @@ UPDATE_INTERVAL: Incomplete
 class IottyData:
     devices: list[Device]
 
+@dataclass
+class IottyConfigEntryData:
+    known_devices: set[Device]
+    coordinator: IottyDataUpdateCoordinator
+type IottyConfigEntry = ConfigEntry[IottyConfigEntryData]
+
 class IottyDataUpdateCoordinator(DataUpdateCoordinator[IottyData]):
-    config_entry: ConfigEntry
+    config_entry: IottyConfigEntry
     _entities: dict[str, Entity]
     _devices: list[Device]
     _device_registry: dr.DeviceRegistry
     iotty: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, session: OAuth2Session) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: IottyConfigEntry, session: OAuth2Session) -> None: ...
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> IottyData: ...

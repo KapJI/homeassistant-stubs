@@ -16,7 +16,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfDataRate as UnitOfDataRate, UnitOfPower as UnitOfPower, UnitOfTime as UnitOfTime
 from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util import slugify as slugify
 from typing import Literal
@@ -73,7 +73,7 @@ class UnifiSensorEntityDescription(SensorEntityDescription, UnifiEntityDescripti
 
 ENTITY_DESCRIPTIONS: tuple[UnifiSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class UnifiSensorEntity(UnifiEntity[HandlerT, ApiItemT], SensorEntity):
     entity_description: UnifiSensorEntityDescription[HandlerT, ApiItemT]

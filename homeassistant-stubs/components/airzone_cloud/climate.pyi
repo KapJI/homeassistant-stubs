@@ -1,6 +1,5 @@
 import abc
-from . import AirzoneCloudConfigEntry as AirzoneCloudConfigEntry
-from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
+from .coordinator import AirzoneCloudConfigEntry as AirzoneCloudConfigEntry, AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneAidooEntity as AirzoneAidooEntity, AirzoneEntity as AirzoneEntity, AirzoneGroupEntity as AirzoneGroupEntity, AirzoneInstallationEntity as AirzoneInstallationEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from aioairzone_cloud.common import OperationAction, OperationMode
@@ -8,7 +7,7 @@ from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, A
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Final
 
 FAN_SPEED_AUTO: dict[int, str]
@@ -17,7 +16,7 @@ HVAC_ACTION_LIB_TO_HASS: Final[dict[OperationAction, HVACAction]]
 HVAC_MODE_LIB_TO_HASS: Final[dict[OperationMode, HVACMode]]
 HVAC_MODE_HASS_TO_LIB: Final[dict[HVACMode, OperationMode]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_name: Incomplete

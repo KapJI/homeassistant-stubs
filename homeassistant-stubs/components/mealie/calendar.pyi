@@ -5,11 +5,11 @@ from aiomealie import Mealplan as Mealplan, MealplanEntryType
 from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: MealieConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: MealieConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _get_event_from_mealplan(mealplan: Mealplan) -> CalendarEvent: ...
 
 class MealieMealplanCalendarEntity(MealieEntity, CalendarEntity):

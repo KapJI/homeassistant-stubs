@@ -2,18 +2,21 @@ from .const import ATTR_API_ADVICE as ATTR_API_ADVICE, ATTR_API_CAQI as ATTR_API
 from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession
 from datetime import timedelta
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete
+type AirlyConfigEntry = ConfigEntry[AirlyDataUpdateCoordinator]
 
 def set_update_interval(instances_count: int, requests_remaining: int) -> timedelta: ...
 
 class AirlyDataUpdateCoordinator(DataUpdateCoordinator[dict[str, str | float | int]]):
+    config_entry: AirlyConfigEntry
     latitude: Incomplete
     longitude: Incomplete
     airly: Incomplete
     use_nearest: Incomplete
-    def __init__(self, hass: HomeAssistant, session: ClientSession, api_key: str, latitude: float, longitude: float, update_interval: timedelta, use_nearest: bool) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: AirlyConfigEntry, session: ClientSession, api_key: str, latitude: float, longitude: float, update_interval: timedelta, use_nearest: bool) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> dict[str, str | float | int]: ...

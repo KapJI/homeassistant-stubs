@@ -8,7 +8,7 @@ from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
@@ -22,7 +22,7 @@ class AutomowerButtonEntityDescription(ButtonEntityDescription):
 
 MOWER_BUTTON_TYPES: tuple[AutomowerButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AutomowerButtonEntity(AutomowerAvailableEntity, ButtonEntity):
     entity_description: AutomowerButtonEntityDescription

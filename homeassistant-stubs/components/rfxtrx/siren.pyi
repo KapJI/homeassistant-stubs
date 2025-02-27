@@ -7,7 +7,7 @@ from homeassistant.components.siren import ATTR_TONE as ATTR_TONE, SirenEntity a
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from typing import Any
 
@@ -17,7 +17,7 @@ SECURITY_PANIC_ALL: Incomplete
 
 def supported(event: rfxtrxmod.RFXtrxEvent) -> bool: ...
 def get_first_key(data: dict[int, str], entry: str) -> int: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RfxtrxOffDelayMixin(Entity):
     _timeout: CALLBACK_TYPE | None

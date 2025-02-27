@@ -8,13 +8,13 @@ from homeassistant.components.media_player import MediaPlayerDeviceClass as Medi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 LOGGER: Incomplete
 _TYPE_TO_DEVICE_CLASS: Incomplete
 _FUNCTION_NAME_TO_FEATURE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LookinMedia(LookinPowerPushRemoteEntity, MediaPlayerEntity):
     _attr_should_poll: bool

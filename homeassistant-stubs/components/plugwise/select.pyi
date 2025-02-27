@@ -1,6 +1,5 @@
-from . import PlugwiseConfigEntry as PlugwiseConfigEntry
 from .const import SelectOptionsType as SelectOptionsType, SelectType as SelectType
-from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
+from .coordinator import PlugwiseConfigEntry as PlugwiseConfigEntry, PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
@@ -8,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -19,7 +18,7 @@ class PlugwiseSelectEntityDescription(SelectEntityDescription):
 
 SELECT_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PlugwiseSelectEntity(PlugwiseEntity, SelectEntity):
     entity_description: PlugwiseSelectEntityDescription

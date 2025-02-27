@@ -7,7 +7,7 @@ from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatv.const import FeatureName, PowerState
 from pyatv.interface import AppleTV as AppleTV, AudioListener, OutputDevice as OutputDevice, Playing as Playing, PowerListener, PushListener, PushUpdater as PushUpdater
 from typing import Any
@@ -18,7 +18,7 @@ SUPPORT_BASE: Incomplete
 SUPPORT_APPLE_TV: Incomplete
 SUPPORT_FEATURE_MAPPING: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: AppleTvConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AppleTvConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AppleTvMediaPlayer(AppleTVEntity, MediaPlayerEntity, PowerListener, AudioListener, PushListener):
     _attr_supported_features = SUPPORT_APPLE_TV

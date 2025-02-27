@@ -9,7 +9,7 @@ from eq3btsmart.models import Presets as Presets
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class Eq3NumberEntityDescription(NumberEntityDescription):
@@ -20,7 +20,7 @@ class Eq3NumberEntityDescription(NumberEntityDescription):
 
 NUMBER_ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Eq3NumberEntity(Eq3Entity, NumberEntity):
     entity_description: Eq3NumberEntityDescription

@@ -1,6 +1,6 @@
-from . import SmConfigEntry as SmConfigEntry
+from . import get_radio as get_radio
 from .const import LOGGER as LOGGER
-from .coordinator import SmFirmwareUpdateCoordinator as SmFirmwareUpdateCoordinator, SmFwData as SmFwData
+from .coordinator import SmConfigEntry as SmConfigEntry, SmFirmwareUpdateCoordinator as SmFirmwareUpdateCoordinator, SmFwData as SmFwData
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -9,19 +9,22 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight.models import Firmware as Firmware, Info as Info
 from pysmlight.sse import MessageEvent as MessageEvent
-from typing import Any, Final
+from typing import Any
+
+def zigbee_latest_version(data: SmFwData, idx: int) -> Firmware | None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class SmUpdateEntityDescription(UpdateEntityDescription):
-    installed_version: Callable[[Info], str | None]
-    fw_list: Callable[[SmFwData], list[Firmware] | None]
+    installed_version: Callable[[Info, int], str | None]
+    latest_version: Callable[[SmFwData, int], Firmware | None]
 
-UPDATE_ENTITIES: Final[Incomplete]
+CORE_UPDATE_ENTITY: Incomplete
+ZB_UPDATE_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SmUpdateEntity(SmEntity, UpdateEntity):
     coordinator: SmFirmwareUpdateCoordinator
@@ -33,7 +36,11 @@ class SmUpdateEntity(SmEntity, UpdateEntity):
     _finished_event: Incomplete
     _firmware: Firmware | None
     _unload: list[Callable]
-    def __init__(self, coordinator: SmFirmwareUpdateCoordinator, description: SmUpdateEntityDescription) -> None: ...
+    idx: Incomplete
+    def __init__(self, coordinator: SmFirmwareUpdateCoordinator, description: SmUpdateEntityDescription, idx: int = 0) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _handle_coordinator_update(self) -> None: ...
     @property
     def installed_version(self) -> str | None: ...
     @property

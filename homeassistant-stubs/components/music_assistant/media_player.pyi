@@ -10,7 +10,7 @@ from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MED
 from homeassistant.const import ATTR_NAME as ATTR_NAME, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from music_assistant_client import MusicAssistantClient as MusicAssistantClient
 from music_assistant_models.enums import MediaType, QueueOption
@@ -27,7 +27,7 @@ SERVICE_TRANSFER_QUEUE: str
 SERVICE_GET_QUEUE: str
 
 def catch_musicassistant_error[_R, **P](func: Callable[Concatenate[MusicAssistantPlayer, P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[MusicAssistantPlayer, P], Coroutine[Any, Any, _R]]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: MusicAssistantConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: MusicAssistantConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_name: Incomplete

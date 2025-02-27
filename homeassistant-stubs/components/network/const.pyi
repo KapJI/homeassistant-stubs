@@ -4,7 +4,6 @@ from typing import Final
 DOMAIN: Final[str]
 STORAGE_KEY: Final[str]
 STORAGE_VERSION: Final[int]
-DATA_NETWORK: Final[str]
 ATTR_ADAPTERS: Final[str]
 ATTR_CONFIGURED_ADAPTERS: Final[str]
 DEFAULT_CONFIGURED_ADAPTERS: list[str]

@@ -8,7 +8,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco.const import PhysicalKey
 from pylamarzocco.devices.machine import LaMarzoccoMachine as LaMarzoccoMachine
 from pylamarzocco.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
@@ -30,7 +30,7 @@ ENTITIES: tuple[LaMarzoccoNumberEntityDescription, ...]
 KEY_ENTITIES: tuple[LaMarzoccoKeyNumberEntityDescription, ...]
 SCALE_KEY_ENTITIES: tuple[LaMarzoccoKeyNumberEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LaMarzoccoNumberEntity(LaMarzoccoEntity, NumberEntity):
     entity_description: LaMarzoccoNumberEntityDescription

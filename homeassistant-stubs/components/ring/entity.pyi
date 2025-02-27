@@ -18,6 +18,7 @@ from typing import Any, Concatenate, Generic, TypeVar
 
 RingDeviceT = TypeVar('RingDeviceT', bound=RingGeneric, default=RingGeneric)
 _RingCoordinatorT = TypeVar('_RingCoordinatorT', bound=RingDataCoordinator | RingListenCoordinator)
+_LOGGER: Incomplete
 
 @dataclass(slots=True)
 class DeprecatedInfo:

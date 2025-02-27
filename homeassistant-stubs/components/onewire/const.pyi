@@ -6,6 +6,7 @@ DOMAIN: str
 DEVICE_KEYS_0_3: Incomplete
 DEVICE_KEYS_0_7: Incomplete
 DEVICE_KEYS_A_B: Incomplete
+DEVICE_KEYS_A_D: Incomplete
 DEVICE_SUPPORT: Incomplete
 DEVICE_SUPPORT_OPTIONS: Incomplete
 PRECISION_MAPPING_FAMILY_28: Incomplete

@@ -1,6 +1,7 @@
-from .const import CHARGER_CURRENCY_KEY as CHARGER_CURRENCY_KEY, CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_ENERGY_PRICE_KEY as CHARGER_ENERGY_PRICE_KEY, CHARGER_FEATURES_KEY as CHARGER_FEATURES_KEY, CHARGER_LOCKED_UNLOCKED_KEY as CHARGER_LOCKED_UNLOCKED_KEY, CHARGER_MAX_CHARGING_CURRENT_KEY as CHARGER_MAX_CHARGING_CURRENT_KEY, CHARGER_MAX_ICP_CURRENT_KEY as CHARGER_MAX_ICP_CURRENT_KEY, CHARGER_PLAN_KEY as CHARGER_PLAN_KEY, CHARGER_POWER_BOOST_KEY as CHARGER_POWER_BOOST_KEY, CHARGER_STATUS_DESCRIPTION_KEY as CHARGER_STATUS_DESCRIPTION_KEY, CHARGER_STATUS_ID_KEY as CHARGER_STATUS_ID_KEY, CODE_KEY as CODE_KEY, ChargerStatus as ChargerStatus, DOMAIN as DOMAIN, UPDATE_INTERVAL as UPDATE_INTERVAL
+from .const import CHARGER_CURRENCY_KEY as CHARGER_CURRENCY_KEY, CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_ENERGY_PRICE_KEY as CHARGER_ENERGY_PRICE_KEY, CHARGER_FEATURES_KEY as CHARGER_FEATURES_KEY, CHARGER_LOCKED_UNLOCKED_KEY as CHARGER_LOCKED_UNLOCKED_KEY, CHARGER_MAX_CHARGING_CURRENT_KEY as CHARGER_MAX_CHARGING_CURRENT_KEY, CHARGER_MAX_ICP_CURRENT_KEY as CHARGER_MAX_ICP_CURRENT_KEY, CHARGER_PLAN_KEY as CHARGER_PLAN_KEY, CHARGER_POWER_BOOST_KEY as CHARGER_POWER_BOOST_KEY, CHARGER_STATUS_DESCRIPTION_KEY as CHARGER_STATUS_DESCRIPTION_KEY, CHARGER_STATUS_ID_KEY as CHARGER_STATUS_ID_KEY, CODE_KEY as CODE_KEY, CONF_STATION as CONF_STATION, ChargerStatus as ChargerStatus, DOMAIN as DOMAIN, UPDATE_INTERVAL as UPDATE_INTERVAL
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
@@ -15,9 +16,10 @@ def _validate(wallbox: Wallbox) -> None: ...
 async def async_validate_input(hass: HomeAssistant, wallbox: Wallbox) -> None: ...
 
 class WallboxCoordinator(DataUpdateCoordinator[dict[str, Any]]):
+    config_entry: ConfigEntry
     _station: Incomplete
     _wallbox: Incomplete
-    def __init__(self, station: str, wallbox: Wallbox, hass: HomeAssistant) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, wallbox: Wallbox) -> None: ...
     def authenticate(self) -> None: ...
     @_require_authentication
     def _get_data(self) -> dict[str, Any]: ...

@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from regenmaschine.controller import Controller as Controller
 
 @dataclass(frozen=True, kw_only=True)
@@ -22,7 +22,7 @@ async def _async_reboot(controller: Controller) -> None: ...
 
 BUTTON_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RainMachineButton(RainMachineEntity, ButtonEntity):
     _attr_device_class: Incomplete

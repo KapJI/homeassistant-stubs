@@ -1,4 +1,4 @@
-from . import IPPConfigEntry as IPPConfigEntry
+from .coordinator import IPPConfigEntry as IPPConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

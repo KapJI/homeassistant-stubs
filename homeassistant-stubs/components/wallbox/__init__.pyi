@@ -1,4 +1,4 @@
-from .const import CONF_STATION as CONF_STATION, DOMAIN as DOMAIN, UPDATE_INTERVAL as UPDATE_INTERVAL
+from .const import DOMAIN as DOMAIN, UPDATE_INTERVAL as UPDATE_INTERVAL
 from .coordinator import InvalidAuth as InvalidAuth, WallboxCoordinator as WallboxCoordinator, async_validate_input as async_validate_input
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

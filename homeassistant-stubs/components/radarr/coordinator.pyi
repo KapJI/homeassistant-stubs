@@ -1,5 +1,4 @@
 import abc
-from . import RadarrConfigEntry as RadarrConfigEntry
 from .const import DEFAULT_MAX_RECORDS as DEFAULT_MAX_RECORDS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
@@ -9,11 +8,21 @@ from aiopyarr.radarr_client import RadarrClient as RadarrClient
 from dataclasses import dataclass
 from datetime import date, datetime
 from homeassistant.components.calendar import CalendarEvent as CalendarEvent
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Generic, TypeVar
 
+@dataclass(kw_only=True, slots=True)
+class RadarrData:
+    calendar: CalendarUpdateCoordinator
+    disk_space: DiskSpaceDataUpdateCoordinator
+    health: HealthDataUpdateCoordinator
+    movie: MoviesDataUpdateCoordinator
+    queue: QueueDataUpdateCoordinator
+    status: StatusDataUpdateCoordinator
+type RadarrConfigEntry = ConfigEntry[RadarrData]
 T = TypeVar('T', bound=SystemStatus | list[RootFolder] | list[Health] | int | None)
 
 @dataclass
@@ -28,7 +37,7 @@ class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, Generic[T], met
     _update_interval: Incomplete
     api_client: Incomplete
     host_configuration: Incomplete
-    def __init__(self, hass: HomeAssistant, host_configuration: PyArrHostConfiguration, api_client: RadarrClient) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: RadarrConfigEntry, host_configuration: PyArrHostConfiguration, api_client: RadarrClient) -> None: ...
     async def _async_update_data(self) -> T: ...
     @abstractmethod
     async def _fetch_data(self) -> T: ...
@@ -52,7 +61,7 @@ class CalendarUpdateCoordinator(RadarrDataUpdateCoordinator[None]):
     _update_interval: Incomplete
     event: RadarrEvent | None
     _events: list[RadarrEvent]
-    def __init__(self, hass: HomeAssistant, host_configuration: PyArrHostConfiguration, api_client: RadarrClient) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: RadarrConfigEntry, host_configuration: PyArrHostConfiguration, api_client: RadarrClient) -> None: ...
     async def _fetch_data(self) -> None: ...
     async def async_get_events(self, start_date: datetime, end_date: datetime) -> list[RadarrEvent]: ...
     async def _async_get_events(self, _date: date) -> None: ...

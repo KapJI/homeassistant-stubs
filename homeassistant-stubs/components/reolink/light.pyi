@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Host as Host
 from typing import Any
 
@@ -27,7 +27,7 @@ class ReolinkHostLightEntityDescription(LightEntityDescription, ReolinkHostEntit
 LIGHT_ENTITIES: Incomplete
 HOST_LIGHT_ENTITIES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ReolinkLightEntity(ReolinkChannelCoordinatorEntity, LightEntity):
     entity_description: ReolinkLightEntityDescription

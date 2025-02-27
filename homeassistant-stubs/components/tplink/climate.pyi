@@ -9,7 +9,7 @@ from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATUR
 from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from kasa import Device as Device
 from typing import Any
 
@@ -23,7 +23,7 @@ class TPLinkClimateEntityDescription(ClimateEntityDescription, TPLinkModuleEntit
 
 CLIMATE_DESCRIPTIONS: tuple[TPLinkClimateEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TPLinkClimateEntity(CoordinatedTPLinkModuleEntity, ClimateEntity):
     _attr_name: Incomplete

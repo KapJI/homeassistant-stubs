@@ -1,6 +1,6 @@
-from . import SamsungTVConfigEntry as SamsungTVConfigEntry
 from .bridge import SamsungTVBridge as SamsungTVBridge
 from .const import DOMAIN as DOMAIN
+from .coordinator import SamsungTVConfigEntry as SamsungTVConfigEntry
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry

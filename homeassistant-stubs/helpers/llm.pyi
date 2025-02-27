@@ -5,7 +5,7 @@ from .singleton import singleton as singleton
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field as dc_field
 from homeassistant.components.calendar import SERVICE_GET_EVENTS as SERVICE_GET_EVENTS
 from homeassistant.components.climate import INTENT_GET_TEMPERATURE as INTENT_GET_TEMPERATURE
 from homeassistant.components.cover import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
@@ -17,6 +17,7 @@ from homeassistant.core import Context as Context, Event as Event, HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import JsonObjectType as JsonObjectType
+from homeassistant.util.ulid import ulid_now as ulid_now
 from typing import Any
 
 ACTION_PARAMETERS_CACHE: HassKey[dict[str, dict[str, tuple[str | None, vol.Schema]]]]
@@ -47,6 +48,7 @@ class LLMContext:
 class ToolInput:
     tool_name: str
     tool_args: dict[str, Any]
+    id: str = dc_field(default_factory=Incomplete)
 
 class Tool(metaclass=abc.ABCMeta):
     name: str

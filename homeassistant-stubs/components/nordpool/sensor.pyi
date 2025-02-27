@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
 
 PARALLEL_UPDATES: int
@@ -36,7 +36,7 @@ PRICES_SENSOR_TYPES: tuple[NordpoolPricesSensorEntityDescription, ...]
 BLOCK_PRICES_SENSOR_TYPES: tuple[NordpoolBlockPricesSensorEntityDescription, ...]
 DAILY_AVERAGE_PRICES_SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: NordPoolConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NordPoolConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NordpoolSensor(NordpoolBaseEntity, SensorEntity):
     entity_description: NordpoolDefaultSensorEntityDescription

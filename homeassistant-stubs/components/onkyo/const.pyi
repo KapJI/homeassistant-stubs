@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from enum import Enum
-from typing import ClassVar, Literal, Self
+from typing import Literal, Self
 
 DOMAIN: str
 DEVICE_INTERVIEW_TIMEOUT: int
@@ -13,10 +13,18 @@ OPTION_VOLUME_RESOLUTION_DEFAULT: VolumeResolution
 VOLUME_RESOLUTION_ALLOWED: tuple[VolumeResolution, ...]
 OPTION_MAX_VOLUME: str
 OPTION_MAX_VOLUME_DEFAULT: float
+
+class EnumWithMeaning(Enum):
+    value_meaning: str
+    def __new__(cls, value: str) -> Self: ...
+    @staticmethod
+    def _get_meanings() -> dict[str, str]: ...
+
 OPTION_INPUT_SOURCES: str
+OPTION_LISTENING_MODES: str
 _INPUT_SOURCE_MEANINGS: Incomplete
 
-class InputSource(Enum):
+class InputSource(EnumWithMeaning):
     DVR = '00'
     CBL = '01'
     GAME = '02'
@@ -58,11 +66,16 @@ class InputSource(Enum):
     HDMI_6 = '56'
     HDMI_7 = '57'
     MAIN_SOURCE = '80'
-    __meaning_mapping: ClassVar[dict[str, Self]]
-    value_meaning: str
-    def __new__(cls, value: str) -> Self: ...
-    @classmethod
-    def from_meaning(cls, meaning: str) -> Self: ...
+    @staticmethod
+    def _get_meanings() -> dict[str, str]: ...
+
+_LISTENING_MODE_MEANINGS: Incomplete
+
+class ListeningMode(EnumWithMeaning):
+    _ignore_ = 'ListeningMode _k _v _meaning'
+    ListeningMode = ...
+    @staticmethod
+    def _get_meanings() -> dict[str, str]: ...
 
 ZONES: Incomplete
 PYEISCP_COMMANDS: Incomplete

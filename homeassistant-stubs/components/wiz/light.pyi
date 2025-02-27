@@ -4,7 +4,7 @@ from .models import WizData as WizData
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywizlight import PilotBuilder
 from pywizlight.bulblibrary import BulbType as BulbType, Features as Features
 from typing import Any
@@ -12,7 +12,7 @@ from typing import Any
 RGB_WHITE_CHANNELS_COLOR_MODE: Incomplete
 
 def _async_pilot_builder(**kwargs: Any) -> PilotBuilder: ...
-async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WizBulbEntity(WizToggleEntity, LightEntity):
     _attr_name: Incomplete

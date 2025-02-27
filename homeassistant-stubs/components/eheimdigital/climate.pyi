@@ -1,6 +1,5 @@
-from . import EheimDigitalConfigEntry as EheimDigitalConfigEntry
 from .const import HEATER_BIO_MODE as HEATER_BIO_MODE, HEATER_PRESET_TO_HEATER_MODE as HEATER_PRESET_TO_HEATER_MODE, HEATER_SMART_MODE as HEATER_SMART_MODE
-from .coordinator import EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoordinator
+from .coordinator import EheimDigitalConfigEntry as EheimDigitalConfigEntry, EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoordinator
 from .entity import EheimDigitalEntity as EheimDigitalEntity
 from _typeshed import Incomplete
 from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
@@ -9,12 +8,12 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: EheimDigitalConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: EheimDigitalConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EheimDigitalHeaterClimate(EheimDigitalEntity[EheimDigitalHeater], ClimateEntity):
     _attr_hvac_modes: Incomplete

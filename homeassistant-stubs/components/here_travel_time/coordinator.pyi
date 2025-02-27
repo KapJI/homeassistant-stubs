@@ -2,6 +2,7 @@ from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOM
 from .model import HERETravelTimeConfig as HERETravelTimeConfig, HERETravelTimeData as HERETravelTimeData
 from _typeshed import Incomplete
 from datetime import datetime, time
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.location import find_coordinates as find_coordinates
@@ -13,17 +14,19 @@ BACKOFF_MULTIPLIER: float
 _LOGGER: Incomplete
 
 class HERERoutingDataUpdateCoordinator(DataUpdateCoordinator[HERETravelTimeData]):
+    config_entry: ConfigEntry
     _api: Incomplete
     config: Incomplete
-    def __init__(self, hass: HomeAssistant, api_key: str, config: HERETravelTimeConfig) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api_key: str, config: HERETravelTimeConfig) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> HERETravelTimeData: ...
     def _parse_routing_response(self, response: dict[str, Any]) -> HERETravelTimeData: ...
 
 class HERETransitDataUpdateCoordinator(DataUpdateCoordinator[HERETravelTimeData | None]):
+    config_entry: ConfigEntry
     _api: Incomplete
     config: Incomplete
-    def __init__(self, hass: HomeAssistant, api_key: str, config: HERETravelTimeConfig) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api_key: str, config: HERETravelTimeConfig) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> HERETravelTimeData | None: ...
     def _parse_transit_response(self, response: dict[str, Any]) -> HERETravelTimeData: ...

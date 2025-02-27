@@ -9,7 +9,7 @@ from homeassistant.components.update import ATTR_INSTALLED_VERSION as ATTR_INSTA
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any, Final
 
@@ -28,7 +28,7 @@ class RestUpdateDescription(RestEntityDescription, UpdateEntityDescription):
 REST_UPDATES: Final[Incomplete]
 RPC_UPDATES: Final[Incomplete]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RestUpdateEntity(ShellyRestAttributeEntity, UpdateEntity):
     _attr_supported_features: Incomplete

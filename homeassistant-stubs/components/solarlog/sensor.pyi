@@ -1,4 +1,4 @@
-from . import SolarlogConfigEntry as SolarlogConfigEntry
+from .coordinator import SolarlogConfigEntry as SolarlogConfigEntry
 from .entity import SolarLogCoordinatorEntity as SolarLogCoordinatorEntity, SolarLogInverterEntity as SolarLogInverterEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -6,7 +6,7 @@ from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from solarlog_cli.solarlog_models import InverterData as InverterData, SolarlogData as SolarlogData
 
@@ -21,7 +21,7 @@ class SolarLogInverterSensorEntityDescription(SensorEntityDescription):
 SOLARLOG_SENSOR_TYPES: tuple[SolarLogCoordinatorSensorEntityDescription, ...]
 INVERTER_SENSOR_TYPES: tuple[SolarLogInverterSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: SolarlogConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SolarlogConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SolarLogCoordinatorSensor(SolarLogCoordinatorEntity, SensorEntity):
     entity_description: SolarLogCoordinatorSensorEntityDescription

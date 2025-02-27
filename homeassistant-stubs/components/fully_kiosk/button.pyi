@@ -8,7 +8,7 @@ from fullykiosk import FullyKiosk as FullyKiosk
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
@@ -17,7 +17,7 @@ class FullyButtonEntityDescription(ButtonEntityDescription):
 
 BUTTONS: tuple[FullyButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: FullyKioskConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FullyButtonEntity(FullyKioskEntity, ButtonEntity):
     entity_description: FullyButtonEntityDescription

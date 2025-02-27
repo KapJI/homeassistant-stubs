@@ -1,16 +1,15 @@
-from . import MadVRConfigEntry as MadVRConfigEntry
-from .coordinator import MadVRCoordinator as MadVRCoordinator
+from .coordinator import MadVRConfigEntry as MadVRConfigEntry, MadVRCoordinator as MadVRCoordinator
 from .entity import MadVREntity as MadVREntity
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import RemoteEntity as RemoteEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: MadVRConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: MadVRConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MadvrRemote(MadVREntity, RemoteEntity):
     _attr_name: Incomplete

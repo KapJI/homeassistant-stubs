@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from homeassistant.components.image import ImageEntity as ImageEntity, ImageEntityDescription as ImageEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @callback
 def async_wlan_qr_code_image_fn(hub: UnifiHub, wlan: Wlan) -> bytes: ...
@@ -22,7 +22,7 @@ class UnifiImageEntityDescription(ImageEntityDescription, UnifiEntityDescription
 
 ENTITY_DESCRIPTIONS: tuple[UnifiImageEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class UnifiImageEntity(UnifiEntity[HandlerT, ApiItemT], ImageEntity):
     entity_description: UnifiImageEntityDescription[HandlerT, ApiItemT]

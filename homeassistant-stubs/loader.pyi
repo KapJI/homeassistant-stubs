@@ -15,7 +15,7 @@ from .generated.usb import USB as USB
 from .generated.zeroconf import HOMEKIT as HOMEKIT, ZEROCONF as ZEROCONF
 from .helpers import device_registry as dr
 from .helpers.json import json_bytes as json_bytes, json_fragment as json_fragment
-from .helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED
+from .helpers.typing import ConfigType as ConfigType
 from .util.hass_dict import HassKey as HassKey
 from .util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from _typeshed import Incomplete
@@ -36,7 +36,7 @@ class BlockedIntegration:
 
 BLOCKED_CUSTOM_INTEGRATIONS: dict[str, BlockedIntegration]
 DATA_COMPONENTS: HassKey[dict[str, ModuleType | ComponentProtocol]]
-DATA_INTEGRATIONS: HassKey[dict[str, Integration | asyncio.Future[None]]]
+DATA_INTEGRATIONS: HassKey[dict[str, Integration | asyncio.Future[Integration | IntegrationNotFound]]]
 DATA_MISSING_PLATFORMS: HassKey[dict[str, bool]]
 DATA_CUSTOM_COMPONENTS: HassKey[dict[str, Integration] | asyncio.Future[dict[str, Integration]]]
 DATA_PRELOAD_PLATFORMS: HassKey[list[str]]

@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysensibo.model import SensiboDevice as SensiboDevice
 from typing import Any
 
@@ -26,7 +26,7 @@ DEVICE_SWITCH_TYPES: tuple[SensiboDeviceSwitchEntityDescription, ...]
 PURE_SWITCH_TYPES: tuple[SensiboDeviceSwitchEntityDescription, ...]
 DESCRIPTION_BY_MODELS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SensiboDeviceSwitch(SensiboDeviceBaseEntity, SwitchEntity):
     entity_description: SensiboDeviceSwitchEntityDescription

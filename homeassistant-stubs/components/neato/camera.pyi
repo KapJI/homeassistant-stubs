@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pybotvac.robot import Robot as Robot
 from typing import Any
 
@@ -13,7 +13,7 @@ _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 ATTR_GENERATED_AT: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NeatoCleaningMap(NeatoEntity, Camera):
     _attr_translation_key: str

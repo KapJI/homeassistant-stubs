@@ -7,7 +7,7 @@ from homeassistant.components.humidifier import DEFAULT_MAX_HUMIDITY as DEFAULT_
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 from zwave_js_server.const.command_class.humidity_control import HumidityControlMode, HumidityControlSetpointType
 from zwave_js_server.model.driver import Driver as Driver
@@ -24,7 +24,7 @@ class ZwaveHumidifierEntityDescription(HumidifierEntityDescription):
 HUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 DEHUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ZWaveHumidifier(ZWaveBaseEntity, HumidifierEntity):
     entity_description: ZwaveHumidifierEntityDescription

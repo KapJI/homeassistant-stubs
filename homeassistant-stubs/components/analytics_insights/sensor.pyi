@@ -8,7 +8,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
@@ -22,7 +22,7 @@ def get_custom_integration_entity_description(domain: str) -> AnalyticsSensorEnt
 
 GENERAL_SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: AnalyticsInsightsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AnalyticsInsightsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeassistantAnalyticsSensor(CoordinatorEntity[HomeassistantAnalyticsDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool

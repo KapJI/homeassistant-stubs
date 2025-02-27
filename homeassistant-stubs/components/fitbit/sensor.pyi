@@ -1,17 +1,16 @@
 from .api import FitbitApi as FitbitApi
 from .const import ATTRIBUTION as ATTRIBUTION, BATTERY_LEVELS as BATTERY_LEVELS, DOMAIN as DOMAIN, FitbitScope as FitbitScope, FitbitUnitSystem as FitbitUnitSystem
-from .coordinator import FitbitData as FitbitData, FitbitDeviceCoordinator as FitbitDeviceCoordinator
+from .coordinator import FitbitConfigEntry as FitbitConfigEntry, FitbitDeviceCoordinator as FitbitDeviceCoordinator
 from .exceptions import FitbitApiException as FitbitApiException, FitbitAuthException as FitbitAuthException
 from .model import FitbitDevice as FitbitDevice, config_from_entry_data as config_from_entry_data
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, Final
@@ -40,7 +39,7 @@ class FitbitSensorEntityDescription(SensorEntityDescription):
     @property
     def is_tracker(self) -> bool: ...
 
-def _build_device_info(config_entry: ConfigEntry, entity_description: FitbitSensorEntityDescription) -> DeviceInfo: ...
+def _build_device_info(config_entry: FitbitConfigEntry, entity_description: FitbitSensorEntityDescription) -> DeviceInfo: ...
 
 FITBIT_RESOURCES_LIST: Final[tuple[FitbitSensorEntityDescription, ...]]
 SLEEP_START_TIME: Incomplete
@@ -48,7 +47,7 @@ SLEEP_START_TIME_12HR: Incomplete
 FITBIT_RESOURCE_BATTERY: Incomplete
 FITBIT_RESOURCE_BATTERY_LEVEL: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FitbitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FitbitSensor(SensorEntity):
     entity_description: FitbitSensorEntityDescription
@@ -60,7 +59,7 @@ class FitbitSensor(SensorEntity):
     _attr_device_info: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_entity_registry_enabled_default: bool
-    def __init__(self, config_entry: ConfigEntry, api: FitbitApi, user_profile_id: str, description: FitbitSensorEntityDescription, units: str | None, enable_default_override: bool, device_info: DeviceInfo) -> None: ...
+    def __init__(self, config_entry: FitbitConfigEntry, api: FitbitApi, user_profile_id: str, description: FitbitSensorEntityDescription, units: str | None, enable_default_override: bool, device_info: DeviceInfo) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete
     async def async_update(self) -> None: ...

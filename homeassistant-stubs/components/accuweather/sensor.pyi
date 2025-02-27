@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONCENTRATION_PARTS_PER_CUBIC_METER as CONCENTRATION_PARTS_PER_CUBIC_METER, PERCENTAGE as PERCENTAGE, UV_INDEX as UV_INDEX, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -20,7 +20,7 @@ class AccuWeatherSensorDescription(SensorEntityDescription):
 FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
 SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AccuWeatherConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AccuWeatherConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AccuWeatherSensor(CoordinatorEntity[AccuWeatherObservationDataUpdateCoordinator], SensorEntity):
     _attr_attribution = ATTRIBUTION

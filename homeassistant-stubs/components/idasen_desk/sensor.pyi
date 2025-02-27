@@ -1,4 +1,4 @@
-from . import IdasenDeskConfigEntry as IdasenDeskConfigEntry, IdasenDeskCoordinator as IdasenDeskCoordinator
+from .coordinator import IdasenDeskConfigEntry as IdasenDeskConfigEntry, IdasenDeskCoordinator as IdasenDeskCoordinator
 from .entity import IdasenDeskEntity as IdasenDeskEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class IdasenDeskSensorDescription(SensorEntityDescription):
@@ -14,7 +14,7 @@ class IdasenDeskSensorDescription(SensorEntityDescription):
 
 SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: IdasenDeskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IdasenDeskConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IdasenDeskSensor(IdasenDeskEntity, SensorEntity):
     entity_description: IdasenDeskSensorDescription

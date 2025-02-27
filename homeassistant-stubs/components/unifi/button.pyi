@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @callback
@@ -24,7 +24,7 @@ class UnifiButtonEntityDescription(ButtonEntityDescription, UnifiEntityDescripti
 
 ENTITY_DESCRIPTIONS: tuple[UnifiButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class UnifiButtonEntity(UnifiEntity[HandlerT, ApiItemT], ButtonEntity):
     entity_description: UnifiButtonEntityDescription[HandlerT, ApiItemT]

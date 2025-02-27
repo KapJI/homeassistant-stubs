@@ -8,8 +8,8 @@ from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAut
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 class GeocachingDataUpdateCoordinator(DataUpdateCoordinator[GeocachingStatus]):
+    config_entry: ConfigEntry
     session: Incomplete
-    entry: Incomplete
     geocaching: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry, session: OAuth2Session) -> None: ...
     async def _async_update_data(self) -> GeocachingStatus: ...

@@ -7,12 +7,12 @@ from devolo_plc_api.device_api import ConnectedStationInfo
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.const import STATE_UNKNOWN as STATE_UNKNOWN, UnitOfFrequency as UnitOfFrequency
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DevoloScannerEntity(CoordinatorEntity[DevoloDataUpdateCoordinator[list[ConnectedStationInfo]]], ScannerEntity):
     _device: Incomplete

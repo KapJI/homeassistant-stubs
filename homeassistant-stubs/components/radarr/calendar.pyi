@@ -1,16 +1,15 @@
-from . import RadarrConfigEntry as RadarrConfigEntry
-from .coordinator import CalendarUpdateCoordinator as CalendarUpdateCoordinator, RadarrEvent as RadarrEvent
+from .coordinator import CalendarUpdateCoordinator as CalendarUpdateCoordinator, RadarrConfigEntry as RadarrConfigEntry, RadarrEvent as RadarrEvent
 from .entity import RadarrEntity as RadarrEntity
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 CALENDAR_TYPE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: RadarrConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RadarrConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RadarrCalendarEntity(RadarrEntity, CalendarEntity):
     coordinator: CalendarUpdateCoordinator

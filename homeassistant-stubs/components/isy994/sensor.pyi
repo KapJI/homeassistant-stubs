@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyisy.helpers import EventListener as EventListener, NodeProperty
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
 from typing import Any
@@ -19,7 +19,7 @@ ISY_CONTROL_TO_DEVICE_CLASS: Incomplete
 ISY_CONTROL_TO_STATE_CLASS: Incomplete
 ISY_CONTROL_TO_ENTITY_CATEGORY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYSensorEntity(ISYNodeEntity, SensorEntity):
     @property

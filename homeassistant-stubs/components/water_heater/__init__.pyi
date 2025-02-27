@@ -44,6 +44,7 @@ ATTR_OPERATION_MODE: str
 ATTR_OPERATION_LIST: str
 ATTR_TARGET_TEMP_HIGH: str
 ATTR_TARGET_TEMP_LOW: str
+ATTR_TARGET_TEMP_STEP: str
 ATTR_CURRENT_TEMPERATURE: str
 CONVERTIBLE_ATTRIBUTE: Incomplete
 _LOGGER: Incomplete
@@ -76,6 +77,7 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_target_temperature_low: float | None
     _attr_target_temperature: float | None
     _attr_temperature_unit: str
+    _attr_target_temperature_step: float | None
     @final
     @property
     def state(self) -> str | None: ...
@@ -100,6 +102,8 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def target_temperature_high(self) -> float | None: ...
     @cached_property
     def target_temperature_low(self) -> float | None: ...
+    @cached_property
+    def target_temperature_step(self) -> float | None: ...
     @cached_property
     def is_away_mode_on(self) -> bool | None: ...
     def set_temperature(self, **kwargs: Any) -> None: ...

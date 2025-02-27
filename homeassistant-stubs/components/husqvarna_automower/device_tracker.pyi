@@ -4,11 +4,11 @@ from .entity import AutomowerBaseEntity as AutomowerBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AutomowerDeviceTrackerEntity(AutomowerBaseEntity, TrackerEntity):
     _attr_name: Incomplete

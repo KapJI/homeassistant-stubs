@@ -1,15 +1,14 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import FastdotcomDataUpdateCoordinator as FastdotcomDataUpdateCoordinator
+from .coordinator import FastdotcomConfigEntry as FastdotcomConfigEntry, FastdotcomDataUpdateCoordinator as FastdotcomDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfDataRate as UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FastdotcomConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SpeedtestSensor(CoordinatorEntity[FastdotcomDataUpdateCoordinator], SensorEntity):
     _attr_translation_key: str

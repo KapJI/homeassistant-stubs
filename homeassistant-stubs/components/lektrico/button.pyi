@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from lektricowifi import Device
 from typing import Any
 
@@ -17,7 +17,7 @@ class LektricoButtonEntityDescription(ButtonEntityDescription):
 BUTTONS_FOR_CHARGERS: tuple[LektricoButtonEntityDescription, ...]
 BUTTONS_FOR_LB_DEVICES: tuple[LektricoButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LektricoButton(LektricoEntity, ButtonEntity):
     entity_description: LektricoButtonEntityDescription

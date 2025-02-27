@@ -1,20 +1,19 @@
-from . import AirzoneConfigEntry as AirzoneConfigEntry
 from .const import TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
-from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
+from .coordinator import AirzoneConfigEntry as AirzoneConfigEntry, AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneEntity as AirzoneEntity, AirzoneHotWaterEntity as AirzoneHotWaterEntity, AirzoneWebServerEntity as AirzoneWebServerEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Final
 
 HOT_WATER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 WEBSERVER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 ZONE_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AirzoneSensor(AirzoneEntity, SensorEntity):
     @callback

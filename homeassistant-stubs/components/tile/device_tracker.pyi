@@ -3,7 +3,7 @@ from .entity import TileEntity as TileEntity
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import as_utc as as_utc
 
 _LOGGER: Incomplete
@@ -17,7 +17,7 @@ ATTR_RING_STATE: str
 ATTR_TILE_NAME: str
 ATTR_VOIP_STATE: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: TileConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TileConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TileDeviceTracker(TileEntity, TrackerEntity):
     _attr_name: Incomplete

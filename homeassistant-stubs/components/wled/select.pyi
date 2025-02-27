@@ -6,11 +6,11 @@ from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WLEDLiveOverrideSelect(WLEDEntity, SelectEntity):
     _attr_entity_category: Incomplete
@@ -63,4 +63,4 @@ class WLEDPaletteSelect(WLEDEntity, SelectEntity):
     async def async_select_option(self, option: str) -> None: ...
 
 @callback
-def async_update_segments(coordinator: WLEDDataUpdateCoordinator, current_ids: set[int], async_add_entities: AddEntitiesCallback) -> None: ...
+def async_update_segments(coordinator: WLEDDataUpdateCoordinator, current_ids: set[int], async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

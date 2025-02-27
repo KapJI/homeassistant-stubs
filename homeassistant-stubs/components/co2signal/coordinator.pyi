@@ -8,11 +8,12 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete
+type CO2SignalConfigEntry = ConfigEntry[CO2SignalCoordinator]
 
 class CO2SignalCoordinator(DataUpdateCoordinator[CarbonIntensityResponse]):
-    config_entry: ConfigEntry
+    config_entry: CO2SignalConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, client: ElectricityMaps) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: CO2SignalConfigEntry, client: ElectricityMaps) -> None: ...
     @property
     def entry_id(self) -> str: ...
     async def _async_update_data(self) -> CarbonIntensityResponse: ...

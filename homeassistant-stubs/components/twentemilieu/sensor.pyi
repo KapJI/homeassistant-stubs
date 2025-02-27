@@ -7,7 +7,7 @@ from datetime import date
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from twentemilieu import WasteType
 
 @dataclass(frozen=True, kw_only=True)
@@ -16,7 +16,7 @@ class TwenteMilieuSensorDescription(SensorEntityDescription):
 
 SENSORS: tuple[TwenteMilieuSensorDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: TwenteMilieuConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TwenteMilieuConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TwenteMilieuSensor(TwenteMilieuEntity, SensorEntity):
     entity_description: TwenteMilieuSensorDescription

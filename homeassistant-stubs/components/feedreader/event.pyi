@@ -6,7 +6,7 @@ from feedparser import FeedParserDict as FeedParserDict
 from homeassistant.components.event import EventEntity as EventEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 LOGGER: Incomplete
@@ -15,7 +15,7 @@ ATTR_DESCRIPTION: str
 ATTR_LINK: str
 ATTR_TITLE: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: FeedReaderConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FeedReaderConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FeedReaderEvent(CoordinatorEntity[FeedReaderCoordinator], EventEntity):
     _attr_event_types: Incomplete

@@ -1,18 +1,39 @@
+from .const import UNPLAYABLE_TYPES as UNPLAYABLE_TYPES
 from _typeshed import Incomplete
+from dataclasses import dataclass, field
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEntity as MediaPlayerEntity, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.network import is_internal_request as is_internal_request
 from pysqueezebox import Player as Player
+from typing import Any
 
 LIBRARY: Incomplete
-MEDIA_TYPE_TO_SQUEEZEBOX: Incomplete
-SQUEEZEBOX_ID_BY_TYPE: Incomplete
+MEDIA_TYPE_TO_SQUEEZEBOX: dict[str | MediaType, str]
+SQUEEZEBOX_ID_BY_TYPE: dict[str | MediaType, str]
 CONTENT_TYPE_MEDIA_CLASS: dict[str | MediaType, dict[str, MediaClass | None]]
-CONTENT_TYPE_TO_CHILD_TYPE: Incomplete
-BROWSE_LIMIT: int
+CONTENT_TYPE_TO_CHILD_TYPE: dict[str | MediaType, str | MediaType | None]
 
-async def build_item_response(entity: MediaPlayerEntity, player: Player, payload: dict[str, str | None]) -> BrowseMedia: ...
-async def library_payload(hass: HomeAssistant, player: Player) -> BrowseMedia: ...
+@dataclass
+class BrowseData:
+    content_type_to_child_type: dict[str | MediaType, str | MediaType | None] = field(default_factory=dict)
+    content_type_media_class: dict[str | MediaType, dict[str, MediaClass | None]] = field(default_factory=dict)
+    squeezebox_id_by_type: dict[str | MediaType, str] = field(default_factory=dict)
+    media_type_to_squeezebox: dict[str | MediaType, str] = field(default_factory=dict)
+    known_apps_radios: set[str] = field(default_factory=set)
+    def __post_init__(self) -> None: ...
+
+@dataclass
+class BrowseItemResponse:
+    child_item_type: str | MediaType
+    child_media_class: dict[str, MediaClass | None]
+    can_expand: bool
+    can_play: bool
+
+def _add_new_command_to_browse_data(browse_data: BrowseData, cmd: str | MediaType, type: str) -> None: ...
+def _build_response_apps_radios_category(browse_data: BrowseData, cmd: str | MediaType) -> BrowseItemResponse: ...
+def _build_response_known_app(browse_data: BrowseData, search_type: str, item: dict[str, Any]) -> BrowseItemResponse: ...
+async def build_item_response(entity: MediaPlayerEntity, player: Player, payload: dict[str, str | None], browse_limit: int, browse_data: BrowseData) -> BrowseMedia: ...
+async def library_payload(hass: HomeAssistant, player: Player, browse_media: BrowseData) -> BrowseMedia: ...
 def media_source_content_filter(item: BrowseMedia) -> bool: ...
-async def generate_playlist(player: Player, payload: dict[str, str]) -> list | None: ...
+async def generate_playlist(player: Player, payload: dict[str, str], browse_limit: int, browse_media: BrowseData) -> list | None: ...

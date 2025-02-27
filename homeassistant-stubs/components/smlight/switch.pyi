@@ -1,5 +1,4 @@
-from . import SmConfigEntry as SmConfigEntry
-from .coordinator import SmDataUpdateCoordinator as SmDataUpdateCoordinator
+from .coordinator import SmConfigEntry as SmConfigEntry, SmDataUpdateCoordinator as SmDataUpdateCoordinator
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -7,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight import Sensors as Sensors, SettingsEvent as SettingsEvent
 from pysmlight.const import Settings
 from typing import Any
@@ -21,7 +20,7 @@ class SmSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCHES: list[SmSwitchEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SmSwitch(SmEntity, SwitchEntity):
     coordinator: SmDataUpdateCoordinator

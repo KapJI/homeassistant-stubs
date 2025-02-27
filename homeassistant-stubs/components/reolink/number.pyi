@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Chime as Chime, Host as Host
 from typing import Any
 
@@ -36,7 +36,7 @@ NUMBER_ENTITIES: Incomplete
 HOST_NUMBER_ENTITIES: Incomplete
 CHIME_NUMBER_ENTITIES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ReolinkNumberEntity(ReolinkChannelCoordinatorEntity, NumberEntity):
     entity_description: ReolinkNumberEntityDescription

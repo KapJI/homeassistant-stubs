@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from lektricowifi import Device as Device
 from typing import Any
 
@@ -18,7 +18,7 @@ class LektricoSelectEntityDescription(SelectEntityDescription):
 LB_MODE_OPTIONS: Incomplete
 SELECTS: tuple[LektricoSelectEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LektricoSelect(LektricoEntity, SelectEntity):
     entity_description: LektricoSelectEntityDescription

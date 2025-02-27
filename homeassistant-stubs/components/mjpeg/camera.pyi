@@ -9,13 +9,13 @@ from homeassistant.const import CONF_AUTHENTICATION as CONF_AUTHENTICATION, CONF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_web as async_aiohttp_proxy_web, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 
 TIMEOUT: int
 BUFFER_SIZE: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 async def async_extract_image_from_mjpeg(stream: AsyncIterator[bytes]) -> bytes | None: ...
 
 class MjpegCamera(Camera):

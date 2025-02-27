@@ -5,16 +5,17 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, ATTR_SW_VERSION as ATTR_SW_VERSION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Final
 
 NUT_DEV_INFO_TO_DEV_INFO: dict[str, str]
+AMBIENT_THRESHOLD_STATUS_OPTIONS: Incomplete
 _LOGGER: Incomplete
 SENSOR_TYPES: Final[dict[str, SensorEntityDescription]]
 
 def _get_nut_device_info(data: PyNUTData) -> DeviceInfo: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: NutConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: NutConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NUTSensor(CoordinatorEntity[DataUpdateCoordinator[dict[str, str]]], SensorEntity):
     _attr_has_entity_name: bool

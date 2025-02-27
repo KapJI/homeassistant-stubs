@@ -39,6 +39,5 @@ class NotionData:
 class NotionDataUpdateCoordinator(DataUpdateCoordinator[NotionData]):
     config_entry: ConfigEntry
     _client: Incomplete
-    _entry: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry, client: Client) -> None: ...
     async def _async_update_data(self) -> NotionData: ...

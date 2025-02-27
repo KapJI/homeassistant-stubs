@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class OverkizSelectDescription(SelectEntityDescription):
@@ -21,7 +21,7 @@ def _select_option_active_zone(option: str, execute_command: Callable[..., Await
 SELECT_DESCRIPTIONS: list[OverkizSelectDescription]
 SUPPORTED_STATES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OverkizSelect(OverkizDescriptiveEntity, SelectEntity):
     entity_description: OverkizSelectDescription

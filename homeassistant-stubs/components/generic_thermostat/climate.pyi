@@ -9,7 +9,7 @@ from homeassistant.core import CoreState as CoreState, Event as Event, EventStat
 from homeassistant.exceptions import ConditionError as ConditionError
 from homeassistant.helpers import condition as condition
 from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -27,9 +27,9 @@ PRESETS_SCHEMA: VolDictType
 PLATFORM_SCHEMA_COMMON: Incomplete
 PLATFORM_SCHEMA: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], unique_id: str | None, async_add_entities: AddEntitiesCallback) -> None: ...
+async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], unique_id: str | None, async_add_entities: AddEntitiesCallback | AddConfigEntryEntitiesCallback) -> None: ...
 
 class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_should_poll: bool

@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
 from typing import Any
@@ -15,7 +15,7 @@ OUTPUT_TRANSLATION_KEY: str
 _LOGGER: Incomplete
 
 def _get_output(coordinator: NASwebCoordinator, index: int) -> NASwebOutput | None: ...
-async def async_setup_entry(hass: HomeAssistant, config: NASwebConfigEntry, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: NASwebConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class RelaySwitch(SwitchEntity, BaseCoordinatorEntity):
     _output: Incomplete

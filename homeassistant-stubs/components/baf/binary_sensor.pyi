@@ -6,7 +6,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class BAFBinarySensorDescription(BinarySensorEntityDescription):
@@ -14,7 +14,7 @@ class BAFBinarySensorDescription(BinarySensorEntityDescription):
 
 OCCUPANCY_SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BAFBinarySensor(BAFDescriptionEntity, BinarySensorEntity):
     entity_description: BAFBinarySensorDescription

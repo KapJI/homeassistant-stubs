@@ -10,7 +10,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.components.sensor.const import SensorStateClass as SensorStateClass
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class Eq3SensorEntityDescription(SensorEntityDescription):
@@ -18,7 +18,7 @@ class Eq3SensorEntityDescription(SensorEntityDescription):
 
 SENSOR_ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Eq3SensorEntity(Eq3Entity, SensorEntity):
     entity_description: Eq3SensorEntityDescription

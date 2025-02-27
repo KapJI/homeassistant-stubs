@@ -11,7 +11,7 @@ from homeassistant.components.camera import Camera as Camera, CameraEntityFeatur
 from homeassistant.components.stream import CONF_EXTRA_PART_WAIT_TIME as CONF_EXTRA_PART_WAIT_TIME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.util.dt import utcnow as utcnow
 from webrtc_models import RTCIceCandidateInit as RTCIceCandidateInit
@@ -23,7 +23,7 @@ MIN_REFRESH_BACKOFF_INTERVAL: Incomplete
 MAX_REFRESH_BACKOFF_INTERVAL: Incomplete
 BACKOFF_MULTIPLIER: float
 
-async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NestConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class StreamRefresh:
     _hass: Incomplete

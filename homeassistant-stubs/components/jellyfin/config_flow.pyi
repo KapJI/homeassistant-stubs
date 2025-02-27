@@ -1,6 +1,6 @@
-from . import JellyfinConfigEntry as JellyfinConfigEntry
 from .client_wrapper import CannotConnect as CannotConnect, InvalidAuth as InvalidAuth, create_client as create_client, validate_input as validate_input
 from .const import CONF_CLIENT_DEVICE_ID as CONF_CLIENT_DEVICE_ID, DOMAIN as DOMAIN, SUPPORTED_AUDIO_CODECS as SUPPORTED_AUDIO_CODECS
+from .coordinator import JellyfinConfigEntry as JellyfinConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow

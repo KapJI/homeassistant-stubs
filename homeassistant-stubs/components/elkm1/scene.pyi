@@ -3,10 +3,10 @@ from .entity import ElkAttachedEntity as ElkAttachedEntity, ElkEntity as ElkEnti
 from elkm1_lib.tasks import Task as Task
 from homeassistant.components.scene import Scene as Scene
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElkTask(ElkAttachedEntity, Scene):
     _element: Task

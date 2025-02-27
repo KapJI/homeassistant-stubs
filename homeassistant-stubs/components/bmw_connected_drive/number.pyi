@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -23,7 +23,7 @@ class BMWNumberEntityDescription(NumberEntityDescription):
 
 NUMBER_TYPES: list[BMWNumberEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BMWNumber(BMWBaseEntity, NumberEntity):
     entity_description: BMWNumberEntityDescription

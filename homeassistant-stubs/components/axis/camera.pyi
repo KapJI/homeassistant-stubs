@@ -8,9 +8,9 @@ from homeassistant.components.mjpeg import MjpegCamera as MjpegCamera, filter_ur
 from homeassistant.const import HTTP_DIGEST_AUTHENTICATION as HTTP_DIGEST_AUTHENTICATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: AxisConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AxisConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AxisCamera(AxisEntity, MjpegCamera):
     _attr_supported_features: Incomplete

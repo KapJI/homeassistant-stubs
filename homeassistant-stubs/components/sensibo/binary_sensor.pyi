@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
 
 PARALLEL_UPDATES: int
@@ -28,7 +28,7 @@ DEVICE_SENSOR_TYPES: tuple[SensiboDeviceBinarySensorEntityDescription, ...]
 PURE_SENSOR_TYPES: tuple[SensiboDeviceBinarySensorEntityDescription, ...]
 DESCRIPTION_BY_MODELS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SensiboMotionSensor(SensiboMotionBaseEntity, BinarySensorEntity):
     entity_description: SensiboMotionBinarySensorEntityDescription

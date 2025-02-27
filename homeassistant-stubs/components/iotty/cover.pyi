@@ -1,18 +1,17 @@
-from . import IottyConfigEntry as IottyConfigEntry
 from .api import IottyProxy as IottyProxy
-from .coordinator import IottyDataUpdateCoordinator as IottyDataUpdateCoordinator
+from .coordinator import IottyConfigEntry as IottyConfigEntry, IottyDataUpdateCoordinator as IottyDataUpdateCoordinator
 from .entity import IottyEntity as IottyEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from iottycloud.device import Device as Device
 from iottycloud.shutter import Shutter
 from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: IottyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: IottyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IottyShutter(IottyEntity, CoverEntity):
     _attr_device_class: Incomplete

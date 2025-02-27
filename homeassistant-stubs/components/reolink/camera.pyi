@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.camera import Camera as Camera, CameraEntityDescription as CameraEntityDescription, CameraEntityFeature as CameraEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -15,7 +15,7 @@ class ReolinkCameraEntityDescription(CameraEntityDescription, ReolinkChannelEnti
 
 CAMERA_ENTITIES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ReolinkCamera(ReolinkChannelCoordinatorEntity, Camera):
     entity_description: ReolinkCameraEntityDescription

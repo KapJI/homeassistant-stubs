@@ -10,7 +10,7 @@ from deebot_client.events import ErrorEvent, Event as Event, LifeSpan as LifeSpa
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DESCRIPTION as CONF_DESCRIPTION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from sucks import VacBot as VacBot
 from typing import Generic
@@ -34,7 +34,7 @@ class EcovacsLegacyLifespanSensorEntityDescription(SensorEntityDescription):
 
 LEGACY_LIFESPAN_SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EcovacsSensor(EcovacsDescriptionEntity[CapabilityEvent], SensorEntity):
     entity_description: EcovacsSensorEntityDescription

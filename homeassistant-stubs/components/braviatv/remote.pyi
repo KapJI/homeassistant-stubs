@@ -1,13 +1,13 @@
-from . import BraviaTVConfigEntry as BraviaTVConfigEntry
+from .coordinator import BraviaTVConfigEntry as BraviaTVConfigEntry
 from .entity import BraviaTVEntity as BraviaTVEntity
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, RemoteEntity as RemoteEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BraviaTVConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BraviaTVConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BraviaTVRemote(BraviaTVEntity, RemoteEntity):
     _attr_name: Incomplete

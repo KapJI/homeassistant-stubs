@@ -8,7 +8,7 @@ from elkm1_lib.thermostats import Thermostat as Thermostat
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_ON as FAN_ON, HVACMode as HVACMode
 from homeassistant.const import PRECISION_WHOLE as PRECISION_WHOLE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from typing import Any
 
@@ -18,7 +18,7 @@ ELK_TO_HASS_HVAC_MODES: Incomplete
 HASS_TO_ELK_FAN_MODES: Incomplete
 ELK_TO_HASS_FAN_MODES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElkThermostat(ElkEntity, ClimateEntity):
     _attr_precision = PRECISION_WHOLE

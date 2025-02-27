@@ -8,7 +8,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 def min_charging_current_value(coordinator: WallboxCoordinator) -> float: ...
 
@@ -20,7 +20,7 @@ class WallboxNumberEntityDescription(NumberEntityDescription):
 
 NUMBER_TYPES: dict[str, WallboxNumberEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WallboxNumber(WallboxEntity, NumberEntity):
     entity_description: WallboxNumberEntityDescription

@@ -1,4 +1,4 @@
-from . import MastodonConfigEntry as MastodonConfigEntry
+from .coordinator import MastodonConfigEntry as MastodonConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

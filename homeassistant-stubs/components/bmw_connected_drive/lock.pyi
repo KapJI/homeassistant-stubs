@@ -6,14 +6,14 @@ from bimmer_connected.vehicle import MyBMWVehicle as MyBMWVehicle
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
 DOOR_LOCK_STATE: str
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BMWConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BMWLock(BMWBaseEntity, LockEntity):
     _attr_translation_key: str

@@ -5,6 +5,7 @@ from aiolifx.aiolifx import Light as Light, Message as Message
 from aiolifx.connection import LIFXConnection as LIFXConnection
 from collections.abc import Callable as Callable
 from enum import IntEnum
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -32,6 +33,7 @@ class SkyType(IntEnum):
     CLOUDS = 2
 
 class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
+    config_entry: ConfigEntry
     connection: Incomplete
     device: Light
     lock: Incomplete
@@ -39,7 +41,7 @@ class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
     _update_rssi: bool
     _rssi: int
     last_used_theme: str
-    def __init__(self, hass: HomeAssistant, connection: LIFXConnection, title: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, connection: LIFXConnection) -> None: ...
     @callback
     def async_setup(self) -> None: ...
     @property

@@ -10,7 +10,7 @@ from homeassistant.core import Event as Event, EventStateChangedData as EventSta
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
 from homeassistant.helpers.entity import generate_entity_id as generate_entity_id
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -26,7 +26,7 @@ SENSOR_SCHEMA: Incomplete
 PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SensorTrend(BinarySensorEntity, RestoreEntity):
     _attr_should_poll: bool

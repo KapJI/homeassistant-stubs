@@ -1,15 +1,14 @@
-from . import SchlageConfigEntry as SchlageConfigEntry
-from .coordinator import LockData as LockData, SchlageDataUpdateCoordinator as SchlageDataUpdateCoordinator
+from .coordinator import LockData as LockData, SchlageConfigEntry as SchlageConfigEntry, SchlageDataUpdateCoordinator as SchlageDataUpdateCoordinator
 from .entity import SchlageEntity as SchlageEntity
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: SchlageConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: SchlageConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SchlageSelect(SchlageEntity, SelectEntity):
     entity_description: Incomplete

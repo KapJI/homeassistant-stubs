@@ -1,26 +1,24 @@
 import abc
-from .const import DOMAIN as DOMAIN
-from .coordinator import FluxLedUpdateCoordinator as FluxLedUpdateCoordinator
+from .coordinator import FluxLedConfigEntry as FluxLedConfigEntry, FluxLedUpdateCoordinator as FluxLedUpdateCoordinator
 from .entity import FluxEntity as FluxEntity
 from .util import _effect_brightness as _effect_brightness
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Coroutine
-from homeassistant import config_entries as config_entries
 from homeassistant.components.light import EFFECT_RANDOM as EFFECT_RANDOM
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 _LOGGER: Incomplete
 DEBOUNCE_TIME: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FluxLedConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FluxSpeedNumber(FluxEntity, CoordinatorEntity[FluxLedUpdateCoordinator], NumberEntity):
     _attr_native_min_value: int

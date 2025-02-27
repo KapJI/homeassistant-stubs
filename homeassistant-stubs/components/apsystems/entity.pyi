@@ -1,5 +1,5 @@
-from . import ApSystemsData as ApSystemsData
 from .const import DOMAIN as DOMAIN
+from .coordinator import ApSystemsData as ApSystemsData
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity

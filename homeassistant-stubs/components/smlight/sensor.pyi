@@ -1,6 +1,5 @@
-from . import SmConfigEntry as SmConfigEntry
 from .const import UPTIME_DEVIATION as UPTIME_DEVIATION
-from .coordinator import SmDataUpdateCoordinator as SmDataUpdateCoordinator
+from .coordinator import SmConfigEntry as SmConfigEntry, SmDataUpdateCoordinator as SmDataUpdateCoordinator
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -9,7 +8,7 @@ from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from pysmlight import Info as Info, Sensors as Sensors
@@ -26,7 +25,7 @@ INFO: list[SmInfoEntityDescription]
 SENSORS: list[SmSensorEntityDescription]
 UPTIME: list[SmSensorEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SmSensorEntity(SmEntity, SensorEntity):
     coordinator: SmDataUpdateCoordinator

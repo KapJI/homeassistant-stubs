@@ -1,5 +1,4 @@
-from . import AirzoneConfigEntry as AirzoneConfigEntry
-from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
+from .coordinator import AirzoneConfigEntry as AirzoneConfigEntry, AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneEntity as AirzoneEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -8,7 +7,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Final
 
 @dataclass(frozen=True, kw_only=True)
@@ -26,7 +25,7 @@ def main_zone_options(zone_data: dict[str, Any], options: dict[str, int]) -> lis
 MAIN_ZONE_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]
 ZONE_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AirzoneBaseSelect(AirzoneEntity, SelectEntity):
     entity_description: AirzoneSelectDescription

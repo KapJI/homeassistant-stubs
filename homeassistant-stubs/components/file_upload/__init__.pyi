@@ -10,10 +10,12 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util import raise_if_invalid_filename as raise_if_invalid_filename
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ulid import ulid_hex as ulid_hex
 from pathlib import Path
 
 DOMAIN: str
+_DATA: HassKey[FileUploadData]
 ONE_MEGABYTE: Incomplete
 MAX_SIZE: Incomplete
 TEMP_DIR_NAME: Incomplete

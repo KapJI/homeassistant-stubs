@@ -8,9 +8,10 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 _LOGGER: Incomplete
+type FlexitConfigEntry = ConfigEntry[FlexitCoordinator]
 
 class FlexitCoordinator(DataUpdateCoordinator[FlexitBACnet]):
-    config_entry: ConfigEntry
+    config_entry: FlexitConfigEntry
     device: Incomplete
-    def __init__(self, hass: HomeAssistant, device_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: FlexitConfigEntry) -> None: ...
     async def _async_update_data(self) -> FlexitBACnet: ...

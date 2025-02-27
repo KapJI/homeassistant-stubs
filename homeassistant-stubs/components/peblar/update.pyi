@@ -4,7 +4,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -16,7 +16,7 @@ class PeblarUpdateEntityDescription(UpdateEntityDescription):
 
 DESCRIPTIONS: tuple[PeblarUpdateEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PeblarUpdateEntity(PeblarEntity[PeblarVersionDataUpdateCoordinator], UpdateEntity):
     entity_description: PeblarUpdateEntityDescription

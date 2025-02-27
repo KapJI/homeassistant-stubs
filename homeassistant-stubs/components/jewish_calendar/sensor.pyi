@@ -6,7 +6,7 @@ from hdate.zmanim import Zmanim
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_date
 from typing import Any
 
@@ -14,7 +14,7 @@ _LOGGER: Incomplete
 INFO_SENSORS: tuple[SensorEntityDescription, ...]
 TIME_SENSORS: tuple[SensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class JewishCalendarSensor(JewishCalendarEntity, SensorEntity):
     _attr_entity_category: Incomplete

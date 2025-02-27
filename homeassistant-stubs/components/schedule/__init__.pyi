@@ -1,9 +1,9 @@
-from .const import ATTR_NEXT_EVENT as ATTR_NEXT_EVENT, CONF_ALL_DAYS as CONF_ALL_DAYS, CONF_DATA as CONF_DATA, CONF_FROM as CONF_FROM, CONF_TO as CONF_TO, DOMAIN as DOMAIN, LOGGER as LOGGER, WEEKDAY_TO_CONF as WEEKDAY_TO_CONF
+from .const import ATTR_NEXT_EVENT as ATTR_NEXT_EVENT, CONF_ALL_DAYS as CONF_ALL_DAYS, CONF_DATA as CONF_DATA, CONF_FROM as CONF_FROM, CONF_TO as CONF_TO, DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_GET as SERVICE_GET, WEEKDAY_TO_CONF as WEEKDAY_TO_CONF
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, SERVICE_RELOAD as SERVICE_RELOAD, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.helpers.collection import CollectionEntity as CollectionEntity, DictStorageCollection as DictStorageCollection, DictStorageCollectionWebsocket as DictStorageCollectionWebsocket, IDManager as IDManager, SerializedStorageCollection as SerializedStorageCollection, YamlCollection as YamlCollection, sync_entity_lifecycle as sync_entity_lifecycle
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
@@ -62,7 +62,10 @@ class Schedule(CollectionEntity):
     @callback
     def _clean_up_listener(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    def get_schedule(self) -> ConfigType: ...
     _attr_extra_state_attributes: Incomplete
     @callback
     def _update(self, _: datetime | None = None) -> None: ...
     def all_custom_data_keys(self) -> frozenset[str]: ...
+
+async def async_get_schedule_service(schedule: Schedule, service_call: ServiceCall) -> ServiceResponse: ...

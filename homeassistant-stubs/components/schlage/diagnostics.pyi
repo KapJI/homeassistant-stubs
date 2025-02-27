@@ -1,4 +1,4 @@
-from . import SchlageConfigEntry as SchlageConfigEntry
+from .coordinator import SchlageConfigEntry as SchlageConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

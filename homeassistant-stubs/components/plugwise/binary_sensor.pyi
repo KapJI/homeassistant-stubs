@@ -1,5 +1,4 @@
-from . import PlugwiseConfigEntry as PlugwiseConfigEntry
-from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
+from .coordinator import PlugwiseConfigEntry as PlugwiseConfigEntry, PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -7,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from plugwise.constants import BinarySensorType as BinarySensorType
 from typing import Any
 
@@ -20,7 +19,7 @@ class PlugwiseBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSORS: tuple[PlugwiseBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PlugwiseBinarySensorEntity(PlugwiseEntity, BinarySensorEntity):
     entity_description: PlugwiseBinarySensorEntityDescription

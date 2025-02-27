@@ -21,6 +21,9 @@ class TVTrainConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     _from_stations: list[StationInfoModel]
     _to_stations: list[StationInfoModel]
+    _time: str | None
+    _days: list
+    _product: str | None
     _data: dict[str, Any]
     @staticmethod
     @callback

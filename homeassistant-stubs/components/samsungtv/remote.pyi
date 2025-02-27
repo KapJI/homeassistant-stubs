@@ -1,14 +1,14 @@
-from . import SamsungTVConfigEntry as SamsungTVConfigEntry
 from .const import LOGGER as LOGGER
+from .coordinator import SamsungTVConfigEntry as SamsungTVConfigEntry
 from .entity import SamsungTVEntity as SamsungTVEntity
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, RemoteEntity as RemoteEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: SamsungTVConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SamsungTVConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SamsungTVRemote(SamsungTVEntity, RemoteEntity):
     _attr_name: Incomplete

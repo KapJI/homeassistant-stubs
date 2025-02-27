@@ -1,13 +1,12 @@
-from . import AmberConfigEntry as AmberConfigEntry
 from .const import ATTRIBUTION as ATTRIBUTION
-from .coordinator import AmberUpdateCoordinator as AmberUpdateCoordinator, normalize_descriptor as normalize_descriptor
+from .coordinator import AmberConfigEntry as AmberConfigEntry, AmberUpdateCoordinator as AmberUpdateCoordinator, normalize_descriptor as normalize_descriptor
 from _typeshed import Incomplete
 from amberelectric.models.current_interval import CurrentInterval as CurrentInterval
 from amberelectric.models.forecast_interval import ForecastInterval as ForecastInterval
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CURRENCY_DOLLAR as CURRENCY_DOLLAR, PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
@@ -49,4 +48,4 @@ class AmberGridSensor(CoordinatorEntity[AmberUpdateCoordinator], SensorEntity):
     @property
     def native_value(self) -> str | None: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: AmberConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AmberConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

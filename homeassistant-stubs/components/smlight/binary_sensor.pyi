@@ -1,14 +1,13 @@
 from .const import SCAN_INTERNET_INTERVAL as SCAN_INTERNET_INTERVAL
-from .coordinator import SmDataUpdateCoordinator as SmDataUpdateCoordinator
+from .coordinator import SmConfigEntry as SmConfigEntry, SmDataUpdateCoordinator as SmDataUpdateCoordinator
 from .entity import SmEntity as SmEntity
 from _collections_abc import Callable as Callable
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight import Sensors as Sensors
 from pysmlight.sse import MessageEvent as MessageEvent
 
@@ -20,7 +19,7 @@ class SmBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SmBinarySensorEntity(SmEntity, BinarySensorEntity):
     entity_description: SmBinarySensorEntityDescription

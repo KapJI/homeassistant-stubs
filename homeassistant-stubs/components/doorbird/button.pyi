@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 IR_RELAY: str
@@ -19,7 +19,7 @@ class DoorbirdButtonEntityDescription(ButtonEntityDescription):
 RELAY_ENTITY_DESCRIPTION: Incomplete
 BUTTON_DESCRIPTIONS: tuple[DoorbirdButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: DoorBirdConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: DoorBirdConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DoorBirdButton(DoorBirdEntity, ButtonEntity):
     entity_description: DoorbirdButtonEntityDescription

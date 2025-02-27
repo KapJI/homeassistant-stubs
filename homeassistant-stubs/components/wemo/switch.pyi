@@ -6,7 +6,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_STANDBY as STATE_STANDBY, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywemo import Switch as Switch
 from typing import Any
 
@@ -23,7 +23,7 @@ ATTR_SWITCH_MODE: str
 MAKER_SWITCH_MOMENTARY: str
 MAKER_SWITCH_TOGGLE: str
 
-async def async_setup_entry(hass: HomeAssistant, _config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, _config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WemoSwitch(WemoBinaryStateEntity, SwitchEntity):
     wemo: Switch

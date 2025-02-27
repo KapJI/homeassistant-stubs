@@ -1,6 +1,5 @@
-from . import FytaConfigEntry as FytaConfigEntry
 from .const import DOMAIN as DOMAIN
-from .coordinator import FytaCoordinator as FytaCoordinator
+from .coordinator import FytaConfigEntry as FytaConfigEntry, FytaCoordinator as FytaCoordinator
 from _typeshed import Incomplete
 from fyta_cli.fyta_models import Plant as Plant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo

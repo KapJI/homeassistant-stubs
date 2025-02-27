@@ -1,5 +1,5 @@
 import datetime as dt
-from .const import LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .manager import BackupManager as BackupManager, ManagerBackup as ManagerBackup
 from .models import BackupManagerError as BackupManagerError, Folder as Folder
 from _typeshed import Incomplete
@@ -12,6 +12,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later, as
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from typing import Self, TypedDict
 
+AUTOMATIC_BACKUP_AGENTS_UNAVAILABLE_ISSUE_ID: str
 CRON_PATTERN_DAILY: str
 CRON_PATTERN_WEEKLY: str
 DEFAULT_BACKUP_TIME: Incomplete
@@ -19,6 +20,7 @@ BACKUP_START_TIME_JITTER: Incomplete
 
 class StoredBackupConfig(TypedDict):
     agents: dict[str, StoredAgentConfig]
+    automatic_backups_configured: bool
     create_backup: StoredCreateBackupConfig
     last_attempted_automatic_backup: str | None
     last_completed_automatic_backup: str | None
@@ -28,6 +30,7 @@ class StoredBackupConfig(TypedDict):
 @dataclass(kw_only=True)
 class BackupConfigData:
     agents: dict[str, AgentConfig]
+    automatic_backups_configured: bool
     create_backup: CreateBackupConfig
     last_attempted_automatic_backup: datetime | None = ...
     last_completed_automatic_backup: datetime | None = ...
@@ -39,11 +42,12 @@ class BackupConfigData:
 
 class BackupConfig:
     data: Incomplete
+    _hass: Incomplete
     _manager: Incomplete
     def __init__(self, hass: HomeAssistant, manager: BackupManager) -> None: ...
     def load(self, stored_config: StoredBackupConfig) -> None: ...
     @callback
-    def update(self, *, agents: dict[str, AgentParametersDict] | UndefinedType = ..., create_backup: CreateBackupParametersDict | UndefinedType = ..., retention: RetentionParametersDict | UndefinedType = ..., schedule: ScheduleParametersDict | UndefinedType = ...) -> None: ...
+    def update(self, *, agents: dict[str, AgentParametersDict] | UndefinedType = ..., automatic_backups_configured: bool | UndefinedType = ..., create_backup: CreateBackupParametersDict | UndefinedType = ..., retention: RetentionParametersDict | UndefinedType = ..., schedule: ScheduleParametersDict | UndefinedType = ...) -> None: ...
 
 @dataclass(kw_only=True)
 class AgentConfig:
@@ -160,3 +164,5 @@ class CreateBackupParametersDict(TypedDict, total=False):
 
 def _automatic_backups_filter(backups: dict[str, ManagerBackup]) -> dict[str, ManagerBackup]: ...
 async def delete_backups_exceeding_configured_count(manager: BackupManager) -> None: ...
+@callback
+def check_unavailable_agents(hass: HomeAssistant, manager: BackupManager) -> None: ...

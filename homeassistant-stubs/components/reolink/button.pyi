@@ -7,7 +7,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.components.camera import CameraEntityFeature as CameraEntityFeature
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from reolink_aio.api import Host as Host
 from typing import Any
 
@@ -29,7 +29,7 @@ class ReolinkHostButtonEntityDescription(ButtonEntityDescription, ReolinkHostEnt
 BUTTON_ENTITIES: Incomplete
 HOST_BUTTON_ENTITIES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ReolinkButtonEntity(ReolinkChannelCoordinatorEntity, ButtonEntity):
     entity_description: ReolinkButtonEntityDescription

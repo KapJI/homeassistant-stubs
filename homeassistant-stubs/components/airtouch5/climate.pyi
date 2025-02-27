@@ -13,7 +13,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
@@ -22,7 +22,7 @@ HVAC_MODE_TO_SET_AC_MODE: Incomplete
 AC_FAN_SPEED_TO_FAN_SPEED: Incomplete
 FAN_MODE_TO_SET_AC_FAN_SPEED: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: Airtouch5ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: Airtouch5ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Airtouch5ClimateEntity(ClimateEntity, Airtouch5Entity):
     _attr_temperature_unit: Incomplete

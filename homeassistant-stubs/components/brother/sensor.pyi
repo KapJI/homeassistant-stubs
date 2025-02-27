@@ -1,5 +1,5 @@
-from . import BrotherConfigEntry as BrotherConfigEntry, BrotherDataUpdateCoordinator as BrotherDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import BrotherConfigEntry as BrotherConfigEntry, BrotherDataUpdateCoordinator as BrotherDataUpdateCoordinator
 from _typeshed import Incomplete
 from brother import BrotherSensors as BrotherSensors
 from collections.abc import Callable as Callable
@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
@@ -23,7 +23,7 @@ class BrotherSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[BrotherSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: BrotherConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BrotherConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BrotherPrinterSensor(CoordinatorEntity[BrotherDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool

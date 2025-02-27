@@ -9,7 +9,7 @@ from enum import StrEnum
 from homeassistant.components.number import DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pynecil import CharSetting, LiveDataResponse as LiveDataResponse, SettingsDataResponse as SettingsDataResponse
 
 PARALLEL_UPDATES: int
@@ -46,7 +46,7 @@ def multiply(value: float | None, multiplier: float) -> float | None: ...
 
 PINECIL_NUMBER_DESCRIPTIONS: tuple[IronOSNumberEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: IronOSConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IronOSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IronOSNumberEntity(IronOSBaseEntity, NumberEntity):
     entity_description: IronOSNumberEntityDescription

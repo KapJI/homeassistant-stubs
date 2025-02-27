@@ -4,12 +4,12 @@ from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from velbusaio.channels import Button as VelbusaioButton, ButtonCounter as VelbusaioButtonCounter
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VelbusButton(VelbusEntity, ButtonEntity):
     _channel: VelbusaioButton | VelbusaioButtonCounter

@@ -1,4 +1,4 @@
-from . import IdasenDeskCoordinator as IdasenDeskCoordinator
+from .coordinator import IdasenDeskCoordinator as IdasenDeskCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 

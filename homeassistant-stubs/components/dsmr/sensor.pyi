@@ -11,7 +11,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, 
 from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util import Throttle as Throttle
 
@@ -39,7 +39,7 @@ def rename_old_gas_to_mbus(hass: HomeAssistant, entry: ConfigEntry, mbus_device_
 def is_supported_description(data: Telegram | MbusDevice, description: DSMRSensorEntityDescription, dsmr_version: str) -> bool: ...
 def create_mbus_entities(hass: HomeAssistant, telegram: Telegram, entry: ConfigEntry, dsmr_version: str) -> Generator[DSMREntity]: ...
 def get_dsmr_object(telegram: Telegram | None, mbus_id: int, obis_reference: str) -> DSMRObject | None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: DsmrConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DsmrConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DSMREntity(SensorEntity):
     entity_description: DSMRSensorEntityDescription

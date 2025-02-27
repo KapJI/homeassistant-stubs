@@ -6,13 +6,13 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 PARALLEL_UPDATES: int
 IMAP_MAIL_COUNT_DESCRIPTION: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ImapConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ImapConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ImapSensor(CoordinatorEntity[ImapDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool

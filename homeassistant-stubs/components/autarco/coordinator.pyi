@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import NamedTuple
 
+type AutarcoConfigEntry = ConfigEntry[list[AutarcoDataUpdateCoordinator]]
 class AutarcoData(NamedTuple):
     solar: Solar
     inverters: dict[str, Inverter]
@@ -14,8 +15,8 @@ class AutarcoData(NamedTuple):
     battery: Battery | None
 
 class AutarcoDataUpdateCoordinator(DataUpdateCoordinator[AutarcoData]):
-    config_entry: ConfigEntry
+    config_entry: AutarcoConfigEntry
     client: Incomplete
     account_site: Incomplete
-    def __init__(self, hass: HomeAssistant, client: Autarco, account_site: AccountSite) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: AutarcoConfigEntry, client: Autarco, account_site: AccountSite) -> None: ...
     async def _async_update_data(self) -> AutarcoData: ...

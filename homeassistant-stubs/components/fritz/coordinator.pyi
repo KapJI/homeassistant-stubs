@@ -71,6 +71,7 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     hass: Incomplete
     host: Incomplete
     mesh_role: Incomplete
+    mesh_wifi_uplink: bool
     device_conn_type: str | None
     device_is_router: bool
     password: Incomplete

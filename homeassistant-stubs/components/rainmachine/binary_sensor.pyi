@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 TYPE_FLOW_SENSOR: str
 TYPE_FREEZE: str
@@ -23,7 +23,7 @@ class RainMachineBinarySensorDescription(BinarySensorEntityDescription, RainMach
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CurrentRestrictionsBinarySensor(RainMachineEntity, BinarySensorEntity):
     entity_description: RainMachineBinarySensorDescription

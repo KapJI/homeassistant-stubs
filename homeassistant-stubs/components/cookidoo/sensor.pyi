@@ -9,7 +9,7 @@ from enum import StrEnum
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 
 PARALLEL_UPDATES: int
@@ -24,7 +24,7 @@ class CookidooSensor(StrEnum):
 
 SENSOR_DESCRIPTIONS: tuple[CookidooSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: CookidooConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: CookidooConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CookidooSensorEntity(CookidooBaseEntity, SensorEntity):
     entity_description: CookidooSensorEntityDescription

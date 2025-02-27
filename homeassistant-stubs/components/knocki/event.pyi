@@ -4,10 +4,10 @@ from _typeshed import Incomplete
 from homeassistant.components.event import EventEntity as EventEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from knocki import Event as Event, KnockiClient as KnockiClient, Trigger as Trigger
 
-async def async_setup_entry(hass: HomeAssistant, entry: KnockiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: KnockiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 EVENT_TRIGGERED: str
 

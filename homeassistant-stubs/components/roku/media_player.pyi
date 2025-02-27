@@ -1,8 +1,7 @@
 import datetime as dt
-from . import RokuConfigEntry as RokuConfigEntry
 from .browse_media import async_browse_media as async_browse_media
 from .const import ATTR_ARTIST_NAME as ATTR_ARTIST_NAME, ATTR_CONTENT_ID as ATTR_CONTENT_ID, ATTR_FORMAT as ATTR_FORMAT, ATTR_KEYWORD as ATTR_KEYWORD, ATTR_MEDIA_TYPE as ATTR_MEDIA_TYPE, ATTR_THUMBNAIL as ATTR_THUMBNAIL, SERVICE_SEARCH as SERVICE_SEARCH
-from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
+from .coordinator import RokuConfigEntry as RokuConfigEntry, RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .entity import RokuEntity as RokuEntity
 from .helpers import format_channel_name as format_channel_name, roku_exception_handler as roku_exception_handler
 from _typeshed import Incomplete
@@ -12,7 +11,7 @@ from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTEN
 from homeassistant.const import ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
@@ -24,7 +23,7 @@ ATTRS_TO_PLAY_ON_ROKU_AUDIO_PARAMS: Incomplete
 SEARCH_SCHEMA: VolDictType
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
     _attr_name: Incomplete

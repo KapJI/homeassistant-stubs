@@ -1,14 +1,12 @@
-from . import FlexitCoordinator as FlexitCoordinator
-from .const import DOMAIN as DOMAIN
+from .coordinator import FlexitConfigEntry as FlexitConfigEntry, FlexitCoordinator as FlexitCoordinator
 from .entity import FlexitEntity as FlexitEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from flexit_bacnet import FlexitBACnet as FlexitBACnet
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(kw_only=True, frozen=True)
 class FlexitBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -16,7 +14,9 @@ class FlexitBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 SENSOR_TYPES: tuple[FlexitBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: FlexitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+PARALLEL_UPDATES: int
 
 class FlexitBinarySensor(FlexitEntity, BinarySensorEntity):
     entity_description: FlexitBinarySensorEntityDescription

@@ -4,14 +4,14 @@ from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 ATTR_LAST_TIME_REACHABLE: str
 DEFAULT_DEVICE_NAME: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: AsusWrtConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AsusWrtConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
-def add_entities(router: AsusWrtRouter, async_add_entities: AddEntitiesCallback, tracked: set[str]) -> None: ...
+def add_entities(router: AsusWrtRouter, async_add_entities: AddConfigEntryEntitiesCallback, tracked: set[str]) -> None: ...
 
 class AsusWrtDevice(ScannerEntity):
     _unrecorded_attributes: Incomplete

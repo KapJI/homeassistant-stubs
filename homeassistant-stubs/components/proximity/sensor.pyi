@@ -5,7 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import NamedTuple
 
@@ -19,7 +19,7 @@ class TrackedEntityDescriptor(NamedTuple):
     name: str
 
 def _device_info(coordinator: ProximityDataUpdateCoordinator) -> DeviceInfo: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ProximityConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ProximityConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ProximitySensor(CoordinatorEntity[ProximityDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool

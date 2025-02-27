@@ -5,11 +5,11 @@ from _typeshed import Incomplete
 from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity, TodoListEntityFeature as TodoListEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: CookidooConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: CookidooConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CookidooIngredientsTodoListEntity(CookidooBaseEntity, TodoListEntity):
     _attr_translation_key: str

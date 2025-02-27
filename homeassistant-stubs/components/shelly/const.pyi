@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.components.number import NumberMode as NumberMode
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from logging import Logger
 from typing import Final
 
@@ -25,6 +26,7 @@ SHAIR_MAX_WORK_HOURS: Final[int]
 INPUTS_EVENTS_DICT: Final[Incomplete]
 BATTERY_DEVICES_WITH_PERMANENT_CONNECTION: Final[Incomplete]
 EVENT_SHELLY_CLICK: Final[str]
+SHELLY_EMIT_EVENT_PATTERN: Final[Incomplete]
 ATTR_CLICK_TYPE: Final[str]
 ATTR_CHANNEL: Final[str]
 ATTR_DEVICE: Final[str]
@@ -78,3 +80,4 @@ VIRTUAL_NUMBER_MODE_MAP: Incomplete
 API_WS_URL: str
 COMPONENT_ID_PATTERN: Incomplete
 BLU_TRV_TIMEOUT: int
+ROLE_TO_DEVICE_CLASS_MAP: Incomplete

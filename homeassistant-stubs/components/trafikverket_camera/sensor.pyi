@@ -8,7 +8,7 @@ from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import DEGREE as DEGREE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 
 PARALLEL_UPDATES: int
@@ -19,7 +19,7 @@ class TVCameraSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[TVCameraSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: TVCameraConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TVCameraConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TrafikverketCameraSensor(TrafikverketCameraNonCameraEntity, SensorEntity):
     entity_description: TVCameraSensorEntityDescription

@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import Throttle as Throttle
 from pyaftership import AfterShip as AfterShip
 from typing import Any, Final
@@ -12,7 +12,7 @@ from typing import Any, Final
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: AfterShipConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AfterShipConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AfterShipSensor(SensorEntity):
     _attr_attribution = ATTRIBUTION

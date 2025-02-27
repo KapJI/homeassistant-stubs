@@ -6,7 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from simplipy.device import DeviceV3 as DeviceV3
 from simplipy.device.sensor.v3 import SensorV3 as SensorV3
 from simplipy.system.v3 import SystemV3 as SystemV3
@@ -14,7 +14,7 @@ from simplipy.system.v3 import SystemV3 as SystemV3
 SUPPORTED_BATTERY_SENSOR_TYPES: Incomplete
 TRIGGERED_SENSOR_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TriggeredBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _attr_device_class: Incomplete

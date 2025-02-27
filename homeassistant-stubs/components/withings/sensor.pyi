@@ -11,7 +11,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import PERCENTAGE as PERCENTAGE, Platform as Platform, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
 
@@ -60,7 +60,7 @@ class WithingsDeviceSensorEntityDescription(SensorEntityDescription):
 DEVICE_SENSORS: Incomplete
 
 def get_current_goals(goals: Goals) -> set[str]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: WithingsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WithingsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WithingsSensor[_T: WithingsDataUpdateCoordinator[Any], _ED: SensorEntityDescription](WithingsEntity[_T], SensorEntity):
     entity_description: _ED

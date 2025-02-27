@@ -1,4 +1,4 @@
-from . import RokuConfigEntry as RokuConfigEntry
+from .coordinator import RokuConfigEntry as RokuConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

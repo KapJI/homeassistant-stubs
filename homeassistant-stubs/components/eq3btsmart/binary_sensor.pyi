@@ -8,7 +8,7 @@ from eq3btsmart.models import Status as Status
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class Eq3BinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -16,7 +16,7 @@ class Eq3BinarySensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSOR_ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Eq3BinarySensorEntity(Eq3Entity, BinarySensorEntity):
     entity_description: Eq3BinarySensorEntityDescription

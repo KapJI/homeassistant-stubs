@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
@@ -19,7 +19,7 @@ AUTO_COMFORT_SWITCHES: Incomplete
 FAN_SWITCHES: Incomplete
 LIGHT_SWITCHES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BAFSwitch(BAFDescriptionEntity, SwitchEntity):
     entity_description: BAFSwitchDescription

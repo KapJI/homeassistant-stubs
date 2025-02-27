@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, InputSource as InputSource, OPTION_INPUT_SOURCES as OPTION_INPUT_SOURCES
+from .const import DOMAIN as DOMAIN, InputSource as InputSource, ListeningMode as ListeningMode, OPTION_INPUT_SOURCES as OPTION_INPUT_SOURCES, OPTION_LISTENING_MODES as OPTION_LISTENING_MODES
 from .receiver import Receiver as Receiver, async_interview as async_interview
 from .services import DATA_MP_ENTITIES as DATA_MP_ENTITIES, async_register_services as async_register_services
 from _typeshed import Incomplete
@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
+_LOGGER: Incomplete
 PLATFORMS: Incomplete
 CONFIG_SCHEMA: Incomplete
 
@@ -16,6 +17,7 @@ CONFIG_SCHEMA: Incomplete
 class OnkyoData:
     receiver: Receiver
     sources: dict[InputSource, str]
+    sound_modes: dict[ListeningMode, str]
 type OnkyoConfigEntry = ConfigEntry[OnkyoData]
 
 async def async_setup(hass: HomeAssistant, _: ConfigType) -> bool: ...

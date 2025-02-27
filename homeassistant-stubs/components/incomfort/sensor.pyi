@@ -1,12 +1,11 @@
-from . import InComfortConfigEntry as InComfortConfigEntry
-from .coordinator import InComfortDataCoordinator as InComfortDataCoordinator
+from .coordinator import InComfortConfigEntry as InComfortConfigEntry, InComfortDataCoordinator as InComfortDataCoordinator
 from .entity import IncomfortBoilerEntity as IncomfortBoilerEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from incomfortclient import Heater as InComfortHeater
 from typing import Any
@@ -21,7 +20,7 @@ class IncomfortSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[IncomfortSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: InComfortConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: InComfortConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IncomfortSensor(IncomfortBoilerEntity, SensorEntity):
     entity_description: IncomfortSensorEntityDescription

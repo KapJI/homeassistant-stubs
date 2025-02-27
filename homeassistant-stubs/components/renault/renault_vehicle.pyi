@@ -1,3 +1,4 @@
+from . import RenaultConfigEntry as RenaultConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import RenaultDataUpdateCoordinator as RenaultDataUpdateCoordinator
 from _typeshed import Incomplete
@@ -24,13 +25,14 @@ class RenaultCoordinatorDescription:
 
 class RenaultVehicleProxy:
     hass: Incomplete
+    config_entry: Incomplete
     _vehicle: Incomplete
     _details: Incomplete
     _device_info: Incomplete
     coordinators: dict[str, RenaultDataUpdateCoordinator]
     hvac_target_temperature: int
     _scan_interval: Incomplete
-    def __init__(self, hass: HomeAssistant, vehicle: RenaultVehicle, details: models.KamereonVehicleDetails, scan_interval: timedelta) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: RenaultConfigEntry, vehicle: RenaultVehicle, details: models.KamereonVehicleDetails, scan_interval: timedelta) -> None: ...
     @property
     def details(self) -> models.KamereonVehicleDetails: ...
     @property

@@ -2,7 +2,7 @@ from .const import ATTR_BUTTON as ATTR_BUTTON, ATTR_PAYLOAD as ATTR_PAYLOAD, ATT
 from .helpers import WebOsTvConfigEntry as WebOsTvConfigEntry, update_client_key as update_client_key
 from .triggers.turn_on import async_get_turn_on_trigger as async_get_turn_on_trigger
 from _typeshed import Incomplete
-from aiowebostv import WebOsClient as WebOsClient
+from aiowebostv import WebOsTvState as WebOsTvState
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant import util as util
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
@@ -12,7 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
 from homeassistant.helpers.typing import VolDictType as VolDictType
@@ -30,7 +30,7 @@ COMMAND_SCHEMA: VolDictType
 SOUND_OUTPUT_SCHEMA: VolDictType
 SERVICES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: WebOsTvConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WebOsTvConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def cmd[_R, **_P](func: Callable[Concatenate[LgWebOSMediaPlayerEntity, _P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[LgWebOSMediaPlayerEntity, _P], Coroutine[Any, Any, _R]]: ...
 
 class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
@@ -51,7 +51,7 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     def __init__(self, entry: WebOsTvConfigEntry) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
-    async def async_handle_state_update(self, _client: WebOsClient) -> None: ...
+    async def async_handle_state_update(self, tv_state: WebOsTvState) -> None: ...
     _attr_state: Incomplete
     _attr_is_volume_muted: Incomplete
     _attr_volume_level: Incomplete

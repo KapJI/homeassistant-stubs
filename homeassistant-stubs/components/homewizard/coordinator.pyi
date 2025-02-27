@@ -7,10 +7,11 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
 from homewizard_energy.models import CombinedModels as DeviceResponseEntry
 
+type HomeWizardConfigEntry = ConfigEntry[HWEnergyDeviceUpdateCoordinator]
 class HWEnergyDeviceUpdateCoordinator(DataUpdateCoordinator[DeviceResponseEntry]):
     api: HomeWizardEnergy
     api_disabled: bool
-    config_entry: ConfigEntry
-    def __init__(self, hass: HomeAssistant, api: HomeWizardEnergy) -> None: ...
+    config_entry: HomeWizardConfigEntry
+    def __init__(self, hass: HomeAssistant, config_entry: HomeWizardConfigEntry, api: HomeWizardEnergy) -> None: ...
     data: Incomplete
     async def _async_update_data(self) -> DeviceResponseEntry: ...

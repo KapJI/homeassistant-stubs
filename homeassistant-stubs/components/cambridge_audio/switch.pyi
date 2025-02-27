@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -19,7 +19,7 @@ class CambridgeAudioSwitchEntityDescription(SwitchEntityDescription):
 
 CONTROL_ENTITIES: tuple[CambridgeAudioSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CambridgeAudioSwitch(CambridgeAudioEntity, SwitchEntity):
     entity_description: CambridgeAudioSwitchEntityDescription

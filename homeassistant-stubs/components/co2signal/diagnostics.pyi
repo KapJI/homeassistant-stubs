@@ -1,4 +1,4 @@
-from . import CO2SignalConfigEntry as CO2SignalConfigEntry
+from .coordinator import CO2SignalConfigEntry as CO2SignalConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY

@@ -9,7 +9,7 @@ from homeassistant.components.lawn_mower import LawnMowerActivity as LawnMowerAc
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -21,7 +21,7 @@ MOW: str
 PARK: str
 OVERRIDE_MODES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AutomowerLawnMowerEntity(AutomowerAvailableEntity, LawnMowerEntity):
     _attr_name: Incomplete

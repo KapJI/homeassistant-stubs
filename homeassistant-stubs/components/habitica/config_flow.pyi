@@ -1,5 +1,5 @@
-from . import HabiticaConfigEntry as HabiticaConfigEntry
 from .const import CONF_API_USER as CONF_API_USER, DEFAULT_URL as DEFAULT_URL, DOMAIN as DOMAIN, FORGOT_PASSWORD_URL as FORGOT_PASSWORD_URL, HABITICANS_URL as HABITICANS_URL, SECTION_DANGER_ZONE as SECTION_DANGER_ZONE, SECTION_REAUTH_API_KEY as SECTION_REAUTH_API_KEY, SECTION_REAUTH_LOGIN as SECTION_REAUTH_LOGIN, SIGN_UP_URL as SIGN_UP_URL, SITE_DATA_URL as SITE_DATA_URL, X_CLIENT as X_CLIENT
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from habiticalib import LoginData as LoginData, UserData as UserData

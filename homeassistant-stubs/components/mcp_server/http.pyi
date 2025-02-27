@@ -7,7 +7,6 @@ from aiohttp import web
 from anyio.streams.memory import MemoryObjectReceiveStream as MemoryObjectReceiveStream, MemoryObjectSendStream as MemoryObjectSendStream
 from homeassistant.components import conversation as conversation
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import llm as llm

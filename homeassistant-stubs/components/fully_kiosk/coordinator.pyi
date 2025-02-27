@@ -7,8 +7,10 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 
+type FullyKioskConfigEntry = ConfigEntry[FullyKioskDataUpdateCoordinator]
 class FullyKioskDataUpdateCoordinator(DataUpdateCoordinator):
+    config_entry: FullyKioskConfigEntry
     use_ssl: Incomplete
     fully: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: FullyKioskConfigEntry) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

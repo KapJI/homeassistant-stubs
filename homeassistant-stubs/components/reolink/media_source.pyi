@@ -6,7 +6,6 @@ from homeassistant.components.camera import DynamicStreamSettings as DynamicStre
 from homeassistant.components.media_player import MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.components.stream import create_stream as create_stream
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 _LOGGER: Incomplete

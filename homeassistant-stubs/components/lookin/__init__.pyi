@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from aiolookin import Climate as Climate, LookInHttpProtocol, LookinUDPSubscriptions, Remote as Remote
 from aiolookin.models import UDPEvent as UDPEvent
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady

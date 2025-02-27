@@ -7,3 +7,5 @@ OPEN_CLOSE_MAP: Incomplete
 OPEN_CLOSE_MAP_REVERSED: Incomplete
 WINDOW_MAP: Incomplete
 WINDOW_MAP_REVERSED: Incomplete
+CLIMATE_PROFILES: Incomplete
+LIGHT_PROFILES: Incomplete

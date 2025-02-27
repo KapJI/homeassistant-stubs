@@ -1,4 +1,4 @@
-from . import PowerfoxConfigEntry as PowerfoxConfigEntry, PowerfoxDataUpdateCoordinator as PowerfoxDataUpdateCoordinator
+from .coordinator import PowerfoxConfigEntry as PowerfoxConfigEntry, PowerfoxDataUpdateCoordinator as PowerfoxDataUpdateCoordinator
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

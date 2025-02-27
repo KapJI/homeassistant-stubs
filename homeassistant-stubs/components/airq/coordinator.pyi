@@ -10,6 +10,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 _LOGGER: Incomplete
 
 class AirQCoordinator(DataUpdateCoordinator):
+    config_entry: ConfigEntry
     airq: Incomplete
     device_id: Incomplete
     device_info: Incomplete

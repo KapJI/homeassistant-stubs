@@ -7,13 +7,14 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 _LOGGER: Incomplete
+type SpeedTestConfigEntry = ConfigEntry[SpeedTestDataCoordinator]
 
 class SpeedTestDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
-    config_entry: ConfigEntry
+    config_entry: SpeedTestConfigEntry
     hass: Incomplete
     api: Incomplete
     servers: dict[str, dict]
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: speedtest.Speedtest) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SpeedTestConfigEntry, api: speedtest.Speedtest) -> None: ...
     def update_servers(self) -> None: ...
     def update_data(self) -> dict[str, Any]: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

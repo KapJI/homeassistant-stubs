@@ -7,7 +7,7 @@ from homeassistant.components.date import DateEntity as DateEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from vallox_websocket_api import Vallox as Vallox
 
 class ValloxFilterChangeDateEntity(ValloxEntity, DateEntity):
@@ -20,4 +20,4 @@ class ValloxFilterChangeDateEntity(ValloxEntity, DateEntity):
     def native_value(self) -> date | None: ...
     async def async_set_value(self, value: date) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

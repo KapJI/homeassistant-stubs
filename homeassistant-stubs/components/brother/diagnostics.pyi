@@ -1,4 +1,4 @@
-from . import BrotherConfigEntry as BrotherConfigEntry
+from .coordinator import BrotherConfigEntry as BrotherConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

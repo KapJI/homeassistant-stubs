@@ -1,7 +1,7 @@
 import asyncio
 from .bluetooth import async_connect_scanner as async_connect_scanner
 from .const import ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLEScannerMode as BLEScannerMode, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, LOGGER as LOGGER, MAX_PUSH_UPDATE_FAILURES as MAX_PUSH_UPDATE_FAILURES, MODELS_SUPPORTING_LIGHT_EFFECTS as MODELS_SUPPORTING_LIGHT_EFFECTS, OTA_BEGIN as OTA_BEGIN, OTA_ERROR as OTA_ERROR, OTA_PROGRESS as OTA_PROGRESS, OTA_SUCCESS as OTA_SUCCESS, PUSH_UPDATE_ISSUE_ID as PUSH_UPDATE_ISSUE_ID, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, RPC_SENSORS_POLLING_INTERVAL as RPC_SENSORS_POLLING_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
-from .utils import async_create_issue_unsupported_firmware as async_create_issue_unsupported_firmware, get_block_device_sleep_period as get_block_device_sleep_period, get_device_entry_gen as get_device_entry_gen, get_host as get_host, get_http_port as get_http_port, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period, get_rpc_ws_url as get_rpc_ws_url, update_device_fw_info as update_device_fw_info
+from .utils import async_create_issue_unsupported_firmware as async_create_issue_unsupported_firmware, get_block_device_sleep_period as get_block_device_sleep_period, get_device_entry_gen as get_device_entry_gen, get_host as get_host, get_http_port as get_http_port, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period, get_rpc_ws_url as get_rpc_ws_url, get_shelly_model_name as get_shelly_model_name, update_device_fw_info as update_device_fw_info
 from _typeshed import Incomplete
 from aioshelly.block_device import BlockDevice, BlockUpdateType
 from aioshelly.rpc_device import RpcDevice, RpcUpdateType
@@ -27,7 +27,7 @@ class ShellyEntryData:
 type ShellyConfigEntry = ConfigEntry[ShellyEntryData]
 
 class ShellyCoordinatorBase[_DeviceT: BlockDevice | RpcDevice](DataUpdateCoordinator[None]):
-    entry: Incomplete
+    config_entry: ShellyConfigEntry
     device: Incomplete
     device_id: str | None
     _pending_platforms: list[Platform] | None
@@ -51,7 +51,6 @@ class ShellyCoordinatorBase[_DeviceT: BlockDevice | RpcDevice](DataUpdateCoordin
     async def async_shutdown_device_and_start_reauth(self) -> None: ...
 
 class ShellyBlockCoordinator(ShellyCoordinatorBase[BlockDevice]):
-    entry: Incomplete
     _last_cfg_changed: int | None
     _last_mode: str | None
     _last_effect: str | None
@@ -75,7 +74,6 @@ class ShellyRestCoordinator(ShellyCoordinatorBase[BlockDevice]):
     async def _async_update_data(self) -> None: ...
 
 class ShellyRpcCoordinator(ShellyCoordinatorBase[RpcDevice]):
-    entry: Incomplete
     connected: bool
     _disconnected_callbacks: list[CALLBACK_TYPE]
     _connection_lock: Incomplete

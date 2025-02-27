@@ -2,7 +2,6 @@ import abc
 import asyncio
 import threading
 from . import entity_registry as entity_registry, purge as purge, statistics as statistics
-from .const import DOMAIN as DOMAIN
 from .core import Recorder as Recorder
 from .db_schema import Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData
@@ -11,6 +10,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime
+from homeassistant.helpers.recorder import DATA_RECORDER as DATA_RECORDER
 from homeassistant.helpers.typing import UndefinedType as UndefinedType
 from homeassistant.util.event_type import EventType as EventType
 from typing import Any

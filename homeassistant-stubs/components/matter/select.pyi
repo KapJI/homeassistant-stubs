@@ -11,13 +11,13 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 NUMBER_OF_RINSES_STATE_MAP: Incomplete
 NUMBER_OF_RINSES_STATE_MAP_REVERSE: Incomplete
 type SelectCluster = clusters.ModeSelect | clusters.OvenMode | clusters.LaundryWasherMode | clusters.RefrigeratorAndTemperatureControlledCabinetMode | clusters.RvcRunMode | clusters.RvcCleanMode | clusters.DishwasherMode | clusters.EnergyEvseMode | clusters.DeviceEnergyManagementMode
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True)
 class MatterSelectEntityDescription(SelectEntityDescription, MatterEntityDescription): ...

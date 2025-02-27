@@ -8,13 +8,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BryantEvolutionConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BryantEvolutionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BryantEvolutionClimate(ClimateEntity):
     _attr_has_entity_name: bool

@@ -12,6 +12,7 @@ from typing import Any, Concatenate
 @dataclass(kw_only=True)
 class PeblarRuntimeData:
     data_coordinator: PeblarDataUpdateCoordinator
+    last_known_charging_limit = ...
     system_information: PeblarSystemInformation
     user_configuration_coordinator: PeblarUserConfigurationDataUpdateCoordinator
     version_coordinator: PeblarVersionDataUpdateCoordinator
@@ -37,6 +38,7 @@ class PeblarVersionDataUpdateCoordinator(DataUpdateCoordinator[PeblarVersionInfo
     async def _async_update_data(self) -> PeblarVersionInformation: ...
 
 class PeblarDataUpdateCoordinator(DataUpdateCoordinator[PeblarData]):
+    config_entry: PeblarConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: PeblarConfigEntry, api: PeblarApi) -> None: ...
     @_coordinator_exception_handler

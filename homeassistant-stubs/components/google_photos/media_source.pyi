@@ -1,5 +1,5 @@
-from . import GooglePhotosConfigEntry as GooglePhotosConfigEntry
 from .const import DOMAIN as DOMAIN, READ_SCOPE as READ_SCOPE
+from .coordinator import GooglePhotosConfigEntry as GooglePhotosConfigEntry
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from enum import StrEnum

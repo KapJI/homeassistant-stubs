@@ -1,6 +1,5 @@
-from . import AirzoneConfigEntry as AirzoneConfigEntry
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
-from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
+from .coordinator import AirzoneConfigEntry as AirzoneConfigEntry, AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, UPLOAD_SCOPE as UPLOAD_SCOPE
-from .types import GooglePhotosConfigEntry as GooglePhotosConfigEntry
+from .coordinator import GooglePhotosConfigEntry as GooglePhotosConfigEntry
 from _typeshed import Incomplete
 from homeassistant.const import CONF_FILENAME as CONF_FILENAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse

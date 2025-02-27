@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from lektricowifi import Device
 from typing import Any
 
@@ -18,7 +18,7 @@ class LektricoSwitchEntityDescription(SwitchEntityDescription):
 SWITCHS_FOR_ALL_CHARGERS: tuple[LektricoSwitchEntityDescription, ...]
 SWITCHS_FOR_3_PHASE_CHARGERS: tuple[LektricoSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LektricoSwitch(LektricoEntity, SwitchEntity):
     entity_description: LektricoSwitchEntityDescription

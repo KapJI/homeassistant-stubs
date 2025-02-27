@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 from homeassistant.components.hassio import HassioAPIError as HassioAPIError, async_get_yellow_settings as async_get_yellow_settings, async_set_yellow_settings as async_set_yellow_settings, get_supervisor_client as get_supervisor_client
 from homeassistant.components.homeassistant_hardware.firmware_config_flow import BaseFirmwareConfigFlow as BaseFirmwareConfigFlow, BaseFirmwareOptionsFlow as BaseFirmwareOptionsFlow
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import OptionsFlowHandler as MultiprotocolOptionsFlowHandler, SerialPortSettings as MultiprotocolSerialPortSettings
-from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType
+from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_HARDWARE as SOURCE_HARDWARE
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers import discovery_flow as discovery_flow, selector as selector
@@ -53,6 +53,7 @@ class HomeAssistantYellowMultiPanOptionsFlowHandler(BaseHomeAssistantYellowOptio
 class HomeAssistantYellowOptionsFlowHandler(BaseHomeAssistantYellowOptionsFlow, BaseFirmwareOptionsFlow):
     _hardware_name: Incomplete
     _device: Incomplete
+    _probed_firmware_info: Incomplete
     def __init__(self, hass: HomeAssistant, *args: Any, **kwargs: Any) -> None: ...
     async def async_step_main_menu(self, _: None = None) -> ConfigFlowResult: ...
     async def async_step_firmware_settings(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

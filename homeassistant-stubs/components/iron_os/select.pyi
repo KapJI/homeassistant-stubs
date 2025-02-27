@@ -8,7 +8,7 @@ from enum import Enum, StrEnum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pynecil import CharSetting, SettingsDataResponse as SettingsDataResponse
 
 PARALLEL_UPDATES: int
@@ -34,7 +34,7 @@ def enum_to_str(enum: Enum | None) -> str | None: ...
 
 PINECIL_SELECT_DESCRIPTIONS: tuple[IronOSSelectEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: IronOSConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IronOSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IronOSSelectEntity(IronOSBaseEntity, SelectEntity):
     entity_description: IronOSSelectEntityDescription

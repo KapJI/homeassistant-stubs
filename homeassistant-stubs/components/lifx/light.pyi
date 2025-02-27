@@ -11,7 +11,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, Platform as Pl
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
@@ -26,7 +26,7 @@ HSBK_SATURATION: int
 HSBK_BRIGHTNESS: int
 HSBK_KELVIN: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LIFXLight(LIFXEntity, LightEntity):
     _attr_supported_features: Incomplete

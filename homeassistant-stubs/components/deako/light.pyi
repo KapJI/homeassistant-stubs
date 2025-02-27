@@ -4,14 +4,14 @@ from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydeako import Deako as Deako
 from typing import Any
 
 MODEL_SMART: str
 MODEL_DIMMER: str
 
-async def async_setup_entry(hass: HomeAssistant, config: DeakoConfigEntry, add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: DeakoConfigEntry, add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DeakoLightEntity(LightEntity):
     _attr_has_entity_name: bool

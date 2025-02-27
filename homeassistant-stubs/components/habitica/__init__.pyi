@@ -1,7 +1,6 @@
 from .const import CONF_API_USER as CONF_API_USER, DOMAIN as DOMAIN, X_CLIENT as X_CLIENT
-from .coordinator import HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
 from .services import async_setup_services as async_setup_services
-from .types import HabiticaConfigEntry as HabiticaConfigEntry
 from _typeshed import Incomplete
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_URL as CONF_URL, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -8,7 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True)
 class JewishCalendarBinarySensorMixIns(BinarySensorEntityDescription):
@@ -19,7 +19,7 @@ class JewishCalendarBinarySensorEntityDescription(JewishCalendarBinarySensorMixI
 
 BINARY_SENSORS: tuple[JewishCalendarBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class JewishCalendarBinarySensor(JewishCalendarEntity, BinarySensorEntity):
     _attr_should_poll: bool

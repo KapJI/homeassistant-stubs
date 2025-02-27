@@ -10,7 +10,7 @@ from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager, get_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Final
 
@@ -18,7 +18,7 @@ FORCE_CAMERA_REFRESH_INTERVAL: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: CanaryConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CanaryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CanaryCamera(CoordinatorEntity[CanaryDataUpdateCoordinator], Camera):
     _ffmpeg: FFmpegManager

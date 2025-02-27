@@ -1,5 +1,5 @@
-from . import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import RokuDataUpdateCoordinator as RokuDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription

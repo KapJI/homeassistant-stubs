@@ -1,6 +1,5 @@
-from . import AirzoneConfigEntry as AirzoneConfigEntry
 from .const import TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
-from .coordinator import AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
+from .coordinator import AirzoneConfigEntry as AirzoneConfigEntry, AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneHotWaterEntity as AirzoneHotWaterEntity
 from _typeshed import Incomplete
 from aioairzone.common import HotWaterOperation
@@ -8,13 +7,13 @@ from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Final
 
 OPERATION_LIB_TO_HASS: Final[dict[HotWaterOperation, str]]
 OPERATION_MODE_TO_DHW_PARAMS: Final[dict[str, dict[str, Any]]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AirzoneWaterHeater(AirzoneHotWaterEntity, WaterHeaterEntity):
     _attr_name: Incomplete

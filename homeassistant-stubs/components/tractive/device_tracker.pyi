@@ -5,10 +5,10 @@ from _typeshed import Incomplete
 from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TractiveDeviceTracker(TractiveEntity, TrackerEntity):
     _attr_translation_key: str

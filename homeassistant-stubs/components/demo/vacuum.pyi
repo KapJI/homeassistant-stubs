@@ -4,7 +4,7 @@ from homeassistant.components.vacuum import ATTR_CLEANED_AREA as ATTR_CLEANED_AR
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import event as event
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 SUPPORT_MINIMAL_SERVICES: Incomplete
@@ -18,7 +18,7 @@ DEMO_VACUUM_BASIC: str
 DEMO_VACUUM_MINIMAL: str
 DEMO_VACUUM_NONE: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class StateDemoVacuum(StateVacuumEntity):
     _attr_should_poll: bool

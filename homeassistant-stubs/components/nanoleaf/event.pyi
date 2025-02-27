@@ -1,13 +1,13 @@
-from . import NanoleafConfigEntry as NanoleafConfigEntry, NanoleafCoordinator as NanoleafCoordinator
 from .const import TOUCH_MODELS as TOUCH_MODELS
+from .coordinator import NanoleafConfigEntry as NanoleafConfigEntry, NanoleafCoordinator as NanoleafCoordinator
 from .entity import NanoleafEntity as NanoleafEntity
 from _typeshed import Incomplete
 from homeassistant.components.event import EventEntity as EventEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, entry: NanoleafConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NanoleafConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NanoleafGestureEvent(NanoleafEntity, EventEntity):
     _attr_event_types: Incomplete

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
 from typing import Any
 
@@ -18,7 +18,7 @@ class LinkPlayButtonEntityDescription(ButtonEntityDescription):
 
 BUTTON_TYPES: tuple[LinkPlayButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: LinkPlayConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LinkPlayConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LinkPlayButton(LinkPlayBaseEntity, ButtonEntity):
     entity_description: LinkPlayButtonEntityDescription

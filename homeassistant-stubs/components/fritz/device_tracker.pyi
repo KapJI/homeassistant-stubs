@@ -5,13 +5,13 @@ from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
-def _async_add_entities(avm_wrapper: AvmWrapper, async_add_entities: AddEntitiesCallback, data_fritz: FritzData) -> None: ...
+def _async_add_entities(avm_wrapper: AvmWrapper, async_add_entities: AddConfigEntryEntitiesCallback, data_fritz: FritzData) -> None: ...
 
 class FritzBoxTracker(FritzDeviceBase, ScannerEntity):
     _last_activity: datetime.datetime | None

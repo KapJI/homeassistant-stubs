@@ -19,7 +19,7 @@ from enum import StrEnum
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 class Controllable(StrEnum):
     IO_ATLANTIC_PASS_APC_HEATING_AND_COOLING_ZONE = 'io:AtlanticPassAPCHeatingAndCoolingZoneComponent'
@@ -29,4 +29,4 @@ WIDGET_TO_CLIMATE_ENTITY: Incomplete
 WIDGET_AND_CONTROLLABLE_TO_CLIMATE_ENTITY: Incomplete
 WIDGET_AND_PROTOCOL_TO_CLIMATE_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

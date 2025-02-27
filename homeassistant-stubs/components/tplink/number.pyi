@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from kasa import Device as Device, Feature
 from typing import Final
 
@@ -17,7 +17,7 @@ PARALLEL_UPDATES: int
 NUMBER_DESCRIPTIONS: Final[Incomplete]
 NUMBER_DESCRIPTIONS_MAP: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TPLinkNumberEntity(CoordinatedTPLinkFeatureEntity, NumberEntity):
     entity_description: TPLinkNumberEntityDescription

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
@@ -19,7 +19,7 @@ _TOTAL_SECONDS_METHOD_CALLER: Incomplete
 SENSOR_DESCRIPTIONS: tuple[TPLinkSensorEntityDescription, ...]
 SENSOR_DESCRIPTIONS_MAP: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TPLinkSensorEntity(CoordinatedTPLinkFeatureEntity, SensorEntity):
     entity_description: TPLinkSensorEntityDescription

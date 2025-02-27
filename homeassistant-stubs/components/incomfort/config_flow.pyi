@@ -1,6 +1,5 @@
-from . import InComfortConfigEntry as InComfortConfigEntry
 from .const import CONF_LEGACY_SETPOINT_STATUS as CONF_LEGACY_SETPOINT_STATUS, DOMAIN as DOMAIN
-from .coordinator import async_connect_gateway as async_connect_gateway
+from .coordinator import InComfortConfigEntry as InComfortConfigEntry, async_connect_gateway as async_connect_gateway
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE

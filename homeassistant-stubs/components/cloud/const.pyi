@@ -1,5 +1,6 @@
 import asyncio
 from .client import CloudClient as CloudClient
+from .helpers import FixedSizeQueueLogHandler as FixedSizeQueueLogHandler
 from _typeshed import Incomplete
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -9,6 +10,7 @@ from typing import Any
 DOMAIN: str
 DATA_CLOUD: HassKey[Cloud[CloudClient]]
 DATA_PLATFORMS_SETUP: HassKey[dict[str, asyncio.Event]]
+DATA_CLOUD_LOG_HANDLER: HassKey[FixedSizeQueueLogHandler]
 EVENT_CLOUD_EVENT: str
 REQUEST_TIMEOUT: int
 PREF_ENABLE_ALEXA: str

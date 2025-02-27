@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
 from typing import Any
@@ -21,7 +21,7 @@ async def _async_port_entities_list(avm_wrapper: AvmWrapper, device_friendly_nam
 async def _async_wifi_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str) -> list[FritzBoxWifiSwitch]: ...
 async def _async_profile_entities_list(avm_wrapper: AvmWrapper, data_fritz: FritzData) -> list[FritzBoxProfileSwitch]: ...
 async def async_all_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str, data_fritz: FritzData, local_ip: str) -> list[Entity]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FritzBoxBaseCoordinatorSwitch(CoordinatorEntity[AvmWrapper], SwitchEntity):
     entity_description: SwitchEntityDescription
@@ -112,6 +112,7 @@ class FritzBoxWifiSwitch(FritzBoxBaseSwitch):
     _avm_wrapper: Incomplete
     _attributes: Incomplete
     _attr_entity_category: Incomplete
+    _attr_entity_registry_enabled_default: Incomplete
     _network_num: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, network_num: int, network_data: dict) -> None: ...
     _is_available: bool

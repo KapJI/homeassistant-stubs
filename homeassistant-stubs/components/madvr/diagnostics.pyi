@@ -1,4 +1,4 @@
-from . import MadVRConfigEntry as MadVRConfigEntry
+from .coordinator import MadVRConfigEntry as MadVRConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.const import CONF_HOST as CONF_HOST

@@ -6,7 +6,7 @@ from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from simplipy.device.lock import Lock as Lock
 from simplipy.system.v3 import SystemV3 as SystemV3
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
@@ -17,7 +17,7 @@ ATTR_PIN_PAD_LOW_BATTERY: str
 STATE_MAP_FROM_WEBSOCKET_EVENT: Incomplete
 WEBSOCKET_EVENTS_TO_LISTEN_FOR: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SimpliSafeLock(SimpliSafeEntity, LockEntity):
     _attr_name: Incomplete

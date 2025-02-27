@@ -1,11 +1,11 @@
-from . import JVCConfigEntry as JVCConfigEntry, JvcProjectorDataUpdateCoordinator as JvcProjectorDataUpdateCoordinator
+from .coordinator import JVCConfigEntry as JVCConfigEntry, JvcProjectorDataUpdateCoordinator as JvcProjectorDataUpdateCoordinator
 from .entity import JvcProjectorEntity as JvcProjectorEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jvcprojector import JvcProjector as JvcProjector
 from typing import Final
 
@@ -16,7 +16,7 @@ class JvcProjectorSelectDescription(SelectEntityDescription):
 OPTIONS: Final[dict[str, dict[str, str]]]
 SELECTS: Final[list[JvcProjectorSelectDescription]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: JVCConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: JVCConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class JvcProjectorSelectEntity(JvcProjectorEntity, SelectEntity):
     entity_description: JvcProjectorSelectDescription

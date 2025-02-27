@@ -1,13 +1,13 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
-from .entity import EnvoyBaseEntity as EnvoyBaseEntity
+from .entity import EnvoyBaseEntity as EnvoyBaseEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import Envoy as Envoy, EnvoyDryContactStatus as EnvoyDryContactStatus, EnvoyEnpower as EnvoyEnpower
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
 from typing import Any
@@ -36,7 +36,7 @@ ENPOWER_GRID_SWITCH: Incomplete
 RELAY_STATE_SWITCH: Incomplete
 CHARGE_FROM_GRID_SWITCH: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EnvoyEnpowerSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     entity_description: EnvoyEnpowerSwitchEntityDescription
@@ -48,7 +48,9 @@ class EnvoyEnpowerSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyEnpowerSwitchEntityDescription, enpower: EnvoyEnpower) -> None: ...
     @property
     def is_on(self) -> bool: ...
+    @exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class EnvoyDryContactSwitchEntity(EnvoyBaseEntity, SwitchEntity):
@@ -61,7 +63,9 @@ class EnvoyDryContactSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyDryContactSwitchEntityDescription, relay_id: str) -> None: ...
     @property
     def is_on(self) -> bool: ...
+    @exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class EnvoyStorageSettingsSwitchEntity(EnvoyBaseEntity, SwitchEntity):
@@ -74,5 +78,7 @@ class EnvoyStorageSettingsSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyStorageSettingsSwitchEntityDescription, enpower: EnvoyEnpower | None) -> None: ...
     @property
     def is_on(self) -> bool: ...
+    @exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -6,7 +6,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -16,7 +16,7 @@ class TVCameraSensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSOR_TYPE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: TVCameraConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TVCameraConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TrafikverketCameraBinarySensor(TrafikverketCameraNonCameraEntity, BinarySensorEntity):
     entity_description: TVCameraSensorEntityDescription

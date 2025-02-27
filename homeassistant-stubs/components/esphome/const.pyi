@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 CONF_ALLOW_SERVICE_CALLS: str
+CONF_SUBSCRIBE_LOGS: str
 CONF_DEVICE_NAME: str
 CONF_NOISE_PSK: str
 DEFAULT_ALLOW_SERVICE_CALLS: bool

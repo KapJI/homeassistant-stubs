@@ -13,7 +13,6 @@ DEFAULT_DEBOUNCER_COOLDOWN_SECONDS: Incomplete
 class OpenUvCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: ConfigEntry
     update_method: Callable[[], Awaitable[dict[str, Any]]]
-    _entry: Incomplete
     latitude: Incomplete
     longitude: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry, name: str, latitude: str, longitude: str, update_method: Callable[[], Awaitable[dict[str, Any]]]) -> None: ...

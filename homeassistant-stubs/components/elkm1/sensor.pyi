@@ -13,7 +13,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectric
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
 
@@ -24,7 +24,7 @@ SERVICE_SENSOR_ZONE_TRIGGER: str
 UNDEFINED_TEMPERATURE: int
 ELK_SET_COUNTER_SERVICE_SCHEMA: VolDictType
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def temperature_to_state(temperature: int, undefined_temperature: int) -> str | None: ...
 
 class ElkSensor(ElkAttachedEntity, SensorEntity):

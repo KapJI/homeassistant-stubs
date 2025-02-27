@@ -1,3 +1,4 @@
+from . import SqueezeboxConfigEntry as SqueezeboxConfigEntry
 from .const import PLAYER_UPDATE_INTERVAL as PLAYER_UPDATE_INTERVAL, SENSOR_UPDATE_INTERVAL as SENSOR_UPDATE_INTERVAL, SIGNAL_PLAYER_REDISCOVERED as SIGNAL_PLAYER_REDISCOVERED, STATUS_API_TIMEOUT as STATUS_API_TIMEOUT, STATUS_SENSOR_LASTSCAN as STATUS_SENSOR_LASTSCAN, STATUS_SENSOR_NEEDSRESTART as STATUS_SENSOR_NEEDSRESTART, STATUS_SENSOR_RESCAN as STATUS_SENSOR_RESCAN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -10,18 +11,20 @@ from typing import Any
 _LOGGER: Incomplete
 
 class LMSStatusDataUpdateCoordinator(DataUpdateCoordinator):
+    config_entry: SqueezeboxConfigEntry
     lms: Incomplete
     newversion_regex: Incomplete
-    def __init__(self, hass: HomeAssistant, lms: Server) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SqueezeboxConfigEntry, lms: Server) -> None: ...
     async def _async_update_data(self) -> dict: ...
     def _prepare_status_data(self, data: dict) -> dict: ...
 
 class SqueezeBoxPlayerUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
+    config_entry: SqueezeboxConfigEntry
     player: Incomplete
     available: bool
     _remove_dispatcher: Callable | None
     server_uuid: Incomplete
-    def __init__(self, hass: HomeAssistant, player: Player, server_uuid: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SqueezeboxConfigEntry, player: Player, server_uuid: str) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...
     @callback
     def rediscovered(self, unique_id: str, connected: bool) -> None: ...

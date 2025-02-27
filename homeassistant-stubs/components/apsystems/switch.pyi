@@ -1,12 +1,12 @@
-from . import ApSystemsConfigEntry as ApSystemsConfigEntry, ApSystemsData as ApSystemsData
+from .coordinator import ApSystemsConfigEntry as ApSystemsConfigEntry, ApSystemsData as ApSystemsData
 from .entity import ApSystemsEntity as ApSystemsEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ApSystemsConfigEntry, add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ApSystemsConfigEntry, add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ApSystemsInverterSwitch(ApSystemsEntity, SwitchEntity):
     _attr_device_class: Incomplete

@@ -10,7 +10,7 @@ from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 
 _LOGGER: Incomplete
@@ -24,7 +24,7 @@ SERVICE_LEARN_SENDEVENT: str
 SERVICE_UPLOAD: str
 ANDROIDTV_STATES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: AndroidTVConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AndroidTVConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ADBDevice(AndroidTVEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete

@@ -10,6 +10,7 @@ from ttn_client import TTNClient
 _LOGGER: Incomplete
 
 class TTNCoordinator(DataUpdateCoordinator[TTNClient.DATA_TYPE]):
+    config_entry: ConfigEntry
     _client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> TTNClient.DATA_TYPE: ...

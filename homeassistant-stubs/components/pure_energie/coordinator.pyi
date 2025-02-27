@@ -8,12 +8,13 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import NamedTuple
 
+type PureEnergieConfigEntry = ConfigEntry[PureEnergieDataUpdateCoordinator]
 class PureEnergieData(NamedTuple):
     device: Device
     smartbridge: SmartBridge
 
 class PureEnergieDataUpdateCoordinator(DataUpdateCoordinator[PureEnergieData]):
-    config_entry: ConfigEntry
+    config_entry: PureEnergieConfigEntry
     gridnet: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: PureEnergieConfigEntry) -> None: ...
     async def _async_update_data(self) -> PureEnergieData: ...

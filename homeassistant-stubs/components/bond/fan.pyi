@@ -8,7 +8,7 @@ from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD,
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from typing import Any
@@ -16,7 +16,7 @@ from typing import Any
 _LOGGER: Incomplete
 PRESET_MODE_BREEZE: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BondFan(BondEntity, FanEntity):
     _power: bool | None

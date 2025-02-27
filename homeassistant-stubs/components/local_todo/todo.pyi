@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity, TodoListEntityFeature as TodoListEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as async_pause_setup
 from ical.calendar import Calendar as Calendar
 from ical.store import TodoStore
@@ -18,7 +18,7 @@ ICS_TODO_STATUS_MAP: Incomplete
 ICS_TODO_STATUS_MAP_INV: Incomplete
 
 def _migrate_calendar(calendar: Calendar) -> bool: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: LocalTodoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LocalTodoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _convert_item(item: TodoItem) -> Todo: ...
 
 class LocalTodoListEntity(TodoListEntity):

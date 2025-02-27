@@ -3,12 +3,12 @@ from homeassistant.components.water_heater import WaterHeaterEntity as WaterHeat
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 SUPPORT_FLAGS_HEATER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DemoWaterHeater(WaterHeaterEntity):
     _attr_should_poll: bool
@@ -19,7 +19,8 @@ class DemoWaterHeater(WaterHeaterEntity):
     _attr_is_away_mode_on: Incomplete
     _attr_current_operation: Incomplete
     _attr_operation_list: Incomplete
-    def __init__(self, name: str, target_temperature: int, unit_of_measurement: str, away: bool, current_operation: str) -> None: ...
+    _attr_target_temperature_step: Incomplete
+    def __init__(self, name: str, target_temperature: int, unit_of_measurement: str, away: bool, current_operation: str, target_temperature_step: float) -> None: ...
     def set_temperature(self, **kwargs: Any) -> None: ...
     def set_operation_mode(self, operation_mode: str) -> None: ...
     def turn_away_mode_on(self) -> None: ...

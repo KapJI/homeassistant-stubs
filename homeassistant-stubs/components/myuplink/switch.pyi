@@ -1,5 +1,5 @@
-from . import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
 from .const import DOMAIN as DOMAIN, F_SERIES as F_SERIES
+from .coordinator import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
 from .entity import MyUplinkEntity as MyUplinkEntity
 from .helpers import find_matching_platform as find_matching_platform, skip_entity as skip_entity, transform_model_series as transform_model_series
 from _typeshed import Incomplete
@@ -7,14 +7,14 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from myuplink import DevicePoint as DevicePoint
 from typing import Any
 
 CATEGORY_BASED_DESCRIPTIONS: dict[str, dict[str, SwitchEntityDescription]]
 
 def get_description(device_point: DevicePoint) -> SwitchEntityDescription | None: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MyUplinkDevicePointSwitch(MyUplinkEntity, SwitchEntity):
     point_id: Incomplete

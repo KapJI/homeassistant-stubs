@@ -9,7 +9,7 @@ from homeassistant.components.automation import automations_with_entity as autom
 from homeassistant.components.script import scripts_with_entity as scripts_with_entity
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from pysensibo.model import SensiboDevice as SensiboDevice
 from typing import Any
@@ -26,7 +26,7 @@ class SensiboSelectEntityDescription(SelectEntityDescription):
 HORIZONTAL_SWING_MODE_TYPE: Incomplete
 DEVICE_SELECT_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SensiboSelect(SensiboDeviceBaseEntity, SelectEntity):
     entity_description: SensiboSelectEntityDescription

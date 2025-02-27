@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_SW_VERSION as ATTR_SW_VERSION, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from python_awair.air_data import AirData as AirData
 from python_awair.devices import AwairBaseDevice as AwairBaseDevice
@@ -23,7 +23,7 @@ SENSOR_TYPE_SCORE: Incomplete
 SENSOR_TYPES: tuple[AwairSensorEntityDescription, ...]
 SENSOR_TYPES_DUST: tuple[AwairSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: AwairConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AwairConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AwairSensor(CoordinatorEntity[AwairDataUpdateCoordinator], SensorEntity):
     entity_description: AwairSensorEntityDescription

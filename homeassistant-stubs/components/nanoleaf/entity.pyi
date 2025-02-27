@@ -1,5 +1,5 @@
-from . import NanoleafCoordinator as NanoleafCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import NanoleafCoordinator as NanoleafCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity

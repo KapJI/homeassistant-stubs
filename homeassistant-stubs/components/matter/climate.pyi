@@ -8,7 +8,7 @@ from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, A
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 TEMPERATURE_SCALING_FACTOR: int
@@ -29,7 +29,7 @@ class ThermostatRunningState(IntEnum):
     FanStage2 = 32
     FanStage3 = 64
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MatterClimate(MatterEntity, ClimateEntity):
     _attr_temperature_unit: str

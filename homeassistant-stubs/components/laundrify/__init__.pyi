@@ -1,4 +1,4 @@
-from .const import DEFAULT_POLL_INTERVAL as DEFAULT_POLL_INTERVAL, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .coordinator import LaundrifyUpdateCoordinator as LaundrifyUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

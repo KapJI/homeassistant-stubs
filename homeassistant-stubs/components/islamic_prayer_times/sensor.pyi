@@ -6,12 +6,12 @@ from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: IslamicPrayerTimesConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: IslamicPrayerTimesConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IslamicPrayerTimeSensor(CoordinatorEntity[IslamicPrayerDataUpdateCoordinator], SensorEntity):
     _attr_device_class: Incomplete

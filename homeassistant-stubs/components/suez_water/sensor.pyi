@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CURRENCY_EURO as CURRENCY_EURO, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysuez.const import ATTRIBUTION
 from typing import Any
@@ -19,7 +19,7 @@ class SuezWaterSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[SuezWaterSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: SuezWaterConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SuezWaterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SuezWaterSensor(CoordinatorEntity[SuezWaterCoordinator], SensorEntity):
     _attr_has_entity_name: bool

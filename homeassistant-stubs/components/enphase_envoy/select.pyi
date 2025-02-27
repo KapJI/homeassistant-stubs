@@ -1,13 +1,13 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
-from .entity import EnvoyBaseEntity as EnvoyBaseEntity
+from .entity import EnvoyBaseEntity as EnvoyBaseEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import Envoy as Envoy, EnvoyDryContactSettings as EnvoyDryContactSettings
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
 from typing import Any
@@ -36,7 +36,7 @@ STORAGE_MODE_OPTIONS: Incomplete
 RELAY_ENTITIES: Incomplete
 STORAGE_MODE_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EnvoyRelaySelectEntity(EnvoyBaseEntity, SelectEntity):
     entity_description: EnvoyRelaySelectEntityDescription
@@ -49,6 +49,7 @@ class EnvoyRelaySelectEntity(EnvoyBaseEntity, SelectEntity):
     def relay(self) -> EnvoyDryContactSettings: ...
     @property
     def current_option(self) -> str: ...
+    @exception_handler
     async def async_select_option(self, option: str) -> None: ...
 
 class EnvoyStorageSettingsSelectEntity(EnvoyBaseEntity, SelectEntity):
@@ -60,4 +61,5 @@ class EnvoyStorageSettingsSelectEntity(EnvoyBaseEntity, SelectEntity):
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyStorageSettingsSelectEntityDescription) -> None: ...
     @property
     def current_option(self) -> str | None: ...
+    @exception_handler
     async def async_select_option(self, option: str) -> None: ...

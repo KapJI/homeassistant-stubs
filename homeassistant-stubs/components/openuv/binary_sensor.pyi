@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import as_local as as_local, parse_datetime as parse_datetime, utcnow as utcnow
 
 ATTR_PROTECTION_WINDOW_ENDING_TIME: str
@@ -14,7 +14,7 @@ ATTR_PROTECTION_WINDOW_STARTING_TIME: str
 ATTR_PROTECTION_WINDOW_STARTING_UV: str
 BINARY_SENSOR_DESCRIPTION_PROTECTION_WINDOW: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OpenUvBinarySensor(OpenUvEntity, BinarySensorEntity):
     _attr_is_on: bool

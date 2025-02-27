@@ -1,17 +1,17 @@
-from . import JVCConfigEntry as JVCConfigEntry
+from .coordinator import JVCConfigEntry as JVCConfigEntry
 from .entity import JvcProjectorEntity as JvcProjectorEntity
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import RemoteEntity as RemoteEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 COMMANDS: Incomplete
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: JVCConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: JVCConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class JvcProjectorRemote(JvcProjectorEntity, RemoteEntity):
     _attr_name: Incomplete

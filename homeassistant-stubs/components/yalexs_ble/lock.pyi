@@ -3,11 +3,11 @@ from .entity import YALEXSBLEEntity as YALEXSBLEEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
-async def async_setup_entry(hass: HomeAssistant, entry: YALEXSBLEConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: YALEXSBLEConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class YaleXSBLELock(YALEXSBLEEntity, LockEntity):
     _attr_name: Incomplete

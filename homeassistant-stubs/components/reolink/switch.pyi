@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Chime as Chime, Host as Host
 from typing import Any
 
@@ -29,12 +29,11 @@ class ReolinkChimeSwitchEntityDescription(SwitchEntityDescription, ReolinkChimeE
     value: Callable[[Chime], bool | None]
 
 SWITCH_ENTITIES: Incomplete
-AVAILABILITY_SWITCH_ENTITIES: Incomplete
 NVR_SWITCH_ENTITIES: Incomplete
 CHIME_SWITCH_ENTITIES: Incomplete
 DEPRECATED_NVR_SWITCHES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ReolinkSwitchEntity(ReolinkChannelCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkSwitchEntityDescription
@@ -45,10 +44,6 @@ class ReolinkSwitchEntity(ReolinkChannelCoordinatorEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-
-class ReolinkAvailabilitySwitchEntity(ReolinkSwitchEntity):
-    @property
-    def available(self) -> bool: ...
 
 class ReolinkNVRSwitchEntity(ReolinkHostCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkNVRSwitchEntityDescription

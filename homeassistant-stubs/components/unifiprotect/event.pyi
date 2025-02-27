@@ -6,7 +6,7 @@ from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as
 from _typeshed import Incomplete
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 def _add_ulp_user_infos(bootstrap: Bootstrap, event_data: dict[str, str], ulp_id: str) -> None: ...
 
@@ -39,4 +39,4 @@ EVENT_DESCRIPTIONS: tuple[ProtectEventEntityDescription, ...]
 
 @callback
 def _async_event_entities(data: ProtectData, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[ProtectDeviceEntity]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

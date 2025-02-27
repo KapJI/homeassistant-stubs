@@ -6,11 +6,11 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tololib import TARGET_HUMIDITY_MAX, TARGET_HUMIDITY_MIN, TARGET_TEMPERATURE_MAX, TARGET_TEMPERATURE_MIN
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SaunaClimate(ToloSaunaCoordinatorEntity, ClimateEntity):
     _attr_fan_modes: Incomplete

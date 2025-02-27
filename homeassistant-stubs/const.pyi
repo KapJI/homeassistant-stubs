@@ -421,6 +421,11 @@ class UnitOfEnergy(StrEnum):
     MEGA_CALORIE = 'Mcal'
     GIGA_CALORIE = 'Gcal'
 
+class UnitOfEnergyDistance(StrEnum):
+    KILO_WATT_HOUR_PER_100_KM = 'kWh/100km'
+    MILES_PER_KILO_WATT_HOUR = 'mi/kWh'
+    KM_PER_KILO_WATT_HOUR = 'km/kWh'
+
 class UnitOfElectricCurrent(StrEnum):
     MILLIAMPERE = 'mA'
     AMPERE = 'A'

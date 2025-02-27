@@ -1,17 +1,16 @@
-from . import JellyfinConfigEntry as JellyfinConfigEntry
 from .browse_media import build_item_response as build_item_response, build_root_response as build_root_response
 from .client_wrapper import get_artwork_url as get_artwork_url
-from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, LOGGER as LOGGER
-from .coordinator import JellyfinDataUpdateCoordinator as JellyfinDataUpdateCoordinator
+from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, LOGGER as LOGGER, MAX_IMAGE_WIDTH as MAX_IMAGE_WIDTH
+from .coordinator import JellyfinConfigEntry as JellyfinConfigEntry, JellyfinDataUpdateCoordinator as JellyfinDataUpdateCoordinator
 from .entity import JellyfinClientEntity as JellyfinClientEntity
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: JellyfinConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: JellyfinConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class JellyfinMediaPlayer(JellyfinClientEntity, MediaPlayerEntity):
     _attr_unique_id: Incomplete

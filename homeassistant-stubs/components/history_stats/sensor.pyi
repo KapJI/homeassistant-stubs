@@ -11,7 +11,7 @@ from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as C
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -26,7 +26,7 @@ def exactly_two_period_keys[_T: dict[str, Any]](conf: _T) -> _T: ...
 PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: HistoryStatsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HistoryStatsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HistoryStatsSensorBase(CoordinatorEntity[HistoryStatsUpdateCoordinator], SensorEntity, metaclass=abc.ABCMeta):
     _attr_icon = ICON

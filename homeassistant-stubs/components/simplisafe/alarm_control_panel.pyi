@@ -7,7 +7,7 @@ from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
 
 ATTR_BATTERY_BACKUP_POWER_LEVEL: str
@@ -20,7 +20,7 @@ STATE_MAP_FROM_REST_API: Incomplete
 STATE_MAP_FROM_WEBSOCKET_EVENT: Incomplete
 WEBSOCKET_EVENTS_TO_LISTEN_FOR: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SimpliSafeAlarm(SimpliSafeEntity, AlarmControlPanelEntity):
     _attr_code_arm_required: bool

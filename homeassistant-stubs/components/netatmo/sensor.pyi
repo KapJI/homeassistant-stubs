@@ -12,7 +12,7 @@ from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE a
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pyatmo.modules import PublicWeatherArea as PublicWeatherArea
 from typing import Any
@@ -39,7 +39,7 @@ class NetatmoPublicWeatherSensorEntityDescription(SensorEntityDescription):
 PUBLIC_WEATHER_STATION_TYPES: tuple[NetatmoPublicWeatherSensorEntityDescription, ...]
 BATTERY_SENSOR_DESCRIPTION: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NetatmoWeatherSensor(NetatmoWeatherModuleEntity, SensorEntity):
     entity_description: NetatmoSensorEntityDescription

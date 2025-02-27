@@ -1,4 +1,4 @@
-from .const import SCAN_INTERVAL as SCAN_INTERVAL
+from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -15,7 +15,8 @@ class LaCrosseUpdateCoordinator(DataUpdateCoordinator[list[Sensor]]):
     id: str
     hass: HomeAssistant
     devices: list[Sensor] | None
+    config_entry: ConfigEntry
     api: Incomplete
     last_update: Incomplete
-    def __init__(self, hass: HomeAssistant, api: LaCrosse, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: LaCrosse) -> None: ...
     async def _async_update_data(self) -> list[Sensor]: ...

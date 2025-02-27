@@ -1,9 +1,8 @@
-from . import Enigma2ConfigEntry as Enigma2ConfigEntry
-from .coordinator import Enigma2UpdateCoordinator as Enigma2UpdateCoordinator
+from .coordinator import Enigma2ConfigEntry as Enigma2ConfigEntry, Enigma2UpdateCoordinator as Enigma2UpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 ATTR_MEDIA_CURRENTLY_RECORDING: str
@@ -12,7 +11,7 @@ ATTR_MEDIA_END_TIME: str
 ATTR_MEDIA_START_TIME: str
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: Enigma2ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: Enigma2ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Enigma2Device(CoordinatorEntity[Enigma2UpdateCoordinator], MediaPlayerEntity):
     _attr_has_entity_name: bool

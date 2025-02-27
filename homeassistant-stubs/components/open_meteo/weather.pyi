@@ -5,11 +5,11 @@ from homeassistant.components.weather import ATTR_FORECAST_CONDITION as ATTR_FOR
 from homeassistant.const import UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from open_meteo import Forecast as OpenMeteoForecast
 
-async def async_setup_entry(hass: HomeAssistant, entry: OpenMeteoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OpenMeteoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OpenMeteoWeatherEntity(SingleCoordinatorWeatherEntity[DataUpdateCoordinator[OpenMeteoForecast]]):
     _attr_has_entity_name: bool

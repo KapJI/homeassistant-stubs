@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
@@ -19,7 +19,7 @@ SERVICE_START_DECREASING_BRIGHTNESS: str
 SERVICE_STOP: str
 ENTITY_SERVICES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BondBaseLight(BondEntity, LightEntity, metaclass=abc.ABCMeta):
     _attr_color_mode: Incomplete

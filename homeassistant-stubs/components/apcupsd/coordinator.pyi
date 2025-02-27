@@ -10,6 +10,7 @@ from typing import Final
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Final[Incomplete]
 REQUEST_REFRESH_COOLDOWN: Final[int]
+type APCUPSdConfigEntry = ConfigEntry[APCUPSdCoordinator]
 
 class APCUPSdData(dict[str, str]):
     @property
@@ -20,10 +21,10 @@ class APCUPSdData(dict[str, str]):
     def serial_no(self) -> str | None: ...
 
 class APCUPSdCoordinator(DataUpdateCoordinator[APCUPSdData]):
-    config_entry: ConfigEntry
+    config_entry: APCUPSdConfigEntry
     _host: Incomplete
     _port: Incomplete
-    def __init__(self, hass: HomeAssistant, host: str, port: int) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: APCUPSdConfigEntry, host: str, port: int) -> None: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     async def _async_update_data(self) -> APCUPSdData: ...

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from peblar import Peblar as Peblar, PeblarUserConfiguration as PeblarUserConfiguration
 from typing import Any
 
@@ -20,7 +20,7 @@ class PeblarSelectEntityDescription(SelectEntityDescription):
 
 DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PeblarSelectEntity(PeblarEntity[PeblarUserConfigurationDataUpdateCoordinator], SelectEntity):
     entity_description: PeblarSelectEntityDescription

@@ -4,8 +4,10 @@ from collections.abc import Mapping
 from homeassistant.components import onboarding as onboarding
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_TOKEN as CONF_TOKEN
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import instance_id as instance_id
 from homeassistant.helpers.selector import TextSelector as TextSelector
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
@@ -30,7 +32,7 @@ class HomeWizardConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 async def async_try_connect(ip_address: str, token: str | None = None) -> Device: ...
-async def async_request_token(ip_address: str) -> str | None: ...
+async def async_request_token(hass: HomeAssistant, ip_address: str) -> str | None: ...
 
 class RecoverableError(HomeAssistantError):
     error_code: Incomplete

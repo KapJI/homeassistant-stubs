@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from music_assistant_client import MusicAssistantClient as MusicAssistantClient
+from music_assistant_models.media_items import Album as Album, Artist as Artist, Playlist as Playlist, Radio as Radio, Track as Track
 
 SERVICE_SEARCH: str
 SERVICE_GET_LIBRARY: str

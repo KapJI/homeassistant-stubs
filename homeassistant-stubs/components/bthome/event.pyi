@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 DESCRIPTIONS_BY_EVENT_CLASS: Incomplete
 
@@ -22,4 +22,4 @@ class BTHomeEventEntity(EventEntity):
     @callback
     def _async_handle_event(self, event: BTHomeBleEvent) -> None: ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: BTHomeConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BTHomeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

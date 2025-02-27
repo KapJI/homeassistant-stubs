@@ -7,9 +7,9 @@ from deebot_client.events.map import CachedMapInfoEvent as CachedMapInfoEvent, M
 from homeassistant.components.image import ImageEntity as ImageEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EcovacsMap(EcovacsEntity[CapabilityMap], ImageEntity):
     _attr_content_type: str

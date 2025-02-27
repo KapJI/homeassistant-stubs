@@ -7,7 +7,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -20,7 +20,7 @@ DEVICE_SWITCHES: dict[str, tuple[OneWireEntityDescription, ...]]
 HOBBYBOARD_EF: dict[str, tuple[OneWireEntityDescription, ...]]
 
 def get_sensor_types(device_sub_type: str) -> dict[str, tuple[OneWireEntityDescription, ...]]: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: OneWireConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OneWireConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def get_entities(onewire_hub: OneWireHub, devices: list[OWDeviceDescription]) -> list[OneWireSwitchEntity]: ...
 
 class OneWireSwitchEntity(OneWireEntity, SwitchEntity):

@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
-from .entity import EnvoyBaseEntity as EnvoyBaseEntity
+from .entity import EnvoyBaseEntity as EnvoyBaseEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
@@ -8,7 +8,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import Envoy as Envoy, EnvoyDryContactSettings as EnvoyDryContactSettings
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
 from typing import Any
@@ -27,7 +27,7 @@ class EnvoyStorageSettingsNumberEntityDescription(NumberEntityDescription):
 RELAY_ENTITIES: Incomplete
 STORAGE_RESERVE_SOC_ENTITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EnvoyRelayNumberEntity(EnvoyBaseEntity, NumberEntity):
     entity_description: EnvoyRelayNumberEntityDescription
@@ -38,6 +38,7 @@ class EnvoyRelayNumberEntity(EnvoyBaseEntity, NumberEntity):
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyRelayNumberEntityDescription, relay_id: str) -> None: ...
     @property
     def native_value(self) -> float: ...
+    @exception_handler
     async def async_set_native_value(self, value: float) -> None: ...
 
 class EnvoyStorageSettingsNumberEntity(EnvoyBaseEntity, NumberEntity):
@@ -49,4 +50,5 @@ class EnvoyStorageSettingsNumberEntity(EnvoyBaseEntity, NumberEntity):
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyStorageSettingsNumberEntityDescription) -> None: ...
     @property
     def native_value(self) -> float: ...
+    @exception_handler
     async def async_set_native_value(self, value: float) -> None: ...

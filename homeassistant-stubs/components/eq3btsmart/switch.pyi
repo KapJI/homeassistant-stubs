@@ -8,7 +8,7 @@ from eq3btsmart import Thermostat as Thermostat
 from eq3btsmart.models import Status as Status
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
@@ -18,7 +18,7 @@ class Eq3SwitchEntityDescription(SwitchEntityDescription):
 
 SWITCH_ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Eq3SwitchEntity(Eq3Entity, SwitchEntity):
     entity_description: Eq3SwitchEntityDescription

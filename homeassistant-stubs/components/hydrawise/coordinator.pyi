@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, MAIN_SCAN_INTERVAL as MAIN_SCAN_INTERVAL, WATER_USE_SCAN_INTERVAL as WATER_USE_SCAN_INTERVAL
 from _typeshed import Incomplete
 from dataclasses import dataclass, field
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util.dt import now as now
@@ -22,14 +23,15 @@ class HydrawiseUpdateCoordinators:
 
 class HydrawiseDataUpdateCoordinator(DataUpdateCoordinator[HydrawiseData]):
     api: HydrawiseBase
+    config_entry: ConfigEntry
 
 class HydrawiseMainDataUpdateCoordinator(HydrawiseDataUpdateCoordinator):
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, api: HydrawiseBase) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: HydrawiseBase) -> None: ...
     async def _async_update_data(self) -> HydrawiseData: ...
 
 class HydrawiseWaterUseDataUpdateCoordinator(HydrawiseDataUpdateCoordinator):
     _main_coordinator: HydrawiseMainDataUpdateCoordinator
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, api: HydrawiseBase, main_coordinator: HydrawiseMainDataUpdateCoordinator) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: HydrawiseBase, main_coordinator: HydrawiseMainDataUpdateCoordinator) -> None: ...
     async def _async_update_data(self) -> HydrawiseData: ...

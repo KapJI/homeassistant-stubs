@@ -10,11 +10,12 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 SCAN_INTERVAL: Incomplete
+type AmbientNetworkConfigEntry = ConfigEntry[AmbientNetworkDataUpdateCoordinator]
 
 class AmbientNetworkDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
-    config_entry: ConfigEntry
+    config_entry: AmbientNetworkConfigEntry
     station_name: str
     last_measured: datetime | None
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, api: OpenAPI) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: AmbientNetworkConfigEntry, api: OpenAPI) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...

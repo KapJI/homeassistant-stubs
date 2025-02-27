@@ -1,5 +1,4 @@
-from .coordinator import AnovaCoordinator as AnovaCoordinator
-from .models import AnovaConfigEntry as AnovaConfigEntry, AnovaData as AnovaData
+from .coordinator import AnovaConfigEntry as AnovaConfigEntry, AnovaCoordinator as AnovaCoordinator, AnovaData as AnovaData
 from _typeshed import Incomplete
 from anova_wifi import APCWifiDevice as APCWifiDevice
 from homeassistant.const import CONF_DEVICES as CONF_DEVICES, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform

@@ -6,6 +6,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components import conversation as conversation, stt as stt, tts as tts, websocket_api as websocket_api
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_SECONDS as ATTR_SECONDS, MATCH_ALL as MATCH_ALL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import chat_session as chat_session
 from typing import Any, Final
 
 _LOGGER: Incomplete

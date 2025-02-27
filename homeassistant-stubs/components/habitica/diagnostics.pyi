@@ -1,5 +1,5 @@
 from .const import CONF_API_USER as CONF_API_USER
-from .types import HabiticaConfigEntry as HabiticaConfigEntry
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any

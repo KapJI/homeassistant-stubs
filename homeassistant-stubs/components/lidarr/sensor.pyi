@@ -1,7 +1,6 @@
 import dataclasses
-from . import LidarrConfigEntry as LidarrConfigEntry
 from .const import BYTE_SIZES as BYTE_SIZES
-from .coordinator import LidarrDataUpdateCoordinator as LidarrDataUpdateCoordinator, T as T
+from .coordinator import LidarrConfigEntry as LidarrConfigEntry, LidarrDataUpdateCoordinator as LidarrDataUpdateCoordinator, T as T
 from .entity import LidarrEntity as LidarrEntity
 from _typeshed import Incomplete
 from aiopyarr import LidarrQueueItem as LidarrQueueItem, LidarrRootFolder as LidarrRootFolder
@@ -9,7 +8,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Generic
 
 def get_space(data: list[LidarrRootFolder], name: str) -> str: ...
@@ -26,7 +25,7 @@ class LidarrSensorEntityDescription(SensorEntityDescription, LidarrSensorEntityD
 
 SENSOR_TYPES: dict[str, LidarrSensorEntityDescription[Any]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LidarrConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LidarrConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LidarrSensor(LidarrEntity[T], SensorEntity):
     entity_description: LidarrSensorEntityDescription[T]

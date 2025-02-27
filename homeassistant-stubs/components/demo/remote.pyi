@@ -4,10 +4,10 @@ from homeassistant.components.remote import RemoteEntity as RemoteEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DemoRemote(RemoteEntity):
     _attr_should_poll: bool

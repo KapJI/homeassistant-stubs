@@ -1,15 +1,14 @@
-from . import MikrotikConfigEntry as MikrotikConfigEntry
-from .coordinator import Device as Device, MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator
+from .coordinator import Device as Device, MikrotikConfigEntry as MikrotikConfigEntry, MikrotikDataUpdateCoordinator as MikrotikDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: MikrotikConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MikrotikConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
-def update_items(coordinator: MikrotikDataUpdateCoordinator, async_add_entities: AddEntitiesCallback, tracked: dict[str, MikrotikDataUpdateCoordinatorTracker]) -> None: ...
+def update_items(coordinator: MikrotikDataUpdateCoordinator, async_add_entities: AddConfigEntryEntitiesCallback, tracked: dict[str, MikrotikDataUpdateCoordinatorTracker]) -> None: ...
 
 class MikrotikDataUpdateCoordinatorTracker(CoordinatorEntity[MikrotikDataUpdateCoordinator], ScannerEntity):
     device: Incomplete

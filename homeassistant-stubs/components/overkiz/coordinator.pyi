@@ -1,5 +1,6 @@
 import logging
-from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES, LOGGER as LOGGER
+from . import OverkizDataConfigEntry as OverkizDataConfigEntry
+from .const import DOMAIN as DOMAIN, IGNORED_OVERKIZ_DEVICES as IGNORED_OVERKIZ_DEVICES, LOGGER as LOGGER, UPDATE_INTERVAL as UPDATE_INTERVAL
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from datetime import timedelta
@@ -14,15 +15,15 @@ from typing import Any
 EVENT_HANDLERS: Registry[str, Callable[[OverkizDataUpdateCoordinator, Event], Coroutine[Any, Any, None]]]
 
 class OverkizDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
+    config_entry: OverkizDataConfigEntry
     _default_update_interval: timedelta
     data: Incomplete
     client: Incomplete
     devices: dict[str, Device]
     executions: dict[str, dict[str, str]]
     areas: Incomplete
-    config_entry_id: Incomplete
     is_stateless: Incomplete
-    def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, name: str, client: OverkizClient, devices: list[Device], places: Place | None, update_interval: timedelta, config_entry_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: OverkizDataConfigEntry, logger: logging.Logger, *, client: OverkizClient, devices: list[Device], places: Place | None) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> dict[str, Device]: ...
     async def _get_devices(self) -> dict[str, Device]: ...

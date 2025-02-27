@@ -12,7 +12,7 @@ SENSOR_FIELDS_TO_RETRIEVE: Incomplete
 UPDATE_INTERVAL: Incomplete
 
 class PurpleAirDataUpdateCoordinator(DataUpdateCoordinator[GetSensorsResponse]):
-    _entry: Incomplete
+    config_entry: ConfigEntry
     _api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def _async_update_data(self) -> GetSensorsResponse: ...

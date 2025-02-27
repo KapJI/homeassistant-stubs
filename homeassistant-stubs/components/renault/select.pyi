@@ -3,7 +3,7 @@ from .entity import RenaultDataEntity as RenaultDataEntity, RenaultDataEntityDes
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from renault_api.kamereon.models import KamereonVehicleBatteryStatusData
 
@@ -13,7 +13,7 @@ PARALLEL_UPDATES: int
 class RenaultSelectEntityDescription(SelectEntityDescription, RenaultDataEntityDescription):
     data_key: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RenaultSelectEntity(RenaultDataEntity[KamereonVehicleBatteryStatusData], SelectEntity):
     entity_description: RenaultSelectEntityDescription

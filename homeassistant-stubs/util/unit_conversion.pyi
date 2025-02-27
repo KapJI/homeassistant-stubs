@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from functools import lru_cache
-from homeassistant.const import CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfInformation as UnitOfInformation, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.const import CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfEnergyDistance as UnitOfEnergyDistance, UnitOfInformation as UnitOfInformation, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 _MM_TO_M: float
@@ -42,6 +42,7 @@ class BaseUnitConverter:
     UNIT_CLASS: str
     VALID_UNITS: set[str | None]
     _UNIT_CONVERSION: dict[str | None, float]
+    _UNIT_INVERSES: set[str]
     @classmethod
     def convert(cls, value: float, from_unit: str | None, to_unit: str | None) -> float: ...
     @classmethod
@@ -55,6 +56,9 @@ class BaseUnitConverter:
     @classmethod
     @lru_cache
     def get_unit_ratio(cls, from_unit: str | None, to_unit: str | None) -> float: ...
+    @classmethod
+    @lru_cache
+    def _are_unit_inverses(cls, from_unit: str | None, to_unit: str | None) -> bool: ...
 
 class DataRateConverter(BaseUnitConverter):
     UNIT_CLASS: str
@@ -94,6 +98,12 @@ class ElectricPotentialConverter(BaseUnitConverter):
 class EnergyConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class EnergyDistanceConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    _UNIT_INVERSES: set[str]
     VALID_UNITS: Incomplete
 
 class InformationConverter(BaseUnitConverter):

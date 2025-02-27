@@ -1,4 +1,5 @@
 from . import RingConfigEntry as RingConfigEntry
+from .const import DOMAIN as DOMAIN
 from .coordinator import RingDataCoordinator as RingDataCoordinator
 from .entity import RingDeviceT as RingDeviceT, RingEntity as RingEntity, exception_wrap as exception_wrap
 from _typeshed import Incomplete
@@ -10,7 +11,7 @@ from homeassistant.components.camera import Camera as Camera, CameraEntityDescri
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingDoorBell
 from ring_doorbell.webrtcstream import RingWebRtcMessage as RingWebRtcMessage
 from typing import Any, Generic
@@ -28,7 +29,7 @@ class RingCameraEntityDescription(CameraEntityDescription, Generic[RingDeviceT])
 
 CAMERA_DESCRIPTIONS: tuple[RingCameraEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RingCam(RingEntity[RingDoorBell], Camera):
     entity_description: Incomplete

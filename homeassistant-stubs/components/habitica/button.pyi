@@ -1,7 +1,6 @@
 from .const import ASSETS_URL as ASSETS_URL, DOMAIN as DOMAIN
-from .coordinator import HabiticaData as HabiticaData, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaData as HabiticaData, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
 from .entity import HabiticaBase as HabiticaBase
-from .types import HabiticaConfigEntry as HabiticaConfigEntry
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum
@@ -9,7 +8,7 @@ from habiticalib import HabiticaClass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -42,7 +41,7 @@ class HabiticaButtonEntity(StrEnum):
 BUTTON_DESCRIPTIONS: tuple[HabiticaButtonEntityDescription, ...]
 CLASS_SKILLS: tuple[HabiticaButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: HabiticaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HabiticaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HabiticaButton(HabiticaBase, ButtonEntity):
     entity_description: HabiticaButtonEntityDescription

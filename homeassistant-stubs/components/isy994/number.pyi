@@ -9,7 +9,7 @@ from homeassistant.const import CONF_VARIABLES as CONF_VARIABLES, EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
@@ -21,7 +21,7 @@ ON_RANGE: Incomplete
 CONTROL_DESC: Incomplete
 BACKLIGHT_MEMORY_FILTER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYAuxControlNumberEntity(ISYAuxControlEntity, NumberEntity):
     _attr_mode: Incomplete

@@ -1,5 +1,4 @@
-from . import HomeWizardConfigEntry as HomeWizardConfigEntry
-from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator
+from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator, HomeWizardConfigEntry as HomeWizardConfigEntry
 from .entity import HomeWizardEntity as HomeWizardEntity
 from .helpers import homewizard_exception_handler as homewizard_exception_handler
 from _typeshed import Incomplete
@@ -8,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
 from homewizard_energy.models import CombinedModels as DeviceResponseEntry
 from typing import Any
@@ -24,7 +23,7 @@ class HomeWizardSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCHES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: HomeWizardConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HomeWizardConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeWizardSwitchEntity(HomeWizardEntity, SwitchEntity):
     entity_description: HomeWizardSwitchEntityDescription

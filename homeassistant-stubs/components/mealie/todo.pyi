@@ -6,14 +6,14 @@ from aiomealie import ShoppingItem as ShoppingItem, ShoppingList as ShoppingList
 from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity, TodoListEntityFeature as TodoListEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 TODO_STATUS_MAP: Incomplete
 TODO_STATUS_MAP_INV: Incomplete
 
 def _convert_api_item(item: ShoppingItem) -> TodoItem: ...
-async def async_setup_entry(hass: HomeAssistant, entry: MealieConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: MealieConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MealieShoppingListTodoListEntity(MealieEntity, TodoListEntity):
     _attr_supported_features: Incomplete

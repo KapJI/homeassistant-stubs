@@ -1,6 +1,5 @@
 import abc
-from . import HabiticaConfigEntry as HabiticaConfigEntry
-from .coordinator import HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
 from .entity import HabiticaBase as HabiticaBase
 from .util import build_rrule as build_rrule, get_recurrence_rule as get_recurrence_rule
 from _typeshed import Incomplete
@@ -10,7 +9,7 @@ from dateutil.rrule import rrule as rrule
 from enum import StrEnum
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -20,7 +19,7 @@ class HabiticaCalendar(StrEnum):
     TODO_REMINDERS = 'todo_reminders'
     DAILY_REMINDERS = 'daily_reminders'
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HabiticaCalendarEntity(HabiticaBase, CalendarEntity, metaclass=abc.ABCMeta):
     def __init__(self, coordinator: HabiticaDataUpdateCoordinator) -> None: ...

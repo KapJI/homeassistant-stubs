@@ -10,7 +10,7 @@ from deebot_client.events import LifeSpan as LifeSpan
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsButtonEntityDescription(ButtonEntityDescription, EcovacsCapabilityEntityDescription): ...
@@ -27,7 +27,7 @@ ENTITY_DESCRIPTIONS: tuple[EcovacsButtonEntityDescription, ...]
 STATION_ENTITY_DESCRIPTIONS: Incomplete
 LIFESPAN_ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EcovacsButtonEntity(EcovacsDescriptionEntity[CapabilityExecute], ButtonEntity):
     entity_description: EcovacsLifespanButtonEntityDescription

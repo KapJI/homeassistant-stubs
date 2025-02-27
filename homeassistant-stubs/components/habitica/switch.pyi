@@ -1,12 +1,11 @@
-from .coordinator import HabiticaData as HabiticaData, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaData as HabiticaData, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
 from .entity import HabiticaBase as HabiticaBase
-from .types import HabiticaConfigEntry as HabiticaConfigEntry
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -22,7 +21,7 @@ class HabiticaSwitchEntity(StrEnum):
 
 SWTICH_DESCRIPTIONS: tuple[HabiticaSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: HabiticaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HabiticaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HabiticaSwitch(HabiticaBase, SwitchEntity):
     entity_description: HabiticaSwitchEntityDescription

@@ -8,7 +8,7 @@ from fullykiosk import FullyKiosk as FullyKiosk
 from homeassistant.components.image import ImageEntity as ImageEntity, ImageEntityDescription as ImageEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
@@ -17,7 +17,7 @@ class FullyImageEntityDescription(ImageEntityDescription):
 
 IMAGES: tuple[FullyImageEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FullyKioskConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FullyImageEntity(FullyKioskEntity, ImageEntity):
     entity_description: FullyImageEntityDescription

@@ -1,14 +1,16 @@
+from .const import SERVICE_GROUP_VOLUME_DOWN as SERVICE_GROUP_VOLUME_DOWN, SERVICE_GROUP_VOLUME_SET as SERVICE_GROUP_VOLUME_SET, SERVICE_GROUP_VOLUME_UP as SERVICE_GROUP_VOLUME_UP
 from .coordinator import HeosConfigEntry as HeosConfigEntry, HeosCoordinator as HeosCoordinator
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Coroutine
 from datetime import datetime
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, BrowseMedia as BrowseMedia, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, BrowseMedia as BrowseMedia, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import utcnow as utcnow
 from pyheos import HeosPlayer as HeosPlayer
@@ -22,7 +24,7 @@ HA_HEOS_ENQUEUE_MAP: Incomplete
 HEOS_HA_REPEAT_TYPE_MAP: Incomplete
 HA_HEOS_REPEAT_TYPE_MAP: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: HeosConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HeosConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 type _FuncType[**_P] = Callable[_P, Awaitable[Any]]
 type _ReturnFuncType[**_P] = Callable[_P, Coroutine[Any, Any, None]]
 def catch_action_error[**_P](action: str) -> Callable[[_FuncType[_P]], _ReturnFuncType[_P]]: ...
@@ -62,6 +64,9 @@ class HeosMediaPlayer(CoordinatorEntity[HeosCoordinator], MediaPlayerEntity):
     async def async_set_repeat(self, repeat: RepeatMode) -> None: ...
     async def async_set_shuffle(self, shuffle: bool) -> None: ...
     async def async_set_volume_level(self, volume: float) -> None: ...
+    async def async_set_group_volume_level(self, volume_level: float) -> None: ...
+    async def async_group_volume_down(self) -> None: ...
+    async def async_group_volume_up(self) -> None: ...
     async def async_join_players(self, group_members: list[str]) -> None: ...
     async def async_unjoin_player(self) -> None: ...
     @property

@@ -3,7 +3,7 @@ from .coordinator import SteamistDataUpdateCoordinator as SteamistDataUpdateCoor
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_get_discovery as async_get_discovery, async_trigger_discovery as async_trigger_discovery, async_update_entry_from_discovery as async_update_entry_from_discovery
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, Platform as Platform
+from homeassistant.const import CONF_HOST as CONF_HOST, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval

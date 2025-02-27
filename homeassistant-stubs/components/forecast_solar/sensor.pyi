@@ -10,7 +10,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
@@ -21,7 +21,7 @@ class ForecastSolarSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[ForecastSolarSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ForecastSolarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ForecastSolarConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ForecastSolarSensorEntity(CoordinatorEntity[ForecastSolarDataUpdateCoordinator], SensorEntity):
     entity_description: ForecastSolarSensorEntityDescription

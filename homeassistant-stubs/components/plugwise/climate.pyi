@@ -1,6 +1,5 @@
-from . import PlugwiseConfigEntry as PlugwiseConfigEntry
 from .const import DOMAIN as DOMAIN, MASTER_THERMOSTATS as MASTER_THERMOSTATS
-from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
+from .coordinator import PlugwiseConfigEntry as PlugwiseConfigEntry, PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
@@ -8,12 +7,12 @@ from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, A
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     _attr_name: Incomplete
@@ -21,8 +20,6 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity):
     _attr_translation_key = DOMAIN
     _previous_mode: str
     _attr_unique_id: Incomplete
-    _devices: Incomplete
-    _gateway: Incomplete
     _gateway_data: Incomplete
     _location: Incomplete
     _attr_supported_features: Incomplete

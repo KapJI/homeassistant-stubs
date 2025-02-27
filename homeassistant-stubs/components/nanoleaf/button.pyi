@@ -1,13 +1,12 @@
-from . import NanoleafConfigEntry as NanoleafConfigEntry
-from .coordinator import NanoleafCoordinator as NanoleafCoordinator
+from .coordinator import NanoleafConfigEntry as NanoleafConfigEntry, NanoleafCoordinator as NanoleafCoordinator
 from .entity import NanoleafEntity as NanoleafEntity
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, entry: NanoleafConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NanoleafConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NanoleafIdentifyButton(NanoleafEntity, ButtonEntity):
     _attr_entity_category: Incomplete

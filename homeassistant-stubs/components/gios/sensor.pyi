@@ -1,6 +1,5 @@
-from . import GiosConfigEntry as GiosConfigEntry
 from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_C6H6 as ATTR_C6H6, ATTR_CO as ATTR_CO, ATTR_NO2 as ATTR_NO2, ATTR_O3 as ATTR_O3, ATTR_PM10 as ATTR_PM10, ATTR_PM25 as ATTR_PM25, ATTR_SO2 as ATTR_SO2, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, URL as URL
-from .coordinator import GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
+from .coordinator import GiosConfigEntry as GiosConfigEntry, GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -9,7 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
@@ -22,7 +21,7 @@ class GiosSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[GiosSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: GiosConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: GiosConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class GiosSensor(CoordinatorEntity[GiosDataUpdateCoordinator], SensorEntity):
     _attr_attribution = ATTRIBUTION

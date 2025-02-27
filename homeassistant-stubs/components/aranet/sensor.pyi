@@ -10,7 +10,7 @@ from homeassistant.const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MOD
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @dataclass(frozen=True)
@@ -23,7 +23,7 @@ SENSOR_DESCRIPTIONS: Incomplete
 def _device_key_to_bluetooth_entity_key(device: BLEDevice, key: str) -> PassiveBluetoothEntityKey: ...
 def _sensor_device_info_to_hass(adv: Aranet4Advertisement) -> DeviceInfo: ...
 def sensor_update_to_bluetooth_data_update(adv: Aranet4Advertisement) -> PassiveBluetoothDataUpdate[Any]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: AranetConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AranetConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Aranet4BluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[float | int | None, Aranet4Advertisement]], SensorEntity):
     @property

@@ -8,7 +8,7 @@ from deebot_client.capabilities import CapabilitySet
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Generic
 
 @dataclass(kw_only=True, frozen=True)
@@ -18,7 +18,7 @@ class EcovacsNumberEntityDescription(NumberEntityDescription, EcovacsCapabilityE
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsNumberEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EcovacsNumberEntity(EcovacsDescriptionEntity[CapabilitySet[EventT, [int]]], NumberEntity):
     entity_description: EcovacsNumberEntityDescription

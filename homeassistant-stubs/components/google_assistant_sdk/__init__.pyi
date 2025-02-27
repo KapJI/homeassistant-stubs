@@ -3,7 +3,7 @@ from .helpers import GoogleAssistantSDKAudioView as GoogleAssistantSDKAudioView,
 from _typeshed import Incomplete
 from gassist_text import TextAssistant
 from homeassistant.components import conversation as conversation
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady

@@ -1,7 +1,7 @@
 import functools
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from enum import EnumType, IntEnum, IntFlag, StrEnum, _EnumDict
+from enum import EnumType, IntEnum as IntEnum, IntFlag as IntFlag, StrEnum as StrEnum, _EnumDict
 from typing import Any, NamedTuple
 
 def deprecated_substitute[_ObjectT: object](substitute_name: str) -> Callable[[Callable[[_ObjectT], Any]], Callable[[_ObjectT], Any]]: ...
@@ -12,27 +12,27 @@ def _print_deprecation_warning(obj: Any, replacement: str, description: str, ver
 def _print_deprecation_warning_internal(obj_name: str, module_name: str, replacement: str, description: str, verb: str, breaks_in_ha_version: str | None, *, log_when_no_integration_is_found: bool) -> None: ...
 def _print_deprecation_warning_internal_impl(obj_name: str, module_name: str, replacement: str, description: str, verb: str, breaks_in_ha_version: str | None, *, log_when_no_integration_is_found: bool) -> None: ...
 
-class DeprecatedConstant(NamedTuple):
-    value: Any
+class DeprecatedConstant[T](NamedTuple):
+    value: T
     replacement: str
     breaks_in_ha_version: str | None
 
-class DeprecatedConstantEnum(NamedTuple):
-    enum: StrEnum | IntEnum | IntFlag
+class DeprecatedConstantEnum[T: StrEnum | IntEnum | IntFlag](NamedTuple):
+    enum: T
     breaks_in_ha_version: str | None
 
-class DeprecatedAlias(NamedTuple):
-    value: Any
+class DeprecatedAlias[T](NamedTuple):
+    value: T
     replacement: str
     breaks_in_ha_version: str | None
 
-class DeferredDeprecatedAlias:
+class DeferredDeprecatedAlias[T]:
     breaks_in_ha_version: Incomplete
     replacement: Incomplete
     _value_fn: Incomplete
-    def __init__(self, value_fn: Callable[[], Any], replacement: str, breaks_in_ha_version: str | None) -> None: ...
+    def __init__(self, value_fn: Callable[[], T], replacement: str, breaks_in_ha_version: str | None) -> None: ...
     @functools.cached_property
-    def value(self) -> Any: ...
+    def value(self) -> T: ...
 
 _PREFIX_DEPRECATED: str
 

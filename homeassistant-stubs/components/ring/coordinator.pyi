@@ -1,4 +1,4 @@
-from .const import SCAN_INTERVAL as SCAN_INTERVAL
+from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -19,13 +19,12 @@ class RingData:
     listen_coordinator: RingListenCoordinator
 type RingConfigEntry = ConfigEntry[RingData]
 
-async def _call_api[*_Ts, _R](hass: HomeAssistant, target: Callable[[*_Ts], Coroutine[Any, Any, _R]], *args: *_Ts, msg_suffix: str = '') -> _R: ...
-
 class RingDataCoordinator(DataUpdateCoordinator[RingDevices]):
     config_entry: RingConfigEntry
     ring_api: Ring
     first_call: bool
     def __init__(self, hass: HomeAssistant, config_entry: RingConfigEntry, ring_api: Ring) -> None: ...
+    async def _call_api[*_Ts, _R](self, target: Callable[[*_Ts], Coroutine[Any, Any, _R]], *args: *_Ts) -> _R: ...
     async def _async_update_data(self) -> RingDevices: ...
 
 class RingListenCoordinator(BaseDataUpdateCoordinatorProtocol):

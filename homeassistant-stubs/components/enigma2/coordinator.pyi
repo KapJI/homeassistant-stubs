@@ -10,11 +10,13 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from openwebif.api import OpenWebIfDevice, OpenWebIfStatus
 
 LOGGER: Incomplete
+type Enigma2ConfigEntry = ConfigEntry[Enigma2UpdateCoordinator]
 
 class Enigma2UpdateCoordinator(DataUpdateCoordinator[OpenWebIfStatus]):
+    config_entry: Enigma2ConfigEntry
     device: OpenWebIfDevice
     unique_id: str | None
     device_info: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: Enigma2ConfigEntry) -> None: ...
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> OpenWebIfStatus: ...

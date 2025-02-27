@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 
@@ -44,7 +44,7 @@ HA_TO_SENSIBO: Incomplete
 AC_STATE_TO_DATA: Incomplete
 
 def _find_valid_target_temp(target: float, valid_targets: list[int]) -> int: ...
-async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SensiboConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SensiboClimate(SensiboDeviceBaseEntity, ClimateEntity):
     _attr_name: Incomplete

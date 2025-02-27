@@ -3,13 +3,13 @@ from .entity import AirGradientEntity as AirGradientEntity
 from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from propcache.api import cached_property
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: AirGradientConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AirGradientConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AirGradientUpdate(AirGradientEntity, UpdateEntity):
     _attr_device_class: Incomplete

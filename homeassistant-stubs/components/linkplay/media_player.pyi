@@ -8,7 +8,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
 from linkplay.consts import EqualizerMode, LoopMode, PlayingMode, PlayingStatus
@@ -29,7 +29,7 @@ SERVICE_PLAY_PRESET: str
 ATTR_PRESET_NUMBER: str
 SERVICE_PLAY_PRESET_SCHEMA: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LinkPlayMediaPlayerEntity(LinkPlayBaseEntity, MediaPlayerEntity):
     _attr_sound_mode_list: Incomplete

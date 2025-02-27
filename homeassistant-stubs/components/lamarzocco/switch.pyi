@@ -8,7 +8,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco.devices.machine import LaMarzoccoMachine as LaMarzoccoMachine
 from pylamarzocco.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
 from typing import Any
@@ -22,7 +22,7 @@ class LaMarzoccoSwitchEntityDescription(LaMarzoccoEntityDescription, SwitchEntit
 
 ENTITIES: tuple[LaMarzoccoSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LaMarzoccoSwitchEntity(LaMarzoccoEntity, SwitchEntity):
     entity_description: LaMarzoccoSwitchEntityDescription

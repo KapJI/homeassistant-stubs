@@ -7,7 +7,7 @@ from datetime import datetime
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 BASE_FEATURES: Incomplete
@@ -15,7 +15,7 @@ PREAMP_FEATURES: Incomplete
 TRANSPORT_FEATURES: dict[TransportControl, MediaPlayerEntityFeature]
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CambridgeAudioConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CambridgeAudioDevice(CambridgeAudioEntity, MediaPlayerEntity):
     _attr_name: Incomplete

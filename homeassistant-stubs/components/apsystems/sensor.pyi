@@ -1,5 +1,4 @@
-from . import ApSystemsConfigEntry as ApSystemsConfigEntry, ApSystemsData as ApSystemsData
-from .coordinator import ApSystemsDataCoordinator as ApSystemsDataCoordinator
+from .coordinator import ApSystemsConfigEntry as ApSystemsConfigEntry, ApSystemsData as ApSystemsData, ApSystemsDataCoordinator as ApSystemsDataCoordinator
 from .entity import ApSystemsEntity as ApSystemsEntity
 from APsystemsEZ1 import ReturnOutputData as ReturnOutputData
 from _typeshed import Incomplete
@@ -8,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
@@ -18,7 +17,7 @@ class ApsystemsLocalApiSensorDescription(SensorEntityDescription):
 
 SENSORS: tuple[ApsystemsLocalApiSensorDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ApSystemsConfigEntry, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ApSystemsConfigEntry, add_entities: AddConfigEntryEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class ApSystemsSensorWithDescription(CoordinatorEntity[ApSystemsDataCoordinator], ApSystemsEntity, SensorEntity):
     entity_description: ApsystemsLocalApiSensorDescription

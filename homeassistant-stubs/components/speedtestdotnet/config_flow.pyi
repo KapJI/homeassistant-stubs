@@ -1,5 +1,5 @@
-from . import SpeedTestConfigEntry as SpeedTestConfigEntry
 from .const import CONF_SERVER_ID as CONF_SERVER_ID, CONF_SERVER_NAME as CONF_SERVER_NAME, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_SERVER as DEFAULT_SERVER, DOMAIN as DOMAIN
+from .coordinator import SpeedTestConfigEntry as SpeedTestConfigEntry
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
 from typing import Any

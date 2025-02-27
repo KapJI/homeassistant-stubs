@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CONF_NAME as CONF_NAME, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
@@ -23,7 +23,7 @@ class TrafikverketSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[TrafikverketSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: TVTrainConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TVTrainConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TrainSensor(CoordinatorEntity[TVDataUpdateCoordinator], SensorEntity):
     entity_description: TrafikverketSensorEntityDescription

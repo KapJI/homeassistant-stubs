@@ -11,7 +11,7 @@ from homeassistant.components import media_source as media_source, ssdp as ssdp
 from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_MAC as CONF_MAC, CONF_TYPE as CONF_TYPE, CONF_URL as CONF_URL
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
 from typing import Any, Concatenate
 
@@ -19,7 +19,7 @@ PARALLEL_UPDATES: int
 _TRANSPORT_STATE_TO_MEDIA_PLAYER_STATE: Incomplete
 
 def catch_request_errors[_DlnaDmrEntityT: DlnaDmrEntity, **_P, _R](func: Callable[Concatenate[_DlnaDmrEntityT, _P], Awaitable[_R]]) -> Callable[Concatenate[_DlnaDmrEntityT, _P], Coroutine[Any, Any, _R | None]]: ...
-async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DlnaDmrEntity(MediaPlayerEntity):
     udn: str

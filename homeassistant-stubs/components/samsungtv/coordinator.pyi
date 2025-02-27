@@ -8,11 +8,12 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 SCAN_INTERVAL: int
+type SamsungTVConfigEntry = ConfigEntry[SamsungTVDataUpdateCoordinator]
 
 class SamsungTVDataUpdateCoordinator(DataUpdateCoordinator[None]):
-    config_entry: ConfigEntry
+    config_entry: SamsungTVConfigEntry
     bridge: Incomplete
     is_on: bool | None
     async_extra_update: Callable[[], Coroutine[Any, Any, None]] | None
-    def __init__(self, hass: HomeAssistant, bridge: SamsungTVBridge) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SamsungTVConfigEntry, bridge: SamsungTVBridge) -> None: ...
     async def _async_update_data(self) -> None: ...

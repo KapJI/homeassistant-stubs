@@ -12,7 +12,7 @@ from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.util import slugify as slugify
 from typing import Any
@@ -22,7 +22,7 @@ ATTR_ERROR: str
 ATTR_COMPONENT_PREFIX: str
 SERVICE_RAW_GET_POSITIONS: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EcovacsLegacyVacuum(EcovacsLegacyEntity, StateVacuumEntity):
     _attr_fan_speed_list: Incomplete

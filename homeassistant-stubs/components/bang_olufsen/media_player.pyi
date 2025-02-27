@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback, async_get_current_platform as async_get_current_platform
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.util.dt import utcnow as utcnow
 from mozart_api.models import Art, BeolinkLeader as BeolinkLeader, ListeningModeProps as ListeningModeProps, ListeningModeRef as ListeningModeRef, PlaybackContentMetadata as PlaybackContentMetadata, PlaybackError as PlaybackError, PlaybackProgress, RenderingState as RenderingState, SoftwareUpdateStatus, Source, VolumeState as VolumeState
 from mozart_api.mozart_client import MozartClient as MozartClient
@@ -23,7 +23,7 @@ SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 BANG_OLUFSEN_FEATURES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BangOlufsenConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BangOlufsenConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     _attr_name: Incomplete

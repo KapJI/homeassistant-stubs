@@ -1,4 +1,4 @@
-from . import AutarcoConfigEntry as AutarcoConfigEntry, AutarcoDataUpdateCoordinator as AutarcoDataUpdateCoordinator
+from .coordinator import AutarcoConfigEntry as AutarcoConfigEntry, AutarcoDataUpdateCoordinator as AutarcoDataUpdateCoordinator
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

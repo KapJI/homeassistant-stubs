@@ -8,9 +8,10 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from transmission_rpc.session import SessionStats
 
 _LOGGER: Incomplete
+type TransmissionConfigEntry = ConfigEntry[TransmissionDataUpdateCoordinator]
 
 class TransmissionDataUpdateCoordinator(DataUpdateCoordinator[SessionStats]):
-    config_entry: ConfigEntry
+    config_entry: TransmissionConfigEntry
     api: Incomplete
     host: Incomplete
     _session: transmission_rpc.Session | None
@@ -18,7 +19,7 @@ class TransmissionDataUpdateCoordinator(DataUpdateCoordinator[SessionStats]):
     _completed_torrents: list[transmission_rpc.Torrent]
     _started_torrents: list[transmission_rpc.Torrent]
     torrents: list[transmission_rpc.Torrent]
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: transmission_rpc.Client) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: TransmissionConfigEntry, api: transmission_rpc.Client) -> None: ...
     @property
     def limit(self) -> int: ...
     @property

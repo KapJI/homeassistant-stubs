@@ -1,7 +1,6 @@
 from .const import ASSETS_URL as ASSETS_URL, DOMAIN as DOMAIN
-from .coordinator import HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
 from .entity import HabiticaBase as HabiticaBase
-from .types import HabiticaConfigEntry as HabiticaConfigEntry
 from .util import get_attribute_points as get_attribute_points, get_attributes_total as get_attributes_total, inventory_list as inventory_list
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
@@ -12,7 +11,7 @@ from homeassistant.components.automation import automations_with_entity as autom
 from homeassistant.components.script import scripts_with_entity as scripts_with_entity
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
@@ -62,7 +61,7 @@ TASKS_MAP: Incomplete
 TASK_SENSOR_DESCRIPTION: tuple[HabiticaTaskSensorEntityDescription, ...]
 
 def entity_used_in(hass: HomeAssistant, entity_id: str) -> list[str]: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HabiticaSensor(HabiticaBase, SensorEntity):
     entity_description: HabiticaSensorEntityDescription

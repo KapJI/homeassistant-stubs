@@ -6,7 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Final
 
@@ -20,7 +20,7 @@ STATE_AIR_QUALITY_NORMAL: Final[str]
 STATE_AIR_QUALITY_ABNORMAL: Final[str]
 STATE_AIR_QUALITY_VERY_ABNORMAL: Final[str]
 
-async def async_setup_entry(hass: HomeAssistant, entry: CanaryConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CanaryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CanarySensor(CoordinatorEntity[CanaryDataUpdateCoordinator], SensorEntity):
     _sensor_type: Incomplete

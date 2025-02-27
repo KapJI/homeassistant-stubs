@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Final
 
 @dataclass(frozen=True, kw_only=True)
@@ -13,7 +13,7 @@ class RpcSelectDescription(RpcEntityDescription, SelectEntityDescription): ...
 
 RPC_SELECT_ENTITIES: Final[Incomplete]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RpcSelect(ShellyRpcAttributeEntity, SelectEntity):
     entity_description: RpcSelectDescription

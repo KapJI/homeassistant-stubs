@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.select import DOMAIN as SELECT_DOMAIN, SelectEntity as SelectEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor.air_purifier import AirPurifier
 from pydeconz.models.sensor.presence import Presence
@@ -12,7 +12,7 @@ from pydeconz.models.sensor.presence import Presence
 SENSITIVITY_TO_DECONZ: Incomplete
 DECONZ_TO_SENSITIVITY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: DeconzConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: DeconzConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DeconzAirPurifierFanMode(DeconzDevice[AirPurifier], SelectEntity):
     _name_suffix: str

@@ -8,10 +8,10 @@ from homeassistant.components.device_tracker.config_entry import BaseTrackerEnti
 from homeassistant.const import STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
 
-async def async_setup_entry(hass: HomeAssistant, entry: IBeaconConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IBeaconConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IBeaconTrackerEntity(IBeaconEntity, BaseTrackerEntity):
     _attr_name: Incomplete

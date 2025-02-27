@@ -9,7 +9,7 @@ from elkm1_lib.elk import Elk as Elk
 from homeassistant.components.alarm_control_panel import ATTR_CHANGED_BY as ATTR_CHANGED_BY, AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any
@@ -22,7 +22,7 @@ SERVICE_ALARM_ARM_NIGHT_INSTANT: str
 SERVICE_ALARM_BYPASS: str
 SERVICE_ALARM_CLEAR_BYPASS: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElkArea(ElkAttachedEntity, AlarmControlPanelEntity, RestoreEntity):
     _attr_supported_features: Incomplete

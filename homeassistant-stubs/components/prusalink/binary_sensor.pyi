@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyprusalink.types import JobInfo, PrinterInfo, PrinterStatus
 from pyprusalink.types_legacy import LegacyPrinterStatus
 from typing import Generic, TypeVar
@@ -24,7 +24,7 @@ class PrusaLinkBinarySensorEntityDescription(BinarySensorEntityDescription, Prus
 
 BINARY_SENSORS: dict[str, tuple[PrusaLinkBinarySensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PrusaLinkBinarySensorEntity(PrusaLinkEntity, BinarySensorEntity):
     entity_description: PrusaLinkBinarySensorEntityDescription

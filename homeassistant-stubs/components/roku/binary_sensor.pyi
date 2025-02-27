@@ -1,11 +1,11 @@
-from . import RokuConfigEntry as RokuConfigEntry
+from .coordinator import RokuConfigEntry as RokuConfigEntry
 from .entity import RokuEntity as RokuEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from rokuecp.models import Device as RokuDevice
 
 PARALLEL_UPDATES: int
@@ -16,7 +16,7 @@ class RokuBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSORS: tuple[RokuBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RokuBinarySensorEntity(RokuEntity, BinarySensorEntity):
     entity_description: RokuBinarySensorEntityDescription

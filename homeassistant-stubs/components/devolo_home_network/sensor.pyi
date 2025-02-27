@@ -12,7 +12,7 @@ from enum import StrEnum
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate as UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
 
@@ -32,7 +32,7 @@ class DevoloSensorEntityDescription[_CoordinatorDataT: _CoordinatorDataType, _Se
 
 SENSOR_TYPES: dict[str, DevoloSensorEntityDescription[Any, Any]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BaseDevoloSensorEntity[_CoordinatorDataT: _CoordinatorDataType, _ValueDataT: _CoordinatorDataType, _SensorDataT: _SensorDataType](DevoloCoordinatorEntity[_CoordinatorDataT], SensorEntity):
     entity_description: Incomplete

@@ -17,13 +17,14 @@ class LockData:
 @dataclass
 class SchlageData:
     locks: dict[str, LockData]
+type SchlageConfigEntry = ConfigEntry[SchlageDataUpdateCoordinator]
 
 class SchlageDataUpdateCoordinator(DataUpdateCoordinator[SchlageData]):
-    config_entry: ConfigEntry
+    config_entry: SchlageConfigEntry
     data: Incomplete
     api: Incomplete
     new_locks_callbacks: list[Callable[[dict[str, LockData]], None]]
-    def __init__(self, hass: HomeAssistant, username: str, api: Schlage) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SchlageConfigEntry, username: str, api: Schlage) -> None: ...
     async def _async_update_data(self) -> SchlageData: ...
     def _get_lock_data(self, lock: Lock) -> LockData: ...
     @callback

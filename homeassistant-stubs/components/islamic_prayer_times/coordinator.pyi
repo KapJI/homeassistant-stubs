@@ -9,13 +9,14 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 _LOGGER: Incomplete
+type IslamicPrayerTimesConfigEntry = ConfigEntry[IslamicPrayerDataUpdateCoordinator]
 
 class IslamicPrayerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, datetime]]):
-    config_entry: ConfigEntry
+    config_entry: IslamicPrayerTimesConfigEntry
     latitude: Incomplete
     longitude: Incomplete
     event_unsub: CALLBACK_TYPE | None
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: IslamicPrayerTimesConfigEntry) -> None: ...
     @property
     def calc_method(self) -> str: ...
     @property

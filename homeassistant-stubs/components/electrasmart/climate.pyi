@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemp
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 FAN_ELECTRA_TO_HASS: Incomplete
@@ -22,7 +22,7 @@ _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ElectraSmartConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ElectraSmartConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElectraClimateEntity(ClimateEntity):
     _attr_fan_modes = ELECTRA_FAN_MODES

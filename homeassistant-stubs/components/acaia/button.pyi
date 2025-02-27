@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -16,7 +16,7 @@ class AcaiaButtonEntityDescription(ButtonEntityDescription):
 
 BUTTONS: tuple[AcaiaButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: AcaiaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AcaiaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AcaiaButton(AcaiaEntity, ButtonEntity):
     entity_description: AcaiaButtonEntityDescription

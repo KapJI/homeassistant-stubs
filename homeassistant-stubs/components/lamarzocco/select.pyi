@@ -8,7 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco.devices.machine import LaMarzoccoMachine as LaMarzoccoMachine
 from pylamarzocco.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
 from typing import Any
@@ -29,7 +29,7 @@ class LaMarzoccoSelectEntityDescription(LaMarzoccoEntityDescription, SelectEntit
 ENTITIES: tuple[LaMarzoccoSelectEntityDescription, ...]
 SCALE_ENTITIES: tuple[LaMarzoccoSelectEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LaMarzoccoSelectEntity(LaMarzoccoEntity, SelectEntity):
     entity_description: LaMarzoccoSelectEntityDescription

@@ -1,4 +1,4 @@
-from . import PlugwiseConfigEntry as PlugwiseConfigEntry
+from .coordinator import PlugwiseConfigEntry as PlugwiseConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

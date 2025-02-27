@@ -15,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED
 from typing import Any
 from zwave_js_server.model.controller import Controller
@@ -41,7 +41,7 @@ ENTITY_DESCRIPTION_NODE_STATISTICS_LIST: Incomplete
 NODE_STATISTICS_KEY_MAP: dict[str, str]
 
 def get_entity_description(data: NumericSensorDataTemplateData) -> SensorEntityDescription: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ZwaveSensor(ZWaveBaseEntity, SensorEntity):
     entity_description: Incomplete

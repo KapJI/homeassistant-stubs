@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_at as async_call_at
 from ring_doorbell import RingCapability, RingEvent as RingEvent
 from typing import Any, Generic
@@ -20,7 +20,7 @@ class RingBinarySensorEntityDescription(BinarySensorEntityDescription, RingEntit
 
 BINARY_SENSOR_TYPES: tuple[RingBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RingBinarySensor(RingBaseEntity[RingListenCoordinator, RingDeviceT], BinarySensorEntity):
     _active_alert: RingEvent | None

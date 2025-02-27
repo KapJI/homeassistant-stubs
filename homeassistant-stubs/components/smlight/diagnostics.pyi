@@ -1,4 +1,4 @@
-from . import SmConfigEntry as SmConfigEntry
+from .coordinator import SmConfigEntry as SmConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

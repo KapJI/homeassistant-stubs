@@ -8,7 +8,7 @@ from homeassistant.components.sensor import RestoreSensor as RestoreSensor, Sens
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from typing import Any
 
@@ -34,7 +34,7 @@ class RainMachineSensorCompletionTimerDescription(SensorEntityDescription, RainM
 
 SENSOR_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TimeRemainingSensor(RainMachineEntity, RestoreSensor):
     entity_description: RainMachineSensorCompletionTimerDescription

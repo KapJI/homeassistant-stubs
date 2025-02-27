@@ -7,8 +7,8 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from peblar import PeblarApi as PeblarApi
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from peblar import PeblarEVInterface as PeblarEVInterface
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -17,11 +17,13 @@ PARALLEL_UPDATES: int
 class PeblarSwitchEntityDescription(SwitchEntityDescription):
     has_fn: Callable[[PeblarRuntimeData], bool] = ...
     is_on_fn: Callable[[PeblarData], bool]
-    set_fn: Callable[[PeblarApi, bool], Awaitable[Any]]
+    set_fn: Callable[[PeblarDataUpdateCoordinator, bool], Awaitable[Any]]
+
+def _async_peblar_charge(coordinator: PeblarDataUpdateCoordinator, on: bool) -> Awaitable[PeblarEVInterface]: ...
 
 DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PeblarSwitchEntity(PeblarEntity[PeblarDataUpdateCoordinator], SwitchEntity):
     entity_description: PeblarSwitchEntityDescription

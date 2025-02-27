@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_TYPE as CONF_TYPE, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import IntegrationError as IntegrationError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any
 
@@ -23,7 +23,7 @@ SENSORS_FOR_3_PHASE: tuple[LektricoSensorEntityDescription, ...]
 SENSORS_FOR_LB_1_PHASE: tuple[LektricoSensorEntityDescription, ...]
 SENSORS_FOR_LB_3_PHASE: tuple[LektricoSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LektricoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LektricoSensor(LektricoEntity, SensorEntity):
     entity_description: LektricoSensorEntityDescription

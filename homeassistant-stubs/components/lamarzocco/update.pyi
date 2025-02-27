@@ -7,7 +7,7 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco.const import FirmwareType
 from typing import Any
 
@@ -19,7 +19,7 @@ class LaMarzoccoUpdateEntityDescription(LaMarzoccoEntityDescription, UpdateEntit
 
 ENTITIES: tuple[LaMarzoccoUpdateEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LaMarzoccoUpdateEntity(LaMarzoccoEntity, UpdateEntity):
     entity_description: LaMarzoccoUpdateEntityDescription

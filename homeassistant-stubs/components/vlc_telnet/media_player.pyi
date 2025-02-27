@@ -9,13 +9,13 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HASS
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Concatenate
 
 MAX_VOLUME: int
 
 def _get_str(data: dict, key: str) -> str | None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: VlcConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: VlcConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def catch_vlc_errors[_VlcDeviceT: VlcDevice, **_P](func: Callable[Concatenate[_VlcDeviceT, _P], Awaitable[None]]) -> Callable[Concatenate[_VlcDeviceT, _P], Coroutine[Any, Any, None]]: ...
 
 class VlcDevice(MediaPlayerEntity):

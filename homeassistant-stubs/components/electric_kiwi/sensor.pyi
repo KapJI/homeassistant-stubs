@@ -8,9 +8,10 @@ from electrickiwi_api.model import AccountSummary as AccountSummary, Hop as Hop
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CURRENCY_DOLLAR as CURRENCY_DOLLAR, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+PARALLEL_UPDATES: int
 ATTR_EK_HOP_START: str
 ATTR_EK_HOP_END: str
 ATTR_TOTAL_RUNNING_BALANCE: str
@@ -34,7 +35,7 @@ def _check_and_move_time(hop: Hop, time: str) -> datetime: ...
 
 HOP_SENSOR_TYPES: tuple[ElectricKiwiHOPSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ElectricKiwiConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ElectricKiwiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElectricKiwiAccountEntity(CoordinatorEntity[ElectricKiwiAccountDataCoordinator], SensorEntity):
     entity_description: ElectricKiwiAccountSensorEntityDescription

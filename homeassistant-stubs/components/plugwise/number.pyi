@@ -1,6 +1,5 @@
-from . import PlugwiseConfigEntry as PlugwiseConfigEntry
 from .const import NumberType as NumberType
-from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
+from .coordinator import PlugwiseConfigEntry as PlugwiseConfigEntry, PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
@@ -8,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -18,7 +17,7 @@ class PlugwiseNumberEntityDescription(NumberEntityDescription):
 
 NUMBER_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PlugwiseNumberEntity(PlugwiseEntity, NumberEntity):
     entity_description: PlugwiseNumberEntityDescription

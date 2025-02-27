@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import ESPHomeDashboardCoordinator as ESPHomeDashboardCoordinator
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.config_entries import SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

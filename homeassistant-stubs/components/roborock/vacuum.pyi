@@ -1,6 +1,5 @@
-from . import RoborockConfigEntry as RoborockConfigEntry
 from .const import DOMAIN as DOMAIN, GET_MAPS_SERVICE_NAME as GET_MAPS_SERVICE_NAME, GET_VACUUM_CURRENT_POSITION_SERVICE_NAME as GET_VACUUM_CURRENT_POSITION_SERVICE_NAME, SET_VACUUM_GOTO_POSITION_SERVICE_NAME as SET_VACUUM_GOTO_POSITION_SERVICE_NAME
-from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
+from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
 from .entity import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from .image import ColorsPalette as ColorsPalette, ImageConfig as ImageConfig, RoborockMapDataParser as RoborockMapDataParser, Sizes as Sizes
 from _typeshed import Incomplete
@@ -8,12 +7,12 @@ from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 STATE_CODE_TO_STATE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RoborockVacuum(RoborockCoordinatedEntityV1, StateVacuumEntity):
     _attr_icon: str

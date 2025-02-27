@@ -1,5 +1,5 @@
-from . import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import MyUplinkConfigEntry as MyUplinkConfigEntry, MyUplinkDataCoordinator as MyUplinkDataCoordinator
 from .entity import MyUplinkEntity as MyUplinkEntity
 from .helpers import find_matching_platform as find_matching_platform, skip_entity as skip_entity
 from _typeshed import Incomplete
@@ -7,10 +7,10 @@ from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from myuplink import DevicePoint as DevicePoint
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MyUplinkSelect(MyUplinkEntity, SelectEntity):
     point_id: Incomplete

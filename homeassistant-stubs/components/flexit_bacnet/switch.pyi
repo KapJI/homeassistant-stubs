@@ -1,15 +1,14 @@
-from . import FlexitCoordinator as FlexitCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import FlexitConfigEntry as FlexitConfigEntry, FlexitCoordinator as FlexitCoordinator
 from .entity import FlexitEntity as FlexitEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from flexit_bacnet import FlexitBACnet as FlexitBACnet
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 @dataclass(kw_only=True, frozen=True)
@@ -20,7 +19,9 @@ class FlexitSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCHES: tuple[FlexitSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: FlexitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+PARALLEL_UPDATES: int
 
 class FlexitSwitch(FlexitEntity, SwitchEntity):
     _attr_device_class: Incomplete

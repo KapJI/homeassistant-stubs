@@ -7,12 +7,12 @@ from collections.abc import Mapping
 from homeassistant.components.camera import Camera as Camera
 from homeassistant.const import ATTR_LOCATION as ATTR_LOCATION
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: TVCameraConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TVCameraConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TVCamera(TrafikverketCameraEntity, Camera):
     _unrecorded_attributes: Incomplete

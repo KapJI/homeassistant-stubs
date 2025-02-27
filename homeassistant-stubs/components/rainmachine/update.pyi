@@ -7,7 +7,7 @@ from enum import Enum
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 class UpdateStates(Enum):
@@ -25,7 +25,7 @@ class RainMachineUpdateEntityDescription(UpdateEntityDescription, RainMachineEnt
 
 UPDATE_DESCRIPTION: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RainMachineConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RainMachineUpdateEntity(RainMachineEntity, UpdateEntity):
     _attr_device_class: Incomplete

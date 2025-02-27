@@ -1,13 +1,13 @@
 from .const import ASSETS_URL as ASSETS_URL
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry
 from .entity import HabiticaBase as HabiticaBase
-from .types import HabiticaConfigEntry as HabiticaConfigEntry
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from habiticalib import UserData as UserData
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -23,7 +23,7 @@ def get_scroll_image_for_pending_quest_invitation(user: UserData) -> str | None:
 
 BINARY_SENSOR_DESCRIPTIONS: tuple[HabiticaBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HabiticaBinarySensorEntity(HabiticaBase, BinarySensorEntity):
     entity_description: HabiticaBinarySensorEntityDescription

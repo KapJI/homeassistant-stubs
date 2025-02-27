@@ -4,7 +4,7 @@ from .models import DoorBirdConfigEntry as DoorBirdConfigEntry, DoorBirdData as 
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LAST_VISITOR_INTERVAL: Incomplete
 _LAST_MOTION_INTERVAL: Incomplete
@@ -12,7 +12,7 @@ _LIVE_INTERVAL: Incomplete
 _LOGGER: Incomplete
 _TIMEOUT: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: DoorBirdConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: DoorBirdConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DoorBirdCamera(DoorBirdEntity, Camera):
     _url: Incomplete

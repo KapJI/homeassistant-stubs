@@ -6,8 +6,9 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from jellyfin_apiclient_python import JellyfinClient as JellyfinClient
 from typing import Any
 
+type JellyfinConfigEntry = ConfigEntry[JellyfinDataUpdateCoordinator]
 class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]]]):
-    config_entry: ConfigEntry
+    config_entry: JellyfinConfigEntry
     api_client: Incomplete
     server_id: str
     server_name: str
@@ -17,5 +18,5 @@ class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[dict[str, dict[str, An
     session_ids: set[str]
     remote_session_ids: set[str]
     device_ids: set[str]
-    def __init__(self, hass: HomeAssistant, api_client: JellyfinClient, system_info: dict[str, Any], user_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: JellyfinConfigEntry, api_client: JellyfinClient, system_info: dict[str, Any], user_id: str) -> None: ...
     async def _async_update_data(self) -> dict[str, dict[str, Any]]: ...

@@ -3,11 +3,11 @@ from .models import PowerwallConfigEntry as PowerwallConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 CONNECTED_GRID_STATUSES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: PowerwallConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PowerwallConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PowerWallRunningSensor(PowerWallEntity, BinarySensorEntity):
     _attr_translation_key: str

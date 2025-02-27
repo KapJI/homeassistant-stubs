@@ -5,11 +5,11 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyegps.powerstrip import PowerStrip as PowerStrip
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: EnergenieConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: EnergenieConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EGPowerStripSocket(SwitchEntity):
     _attr_device_class: Incomplete

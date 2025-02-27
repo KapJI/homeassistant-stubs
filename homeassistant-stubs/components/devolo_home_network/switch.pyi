@@ -10,7 +10,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -24,7 +24,7 @@ class DevoloSwitchEntityDescription[_DataT: _DataType](SwitchEntityDescription):
 
 SWITCH_TYPES: dict[str, DevoloSwitchEntityDescription[Any]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DevoloSwitchEntity[_DataT: _DataType](DevoloCoordinatorEntity[_DataT], SwitchEntity):
     entity_description: DevoloSwitchEntityDescription[_DataT]

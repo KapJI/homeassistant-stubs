@@ -6,7 +6,7 @@ from gotailwind import TailwindDoor as TailwindDoor
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(kw_only=True, frozen=True)
 class TailwindDoorBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -14,7 +14,7 @@ class TailwindDoorBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 DESCRIPTIONS: tuple[TailwindDoorBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: TailwindConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TailwindConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TailwindDoorBinarySensorEntity(TailwindDoorEntity, BinarySensorEntity):
     entity_description: TailwindDoorBinarySensorEntityDescription

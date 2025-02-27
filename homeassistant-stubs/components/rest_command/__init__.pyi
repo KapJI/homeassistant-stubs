@@ -5,6 +5,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.ssl import SSLCipherList as SSLCipherList
 
 DOMAIN: str
 _LOGGER: Incomplete
@@ -13,6 +14,7 @@ DEFAULT_METHOD: str
 DEFAULT_VERIFY_SSL: bool
 SUPPORT_REST_METHODS: Incomplete
 CONF_CONTENT_TYPE: str
+CONF_INSECURE_CIPHER: str
 COMMAND_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 

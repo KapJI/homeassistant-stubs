@@ -4,7 +4,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DATE as ATTR_DATE, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from py_nightscout import Api as NightscoutAPI
 from typing import Any
 
@@ -12,7 +12,7 @@ SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 DEFAULT_NAME: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NightscoutSensor(SensorEntity):
     _attr_device_class: Incomplete

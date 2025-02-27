@@ -2,7 +2,7 @@ import abc
 import aiohttp
 import asyncio
 from .agent import BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupAgentPlatformProtocol as BackupAgentPlatformProtocol, LocalBackupAgent as LocalBackupAgent
-from .config import BackupConfig as BackupConfig, CreateBackupParametersDict as CreateBackupParametersDict, delete_backups_exceeding_configured_count as delete_backups_exceeding_configured_count
+from .config import BackupConfig as BackupConfig, CreateBackupParametersDict as CreateBackupParametersDict, check_unavailable_agents as check_unavailable_agents, delete_backups_exceeding_configured_count as delete_backups_exceeding_configured_count
 from .const import BUF_SIZE as BUF_SIZE, DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN, EXCLUDE_DATABASE_FROM_BACKUP as EXCLUDE_DATABASE_FROM_BACKUP, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER
 from .models import AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
 from .store import BackupStore as BackupStore
@@ -13,7 +13,8 @@ from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.backup_restore import RESTORE_BACKUP_FILE as RESTORE_BACKUP_FILE, RESTORE_BACKUP_RESULT_FILE as RESTORE_BACKUP_RESULT_FILE, password_to_key as password_to_key
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import instance_id as instance_id, integration_platform as integration_platform
+from homeassistant.helpers import instance_id as instance_id, integration_platform as integration_platform, start as start
+from homeassistant.helpers.backup import DATA_BACKUP as DATA_BACKUP
 from homeassistant.helpers.json import json_bytes as json_bytes
 from pathlib import Path
 from typing import Any, Protocol, TypedDict
@@ -156,7 +157,7 @@ class BackupManager:
     remove_next_delete_event: Callable[[], None] | None
     last_event: ManagerStateEvent
     last_non_idle_event: ManagerStateEvent | None
-    _backup_event_subscriptions: list[Callable[[ManagerStateEvent], None]]
+    _backup_event_subscriptions: Incomplete
     def __init__(self, hass: HomeAssistant, reader_writer: BackupReaderWriter) -> None: ...
     async def async_setup(self) -> None: ...
     @property
@@ -188,8 +189,6 @@ class BackupManager:
     async def _async_restore_backup(self, backup_id: str, *, agent_id: str, password: str | None, restore_addons: list[str] | None, restore_database: bool, restore_folders: list[Folder] | None, restore_homeassistant: bool) -> None: ...
     @callback
     def async_on_backup_event(self, event: ManagerStateEvent) -> None: ...
-    @callback
-    def async_subscribe_events(self, on_event: Callable[[ManagerStateEvent], None]) -> Callable[[], None]: ...
     def _update_issue_backup_failed(self) -> None: ...
     def _update_issue_after_agent_upload(self, agent_errors: dict[str, Exception], unavailable_agents: list[str]) -> None: ...
     async def async_can_decrypt_on_download(self, backup_id: str, *, agent_id: str, password: str | None) -> None: ...

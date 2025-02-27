@@ -8,7 +8,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterStatus, PrusaLink as PrusaLink
 from typing import Any, Generic, TypeVar
 
@@ -24,7 +24,7 @@ class PrusaLinkButtonEntityDescription(ButtonEntityDescription, PrusaLinkButtonE
 
 BUTTONS: dict[str, tuple[PrusaLinkButtonEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PrusaLinkButtonEntity(PrusaLinkEntity, ButtonEntity):
     entity_description: PrusaLinkButtonEntityDescription

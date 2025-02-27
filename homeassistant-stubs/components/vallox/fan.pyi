@@ -7,7 +7,7 @@ from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeatur
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any, NamedTuple
 from vallox_websocket_api import Vallox as Vallox
@@ -19,7 +19,7 @@ class ExtraStateAttributeDetails(NamedTuple):
 EXTRA_STATE_ATTRIBUTES: Incomplete
 
 def _convert_to_int(value: StateType) -> int | None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ValloxFanEntity(ValloxEntity, FanEntity):
     _attr_name: Incomplete

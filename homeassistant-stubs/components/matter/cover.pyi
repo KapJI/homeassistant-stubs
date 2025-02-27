@@ -8,7 +8,7 @@ from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 OPERATIONAL_STATUS_MASK: int
@@ -20,7 +20,7 @@ class OperationalStatus(IntEnum):
     COVERING_IS_CURRENTLY_CLOSING = 2
     RESERVED = 3
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MatterCover(MatterEntity, CoverEntity):
     entity_description: CoverEntityDescription

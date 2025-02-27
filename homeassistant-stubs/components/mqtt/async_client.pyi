@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from paho.mqtt.client import Client as MQTTClient
+from paho.mqtt.client import CallbackOnConnect_v2 as CallbackOnConnect_v2, CallbackOnDisconnect_v2 as CallbackOnDisconnect_v2, CallbackOnPublish_v2 as CallbackOnPublish_v2, CallbackOnSubscribe_v2 as CallbackOnSubscribe_v2, CallbackOnUnsubscribe_v2 as CallbackOnUnsubscribe_v2, Client as MQTTClient
 from types import TracebackType
 from typing import Self
 
@@ -12,6 +12,11 @@ class NullLock:
     def release(self) -> None: ...
 
 class AsyncMQTTClient(MQTTClient):
+    on_connect: CallbackOnConnect_v2
+    on_disconnect: CallbackOnDisconnect_v2
+    on_publish: CallbackOnPublish_v2
+    on_subscribe: CallbackOnSubscribe_v2
+    on_unsubscribe: CallbackOnUnsubscribe_v2
     _in_callback_mutex: Incomplete
     _callback_mutex: Incomplete
     _msgtime_mutex: Incomplete

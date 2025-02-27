@@ -1,13 +1,14 @@
 from .bluetooth import async_connect_scanner as async_connect_scanner
-from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_DEVICE_NAME as CONF_DEVICE_NAME, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_URL as DEFAULT_URL, DOMAIN as DOMAIN, PROJECT_URLS as PROJECT_URLS, STABLE_BLE_VERSION as STABLE_BLE_VERSION, STABLE_BLE_VERSION_STR as STABLE_BLE_VERSION_STR
+from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_DEVICE_NAME as CONF_DEVICE_NAME, CONF_SUBSCRIBE_LOGS as CONF_SUBSCRIBE_LOGS, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_URL as DEFAULT_URL, DOMAIN as DOMAIN, PROJECT_URLS as PROJECT_URLS, STABLE_BLE_VERSION as STABLE_BLE_VERSION, STABLE_BLE_VERSION_STR as STABLE_BLE_VERSION_STR
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, ReconnectLogic, UserService as UserService
+from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, UserService as UserService
+from aioesphomeapi.api_pb2 import SubscribeLogsResponse as SubscribeLogsResponse
 from homeassistant.components import bluetooth as bluetooth, tag as tag, zeroconf as zeroconf
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
-from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.device_registry import format_mac as format_mac
@@ -19,6 +20,9 @@ from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any, NamedTuple
 
 _LOGGER: Incomplete
+LOG_LEVEL_TO_LOGGER: Incomplete
+LOGGER_TO_LOG_LEVEL: Incomplete
+ANSI_ESCAPE_78BIT: Incomplete
 
 @callback
 def _async_check_firmware_version(hass: HomeAssistant, device_info: EsphomeDeviceInfo, api_version: APIVersion) -> None: ...
@@ -37,6 +41,8 @@ class ESPHomeManager:
     reconnect_logic: ReconnectLogic | None
     zeroconf_instance: Incomplete
     entry_data: Incomplete
+    _cancel_subscribe_logs: CALLBACK_TYPE | None
+    _log_level: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ESPHomeConfigEntry, host: str, password: str | None, cli: APIClient, zeroconf_instance: zeroconf.HaZeroconf, domain_data: DomainData) -> None: ...
     async def on_stop(self, event: Event) -> None: ...
     @property
@@ -52,6 +58,11 @@ class ESPHomeManager:
     @callback
     def async_on_state_request(self, entity_id: str, attribute: str | None = None) -> None: ...
     async def on_connect(self) -> None: ...
+    def _async_on_log(self, msg: SubscribeLogsResponse) -> None: ...
+    @callback
+    def _async_get_equivalent_log_level(self) -> LogLevel: ...
+    @callback
+    def _async_subscribe_logs(self, log_level: LogLevel) -> None: ...
     async def _on_connnect(self) -> None: ...
     async def on_disconnect(self, expected_disconnect: bool) -> None: ...
     async def on_connect_error(self, err: Exception) -> None: ...

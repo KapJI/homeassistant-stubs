@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydroid_ipcam import PyDroidIPCam as PyDroidIPCam
 from typing import Any
 
@@ -17,7 +17,7 @@ class AndroidIPWebcamSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCH_TYPES: tuple[AndroidIPWebcamSwitchEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IPWebcamSettingSwitch(AndroidIPCamBaseEntity, SwitchEntity):
     entity_description: AndroidIPWebcamSwitchEntityDescription

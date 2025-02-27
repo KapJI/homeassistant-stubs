@@ -24,6 +24,7 @@ from homeassistant.components import persistent_notification as persistent_notif
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_time_change as async_track_time_change, async_track_time_interval as async_track_time_interval, async_track_utc_time_change as async_track_utc_time_change
+from homeassistant.helpers.recorder import DATA_RECORDER as DATA_RECORDER
 from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum

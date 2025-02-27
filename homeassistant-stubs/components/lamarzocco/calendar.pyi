@@ -5,14 +5,14 @@ from collections.abc import Iterator
 from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco.models import LaMarzoccoWakeUpSleepEntry as LaMarzoccoWakeUpSleepEntry
 
 PARALLEL_UPDATES: int
 CALENDAR_KEY: str
 DAY_OF_WEEK: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LaMarzoccoCalendarEntity(LaMarzoccoBaseEntity, CalendarEntity):
     _attr_translation_key = CALENDAR_KEY

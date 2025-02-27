@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pydroid_ipcam import PyDroidIPCam as PyDroidIPCam
 
@@ -17,7 +17,7 @@ class AndroidIPWebcamSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[AndroidIPWebcamSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class IPWebcamSensor(AndroidIPCamBaseEntity, SensorEntity):
     entity_description: AndroidIPWebcamSensorEntityDescription

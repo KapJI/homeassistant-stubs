@@ -9,7 +9,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: entity_platform.AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: entity_platform.AddConfigEntryEntitiesCallback) -> None: ...
 
 class BaseButton(HuaweiLteBaseEntityWithDevice, ButtonEntity):
     @property

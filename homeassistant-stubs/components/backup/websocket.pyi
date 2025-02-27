@@ -1,6 +1,6 @@
 from .config import Day as Day, ScheduleRecurrence as ScheduleRecurrence
 from .const import DATA_MANAGER as DATA_MANAGER, LOGGER as LOGGER
-from .manager import DecryptOnDowloadNotSupported as DecryptOnDowloadNotSupported, IncorrectPasswordError as IncorrectPasswordError, ManagerStateEvent as ManagerStateEvent
+from .manager import DecryptOnDowloadNotSupported as DecryptOnDowloadNotSupported, IncorrectPasswordError as IncorrectPasswordError
 from .models import BackupNotFound as BackupNotFound, Folder as Folder
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -42,6 +42,3 @@ async def handle_config_info(hass: HomeAssistant, connection: websocket_api.Acti
 @callback
 @websocket_api.require_admin
 def handle_config_update(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
-@websocket_api.require_admin
-@websocket_api.async_response
-async def handle_subscribe_events(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

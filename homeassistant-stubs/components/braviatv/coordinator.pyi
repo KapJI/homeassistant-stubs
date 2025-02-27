@@ -3,21 +3,23 @@ from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Iterable
 from datetime import datetime
 from homeassistant.components.media_player import MediaType as MediaType
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PIN as CONF_PIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pybravia import BraviaClient as BraviaClient
-from types import MappingProxyType
 from typing import Any, Concatenate, Final
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Final[Incomplete]
+type BraviaTVConfigEntry = ConfigEntry[BraviaTVCoordinator]
 
 def catch_braviatv_errors[_BraviaTVCoordinatorT: BraviaTVCoordinator, **_P](func: Callable[Concatenate[_BraviaTVCoordinatorT, _P], Awaitable[None]]) -> Callable[Concatenate[_BraviaTVCoordinatorT, _P], Coroutine[Any, Any, None]]: ...
 
 class BraviaTVCoordinator(DataUpdateCoordinator[None]):
+    config_entry: BraviaTVConfigEntry
     client: Incomplete
     pin: Incomplete
     use_psk: Incomplete
@@ -40,7 +42,7 @@ class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     is_on: bool
     connected: bool
     skipped_updates: int
-    def __init__(self, hass: HomeAssistant, client: BraviaClient, config: MappingProxyType[str, Any]) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: BraviaTVConfigEntry, client: BraviaClient) -> None: ...
     def _sources_extend(self, sources: list[dict], source_type: SourceType, add_to_list: bool = False, sort_by: str | None = None) -> None: ...
     async def _async_update_data(self) -> None: ...
     async def async_update_volume(self) -> None: ...

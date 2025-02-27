@@ -9,11 +9,12 @@ from typing import Final
 
 _LOGGER: Incomplete
 REQUEST_REFRESH_DELAY: Final[float]
+type FluxLedConfigEntry = ConfigEntry[FluxLedUpdateCoordinator]
 
 class FluxLedUpdateCoordinator(DataUpdateCoordinator[None]):
+    config_entry: FluxLedConfigEntry
     device: Incomplete
     title: Incomplete
-    entry: Incomplete
     force_next_update: bool
-    def __init__(self, hass: HomeAssistant, device: AIOWifiLedBulb, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, device: AIOWifiLedBulb, entry: FluxLedConfigEntry) -> None: ...
     async def _async_update_data(self) -> None: ...

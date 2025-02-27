@@ -1,16 +1,15 @@
-from . import HomeWizardConfigEntry as HomeWizardConfigEntry
-from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator
+from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator, HomeWizardConfigEntry as HomeWizardConfigEntry
 from .entity import HomeWizardEntity as HomeWizardEntity
 from .helpers import homewizard_exception_handler as homewizard_exception_handler
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: HomeWizardConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HomeWizardConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HWEnergyNumberEntity(HomeWizardEntity, NumberEntity):
     _attr_entity_category: Incomplete

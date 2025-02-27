@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, Platform as Pl
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
@@ -18,7 +18,7 @@ def time_string(i: int) -> str: ...
 RAMP_RATE_OPTIONS: Incomplete
 BACKLIGHT_MEMORY_FILTER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYRampRateSelectEntity(ISYAuxControlEntity, SelectEntity):
     @property

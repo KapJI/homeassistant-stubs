@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.notify import NotifyEntity as NotifyEntity, NotifyEntityDescription as NotifyEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class FullyNotifyEntityDescription(NotifyEntityDescription):
@@ -14,7 +14,7 @@ class FullyNotifyEntityDescription(NotifyEntityDescription):
 
 NOTIFIERS: tuple[FullyNotifyEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: FullyKioskConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: FullyKioskConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FullyNotifyEntity(FullyKioskEntity, NotifyEntity):
     entity_description: FullyNotifyEntityDescription

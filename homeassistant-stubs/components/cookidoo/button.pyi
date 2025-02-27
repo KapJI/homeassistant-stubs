@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
 
@@ -18,7 +18,7 @@ class CookidooButtonEntityDescription(ButtonEntityDescription):
 
 TODO_CLEAR: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: CookidooConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: CookidooConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CookidooButton(CookidooBaseEntity, ButtonEntity):
     entity_description: CookidooButtonEntityDescription

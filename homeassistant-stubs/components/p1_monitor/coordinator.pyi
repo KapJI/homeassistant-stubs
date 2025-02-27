@@ -8,6 +8,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from p1monitor import Phases as Phases, Settings as Settings, SmartMeter as SmartMeter, WaterMeter as WaterMeter
 from typing import TypedDict
 
+type P1MonitorConfigEntry = ConfigEntry[P1MonitorDataUpdateCoordinator]
 class P1MonitorData(TypedDict):
     smartmeter: SmartMeter
     phases: Phases
@@ -15,8 +16,8 @@ class P1MonitorData(TypedDict):
     watermeter: WaterMeter | None
 
 class P1MonitorDataUpdateCoordinator(DataUpdateCoordinator[P1MonitorData]):
-    config_entry: ConfigEntry
+    config_entry: P1MonitorConfigEntry
     has_water_meter: bool | None
     p1monitor: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: P1MonitorConfigEntry) -> None: ...
     async def _async_update_data(self) -> P1MonitorData: ...

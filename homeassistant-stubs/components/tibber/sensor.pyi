@@ -11,7 +11,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util import Throttle as Throttle
@@ -28,7 +28,7 @@ RT_SENSORS_UNIQUE_ID_MIGRATION_SIMPLE: Incomplete
 RT_SENSORS: tuple[SensorEntityDescription, ...]
 SENSORS: tuple[SensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TibberSensor(SensorEntity):
     _attr_has_entity_name: bool
@@ -84,7 +84,7 @@ class TibberRtEntityCreator:
     _tibber_home: Incomplete
     _added_sensors: set[str]
     _entity_registry: Incomplete
-    def __init__(self, async_add_entities: AddEntitiesCallback, tibber_home: tibber.TibberHome, entity_registry: er.EntityRegistry) -> None: ...
+    def __init__(self, async_add_entities: AddConfigEntryEntitiesCallback, tibber_home: tibber.TibberHome, entity_registry: er.EntityRegistry) -> None: ...
     @callback
     def _migrate_unique_id(self, sensor_description: SensorEntityDescription) -> None: ...
     @callback

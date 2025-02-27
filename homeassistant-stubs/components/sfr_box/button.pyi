@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from sfrbox_api.bridge import SFRBox as SFRBox
 from sfrbox_api.models import SystemInfo as SystemInfo
 from typing import Any, Concatenate
@@ -22,7 +22,7 @@ class SFRBoxButtonEntityDescription(ButtonEntityDescription):
 
 BUTTON_TYPES: tuple[SFRBoxButtonEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SFRBoxButton(ButtonEntity):
     entity_description: SFRBoxButtonEntityDescription

@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import DEGREE as DEGREE, PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOfLength, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pytrafikverket.models import WeatherStationInfoModel as WeatherStationInfoModel
@@ -25,7 +25,7 @@ def add_utc_timezone(date_time: datetime | None) -> datetime | None: ...
 
 SENSOR_TYPES: tuple[TrafikverketSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: TVWeatherConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TVWeatherConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TrafikverketWeatherStation(CoordinatorEntity[TVDataUpdateCoordinator], SensorEntity):
     entity_description: TrafikverketSensorEntityDescription

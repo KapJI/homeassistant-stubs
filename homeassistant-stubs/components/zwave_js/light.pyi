@@ -6,7 +6,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 from zwave_js_server.const.command_class.color_switch import ColorComponent
 from zwave_js_server.model.driver import Driver as Driver
@@ -17,7 +17,7 @@ MULTI_COLOR_MAP: Incomplete
 MIN_MIREDS: int
 MAX_MIREDS: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def byte_to_zwave_brightness(value: int) -> int: ...
 
 class ZwaveLight(ZWaveBaseEntity, LightEntity):

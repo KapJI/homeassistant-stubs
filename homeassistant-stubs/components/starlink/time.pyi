@@ -1,17 +1,15 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import StarlinkData as StarlinkData, StarlinkUpdateCoordinator as StarlinkUpdateCoordinator
+from .coordinator import StarlinkConfigEntry as StarlinkConfigEntry, StarlinkData as StarlinkData, StarlinkUpdateCoordinator as StarlinkUpdateCoordinator
 from .entity import StarlinkEntity as StarlinkEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from datetime import time, tzinfo
 from homeassistant.components.time import TimeEntity as TimeEntity, TimeEntityDescription as TimeEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: StarlinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class StarlinkTimeEntityDescription(TimeEntityDescription):

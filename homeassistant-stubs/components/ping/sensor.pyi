@@ -1,5 +1,4 @@
-from . import PingConfigEntry as PingConfigEntry
-from .coordinator import PingResult as PingResult, PingUpdateCoordinator as PingUpdateCoordinator
+from .coordinator import PingConfigEntry as PingConfigEntry, PingResult as PingResult, PingUpdateCoordinator as PingUpdateCoordinator
 from .entity import PingEntity as PingEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -7,7 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @dataclass(frozen=True, kw_only=True)
 class PingSensorEntityDescription(SensorEntityDescription):
@@ -16,7 +15,7 @@ class PingSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[PingSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PingSensor(PingEntity, SensorEntity):
     entity_description: PingSensorEntityDescription

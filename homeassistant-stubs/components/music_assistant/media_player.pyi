@@ -19,7 +19,7 @@ from music_assistant_models.player import Player as Player
 from music_assistant_models.player_queue import PlayerQueue as PlayerQueue
 from typing import Any, Concatenate
 
-SUPPORTED_FEATURES: Incomplete
+SUPPORTED_FEATURES_BASE: Incomplete
 QUEUE_OPTION_MAP: Incomplete
 SERVICE_PLAY_MEDIA_ADVANCED: str
 SERVICE_PLAY_ANNOUNCEMENT: str
@@ -34,7 +34,6 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_media_image_remotely_accessible: bool
     _attr_media_content_type: Incomplete
     _attr_icon: Incomplete
-    _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     _prev_time: float
     def __init__(self, mass: MusicAssistantClient, player_id: str) -> None: ...
@@ -109,3 +108,5 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_source: Incomplete
     def _update_media_attributes(self, player: Player, queue: PlayerQueue | None) -> None: ...
     def _convert_queueoption_to_media_player_enqueue(self, queue_option: MediaPlayerEnqueue | QueueOption | None) -> QueueOption | None: ...
+    _attr_supported_features: Incomplete
+    def _set_supported_features(self) -> None: ...

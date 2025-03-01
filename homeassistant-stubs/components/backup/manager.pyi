@@ -141,6 +141,9 @@ class DecryptOnDowloadNotSupported(BackupManagerError):
     error_code: str
     _message: str
 
+class BackupManagerExceptionGroup(BackupManagerError, ExceptionGroup):
+    error_code: str
+
 class BackupManager:
     hass: Incomplete
     platforms: dict[str, BackupPlatformProtocol]

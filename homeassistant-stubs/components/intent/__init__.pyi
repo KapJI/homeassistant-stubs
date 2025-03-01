@@ -46,6 +46,13 @@ class RespondIntentHandler(intent.IntentHandler):
     slot_schema: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
+class GetTemperatureIntent(intent.IntentHandler):
+    intent_type: Incomplete
+    description: str
+    slot_schema: Incomplete
+    platforms: Incomplete
+    async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
+
 class IntentHandleView(http.HomeAssistantView):
     url: str
     name: str

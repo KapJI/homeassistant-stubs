@@ -1,6 +1,6 @@
 from .util import async_migration_in_progress as async_migration_in_progress, get_instance as get_instance
 from _typeshed import Incomplete
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 _LOGGER: Incomplete

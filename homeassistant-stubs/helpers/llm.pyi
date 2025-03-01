@@ -7,7 +7,6 @@ from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
 from dataclasses import dataclass, field as dc_field
 from homeassistant.components.calendar import SERVICE_GET_EVENTS as SERVICE_GET_EVENTS
-from homeassistant.components.climate import INTENT_GET_TEMPERATURE as INTENT_GET_TEMPERATURE
 from homeassistant.components.cover import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
 from homeassistant.components.homeassistant import async_should_expose as async_should_expose
 from homeassistant.components.intent import async_device_supports_timers as async_device_supports_timers

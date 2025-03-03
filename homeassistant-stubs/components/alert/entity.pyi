@@ -4,7 +4,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TITLE as ATTR_TITLE
 from homeassistant.const import STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HassJob as HassJob, HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ServiceNotFound as ServiceNotFound
+from homeassistant.exceptions import ServiceNotFound as ServiceNotFound, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.template import Template as Template

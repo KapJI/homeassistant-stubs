@@ -14,3 +14,4 @@ class DatabaseEngine:
 @dataclass
 class DatabaseOptimizer:
     slow_range_in_select: bool
+    slow_dependent_subquery: bool

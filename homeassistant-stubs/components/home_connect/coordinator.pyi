@@ -15,7 +15,6 @@ from typing import Any
 
 _LOGGER: Incomplete
 type HomeConnectConfigEntry = ConfigEntry[HomeConnectCoordinator]
-EVENT_STREAM_RECONNECT_DELAY: int
 
 @dataclass(frozen=True, kw_only=True)
 class HomeConnectApplianceData:

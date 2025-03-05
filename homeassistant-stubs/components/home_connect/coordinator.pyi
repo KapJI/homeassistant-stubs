@@ -32,6 +32,7 @@ class HomeConnectCoordinator(DataUpdateCoordinator[dict[str, HomeConnectApplianc
     client: Incomplete
     _special_listeners: dict[CALLBACK_TYPE, tuple[CALLBACK_TYPE, tuple[EventKey, ...]]]
     device_registry: Incomplete
+    data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: HomeConnectConfigEntry, client: HomeConnectClient) -> None: ...
     @cached_property
     def context_listeners(self) -> dict[tuple[str, EventKey], list[CALLBACK_TYPE]]: ...

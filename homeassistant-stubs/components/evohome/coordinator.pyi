@@ -4,7 +4,7 @@ import logging
 from _typeshed import Incomplete
 from collections.abc import Awaitable
 from datetime import timedelta
-from evohomeasync2.schemas.typedefs import EvoLocStatusResponseT as EvoLocStatusResponseT
+from evohomeasync2.schemas.typedefs import EvoLocStatusResponseT as EvoLocStatusResponseT, EvoTcsConfigResponseT as EvoTcsConfigResponseT
 from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed

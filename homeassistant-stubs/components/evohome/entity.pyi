@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN, EvoService as EvoService
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from evohomeasync2.schemas.typedefs import DayOfWeekDhwT as DayOfWeekDhwT
 from homeassistant.core import callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -29,7 +30,7 @@ class EvoChild(EvoEntity):
     _evo_device: evo.HotWater | evo.Zone
     _evo_id: str
     _evo_tcs: Incomplete
-    _schedule: dict[str, Any] | None
+    _schedule: list[DayOfWeekDhwT] | None
     _setpoints: dict[str, Any]
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.HotWater | evo.Zone) -> None: ...
     @property

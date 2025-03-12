@@ -2,6 +2,7 @@ import voluptuous as vol
 from .const import DOMAIN as DOMAIN
 from .helpers import fetch_latest_carbon_intensity as fetch_latest_carbon_intensity
 from .util import get_extra_name as get_extra_name
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_COUNTRY_CODE as CONF_COUNTRY_CODE, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
@@ -12,6 +13,7 @@ from typing import Any
 TYPE_USE_HOME: str
 TYPE_SPECIFY_COORDINATES: str
 TYPE_SPECIFY_COUNTRY: str
+_LOGGER: Incomplete
 
 class ElectricityMapsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

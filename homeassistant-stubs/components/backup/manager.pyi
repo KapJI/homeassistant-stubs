@@ -43,6 +43,7 @@ class WrittenBackup:
 class BackupManagerState(StrEnum):
     IDLE = 'idle'
     CREATE_BACKUP = 'create_backup'
+    BLOCKED = 'blocked'
     RECEIVE_BACKUP = 'receive_backup'
     RESTORE_BACKUP = 'restore_backup'
 
@@ -116,6 +117,10 @@ class RestoreBackupEvent(ManagerStateEvent):
     reason: str | None
     stage: RestoreBackupStage | None
     state: RestoreBackupState
+
+@dataclass(frozen=True, kw_only=True, slots=True)
+class BlockedEvent(ManagerStateEvent):
+    manager_state: BackupManagerState = ...
 
 class BackupPlatformProtocol(Protocol):
     async def async_pre_backup(self, hass: HomeAssistant) -> None: ...

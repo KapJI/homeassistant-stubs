@@ -23,7 +23,7 @@ def _is_known_device(device_family: str, device_type: str | None) -> bool: ...
 class OneWireHub:
     owproxy: protocol._Proxy
     devices: list[OWDeviceDescription]
-    _version: str
+    _version: str | None
     _hass: Incomplete
     _config_entry: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: OneWireConfigEntry) -> None: ...

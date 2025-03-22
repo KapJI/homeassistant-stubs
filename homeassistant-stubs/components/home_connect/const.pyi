@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 
 DOMAIN: str
+API_DEFAULT_RETRY_AFTER: int
 APPLIANCES_WITH_PROGRAMS: Incomplete
 UNIT_MAP: Incomplete
 BSH_POWER_ON: str

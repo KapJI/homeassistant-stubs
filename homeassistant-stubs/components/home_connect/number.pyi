@@ -1,7 +1,7 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
 from .const import DOMAIN as DOMAIN, SVE_TRANSLATION_KEY_SET_SETTING as SVE_TRANSLATION_KEY_SET_SETTING, SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID as SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID, SVE_TRANSLATION_PLACEHOLDER_KEY as SVE_TRANSLATION_PLACEHOLDER_KEY, SVE_TRANSLATION_PLACEHOLDER_VALUE as SVE_TRANSLATION_PLACEHOLDER_VALUE, UNIT_MAP as UNIT_MAP
 from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
-from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity
+from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity, constraint_fetcher as constraint_fetcher
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
 from aiohomeconnect.model import GetSetting as GetSetting
@@ -21,6 +21,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 
 class HomeConnectNumberEntity(HomeConnectEntity, NumberEntity):
     async def async_set_native_value(self, value: float) -> None: ...
+    _attr_native_unit_of_measurement: Incomplete
+    @constraint_fetcher
     async def async_fetch_constraints(self) -> None: ...
     _attr_native_max_value: Incomplete
     _attr_native_min_value: Incomplete
@@ -28,7 +30,6 @@ class HomeConnectNumberEntity(HomeConnectEntity, NumberEntity):
     def set_constraints(self, setting: GetSetting) -> None: ...
     _attr_native_value: Incomplete
     def update_native_value(self) -> None: ...
-    _attr_native_unit_of_measurement: Incomplete
     async def async_added_to_hass(self) -> None: ...
 
 class HomeConnectOptionNumberEntity(HomeConnectOptionEntity, NumberEntity):

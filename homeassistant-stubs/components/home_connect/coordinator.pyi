@@ -1,4 +1,4 @@
-from .const import APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, DOMAIN as DOMAIN
+from .const import API_DEFAULT_RETRY_AFTER as API_DEFAULT_RETRY_AFTER, APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, DOMAIN as DOMAIN
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
 from aiohomeconnect.client import Client as HomeConnectClient
@@ -8,7 +8,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from propcache.api import cached_property
 from typing import Any
@@ -48,6 +48,8 @@ class HomeConnectCoordinator(DataUpdateCoordinator[dict[str, HomeConnectApplianc
     @callback
     def _call_all_event_listeners_for_appliance(self, ha_id: str) -> None: ...
     async def _async_update_data(self) -> dict[str, HomeConnectApplianceData]: ...
+    async def async_setup(self) -> None: ...
+    async def _async_setup(self) -> None: ...
     async def _get_appliance_data(self, appliance: HomeAppliance, appliance_data_to_update: HomeConnectApplianceData | None = None) -> HomeConnectApplianceData: ...
     async def get_options_definitions(self, ha_id: str, program_key: ProgramKey) -> dict[OptionKey, ProgramDefinitionOption]: ...
     async def update_options(self, ha_id: str, event_key: EventKey, program_key: ProgramKey) -> None: ...

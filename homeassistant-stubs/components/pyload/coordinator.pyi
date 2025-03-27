@@ -21,6 +21,7 @@ class PyLoadData:
     download: bool
     reconnect: bool
     captcha: bool | None = ...
+    proxy: bool | None = ...
     free_space: int
 type PyLoadConfigEntry = ConfigEntry[PyLoadCoordinator]
 

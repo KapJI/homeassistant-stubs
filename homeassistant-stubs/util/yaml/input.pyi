@@ -1,11 +1,4 @@
 from .objects import Input as Input
-from _typeshed import Incomplete
-from typing import Any
+from annotatedyaml.input import UndefinedSubstitution as UndefinedSubstitution, extract_inputs as extract_inputs, substitute as substitute
 
-class UndefinedSubstitution(Exception):
-    input: Incomplete
-    def __init__(self, input_name: str) -> None: ...
-
-def extract_inputs(obj: Any) -> set[str]: ...
-def _extract_inputs(obj: Any, found: set[str]) -> None: ...
-def substitute(obj: Any, substitutions: dict[str, Any]) -> Any: ...
+__all__ = ['Input', 'UndefinedSubstitution', 'extract_inputs', 'substitute']

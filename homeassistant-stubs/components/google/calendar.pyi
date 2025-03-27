@@ -6,7 +6,7 @@ from .coordinator import CalendarQueryUpdateCoordinator as CalendarQueryUpdateCo
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from datetime import datetime, timedelta
-from gcal_sync.model import Calendar as Calendar, Event
+from gcal_sync.model import Calendar as Calendar, Event, EventTypeEnum
 from homeassistant.components.calendar import CREATE_EVENT_SCHEMA as CREATE_EVENT_SCHEMA, CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEntityFeature as CalendarEntityFeature, CalendarEvent as CalendarEvent, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END as EVENT_END, EVENT_LOCATION as EVENT_LOCATION, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_SUMMARY as EVENT_SUMMARY, extract_offset as extract_offset, is_offset_reached as is_offset_reached
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_OFFSET as CONF_OFFSET
@@ -23,6 +23,7 @@ SYNC_EVENT_MIN_TIME: Incomplete
 OPAQUE: str
 RRULE_PREFIX: str
 SERVICE_CREATE_EVENT: str
+FILTERED_EVENT_TYPES: Incomplete
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class GoogleCalendarEntityDescription(CalendarEntityDescription):
@@ -34,7 +35,7 @@ class GoogleCalendarEntityDescription(CalendarEntityDescription):
     search: str | None
     local_sync: bool
     device_id: str
-    working_location: bool = ...
+    event_type: EventTypeEnum | None = ...
 
 def _get_entity_descriptions(hass: HomeAssistant, config_entry: ConfigEntry, calendar_item: Calendar, calendar_info: Mapping[str, Any]) -> list[GoogleCalendarEntityDescription]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

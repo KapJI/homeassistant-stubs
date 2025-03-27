@@ -1,4 +1,4 @@
-from .const import FIRMWARE as FIRMWARE, RADIO_DEVICE as RADIO_DEVICE, ZHA_HW_DISCOVERY_DATA as ZHA_HW_DISCOVERY_DATA
+from .const import FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, RADIO_DEVICE as RADIO_DEVICE, ZHA_HW_DISCOVERY_DATA as ZHA_HW_DISCOVERY_DATA
 from _typeshed import Incomplete
 from homeassistant.components.hassio import get_os_info as get_os_info
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import check_multi_pan_addon as check_multi_pan_addon

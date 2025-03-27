@@ -1,4 +1,4 @@
-from .models import StatisticPeriod as StatisticPeriod
+from .models import StatisticMeanType as StatisticMeanType, StatisticPeriod as StatisticPeriod
 from .statistics import STATISTIC_UNIT_TO_UNIT_CONVERTER as STATISTIC_UNIT_TO_UNIT_CONVERTER, async_add_external_statistics as async_add_external_statistics, async_change_statistics_unit as async_change_statistics_unit, async_import_statistics as async_import_statistics, async_list_statistic_ids as async_list_statistic_ids, list_statistic_ids as list_statistic_ids, statistic_during_period as statistic_during_period, statistics_during_period as statistics_during_period, update_statistics_issues as update_statistics_issues, validate_statistics as validate_statistics
 from .util import PERIOD_SCHEMA as PERIOD_SCHEMA, get_instance as get_instance, resolve_period as resolve_period
 from _typeshed import Incomplete

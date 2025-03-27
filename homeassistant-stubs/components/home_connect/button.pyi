@@ -22,8 +22,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 
 class HomeConnectButtonEntity(HomeConnectEntity, ButtonEntity):
     entity_description: ButtonEntityDescription
-    appliance: Incomplete
-    unique_id: Incomplete
     def __init__(self, coordinator: HomeConnectCoordinator, appliance: HomeConnectApplianceData, desc: ButtonEntityDescription) -> None: ...
     def update_native_value(self) -> None: ...
 

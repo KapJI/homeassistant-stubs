@@ -29,10 +29,13 @@ class PinecilSelect(StrEnum):
     LOCKING_MODE = 'locking_mode'
     LOGO_DURATION = 'logo_duration'
     USB_PD_MODE = 'usb_pd_mode'
+    TIP_TYPE = 'tip_type'
 
 def enum_to_str(enum: Enum | None) -> str | None: ...
 
 PINECIL_SELECT_DESCRIPTIONS: tuple[IronOSSelectEntityDescription, ...]
+PINECIL_SELECT_DESCRIPTIONS_V222: tuple[IronOSSelectEntityDescription, ...]
+PINECIL_SELECT_DESCRIPTIONS_V223: tuple[IronOSSelectEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: IronOSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

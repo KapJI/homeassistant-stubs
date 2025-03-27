@@ -10,11 +10,12 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 SENSOR_FIELDS_TO_RETRIEVE: Incomplete
 UPDATE_INTERVAL: Incomplete
+type PurpleAirConfigEntry = ConfigEntry[PurpleAirDataUpdateCoordinator]
 
 class PurpleAirDataUpdateCoordinator(DataUpdateCoordinator[GetSensorsResponse]):
-    config_entry: ConfigEntry
+    config_entry: PurpleAirConfigEntry
     _api: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: PurpleAirConfigEntry) -> None: ...
     async def _async_update_data(self) -> GetSensorsResponse: ...
     @callback
     def async_get_map_url(self, sensor_index: int) -> str: ...

@@ -3,9 +3,9 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers.event import async_call_later as async_call_later
+from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from pyheos import HeosNowPlayingMedia as HeosNowPlayingMedia, HeosPlayer as HeosPlayer, MediaItem as MediaItem, PlayerUpdateResult as PlayerUpdateResult
 from typing import Any
@@ -14,14 +14,15 @@ _LOGGER: Incomplete
 type HeosConfigEntry = ConfigEntry[HeosCoordinator]
 
 class HeosCoordinator(DataUpdateCoordinator[None]):
-    host: str
     heos: Incomplete
     _platform_callbacks: list[Callable[[Sequence[HeosPlayer]], None]]
-    _update_sources_pending: bool
+    _update_sources_debouncer: Incomplete
     _source_list: list[str]
     _favorites: dict[int, MediaItem]
     _inputs: Sequence[MediaItem]
     def __init__(self, hass: HomeAssistant, config_entry: HeosConfigEntry) -> None: ...
+    @property
+    def host(self) -> str: ...
     @property
     def inputs(self) -> Sequence[MediaItem]: ...
     @property
@@ -38,7 +39,6 @@ class HeosCoordinator(DataUpdateCoordinator[None]):
     def _async_update_player_ids(self, updated_player_ids: dict[int, int]) -> None: ...
     async def _async_update_groups(self) -> None: ...
     async def _async_update_sources(self) -> None: ...
-    async def _async_update_players(self) -> None: ...
     @callback
     def async_get_source_list(self) -> list[str]: ...
     @callback

@@ -7,6 +7,7 @@ from aiohttp.web import FileResponse, Request as Request, Response, StreamRespon
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, require_admin as require_admin
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import frame as frame
 from homeassistant.util import slugify as slugify
 from multidict import istr
 

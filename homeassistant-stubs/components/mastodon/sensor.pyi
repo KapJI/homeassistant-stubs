@@ -1,4 +1,3 @@
-from .const import ACCOUNT_FOLLOWERS_COUNT as ACCOUNT_FOLLOWERS_COUNT, ACCOUNT_FOLLOWING_COUNT as ACCOUNT_FOLLOWING_COUNT, ACCOUNT_STATUSES_COUNT as ACCOUNT_STATUSES_COUNT
 from .coordinator import MastodonConfigEntry as MastodonConfigEntry
 from .entity import MastodonEntity as MastodonEntity
 from _typeshed import Incomplete
@@ -8,13 +7,13 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from mastodon.Mastodon import Account as Account
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class MastodonSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[dict[str, Any]], StateType]
+    value_fn: Callable[[Account], StateType]
 
 ENTITY_DESCRIPTIONS: Incomplete
 

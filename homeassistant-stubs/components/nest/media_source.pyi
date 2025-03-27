@@ -1,3 +1,4 @@
+import datetime
 from .const import DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo, async_nest_devices_by_device_id as async_nest_devices_by_device_id
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, MEDIA_SOURCE_EVENT_TITLE_MAP as MEDIA_SOURCE_EVENT_TITLE_MAP
@@ -13,6 +14,7 @@ from homeassistant.components.ffmpeg import get_ffmpeg_manager as get_ffmpeg_man
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
 from typing import Any
@@ -28,6 +30,7 @@ STORAGE_VERSION: int
 STORAGE_SAVE_DELAY_SECONDS: int
 MEDIA_PATH: Incomplete
 DISK_READ_LRU_MAX_SIZE: int
+ORPHANED_MEDIA_AGE_CUTOFF: Incomplete
 
 async def async_get_media_event_store(hass: HomeAssistant, subscriber: GoogleNestSubscriber) -> EventMediaStore: ...
 async def async_get_transcoder(hass: HomeAssistant) -> Transcoder: ...
@@ -52,6 +55,8 @@ class NestEventMediaStore(EventMediaStore):
     async def async_save_media(self, media_key: str, content: bytes) -> None: ...
     async def async_remove_media(self, media_key: str) -> None: ...
     async def _get_devices(self) -> Mapping[str, str]: ...
+    async def async_remove_orphaned_media(self, now: datetime.datetime) -> None: ...
+    async def _get_valid_event_timestamps(self) -> dict[str, set[int]]: ...
 
 async def async_get_media_source(hass: HomeAssistant) -> MediaSource: ...
 @callback

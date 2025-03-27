@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from typing import Any
 
+_LOGGER: Incomplete
 USER_SCHEMA: Incomplete
 REAUTH_SCHEMA: Incomplete
 

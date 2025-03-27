@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LLM_API as LLM_API, LLM_API_NAME as LLM_API_NAME
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API

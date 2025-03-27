@@ -1,4 +1,4 @@
-from .const import CONF_NOISE_PSK as CONF_NOISE_PSK, DATA_FFMPEG_PROXY as DATA_FFMPEG_PROXY, DOMAIN as DOMAIN
+from .const import CONF_BLUETOOTH_MAC_ADDRESS as CONF_BLUETOOTH_MAC_ADDRESS, CONF_NOISE_PSK as CONF_NOISE_PSK, DATA_FFMPEG_PROXY as DATA_FFMPEG_PROXY, DOMAIN as DOMAIN
 from .domain_data import DomainData as DomainData
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from .ffmpeg_proxy import FFmpegProxyData as FFmpegProxyData, FFmpegProxyView as FFmpegProxyView

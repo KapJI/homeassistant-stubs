@@ -14,6 +14,7 @@ _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 SCAN_INTERVAL_GITHUB: Incomplete
 SCAN_INTERVAL_SETTINGS: Incomplete
+V223: Incomplete
 
 @dataclass
 class IronOSCoordinators:
@@ -25,6 +26,7 @@ class IronOSBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT]):
     device_info: DeviceInfoResponse
     config_entry: IronOSConfigEntry
     device: Incomplete
+    v223_features: bool
     def __init__(self, hass: HomeAssistant, config_entry: IronOSConfigEntry, device: Pynecil, update_interval: timedelta) -> None: ...
     async def _async_setup(self) -> None: ...
 

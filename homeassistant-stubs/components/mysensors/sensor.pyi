@@ -1,7 +1,6 @@
 from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import ATTR_GATEWAY_ID as ATTR_GATEWAY_ID, ATTR_NODE_ID as ATTR_NODE_ID, DOMAIN as DOMAIN, DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, MYSENSORS_GATEWAYS as MYSENSORS_GATEWAYS, MYSENSORS_NODE_DISCOVERY as MYSENSORS_NODE_DISCOVERY, NodeDiscoveryInfo as NodeDiscoveryInfo
 from .entity import MySensorNodeEntity as MySensorNodeEntity, MySensorsChildEntity as MySensorsChildEntity
-from .helpers import on_unload as on_unload
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -1,9 +1,11 @@
+from ..const import CIRCULAR_MEAN_SCHEMA_VERSION as CIRCULAR_MEAN_SCHEMA_VERSION
 from ..core import Recorder as Recorder
 from ..db_schema import StatisticsMeta as StatisticsMeta
-from ..models import StatisticMetaData as StatisticMetaData
+from ..models import StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData
 from ..util import execute_stmt_lambda_element as execute_stmt_lambda_element
 from _typeshed import Incomplete
 from lru import LRU
+from sqlalchemy.orm import InstrumentedAttribute as InstrumentedAttribute
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
 from typing import Final, Literal
@@ -15,11 +17,11 @@ INDEX_ID: Final[int]
 INDEX_STATISTIC_ID: Final[int]
 INDEX_SOURCE: Final[int]
 INDEX_UNIT_OF_MEASUREMENT: Final[int]
-INDEX_HAS_MEAN: Final[int]
 INDEX_HAS_SUM: Final[int]
 INDEX_NAME: Final[int]
+INDEX_MEAN_TYPE: Final[int]
 
-def _generate_get_metadata_stmt(statistic_ids: set[str] | None = None, statistic_type: Literal['mean', 'sum'] | None = None, statistic_source: str | None = None) -> StatementLambdaElement: ...
+def _generate_get_metadata_stmt(statistic_ids: set[str] | None = None, statistic_type: Literal['mean', 'sum'] | None = None, statistic_source: str | None = None, schema_version: int = 0) -> StatementLambdaElement: ...
 
 class StatisticsMetaManager:
     recorder: Incomplete

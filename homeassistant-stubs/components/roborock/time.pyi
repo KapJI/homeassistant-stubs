@@ -16,6 +16,7 @@ from roborock.version_1_apis.roborock_client_v1 import AttributeCache as Attribu
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockTimeDescription(TimeEntityDescription):

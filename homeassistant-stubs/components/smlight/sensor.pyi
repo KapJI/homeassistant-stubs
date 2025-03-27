@@ -19,10 +19,12 @@ class SmSensorEntityDescription(SensorEntityDescription):
 
 @dataclass(frozen=True, kw_only=True)
 class SmInfoEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[Info], StateType]
+    value_fn: Callable[[Info, int], StateType]
 
 INFO: list[SmInfoEntityDescription]
+RADIO_INFO: Incomplete
 SENSORS: list[SmSensorEntityDescription]
+EXTRA_SENSOR: Incomplete
 UPTIME: list[SmSensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -40,8 +42,9 @@ class SmInfoSensorEntity(SmEntity, SensorEntity):
     coordinator: SmDataUpdateCoordinator
     entity_description: SmInfoEntityDescription
     _attr_entity_category: Incomplete
+    idx: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmInfoEntityDescription) -> None: ...
+    def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmInfoEntityDescription, idx: int = 0) -> None: ...
     @property
     def native_value(self) -> StateType: ...
 

@@ -8,6 +8,7 @@ from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 
+_LOGGER: Incomplete
 DATA_SCHEMA: Incomplete
 DATA_SCHEMA_REAUTH: Incomplete
 

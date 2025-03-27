@@ -10,6 +10,7 @@ from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandl
 from typing import Any
 
 CONFIG_SCHEMA: Incomplete
+_LOGGER: Incomplete
 
 async def get_options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
 

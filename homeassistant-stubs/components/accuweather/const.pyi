@@ -4,7 +4,7 @@ from typing import Final
 
 API_METRIC: Final[str]
 ATTRIBUTION: Final[str]
-ATTR_CATEGORY: Final[str]
+ATTR_CATEGORY_VALUE: str
 ATTR_DIRECTION: Final[str]
 ATTR_ENGLISH: Final[str]
 ATTR_LEVEL: Final[str]
@@ -15,5 +15,7 @@ MANUFACTURER: Final[str]
 MAX_FORECAST_DAYS: Final[int]
 CONDITION_CLASSES: Final[dict[str, list[int]]]
 CONDITION_MAP: Incomplete
+AIR_QUALITY_CATEGORY_MAP: Incomplete
+POLLEN_CATEGORY_MAP: Incomplete
 UPDATE_INTERVAL_OBSERVATION: Incomplete
 UPDATE_INTERVAL_DAILY_FORECAST: Incomplete

@@ -9,10 +9,10 @@ from .services import ZWaveServices as ZWaveServices
 from _typeshed import Incomplete
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.components.persistent_notification import async_create as async_create
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
@@ -25,26 +25,23 @@ from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import Value as Value, ValueNotification as ValueNotification
 
 CONNECT_TIMEOUT: int
-DATA_CLIENT_LISTEN_TASK: str
 DATA_DRIVER_EVENTS: str
-DATA_START_CLIENT_TASK: str
+DRIVER_READY_TIMEOUT: int
 CONFIG_SCHEMA: Incomplete
+PLATFORMS: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def start_client(hass: HomeAssistant, entry: ConfigEntry, client: ZwaveClient) -> None: ...
+def _get_listen_task_error(listen_task: asyncio.Task) -> tuple[BaseException | None, str]: ...
 
 class DriverEvents:
     driver: Driver
     config_entry: Incomplete
     dev_reg: Incomplete
     hass: Incomplete
-    platform_setup_tasks: dict[str, asyncio.Task]
-    ready: Incomplete
     controller_events: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def setup(self, driver: Driver) -> None: ...
-    async def async_setup_platform(self, platform: Platform) -> None: ...
 
 class ControllerEvents:
     hass: Incomplete
@@ -83,7 +80,6 @@ class NodeEvents:
     def async_on_value_updated_fire_event(self, value_updates_disc_info: dict[str, ZwaveDiscoveryInfo], value: Value) -> None: ...
 
 async def client_listen(hass: HomeAssistant, entry: ConfigEntry, client: ZwaveClient, driver_ready: asyncio.Event) -> None: ...
-async def disconnect_client(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...

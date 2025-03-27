@@ -1,8 +1,10 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import NAMConfigEntry as NAMConfigEntry, NAMDataUpdateCoordinator as NAMDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 

@@ -1,4 +1,5 @@
 from . import NextDnsConfigEntry as NextDnsConfigEntry
+from .const import DOMAIN as DOMAIN
 from .coordinator import NextDnsUpdateCoordinator as NextDnsUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

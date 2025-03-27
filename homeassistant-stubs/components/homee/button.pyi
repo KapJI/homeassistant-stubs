@@ -8,6 +8,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute
 
+PARALLEL_UPDATES: int
 BUTTON_DESCRIPTIONS: dict[AttributeType, ButtonEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

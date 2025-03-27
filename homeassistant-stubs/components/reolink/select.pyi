@@ -1,4 +1,4 @@
-from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription
+from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -20,6 +20,12 @@ class ReolinkSelectEntityDescription(SelectEntityDescription, ReolinkChannelEnti
     value: Callable[[Host, int], str] | None = ...
 
 @dataclass(frozen=True, kw_only=True)
+class ReolinkHostSelectEntityDescription(SelectEntityDescription, ReolinkHostEntityDescription):
+    get_options: Callable[[Host], list[str]]
+    method: Callable[[Host, str], Any]
+    value: Callable[[Host], str]
+
+@dataclass(frozen=True, kw_only=True)
 class ReolinkChimeSelectEntityDescription(SelectEntityDescription, ReolinkChimeEntityDescription):
     get_options: list[str]
     method: Callable[[Chime, str], Any]
@@ -28,6 +34,7 @@ class ReolinkChimeSelectEntityDescription(SelectEntityDescription, ReolinkChimeE
 def _get_quick_reply_id(api: Host, ch: int, mess: str) -> int: ...
 
 SELECT_ENTITIES: Incomplete
+HOST_SELECT_ENTITIES: Incomplete
 CHIME_SELECT_ENTITIES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -37,6 +44,15 @@ class ReolinkSelectEntity(ReolinkChannelCoordinatorEntity, SelectEntity):
     _log_error: bool
     _attr_options: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkSelectEntityDescription) -> None: ...
+    @property
+    def current_option(self) -> str | None: ...
+    @raise_translated_error
+    async def async_select_option(self, option: str) -> None: ...
+
+class ReolinkHostSelectEntity(ReolinkHostCoordinatorEntity, SelectEntity):
+    entity_description: ReolinkHostSelectEntityDescription
+    _attr_options: Incomplete
+    def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostSelectEntityDescription) -> None: ...
     @property
     def current_option(self) -> str | None: ...
     @raise_translated_error

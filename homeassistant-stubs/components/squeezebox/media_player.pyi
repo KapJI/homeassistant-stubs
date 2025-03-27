@@ -2,6 +2,7 @@ from . import SqueezeboxConfigEntry as SqueezeboxConfigEntry
 from .browse_media import BrowseData as BrowseData, build_item_response as build_item_response, generate_playlist as generate_playlist, library_payload as library_payload, media_source_content_filter as media_source_content_filter
 from .const import ATTR_ANNOUNCE_TIMEOUT as ATTR_ANNOUNCE_TIMEOUT, ATTR_ANNOUNCE_VOLUME as ATTR_ANNOUNCE_VOLUME, CONF_BROWSE_LIMIT as CONF_BROWSE_LIMIT, CONF_VOLUME_STEP as CONF_VOLUME_STEP, DEFAULT_BROWSE_LIMIT as DEFAULT_BROWSE_LIMIT, DEFAULT_VOLUME_STEP as DEFAULT_VOLUME_STEP, DISCOVERY_TASK as DISCOVERY_TASK, DOMAIN as DOMAIN, KNOWN_PLAYERS as KNOWN_PLAYERS, KNOWN_SERVERS as KNOWN_SERVERS, SIGNAL_PLAYER_DISCOVERED as SIGNAL_PLAYER_DISCOVERED, SQUEEZEBOX_SOURCE_STRINGS as SQUEEZEBOX_SOURCE_STRINGS
 from .coordinator import SqueezeBoxPlayerUpdateCoordinator as SqueezeBoxPlayerUpdateCoordinator
+from .entity import SqueezeboxEntity as SqueezeboxEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -12,11 +13,10 @@ from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, CONF_HOST as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import discovery_flow as discovery_flow, entity_platform as entity_platform
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
+from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.start import async_at_start as async_at_start
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import utcnow as utcnow
 from pysqueezebox import Server as Server
 from typing import Any
@@ -35,17 +35,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry, a
 def get_announce_volume(extra: dict) -> float | None: ...
 def get_announce_timeout(extra: dict) -> int | None: ...
 
-class SqueezeBoxMediaPlayerEntity(CoordinatorEntity[SqueezeBoxPlayerUpdateCoordinator], MediaPlayerEntity):
+class SqueezeBoxMediaPlayerEntity(SqueezeboxEntity, MediaPlayerEntity):
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _last_update: datetime | None
-    _player: Incomplete
     _query_result: bool | dict
     _remove_dispatcher: Callable | None
     _previous_media_position: int
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     _browse_data: Incomplete
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator) -> None: ...
     @callback

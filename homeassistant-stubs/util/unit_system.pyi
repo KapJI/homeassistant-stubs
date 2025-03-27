@@ -1,5 +1,6 @@
 from .unit_conversion import AreaConverter as AreaConverter, DistanceConverter as DistanceConverter, PressureConverter as PressureConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, VolumeConverter as VolumeConverter
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.const import ACCUMULATED_PRECIPITATION as ACCUMULATED_PRECIPITATION, AREA as AREA, LENGTH as LENGTH, MASS as MASS, PRESSURE as PRESSURE, TEMPERATURE as TEMPERATURE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumetricFlux as UnitOfVolumetricFlux, VOLUME as VOLUME, WIND_SPEED as WIND_SPEED
 from typing import Final
@@ -18,17 +19,18 @@ _VALID_BY_TYPE: dict[str, set[str] | set[str | None]]
 
 def _is_valid_unit(unit: str, unit_type: str) -> bool: ...
 
+@dataclass(frozen=True, kw_only=True)
 class UnitSystem:
-    _name: Incomplete
-    accumulated_precipitation_unit: Incomplete
-    area_unit: Incomplete
-    length_unit: Incomplete
-    mass_unit: Incomplete
-    pressure_unit: Incomplete
-    temperature_unit: Incomplete
-    volume_unit: Incomplete
-    wind_speed_unit: Incomplete
-    _conversions: Incomplete
+    _name: str
+    accumulated_precipitation_unit: UnitOfPrecipitationDepth
+    area_unit: UnitOfArea
+    length_unit: UnitOfLength
+    mass_unit: UnitOfMass
+    pressure_unit: UnitOfPressure
+    temperature_unit: UnitOfTemperature
+    volume_unit: UnitOfVolume
+    wind_speed_unit: UnitOfSpeed
+    _conversions: dict[tuple[SensorDeviceClass | str | None, str | None], str]
     def __init__(self, name: str, *, accumulated_precipitation: UnitOfPrecipitationDepth, area: UnitOfArea, conversions: dict[tuple[SensorDeviceClass | str | None, str | None], str], length: UnitOfLength, mass: UnitOfMass, pressure: UnitOfPressure, temperature: UnitOfTemperature, volume: UnitOfVolume, wind_speed: UnitOfSpeed) -> None: ...
     def temperature(self, temperature: float, from_unit: str) -> float: ...
     def length(self, length: float | None, from_unit: str) -> float: ...

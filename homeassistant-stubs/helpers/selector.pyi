@@ -42,6 +42,7 @@ class DeviceFilterSelectorConfig(TypedDict, total=False):
     integration: str
     manufacturer: str
     model: str
+    model_id: str
 
 class ActionSelectorConfig(TypedDict): ...
 

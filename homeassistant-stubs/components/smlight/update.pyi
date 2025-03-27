@@ -1,4 +1,3 @@
-from . import get_radio as get_radio
 from .const import LOGGER as LOGGER
 from .coordinator import SmConfigEntry as SmConfigEntry, SmFirmwareUpdateCoordinator as SmFirmwareUpdateCoordinator, SmFwData as SmFwData
 from .entity import SmEntity as SmEntity

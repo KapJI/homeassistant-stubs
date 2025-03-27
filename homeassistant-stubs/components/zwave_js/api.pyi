@@ -153,6 +153,11 @@ async def websocket_try_parse_dsk_from_qr_code_string(hass: HomeAssistant, conne
 @websocket_api.async_response
 @async_handle_failed_command
 @async_get_entry
+async def websocket_lookup_device(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
 async def websocket_supports_feature(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
@@ -329,3 +334,13 @@ async def websocket_invoke_cc_api(hass: HomeAssistant, connection: ActiveConnect
 @callback
 @websocket_api.require_admin
 def websocket_get_integration_settings(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
+async def websocket_backup_nvm(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
+async def websocket_restore_nvm(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...

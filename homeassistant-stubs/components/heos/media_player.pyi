@@ -1,33 +1,37 @@
-from .const import SERVICE_GROUP_VOLUME_DOWN as SERVICE_GROUP_VOLUME_DOWN, SERVICE_GROUP_VOLUME_SET as SERVICE_GROUP_VOLUME_SET, SERVICE_GROUP_VOLUME_UP as SERVICE_GROUP_VOLUME_UP
+from .const import SERVICE_GET_QUEUE as SERVICE_GET_QUEUE, SERVICE_GROUP_VOLUME_DOWN as SERVICE_GROUP_VOLUME_DOWN, SERVICE_GROUP_VOLUME_SET as SERVICE_GROUP_VOLUME_SET, SERVICE_GROUP_VOLUME_UP as SERVICE_GROUP_VOLUME_UP
 from .coordinator import HeosConfigEntry as HeosConfigEntry, HeosCoordinator as HeosCoordinator
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Coroutine
 from datetime import datetime
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, BrowseMedia as BrowseMedia, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource
 from homeassistant.const import Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import utcnow as utcnow
-from pyheos import HeosPlayer as HeosPlayer
-from typing import Any
+from pyheos import HeosPlayer as HeosPlayer, MediaItem, MediaMusicSource
+from typing import Any, Final
 
 PARALLEL_UPDATES: int
+BROWSE_ROOT: Final[str]
 BASE_SUPPORTED_FEATURES: Incomplete
 PLAY_STATE_TO_STATE: Incomplete
 CONTROL_TO_SUPPORT: Incomplete
 HA_HEOS_ENQUEUE_MAP: Incomplete
 HEOS_HA_REPEAT_TYPE_MAP: Incomplete
 HA_HEOS_REPEAT_TYPE_MAP: Incomplete
+HEOS_MEDIA_TYPE_TO_MEDIA_CLASS: Incomplete
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: HeosConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-type _FuncType[**_P] = Callable[_P, Awaitable[Any]]
-type _ReturnFuncType[**_P] = Callable[_P, Coroutine[Any, Any, None]]
-def catch_action_error[**_P](action: str) -> Callable[[_FuncType[_P]], _ReturnFuncType[_P]]: ...
+type _FuncType[**_P, _R] = Callable[_P, Awaitable[_R]]
+type _ReturnFuncType[**_P, _R] = Callable[_P, Coroutine[Any, Any, _R]]
+def catch_action_error[**_P, _R](action: str) -> Callable[[_FuncType[_P, _R]], _ReturnFuncType[_P, _R]]: ...
 
 class HeosMediaPlayer(CoordinatorEntity[HeosCoordinator], MediaPlayerEntity):
     _attr_media_content_type: Incomplete
@@ -52,6 +56,7 @@ class HeosMediaPlayer(CoordinatorEntity[HeosCoordinator], MediaPlayerEntity):
     @callback
     def _update_attributes(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    async def async_get_queue(self) -> ServiceResponse: ...
     async def async_clear_playlist(self) -> None: ...
     async def async_media_pause(self) -> None: ...
     async def async_media_play(self) -> None: ...
@@ -97,4 +102,9 @@ class HeosMediaPlayer(CoordinatorEntity[HeosCoordinator], MediaPlayerEntity):
     def state(self) -> MediaPlayerState: ...
     @property
     def volume_level(self) -> float: ...
+    async def _async_browse_media_root(self) -> BrowseMedia: ...
+    async def _async_browse_heos_media(self, media_content_id: str) -> BrowseMedia: ...
+    async def _async_browse_media_source(self, media_content_id: str | None = None) -> BrowseMediaSource: ...
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
+
+def _media_to_browse_media(media: MediaItem | MediaMusicSource) -> BrowseMedia: ...

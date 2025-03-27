@@ -1,5 +1,5 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
-from .const import BSH_POWER_OFF as BSH_POWER_OFF, BSH_POWER_ON as BSH_POWER_ON, BSH_POWER_STANDBY as BSH_POWER_STANDBY, DOMAIN as DOMAIN, SVE_TRANSLATION_PLACEHOLDER_APPLIANCE_NAME as SVE_TRANSLATION_PLACEHOLDER_APPLIANCE_NAME, SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID as SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID, SVE_TRANSLATION_PLACEHOLDER_KEY as SVE_TRANSLATION_PLACEHOLDER_KEY, SVE_TRANSLATION_PLACEHOLDER_VALUE as SVE_TRANSLATION_PLACEHOLDER_VALUE
+from .const import BSH_POWER_OFF as BSH_POWER_OFF, BSH_POWER_ON as BSH_POWER_ON, BSH_POWER_STANDBY as BSH_POWER_STANDBY, DOMAIN as DOMAIN
 from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry, HomeConnectCoordinator as HomeConnectCoordinator
 from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error

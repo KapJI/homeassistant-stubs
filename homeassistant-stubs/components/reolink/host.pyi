@@ -1,7 +1,7 @@
 import asyncio
-from .const import CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
+from .const import CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
 from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkSetupException as ReolinkSetupException, ReolinkWebhookException as ReolinkWebhookException, UserNotAdmin as UserNotAdmin
-from .util import get_store as get_store
+from .util import ReolinkConfigEntry as ReolinkConfigEntry, get_store as get_store
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request
 from collections import defaultdict
@@ -33,7 +33,7 @@ _LOGGER: Incomplete
 
 class ReolinkHost:
     _hass: HomeAssistant
-    _config_entry_id: Incomplete
+    _config_entry: Incomplete
     _config: Incomplete
     _unique_id: str
     _api: Incomplete
@@ -61,7 +61,7 @@ class ReolinkHost:
     _lost_subscription_start: bool
     _lost_subscription: bool
     cancel_refresh_privacy_mode: CALLBACK_TYPE | None
-    def __init__(self, hass: HomeAssistant, config: Mapping[str, Any], options: Mapping[str, Any], config_entry_id: str | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, config: Mapping[str, Any], options: Mapping[str, Any], config_entry: ReolinkConfigEntry | None = None) -> None: ...
     @callback
     def async_register_update_cmd(self, cmd: str, channel: int | None = None) -> None: ...
     @callback

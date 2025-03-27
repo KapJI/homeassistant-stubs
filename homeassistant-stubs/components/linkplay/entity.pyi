@@ -1,5 +1,4 @@
 from . import DOMAIN as DOMAIN, LinkPlayRequestException as LinkPlayRequestException
-from .utils import MANUFACTURER_GENERIC as MANUFACTURER_GENERIC, get_info_from_project as get_info_from_project
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

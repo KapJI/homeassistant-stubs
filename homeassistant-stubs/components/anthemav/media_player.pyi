@@ -10,6 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
+VOLUME_STEP: float
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: AnthemavConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,6 +20,7 @@ class AnthemAVR(MediaPlayerEntity):
     _attr_should_poll: bool
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
+    _attr_volume_step = VOLUME_STEP
     avr: Incomplete
     _entry_id: Incomplete
     _zone_number: Incomplete

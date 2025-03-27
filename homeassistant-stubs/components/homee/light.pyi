@@ -11,6 +11,7 @@ from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNo
 from typing import Any
 
 LIGHT_ATTRIBUTES: Incomplete
+PARALLEL_UPDATES: int
 
 def is_light_node(node: HomeeNode) -> bool: ...
 def get_color_mode(supported_modes: set[ColorMode]) -> ColorMode: ...

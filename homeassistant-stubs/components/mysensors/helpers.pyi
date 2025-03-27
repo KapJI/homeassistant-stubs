@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import ATTR_DEVICES as ATTR_DEVICES, ATTR_GATEWAY_ID as ATTR_GATEWAY_ID, ATTR_NODE_ID as ATTR_NODE_ID, DOMAIN as DOMAIN, DevId as DevId, FLAT_PLATFORM_TYPES as FLAT_PLATFORM_TYPES, GatewayId as GatewayId, MYSENSORS_DISCOVERED_NODES as MYSENSORS_DISCOVERED_NODES, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, MYSENSORS_NODE_DISCOVERY as MYSENSORS_NODE_DISCOVERY, MYSENSORS_ON_UNLOAD as MYSENSORS_ON_UNLOAD, SensorType as SensorType, TYPE_TO_PLATFORMS as TYPE_TO_PLATFORMS, ValueType as ValueType
+from .const import ATTR_DEVICES as ATTR_DEVICES, ATTR_GATEWAY_ID as ATTR_GATEWAY_ID, ATTR_NODE_ID as ATTR_NODE_ID, DOMAIN as DOMAIN, DevId as DevId, FLAT_PLATFORM_TYPES as FLAT_PLATFORM_TYPES, GatewayId as GatewayId, MYSENSORS_DISCOVERED_NODES as MYSENSORS_DISCOVERED_NODES, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY, MYSENSORS_NODE_DISCOVERY as MYSENSORS_NODE_DISCOVERY, SensorType as SensorType, TYPE_TO_PLATFORMS as TYPE_TO_PLATFORMS, ValueType as ValueType
 from _typeshed import Incomplete
 from collections import defaultdict
 from collections.abc import Callable as Callable
@@ -13,8 +13,6 @@ from mysensors.sensor import ChildSensor as ChildSensor
 _LOGGER: Incomplete
 SCHEMAS: Registry[tuple[str, str], Callable[[BaseAsyncGateway, ChildSensor, ValueType], vol.Schema]]
 
-@callback
-def on_unload(hass: HomeAssistant, gateway_id: GatewayId, fnct: Callable) -> None: ...
 @callback
 def discover_mysensors_platform(hass: HomeAssistant, gateway_id: GatewayId, platform: str, new_devices: list[DevId]) -> None: ...
 @callback

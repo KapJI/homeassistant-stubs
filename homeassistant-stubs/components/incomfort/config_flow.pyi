@@ -11,6 +11,7 @@ from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, B
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from typing import Any
 
+_LOGGER: Incomplete
 TITLE: str
 CONFIG_SCHEMA: Incomplete
 DHCP_CONFIG_SCHEMA: Incomplete

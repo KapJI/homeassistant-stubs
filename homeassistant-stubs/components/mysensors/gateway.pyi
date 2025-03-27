@@ -1,6 +1,6 @@
 from .const import CONF_BAUD_RATE as CONF_BAUD_RATE, CONF_GATEWAY_TYPE as CONF_GATEWAY_TYPE, CONF_GATEWAY_TYPE_MQTT as CONF_GATEWAY_TYPE_MQTT, CONF_GATEWAY_TYPE_SERIAL as CONF_GATEWAY_TYPE_SERIAL, CONF_PERSISTENCE_FILE as CONF_PERSISTENCE_FILE, CONF_RETAIN as CONF_RETAIN, CONF_TCP_PORT as CONF_TCP_PORT, CONF_TOPIC_IN_PREFIX as CONF_TOPIC_IN_PREFIX, CONF_TOPIC_OUT_PREFIX as CONF_TOPIC_OUT_PREFIX, CONF_VERSION as CONF_VERSION, ConfGatewayType as ConfGatewayType, DOMAIN as DOMAIN, GatewayId as GatewayId, MYSENSORS_GATEWAY_START_TASK as MYSENSORS_GATEWAY_START_TASK
 from .handler import HANDLERS as HANDLERS
-from .helpers import discover_mysensors_node as discover_mysensors_node, discover_mysensors_platform as discover_mysensors_platform, on_unload as on_unload, validate_child as validate_child, validate_node as validate_node
+from .helpers import discover_mysensors_node as discover_mysensors_node, discover_mysensors_platform as discover_mysensors_platform, validate_child as validate_child, validate_node as validate_node
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.mqtt import async_publish as async_publish, async_subscribe as async_subscribe

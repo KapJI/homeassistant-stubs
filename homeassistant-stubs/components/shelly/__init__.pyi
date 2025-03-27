@@ -1,9 +1,9 @@
 from .const import BLOCK_EXPECTED_SLEEP_PERIOD as BLOCK_EXPECTED_SLEEP_PERIOD, BLOCK_WRONG_SLEEP_PERIOD as BLOCK_WRONG_SLEEP_PERIOD, CONF_COAP_PORT as CONF_COAP_PORT, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, FIRMWARE_UNSUPPORTED_ISSUE_ID as FIRMWARE_UNSUPPORTED_ISSUE_ID, LOGGER as LOGGER, MODELS_WITH_WRONG_SLEEP_PERIOD as MODELS_WITH_WRONG_SLEEP_PERIOD, PUSH_UPDATE_ISSUE_ID as PUSH_UPDATE_ISSUE_ID
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyEntryData as ShellyEntryData, ShellyRestCoordinator as ShellyRestCoordinator, ShellyRpcCoordinator as ShellyRpcCoordinator, ShellyRpcPollingCoordinator as ShellyRpcPollingCoordinator
-from .utils import async_create_issue_unsupported_firmware as async_create_issue_unsupported_firmware, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_http_port as get_http_port, get_ws_context as get_ws_context
+from .utils import async_create_issue_unsupported_firmware as async_create_issue_unsupported_firmware, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_http_port as get_http_port, get_rpc_scripts_event_types as get_rpc_scripts_event_types, get_ws_context as get_ws_context
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import async_remove_scanner as async_remove_scanner
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

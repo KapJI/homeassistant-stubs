@@ -56,6 +56,7 @@ type SourceType = GridSourceType | SolarSourceType | BatterySourceType | GasSour
 class DeviceConsumption(TypedDict):
     stat_consumption: str
     name: str | None
+    included_in_stat: str | None
 
 class EnergyPreferences(TypedDict):
     energy_sources: list[SourceType]

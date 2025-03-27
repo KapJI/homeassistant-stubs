@@ -41,10 +41,12 @@ class PinecilNumber(StrEnum):
     VOLTAGE_DIV = 'voltage_div'
     TEMP_INCREMENT_SHORT = 'temp_increment_short'
     TEMP_INCREMENT_LONG = 'temp_increment_long'
+    HALL_EFFECT_SLEEP_TIME = 'hall_effect_sleep_time'
 
 def multiply(value: float | None, multiplier: float) -> float | None: ...
 
 PINECIL_NUMBER_DESCRIPTIONS: tuple[IronOSNumberEntityDescription, ...]
+PINECIL_NUMBER_DESCRIPTIONS_V223: tuple[IronOSNumberEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: IronOSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

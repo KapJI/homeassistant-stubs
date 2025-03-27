@@ -14,12 +14,14 @@ from roborock.version_1_apis.roborock_client_v1 import AttributeCache as Attribu
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockSwitchDescription(SwitchEntityDescription):
     cache_key: CacheableAttribute
     update_value: Callable[[AttributeCache, bool], Coroutine[Any, Any, None]]
     attribute: str
+    is_dock_entity: bool = ...
 
 SWITCH_DESCRIPTIONS: list[RoborockSwitchDescription]
 

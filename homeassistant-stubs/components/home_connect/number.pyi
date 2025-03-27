@@ -1,5 +1,5 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
-from .const import DOMAIN as DOMAIN, SVE_TRANSLATION_KEY_SET_SETTING as SVE_TRANSLATION_KEY_SET_SETTING, SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID as SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID, SVE_TRANSLATION_PLACEHOLDER_KEY as SVE_TRANSLATION_PLACEHOLDER_KEY, SVE_TRANSLATION_PLACEHOLDER_VALUE as SVE_TRANSLATION_PLACEHOLDER_VALUE, UNIT_MAP as UNIT_MAP
+from .const import DOMAIN as DOMAIN, UNIT_MAP as UNIT_MAP
 from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity, constraint_fetcher as constraint_fetcher
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error

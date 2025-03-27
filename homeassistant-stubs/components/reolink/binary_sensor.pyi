@@ -1,4 +1,4 @@
-from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription
+from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkEntityDescription as ReolinkEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -16,8 +16,15 @@ PARALLEL_UPDATES: int
 class ReolinkBinarySensorEntityDescription(BinarySensorEntityDescription, ReolinkChannelEntityDescription):
     value: Callable[[Host, int], bool]
 
+@dataclass(frozen=True, kw_only=True)
+class ReolinkSmartAIBinarySensorEntityDescription(BinarySensorEntityDescription, ReolinkEntityDescription):
+    smart_type: str
+    value: Callable[[Host, int, int], bool]
+    supported: Callable[[Host, int, int], bool] = ...
+
 BINARY_PUSH_SENSORS: Incomplete
 BINARY_SENSORS: Incomplete
+BINARY_SMART_AI_SENSORS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -31,3 +38,12 @@ class ReolinkBinarySensorEntity(ReolinkChannelCoordinatorEntity, BinarySensorEnt
 class ReolinkPushBinarySensorEntity(ReolinkBinarySensorEntity):
     async def async_added_to_hass(self) -> None: ...
     async def _async_handle_event(self, event: str) -> None: ...
+
+class ReolinkSmartAIBinarySensorEntity(ReolinkChannelCoordinatorEntity, BinarySensorEntity):
+    entity_description: ReolinkSmartAIBinarySensorEntityDescription
+    _attr_unique_id: Incomplete
+    _location: Incomplete
+    _attr_translation_placeholders: Incomplete
+    def __init__(self, reolink_data: ReolinkData, channel: int, location: int, entity_description: ReolinkSmartAIBinarySensorEntityDescription) -> None: ...
+    @property
+    def is_on(self) -> bool: ...

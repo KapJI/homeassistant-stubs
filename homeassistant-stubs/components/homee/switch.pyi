@@ -12,6 +12,8 @@ from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 def get_device_class(attribute: HomeeAttribute, config_entry: HomeeConfigEntry) -> SwitchDeviceClass: ...
 
 @dataclass(frozen=True, kw_only=True)

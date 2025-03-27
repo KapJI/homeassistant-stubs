@@ -19,7 +19,7 @@ from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as Receiv
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, TemplateVarsType as TemplateVarsType, VolSchemaType as VolSchemaType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from paho.mqtt.client import MQTTMessage as MQTTMessage
-from typing import TypedDict
+from typing import Any, TypedDict
 
 class PayloadSentinel(StrEnum):
     NONE = 'none'
@@ -138,6 +138,30 @@ class MqttComponentConfig:
     object_id: str
     node_id: str | None
     discovery_payload: MQTTDiscoveryPayload
+
+class DeviceMqttOptions(TypedDict, total=False):
+    qos: int
+
+class MqttDeviceData(TypedDict, total=False):
+    name: str
+    identifiers: str
+    configuration_url: str
+    sw_version: str
+    hw_version: str
+    model: str
+    model_id: str
+    mqtt_settings: DeviceMqttOptions
+
+class MqttAvailabilityData(TypedDict, total=False):
+    availability_topic: str
+    availability_template: str
+    payload_available: str
+    payload_not_available: str
+
+class MqttSubentryData(TypedDict, total=False):
+    device: MqttDeviceData
+    components: dict[str, dict[str, Any]]
+    availability: MqttAvailabilityData
 
 DATA_MQTT: HassKey[MqttData]
 DATA_MQTT_AVAILABLE: HassKey[asyncio.Future[bool]]

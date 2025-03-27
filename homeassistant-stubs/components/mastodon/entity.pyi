@@ -1,4 +1,4 @@
-from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, INSTANCE_VERSION as INSTANCE_VERSION
+from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from .coordinator import MastodonConfigEntry as MastodonConfigEntry, MastodonCoordinator as MastodonCoordinator
 from .utils import construct_mastodon_username as construct_mastodon_username
 from _typeshed import Incomplete

@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from mastodon import Mastodon as Mastodon
+from mastodon.Mastodon import MediaAttachment as MediaAttachment
 
 class StatusVisibility(StrEnum):
     PUBLIC = 'public'

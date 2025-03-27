@@ -3,7 +3,7 @@ from . import Recorder as Recorder
 from .auto_repairs.statistics.duplicates import delete_statistics_duplicates as delete_statistics_duplicates, delete_statistics_meta_duplicates as delete_statistics_meta_duplicates
 from .const import CONTEXT_ID_AS_BINARY_SCHEMA_VERSION as CONTEXT_ID_AS_BINARY_SCHEMA_VERSION, EVENT_TYPE_IDS_SCHEMA_VERSION as EVENT_TYPE_IDS_SCHEMA_VERSION, LEGACY_STATES_EVENT_FOREIGN_KEYS_FIXED_SCHEMA_VERSION as LEGACY_STATES_EVENT_FOREIGN_KEYS_FIXED_SCHEMA_VERSION, LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION as LEGACY_STATES_EVENT_ID_INDEX_SCHEMA_VERSION, STATES_META_SCHEMA_VERSION as STATES_META_SCHEMA_VERSION, SupportedDialect as SupportedDialect
 from .db_schema import BIG_INTEGER_SQL as BIG_INTEGER_SQL, Base as Base, CONTEXT_ID_BIN_MAX_LENGTH as CONTEXT_ID_BIN_MAX_LENGTH, DOUBLE_PRECISION_TYPE_SQL as DOUBLE_PRECISION_TYPE_SQL, EventTypes as EventTypes, Events as Events, LEGACY_STATES_ENTITY_ID_LAST_UPDATED_TS_INDEX as LEGACY_STATES_ENTITY_ID_LAST_UPDATED_TS_INDEX, LEGACY_STATES_EVENT_ID_INDEX as LEGACY_STATES_EVENT_ID_INDEX, LegacyBase as LegacyBase, MYSQL_COLLATE as MYSQL_COLLATE, MYSQL_DEFAULT_CHARSET as MYSQL_DEFAULT_CHARSET, MigrationChanges as MigrationChanges, SCHEMA_VERSION as SCHEMA_VERSION, STATISTICS_TABLES as STATISTICS_TABLES, SchemaChanges as SchemaChanges, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm, TABLE_STATES as TABLE_STATES
-from .models import process_timestamp as process_timestamp
+from .models import StatisticMeanType as StatisticMeanType, process_timestamp as process_timestamp
 from .models.time import datetime_to_timestamp_or_none as datetime_to_timestamp_or_none
 from .queries import batch_cleanup_entity_ids as batch_cleanup_entity_ids, delete_duplicate_short_term_statistics_row as delete_duplicate_short_term_statistics_row, delete_duplicate_statistics_row as delete_duplicate_statistics_row, find_entity_ids_to_migrate as find_entity_ids_to_migrate, find_event_type_to_migrate as find_event_type_to_migrate, find_events_context_ids_to_migrate as find_events_context_ids_to_migrate, find_states_context_ids_to_migrate as find_states_context_ids_to_migrate, find_unmigrated_short_term_statistics_rows as find_unmigrated_short_term_statistics_rows, find_unmigrated_statistics_rows as find_unmigrated_statistics_rows, get_migration_changes as get_migration_changes, has_entity_ids_to_migrate as has_entity_ids_to_migrate, has_event_type_to_migrate as has_event_type_to_migrate, has_events_context_ids_to_migrate as has_events_context_ids_to_migrate, has_states_context_ids_to_migrate as has_states_context_ids_to_migrate, has_used_states_entity_ids as has_used_states_entity_ids, has_used_states_event_ids as has_used_states_event_ids, migrate_single_short_term_statistics_row_to_timestamp as migrate_single_short_term_statistics_row_to_timestamp, migrate_single_statistics_row_to_timestamp as migrate_single_statistics_row_to_timestamp
 from .statistics import cleanup_statistics_timestamp_migration as cleanup_statistics_timestamp_migration, get_start_time as get_start_time
@@ -16,12 +16,13 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from homeassistant.util.ulid import ulid_at_time as ulid_at_time, ulid_to_bytes as ulid_to_bytes
+from sqlalchemy import ForeignKeyConstraint
 from sqlalchemy.engine import CursorResult as CursorResult, Engine as Engine
 from sqlalchemy.orm import DeclarativeBase as DeclarativeBase
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.schema import AddConstraint
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
-from typing import Any, final
+from typing import Any, TypedDict, final
 
 LIVE_MIGRATION_MIN_SCHEMA_VERSION: int
 MIGRATION_NOTE_OFFLINE: str
@@ -36,6 +37,8 @@ class _ColumnTypesForDialect:
     big_int_type: str
     timestamp_type: str
     context_bin_type: str
+    small_int_type: str
+    double_type: str
 
 _MYSQL_COLUMN_TYPES: Incomplete
 _POSTGRESQL_COLUMN_TYPES: Incomplete
@@ -75,6 +78,11 @@ def _execute_or_collect_error(session_maker: Callable[[], Session], query: str, 
 def _drop_index(session_maker: Callable[[], Session], table_name: str, index_name: str, quiet: bool | None = None) -> None: ...
 def _add_columns(session_maker: Callable[[], Session], table_name: str, columns_def: list[str]) -> None: ...
 def _modify_columns(session_maker: Callable[[], Session], engine: Engine, table_name: str, columns_def: list[str]) -> None: ...
+
+class _FKAlterDict(TypedDict):
+    old_fk: ForeignKeyConstraint
+    columns: list[str]
+
 def _update_states_table_with_foreign_key_options(session_maker: Callable[[], Session], engine: Engine) -> None: ...
 def _drop_foreign_key_constraints(session_maker: Callable[[], Session], engine: Engine, table: str, column: str) -> None: ...
 def _restore_foreign_key_constraints(session_maker: Callable[[], Session], engine: Engine, foreign_columns: list[tuple[str, str, str | None, str | None]]) -> None: ...
@@ -243,6 +251,12 @@ class _SchemaVersion47Migrator(_SchemaVersionMigrator, target_version=47):
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion48Migrator(_SchemaVersionMigrator, target_version=48):
+    def _apply_update(self) -> None: ...
+
+class _SchemaVersion49Migrator(_SchemaVersionMigrator, target_version=49):
+    def _apply_update(self) -> None: ...
+
+class _SchemaVersion50Migrator(_SchemaVersionMigrator, target_version=50):
     def _apply_update(self) -> None: ...
 
 def _migrate_statistics_columns_to_timestamp_removing_duplicates(hass: HomeAssistant, instance: Recorder, session_maker: Callable[[], Session], engine: Engine) -> None: ...

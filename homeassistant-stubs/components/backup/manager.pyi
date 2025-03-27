@@ -4,7 +4,7 @@ import asyncio
 from .agent import BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupAgentPlatformProtocol as BackupAgentPlatformProtocol, LocalBackupAgent as LocalBackupAgent
 from .config import BackupConfig as BackupConfig, CreateBackupParametersDict as CreateBackupParametersDict, check_unavailable_agents as check_unavailable_agents, delete_backups_exceeding_configured_count as delete_backups_exceeding_configured_count
 from .const import BUF_SIZE as BUF_SIZE, DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN, EXCLUDE_DATABASE_FROM_BACKUP as EXCLUDE_DATABASE_FROM_BACKUP, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER
-from .models import AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
+from .models import AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupNotFound as BackupNotFound, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
 from .store import BackupStore as BackupStore
 from .util import AsyncIteratorReader as AsyncIteratorReader, DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, make_backup_dir as make_backup_dir, read_backup as read_backup, validate_password as validate_password, validate_password_stream as validate_password_stream
 from _typeshed import Incomplete
@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.backup_restore import RESTORE_BACKUP_FILE as RESTORE_BACKUP_FILE, RESTORE_BACKUP_RESULT_FILE as RESTORE_BACKUP_RESULT_FILE, password_to_key as password_to_key
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import instance_id as instance_id, integration_platform as integration_platform, start as start
+from homeassistant.helpers import frame as frame, instance_id as instance_id, integration_platform as integration_platform, start as start
 from homeassistant.helpers.backup import DATA_BACKUP as DATA_BACKUP
 from homeassistant.helpers.json import json_bytes as json_bytes
 from pathlib import Path
@@ -119,6 +119,10 @@ class RestoreBackupEvent(ManagerStateEvent):
     state: RestoreBackupState
 
 @dataclass(frozen=True, kw_only=True, slots=True)
+class BackupPlatformEvent:
+    domain: str
+
+@dataclass(frozen=True, kw_only=True, slots=True)
 class BlockedEvent(ManagerStateEvent):
     manager_state: BackupManagerState = ...
 
@@ -164,8 +168,9 @@ class BackupManager:
     remove_next_backup_event: Callable[[], None] | None
     remove_next_delete_event: Callable[[], None] | None
     last_event: ManagerStateEvent
-    last_non_idle_event: ManagerStateEvent | None
+    last_action_event: ManagerStateEvent | None
     _backup_event_subscriptions: Incomplete
+    _backup_platform_event_subscriptions: Incomplete
     def __init__(self, hass: HomeAssistant, reader_writer: BackupReaderWriter) -> None: ...
     async def async_setup(self) -> None: ...
     @property

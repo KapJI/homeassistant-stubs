@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.components import mqtt as mqtt
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import DEGREE as DEGREE, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -27,7 +27,8 @@ class ArwnSensor(SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     _attr_icon: Incomplete
     _attr_device_class: Incomplete
-    def __init__(self, topic: str, name: str, state_key: str, units: str, icon: str | None = None, device_class: SensorDeviceClass | None = None) -> None: ...
+    _attr_state_class: Incomplete
+    def __init__(self, topic: str, name: str, state_key: str, units: str, icon: str | None = None, device_class: SensorDeviceClass | None = None, state_class: SensorStateClass | None = None) -> None: ...
     _attr_extra_state_attributes: Incomplete
     _attr_native_value: Incomplete
     def set_event(self, event: dict[str, Any]) -> None: ...

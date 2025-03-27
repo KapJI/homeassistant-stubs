@@ -1,7 +1,11 @@
 from _typeshed import Incomplete
 
 DOMAIN: str
+RADIO_MODEL: str
+RADIO_MANUFACTURER: str
 RADIO_DEVICE: str
 ZHA_HW_DISCOVERY_DATA: Incomplete
 FIRMWARE: str
+FIRMWARE_VERSION: str
 ZHA_DOMAIN: str
+NABU_CASA_FIRMWARE_RELEASES_URL: str

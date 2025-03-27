@@ -1,7 +1,6 @@
 from .const import DOMAIN as DOMAIN, GET_MAPS_SERVICE_NAME as GET_MAPS_SERVICE_NAME, GET_VACUUM_CURRENT_POSITION_SERVICE_NAME as GET_VACUUM_CURRENT_POSITION_SERVICE_NAME, SET_VACUUM_GOTO_POSITION_SERVICE_NAME as SET_VACUUM_GOTO_POSITION_SERVICE_NAME
 from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
 from .entity import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
-from .image import ColorsPalette as ColorsPalette, ImageConfig as ImageConfig, RoborockMapDataParser as RoborockMapDataParser, Sizes as Sizes
 from _typeshed import Incomplete
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
@@ -11,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from typing import Any
 
 STATE_CODE_TO_STATE: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

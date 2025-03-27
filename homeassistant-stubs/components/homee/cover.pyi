@@ -8,6 +8,7 @@ from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNo
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 OPEN_CLOSE_ATTRIBUTES: Incomplete
 POSITION_ATTRIBUTES: Incomplete
 

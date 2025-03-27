@@ -8,7 +8,7 @@ from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_to
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import lawn_mower as lawn_mower
-from homeassistant.components.lawn_mower import LawnMowerActivity as LawnMowerActivity, LawnMowerEntity as LawnMowerEntity, LawnMowerEntityFeature as LawnMowerEntityFeature
+from homeassistant.components.lawn_mower import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, LawnMowerActivity as LawnMowerActivity, LawnMowerEntity as LawnMowerEntity, LawnMowerEntityFeature as LawnMowerEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -28,7 +28,6 @@ CONF_PAUSE_COMMAND_TEMPLATE: str
 CONF_START_MOWING_COMMAND_TOPIC: str
 CONF_START_MOWING_COMMAND_TEMPLATE: str
 DEFAULT_NAME: str
-ENTITY_ID_FORMAT: Incomplete
 MQTT_LAWN_MOWER_ATTRIBUTES_BLOCKED: frozenset[str]
 FEATURE_DOCK: str
 FEATURE_PAUSE: str

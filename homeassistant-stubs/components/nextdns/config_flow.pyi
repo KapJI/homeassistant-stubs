@@ -9,6 +9,7 @@ from nextdns import NextDns
 from typing import Any
 
 AUTH_SCHEMA: Incomplete
+_LOGGER: Incomplete
 
 async def async_init_nextdns(hass: HomeAssistant, api_key: str) -> NextDns: ...
 

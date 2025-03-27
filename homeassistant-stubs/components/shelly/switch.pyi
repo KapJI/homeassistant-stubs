@@ -1,7 +1,6 @@
-from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, MOTION_MODELS as MOTION_MODELS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockEntity as ShellyBlockEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellyRpcEntity as ShellyRpcEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc
-from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, get_virtual_component_ids as get_virtual_component_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator, is_rpc_thermostat_mode as is_rpc_thermostat_mode
+from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_device_entry_gen as get_device_entry_gen, get_virtual_component_ids as get_virtual_component_ids, is_block_exclude_from_relay as is_block_exclude_from_relay, is_rpc_exclude_from_relay as is_rpc_exclude_from_relay
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Callable as Callable
@@ -17,7 +16,8 @@ from typing import Any
 @dataclass(frozen=True, kw_only=True)
 class BlockSwitchDescription(BlockEntityDescription, SwitchEntityDescription): ...
 
-MOTION_SWITCH: Incomplete
+BLOCK_RELAY_SWITCHES: Incomplete
+BLOCK_SLEEPING_MOTION_SWITCH: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class RpcSwitchDescription(RpcEntityDescription, SwitchEntityDescription):
@@ -26,6 +26,7 @@ class RpcSwitchDescription(RpcEntityDescription, SwitchEntityDescription):
     method_off: str
     method_params_fn: Callable[[int | None, bool], dict]
 
+RPC_RELAY_SWITCHES: Incomplete
 RPC_SWITCHES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -45,23 +46,17 @@ class BlockSleepingMotionSwitch(ShellySleepingBlockAttributeEntity, RestoreEntit
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 
-class BlockRelaySwitch(ShellyBlockEntity, SwitchEntity):
+class BlockRelaySwitch(ShellyBlockAttributeEntity, SwitchEntity):
+    entity_description: BlockSwitchDescription
     control_result: dict[str, Any] | None
-    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
+    _attr_unique_id: str
+    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockSwitchDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
     def _update_callback(self) -> None: ...
-
-class RpcRelaySwitch(ShellyRpcEntity, SwitchEntity):
-    _id: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
-    @property
-    def is_on(self) -> bool: ...
-    async def async_turn_on(self, **kwargs: Any) -> None: ...
-    async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class RpcSwitch(ShellyRpcAttributeEntity, SwitchEntity):
     entity_description: RpcSwitchDescription
@@ -70,3 +65,8 @@ class RpcSwitch(ShellyRpcAttributeEntity, SwitchEntity):
     def is_on(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class RpcRelaySwitch(RpcSwitch):
+    _attr_has_entity_name: bool
+    _attr_unique_id: str
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...

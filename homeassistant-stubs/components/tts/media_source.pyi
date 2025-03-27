@@ -18,7 +18,7 @@ class MediaSourceOptions(TypedDict):
     message: str
     language: str | None
     options: dict | None
-    cache: bool | None
+    use_file_cache: bool | None
 
 @callback
 def media_source_id_to_kwargs(media_source_id: str) -> MediaSourceOptions: ...

@@ -8,17 +8,19 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from roborock.containers import Status as Status
 from roborock.roborock_message import RoborockDataProtocol
-from roborock.roborock_typing import RoborockCommand
+from roborock.roborock_typing import DeviceProp as DeviceProp, RoborockCommand
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockSelectDescription(SelectEntityDescription):
     api_command: RoborockCommand
-    value_fn: Callable[[Status], str | None]
-    options_lambda: Callable[[Status], list[str] | None]
-    parameter_lambda: Callable[[str, Status], list[int]]
+    value_fn: Callable[[DeviceProp], str | None]
+    options_lambda: Callable[[DeviceProp], list[str] | None]
+    parameter_lambda: Callable[[str, DeviceProp], list[int]]
     protocol_listener: RoborockDataProtocol | None = ...
+    is_dock_entity: bool = ...
 
 SELECT_DESCRIPTIONS: list[RoborockSelectDescription]
 

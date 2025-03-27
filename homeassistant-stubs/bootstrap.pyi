@@ -5,11 +5,12 @@ from .components import http as http
 from .const import BASE_PLATFORMS as BASE_PLATFORMS, FORMAT_DATETIME as FORMAT_DATETIME, REQUIRED_NEXT_PYTHON_HA_RELEASE as REQUIRED_NEXT_PYTHON_HA_RELEASE, REQUIRED_NEXT_PYTHON_VER as REQUIRED_NEXT_PYTHON_VER, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
 from .core_config import async_process_ha_core_config as async_process_ha_core_config
 from .exceptions import HomeAssistantError as HomeAssistantError
-from .helpers import area_registry as area_registry, backup as backup, category_registry as category_registry, device_registry as device_registry, entity as entity, entity_registry as entity_registry, floor_registry as floor_registry, issue_registry as issue_registry, label_registry as label_registry, recorder as recorder, restore_state as restore_state, template as template, translation as translation
+from .helpers import area_registry as area_registry, backup as backup, category_registry as category_registry, device_registry as device_registry, entity as entity, entity_registry as entity_registry, floor_registry as floor_registry, frame as frame, issue_registry as issue_registry, label_registry as label_registry, recorder as recorder, restore_state as restore_state, template as template, translation as translation
 from .helpers.dispatcher import async_dispatcher_send_internal as async_dispatcher_send_internal
 from .helpers.storage import get_internal_store_manager as get_internal_store_manager
 from .helpers.system_info import async_get_system_info as async_get_system_info
 from .helpers.typing import ConfigType as ConfigType
+from .loader import Integration as Integration
 from .runner import RuntimeConfig as RuntimeConfig
 from .setup import _setup_started as _setup_started, async_get_setup_timings as async_get_setup_timings, async_notify_setup_error as async_notify_setup_error, async_set_domains_to_be_loaded as async_set_domains_to_be_loaded, async_setup_component as async_setup_component
 from .util.async_ import create_eager_task as create_eager_task
@@ -58,7 +59,7 @@ class _RotatingFileHandlerWithoutShouldRollOver(RotatingFileHandler):
 
 async def async_mount_local_lib_path(config_dir: str) -> str: ...
 def _get_domains(hass: core.HomeAssistant, config: dict[str, Any]) -> set[str]: ...
-async def _async_resolve_domains_to_setup(hass: core.HomeAssistant, config: dict[str, Any]) -> tuple[set[str], dict[str, loader.Integration]]: ...
+async def _async_resolve_domains_and_preload(hass: core.HomeAssistant, config: dict[str, Any]) -> tuple[dict[str, Integration], dict[str, Integration]]: ...
 async def _async_set_up_integrations(hass: core.HomeAssistant, config: dict[str, Any]) -> None: ...
 
 class _WatchPendingSetups:

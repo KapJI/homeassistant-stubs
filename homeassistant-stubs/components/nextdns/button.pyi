@@ -1,9 +1,11 @@
 from . import NextDnsConfigEntry as NextDnsConfigEntry
+from .const import DOMAIN as DOMAIN
 from .coordinator import NextDnsUpdateCoordinator as NextDnsUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from nextdns import AnalyticsStatus

@@ -6,7 +6,8 @@ from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_CLI
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from mastodon import Mastodon as Mastodon
+from mastodon import Mastodon
+from mastodon.Mastodon import MediaAttachment as MediaAttachment
 from typing import Any
 
 ATTR_MEDIA: str
@@ -20,4 +21,4 @@ class MastodonNotificationService(BaseNotificationService):
     client: Incomplete
     def __init__(self, hass: HomeAssistant, client: Mastodon) -> None: ...
     def send_message(self, message: str = '', **kwargs: Any) -> None: ...
-    def _upload_media(self, media_path: Any = None) -> Any: ...
+    def _upload_media(self, media_path: Any = None) -> MediaAttachment: ...

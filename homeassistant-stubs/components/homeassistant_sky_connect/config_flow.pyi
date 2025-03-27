@@ -1,4 +1,4 @@
-from .const import DOCS_WEB_FLASHER_URL as DOCS_WEB_FLASHER_URL, DOMAIN as DOMAIN, HardwareVariant as HardwareVariant
+from .const import DESCRIPTION as DESCRIPTION, DEVICE as DEVICE, DOCS_WEB_FLASHER_URL as DOCS_WEB_FLASHER_URL, DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, HardwareVariant as HardwareVariant, MANUFACTURER as MANUFACTURER, PID as PID, PRODUCT as PRODUCT, SERIAL_NUMBER as SERIAL_NUMBER, VID as VID
 from .util import get_hardware_variant as get_hardware_variant, get_usb_service_info as get_usb_service_info
 from _typeshed import Incomplete
 from homeassistant.components import usb as usb

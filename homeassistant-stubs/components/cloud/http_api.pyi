@@ -45,15 +45,17 @@ class CloudLoginView(HomeAssistantView):
     url: str
     name: str
     @require_admin
+    async def post(self, request: web.Request) -> web.Response: ...
     @_handle_cloud_errors
-    async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+    async def _post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
 class CloudLogoutView(HomeAssistantView):
     url: str
     name: str
     @require_admin
-    @_handle_cloud_errors
     async def post(self, request: web.Request) -> web.Response: ...
+    @_handle_cloud_errors
+    async def _post(self, request: web.Request) -> web.Response: ...
 
 class CloudRegisterView(HomeAssistantView):
     url: str
@@ -73,8 +75,9 @@ class CloudForgotPasswordView(HomeAssistantView):
     url: str
     name: str
     @require_admin
+    async def post(self, request: web.Request) -> web.Response: ...
     @_handle_cloud_errors
-    async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+    async def _post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
 class DownloadSupportPackageView(HomeAssistantView):
     url: str

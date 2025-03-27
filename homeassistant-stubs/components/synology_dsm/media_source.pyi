@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, SHARED_SUFFIX as SHARED_SUFFIX
-from .models import SynologyDSMData as SynologyDSMData
+from .coordinator import SynologyDSMConfigEntry as SynologyDSMConfigEntry, SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components import http as http
@@ -8,6 +8,8 @@ from homeassistant.components.media_source import BrowseError as BrowseError, Br
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from synology_dsm.api.photos import SynoPhotosItem
+
+LOGGER: Incomplete
 
 async def async_get_media_source(hass: HomeAssistant) -> MediaSource: ...
 

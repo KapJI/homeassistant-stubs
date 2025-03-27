@@ -5,7 +5,6 @@ from homeassistant.config import get_default_config_dir as get_default_config_di
 from homeassistant.config_entries import ConfigEntries as ConfigEntries
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.check_config import async_check_ha_config_file as async_check_ha_config_file
-from homeassistant.util.yaml import Secrets as Secrets
 from typing import Any
 
 REQUIREMENTS: Incomplete

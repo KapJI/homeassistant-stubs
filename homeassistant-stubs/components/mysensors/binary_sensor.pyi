@@ -1,7 +1,6 @@
 from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
 from .entity import MySensorsChildEntity as MySensorsChildEntity
-from .helpers import on_unload as on_unload
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription

@@ -30,7 +30,7 @@ class UpdateEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_
     _attr_installed_version: str | None
     _attr_device_class: UpdateDeviceClass | None
     _attr_display_precision: int
-    _attr_in_progress: bool | int
+    _attr_in_progress: bool
     _attr_latest_version: str | None
     _attr_release_summary: str | None
     _attr_release_url: str | None
@@ -54,7 +54,7 @@ class UpdateEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_
     @property
     def entity_picture(self) -> str | None: ...
     @cached_property
-    def in_progress(self) -> bool | int | None: ...
+    def in_progress(self) -> bool | None: ...
     @cached_property
     def latest_version(self) -> str | None: ...
     @cached_property

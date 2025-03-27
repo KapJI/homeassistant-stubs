@@ -58,6 +58,9 @@ class BaseUnitConverter:
     def get_unit_ratio(cls, from_unit: str | None, to_unit: str | None) -> float: ...
     @classmethod
     @lru_cache
+    def get_unit_floored_log_ratio(cls, from_unit: str | None, to_unit: str | None) -> float: ...
+    @classmethod
+    @lru_cache
     def _are_unit_inverses(cls, from_unit: str | None, to_unit: str | None) -> bool: ...
 
 class DataRateConverter(BaseUnitConverter):

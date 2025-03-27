@@ -5,9 +5,9 @@ from .client import async_publish as async_publish
 from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOVERY_TOPIC as ATTR_DISCOVERY_TOPIC, AVAILABILITY_ALL as AVAILABILITY_ALL, AVAILABILITY_ANY as AVAILABILITY_ANY, CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_AVAILABILITY_MODE as CONF_AVAILABILITY_MODE, CONF_AVAILABILITY_TEMPLATE as CONF_AVAILABILITY_TEMPLATE, CONF_AVAILABILITY_TOPIC as CONF_AVAILABILITY_TOPIC, CONF_CONFIGURATION_URL as CONF_CONFIGURATION_URL, CONF_CONNECTIONS as CONF_CONNECTIONS, CONF_ENABLED_BY_DEFAULT as CONF_ENABLED_BY_DEFAULT, CONF_ENCODING as CONF_ENCODING, CONF_ENTITY_PICTURE as CONF_ENTITY_PICTURE, CONF_HW_VERSION as CONF_HW_VERSION, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_JSON_ATTRS_TEMPLATE as CONF_JSON_ATTRS_TEMPLATE, CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_OBJECT_ID as CONF_OBJECT_ID, CONF_PAYLOAD_AVAILABLE as CONF_PAYLOAD_AVAILABLE, CONF_PAYLOAD_NOT_AVAILABLE as CONF_PAYLOAD_NOT_AVAILABLE, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_SCHEMA as CONF_SCHEMA, CONF_SERIAL_NUMBER as CONF_SERIAL_NUMBER, CONF_SUGGESTED_AREA as CONF_SUGGESTED_AREA, CONF_SW_VERSION as CONF_SW_VERSION, CONF_TOPIC as CONF_TOPIC, CONF_VIA_DEVICE as CONF_VIA_DEVICE, DEFAULT_ENCODING as DEFAULT_ENCODING, DOMAIN as DOMAIN, MQTT_CONNECTION_STATE as MQTT_CONNECTION_STATE
 from .debug_info import log_message as log_message
 from .discovery import MQTTDiscoveryPayload as MQTTDiscoveryPayload, MQTT_DISCOVERY_DONE as MQTT_DISCOVERY_DONE, MQTT_DISCOVERY_NEW as MQTT_DISCOVERY_NEW, MQTT_DISCOVERY_UPDATED as MQTT_DISCOVERY_UPDATED, clear_discovery_hash as clear_discovery_hash, get_origin_log_string as get_origin_log_string, get_origin_support_url as get_origin_support_url, set_discovery_hash as set_discovery_hash
-from .models import DATA_MQTT as DATA_MQTT, MessageCallbackType as MessageCallbackType, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
+from .models import DATA_MQTT as DATA_MQTT, MessageCallbackType as MessageCallbackType, MqttSubentryData as MqttSubentryData, MqttValueTemplate as MqttValueTemplate, MqttValueTemplateException as MqttValueTemplateException, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .subscription import EntitySubscription as EntitySubscription, async_prepare_subscribe_topics as async_prepare_subscribe_topics, async_subscribe_topics_internal as async_subscribe_topics_internal, async_unsubscribe_topics as async_unsubscribe_topics
-from .util import mqtt_config_entry_enabled as mqtt_config_entry_enabled
+from .util import learn_more_url as learn_more_url, mqtt_config_entry_enabled as mqtt_config_entry_enabled
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable, Coroutine
@@ -18,7 +18,7 @@ from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
@@ -40,7 +40,7 @@ class _SetupNonEntityHelperCallbackProtocol(Protocol):
 @callback
 def async_setup_non_entity_entry_helper(hass: HomeAssistant, domain: str, async_setup: _SetupNonEntityHelperCallbackProtocol, discovery_schema: vol.Schema) -> None: ...
 @callback
-def async_setup_entity_entry_helper(hass: HomeAssistant, entry: ConfigEntry, entity_class: type[MqttEntity] | None, domain: str, async_add_entities: AddEntitiesCallback, discovery_schema: VolSchemaType, platform_schema_modern: VolSchemaType, schema_class_mapping: dict[str, type[MqttEntity]] | None = None) -> None: ...
+def async_setup_entity_entry_helper(hass: HomeAssistant, entry: ConfigEntry, entity_class: type[MqttEntity] | None, domain: str, async_add_entities: AddConfigEntryEntitiesCallback, discovery_schema: VolSchemaType, platform_schema_modern: VolSchemaType, schema_class_mapping: dict[str, type[MqttEntity]] | None = None) -> None: ...
 def init_entity_id_from_config(hass: HomeAssistant, entity: Entity, config: ConfigType, entity_id_format: str) -> None: ...
 
 class MqttAttributesMixin(Entity):

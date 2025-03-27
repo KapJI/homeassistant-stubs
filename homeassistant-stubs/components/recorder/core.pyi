@@ -6,7 +6,7 @@ from . import migration as migration, statistics as statistics
 from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG as MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import Base as Base, EventData as EventData, EventTypes as EventTypes, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
-from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect
+from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
 from .table_managers.event_data import EventDataManager as EventDataManager
 from .table_managers.event_types import EventTypeManager as EventTypeManager
@@ -36,7 +36,6 @@ from sqlalchemy.orm.session import Session as Session
 from typing import Any
 
 _LOGGER: Incomplete
-DEFAULT_URL: str
 EXPIRE_AFTER_COMMITS: int
 SHUTDOWN_TASK: Incomplete
 COMMIT_TASK: Incomplete

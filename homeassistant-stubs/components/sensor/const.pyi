@@ -74,6 +74,7 @@ DEVICE_CLASSES: Final[list[str]]
 
 class SensorStateClass(StrEnum):
     MEASUREMENT = 'measurement'
+    MEASUREMENT_ANGLE = 'measurement_angle'
     TOTAL = 'total'
     TOTAL_INCREASING = 'total_increasing'
 
@@ -82,3 +83,4 @@ STATE_CLASSES: Final[list[str]]
 UNIT_CONVERTERS: dict[SensorDeviceClass | str | None, type[BaseUnitConverter]]
 DEVICE_CLASS_UNITS: dict[SensorDeviceClass, set[type[StrEnum] | str | None]]
 DEVICE_CLASS_STATE_CLASSES: dict[SensorDeviceClass, set[SensorStateClass]]
+STATE_CLASS_UNITS: dict[SensorStateClass | str, set[type[StrEnum] | str | None]]

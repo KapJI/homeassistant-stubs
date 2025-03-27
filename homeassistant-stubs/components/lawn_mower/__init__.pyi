@@ -11,6 +11,7 @@ from typing import final
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[LawnMowerEntity]]
+ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete

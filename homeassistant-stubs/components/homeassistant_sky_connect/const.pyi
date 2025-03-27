@@ -4,6 +4,16 @@ from typing import Self
 
 DOMAIN: str
 DOCS_WEB_FLASHER_URL: str
+NABU_CASA_FIRMWARE_RELEASES_URL: str
+FIRMWARE: str
+FIRMWARE_VERSION: str
+SERIAL_NUMBER: str
+MANUFACTURER: str
+PRODUCT: str
+DESCRIPTION: str
+PID: str
+VID: str
+DEVICE: str
 
 @dataclasses.dataclass(frozen=True)
 class VariantInfo:

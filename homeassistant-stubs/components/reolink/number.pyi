@@ -3,7 +3,7 @@ from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as Reoli
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
+from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -21,6 +21,13 @@ class ReolinkNumberEntityDescription(NumberEntityDescription, ReolinkChannelEnti
     value: Callable[[Host, int], float | None]
 
 @dataclass(frozen=True, kw_only=True)
+class ReolinkSmartAINumberEntityDescription(NumberEntityDescription, ReolinkChannelEntityDescription):
+    smart_type: str
+    method: Callable[[Host, int, int, float], Any]
+    mode: NumberMode = ...
+    value: Callable[[Host, int, int], float | None]
+
+@dataclass(frozen=True, kw_only=True)
 class ReolinkHostNumberEntityDescription(NumberEntityDescription, ReolinkHostEntityDescription):
     method: Callable[[Host, float], Any]
     mode: NumberMode = ...
@@ -33,6 +40,7 @@ class ReolinkChimeNumberEntityDescription(NumberEntityDescription, ReolinkChimeE
     value: Callable[[Chime], float | None]
 
 NUMBER_ENTITIES: Incomplete
+SMART_AI_NUMBER_ENTITIES: Incomplete
 HOST_NUMBER_ENTITIES: Incomplete
 CHIME_NUMBER_ENTITIES: Incomplete
 
@@ -44,6 +52,18 @@ class ReolinkNumberEntity(ReolinkChannelCoordinatorEntity, NumberEntity):
     _attr_native_max_value: Incomplete
     _attr_mode: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkNumberEntityDescription) -> None: ...
+    @property
+    def native_value(self) -> float | None: ...
+    @raise_translated_error
+    async def async_set_native_value(self, value: float) -> None: ...
+
+class ReolinkSmartAINumberEntity(ReolinkChannelCoordinatorEntity, NumberEntity):
+    entity_description: ReolinkSmartAINumberEntityDescription
+    _attr_unique_id: Incomplete
+    _location: Incomplete
+    _attr_mode: Incomplete
+    _attr_translation_placeholders: Incomplete
+    def __init__(self, reolink_data: ReolinkData, channel: int, location: int, entity_description: ReolinkSmartAINumberEntityDescription) -> None: ...
     @property
     def native_value(self) -> float | None: ...
     @raise_translated_error

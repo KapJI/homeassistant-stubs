@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from hdate import Location as Location
+from hdate.translator import Language as Language
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
@@ -9,7 +10,7 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 type JewishCalendarConfigEntry = ConfigEntry[JewishCalendarData]
 @dataclass
 class JewishCalendarData:
-    language: str
+    language: Language
     diaspora: bool
     location: Location
     candle_lighting_offset: int
@@ -21,7 +22,6 @@ class JewishCalendarEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _location: Incomplete
-    _hebrew: Incomplete
     _language: Incomplete
     _candle_lighting_offset: Incomplete
     _havdalah_offset: Incomplete

@@ -1,5 +1,5 @@
 from .const import ALL_DOMAIN_EXCLUDE_ATTRS as ALL_DOMAIN_EXCLUDE_ATTRS, SupportedDialect as SupportedDialect
-from .models import StatisticData as StatisticData, StatisticDataTimestamp as StatisticDataTimestamp, StatisticMetaData as StatisticMetaData, bytes_to_ulid_or_none as bytes_to_ulid_or_none, bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, datetime_to_timestamp_or_none as datetime_to_timestamp_or_none, process_timestamp as process_timestamp, ulid_to_bytes_or_none as ulid_to_bytes_or_none, uuid_hex_to_bytes_or_none as uuid_hex_to_bytes_or_none
+from .models import StatisticData as StatisticData, StatisticDataTimestamp as StatisticDataTimestamp, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData, bytes_to_ulid_or_none as bytes_to_ulid_or_none, bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, datetime_to_timestamp_or_none as datetime_to_timestamp_or_none, process_timestamp as process_timestamp, ulid_to_bytes_or_none as ulid_to_bytes_or_none, uuid_hex_to_bytes_or_none as uuid_hex_to_bytes_or_none
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
@@ -209,6 +209,7 @@ class StatisticsBase:
     start: Mapped[datetime | None]
     start_ts: Mapped[float | None]
     mean: Mapped[float | None]
+    mean_weight: Mapped[float | None]
     min: Mapped[float | None]
     max: Mapped[float | None]
     last_reset: Mapped[datetime | None]
@@ -247,6 +248,7 @@ class _StatisticsMeta:
     has_mean: Mapped[bool | None]
     has_sum: Mapped[bool | None]
     name: Mapped[str | None]
+    mean_type: Mapped[StatisticMeanType]
     @staticmethod
     def from_meta(meta: StatisticMetaData) -> StatisticsMeta: ...
 

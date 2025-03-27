@@ -11,5 +11,6 @@ type BrotherConfigEntry = ConfigEntry[BrotherDataUpdateCoordinator]
 class BrotherDataUpdateCoordinator(DataUpdateCoordinator[BrotherSensors]):
     config_entry: BrotherConfigEntry
     brother: Incomplete
+    device_name: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: BrotherConfigEntry, brother: Brother) -> None: ...
     async def _async_update_data(self) -> BrotherSensors: ...

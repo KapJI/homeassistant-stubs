@@ -3,6 +3,7 @@ from .iidmanager import AccessoryIIDStorage as AccessoryIIDStorage
 from .util import accessory_friendly_name as accessory_friendly_name, async_dismiss_setup_message as async_dismiss_setup_message, async_show_setup_message as async_show_setup_message, cleanup_name_for_homekit as cleanup_name_for_homekit, convert_to_float as convert_to_float, format_version as format_version, validate_media_player_features as validate_media_player_features
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntityFeature as CoverEntityFeature
+from homeassistant.components.lawn_mower import LawnMowerEntityFeature as LawnMowerEntityFeature
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass
 from homeassistant.components.remote import RemoteEntityFeature as RemoteEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass

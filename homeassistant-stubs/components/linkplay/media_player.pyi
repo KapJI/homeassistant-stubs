@@ -21,23 +21,24 @@ SOURCE_MAP: dict[PlayingMode, str]
 SOURCE_MAP_INV: dict[str, PlayingMode]
 REPEAT_MAP: dict[LoopMode, RepeatMode]
 REPEAT_MAP_INV: dict[RepeatMode, LoopMode]
-EQUALIZER_MAP: dict[EqualizerMode, str]
 EQUALIZER_MAP_INV: dict[str, EqualizerMode]
 DEFAULT_FEATURES: MediaPlayerEntityFeature
 SEEKABLE_FEATURES: MediaPlayerEntityFeature
 SERVICE_PLAY_PRESET: str
 ATTR_PRESET_NUMBER: str
 SERVICE_PLAY_PRESET_SCHEMA: Incomplete
+RETRY_POLL_MAXIMUM: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LinkPlayMediaPlayerEntity(LinkPlayBaseEntity, MediaPlayerEntity):
-    _attr_sound_mode_list: Incomplete
     _attr_device_class: Incomplete
     _attr_media_content_type: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
+    _retry_count: int
     _attr_source_list: Incomplete
+    _attr_sound_mode_list: Incomplete
     def __init__(self, bridge: LinkPlayBridge) -> None: ...
     _attr_available: bool
     @exception_wrap

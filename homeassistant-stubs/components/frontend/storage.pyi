@@ -3,9 +3,10 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
-DATA_STORAGE: str
+DATA_STORAGE: HassKey[tuple[dict[str, Store], dict[str, dict]]]
 STORAGE_VERSION_USER_DATA: int
 
 @callback

@@ -2,7 +2,8 @@ from . import DATA_COMPONENT as DATA_COMPONENT
 from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDON_NAME as OTBR_ADDON_NAME, OTBR_ADDON_SLUG as OTBR_ADDON_SLUG, ZIGBEE_FLASHER_ADDON_MANAGER_DATA as ZIGBEE_FLASHER_ADDON_MANAGER_DATA, ZIGBEE_FLASHER_ADDON_NAME as ZIGBEE_FLASHER_ADDON_NAME, ZIGBEE_FLASHER_ADDON_SLUG as ZIGBEE_FLASHER_ADDON_SLUG
 from .silabs_multiprotocol_addon import WaitingAddonManager as WaitingAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager
 from _typeshed import Incomplete
-from collections.abc import Iterable
+from collections.abc import AsyncIterator, Iterable
+from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
@@ -34,11 +35,15 @@ class OwningAddon:
     slug: str
     def _get_addon_manager(self, hass: HomeAssistant) -> WaitingAddonManager: ...
     async def is_running(self, hass: HomeAssistant) -> bool: ...
+    @asynccontextmanager
+    async def temporarily_stop(self, hass: HomeAssistant) -> AsyncIterator[None]: ...
 
 @dataclass(kw_only=True)
 class OwningIntegration:
     config_entry_id: str
     async def is_running(self, hass: HomeAssistant) -> bool: ...
+    @asynccontextmanager
+    async def temporarily_stop(self, hass: HomeAssistant) -> AsyncIterator[None]: ...
 
 @dataclass(kw_only=True)
 class FirmwareInfo:

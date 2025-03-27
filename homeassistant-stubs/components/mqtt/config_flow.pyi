@@ -1,20 +1,26 @@
 import asyncio
+import voluptuous as vol
 from .addon import get_addon_manager as get_addon_manager
 from .client import MqttClientSetup as MqttClientSetup
-from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONFIG_ENTRY_MINOR_VERSION as CONFIG_ENTRY_MINOR_VERSION, CONFIG_ENTRY_VERSION as CONFIG_ENTRY_VERSION, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_DISCOVERY as DEFAULT_DISCOVERY, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PREFIX as DEFAULT_PREFIX, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, SUPPORTED_PROTOCOLS as SUPPORTED_PROTOCOLS, TRANSPORT_TCP as TRANSPORT_TCP, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
-from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, get_file_path as get_file_path, valid_birth_will as valid_birth_will, valid_publish_topic as valid_publish_topic
+from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONFIG_ENTRY_MINOR_VERSION as CONFIG_ENTRY_MINOR_VERSION, CONFIG_ENTRY_VERSION as CONFIG_ENTRY_VERSION, CONF_AVAILABILITY_TEMPLATE as CONF_AVAILABILITY_TEMPLATE, CONF_AVAILABILITY_TOPIC as CONF_AVAILABILITY_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_ENTITY_PICTURE as CONF_ENTITY_PICTURE, CONF_EXPIRE_AFTER as CONF_EXPIRE_AFTER, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_LAST_RESET_VALUE_TEMPLATE as CONF_LAST_RESET_VALUE_TEMPLATE, CONF_OPTIONS as CONF_OPTIONS, CONF_PAYLOAD_AVAILABLE as CONF_PAYLOAD_AVAILABLE, CONF_PAYLOAD_NOT_AVAILABLE as CONF_PAYLOAD_NOT_AVAILABLE, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_SUGGESTED_DISPLAY_PRECISION as CONF_SUGGESTED_DISPLAY_PRECISION, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_DISCOVERY as DEFAULT_DISCOVERY, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PAYLOAD_AVAILABLE as DEFAULT_PAYLOAD_AVAILABLE, DEFAULT_PAYLOAD_NOT_AVAILABLE as DEFAULT_PAYLOAD_NOT_AVAILABLE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PREFIX as DEFAULT_PREFIX, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, Platform as Platform, SUPPORTED_PROTOCOLS as SUPPORTED_PROTOCOLS, TRANSPORT_TCP as TRANSPORT_TCP, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
+from .models import MqttAvailabilityData as MqttAvailabilityData, MqttDeviceData as MqttDeviceData, MqttSubentryData as MqttSubentryData
+from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, get_file_path as get_file_path, learn_more_url as learn_more_url, valid_birth_will as valid_birth_will, valid_publish_topic as valid_publish_topic, valid_qos_schema as valid_qos_schema, valid_subscribe_topic as valid_subscribe_topic, valid_subscribe_topic_template as valid_subscribe_topic_template
 from _typeshed import Incomplete
 from collections import OrderedDict
 from collections.abc import Callable as Callable, Mapping
+from dataclasses import dataclass
+from enum import IntEnum
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
-from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_DISCOVERY as CONF_DISCOVERY, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PAYLOAD as CONF_PAYLOAD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
+from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, ConfigSubentryFlow as ConfigSubentryFlow, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE, SubentryFlowResult as SubentryFlowResult
+from homeassistant.const import ATTR_CONFIGURATION_URL as ATTR_CONFIGURATION_URL, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL as ATTR_MODEL, ATTR_MODEL_ID as ATTR_MODEL_ID, ATTR_NAME as ATTR_NAME, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_DEVICE as CONF_DEVICE, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_DISCOVERY as CONF_DISCOVERY, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PASSWORD as CONF_PASSWORD, CONF_PAYLOAD as CONF_PAYLOAD, CONF_PLATFORM as CONF_PLATFORM, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_USERNAME as CONF_USERNAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.data_entry_flow import AbortFlow as AbortFlow
+from homeassistant.data_entry_flow import AbortFlow as AbortFlow, SectionConfig as SectionConfig, section as section
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.json import json_dumps as json_dumps
-from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, FileSelector as FileSelector, FileSelectorConfig as FileSelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
+from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, FileSelector as FileSelector, FileSelectorConfig as FileSelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, Selector as Selector, TemplateSelector as TemplateSelector, TemplateSelectorConfig as TemplateSelectorConfig, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from types import MappingProxyType
@@ -23,6 +29,7 @@ from typing import Any
 _LOGGER: Incomplete
 ADDON_SETUP_TIMEOUT: int
 ADDON_SETUP_TIMEOUT_ROUNDS: int
+CONF_CLIENT_KEY_PASSWORD: str
 MQTT_TIMEOUT: int
 ADVANCED_OPTIONS: str
 SET_CA_CERT: str
@@ -33,6 +40,7 @@ PUBLISH_TOPIC_SELECTOR: Incomplete
 PORT_SELECTOR: Incomplete
 PASSWORD_SELECTOR: Incomplete
 QOS_SELECTOR: Incomplete
+QOS_DATA_SCHEMA: Incomplete
 KEEPALIVE_SELECTOR: Incomplete
 PROTOCOL_SELECTOR: Incomplete
 SUPPORTED_TRANSPORTS: Incomplete
@@ -43,11 +51,55 @@ BROKER_VERIFICATION_SELECTOR: Incomplete
 CA_CERT_UPLOAD_SELECTOR: Incomplete
 CERT_UPLOAD_SELECTOR: Incomplete
 KEY_UPLOAD_SELECTOR: Incomplete
+SUBENTRY_PLATFORMS: Incomplete
+SUBENTRY_PLATFORM_SELECTOR: Incomplete
+TEMPLATE_SELECTOR: Incomplete
+SUBENTRY_AVAILABILITY_SCHEMA: Incomplete
+SENSOR_DEVICE_CLASS_SELECTOR: Incomplete
+SENSOR_STATE_CLASS_SELECTOR: Incomplete
+OPTIONS_SELECTOR: Incomplete
+SUGGESTED_DISPLAY_PRECISION_SELECTOR: Incomplete
+EXPIRE_AFTER_SELECTOR: Incomplete
+SWITCH_DEVICE_CLASS_SELECTOR: Incomplete
+
+@callback
+def validate_sensor_platform_config(config: dict[str, Any]) -> dict[str, str]: ...
+
+@dataclass(frozen=True)
+class PlatformField:
+    selector: Selector[Any] | Callable[..., Selector[Any]]
+    required: bool
+    validator: Callable[..., Any]
+    error: str | None = ...
+    default: str | int | vol.Undefined = ...
+    exclude_from_reconfig: bool = ...
+    conditions: tuple[dict[str, Any], ...] | None = ...
+    custom_filtering: bool = ...
+    section: str | None = ...
+
+@callback
+def unit_of_measurement_selector(user_data: dict[str, Any | None]) -> Selector: ...
+
+COMMON_ENTITY_FIELDS: Incomplete
+PLATFORM_ENTITY_FIELDS: Incomplete
+PLATFORM_MQTT_FIELDS: Incomplete
+ENTITY_CONFIG_VALIDATOR: dict[str, Callable[[dict[str, Any]], dict[str, str]] | None]
+MQTT_DEVICE_PLATFORM_FIELDS: Incomplete
 REAUTH_SCHEMA: Incomplete
 PWD_NOT_CHANGED: str
 
 @callback
 def update_password_from_user_input(entry_password: str | None, user_input: dict[str, Any]) -> dict[str, Any]: ...
+@callback
+def validate_field(field: str, validator: Callable[..., Any], user_input: dict[str, Any] | None, errors: dict[str, str], error: str) -> None: ...
+@callback
+def _check_conditions(platform_field: PlatformField, component_data: dict[str, Any] | None = None) -> bool: ...
+@callback
+def calculate_merged_config(merged_user_input: dict[str, Any], data_schema_fields: dict[str, PlatformField], component_data: dict[str, Any]) -> dict[str, Any]: ...
+@callback
+def validate_user_input(user_input: dict[str, Any], data_schema_fields: dict[str, PlatformField], *, component_data: dict[str, Any] | None = None, config_validator: Callable[[dict[str, Any]], dict[str, str]] | None = None) -> tuple[dict[str, Any], dict[str, str]]: ...
+@callback
+def data_schema_from_fields(data_schema_fields: dict[str, PlatformField], reconfig: bool, component_data: dict[str, Any] | None = None, user_input: dict[str, Any] | None = None, device_data: MqttDeviceData | None = None) -> vol.Schema: ...
 
 class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = CONFIG_ENTRY_VERSION
@@ -57,6 +109,9 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     install_task: asyncio.Task | None
     start_task: asyncio.Task | None
     def __init__(self) -> None: ...
+    @classmethod
+    @callback
+    def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> MQTTOptionsFlowHandler: ...
@@ -81,7 +136,41 @@ class MQTTOptionsFlowHandler(OptionsFlow):
     async def async_step_init(self, user_input: None = None) -> ConfigFlowResult: ...
     async def async_step_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-async def _get_uploaded_file(hass: HomeAssistant, id: str) -> str: ...
+class MQTTSubentryFlowHandler(ConfigSubentryFlow):
+    _subentry_data: MqttSubentryData
+    _component_id: str | None
+    @callback
+    def update_component_fields(self, data_schema_fields: dict[str, PlatformField], merged_user_input: dict[str, Any]) -> None: ...
+    @callback
+    def generate_names(self) -> tuple[str, str]: ...
+    @callback
+    def get_suggested_values_from_component(self, data_schema: vol.Schema) -> dict[str, Any]: ...
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_device(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_entity(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    def _show_update_or_delete_form(self, step_id: str) -> SubentryFlowResult: ...
+    async def async_step_update_entity(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_delete_entity(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_entity_platform_config(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_mqtt_platform_config(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    @callback
+    def _async_create_subentry(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_availability(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_summary_menu(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def async_step_save_changes(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+
+@callback
+def async_is_pem_data(data: bytes) -> bool: ...
+
+class PEMType(IntEnum):
+    CERTIFICATE = 1
+    PRIVATE_KEY = 2
+
+@callback
+def async_convert_to_pem(data: bytes, pem_type: PEMType, password: str | None = None) -> str | None: ...
+async def _get_uploaded_file(hass: HomeAssistant, id: str) -> bytes: ...
+def _validate_pki_file(file_id: str | None, pem_data: str | None, errors: dict[str, str], error: str) -> bool: ...
 async def async_get_broker_settings(flow: ConfigFlow | OptionsFlow, fields: OrderedDict[Any, Any], entry_config: MappingProxyType[str, Any] | None, user_input: dict[str, Any] | None, validated_user_input: dict[str, Any], errors: dict[str, str]) -> bool: ...
 def try_connection(user_input: dict[str, Any]) -> bool: ...
 def check_certicate_chain() -> str | None: ...

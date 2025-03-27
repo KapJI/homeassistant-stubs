@@ -1,11 +1,8 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import SynologyDSMCentralUpdateCoordinator as SynologyDSMCentralUpdateCoordinator
+from .coordinator import SynologyDSMCentralUpdateCoordinator as SynologyDSMCentralUpdateCoordinator, SynologyDSMConfigEntry as SynologyDSMConfigEntry
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
-from .models import SynologyDSMData as SynologyDSMData
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -16,7 +13,7 @@ class SynologyDSMUpdateEntityEntityDescription(UpdateEntityDescription, Synology
 
 UPDATE_ENTITIES: Final[Incomplete]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SynologyDSMConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SynoDSMUpdateEntity(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoordinator], UpdateEntity):
     entity_description: SynologyDSMUpdateEntityEntityDescription

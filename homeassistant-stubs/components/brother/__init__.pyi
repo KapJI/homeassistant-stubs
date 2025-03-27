@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import BrotherConfigEntry as BrotherConfigEntry, BrotherDataUpdateCoordinator as BrotherDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.snmp import async_get_snmp_engine as async_get_snmp_engine

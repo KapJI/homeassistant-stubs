@@ -1,5 +1,5 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
-from .const import BSH_AMBIENT_LIGHT_COLOR_CUSTOM_COLOR as BSH_AMBIENT_LIGHT_COLOR_CUSTOM_COLOR, DOMAIN as DOMAIN, SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID as SVE_TRANSLATION_PLACEHOLDER_ENTITY_ID
+from .const import BSH_AMBIENT_LIGHT_COLOR_CUSTOM_COLOR as BSH_AMBIENT_LIGHT_COLOR_CUSTOM_COLOR, DOMAIN as DOMAIN
 from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry, HomeConnectCoordinator as HomeConnectCoordinator
 from .entity import HomeConnectEntity as HomeConnectEntity
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error

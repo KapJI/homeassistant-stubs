@@ -1,6 +1,6 @@
 import voluptuous as vol
 from .const import CONF_BACKUP_PATH as CONF_BACKUP_PATH, CONF_BACKUP_SHARE as CONF_BACKUP_SHARE, CONF_DEVICE_TOKEN as CONF_DEVICE_TOKEN, CONF_SNAPSHOT_QUALITY as CONF_SNAPSHOT_QUALITY, CONF_VOLUMES as CONF_VOLUMES, DEFAULT_BACKUP_PATH as DEFAULT_BACKUP_PATH, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PORT_SSL as DEFAULT_PORT_SSL, DEFAULT_SNAPSHOT_QUALITY as DEFAULT_SNAPSHOT_QUALITY, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DEFAULT_USE_SSL as DEFAULT_USE_SSL, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, SYNOLOGY_CONNECTION_EXCEPTIONS as SYNOLOGY_CONNECTION_EXCEPTIONS
-from .models import SynologyDSMData as SynologyDSMData
+from .coordinator import SynologyDSMConfigEntry as SynologyDSMConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
@@ -31,7 +31,7 @@ class SynologyDSMFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> SynologyDSMOptionsFlowHandler: ...
+    def async_get_options_flow(config_entry: SynologyDSMConfigEntry) -> SynologyDSMOptionsFlowHandler: ...
     saved_user_input: dict[str, Any]
     discovered_conf: dict[str, Any]
     reauth_conf: Mapping[str, Any]
@@ -52,6 +52,7 @@ class SynologyDSMFlowHandler(ConfigFlow, domain=DOMAIN):
     def _async_get_existing_entry(self, discovered_mac: str) -> ConfigEntry | None: ...
 
 class SynologyDSMOptionsFlowHandler(OptionsFlow):
+    config_entry: SynologyDSMConfigEntry
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 async def _login_and_fetch_syno_info(api: SynologyDSM, otp_code: str | None) -> str: ...

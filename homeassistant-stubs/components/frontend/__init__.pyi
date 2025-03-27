@@ -34,16 +34,15 @@ CONF_EXTRA_JS_URL_ES5: str
 CONF_FRONTEND_REPO: str
 CONF_JS_VERSION: str
 DEFAULT_THEME_COLOR: str
-DATA_PANELS: str
-DATA_JS_VERSION: str
-DATA_EXTRA_MODULE_URL: str
-DATA_EXTRA_JS_URL_ES5: str
+DATA_PANELS: HassKey[dict[str, Panel]]
+DATA_EXTRA_MODULE_URL: HassKey[UrlManager]
+DATA_EXTRA_JS_URL_ES5: HassKey[UrlManager]
 DATA_WS_SUBSCRIBERS: HassKey[set[tuple[websocket_api.ActiveConnection, int]]]
 THEMES_STORAGE_KEY: Incomplete
 THEMES_STORAGE_VERSION: int
 THEMES_SAVE_DELAY: int
-DATA_THEMES_STORE: str
-DATA_THEMES: str
+DATA_THEMES_STORE: HassKey[Store]
+DATA_THEMES: HassKey[dict[str, Any]]
 DATA_DEFAULT_THEME: str
 DATA_DEFAULT_DARK_THEME: str
 DEFAULT_THEME: str
@@ -79,13 +78,13 @@ class Panel:
     component_name: str
     sidebar_icon: str | None
     sidebar_title: str | None
-    frontend_url_path: str | None
+    frontend_url_path: str
     config: dict[str, Any] | None
     require_admin: bool
     config_panel_domain: str | None
     def __init__(self, component_name: str, sidebar_title: str | None, sidebar_icon: str | None, frontend_url_path: str | None, config: dict[str, Any] | None, require_admin: bool, config_panel_domain: str | None) -> None: ...
     @callback
-    def to_response(self) -> PanelRespons: ...
+    def to_response(self) -> PanelResponse: ...
 
 @bind_hass
 @callback
@@ -141,11 +140,11 @@ async def websocket_get_version(hass: HomeAssistant, connection: ActiveConnectio
 @callback
 def websocket_subscribe_extra_js(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 
-class PanelRespons(TypedDict):
+class PanelResponse(TypedDict):
     component_name: str
     icon: str | None
     title: str | None
     config: dict[str, Any] | None
-    url_path: str | None
+    url_path: str
     require_admin: bool
     config_panel_domain: str | None

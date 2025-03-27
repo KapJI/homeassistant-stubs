@@ -1,4 +1,4 @@
-from .const import API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_CATEGORY as ATTR_CATEGORY, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_ENGLISH as ATTR_ENGLISH, ATTR_LEVEL as ATTR_LEVEL, ATTR_SPEED as ATTR_SPEED, ATTR_VALUE as ATTR_VALUE, MAX_FORECAST_DAYS as MAX_FORECAST_DAYS
+from .const import AIR_QUALITY_CATEGORY_MAP as AIR_QUALITY_CATEGORY_MAP, API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_CATEGORY_VALUE as ATTR_CATEGORY_VALUE, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_ENGLISH as ATTR_ENGLISH, ATTR_LEVEL as ATTR_LEVEL, ATTR_SPEED as ATTR_SPEED, ATTR_VALUE as ATTR_VALUE, MAX_FORECAST_DAYS as MAX_FORECAST_DAYS, POLLEN_CATEGORY_MAP as POLLEN_CATEGORY_MAP
 from .coordinator import AccuWeatherConfigEntry as AccuWeatherConfigEntry, AccuWeatherDailyForecastDataUpdateCoordinator as AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherObservationDataUpdateCoordinator as AccuWeatherObservationDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

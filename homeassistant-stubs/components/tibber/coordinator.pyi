@@ -1,7 +1,7 @@
 import tibber
 from _typeshed import Incomplete
 from homeassistant.components.recorder import get_instance as get_instance
-from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMetaData as StatisticMetaData
+from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData
 from homeassistant.components.recorder.statistics import async_add_external_statistics as async_add_external_statistics, get_last_statistics as get_last_statistics, statistics_during_period as statistics_during_period
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy

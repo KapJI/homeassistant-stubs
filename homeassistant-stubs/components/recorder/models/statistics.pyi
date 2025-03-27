@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
-from typing import Literal, TypedDict
+from enum import IntEnum
+from typing import Literal, NotRequired, TypedDict
 
 class StatisticResult(TypedDict):
     meta: StatisticMetaData
@@ -17,6 +18,7 @@ class StatisticMixIn(TypedDict, total=False):
     min: float
     max: float
     mean: float
+    mean_weight: float
 
 class StatisticData(StatisticDataBase, StatisticMixIn, total=False):
     last_reset: datetime | None
@@ -24,8 +26,14 @@ class StatisticData(StatisticDataBase, StatisticMixIn, total=False):
 class StatisticDataTimestamp(StatisticDataTimestampBase, StatisticMixIn, total=False):
     last_reset_ts: float | None
 
+class StatisticMeanType(IntEnum):
+    NONE = 0
+    ARITHMETIC = 1
+    CIRCULAR = 2
+
 class StatisticMetaData(TypedDict):
-    has_mean: bool
+    has_mean: NotRequired[bool]
+    mean_type: StatisticMeanType
     has_sum: bool
     name: str | None
     source: str

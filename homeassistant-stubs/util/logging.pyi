@@ -1,8 +1,23 @@
 import logging
 import logging.handlers
+from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine
 from homeassistant.core import HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type
-from typing import Any, overload
+from queue import SimpleQueue
+from typing import Any, overload, override
+
+_LOGGER: Incomplete
+
+class HomeAssistantQueueListener(logging.handlers.QueueListener):
+    LOG_COUNTS_RESET_INTERVAL: int
+    MAX_LOGS_COUNT: int
+    _last_reset: float
+    _log_counts: dict[str, int]
+    _warned_modules: set[str]
+    def __init__(self, queue: SimpleQueue[logging.Handler], *handlers: logging.Handler) -> None: ...
+    @override
+    def handle(self, record: logging.LogRecord) -> None: ...
+    def _reset_counters(self, time_sec: float) -> None: ...
 
 class HomeAssistantQueueHandler(logging.handlers.QueueHandler):
     listener: logging.handlers.QueueListener | None

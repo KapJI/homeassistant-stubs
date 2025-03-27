@@ -4,7 +4,7 @@ from .addon import get_addon_manager as get_addon_manager
 from .client import MqttClientSetup as MqttClientSetup
 from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_QOS as ATTR_QOS, ATTR_RETAIN as ATTR_RETAIN, ATTR_TOPIC as ATTR_TOPIC, CONFIG_ENTRY_MINOR_VERSION as CONFIG_ENTRY_MINOR_VERSION, CONFIG_ENTRY_VERSION as CONFIG_ENTRY_VERSION, CONF_AVAILABILITY_TEMPLATE as CONF_AVAILABILITY_TEMPLATE, CONF_AVAILABILITY_TOPIC as CONF_AVAILABILITY_TOPIC, CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_DISCOVERY_PREFIX as CONF_DISCOVERY_PREFIX, CONF_ENTITY_PICTURE as CONF_ENTITY_PICTURE, CONF_EXPIRE_AFTER as CONF_EXPIRE_AFTER, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_LAST_RESET_VALUE_TEMPLATE as CONF_LAST_RESET_VALUE_TEMPLATE, CONF_OPTIONS as CONF_OPTIONS, CONF_PAYLOAD_AVAILABLE as CONF_PAYLOAD_AVAILABLE, CONF_PAYLOAD_NOT_AVAILABLE as CONF_PAYLOAD_NOT_AVAILABLE, CONF_QOS as CONF_QOS, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_SUGGESTED_DISPLAY_PRECISION as CONF_SUGGESTED_DISPLAY_PRECISION, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_DISCOVERY as DEFAULT_DISCOVERY, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PAYLOAD_AVAILABLE as DEFAULT_PAYLOAD_AVAILABLE, DEFAULT_PAYLOAD_NOT_AVAILABLE as DEFAULT_PAYLOAD_NOT_AVAILABLE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PREFIX as DEFAULT_PREFIX, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, Platform as Platform, SUPPORTED_PROTOCOLS as SUPPORTED_PROTOCOLS, TRANSPORT_TCP as TRANSPORT_TCP, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
 from .models import MqttAvailabilityData as MqttAvailabilityData, MqttDeviceData as MqttDeviceData, MqttSubentryData as MqttSubentryData
-from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, get_file_path as get_file_path, learn_more_url as learn_more_url, valid_birth_will as valid_birth_will, valid_publish_topic as valid_publish_topic, valid_qos_schema as valid_qos_schema, valid_subscribe_topic as valid_subscribe_topic, valid_subscribe_topic_template as valid_subscribe_topic_template
+from .util import async_create_certificate_temp_files as async_create_certificate_temp_files, get_file_path as get_file_path, learn_more_url as learn_more_url, valid_birth_will as valid_birth_will, valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic, valid_subscribe_topic_template as valid_subscribe_topic_template
 from _typeshed import Incomplete
 from collections import OrderedDict
 from collections.abc import Callable as Callable, Mapping
@@ -40,7 +40,6 @@ PUBLISH_TOPIC_SELECTOR: Incomplete
 PORT_SELECTOR: Incomplete
 PASSWORD_SELECTOR: Incomplete
 QOS_SELECTOR: Incomplete
-QOS_DATA_SCHEMA: Incomplete
 KEEPALIVE_SELECTOR: Incomplete
 PROTOCOL_SELECTOR: Incomplete
 SUPPORTED_TRANSPORTS: Incomplete

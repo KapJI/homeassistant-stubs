@@ -1,8 +1,8 @@
 from _typeshed import Incomplete
 
 DOMAIN: str
-RADIO_MODEL: str
-RADIO_MANUFACTURER: str
+MODEL: str
+MANUFACTURER: str
 RADIO_DEVICE: str
 ZHA_HW_DISCOVERY_DATA: Incomplete
 FIRMWARE: str

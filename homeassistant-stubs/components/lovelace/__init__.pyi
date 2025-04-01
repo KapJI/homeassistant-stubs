@@ -3,7 +3,7 @@ from .const import CONF_ALLOW_SINGLE_WORD as CONF_ALLOW_SINGLE_WORD, CONF_ICON a
 from .system_health import system_health_info as system_health_info
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components import frontend as frontend, websocket_api as websocket_api
+from homeassistant.components import frontend as frontend, onboarding as onboarding, websocket_api as websocket_api
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml, async_process_component_and_handle_errors as async_process_component_and_handle_errors
 from homeassistant.const import CONF_FILENAME as CONF_FILENAME, CONF_MODE as CONF_MODE, CONF_RESOURCES as CONF_RESOURCES
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -11,6 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.frame import report_usage as report_usage
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
+from homeassistant.helpers.translation import async_get_translations as async_get_translations
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util import slugify as slugify
@@ -37,3 +38,4 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def create_yaml_resource_col(hass: HomeAssistant, yaml_resources: list[ConfigType] | None) -> resources.ResourceYAMLCollection: ...
 @callback
 def _register_panel(hass: HomeAssistant, url_path: str | None, mode: str, config: dict, update: bool) -> None: ...
+async def _create_map_dashboard(hass: HomeAssistant, dashboards_collection: dashboard.DashboardsCollection) -> None: ...

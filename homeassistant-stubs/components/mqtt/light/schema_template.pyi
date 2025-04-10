@@ -2,7 +2,7 @@ from .. import subscription as subscription
 from ..config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from ..const import CONF_BLUE_TEMPLATE as CONF_BLUE_TEMPLATE, CONF_BRIGHTNESS_TEMPLATE as CONF_BRIGHTNESS_TEMPLATE, CONF_COLOR_TEMP_KELVIN as CONF_COLOR_TEMP_KELVIN, CONF_COLOR_TEMP_TEMPLATE as CONF_COLOR_TEMP_TEMPLATE, CONF_COMMAND_OFF_TEMPLATE as CONF_COMMAND_OFF_TEMPLATE, CONF_COMMAND_ON_TEMPLATE as CONF_COMMAND_ON_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_EFFECT_LIST as CONF_EFFECT_LIST, CONF_EFFECT_TEMPLATE as CONF_EFFECT_TEMPLATE, CONF_GREEN_TEMPLATE as CONF_GREEN_TEMPLATE, CONF_MAX_KELVIN as CONF_MAX_KELVIN, CONF_MAX_MIREDS as CONF_MAX_MIREDS, CONF_MIN_KELVIN as CONF_MIN_KELVIN, CONF_MIN_MIREDS as CONF_MIN_MIREDS, CONF_RED_TEMPLATE as CONF_RED_TEMPLATE, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
 from ..entity import MqttEntity as MqttEntity
-from ..models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
+from ..models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from ..schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .schema import MQTT_LIGHT_SCHEMA_SCHEMA as MQTT_LIGHT_SCHEMA_SCHEMA
 from .schema_basic import MQTT_LIGHT_ATTRIBUTES_BLOCKED as MQTT_LIGHT_ATTRIBUTES_BLOCKED
@@ -30,7 +30,7 @@ class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
     _optimistic: bool
     _command_templates: dict[str, Callable[[PublishPayloadType, TemplateVarsType], PublishPayloadType]]
-    _value_templates: dict[str, Callable[[ReceivePayloadType], ReceivePayloadType]]
+    _value_templates: dict[str, Callable[[ReceivePayloadType, ReceivePayloadType], ReceivePayloadType]]
     _fixed_color_mode: ColorMode | str | None
     _topics: dict[str, str | None]
     @staticmethod

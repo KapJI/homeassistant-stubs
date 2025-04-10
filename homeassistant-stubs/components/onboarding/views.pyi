@@ -15,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from homeassistant.helpers.translation import async_get_translations as async_get_translations
-from homeassistant.setup import async_setup_component as async_setup_component
+from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as async_pause_setup, async_setup_component as async_setup_component
 from typing import Any, Concatenate
 
 async def async_setup(hass: HomeAssistant, data: OnboardingStoreData, store: OnboardingStorage) -> None: ...
@@ -97,6 +97,6 @@ class UploadBackupView(BackupOnboardingView, backup_http.UploadBackupView):
     @with_backup_manager
     async def post(self, manager: BackupManager, request: web.Request) -> web.Response: ...
 
-def setup_cloud_views(hass: HomeAssistant, data: OnboardingStoreData) -> None: ...
+async def setup_cloud_views(hass: HomeAssistant, data: OnboardingStoreData) -> None: ...
 @callback
 def _async_get_hass_provider(hass: HomeAssistant) -> HassAuthProvider: ...

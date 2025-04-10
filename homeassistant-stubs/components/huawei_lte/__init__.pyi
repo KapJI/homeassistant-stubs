@@ -35,7 +35,7 @@ class Router:
     inflight_gets: set[str] = field(default_factory=set, init=False)
     client: Client = field(init=False)
     suspended: bool = field(default=False, init=False)
-    notify_last_attempt: float = field(default=None, init=False)
+    notify_last_attempt: float = field(default=-1, init=False)
     def __post_init__(self) -> None: ...
     @property
     def device_name(self) -> str: ...

@@ -38,8 +38,7 @@ def mean(values: list[float]) -> float | None: ...
 DEG_TO_RAD: Incomplete
 RAD_TO_DEG: Incomplete
 
-def weighted_circular_mean(values: Iterable[tuple[float, float]]) -> float: ...
-def circular_mean(values: list[float]) -> float: ...
+def weighted_circular_mean(values: Iterable[tuple[float, float]]) -> tuple[float, float]: ...
 
 _LOGGER: Incomplete
 
@@ -61,6 +60,7 @@ class StatisticsRow(BaseStatisticsRow, total=False):
     min: float | None
     max: float | None
     mean: float | None
+    mean_weight: float | None
     change: float | None
 
 def get_display_unit(hass: HomeAssistant, statistic_id: str, statistic_unit: str | None) -> str | None: ...

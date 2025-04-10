@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from collections import deque
 from collections.abc import Awaitable, Callable as Callable, Mapping
 from homeassistant.components import zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_IGNORE as SOURCE_IGNORE, SOURCE_ZEROCONF as SOURCE_ZEROCONF
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_IGNORE as SOURCE_IGNORE, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_ZEROCONF as SOURCE_ZEROCONF
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_NAME as CONF_NAME, CONF_PIN as CONF_PIN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow

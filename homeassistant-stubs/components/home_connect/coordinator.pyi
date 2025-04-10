@@ -26,6 +26,8 @@ class HomeConnectApplianceData:
     settings: dict[SettingKey, GetSetting]
     status: dict[StatusKey, Status]
     def update(self, other: HomeConnectApplianceData) -> None: ...
+    @classmethod
+    def empty(cls, appliance: HomeAppliance) -> HomeConnectApplianceData: ...
 
 class HomeConnectCoordinator(DataUpdateCoordinator[dict[str, HomeConnectApplianceData]]):
     config_entry: HomeConnectConfigEntry

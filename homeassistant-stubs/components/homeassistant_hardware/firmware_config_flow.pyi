@@ -2,7 +2,7 @@ import abc
 import asyncio
 from . import silabs_multiprotocol_addon as silabs_multiprotocol_addon
 from .const import OTBR_DOMAIN as OTBR_DOMAIN, ZHA_DOMAIN as ZHA_DOMAIN
-from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, OwningAddon as OwningAddon, OwningIntegration as OwningIntegration, get_otbr_addon_manager as get_otbr_addon_manager, get_zigbee_flasher_addon_manager as get_zigbee_flasher_addon_manager, guess_hardware_owners as guess_hardware_owners, probe_silabs_firmware_info as probe_silabs_firmware_info
+from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, OwningAddon as OwningAddon, OwningIntegration as OwningIntegration, get_otbr_addon_manager as get_otbr_addon_manager, get_zigbee_flasher_addon_manager as get_zigbee_flasher_addon_manager, guess_firmware_info as guess_firmware_info, guess_hardware_owners as guess_hardware_owners, probe_silabs_firmware_info as probe_silabs_firmware_info
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
@@ -50,6 +50,7 @@ class BaseFirmwareConfigFlow(BaseFirmwareInstallFlow, ConfigFlow, metaclass=abc.
     @callback
     @abstractmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
+    _probed_firmware_info: Incomplete
     async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class BaseFirmwareOptionsFlow(BaseFirmwareInstallFlow, OptionsFlow, metaclass=abc.ABCMeta):

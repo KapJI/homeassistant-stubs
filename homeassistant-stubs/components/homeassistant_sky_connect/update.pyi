@@ -20,7 +20,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class FirmwareUpdateEntity(BaseFirmwareUpdateEntity):
     bootloader_reset_type: Incomplete
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _current_firmware_info: Incomplete

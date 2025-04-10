@@ -52,7 +52,6 @@ class BaseFirmwareUpdateEntity(CoordinatorEntity[FirmwareUpdateCoordinator], Upd
     def _on_config_entry_change(self) -> None: ...
     @callback
     def _firmware_info_callback(self, firmware_info: FirmwareInfo) -> None: ...
-    _attr_name: Incomplete
     _attr_title: Incomplete
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete

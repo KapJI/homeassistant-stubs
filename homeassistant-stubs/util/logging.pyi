@@ -11,13 +11,15 @@ _LOGGER: Incomplete
 class HomeAssistantQueueListener(logging.handlers.QueueListener):
     LOG_COUNTS_RESET_INTERVAL: int
     MAX_LOGS_COUNT: int
+    EXCLUDED_LOG_COUNT_MODULES: Incomplete
     _last_reset: float
     _log_counts: dict[str, int]
-    _warned_modules: set[str]
+    _module_log_count_skip_flags: dict[str, bool]
     def __init__(self, queue: SimpleQueue[logging.Handler], *handlers: logging.Handler) -> None: ...
     @override
     def handle(self, record: logging.LogRecord) -> None: ...
     def _reset_counters(self, time_sec: float) -> None: ...
+    def _update_skip_flags(self, module_name: str) -> bool: ...
 
 class HomeAssistantQueueHandler(logging.handlers.QueueHandler):
     listener: logging.handlers.QueueListener | None

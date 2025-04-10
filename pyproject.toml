@@ -53,7 +53,7 @@ prerelease = "allow"
 
 [tool.uv.sources]
 # TODO switch back to released versions with 1.16.0
-mypy = { git = "https://github.com/python/mypy", rev = "3ced11a43e75dd97554d5c7af78da296ee0d04ec" }
+mypy = { git = "https://github.com/python/mypy", rev = "e3680ce169e31a5c7d268e022eb1501e93f6fdba" }
 
 [tool.pylint.format]
 expected-line-ending-format = "LF"

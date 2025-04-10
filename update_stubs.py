@@ -325,7 +325,7 @@ def get_old_typed_paths(homeassistant_root: Path) -> list[Path]:
 def generate_stubs(typed_paths: list[Path], repo_root: Path) -> None:
     """Use stubgen to generate typing stubs for all typed paths."""
     LOGGER.info("Generating stubs...")
-    with tempfile.NamedTemporaryFile("w", delete_on_close=False) as f:
+    with tempfile.NamedTemporaryFile("w", delete_on_close=False, delete=False) as f:
         f.write("\n".join(map(str, typed_paths)))
         f.close()
         command_args: list[str] = [

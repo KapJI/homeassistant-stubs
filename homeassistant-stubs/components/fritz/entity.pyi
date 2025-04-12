@@ -13,6 +13,7 @@ class FritzDeviceBase(CoordinatorEntity[AvmWrapper]):
     _avm_wrapper: Incomplete
     _mac: str
     _name: str
+    _attr_device_info: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
     def name(self) -> str: ...

@@ -46,6 +46,7 @@ class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceProp]):
     _api_client: Incomplete
     _is_cloud_api: bool
     map_parser: Incomplete
+    last_update_state: str | None
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: HomeDataDevice, device_networking: NetworkInfo, product_info: HomeDataProduct, cloud_api: RoborockMqttClientV1, home_data_rooms: list[HomeDataRoom], api_client: RoborockApiClient, user_data: UserData) -> None: ...
     @cached_property
     def dock_device_info(self) -> DeviceInfo: ...

@@ -98,7 +98,6 @@ class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
     _name: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_category: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
     def is_on(self) -> bool | None: ...

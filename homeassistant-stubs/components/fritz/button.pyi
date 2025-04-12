@@ -1,4 +1,4 @@
-from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, DOMAIN as DOMAIN, MeshRoles as MeshRoles
+from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, MeshRoles as MeshRoles
 from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData, FritzDevice as FritzDevice, _is_tracked as _is_tracked
 from .entity import FritzDeviceBase as FritzDeviceBase
 from _typeshed import Incomplete
@@ -40,6 +40,5 @@ class FritzBoxWOLButton(FritzDeviceBase, ButtonEntity):
     _name: Incomplete
     _attr_unique_id: Incomplete
     _is_available: bool
-    _attr_device_info: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     async def async_press(self) -> None: ...

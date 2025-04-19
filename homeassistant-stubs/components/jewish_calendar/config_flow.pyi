@@ -11,7 +11,7 @@ LANGUAGE: Incomplete
 OPTIONS_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
-def _get_data_schema(hass: HomeAssistant) -> vol.Schema: ...
+async def _get_data_schema(hass: HomeAssistant) -> vol.Schema: ...
 
 class JewishCalendarConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

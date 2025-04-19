@@ -24,6 +24,7 @@ LLM_API_ASSIST: str
 BASE_PROMPT: str
 DEFAULT_INSTRUCTIONS_PROMPT: str
 NO_ENTITIES_PROMPT: str
+DYNAMIC_CONTEXT_PROMPT: str
 
 @callback
 def async_render_no_api_prompt(hass: HomeAssistant) -> str: ...
@@ -119,7 +120,7 @@ class CalendarGetEventsTool(Tool):
     def __init__(self, calendars: list[str]) -> None: ...
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
-class GetHomeStateTool(Tool):
+class GetLiveContextTool(Tool):
     name: str
     description: str
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...

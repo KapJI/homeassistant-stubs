@@ -28,6 +28,8 @@ SERVICE_PLAY_PRESET: str
 ATTR_PRESET_NUMBER: str
 SERVICE_PLAY_PRESET_SCHEMA: Incomplete
 RETRY_POLL_MAXIMUM: int
+SCAN_INTERVAL: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: LinkPlayConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

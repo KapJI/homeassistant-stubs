@@ -19,8 +19,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 keywords = ["homeassistant", "typing", "pep484"]
-# Forbid 3.14 because of home-assistant-bluetooth package.
-requires-python = ">=3.13,<3.14"
+requires-python = ">=3.13.2"
 dynamic = ["version"]
 dependencies = [
     "homeassistant==2025.4.4",

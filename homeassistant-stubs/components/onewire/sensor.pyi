@@ -10,7 +10,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from types import MappingProxyType
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -30,7 +29,7 @@ EDS_SENSORS: dict[str, tuple[OneWireSensorEntityDescription, ...]]
 
 def get_sensor_types(device_sub_type: str) -> dict[str, tuple[OneWireSensorEntityDescription, ...]]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: OneWireConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-def get_entities(onewire_hub: OneWireHub, devices: list[OWDeviceDescription], options: MappingProxyType[str, Any]) -> list[OneWireSensorEntity]: ...
+def get_entities(onewire_hub: OneWireHub, devices: list[OWDeviceDescription], options: Mapping[str, Any]) -> list[OneWireSensorEntity]: ...
 
 class OneWireSensorEntity(OneWireEntity, SensorEntity):
     entity_description: OneWireSensorEntityDescription

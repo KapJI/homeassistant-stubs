@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL, _LOGGER as 
 from _typeshed import Incomplete
 from abc import abstractmethod
 from aiocomelit.api import AlarmDataObject, ComelitCommonApi as ComelitCommonApi, ComelitSerialBridgeObject, ComelitVedoApi, ComelitVedoAreaObject as ComelitVedoAreaObject, ComelitVedoZoneObject as ComelitVedoZoneObject, ComeliteSerialBridgeApi
+from aiohttp import ClientSession as ClientSession
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -28,11 +29,11 @@ class ComelitBaseCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
 class ComelitSerialBridge(ComelitBaseCoordinator[dict[str, dict[int, ComelitSerialBridgeObject]]]):
     _hw_version: str
     api: ComeliteSerialBridgeApi
-    def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: int) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: int, session: ClientSession) -> None: ...
     async def _async_update_system_data(self) -> dict[str, dict[int, ComelitSerialBridgeObject]]: ...
 
 class ComelitVedoSystem(ComelitBaseCoordinator[AlarmDataObject]):
     _hw_version: str
     api: ComelitVedoApi
-    def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: int) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: int, session: ClientSession) -> None: ...
     async def _async_update_system_data(self) -> AlarmDataObject: ...

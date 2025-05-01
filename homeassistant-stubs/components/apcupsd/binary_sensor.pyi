@@ -14,8 +14,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: APCUPSdConfigEntr
 
 class OnlineStatus(CoordinatorEntity[APCUPSdCoordinator], BinarySensorEntity):
     _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
     entity_description: Incomplete
+    _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: APCUPSdCoordinator, description: BinarySensorEntityDescription) -> None: ...
     @property

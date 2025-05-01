@@ -11,6 +11,7 @@ from pysmlight import Sensors as Sensors, SettingsEvent as SettingsEvent
 from pysmlight.const import Settings
 from typing import Any
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)

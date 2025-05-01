@@ -26,7 +26,7 @@ class HistoryStats:
     _period: Incomplete
     _state: HistoryStatsState
     _history_current_period: list[HistoryState]
-    _previous_run_before_start: bool
+    _has_recorder_data: bool
     _entity_states: Incomplete
     _duration: Incomplete
     _start: Incomplete
@@ -36,3 +36,4 @@ class HistoryStats:
     async def _async_history_from_db(self, current_period_start_timestamp: float, current_period_end_timestamp: float) -> None: ...
     def _state_changes_during_period(self, start_ts: float, end_ts: float) -> list[State]: ...
     def _async_compute_seconds_and_changes(self, now_timestamp: float, start_timestamp: float, end_timestamp: float) -> tuple[float, int]: ...
+    def _prune_history_cache(self, start_timestamp: float) -> None: ...

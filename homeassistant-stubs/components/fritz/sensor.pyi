@@ -14,6 +14,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 def _uptime_calculation(seconds_uptime: float, last_value: datetime | None) -> datetime: ...
 def _retrieve_device_uptime_state(status: FritzStatus, last_value: datetime) -> datetime: ...

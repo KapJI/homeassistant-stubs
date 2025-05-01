@@ -1,9 +1,12 @@
 from .const import DISCOVERY_SVC_UUID as DISCOVERY_SVC_UUID, DOMAIN as DOMAIN
+from _typeshed import Incomplete
 from habluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.components.bluetooth.api import async_discovered_service_info as async_discovered_service_info
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from typing import Any
+
+_LOGGER: Incomplete
 
 class IronOSConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovery_info: BluetoothServiceInfoBleak | None

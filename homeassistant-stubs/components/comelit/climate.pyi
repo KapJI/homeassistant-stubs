@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge
+from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
 from enum import StrEnum
@@ -8,7 +9,6 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, TypedDict
 
 PARALLEL_UPDATES: int
@@ -35,19 +35,14 @@ MODE_TO_ACTION: dict[HVACMode, ClimaComelitCommand]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ComelitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ComelitClimateEntity(CoordinatorEntity[ComelitSerialBridge], ClimateEntity):
+class ComelitClimateEntity(ComelitBridgeBaseEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_max_temp: int
     _attr_min_temp: int
     _attr_supported_features: Incomplete
     _attr_target_temperature_step = PRECISION_TENTHS
     _attr_temperature_unit: Incomplete
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
-    _api: Incomplete
-    _device: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_hvac_action: Incomplete

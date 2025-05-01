@@ -9,3 +9,4 @@ WINDOW_MAP: Incomplete
 WINDOW_MAP_REVERSED: Incomplete
 CLIMATE_PROFILES: Incomplete
 LIGHT_PROFILES: Incomplete
+PRESET_MANUAL: str

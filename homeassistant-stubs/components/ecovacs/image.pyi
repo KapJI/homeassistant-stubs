@@ -14,6 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntr
 class EcovacsMap(EcovacsEntity[CapabilityMap], ImageEntity):
     _attr_content_type: str
     _attr_extra_state_attributes: Incomplete
+    _map: Incomplete
     def __init__(self, device: Device, capability: CapabilityMap, hass: HomeAssistant) -> None: ...
     entity_description: Incomplete
     def image(self) -> bytes | None: ...

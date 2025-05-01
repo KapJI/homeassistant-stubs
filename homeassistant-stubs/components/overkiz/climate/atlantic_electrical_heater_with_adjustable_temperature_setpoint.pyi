@@ -2,7 +2,7 @@ from ..const import DOMAIN as DOMAIN
 from ..coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
-from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
+from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from typing import Any
 
@@ -15,6 +15,7 @@ PRESET_EXTERNAL: str
 OVERKIZ_TO_PRESET_MODE: dict[str, str]
 PRESET_MODE_TO_OVERKIZ: Incomplete
 OVERKIZ_TO_HVAC_MODE: dict[str, HVACMode]
+OVERKIZ_TO_HVAC_ACTION: dict[str, HVACAction]
 HVAC_MODE_TO_OVERKIZ: Incomplete
 TEMPERATURE_SENSOR_DEVICE_INDEX: int
 
@@ -29,6 +30,8 @@ class AtlanticElectricalHeaterWithAdjustableTemperatureSetpoint(OverkizEntity, C
     @property
     def hvac_mode(self) -> HVACMode: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @property
+    def hvac_action(self) -> HVACAction: ...
     @property
     def preset_mode(self) -> str | None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

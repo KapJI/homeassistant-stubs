@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from typing import Final
 
 DOMAIN: str
 CONF_ALLOW_SERVICE_CALLS: str
@@ -8,9 +9,9 @@ CONF_NOISE_PSK: str
 CONF_BLUETOOTH_MAC_ADDRESS: str
 DEFAULT_ALLOW_SERVICE_CALLS: bool
 DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS: bool
+DEFAULT_PORT: Final[int]
 STABLE_BLE_VERSION_STR: str
 STABLE_BLE_VERSION: Incomplete
 PROJECT_URLS: Incomplete
 STABLE_BLE_URL_VERSION: Incomplete
 DEFAULT_URL: Incomplete
-DATA_FFMPEG_PROXY: Incomplete

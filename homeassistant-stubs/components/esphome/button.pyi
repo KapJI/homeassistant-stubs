@@ -5,6 +5,8 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 
+PARALLEL_UPDATES: int
+
 class EsphomeButton(EsphomeEntity[ButtonInfo, EntityState], ButtonEntity):
     _attr_device_class: Incomplete
     @callback

@@ -52,20 +52,26 @@ class BackupConfig:
 @dataclass(kw_only=True)
 class AgentConfig:
     protected: bool
+    retention: AgentRetentionConfig | None = ...
     def to_dict(self) -> StoredAgentConfig: ...
 
 class StoredAgentConfig(TypedDict):
     protected: bool
+    retention: StoredRetentionConfig | None
 
 class AgentParametersDict(TypedDict, total=False):
     protected: bool
+    retention: RetentionParametersDict | None
 
 @dataclass(kw_only=True)
-class RetentionConfig:
+class BaseRetentionConfig:
     copies: int | None = ...
     days: int | None = ...
-    def apply(self, manager: BackupManager) -> None: ...
     def to_dict(self) -> StoredRetentionConfig: ...
+
+@dataclass(kw_only=True)
+class RetentionConfig(BaseRetentionConfig):
+    def apply(self, manager: BackupManager) -> None: ...
     @callback
     def _schedule_next(self, manager: BackupManager) -> None: ...
     @callback
@@ -78,6 +84,8 @@ class StoredRetentionConfig(TypedDict):
 class RetentionParametersDict(TypedDict, total=False):
     copies: int | None
     days: int | None
+
+class AgentRetentionConfig(BaseRetentionConfig): ...
 
 class StoredBackupSchedule(TypedDict):
     days: list[Day]

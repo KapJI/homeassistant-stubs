@@ -79,6 +79,9 @@ class PassiveBluetoothProcessorCoordinator[_DataT](BasePassiveBluetoothCoordinat
     _available: bool
     @callback
     def _async_handle_bluetooth_event(self, service_info: BluetoothServiceInfoBleak, change: BluetoothChange) -> None: ...
+    @callback
+    def async_set_updated_data(self, update: _DataT) -> None: ...
+    def _process_update(self, update: _DataT, was_available: bool | None = None) -> None: ...
 
 class PassiveBluetoothDataProcessor[_T, _DataT]:
     coordinator: PassiveBluetoothProcessorCoordinator[_DataT]

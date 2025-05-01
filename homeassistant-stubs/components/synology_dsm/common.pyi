@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from synology_dsm import SynologyDSM
+from synology_dsm.api.core.external_usb import SynoCoreExternalUSB
 from synology_dsm.api.core.security import SynoCoreSecurity
 from synology_dsm.api.core.system import SynoCoreSystem
 from synology_dsm.api.core.upgrade import SynoCoreUpgrade
@@ -36,6 +37,7 @@ class SynoApi:
     system: SynoCoreSystem | None
     upgrade: SynoCoreUpgrade | None
     utilisation: SynoCoreUtilization | None
+    external_usb: SynoCoreExternalUSB | None
     _fetching_entities: dict[str, set[str]]
     _with_file_station: bool
     _with_information: bool
@@ -46,6 +48,7 @@ class SynoApi:
     _with_system: bool
     _with_upgrade: bool
     _with_utilisation: bool
+    _with_external_usb: bool
     _login_future: asyncio.Future[None] | None
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     async def async_login(self) -> None: ...

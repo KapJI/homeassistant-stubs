@@ -45,6 +45,7 @@ class ISYNodeEntity(ISYEntity):
 class ISYProgramEntity(ISYEntity):
     _actions: Program
     _status: Program
+    _node: Program
     _attr_name: Incomplete
     def __init__(self, name: str, status: Program, actions: Program = None) -> None: ...
     @property

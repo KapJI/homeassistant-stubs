@@ -7,7 +7,7 @@ from homeassistant.const import CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_SCAN_INTE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
-from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, TEMPLATE_SENSOR_BASE_SCHEMA as TEMPLATE_SENSOR_BASE_SCHEMA
+from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, TEMPLATE_SENSOR_BASE_SCHEMA as TEMPLATE_SENSOR_BASE_SCHEMA, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 type ScrapeConfigEntry = ConfigEntry[ScrapeCoordinator]

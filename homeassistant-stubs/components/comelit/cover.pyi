@@ -1,25 +1,20 @@
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge
+from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverState as CoverState
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ComelitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ComelitCoverEntity(CoordinatorEntity[ComelitSerialBridge], RestoreEntity, CoverEntity):
+class ComelitCoverEntity(ComelitBridgeBaseEntity, RestoreEntity, CoverEntity):
     _attr_device_class: Incomplete
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
-    _api: Incomplete
-    _device: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     _last_action: int | None
     _last_state: str | None
     def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str) -> None: ...

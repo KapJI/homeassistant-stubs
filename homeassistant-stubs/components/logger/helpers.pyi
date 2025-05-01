@@ -9,19 +9,21 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
+DATA_LOGGER: HassKey[LoggerDomainConfig]
 SAVE_DELAY: float
 SAVE_DELAY_LONG: float
 
-@callback
-def async_get_domain_config(hass: HomeAssistant) -> LoggerDomainConfig: ...
 @callback
 def set_default_log_level(hass: HomeAssistant, level: int) -> None: ...
 @callback
 def set_log_levels(hass: HomeAssistant, logpoints: Mapping[str, int]) -> None: ...
 def _set_log_level(logger: logging.Logger, level: int) -> None: ...
 def _chattiest_log_level(level1: int, level2: int) -> int: ...
+@callback
+def _clear_logger_overwrites(hass: HomeAssistant) -> None: ...
 async def get_integration_loggers(hass: HomeAssistant, domain: str) -> set[str]: ...
 
 @dataclass(slots=True)

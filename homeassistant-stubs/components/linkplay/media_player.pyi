@@ -1,10 +1,9 @@
-from . import LinkPlayConfigEntry as LinkPlayConfigEntry, LinkPlayData as LinkPlayData
-from .const import CONTROLLER_KEY as CONTROLLER_KEY, DOMAIN as DOMAIN
+from . import LinkPlayConfigEntry as LinkPlayConfigEntry, SHARED_DATA as SHARED_DATA
+from .const import DOMAIN as DOMAIN
 from .entity import LinkPlayBaseEntity as LinkPlayBaseEntity, exception_wrap as exception_wrap
 from _typeshed import Incomplete
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
-from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -42,6 +41,7 @@ class LinkPlayMediaPlayerEntity(LinkPlayBaseEntity, MediaPlayerEntity):
     _attr_source_list: Incomplete
     _attr_sound_mode_list: Incomplete
     def __init__(self, bridge: LinkPlayBridge) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
     _attr_available: bool
     @exception_wrap
     async def async_update(self) -> None: ...
@@ -74,9 +74,11 @@ class LinkPlayMediaPlayerEntity(LinkPlayBaseEntity, MediaPlayerEntity):
     async def async_media_seek(self, position: float) -> None: ...
     @exception_wrap
     async def async_join_players(self, group_members: list[str]) -> None: ...
-    def _get_linkplay_bridge(self, entity_id: str) -> LinkPlayBridge: ...
+    async def _get_linkplay_bridge(self, entity_id: str) -> LinkPlayBridge: ...
     @property
     def group_members(self) -> list[str]: ...
+    @property
+    def media_image_url(self) -> str | None: ...
     @exception_wrap
     async def async_unjoin_player(self) -> None: ...
     _attr_state: Incomplete

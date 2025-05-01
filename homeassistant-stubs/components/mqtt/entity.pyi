@@ -46,6 +46,8 @@ def init_entity_id_from_config(hass: HomeAssistant, entity: Entity, config: Conf
 class MqttAttributesMixin(Entity):
     _attributes_extra_blocked: frozenset[str]
     _attr_tpl: Callable[[ReceivePayloadType], ReceivePayloadType] | None
+    _message_callback: Callable[[MessageCallbackType, set[str] | None, ReceiveMessage], None]
+    _process_update_extra_state_attributes: Callable[[dict[str, Any]], None]
     _attributes_sub_state: dict[str, EntitySubscription]
     _attributes_config: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
@@ -61,6 +63,7 @@ class MqttAttributesMixin(Entity):
     def _attributes_message_received(self, msg: ReceiveMessage) -> None: ...
 
 class MqttAvailabilityMixin(Entity):
+    _message_callback: Callable[[MessageCallbackType, set[str] | None, ReceiveMessage], None]
     _availability_sub_state: dict[str, EntitySubscription]
     _available: dict[str, str | bool]
     _available_latest: bool

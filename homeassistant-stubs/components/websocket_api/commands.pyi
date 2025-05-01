@@ -17,7 +17,7 @@ from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTem
 from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder, JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
 from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integration_descriptions as async_get_integration_descriptions, async_get_integrations as async_get_integrations
-from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations, async_get_setup_timings as async_get_setup_timings
+from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations, async_get_setup_timings as async_get_setup_timings, async_wait_component as async_wait_component
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any
 
@@ -88,3 +88,5 @@ def handle_supported_features(hass: HomeAssistant, connection: ActiveConnection,
 @decorators.require_admin
 @decorators.async_response
 async def handle_integration_descriptions(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@decorators.async_response
+async def handle_integration_wait(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...

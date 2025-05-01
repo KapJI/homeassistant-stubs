@@ -79,7 +79,7 @@ class Config:
     skip_pip_packages: list[str]
     top_level_components: set[str]
     all_components: set[str]
-    components: _ComponentSet
+    components: Incomplete
     api: ApiConfig | None
     config_dir: str
     allowlist_external_dirs: set[str]

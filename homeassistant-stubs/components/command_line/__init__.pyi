@@ -7,7 +7,7 @@ from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
-from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY
+from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 

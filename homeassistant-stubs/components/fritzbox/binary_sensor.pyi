@@ -10,12 +10,9 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final
 
-@dataclass(frozen=True)
-class FritzEntityDescriptionMixinBinarySensor(FritzEntityDescriptionMixinBase):
+@dataclass(frozen=True, kw_only=True)
+class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescriptionMixinBase):
     is_on: Callable[[FritzhomeDevice], bool | None]
-
-@dataclass(frozen=True)
-class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescriptionMixinBinarySensor): ...
 
 BINARY_SENSOR_TYPES: Final[tuple[FritzBinarySensorEntityDescription, ...]]
 

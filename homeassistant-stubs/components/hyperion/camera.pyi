@@ -1,11 +1,10 @@
-from . import get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
-from .const import CONF_INSTANCE_CLIENTS as CONF_INSTANCE_CLIENTS, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_CAMERA as TYPE_HYPERION_CAMERA
+from . import HyperionConfigEntry as HyperionConfigEntry, get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
+from .const import DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_CAMERA as TYPE_HYPERION_CAMERA
 from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from homeassistant.components.camera import Camera as Camera, DEFAULT_CONTENT_TYPE as DEFAULT_CONTENT_TYPE, async_get_still_stream as async_get_still_stream
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
@@ -15,7 +14,7 @@ from typing import Any
 
 IMAGE_STREAM_JPG_SENTINEL: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HyperionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HyperionCamera(Camera):
     _attr_has_entity_name: bool

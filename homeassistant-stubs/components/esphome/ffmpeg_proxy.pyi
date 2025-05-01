@@ -1,17 +1,20 @@
 import asyncio
-from .const import DATA_FFMPEG_PROXY as DATA_FFMPEG_PROXY
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.abc import AbstractStreamWriter as AbstractStreamWriter, BaseRequest as BaseRequest
 from dataclasses import dataclass, field
+from homeassistant.components import ffmpeg as ffmpeg
 from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 _LOGGER: Incomplete
 _MAX_CONVERSIONS_PER_DEVICE: Final[int]
 
+@callback
 def async_create_proxy_url(hass: HomeAssistant, device_id: str, media_url: str, media_format: str, rate: int | None = None, channels: int | None = None, width: int | None = None) -> str: ...
 
 @dataclass
@@ -50,3 +53,8 @@ class FFmpegProxyView(HomeAssistantView):
     proxy_data: Incomplete
     def __init__(self, manager: FFmpegManager, proxy_data: FFmpegProxyData) -> None: ...
     async def get(self, request: web.Request, device_id: str, filename: str) -> web.StreamResponse: ...
+
+DATA_FFMPEG_PROXY: HassKey[FFmpegProxyData]
+
+@callback
+def async_setup(hass: HomeAssistant) -> None: ...

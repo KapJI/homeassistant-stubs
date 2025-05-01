@@ -17,8 +17,8 @@ def infer_unit(value: str) -> tuple[str, str | None]: ...
 
 class APCUPSdSensor(CoordinatorEntity[APCUPSdCoordinator], SensorEntity):
     _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
     entity_description: Incomplete
+    _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: APCUPSdCoordinator, description: SensorEntityDescription) -> None: ...
     @callback

@@ -7,6 +7,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_
 from homeassistant.core import callback as callback
 from typing import Any
 
+PARALLEL_UPDATES: int
 FAN_QUIET: str
 _CLIMATE_MODES: EsphomeEnumMapper[ClimateMode, HVACMode]
 _CLIMATE_ACTIONS: EsphomeEnumMapper[ClimateAction, HVACAction]

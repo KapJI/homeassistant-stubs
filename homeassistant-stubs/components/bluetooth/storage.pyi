@@ -1,4 +1,4 @@
-from bluetooth_adapters import DiscoveredDeviceAdvertisementData as DiscoveredDeviceAdvertisementData, DiscoveredDeviceAdvertisementDataDict as DiscoveredDeviceAdvertisementDataDict, DiscoveryStorageType as DiscoveryStorageType
+from habluetooth import DiscoveredDeviceAdvertisementData as DiscoveredDeviceAdvertisementData, DiscoveredDeviceAdvertisementDataDict as DiscoveredDeviceAdvertisementDataDict, DiscoveryStorageType as DiscoveryStorageType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 

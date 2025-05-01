@@ -5,6 +5,7 @@ from aioesphomeapi import APIIntEnum, AlarmControlPanelEntityState as ESPHomeAla
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
 from homeassistant.core import callback as callback
 
+PARALLEL_UPDATES: int
 _ESPHOME_ACP_STATE_TO_HASS_STATE: EsphomeEnumMapper[ESPHomeAlarmControlPanelState, AlarmControlPanelState]
 
 class EspHomeACPFeatures(APIIntEnum):

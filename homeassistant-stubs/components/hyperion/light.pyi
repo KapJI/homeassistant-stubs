@@ -1,15 +1,13 @@
-from . import get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
-from .const import CONF_EFFECT_HIDE_LIST as CONF_EFFECT_HIDE_LIST, CONF_INSTANCE_CLIENTS as CONF_INSTANCE_CLIENTS, CONF_PRIORITY as CONF_PRIORITY, DEFAULT_ORIGIN as DEFAULT_ORIGIN, DEFAULT_PRIORITY as DEFAULT_PRIORITY, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_LIGHT as TYPE_HYPERION_LIGHT
+from . import HyperionConfigEntry as HyperionConfigEntry, get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
+from .const import CONF_EFFECT_HIDE_LIST as CONF_EFFECT_HIDE_LIST, CONF_PRIORITY as CONF_PRIORITY, DEFAULT_ORIGIN as DEFAULT_ORIGIN, DEFAULT_PRIORITY as DEFAULT_PRIORITY, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_LIGHT as TYPE_HYPERION_LIGHT
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping, Sequence
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from hyperion import client as client
-from types import MappingProxyType
 from typing import Any
 
 _LOGGER: Incomplete
@@ -27,7 +25,7 @@ DEFAULT_EFFECT_LIST: list[str]
 ICON_LIGHTBULB: str
 ICON_EFFECT: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HyperionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HyperionLight(LightEntity):
     _attr_has_entity_name: bool
@@ -48,7 +46,7 @@ class HyperionLight(LightEntity):
     _effect_list: list[str]
     _client_callbacks: Mapping[str, Callable[[dict[str, Any]], None]]
     _attr_device_info: Incomplete
-    def __init__(self, server_id: str, instance_num: int, instance_name: str, options: MappingProxyType[str, Any], hyperion_client: client.HyperionClient) -> None: ...
+    def __init__(self, server_id: str, instance_num: int, instance_name: str, options: Mapping[str, Any], hyperion_client: client.HyperionClient) -> None: ...
     def _compute_unique_id(self, server_id: str, instance_num: int) -> str: ...
     @property
     def brightness(self) -> int: ...

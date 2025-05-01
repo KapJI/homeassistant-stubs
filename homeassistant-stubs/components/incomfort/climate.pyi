@@ -3,7 +3,7 @@ from .coordinator import InComfortConfigEntry as InComfortConfigEntry, InComfort
 from .entity import IncomfortEntity as IncomfortEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -15,7 +15,6 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: InComfortConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class InComfortClimate(IncomfortEntity, ClimateEntity):
-    _attr_entity_category: Incomplete
     _attr_min_temp: float
     _attr_max_temp: float
     _attr_name: Incomplete

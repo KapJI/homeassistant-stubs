@@ -1,6 +1,6 @@
 from .assist_pipeline import async_migrate_cloud_pipeline_engine as async_migrate_cloud_pipeline_engine
 from .client import CloudClient as CloudClient
-from .const import DATA_CLOUD as DATA_CLOUD, DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, DOMAIN as DOMAIN, TTS_ENTITY_UNIQUE_ID as TTS_ENTITY_UNIQUE_ID
+from .const import DATA_CLOUD as DATA_CLOUD, DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, DOMAIN as DOMAIN, TTS_ENTITY_UNIQUE_ID as TTS_ENTITY_UNIQUE_ID, VOICE_STYLE_SEPERATOR as VOICE_STYLE_SEPERATOR
 from .prefs import CloudPreferences as CloudPreferences
 from _typeshed import Incomplete
 from hass_nabucasa import Cloud as Cloud
@@ -21,6 +21,8 @@ SUPPORT_LANGUAGES: Incomplete
 DEFAULT_VOICES: Incomplete
 _LOGGER: Incomplete
 
+@callback
+def _prepare_voice_args(*, hass: HomeAssistant, language: str, voice: str, gender: str | None) -> dict: ...
 def _deprecated_platform(value: str) -> str: ...
 def validate_lang(value: dict[str, Any]) -> dict[str, Any]: ...
 

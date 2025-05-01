@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, KEY_MONITORING_CHECK_NOTIFICATIONS as KEY_MONITORING_CHECK_NOTIFICATIONS, KEY_MONITORING_STATUS as KEY_MONITORING_STATUS, KEY_WLAN_WIFI_FEATURE_SWITCH as KEY_WLAN_WIFI_FEATURE_SWITCH
 from .entity import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from _typeshed import Incomplete
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
@@ -29,6 +29,7 @@ CONNECTION_STATE_ATTRIBUTES: Incomplete
 class HuaweiLteMobileConnectionBinarySensor(HuaweiLteBaseBinarySensor):
     _attr_translation_key: str
     _attr_entity_registry_enabled_default: bool
+    _attr_device_class: Incomplete
     key = KEY_MONITORING_STATUS
     item: str
     @property
@@ -39,6 +40,7 @@ class HuaweiLteMobileConnectionBinarySensor(HuaweiLteBaseBinarySensor):
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class HuaweiLteBaseWifiStatusBinarySensor(HuaweiLteBaseBinarySensor):
+    _attr_device_class: Incomplete
     @property
     def is_on(self) -> bool: ...
     @property

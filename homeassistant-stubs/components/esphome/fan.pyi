@@ -7,6 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from typing import Any
 
+PARALLEL_UPDATES: int
 ORDERED_NAMED_FAN_SPEEDS: Incomplete
 _FAN_DIRECTIONS: EsphomeEnumMapper[FanDirection, str]
 
@@ -26,19 +27,19 @@ class EsphomeFan(EsphomeEntity[FanInfo, FanState], FanEntity):
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @property
     @esphome_state_property
-    def is_on(self) -> bool | None: ...
+    def is_on(self) -> bool: ...
     @property
     @esphome_state_property
     def percentage(self) -> int | None: ...
     @property
     @esphome_state_property
-    def oscillating(self) -> bool | None: ...
+    def oscillating(self) -> bool: ...
     @property
     @esphome_state_property
     def current_direction(self) -> str | None: ...
     @property
     @esphome_state_property
-    def preset_mode(self) -> str | None: ...
+    def preset_mode(self) -> str: ...
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _attr_speed_count: Incomplete

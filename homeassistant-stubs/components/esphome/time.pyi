@@ -4,6 +4,8 @@ from aioesphomeapi import TimeInfo, TimeState
 from datetime import time
 from homeassistant.components.time import TimeEntity as TimeEntity
 
+PARALLEL_UPDATES: int
+
 class EsphomeTime(EsphomeEntity[TimeInfo, TimeState], TimeEntity):
     @property
     @esphome_state_property

@@ -8,6 +8,7 @@ from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_ME
 from homeassistant.core import callback as callback
 from typing import Any
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 _STATES: EsphomeEnumMapper[EspMediaPlayerState, MediaPlayerState]
 ATTR_BYPASS_PROXY: str
@@ -25,7 +26,7 @@ class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState],
     def is_volume_muted(self) -> bool: ...
     @property
     @esphome_float_state_property
-    def volume_level(self) -> float | None: ...
+    def volume_level(self) -> float: ...
     @convert_api_error_ha_error
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

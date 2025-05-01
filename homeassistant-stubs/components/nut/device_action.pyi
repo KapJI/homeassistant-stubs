@@ -1,9 +1,11 @@
-from . import NutRuntimeData as NutRuntimeData
+from . import NutConfigEntry as NutConfigEntry, NutRuntimeData as NutRuntimeData
 from .const import DOMAIN as DOMAIN, INTEGRATION_SUPPORTED_COMMANDS as INTEGRATION_SUPPORTED_COMMANDS
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_TYPE as CONF_TYPE
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 
 ACTION_TYPES: Incomplete
@@ -14,3 +16,5 @@ async def async_call_action_from_config(hass: HomeAssistant, config: ConfigType,
 def _get_device_action_name(command_name: str) -> str: ...
 def _get_command_name(device_action_name: str) -> str: ...
 def _get_runtime_data_from_device_id(hass: HomeAssistant, device_id: str) -> NutRuntimeData | None: ...
+def _get_runtime_data_for_device(hass: HomeAssistant, device: dr.DeviceEntry) -> NutRuntimeData | None: ...
+def _get_runtime_data_from_device_id_exception_on_failure(hass: HomeAssistant, device_id: str) -> NutRuntimeData | None: ...

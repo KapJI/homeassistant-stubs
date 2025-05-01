@@ -6,7 +6,7 @@ from homeassistant.components import panel_custom as panel_custom, websocket_api
 from homeassistant.components.http import StaticPathConfig as StaticPathConfig
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, AsyncWebSocketCommandHandler as AsyncWebSocketCommandHandler
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DEVICES as CONF_DEVICES, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_RESOURCE as CONF_RESOURCE
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DEVICES as CONF_DEVICES, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_registry as er
 from typing import Any, Final

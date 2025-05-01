@@ -1,6 +1,7 @@
 from . import ElevenLabsConfigEntry as ElevenLabsConfigEntry
 from .const import ATTR_MODEL as ATTR_MODEL, CONF_OPTIMIZE_LATENCY as CONF_OPTIMIZE_LATENCY, CONF_SIMILARITY as CONF_SIMILARITY, CONF_STABILITY as CONF_STABILITY, CONF_STYLE as CONF_STYLE, CONF_USE_SPEAKER_BOOST as CONF_USE_SPEAKER_BOOST, CONF_VOICE as CONF_VOICE, DEFAULT_OPTIMIZE_LATENCY as DEFAULT_OPTIMIZE_LATENCY, DEFAULT_SIMILARITY as DEFAULT_SIMILARITY, DEFAULT_STABILITY as DEFAULT_STABILITY, DEFAULT_STYLE as DEFAULT_STYLE, DEFAULT_USE_SPEAKER_BOOST as DEFAULT_USE_SPEAKER_BOOST, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from elevenlabs import AsyncElevenLabs as AsyncElevenLabs
 from elevenlabs.types import Model as Model, Voice as ElevenLabsVoice, VoiceSettings
 from homeassistant.components.tts import ATTR_VOICE as ATTR_VOICE, TextToSpeechEntity as TextToSpeechEntity, TtsAudioType as TtsAudioType, Voice as Voice
@@ -9,13 +10,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from types import MappingProxyType
 from typing import Any
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
-def to_voice_settings(options: MappingProxyType[str, Any]) -> VoiceSettings: ...
+def to_voice_settings(options: Mapping[str, Any]) -> VoiceSettings: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ElevenLabsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElevenLabsTTSEntity(TextToSpeechEntity):

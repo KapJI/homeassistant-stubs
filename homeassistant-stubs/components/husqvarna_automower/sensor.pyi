@@ -16,8 +16,9 @@ from typing import Any
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 ATTR_WORK_AREA_ID_ASSIGNMENT: str
-ERROR_KEY_LIST: Incomplete
+ERROR_KEYS: Incomplete
 ERROR_STATES: Incomplete
+ERROR_KEY_LIST: Incomplete
 RESTRICTED_REASONS: list
 STATE_NO_WORK_AREA_ACTIVE: str
 

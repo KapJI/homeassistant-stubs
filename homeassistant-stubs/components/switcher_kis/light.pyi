@@ -18,24 +18,19 @@ class SwitcherBaseLightEntity(SwitcherEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     control_result: bool | None
     _light_id: int
-    @callback
-    def _handle_coordinator_update(self) -> None: ...
-    @property
-    def is_on(self) -> bool: ...
+    def __init__(self, coordinator: SwitcherDataUpdateCoordinator, light_id: int) -> None: ...
+    _attr_is_on: Incomplete
+    def _update_data(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class SwitcherSingleLightEntity(SwitcherBaseLightEntity):
     _attr_name: Incomplete
-    _light_id: Incomplete
-    control_result: bool | None
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, light_id: int) -> None: ...
 
 class SwitcherMultiLightEntity(SwitcherBaseLightEntity):
     _attr_translation_key: str
-    _light_id: Incomplete
-    control_result: bool | None
     _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, light_id: int) -> None: ...

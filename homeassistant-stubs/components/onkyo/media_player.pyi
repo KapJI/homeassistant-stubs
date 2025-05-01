@@ -1,28 +1,18 @@
 import asyncio
 from . import OnkyoConfigEntry as OnkyoConfigEntry
-from .const import CONF_RECEIVER_MAX_VOLUME as CONF_RECEIVER_MAX_VOLUME, CONF_SOURCES as CONF_SOURCES, DOMAIN as DOMAIN, InputSource as InputSource, ListeningMode as ListeningMode, OPTION_MAX_VOLUME as OPTION_MAX_VOLUME, OPTION_VOLUME_RESOLUTION as OPTION_VOLUME_RESOLUTION, PYEISCP_COMMANDS as PYEISCP_COMMANDS, VolumeResolution as VolumeResolution, ZONES as ZONES
-from .receiver import Receiver as Receiver, async_discover as async_discover
+from .const import DOMAIN as DOMAIN, InputSource as InputSource, ListeningMode as ListeningMode, OPTION_MAX_VOLUME as OPTION_MAX_VOLUME, OPTION_VOLUME_RESOLUTION as OPTION_VOLUME_RESOLUTION, PYEISCP_COMMANDS as PYEISCP_COMMANDS, VolumeResolution as VolumeResolution, ZONES as ZONES
+from .receiver import Receiver as Receiver
 from .services import DATA_MP_ENTITIES as DATA_MP_ENTITIES
 from _typeshed import Incomplete
 from enum import Enum as Enum
 from functools import cache
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.data_entry_flow import FlowResultType as FlowResultType
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Literal
 
 _LOGGER: Incomplete
-CONF_MAX_VOLUME_DEFAULT: int
-CONF_RECEIVER_MAX_VOLUME_DEFAULT: int
-CONF_SOURCES_DEFAULT: Incomplete
-ISSUE_URL_PLACEHOLDER: str
-PLATFORM_SCHEMA: Incomplete
 SUPPORTED_FEATURES_BASE: Incomplete
 SUPPORTED_FEATURES_VOLUME: Incomplete
 PLAYABLE_SOURCES: Incomplete
@@ -45,7 +35,6 @@ def _rev_input_source_lib_mappings(zone: str) -> dict[LibValue, InputSource]: ..
 def _listening_mode_lib_mappings(zone: str) -> dict[ListeningMode, LibValue]: ...
 @cache
 def _rev_listening_mode_lib_mappings(zone: str) -> dict[LibValue, ListeningMode]: ...
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: OnkyoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OnkyoMediaPlayer(MediaPlayerEntity):

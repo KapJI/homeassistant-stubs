@@ -15,13 +15,16 @@ def generate_media_source_id(hass: HomeAssistant, message: str, engine: str | No
 
 class MediaSourceOptions(TypedDict):
     engine: str
-    message: str
     language: str | None
     options: dict | None
     use_file_cache: bool | None
 
+class ParsedMediaSourceId(TypedDict):
+    options: MediaSourceOptions
+    message: str
+
 @callback
-def media_source_id_to_kwargs(media_source_id: str) -> MediaSourceOptions: ...
+def parse_media_source_id(media_source_id: str) -> ParsedMediaSourceId: ...
 
 class TTSMediaSource(MediaSource):
     name: str

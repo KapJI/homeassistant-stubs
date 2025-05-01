@@ -4,10 +4,9 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_ELEVATION as CONF_ELEVATION, CONF_LANGUAGE as CONF_LANGUAGE, CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as CONF_LOCATION, CONF_LONGITUDE as CONF_LONGITUDE, CONF_TIME_ZONE as CONF_TIME_ZONE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, LocationSelector as LocationSelector, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
+from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, LanguageSelector as LanguageSelector, LanguageSelectorConfig as LanguageSelectorConfig, LocationSelector as LocationSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
 from typing import Any
 
-LANGUAGE: Incomplete
 OPTIONS_SCHEMA: Incomplete
 _LOGGER: Incomplete
 

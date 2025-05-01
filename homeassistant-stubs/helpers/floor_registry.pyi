@@ -1,5 +1,5 @@
-from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems
-from .registry import BaseRegistry as BaseRegistry
+from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems, normalize_name as normalize_name
+from .registry import BaseRegistry as BaseRegistry, RegistryIndexType as RegistryIndexType
 from .singleton import singleton as singleton
 from .storage import Store as Store
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
@@ -45,8 +45,15 @@ class FloorEntry(NormalizedNameBaseRegistryEntry):
 class FloorRegistryStore(Store[FloorRegistryStoreData]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> FloorRegistryStoreData: ...
 
+class FloorRegistryItems(NormalizedNameBaseRegistryItems[FloorEntry]):
+    _aliases_index: RegistryIndexType
+    def __init__(self) -> None: ...
+    def _index_entry(self, key: str, entry: FloorEntry) -> None: ...
+    def _unindex_entry(self, key: str, replacement_entry: FloorEntry | None = None) -> None: ...
+    def get_floors_for_alias(self, alias: str) -> list[FloorEntry]: ...
+
 class FloorRegistry(BaseRegistry[FloorRegistryStoreData]):
-    floors: NormalizedNameBaseRegistryItems[FloorEntry]
+    floors: FloorRegistryItems
     _floor_data: dict[str, FloorEntry]
     hass: Incomplete
     _store: Incomplete
@@ -55,6 +62,8 @@ class FloorRegistry(BaseRegistry[FloorRegistryStoreData]):
     def async_get_floor(self, floor_id: str) -> FloorEntry | None: ...
     @callback
     def async_get_floor_by_name(self, name: str) -> FloorEntry | None: ...
+    @callback
+    def async_get_floors_by_alias(self, alias: str) -> list[FloorEntry]: ...
     @callback
     def async_list_floors(self) -> Iterable[FloorEntry]: ...
     def _generate_id(self, name: str) -> str: ...

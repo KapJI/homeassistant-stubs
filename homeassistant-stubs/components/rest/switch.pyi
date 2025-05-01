@@ -7,7 +7,7 @@ from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers import template as template
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
-from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_PICTURE as CONF_PICTURE, ManualTriggerEntity as ManualTriggerEntity, TEMPLATE_ENTITY_BASE_SCHEMA as TEMPLATE_ENTITY_BASE_SCHEMA
+from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_PICTURE as CONF_PICTURE, ManualTriggerEntity as ManualTriggerEntity, TEMPLATE_ENTITY_BASE_SCHEMA as TEMPLATE_ENTITY_BASE_SCHEMA, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
@@ -37,7 +37,7 @@ class RestSwitch(ManualTriggerEntity, SwitchEntity):
     _auth: Incomplete
     _body_on: template.Template
     _body_off: template.Template
-    _is_on_template: template.Template | None
+    _is_on_template: ValueTemplate | None
     _timeout: int
     _verify_ssl: bool
     def __init__(self, hass: HomeAssistant, config: ConfigType, trigger_entity_config: ConfigType) -> None: ...
@@ -47,4 +47,5 @@ class RestSwitch(ManualTriggerEntity, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def set_device_state(self, body: Any) -> httpx.Response: ...
     async def async_update(self) -> None: ...
-    async def get_device_state(self, hass: HomeAssistant) -> httpx.Response: ...
+    async def get_response(self, hass: HomeAssistant) -> httpx.Response: ...
+    def _async_update(self, text: str) -> None: ...

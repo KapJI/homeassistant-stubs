@@ -37,7 +37,7 @@ class ISYSwitchProgramEntity(ISYProgramEntity, SwitchEntity):
 
 class ISYEnableSwitchEntity(ISYAuxControlEntity, SwitchEntity):
     _attr_name: Incomplete
-    _change_handler: EventListener
+    _change_handler: EventListener | None
     def __init__(self, node: Node, control: str, unique_id: str, description: ISYSwitchEntityDescription, device_info: DeviceInfo | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @callback

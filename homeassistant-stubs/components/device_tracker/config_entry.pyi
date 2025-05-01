@@ -44,7 +44,7 @@ CACHED_TRACKER_PROPERTIES_WITH_ATTR_: Incomplete
 class TrackerEntity(BaseTrackerEntity, cached_properties=CACHED_TRACKER_PROPERTIES_WITH_ATTR_):
     entity_description: TrackerEntityDescription
     _attr_latitude: float | None
-    _attr_location_accuracy: int
+    _attr_location_accuracy: float
     _attr_location_name: str | None
     _attr_longitude: float | None
     _attr_source_type: SourceType
@@ -53,7 +53,7 @@ class TrackerEntity(BaseTrackerEntity, cached_properties=CACHED_TRACKER_PROPERTI
     @property
     def force_update(self) -> bool: ...
     @cached_property
-    def location_accuracy(self) -> int: ...
+    def location_accuracy(self) -> float: ...
     @cached_property
     def location_name(self) -> str | None: ...
     @cached_property

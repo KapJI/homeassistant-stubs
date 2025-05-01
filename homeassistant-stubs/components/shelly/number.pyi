@@ -1,6 +1,6 @@
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER, VIRTUAL_NUMBER_MODE_MAP as VIRTUAL_NUMBER_MODE_MAP
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc
+from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
 from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_device_entry_gen as get_device_entry_gen, get_virtual_component_ids as get_virtual_component_ids
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
@@ -27,10 +27,11 @@ class RpcNumberDescription(RpcEntityDescription, NumberEntityDescription):
     step_fn: Callable[[dict], float] | None = ...
     mode_fn: Callable[[dict], NumberMode] | None = ...
     method: str
-    method_params_fn: Callable[[int, float], dict]
 
 class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
     entity_description: RpcNumberDescription
+    attribute_value: float | None
+    _id: int | None
     _attr_native_max_value: Incomplete
     _attr_native_min_value: Incomplete
     _attr_native_step: Incomplete
@@ -38,12 +39,12 @@ class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcNumberDescription) -> None: ...
     @property
     def native_value(self) -> float | None: ...
+    @rpc_call
     async def async_set_native_value(self, value: float) -> None: ...
 
 class RpcBluTrvNumber(RpcNumber):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcNumberDescription) -> None: ...
-    async def async_set_native_value(self, value: float) -> None: ...
 
 class RpcBluTrvExtTempNumber(RpcBluTrvNumber):
     _reported_value: float | None

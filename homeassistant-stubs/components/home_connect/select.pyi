@@ -10,7 +10,7 @@ from aiohomeconnect.model.program import Execution
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
@@ -41,8 +41,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 
 class HomeConnectProgramSelectEntity(HomeConnectEntity, SelectEntity):
     entity_description: HomeConnectProgramSelectEntityDescription
-    _attr_options: Incomplete
     def __init__(self, coordinator: HomeConnectCoordinator, appliance: HomeConnectApplianceData, desc: HomeConnectProgramSelectEntityDescription) -> None: ...
+    _attr_options: Incomplete
+    def set_options(self) -> None: ...
+    @callback
+    def refresh_options(self) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
     _attr_current_option: Incomplete
     def update_native_value(self) -> None: ...
     async def async_select_option(self, option: str) -> None: ...

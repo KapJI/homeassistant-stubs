@@ -1,11 +1,12 @@
 import aiodhcpwatcher
 import asyncio
 import re
-from .const import DOMAIN as DOMAIN
+from . import websocket_api as websocket_api
+from .const import DOMAIN as DOMAIN, HOSTNAME as HOSTNAME, IP_ADDRESS as IP_ADDRESS, MAC_ADDRESS as MAC_ADDRESS
+from .models import DATA_DHCP as DATA_DHCP, DHCPAddressData as DHCPAddressData, DHCPData as DHCPData, DhcpMatchers as DhcpMatchers
 from _typeshed import Incomplete
 from aiodiscover import DiscoverHosts
 from collections.abc import Callable as Callable
-from dataclasses import dataclass
 from homeassistant import config_entries as config_entries
 from homeassistant.components.device_tracker import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME
@@ -21,29 +22,21 @@ from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as a
 from typing import Any, Final
 
 CONFIG_SCHEMA: Incomplete
-HOSTNAME: Final[str]
-MAC_ADDRESS: Final[str]
-IP_ADDRESS: Final[str]
 REGISTERED_DEVICES: Final[str]
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
 _DEPRECATED_DhcpServiceInfo: Incomplete
-
-@dataclass(slots=True)
-class DhcpMatchers:
-    registered_devices_domains: set[str]
-    no_oui_matchers: dict[str, list[DHCPMatcher]]
-    oui_matchers: dict[str, list[DHCPMatcher]]
 
 def async_index_integration_matchers(integration_matchers: list[DHCPMatcher]) -> DhcpMatchers: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class WatcherBase:
     hass: Incomplete
+    _callbacks: Incomplete
     _integration_matchers: Incomplete
     _address_data: Incomplete
     _unsub: Callable[[], None] | None
-    def __init__(self, hass: HomeAssistant, address_data: dict[str, dict[str, str]], integration_matchers: DhcpMatchers) -> None: ...
+    def __init__(self, hass: HomeAssistant, dhcp_data: DHCPData) -> None: ...
     @callback
     def async_stop(self) -> None: ...
     @callback
@@ -52,7 +45,7 @@ class WatcherBase:
 class NetworkWatcher(WatcherBase):
     _discover_hosts: DiscoverHosts | None
     _discover_task: asyncio.Task | None
-    def __init__(self, hass: HomeAssistant, address_data: dict[str, dict[str, str]], integration_matchers: DhcpMatchers) -> None: ...
+    def __init__(self, hass: HomeAssistant, dhcp_data: DHCPData) -> None: ...
     @callback
     def async_stop(self) -> None: ...
     _unsub: Incomplete

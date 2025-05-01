@@ -20,12 +20,12 @@ from typing import Final, TypedDict
 current_setup_group: contextvars.ContextVar[tuple[str, str | None] | None]
 _LOGGER: Incomplete
 ATTR_COMPONENT: Final[str]
-DATA_SETUP: HassKey[dict[str, asyncio.Future[bool]]]
-DATA_SETUP_DONE: HassKey[dict[str, asyncio.Future[bool]]]
-DATA_SETUP_STARTED: HassKey[dict[tuple[str, str | None], float]]
-DATA_SETUP_TIME: HassKey[defaultdict[str, defaultdict[str | None, defaultdict[SetupPhases, float]]]]
-DATA_DEPS_REQS: HassKey[set[str]]
-DATA_PERSISTENT_ERRORS: HassKey[dict[str, str | None]]
+_DATA_SETUP: HassKey[dict[str, asyncio.Future[bool]]]
+_DATA_SETUP_DONE: HassKey[dict[str, asyncio.Future[bool]]]
+_DATA_SETUP_STARTED: HassKey[dict[tuple[str, str | None], float]]
+_DATA_SETUP_TIME: HassKey[defaultdict[str, defaultdict[str | None, defaultdict[SetupPhases, float]]]]
+_DATA_DEPS_REQS: HassKey[set[str]]
+_DATA_PERSISTENT_ERRORS: HassKey[dict[str, str | None]]
 NOTIFY_FOR_TRANSLATION_KEYS: Incomplete
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int
@@ -72,3 +72,4 @@ def async_start_setup(hass: core.HomeAssistant, integration: str, phase: SetupPh
 def async_get_setup_timings(hass: core.HomeAssistant) -> dict[str, float]: ...
 @callback
 def async_get_domain_setup_times(hass: core.HomeAssistant, domain: str) -> Mapping[str | None, dict[SetupPhases, float]]: ...
+async def async_wait_component(hass: HomeAssistant, domain: str) -> bool: ...

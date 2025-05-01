@@ -1,0 +1,19 @@
+from .const import BLEScannerMode as BLEScannerMode, BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID as BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID, BLE_SCANNER_MIN_FIRMWARE as BLE_SCANNER_MIN_FIRMWARE, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, DOMAIN as DOMAIN
+from .coordinator import ShellyConfigEntry as ShellyConfigEntry
+from _typeshed import Incomplete
+from aioshelly.rpc_device import RpcDevice as RpcDevice
+from homeassistant import data_entry_flow as data_entry_flow
+from homeassistant.components.repairs import RepairsFlow as RepairsFlow
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+
+@callback
+def async_manage_ble_scanner_firmware_unsupported_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
+
+class BleScannerFirmwareUpdateFlow(RepairsFlow):
+    _device: Incomplete
+    def __init__(self, device: RpcDevice) -> None: ...
+    async def async_step_init(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
+    async def async_step_confirm(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
+    async def async_step_update_firmware(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
+
+async def async_create_fix_flow(hass: HomeAssistant, issue_id: str, data: dict[str, str] | None) -> RepairsFlow: ...

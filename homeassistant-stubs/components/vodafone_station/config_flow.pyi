@@ -1,6 +1,7 @@
 import voluptuous as vol
 from .const import DEFAULT_HOST as DEFAULT_HOST, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, _LOGGER as _LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry
+from .utils import async_client_session as async_client_session
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME

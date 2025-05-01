@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from aiohttp.web import Request as Request, WebSocketResponse as WebSocketResponse
 from aioshelly.block_device import Block as Block, BlockDevice as BlockDevice, COAP
 from aioshelly.rpc_device import RpcDevice, WsServer
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from datetime import datetime
 from homeassistant.components import network as network
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
@@ -14,7 +14,6 @@ from homeassistant.helpers import singleton as singleton
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.util.dt import utcnow as utcnow
-from types import MappingProxyType
 from typing import Any
 
 @callback
@@ -63,7 +62,7 @@ def get_release_url(gen: int, model: str, beta: bool) -> str | None: ...
 @callback
 def async_create_issue_unsupported_firmware(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 def is_rpc_wifi_stations_disabled(config: dict[str, Any], _status: dict[str, Any], key: str) -> bool: ...
-def get_http_port(data: MappingProxyType[str, Any]) -> int: ...
+def get_http_port(data: Mapping[str, Any]) -> int: ...
 def get_host(host: str) -> str: ...
 @callback
 def async_remove_shelly_rpc_entities(hass: HomeAssistant, domain: str, mac: str, keys: list[str]) -> None: ...

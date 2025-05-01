@@ -15,7 +15,7 @@ class TractiveDeviceTracker(TractiveEntity, TrackerEntity):
     _battery_level: int | None
     _attr_latitude: Incomplete
     _attr_longitude: Incomplete
-    _attr_location_accuracy: int
+    _attr_location_accuracy: float
     _source_type: str
     _attr_unique_id: Incomplete
     def __init__(self, client: TractiveClient, item: Trackables) -> None: ...

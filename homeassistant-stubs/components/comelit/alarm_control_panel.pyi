@@ -26,7 +26,6 @@ class ComelitAlarmEntity(CoordinatorEntity[ComelitVedoSystem], AlarmControlPanel
     _attr_code_format: Incomplete
     _attr_code_arm_required: bool
     _attr_supported_features: Incomplete
-    _api: Incomplete
     _area_index: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

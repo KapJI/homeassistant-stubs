@@ -7,7 +7,7 @@ from _typeshed import Incomplete
 from aioswitcher.api.remotes import SwitcherBreezeRemote as SwitcherBreezeRemote
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACMode as HVACMode, SWING_OFF as SWING_OFF, SWING_VERTICAL as SWING_VERTICAL
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -31,8 +31,6 @@ class SwitcherClimateEntity(SwitcherEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_hvac_modes: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, remote: SwitcherBreezeRemote) -> None: ...
-    @callback
-    def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete
     _attr_hvac_mode: Incomplete
@@ -40,7 +38,7 @@ class SwitcherClimateEntity(SwitcherEntity, ClimateEntity):
     _attr_fan_modes: Incomplete
     _attr_swing_mode: Incomplete
     _attr_swing_modes: Incomplete
-    def _update_data(self, force_update: bool = False) -> None: ...
+    def _update_data(self) -> None: ...
     async def _async_control_breeze_device(self, **kwargs: Any) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...

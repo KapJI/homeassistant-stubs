@@ -5,6 +5,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, TextInfo, TextMode as Esphom
 from homeassistant.components.text import TextEntity as TextEntity, TextMode as TextMode
 from homeassistant.core import callback as callback
 
+PARALLEL_UPDATES: int
 TEXT_MODES: EsphomeEnumMapper[EsphomeTextMode, TextMode]
 
 class EsphomeText(EsphomeEntity[TextInfo, TextState], TextEntity):

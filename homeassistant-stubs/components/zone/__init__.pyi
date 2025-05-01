@@ -7,6 +7,7 @@ from homeassistant.core import Event as Event, EventStateChangedData as EventSta
 from homeassistant.helpers import collection as collection, entity_component as entity_component, event as event, service as service, storage as storage
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.location import distance as distance
 from typing import Any, Self
 
@@ -28,9 +29,11 @@ STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
 ENTITY_ID_SORTER: Incomplete
 ZONE_ENTITY_IDS: str
+DATA_ZONE_STORAGE_COLLECTION: HassKey[ZoneStorageCollection]
+DATA_ZONE_ENTITY_IDS: HassKey[list[str]]
 
 @bind_hass
-def async_active_zone(hass: HomeAssistant, latitude: float, longitude: float, radius: int = 0) -> State | None: ...
+def async_active_zone(hass: HomeAssistant, latitude: float, longitude: float, radius: float = 0) -> State | None: ...
 @callback
 def async_setup_track_zone_entity_ids(hass: HomeAssistant) -> None: ...
 def in_zone(zone: State, latitude: float, longitude: float, radius: float = 0) -> bool: ...

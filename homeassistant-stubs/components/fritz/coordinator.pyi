@@ -1,6 +1,6 @@
 from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, ValuesView
+from collections.abc import Callable as Callable, Mapping, ValuesView
 from dataclasses import dataclass, field
 from datetime import datetime
 from fritzconnection import FritzConnection
@@ -16,7 +16,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.hass_dict import HassKey as HassKey
-from types import MappingProxyType
 from typing import Any, TypedDict
 
 _LOGGER: Incomplete
@@ -62,7 +61,7 @@ class UpdateCoordinatorDataType(TypedDict):
 class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     config_entry: FritzConfigEntry
     _devices: dict[str, FritzDevice]
-    _options: MappingProxyType[str, Any] | None
+    _options: Mapping[str, Any] | None
     _unique_id: str | None
     connection: FritzConnection
     fritz_guest_wifi: FritzGuestWLAN
@@ -86,7 +85,7 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     _release_url: str | None
     _entity_update_functions: dict[str, Callable[[FritzStatus, StateType], Any]]
     def __init__(self, hass: HomeAssistant, config_entry: FritzConfigEntry, password: str, port: int, username: str = ..., host: str = ..., use_tls: bool = ...) -> None: ...
-    async def async_setup(self, options: MappingProxyType[str, Any] | None = None) -> None: ...
+    async def async_setup(self, options: Mapping[str, Any] | None = None) -> None: ...
     def setup(self) -> None: ...
     async def async_register_entity_updates(self, key: str, update_fn: Callable[[FritzStatus, StateType], Any]) -> Callable[[], None]: ...
     def _entity_states_update(self) -> dict: ...

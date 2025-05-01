@@ -12,7 +12,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.group import expand_entity_ids as expand_entity_ids
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from typing import Any
-from zwave_js_server.model.controller import Controller as Controller
+from zwave_js_server.model.controller import Controller as Controller, ProvisioningEntry as ProvisioningEntry
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import Value as ZwaveValue, ValueDataType as ValueDataType
@@ -46,6 +46,7 @@ def get_device_id_ext(driver: Driver, node: ZwaveNode) -> tuple[str, str] | None
 def get_home_and_node_id_from_device_entry(device_entry: dr.DeviceEntry) -> tuple[str, int] | None: ...
 @callback
 def async_get_node_from_device_id(hass: HomeAssistant, device_id: str, dev_reg: dr.DeviceRegistry | None = None) -> ZwaveNode: ...
+async def async_get_provisioning_entry_from_device_id(hass: HomeAssistant, device_id: str) -> ProvisioningEntry | None: ...
 @callback
 def async_get_node_from_entity_id(hass: HomeAssistant, entity_id: str, ent_reg: er.EntityRegistry | None = None, dev_reg: dr.DeviceRegistry | None = None) -> ZwaveNode: ...
 @callback

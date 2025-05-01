@@ -1,6 +1,7 @@
 from . import MetEireannWeatherData as MetEireannWeatherData
 from .const import CONDITION_MAP as CONDITION_MAP, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, FORECAST_MAP as FORECAST_MAP
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from homeassistant.components.weather import ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_TIME as ATTR_FORECAST_TIME, Forecast as Forecast, SingleCoordinatorWeatherEntity as SingleCoordinatorWeatherEntity, WeatherEntityFeature as WeatherEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
@@ -8,14 +9,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from types import MappingProxyType
 from typing import Any
 
 _LOGGER: Incomplete
 
 def format_condition(condition: str | None) -> str | None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-def _calculate_unique_id(config: MappingProxyType[str, Any], hourly: bool) -> str: ...
+def _calculate_unique_id(config: Mapping[str, Any], hourly: bool) -> str: ...
 
 class MetEireannWeather(SingleCoordinatorWeatherEntity[DataUpdateCoordinator[MetEireannWeatherData]]):
     _attr_attribution: str
@@ -28,7 +28,7 @@ class MetEireannWeather(SingleCoordinatorWeatherEntity[DataUpdateCoordinator[Met
     _config: Incomplete
     _attr_name: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: DataUpdateCoordinator[MetEireannWeatherData], config: MappingProxyType[str, Any]) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator[MetEireannWeatherData], config: Mapping[str, Any]) -> None: ...
     @property
     def condition(self) -> str | None: ...
     @property

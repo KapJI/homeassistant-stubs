@@ -1,8 +1,7 @@
-from . import get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
-from .const import CONF_INSTANCE_CLIENTS as CONF_INSTANCE_CLIENTS, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_COMPONENT_SWITCH_BASE as TYPE_HYPERION_COMPONENT_SWITCH_BASE
+from . import HyperionConfigEntry as HyperionConfigEntry, get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
+from .const import DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_COMPONENT_SWITCH_BASE as TYPE_HYPERION_COMPONENT_SWITCH_BASE
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -16,7 +15,7 @@ COMPONENT_SWITCHES: Incomplete
 
 def _component_to_unique_id(server_id: str, component: str, instance_num: int) -> str: ...
 def _component_to_translation_key(component: str) -> str: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HyperionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HyperionComponentSwitch(SwitchEntity):
     _attr_entity_category: Incomplete

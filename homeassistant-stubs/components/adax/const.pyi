@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from typing import Final
 
 ACCOUNT_ID: Final[str]
@@ -7,3 +8,4 @@ DOMAIN: Final[str]
 LOCAL: str
 WIFI_SSID: str
 WIFI_PSWD: str
+SCAN_INTERVAL: Incomplete

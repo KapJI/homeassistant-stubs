@@ -1,9 +1,5 @@
 from _typeshed import Incomplete
 
-CONF_ACTION: str
-CONF_ACTIONS: str
-CONF_TRIGGER: str
-CONF_TRIGGERS: str
 CONF_TRIGGER_VARIABLES: str
 DOMAIN: str
 CONF_HIDE_ENTITY: str

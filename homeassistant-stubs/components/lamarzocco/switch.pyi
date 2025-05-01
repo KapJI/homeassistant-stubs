@@ -9,8 +9,8 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pylamarzocco.devices.machine import LaMarzoccoMachine as LaMarzoccoMachine
-from pylamarzocco.models import LaMarzoccoMachineConfig as LaMarzoccoMachineConfig
+from pylamarzocco import LaMarzoccoMachine as LaMarzoccoMachine
+from pylamarzocco.models import WakeUpScheduleSettings as WakeUpScheduleSettings
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -18,7 +18,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoSwitchEntityDescription(LaMarzoccoEntityDescription, SwitchEntityDescription):
     control_fn: Callable[[LaMarzoccoMachine, bool], Coroutine[Any, Any, bool]]
-    is_on_fn: Callable[[LaMarzoccoMachineConfig], bool]
+    is_on_fn: Callable[[LaMarzoccoMachine], bool]
 
 ENTITIES: tuple[LaMarzoccoSwitchEntityDescription, ...]
 
@@ -34,10 +34,11 @@ class LaMarzoccoSwitchEntity(LaMarzoccoEntity, SwitchEntity):
 class LaMarzoccoAutoOnOffSwitchEntity(LaMarzoccoBaseEntity, SwitchEntity):
     coordinator: LaMarzoccoUpdateCoordinator
     _attr_translation_key: str
+    _schedule_entry: Incomplete
     _identifier: Incomplete
     _attr_translation_placeholders: Incomplete
-    entity_category: Incomplete
-    def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, identifier: str) -> None: ...
+    _attr_entity_category: Incomplete
+    def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, schedule_entry: WakeUpScheduleSettings) -> None: ...
     async def _async_enable(self, state: bool) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

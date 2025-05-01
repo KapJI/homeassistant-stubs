@@ -1,4 +1,4 @@
-from .const import CONTROLLER as CONTROLLER, CONTROLLER_KEY as CONTROLLER_KEY, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import DOMAIN as DOMAIN, LinkPlaySharedData as LinkPlaySharedData, PLATFORMS as PLATFORMS, SHARED_DATA as SHARED_DATA
 from .utils import async_get_client_session as async_get_client_session
 from aiohttp import ClientSession as ClientSession
 from dataclasses import dataclass

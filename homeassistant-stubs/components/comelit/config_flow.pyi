@@ -1,5 +1,6 @@
 import voluptuous as vol
 from .const import DEFAULT_PORT as DEFAULT_PORT, DEVICE_TYPE_LIST as DEVICE_TYPE_LIST, DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .utils import async_client_session as async_client_session
 from _typeshed import Incomplete
 from aiocomelit.api import ComelitCommonApi as ComelitCommonApi
 from collections.abc import Mapping

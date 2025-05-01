@@ -7,11 +7,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.util import package as package
 from ipaddress import IPv4Address, IPv6Address
 
 _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
 
+def _check_docker_without_host_networking() -> bool: ...
 @bind_hass
 async def async_get_adapters(hass: HomeAssistant) -> list[Adapter]: ...
 @callback

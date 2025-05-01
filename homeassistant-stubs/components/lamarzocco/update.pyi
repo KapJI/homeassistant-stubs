@@ -12,6 +12,7 @@ from pylamarzocco.const import FirmwareType
 from typing import Any
 
 PARALLEL_UPDATES: int
+MAX_UPDATE_WAIT: int
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoUpdateEntityDescription(LaMarzoccoEntityDescription, UpdateEntityDescription):
@@ -25,10 +26,12 @@ class LaMarzoccoUpdateEntity(LaMarzoccoEntity, UpdateEntity):
     entity_description: LaMarzoccoUpdateEntityDescription
     _attr_supported_features: Incomplete
     @property
-    def installed_version(self) -> str | None: ...
+    def installed_version(self) -> str: ...
     @property
     def latest_version(self) -> str: ...
     @property
     def release_url(self) -> str | None: ...
+    def release_notes(self) -> str | None: ...
     _attr_in_progress: bool
+    _attr_update_percentage: Incomplete
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

@@ -15,6 +15,7 @@ _LOGGER: Incomplete
 
 class RoborockFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     _username: str | None
     _client: RoborockApiClient | None
     def __init__(self) -> None: ...

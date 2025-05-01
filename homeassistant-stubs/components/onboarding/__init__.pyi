@@ -1,5 +1,6 @@
 from . import views as views
 from .const import DOMAIN as DOMAIN, STEPS as STEPS, STEP_ANALYTICS as STEP_ANALYTICS, STEP_CORE_CONFIG as STEP_CORE_CONFIG, STEP_INTEGRATION as STEP_INTEGRATION, STEP_USER as STEP_USER
+from .views import BaseOnboardingView as BaseOnboardingView, NoAuthBaseOnboardingView as NoAuthBaseOnboardingView
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

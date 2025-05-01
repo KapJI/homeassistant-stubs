@@ -15,10 +15,11 @@ class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
     index_device_url: Incomplete
     executor: Incomplete
     _attr_assumed_state: Incomplete
-    _attr_available: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
+    @property
+    def available(self) -> bool: ...
     @property
     def is_sub_device(self) -> bool: ...
     @property

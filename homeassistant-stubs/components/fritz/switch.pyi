@@ -15,6 +15,7 @@ from homeassistant.util import slugify as slugify
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def _async_deflection_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str) -> list[FritzBoxDeflectionSwitch]: ...
 async def _async_port_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str, local_ip: str) -> list[FritzBoxPortSwitch]: ...

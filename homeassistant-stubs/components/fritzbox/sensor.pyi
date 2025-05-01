@@ -14,13 +14,10 @@ from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final
 
-@dataclass(frozen=True)
-class FritzEntityDescriptionMixinSensor(FritzEntityDescriptionMixinBase):
-    native_value: Callable[[FritzhomeDevice], StateType | datetime]
-
-@dataclass(frozen=True)
-class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescriptionMixinSensor):
+@dataclass(frozen=True, kw_only=True)
+class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescriptionMixinBase):
     entity_category_fn: Callable[[FritzhomeDevice], EntityCategory | None] | None = ...
+    native_value: Callable[[FritzhomeDevice], StateType | datetime]
 
 def suitable_eco_temperature(device: FritzhomeDevice) -> bool: ...
 def suitable_comfort_temperature(device: FritzhomeDevice) -> bool: ...

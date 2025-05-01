@@ -13,7 +13,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ComelitConfigEntr
 class ComelitVedoBinarySensorEntity(CoordinatorEntity[ComelitVedoSystem], BinarySensorEntity):
     _attr_has_entity_name: bool
     _attr_device_class: Incomplete
-    _api: Incomplete
     _zone_index: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

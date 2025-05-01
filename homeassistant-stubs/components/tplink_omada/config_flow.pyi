@@ -7,14 +7,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession, async_get_clientsession as async_get_clientsession
 from tplink_omada_client import OmadaClient, OmadaSite as OmadaSite
-from types import MappingProxyType
 from typing import Any, NamedTuple
 
 _LOGGER: Incomplete
 CONF_SITE: str
 STEP_USER_DATA_SCHEMA: Incomplete
 
-async def create_omada_client(hass: HomeAssistant, data: MappingProxyType[str, Any]) -> OmadaClient: ...
+async def create_omada_client(hass: HomeAssistant, data: Mapping[str, Any]) -> OmadaClient: ...
 
 class HubInfo(NamedTuple):
     controller_id: str

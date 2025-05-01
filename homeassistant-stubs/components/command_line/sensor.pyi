@@ -11,7 +11,7 @@ from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.trigger_template_entity import ManualTriggerSensorEntity as ManualTriggerSensorEntity
+from homeassistant.helpers.trigger_template_entity import ManualTriggerSensorEntity as ManualTriggerSensorEntity, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
@@ -30,7 +30,7 @@ class CommandSensor(ManualTriggerSensorEntity):
     _value_template: Incomplete
     _scan_interval: Incomplete
     _process_updates: asyncio.Lock | None
-    def __init__(self, data: CommandSensorData, config: ConfigType, value_template: Template | None, json_attributes: list[str] | None, json_attributes_path: str | None, scan_interval: timedelta) -> None: ...
+    def __init__(self, data: CommandSensorData, config: ConfigType, value_template: ValueTemplate | None, json_attributes: list[str] | None, json_attributes_path: str | None, scan_interval: timedelta) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     async def async_added_to_hass(self) -> None: ...

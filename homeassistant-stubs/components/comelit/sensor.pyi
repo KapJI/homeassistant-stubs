@@ -1,4 +1,5 @@
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge, ComelitVedoSystem as ComelitVedoSystem
+from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject, ComelitVedoZoneObject as ComelitVedoZoneObject
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
@@ -17,13 +18,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ComelitConfigEntr
 async def async_setup_bridge_entry(hass: HomeAssistant, config_entry: ComelitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 async def async_setup_vedo_entry(hass: HomeAssistant, config_entry: ComelitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ComelitBridgeSensorEntity(CoordinatorEntity[ComelitSerialBridge], SensorEntity):
-    _attr_has_entity_name: bool
+class ComelitBridgeSensorEntity(ComelitBridgeBaseEntity, SensorEntity):
     _attr_name: Incomplete
-    _api: Incomplete
-    _device: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str, description: SensorEntityDescription) -> None: ...
     @property
@@ -31,7 +27,6 @@ class ComelitBridgeSensorEntity(CoordinatorEntity[ComelitSerialBridge], SensorEn
 
 class ComelitVedoSensorEntity(CoordinatorEntity[ComelitVedoSystem], SensorEntity):
     _attr_has_entity_name: bool
-    _api: Incomplete
     _zone_index: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

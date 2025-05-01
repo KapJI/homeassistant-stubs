@@ -1,7 +1,7 @@
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC
-from .entity import CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
+from .const import CONF_JSON_ATTRS_TEMPLATE as CONF_JSON_ATTRS_TEMPLATE, CONF_JSON_ATTRS_TOPIC as CONF_JSON_ATTRS_TOPIC, CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_subscribe_topic as valid_subscribe_topic
@@ -15,6 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
+from typing import Any
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -39,21 +40,17 @@ class MqttDeviceTracker(MqttEntity, TrackerEntity):
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
     def config_schema() -> VolSchemaType: ...
+    _attr_source_type: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
+    _attr_location_name: Incomplete
     @callback
     def _tracker_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
     def _prepare_subscribe_topics(self) -> None: ...
-    @property
-    def force_update(self) -> bool: ...
     async def _subscribe_topics(self) -> None: ...
-    @property
-    def latitude(self) -> float | None: ...
-    @property
-    def location_accuracy(self) -> int: ...
-    @property
-    def longitude(self) -> float | None: ...
-    @property
-    def location_name(self) -> str | None: ...
-    @property
-    def source_type(self) -> SourceType: ...
+    _attr_latitude: Incomplete
+    _attr_longitude: Incomplete
+    _attr_location_accuracy: Incomplete
+    _attr_extra_state_attributes: Incomplete
+    @callback
+    def _process_update_extra_state_attributes(self, extra_state_attributes: dict[str, Any]) -> None: ...

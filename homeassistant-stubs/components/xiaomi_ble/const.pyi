@@ -28,6 +28,7 @@ LOCK_FINGERPRINT: str
 MOTION_DEVICE: Final[str]
 DOUBLE_BUTTON: Final[str]
 TRIPPLE_BUTTON: Final[str]
+QUADRUPLE_BUTTON: Final[str]
 REMOTE: Final[str]
 REMOTE_FAN: Final[str]
 REMOTE_VENFAN: Final[str]
@@ -38,6 +39,7 @@ BUTTON_PRESS_LONG: Final[str]
 BUTTON_PRESS_DOUBLE_LONG: Final[str]
 DOUBLE_BUTTON_PRESS_DOUBLE_LONG: Final[str]
 TRIPPLE_BUTTON_PRESS_DOUBLE_LONG: Final[str]
+QUADRUPLE_BUTTON_PRESS_DOUBLE_LONG: Final[str]
 
 class XiaomiBleEvent(TypedDict):
     device_id: str

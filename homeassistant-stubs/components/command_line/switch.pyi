@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.trigger_template_entity import ManualTriggerEntity as ManualTriggerEntity
+from homeassistant.helpers.trigger_template_entity import ManualTriggerEntity as ManualTriggerEntity, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import slugify as slugify
 from typing import Any
@@ -29,7 +29,7 @@ class CommandSwitch(ManualTriggerEntity, SwitchEntity):
     _timeout: Incomplete
     _scan_interval: Incomplete
     _process_updates: asyncio.Lock | None
-    def __init__(self, config: ConfigType, object_id: str, command_on: str, command_off: str, command_state: str | None, value_template: Template | None, timeout: int, scan_interval: timedelta) -> None: ...
+    def __init__(self, config: ConfigType, object_id: str, command_on: str, command_off: str, command_state: str | None, value_template: ValueTemplate | None, timeout: int, scan_interval: timedelta) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def _switch(self, command: str) -> bool: ...
     async def _async_query_state_value(self, command: str) -> str | None: ...

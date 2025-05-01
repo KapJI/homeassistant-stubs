@@ -11,6 +11,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers import restore_state as restore_state
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EsphomeSelect(EsphomeEntity[SelectInfo, SelectState], SelectEntity):
@@ -31,12 +33,11 @@ class EsphomeVadSensitivitySelect(EsphomeAssistEntity, VadSensitivitySelect):
 
 class EsphomeAssistSatelliteWakeWordSelect(EsphomeAssistEntity, SelectEntity, restore_state.RestoreEntity):
     entity_description: Incomplete
-    _attr_should_poll: bool
     _attr_current_option: str | None
     _attr_options: list[str]
     _attr_unique_id: Incomplete
     _wake_words: dict[str, str]
-    def __init__(self, hass: HomeAssistant, entry_data: RuntimeEntryData) -> None: ...
+    def __init__(self, entry_data: RuntimeEntryData) -> None: ...
     @property
     def available(self) -> bool: ...
     async def async_added_to_hass(self) -> None: ...

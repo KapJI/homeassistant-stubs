@@ -1,7 +1,7 @@
 import asyncio
 from .const import DOMAIN as DOMAIN
-from .entity import EsphomeAssistEntity as EsphomeAssistEntity
-from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
+from .entity import EsphomeAssistEntity as EsphomeAssistEntity, convert_api_error_ha_error as convert_api_error_ha_error
+from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from .ffmpeg_proxy import async_create_proxy_url as async_create_proxy_url
 from _typeshed import Incomplete
@@ -11,12 +11,12 @@ from homeassistant.components import assist_satellite as assist_satellite, tts a
 from homeassistant.components.assist_pipeline import PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineStage as PipelineStage
 from homeassistant.components.intent import TimerEventType as TimerEventType, TimerInfo as TimerInfo, async_register_timer_handler as async_register_timer_handler
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 _VOICE_ASSISTANT_EVENT_TYPES: EsphomeEnumMapper[VoiceAssistantEventType, PipelineEventType]
 _TIMER_EVENT_TYPES: EsphomeEnumMapper[VoiceAssistantTimerEventType, TimerEventType]
@@ -28,7 +28,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, asyn
 class EsphomeAssistSatellite(EsphomeAssistEntity, assist_satellite.AssistSatelliteEntity):
     entity_description: Incomplete
     config_entry: Incomplete
-    entry_data: Incomplete
     cli: Incomplete
     _is_running: bool
     _pipeline_task: asyncio.Task | None
@@ -36,7 +35,7 @@ class EsphomeAssistSatellite(EsphomeAssistEntity, assist_satellite.AssistSatelli
     _tts_streaming_task: asyncio.Task | None
     _udp_server: VoiceAssistantUDPServer | None
     _satellite_config: Incomplete
-    def __init__(self, config_entry: ConfigEntry, entry_data: RuntimeEntryData) -> None: ...
+    def __init__(self, entry: ESPHomeConfigEntry) -> None: ...
     @property
     def pipeline_entity_id(self) -> str | None: ...
     @property
@@ -48,7 +47,9 @@ class EsphomeAssistSatellite(EsphomeAssistEntity, assist_satellite.AssistSatelli
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     def on_pipeline_event(self, event: PipelineEvent) -> None: ...
+    @convert_api_error_ha_error
     async def async_announce(self, announcement: assist_satellite.AssistSatelliteAnnouncement) -> None: ...
+    @convert_api_error_ha_error
     async def async_start_conversation(self, start_announcement: assist_satellite.AssistSatelliteAnnouncement) -> None: ...
     async def _do_announce(self, announcement: assist_satellite.AssistSatelliteAnnouncement, run_pipeline_after: bool) -> None: ...
     _attr_tts_options: Incomplete
@@ -61,7 +62,7 @@ class EsphomeAssistSatellite(EsphomeAssistEntity, assist_satellite.AssistSatelli
     @callback
     def async_set_wake_word(self, wake_word_id: str) -> None: ...
     def _update_tts_format(self) -> None: ...
-    async def _stream_tts_audio(self, media_id: str, sample_rate: int = 16000, sample_width: int = 2, sample_channels: int = 1, samples_per_chunk: int = 512) -> None: ...
+    async def _stream_tts_audio(self, tts_result: tts.ResultStream, sample_rate: int = 16000, sample_width: int = 2, sample_channels: int = 1, samples_per_chunk: int = 512) -> None: ...
     async def _wrap_audio_stream(self) -> AsyncIterable[bytes]: ...
     def _stop_pipeline(self) -> None: ...
     def _abort_pipeline(self) -> None: ...

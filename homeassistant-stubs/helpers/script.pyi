@@ -171,6 +171,7 @@ class Script:
     name: Incomplete
     unique_id: Incomplete
     domain: Incomplete
+    enabled: Incomplete
     running_description: Incomplete
     _change_listener: Incomplete
     _change_listener_job: Incomplete
@@ -189,7 +190,7 @@ class Script:
     _parallel_scripts: dict[int, list[Script]]
     _sequence_scripts: dict[int, Script]
     variables: Incomplete
-    def __init__(self, hass: HomeAssistant, sequence: Sequence[dict[str, Any]], name: str, domain: str, *, change_listener: Callable[[], Any] | None = None, log_exceptions: bool = True, logger: logging.Logger | None = None, max_exceeded: str = ..., max_runs: int = ..., running_description: str | None = None, script_mode: str = ..., top_level: bool = True, variables: ScriptVariables | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, sequence: Sequence[dict[str, Any]], name: str, domain: str, *, change_listener: Callable[[], Any] | None = None, log_exceptions: bool = True, logger: logging.Logger | None = None, max_exceeded: str = ..., max_runs: int = ..., running_description: str | None = None, script_mode: str = ..., top_level: bool = True, variables: ScriptVariables | None = None, enabled: bool = True) -> None: ...
     @property
     def change_listener(self) -> Callable[..., Any] | None: ...
     @change_listener.setter

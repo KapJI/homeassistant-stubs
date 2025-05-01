@@ -1,6 +1,6 @@
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
 from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_METHOD_NAME as ATTR_METHOD_NAME, ATTR_PARAMETERS as ATTR_PARAMETERS, ATTR_WAIT_FOR_RESULT as ATTR_WAIT_FOR_RESULT, CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, CONF_INSTALLER_MODE as CONF_INSTALLER_MODE, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, USER_AGENT as USER_AGENT
-from .helpers import async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, get_device_id as get_device_id
+from .helpers import async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, async_get_provisioning_entry_from_device_id as async_get_provisioning_entry_from_device_id, get_device_id as get_device_id
 from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Callable as Callable, Coroutine
@@ -69,6 +69,9 @@ UUID: str
 SUPPORTED_PROTOCOLS: str
 ADDITIONAL_PROPERTIES: str
 REQUESTED_SECURITY_CLASSES: str
+PROTOCOL: str
+DEVICE_NAME: str
+AREA_ID: str
 FEATURE: str
 STRATEGY: str
 MINIMUM_QR_STRING_LENGTH: int
@@ -97,8 +100,7 @@ async def websocket_node_status(hass: HomeAssistant, connection: ActiveConnectio
 @async_get_node
 async def websocket_node_metadata(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
 @websocket_api.async_response
-@async_get_node
-async def websocket_node_alerts(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+async def websocket_node_alerts(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 @async_handle_failed_command
@@ -124,6 +126,9 @@ async def websocket_grant_security_classes(hass: HomeAssistant, connection: Acti
 @async_handle_failed_command
 @async_get_entry
 async def websocket_validate_dsk_and_enter_pin(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ConfigEntry, client: Client, driver: Driver) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+async def websocket_subscribe_new_devices(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 @async_handle_failed_command

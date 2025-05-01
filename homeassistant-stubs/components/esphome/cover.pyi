@@ -6,6 +6,8 @@ from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 class EsphomeCover(EsphomeEntity[CoverInfo, CoverState], CoverEntity):
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete

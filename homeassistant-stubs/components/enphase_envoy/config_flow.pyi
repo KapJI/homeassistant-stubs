@@ -4,7 +4,7 @@ from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
@@ -16,7 +16,9 @@ _LOGGER: Incomplete
 ENVOY: str
 CONF_SERIAL: str
 INSTALLER_AUTH_USERNAME: str
+AVOID_REFLECT_KEYS: Incomplete
 
+def without_avoid_reflect_keys(dictionary: Mapping[str, Any]) -> dict[str, Any]: ...
 async def validate_input(hass: HomeAssistant, host: str, username: str, password: str, errors: dict[str, str], description_placeholders: dict[str, str]) -> Envoy: ...
 
 class EnphaseConfigFlow(ConfigFlow, domain=DOMAIN):

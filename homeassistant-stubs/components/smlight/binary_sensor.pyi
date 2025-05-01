@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pysmlight import Sensors as Sensors
 from pysmlight.sse import MessageEvent as MessageEvent
 
+PARALLEL_UPDATES: int
 SCAN_INTERVAL = SCAN_INTERNET_INTERVAL
 
 @dataclass(frozen=True, kw_only=True)

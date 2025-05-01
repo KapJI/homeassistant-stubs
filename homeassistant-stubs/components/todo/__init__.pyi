@@ -32,6 +32,7 @@ class TodoItemFieldDescription:
 TODO_ITEM_FIELDS: Incomplete
 TODO_ITEM_FIELD_SCHEMA: Incomplete
 TODO_ITEM_FIELD_VALIDATIONS: Incomplete
+TODO_SERVICE_GET_ITEMS_SCHEMA: Incomplete
 
 def _validate_supported_features(supported_features: int | None, call_data: dict[str, Any]) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

@@ -1,4 +1,4 @@
-from .const import LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import SmConfigEntry as SmConfigEntry, SmFirmwareUpdateCoordinator as SmFirmwareUpdateCoordinator, SmFwData as SmFwData
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete
@@ -12,6 +12,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pysmlight.models import Firmware as Firmware, Info as Info
 from pysmlight.sse import MessageEvent as MessageEvent
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 def zigbee_latest_version(data: SmFwData, idx: int) -> Firmware | None: ...
 

@@ -1,5 +1,6 @@
 import abc
 import logging
+from . import http as http
 from .aiohttp_client import async_get_clientsession as async_get_clientsession
 from .network import NoURLAvailableError as NoURLAvailableError
 from _typeshed import Incomplete
@@ -7,7 +8,6 @@ from abc import ABC, ABCMeta, abstractmethod
 from aiohttp import client as client, web
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant import config_entries as config_entries
-from homeassistant.components import http as http
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import async_get_application_credentials as async_get_application_credentials
 from homeassistant.util.hass_dict import HassKey as HassKey

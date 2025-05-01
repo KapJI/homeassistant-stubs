@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, WEMO_SUBSCRIPTION_EVENT as WEMO_SUBSCRIPTION_EVENT
-from .models import async_wemo_data as async_wemo_data
+from .models import DATA_WEMO as DATA_WEMO
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

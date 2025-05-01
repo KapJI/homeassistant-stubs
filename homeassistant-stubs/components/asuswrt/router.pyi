@@ -1,7 +1,7 @@
 from .bridge import AsusWrtBridge as AsusWrtBridge, WrtDevice as WrtDevice
 from .const import CONF_DNSMASQ as CONF_DNSMASQ, CONF_INTERFACE as CONF_INTERFACE, CONF_REQUIRE_IP as CONF_REQUIRE_IP, CONF_TRACK_UNKNOWN as CONF_TRACK_UNKNOWN, DEFAULT_DNSMASQ as DEFAULT_DNSMASQ, DEFAULT_INTERFACE as DEFAULT_INTERFACE, DEFAULT_TRACK_UNKNOWN as DEFAULT_TRACK_UNKNOWN, DOMAIN as DOMAIN, KEY_COORDINATOR as KEY_COORDINATOR, KEY_METHOD as KEY_METHOD, KEY_SENSORS as KEY_SENSORS, SENSORS_CONNECTED_DEVICE as SENSORS_CONNECTED_DEVICE
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Mapping
 from datetime import datetime
 from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_CONSIDER_HOME, DEFAULT_CONSIDER_HOME as DEFAULT_CONSIDER_HOME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,7 +12,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util import slugify as slugify
-from types import MappingProxyType
 from typing import Any
 
 CONF_REQ_RELOAD: Incomplete
@@ -69,7 +68,7 @@ class AsusWrtRouter:
     async def close(self) -> None: ...
     @callback
     def async_on_close(self, func: CALLBACK_TYPE) -> None: ...
-    def update_options(self, new_options: MappingProxyType[str, Any]) -> bool: ...
+    def update_options(self, new_options: Mapping[str, Any]) -> bool: ...
     @property
     def device_info(self) -> DeviceInfo: ...
     @property

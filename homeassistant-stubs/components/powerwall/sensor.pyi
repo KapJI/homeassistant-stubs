@@ -56,7 +56,6 @@ class PowerWallBackupReserveSensor(PowerWallEntity, SensorEntity):
     _attr_translation_key: str
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement = PERCENTAGE
-    _attr_device_class: Incomplete
     @property
     def unique_id(self) -> str: ...
     @property

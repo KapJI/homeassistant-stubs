@@ -1,8 +1,7 @@
-from . import get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
-from .const import CONF_INSTANCE_CLIENTS as CONF_INSTANCE_CLIENTS, DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_SENSOR_BASE as TYPE_HYPERION_SENSOR_BASE, TYPE_HYPERION_SENSOR_VISIBLE_PRIORITY as TYPE_HYPERION_SENSOR_VISIBLE_PRIORITY
+from . import HyperionConfigEntry as HyperionConfigEntry, get_hyperion_device_id as get_hyperion_device_id, get_hyperion_unique_id as get_hyperion_unique_id, listen_for_instance_updates as listen_for_instance_updates
+from .const import DOMAIN as DOMAIN, HYPERION_MANUFACTURER_NAME as HYPERION_MANUFACTURER_NAME, HYPERION_MODEL_NAME as HYPERION_MODEL_NAME, SIGNAL_ENTITY_REMOVE as SIGNAL_ENTITY_REMOVE, TYPE_HYPERION_SENSOR_BASE as TYPE_HYPERION_SENSOR_BASE, TYPE_HYPERION_SENSOR_VISIBLE_PRIORITY as TYPE_HYPERION_SENSOR_VISIBLE_PRIORITY
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
@@ -14,7 +13,7 @@ SENSORS: Incomplete
 PRIORITY_SENSOR_DESCRIPTION: Incomplete
 
 def _sensor_unique_id(server_id: str, instance_num: int, suffix: str) -> str: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HyperionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HyperionSensor(SensorEntity):
     _attr_has_entity_name: bool

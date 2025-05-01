@@ -22,7 +22,6 @@ class JewishCalendarEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _location: Incomplete
-    _language: Incomplete
     _candle_lighting_offset: Incomplete
     _havdalah_offset: Incomplete
     _diaspora: Incomplete

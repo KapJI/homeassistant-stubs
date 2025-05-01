@@ -4,7 +4,9 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import DeviceCoordinator as DeviceCoordinator
 from collections.abc import Sequence
 from dataclasses import dataclass
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.util.hass_dict import HassKey as HassKey
+
+DATA_WEMO: HassKey[WemoData]
 
 @dataclass
 class WemoConfigEntryData:
@@ -18,6 +20,3 @@ class WemoData:
     static_config: Sequence[HostPortTuple]
     registry: pywemo.SubscriptionRegistry
     config_entry_data: WemoConfigEntryData = ...
-
-@callback
-def async_wemo_data(hass: HomeAssistant) -> WemoData: ...

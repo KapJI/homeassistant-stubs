@@ -1,15 +1,14 @@
-from .const import SERVICE_GET_QUEUE as SERVICE_GET_QUEUE, SERVICE_GROUP_VOLUME_DOWN as SERVICE_GROUP_VOLUME_DOWN, SERVICE_GROUP_VOLUME_SET as SERVICE_GROUP_VOLUME_SET, SERVICE_GROUP_VOLUME_UP as SERVICE_GROUP_VOLUME_UP
+from . import services as services
 from .coordinator import HeosConfigEntry as HeosConfigEntry, HeosCoordinator as HeosCoordinator
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Coroutine
 from datetime import datetime
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource
 from homeassistant.const import Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -74,6 +73,8 @@ class HeosMediaPlayer(CoordinatorEntity[HeosCoordinator], MediaPlayerEntity):
     async def async_group_volume_up(self) -> None: ...
     async def async_join_players(self, group_members: list[str]) -> None: ...
     async def async_unjoin_player(self) -> None: ...
+    async def async_remove_from_queue(self, queue_ids: list[int]) -> None: ...
+    async def async_move_queue_item(self, queue_ids: list[int], destination_position: int) -> None: ...
     @property
     def available(self) -> bool: ...
     @property

@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge
+from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
 from enum import StrEnum
@@ -7,7 +8,6 @@ from homeassistant.components.humidifier import HumidifierAction as HumidifierAc
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -31,16 +31,12 @@ MODE_TO_ACTION: dict[str, HumidifierComelitCommand]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ComelitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ComelitHumidifierEntity(CoordinatorEntity[ComelitSerialBridge], HumidifierEntity):
+class ComelitHumidifierEntity(ComelitBridgeBaseEntity, HumidifierEntity):
     _attr_supported_features: Incomplete
     _attr_available_modes: Incomplete
     _attr_min_humidity: int
     _attr_max_humidity: int
-    _attr_has_entity_name: bool
-    _api: Incomplete
-    _device: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     _attr_device_class: Incomplete
     _attr_translation_key: Incomplete
     _active_mode: Incomplete

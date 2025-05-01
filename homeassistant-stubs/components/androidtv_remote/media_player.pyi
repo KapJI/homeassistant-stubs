@@ -1,6 +1,6 @@
 import asyncio
 from . import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
-from .const import CONF_APP_ICON as CONF_APP_ICON, CONF_APP_NAME as CONF_APP_NAME
+from .const import CONF_APP_ICON as CONF_APP_ICON, CONF_APP_NAME as CONF_APP_NAME, DOMAIN as DOMAIN
 from .entity import AndroidTVRemoteBaseEntity as AndroidTVRemoteBaseEntity
 from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote

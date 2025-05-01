@@ -6,6 +6,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 
+PARALLEL_UPDATES: int
 NUMBER_MODES: EsphomeEnumMapper[EsphomeNumberMode, NumberMode]
 
 class EsphomeNumber(EsphomeEntity[NumberInfo, NumberState], NumberEntity):

@@ -20,6 +20,7 @@ type ApSystemsConfigEntry = ConfigEntry[ApSystemsData]
 class ApSystemsDataCoordinator(DataUpdateCoordinator[ApSystemsSensorData]):
     config_entry: ApSystemsConfigEntry
     device_version: str
+    battery_system: bool
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ApSystemsConfigEntry, api: APsystemsEZ1M) -> None: ...
     async def _async_setup(self) -> None: ...

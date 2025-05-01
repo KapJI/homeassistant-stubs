@@ -5,6 +5,8 @@ from homeassistant.components.event import EventDeviceClass as EventDeviceClass,
 from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 
+PARALLEL_UPDATES: int
+
 class EsphomeEvent(EsphomeEntity[EventInfo, Event], EventEntity):
     _attr_event_types: Incomplete
     _attr_device_class: Incomplete

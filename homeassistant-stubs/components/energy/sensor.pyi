@@ -8,6 +8,7 @@ from homeassistant.components.sensor import ATTR_LAST_RESET as ATTR_LAST_RESET, 
 from homeassistant.components.sensor.recorder import reset_detected as reset_detected
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -33,6 +34,8 @@ class SourceAdapter:
     entity_id_suffix: str
 
 SOURCE_ADAPTERS: Final[Incomplete]
+
+class EntityNotFoundError(HomeAssistantError): ...
 
 class SensorManager:
     manager: Incomplete
@@ -64,6 +67,8 @@ class EnergyCostSensor(SensorEntity):
     def _reset(self, energy_state: State) -> None: ...
     @callback
     def _update_cost(self) -> None: ...
+    def _get_energy_price(self, valid_units: set[str], default_unit: str | None) -> tuple[float, str | None]: ...
+    def _convert_energy_price(self, energy_price: float, energy_price_unit: str | None, energy_unit: str) -> float: ...
     _attr_name: Incomplete
     async def async_added_to_hass(self) -> None: ...
     @callback

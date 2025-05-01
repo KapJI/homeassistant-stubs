@@ -4,7 +4,8 @@ from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoor
 from .entity import SwitcherEntity as SwitcherEntity
 from .utils import get_breeze_remote_manager as get_breeze_remote_manager
 from _typeshed import Incomplete
-from aioswitcher.api import SwitcherApi, SwitcherBaseResponse as SwitcherBaseResponse
+from aioswitcher.api import SwitcherApi
+from aioswitcher.api.messages import SwitcherBaseResponse as SwitcherBaseResponse
 from aioswitcher.api.remotes import SwitcherBreezeRemote
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass

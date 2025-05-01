@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL, _LOGGER as _LOGGER
 from .helpers import cleanup_device_tracker as cleanup_device_tracker
 from _typeshed import Incomplete
+from aiohttp import ClientSession as ClientSession
 from aiovodafone import VodafoneStationDevice as VodafoneStationDevice
 from dataclasses import dataclass
 from datetime import datetime
@@ -32,7 +33,7 @@ class VodafoneStationRouter(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     api: Incomplete
     _id: Incomplete
     previous_devices: Incomplete
-    def __init__(self, hass: HomeAssistant, host: str, username: str, password: str, config_entry: VodafoneConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, host: str, username: str, password: str, config_entry: VodafoneConfigEntry, session: ClientSession) -> None: ...
     def _calculate_update_time_and_consider_home(self, device: VodafoneStationDevice, utc_point_in_time: datetime) -> tuple[datetime | None, bool]: ...
     async def _async_update_data(self) -> UpdateCoordinatorDataType: ...
     @property

@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight.web import CmdWrapper as CmdWrapper
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)

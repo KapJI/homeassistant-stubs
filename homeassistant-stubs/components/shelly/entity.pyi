@@ -3,7 +3,7 @@ from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, Shell
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_entity_name as get_block_entity_name, get_rpc_entity_name as get_rpc_entity_name, get_rpc_key_instances as get_rpc_key_instances
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
-from collections.abc import Callable as Callable, Mapping
+from collections.abc import Awaitable, Callable as Callable, Coroutine, Mapping
 from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, Concatenate
 
 @callback
 def async_setup_entry_attribute_entities(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[tuple[str, str], BlockEntityDescription], sensor_class: Callable) -> None: ...
@@ -57,6 +57,8 @@ class RestEntityDescription(EntityDescription):
     name: str = ...
     value: Callable[[dict, Any], Any] | None = ...
 
+def rpc_call[_T: ShellyRpcEntity, **_P](func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
+
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     block: Incomplete
     _attr_name: Incomplete
@@ -81,6 +83,7 @@ class ShellyRpcEntity(CoordinatorEntity[ShellyRpcCoordinator]):
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _update_callback(self) -> None: ...
+    @rpc_call
     async def call_rpc(self, method: str, params: Any, timeout: float | None = None) -> Any: ...
 
 class ShellyBlockAttributeEntity(ShellyBlockEntity, Entity):

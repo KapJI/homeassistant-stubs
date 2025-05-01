@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_RECIPIENT as CONF_RECIPIENT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import callback as callback
-from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_MANUFACTURER as ATTR_UPNP_MANUFACTURER, ATTR_UPNP_PRESENTATION_URL as ATTR_UPNP_PRESENTATION_URL, ATTR_UPNP_SERIAL as ATTR_UPNP_SERIAL, ATTR_UPNP_UDN as ATTR_UPNP_UDN, SsdpServiceInfo as SsdpServiceInfo
+from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_MANUFACTURER as ATTR_UPNP_MANUFACTURER, ATTR_UPNP_MODEL_NAME as ATTR_UPNP_MODEL_NAME, ATTR_UPNP_PRESENTATION_URL as ATTR_UPNP_PRESENTATION_URL, ATTR_UPNP_SERIAL as ATTR_UPNP_SERIAL, ATTR_UPNP_UDN as ATTR_UPNP_UDN, SsdpServiceInfo as SsdpServiceInfo
 from huawei_lte_api.Connection import Connection
 from huawei_lte_api.Session import GetResponseType as GetResponseType
 from typing import Any

@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 NUMBER_OF_RINSES_STATE_MAP: Incomplete
 NUMBER_OF_RINSES_STATE_MAP_REVERSE: Incomplete
-type SelectCluster = clusters.ModeSelect | clusters.OvenMode | clusters.LaundryWasherMode | clusters.RefrigeratorAndTemperatureControlledCabinetMode | clusters.RvcRunMode | clusters.RvcCleanMode | clusters.DishwasherMode | clusters.EnergyEvseMode | clusters.DeviceEnergyManagementMode
+type SelectCluster = clusters.ModeSelect | clusters.OvenMode | clusters.LaundryWasherMode | clusters.RefrigeratorAndTemperatureControlledCabinetMode | clusters.RvcRunMode | clusters.RvcCleanMode | clusters.DishwasherMode | clusters.EnergyEvseMode | clusters.DeviceEnergyManagementMode | clusters.WaterHeaterMode
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

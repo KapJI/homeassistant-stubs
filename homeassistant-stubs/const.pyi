@@ -80,6 +80,7 @@ SUN_EVENT_SUNRISE: Final[str]
 CONF_ABOVE: Final[str]
 CONF_ACCESS_TOKEN: Final[str]
 CONF_ACTION: Final[str]
+CONF_ACTIONS: Final[str]
 CONF_ADDRESS: Final[str]
 CONF_AFTER: Final[str]
 CONF_ALIAS: Final[str]
@@ -402,6 +403,7 @@ class UnitOfPower(StrEnum):
 
 class UnitOfReactivePower(StrEnum):
     VOLT_AMPERE_REACTIVE = 'var'
+    KILO_VOLT_AMPERE_REACTIVE = 'kvar'
 
 _DEPRECATED_POWER_VOLT_AMPERE_REACTIVE: Final[Incomplete]
 
@@ -501,8 +503,11 @@ class UnitOfVolume(StrEnum):
 
 class UnitOfVolumeFlowRate(StrEnum):
     CUBIC_METERS_PER_HOUR = 'm³/h'
+    CUBIC_METERS_PER_SECOND = 'm³/s'
     CUBIC_FEET_PER_MINUTE = 'ft³/min'
+    LITERS_PER_HOUR = 'L/h'
     LITERS_PER_MINUTE = 'L/min'
+    LITERS_PER_SECOND = 'L/s'
     GALLONS_PER_MINUTE = 'gal/min'
     MILLILITERS_PER_SECOND = 'mL/s'
 

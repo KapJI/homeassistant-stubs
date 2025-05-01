@@ -1,12 +1,12 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import ESPHomeDashboardCoordinator as ESPHomeDashboardCoordinator
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
-from .entry_data import RuntimeEntryData as RuntimeEntryData
+from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as ESPHomeDeviceInfo, EntityInfo as EntityInfo, UpdateInfo, UpdateState
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -15,16 +15,16 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any
 
+PARALLEL_UPDATES: int
 KEY_UPDATE_LOCK: str
 NO_FEATURES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ESPHomeDashboardUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator], UpdateEntity):
     _attr_has_entity_name: bool
     _attr_device_class: Incomplete
     _attr_title: str
-    _attr_name: str
     _attr_release_url: str
     _attr_entity_registry_enabled_default: bool
     _entry_data: Incomplete
@@ -54,7 +54,7 @@ class ESPHomeUpdateEntity(EsphomeEntity[UpdateInfo, UpdateState], UpdateEntity):
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_state_property
-    def installed_version(self) -> str | None: ...
+    def installed_version(self) -> str: ...
     @property
     @esphome_state_property
     def in_progress(self) -> bool: ...
@@ -63,13 +63,13 @@ class ESPHomeUpdateEntity(EsphomeEntity[UpdateInfo, UpdateState], UpdateEntity):
     def latest_version(self) -> str | None: ...
     @property
     @esphome_state_property
-    def release_summary(self) -> str | None: ...
+    def release_summary(self) -> str: ...
     @property
     @esphome_state_property
-    def release_url(self) -> str | None: ...
+    def release_url(self) -> str: ...
     @property
     @esphome_state_property
-    def title(self) -> str | None: ...
+    def title(self) -> str: ...
     @property
     @esphome_state_property
     def update_percentage(self) -> int | None: ...

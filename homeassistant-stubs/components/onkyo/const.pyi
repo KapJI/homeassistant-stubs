@@ -5,8 +5,6 @@ from typing import Literal, Self
 DOMAIN: str
 DEVICE_INTERVIEW_TIMEOUT: int
 DEVICE_DISCOVERY_TIMEOUT: int
-CONF_SOURCES: str
-CONF_RECEIVER_MAX_VOLUME: str
 type VolumeResolution = Literal[50, 80, 100, 200]
 OPTION_VOLUME_RESOLUTION: str
 OPTION_VOLUME_RESOLUTION_DEFAULT: VolumeResolution

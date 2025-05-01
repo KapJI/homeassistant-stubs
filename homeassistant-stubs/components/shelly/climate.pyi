@@ -1,6 +1,6 @@
 from .const import BLU_TRV_TEMPERATURE_SETTINGS as BLU_TRV_TEMPERATURE_SETTINGS, DOMAIN as DOMAIN, LOGGER as LOGGER, NOT_CALIBRATED_ISSUE_ID as NOT_CALIBRATED_ISSUE_ID, RPC_THERMOSTAT_SETTINGS as RPC_THERMOSTAT_SETTINGS, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import ShellyRpcEntity as ShellyRpcEntity
+from .entity import ShellyRpcEntity as ShellyRpcEntity, rpc_call as rpc_call
 from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
@@ -123,4 +123,5 @@ class RpcBluTrvClimate(ShellyRpcEntity, ClimateEntity):
     def current_temperature(self) -> float | None: ...
     @property
     def hvac_action(self) -> HVACAction: ...
+    @rpc_call
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

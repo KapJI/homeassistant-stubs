@@ -128,8 +128,9 @@ class AddRecorderPlatformTask(RecorderTask):
 
 @dataclass(slots=True)
 class SynchronizeTask(RecorderTask):
-    event: asyncio.Event
+    future: asyncio.Future
     def run(self, instance: Recorder) -> None: ...
+    def _set_result_if_not_done(self) -> None: ...
 
 @dataclass(slots=True)
 class AdjustLRUSizeTask(RecorderTask):

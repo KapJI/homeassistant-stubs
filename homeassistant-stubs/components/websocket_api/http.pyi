@@ -13,7 +13,7 @@ from aiohttp.http_websocket import WebSocketWriter as WebSocketWriter
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
@@ -50,6 +50,9 @@ class WebSocketHandler:
     _ready_future: asyncio.Future[int] | None
     _release_ready_queue_size: int
     def __init__(self, hass: HomeAssistant, request: web.Request) -> None: ...
+    _debug: Incomplete
+    @callback
+    def _async_logging_changed(self, event: Event | None = None) -> None: ...
     def __repr__(self) -> str: ...
     @property
     def description(self) -> str: ...

@@ -14,6 +14,7 @@ YOUTUBE_PLAYER_SUPPORT: Incomplete
 MUSIC_PLAYER_SUPPORT: Incomplete
 NETFLIX_PLAYER_SUPPORT: Incomplete
 BROWSE_PLAYER_SUPPORT: Incomplete
+SEARCH_PLAYER_SUPPORT: Incomplete
 
 class AbstractDemoPlayer(MediaPlayerEntity):
     _attr_should_poll: bool
@@ -110,3 +111,6 @@ class DemoBrowsePlayer(AbstractDemoPlayer):
 
 class DemoGroupPlayer(AbstractDemoPlayer):
     _attr_supported_features: Incomplete
+
+class DemoSearchPlayer(AbstractDemoPlayer):
+    _attr_supported_features = SEARCH_PLAYER_SUPPORT

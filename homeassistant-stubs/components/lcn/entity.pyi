@@ -1,9 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .helpers import AddressType as AddressType, DeviceConnectionType as DeviceConnectionType, InputType as InputType, generate_unique_id as generate_unique_id, get_device_connection as get_device_connection
+from .const import CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, DOMAIN as DOMAIN
+from .helpers import AddressType as AddressType, DeviceConnectionType as DeviceConnectionType, InputType as InputType, generate_unique_id as generate_unique_id, get_device_connection as get_device_connection, get_resource as get_resource
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_NAME as CONF_NAME, CONF_RESOURCE as CONF_RESOURCE
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DOMAIN as CONF_DOMAIN, CONF_NAME as CONF_NAME
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType

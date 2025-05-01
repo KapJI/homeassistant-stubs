@@ -13,6 +13,8 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from pysmlight import Info as Info, Sensors as Sensors
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class SmSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[Sensors], float | None]

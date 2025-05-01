@@ -4,6 +4,8 @@ from aioesphomeapi import DateInfo, DateState
 from datetime import date
 from homeassistant.components.date import DateEntity as DateEntity
 
+PARALLEL_UPDATES: int
+
 class EsphomeDate(EsphomeEntity[DateInfo, DateState], DateEntity):
     @property
     @esphome_state_property

@@ -9,6 +9,8 @@ from homeassistant.components.camera import Camera as Camera
 from homeassistant.core import callback as callback
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 class EsphomeCamera(Camera, EsphomeEntity[CameraInfo, CameraState]):
     _loop: Incomplete
     _image_futures: list[asyncio.Future[bool | None]]

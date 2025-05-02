@@ -51,6 +51,7 @@ class CloudTTSEntity(TextToSpeechEntity):
     async def async_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...
 
 class CloudProvider(Provider):
+    has_entity: bool
     cloud: Incomplete
     name: str
     def __init__(self, cloud: Cloud[CloudClient]) -> None: ...

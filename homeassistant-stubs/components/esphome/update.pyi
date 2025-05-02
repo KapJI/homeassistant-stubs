@@ -1,7 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import ESPHomeDashboardCoordinator as ESPHomeDashboardCoordinator
 from .dashboard import async_get_dashboard as async_get_dashboard
-from .domain_data import DomainData as DomainData
 from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete

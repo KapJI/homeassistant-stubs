@@ -31,6 +31,7 @@ async def async_setup_legacy(hass: HomeAssistant, config: ConfigType) -> list[Co
 class Provider(metaclass=abc.ABCMeta):
     hass: HomeAssistant | None
     name: str | None
+    has_entity: bool
     @property
     def default_language(self) -> str | None: ...
     @property

@@ -2,6 +2,7 @@ import aiohttp
 import socket
 from .frame import warn_use as warn_use
 from .json import json_dumps as json_dumps
+from .singleton import singleton as singleton
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
@@ -19,11 +20,16 @@ from typing import Any, Self
 
 DATA_CONNECTOR: HassKey[dict[tuple[bool, int, str], aiohttp.BaseConnector]]
 DATA_CLIENTSESSION: HassKey[dict[tuple[bool, int, str], aiohttp.ClientSession]]
+DATA_RESOLVER: HassKey[HassAsyncDNSResolver]
 SERVER_SOFTWARE: Incomplete
 ENABLE_CLEANUP_CLOSED: Incomplete
 WARN_CLOSE_MSG: str
 MAXIMUM_CONNECTIONS: int
 MAXIMUM_CONNECTIONS_PER_HOST: int
+
+class HassAsyncDNSResolver(AsyncDualMDNSResolver):
+    async def real_close(self) -> None: ...
+    async def close(self) -> None: ...
 
 class HassClientResponse(aiohttp.ClientResponse):
     async def json(self, *args: Any, loads: JSONDecoder = ..., **kwargs: Any) -> Any: ...
@@ -60,4 +66,6 @@ class HomeAssistantTCPConnector(aiohttp.TCPConnector):
 @callback
 def _async_get_connector(hass: HomeAssistant, verify_ssl: bool = True, family: socket.AddressFamily = ..., ssl_cipher: ssl_util.SSLCipherList = ...) -> aiohttp.BaseConnector: ...
 @callback
-def _async_make_resolver(hass: HomeAssistant) -> AsyncDualMDNSResolver: ...
+def _async_get_or_create_resolver(hass: HomeAssistant) -> HassAsyncDNSResolver: ...
+@callback
+def _async_make_resolver(hass: HomeAssistant) -> HassAsyncDNSResolver: ...

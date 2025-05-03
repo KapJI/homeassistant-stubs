@@ -7,11 +7,10 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_MAC as CONF_M
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from pylamarzocco import LaMarzoccoMachine as LaMarzoccoMachine
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoEntityDescription(EntityDescription):
-    available_fn: Callable[[LaMarzoccoMachine], bool] = ...
+    available_fn: Callable[[LaMarzoccoUpdateCoordinator], bool] = ...
     supported_fn: Callable[[LaMarzoccoUpdateCoordinator], bool] = ...
 
 class LaMarzoccoBaseEntity(CoordinatorEntity[LaMarzoccoUpdateCoordinator]):

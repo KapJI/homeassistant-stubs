@@ -27,6 +27,7 @@ type LaMarzoccoConfigEntry = ConfigEntry[LaMarzoccoRuntimeData]
 class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABCMeta):
     _default_update_interval = SCAN_INTERVAL
     config_entry: LaMarzoccoConfigEntry
+    websocket_terminated: bool
     device: Incomplete
     def __init__(self, hass: HomeAssistant, entry: LaMarzoccoConfigEntry, device: LaMarzoccoMachine) -> None: ...
     async def _async_update_data(self) -> None: ...
@@ -35,6 +36,8 @@ class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABC
 
 class LaMarzoccoConfigUpdateCoordinator(LaMarzoccoUpdateCoordinator):
     async def _internal_async_update_data(self) -> None: ...
+    websocket_terminated: bool
+    async def connect_websocket(self) -> None: ...
 
 class LaMarzoccoSettingsUpdateCoordinator(LaMarzoccoUpdateCoordinator):
     _default_update_interval = SETTINGS_UPDATE_INTERVAL

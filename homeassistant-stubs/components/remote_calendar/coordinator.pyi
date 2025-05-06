@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from .ics import InvalidIcsException as InvalidIcsException, parse_calendar as parse_calendar
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL

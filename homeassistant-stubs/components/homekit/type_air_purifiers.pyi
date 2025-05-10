@@ -1,9 +1,9 @@
 from .accessories import TYPES as TYPES
 from .const import CHAR_ACTIVE as CHAR_ACTIVE, CHAR_AIR_QUALITY as CHAR_AIR_QUALITY, CHAR_CURRENT_AIR_PURIFIER_STATE as CHAR_CURRENT_AIR_PURIFIER_STATE, CHAR_CURRENT_HUMIDITY as CHAR_CURRENT_HUMIDITY, CHAR_CURRENT_TEMPERATURE as CHAR_CURRENT_TEMPERATURE, CHAR_FILTER_CHANGE_INDICATION as CHAR_FILTER_CHANGE_INDICATION, CHAR_FILTER_LIFE_LEVEL as CHAR_FILTER_LIFE_LEVEL, CHAR_NAME as CHAR_NAME, CHAR_PM25_DENSITY as CHAR_PM25_DENSITY, CHAR_TARGET_AIR_PURIFIER_STATE as CHAR_TARGET_AIR_PURIFIER_STATE, CONF_LINKED_FILTER_CHANGE_INDICATION as CONF_LINKED_FILTER_CHANGE_INDICATION, CONF_LINKED_FILTER_LIFE_LEVEL as CONF_LINKED_FILTER_LIFE_LEVEL, CONF_LINKED_HUMIDITY_SENSOR as CONF_LINKED_HUMIDITY_SENSOR, CONF_LINKED_PM25_SENSOR as CONF_LINKED_PM25_SENSOR, CONF_LINKED_TEMPERATURE_SENSOR as CONF_LINKED_TEMPERATURE_SENSOR, SERV_AIR_PURIFIER as SERV_AIR_PURIFIER, SERV_AIR_QUALITY_SENSOR as SERV_AIR_QUALITY_SENSOR, SERV_FILTER_MAINTENANCE as SERV_FILTER_MAINTENANCE, SERV_HUMIDITY_SENSOR as SERV_HUMIDITY_SENSOR, SERV_TEMPERATURE_SENSOR as SERV_TEMPERATURE_SENSOR, THRESHOLD_FILTER_CHANGE_NEEDED as THRESHOLD_FILTER_CHANGE_NEEDED
 from .type_fans import ATTR_PRESET_MODE as ATTR_PRESET_MODE, CHAR_ROTATION_SPEED as CHAR_ROTATION_SPEED, Fan as Fan
-from .util import cleanup_name_for_homekit as cleanup_name_for_homekit, convert_to_float as convert_to_float, density_to_air_quality as density_to_air_quality
+from .util import cleanup_name_for_homekit as cleanup_name_for_homekit, convert_to_float as convert_to_float, density_to_air_quality as density_to_air_quality, temperature_to_homekit as temperature_to_homekit
 from _typeshed import Incomplete
-from homeassistant.const import STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, State as State, callback as callback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from pyhap.characteristic import Characteristic as Characteristic

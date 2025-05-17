@@ -793,7 +793,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant"
-version = "2025.5.1"
+version = "2025.5.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiodns" },
@@ -855,9 +855,9 @@ dependencies = [
     { name = "yarl" },
     { name = "zeroconf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bf/2c/d9be15a84a730b75b4cb3cd002f1a4e98c65a23894b4bfeb8930e9047c54/homeassistant-2025.5.1.tar.gz", hash = "sha256:ce5950d21d56b3e1cdc9f06f000a0ab68bd0b7092bd1f34db67176a408d1aea3", size = 25630073, upload-time = "2025-05-09T15:22:32.649Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/85/bc/a7d38c6f215b6759bee8ba17696d355a05f62ff050c1882c63a2384c3f04/homeassistant-2025.5.2.tar.gz", hash = "sha256:95d76700cddf8daf5e9cf6114a89f049ed5a1bcb79e6348940dbde58fc2b84e1", size = 25685043, upload-time = "2025-05-16T21:26:16.088Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c3/ae/8e895c0925aae2dc2a069bb0fdeeef6f4f9b865fc435b9cdb95c6d91eefa/homeassistant-2025.5.1-py3-none-any.whl", hash = "sha256:80d64c9570ac5eaa2231c7eab1debbdc87275f5e7ff1c08f2cd41f679c146855", size = 43869544, upload-time = "2025-05-09T15:22:26.908Z" },
+    { url = "https://files.pythonhosted.org/packages/36/f6/64e7555c03e73da84201671bb9a761309a9655a8912a7f307b422175c1c1/homeassistant-2025.5.2-py3-none-any.whl", hash = "sha256:d47e967830b4c7e7b2893b2b48c7519a618d2edcb962ae7ac4ce92fbf1112b7e", size = 43937584, upload-time = "2025-05-16T21:26:10.615Z" },
 ]
 
 [[package]]
@@ -879,7 +879,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homeassistant", specifier = "==2025.5.1" }]
+requires-dist = [{ name = "homeassistant", specifier = "==2025.5.2" }]
 
 [package.metadata.requires-dev]
 dev = [
@@ -1821,14 +1821,14 @@ wheels = [
 
 [[package]]
 name = "voluptuous-openapi"
-version = "0.0.7"
+version = "0.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "voluptuous" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/84/88/b8cb4adfbd28ffd8190139697b1a90d8e117e68ee4850c41136372a29b3c/voluptuous_openapi-0.0.7.tar.gz", hash = "sha256:8bce43de12516d5eecfdd5a8198e0d398fcbf45695f02fe0daf8b55d8f666190", size = 13886, upload-time = "2025-04-15T18:33:30.372Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ba/20/ed87b130ae62076b731521b3c4bc502e6ba8cc92def09954e4e755934804/voluptuous_openapi-0.1.0.tar.gz", hash = "sha256:84bc44107c472ba8782f7a4cb342d19d155d5fe7f92367f092cd96cc850ff1b7", size = 14656, upload-time = "2025-05-11T21:10:14.876Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e8/a0/9910da1d7808ea8f3664a8b72714d1fbc65cba4c0c73e2193d364af67428/voluptuous_openapi-0.0.7-py3-none-any.whl", hash = "sha256:1fa91c3f94b5074b661db2a2f0484e7fcd06d4a796709cb00e034acfbc459561", size = 9710, upload-time = "2025-04-15T18:33:29.162Z" },
+    { url = "https://files.pythonhosted.org/packages/68/3b/9e689d9fc68f0032bf5b7cbf767fc8bd4771d75cddaf01267fcc05490061/voluptuous_openapi-0.1.0-py3-none-any.whl", hash = "sha256:c3aac740286d368c90a99e007d55ddca7fcddf790d218c60ee0eeec2fcd3db2b", size = 9967, upload-time = "2025-05-11T21:10:13.647Z" },
 ]
 
 [[package]]

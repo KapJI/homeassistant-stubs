@@ -8,6 +8,7 @@ from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr, entity_registry as er
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.group import expand_entity_ids as expand_entity_ids
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
@@ -16,6 +17,9 @@ from zwave_js_server.model.controller import Controller as Controller, Provision
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import Value as ZwaveValue, ValueDataType as ValueDataType
+from zwave_js_server.version import VersionInfo as VersionInfo
+
+SERVER_VERSION_TIMEOUT: int
 
 @dataclass
 class ZwaveValueID:
@@ -63,3 +67,6 @@ def copy_available_params(input_dict: dict[str, Any], output_dict: dict[str, Any
 def get_value_state_schema(value: ZwaveValue) -> VolSchemaType | vol.Coerce | vol.In | None: ...
 def get_device_info(driver: Driver, node: ZwaveNode) -> DeviceInfo: ...
 def get_network_identifier_for_notification(hass: HomeAssistant, config_entry: ConfigEntry, controller: Controller) -> str: ...
+async def async_get_version_info(hass: HomeAssistant, ws_address: str) -> VersionInfo: ...
+
+class CannotConnect(HomeAssistantError): ...

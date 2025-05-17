@@ -5,19 +5,24 @@ from .util import get_name_key as get_name_key, get_options as get_options, get_
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from deebot_client.capabilities import CapabilityEvent, CapabilityLifeSpan
+from deebot_client.capabilities import CapabilityEvent, CapabilityLifeSpan, DeviceType
+from deebot_client.device import Device as Device
 from deebot_client.events import ErrorEvent, Event as Event, LifeSpan as LifeSpan, LifeSpanEvent as LifeSpanEvent
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DESCRIPTION as CONF_DESCRIPTION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from sucks import VacBot as VacBot
-from typing import Generic
+from typing import Any, Generic
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsSensorEntityDescription(EcovacsCapabilityEntityDescription, SensorEntityDescription, Generic[EventT]):
     value_fn: Callable[[EventT], StateType]
+    native_unit_of_measurement_fn: Callable[[DeviceType], str | None] | None = ...
+
+@callback
+def get_area_native_unit_of_measurement(device_type: DeviceType) -> str | None: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSensorEntityDescription, ...]
 
@@ -38,6 +43,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntr
 
 class EcovacsSensor(EcovacsDescriptionEntity[CapabilityEvent], SensorEntity):
     entity_description: EcovacsSensorEntityDescription
+    _attr_native_unit_of_measurement: Incomplete
+    def __init__(self, device: Device, capability: CapabilityEvent, entity_description: EcovacsSensorEntityDescription, **kwargs: Any) -> None: ...
     _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
 

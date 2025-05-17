@@ -10,7 +10,7 @@ from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONC
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
+from pysensibo.model import MotionSensor as MotionSensor, PureAQI, SensiboDevice as SensiboDevice
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -28,6 +28,9 @@ class SensiboDeviceSensorEntityDescription(SensorEntityDescription):
 
 FILTER_LAST_RESET_DESCRIPTION: Incomplete
 MOTION_SENSOR_TYPES: tuple[SensiboMotionSensorEntityDescription, ...]
+
+def _pure_aqi(pm25_pure: PureAQI | None) -> str | None: ...
+
 PURE_SENSOR_TYPES: tuple[SensiboDeviceSensorEntityDescription, ...]
 DEVICE_SENSOR_TYPES: tuple[SensiboDeviceSensorEntityDescription, ...]
 AIRQ_SENSOR_TYPES: tuple[SensiboDeviceSensorEntityDescription, ...]

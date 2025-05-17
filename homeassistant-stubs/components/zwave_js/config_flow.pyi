@@ -2,6 +2,7 @@ import asyncio
 import voluptuous as vol
 from .addon import get_addon_manager as get_addon_manager
 from .const import ADDON_SLUG as ADDON_SLUG, CONF_ADDON_DEVICE as CONF_ADDON_DEVICE, CONF_ADDON_EMULATE_HARDWARE as CONF_ADDON_EMULATE_HARDWARE, CONF_ADDON_LOG_LEVEL as CONF_ADDON_LOG_LEVEL, CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY as CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY, CONF_ADDON_LR_S2_AUTHENTICATED_KEY as CONF_ADDON_LR_S2_AUTHENTICATED_KEY, CONF_ADDON_NETWORK_KEY as CONF_ADDON_NETWORK_KEY, CONF_ADDON_S0_LEGACY_KEY as CONF_ADDON_S0_LEGACY_KEY, CONF_ADDON_S2_ACCESS_CONTROL_KEY as CONF_ADDON_S2_ACCESS_CONTROL_KEY, CONF_ADDON_S2_AUTHENTICATED_KEY as CONF_ADDON_S2_AUTHENTICATED_KEY, CONF_ADDON_S2_UNAUTHENTICATED_KEY as CONF_ADDON_S2_UNAUTHENTICATED_KEY, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_LR_S2_ACCESS_CONTROL_KEY as CONF_LR_S2_ACCESS_CONTROL_KEY, CONF_LR_S2_AUTHENTICATED_KEY as CONF_LR_S2_AUTHENTICATED_KEY, CONF_S0_LEGACY_KEY as CONF_S0_LEGACY_KEY, CONF_S2_ACCESS_CONTROL_KEY as CONF_S2_ACCESS_CONTROL_KEY, CONF_S2_AUTHENTICATED_KEY as CONF_S2_AUTHENTICATED_KEY, CONF_S2_UNAUTHENTICATED_KEY as CONF_S2_UNAUTHENTICATED_KEY, CONF_USB_PATH as CONF_USB_PATH, CONF_USE_ADDON as CONF_USE_ADDON, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, RESTORE_NVM_DRIVER_READY_TIMEOUT as RESTORE_NVM_DRIVER_READY_TIMEOUT
+from .helpers import CannotConnect as CannotConnect, async_get_version_info as async_get_version_info
 from _typeshed import Incomplete
 from homeassistant.components import usb as usb
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
@@ -10,7 +11,6 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
@@ -28,7 +28,6 @@ ADDON_SETUP_TIMEOUT: int
 ADDON_SETUP_TIMEOUT_ROUNDS: int
 CONF_EMULATE_HARDWARE: str
 CONF_LOG_LEVEL: str
-SERVER_VERSION_TIMEOUT: int
 ADDON_LOG_LEVELS: Incomplete
 ADDON_USER_INPUT_MAP: Incomplete
 ON_SUPERVISOR_SCHEMA: Incomplete
@@ -37,7 +36,6 @@ MIN_MIGRATION_SDK_VERSION: Incomplete
 def get_manual_schema(user_input: dict[str, Any]) -> vol.Schema: ...
 def get_on_supervisor_schema(user_input: dict[str, Any]) -> vol.Schema: ...
 async def validate_input(hass: HomeAssistant, user_input: dict) -> VersionInfo: ...
-async def async_get_version_info(hass: HomeAssistant, ws_address: str) -> VersionInfo: ...
 def get_usb_ports() -> dict[str, str]: ...
 async def async_get_usb_ports(hass: HomeAssistant) -> dict[str, str]: ...
 
@@ -113,8 +111,6 @@ class ZWaveJSConfigFlow(ConfigFlow, domain=DOMAIN):
     async def _async_backup_network(self) -> None: ...
     async def _async_restore_network_backup(self) -> None: ...
     def _get_driver(self) -> Driver: ...
-
-class CannotConnect(HomeAssistantError): ...
 
 class InvalidInput(HomeAssistantError):
     error: Incomplete

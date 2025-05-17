@@ -39,7 +39,6 @@ class EsphomeEntity(EsphomeBaseEntity, Generic[_InfoT, _StateT]):
     _has_state: bool
     _entry_data: Incomplete
     _states: Incomplete
-    _device_info: Incomplete
     _key: Incomplete
     _state_type: Incomplete
     _attr_device_info: Incomplete
@@ -57,6 +56,7 @@ class EsphomeEntity(EsphomeBaseEntity, Generic[_InfoT, _StateT]):
     def _update_state_from_entry_data(self) -> None: ...
     @callback
     def _on_state_update(self) -> None: ...
+    _device_info: Incomplete
     _api_version: Incomplete
     _client: Incomplete
     _attr_available: Incomplete

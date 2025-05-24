@@ -4,15 +4,13 @@ from . import OTBRConfigEntry as OTBRConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import MultiprotocolAddonManager as MultiprotocolAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager, is_multiprotocol_url as is_multiprotocol_url, multi_pan_addon_using_device as multi_pan_addon_using_device
+from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import MultiprotocolAddonManager as MultiprotocolAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager, is_multiprotocol_url as is_multiprotocol_url
 from homeassistant.config_entries import SOURCE_USER as SOURCE_USER
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any, Concatenate
 
 _LOGGER: Incomplete
-INFO_URL_SKY_CONNECT: str
-INFO_URL_YELLOW: str
 INSECURE_NETWORK_KEYS: Incomplete
 INSECURE_PASSPHRASES: Incomplete
 

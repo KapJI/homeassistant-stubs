@@ -1,5 +1,5 @@
 from .coordinator import EheimDigitalConfigEntry as EheimDigitalConfigEntry, EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoordinator
-from .entity import EheimDigitalEntity as EheimDigitalEntity
+from .entity import EheimDigitalEntity as EheimDigitalEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from eheimdigital.classic_vario import EheimDigitalClassicVario
 from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
@@ -18,8 +18,10 @@ class EheimDigitalClassicVarioSwitch(EheimDigitalEntity[EheimDigitalClassicVario
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalClassicVario) -> None: ...
     @override
+    @exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @override
+    @exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @override

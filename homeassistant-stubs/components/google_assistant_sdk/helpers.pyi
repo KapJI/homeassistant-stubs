@@ -1,4 +1,4 @@
-from .const import CONF_LANGUAGE_CODE as CONF_LANGUAGE_CODE, DATA_MEM_STORAGE as DATA_MEM_STORAGE, DATA_SESSION as DATA_SESSION, DOMAIN as DOMAIN, SUPPORTED_LANGUAGE_CODES as SUPPORTED_LANGUAGE_CODES
+from .const import CONF_LANGUAGE_CODE as CONF_LANGUAGE_CODE, DOMAIN as DOMAIN, SUPPORTED_LANGUAGE_CODES as SUPPORTED_LANGUAGE_CODES
 from _typeshed import Incomplete
 from aiohttp import web
 from dataclasses import dataclass
@@ -12,6 +12,12 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 
 _LOGGER: Incomplete
 DEFAULT_LANGUAGE_CODES: Incomplete
+type GoogleAssistantSDKConfigEntry = ConfigEntry[GoogleAssistantSDKRuntimeData]
+
+@dataclass
+class GoogleAssistantSDKRuntimeData:
+    session: OAuth2Session
+    mem_storage: InMemoryStorage
 
 @dataclass
 class CommandResponse:

@@ -3,11 +3,10 @@ from .const import APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, BSH_OPE
 from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, constraint_fetcher as constraint_fetcher
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfVolume as UnitOfVolume
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
 
@@ -17,6 +16,7 @@ EVENT_OPTIONS: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class HomeConnectSensorEntityDescription(SensorEntityDescription):
+    default_value: str | None = ...
     appliance_types: tuple[str, ...] | None = ...
     fetch_unit: bool = ...
 
@@ -25,9 +25,6 @@ SENSORS: Incomplete
 EVENT_SENSORS: Incomplete
 
 def _get_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectEntity]: ...
-def _add_event_sensor_entity(entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, appliance: HomeConnectApplianceData, description: HomeConnectSensorEntityDescription, remove_event_sensor_listener_list: list[Callable[[], None]]) -> None: ...
-def _add_event_sensor_listeners(entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, remove_event_sensor_listener_dict: dict[str, list[CALLBACK_TYPE]]) -> None: ...
-def _remove_event_sensor_listeners_on_depaired(entry: HomeConnectConfigEntry, remove_event_sensor_listener_dict: dict[str, list[CALLBACK_TYPE]]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectSensor(HomeConnectEntity, SensorEntity):
@@ -51,4 +48,6 @@ class HomeConnectProgramSensor(HomeConnectSensor):
     def update_native_value(self) -> None: ...
 
 class HomeConnectEventSensor(HomeConnectSensor):
+    _attr_entity_registry_enabled_default: bool
+    _attr_native_value: Incomplete
     def update_native_value(self) -> None: ...

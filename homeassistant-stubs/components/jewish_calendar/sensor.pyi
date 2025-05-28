@@ -1,33 +1,53 @@
 import datetime as dt
-from .entity import JewishCalendarConfigEntry as JewishCalendarConfigEntry, JewishCalendarEntity as JewishCalendarEntity
+from .entity import JewishCalendarConfigEntry as JewishCalendarConfigEntry, JewishCalendarDataResults as JewishCalendarDataResults, JewishCalendarEntity as JewishCalendarEntity
 from _typeshed import Incomplete
-from hdate import HDateInfo, Zmanim
+from collections.abc import Callable as Callable
+from dataclasses import dataclass
+from hdate import HDateInfo, Zmanim as Zmanim
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_date
-from typing import Any
 
 _LOGGER: Incomplete
-INFO_SENSORS: tuple[SensorEntityDescription, ...]
-TIME_SENSORS: tuple[SensorEntityDescription, ...]
+PARALLEL_UPDATES: int
+
+@dataclass(frozen=True, kw_only=True)
+class JewishCalendarBaseSensorDescription(SensorEntityDescription):
+    value_fn: Callable | None
+
+@dataclass(frozen=True, kw_only=True)
+class JewishCalendarSensorDescription(JewishCalendarBaseSensorDescription):
+    value_fn: Callable[[JewishCalendarDataResults], str | int]
+    attr_fn: Callable[[JewishCalendarDataResults], dict[str, str]] | None = ...
+    options_fn: Callable[[bool], list[str]] | None = ...
+
+@dataclass(frozen=True, kw_only=True)
+class JewishCalendarTimestampSensorDescription(JewishCalendarBaseSensorDescription):
+    value_fn: Callable[[HDateInfo, Callable[[dt.date], Zmanim]], dt.datetime | None] | None = ...
+
+INFO_SENSORS: tuple[JewishCalendarSensorDescription, ...]
+TIME_SENSORS: tuple[JewishCalendarTimestampSensorDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class JewishCalendarSensor(JewishCalendarEntity, SensorEntity):
+class JewishCalendarBaseSensor(JewishCalendarEntity, SensorEntity):
     _attr_entity_category: Incomplete
-    _attrs: dict[str, str]
-    def __init__(self, config_entry: JewishCalendarConfigEntry, description: SensorEntityDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    _attr_native_value: Incomplete
-    async def async_update(self) -> None: ...
-    def make_zmanim(self, date: dt.date) -> Zmanim: ...
+    async def async_update_data(self) -> None: ...
+
+class JewishCalendarSensor(JewishCalendarBaseSensor):
+    entity_description: JewishCalendarSensorDescription
+    _attr_options: Incomplete
+    def __init__(self, config_entry: JewishCalendarConfigEntry, description: SensorEntityDescription) -> None: ...
+    @property
+    def native_value(self) -> str | int | dt.datetime | None: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...
-    _attr_options: Incomplete
-    def get_state(self, daytime_date: HDateInfo, after_shkia_date: HDateInfo, after_tzais_date: HDateInfo) -> Any | None: ...
 
-class JewishCalendarTimeSensor(JewishCalendarSensor):
+class JewishCalendarTimeSensor(JewishCalendarBaseSensor):
     _attr_device_class: Incomplete
-    def get_state(self, daytime_date: HDateInfo, after_shkia_date: HDateInfo, after_tzais_date: HDateInfo) -> Any | None: ...
+    entity_description: JewishCalendarTimestampSensorDescription
+    @property
+    def native_value(self) -> dt.datetime | None: ...

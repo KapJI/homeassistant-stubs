@@ -1,6 +1,5 @@
-from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import DOMAIN as DOMAIN, REGULAR_FIRMWARE as REGULAR_FIRMWARE
-from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator, DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable

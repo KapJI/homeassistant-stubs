@@ -1,7 +1,7 @@
 import voluptuous as vol
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
+from .const import CONF_OFF_DELAY as CONF_OFF_DELAY, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
 from .entity import MqttAvailabilityMixin as MqttAvailabilityMixin, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -21,7 +21,6 @@ from typing import Any
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
-CONF_OFF_DELAY: str
 DEFAULT_PAYLOAD_OFF: str
 DEFAULT_PAYLOAD_ON: str
 DEFAULT_FORCE_UPDATE: bool

@@ -1,4 +1,4 @@
-from . import BMWConfigEntry as BMWConfigEntry
+from . import BMWConfigEntry as BMWConfigEntry, DOMAIN as DOMAIN
 from .coordinator import BMWDataUpdateCoordinator as BMWDataUpdateCoordinator
 from .entity import BMWBaseEntity as BMWBaseEntity
 from _typeshed import Incomplete

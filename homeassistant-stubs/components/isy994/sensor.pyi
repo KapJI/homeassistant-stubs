@@ -1,10 +1,9 @@
-from .const import DOMAIN as DOMAIN, UOM_DOUBLE_TEMP as UOM_DOUBLE_TEMP, UOM_FRIENDLY_NAME as UOM_FRIENDLY_NAME, UOM_INDEX as UOM_INDEX, UOM_ON_OFF as UOM_ON_OFF, UOM_TO_STATES as UOM_TO_STATES, _LOGGER as _LOGGER
+from .const import UOM_DOUBLE_TEMP as UOM_DOUBLE_TEMP, UOM_FRIENDLY_NAME as UOM_FRIENDLY_NAME, UOM_INDEX as UOM_INDEX, UOM_ON_OFF as UOM_ON_OFF, UOM_TO_STATES as UOM_TO_STATES, _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity
 from .helpers import convert_isy_value_to_hass as convert_isy_value_to_hass
-from .models import IsyData as IsyData
+from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -19,7 +18,7 @@ ISY_CONTROL_TO_DEVICE_CLASS: Incomplete
 ISY_CONTROL_TO_STATE_CLASS: Incomplete
 ISY_CONTROL_TO_ENTITY_CATEGORY: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IsyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYSensorEntity(ISYNodeEntity, SensorEntity):
     @property

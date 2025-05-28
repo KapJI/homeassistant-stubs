@@ -1,5 +1,5 @@
 from .coordinator import EheimDigitalConfigEntry as EheimDigitalConfigEntry, EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoordinator
-from .entity import EheimDigitalEntity as EheimDigitalEntity
+from .entity import EheimDigitalEntity as EheimDigitalEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
@@ -23,6 +23,7 @@ class EheimDigitalNumberDescription(NumberEntityDescription, Generic[_DeviceT_co
 
 CLASSICVARIO_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalClassicVario], ...]
 HEATER_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalHeater], ...]
+GENERAL_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalDevice], ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: EheimDigitalConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -31,6 +32,7 @@ class EheimDigitalNumber(EheimDigitalEntity[_DeviceT_co], NumberEntity, Generic[
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: _DeviceT_co, description: EheimDigitalNumberDescription[_DeviceT_co]) -> None: ...
     @override
+    @exception_handler
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_value: Incomplete
     _attr_native_unit_of_measurement: Incomplete

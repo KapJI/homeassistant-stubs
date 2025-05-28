@@ -1,5 +1,5 @@
-from . import GuardianData as GuardianData
-from .const import API_VALVE_STATUS as API_VALVE_STATUS, API_WIFI_STATUS as API_WIFI_STATUS, DOMAIN as DOMAIN
+from . import GuardianConfigEntry as GuardianConfigEntry, GuardianData as GuardianData
+from .const import API_VALVE_STATUS as API_VALVE_STATUS, API_WIFI_STATUS as API_WIFI_STATUS
 from .entity import ValveControllerEntity as ValveControllerEntity, ValveControllerEntityDescription as ValveControllerEntityDescription
 from .util import convert_exceptions_to_homeassistant_error as convert_exceptions_to_homeassistant_error
 from .valve import GuardianValveState as GuardianValveState
@@ -8,7 +8,6 @@ from aioguardian import Client as Client
 from collections.abc import Awaitable, Callable as Callable, Mapping
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -39,12 +38,12 @@ def is_open(data: dict[str, Any]) -> bool: ...
 
 VALVE_CONTROLLER_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: GuardianConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ValveControllerSwitch(ValveControllerEntity, SwitchEntity):
     entity_description: ValveControllerSwitchDescription
     _client: Incomplete
-    def __init__(self, entry: ConfigEntry, data: GuardianData, description: ValveControllerSwitchDescription) -> None: ...
+    def __init__(self, entry: GuardianConfigEntry, data: GuardianData, description: ValveControllerSwitchDescription) -> None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     @property

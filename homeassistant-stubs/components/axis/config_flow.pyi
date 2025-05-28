@@ -1,5 +1,5 @@
 from . import AxisConfigEntry as AxisConfigEntry
-from .const import CONF_STREAM_PROFILE as CONF_STREAM_PROFILE, CONF_VIDEO_SOURCE as CONF_VIDEO_SOURCE, DEFAULT_STREAM_PROFILE as DEFAULT_STREAM_PROFILE, DEFAULT_VIDEO_SOURCE as DEFAULT_VIDEO_SOURCE, DOMAIN as AXIS_DOMAIN
+from .const import CONF_STREAM_PROFILE as CONF_STREAM_PROFILE, CONF_VIDEO_SOURCE as CONF_VIDEO_SOURCE, DEFAULT_STREAM_PROFILE as DEFAULT_STREAM_PROFILE, DEFAULT_VIDEO_SOURCE as DEFAULT_VIDEO_SOURCE, DOMAIN as DOMAIN
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
 from .hub import AxisHub as AxisHub, get_axis_api as get_axis_api
 from _typeshed import Incomplete
@@ -20,7 +20,7 @@ DEFAULT_PORT: int
 DEFAULT_PROTOCOL: str
 PROTOCOL_CHOICES: Incomplete
 
-class AxisFlowHandler(ConfigFlow, domain=AXIS_DOMAIN):
+class AxisFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback

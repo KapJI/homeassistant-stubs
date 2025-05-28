@@ -1,4 +1,4 @@
-from .const import CONF_GCID as CONF_GCID, CONF_READ_ONLY as CONF_READ_ONLY, CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN, SCAN_INTERVALS as SCAN_INTERVALS
+from .const import CONF_GCID as CONF_GCID, CONF_READ_ONLY as CONF_READ_ONLY, CONF_REFRESH_TOKEN as CONF_REFRESH_TOKEN, DOMAIN as DOMAIN, SCAN_INTERVALS as SCAN_INTERVALS
 from _typeshed import Incomplete
 from bimmer_connected.account import MyBMWAccount
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

@@ -10,22 +10,40 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from mashumaro.mixins.orjson import DataClassORJSONMixin
 
 _LOGGER: Incomplete
-type BringConfigEntry = ConfigEntry[BringDataUpdateCoordinator]
+type BringConfigEntry = ConfigEntry[BringCoordinators]
+
+@dataclass
+class BringCoordinators:
+    data: BringDataUpdateCoordinator
+    activity: BringActivityCoordinator
 
 @dataclass(frozen=True)
 class BringData(DataClassORJSONMixin):
     lst: BringList
     content: BringItemsResponse
+
+@dataclass(frozen=True)
+class BringActivityData(DataClassORJSONMixin):
     activity: BringActivityResponse
     users: BringUsersResponse
 
-class BringDataUpdateCoordinator(DataUpdateCoordinator[dict[str, BringData]]):
+class BringBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT]):
     config_entry: BringConfigEntry
-    user_settings: BringUserSettingsResponse
     lists: list[BringList]
+
+class BringDataUpdateCoordinator(BringBaseCoordinator[dict[str, BringData]]):
+    user_settings: BringUserSettingsResponse
     bring: Incomplete
     previous_lists: set[str]
     def __init__(self, hass: HomeAssistant, config_entry: BringConfigEntry, bring: Bring) -> None: ...
+    lists: Incomplete
     async def _async_update_data(self) -> dict[str, BringData]: ...
     async def _async_setup(self) -> None: ...
     def _purge_deleted_lists(self) -> None: ...
+
+class BringActivityCoordinator(BringBaseCoordinator[dict[str, BringActivityData]]):
+    user_settings: BringUserSettingsResponse
+    coordinator: Incomplete
+    lists: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: BringConfigEntry, coordinator: BringDataUpdateCoordinator) -> None: ...
+    async def _async_update_data(self) -> dict[str, BringActivityData]: ...

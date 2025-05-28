@@ -1,10 +1,10 @@
 import aiohttp
 import datetime
 from .const import CONF_CALENDAR_ACCESS as CONF_CALENDAR_ACCESS, DEFAULT_FEATURE_ACCESS as DEFAULT_FEATURE_ACCESS, FeatureAccess as FeatureAccess
+from .store import GoogleConfigEntry as GoogleConfigEntry
 from _typeshed import Incomplete
 from gcal_sync.auth import AbstractAuth
 from homeassistant.components.application_credentials import AuthImplementation as AuthImplementation
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_time_interval as async_track_time_interval
@@ -47,7 +47,7 @@ class DeviceFlow:
     @callback
     def _finish(self) -> None: ...
 
-def get_feature_access(config_entry: ConfigEntry) -> FeatureAccess: ...
+def get_feature_access(config_entry: GoogleConfigEntry) -> FeatureAccess: ...
 async def async_create_device_flow(hass: HomeAssistant, client_id: str, client_secret: str, access: FeatureAccess) -> DeviceFlow: ...
 
 class ApiAuthImpl(AbstractAuth):

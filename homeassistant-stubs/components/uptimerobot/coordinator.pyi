@@ -9,7 +9,6 @@ from pyuptimerobot import UptimeRobot as UptimeRobot, UptimeRobotMonitor
 type UptimeRobotConfigEntry = ConfigEntry[UptimeRobotDataUpdateCoordinator]
 class UptimeRobotDataUpdateCoordinator(DataUpdateCoordinator[list[UptimeRobotMonitor]]):
     config_entry: UptimeRobotConfigEntry
-    _device_registry: Incomplete
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: UptimeRobotConfigEntry, api: UptimeRobot) -> None: ...
     async def _async_update_data(self) -> list[UptimeRobotMonitor]: ...

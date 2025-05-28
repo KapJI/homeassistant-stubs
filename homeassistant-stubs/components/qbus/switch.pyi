@@ -13,6 +13,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: QbusConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class QbusSwitch(QbusEntity, SwitchEntity):
+    _attr_name: Incomplete
     _attr_device_class: Incomplete
     _attr_is_on: bool
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...

@@ -1,16 +1,14 @@
-from .const import DOMAIN as DOMAIN, UOM_8_BIT_RANGE as UOM_8_BIT_RANGE, _LOGGER as _LOGGER
+from .const import UOM_8_BIT_RANGE as UOM_8_BIT_RANGE, _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
-from .models import IsyData as IsyData
+from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IsyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYCoverEntity(ISYNodeEntity, CoverEntity):
     _attr_supported_features: Incomplete

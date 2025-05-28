@@ -28,6 +28,11 @@ def _entity_feature_flag(domain: str, enum_name: str, feature_name: str) -> int:
 def _validate_supported_feature(supported_feature: str) -> int: ...
 def _validate_supported_features(supported_features: int | list[str]) -> int: ...
 
+BASE_SELECTOR_CONFIG_SCHEMA: Incomplete
+
+class BaseSelectorConfig(TypedDict, total=False):
+    read_only: bool
+
 ENTITY_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
 
 class EntityFilterSelectorConfig(TypedDict, total=False):
@@ -44,15 +49,15 @@ class DeviceFilterSelectorConfig(TypedDict, total=False):
     model: str
     model_id: str
 
-class ActionSelectorConfig(TypedDict): ...
+class ActionSelectorConfig(BaseSelectorConfig): ...
 
 class ActionSelector(Selector[ActionSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: ActionSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class AddonSelectorConfig(TypedDict, total=False):
+class AddonSelectorConfig(BaseSelectorConfig, total=False):
     name: str
     slug: str
 
@@ -62,7 +67,7 @@ class AddonSelector(Selector[AddonSelectorConfig]):
     def __init__(self, config: AddonSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class AreaSelectorConfig(TypedDict, total=False):
+class AreaSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     device: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
     multiple: bool
@@ -73,15 +78,15 @@ class AreaSelector(Selector[AreaSelectorConfig]):
     def __init__(self, config: AreaSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
-class AssistPipelineSelectorConfig(TypedDict, total=False): ...
+class AssistPipelineSelectorConfig(BaseSelectorConfig, total=False): ...
 
 class AssistPipelineSelector(Selector[AssistPipelineSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: AssistPipelineSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class AttributeSelectorConfig(TypedDict, total=False):
+class AttributeSelectorConfig(BaseSelectorConfig, total=False):
     entity_id: Required[str]
     hide_attributes: list[str]
 
@@ -91,31 +96,31 @@ class AttributeSelector(Selector[AttributeSelectorConfig]):
     def __init__(self, config: AttributeSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class BackupLocationSelectorConfig(TypedDict, total=False): ...
+class BackupLocationSelectorConfig(BaseSelectorConfig, total=False): ...
 
 class BackupLocationSelector(Selector[BackupLocationSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: BackupLocationSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class BooleanSelectorConfig(TypedDict): ...
+class BooleanSelectorConfig(BaseSelectorConfig): ...
 
 class BooleanSelector(Selector[BooleanSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: BooleanSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> bool: ...
 
-class ColorRGBSelectorConfig(TypedDict): ...
+class ColorRGBSelectorConfig(BaseSelectorConfig): ...
 
 class ColorRGBSelector(Selector[ColorRGBSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: ColorRGBSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> list[int]: ...
 
-class ColorTempSelectorConfig(TypedDict, total=False):
+class ColorTempSelectorConfig(BaseSelectorConfig, total=False):
     unit: ColorTempSelectorUnit
     min: int
     max: int
@@ -132,15 +137,15 @@ class ColorTempSelector(Selector[ColorTempSelectorConfig]):
     def __init__(self, config: ColorTempSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> int: ...
 
-class ConditionSelectorConfig(TypedDict): ...
+class ConditionSelectorConfig(BaseSelectorConfig): ...
 
 class ConditionSelector(Selector[ConditionSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: ConditionSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class ConfigEntrySelectorConfig(TypedDict, total=False):
+class ConfigEntrySelectorConfig(BaseSelectorConfig, total=False):
     integration: str
 
 class ConfigEntrySelector(Selector[ConfigEntrySelectorConfig]):
@@ -149,7 +154,7 @@ class ConfigEntrySelector(Selector[ConfigEntrySelectorConfig]):
     def __init__(self, config: ConfigEntrySelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class ConstantSelectorConfig(TypedDict, total=False):
+class ConstantSelectorConfig(BaseSelectorConfig, total=False):
     label: str
     translation_key: str
     value: str | int | bool
@@ -166,7 +171,7 @@ class QrErrorCorrectionLevel(StrEnum):
     QUARTILE = 'quartile'
     HIGH = 'high'
 
-class QrCodeSelectorConfig(TypedDict, total=False):
+class QrCodeSelectorConfig(BaseSelectorConfig, total=False):
     data: str
     scale: int
     error_correction_level: QrErrorCorrectionLevel
@@ -177,7 +182,7 @@ class QrCodeSelector(Selector[QrCodeSelectorConfig]):
     def __init__(self, config: QrCodeSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class ConversationAgentSelectorConfig(TypedDict, total=False):
+class ConversationAgentSelectorConfig(BaseSelectorConfig, total=False):
     language: str
 
 class ConversationAgentSelector(Selector[ConversationAgentSelectorConfig]):
@@ -186,7 +191,7 @@ class ConversationAgentSelector(Selector[ConversationAgentSelectorConfig]):
     def __init__(self, config: ConversationAgentSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class CountrySelectorConfig(TypedDict, total=False):
+class CountrySelectorConfig(BaseSelectorConfig, total=False):
     countries: list[str]
     no_sort: bool
 
@@ -196,23 +201,23 @@ class CountrySelector(Selector[CountrySelectorConfig]):
     def __init__(self, config: CountrySelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class DateSelectorConfig(TypedDict): ...
+class DateSelectorConfig(BaseSelectorConfig): ...
 
 class DateSelector(Selector[DateSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: DateSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class DateTimeSelectorConfig(TypedDict): ...
+class DateTimeSelectorConfig(BaseSelectorConfig): ...
 
 class DateTimeSelector(Selector[DateTimeSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: DateTimeSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class DeviceSelectorConfig(DeviceFilterSelectorConfig, total=False):
+class DeviceSelectorConfig(BaseSelectorConfig, DeviceFilterSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     multiple: bool
     filter: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
@@ -223,7 +228,7 @@ class DeviceSelector(Selector[DeviceSelectorConfig]):
     def __init__(self, config: DeviceSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
-class DurationSelectorConfig(TypedDict, total=False):
+class DurationSelectorConfig(BaseSelectorConfig, total=False):
     enable_day: bool
     enable_millisecond: bool
     allow_negative: bool
@@ -234,7 +239,7 @@ class DurationSelector(Selector[DurationSelectorConfig]):
     def __init__(self, config: DurationSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> dict[str, float]: ...
 
-class EntitySelectorConfig(EntityFilterSelectorConfig, total=False):
+class EntitySelectorConfig(BaseSelectorConfig, EntityFilterSelectorConfig, total=False):
     exclude_entities: list[str]
     include_entities: list[str]
     multiple: bool
@@ -246,7 +251,7 @@ class EntitySelector(Selector[EntitySelectorConfig]):
     def __init__(self, config: EntitySelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
-class FloorSelectorConfig(TypedDict, total=False):
+class FloorSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     device: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
     multiple: bool
@@ -257,7 +262,7 @@ class FloorSelector(Selector[FloorSelectorConfig]):
     def __init__(self, config: FloorSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
-class IconSelectorConfig(TypedDict, total=False):
+class IconSelectorConfig(BaseSelectorConfig, total=False):
     placeholder: str
 
 class IconSelector(Selector[IconSelectorConfig]):
@@ -266,7 +271,7 @@ class IconSelector(Selector[IconSelectorConfig]):
     def __init__(self, config: IconSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class LabelSelectorConfig(TypedDict, total=False):
+class LabelSelectorConfig(BaseSelectorConfig, total=False):
     multiple: bool
 
 class LabelSelector(Selector[LabelSelectorConfig]):
@@ -275,7 +280,7 @@ class LabelSelector(Selector[LabelSelectorConfig]):
     def __init__(self, config: LabelSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
-class LanguageSelectorConfig(TypedDict, total=False):
+class LanguageSelectorConfig(BaseSelectorConfig, total=False):
     languages: list[str]
     native_name: bool
     no_sort: bool
@@ -286,7 +291,7 @@ class LanguageSelector(Selector[LanguageSelectorConfig]):
     def __init__(self, config: LanguageSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class LocationSelectorConfig(TypedDict, total=False):
+class LocationSelectorConfig(BaseSelectorConfig, total=False):
     radius: bool
     icon: str
 
@@ -297,16 +302,16 @@ class LocationSelector(Selector[LocationSelectorConfig]):
     def __init__(self, config: LocationSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> dict[str, float]: ...
 
-class MediaSelectorConfig(TypedDict): ...
+class MediaSelectorConfig(BaseSelectorConfig): ...
 
 class MediaSelector(Selector[MediaSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     DATA_SCHEMA: Incomplete
     def __init__(self, config: MediaSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> dict[str, float]: ...
 
-class NumberSelectorConfig(TypedDict, total=False):
+class NumberSelectorConfig(BaseSelectorConfig, total=False):
     min: float
     max: float
     step: float | Literal['any']
@@ -325,11 +330,11 @@ class NumberSelector(Selector[NumberSelectorConfig]):
     def __init__(self, config: NumberSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> float: ...
 
-class ObjectSelectorConfig(TypedDict): ...
+class ObjectSelectorConfig(BaseSelectorConfig): ...
 
 class ObjectSelector(Selector[ObjectSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: ObjectSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
@@ -343,7 +348,7 @@ class SelectSelectorMode(StrEnum):
     LIST = 'list'
     DROPDOWN = 'dropdown'
 
-class SelectSelectorConfig(TypedDict, total=False):
+class SelectSelectorConfig(BaseSelectorConfig, total=False):
     options: Required[Sequence[SelectOptionDict] | Sequence[str]]
     multiple: bool
     custom_value: bool
@@ -357,11 +362,11 @@ class SelectSelector(Selector[SelectSelectorConfig]):
     def __init__(self, config: SelectSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class TargetSelectorConfig(TypedDict, total=False):
+class TargetSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     device: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
 
-class StateSelectorConfig(TypedDict, total=False):
+class StateSelectorConfig(BaseSelectorConfig, total=False):
     entity_id: Required[str]
 
 class StateSelector(Selector[StateSelectorConfig]):
@@ -377,15 +382,15 @@ class TargetSelector(Selector[TargetSelectorConfig]):
     def __init__(self, config: TargetSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> dict[str, list[str]]: ...
 
-class TemplateSelectorConfig(TypedDict): ...
+class TemplateSelectorConfig(BaseSelectorConfig): ...
 
 class TemplateSelector(Selector[TemplateSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: TemplateSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class TextSelectorConfig(TypedDict, total=False):
+class TextSelectorConfig(BaseSelectorConfig, total=False):
     multiline: bool
     prefix: str
     suffix: str
@@ -414,7 +419,7 @@ class TextSelector(Selector[TextSelectorConfig]):
     def __init__(self, config: TextSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 
-class ThemeSelectorConfig(TypedDict): ...
+class ThemeSelectorConfig(BaseSelectorConfig): ...
 
 class ThemeSelector(Selector[ThemeSelectorConfig]):
     selector_type: str
@@ -422,23 +427,23 @@ class ThemeSelector(Selector[ThemeSelectorConfig]):
     def __init__(self, config: ThemeSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class TimeSelectorConfig(TypedDict): ...
+class TimeSelectorConfig(BaseSelectorConfig): ...
 
 class TimeSelector(Selector[TimeSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: TimeSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
-class TriggerSelectorConfig(TypedDict): ...
+class TriggerSelectorConfig(BaseSelectorConfig): ...
 
 class TriggerSelector(Selector[TriggerSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA: Incomplete
+    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: TriggerSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class FileSelectorConfig(TypedDict):
+class FileSelectorConfig(BaseSelectorConfig):
     accept: str
 
 class FileSelector(Selector[FileSelectorConfig]):

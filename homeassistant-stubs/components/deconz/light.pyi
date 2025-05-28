@@ -1,5 +1,5 @@
 from . import DeconzConfigEntry as DeconzConfigEntry
-from .const import POWER_PLUGS as POWER_PLUGS
+from .const import DOMAIN as DOMAIN, POWER_PLUGS as POWER_PLUGS
 from .entity import DeconzDevice as DeconzDevice
 from .hub import DeconzHub as DeconzHub
 from _typeshed import Incomplete

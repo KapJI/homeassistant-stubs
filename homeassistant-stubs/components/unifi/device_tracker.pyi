@@ -1,5 +1,6 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
+from .const import DOMAIN as DOMAIN
 from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete

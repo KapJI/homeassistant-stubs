@@ -1,5 +1,5 @@
-from . import GuardianData as GuardianData
-from .const import API_VALVE_STATUS as API_VALVE_STATUS, DOMAIN as DOMAIN
+from . import GuardianConfigEntry as GuardianConfigEntry, GuardianData as GuardianData
+from .const import API_VALVE_STATUS as API_VALVE_STATUS
 from .entity import ValveControllerEntity as ValveControllerEntity, ValveControllerEntityDescription as ValveControllerEntityDescription
 from .util import convert_exceptions_to_homeassistant_error as convert_exceptions_to_homeassistant_error
 from _typeshed import Incomplete
@@ -8,7 +8,6 @@ from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
@@ -44,13 +43,13 @@ def is_opening(data: dict[str, Any]) -> bool: ...
 
 VALVE_CONTROLLER_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: GuardianConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ValveControllerValve(ValveControllerEntity, ValveEntity):
     _attr_supported_features: Incomplete
     entity_description: ValveControllerValveDescription
     _client: Incomplete
-    def __init__(self, entry: ConfigEntry, data: GuardianData, description: ValveControllerValveDescription) -> None: ...
+    def __init__(self, entry: GuardianConfigEntry, data: GuardianData, description: ValveControllerValveDescription) -> None: ...
     @property
     def is_closing(self) -> bool: ...
     @property

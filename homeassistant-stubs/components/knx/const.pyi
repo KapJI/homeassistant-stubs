@@ -97,3 +97,10 @@ SUPPORTED_PLATFORMS_YAML: Final[Incomplete]
 SUPPORTED_PLATFORMS_UI: Final[Incomplete]
 CONTROLLER_MODES: Final[Incomplete]
 CURRENT_HVAC_ACTIONS: Final[Incomplete]
+
+class CoverConf:
+    TRAVELLING_TIME_DOWN: Final[str]
+    TRAVELLING_TIME_UP: Final[str]
+    INVERT_UPDOWN: Final[str]
+    INVERT_POSITION: Final[str]
+    INVERT_ANGLE: Final[str]

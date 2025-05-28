@@ -1,4 +1,5 @@
 from . import async_wemo_dispatcher_connect as async_wemo_dispatcher_connect
+from .const import DOMAIN as DOMAIN
 from .coordinator import DeviceCoordinator as DeviceCoordinator
 from .entity import WemoBinaryStateEntity as WemoBinaryStateEntity, WemoEntity as WemoEntity
 from _typeshed import Incomplete

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DATA_HARDWARE as DATA_HARDWARE, DOMAIN as DOMAIN
 from .models import HardwareProtocol as HardwareProtocol
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

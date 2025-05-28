@@ -1,11 +1,10 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import GeocachingDataUpdateCoordinator as GeocachingDataUpdateCoordinator
+from .coordinator import GeocachingConfigEntry as GeocachingConfigEntry, GeocachingDataUpdateCoordinator as GeocachingDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from geocachingapi.models import GeocachingStatus as GeocachingStatus
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -17,7 +16,7 @@ class GeocachingSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[GeocachingSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: GeocachingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class GeocachingSensor(CoordinatorEntity[GeocachingDataUpdateCoordinator], SensorEntity):
     entity_description: GeocachingSensorEntityDescription

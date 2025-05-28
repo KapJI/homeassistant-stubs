@@ -1,8 +1,7 @@
 from .const import CONF_LANGUAGE_CODE as CONF_LANGUAGE_CODE, DOMAIN as DOMAIN
-from .helpers import async_send_text_commands as async_send_text_commands, default_language_code as default_language_code
+from .helpers import GoogleAssistantSDKConfigEntry as GoogleAssistantSDKConfigEntry, async_send_text_commands as async_send_text_commands, default_language_code as default_language_code
 from _typeshed import Incomplete
 from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any

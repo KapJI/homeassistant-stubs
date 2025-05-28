@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
-from .models import IsyData as IsyData
+from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback

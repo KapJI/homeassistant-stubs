@@ -1,5 +1,6 @@
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
+from .utils import bridge_api_call as bridge_api_call
 from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -14,6 +15,7 @@ class ComelitLightEntity(ComelitBridgeBaseEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
+    @bridge_api_call
     async def _light_set_state(self, state: int) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -1,28 +1,26 @@
 from . import KNXModule as KNXModule
-from .const import KNX_MODULE_KEY as KNX_MODULE_KEY
-from .entity import KnxYamlEntity as KnxYamlEntity
+from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, CoverConf as CoverConf, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity
 from .schema import CoverSchema as CoverSchema
+from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_ANGLE as CONF_GA_ANGLE, CONF_GA_PASSIVE as CONF_GA_PASSIVE, CONF_GA_POSITION_SET as CONF_GA_POSITION_SET, CONF_GA_POSITION_STATE as CONF_GA_POSITION_STATE, CONF_GA_STATE as CONF_GA_STATE, CONF_GA_STEP as CONF_GA_STEP, CONF_GA_STOP as CONF_GA_STOP, CONF_GA_UP_DOWN as CONF_GA_UP_DOWN, CONF_GA_WRITE as CONF_GA_WRITE
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
+from xknx import XKNX as XKNX
 from xknx.devices import Cover as XknxCover
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class KNXCover(KnxYamlEntity, CoverEntity):
+class _KnxCover(CoverEntity):
     _device: XknxCover
-    _unsubscribe_auto_updater: Callable[[], None] | None
-    _attr_entity_category: Incomplete
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
-    _attr_unique_id: Incomplete
-    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
+    def init_base(self) -> None: ...
     @property
     def current_cover_position(self) -> int | None: ...
     @property
@@ -41,3 +39,16 @@ class KNXCover(KnxYamlEntity, CoverEntity):
     async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
     async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
     async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...
+
+class KnxYamlCover(_KnxCover, KnxYamlEntity):
+    _device: XknxCover
+    _attr_entity_category: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_class: Incomplete
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
+
+def _create_ui_cover(xknx: XKNX, knx_config: ConfigType, name: str) -> XknxCover: ...
+
+class KnxUiCover(_KnxCover, KnxUiEntity):
+    _device: XknxCover
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...

@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID

@@ -1,7 +1,7 @@
 from .const import ASSETS_URL as ASSETS_URL, DOMAIN as DOMAIN
 from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
 from .entity import HabiticaBase as HabiticaBase
-from .util import get_attribute_points as get_attribute_points, get_attributes_total as get_attributes_total, inventory_list as inventory_list
+from .util import get_attribute_points as get_attribute_points, get_attributes_total as get_attributes_total, inventory_list as inventory_list, pending_damage as pending_damage, pending_quest_items as pending_quest_items
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
@@ -54,6 +54,8 @@ class HabiticaSensorEntity(StrEnum):
     FOOD_TOTAL = 'food_total'
     SADDLE = 'saddle'
     QUEST_SCROLLS = 'quest_scrolls'
+    PENDING_DAMAGE = 'pending_damage'
+    PENDING_QUEST_ITEMS = 'pending_quest_items'
 
 SENSOR_DESCRIPTIONS: tuple[HabiticaSensorEntityDescription, ...]
 TASKS_MAP_ID: str

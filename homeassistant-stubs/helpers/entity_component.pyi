@@ -1,6 +1,6 @@
 import logging
 from . import discovery as discovery, entity as entity, service as service
-from .entity_platform import EntityPlatform as EntityPlatform
+from .entity_platform import EntityPlatform as EntityPlatform, async_calculate_suggested_object_id as async_calculate_suggested_object_id
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
@@ -11,14 +11,17 @@ from homeassistant.core import Event as Event, HassJob as HassJob, HassJobType a
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
+from homeassistant.util.hass_dict import HassKey as HassKey
 from types import ModuleType
 from typing import Any
 
 DEFAULT_SCAN_INTERVAL: Incomplete
-DATA_INSTANCES: str
+DATA_INSTANCES: HassKey[dict[str, EntityComponent]]
 
 @bind_hass
 async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None: ...
+@callback
+def async_get_entity_suggested_object_id(hass: HomeAssistant, entity_id: str) -> str | None: ...
 
 class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
     logger: Incomplete

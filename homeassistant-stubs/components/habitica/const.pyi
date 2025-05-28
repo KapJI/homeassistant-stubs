@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, CONF_PATH as CONF_PATH, __version__ as __version__
+from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, __version__ as __version__
 
 CONF_API_USER: str
 DEFAULT_URL: str
@@ -9,11 +9,6 @@ FORGOT_PASSWORD_URL: str
 SIGN_UP_URL: str
 HABITICANS_URL: str
 DOMAIN: str
-SERVICE_API_CALL: str
-ATTR_PATH = CONF_PATH
-ATTR_ARGS: str
-EVENT_API_CALL_SUCCESS: Incomplete
-ATTR_DATA: str
 MANUFACTURER: str
 NAME: str
 ATTR_CONFIG_ENTRY: str

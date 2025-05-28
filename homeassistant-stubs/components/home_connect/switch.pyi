@@ -1,17 +1,13 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
 from .const import BSH_POWER_OFF as BSH_POWER_OFF, BSH_POWER_ON as BSH_POWER_ON, BSH_POWER_STANDBY as BSH_POWER_STANDBY, DOMAIN as DOMAIN
-from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry, HomeConnectCoordinator as HomeConnectCoordinator
+from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
-from aiohomeconnect.model.program import EnumerateProgram as EnumerateProgram
-from homeassistant.components.automation import automations_with_entity as automations_with_entity
-from homeassistant.components.script import scripts_with_entity as scripts_with_entity
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from typing import Any
 
@@ -27,20 +23,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 
 class HomeConnectSwitch(HomeConnectEntity, SwitchEntity):
     _attr_available: bool
-    async def async_turn_on(self, **kwargs: Any) -> None: ...
-    async def async_turn_off(self, **kwargs: Any) -> None: ...
-    _attr_is_on: Incomplete
-    def update_native_value(self) -> None: ...
-
-class HomeConnectProgramSwitch(HomeConnectEntity, SwitchEntity):
-    program: Incomplete
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_has_entity_name: bool
-    def __init__(self, coordinator: HomeConnectCoordinator, appliance: HomeConnectApplianceData, program: EnumerateProgram) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
-    async def async_will_remove_from_hass(self) -> None: ...
-    def create_action_handler_issue(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete

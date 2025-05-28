@@ -14,7 +14,7 @@ from homeassistant.helpers.service import async_set_service_schema as async_set_
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.setup import SetupPhases as SetupPhases, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
-from typing import Any
+from typing import Any, final
 
 _LOGGER: Incomplete
 CONF_SERVICE_NAME: str
@@ -45,3 +45,5 @@ class Provider(metaclass=abc.ABCMeta):
     def default_options(self) -> Mapping[str, Any] | None: ...
     def get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...
     async def async_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...
+    @final
+    async def async_internal_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...

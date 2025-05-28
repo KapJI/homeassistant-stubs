@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 
+PARALLEL_UPDATES: int
 SENSORS: tuple[SensorEntityDescription, ...]
 _LOGGER: Incomplete
 

@@ -1,9 +1,8 @@
-from . import HomeworksData as HomeworksData
+from . import HomeworksConfigEntry as HomeworksConfigEntry
 from .const import CONF_ADDR as CONF_ADDR, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_DIMMERS as CONF_DIMMERS, CONF_RATE as CONF_RATE, DOMAIN as DOMAIN
 from .entity import HomeworksEntity as HomeworksEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -14,7 +13,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HomeworksConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeworksLight(HomeworksEntity, LightEntity):
     _attr_color_mode: Incomplete

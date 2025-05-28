@@ -18,7 +18,6 @@ from typing import Any, Concatenate
 _LOGGER: Incomplete
 
 class HomeConnectEntity(CoordinatorEntity[HomeConnectCoordinator], metaclass=abc.ABCMeta):
-    _attr_should_poll: bool
     _attr_has_entity_name: bool
     appliance: Incomplete
     entity_description: Incomplete

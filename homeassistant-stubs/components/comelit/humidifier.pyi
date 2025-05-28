@@ -1,12 +1,13 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
+from .utils import bridge_api_call as bridge_api_call, cleanup_stale_entity as cleanup_stale_entity, load_api_data as load_api_data
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
 from enum import StrEnum
 from homeassistant.components.humidifier import HumidifierAction as HumidifierAction, HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntity as HumidifierEntity, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_NORMAL as MODE_NORMAL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -51,7 +52,11 @@ class ComelitHumidifierEntity(ComelitBridgeBaseEntity, HumidifierEntity):
     def _update_attributes(self) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
+    @bridge_api_call
     async def async_set_humidity(self, humidity: int) -> None: ...
+    @bridge_api_call
     async def async_set_mode(self, mode: str) -> None: ...
+    @bridge_api_call
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @bridge_api_call
     async def async_turn_off(self, **kwargs: Any) -> None: ...

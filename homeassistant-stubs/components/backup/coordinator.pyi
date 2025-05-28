@@ -13,13 +13,16 @@ type BackupConfigEntry = ConfigEntry[BackupDataUpdateCoordinator]
 @dataclass
 class BackupCoordinatorData:
     backup_manager_state: BackupManagerState
+    last_attempted_automatic_backup: datetime | None
     last_successful_automatic_backup: datetime | None
     next_scheduled_automatic_backup: datetime | None
+    last_event: ManagerStateEvent | BackupPlatformEvent | None
 
 class BackupDataUpdateCoordinator(DataUpdateCoordinator[BackupCoordinatorData]):
     config_entry: ConfigEntry
     unsubscribe: list[Callable[[], None]]
     backup_manager: Incomplete
+    _last_event: ManagerStateEvent | BackupPlatformEvent | None
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, backup_manager: BackupManager) -> None: ...
     @callback
     def _on_event(self, event: ManagerStateEvent | BackupPlatformEvent) -> None: ...

@@ -1,4 +1,4 @@
-from .const import PLATFORMS as PLATFORMS, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
 from .errors import AuthenticationRequired as AuthenticationRequired, CannotConnect as CannotConnect
 from .hub import UnifiHub as UnifiHub, get_unifi_api as get_unifi_api
 from .services import async_setup_services as async_setup_services

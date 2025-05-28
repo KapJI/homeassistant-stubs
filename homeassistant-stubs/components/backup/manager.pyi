@@ -4,7 +4,7 @@ import asyncio
 from .agent import BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupAgentPlatformProtocol as BackupAgentPlatformProtocol, LocalBackupAgent as LocalBackupAgent
 from .config import BackupConfig as BackupConfig, CreateBackupParametersDict as CreateBackupParametersDict, check_unavailable_agents as check_unavailable_agents, delete_backups_exceeding_configured_count as delete_backups_exceeding_configured_count
 from .const import BUF_SIZE as BUF_SIZE, DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN, EXCLUDE_DATABASE_FROM_BACKUP as EXCLUDE_DATABASE_FROM_BACKUP, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER
-from .models import AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupNotFound as BackupNotFound, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
+from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupNotFound as BackupNotFound, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
 from .store import BackupStore as BackupStore
 from .util import AsyncIteratorReader as AsyncIteratorReader, DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, make_backup_dir as make_backup_dir, read_backup as read_backup, validate_password as validate_password, validate_password_stream as validate_password_stream
 from _typeshed import Incomplete
@@ -31,12 +31,21 @@ class AgentBackupStatus:
 @dataclass(frozen=True, kw_only=True, slots=True)
 class ManagerBackup(BaseBackup):
     agents: dict[str, AgentBackupStatus]
+    failed_addons: list[AddonInfo]
     failed_agent_ids: list[str]
+    failed_folders: list[Folder]
     with_automatic_settings: bool | None
 
 @dataclass(frozen=True, kw_only=True, slots=True)
+class AddonErrorData:
+    addon: AddonInfo
+    errors: list[tuple[str, str]]
+
+@dataclass(frozen=True, kw_only=True, slots=True)
 class WrittenBackup:
+    addon_errors: dict[str, AddonErrorData]
     backup: AgentBackup
+    folder_errors: dict[Folder, list[tuple[str, str]]]
     open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]]
     release_stream: Callable[[], Coroutine[Any, Any, None]]
 
@@ -202,8 +211,9 @@ class BackupManager:
     async def _async_restore_backup(self, backup_id: str, *, agent_id: str, password: str | None, restore_addons: list[str] | None, restore_database: bool, restore_folders: list[Folder] | None, restore_homeassistant: bool) -> None: ...
     @callback
     def async_on_backup_event(self, event: ManagerStateEvent) -> None: ...
+    def _create_automatic_backup_failed_issue(self, translation_key: str, translation_placeholders: dict[str, str] | None) -> None: ...
     def _update_issue_backup_failed(self) -> None: ...
-    def _update_issue_after_agent_upload(self, agent_errors: dict[str, Exception], unavailable_agents: list[str]) -> None: ...
+    def _update_issue_after_agent_upload(self, written_backup: WrittenBackup, agent_errors: dict[str, Exception], unavailable_agents: list[str]) -> None: ...
     async def async_can_decrypt_on_download(self, backup_id: str, *, agent_id: str, password: str | None) -> None: ...
 
 class KnownBackups:
@@ -212,19 +222,28 @@ class KnownBackups:
     def __init__(self, manager: BackupManager) -> None: ...
     def load(self, stored_backups: list[StoredKnownBackup]) -> None: ...
     def to_list(self) -> list[StoredKnownBackup]: ...
-    def add(self, backup: AgentBackup, agent_errors: dict[str, Exception], unavailable_agents: list[str]) -> None: ...
+    def add(self, backup: AgentBackup, agent_errors: dict[str, Exception], failed_addons: dict[str, AddonErrorData], failed_folders: dict[Folder, list[tuple[str, str]]], unavailable_agents: list[str]) -> None: ...
     def get(self, backup_id: str) -> KnownBackup | None: ...
     def remove(self, backup_id: str) -> None: ...
 
 @dataclass(kw_only=True)
 class KnownBackup:
     backup_id: str
+    failed_addons: list[AddonInfo]
     failed_agent_ids: list[str]
+    failed_folders: list[Folder]
     def to_dict(self) -> StoredKnownBackup: ...
+
+class StoredAddonInfo(TypedDict):
+    name: str | None
+    slug: str
+    version: str | None
 
 class StoredKnownBackup(TypedDict):
     backup_id: str
+    failed_addons: list[StoredAddonInfo]
     failed_agent_ids: list[str]
+    failed_folders: list[str]
 
 class CoreBackupReaderWriter(BackupReaderWriter):
     _local_agent_id: Incomplete

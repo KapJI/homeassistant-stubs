@@ -14,6 +14,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: QbusConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class QbusLight(QbusEntity, LightEntity):
+    _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...

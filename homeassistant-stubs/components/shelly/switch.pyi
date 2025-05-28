@@ -13,6 +13,8 @@ from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class BlockSwitchDescription(BlockEntityDescription, SwitchEntityDescription): ...
 
@@ -60,13 +62,11 @@ class BlockRelaySwitch(ShellyBlockAttributeEntity, SwitchEntity):
 
 class RpcSwitch(ShellyRpcAttributeEntity, SwitchEntity):
     entity_description: RpcSwitchDescription
-    _attr_has_entity_name: bool
     @property
     def is_on(self) -> bool: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class RpcRelaySwitch(RpcSwitch):
-    _attr_has_entity_name: bool
     _attr_unique_id: str
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...

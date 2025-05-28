@@ -1,8 +1,7 @@
 from .const import CONF_NETWORK as CONF_NETWORK, DOMAIN as DOMAIN
-from .models import IsyData as IsyData
+from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -12,7 +11,7 @@ from pyisy.helpers import EventListener as EventListener, NodeProperty as NodePr
 from pyisy.networking import NetworkCommand as NetworkCommand
 from pyisy.nodes import Node as Node
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: IsyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYNodeButtonEntity(ButtonEntity):
     _attr_should_poll: bool

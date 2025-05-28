@@ -1,5 +1,5 @@
 from . import BringConfigEntry as BringConfigEntry
-from .coordinator import BringDataUpdateCoordinator as BringDataUpdateCoordinator
+from .coordinator import BringActivityCoordinator as BringActivityCoordinator
 from .entity import BringBaseEntity as BringBaseEntity
 from _typeshed import Incomplete
 from bring_api import BringList as BringList
@@ -13,9 +13,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: BringConfigEntry,
 
 class BringEventEntity(BringBaseEntity, EventEntity):
     _attr_translation_key: str
+    coordinator: BringActivityCoordinator
     _attr_unique_id: Incomplete
     _attr_event_types: Incomplete
-    def __init__(self, coordinator: BringDataUpdateCoordinator, bring_list: BringList) -> None: ...
+    def __init__(self, coordinator: BringActivityCoordinator, bring_list: BringList) -> None: ...
     def _async_handle_event(self) -> None: ...
     @property
     def entity_picture(self) -> str | None: ...

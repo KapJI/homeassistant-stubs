@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
+from .coordinator import HydrawiseConfigEntry as HydrawiseConfigEntry
 from .entity import HydrawiseEntity as HydrawiseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -25,7 +23,7 @@ FLOW_ZONE_SENSORS: tuple[SensorEntityDescription, ...]
 ZONE_SENSORS: tuple[HydrawiseSensorEntityDescription, ...]
 FLOW_MEASUREMENT_KEYS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HydrawiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HydrawiseSensor(HydrawiseEntity, SensorEntity):
     entity_description: HydrawiseSensorEntityDescription

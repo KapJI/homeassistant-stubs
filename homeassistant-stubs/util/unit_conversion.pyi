@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from functools import lru_cache
-from homeassistant.const import CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfEnergyDistance as UnitOfEnergyDistance, UnitOfInformation as UnitOfInformation, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER as CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfEnergyDistance as UnitOfEnergyDistance, UnitOfInformation as UnitOfInformation, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfReactiveEnergy as UnitOfReactiveEnergy, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 _MM_TO_M: float
@@ -129,6 +129,11 @@ class PressureConverter(BaseUnitConverter):
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
+class ReactiveEnergyConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
 class SpeedConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
@@ -174,6 +179,11 @@ class TemperatureConverter(BaseUnitConverter):
     def _celsius_to_kelvin(cls, celsius: float) -> float: ...
 
 class UnitlessRatioConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class MassVolumeConcentrationConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete

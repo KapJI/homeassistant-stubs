@@ -8,6 +8,7 @@ from _typeshed import Incomplete
 from aiodiscover import DiscoverHosts
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
+from homeassistant.components import network as network
 from homeassistant.components.device_tracker import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
@@ -74,6 +75,7 @@ class DeviceTrackerRegisteredWatcher(WatcherBase):
 class DHCPWatcher(WatcherBase):
     @callback
     def _async_process_dhcp_request(self, response: aiodhcpwatcher.DHCPRequest) -> None: ...
+    async def async_get_adapter_indexes(self) -> list[int] | None: ...
     _unsub: Incomplete
     async def async_start(self) -> None: ...
 

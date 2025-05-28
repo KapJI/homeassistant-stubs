@@ -12,21 +12,22 @@ from typing import Any
 
 BACKOFF_MULTIPLIER: float
 _LOGGER: Incomplete
+type HereConfigEntry = ConfigEntry[HERETransitDataUpdateCoordinator | HERERoutingDataUpdateCoordinator]
 
 class HERERoutingDataUpdateCoordinator(DataUpdateCoordinator[HERETravelTimeData]):
-    config_entry: ConfigEntry
+    config_entry: HereConfigEntry
     _api: Incomplete
     config: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api_key: str, config: HERETravelTimeConfig) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: HereConfigEntry, api_key: str, config: HERETravelTimeConfig) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> HERETravelTimeData: ...
     def _parse_routing_response(self, response: dict[str, Any]) -> HERETravelTimeData: ...
 
 class HERETransitDataUpdateCoordinator(DataUpdateCoordinator[HERETravelTimeData | None]):
-    config_entry: ConfigEntry
+    config_entry: HereConfigEntry
     _api: Incomplete
     config: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api_key: str, config: HERETravelTimeConfig) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: HereConfigEntry, api_key: str, config: HERETravelTimeConfig) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> HERETravelTimeData | None: ...
     def _parse_transit_response(self, response: dict[str, Any]) -> HERETravelTimeData: ...

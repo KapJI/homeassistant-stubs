@@ -1,13 +1,12 @@
 from .const import HEATER_BIO_MODE as HEATER_BIO_MODE, HEATER_PRESET_TO_HEATER_MODE as HEATER_PRESET_TO_HEATER_MODE, HEATER_SMART_MODE as HEATER_SMART_MODE
 from .coordinator import EheimDigitalConfigEntry as EheimDigitalConfigEntry, EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoordinator
-from .entity import EheimDigitalEntity as EheimDigitalEntity
+from .entity import EheimDigitalEntity as EheimDigitalEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
 from eheimdigital.heater import EheimDigitalHeater
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -28,8 +27,11 @@ class EheimDigitalHeaterClimate(EheimDigitalEntity[EheimDigitalHeater], ClimateE
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalHeater) -> None: ...
+    @exception_handler
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @exception_handler
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @exception_handler
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_min_temp: int
     _attr_max_temp: int

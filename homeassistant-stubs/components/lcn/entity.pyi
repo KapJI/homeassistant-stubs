@@ -10,6 +10,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 
 class LcnEntity(Entity):
     _attr_should_poll: bool
+    _attr_has_entity_name: bool
     device_connection: DeviceConnectionType
     config: Incomplete
     config_entry: Incomplete

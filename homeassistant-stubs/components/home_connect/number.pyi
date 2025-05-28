@@ -6,6 +6,7 @@ from .utils import get_dict_from_home_connect_error as get_dict_from_home_connec
 from _typeshed import Incomplete
 from aiohomeconnect.model import GetSetting as GetSetting
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
+from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

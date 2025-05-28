@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant
 from mcstatus import BedrockServer, JavaServer
-from mcstatus.status_response import BedrockStatusResponse as BedrockStatusResponse, JavaStatusResponse
+from mcstatus.responses import BedrockStatusResponse as BedrockStatusResponse, JavaStatusResponse
 
 _LOGGER: Incomplete
 LOOKUP_TIMEOUT: float

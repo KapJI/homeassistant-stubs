@@ -1,9 +1,10 @@
-from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_MOTOR as CONF_MOTOR, CONF_REVERSE_TIME as CONF_REVERSE_TIME, DOMAIN as DOMAIN
+import pypck
+from .const import ADD_ENTITIES_CALLBACKS as ADD_ENTITIES_CALLBACKS, CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, CONF_MOTOR as CONF_MOTOR, CONF_POSITIONING_MODE as CONF_POSITIONING_MODE, CONF_REVERSE_TIME as CONF_REVERSE_TIME, DOMAIN as DOMAIN
 from .entity import LcnEntity as LcnEntity
 from .helpers import InputType as InputType
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from homeassistant.components.cover import CoverEntity as CoverEntity
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -36,6 +37,8 @@ class LcnRelayCover(LcnEntity, CoverEntity):
     _attr_is_closing: bool
     _attr_is_opening: bool
     _attr_assumed_state: bool
+    _attr_supported_features: Incomplete
+    positioning_mode: pypck.lcn_defs.MotorPositioningMode
     motor: Incomplete
     motor_port_onoff: Incomplete
     motor_port_updown: Incomplete
@@ -48,4 +51,6 @@ class LcnRelayCover(LcnEntity, CoverEntity):
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
+    _attr_current_cover_position: Incomplete
+    async def async_set_cover_position(self, **kwargs: Any) -> None: ...
     def input_received(self, input_obj: InputType) -> None: ...

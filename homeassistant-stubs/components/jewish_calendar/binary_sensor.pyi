@@ -3,12 +3,14 @@ from .entity import JewishCalendarConfigEntry as JewishCalendarConfigEntry, Jewi
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from hdate.zmanim import Zmanim
+from hdate.zmanim import Zmanim as Zmanim
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True)
 class JewishCalendarBinarySensorMixIns(BinarySensorEntityDescription):
@@ -28,7 +30,6 @@ class JewishCalendarBinarySensor(JewishCalendarEntity, BinarySensorEntity):
     entity_description: JewishCalendarBinarySensorEntityDescription
     @property
     def is_on(self) -> bool: ...
-    def _get_zmanim(self) -> Zmanim: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     @callback

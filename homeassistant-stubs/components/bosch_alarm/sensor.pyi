@@ -9,12 +9,16 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
+ALARM_TYPES: Incomplete
+
 @dataclass(kw_only=True, frozen=True)
 class BoschAlarmSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[Area], int]
+    value_fn: Callable[[Area], str | int]
     observe_alarms: bool = ...
     observe_ready: bool = ...
     observe_status: bool = ...
+
+def priority_value_fn(priority_info: dict[int, str]) -> Callable[[Area], str]: ...
 
 SENSOR_TYPES: list[BoschAlarmSensorEntityDescription]
 
@@ -27,4 +31,4 @@ class BoschAreaSensor(BoschAlarmAreaEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, area_id: int, unique_id: str, entity_description: BoschAlarmSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> int: ...
+    def native_value(self) -> str | int: ...

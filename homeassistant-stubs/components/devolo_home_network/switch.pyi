@@ -1,6 +1,5 @@
-from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import DOMAIN as DOMAIN, SWITCH_GUEST_WIFI as SWITCH_GUEST_WIFI, SWITCH_LEDS as SWITCH_LEDS
-from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator, DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass

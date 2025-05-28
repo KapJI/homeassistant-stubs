@@ -4,7 +4,7 @@ from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_S
 from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings
-from .webrtc import CameraWebRTCLegacyProvider as CameraWebRTCLegacyProvider, CameraWebRTCProvider as CameraWebRTCProvider, DATA_ICE_SERVERS as DATA_ICE_SERVERS, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_legacy_provider as async_get_supported_legacy_provider, async_get_supported_provider as async_get_supported_provider, async_register_ice_servers as async_register_ice_servers, async_register_rtsp_to_web_rtc_provider as async_register_rtsp_to_web_rtc_provider, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
+from .webrtc import CameraWebRTCProvider as CameraWebRTCProvider, DATA_ICE_SERVERS as DATA_ICE_SERVERS, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_provider as async_get_supported_provider, async_register_ice_servers as async_register_ice_servers, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable, Coroutine
@@ -19,11 +19,10 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, deprecated_function as deprecated_function, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
@@ -97,7 +96,6 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     _attr_brand: str | None
     _attr_frame_interval: float
-    _attr_frontend_stream_type: StreamType | None
     _attr_is_on: bool
     _attr_is_recording: bool
     _attr_is_streaming: bool
@@ -115,10 +113,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _warned_old_signature: bool
     _create_stream_lock: asyncio.Lock | None
     _webrtc_provider: CameraWebRTCProvider | None
-    _legacy_webrtc_provider: CameraWebRTCLegacyProvider | None
-    _supports_native_sync_webrtc: Incomplete
     _supports_native_async_webrtc: Incomplete
-    _deprecate_attr_frontend_stream_type_logged: bool
     def __init__(self) -> None: ...
     @cached_property
     def entity_picture(self) -> str: ...
@@ -141,12 +136,9 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @cached_property
     def frame_interval(self) -> float: ...
     @property
-    def frontend_stream_type(self) -> StreamType | None: ...
-    @property
     def available(self) -> bool: ...
     async def async_create_stream(self) -> Stream | None: ...
     async def stream_source(self) -> str | None: ...
-    async def async_handle_web_rtc_offer(self, offer_sdp: str) -> str | None: ...
     async def async_handle_async_webrtc_offer(self, offer_sdp: str, session_id: str, send_message: WebRTCSendMessage) -> None: ...
     def camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...

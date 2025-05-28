@@ -8,6 +8,8 @@ CODE_KEY: str
 CONF_STATION: str
 CHARGER_ADDED_DISCHARGED_ENERGY_KEY: str
 CHARGER_ADDED_ENERGY_KEY: str
+CHARGER_ADDED_GREEN_ENERGY_KEY: str
+CHARGER_ADDED_GRID_ENERGY_KEY: str
 CHARGER_ADDED_RANGE_KEY: str
 CHARGER_CHARGING_POWER_KEY: str
 CHARGER_CHARGING_SPEED_KEY: str
@@ -35,6 +37,9 @@ CHARGER_STATE_OF_CHARGE_KEY: str
 CHARGER_STATUS_ID_KEY: str
 CHARGER_STATUS_DESCRIPTION_KEY: str
 CHARGER_CONNECTIONS: str
+CHARGER_ECO_SMART_KEY: str
+CHARGER_ECO_SMART_STATUS_KEY: str
+CHARGER_ECO_SMART_MODE_KEY: str
 
 class ChargerStatus(StrEnum):
     CHARGING = 'Charging'
@@ -55,3 +60,8 @@ class ChargerStatus(StrEnum):
     WAITING_MID_SAFETY = 'Waiting MID safety margin exceeded'
     WAITING_IN_QUEUE_ECO_SMART = 'Waiting in queue by Eco-Smart'
     UNKNOWN = 'Unknown'
+
+class EcoSmartMode(StrEnum):
+    OFF = 'off'
+    ECO_MODE = 'eco_mode'
+    FULL_SOLAR = 'full_solar'

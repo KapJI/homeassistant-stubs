@@ -1,6 +1,5 @@
-from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import CONNECTED_PLC_DEVICES as CONNECTED_PLC_DEVICES, CONNECTED_TO_ROUTER as CONNECTED_TO_ROUTER
-from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator, DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

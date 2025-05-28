@@ -1,3 +1,6 @@
+from greeneye import Monitors as Monitors
+from homeassistant.util.hass_dict import HassKey as HassKey
+
 CONF_CHANNELS: str
 CONF_COUNTED_QUANTITY: str
 CONF_COUNTED_QUANTITY_PER_PULSE: str
@@ -10,8 +13,8 @@ CONF_SERIAL_NUMBER: str
 CONF_TEMPERATURE_SENSORS: str
 CONF_TIME_UNIT: str
 CONF_VOLTAGE_SENSORS: str
-DATA_GREENEYE_MONITOR: str
 DOMAIN: str
+DATA_GREENEYE_MONITOR: HassKey[Monitors]
 SENSOR_TYPE_CURRENT: str
 SENSOR_TYPE_PULSE_COUNTER: str
 SENSOR_TYPE_TEMPERATURE: str

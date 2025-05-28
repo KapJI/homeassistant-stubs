@@ -18,7 +18,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     _count: Incomplete
-    _coordinator: DataUpdateCoordinator[list[float] | None] | None
+    _coordinator: DataUpdateCoordinator[list[float | None] | None] | None
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     _attr_device_class: Incomplete
@@ -30,7 +30,9 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     _attr_available: bool
     async def _async_update(self) -> None: ...
 
-class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[float] | None]], RestoreSensor, SensorEntity):
+class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[float | None] | None]], RestoreSensor, SensorEntity):
+    @property
+    def available(self) -> bool: ...
     _idx: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
@@ -38,7 +40,7 @@ class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[float] | None]], 
     _attr_state_class: Incomplete
     _attr_device_class: Incomplete
     _attr_available: bool
-    def __init__(self, coordinator: DataUpdateCoordinator[list[float] | None], idx: int, entry: dict[str, Any]) -> None: ...
+    def __init__(self, coordinator: DataUpdateCoordinator[list[float | None] | None], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
     @callback

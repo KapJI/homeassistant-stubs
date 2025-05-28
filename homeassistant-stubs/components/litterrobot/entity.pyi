@@ -9,7 +9,7 @@ from typing import Generic, TypeVar
 
 _WhiskerEntityT = TypeVar('_WhiskerEntityT', bound=Robot | Pet)
 
-def get_device_info(whisker_entity: _WhiskerEntityT) -> DeviceInfo: ...
+def get_device_info(whisker_entity: Robot | Pet) -> DeviceInfo: ...
 
 class LitterRobotEntity(CoordinatorEntity[LitterRobotDataUpdateCoordinator], Generic[_WhiskerEntityT]):
     _attr_has_entity_name: bool

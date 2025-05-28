@@ -2,9 +2,10 @@ import asyncio
 import logging
 from .api import AccessTokenAuthImpl as AccessTokenAuthImpl, DEVICE_AUTH_CREDS as DEVICE_AUTH_CREDS, DeviceFlow as DeviceFlow, GoogleHybridAuth as GoogleHybridAuth, InvalidCredential as InvalidCredential, OAuthError as OAuthError, async_create_device_flow as async_create_device_flow
 from .const import CONF_CALENDAR_ACCESS as CONF_CALENDAR_ACCESS, CONF_CREDENTIAL_TYPE as CONF_CREDENTIAL_TYPE, CredentialType as CredentialType, DEFAULT_FEATURE_ACCESS as DEFAULT_FEATURE_ACCESS, DOMAIN as DOMAIN, FeatureAccess as FeatureAccess
+from .store import GoogleConfigEntry as GoogleConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -30,7 +31,7 @@ class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, doma
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
+    def async_get_options_flow(config_entry: GoogleConfigEntry) -> OptionsFlow: ...
 
 class OptionsFlowHandler(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

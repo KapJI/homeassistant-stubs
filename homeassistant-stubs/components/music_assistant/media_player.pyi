@@ -9,7 +9,7 @@ from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, RepeatMode as RepeatMode, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import ATTR_NAME as ATTR_NAME, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from music_assistant_client import MusicAssistantClient as MusicAssistantClient
@@ -36,6 +36,7 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_icon: Incomplete
     _attr_device_class: Incomplete
     _prev_time: float
+    _source_list_mapping: dict[str, str]
     def __init__(self, mass: MusicAssistantClient, player_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
@@ -43,6 +44,8 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     @property
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     _attr_state: Incomplete
+    _attr_source_list: Incomplete
+    _attr_source: Incomplete
     _attr_group_members: Incomplete
     _attr_volume_level: Incomplete
     _attr_is_volume_muted: Incomplete
@@ -84,6 +87,8 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     @catch_musicassistant_error
     async def async_unjoin_player(self) -> None: ...
     @catch_musicassistant_error
+    async def async_select_source(self, source: str) -> None: ...
+    @catch_musicassistant_error
     async def _async_handle_play_media(self, media_id: list[str], artist: str | None = None, album: str | None = None, enqueue: MediaPlayerEnqueue | QueueOption | None = None, radio_mode: bool | None = None, media_type: str | None = None) -> None: ...
     @catch_musicassistant_error
     async def _async_handle_play_announcement(self, url: str, use_pre_announce: bool | None = None, announce_volume: int | None = None) -> None: ...
@@ -106,7 +111,6 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_app_id: Incomplete
     _attr_shuffle: Incomplete
     _attr_repeat: Incomplete
-    _attr_source: Incomplete
     def _update_media_attributes(self, player: Player, queue: PlayerQueue | None) -> None: ...
     def _convert_queueoption_to_media_player_enqueue(self, queue_option: MediaPlayerEnqueue | QueueOption | None) -> QueueOption | None: ...
     _attr_supported_features: Incomplete

@@ -19,6 +19,7 @@ _LOGGER: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: QbusConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class QbusClimate(QbusEntity, ClimateEntity):
+    _attr_name: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete

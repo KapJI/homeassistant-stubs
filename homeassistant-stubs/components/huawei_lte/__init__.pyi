@@ -19,7 +19,6 @@ from typing import Any, NamedTuple
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
-NOTIFY_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 SERVICE_SCHEMA: Incomplete
 PLATFORMS: Incomplete

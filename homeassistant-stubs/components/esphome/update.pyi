@@ -1,7 +1,8 @@
+import asyncio
 from .const import DOMAIN as DOMAIN
 from .coordinator import ESPHomeDashboardCoordinator as ESPHomeDashboardCoordinator
 from .dashboard import async_get_dashboard as async_get_dashboard
-from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
+from .entity import EsphomeEntity as EsphomeEntity, async_esphome_state_property as async_esphome_state_property, convert_api_error_ha_error as convert_api_error_ha_error, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as ESPHomeDeviceInfo, EntityInfo as EntityInfo, UpdateInfo, UpdateState
@@ -29,6 +30,8 @@ class ESPHomeDashboardUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator
     _entry_data: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
+    _install_lock: Incomplete
+    _available_future: asyncio.Future[None] | None
     def __init__(self, entry_data: RuntimeEntryData, coordinator: ESPHomeDashboardCoordinator) -> None: ...
     _attr_supported_features: Incomplete
     _attr_installed_version: Incomplete
@@ -44,6 +47,8 @@ class ESPHomeDashboardUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator
     @callback
     def _handle_device_update(self, static_info: list[EntityInfo] | None = None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    async def async_will_remove_from_hass(self) -> None: ...
+    async def _async_wait_available(self) -> None: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
 
 class ESPHomeUpdateEntity(EsphomeEntity[UpdateInfo, UpdateState], UpdateEntity):
@@ -60,9 +65,8 @@ class ESPHomeUpdateEntity(EsphomeEntity[UpdateInfo, UpdateState], UpdateEntity):
     @property
     @esphome_state_property
     def latest_version(self) -> str | None: ...
-    @property
-    @esphome_state_property
-    def release_summary(self) -> str: ...
+    @async_esphome_state_property
+    async def async_release_notes(self) -> str | None: ...
     @property
     @esphome_state_property
     def release_url(self) -> str: ...

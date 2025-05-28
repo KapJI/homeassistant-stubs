@@ -1,9 +1,8 @@
-from . import HomeworksData as HomeworksData, HomeworksKeypad as HomeworksKeypad
+from . import HomeworksConfigEntry as HomeworksConfigEntry, HomeworksKeypad as HomeworksKeypad
 from .const import CONF_ADDR as CONF_ADDR, CONF_BUTTONS as CONF_BUTTONS, CONF_CONTROLLER_ID as CONF_CONTROLLER_ID, CONF_KEYPADS as CONF_KEYPADS, CONF_LED as CONF_LED, CONF_NUMBER as CONF_NUMBER, DOMAIN as DOMAIN
 from .entity import HomeworksEntity as HomeworksEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -14,7 +13,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: HomeworksConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeworksBinarySensor(HomeworksEntity, BinarySensorEntity):
     _attr_has_entity_name: bool

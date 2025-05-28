@@ -1,4 +1,4 @@
-from . import BMWConfigEntry as BMWConfigEntry
+from . import BMWConfigEntry as BMWConfigEntry, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from bimmer_connected.vehicle import MyBMWVehicle
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService

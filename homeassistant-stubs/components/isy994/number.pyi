@@ -1,10 +1,9 @@
-from .const import CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, UOM_8_BIT_RANGE as UOM_8_BIT_RANGE
+from .const import CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, UOM_8_BIT_RANGE as UOM_8_BIT_RANGE
 from .entity import ISYAuxControlEntity as ISYAuxControlEntity
 from .helpers import convert_isy_value_to_hass as convert_isy_value_to_hass
-from .models import IsyData as IsyData
+from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode, RestoreNumber as RestoreNumber
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_VARIABLES as CONF_VARIABLES, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -21,7 +20,7 @@ ON_RANGE: Incomplete
 CONTROL_DESC: Incomplete
 BACKLIGHT_MEMORY_FILTER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: IsyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYAuxControlNumberEntity(ISYAuxControlEntity, NumberEntity):
     _attr_mode: Incomplete

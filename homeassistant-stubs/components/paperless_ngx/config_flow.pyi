@@ -1,0 +1,16 @@
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from _typeshed import Incomplete
+from collections.abc import Mapping
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_URL as CONF_URL
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from typing import Any
+
+STEP_USER_DATA_SCHEMA: Incomplete
+
+class PaperlessConfigFlow(ConfigFlow, domain=DOMAIN):
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reauth(self, user_input: Mapping[str, Any]) -> ConfigFlowResult: ...
+    async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def _validate_input(self, user_input: dict[str, str]) -> dict[str, str]: ...

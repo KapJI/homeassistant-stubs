@@ -1,5 +1,5 @@
 from .. import DeconzConfigEntry as DeconzConfigEntry
-from ..const import CONF_MASTER_GATEWAY as CONF_MASTER_GATEWAY, HASSIO_CONFIGURATION_URL as HASSIO_CONFIGURATION_URL, PLATFORMS as PLATFORMS
+from ..const import CONF_MASTER_GATEWAY as CONF_MASTER_GATEWAY, DOMAIN as DOMAIN, HASSIO_CONFIGURATION_URL as HASSIO_CONFIGURATION_URL, PLATFORMS as PLATFORMS
 from ..deconz_event import DeconzAlarmEvent as DeconzAlarmEvent, DeconzEvent as DeconzEvent, DeconzPresenceEvent as DeconzPresenceEvent, DeconzRelativeRotaryEvent as DeconzRelativeRotaryEvent
 from .config import DeconzConfig as DeconzConfig
 from _typeshed import Incomplete

@@ -1,6 +1,6 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EventT as EventT
-from .util import get_name_key as get_name_key, get_supported_entitites as get_supported_entitites
+from .util import get_name_key as get_name_key, get_supported_entities as get_supported_entities
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

@@ -15,17 +15,17 @@ _REFID_REGEX: Incomplete
 
 def add_new_outputs(coordinator: QbusControllerCoordinator, added_outputs: list[QbusMqttOutput], filter_fn: Callable[[QbusMqttOutput], bool], entity_type: type[QbusEntity], async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def format_ref_id(ref_id: str) -> str | None: ...
+def create_main_device_identifier(mqtt_output: QbusMqttOutput) -> tuple[str, str]: ...
 
 class QbusEntity(Entity, ABC, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
-    _attr_name: Incomplete
     _attr_should_poll: bool
+    _mqtt_output: Incomplete
     _topic_factory: Incomplete
     _message_factory: Incomplete
+    _state_topic: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _mqtt_output: Incomplete
-    _state_topic: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @abstractmethod

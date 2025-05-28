@@ -1,7 +1,7 @@
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, ROLE_TO_DEVICE_CLASS_MAP as ROLE_TO_DEVICE_CLASS_MAP
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, ShellySleepingRpcAttributeEntity as ShellySleepingRpcAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
-from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, get_shelly_air_lamp_life as get_shelly_air_lamp_life, get_virtual_component_ids as get_virtual_component_ids, is_rpc_wifi_stations_disabled as is_rpc_wifi_stations_disabled
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, get_rpc_device_info as get_rpc_device_info, get_shelly_air_lamp_life as get_shelly_air_lamp_life, get_virtual_component_ids as get_virtual_component_ids, is_rpc_wifi_stations_disabled as is_rpc_wifi_stations_disabled
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Callable as Callable
@@ -9,11 +9,12 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorExtraStoredData as SensorExtraStoredData, SensorStateClass as SensorStateClass
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Final
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class BlockSensorDescription(BlockEntityDescription, SensorEntityDescription): ...
@@ -21,6 +22,7 @@ class BlockSensorDescription(BlockEntityDescription, SensorEntityDescription): .
 @dataclass(frozen=True, kw_only=True)
 class RpcSensorDescription(RpcEntityDescription, SensorEntityDescription):
     device_class_fn: Callable[[dict], SensorDeviceClass | None] | None = ...
+    emeter_phase: str | None = ...
 
 @dataclass(frozen=True, kw_only=True)
 class RestSensorDescription(RestEntityDescription, SensorEntityDescription): ...
@@ -32,6 +34,11 @@ class RpcSensor(ShellyRpcAttributeEntity, SensorEntity):
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSensorDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
+
+class RpcEmeterPhaseSensor(RpcSensor):
+    entity_description: RpcSensorDescription
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSensorDescription) -> None: ...
 
 class RpcBluTrvSensor(RpcSensor):
     _attr_device_info: Incomplete

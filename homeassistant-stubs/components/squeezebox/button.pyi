@@ -11,6 +11,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 HARDWARE_MODELS_WITH_SCREEN: Incomplete
 HARDWARE_MODELS_WITH_TONE: Incomplete
 
@@ -28,4 +29,6 @@ class SqueezeboxButtonEntity(SqueezeboxEntity, ButtonEntity):
     entity_description: SqueezeboxButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator, entity_description: SqueezeboxButtonEntityDescription) -> None: ...
+    @property
+    def available(self) -> bool: ...
     async def async_press(self) -> None: ...

@@ -1,4 +1,5 @@
 import tibber
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData

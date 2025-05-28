@@ -1,5 +1,5 @@
-from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import DOMAIN as DOMAIN, IDENTIFY as IDENTIFY, PAIRING as PAIRING, RESTART as RESTART, START_WPS as START_WPS
+from .coordinator import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .entity import DevoloEntity as DevoloEntity
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass

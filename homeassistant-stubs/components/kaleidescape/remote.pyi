@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entity import KaleidescapeEntity as KaleidescapeEntity
 from _typeshed import Incomplete
 from collections.abc import Iterable

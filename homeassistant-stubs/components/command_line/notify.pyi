@@ -1,8 +1,10 @@
-from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT
+from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.components.notify import BaseNotificationService as BaseNotificationService
 from homeassistant.const import CONF_COMMAND as CONF_COMMAND
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import TemplateError as TemplateError
+from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.process import kill_subprocess as kill_subprocess
 from typing import Any

@@ -15,7 +15,7 @@ _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class SmButtonDescription(ButtonEntityDescription):
-    press_fn: Callable[[CmdWrapper], Awaitable[None]]
+    press_fn: Callable[[CmdWrapper, int], Awaitable[None]]
 
 BUTTONS: list[SmButtonDescription]
 ROUTER: Incomplete
@@ -26,6 +26,7 @@ class SmButton(SmEntity, ButtonEntity):
     coordinator: SmDataUpdateCoordinator
     entity_description: SmButtonDescription
     _attr_entity_category: Incomplete
+    idx: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmButtonDescription) -> None: ...
+    def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmButtonDescription, idx: int = 0) -> None: ...
     async def async_press(self) -> None: ...

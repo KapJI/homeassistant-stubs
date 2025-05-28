@@ -1,4 +1,4 @@
-from .coordinator import BringConfigEntry as BringConfigEntry, BringDataUpdateCoordinator as BringDataUpdateCoordinator
+from .coordinator import BringActivityCoordinator as BringActivityCoordinator, BringConfigEntry as BringConfigEntry, BringCoordinators as BringCoordinators, BringDataUpdateCoordinator as BringDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_PASSWORD, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

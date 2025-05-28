@@ -3,7 +3,6 @@ from .const import CONF_ACKNOWLEDGE as CONF_ACKNOWLEDGE, CONF_DIM_MODE as CONF_D
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_BASE as CONF_BASE, CONF_DEVICES as CONF_DEVICES, CONF_ENTITIES as CONF_ENTITIES, CONF_HOST as CONF_HOST, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
-from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
@@ -13,7 +12,6 @@ USER_DATA: Incomplete
 CONFIG_SCHEMA: Incomplete
 USER_SCHEMA: Incomplete
 
-def get_config_entry(hass: HomeAssistant, data: ConfigType) -> config_entries.ConfigEntry | None: ...
 async def validate_connection(data: ConfigType) -> str | None: ...
 
 class LcnFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):

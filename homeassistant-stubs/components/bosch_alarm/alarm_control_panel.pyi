@@ -1,5 +1,5 @@
-from . import BoschAlarmConfigEntry as BoschAlarmConfigEntry
 from .entity import BoschAlarmAreaEntity as BoschAlarmAreaEntity
+from .types import BoschAlarmConfigEntry as BoschAlarmConfigEntry
 from _typeshed import Incomplete
 from bosch_alarm_mode2 import Panel as Panel
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
@@ -7,6 +7,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: BoschAlarmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+PARALLEL_UPDATES: int
 
 class AreaAlarmControlPanel(BoschAlarmAreaEntity, AlarmControlPanelEntity):
     _attr_has_entity_name: bool

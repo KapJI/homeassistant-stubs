@@ -1,9 +1,7 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
+from .coordinator import HydrawiseConfigEntry as HydrawiseConfigEntry
 from .entity import HydrawiseEntity as HydrawiseEntity
 from _typeshed import Incomplete
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydrawise.schema import Zone as Zone
@@ -11,7 +9,7 @@ from typing import Any
 
 VALVE_TYPES: tuple[ValveEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HydrawiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HydrawiseValve(HydrawiseEntity, ValveEntity):
     _attr_name: Incomplete

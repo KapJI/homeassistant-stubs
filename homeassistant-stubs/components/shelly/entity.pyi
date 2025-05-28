@@ -1,13 +1,12 @@
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_entity_name as get_block_entity_name, get_rpc_entity_name as get_rpc_entity_name, get_rpc_key_instances as get_rpc_key_instances
+from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_device_info as get_block_device_info, get_block_entity_name as get_block_entity_name, get_rpc_device_info as get_rpc_device_info, get_rpc_entity_name as get_rpc_entity_name, get_rpc_key_instances as get_rpc_key_instances
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Mapping
 from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
@@ -60,6 +59,7 @@ class RestEntityDescription(EntityDescription):
 def rpc_call[_T: ShellyRpcEntity, **_P](func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
 
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
+    _attr_has_entity_name: bool
     block: Incomplete
     _attr_name: Incomplete
     _attr_device_info: Incomplete
@@ -71,6 +71,7 @@ class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     async def set_state(self, **kwargs: Any) -> Any: ...
 
 class ShellyRpcEntity(CoordinatorEntity[ShellyRpcCoordinator]):
+    _attr_has_entity_name: bool
     key: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
@@ -100,6 +101,7 @@ class ShellyBlockAttributeEntity(ShellyBlockEntity, Entity):
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class ShellyRestAttributeEntity(CoordinatorEntity[ShellyBlockCoordinator]):
+    _attr_has_entity_name: bool
     entity_description: RestEntityDescription
     block_coordinator: Incomplete
     attribute: Incomplete

@@ -5,9 +5,9 @@ from typing import Any, Self
 
 @dataclass(frozen=True, kw_only=True)
 class AddonInfo:
-    name: str
+    name: str | None
     slug: str
-    version: str
+    version: str | None
 
 class Folder(StrEnum):
     SHARE = 'share'

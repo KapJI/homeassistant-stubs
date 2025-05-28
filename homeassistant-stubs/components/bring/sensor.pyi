@@ -31,6 +31,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: BringConfigEntry,
 
 class BringSensorEntity(BringBaseEntity, SensorEntity):
     entity_description: BringSensorEntityDescription
+    coordinator: BringDataUpdateCoordinator
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: BringDataUpdateCoordinator, bring_list: BringList, entity_description: BringSensorEntityDescription) -> None: ...
     @property

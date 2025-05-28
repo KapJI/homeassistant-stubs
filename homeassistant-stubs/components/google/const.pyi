@@ -5,9 +5,7 @@ DOMAIN: str
 CONF_CALENDAR_ACCESS: str
 CONF_CREDENTIAL_TYPE: str
 DATA_CALENDARS: str
-DATA_SERVICE: str
 DATA_CONFIG: str
-DATA_STORE: str
 
 class FeatureAccess(Enum):
     read_only = 'https://www.googleapis.com/auth/calendar.readonly'

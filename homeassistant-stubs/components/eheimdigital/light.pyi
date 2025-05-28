@@ -1,12 +1,11 @@
 from .const import EFFECT_DAYCL_MODE as EFFECT_DAYCL_MODE, EFFECT_TO_LIGHT_MODE as EFFECT_TO_LIGHT_MODE
 from .coordinator import EheimDigitalConfigEntry as EheimDigitalConfigEntry, EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoordinator
-from .entity import EheimDigitalEntity as EheimDigitalEntity
+from .entity import EheimDigitalEntity as EheimDigitalEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from eheimdigital.classic_led_ctrl import EheimDigitalClassicLEDControl
 from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ColorMode as ColorMode, EFFECT_OFF as EFFECT_OFF, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
 from typing import Any
@@ -28,7 +27,9 @@ class EheimDigitalClassicLEDControlLight(EheimDigitalEntity[EheimDigitalClassicL
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalClassicLEDControl, channel: int) -> None: ...
     @property
     def available(self) -> bool: ...
+    @exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete

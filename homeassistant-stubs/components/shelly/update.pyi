@@ -14,6 +14,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any, Final
 
 LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RpcUpdateDescription(RpcEntityDescription, UpdateEntityDescription):

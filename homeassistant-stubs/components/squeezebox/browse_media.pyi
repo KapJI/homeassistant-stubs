@@ -1,4 +1,4 @@
-from .const import UNPLAYABLE_TYPES as UNPLAYABLE_TYPES
+from .const import DOMAIN as DOMAIN, UNPLAYABLE_TYPES as UNPLAYABLE_TYPES
 from _typeshed import Incomplete
 from dataclasses import dataclass, field
 from homeassistant.components import media_source as media_source

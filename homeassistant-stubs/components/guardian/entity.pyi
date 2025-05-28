@@ -1,8 +1,8 @@
+from . import GuardianConfigEntry as GuardianConfigEntry
 from .const import API_SYSTEM_DIAGNOSTICS as API_SYSTEM_DIAGNOSTICS, CONF_UID as CONF_UID, DOMAIN as DOMAIN
 from .coordinator import GuardianDataUpdateCoordinator as GuardianDataUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -15,7 +15,7 @@ class GuardianEntity(CoordinatorEntity[GuardianDataUpdateCoordinator]):
 class PairedSensorEntity(GuardianEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, entry: ConfigEntry, coordinator: GuardianDataUpdateCoordinator, description: EntityDescription) -> None: ...
+    def __init__(self, entry: GuardianConfigEntry, coordinator: GuardianDataUpdateCoordinator, description: EntityDescription) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ValveControllerEntityDescription(EntityDescription):
@@ -25,4 +25,4 @@ class ValveControllerEntity(GuardianEntity):
     _diagnostics_coordinator: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, entry: ConfigEntry, coordinators: dict[str, GuardianDataUpdateCoordinator], description: ValveControllerEntityDescription) -> None: ...
+    def __init__(self, entry: GuardianConfigEntry, coordinators: dict[str, GuardianDataUpdateCoordinator], description: ValveControllerEntityDescription) -> None: ...

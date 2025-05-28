@@ -1,10 +1,8 @@
-from .const import DOMAIN as DOMAIN
 from .entity import ISYAuxControlEntity as ISYAuxControlEntity, ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
-from .models import IsyData as IsyData
+from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -18,7 +16,7 @@ from typing import Any
 class ISYSwitchEntityDescription(SwitchEntityDescription):
     name: str = ...
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IsyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYSwitchEntity(ISYNodeEntity, SwitchEntity):
     @property

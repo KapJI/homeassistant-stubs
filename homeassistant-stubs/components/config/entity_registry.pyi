@@ -3,8 +3,12 @@ from homeassistant import config_entries as config_entries
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api import ERR_NOT_FOUND as ERR_NOT_FOUND, require_admin as require_admin
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.entity_component import async_get_entity_suggested_object_id as async_get_entity_suggested_object_id
 from homeassistant.helpers.json import json_dumps as json_dumps
 from typing import Any
+
+_LOGGER: Incomplete
 
 @callback
 def async_setup(hass: HomeAssistant) -> bool: ...
@@ -25,3 +29,5 @@ def websocket_update_entity(hass: HomeAssistant, connection: websocket_api.Activ
 @require_admin
 @callback
 def websocket_remove_entity(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@callback
+def websocket_get_automatic_entity_ids(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

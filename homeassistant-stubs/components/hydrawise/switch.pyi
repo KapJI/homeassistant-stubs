@@ -1,10 +1,9 @@
-from .const import DEFAULT_WATERING_TIME as DEFAULT_WATERING_TIME, DOMAIN as DOMAIN
-from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
+from .const import DEFAULT_WATERING_TIME as DEFAULT_WATERING_TIME
+from .coordinator import HydrawiseConfigEntry as HydrawiseConfigEntry
 from .entity import HydrawiseEntity as HydrawiseEntity
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydrawise import HydrawiseBase as HydrawiseBase, Zone as Zone
@@ -19,7 +18,7 @@ class HydrawiseSwitchEntityDescription(SwitchEntityDescription):
 SWITCH_TYPES: tuple[HydrawiseSwitchEntityDescription, ...]
 SWITCH_KEYS: list[str]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HydrawiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HydrawiseSwitch(HydrawiseEntity, SwitchEntity):
     entity_description: HydrawiseSwitchEntityDescription

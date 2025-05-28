@@ -17,6 +17,7 @@ class BringTodoListEntity(BringBaseEntity, TodoListEntity):
     _attr_translation_key: str
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
+    coordinator: BringDataUpdateCoordinator
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: BringDataUpdateCoordinator, bring_list: BringList) -> None: ...
     @property

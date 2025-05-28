@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo

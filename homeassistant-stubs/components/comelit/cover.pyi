@@ -1,8 +1,9 @@
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
+from .utils import bridge_api_call as bridge_api_call
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
-from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverState as CoverState
+from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -27,6 +28,7 @@ class ComelitCoverEntity(ComelitBridgeBaseEntity, RestoreEntity, CoverEntity):
     def is_closing(self) -> bool: ...
     @property
     def is_opening(self) -> bool: ...
+    @bridge_api_call
     async def _cover_set_state(self, action: int, state: int) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...

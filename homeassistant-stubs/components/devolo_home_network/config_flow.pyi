@@ -1,5 +1,5 @@
-from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import DOMAIN as DOMAIN, PRODUCT as PRODUCT, SERIAL_NUMBER as SERIAL_NUMBER, TITLE as TITLE
+from .coordinator import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import zeroconf as zeroconf

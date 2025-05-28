@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .hub import DeconzHub as DeconzHub
 from .util import serial_from_unique_id as serial_from_unique_id
 from _typeshed import Incomplete

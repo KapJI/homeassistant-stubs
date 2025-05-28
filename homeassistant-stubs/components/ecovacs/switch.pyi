@@ -1,6 +1,6 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity
-from .util import get_supported_entitites as get_supported_entitites
+from .util import get_supported_entities as get_supported_entities
 from dataclasses import dataclass
 from deebot_client.capabilities import CapabilitySetEnable
 from deebot_client.events import EnableEvent as EnableEvent

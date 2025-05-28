@@ -1,6 +1,6 @@
 import datetime
 import tibber
-from .const import MANUFACTURER as MANUFACTURER
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .coordinator import TibberDataCoordinator as TibberDataCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

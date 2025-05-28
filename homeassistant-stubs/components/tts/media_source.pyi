@@ -1,4 +1,4 @@
-from .const import DATA_COMPONENT as DATA_COMPONENT, DATA_TTS_MANAGER as DATA_TTS_MANAGER, DOMAIN as DOMAIN
+from .const import DATA_COMPONENT as DATA_COMPONENT, DATA_TTS_MANAGER as DATA_TTS_MANAGER, DOMAIN as DOMAIN, MEDIA_SOURCE_STREAM_PATH as MEDIA_SOURCE_STREAM_PATH
 from .helper import get_engine_instance as get_engine_instance
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
@@ -23,8 +23,11 @@ class ParsedMediaSourceId(TypedDict):
     options: MediaSourceOptions
     message: str
 
+class ParsedMediaSourceStreamId(TypedDict):
+    stream: str
+
 @callback
-def parse_media_source_id(media_source_id: str) -> ParsedMediaSourceId: ...
+def parse_media_source_id(media_source_id: str) -> ParsedMediaSourceId | ParsedMediaSourceStreamId: ...
 
 class TTSMediaSource(MediaSource):
     name: str

@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -114,3 +114,4 @@ class DemoGroupPlayer(AbstractDemoPlayer):
 
 class DemoSearchPlayer(AbstractDemoPlayer):
     _attr_supported_features = SEARCH_PLAYER_SUPPORT
+    async def async_search_media(self, query: SearchMediaQuery) -> SearchMedia: ...

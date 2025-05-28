@@ -1,5 +1,5 @@
 import asyncio
-from . import service as service, translation as translation
+from . import device_registry as dev_reg, service as service, translation as translation
 from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
 from .event import async_call_later as async_call_later
@@ -105,6 +105,9 @@ class EntityPlatform:
     @callback
     def async_register_entity_service(self, name: str, schema: VolDictType | VolSchemaType | None, func: str | Callable[..., Any], required_features: Iterable[int] | None = None, supports_response: SupportsResponse = ...) -> None: ...
     async def _async_update_entity_states(self) -> None: ...
+
+@callback
+def async_calculate_suggested_object_id(entity: Entity, device: dev_reg.DeviceEntry | None) -> str | None: ...
 
 current_platform: ContextVar[EntityPlatform | None]
 

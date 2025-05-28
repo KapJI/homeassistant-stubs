@@ -1,9 +1,9 @@
 from .bridge import SamsungTVBridge as SamsungTVBridge, async_get_device_info as async_get_device_info, mac_from_device_info as mac_from_device_info
-from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_SESSION_ID as CONF_SESSION_ID, CONF_SSDP_MAIN_TV_AGENT_LOCATION as CONF_SSDP_MAIN_TV_AGENT_LOCATION, CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, DEFAULT_MANUFACTURER as DEFAULT_MANUFACTURER, DOMAIN as DOMAIN, LOGGER as LOGGER, METHOD_ENCRYPTED_WEBSOCKET as METHOD_ENCRYPTED_WEBSOCKET, METHOD_LEGACY as METHOD_LEGACY, RESULT_AUTH_MISSING as RESULT_AUTH_MISSING, RESULT_CANNOT_CONNECT as RESULT_CANNOT_CONNECT, RESULT_INVALID_PIN as RESULT_INVALID_PIN, RESULT_NOT_SUPPORTED as RESULT_NOT_SUPPORTED, RESULT_SUCCESS as RESULT_SUCCESS, RESULT_UNKNOWN_HOST as RESULT_UNKNOWN_HOST, SUCCESSFUL_RESULTS as SUCCESSFUL_RESULTS, UPNP_SVC_MAIN_TV_AGENT as UPNP_SVC_MAIN_TV_AGENT, UPNP_SVC_RENDERING_CONTROL as UPNP_SVC_RENDERING_CONTROL
+from .const import CONF_MANUFACTURER as CONF_MANUFACTURER, CONF_SESSION_ID as CONF_SESSION_ID, CONF_SSDP_MAIN_TV_AGENT_LOCATION as CONF_SSDP_MAIN_TV_AGENT_LOCATION, CONF_SSDP_RENDERING_CONTROL_LOCATION as CONF_SSDP_RENDERING_CONTROL_LOCATION, DEFAULT_MANUFACTURER as DEFAULT_MANUFACTURER, DOMAIN as DOMAIN, LOGGER as LOGGER, METHOD_ENCRYPTED_WEBSOCKET as METHOD_ENCRYPTED_WEBSOCKET, METHOD_LEGACY as METHOD_LEGACY, RESULT_AUTH_MISSING as RESULT_AUTH_MISSING, RESULT_CANNOT_CONNECT as RESULT_CANNOT_CONNECT, RESULT_INVALID_PIN as RESULT_INVALID_PIN, RESULT_NOT_SUPPORTED as RESULT_NOT_SUPPORTED, RESULT_SUCCESS as RESULT_SUCCESS, SUCCESSFUL_RESULTS as SUCCESSFUL_RESULTS, UPNP_SVC_MAIN_TV_AGENT as UPNP_SVC_MAIN_TV_AGENT, UPNP_SVC_RENDERING_CONTROL as UPNP_SVC_RENDERING_CONTROL
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_METHOD as CONF_METHOD, CONF_MODEL as CONF_MODEL, CONF_NAME as CONF_NAME, CONF_PIN as CONF_PIN, CONF_PORT as CONF_PORT, CONF_TOKEN as CONF_TOKEN
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_METHOD as CONF_METHOD, CONF_MODEL as CONF_MODEL, CONF_PIN as CONF_PIN, CONF_PORT as CONF_PORT, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -24,6 +24,7 @@ class SamsungTVConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     _host: str
+    _bridge: SamsungTVBridge
     _mac: str | None
     _udn: str | None
     _upnp_udn: str | None
@@ -36,7 +37,6 @@ class SamsungTVConfigFlow(ConfigFlow, domain=DOMAIN):
     _name: str | None
     _title: str
     _id: int | None
-    _bridge: SamsungTVBridge | None
     _device_info: dict[str, Any] | None
     _authenticator: SamsungTVEncryptedWSAsyncAuthenticator | None
     def __init__(self) -> None: ...
@@ -48,7 +48,7 @@ class SamsungTVConfigFlow(ConfigFlow, domain=DOMAIN):
     async def _async_create_bridge(self) -> None: ...
     async def _async_get_device_info_and_method(self) -> tuple[str, str | None, dict[str, Any] | None]: ...
     async def _async_get_and_check_device_info(self) -> bool: ...
-    async def _async_set_name_host_from_input(self, user_input: dict[str, Any]) -> None: ...
+    async def _async_set_name_host_from_input(self, user_input: dict[str, Any]) -> bool: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_pairing(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_encrypted_pairing(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

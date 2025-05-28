@@ -1,7 +1,7 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
-from .const import SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS, SUPPORTED_STATION_ACTIONS as SUPPORTED_STATION_ACTIONS
+from .const import SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
 from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity
-from .util import get_supported_entitites as get_supported_entitites
+from .util import get_supported_entities as get_supported_entities
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from deebot_client.capabilities import CapabilityExecute, CapabilityExecuteTypes, CapabilityLifeSpan

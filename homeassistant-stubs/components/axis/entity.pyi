@@ -1,4 +1,5 @@
 import abc
+from .const import DOMAIN as DOMAIN
 from .hub import AxisHub as AxisHub
 from _typeshed import Incomplete
 from abc import abstractmethod

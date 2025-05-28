@@ -1,6 +1,5 @@
-from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import DOMAIN as DOMAIN
-from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator, DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from _typeshed import Incomplete
 from devolo_plc_api.device_api import ConnectedStationInfo, NeighborAPInfo, WifiGuestAccessGet
 from devolo_plc_api.plcnet_api import DataRate, LogicalNetwork

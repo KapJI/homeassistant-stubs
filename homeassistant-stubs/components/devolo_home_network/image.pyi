@@ -1,6 +1,5 @@
-from . import DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .const import IMAGE_GUEST_WIFI as IMAGE_GUEST_WIFI, SWITCH_GUEST_WIFI as SWITCH_GUEST_WIFI
-from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator
+from .coordinator import DevoloDataUpdateCoordinator as DevoloDataUpdateCoordinator, DevoloHomeNetworkConfigEntry as DevoloHomeNetworkConfigEntry
 from .entity import DevoloCoordinatorEntity as DevoloCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

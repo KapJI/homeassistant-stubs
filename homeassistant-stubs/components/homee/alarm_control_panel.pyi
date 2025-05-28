@@ -1,0 +1,39 @@
+from . import DOMAIN as DOMAIN, HomeeConfigEntry as HomeeConfigEntry
+from .entity import HomeeEntity as HomeeEntity
+from .helpers import get_name_for_enum as get_name_for_enum
+from _typeshed import Incomplete
+from dataclasses import dataclass
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityDescription as AlarmControlPanelEntityDescription, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyHomee.model import HomeeAttribute as HomeeAttribute
+
+PARALLEL_UPDATES: int
+
+@dataclass(frozen=True, kw_only=True)
+class HomeeAlarmControlPanelEntityDescription(AlarmControlPanelEntityDescription):
+    code_arm_required: bool = ...
+    state_list: list[AlarmControlPanelState]
+
+ALARM_DESCRIPTIONS: Incomplete
+
+def get_supported_features(state_list: list[AlarmControlPanelState]) -> AlarmControlPanelEntityFeature: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+class HomeeAlarmPanel(HomeeEntity, AlarmControlPanelEntity):
+    entity_description: HomeeAlarmControlPanelEntityDescription
+    _attr_code_arm_required: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_translation_key: Incomplete
+    def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: HomeeAlarmControlPanelEntityDescription) -> None: ...
+    @property
+    def alarm_state(self) -> AlarmControlPanelState: ...
+    @property
+    def changed_by(self) -> str: ...
+    async def _async_set_alarm_state(self, state: AlarmControlPanelState) -> None: ...
+    async def async_alarm_disarm(self, code: str | None = None) -> None: ...
+    async def async_alarm_arm_home(self, code: str | None = None) -> None: ...
+    async def async_alarm_arm_night(self, code: str | None = None) -> None: ...
+    async def async_alarm_arm_away(self, code: str | None = None) -> None: ...
+    async def async_alarm_arm_vacation(self, code: str | None = None) -> None: ...

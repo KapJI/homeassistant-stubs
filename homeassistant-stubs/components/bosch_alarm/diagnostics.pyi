@@ -1,5 +1,5 @@
-from . import BoschAlarmConfigEntry as BoschAlarmConfigEntry
 from .const import CONF_INSTALLER_CODE as CONF_INSTALLER_CODE, CONF_USER_CODE as CONF_USER_CODE
+from .types import BoschAlarmConfigEntry as BoschAlarmConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD

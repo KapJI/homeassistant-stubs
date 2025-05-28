@@ -1,5 +1,5 @@
 from .coordinator import EheimDigitalConfigEntry as EheimDigitalConfigEntry, EheimDigitalUpdateCoordinator as EheimDigitalUpdateCoordinator
-from .entity import EheimDigitalEntity as EheimDigitalEntity
+from .entity import EheimDigitalEntity as EheimDigitalEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
@@ -31,6 +31,7 @@ class EheimDigitalTime(EheimDigitalEntity[_DeviceT_co], TimeEntity, Generic[_Dev
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: _DeviceT_co, description: EheimDigitalTimeDescription[_DeviceT_co]) -> None: ...
     @override
+    @exception_handler
     async def async_set_value(self, value: time) -> None: ...
     _attr_native_value: Incomplete
     @override

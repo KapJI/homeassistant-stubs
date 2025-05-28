@@ -1,4 +1,4 @@
-from .const import WEMO_SUBSCRIPTION_EVENT as WEMO_SUBSCRIPTION_EVENT
+from .const import DOMAIN as DOMAIN, WEMO_SUBSCRIPTION_EVENT as WEMO_SUBSCRIPTION_EVENT
 from .coordinator import async_get_coordinator as async_get_coordinator
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA

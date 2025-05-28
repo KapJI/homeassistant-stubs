@@ -1,6 +1,19 @@
+import psutil_home_assistant as ha_psutil
 from dataclasses import dataclass
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.components import websocket_api as websocket_api
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from typing import Protocol
+
+@dataclass
+class HardwareData:
+    hardware_platform: dict[str, HardwareProtocol]
+    system_status: SystemStatus
+
+@dataclass(slots=True)
+class SystemStatus:
+    ha_psutil: ha_psutil
+    remove_periodic_timer: CALLBACK_TYPE | None
+    subscribers: set[tuple[websocket_api.ActiveConnection, int]]
 
 @dataclass(slots=True)
 class BoardInfo:

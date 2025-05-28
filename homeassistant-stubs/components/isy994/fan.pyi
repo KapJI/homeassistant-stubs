@@ -1,12 +1,10 @@
-from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import _LOGGER as _LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
-from .models import IsyData as IsyData
+from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
@@ -14,7 +12,7 @@ from typing import Any
 
 SPEED_RANGE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: IsyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ISYFanEntity(ISYNodeEntity, FanEntity):
     _attr_supported_features: Incomplete

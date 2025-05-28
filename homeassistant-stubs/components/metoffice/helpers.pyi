@@ -1,12 +1,11 @@
 import datapoint
-from .const import MODE_3HOURLY as MODE_3HOURLY
-from .data import MetOfficeData as MetOfficeData
 from _typeshed import Incomplete
-from datapoint.Site import Site as Site
+from datapoint.Forecast import Forecast as Forecast
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
-from homeassistant.util.dt import utcnow as utcnow
+from typing import Any, Literal
 
 _LOGGER: Incomplete
 
-def fetch_site(connection: datapoint.Manager, latitude: float, longitude: float) -> Site | None: ...
-def fetch_data(connection: datapoint.Manager, site: Site, mode: str) -> MetOfficeData: ...
+def fetch_data(connection: datapoint.Manager, latitude: float, longitude: float, frequency: Literal['daily', 'twice-daily', 'hourly']) -> Forecast: ...
+def get_attribute(data: dict[str, Any] | None, attr_name: str) -> Any | None: ...

@@ -8,6 +8,7 @@ from homeassistant.util.dt import now as now
 from pydrawise import HydrawiseBase as HydrawiseBase
 from pydrawise.schema import Controller as Controller, ControllerWaterUseSummary as ControllerWaterUseSummary, Sensor as Sensor, User as User, Zone as Zone
 
+type HydrawiseConfigEntry = ConfigEntry[HydrawiseUpdateCoordinators]
 @dataclass
 class HydrawiseData:
     user: User
@@ -23,15 +24,15 @@ class HydrawiseUpdateCoordinators:
 
 class HydrawiseDataUpdateCoordinator(DataUpdateCoordinator[HydrawiseData]):
     api: HydrawiseBase
-    config_entry: ConfigEntry
+    config_entry: HydrawiseConfigEntry
 
 class HydrawiseMainDataUpdateCoordinator(HydrawiseDataUpdateCoordinator):
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: HydrawiseBase) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: HydrawiseConfigEntry, api: HydrawiseBase) -> None: ...
     async def _async_update_data(self) -> HydrawiseData: ...
 
 class HydrawiseWaterUseDataUpdateCoordinator(HydrawiseDataUpdateCoordinator):
     _main_coordinator: HydrawiseMainDataUpdateCoordinator
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: HydrawiseBase, main_coordinator: HydrawiseMainDataUpdateCoordinator) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: HydrawiseConfigEntry, api: HydrawiseBase, main_coordinator: HydrawiseMainDataUpdateCoordinator) -> None: ...
     async def _async_update_data(self) -> HydrawiseData: ...

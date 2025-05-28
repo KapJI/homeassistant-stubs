@@ -16,4 +16,5 @@ DEFAULT_TIME_MEMORY: int
 DOMAIN: str
 DATA_COMPONENT: HassKey[EntityComponent[TextToSpeechEntity]]
 DATA_TTS_MANAGER: HassKey[SpeechManager]
+MEDIA_SOURCE_STREAM_PATH: str
 type TtsAudioType = tuple[str | None, bytes | None]

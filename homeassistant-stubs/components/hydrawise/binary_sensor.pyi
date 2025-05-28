@@ -1,12 +1,11 @@
-from .const import DOMAIN as DOMAIN, SERVICE_RESUME as SERVICE_RESUME, SERVICE_START_WATERING as SERVICE_START_WATERING, SERVICE_SUSPEND as SERVICE_SUSPEND
-from .coordinator import HydrawiseUpdateCoordinators as HydrawiseUpdateCoordinators
+from .const import SERVICE_RESUME as SERVICE_RESUME, SERVICE_START_WATERING as SERVICE_START_WATERING, SERVICE_SUSPEND as SERVICE_SUSPEND
+from .coordinator import HydrawiseConfigEntry as HydrawiseConfigEntry
 from .entity import HydrawiseEntity as HydrawiseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -24,7 +23,7 @@ ZONE_BINARY_SENSORS: tuple[HydrawiseBinarySensorEntityDescription, ...]
 SCHEMA_START_WATERING: VolDictType
 SCHEMA_SUSPEND: VolDictType
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HydrawiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HydrawiseBinarySensor(HydrawiseEntity, BinarySensorEntity):
     entity_description: HydrawiseBinarySensorEntityDescription

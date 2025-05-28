@@ -1,4 +1,5 @@
 from . import services as services
+from .const import DOMAIN as DOMAIN
 from .coordinator import HeosConfigEntry as HeosConfigEntry, HeosCoordinator as HeosCoordinator
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable, Coroutine

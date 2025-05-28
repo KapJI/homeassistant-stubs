@@ -9,6 +9,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(kw_only=True, frozen=True)
 class BlockValveDescription(BlockEntityDescription, ValveEntityDescription): ...
 

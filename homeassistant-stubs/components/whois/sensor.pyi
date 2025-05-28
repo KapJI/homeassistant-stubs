@@ -1,4 +1,4 @@
-from .const import ATTR_EXPIRES as ATTR_EXPIRES, ATTR_NAME_SERVERS as ATTR_NAME_SERVERS, ATTR_REGISTRAR as ATTR_REGISTRAR, ATTR_UPDATED as ATTR_UPDATED, DOMAIN as DOMAIN
+from .const import ATTR_EXPIRES as ATTR_EXPIRES, ATTR_NAME_SERVERS as ATTR_NAME_SERVERS, ATTR_REGISTRAR as ATTR_REGISTRAR, ATTR_UPDATED as ATTR_UPDATED, DOMAIN as DOMAIN, STATUS_TYPES as STATUS_TYPES
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -18,6 +18,7 @@ class WhoisSensorEntityDescription(SensorEntityDescription):
 
 def _days_until_expiration(domain: Domain) -> int | None: ...
 def _ensure_timezone(timestamp: datetime | None) -> datetime | None: ...
+def _get_status_type(status: str | None) -> str | None: ...
 
 SENSORS: tuple[WhoisSensorEntityDescription, ...]
 

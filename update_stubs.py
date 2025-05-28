@@ -172,6 +172,8 @@ def update_dependency(repo_root: Path, version: AwesomeVersion, uv_bin: str) -> 
     args = [uv_bin, "add", f"homeassistant=={version}"]
     if version.modifier is not None:
         args.append("--prerelease=allow")
+    if version == AwesomeVersion("2025.6.0b0"):
+        args.append("--frozen")
     subprocess.run(args, cwd=repo_root, check=True)
 
 

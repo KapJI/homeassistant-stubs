@@ -1,10 +1,12 @@
 import pexpect
+from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant import util as util
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_MEDIA_NEXT_TRACK as SERVICE_MEDIA_NEXT_TRACK, SERVICE_MEDIA_PLAY as SERVICE_MEDIA_PLAY, SERVICE_MEDIA_PLAY_PAUSE as SERVICE_MEDIA_PLAY_PAUSE, SERVICE_VOLUME_DOWN as SERVICE_VOLUME_DOWN, SERVICE_VOLUME_UP as SERVICE_VOLUME_UP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, create_issue as create_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 
 _LOGGER: Incomplete

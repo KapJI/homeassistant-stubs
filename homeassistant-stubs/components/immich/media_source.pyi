@@ -19,6 +19,7 @@ class ImmichMediaSourceIdentifier:
     collection_id: Incomplete
     asset_id: Incomplete
     file_name: Incomplete
+    mime_type: Incomplete
     def __init__(self, identifier: str) -> None: ...
 
 class ImmichMediaSource(MediaSource):

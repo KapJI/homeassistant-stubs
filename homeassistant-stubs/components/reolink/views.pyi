@@ -18,5 +18,6 @@ class PlaybackProxyView(HomeAssistantView):
     name: str
     hass: Incomplete
     session: Incomplete
+    _vod_type: str | None
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def get(self, request: web.Request, config_entry_id: str, channel: str, stream_res: str, vod_type: str, filename: str, retry: int = 2) -> web.StreamResponse: ...

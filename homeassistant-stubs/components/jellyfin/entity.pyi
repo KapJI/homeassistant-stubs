@@ -1,7 +1,7 @@
-from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .coordinator import JellyfinDataUpdateCoordinator as JellyfinDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 

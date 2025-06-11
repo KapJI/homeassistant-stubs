@@ -10,7 +10,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.helpers import recorder as recorder, restore_state as restore_state
 from homeassistant.helpers.entity_component import async_update_entity as async_update_entity
-from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
 from homeassistant.helpers.service import async_extract_config_entry_ids as async_extract_config_entry_ids, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.signal import KEY_HA_STOP as KEY_HA_STOP

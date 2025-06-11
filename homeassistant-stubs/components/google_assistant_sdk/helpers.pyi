@@ -7,6 +7,7 @@ from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_ME
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAuth2Session
 from homeassistant.helpers.event import async_call_later as async_call_later
 

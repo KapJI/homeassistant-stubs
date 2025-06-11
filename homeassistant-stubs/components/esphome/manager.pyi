@@ -23,7 +23,6 @@ DEVICE_CONFLICT_ISSUE_FORMAT: str
 _LOGGER: Incomplete
 LOG_LEVEL_TO_LOGGER: Incomplete
 LOGGER_TO_LOG_LEVEL: Incomplete
-ANSI_ESCAPE_78BIT: Incomplete
 
 @callback
 def _async_check_firmware_version(hass: HomeAssistant, device_info: EsphomeDeviceInfo, api_version: APIVersion) -> None: ...

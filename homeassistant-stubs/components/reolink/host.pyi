@@ -1,5 +1,5 @@
 import asyncio
-from .const import CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
+from .const import BATTERY_ALL_WAKE_UPDATE_INTERVAL as BATTERY_ALL_WAKE_UPDATE_INTERVAL, BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL as BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL, BATTERY_WAKE_UPDATE_INTERVAL as BATTERY_WAKE_UPDATE_INTERVAL, CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
 from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkSetupException as ReolinkSetupException, ReolinkWebhookException as ReolinkWebhookException, UserNotAdmin as UserNotAdmin
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, get_store as get_store
 from _typeshed import Incomplete
@@ -28,7 +28,6 @@ SUBSCRIPTION_RENEW_THRESHOLD: int
 POLL_INTERVAL_NO_PUSH: int
 LONG_POLL_COOLDOWN: float
 LONG_POLL_ERROR_COOLDOWN: int
-BATTERY_WAKE_UPDATE_INTERVAL: int
 _LOGGER: Incomplete
 
 class ReolinkHost:
@@ -37,7 +36,8 @@ class ReolinkHost:
     _config: Incomplete
     _unique_id: str
     _api: Incomplete
-    last_wake: float
+    last_wake: defaultdict[int, float]
+    last_all_wake: float
     update_cmd: defaultdict[str, defaultdict[int | None, int]]
     firmware_ch_list: list[int | None]
     starting: bool

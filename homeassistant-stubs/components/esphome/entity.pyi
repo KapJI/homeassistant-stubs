@@ -38,6 +38,7 @@ class EsphomeEntity(EsphomeBaseEntity, Generic[_InfoT, _StateT]):
     _static_info: _InfoT
     _state: _StateT
     _has_state: bool
+    unique_id: str
     _entry_data: Incomplete
     _states: Incomplete
     _key: Incomplete

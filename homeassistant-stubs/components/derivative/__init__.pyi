@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_SOURCE as CONF_SOURCE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

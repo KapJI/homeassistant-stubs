@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import time
+from datetime import datetime
 from typing import TypedDict
 
 class HERETravelTimeData(TypedDict):
@@ -13,14 +13,10 @@ class HERETravelTimeData(TypedDict):
     destination_name: str | None
 
 @dataclass
-class HERETravelTimeConfig:
-    destination_latitude: float | None
-    destination_longitude: float | None
-    destination_entity_id: str | None
-    origin_latitude: float | None
-    origin_longitude: float | None
-    origin_entity_id: str | None
+class HERETravelTimeAPIParams:
+    destination: list[str]
+    origin: list[str]
     travel_mode: str
     route_mode: str
-    arrival: time | None
-    departure: time | None
+    arrival: datetime | None
+    departure: datetime | None

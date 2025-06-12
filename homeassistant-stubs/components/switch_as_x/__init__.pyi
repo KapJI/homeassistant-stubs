@@ -1,4 +1,17 @@
-from .light import LightSwitch as LightSwitch
-from homeassistant.core import callback
+from .const import CONF_INVERT as CONF_INVERT, CONF_TARGET_DOMAIN as CONF_TARGET_DOMAIN
+from _typeshed import Incomplete
+from homeassistant.components.homeassistant import exposed_entities as exposed_entities
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.helper_integration import async_handle_source_entity_changes as async_handle_source_entity_changes
 
-__all__ = ['LightSwitch']
+_LOGGER: Incomplete
+
+@callback
+def async_add_to_device(hass: HomeAssistant, entry: ConfigEntry, entity_id: str) -> str | None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool: ...
+async def config_entry_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...

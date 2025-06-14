@@ -13,6 +13,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AmazonNotifyEntityDescription(NotifyEntityDescription):
+    is_supported: Callable[[AmazonDevice], bool] = ...
     method: Callable[[AmazonEchoApi, AmazonDevice, str], Awaitable[None]]
     subkey: str
 

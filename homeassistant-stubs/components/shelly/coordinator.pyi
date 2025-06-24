@@ -34,6 +34,7 @@ class ShellyCoordinatorBase[_DeviceT: BlockDevice | RpcDevice](DataUpdateCoordin
     device: Incomplete
     device_id: str | None
     _pending_platforms: list[Platform] | None
+    suggested_area: str | None
     _came_online_once: bool
     _debounced_reload: Debouncer[Coroutine[Any, Any, None]]
     def __init__(self, hass: HomeAssistant, entry: ShellyConfigEntry, device: _DeviceT, update_interval: float) -> None: ...

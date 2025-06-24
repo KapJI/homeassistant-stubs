@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 def min_charging_current_value(coordinator: WallboxCoordinator) -> float: ...

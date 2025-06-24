@@ -10,10 +10,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 
-CHARGER_STATION: str
-UPDATE_INTERVAL: int
-_LOGGER: Incomplete
-
 @dataclass(frozen=True)
 class WallboxSensorEntityDescription(SensorEntityDescription):
     precision: int | None = ...
